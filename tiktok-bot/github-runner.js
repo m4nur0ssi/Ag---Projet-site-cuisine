@@ -79,6 +79,17 @@ async function run() {
             const item = data.queue[0];
             const videoUrl = item.url || item.videoUrl;
             
+            // Extraction ID pour vérifier les doublons
+            const { extractTikTokId } = require('./wordpress-poster');
+            const videoId = extractTikTokId(videoUrl);
+            
+            if (videoId && isAlreadyProcessed(videoId)) {
+                console.log(`   ⏭️ Déjà traitée (${videoId}), on la retire de la file.`);
+                data.queue.shift();
+                fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
+                return run(); // On passe à la suivante immédiatement
+            }
+
             console.log(`🪄 Traitement de la file en cours : ${videoUrl}`);
             const recipeName = await processRecipe({ 
                 videoUrl, 
@@ -88,12 +99,13 @@ async function run() {
             });
             
             if (typeof recipeName === 'string') {
+                if (videoId) markAsProcessed(videoId);
                 data.queue.shift(); // Supprimer de la file seulement si succès
                 fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
                 fs.writeFileSync(path.join(__dirname, 'latest-recipe.txt'), recipeName);
                 console.log(`   ✅ File mise à jour. Recette : "${recipeName}"`);
             }
-            return; // On s'arrête là pour ce tour (pour éviter de saturer GitHub Actions)
+            return; 
         }
     }
 
