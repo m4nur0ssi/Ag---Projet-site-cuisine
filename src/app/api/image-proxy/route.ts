@@ -55,9 +55,9 @@ export async function GET(request: NextRequest) {
         return new NextResponse(buffer, {
             headers: {
                 'Content-Type': contentType,
-                // Cache réduit : 1h navigateur, 2h CDN Vercel avec revalidation
-                // Pour forcer un refresh immédiat, ajouter ?v=timestamp à l'URL
-                'Cache-Control': 'public, max-age=3600, s-maxage=7200, stale-while-revalidate=3600',
+                // Cache LONG-TERME : 30 jours (2592000s) dans le CDN Vercel
+                // On utilise stale-while-revalidate pour que l'image soit servie instantanément même si le cache expire
+                'Cache-Control': 'public, max-age=86400, s-maxage=2592000, stale-while-revalidate=86400',
                 'Access-Control-Allow-Origin': '*',
             },
         });
