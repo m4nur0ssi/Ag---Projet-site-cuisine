@@ -134,7 +134,7 @@ async function uploadImageToWP(photoUrl, user, pass, wpUrl, encoding) {
 async function postToWordPressXMLRPC(recipe) {
     const user = process.env.WP_USERNAME;
     const pass = process.env.WP_PASSWORD;
-    const wpUrl = (process.env.WP_URL || 'http://192.168.1.200/wordpress').replace(/\/$/, '') + '/xmlrpc.php';
+    const wpUrl = (process.env.WP_URL || '').replace(/\/$/, '') + '/xmlrpc.php';
     const encoding = '<?xml version="1.0" encoding="UTF-8"?>';
 
     // 1. CAS MISE À JOUR SIMPLE (Ex: ajout de photo manquante)

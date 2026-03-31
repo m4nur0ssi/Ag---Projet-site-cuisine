@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: __dirname + '/.env' });
 const fetch = require('node-fetch');
 const path = require('path');
 const fs = require('fs');
@@ -98,7 +98,7 @@ async function fetchTikTokMetadata(videoUrl) {
             const scope = data.__DEFAULT_SCOPE__ || {};
             // On cherche dans plusieurs chemins possibles (desktop vs mobile/reflow)
             const itemStruct = scope['webapp.video-detail']?.itemInfo?.itemStruct || 
-                              scope['webapp.reflow.video.detail']?.itemInfo?.itemStruct;
+                               scope['webapp.reflow.video.detail']?.itemInfo?.itemStruct;
             
             if (itemStruct) {
                 return { 
@@ -160,7 +160,7 @@ async function checkWordPressDuplicate(videoUrl) {
         const { extractTikTokId } = require('./wordpress-poster');
         const videoId = extractTikTokId(videoUrl);
         
-        const wpBase = (process.env.WP_URL || 'http://192.168.1.200/wordpress').replace(/\/$/, '');
+        const wpBase = (process.env.WP_URL || '').replace(/\/$/, '');
         
         // On cherche par l'ID de la vidéo s'il existe, sinon par l'URL
         const query = videoId ? videoId : videoUrl;

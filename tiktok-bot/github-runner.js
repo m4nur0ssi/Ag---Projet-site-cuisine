@@ -63,18 +63,48 @@ async function fetchLatestFavorites() {
 
 async function run() {
     console.log('GitHub Runner - Demarrage...');
+    const { processRecipe } = require('./recipe-processor');
 
     const manualUrl = process.env.VIDEO_URL;
     const country = process.env.COUNTRY;
+
+    // 1. PRIORITÉ : TRAITEMENT DE LA FILE D'ATTENTE (QUEUE.JSON)
+    const queuePath = path.join(__dirname, 'queue.json');
+    if (fs.existsSync(queuePath)) {
+        let data = { queue: [] };
+        try { data = JSON.parse(fs.readFileSync(queuePath, 'utf8')); } catch(e){}
+        
+        if (data.queue && data.queue.length > 0) {
+            console.log(`\n📬 ${data.queue.length} recette(s) trouvée(s) dans la file d'attente GitHub...`);
+            const item = data.queue[0];
+            const videoUrl = item.url || item.videoUrl;
+            
+            console.log(`🪄 Traitement de la file en cours : ${videoUrl}`);
+            const recipeName = await processRecipe({ 
+                videoUrl, 
+                description: 'Recette iPhone (Cloud)', 
+                author: 'cloud-shortcut', 
+                country: item.country 
+            });
+            
+            if (typeof recipeName === 'string') {
+                data.queue.shift(); // Supprimer de la file seulement si succès
+                fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
+                fs.writeFileSync(path.join(__dirname, 'latest-recipe.txt'), recipeName);
+                console.log(`   ✅ File mise à jour. Recette : "${recipeName}"`);
+            }
+            return; // On s'arrête là pour ce tour (pour éviter de saturer GitHub Actions)
+        }
+    }
+
+    // 2. TRAITEMENT MANUEL (Si déclenché via workflow_dispatch avec URL)
     if (manualUrl && manualUrl.includes('tiktok.com')) {
         console.log(`URL manuelle recue : ${manualUrl} (${country || 'sans pays'})`);
-        const { processRecipe } = require('./recipe-processor');
         const recipeName = await processRecipe({ 
             videoUrl: manualUrl, 
             description: '', 
             author: 'manual', 
             title: 'Recette TikTok', 
-            coverUrl: null,
             country: country
         });
         if (typeof recipeName === 'string') {
@@ -84,10 +114,10 @@ async function run() {
         return;
     }
 
+    // 3. VÉRIFICATION DES FAVORIS TIKTOK (Poll automatique)
     const items = await fetchLatestFavorites();
     if (items.length === 0) { console.log('Aucun favori trouve. Fin.'); return; }
 
-    const { processRecipe } = require('./recipe-processor');
     for (const item of items) {
         const videoId = String(item.id || item.video?.id || '');
         if (!videoId || isAlreadyProcessed(videoId)) { console.log(`Deja traite : ${videoId}`); continue; }
@@ -106,14 +136,6 @@ async function run() {
             console.log(`   💡 Nom de la recette sauvegardé : "${recipeName}"`);
         }
         break; // Une seule recette par run
-    }
-    // Enfin, on tente d'enrichir les anciens "stubs" si le quota est revenu
-    console.log('\n🔄 Tentative d\'enrichissement des recettes en attente...');
-    try {
-        const { execSync } = require('child_process');
-        execSync(`node ${path.join(__dirname, 'auto-enrich.js')}`, { stdio: 'inherit' });
-    } catch (e) {
-        console.log('   ℹ️ Session d\'enrichissement terminée (ou quota toujours plein).');
     }
 }
 
