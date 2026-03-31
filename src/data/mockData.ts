@@ -2,43 +2,22 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 29/03/2026 12:38:27
- * Total: 174 recettes
+ * Dernière mise à jour: 31/03/2026 17:37:15
+ * Total: 172 recettes
  */
-export const exportSyncId = "1774780707509";
+export const exportSyncId = "1774971435057";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "4731",
-        "title": "Nouvelle Recette",
-        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774780635457.jpg&v=1774780671000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7612727229851716894\" data-video-id=\"7612727229851716894\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7612727229851716894\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [],
-        "steps": [
-            "Découvrez cette pépite culinaire venue tout droit de TikTok !",
-            "\" style=\"background: #ffffff; padding: 35px; border-radius: 16px; border: 1px solid #dfe6e9; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 40px;\"> 🛒 Ingrédients 👨‍🍳 Préparation 🔥 Cuisine en vidéo ! Regarder la vidéo sur TikTok"
-        ],
-        "tags": [],
-        "isFeatured": true,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4728",
-        "title": "Cheesecake crémeux Kinder Bueno Blanc",
+        "title": "Cheesecake Kinder Bueno",
         "description": "Super crémeux, chocolaté et noisetté, parfait pour tous les amateurs de Kinder Bueno Blanc !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774780068335.jpg&v=1774780094000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcheesecake-au-kinder-bueno.jpeg&v=1774881264000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 60,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617131335026494753\" data-video-id=\"7617131335026494753\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617131335026494753\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617131335026494753\" data-video-id=\"7617131335026494753\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617131335026494753\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -105,7 +84,8 @@ export const mockRecipes: Recipe[] = [
             "**Servir :** Décorer avec des morceaux de Kinder Bueno Blanc et des miettes de biscuits. Déguster bien frais 😋."
         ],
         "tags": [
-            "Famille"
+            "Famille",
+            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -115,13 +95,13 @@ export const mockRecipes: Recipe[] = [
         "id": "4725",
         "title": "Crispy Beef Tacos",
         "description": "Une recette de tacos au bœuf croustillants, garnis de fromage mozzarella, accompagnés d'une sauce maison crémeuse et d'une salsa fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774709088521.jpg&v=1774709097000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FCrispy-Braised-Chipotle-Beef-Tacos-1.jpeg&v=1774880651000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7590791206016257302\" data-video-id=\"7590791206016257302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7590791206016257302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7590791206016257302\" data-video-id=\"7590791206016257302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7590791206016257302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -249,8 +229,6 @@ export const mockRecipes: Recipe[] = [
             "\" style=\"background: #ffffff; padding: 35px; border-radius: 16px; border: 1px solid #dfe6e9; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 40px;\"> 🛒 Ingrédients 🥣 Tortillas de blé 🥩 250g Bœuf haché 🧅 2 petits oignons 🥣 Huile végétale pour la friture 🍅 1 cuillère à soupe de concentré de tomate 🥣 Assaisonnement pour tacos (facultatif) 🧂 1 cuillère à soupe de paprika fumé 🧄 1 cuillère à café de poudre d'ail 🧅 1 cuillère à café de poudre d'oignon 🥣 1 cuillère à café d'origan 🌶️ 1 cuillère à café de flocons de piment 🌶️ 1 cuillère à café de poivre de Cayenne 🥣 1 cuillère à café de fécule de maïs (facultatif) 🧄 3 gousses d'ail 🥣 1 cuillère à café de pâte de chipotle (facultatif) 💧 1/2 tasse d'eau 🧂 Sel et poivre au goût 🧀 Fromage mozzarella 🥫 Mayonnaise (pour la sauce) 🥫 Ketchup (pour la sauce) 🍯 Moutarde au miel (pour la sauce) 🥣 Pâte de chipotle (pour la sauce) 🥣 Sauce BBQ (pour la sauce) 🍋 Jus de citron (pour la sauce) 🍅 Tomates (pour la salsa) 🧅 Oignon (pour la salsa) 🌿 Coriandre (pour la salsa) 🍚 Vinaigre de riz (pour la salsa) 🍋 Jus de citron vert (pour la salsa) 🧂 Sel et poivre (pour la salsa) 👨‍🍳 Préparation Les étapes de préparation ne sont pas détaillées dans la description fournie. 🔥 Cuisine en vidéo ! Regarder la vidéo sur TikTok"
         ],
         "tags": [
-            "easyrecipes",
-            "Famille",
             "Mexique",
             "Pas cher",
             "Italie",
@@ -265,13 +243,13 @@ export const mockRecipes: Recipe[] = [
         "id": "4722",
         "title": "Crispy Smashed Potatoes",
         "description": "Des pommes de terre écrasées ultra croustillantes à l'extérieur et moelleuses à l'intérieur, incroyablement addictives.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774709036144.jpg&v=1774709038000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fair-fryer-smashed-potatoes-4-683x1024-1.jpeg&v=1774881557000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7579340561656712470\" data-video-id=\"7579340561656712470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7579340561656712470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7579340561656712470\" data-video-id=\"7579340561656712470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7579340561656712470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -317,13 +295,13 @@ export const mockRecipes: Recipe[] = [
         "id": "4719",
         "title": "Choux vanille caramel",
         "description": "Une recette classique de choux à la crème, garnis d'une onctueuse crème pâtissière à la vanille et d'une crème montée, le tout dans une pâte à choux légère et dorée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774708899615.jpg&v=1774708928000",
-        "category": "desserts",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchou.jpeg&v=1774880770000",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 30,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7476140592100150550\" data-video-id=\"7476140592100150550\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7476140592100150550\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7476140592100150550\" data-video-id=\"7476140592100150550\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7476140592100150550\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -408,13 +386,13 @@ export const mockRecipes: Recipe[] = [
         "id": "4716",
         "title": "Cheesy Beef Crunch Pockets",
         "description": "Des poches croustillantes et savoureuses garnies de bœuf haché, de poivrons, de maïs et de mozzarella fondante, le tout enveloppé dans des galettes de pain plat et cuit au four jusqu'à obtenir une texture dorée et croustillante.",
-        "image": "",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcheesy.jpeg&v=1774880857000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 3,
         "cookTime": 25,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7591467472184692001\" data-video-id=\"7591467472184692001\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7591467472184692001\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7591467472184692001\" data-video-id=\"7591467472184692001\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7591467472184692001\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -473,7 +451,6 @@ export const mockRecipes: Recipe[] = [
             "Let rest 5 minutes - then enjoy that crunch."
         ],
         "tags": [
-            "Famille",
             "Pas cher",
             "USA",
             "Italie",
@@ -487,13 +464,13 @@ export const mockRecipes: Recipe[] = [
         "id": "4714",
         "title": "Pommes de terre Hasselback, poulet crémeux Cajun et broccolini à l'air fryer",
         "description": "Un repas réconfortant, facile et sain, composé de pommes de terre Hasselback croustillantes, de poulet crémeux à la cajun et de broccolini cuit à l'air fryer.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774708778324.jpg&v=1774708785000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpatate.jpeg&v=1774881004000",
         "category": "plats",
         "difficulty": "facile",
         "prepTime": 45,
         "cookTime": 15,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618942237535194390\" data-video-id=\"7618942237535194390\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618942237535194390\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618942237535194390\" data-video-id=\"7618942237535194390\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618942237535194390\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -584,7 +561,6 @@ export const mockRecipes: Recipe[] = [
             "airfryer",
             "crémeux",
             "épicé",
-            "Famille",
             "Healthy",
             "pomme de terre",
             "poulet",
@@ -596,107 +572,16 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "4711",
-        "title": "Gratin de poulet et pommes de terre à la béchamel",
-        "description": "Un gratin savoureux et réconfortant à base de pommes de terre dorées, de poulet et de légumes, le tout nappé d'une sauce béchamel onctueuse et gratiné au fromage. Une recette pratique et idéale pour un repas en famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774708629473.jpg&v=1774708656000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 25,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7527632564446711062\" data-video-id=\"7527632564446711062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7527632564446711062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈 50 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍎 7-8 pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅 1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄 2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ 2 poivrons verts pointus"
-            },
-            {
-                "quantity": "",
-                "name": "🍗 250 g de blanc de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 2 cuillères à soupe de beurre (pour la béchamel)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 1 cuillère à soupe de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 300 ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🍗 1 cuillère à café d'épices pour poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 1,5 cuillère à café d'assaisonnement pour légumes"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ 1/2 cuillère à café de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 1/2 cuillère à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ Un peu de piment en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧀 Fromage râpé (type Kashar ou emmental)"
-            }
-        ],
-        "steps": [
-            "Éplucher et couper les pommes de terre en dés. Faire fondre 50g de beurre dans une poêle et y faire dorer les pommes de terre. Les transférer dans un plat allant au four.",
-            "Faire revenir le blanc de poulet coupé en morceaux avec un peu d'huile dans la même poêle. Ajouter l'ail, l'oignon et les poivrons verts coupés en dés et continuer de faire revenir.",
-            "Disposer le mélange poulet-légumes sur les pommes de terre dans le plat. Saupoudrer d'épices pour poulet.",
-            "Pour la sauce béchamel : faire fondre 2 cuillères à soupe de beurre dans une poêle. Ajouter 1 cuillère à soupe de farine et faire revenir.",
-            "Incorporer progressivement 300 ml de lait et les épices (assaisonnement légumes, poivre, paprika, piment) en remuant jusqu'à ce que la sauce épaississe.",
-            "Verser la sauce béchamel sur le poulet et les pommes de terre dans le plat.",
-            "Saupoudrer généreusement de fromage râpé.",
-            "Faire cuire au four préchauffé à 180°C (chaleur haut et bas) pendant 20 à 25 minutes, jusqu'à ce que le gratin soit doré. Servir chaud."
-        ],
-        "tags": [
-            "Famille",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4708",
         "title": "Gratin de poulet et pommes de terre à la béchamel",
         "description": "Un gratin savoureux et facile à préparer, combinant des pommes de terre dorées, du poulet tendre et une sauce béchamel onctueuse, le tout gratiné au four.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774707643263.jpg&v=1774707671000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fob_2685fb_gratin-poulet-pomme-de-terre-creme.jpeg&v=1774947963000",
         "category": "plats",
         "difficulty": "facile",
         "prepTime": 25,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7527632564446711062\" data-video-id=\"7527632564446711062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7527632564446711062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7527632564446711062\" data-video-id=\"7527632564446711062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7527632564446711062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -772,7 +657,8 @@ export const mockRecipes: Recipe[] = [
             "Enfourner à 180°C (chaleur haut et bas) pendant 20 à 25 minutes, ou jusqu'à ce que le gratin soit doré et bouillonnant. Servir chaud."
         ],
         "tags": [
-            "Famille"
+            "France",
+            "gratin"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -873,13 +759,13 @@ export const mockRecipes: Recipe[] = [
         "id": "4702",
         "title": "Hot Chili Chicken Burgers",
         "description": "Préparez des burgers de poulet épicés avec des pains maison infusés aux chips de nacho, du poulet mariné et pané aux nacho, le tout frit et cuit au four pour un repas savoureux et croustillant, parfait pour l'iftar.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774706016966.jpg&v=1774706022000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHot-chilibroodjes-eindresultaat-Kookmutsjes-copyright-867x1300-1.jpeg&v=1774948336000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 5,
         "cookTime": 12,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7480567284122078486\" data-video-id=\"7480567284122078486\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7480567284122078486\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7480567284122078486\" data-video-id=\"7480567284122078486\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7480567284122078486\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -963,12 +849,11 @@ export const mockRecipes: Recipe[] = [
             "Ouvrir les pains et les garnir de sauce, de laitue et du poulet cuit."
         ],
         "tags": [
-            "Famille",
-            "ramadan",
+            "épicé",
             "Spicy",
             "USA"
         ],
-        "isFeatured": false,
+        "isFeatured": true,
         "isFavorite": false,
         "address": ""
     },
