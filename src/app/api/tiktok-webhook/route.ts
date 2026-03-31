@@ -11,7 +11,7 @@ export async function GET(request: Request) {
 
 async function addToQueue(videoUrl: string, country: string) {
     const githubToken = process.env.GITHUB_PAT;
-    const githubRepo = 'm4nur0ssi/magie-cuisine-tiktok';
+    const githubRepo = process.env.GITHUB_REPO || 'm4nur0ssi/Ag---Projet-site-cuisine';
     const queuePath = 'tiktok-bot/queue.json';
 
     try {
