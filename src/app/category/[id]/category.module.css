@@ -1,0 +1,107 @@
+.page {
+    min-height: 100vh;
+    padding-bottom: 120px;
+    background: var(--color-bg-secondary);
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.stickyHeaderMenu {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--color-bg-secondary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: 100%;
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+    .stickyHeaderMenu {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 340px auto 30px; /* PC Clearance increased */
+    padding: 16px 24px;
+    border-radius: 20px;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Marge mobile gérée en bas du fichier */
+
+.title {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin: 0;
+    background: linear-gradient(90deg, #5856D6, #007AFF, #5AC8FA, #4CD964);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowShine 6s linear infinite;
+}
+
+.count {
+    color: var(--color-text-tertiary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.empty {
+    text-align: center;
+    padding: 80px 20px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes rainbowShine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        margin: 250px 15px 30px 15px; /* Réduit à 250px pour un gap cohérent et compact */
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}

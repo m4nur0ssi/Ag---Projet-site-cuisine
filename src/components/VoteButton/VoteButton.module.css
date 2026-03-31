@@ -1,0 +1,86 @@
+.voteWrapper {
+    position: relative;
+    z-index: 50;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.bubblesContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bubble {
+    width: 42px;
+    height: 42px;
+    background: rgba(0, 0, 0, 0.4); /* Match cardActionBtn */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hasVoted .bubble {
+    background: rgba(255, 69, 0, 0.45); /* Glassy orange */
+    border-color: rgba(255, 69, 0, 0.6);
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+}
+
+.liquidReflect {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    width: 60%;
+    height: 30%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    border-radius: 50% 50% 40% 40%;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.flameIcon {
+    font-size: 1.3rem;
+    filter: drop-shadow(0 0 8px rgba(255, 69, 0, 0.4));
+    z-index: 2;
+}
+
+.countBubble {
+    background: rgba(0, 0, 0, 0.4); /* Match */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+}
+
+.countText {
+    color: white;
+    font-weight: 800;
+    font-size: 1rem;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
+
+.floatingFlame {
+    position: absolute;
+    pointer-events: none;
+    z-index: 50;
+    filter: drop-shadow(0 0 15px #ff4500);
+}
+
+.hasVoted .flameIcon {
+    filter: drop-shadow(0 0 12px #ff4500);
+}
+
+/* Allow persistence by breaking out of parent opacity if needed */
+.hasAnyVotes {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: all !important;
+}
+

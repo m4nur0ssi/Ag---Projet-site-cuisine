@@ -1,0 +1,42 @@
+{
+  "name": "les-recettes-magiques",
+  "version": "18.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"next dev\" \"npm run bot\"",
+    "dev:ui": "next dev",
+    "bot": "node tiktok-bot/server.js",
+    "clean-build": "npm run clean && next build",
+    "clean": "rd /s /q .next out 2>nul || (exit 0)",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "sync-recipes": "node sync-recipes.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^5.9.0",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "form-data": "^4.0.0",
+    "framer-motion": "^12.35.2",
+    "next": "^14.1.0",
+    "node-fetch": "^2.7.0",
+    "nodemailer": "^6.9.13",
+    "pdf-parse": "^1.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.34.5",
+    "three": "^0.183.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "concurrently": "^8.2.2",
+    "eslint": "^8",
+    "eslint-config-next": "^14.1.0",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,9 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://github.com/m4nur0ssi/magie-cuisine-tiktok.git
+	fetch = +refs/heads/*:refs/remotes/origin/*

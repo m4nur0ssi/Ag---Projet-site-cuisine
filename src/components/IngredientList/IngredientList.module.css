@@ -1,0 +1,98 @@
+.sectionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.checkButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.textBtn {
+    background: none;
+    border: none;
+    color: var(--color-accent-purple-light);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-smooth);
+}
+
+.textBtn:hover {
+    background: rgba(127, 13, 242, 0.1);
+}
+
+.bringHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}
+
+.ingredient {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.ingredient:hover {
+    background: rgba(127, 13, 242, 0.1);
+    border-color: var(--color-accent-purple);
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-accent-purple);
+    cursor: pointer;
+}
+
+.ingredientText {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+.ingredientText strong {
+    color: var(--color-text-primary);
+    font-weight: 700;
+}
+
+.checked .ingredientText {
+    text-decoration: line-through;
+    opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+    .list {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

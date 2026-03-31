@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body {
+    width: 280px;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: white;
+    margin: 0;
+  }
+  h2 { margin: 0 0 4px; font-size: 16px; color: #FE2C55; }
+  p { margin: 0 0 12px; font-size: 12px; color: #aaa; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+  .status-row { display: flex; align-items: center; font-size: 13px; margin-bottom: 8px; }
+  .btn { width: 100%; padding: 10px; background: #FE2C55; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; font-size: 13px; }
+  .btn:hover { background: #ff4d6a; }
+  .sep { border: none; border-top: 1px solid #333; margin: 12px 0; }
+  small { font-size: 11px; color: #666; }
+</style>
+</head>
+<body>
+  <h2>🍽️ TikTok → WP</h2>
+  <p>Recettes Magiques Automation</p>
+
+  <div class="status-row">
+    <div class="status-dot" id="serverDot" style="background:#ef4444;"></div>
+    <span id="serverStatus">Vérification...</span>
+  </div>
+
+  <hr class="sep">
+  <p><strong>Comment ça marche :</strong></p>
+  <p>1. Lance <code>server.js</code> sur ton PC<br>
+     2. Navigue sur TikTok<br>
+     3. Met en favori ❤️ une recette<br>
+     4. C'est automatique !</p>
+
+  <hr class="sep">
+  <button class="btn" id="testBtn">🧪 Tester le serveur</button>
+  <br><br>
+  <small id="info">Serveur local : http://localhost:3456</small>
+
+<script>
+async function checkServer() {
+    try {
+        const res = await fetch('http://localhost:3456/ping', { signal: AbortSignal.timeout(2000) });
+        if (res.ok) {
+            document.getElementById('serverDot').style.background = '#22c55e';
+            document.getElementById('serverStatus').textContent = '✅ Serveur actif !';
+        } else throw new Error();
+    } catch {
+        document.getElementById('serverDot').style.background = '#ef4444';
+        document.getElementById('serverStatus').textContent = '❌ Serveur arrêté';
+    }
+}
+
+document.getElementById('testBtn').addEventListener('click', async () => {
+    document.getElementById('info').textContent = 'Test en cours...';
+    await checkServer();
+    document.getElementById('info').textContent = 'Serveur local : http://localhost:3456';
+});
+
+checkServer(); // Check au démarrage
+setInterval(checkServer, 5000);
+</script>
+</body>
+</html>

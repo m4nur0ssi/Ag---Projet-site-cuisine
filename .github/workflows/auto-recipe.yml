@@ -1,0 +1,152 @@
+name: Recettes Magiques - Auto Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_url:
+        description: "URL TikTok de la video (optionnel)"
+        required: false
+        default: ""
+      country:
+        description: "Pays choisi par l'utilisateur"
+        required: false
+        default: ""
+      trigger_source:
+        description: "Source du declenchement (tiktok, wordpress, manual, triple-click)"
+        required: false
+        default: "manual"
+      delete_id:
+        description: "ID de la recette a supprimer de force (optionnel)"
+        required: false
+        default: ""
+  schedule:
+    # Au lieu de toutes les 2 heures, on passe à toutes les 6 heures (soit 4 fois par jour).
+    # Cela permet de rester largement sous la barre des 2000 minutes gratuites offertes.
+    - cron: "0 */6 * * *"
+
+concurrency:
+  group: sync-recipes
+  cancel-in-progress: true
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Récupère toute l'historique pour que git push soit possible
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      # Étape désactivée sur GitHub (Le Mac local s'en occupe)
+      # - name: Sync to WordPress
+      #   run: |
+      #     cd tiktok-bot
+      #     node sync-recipes.js --recent
+      #   env:
+      #     WP_URL: ${{ secrets.WP_URL }}
+      #     WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      #     WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
+      #     GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      #   continue-on-error: true
+
+      - name: Config env
+        env:
+          WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TIKTOK_SESSION_ID: ${{ secrets.TIKTOK_SESSION_ID }}
+          TIKTOK_WEBID: ${{ secrets.TIKTOK_WEBID }}
+          TIKTOK_MS_TOKEN: ${{ secrets.TIKTOK_MS_TOKEN }}
+        run: |
+          cat > tiktok-bot/.env << ENVEOF
+          WP_URL=http://${WP_PUBLIC_IP}/wordpress
+          WP_USERNAME=${WP_USERNAME}
+          WP_PASSWORD=${WP_PASSWORD}
+          GEMINI_API_KEY=${GEMINI_API_KEY}
+          TIKTOK_SESSION_ID=${TIKTOK_SESSION_ID}
+          TIKTOK_WEBID=${TIKTOK_WEBID}
+          TIKTOK_MS_TOKEN=${TIKTOK_MS_TOKEN}
+          PORT=3456
+          ENVEOF
+
+      - name: Mise en file d'attente (si demande distante)
+        if: ${{ github.event.inputs.trigger_source == 'tiktok-shortcut' && github.event.inputs.video_url != '' }}
+        run: |
+          node -e '
+            const fs = require("fs");
+            const qPath = "tiktok-bot/queue.json";
+            let q = { queue: [] };
+            if (fs.existsSync(qPath)) q = JSON.parse(fs.readFileSync(qPath, "utf8"));
+            q.queue.push({ 
+              url: process.env.URL, 
+              country: process.env.COUNTRY,
+              ts: new Date().toISOString()
+            });
+            fs.writeFileSync(qPath, JSON.stringify(q, null, 2));
+          '
+        env:
+          URL: ${{ github.event.inputs.video_url }}
+          COUNTRY: ${{ github.event.inputs.country }}
+
+      - name: Traitement favori TikTok (Seulement si favori direct, pas shortcut)
+        if: ${{ github.event.inputs.trigger_source != 'tiktok-shortcut' && github.event.inputs.video_url != '' }}
+        run: node tiktok-bot/github-runner.js
+        env:
+          VIDEO_URL: ${{ github.event.inputs.video_url }}
+          COUNTRY: ${{ github.event.inputs.country }}
+          # On garde ça pour les favoris globaux mais le shortcut passera par la queue
+
+
+      - name: Synchronisation complete depuis WordPress
+        if: ${{ github.event.inputs.trigger_source != 'tiktok-shortcut' }}
+        run: |
+          node sync-recipes.js --delete-id=${{ github.event.inputs.delete_id }} || echo "Ignored sync error"
+        env:
+          WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
+        continue-on-error: true
+
+      - name: Mise a jour timestamp forcee (pour garantir un commit)
+        run: |
+          echo "{\"lastSync\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"trigger\":\"${{ github.event.inputs.trigger_source || 'schedule' }}\",\"status\":\"success\"}" > src/data/sync-stats.json
+
+      - name: Commit et Push vers GitHub (declenche Vercel)
+        run: |
+          git config user.name "rossi manuel"
+          git config user.email "m4nu.r0ssi@gmail.com"
+          # On ajoute tous les fichiers data qui peuvent avoir changé
+          git add src/data/mockData.ts src/data/sync-stats.json tiktok-bot/processed-videos.json 2>/dev/null || true
+          # On vérifie s'il y a quelque chose à commiter
+          if git diff --staged --quiet; then
+            echo "⚠️  Aucun changement détecté dans les données. Forçage du commit via sync-stats..."
+            # Forcer un changement mineur pour que Vercel redéploie quand même
+            echo "{\"lastSync\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"trigger\":\"${{ github.event.inputs.trigger_source || 'schedule' }}\",\"status\":\"forced\",\"ts\":$(date +%s)}" > src/data/sync-stats.json
+            git add src/data/sync-stats.json
+          fi
+          # On prépare le message de commit
+          COMMIT_MSG="🔄 Sync: ${{ github.event.inputs.trigger_source || 'schedule' }} - $(date -u '+%Y-%m-%d %H:%M UTC')"
+          if [ -f tiktok-bot/latest-recipe.txt ]; then
+            RECIPE_NAME=$(cat tiktok-bot/latest-recipe.txt)
+            COMMIT_MSG="🍳 Nouvelle recette: $RECIPE_NAME"
+            rm tiktok-bot/latest-recipe.txt
+          fi
+          
+          git commit -m "$COMMIT_MSG" || echo "Rien à committer"
+          
+          # Récuperer les changements distants pour éviter le rejet du push
+          git pull --rebase origin main || true
+          
+          git push origin main
+          echo "✅ Push réussi → Vercel redéploie automatiquement"

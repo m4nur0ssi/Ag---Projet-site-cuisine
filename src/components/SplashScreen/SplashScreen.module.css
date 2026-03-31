@@ -1,0 +1,175 @@
+.splashContainer {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0a0a0c;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px; /* Plus d'espace entre logo et titre */
+}
+
+.logoWrapper {
+    position: relative;
+    width: 300px; 
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logoImageContainer {
+    position: relative;
+    z-index: 5;
+    width: 250px; 
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22.37%; /* Ratio exact iOS */
+    overflow: hidden;    
+    background: #000 !important; /* Force le noir pour tuer le blanc */
+    box-shadow: 0 0 50px rgba(127, 13, 242, 0.2);
+}
+
+/* EFFET FUMÉE MAGIQUE */
+.smokeContainer {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.smokeParticle {
+    position: absolute;
+    width: clamp(160px, 45vw, 320px);
+    height: clamp(160px, 45vw, 320px);
+    border-radius: 50%;
+    filter: blur(45px);
+    pointer-events: none;
+    will-change: transform, opacity;
+    background: radial-gradient(circle, rgba(200, 200, 200, 0.45) 0%, rgba(127, 13, 242, 0.15) 35%, transparent 75%);
+}
+
+.actualLogo {
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(127, 13, 242, 0.5)) brightness(1.1);
+    border-radius: 20%; 
+}
+
+.glow {
+    position: absolute;
+    inset: -100px; 
+    background: radial-gradient(circle, rgba(127, 13, 242, 0.45) 0%, transparent 75%);
+    border-radius: 50%;
+    filter: blur(70px);
+    animation: pulse 3s ease-in-out infinite alternate;
+}
+
+.sparkles {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    font-size: 4.5rem;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.titleContainer {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.title {
+    font-family: 'Outfit', sans-serif;
+    color: white;
+    font-weight: 950;
+    font-size: clamp(4.2rem, 20vw, 6.2rem); 
+    line-height: 1.1;
+    letter-spacing: -2px;
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(127, 13, 242, 0.3);
+    margin: 0;
+}
+
+.subtitle {
+    font-family: 'Dancing Script', cursive;
+    background: linear-gradient(90deg, #5856D6, #007AFF, #5AC8FA, #4CD964);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 4.8rem;
+    font-weight: 700;
+    display: block;
+    margin-top: 15px;
+    animation: rainbowShine 6s linear infinite;
+    letter-spacing: 0;
+}
+
+.bgEffects {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.orb1, .orb2 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+.orb1 {
+    top: 10%;
+    left: -10%;
+    background: rgba(127, 13, 242, 0.15);
+    animation: drift 10s ease-in-out infinite alternate;
+}
+
+.orb2 {
+    bottom: 20%;
+    right: -10%;
+    background: rgba(0, 122, 255, 0.1);
+    animation: drift 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.1); opacity: 0.5; }
+}
+
+@keyframes drift {
+    from { transform: translate(0, 0); }
+    to { transform: translate(40px, 40px); }
+}
+
+@keyframes rainbowShine {
+    from { background-position: 0% center; }
+    to { background-position: -200% center; }
+}
+
+@media (max-width: 480px) {
+    .title { font-size: 3.2rem; }
+    .subtitle { font-size: 3.0rem; }
+}

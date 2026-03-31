@@ -1,0 +1,79 @@
+.backToTop {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    z-index: 2000;
+    
+    /* iOS 26 Liquid Glass */
+    background: rgba(20, 20, 25, 0.45);
+    backdrop-filter: blur(25px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(25px) saturate(180%) brightness(1.1);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 10px 24px;
+    
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 0 15px rgba(255, 255, 255, 0.02);
+    
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:root[data-theme='light'] .backToTop {
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.arrowIcon {
+    color: white;
+    filter: drop-shadow(0 0 8px rgba(127, 13, 242, 0.6));
+    transition: transform 0.4s var(--liquid-easing);
+}
+
+:root[data-theme='light'] .arrowIcon {
+    color: var(--color-accent-primary);
+}
+
+.backToTop:hover .arrowIcon {
+    transform: translateY(-3px);
+}
+
+.text {
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.8px;
+    color: white;
+    font-family: var(--font-primary);
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+:root[data-theme='light'] .text {
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .backToTop {
+        bottom: 35px;
+        padding: 8px 20px;
+        border-radius: 16px;
+    }
+    
+    .text {
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+}

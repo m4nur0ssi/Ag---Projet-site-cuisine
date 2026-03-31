@@ -1,0 +1,20 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+echo "=========================================="
+echo " 🍽️  TikTok → Recettes Magiques (STATUS)"
+echo "=========================================="
+echo ""
+echo "✅ Le robot est configuré pour tourner en ARRIÈRE-PLAN."
+echo "Il démarre automatiquement avec ton Mac."
+echo ""
+echo "--- Statut du service ---"
+launchctl list | grep magiecuisine || echo "❌ Le service n'est pas lancé."
+echo ""
+echo "--- Dernières logs ---"
+tail -n 10 bot_background.log
+echo ""
+echo "Pour forcer un redémarrage si besoin :"
+echo "launchctl unload ~/Library/LaunchAgents/com.magiecuisine.bot.plist"
+echo "launchctl load ~/Library/LaunchAgents/com.magiecuisine.bot.plist"
+echo ""
+sleep 10

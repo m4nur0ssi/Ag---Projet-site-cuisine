@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+.env
+*.log
+server.pid
+.DS_Store
+wp-extract
+wp.zip
+.vercel
+.env*.local

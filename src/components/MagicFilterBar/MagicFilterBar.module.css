@@ -1,0 +1,612 @@
+/* PC STYLES (ULTRA GLASS) */
+.glassInnerPC {
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.itemsScrollContainerPC {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    max-width: 1000px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.groupSwitcher {
+    display: flex;
+    gap: 4px;
+}
+
+.groupBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 100px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+    color: var(--color-text-primary, #ffffff);
+    font-weight: 600;
+    font-size: 0.95rem; /* Consistance parfaite */
+    transition: all 0.3s ease;
+    pointer-events: auto !important; /* Force clicks */
+}
+
+
+
+.groupBtn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.groupBtnActive {
+    color: var(--color-text-primary, #ffffff);
+    font-weight: 900;
+}
+
+.groupHighlight {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    z-index: -1;
+}
+
+.separator {
+    width: 1px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.itemsScrollPC {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    padding: 0 10px;
+    mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+}
+
+.itemsWrapperPC {
+    display: flex;
+    gap: 12px;
+    padding: 4px 0;
+    width: max-content;
+}
+
+.actionsPC {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.micBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: var(--color-text-primary, #ffffff);
+    pointer-events: auto !important; /* Force clicks */
+}
+
+
+.micBtn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.micActive {
+    background: #ff3b30;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 59, 48, 0.4);
+}
+
+.mobileGroupBtnActive {
+    background: transparent !important;
+    transform: scale(1.2);
+}
+
+.notificationBadge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #FF3B30;
+    color: white;
+    font-size: 9px;
+    font-weight: 900;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 1.5px solid #000;
+}
+
+.mobileBackRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobileListBtn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.mobileListBtn:active {
+    transform: scale(0.95);
+}
+
+/* MOBILE MODERN MENU - INTEGRATED STYLE */
+.mobileLayoutContainer {
+    width: 100%;
+    position: relative;
+    z-index: 900;
+}
+
+/* ANTI-DUPLICATION DESKTOP */
+@media (min-width: 769px) {
+    .mobileLayoutContainer {
+        display: block !important;
+    }
+    
+    /* On force le masquage de toutes les sections mobiles internes */
+    .mobileContainer,
+    .mobileMenuRow,
+    .mobileActions,
+    .mobileBackRow,
+    .mobileGroupBtn,
+    .mobileMicBtn {
+        display: none !important;
+    }
+}
+
+.mobileContainer {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 15px;
+    align-items: center;
+}
+
+/* Bouton retour catégorie (pill) affiché dans la fiche recette */
+.mobileBackRow {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 6px 0 4px 0;
+}
+
+.mobileBackBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    letter-spacing: 0.02em;
+}
+
+.mobileBackBtn:active {
+    transform: scale(0.96);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+.mobileMenuRow {
+    display: flex;
+    gap: 18px;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    pointer-events: auto;
+    margin-bottom: 0px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shrunk .mobileMenuRow {
+    margin-bottom: 5px;
+    gap: 12px;
+}
+
+.mobileGroupBtn {
+    position: relative;
+    padding: 5px 12px;
+    background: none;
+    border: none;
+    font-weight: 800;
+    font-size: 1.8rem; /* Align perfectly with new ThemeToggle */
+    color: var(--color-text-primary, #ffffff);
+    white-space: nowrap;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shrunk .mobileGroupBtn {
+    font-size: 1.5rem;
+    padding: 2px 10px;
+}
+
+.mobileGroupBtnActive {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.mobileMicBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--color-text-primary, #ffffff);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shrunk .mobileMicBtn {
+    font-size: 1.5rem;
+    width: 38px;
+    height: 38px;
+}
+
+.mobileExpandedMenu {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+.railScroll {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.railScroll::-webkit-scrollbar { display: none; }
+
+.railContent {
+    display: flex;
+    gap: 12px;
+    padding: 15px 25px;
+    width: max-content;
+}
+
+/* FILTER ITEMS */
+.filterItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600; /* Sync with groupBtn */
+    font-size: 0.95rem; /* Sync with groupBtn */
+    color: var(--color-text-primary, #ffffff);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filterItem:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+.active {
+    background: var(--glow-color, #7f0df2) !important;
+    color: white !important;
+    border-color: transparent !important;
+    font-weight: 900; /* Sync with groupBtnActive */
+}
+
+
+/* LUCKY BUTTON PC */
+.luckyBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #ff2d55 0%, #ff375f 100%);
+    border: none;
+    border-radius: 100px;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 45, 85, 0.3);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: auto !important;
+}
+
+.luckyBtn:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(255, 45, 85, 0.5);
+}
+
+.shrunk .luckyBtn {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none !important;
+    width: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.shrunk .glassInnerPC {
+    padding: 3px 10px;
+    gap: 8px;
+    background: rgba(10, 10, 12, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.shrunk .groupLabelPC {
+    display: none; /* Icone seule quand réduit */
+}
+
+.shrunk .groupBtn {
+    padding: 6px 12px;
+}
+
+.shrunk .filterItem {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+.shrunk .micBtn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+}
+
+.shrunk .separator {
+     height: 24px;
+}
+
+.luckyBtnMobile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px;
+    height: 52px;
+    background: linear-gradient(135deg, #ff2d55 0%, #ff3b30 100%);
+    border: none;
+    border-radius: 100px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 900;
+    box-shadow: 0 10px 30px rgba(255, 45, 85, 0.4);
+}
+
+.mobileActions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    pointer-events: auto;
+    margin-top: 10px;
+    margin-bottom: 15px; /* Réduit pour un gap cohérent everywhere */
+}
+
+/* GLOW - Control visibility strictly */
+@media (max-width: 768px) {
+    .glowContainer {
+        display: flex;
+    }
+}
+
+@media (min-width: 769px) {
+    .glowContainer {
+        display: none; /* Désactivé sur PC pour un look plus clean */
+    }
+}
+
+.glowContainer {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .glowContainer {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        pointer-events: none;
+    }
+}
+
+
+.glowOrb {
+    position: absolute;
+    width: 80vw;
+    height: 80vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glow-color, #7f0df2) 0%, transparent 70%);
+    opacity: 0.25;
+    filter: blur(100px);
+    animation: float 40s infinite alternate ease-in-out;
+}
+
+@keyframes float {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(10%, 10) rotate(20deg); }
+}
+
+.stickyWrapper {
+    position: sticky;
+    top: 120px; /* Espace tête pour le Header Large */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    pointer-events: auto; /* Rétabli pour les clics filtres */
+    margin-top: 0px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+    .stickyWrapper {
+        display: none; /* On cache le wrapper PC sur mobile pour utiliser le wrapper mobile spécifique */
+    }
+}
+
+.shrunk.stickyWrapper {
+    top: 70px; /* Alignement parfait sous le Header Shrunk */
+    margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .stickyWrapper {
+        margin-top: 15px; /* ESPACE sous le bloc noir Header */
+        position: sticky;
+        top: 110px;
+        background: transparent; /* TRANSPARENCE demandée */
+        z-index: 10;
+        pointer-events: auto;
+    }
+
+    .shrunk .stickyWrapper {
+        top: 50px; /* Aligné sous le Header Shrunk une ligne */
+    }
+
+    .mobileLayoutContainer {
+        display: block; /* Visible uniquement sur Mobile */
+    }
+
+    .mobileContainer {
+        padding: 0;
+    }
+
+    .mobileMenuRow {
+        gap: 12px;
+        justify-content: flex-start;
+    }
+
+    .backBtnTrends {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 0 16px;
+        height: 44px; /* Unifié avec les autres icônes */
+        width: auto;
+        background: var(--color-bg-tertiary, rgba(255, 255, 255, 0.1));
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.2));
+        border-radius: 100px; /* Pill shape */
+        font-size: 0.75rem;
+        font-weight: 900;
+        cursor: pointer;
+        flex-shrink: 0;
+        color: var(--color-text-primary, #ffffff) !important;
+        letter-spacing: 0.1em;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .backBtnTrends:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+    }
+
+    .trendsGroupInner {
+        display: flex;
+        gap: 12px;
+        flex: 1;
+        overflow-x: auto;
+        padding-right: 12px;
+        scrollbar-width: none;
+    }
+
+    .trendsGroupInner::-webkit-scrollbar {
+        display: none;
+    }
+
+    .mobileGroupBtn {
+        font-size: 1.9rem;
+    }
+
+    .mobileMicBtn {
+        font-size: 1.9rem;
+    }
+}
+
+/* Theme adaptation */
+@media (prefers-color-scheme: light) {
+    .groupBtn, .mobileGroupBtn, .filterItem, .mobileMicBtn { color: #ffffff !important; }
+}
+:root[data-theme='light'] .groupBtn, 
+:root[data-theme='light'] .mobileGroupBtn, 
+:root[data-theme='light'] .filterItem, 
+:root[data-theme='light'] .mobileMicBtn { color: #ffffff !important; }
+
+@media (prefers-color-scheme: dark) {
+    .groupBtn, .mobileGroupBtn, .filterItem, .mobileMicBtn { color: #ffffff !important; }
+}
+:root[data-theme='dark'] .groupBtn, 
+:root[data-theme='dark'] .mobileGroupBtn, 
+:root[data-theme='dark'] .filterItem, 
+:root[data-theme='dark'] .mobileMicBtn { color: #ffffff !important; }
