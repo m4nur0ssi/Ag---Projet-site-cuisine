@@ -1,0 +1,171 @@
+name: 🔄 WordPress → GitHub Sync
+
+on:
+  # 1. Webhook depuis WordPress (via repository_dispatch)
+  repository_dispatch:
+    types:
+      - wp_recipe_published    # Nouvelle recette publiée
+      - wp_recipe_updated      # Recette modifiée
+      - wp_recipe_deleted      # Recette supprimée
+      - wp_full_sync           # Sync complète forcée
+
+  # 2. Schedule automatique toutes les 2h
+  schedule:
+    - cron: "0 */2 * * *"
+
+  # 3. Déclenchement manuel avec options
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Mode de sync (full | recent | single)"
+        required: false
+        default: "recent"
+      post_id:
+        description: "ID WordPress du post à syncer (si mode=single)"
+        required: false
+        default: ""
+      delete_id:
+        description: "ID WordPress du post à supprimer"
+        required: false
+        default: ""
+
+concurrency:
+  group: wp-github-sync
+  cancel-in-progress: false   # On ne cancelle pas : chaque push WP est important
+
+jobs:
+  sync:
+    name: "Sync WordPress → mockData.ts"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: 📦 Install dependencies
+        run: npm install --no-audit --no-fund
+
+      # ------------------------------------------------------------------
+      # Détermine le mode selon la source du déclenchement
+      # ------------------------------------------------------------------
+      - name: 🧭 Resolve sync mode
+        id: mode
+        run: |
+          MODE="${{ github.event.inputs.mode || 'recent' }}"
+          POST_ID="${{ github.event.inputs.post_id || github.event.client_payload.post_id || '' }}"
+          DELETE_ID="${{ github.event.inputs.delete_id || github.event.client_payload.delete_id || '' }}"
+          EVENT="${{ github.event_name }}"
+
+          # Webhook WP → sync complète si full_sync, sinon recent
+          if [ "$EVENT" = "repository_dispatch" ]; then
+            ACTION="${{ github.event.action }}"
+            if [ "$ACTION" = "wp_full_sync" ]; then
+              MODE="full"
+            elif [ "$ACTION" = "wp_recipe_deleted" ]; then
+              MODE="recent"
+              DELETE_ID="${{ github.event.client_payload.delete_id }}"
+            else
+              MODE="recent"
+            fi
+          fi
+
+          # Schedule → full sync
+          if [ "$EVENT" = "schedule" ]; then
+            MODE="full"
+          fi
+
+          echo "mode=$MODE" >> $GITHUB_OUTPUT
+          echo "post_id=$POST_ID" >> $GITHUB_OUTPUT
+          echo "delete_id=$DELETE_ID" >> $GITHUB_OUTPUT
+          echo "event=$EVENT" >> $GITHUB_OUTPUT
+
+          echo "⚡ Mode: $MODE | Event: $EVENT | PostID: $POST_ID | DeleteID: $DELETE_ID"
+
+      # ------------------------------------------------------------------
+      # Sync COMPLÈTE (toutes les pages WP)
+      # ------------------------------------------------------------------
+      - name: 🔄 Sync complète (toutes les recettes)
+        if: steps.mode.outputs.mode == 'full'
+        run: node sync-recipes.js
+        env:
+          WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
+        continue-on-error: false
+
+      # ------------------------------------------------------------------  
+      # Sync RAPIDE (dernière page seulement)
+      # ------------------------------------------------------------------
+      - name: ⚡ Sync rapide (recettes récentes)
+        if: steps.mode.outputs.mode == 'recent' || steps.mode.outputs.mode == 'single'
+        run: |
+          DELETE_FLAG=""
+          if [ -n "${{ steps.mode.outputs.delete_id }}" ]; then
+            DELETE_FLAG="--delete-id=${{ steps.mode.outputs.delete_id }}"
+          fi
+          node sync-recipes.js --recent $DELETE_FLAG
+        env:
+          WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
+        continue-on-error: true
+
+      # ------------------------------------------------------------------
+      # Mise à jour du fichier de stats
+      # ------------------------------------------------------------------
+      - name: 📊 Update sync-stats.json
+        run: |
+          TRIGGER="${{ github.event_name }}"
+          ACTION="${{ github.event.action || github.event.inputs.mode || 'schedule' }}"
+          POST_ID="${{ steps.mode.outputs.post_id }}"
+
+          cat > src/data/sync-stats.json << EOF
+          {
+            "lastSync": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "trigger": "$TRIGGER",
+            "action": "$ACTION",
+            "postId": "$POST_ID",
+            "mode": "${{ steps.mode.outputs.mode }}",
+            "status": "success",
+            "ts": $(date +%s)
+          }
+          EOF
+
+      # ------------------------------------------------------------------
+      # Commit & Push
+      # ------------------------------------------------------------------
+      - name: 💾 Commit & Push changes
+        run: |
+          git config user.name "WP-Sync Bot"
+          git config user.email "m4nu.r0ssi@gmail.com"
+
+          git add src/data/mockData.ts src/data/sync-stats.json 2>/dev/null || true
+
+          # Si rien n'a changé, on force quand même un touch sur stats
+          if git diff --staged --quiet; then
+            echo "⚠️ mockData.ts inchangé, touch sync-stats..."
+            echo "{\"lastSync\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"status\":\"no-change\",\"ts\":$(date +%s)}" > src/data/sync-stats.json
+            git add src/data/sync-stats.json
+          fi
+
+          # Message de commit contextuel
+          ACTION="${{ github.event.action || github.event.inputs.mode || 'schedule' }}"
+          POST_TITLE="${{ github.event.client_payload.post_title || '' }}"
+
+          if [ -n "$POST_TITLE" ]; then
+            COMMIT_MSG="🍳 WP Sync: $POST_TITLE (ID: ${{ steps.mode.outputs.post_id }})"
+          else
+            COMMIT_MSG="🔄 WP Sync: $ACTION - $(date -u '+%Y-%m-%d %H:%M') UTC"
+          fi
+
+          git commit -m "$COMMIT_MSG" || echo "Nothing to commit"
+          git pull --rebase origin main || true
+          git push origin main
+          echo "✅ Push terminé → Netlify va redéployer automatiquement"
