@@ -54,7 +54,7 @@ jobs:
           WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
           WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS || secrets.GEMINI_API_KEY }}
           TIKTOK_SESSION_ID: ${{ secrets.TIKTOK_SESSION_ID }}
           TIKTOK_WEBID: ${{ secrets.TIKTOK_WEBID }}
           TIKTOK_MS_TOKEN: ${{ secrets.TIKTOK_MS_TOKEN }}
@@ -64,7 +64,7 @@ jobs:
           WP_URL=http://${WP_PUBLIC_IP}/wordpress
           WP_USERNAME=${WP_USERNAME}
           WP_PASSWORD=${WP_PASSWORD}
-          GEMINI_API_KEYS=${GEMINI_API_KEY}
+          GEMINI_API_KEYS=${GEMINI_API_KEYS}
           TIKTOK_SESSION_ID=${TIKTOK_SESSION_ID}
           TIKTOK_WEBID=${TIKTOK_WEBID}
           TIKTOK_MS_TOKEN=${TIKTOK_MS_TOKEN}

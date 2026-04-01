@@ -26,7 +26,7 @@ export async function POST(request: Request): Promise<Response> {
             }, { status: 500 });
         }
 
-        const githubRepo = 'm4nur0ssi/magie-cuisine-tiktok';
+        const githubRepo = 'm4nur0ssi/Ag---Projet-site-cuisine';
         const workflowId = 'auto-recipe.yml';
 
         console.log(`🚀 Déclenchement synchronisation via GitHub Actions (source: ${triggerSource})...`);
