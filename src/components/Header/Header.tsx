@@ -180,84 +180,20 @@ export default function Header({
         <>
             <header className={`${styles.header} ${scrolled ? styles.shrunk : ''} ${large ? styles.isLarge : ''} ${recipeId ? styles.recipeHeader : ''} ${className}`}>
                 <div className={styles.container}>
-                    {/* LEFT: BACK BUTTON (PC/IPAD) */}
-                    <div className={`${styles.headerLeft} ${hideMobileIcons ? styles.mobileHidden : ''}`}>
-                        {showBack && (
-                            <div className={styles.headerLeftDesktop}>
-                                <button className={styles.backBtnHeader} onClick={() => backUrl ? router.push(backUrl) : router.back()}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M15 18l-6-6 6-6" />
-                                    </svg>
-                                    Retour
-                                </button>
-                            </div>
-                        )}
-                        <div className={styles.iconGroup}>
-                            {/* Logic: Theme, Favorites, and Shopping List moved to LEFT as requested */}
-                            <ThemeToggle className={styles.iconBtn} />
-                            
-                            <Link href="/favorites" className={styles.iconBtn} title="Mes Favoris">
-                                <span className={styles.iconBig}>🤍</span>
-                                {favCount > 0 && (
-                                    <span className={styles.notificationBadge}>{favCount}</span>
+                    {/* ROW 1: TITLE + SEARCH ONLY */}
+                    <div className={styles.rowOne}>
+                        <h1 className={`${styles.title} ${isSyncing ? styles.syncing : ''}`}>
+                            <Link href="/" onClick={handleTitleClick} className={styles.titleLink}>
+                                {isSyncing ? (
+                                    <span className={styles.titleWhite}>🪄 Synchronisation...</span>
+                                ) : (
+                                    <SplitTitle text={displayTitle} large={large && !scrolled} />
                                 )}
                             </Link>
-
-                            {!hideShoppingList && (
-                                <Link href="/shopping-list" className={styles.iconBtn} title="Liste de courses">
-                                    🛒
-                                    {listCount > 0 && (
-                                        <span className={styles.notificationBadge}>{listCount}</span>
-                                    )}
-                                </Link>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* CENTER: TITLE (ALWAYS CENTERED) */}
-                    <div className={styles.headerCenter}>
-                        <div className={`${styles.titleWrapper}`}>
-                            <h1 className={`${styles.title} ${isSyncing ? styles.syncing : ''}`}>
-                                <Link
-                                    href="/"
-                                    onClick={handleTitleClick}
-                                    className={styles.titleLink}
-                                >
-                                    {isSyncing ? (
-                                        <span className={styles.titleWhite}>🪄 Synchronisation...</span>
-                                    ) : (
-                                        <SplitTitle text={displayTitle} large={large && !scrolled} />
-                                    )}
-                                </Link>
-                            </h1>
-                            {rightAction && (
-                                <div className={styles.titleAction}>
-                                    {rightAction}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* RIGHT: UNIFIED ACTION GROUP (FOR ALL DEVICES) */}
-                    <div className={`${styles.headerRight} ${hideMobileIcons ? styles.mobileHidden : ''}`}>
-                        <div className={styles.iconGroup}>
-                            {/* fork, earth, tag, search stay on RIGHT */}
-                            <button className={styles.iconBtn} onClick={() => window.dispatchEvent(new CustomEvent('magic-toggle-group', { detail: 'categories' }))} title="Catégories">
-                                🍴
-                            </button>
-                            
-                            <button className={styles.iconBtn} onClick={() => window.dispatchEvent(new CustomEvent('magic-toggle-group', { detail: 'countries' }))} title="Pays">
-                                🌍
-                            </button>
-                            
-                            <button className={styles.iconBtn} onClick={() => window.dispatchEvent(new CustomEvent('magic-toggle-group', { detail: 'trends' }))} title="Tendances">
-                                🏷️
-                            </button>
-
-                            <button className={styles.iconBtn} onClick={() => setIsSearchOpen(true)} title="Rechercher">
-                                🔍
-                            </button>
-                        </div>
+                        </h1>
+                        <button className={styles.pillBtnSearch} onClick={() => setIsSearchOpen(true)}>
+                            Recherche
+                        </button>
                     </div>
                 </div>
             </header>

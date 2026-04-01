@@ -27,10 +27,15 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.hasVoted .bubble {
-    background: rgba(255, 69, 0, 0.45); /* Glassy orange */
-    border-color: rgba(255, 69, 0, 0.6);
-    box-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+.isVoted .flameBubble {
+    background: rgba(255, 69, 0, 0.5) !important;
+    border-color: rgba(255, 120, 0, 0.4) !important;
+    box-shadow: 0 0 25px rgba(255, 69, 0, 0.45) !important;
+}
+
+.isVoted .flameIcon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px #ff4500);
 }
 
 .liquidReflect {
@@ -39,46 +44,56 @@
     left: 8px;
     width: 60%;
     height: 30%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%);
     border-radius: 50% 50% 40% 40%;
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .flameIcon {
-    font-size: 1.3rem;
-    filter: drop-shadow(0 0 8px rgba(255, 69, 0, 0.4));
+    font-size: 1.35rem;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 2;
 }
 
+/* Bulle de COMPTEUR organique */
 .countBubble {
-    background: rgba(0, 0, 0, 0.4); /* Match */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    background: rgba(255, 69, 0, 0.35) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    margin-left: -5px !important; /* Chevauchement organique "depuis le ventre" */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    z-index: 1 !important;
 }
 
 .countText {
     color: white;
-    font-weight: 800;
-    font-size: 1rem;
+    font-weight: 900;
+    font-size: 0.95rem;
     font-family: 'Outfit', sans-serif;
-    text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+    text-shadow: 0 0 8px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .floatingFlame {
     position: absolute;
     pointer-events: none;
-    z-index: 50;
-    filter: drop-shadow(0 0 15px #ff4500);
+    z-index: 100;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 20px #ff4500);
 }
 
-.hasVoted .flameIcon {
-    filter: drop-shadow(0 0 12px #ff4500);
-}
-
-/* Allow persistence by breaking out of parent opacity if needed */
-.hasAnyVotes {
+/* State: Show Count active */
+.showCount {
     opacity: 1 !important;
     transform: translateY(0) !important;
     pointer-events: all !important;

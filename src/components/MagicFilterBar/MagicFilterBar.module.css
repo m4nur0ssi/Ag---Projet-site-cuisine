@@ -1,4 +1,19 @@
-/* PC STYLES (ULTRA GLASS) */
+.pcLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrage global */
+    gap: 15px;
+    width: 100%;
+}
+
+.pcLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
 .glassInnerPC {
     background: rgba(10, 10, 10, 0.6);
     backdrop-filter: blur(25px);
@@ -11,20 +26,28 @@
     gap: 12px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     pointer-events: auto;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    width: fit-content;
 }
 
-.itemsScrollContainerPC {
-    overflow: hidden;
+.glassInnerPC {
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    padding: 6px 16px;
     display: flex;
     align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+    width: fit-content;
 }
 
 .container {
-    max-width: 1000px;
-    width: 90%;
     display: flex;
     justify-content: center;
+    width: fit-content;
 }
 
 
@@ -98,6 +121,91 @@
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+/* UTILITY HUB PC (ONE BUBBLE) */
+.utilityHubDesktop {
+    display: flex;
+    align-items: center;
+    background: rgba(15, 15, 20, 0.8) !important;
+    backdrop-filter: blur(40px) saturate(210%);
+    -webkit-backdrop-filter: blur(40px) saturate(210%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    padding: 2px 10px;
+    height: 52px;
+    width: fit-content;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.unifiedUtilityPillPC {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+.utilityIconItemPC {
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: transform 0.2s ease;
+}
+
+.utilityIconItemPC:hover {
+    transform: scale(1.15);
+}
+
+.utilityIconSimple {
+    font-size: 1.25rem;
+}
+
+.activeFiltersContentPC {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hubDividerPC {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.rainbowTextPC {
+    background: linear-gradient(90deg, #FF375F, #FFD60A, #64D2FF, #BF5AF2, #FF375F);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowShine 4s linear infinite;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.clearBtnPC {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.2s ease;
+}
+
+.clearBtnPC:hover {
+    color: #FF3B30;
+}
+
+@keyframes rainbowShine {
+    from { background-position: 0% center; }
+    to { background-position: -200% center; }
 }
 
 .micBtn {

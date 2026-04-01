@@ -7,9 +7,9 @@ const WORDPRESS_DOMAIN = 'lesrec3ttesm4giques.fr';
 const WORDPRESS_PUBLIC_IP = process.env.WP_PUBLIC_IP || '109.221.250.122';
 const WORDPRESS_LOCAL_IP = '192.168.1.200';
 
-// Déterminer l'IP à utiliser (locale si on est sur le NAS/Mac, publique sinon)
-const IS_LOCAL = fs.existsSync('/Volumes/homes') || process.env.NODE_ENV === 'development';
-const ACTIVE_IP = IS_LOCAL ? WORDPRESS_LOCAL_IP : WORDPRESS_PUBLIC_IP;
+// Déterminer l'IP à utiliser (On privilégie l'IP externe pour l'accès universel souhaité par l'utilisateur)
+const ACTIVE_IP = WORDPRESS_PUBLIC_IP;
+const WORDPRESS_API_URL = `http://${ACTIVE_IP}/wordpress/wp-json/wp/v2`;
 
 // Le proxy Vercel sert les images en HTTPS depuis le NAS en HTTP
 const IMAGE_BASE_URL = `http://${WORDPRESS_PUBLIC_IP}`;

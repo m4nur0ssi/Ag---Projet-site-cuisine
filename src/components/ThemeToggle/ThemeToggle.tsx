@@ -4,9 +4,10 @@ import styles from './ThemeToggle.module.css';
 
 interface ThemeToggleProps {
     className?: string;
+    children?: React.ReactNode;
 }
 
-export default function ThemeToggle({ className }: ThemeToggleProps) {
+export default function ThemeToggle({ className, children }: ThemeToggleProps) {
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
     useEffect(() => {
@@ -40,11 +41,14 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
             aria-label="Changer de thème"
             title={theme === 'light' ? 'Mode Sombre' : 'Mode Clair'}
         >
-            <div className={`${styles.iconContainer} ${theme === 'light' ? styles.isLight : ''}`}>
-                <span className={styles.icon}>
-                    {theme === 'light' ? '☀️' : '🌙'}
-                </span>
-            </div>
+            {!children && (
+                <div className={`${styles.iconContainer} ${theme === 'light' ? styles.isLight : ''}`}>
+                    <span className={styles.icon}>
+                        {theme === 'light' ? '☀️' : '🌙'}
+                    </span>
+                </div>
+            )}
+            {children}
         </button>
     );
 }

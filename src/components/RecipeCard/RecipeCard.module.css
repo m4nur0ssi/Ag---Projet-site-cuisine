@@ -302,6 +302,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    pointer-events: none; /* Juste pour garder l'équilibre du grid */
 }
 
 .headerFlag {
@@ -317,19 +318,22 @@
 }
 
 .headerActionBtn {
-    background: transparent !important;
-    border: none !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50% !important;
     padding: 0 !important;
-    width: 30px !important;
-    height: 30px !important;
+    width: 28px !important;
+    height: 28px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-size: 1.1rem !important;
+    font-size: 0.9rem !important;
     cursor: pointer !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     color: white !important;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .headerActionBtn:hover {
@@ -346,15 +350,15 @@
 .topTitle {
     grid-column: 2;
     font-family: var(--font-primary);
-    font-size: 0.8rem;
-    font-weight: 800;
+    font-size: 0.82rem;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 1.8px;
+    letter-spacing: 2px;
     margin: 0;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
-    background: linear-gradient(135deg, #ffffff 0%, var(--glow-color, #a88beb) 50%, #ffffff 100%);
+    background: linear-gradient(to right, #ffffff 0%, var(--glow-color, #a88beb) 50%, #ffffff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -473,8 +477,52 @@
     pointer-events: auto;
 }
 
-.actionButtons {
-    align-items: center;
+/* Actions superposition photo haut droite - Design 2026 */
+.topActionsOverlay {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 15;
+    pointer-events: auto;
+}
+
+.topActionsOverlay .headerActions {
+    display: flex;
+    flex-direction: column; /* Vertical plus élégant sur le côté ? Essayons horizontal d'abord */
+    flex-direction: row; 
+    gap: 10px;
+}
+
+.topActionsOverlay .headerActionBtn,
+.topActionsOverlay :global(.voteWrapper) {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-radius: 50% !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.topActionsOverlay .headerActionBtn:hover,
+.topActionsOverlay :global(.voteWrapper:hover) {
+    transform: scale(1.15) translateY(-3px) !important;
+    background: rgba(var(--dynamic-accent-rgb), 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+.topActionsOverlay :global(.voteWrapper) {
+    min-width: 38px !important;
+}
+
+.topActionsOverlay :global(.voteWrapper .bubblesContainer) {
+    transform: scale(0.65) !important;
 }
 
 /* On force le style pour les boutons favoris/share dans le header overlay */

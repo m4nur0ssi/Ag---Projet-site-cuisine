@@ -210,17 +210,7 @@ function HomeContent() {
                             }}
                         >
                             <div className={styles.sectionSpacer} style={{ height: '15px' }} />
-                            <div className={styles.categoryHeader}>
-                                <h1 className={styles.categoryTitle}>
-                                    Recettes : <span style={{ backgroundSize: '200% auto', animation: 'rainbowShine 4s linear infinite', backgroundImage: 'linear-gradient(90deg, #FF375F, #FF9F0A, #FFD60A, #30D158, #64D2FF, #5E5CE6, #BF5AF2, #FF375F)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{activeFiltersLabel}</span>
-                                </h1>
-                                <button 
-                                    onClick={() => handleTagSelect(null)}
-                                    className={styles.seeAll}
-                                >
-                                    Tout effacer ✕
-                                </button>
-                            </div>
+                             <div className={styles.sectionSpacer} style={{ height: '15px' }} />
                             <div className={styles.sectionSpacer} style={{ height: '30px' }} />
                             <div className={styles.resultsGrid}>
                                 {filteredRecipes.map((recipe) => (

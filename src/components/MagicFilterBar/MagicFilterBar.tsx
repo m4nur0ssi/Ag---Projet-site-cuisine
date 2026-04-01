@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { mockRecipes } from '../../data/mockData';
 import styles from './MagicFilterBar.module.css';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
 interface FilterItem {
     id: string;
@@ -197,56 +198,105 @@ export default function MagicFilterBar({
                 
                 {/* 1. PC VIEW: FIXED HORIZONTAL LAYOUT */}
                 {!isMobile && (
-                    <motion.div className={styles.container}>
-                        <div className={styles.glassInnerPC}>
-                            <div className={styles.groupSwitcher}>
-                                {groups.map((group) => (
-                                    <button
-                                        key={group.id}
-                                        className={`${styles.groupBtn} ${activeGroup === group.id ? styles.groupBtnActive : ''}`}
-                                        onClick={() => {
-                                            setActiveGroup(group.id);
-                                            setExpandedGroup(group.id);
-                                        }}
-                                    >
-                                        <span className={styles.groupIcon}>{group.icon}</span>
-                                        <span className={styles.groupLabelPC}>{group.label}</span>
-                                    </button>
-                                ))}
-                            </div>
-                            <div className={styles.separator} />
-                            <div className={styles.itemsScrollContainerPC}>
-                                <div 
-                                    ref={itemsScrollRef}
-                                    className={styles.itemsScrollPC}
-                                    onMouseMove={handleItemsMouseMove}
-                                >
-                                    <div className={styles.itemsWrapperPC}>
-                                        {currentItems.map((item) => (
+                    <div className={styles.pcLayout}>
+                        {/* B. FILTERS (ALL IN ONE LINE) */}
+                        {isHome && (
+                            <motion.div className={styles.container}>
+                                <div className={styles.glassInnerPC}>
+                                    <div className={styles.groupSwitcher}>
+                                        {groups.map((group) => (
                                             <button
-                                                key={item.id}
-                                                className={`${styles.filterItem} ${activeTags.includes(item.tag || item.id) ? styles.active : ''}`}
-                                                onClick={() => onSelect(item.tag || item.id)}
+                                                key={group.id}
+                                                className={`${styles.groupBtn} ${activeGroup === group.id ? styles.groupBtnActive : ''}`}
+                                                onClick={() => {
+                                                    setActiveGroup(group.id);
+                                                    setExpandedGroup(group.id);
+                                                }}
                                             >
-                                                <span className={styles.itemIcon}>{item.icon}</span>
-                                                <span className={styles.itemName}>{item.name}</span>
+                                                <span className={styles.groupIcon}>{group.icon}</span>
+                                                <span className={styles.groupLabelPC}>{group.label}</span>
                                             </button>
                                         ))}
                                     </div>
+                                    <div className={styles.separator} />
+                                    <div className={styles.itemsScrollContainerPC}>
+                                        <div 
+                                            ref={itemsScrollRef}
+                                            className={styles.itemsScrollPC}
+                                            onMouseMove={handleItemsMouseMove}
+                                        >
+                                            <div className={styles.itemsWrapperPC}>
+                                                {currentItems.map((item) => (
+                                                    <button
+                                                        key={item.id}
+                                                        className={`${styles.filterItem} ${activeTags.includes(item.tag || item.id) ? styles.active : ''}`}
+                                                        onClick={() => onSelect(item.tag || item.id)}
+                                                    >
+                                                        {item.icon && activeGroup !== 'categories' && <span className={styles.itemIcon}>{item.icon}</span>}
+                                                        <span className={styles.itemName}>{item.name}</span>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.separator} />
+                                    <div className={styles.actionsPC}>
+                                        <motion.button 
+                                            className={styles.luckyBtn}
+                                            onClick={handleLuckyClick}
+                                            animate={isLuckyRolling ? { rotate: [0, -5, 5, -5, 5, 0] } : {}}
+                                        >
+                                            🍀
+                                        </motion.button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={styles.separator} />
-                            <div className={styles.actionsPC}>
-                                <motion.button 
-                                    className={styles.luckyBtn}
-                                    onClick={handleLuckyClick}
-                                    animate={isLuckyRolling ? { rotate: [0, -5, 5, -5, 5, 0] } : {}}
-                                >
-                                    🍀
-                                </motion.button>
-                            </div>
-                        </div>
-                    </motion.div>
+                            </motion.div>
+                        )}
+
+                        {/* C. UTILITY HUB (SINGLE BUBBLE) */}
+                        {isHome && (
+                            <motion.div 
+                                layout
+                                className={`${styles.utilityHubDesktop} ${activeTags.length > 0 ? styles.hubExpanded : ''}`}
+                            >
+                                <div className={styles.unifiedUtilityPillPC}>
+                                    <ThemeToggle className={styles.utilityIconItemPC}>
+                                        <span className={styles.utilityIconSimple}>🌗</span>
+                                    </ThemeToggle>
+                                    <Link href="/favorites" className={styles.utilityIconItemPC}>
+                                        <span className={styles.utilityIconSimple}>🤍</span>
+                                    </Link>
+                                    <Link href="/shopping-list" className={styles.utilityIconItemPC}>
+                                        <span className={styles.utilityIconSimple}>🛒</span>
+                                    </Link>
+                                </div>
+
+                                <AnimatePresence>
+                                    {activeTags.length > 0 && (
+                                        <motion.div 
+                                            className={styles.activeFiltersContentPC}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: -10 }}
+                                        >
+                                            <div className={styles.hubDividerPC} />
+                                            <div className={styles.activeTagsListPC}>
+                                                <span className={styles.rainbowTextPC}>
+                                                    {activeTags.join(' + ').toUpperCase()}
+                                                </span>
+                                            </div>
+                                            <button 
+                                                className={styles.clearBtnPC}
+                                                onClick={() => window.dispatchEvent(new CustomEvent('magic-reset-filters'))}
+                                            >
+                                                ✕
+                                            </button>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </motion.div>
+                        )}
+                    </div>
                 )}
 
                 {/* 2. MOBILE VIEW: THE DYNAMIC STACKED NAV IS GONE, ONLY FILTERS REMAIN */}

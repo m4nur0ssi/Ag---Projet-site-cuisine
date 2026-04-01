@@ -653,10 +653,18 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                         backUrl={`/category/${recipe.category}`}
                         large={!scrolled}
                         recipeId={recipe.id}
-                        hideMobileIcons={true} // Masqué en haut de page car redessiné sous le titre
+                        hideMobileIcons={true}
                         className=""
                         rightAction={scrolled ? <ThemeToggle /> : null}
                     />
+                    
+                    {/* SANDWICH TITLE: Visibilité permanente entre les boutons au scroll */}
+                    {scrolled && (
+                        <div className={styles.stickyRecipeTitle}>
+                            <SplitTitle text={recipe.title} />
+                        </div>
+                    )}
+
                     {/* Barre de filtres + bouton retour catégorie au scroll */}
                     <MagicFilterBar
                         activeTags={recipe.tags || []}

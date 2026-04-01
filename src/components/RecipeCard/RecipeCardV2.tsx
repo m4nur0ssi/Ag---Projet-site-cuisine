@@ -127,7 +127,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
         
         // 1. Skip if clicking specialized action buttons or specific buttons/links
         if (
-            target.closest(`.${styles.topActions}`) || 
+            target.closest(`.${styles.topActionsOverlay}`) || 
             target.closest(`.${styles.persistentVote}`) ||
             target.closest('button') ||
             target.closest('a')
@@ -135,17 +135,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
             return;
         }
 
-        // 2. If clicking on the image area, handle video/navigation logic
-        if (target.closest(`.${styles.imageContainer}`)) {
-            if (isTouchDevice && recipe.videoHtml) {
-                handleToggleVideo();
-            } else {
-                router.push(`/recipe/${recipe.id}`);
-            }
-            return;
-        }
-
-        // 3. Fallback for clicking anywhere else on the card (like the gap between text)
+        // Navigate to the recipe details
         router.push(`/recipe/${recipe.id}`);
     };
 
@@ -205,26 +195,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
                 
                 <h3 className={styles.topTitle}>{recipe.title}</h3>
                 
-                <div className={styles.headerRight}>
-                    <div className={styles.headerActions} onClick={(e) => e.stopPropagation()}>
-                        <ShareButton 
-                            url={`${typeof window !== 'undefined' ? window.location.origin : ''}/recipe/${recipe.id}`}
-                            title={recipe.title}
-                            className={styles.headerActionBtn}
-                        />
-                        <FavoriteButton
-                            recipeId={recipe.id}
-                            initialFavorite={recipe.isFavorite}
-                            imageUrl={recipe.image}
-                            className={styles.headerActionBtn}
-                        />
-                        <VoteButton 
-                            recipeId={recipe.id}
-                            initialVotes={recipe.votes || 0}
-                            className={styles.headerVote}
-                        />
-                    </div>
-                </div>
+                <div className={styles.headerRight} />
             </div>
 
             <div className={styles.imageOuterContainer}>
@@ -255,6 +226,28 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
                                                 recipe.category === 'plats' ? '🍲' : '🥗'}
                                     </div>
                                 )}
+
+                                {/* ACTIONS HAUT DROITE SUR PHOTO */}
+                                <div className={styles.topActionsOverlay} onClick={(e) => e.stopPropagation()}>
+                                    <div className={styles.headerActions}>
+                                        <ShareButton 
+                                            url={`${typeof window !== 'undefined' ? window.location.origin : ''}/recipe/${recipe.id}`}
+                                            title={recipe.title}
+                                            className={styles.headerActionBtn}
+                                        />
+                                        <FavoriteButton
+                                            recipeId={recipe.id}
+                                            initialFavorite={recipe.isFavorite}
+                                            imageUrl={recipe.image}
+                                            className={styles.headerActionBtn}
+                                        />
+                                        <VoteButton 
+                                            recipeId={recipe.id}
+                                            initialVotes={recipe.votes || 0}
+                                            className={styles.headerVote}
+                                        />
+                                    </div>
+                                </div>
 
                                 <div className={styles.badges}>
                                     {recipeHashtags.map((has: { id: string; name: string }) => (

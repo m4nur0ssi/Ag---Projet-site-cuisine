@@ -52,10 +52,24 @@
 }
 
 .isScrolled {
-    background: var(--color-bg-secondary);
+    background: rgba(10, 10, 12, 0.8) !important;
     backdrop-filter: blur(50px) saturate(210%);
     -webkit-backdrop-filter: blur(50px) saturate(210%);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Fil élégant */
+}
+
+.stickyRecipeTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    margin: -5px 0 10px; /* On remonte pour coller au header et laisser de la place pour la pilule en bas */
+    font-size: 1.15rem;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
 }
 
 @media (max-width: 768px) {

@@ -15,6 +15,8 @@ async function callGemini(prompt, model = 'gemini-2.0-flash', isJson = true) {
         throw new Error('Aucune clé API Gemini trouvée. Vérifiez votre fichier .env');
     }
 
+    console.log(`   🚀 Gemini : Utilisation de ${keys.length} clé(s) API en rotation.`);
+
     let lastError = null;
 
     for (const key of keys) {
