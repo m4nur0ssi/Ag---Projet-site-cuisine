@@ -1,9 +1,9 @@
 {
-  "lastSync": "2026-04-01T20:38:22Z",
-  "trigger": "schedule",
-  "action": "schedule",
+  "lastSync": "2026-04-01T20:53:55Z",
+  "trigger": "repository_dispatch",
+  "action": "wp_full_sync",
   "postId": "",
   "mode": "full",
   "status": "success",
-  "ts": 1775075902
+  "ts": 1775076835
 }
