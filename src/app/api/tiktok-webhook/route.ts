@@ -98,7 +98,13 @@ async function handleRequest(request: Request) {
     
     // Étape 1 : Si on n'a pas de pays et qu'on ne demande pas juste un check, on envoie la liste
     if (!selectedCountry && !checkOnly && body.checkOnly !== 'true' && body.checkOnly !== true) {
-        const countriesArr = ["🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban", "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🗺️ Autre"];
+        const countriesArr = [
+            // Pays
+            "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban",
+            "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🗺️ Autre",
+            // Thématiques du moment
+            "🐣 Pâques", "🎄 Noël", "😊 Facile", "🍝 Dolce Vita", "💡 Astuce"
+        ];
         const countryDict: any = {};
         countriesArr.forEach(c => countryDict[c] = c);
 
