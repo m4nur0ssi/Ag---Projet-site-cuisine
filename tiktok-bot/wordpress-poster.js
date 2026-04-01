@@ -182,8 +182,18 @@ async function postToWordPressXMLRPC(recipe) {
 
     let extraCategories = [];
     if (recipe.manualCountry) {
-        const cleanCountry = recipe.manualCountry.split(' ').pop();
-        if (cleanCountry && cleanCountry !== 'Autre') extraCategories.push(cleanCountry);
+        let cleanCountry = recipe.manualCountry.replace(/^[^\wÀ-ÿ]+/, '').trim(); // Remove emojis at the start
+        
+        // Custom mapping for iOS app themes
+        if (cleanCountry.toLowerCase().includes('dolce vita')) cleanCountry = 'Dolce Vita';
+        if (cleanCountry.toLowerCase().includes('facile')) cleanCountry = 'Facile';
+        if (cleanCountry.toLowerCase().includes('noël')) cleanCountry = 'Noël';
+        if (cleanCountry.toLowerCase().includes('pâques')) cleanCountry = 'Pâques';
+        if (cleanCountry.toLowerCase().includes('astuce')) cleanCountry = 'Astuce';
+
+        if (cleanCountry && cleanCountry !== 'Autre') {
+            extraCategories.push(cleanCountry);
+        }
     }
 
     const postStruct = `<struct>
