@@ -112,7 +112,7 @@ async function handleRequest(request: Request) {
             status: countryDict,
             countries: countryDict, 
             pays: countryDict,
-            v: "00:12-ULTRA-BOOST",
+            v: "00:13-NETLIFY-FORCE",
             message: 'Quel pays ?'
         });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
