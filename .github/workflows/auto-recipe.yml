@@ -94,8 +94,26 @@ jobs:
       - name: 🍳 TRAITEMENT CLOUD (Favoris + File d'attente)
         run: node tiktok-bot/github-runner.js
         env:
-          VIDEO_URL: ${{ github.event.inputs.video_url }}
-          COUNTRY: ${{ github.event.inputs.country }}
+          TIKTOK_SESSION_ID: ${{ secrets.TIKTOK_SESSION_ID }}
+          TIKTOK_WEBID: ${{ secrets.TIKTOK_WEBID }}
+          TIKTOK_MS_TOKEN: ${{ secrets.TIKTOK_MS_TOKEN }}
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+
+      - name: 🧹 NETTOYAGE DES BROUILLONS (Reprocess Stubs)
+        run: node tiktok-bot/reprocess-stubs.js
+        env:
+          TIKTOK_SESSION_ID: ${{ secrets.TIKTOK_SESSION_ID }}
+          TIKTOK_WEBID: ${{ secrets.TIKTOK_WEBID }}
+          TIKTOK_MS_TOKEN: ${{ secrets.TIKTOK_MS_TOKEN }}
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
 
       - name: Synchronisation complete depuis WordPress
         if: ${{ github.event.inputs.trigger_source != 'tiktok-shortcut' }}
