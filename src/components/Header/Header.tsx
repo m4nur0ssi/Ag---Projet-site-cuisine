@@ -1,11 +1,9 @@
 'use client';
-// Vercel Deployment Sync V17.9 - Emergency Wake-Up Call
-import { useState, useEffect, useRef } from 'react';
+// Vercel Deployment Sync V18.0 - Sync Button Edition
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import SpotlightSearch from '../SpotlightSearch/SpotlightSearch';
 import SplitTitle from '../SplitTitle/SplitTitle';
-import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import styles from './Header.module.css';
 import { useRouter } from 'next/navigation';
 
@@ -16,14 +14,28 @@ interface HeaderProps {
     backUrl?: string;
     recipeId?: string;
     hideMobileIcons?: boolean;
-    className?: string; // AJOUTÉ POUR FLEXIBILITÉ
+    className?: string;
     rightAction?: React.ReactNode;
     hideShoppingList?: boolean;
 }
 
-// Variables globales pour persistance session (triple-clic indestructible)
+// Triple-clic global (power users)
 let globalClickCount = 0;
 let globalClickTimer: any = null;
+
+// Fonction de sync partagée — appelle /api/sync
+async function triggerSync(source = 'button'): Promise<{ ok: boolean; message: string }> {
+    const res = await fetch('/api/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ trigger_source: source })
+    });
+    const data = await res.json();
+    if (res.ok) {
+        return { ok: true, message: data.message || 'Synchronisation lancée !' };
+    }
+    return { ok: false, message: data.error || `Erreur ${res.status}` };
+}
 
 export default function Header({ 
     title = 'Les Recettes  Magiques', 
@@ -40,8 +52,7 @@ export default function Header({
     const [scrolled, setScrolled] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isSyncing, setIsSyncing] = useState(false);
-    const [favCount, setFavCount] = useState(0);
-    const [listCount, setListCount] = useState(0);
+    const [syncStatus, setSyncStatus] = useState<'idle' | 'ok' | 'error'>('idle');
 
     useEffect(() => {
         const handleSearchOpen = () => setIsSearchOpen(true);
@@ -50,25 +61,7 @@ export default function Header({
     }, []);
 
     useEffect(() => {
-        const updateCounts = () => {
-            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-            setFavCount(favorites.length);
-
-            const shopData = JSON.parse(localStorage.getItem('magic-shopping-list') || '{}');
-            const totalRemaining = Object.values(shopData).reduce((acc: number, val: any) => {
-                const ingredients = val.ingredients || [];
-                const remaining = ingredients.filter((ing: any) =>
-                    typeof ing === 'string' ? true : !ing.checked
-                );
-                return acc + remaining.length;
-            }, 0);
-
-            setListCount(totalRemaining);
-        };
-
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 50);
 
         const handleKeyDown = (e: KeyboardEvent) => {
             if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -77,81 +70,58 @@ export default function Header({
             }
         };
 
-        updateCounts();
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('keydown', handleKeyDown);
-        window.addEventListener('storage', updateCounts);
-        window.addEventListener('favoritesUpdated', updateCounts);
-        window.addEventListener('shoppingListUpdated', updateCounts);
-
-        const handleFavChange = () => updateCounts();
-        window.addEventListener('magic-favorite-change', handleFavChange);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('keydown', handleKeyDown);
-            window.removeEventListener('storage', updateCounts);
-            window.removeEventListener('favoritesUpdated', updateCounts);
-            window.removeEventListener('shoppingListUpdated', updateCounts);
-            window.removeEventListener('magic-favorite-change', handleFavChange);
         };
     }, []);
 
-    const handleMagicClick = async (e: React.MouseEvent) => {
+    // Fonction principale de sync (bouton visible + triple-clic)
+    const handleSync = async (source = 'button') => {
+        if (isSyncing) return;
+        setIsSyncing(true);
+        setSyncStatus('idle');
+        try {
+            const result = await triggerSync(source);
+            if (result.ok) {
+                setSyncStatus('ok');
+                alert('✨ Synchronisation lancée !\n\n🔄 GitHub Actions met à jour toutes les recettes WordPress.\n⏳ Reviens dans 2-3 minutes, le site se mettra à jour tout seul.');
+            } else {
+                setSyncStatus('error');
+                alert(`❌ La synchronisation a échoué.\n\nDétail : ${result.message}\n\nVérifie que GITHUB_PAT est configuré dans les variables Vercel.`);
+            }
+        } catch (err: any) {
+            setSyncStatus('error');
+            alert('❌ Impossible de contacter le serveur.\n\nVérifie ta connexion internet.');
+        } finally {
+            setIsSyncing(false);
+            setTimeout(() => setSyncStatus('idle'), 3000);
+        }
+    };
+
+    // Triple-clic sur le titre (power user)
+    const handleMagicClick = (e: React.MouseEvent) => {
         globalClickCount++;
-
         if (globalClickTimer) clearTimeout(globalClickTimer);
-        globalClickTimer = setTimeout(() => {
-            globalClickCount = 0;
-        }, 1500);
-
+        globalClickTimer = setTimeout(() => { globalClickCount = 0; }, 1500);
         if (globalClickCount >= 3) {
             e.preventDefault();
             e.stopPropagation();
             globalClickCount = 0;
-
-            setIsSyncing(true);
-            try {
-                const res = await fetch('/api/sync', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ trigger_source: 'triple-click' })
-                });
-
-                const data = await res.json();
-
-                if (res.ok) {
-                    if (data.status === 'queued') {
-                        alert('✨ Synchronisation lancée !\n\n🔄 GitHub Actions est en train de récupérer toutes les recettes WordPress.\n⏳ Reviens dans 2-3 minutes, le site se mettra à jour tout seul.');
-                    } else if (data.status === 'success') {
-                        alert('✅ Synchronisation locale terminée !\n\nRechargement en cours...');
-                        setTimeout(() => window.location.reload(), 500);
-                    } else {
-                        alert(`ℹ️ ${data.message || 'Synchronisation terminée.'}`);
-                    }
-                } else {
-                    const errMsg = data.error || `Erreur ${res.status}`;
-                    console.error('Sync error:', errMsg);
-                    alert(`❌ La synchronisation a échoué.\n\nDétail : ${errMsg}\n\nVérifie que GITHUB_PAT est configuré dans les variables Vercel.`);
-                }
-            } catch (err: any) {
-                console.error('Sync fetch error:', err);
-                alert('❌ Impossible de contacter le serveur.\n\nVérifie ta connexion internet.');
-            } finally {
-                setIsSyncing(false);
-            }
+            handleSync('triple-click');
         }
     };
 
     const [displayTitle, setDisplayTitle] = useState('Les Recettes Magiques');
 
     useEffect(() => {
-        // L'alternance ne se produit que si on a scrollé (barre rétrécie)
         if (!scrolled) {
             setDisplayTitle('Les Recettes Magiques');
             return;
         }
-
         const interval = setInterval(() => {
             setDisplayTitle(prev => prev === 'Les Recettes Magiques' ? 'Accueil' : 'Les Recettes Magiques');
         }, 3500);
@@ -159,13 +129,8 @@ export default function Header({
     }, [scrolled]);
 
     const handleTitleClick = (e: React.MouseEvent) => {
-        // Triple-click logic for sync
         handleMagicClick(e);
-
-        // Envoyer un signal de reset global (pour vider les filtres sur la home)
         window.dispatchEvent(new CustomEvent('magic-reset-filters'));
-
-        // Navigation forcée vers l'accueil pour reset les filtres et l'état
         if (window.location.pathname === '/') {
             if (window.scrollY > 0) {
                 e.preventDefault();
@@ -176,11 +141,16 @@ export default function Header({
         }
     };
 
+    const syncLabel = isSyncing ? 'Sync...' 
+        : syncStatus === 'ok' ? 'Syncé ✓' 
+        : syncStatus === 'error' ? 'Erreur ⚠️' 
+        : 'Sync';
+
     return (
         <>
             <header className={`${styles.header} ${scrolled ? styles.shrunk : ''} ${large ? styles.isLarge : ''} ${recipeId ? styles.recipeHeader : ''} ${className}`}>
                 <div className={styles.container}>
-                    {/* ROW 1: TITLE + SEARCH ONLY */}
+                    {/* ROW 1: TITLE + SEARCH */}
                     <div className={styles.rowOne}>
                         <h1 className={`${styles.title} ${isSyncing ? styles.syncing : ''}`}>
                             <Link href="/" onClick={handleTitleClick} className={styles.titleLink}>
@@ -197,6 +167,21 @@ export default function Header({
                     </div>
                 </div>
             </header>
+
+            {/* Bouton Sync flottant — visible en bas à droite, au-dessus de la BottomNav */}
+            <button
+                className={`${styles.syncBtn} ${isSyncing ? styles.isSyncing : ''}`}
+                onClick={() => handleSync('button')}
+                disabled={isSyncing}
+                title="Synchroniser toutes les recettes WordPress → Netlify"
+                aria-label="Synchronisation Netlify"
+            >
+                <span className={`${styles.syncIcon} ${isSyncing ? styles.spinning : ''}`}>
+                    ↻
+                </span>
+                {syncLabel}
+            </button>
+
             <SpotlightSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </>
     );

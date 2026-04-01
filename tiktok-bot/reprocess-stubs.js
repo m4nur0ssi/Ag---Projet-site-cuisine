@@ -25,7 +25,7 @@ async function getStubsViaXmlRpc() {
             <param><value><string>${pass}</string></value></param>
             <param><value><struct>
                 <member><name>post_status</name><value><string>draft</string></value></member>
-                <member><name>number</name><value><int>20</int></value></member>
+                <member><name>number</name><value><int>50</int></value></member>
             </struct></value></param>
         </params>
     </methodCall>`;
@@ -53,7 +53,19 @@ async function getStubsViaXmlRpc() {
             if (idMatch && titleMatch && contentMatch) {
                 const title = titleMatch[1];
                 const content = contentMatch[1];
-                if (title.includes('attente') || content.includes('Stub') || content.includes('À ENRICHIR')) {
+                // Détection élargie :
+                // 1. Titres/contenu avec marqueurs explicites (Stubs intentionnels)
+                // 2. Contenu vide ou très court (brouillon incomplet)
+                // 3. Contenu qui contient une URL TikTok (toujours à enrichir)
+                // 4. Brouillons dont le contenu ne contient pas d'ingrédients structurés
+                const isExplicitStub = title.includes('attente') || title.includes('Recette TikTok') || 
+                                       content.includes('Stub') || content.includes('À ENRICHIR') ||
+                                       content.includes('en cours d\'analyse');
+                const isThinContent = content.trim().length < 300; // contenu trop court = incomplet
+                const hasTikTokLink = /https?:\/\/(?:www\.)?tiktok\.com\//i.test(content);
+                const hasNoIngredients = !content.includes('<li') && !content.includes('Ingrédients') && !content.includes('ingredients');
+
+                if (isExplicitStub || (isThinContent && hasTikTokLink) || (hasTikTokLink && hasNoIngredients)) {
                     posts.push({ id: idMatch[1], title, content });
                 }
             }

@@ -59,7 +59,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'GITHUB_PAT non configuré. Ajoutez-le dans les variables d\'environnement Vercel.' }, { status: 500 });
         }
 
-        const githubRepo = 'm4nur0ssi/magie-cuisine-tiktok';
+        const githubRepo = 'm4nur0ssi/Ag---Projet-site-cuisine';
         const workflowId = 'auto-recipe.yml';
 
         // Déterminer le type d'action WordPress (publier, modifier, supprimer)
