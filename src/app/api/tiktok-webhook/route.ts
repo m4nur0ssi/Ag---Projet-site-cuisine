@@ -130,7 +130,8 @@ async function handleRequest(request: Request) {
         v: "RELAX-VRAIMENT",
         message: `C'est en cuisine ! (Pays: ${selectedCountry || '🗺️ Autre'})`,
         url: videoUrl,
-        debug_received_country: selectedCountry 
+        debug_received_country: selectedCountry,
+        debug_queue_result: queueResult
     });
 } catch (err: any) {
     console.error('❌ Critical Error:', err.message);
