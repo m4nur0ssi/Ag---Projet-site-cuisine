@@ -21,6 +21,42 @@ const LoadingSpinner = () => (
     </div>
 );
 
+const difficultyColors: Record<string, string> = {
+    facile: '#00C853',
+    moyen: '#FFD600',
+    difficile: '#FF3D00'
+};
+
+const categoryGlows: Record<string, string> = {
+    aperitifs: 'rgba(16, 185, 129, 0.4)',
+    plats: 'rgba(244, 63, 94, 0.4)',
+    desserts: 'rgba(217, 70, 239, 0.4)',
+    patisserie: 'rgba(245, 158, 11, 0.4)',
+    vegetarien: 'rgba(34, 197, 94, 0.4)',
+    restaurant: 'rgba(59, 130, 246, 0.4)',
+};
+
+const countryColors: Record<string, string> = {
+    france: '#0055A4',
+    italie: '#008C45',
+    espagne: '#EF3340',
+    grece: '#005BAE',
+    liban: '#00A859',
+    usa: '#3C3B6E',
+    mexique: '#006847',
+    orient: '#C1272D',
+    maroc: '#C1272D',
+    japon: '#BC002D'
+};
+
+const countryFlags: Record<string, string> = {
+    france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', 
+    liban: '🇱🇧', usa: '🇺🇸', mexique: '🇲🇽', orient: '🕌',
+    maroc: '🇲🇦', japon: '🇯🇵', autre: '🗺️'
+};
+
+const countries = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'maroc', 'japon', 'asie'];
+
 export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps) {
     const [showVideo, setShowVideo] = useState(false);
     const [isVideoLoading, setIsVideoLoading] = useState(true);
@@ -29,34 +65,6 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
     const [isMuted, setIsMuted] = useState(true);
     const videoRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
-
-    const categoryGlows: Record<string, string> = {
-        aperitifs: 'rgba(16, 185, 129, 0.4)',
-        plats: 'rgba(244, 63, 94, 0.4)',
-        desserts: 'rgba(217, 70, 239, 0.4)',
-        patisserie: 'rgba(245, 158, 11, 0.4)',
-        vegetarien: 'rgba(34, 197, 94, 0.4)',
-        restaurant: 'rgba(59, 130, 246, 0.4)',
-    };
-
-    const difficultyColors: Record<string, string> = {
-        facile: '#10b981',
-        moyen: '#f59e0b',
-        difficile: '#ef4444'
-    };
-
-    const countryColors: Record<string, string> = {
-        france: '#0055A4',
-        italie: '#008C45',
-        espagne: '#EF3340',
-        grece: '#005BAE',
-        liban: '#00A859',
-        usa: '#3C3B6E',
-        mexique: '#006847',
-        orient: '#C1272D',
-        maroc: '#C1272D',
-        japon: '#BC002D'
-    };
 
     useEffect(() => {
         setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
@@ -93,7 +101,6 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
 
     // Expertise Hashtag Logic 2026
     const recipeHashtags = useMemo(() => {
-        // Liste des tendances à afficher en priorité sous forme de badges
         const trendPatterns = [
             { id: 'airfryer', name: 'Airfryer', keywords: ['airfryer', 'air fryer'] },
             { id: 'sous-vide', name: 'Sous-vide', keywords: ['sous-vide', 'basse température'] },
@@ -109,35 +116,14 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
         const recipeTags = (recipe.tags || []).map(t => t.toLowerCase());
         const list: { id: string; name: string }[] = [];
 
-        // 1. Chercher les correspondances directes dans les tags WordPress
         for (const pattern of trendPatterns) {
             if (recipeTags.some(t => pattern.keywords.some(kw => t.includes(kw)))) {
                 list.push({ id: pattern.id, name: pattern.name });
             }
         }
-
-        // 2. Si on a encore de la place et qu'on n'a pas trouvé de tendance, 
-        // on n'ajoute plus les pays ici (demandé par l'utilisateur)
         
-        return list.slice(0, 3); // On en affiche jusqu'à 3 maintenant
+        return list.slice(0, 3); 
     }, [recipe]); 
-
-    const handleCardClick = (e: React.MouseEvent) => {
-        const target = e.target as HTMLElement;
-        
-        // 1. Skip if clicking specialized action buttons or specific buttons/links
-        if (
-            target.closest(`.${styles.topActionsOverlay}`) || 
-            target.closest(`.${styles.persistentVote}`) ||
-            target.closest('button') ||
-            target.closest('a')
-        ) {
-            return;
-        }
-
-        // Navigate to the recipe details
-        router.push(`/recipe/${recipe.id}`);
-    };
 
     const handleMouseEnter = () => {
         if (!isTouchDevice && recipe.videoHtml) {
@@ -152,14 +138,6 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
             setShowVideo(false);
         }
     };
-
-    const countryFlags: Record<string, string> = {
-        france: '🇫🇷', italie: '🇮🇹', espagne: '🇪🇸', grece: '🇬🇷', 
-        liban: '🇱🇧', usa: '🇺🇸', mexique: '🇲🇽', orient: '🕌',
-        maroc: '🇲🇦', japon: '🇯🇵', autre: '🗺️'
-    };
-    
-    const countries = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'maroc', 'japon', 'asie'];
     
     // On cherche d'abord si un des pays actifs est dans la recette
     const activeCountryTag = recipe.tags?.find(t => {
@@ -176,11 +154,11 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
     const flag = recipeCountryTag ? countryFlags[recipeCountryTag.toLowerCase()] : null;
 
     return (
-        <div 
+        <Link 
+            href={`/recipe/${recipe.id}`}
             className={`${styles.card} ${showVideo ? styles.cardWithVideo : ''}`}
             data-recipe-id={recipe.id}
             style={{ '--glow-color': categoryGlows[recipe.category] || 'rgba(127, 13, 242, 0.4)' } as React.CSSProperties}
-            onClick={handleCardClick}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -264,6 +242,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
                                     <div 
                                         className={`${styles.playOverlay} ${isTouchDevice ? styles.touchDevice : ''}`}
                                         onClick={(e) => {
+                                            e.preventDefault();
                                             e.stopPropagation();
                                             handleToggleVideo();
                                         }}
@@ -285,7 +264,6 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
                                 exit={{ opacity: 0 }}
                                 className={styles.videoEmbedContainer}
                                 ref={videoRef}
-                                onClick={(e) => e.stopPropagation()}
                             >
                                 {isVideoLoading && recipe.image && (
                                     <div className={styles.videoPoster}>
@@ -316,29 +294,33 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
                                         dangerouslySetInnerHTML={{ __html: cleanHtml }} 
                                     />
                                 )}
-                                <button className={styles.closeVideoBtn} onClick={handleToggleVideo}>✕</button>
+                                <button 
+                                    className={styles.closeVideoBtn} 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        handleToggleVideo();
+                                    }}
+                                >✕</button>
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </motion.div>
             </div>
 
-
-            <Link href={`/recipe/${recipe.id}`} className={styles.contentLink}>
-                <div className={styles.content}>
-                    <h3 className={styles.title}>{recipe.title}</h3>
-                    <p className={styles.description}>{recipe.description}</p>
-                    <div className={styles.meta}>
-                        <span className={styles.time}>⏱️ {(recipe.prepTime || 0) + (recipe.cookTime || 0)}min</span>
-                        <span
-                            className={styles.difficulty}
-                            style={{ color: difficultyColors[recipe.difficulty] || '#999' }}
-                        >
-                            {recipe.difficulty ? recipe.difficulty.charAt(0).toUpperCase() + recipe.difficulty.slice(1) : '?'}
-                        </span>
-                    </div>
+            <div className={styles.content}>
+                <h3 className={styles.title}>{recipe.title}</h3>
+                <p className={styles.description}>{recipe.description}</p>
+                <div className={styles.meta}>
+                    <span className={styles.time}>⏱️ {(recipe.prepTime || 0) + (recipe.cookTime || 0)}min</span>
+                    <span
+                        className={styles.difficulty}
+                        style={{ color: difficultyColors[recipe.difficulty] || '#999' }}
+                    >
+                        {recipe.difficulty ? recipe.difficulty.charAt(0).toUpperCase() + recipe.difficulty.slice(1) : '?'}
+                    </span>
                 </div>
-            </Link>
-        </div>
+            </div>
+        </Link>
     );
 }

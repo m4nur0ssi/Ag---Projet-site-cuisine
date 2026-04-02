@@ -94,7 +94,7 @@ async function getPublishedUrls() {
             <param><value><string>${pass}</string></value></param>
             <param><value><struct>
                 <member><name>post_status</name><value><string>publish</string></value></member>
-                <member><name>number</name><value><int>30</int></value></member>
+                <member><name>number</name><value><int>100</int></value></member>
             </struct></value></param>
         </params>
     </methodCall>`;

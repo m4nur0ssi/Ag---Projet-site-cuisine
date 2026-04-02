@@ -427,6 +427,16 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                 // Notifier le Header immédiatement
                 window.dispatchEvent(new Event('shoppingListUpdated'));
                 triggerHaptic();
+
+                // Auto-scroll vers le panier (Capsule d'état)
+                setTimeout(() => {
+                    const pill = document.getElementById('shopping-list-pill-group');
+                    if (pill) {
+                        pill.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        pill.classList.add(styles.pillHighlight);
+                        setTimeout(() => pill.classList.remove(styles.pillHighlight), 2000);
+                    }
+                }, 100);
             }
         } catch (err) {
             console.error('Erreur lors de la copie/ajout à la liste:', err);
@@ -712,25 +722,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                             <SplitTitle text={recipe.title} large={true} />
                         </h1>
 
-                        {/* RÉTABLISSEMENT DE LA BARRE D'ICONES iOS 26 - MASQUÉE SUR PC/IPAD CAR DÉJÀ DANS LE HEADER */}
-                        <div className={`${styles.recipeMobileNavRow} ${styles.mobileOnly}`}>
-                            <div className={styles.recipeNavEmojiGroup}>
-                                <ThemeToggle className={styles.navEmojiBtn} />
-                                <FavoriteButton recipeId={recipe.id} className={styles.navEmojiBtn} />
-                                <button className={styles.navEmojiBtn} onClick={() => window.dispatchEvent(new CustomEvent('magic-search-open'))}>🔍</button>
-                                <Link href="/shopping-list" className={styles.navEmojiBtn}>
-                                    🛒
-                                    {totalListCount > 0 && (
-                                        <span className={styles.navBadge}>{totalListCount}</span>
-                                    )}
-                                </Link>
-                                <button className={styles.navEmojiBtn} onClick={() => window.dispatchEvent(new CustomEvent('magic-toggle-group', { detail: 'categories' }))}>🍴</button>
-                                <button className={styles.navEmojiBtn} onClick={() => window.dispatchEvent(new CustomEvent('magic-toggle-group', { detail: 'countries' }))}>🌍</button>
-                                <button className={styles.navEmojiBtn} onClick={() => window.dispatchEvent(new CustomEvent('magic-toggle-group', { detail: 'trends' }))}>🏷️</button>
-                            </div>
-                        </div>
-
-                        {/* 2. BOUTONS PAYS ET CATÉGORIE CENTRÉS (iOS 26 STYLE) */}
+                        {/* 2. BOUTONS PAYS ET CATÉGORIE CENTRÉS (iOS 26 STYLE) + UTILS À DROITE */}
                         <div className={styles.mobileQuickNav}>
                             {/* PAYS (AVEC DRAPEAU) */}
                             {recipeCountryTag && (
@@ -758,6 +750,18 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                                      recipe.category.toUpperCase()}
                                 </span>
                             </Link>
+
+                            {/* NOUVEAU GROUPE UTILS À DROITE (Design 2026) */}
+                            <div className={styles.recipeNavEmojiGroup} id="shopping-list-pill-group">
+                                <ThemeToggle className={styles.navEmojiBtn} />
+                                <FavoriteButton recipeId={recipe.id} className={styles.navEmojiBtn} />
+                                <Link href="/shopping-list" className={styles.navEmojiBtn} id="shopping-list-pill">
+                                    🛒
+                                    {totalListCount > 0 && (
+                                        <span className={styles.navBadge}>{totalListCount}</span>
+                                    )}
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     
