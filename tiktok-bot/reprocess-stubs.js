@@ -83,9 +83,45 @@ function extractTikTokUrl(content) {
     return match ? match[0] : null;
 }
 
+async function getPublishedUrls() {
+    console.log(`📡 Fetching published URLs to avoid duplicates...`);
+    const xml = `<?xml version="1.0"?>
+    <methodCall>
+        <methodName>wp.getPosts</methodName>
+        <params>
+            <param><value><int>1</int></value></param>
+            <param><value><string>${user}</string></value></param>
+            <param><value><string>${pass}</string></value></param>
+            <param><value><struct>
+                <member><name>post_status</name><value><string>publish</string></value></member>
+                <member><name>number</name><value><int>30</int></value></member>
+            </struct></value></param>
+        </params>
+    </methodCall>`;
+    try {
+        const res = await fetch(wpUrl, { method: 'POST', body: xml, timeout: 30000 });
+        const text = await res.text();
+        const urls = new Set();
+        const postChunks = text.split('<struct>').slice(1);
+        for (const chunk of postChunks) {
+            const contentMatch = chunk.match(/<member><name>post_content<\/name><value><string><!\[CDATA\[([\s\S]*?)\]\]><\/string><\/value><\/member>/)
+                            || chunk.match(/<member><name>post_content<\/name><value><string>([\s\S]*?)<\/string><\/value><\/member>/);
+            if (contentMatch) {
+                const url = extractTikTokUrl(contentMatch[1]);
+                if (url) urls.add(url);
+            }
+        }
+        return urls;
+    } catch (e) { return new Set(); }
+}
+
 async function run() {
     console.log('🧹 Démarrage du nettoyage des "Stubs" WordPress...');
     
+    // 1. Récupérer les doublons potentiels déjà en ligne
+    const publishedUrls = await getPublishedUrls();
+    console.log(`🔍 ${publishedUrls.size} vidéos déjà en ligne détectées.`);
+
     const stubs = await getStubsViaXmlRpc();
     console.log(`\n📂 ${stubs.length} recette(s) en attente trouvée(s).`);
 
@@ -100,7 +136,24 @@ async function run() {
         
         const videoUrl = extractTikTokUrl(stub.content);
         if (!videoUrl) {
-            console.log(`   ⚠️ Impossible de trouver l'URL TikTok pour ce brouillon. Content: ${stub.content.substring(0, 50)}...`);
+            console.log(`   ⚠️ Impossible de trouver l'URL TikTok pour ce brouillon. Skip.`);
+            continue;
+        }
+
+        // 🛑 DÉDUPLICATION : Si la vidéo est déjà publiée, on supprime ce doublon en attente
+        if (publishedUrls.has(videoUrl)) {
+            console.log(`   🛑 DOUBLON DÉTECTÉ : La vidéo ${videoUrl} est déjà publiée. Suppression du brouillon inutile...`);
+            const xml = `<?xml version="1.0"?>
+            <methodCall>
+                <methodName>wp.deletePost</methodName>
+                <params>
+                    <param><value><int>1</int></value></param>
+                    <param><value><string>${user}</string></value></param>
+                    <param><value><string>${pass}</string></value></param>
+                    <param><value><int>${postId}</int></value></param>
+                </params>
+            </methodCall>`;
+            try { await fetch(wpUrl, { method: 'POST', body: xml }); } catch(e){}
             continue;
         }
 
