@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Optimisé pour Vercel
+    // Optimisé pour Vercel - Désactivation de l'API d'image interne pour économiser 100% de la bande passante "Fast Origin Transfer"
     images: {
-        unoptimized: false, // ACTIVÉ : Vercel va maintenant compacter tes images (WebP/AVIF) otomatisement
+        unoptimized: true, // Désormais Vercel ne traitera plus les images. Fini les blocages !
         remotePatterns: [
             {
                 protocol: 'http',
