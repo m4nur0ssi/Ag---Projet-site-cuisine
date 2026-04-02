@@ -355,11 +355,11 @@ function CategoryGroup({ category, recipes, activeTags }: { category: any, recip
 function ThematicGroup({ activeTags }: { activeTags: string[] }) {
     const scrollRef = useRef<HTMLDivElement>(null);
     const thematiques = [
-        { id: 'paques', name: 'Pâques est là', tag: 'Pâques', image: 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=800&q=80' },
-        { id: 'noel', name: "C'est Noël", tag: 'Noël', image: 'https://images.unsplash.com/photo-1481833761820-0509d3217039?w=800&q=80' },
-        { id: 'astuces', name: 'Astuces', tag: 'Astuces', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80' },
-        { id: 'simplissime', name: 'Simplissime', tag: 'Simplissime', image: 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&q=80' },
-        { id: 'dolce-vita', name: 'La Dolce Vita', tag: 'Italie', image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80' }
+        { id: 'paques', name: 'Pâques est là', tag: 'Pâques', image: '/images/themes/paques.jpg' },
+        { id: 'noel', name: "C'est Noël", tag: 'Noël', image: '/images/themes/noel.jpg' },
+        { id: 'astuces', name: 'Astuces', tag: 'Astuces', image: '/images/themes/astuces.jpg' },
+        { id: 'simplissime', name: 'Simplissime', tag: 'Simplissime', image: '/images/themes/simplissime.jpg' },
+        { id: 'dolce-vita', name: 'La Dolce Vita', tag: 'Italie', image: '/images/themes/dolce-vita.jpg' }
     ];
 
     const handleMouseMove = useCallback((e: React.MouseEvent) => {
