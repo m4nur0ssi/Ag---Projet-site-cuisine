@@ -2,11 +2,64 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/04/2026 08:48:49
- * Total: 172 recettes
+ * Dernière mise à jour: 02/04/2026 08:57:06
+ * Total: 173 recettes
  */
-export const exportSyncId = "1775119729888";
+export const exportSyncId = "1775120226637";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4767",
+        "title": "Cacavellu Corse",
+        "description": "Une recette Corse traditionnelle pour Pâques, le Cacavellu est un incontournable de cette fête.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775120095833.jpg&v=1775127328000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7620869846980513046\" data-video-id=\"7620869846980513046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620869846980513046\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾 500 gr de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 140 gr de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 42 gr (1 cube) de levure de boulanger"
+            },
+            {
+                "quantity": "",
+                "name": "💧 65 gr d’eau tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 80 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 30 g d’anis en grains"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 2 oeufs"
+            }
+        ],
+        "steps": [
+            "Une recette Corse traditionnelle pour Pâques, le Cacavellu est un incontournable de cette fête.",
+            "\" style=\"background: #ffffff; padding: 35px; border-radius: 16px; border: 1px solid #dfe6e9; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 40px;\"> 🛒 Ingrédients 🌾 500 gr de farine 🍯 140 gr de sucre 🥣 42 gr (1 cube) de levure de boulanger 💧 65 gr d’eau tiède 🧈 80 g de beurre 🥣 30 g d’anis en grains 🥚 2 oeufs 👨‍🍳 Préparation 🔥 Cuisine en vidéo ! Regarder la vidéo sur TikTok"
+        ],
+        "tags": [
+            "Famille",
+            "France"
+        ],
+        "isFeatured": true,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4728",
         "title": "Cheesecake Kinder Bueno",
@@ -853,7 +906,7 @@ export const mockRecipes: Recipe[] = [
             "Spicy",
             "USA"
         ],
-        "isFeatured": true,
+        "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
