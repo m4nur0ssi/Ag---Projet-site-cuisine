@@ -1,21 +1,20 @@
 .card {
-    display: block;
-    background: var(--color-bg-tertiary);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    overflow: hidden;
-    transition: var(--transition-smooth);
-    box-shadow: var(--shadow-md);
-    cursor: pointer;
-    text-decoration: none;
     position: relative;
-    z-index: 1;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    overflow: hidden;
+    transition: all 0.4s var(--transition-smooth);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5); /* No glow halo */
-    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow-premium);
+    border-color: rgba(var(--dynamic-accent-rgb, 127, 13, 242), 0.4);
 }
 
 .categoryBadgeTop {
@@ -36,6 +35,10 @@
     white-space: nowrap;
 }
 
+.description {
+    display: none;
+}
+
 .imageOuterContainer {
     position: relative;
     width: 100%;
@@ -44,10 +47,11 @@
 .imageContainer {
     position: relative;
     width: 100%;
-    aspect-ratio: 4/5; /* Plus vertical style TikTok */
+    aspect-ratio: 0.85; /* VERTICAL ORIENTATION */
     background: #000;
     overflow: hidden;
     cursor: pointer;
+    border-radius: inherit;
 }
 
 .image {
@@ -59,8 +63,8 @@
 }
 
 .card:hover .image {
-    opacity: 0.1;
-    filter: blur(20px);
+    opacity: 0.7;
+    filter: blur(8px);
 }
 
 .imagePlaceholder {
@@ -73,10 +77,30 @@
     background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-tertiary) 100%);
 }
 
-.fullSize {
-    width: 100%;
-    height: 100%;
-    position: relative;
+.hashtagOverlay {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hashtagBadge {
+    padding: 6px 14px;
+    background: rgba(var(--dynamic-accent-rgb, 127, 13, 242), 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 100px;
+    border: 1px solid rgba(var(--dynamic-accent-rgb, 127, 13, 242), 0.5);
+    color: white;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.hashtagLabel {
+    font-size: 9px;
+    font-weight: 950;
+    letter-spacing: 0.1em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .videoIndicator {
@@ -97,7 +121,6 @@
     letter-spacing: 1.5px;
     z-index: 5;
     pointer-events: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .playOverlay {
@@ -112,15 +135,10 @@
     z-index: 6;
 }
 
-.card:hover .playOverlay {
-    opacity: 0;
-    pointer-events: none;
-}
-
 .playIconBox {
     width: 60px;
     height: 60px;
-    background: rgba(var(--dynamic-accent-rgb, 127, 13, 242), 0.8);
+    background: rgba(var(--dynamic-accent-rgb, 127, 13, 242), 0.85);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -140,142 +158,16 @@
 .playText {
     margin-top: 10px;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 950;
     color: white;
     letter-spacing: 2px;
     opacity: 0;
     transition: all 0.3s ease;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .card:hover .playText {
     opacity: 1;
-}
-
-@media (max-width: 1024px) {
-    .playIconBox {
-        opacity: 0.8;
-        transform: scale(0.8);
-    }
-    .playText {
-        opacity: 0.8;
-    }
-}
-
-/* Force visibility for ANY touch device (iPad Pro, etc.) */
-.touchDevice .playIconBox {
-    opacity: 0.8 !important;
-    transform: scale(0.8) !important;
-}
-
-.touchDevice .playText {
-    opacity: 0.8 !important;
-}
-
-/* On tactile, on ne masque pas l'overlay au hover car le hover est simulé par le clic */
-@media (pointer: coarse) {
-    .card:hover .playOverlay {
-        opacity: 1 !important;
-        pointer-events: auto !important;
-    }
-}
-
-.spinnerContainer {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px);
-    z-index: 11;
-}
-
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.1);
-    border-top-color: var(--color-accent-purple-light);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.videoIndicatorIcon {
-    font-size: 14px;
-    color: var(--color-accent-purple-light);
-    text-shadow: 0 0 10px var(--color-accent-purple);
-}
-
-.videoEmbedContainer {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    background: #000 !important;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden !important; /* No scroll inside card */
-    border-radius: inherit;
-    pointer-events: none; /* Crucial: stops the iframe from capturing scroll */
-}
-
-.miniVideoIframe {
-    width: 100%;
-    height: 100% !important;
-    min-height: 100% !important;
-    border: none;
-    background: #000;
-    transform: scale(1.02); /* Slight scale to hide edges */
-}
-
-.miniVideo {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000 !important;
-}
-
-.videoPoster {
-    position: absolute;
-    inset: 0;
-    z-index: 12;
-    background: #000;
-}
-
-.posterBlur {
-    filter: blur(10px) brightness(0.7);
-    transform: scale(1.1);
-}
-
-.miniVideo * {
-    background: #000 !important;
-}
-
-/* On force TikTok à remplir le conteneur */
-.miniVideo blockquote {
-    margin: 0 !important;
-    padding: 0 !important;
-    min-width: 100% !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: #000 !important;
-}
-
-.miniVideo iframe {
-    width: 100% !important;
-    height: 100% !important;
-    border: none !important;
-    min-height: 100% !important;
 }
 
 .cardHeader {
@@ -287,23 +179,18 @@
     background: var(--glass-bg-dark);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid var(--glass-border);
     z-index: 10;
-    height: 52px; /* Slimmer, more like the reference image */
+    height: 52px;
 }
 
-.headerLeft {
+.headerLeft, .headerRight {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
 }
 
-.headerRight {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    pointer-events: none; /* Juste pour garder l'équilibre du grid */
-}
+.headerLeft { justify-content: flex-start; }
+.headerRight { justify-content: flex-end; }
 
 .headerFlag {
     font-size: 1.35rem;
@@ -311,40 +198,63 @@
     opacity: 0.9;
 }
 
-.headerActions {
-    display: flex;
-    align-items: center;
-    gap: 6px; /* Tighter spacing like in the image */
+.topActionsOverlay {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 20;
+    pointer-events: auto;
 }
 
-.headerActionBtn {
-    background: rgba(255, 255, 255, 0.15) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 50% !important;
-    padding: 0 !important;
-    width: 28px !important;
-    height: 28px !important;
+.headerActions {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: 12px;
+    padding: 6px 14px;
+    background: rgba(220, 225, 220, 0.5); /* Slightly greyish clear translucent pill */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme='light'] .headerActions {
+    background: rgba(230, 235, 230, 0.6);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Remove button backgrounds so they float directly in the pill */
+.headerActionBtn,
+.headerVote,
+.headerVote [class*="bubble"] {
+    background: transparent !important;
+    border: none !important;
+    width: 32px !important;
+    height: 32px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-size: 0.9rem !important;
-    cursor: pointer !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    color: white !important;
-    opacity: 0.9;
+    font-size: 1.4rem !important; /* Make emojis crisp */
+    transition: all 0.3s var(--liquid-easing) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
 }
 
-.headerActionBtn:hover {
-    opacity: 1;
-    transform: scale(1.1) !important;
+/* Force Share Icon (SVG) to be black */
+.headerActionBtn svg {
+    stroke: #1a1a1a !important;
+    width: 22px;
+    height: 22px;
 }
 
-.headerVote {
-    transform: scale(0.75);
-    margin-left: -8px;
-    margin-right: -5px;
+/* Black borders for Emojis using drop-shadow (Heart + Flame) */
+.headerActionBtn [class*="icon"],
+.headerVote [class*="flameIcon"] {
+    filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) !important;
+    -webkit-filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) !important;
 }
 
 .topTitle {
@@ -355,222 +265,22 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0;
-    line-height: 1;
     text-align: center;
-    white-space: nowrap;
-    background: linear-gradient(to right, #ffffff 0%, var(--glow-color, #a88beb) 50%, #ffffff 100%);
+    background: linear-gradient(to right, var(--color-text-primary) 0%, var(--glow-color, #a88beb) 50%, var(--color-text-primary) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
 }
 
 :root[data-theme='light'] .cardHeader {
-    background: rgba(255, 255, 255, 0.98);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-:root[data-theme='light'] .topTitle {
-    background: linear-gradient(135deg, #111111 0%, var(--glow-color, #7f0df2) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: none;
-}
-
-
-
-.volumeControlGroup {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(15, 15, 15, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 2px 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    height: 44px;
-}
-
-.miniSoundToggle {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 0;
-}
-
-.volumeSlider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 60px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    outline: none;
-    cursor: pointer;
-}
-
-.volumeSlider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.soundToggle {
-    display: none; /* Remplacé par le groupe ci-dessus */
-}
-
-.cardActionBtn {
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: 50% !important;
-    background: rgba(0, 0, 0, 0.4) !important; /* Plus transparent et uniforme */
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
-    color: white !important;
-    font-size: 1.2rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-    padding: 0 !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    cursor: pointer !important;
-}
-
-.cardActionBtn:hover {
-    background: rgba(255, 255, 255, 0.95) !important;
-    color: black !important;
-    transform: translateY(-4px) scale(1.1) !important;
-    border-color: white !important;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5) !important;
-}
-
-/* Badges Végé / Léger - Design 2026 */
-/* Header Overlay : Pays, Favoris, Share, Vote */
-.cardHeaderOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 12px;
-    z-index: 20;
-    pointer-events: none;
-}
-
-.flagBadge, .actionButtons {
-    display: flex;
-    gap: 8px;
-    pointer-events: auto;
-}
-
-/* Actions superposition photo haut droite - Design 2026 */
-.topActionsOverlay {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 15;
-    pointer-events: auto;
-}
-
-.topActionsOverlay .headerActions {
-    display: flex;
-    flex-direction: column; /* Vertical plus élégant sur le côté ? Essayons horizontal d'abord */
-    flex-direction: row; 
-    gap: 10px;
-}
-
-.topActionsOverlay .headerActionBtn,
-.topActionsOverlay :global(.voteWrapper) {
-    background: rgba(255, 255, 255, 0.12) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-radius: 50% !important;
-    width: 32px !important;
-    height: 32px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
-    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-}
-
-.topActionsOverlay .headerActionBtn:hover,
-.topActionsOverlay :global(.voteWrapper:hover) {
-    transform: scale(1.15) translateY(-3px) !important;
-    background: rgba(var(--dynamic-accent-rgb), 0.3) !important;
-    border-color: rgba(255, 255, 255, 0.5) !important;
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5) !important;
-}
-
-.topActionsOverlay :global(.voteWrapper) {
-    min-width: 38px !important;
-}
-
-.topActionsOverlay :global(.voteWrapper .bubblesContainer) {
-    transform: scale(0.65) !important;
-}
-
-/* On force le style pour les boutons favoris/share dans le header overlay */
-.actionButtons :global(.favoriteBtn),
-.actionButtons :global(.actionBtn),
-.actionButtons :global(.voteWrapper) {
-    background: rgba(255, 255, 255, 0.25) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-radius: 50% !important;
-    width: 38px !important;
-    height: 38px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    cursor: pointer !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-.actionButtons :global(.favoriteBtn:hover),
-.actionButtons :global(.actionBtn:hover),
-.actionButtons :global(.voteWrapper:hover) {
-    transform: translateY(-2px) scale(1.1) !important;
-    background: rgba(255, 255, 255, 0.45) !important;
-    border-color: rgba(255, 255, 255, 0.8) !important;
-}
-
-.actionButtons :global(.voteWrapper) {
-    min-width: 38px !important;
-}
-
-.actionButtons :global(.voteWrapper .bubblesContainer) {
-    transform: scale(0.65) !important;
-}
-
-.flagIcon {
-    font-size: 26px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .badges {
     position: absolute;
     bottom: 12px;
-    right: 12px; /* Retour en bas à droite */
+    right: 12px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -588,134 +298,137 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    animation: badgePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
-}
-
-.badge_vege {
-    background: rgba(16, 185, 129, 0.7);
     color: white;
 }
 
-.badge_healthy {
-    background: rgba(59, 130, 246, 0.7);
-    color: white;
-}
-
-.badge_airfryer {
-    background: rgba(245, 158, 11, 0.7); /* Orange */
-    color: white;
-}
-
-.badge_famille {
-    background: rgba(236, 72, 153, 0.7); /* Rose */
-    color: white;
-}
-
-.badge_gourmand {
-    background: rgba(127, 13, 242, 0.7); /* Violet */
-    color: white;
-}
-
-.badge_express {
-    background: rgba(239, 68, 68, 0.7); /* Rouge */
-    color: white;
-}
-
-.badge_sous-vide {
-    background: rgba(59, 130, 246, 0.75); /* Bleu profond */
-    color: white;
-}
-
-.badge_barbecue {
-    background: rgba(234, 88, 12, 0.75); /* Orange-Rouge */
-    color: white;
-}
-
-.badge_rapide {
-    background: rgba(34, 197, 94, 0.75); /* Vert vif */
-    color: white;
-}
-
-.badge_astuces {
-    background: rgba(168, 85, 247, 0.75); /* Violet électrique */
-    color: white;
-}
-
-.badge_leger {
-    background: rgba(45, 212, 191, 0.75); /* Turquoise */
-    color: white;
-}
-
+.badge_vege { background: rgba(16, 185, 129, 0.8); }
+.badge_healthy { background: rgba(59, 130, 246, 0.8); }
+.badge_airfryer { background: rgba(245, 158, 11, 0.8); }
+.badge_famille { background: rgba(236, 72, 153, 0.8); }
+.badge_gourmand { background: rgba(127, 13, 242, 0.8); }
+.badge_express { background: rgba(239, 68, 68, 0.8); }
+.badge_sous-vide { background: rgba(59, 130, 246, 0.8); }
+.badge_barbecue { background: rgba(234, 88, 12, 0.8); }
+.badge_rapide { background: rgba(34, 197, 94, 0.8); }
+.badge_astuces { background: rgba(168, 85, 247, 0.8); }
+.badge_leger { background: rgba(45, 212, 191, 0.8); }
 
 .badge_country {
-    background: rgba(15, 15, 15, 0.85); /* Fond sobre pour les pays */
-    color: white;
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    background: var(--glass-bg-dark);
+    color: var(--color-text-primary);
+    border: 1.5px solid var(--glass-border);
 }
 
-.badge_tendances {
-   /* Style général pour les tendances */
-   transform: scale(1.05);
-   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-}
-
-@keyframes badgePop {
-    from { opacity: 0; transform: scale(0.5) translateY(10px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-/* On force la visibilité des badges sur tactile par défaut */
-@media (pointer: coarse), (max-width: 768px) {
-    .badges {
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        transform: none !important;
-    }
-}
-
-/* Hover effect for desktop remains */
-.card:hover .badges {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-/* Thème Light hérité de globals.css variables */
 :root[data-theme='light'] .card {
-    background: var(--color-bg-tertiary); /* Blanc par globals.css */
-    border-color: rgba(0, 0, 0, 0.1);
+    background: var(--color-bg-primary);
+    border-color: var(--glass-border);
     box-shadow: var(--shadow-premium);
 }
 
-:root[data-theme='light'] .title,
-:root[data-theme='light'] .description,
-:root[data-theme='light'] .time,
-:root[data-theme='light'] .difficulty {
-    color: var(--color-text-primary) !important;
-}
-
-:root[data-theme='light'] .time {
-    background: rgba(0,0,0,0.05);
-}
-
-:root[data-theme='light'] .topLeftFlag {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-color: rgba(0, 0, 0, 0.2) !important;
-    color: #000000 !important;
-}
-
 @media (min-width: 1024px) {
-    .content {
-        display: none !important;
-    }
-    
     .card {
         padding-bottom: 0 !important;
         overflow: hidden !important;
     }
 }
 
-
+.videoEmbedContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    overflow: hidden;
+    background: transparent;
+    pointer-events: none;
+}
+
+.miniVideoIframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 177.78vw; /* default, but better to use percentage */ 
+}
+
+/* We want width to be 100%, and height to preserve 9:16 inside the 1:0.85 container */
+/* Since container width is 100%, 16/9 of width is 177.78% */
+.miniVideoIframe, .miniVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 177.78%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border: none;
+    background: transparent;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.videoPoster, .posterBlur {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.posterBlur {
+    filter: blur(10px);
+}
+
+.spinnerContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.closeVideoBtn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 30;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    display: none; /* hidden since hover auto stops */
+}
+
+/* Blur video/image when hovering the top action buttons */
+.topActionsOverlay:hover ~ .imageContainer {
+    filter: blur(6px);
+    transition: filter 0.3s ease;
+}

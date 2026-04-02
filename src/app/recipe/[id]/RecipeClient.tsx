@@ -372,6 +372,9 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
 
                 window.localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
                 window.dispatchEvent(new Event('shoppingListUpdated'));
+                window.dispatchEvent(new CustomEvent('magic-toast-notify', { 
+                    detail: isDeselecting ? 'Ingrédient retiré !' : 'Ingrédient ajouté !' 
+                }));
             }
         }
     };
@@ -426,6 +429,9 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
 
                 // Notifier le Header immédiatement
                 window.dispatchEvent(new Event('shoppingListUpdated'));
+                window.dispatchEvent(new CustomEvent('magic-toast-notify', { 
+                    detail: `${selectedIngredients.length} ${selectedIngredients.length > 1 ? 'ingrédients ajoutés' : 'ingrédient ajouté'} !` 
+                }));
                 triggerHaptic();
 
                 // Auto-scroll vers le panier (Capsule d'état)
@@ -665,7 +671,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                         recipeId={recipe.id}
                         hideMobileIcons={true}
                         className=""
-                        rightAction={scrolled ? <ThemeToggle /> : null}
+                        rightAction={null} /* Laisse le Header utiliser son action par défaut qui est maintenant synchronisée */
                     />
                     
                     {/* SANDWICH TITLE: Visibilité permanente entre les boutons au scroll */}
@@ -679,6 +685,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                     <MagicFilterBar
                         activeTags={recipe.tags || []}
                         showBack={true}
+                        hideActiveRow={true}
                         backUrl={`/category/${recipe.category}`}
                         backLabel={recipe.category === 'aperitifs' ? 'Apéritifs' :
                             recipe.category === 'entrees' ? 'Entrées' :
@@ -722,47 +729,6 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                             <SplitTitle text={recipe.title} large={true} />
                         </h1>
 
-                        {/* 2. BOUTONS PAYS ET CATÉGORIE CENTRÉS (iOS 26 STYLE) + UTILS À DROITE */}
-                        <div className={styles.mobileQuickNav}>
-                            {/* PAYS (AVEC DRAPEAU) */}
-                            {recipeCountryTag && (
-                                <Link 
-                                    href={`/?tag=${recipeCountryTag}`} 
-                                    className={`${styles.premiumIosButton} ${styles.countryIosBtn}`}
-                                >
-                                    <span className={styles.iosBtnIcon}>{flag}</span>
-                                    <span className={styles.iosBtnLabel}>{recipeCountryTag.toUpperCase()}</span>
-                                </Link>
-                            )}
-                            
-                            {/* CATÉGORIE */}
-                            <Link 
-                                href={`/category/${recipe.category}`} 
-                                className={`${styles.premiumIosButton} ${styles.categoryIosBtn}`}
-                            >
-                                <span className={styles.iosBtnIcon}>🥘</span>
-                                <span className={styles.iosBtnLabel}>
-                                    {recipe.category === 'aperitifs' ? 'APÉRITIF' : 
-                                     recipe.category === 'entrees' ? 'ENTRÉE' :
-                                     recipe.category === 'plats' ? 'PLAT' :
-                                     recipe.category === 'desserts' ? 'DESSERT' :
-                                     recipe.category === 'patisserie' ? 'PÂTISSERIE' :
-                                     recipe.category.toUpperCase()}
-                                </span>
-                            </Link>
-
-                            {/* NOUVEAU GROUPE UTILS À DROITE (Design 2026) */}
-                            <div className={styles.recipeNavEmojiGroup} id="shopping-list-pill-group">
-                                <ThemeToggle className={styles.navEmojiBtn} />
-                                <FavoriteButton recipeId={recipe.id} className={styles.navEmojiBtn} />
-                                <Link href="/shopping-list" className={styles.navEmojiBtn} id="shopping-list-pill">
-                                    🛒
-                                    {totalListCount > 0 && (
-                                        <span className={styles.navBadge}>{totalListCount}</span>
-                                    )}
-                                </Link>
-                            </div>
-                        </div>
                     </div>
                     
                     <div className={styles.heroGrid}>
@@ -774,23 +740,58 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         >
                             <div className={styles.heroMainContent}>
-                                {/* On cache le categoryActionLine sur mobile car il doublonne avec la barre titre */}
-                                <div className={`${styles.categoryActionLine} ${styles.desktopOnly}`}>
-                                    <div className={styles.categoryBadgeDetail}>
-                                        {recipe.category === 'aperitifs' ? 'APERITIF' :
-                                         recipe.category === 'entrees' ? 'ENTREE' :
-                                         recipe.category === 'plats' ? 'PLAT' :
-                                         recipe.category === 'desserts' ? 'DESSERT' :
-                                         recipe.category === 'patisserie' ? 'PATISSERIE' :
-                                         recipe.category === 'restaurant' ? 'RESTO' : 'RECETTE'}
-                                    </div>
-                                    {flag && (
-                                        <motion.div 
-                                            className={styles.inlineFlag}
-                                            whileHover={{ scale: 1.3, rotate: -10 }}
+                                {/* ACTION ROW (Moved from Header for premium tactical layout) */}
+                                <div className={styles.actionRowPrimary}>
+                                    {/* PAYS (AVEC DRAPEAU ANIMÉ) */}
+                                    {recipeCountryTag && (
+                                        <Link 
+                                            href={`/?tag=${recipeCountryTag}`} 
+                                            className={`${styles.iosActionBtn} ${styles.withCountryColor}`}
                                         >
-                                            {flag}
-                                        </motion.div>
+                                            <motion.span 
+                                                className={styles.iosBtnIcon}
+                                                whileHover={{ scale: 1.4, rotate: -12 }}
+                                                animate={{ 
+                                                    y: [0, -3, 0],
+                                                    transition: { duration: 2, repeat: Infinity }
+                                                }}
+                                            >
+                                                {flag}
+                                            </motion.span>
+                                            <span className={styles.iosBtnLabel}>{recipeCountryTag.toUpperCase()}</span>
+                                        </Link>
+                                    )}
+                                    
+                                    {/* CATÉGORIE */}
+                                    <Link 
+                                        href={`/category/${recipe.category}`} 
+                                        className={styles.iosActionBtn}
+                                    >
+                                        <motion.span 
+                                            className={styles.iosBtnIcon}
+                                            whileHover={{ scale: 1.4, rotate: 12 }}
+                                        >
+                                            🥘
+                                        </motion.span>
+                                        <span className={styles.iosBtnLabel}>
+                                            {recipe.category === 'aperitifs' ? 'APÉRITIF' : 
+                                             recipe.category === 'entrees' ? 'ENTRÉE' :
+                                             recipe.category === 'plats' ? 'PLAT' :
+                                             recipe.category === 'desserts' ? 'DESSERT' :
+                                             recipe.category === 'patisserie' ? 'PÂTISSERIE' :
+                                             recipe.category.toUpperCase()}
+                                        </span>
+                                    </Link>
+
+                                    {/* HASHTAG (Uniquement le premier si présent) */}
+                                    {trendHashtags.length > 0 && (
+                                        <Link 
+                                            href={`/?tag=${trendHashtags[0].name}`} 
+                                            className={styles.iosActionBtn}
+                                        >
+                                            <span className={styles.iosBtnIcon}>#</span>
+                                            <span className={styles.iosBtnLabel}>{trendHashtags[0].name.toUpperCase()}</span>
+                                        </Link>
                                     )}
                                 </div>
                                 {recipe.description && (
@@ -854,9 +855,13 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                                         <motion.div 
                                             className={styles.topLeftFlag}
                                             whileHover={{ 
-                                                scale: 1.2, 
+                                                scale: 1.25, 
                                                 rotate: -12,
                                                 filter: 'drop-shadow(0 10px 25px rgba(var(--dynamic-accent-rgb), 0.6))'
+                                            }}
+                                            animate={{ 
+                                                y: [0, -4, 0],
+                                                transition: { duration: 3, repeat: Infinity, ease: "easeInOut" }
                                             }}
                                         >
                                             {flag}
@@ -864,23 +869,21 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                                     ) : <div />} {/* Spacer pour flex si pas de flag */}
 
                                     {/* ACTIONS HAUT DROITE (Style Home) */}
-                                    <div className={styles.topActionsOverlay}>
-                                        <div className={styles.secondaryActions}>
-                                            <ShareButton 
-                                                url={`${typeof window !== 'undefined' ? window.location.href : ''}`}
-                                                title={recipe.title}
-                                                className={styles.cardActionBtn}
-                                            />
-                                            <FavoriteButton
-                                                recipeId={recipe.id}
-                                                imageUrl={recipe.image}
-                                                className={styles.cardActionBtn}
-                                            />
-                                        </div>
+                                    <div className={styles.topActionsOverlayNew}>
                                         <VoteButton 
                                             recipeId={recipe.id}
                                             initialVotes={recipe.votes || 0}
                                             className={styles.persistentVote}
+                                        />
+                                        <FavoriteButton
+                                            recipeId={recipe.id}
+                                            imageUrl={recipe.image}
+                                            className={styles.cardActionBtn}
+                                        />
+                                        <ShareButton 
+                                            url={`${typeof window !== 'undefined' ? window.location.href : ''}`}
+                                            title={recipe.title}
+                                            className={styles.cardActionBtn}
                                         />
                                     </div>
                                 </div>
@@ -1341,8 +1344,11 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                         whileHover={{ scale: 1.05, y: -5, x: '-50%' }}
                         whileTap={{ scale: 0.95, x: '-50%' }}
                         onClick={() => {
-                            switchTab('ingredients');
+                            switchTab('steps');
                             triggerHaptic();
+                            setTimeout(() => {
+                                window.scrollTo({ top: 300, behavior: 'smooth' });
+                            }, 100);
                         }}
                     >
                         <span className={styles.floatingRecipeBtnIcon}>📖</span>

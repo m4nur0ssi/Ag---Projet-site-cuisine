@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import SpotlightSearch from '../SpotlightSearch/SpotlightSearch';
 import SplitTitle from '../SplitTitle/SplitTitle';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import { triggerSync } from '@/services/syncService';
 import styles from './Header.module.css';
 import { useRouter } from 'next/navigation';
 
@@ -17,25 +19,12 @@ interface HeaderProps {
     className?: string;
     rightAction?: React.ReactNode;
     hideShoppingList?: boolean;
+    hideHeart?: boolean;
 }
 
 // Triple-clic global (power users)
 let globalClickCount = 0;
 let globalClickTimer: any = null;
-
-// Fonction de sync partagée — appelle /api/sync
-async function triggerSync(source = 'button'): Promise<{ ok: boolean; message: string }> {
-    const res = await fetch('/api/sync', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ trigger_source: source })
-    });
-    const data = await res.json();
-    if (res.ok) {
-        return { ok: true, message: data.message || 'Synchronisation lancée !' };
-    }
-    return { ok: false, message: data.error || `Erreur ${res.status}` };
-}
 
 export default function Header({ 
     title = 'Les Recettes  Magiques', 
@@ -46,18 +35,42 @@ export default function Header({
     hideMobileIcons = false, 
     className = '', 
     rightAction,
-    hideShoppingList = false
+    hideShoppingList = false,
+    hideHeart = false
 }: HeaderProps) {
     const router = useRouter();
     const [scrolled, setScrolled] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncStatus, setSyncStatus] = useState<'idle' | 'ok' | 'error'>('idle');
+    const [toast, setToast] = useState<{ message: string; show: boolean }>({ message: '', show: false });
+
+    const [favoriteCount, setFavoriteCount] = useState(0);
 
     useEffect(() => {
         const handleSearchOpen = () => setIsSearchOpen(true);
         window.addEventListener('magic-search-open', handleSearchOpen);
-        return () => window.removeEventListener('magic-search-open', handleSearchOpen);
+
+        const updateFavoriteCount = () => {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            setFavoriteCount(favorites.length);
+        };
+        updateFavoriteCount();
+        window.addEventListener('storage', updateFavoriteCount);
+        window.addEventListener('magic-favorite-change', updateFavoriteCount);
+
+        const handleToast = (e: any) => {
+            setToast({ message: e.detail || 'Opération réussie !', show: true });
+            setTimeout(() => setToast(prev => ({ ...prev, show: false })), 4000);
+        };
+        window.addEventListener('magic-toast-notify', handleToast);
+
+        return () => {
+            window.removeEventListener('magic-search-open', handleSearchOpen);
+            window.removeEventListener('storage', updateFavoriteCount);
+            window.removeEventListener('magic-favorite-change', updateFavoriteCount);
+            window.removeEventListener('magic-toast-notify', handleToast);
+        };
     }, []);
 
     useEffect(() => {
@@ -130,21 +143,17 @@ export default function Header({
 
     const handleTitleClick = (e: React.MouseEvent) => {
         handleMagicClick(e);
-        window.dispatchEvent(new CustomEvent('magic-reset-filters'));
         if (window.location.pathname === '/') {
+            window.dispatchEvent(new CustomEvent('magic-reset-filters'));
             if (window.scrollY > 0) {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         } else {
-            router.push('/');
+            e.preventDefault();
+            window.location.href = '/';
         }
     };
-
-    const syncLabel = isSyncing ? 'Sync...' 
-        : syncStatus === 'ok' ? 'Syncé ✓' 
-        : syncStatus === 'error' ? 'Erreur ⚠️' 
-        : 'Sync';
 
     return (
         <>
@@ -161,26 +170,50 @@ export default function Header({
                                 )}
                             </Link>
                         </h1>
-                        <button className={styles.pillBtnSearch} onClick={() => setIsSearchOpen(true)}>
-                            Recherche
-                        </button>
+                        <div className={styles.navActionsSide}>
+                            <div className={`${styles.searchPillWrapper} ${scrolled ? styles.isExpanded : ''}`}>
+                                {!scrolled ? (
+                                    <button className={styles.pillBtnSearch} onClick={() => setIsSearchOpen(true)}>
+                                        Recherche
+                                    </button>
+                                ) : (
+                                    <div className={styles.expandedUtils}>
+                                        {rightAction ? rightAction : (
+                                            <div className={styles.toolsGroup}>
+                                                <button 
+                                                    className={styles.toolBtn}
+                                                    onClick={() => setIsSearchOpen(true)}
+                                                >
+                                                    🔍
+                                                </button>
+                                                <Link href="/favorites" className={`${styles.toolBtn} ${favoriteCount > 0 ? styles.hasFavorite : ''}`}>
+                                                    {favoriteCount > 0 ? '❤️' : '🤍'}
+                                                    {favoriteCount > 0 && (
+                                                        <span className={styles.navFavBadge}>{favoriteCount}</span>
+                                                    )}
+                                                </Link>
+                                                <Link href="/shopping-list" className={styles.toolBtn}>
+                                                    🛒
+                                                </Link>
+
+                                                <ThemeToggle className={styles.themeToggleWrapper} />
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* NOTIFICATION TOAST (Dynamic Island style) */}
+                <div className={`${styles.toastOverlay} ${toast.show ? styles.toastActive : ''}`}>
+                    <div className={styles.toastCapsule}>
+                        <span className={styles.toastEmoji}>✨</span>
+                        <span className={styles.toastMessage}>{toast.message}</span>
                     </div>
                 </div>
             </header>
-
-            {/* Bouton Sync flottant — visible en bas à droite, au-dessus de la BottomNav */}
-            <button
-                className={`${styles.syncBtn} ${isSyncing ? styles.isSyncing : ''}`}
-                onClick={() => handleSync('button')}
-                disabled={isSyncing}
-                title="Synchroniser toutes les recettes WordPress → Netlify"
-                aria-label="Synchronisation Netlify"
-            >
-                <span className={`${styles.syncIcon} ${isSyncing ? styles.spinning : ''}`}>
-                    ↻
-                </span>
-                {syncLabel}
-            </button>
 
             <SpotlightSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </>

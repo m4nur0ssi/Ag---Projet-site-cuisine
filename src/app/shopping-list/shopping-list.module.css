@@ -75,10 +75,23 @@
     border-bottom: 1px solid var(--glass-border);
 }
 
+.recipeTitleLink {
+    text-decoration: none;
+    flex: 1;
+    min-width: 0; /* Pour l'ellipsis si besoin */
+}
+
 .recipeTitle {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 800;
-    color: var(--color-accent-purple);
+    color: var(--color-text-primary);
+    margin: 0;
+    letter-spacing: -0.02em;
+    transition: color 0.2s ease;
+}
+
+.recipeTitleLink:hover .recipeTitle {
+    color: var(--accent);
 }
 
 .removeBtn {

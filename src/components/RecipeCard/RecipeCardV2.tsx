@@ -125,8 +125,10 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
         return list.slice(0, 3); 
     }, [recipe]); 
 
-    const handleMouseEnter = () => {
-        if (!isTouchDevice && recipe.videoHtml) {
+    const isRecipePage = typeof window !== 'undefined' && window.location.pathname.startsWith('/recipe/');
+
+    const handleMouseEnter = (e: React.MouseEvent) => {
+        if (!isTouchDevice && recipe.videoHtml && !isRecipePage) {
             setShowVideo(true);
             setIsPlayed(true);
             setIsVideoLoading(true);
@@ -134,7 +136,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
     };
 
     const handleMouseLeave = () => {
-        if (!isTouchDevice) {
+        if (!isTouchDevice && !isRecipePage) {
             setShowVideo(false);
         }
     };
@@ -177,6 +179,39 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
             </div>
 
             <div className={styles.imageOuterContainer}>
+                {/* ACTIONS HAUT DROITE SUR PHOTO - TOUJOURS VISIBLES ET BIEN ALIGNÉS */}
+                <div className={styles.topActionsOverlay} onClick={(e) => e.stopPropagation()}>
+                    <div className={styles.headerActions}>
+                        <ShareButton 
+                            url={`${typeof window !== 'undefined' ? window.location.origin : ''}/recipe/${recipe.id}`}
+                            title={recipe.title}
+                            className={styles.headerActionBtn}
+                        />
+                        <FavoriteButton
+                            recipeId={recipe.id}
+                            initialFavorite={recipe.isFavorite}
+                            imageUrl={recipe.image}
+                            className={styles.headerActionBtn}
+                        />
+                        <VoteButton 
+                            recipeId={recipe.id}
+                            initialVotes={recipe.votes || 0}
+                            className={styles.headerVote}
+                        />
+                    </div>
+                </div>
+
+                <div className={styles.hashtagOverlay}>
+                    {recipeHashtags.slice(0, 1).map((has: { id: string; name: string }) => (
+                         <div 
+                             key={has.id} 
+                             className={`${styles.hashtagBadge} ${styles.badge_tendances}`}
+                         >
+                             <span className={styles.hashtagLabel}>#{has.name.toUpperCase()}</span>
+                         </div>
+                    ))}
+                </div>
+
                 <motion.div className={styles.imageContainer}>
                     <AnimatePresence mode="wait">
                         {!showVideo ? (
@@ -204,39 +239,6 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
                                                 recipe.category === 'plats' ? '🍲' : '🥗'}
                                     </div>
                                 )}
-
-                                {/* ACTIONS HAUT DROITE SUR PHOTO */}
-                                <div className={styles.topActionsOverlay} onClick={(e) => e.stopPropagation()}>
-                                    <div className={styles.headerActions}>
-                                        <ShareButton 
-                                            url={`${typeof window !== 'undefined' ? window.location.origin : ''}/recipe/${recipe.id}`}
-                                            title={recipe.title}
-                                            className={styles.headerActionBtn}
-                                        />
-                                        <FavoriteButton
-                                            recipeId={recipe.id}
-                                            initialFavorite={recipe.isFavorite}
-                                            imageUrl={recipe.image}
-                                            className={styles.headerActionBtn}
-                                        />
-                                        <VoteButton 
-                                            recipeId={recipe.id}
-                                            initialVotes={recipe.votes || 0}
-                                            className={styles.headerVote}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className={styles.badges}>
-                                    {recipeHashtags.map((has: { id: string; name: string }) => (
-                                         <div 
-                                             key={has.id} 
-                                             className={`${styles.badge} ${styles.badge_tendances} ${styles[`badge_${has.id}`] || ''}`}
-                                         >
-                                             <span className={styles.badgeLabel}>#{has.name.toUpperCase()}</span>
-                                         </div>
-                                    ))}
-                                </div>
                                 
                                 {recipe.videoHtml && (
                                     <div 
@@ -306,20 +308,6 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
                         )}
                     </AnimatePresence>
                 </motion.div>
-            </div>
-
-            <div className={styles.content}>
-                <h3 className={styles.title}>{recipe.title}</h3>
-                <p className={styles.description}>{recipe.description}</p>
-                <div className={styles.meta}>
-                    <span className={styles.time}>⏱️ {(recipe.prepTime || 0) + (recipe.cookTime || 0)}min</span>
-                    <span
-                        className={styles.difficulty}
-                        style={{ color: difficultyColors[recipe.difficulty] || '#999' }}
-                    >
-                        {recipe.difficulty ? recipe.difficulty.charAt(0).toUpperCase() + recipe.difficulty.slice(1) : '?'}
-                    </span>
-                </div>
             </div>
         </Link>
     );

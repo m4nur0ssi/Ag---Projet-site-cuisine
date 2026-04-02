@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Header from '@/components/Header/Header';
 import styles from './shopping-list.module.css';
 
@@ -60,7 +61,7 @@ export default function ShoppingListPage() {
 
     return (
         <div className={styles.page}>
-            <Header title="Ma Liste" showBack={true} hideShoppingList={true} />
+            <Header title="Ma Liste" showBack={true} hideShoppingList={true} hideHeart={true} />
 
             <main className={styles.main}>
                 <div className={styles.headerRow}>
@@ -83,7 +84,9 @@ export default function ShoppingListPage() {
                         {Object.entries(shoppingList).map(([id, data]) => (
                             <div key={id} className={styles.recipeGroup}>
                                 <div className={styles.recipeHeader}>
-                                    <h3 className={styles.recipeTitle}>{data.title}</h3>
+                                    <Link href={`/recipe/${id}`} className={styles.recipeTitleLink}>
+                                        <h3 className={styles.recipeTitle}>{data.title}</h3>
+                                    </Link>
                                     <button onClick={() => removeRecipe(id)} className={styles.removeBtn} title="Retirer la recette">✕</button>
                                 </div>
                                 <div className={styles.ingredients}>

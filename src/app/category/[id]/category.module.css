@@ -35,17 +35,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 340px auto 30px; /* PC Clearance increased */
+    margin: 340px auto 30px; 
     padding: 16px 24px;
     border-radius: 20px;
     max-width: 1200px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
 }
-
-/* Marge mobile gérée en bas du fichier */
 
 .title {
     font-size: clamp(1.4rem, 4vw, 2.2rem);
@@ -82,7 +80,7 @@
 .empty {
     text-align: center;
     padding: 80px 20px;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color-text-tertiary);
 }
 
 @keyframes rainbowShine {
@@ -95,9 +93,9 @@
         flex-direction: column;
         gap: 12px;
         text-align: center;
-        margin: 250px 15px 30px 15px; /* Réduit à 250px pour un gap cohérent et compact */
+        margin: 250px 15px 30px 15px;
         padding: 24px;
-        background: rgba(255, 255, 255, 0.05);
+        background: var(--glass-bg);
     }
     
     .grid {

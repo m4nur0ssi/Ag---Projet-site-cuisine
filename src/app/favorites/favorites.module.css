@@ -47,6 +47,7 @@
     color: var(--color-text-primary);
     margin-bottom: 32px;
     letter-spacing: -0.5px;
+    text-align: center; /* CENTER TITLE AS REQUESTED */
 }
 
 .grid {
@@ -69,6 +70,7 @@
 
 @media (max-width: 768px) {
     .grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* FORCES 2 CARDS PER ROW */
+        gap: 12px; /* Slight gap adjust for narrow screens */
     }
 }

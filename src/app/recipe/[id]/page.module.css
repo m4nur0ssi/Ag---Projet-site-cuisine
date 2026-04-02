@@ -155,30 +155,99 @@
     width: 100%;
 }
 
-.categoryActionLine {
+.actionRowPrimary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.iosActionBtn {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 10px;
+    gap: 10px;
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.categoryBadgeDetail {
-    padding: 6px 16px;
-    background: var(--accent);
-    color: white;
+.iosActionBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    border-color: rgba(var(--dynamic-accent-rgb), 0.4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.iosBtnIcon {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iosBtnLabel {
     font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 2.5px;
-    border-radius: 10px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 12px var(--accent-glow);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
-.inlineFlag {
-    font-size: 2.22rem;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+.utilityGroupFlex {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 5px;
+}
+
+.utilRoundBtn {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
     cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    overflow: visible; /* To allow badge slightly offset but contained in feel */
+}
+
+.utilRoundBtn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(1.08);
+    border-color: var(--accent);
+}
+
+.badgeContained {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ff2d55;
+    color: white;
+    font-size: 9px;
+    font-weight: 900;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(255, 45, 85, 0.5);
+    transform: translate(15%, -15%); /* Place it on the edge but contained visually by the shadow/rounding */
 }
 
 .categoryTag {
@@ -312,23 +381,74 @@
     overflow: hidden;
     pointer-events: auto;
 }
-
-/* 5. Spécificités individuelles */
-.topLeftFlag {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: auto !important;
-    font-size: 1.5rem !important;
+/* Version Nav (Small) */
+.capsuleToggleNav {
+    width: 48px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    position: relative;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(10px);
 }
 
-.topActionsOverlay {
+.capsuleSliderNav {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme='dark'] .capsuleSliderNav {
+    transform: translateX(0);
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme='light'] .capsuleSliderNav {
+    transform: translateX(24px);
+    background: #fff;
+}
+
+/* 5. Spécificités individuelles */
+.oldLogoTheme {
+    width: 32px;
+    height: 32px;
+    border-radius: 50% !important;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #222 50%, #fff 50%);
+    transition: all 0.5s ease;
+}
+
+:root[data-theme='light'] .oldLogoTheme {
+    background: linear-gradient(to bottom, #fff 50%, #222 50%);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.oldLogoHalf {
+    display: none;
+}
+
+.topActionsOverlayNew {
     position: relative !important; 
     top: 0 !important;
     right: 0 !important;
     left: auto !important;
     display: flex !important;
+    align-items: center !important;
     gap: 12px !important;
+}
+
+.topLeftFlag {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
 }
 
 .cardActionBtn, .topLeftFlag, .persistentVote :global(.bubble) {
@@ -364,11 +484,11 @@
 /* Animation au survol unifiée */
 .topLeftFlag:hover,
 .cardActionBtn:hover,
-.persistentVote :global(.bubble:hover) {
-    transform: scale(1.15) translateY(-2px);
-    background: rgba(var(--dynamic-accent-rgb), 0.35) !important;
+.topActionsOverlayNew :global(.bubble:hover) {
+    transform: scale(1.18) translateY(-3px);
+    background: rgba(var(--dynamic-accent-rgb), 0.45) !important;
     border-color: rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 10px 25px rgba(var(--dynamic-accent-rgb), 0.45) !important;
+    box-shadow: 0 12px 30px rgba(var(--dynamic-accent-rgb), 0.6) !important;
 }
 
 .imageMain, .imageCardContainer img {
@@ -729,6 +849,22 @@
     }
 }
 
+.carouselItem {
+    flex: 0 0 320px;
+    display: flex; /* Force cards to same height */
+    height: auto;
+}
+
+.carouselItem > * {
+    width: 100%;
+}
+
+@media (pointer: coarse) {
+    .carouselItem {
+        scroll-snap-align: center;
+    }
+}
+
 .tabPanel {
     padding: 0 20px 120px;
 }
@@ -808,13 +944,69 @@
 /* =====================================================
    BOUTONS PREMIUM iOS 26 — Centrés et épurés
    ===================================================== */
+.recipeNavEmojiGroup {
+    display: flex !important;
+    flex-direction: row !important; /* FORCE L'ALIGNEMENT HORIZONTAL PARTOUT */
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px; /* Ajusté pour matcher la hauteur des boutons premium */
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 22px; /* Arrondi moins prononcé pour matcher premiumIosButton */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+    height: 48px; /* Hauteur fixe pour alignement avec boutons premium */
+}
+
+.navEmojiBtn {
+    background: transparent !important;
+    border: none !important;
+    padding: 8px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    position: relative;
+    z-index: 5;
+}
+
+.navEmojiBtn:active {
+    transform: scale(1.4);
+}
+
+.navBadge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #FF3B30;
+    color: white;
+    font-size: 10px;
+    font-weight: 900;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    border: 2px solid #000;
+    z-index: 10;
+}
 .mobileQuickNav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
     width: 100%;
     margin-top: 10px;
+    flex-wrap: nowrap; /* EMPÊCHE LE STACKING VERTICAL */
 }
 
 .premiumIosButton {
@@ -1741,65 +1933,6 @@
         }
 
 
-    .recipeNavEmojiGroup {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 8px 18px;
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 100px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .pillHighlight {
-        background: var(--accent) !important;
-        transform: scale(1.1);
-        box-shadow: 0 0 30px var(--accent);
-    }
-
-    .navEmojiBtn {
-        background: transparent !important;
-        border: none !important;
-        padding: 8px;
-        font-size: 1.5rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.2s ease;
-        color: var(--color-text-primary);
-        text-decoration: none;
-        position: relative; /* CRUCIAL POUR LE BADGE */
-    }
-
-    .navEmojiBtn:active {
-        transform: scale(1.3);
-    }
-
-    .navBadge {
-        position: absolute;
-        top: 2px;
-        right: 2px;
-        background: #FF3B30;
-        color: white;
-        font-size: 9px;
-        font-weight: 900;
-        min-width: 14px;
-        height: 14px;
-        border-radius: 7px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 3px;
-        border: 1px solid #000;
-        z-index: 10;
-    }
-
-    /* BARRE D'ICONES MOBILE - FIDÈLE AU SCREEN */
     .mobileQuickActionsBar {
         display: flex;
         justify-content: center;
@@ -2772,3 +2905,141 @@
     }
 }
 
+
+/* =====================================================
+   LIGHT MODE ADAPTATIONS — iOS 26 Accessibility
+   ===================================================== */
+:root[data-theme='light'] .page {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(var(--dynamic-accent-rgb), 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(var(--dynamic-accent-rgb), 0.03) 0%, transparent 40%);
+}
+
+:root[data-theme='light'] .isScrolled {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme='light'] .heroTitleElegant {
+    background: linear-gradient(135deg, #000 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: none;
+}
+
+:root[data-theme='light'] .heroDescription {
+    color: var(--color-text-secondary);
+}
+
+:root[data-theme='light'] .iosActionBtn,
+:root[data-theme='light'] .utilRoundBtn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme='light'] .iosActionBtn:hover,
+:root[data-theme='light'] .utilRoundBtn:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme='light'] .imageCardContainer {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme='light'] .cardHeaderActions {
+    /* Garder les boutons sombres sur l'image pour contraste, mais ajuster si besoin */
+}
+
+:root[data-theme='light'] .topLeftFlag,
+:root[data-theme='light'] .cardActionBtn,
+:root[data-theme='light'] .persistentVote :global(.bubble) {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    color: #000 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+:root[data-theme='light'] .metaItem {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme='light'] .tabsBar {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme='light'] .tabBtnActive .tabCount {
+    background: var(--accent);
+    color: white;
+    border: none;
+}
+
+:root[data-theme='light'] .ingredientProgress {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme='light'] .ingredientProgressText {
+    color: #000;
+}
+
+:root[data-theme='light'] .recipeNavEmojiGroup {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme='light'] .copyBtn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+:root[data-theme='light'] .copyBtn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+:root[data-theme='light'] .ingredientCard {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme='light'] .ingIconWrap {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme='light'] .ingName {
+    color: var(--color-text-secondary);
+}
+
+:root[data-theme='light'] .stepCard {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+:root[data-theme='light'] .stepBubble {
+    color: white; /* Conserver blanc sur fond coloré */
+}
+
+:root[data-theme='light'] .focusHeader {
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme='light'] .navBtn:not(.navBtnNext) {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+:root[data-theme='light'] .modal {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}

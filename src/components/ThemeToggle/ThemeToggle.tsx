@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './ThemeToggle.module.css';
 
 interface ThemeToggleProps {
@@ -41,13 +42,20 @@ export default function ThemeToggle({ className, children }: ThemeToggleProps) {
             aria-label="Changer de thème"
             title={theme === 'light' ? 'Mode Sombre' : 'Mode Clair'}
         >
-            {!children && (
-                <div className={`${styles.iconContainer} ${theme === 'light' ? styles.isLight : ''}`}>
+            <AnimatePresence mode="popLayout" initial={false}>
+                <motion.div
+                    key={theme}
+                    className={styles.iconContainer}
+                    initial={{ rotate: -180, scale: 0, opacity: 0 }}
+                    animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                    exit={{ rotate: 180, scale: 0, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                >
                     <span className={styles.icon}>
                         {theme === 'light' ? '☀️' : '🌙'}
                     </span>
-                </div>
-            )}
+                </motion.div>
+            </AnimatePresence>
             {children}
         </button>
     );

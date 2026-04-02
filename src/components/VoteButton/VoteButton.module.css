@@ -14,17 +14,22 @@
 .bubble {
     width: 42px;
     height: 42px;
-    background: rgba(0, 0, 0, 0.4); /* Match cardActionBtn */
+    background: var(--liquid-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border: 1.5px solid var(--liquid-border);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-sm);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+:root[data-theme='light'] .bubble {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .isVoted .flameBubble {
@@ -66,26 +71,29 @@
     z-index: 2;
 }
 
-/* Bulle de COMPTEUR organique */
 .countBubble {
     width: 38px !important;
     height: 38px !important;
     min-width: 38px !important;
-    background: rgba(255, 69, 0, 0.35) !important;
+    background: var(--liquid-bg) !important;
     backdrop-filter: blur(20px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    margin-left: -5px !important; /* Chevauchement organique "depuis le ventre" */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid var(--liquid-border) !important;
+    margin-left: -5px !important;
+    box-shadow: var(--shadow-sm) !important;
     z-index: 1 !important;
 }
 
+:root[data-theme='light'] .countBubble {
+    background: rgba(255, 69, 0, 0.1) !important;
+    border-color: rgba(255, 69, 0, 0.2) !important;
+}
+
 .countText {
-    color: white;
+    color: var(--color-text-primary);
     font-weight: 900;
     font-size: 0.95rem;
     font-family: 'Outfit', sans-serif;
-    text-shadow: 0 0 8px rgba(0,0,0,0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,10 +107,8 @@
     filter: drop-shadow(0 0 20px #ff4500);
 }
 
-/* State: Show Count active */
 .showCount {
     opacity: 1 !important;
     transform: translateY(0) !important;
     pointer-events: all !important;
 }
-

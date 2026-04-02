@@ -43,10 +43,14 @@ export default function BackToTop() {
                     whileTap={{ scale: 0.95 }}
                 >
                     <div className={styles.content}>
-                        <svg className={styles.arrowIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 19V5M5 12l7-7 7 7" />
+                        <svg className={styles.arrowIcon} width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <motion.path 
+                                d="M12 19V5M5 12l7-7 7 7" 
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                animate={{ pathLength: 1, opacity: 1 }}
+                                transition={{ duration: 1.5, repeat: Infinity, repeatType: 'reverse', ease: "easeInOut" }}
+                            />
                         </svg>
-                        <span className={styles.text}>MAGIE</span>
                     </div>
                 </motion.button>
             )}

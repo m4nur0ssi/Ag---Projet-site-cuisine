@@ -8,7 +8,6 @@
     z-index: 1000;
     padding: 0 20px;
     pointer-events: none;
-    /* Permet de cliquer à travers le wrapper en dehors du dock */
 }
 
 .nav {
@@ -23,9 +22,15 @@
     display: flex;
     gap: 8px;
     align-items: center;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    box-shadow: var(--shadow-dock);
     max-width: fit-content;
     animation: slideUp 0.8s var(--liquid-easing);
+}
+
+:root[data-theme='light'] .nav {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .navItem {
@@ -60,7 +65,7 @@
 
 /* Hover Effects */
 .navItem:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--liquid-highlight);
     transform: translateY(-4px) scale(1.05);
 }
 
@@ -95,38 +100,14 @@
 }
 
 @keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (max-width: 480px) {
-    .navWrapper {
-        bottom: 16px;
-        padding: 0 10px;
-    }
-
-    .nav {
-        gap: 4px;
-        padding: 6px;
-    }
-
-    .navItem {
-        min-width: 64px;
-        padding: 8px 10px;
-    }
-
-    .icon {
-        font-size: 1.2rem;
-    }
-
-    .label {
-        font-size: 9px;
-    }
+    .navWrapper { bottom: 16px; padding: 0 10px; }
+    .nav { gap: 4px; padding: 6px; }
+    .navItem { min-width: 64px; padding: 8px 10px; }
+    .icon { font-size: 1.2rem; }
+    .label { font-size: 9px; }
 }

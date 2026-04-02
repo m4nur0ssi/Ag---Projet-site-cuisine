@@ -28,7 +28,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({ videoHtml, muted = true }) 
 
     if (videoId) {
         // Use player/v1 just like in cards for better autoplay support
-        const embedUrl = `https://www.tiktok.com/player/v1/${videoId}?autoplay=1&muted=${muted ? 1 : 0}&loop=1`;
+        const embedUrl = `https://www.tiktok.com/embed/v2/${videoId}?autoplay=1&muted=${muted ? 1 : 0}&loop=1`;
         return (
             <div className={styles.videoContainer}>
                 <iframe 

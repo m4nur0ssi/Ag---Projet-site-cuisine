@@ -15,9 +15,20 @@ export default function FavoriteButton({ recipeId, initialFavorite = false, imag
     const [isFavorite, setIsFavorite] = useState(initialFavorite);
 
     useEffect(() => {
-        // Au montage, on vérifie le vrai état dans localStorage
-        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-        setIsFavorite(favorites.includes(recipeId));
+        const updateState = () => {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            setIsFavorite(favorites.includes(recipeId));
+        };
+
+        updateState();
+
+        window.addEventListener('storage', updateState);
+        window.addEventListener('magic-favorite-change', updateState);
+
+        return () => {
+            window.removeEventListener('storage', updateState);
+            window.removeEventListener('magic-favorite-change', updateState);
+        };
     }, [recipeId]);
 
     const toggleFavorite = (e: React.MouseEvent) => {
@@ -58,7 +69,7 @@ export default function FavoriteButton({ recipeId, initialFavorite = false, imag
             aria-label={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
         >
             <span className={styles.icon}>
-                🤍
+                {isFavorite ? '❤️' : '🤍'}
             </span>
             {showLabel && (
                 <span className={styles.label}>

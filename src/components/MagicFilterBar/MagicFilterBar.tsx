@@ -28,6 +28,7 @@ interface MagicFilterBarProps {
     backUrl?: string;
     backLabel?: string;
     isHome?: boolean;
+    hideActiveRow?: boolean;
     listCount?: number;
 }
 
@@ -71,6 +72,7 @@ export default function MagicFilterBar({
     backUrl,
     backLabel,
     isHome = false,
+    hideActiveRow = false,
     listCount = 0
 }: MagicFilterBarProps) {
     const router = useRouter();
@@ -166,17 +168,19 @@ export default function MagicFilterBar({
             <div className={styles.railScroll}>
                 <div className={styles.railContent}>
                     {items.map((item) => (
-                        <button
+                        <motion.button
                             key={item.id}
                             className={`${styles.filterItem} ${activeTags.includes(item.tag || item.id) ? styles.active : ''}`}
                             onClick={() => {
                                 onSelect(item.tag || item.id);
                                 if (isMobile) setExpandedGroup(null);
                             }}
+                            whileHover={{ scale: 1.05, translateY: -2 }}
+                            whileTap={{ scale: 0.95 }}
                         >
                             <span className={styles.itemIcon}>{item.icon}</span>
                             <span className={styles.itemName}>{item.name}</span>
-                        </button>
+                        </motion.button>
                     ))}
                 </div>
             </div>
@@ -193,13 +197,9 @@ export default function MagicFilterBar({
 
     return (
         <div className={`${styles.mobileLayoutContainer} ${scrolled ? styles.shrunk : ''}`}>
-            {/* STICKY WRAPPER: Contains the filter bar logic */}
             <div className={styles.stickyWrapper}>
-                
-                {/* 1. PC VIEW: FIXED HORIZONTAL LAYOUT */}
                 {!isMobile && (
                     <div className={styles.pcLayout}>
-                        {/* B. FILTERS (ALL IN ONE LINE) */}
                         {isHome && (
                             <motion.div className={styles.container}>
                                 <div className={styles.glassInnerPC}>
@@ -227,14 +227,24 @@ export default function MagicFilterBar({
                                         >
                                             <div className={styles.itemsWrapperPC}>
                                                 {currentItems.map((item) => (
-                                                    <button
+                                                    <motion.button
                                                         key={item.id}
                                                         className={`${styles.filterItem} ${activeTags.includes(item.tag || item.id) ? styles.active : ''}`}
                                                         onClick={() => onSelect(item.tag || item.id)}
+                                                        whileHover={{ scale: 1.05, translateY: -2 }}
+                                                        whileTap={{ scale: 0.95 }}
                                                     >
                                                         {item.icon && activeGroup !== 'categories' && <span className={styles.itemIcon}>{item.icon}</span>}
                                                         <span className={styles.itemName}>{item.name}</span>
-                                                    </button>
+                                                        {activeTags.includes(item.tag || item.id) && (
+                                                            <motion.span 
+                                                                layoutId="active-dot" 
+                                                                className={styles.activeDot}
+                                                                initial={{ scale: 0 }}
+                                                                animate={{ scale: 1 }}
+                                                            />
+                                                        )}
+                                                    </motion.button>
                                                 ))}
                                             </div>
                                         </div>
@@ -252,59 +262,62 @@ export default function MagicFilterBar({
                                 </div>
                             </motion.div>
                         )}
-
-                        {/* C. UTILITY HUB (SINGLE BUBBLE) */}
-                        {isHome && (
-                            <motion.div 
-                                layout
-                                className={`${styles.utilityHubDesktop} ${activeTags.length > 0 ? styles.hubExpanded : ''}`}
-                            >
-                                <div className={styles.unifiedUtilityPillPC}>
-                                    <ThemeToggle className={styles.utilityIconItemPC}>
-                                        <span className={styles.utilityIconSimple}>🌗</span>
-                                    </ThemeToggle>
-                                    <Link href="/favorites" className={styles.utilityIconItemPC}>
-                                        <span className={styles.utilityIconSimple}>🤍</span>
-                                    </Link>
-                                    <Link href="/shopping-list" className={styles.utilityIconItemPC}>
-                                        <span className={styles.utilityIconSimple}>🛒</span>
-                                    </Link>
-                                </div>
-
-                                <AnimatePresence>
-                                    {activeTags.length > 0 && (
-                                        <motion.div 
-                                            className={styles.activeFiltersContentPC}
-                                            initial={{ opacity: 0, x: -10 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            exit={{ opacity: 0, x: -10 }}
-                                        >
-                                            <div className={styles.hubDividerPC} />
-                                            <div className={styles.activeTagsListPC}>
-                                                <span className={styles.rainbowTextPC}>
-                                                    {activeTags.join(' + ').toUpperCase()}
-                                                </span>
-                                            </div>
-                                            <button 
-                                                className={styles.clearBtnPC}
-                                                onClick={() => window.dispatchEvent(new CustomEvent('magic-reset-filters'))}
-                                            >
-                                                ✕
-                                            </button>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </motion.div>
-                        )}
                     </div>
                 )}
 
-                {/* 2. MOBILE VIEW: THE DYNAMIC STACKED NAV IS GONE, ONLY FILTERS REMAIN */}
+                <AnimatePresence>
+                    {activeTags.length > 0 && !hideActiveRow && (
+                        <motion.div 
+                            className={styles.activeFiltersRow}
+                            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                            transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
+                        >
+                            <AnimatePresence mode="popLayout">
+                                {activeTags.map(t => (
+                                    <motion.div 
+                                        key={t}
+                                        className={styles.activePillElement}
+                                        layout
+                                        initial={{ scale: 0.8, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        exit={{ scale: 0.8, opacity: 0 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                                    >
+                                        <span className={styles.activePillText}>{t.charAt(0).toUpperCase() + t.slice(1)}</span>
+                                        <button 
+                                            className={styles.removeTagBtn}
+                                            onClick={() => onSelect(t)}
+                                        >
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M18 6L6 18M6 6l12 12"/>
+                                            </svg>
+                                        </button>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                            <AnimatePresence>
+                                {activeTags.length > 1 && (
+                                    <motion.button 
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.8 }}
+                                        className={styles.clearAllBtn} 
+                                        onClick={() => window.dispatchEvent(new CustomEvent('magic-reset-filters'))}
+                                    >
+                                        EFFACER TOUT
+                                    </motion.button>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+
+
                 {isMobile && (
                     <div className={styles.mobileContainer}>
-                        {/* THE NAVIGATION ROW (SEARCH, FAVORITES, ETC.) IS NOW IN THE HEADER */}
-                        
-                        {/* BACK BUTTON (Only in recipe details) */}
                         {showBack && backUrl && (
                             <div className={styles.mobileBackRow}>
                                 <button
@@ -319,7 +332,6 @@ export default function MagicFilterBar({
                             </div>
                         )}
 
-                        {/* EXPANDED MENU (THE ITEMS RAIL) */}
                         <AnimatePresence>
                             {(expandedGroup || isHome) && (
                                 <motion.div 
@@ -339,7 +351,6 @@ export default function MagicFilterBar({
                 )}
             </div>
 
-            {/* MOBILE ONLY LUCKY BUTTON - NON STICKY */}
             {isMobile && (
                 <AnimatePresence>
                     {!scrolled && isHome && (

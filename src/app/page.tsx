@@ -11,6 +11,7 @@ import RecipeCard from '@/components/RecipeCard/RecipeCardV2';
 import ResumeRecipe from '@/components/ResumeRecipe/ResumeRecipe';
 import MagicFilterBar from '@/components/MagicFilterBar/MagicFilterBar';
 import BackToTop from '@/components/BackToTop/BackToTop';
+import SyncFooter from '@/components/SyncFooter/SyncFooter';
 import styles from './page.module.css';
 
 const categories = [
@@ -131,9 +132,23 @@ function HomeContent() {
     useEffect(() => {
         const tag = searchParams.get('tag');
         if (tag) {
-            handleTagSelect(tag);
+            // FORCE SET (Exclusivité demandée par le client pour les liens directs)
+            setActiveTags([tag]);
+            
+            // Scroll direct
+            setTimeout(() => {
+                const resultsSection = document.getElementById('categories-title');
+                if (resultsSection) {
+                    const isMobile = window.innerWidth <= 768;
+                    const headerOffset = isMobile ? 420 : 250; 
+                    window.scrollTo({
+                        top: resultsSection.getBoundingClientRect().top + window.pageYOffset - headerOffset,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 500);
         }
-    }, [searchParams, handleTagSelect]);
+    }, [searchParams]);
 
     // Écouteur pour reset global via le Header
     useEffect(() => {
@@ -172,6 +187,8 @@ function HomeContent() {
                 {activeTags.length === 0 && (
                     <>
                         <HeroHome />
+                        <div className={styles.sectionSpacer} />
+                        <ThematicGroup activeTags={activeTags} />
                         <div className={styles.sectionSpacer} />
                     </>
                 )}
@@ -262,6 +279,7 @@ function HomeContent() {
                 </motion.div>
             </main>
             <BackToTop />
+            <SyncFooter />
         </div>
     );
 }
@@ -328,6 +346,78 @@ function CategoryGroup({ category, recipes, activeTags }: { category: any, recip
                             </div>
                         </Link>
                     </div>
+                </div>
+            </motion.div>
+        </section>
+    );
+}
+
+function ThematicGroup({ activeTags }: { activeTags: string[] }) {
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const thematiques = [
+        { id: 'paques', name: 'Pâques est là', tag: 'Pâques', image: 'https://images.unsplash.com/photo-1522026849479-5dbbf2ce07bc?auto=format&fit=crop&q=80&w=800' },
+        { id: 'noel', name: "C'est Noël", tag: 'Noël', image: 'https://images.unsplash.com/photo-1543589077-47d81606c1ea?auto=format&fit=crop&q=80&w=800' },
+        { id: 'astuces', name: 'Astuces', tag: 'Astuces', image: 'https://images.unsplash.com/photo-1466632346940-999b2f98380e?auto=format&fit=crop&q=80&w=800' },
+        { id: 'simplissime', name: 'Simplissime', tag: 'Simplissime', image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800' },
+        { id: 'dolce-vita', name: 'La Dolce Vita', tag: 'Italie', image: 'https://images.unsplash.com/photo-1498579150354-97232231b14f?auto=format&fit=crop&q=80&w=800' }
+    ];
+
+    const handleMouseMove = useCallback((e: React.MouseEvent) => {
+        if (!scrollRef.current) return;
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+        const container = scrollRef.current;
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const threshold = 50; 
+        let percentage;
+        if (x < threshold) {
+            percentage = 0;
+        } else if (x > rect.width - threshold) {
+            percentage = 1;
+        } else {
+            percentage = (x - threshold) / (rect.width - 2 * threshold);
+        }
+        const scrollWidth = container.scrollWidth;
+        const clientWidth = container.clientWidth;
+        const maxScroll = scrollWidth - clientWidth;
+        container.scrollLeft = percentage * maxScroll;
+    }, []);
+
+    if (activeTags.length > 0) return null;
+
+    return (
+        <section className={styles.thematicSection}>
+            <div className={styles.categoryHeader}>
+                <div className={styles.categoryTitleGroup}>
+                    <h2 className={styles.categoryTitle}>Thématiques du moment</h2>
+                </div>
+            </div>
+            <motion.div 
+                className={styles.thematicCarouselWrapper}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+                }}
+            >
+                <div 
+                    ref={scrollRef}
+                    className={styles.thematicCarousel}
+                    onMouseMove={handleMouseMove}
+                >
+                    {thematiques.map((theme) => (
+                        <Link 
+                            key={theme.id} 
+                            href={`/?tag=${theme.tag}`} 
+                            className={styles.thematicCard}
+                        >
+                            <img src={theme.image} alt={theme.name} className={styles.thematicImage} />
+                            <div className={styles.thematicOverlay}></div>
+                            <h3 className={styles.thematicTitle}>{theme.name}</h3>
+                        </Link>
+                    ))}
                 </div>
             </motion.div>
         </section>
