@@ -2,22 +2,22 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/04/2026 09:36:02
+ * Dernière mise à jour: 02/04/2026 09:56:12
  * Total: 173 recettes
  */
-export const exportSyncId = "1775122562843";
+export const exportSyncId = "1775123772827";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4761",
         "title": "Casatiello napoletano",
         "description": "Le Casatiello napoletano est un pain salé traditionnel de Naples, généralement préparé pour Pâques. Il est richement garni de fromages, de charcuteries comme le saucisson sec et les lardons, et décoré d'œufs entiers sur le dessus avant d'être cuit au four.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774971500652.jpg&v=1775127433000",
-        "category": "plats",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcasatiello-calendario-2024.jpeg&v=1775130907000",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 10,
         "cookTime": 120,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7494675433317960962\" data-video-id=\"7494675433317960962\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7494675433317960962\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7494675433317960962\" data-video-id=\"7494675433317960962\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7494675433317960962\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -83,7 +83,6 @@ export const mockRecipes: Recipe[] = [
             "8. Cuisson: Faites cuire dans un four préchauffé à 180°C pendant environ une heure, en plaçant le moule dans la partie inférieure du four."
         ],
         "tags": [
-            "Famille",
             "Italie"
         ],
         "isFeatured": true,
