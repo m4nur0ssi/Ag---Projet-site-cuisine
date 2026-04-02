@@ -195,7 +195,6 @@ export default function Header({
                                                 <Link href="/shopping-list" className={styles.toolBtn}>
                                                     🛒
                                                 </Link>
-
                                                 <ThemeToggle className={styles.themeToggleWrapper} />
                                             </div>
                                         )}

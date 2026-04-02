@@ -355,11 +355,11 @@ function CategoryGroup({ category, recipes, activeTags }: { category: any, recip
 function ThematicGroup({ activeTags }: { activeTags: string[] }) {
     const scrollRef = useRef<HTMLDivElement>(null);
     const thematiques = [
-        { id: 'paques', name: 'Pâques est là', tag: 'Pâques', image: 'https://images.unsplash.com/photo-1522026849479-5dbbf2ce07bc?auto=format&fit=crop&q=80&w=800' },
-        { id: 'noel', name: "C'est Noël", tag: 'Noël', image: 'https://images.unsplash.com/photo-1543589077-47d81606c1ea?auto=format&fit=crop&q=80&w=800' },
-        { id: 'astuces', name: 'Astuces', tag: 'Astuces', image: 'https://images.unsplash.com/photo-1466632346940-999b2f98380e?auto=format&fit=crop&q=80&w=800' },
-        { id: 'simplissime', name: 'Simplissime', tag: 'Simplissime', image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800' },
-        { id: 'dolce-vita', name: 'La Dolce Vita', tag: 'Italie', image: 'https://images.unsplash.com/photo-1498579150354-97232231b14f?auto=format&fit=crop&q=80&w=800' }
+        { id: 'paques', name: 'Pâques est là', tag: 'Pâques', image: 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=800&q=80' },
+        { id: 'noel', name: "C'est Noël", tag: 'Noël', image: 'https://images.unsplash.com/photo-1481833761820-0509d3217039?w=800&q=80' },
+        { id: 'astuces', name: 'Astuces', tag: 'Astuces', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80' },
+        { id: 'simplissime', name: 'Simplissime', tag: 'Simplissime', image: 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&q=80' },
+        { id: 'dolce-vita', name: 'La Dolce Vita', tag: 'Italie', image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80' }
     ];
 
     const handleMouseMove = useCallback((e: React.MouseEvent) => {

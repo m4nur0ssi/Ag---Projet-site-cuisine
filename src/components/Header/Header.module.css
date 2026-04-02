@@ -134,17 +134,17 @@
 .toolsGroup {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .toolBtn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-text-primary);
-    font-size: 1.15rem;
+    font-size: 1.35rem;
     border-radius: 50%;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
@@ -188,7 +188,7 @@
     background: transparent;
     border: none;
     padding: 0;
-    margin-left: 30px;
+    margin-left: 8px;
     cursor: pointer;
 }
 
