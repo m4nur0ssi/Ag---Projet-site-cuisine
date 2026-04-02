@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/04/2026 08:57:06
- * Total: 173 recettes
+ * Dernière mise à jour: 02/04/2026 09:00:05
+ * Total: 176 recettes
  */
-export const exportSyncId = "1775120226637";
+export const exportSyncId = "1775120405683";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4767",
@@ -55,6 +55,221 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4764",
+        "title": "Cacavellu",
+        "description": "Une recette traditionnelle Corse, idéale pour Pâques, à base de farine, sucre, levure, beurre, anis et œufs.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775120138240.jpg&v=1775127371000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7620869846980513046\" data-video-id=\"7620869846980513046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620869846980513046\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾 500 gr de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 140 gr de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 42 gr (1 cube) de levure de boulanger"
+            },
+            {
+                "quantity": "",
+                "name": "💧 65 gr d’eau tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 80 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 30 g d’anis en grains"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 2 oeufs"
+            }
+        ],
+        "steps": [
+            "Une recette traditionnelle Corse, idéale pour Pâques, à base de farine, sucre, levure, beurre, anis et œufs.",
+            "\" style=\"background: #ffffff; padding: 35px; border-radius: 16px; border: 1px solid #dfe6e9; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 40px;\"> 🛒 Ingrédients 🌾 500 gr de farine 🍯 140 gr de sucre 🥣 42 gr (1 cube) de levure de boulanger 💧 65 gr d’eau tiède 🧈 80 g de beurre 🥣 30 g d’anis en grains 🥚 2 oeufs 👨‍🍳 Préparation 🔥 Cuisine en vidéo ! Regarder la vidéo sur TikTok"
+        ],
+        "tags": [
+            "France",
+            "Pâques"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4761",
+        "title": "Casatiello napoletano",
+        "description": "Le Casatiello napoletano est un pain salé traditionnel de Naples, généralement préparé pour Pâques. Il est richement garni de fromages, de charcuteries comme le saucisson sec et les lardons, et décoré d'œufs entiers sur le dessus avant d'être cuit au four.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774971500652.jpg&v=1775127433000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 10,
+        "cookTime": 120,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7494675433317960962\" data-video-id=\"7494675433317960962\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7494675433317960962\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾 600 g de farine 00"
+            },
+            {
+                "quantity": "",
+                "name": "💧 350 g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 20 g de levure de boulanger"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 10 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre au goût (pour la pâte)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 200 g de saucisson sec"
+            },
+            {
+                "quantity": "",
+                "name": "🥓 100 g de lardons nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 200 g d'Emmental"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 250 g de scamorza (ou fromage doux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 80 g de Parmigiano"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre au goût (pour la garniture)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 80-100 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 4 œufs (pour la décoration)"
+            }
+        ],
+        "steps": [
+            "1. Préparation de la pâte: Dans un bol, versez la farine, l'eau et la levure de boulanger. Mélangez avec une spatule en bois. Ajoutez ensuite le sel et continuez à mélanger. Pétrissez bien la pâte à la main pendant environ 10 minutes, jusqu'à obtenir une pâte lisse.",
+            "2. Levée: Placez la pâte dans un récipient avec un filet d'huile d'olive, couvrez avec du film plastique et laissez lever pendant 2 heures à température ambiante.",
+            "3. Étaler la pâte: Une fois la pâte levée, étalez-la bien avec un rouleau à pâtisserie ou avec les mains. Étalez uniformément le beurre sur toute la surface de la pâte.",
+            "4. Garniture: Répartissez le saucisson, les lardons, l'Emmental, la scamorza et le Parmigiano sur la pâte, en laissant le bord libre. Ajoutez du poivre selon votre goût.",
+            "5. Fermeture: Coupez légèrement les bords et roulez la pâte sur elle-même pour former un cylindre. Faites des incisions en forme de croix sur les bords coupés.",
+            "6. Ajout des œufs: Placez 4 œufs au-dessus de la pâte et utilisez les incisions pour décorer.",
+            "7. Préparation à la cuisson: Mettez la pâte dans un moule préalablement beurré et couvrez. Laissez reposer pendant encore 30 minutes.",
+            "8. Cuisson: Faites cuire dans un four préchauffé à 180°C pendant environ une heure, en plaçant le moule dans la partie inférieure du four."
+        ],
+        "tags": [
+            "Famille",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4758",
+        "title": "Casatiello napoletano",
+        "description": "Le Casatiello napoletano est un pain salé traditionnel de Naples, généralement préparé pour Pâques. Il est garni de charcuteries et de fromages, puis décoré d'œufs entiers avant d'être cuit.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775120248139.jpg&v=1775127487000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 10,
+        "cookTime": 120,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7494675433317960962\" data-video-id=\"7494675433317960962\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7494675433317960962\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾 600 g de farine 00"
+            },
+            {
+                "quantity": "",
+                "name": "💧 350 g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 20 g de levure de boulanger"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 10 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 200 g de saucisson sec"
+            },
+            {
+                "quantity": "",
+                "name": "🥓 100 g de lardons nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 200 g d'Emmental"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 250 g de scamorza (ou fromage doux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 80 g de Parmigiano"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 80-100 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 4 œufs"
+            }
+        ],
+        "steps": [
+            "Préparation de la pâte: Dans un bol, verse la farine, l'eau et la levure de boulanger. Mélange avec une spatule en bois. Ajoute ensuite le sel et continue à mélanger. Pétris bien la pâte à la main pendant environ 10 minutes, jusqu'à obtenir une pâte lisse.",
+            "Levée: Place la pâte dans un récipient avec un filet d'huile d'olive, couvre avec du film plastique et laisse lever pendant 2 heures à température ambiante.",
+            "Étaler la pâte: Une fois la pâte levée, étale-la bien avec un rouleau à pâtisserie ou avec les mains. Étale uniformément le beurre sur toute la surface de la pâte.",
+            "Garniture: Répartis le saucisson, les lardons, l'Emmental, la scamorza et le Parmigiano sur la pâte, en laissant le bord libre. Ajoute du poivre selon ton goût.",
+            "Fermeture: Coupe légèrement les bords et roule la pâte sur elle-même pour former un cylindre. Fais des incisions en forme de croix sur les bords coupés.",
+            "Ajout des œufs: Place 4 œufs au-dessus de la pâte et utilise les incisions pour décorer.",
+            "Préparation à la cuisson : Mets la pâte dans un moule préalablement beurré et couvre. Laisse reposer pendant encore 30 minutes.",
+            "Cuisson: Fais cuire dans un four préchauffé à 180°C pendant environ une heure, en plaçant le moule dans la partie inférieure du four."
+        ],
+        "tags": [
+            "Famille",
+            "Italie"
         ],
         "isFeatured": true,
         "isFavorite": false,
