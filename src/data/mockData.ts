@@ -2,67 +2,11 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/04/2026 08:29:18
- * Total: 174 recettes
+ * Dernière mise à jour: 03/04/2026 08:32:42
+ * Total: 173 recettes
  */
-export const exportSyncId = "1775204958905";
+export const exportSyncId = "1775205162370";
 export const mockRecipes: Recipe[] = [
-    {
-        "id": "4785",
-        "title": "undefined",
-        "description": "Boulettes fondantes et gourmandes cuisinées avec amour.",
-        "image": "",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 20,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚 500g de viande hachée (bœuf/veau)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧀 50g de parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 Coriandre/Persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 Farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧅 1 oignon haché"
-            },
-            {
-                "quantity": "",
-                "name": "🍅 500ml de sauce tomate"
-            }
-        ],
-        "steps": [
-            "Mélanger la viande, l œuf et le parmesan",
-            "Former de jolies boulettes et les fariner",
-            "Faire revenir l oignon dans de l huile",
-            "Ajouter les boulettes pour les colorer",
-            "Verser la sauce tomate et laisser mijoter 20 min"
-        ],
-        "tags": [
-            "Famille",
-            "Italie"
-        ],
-        "isFeatured": true,
-        "isFavorite": false,
-        "address": ""
-    },
     {
         "id": "4761",
         "title": "Casatiello napoletano",
@@ -141,7 +85,7 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie"
         ],
-        "isFeatured": false,
+        "isFeatured": true,
         "isFavorite": false,
         "address": ""
     },
@@ -12204,7 +12148,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3539",
         "title": "Gâteau spéculoos, fruits rouges et mascarpone",
         "description": "Un dessert frais, fondant et gourmand qui a connu un grand succès sur les réseaux sociaux. Ce gâteau combine les saveurs douces des spéculoos avec la fraîcheur acidulée des fruits rouges et la légèreté du mascarpone. Parfait pour régaler 12 personnes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgateau-mascarpone-ricotta-fruits-rouges-sans-cuisson.jpeg&v=1774450526000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgateau-mascarpone-ricotta-fruits-rouges-sans-cuisson.jpeg&v=1774454126000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
