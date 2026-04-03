@@ -19,30 +19,53 @@ async function addToQueue(videoUrl: string, country: string) {
         const getRes = await fetch(`https://api.github.com/repos/${githubRepo}/contents/${queuePath}`, {
             headers: { 'Authorization': `Bearer ${githubToken}`, 'Accept': 'application/vnd.github.v3+json' }
         });
-        
-        if (!getRes.ok) return { ok: false, error: 'Queue file not found' };
-        const getFile = await getRes.json();
-        const currentData = JSON.parse(Buffer.from(getFile.content, 'base64').toString());
+        let currentData: any = { queue: [] };
+        let fileSha = undefined;
+
+        if (getRes.ok) {
+            const getFile = await getRes.json();
+            fileSha = getFile.sha;
+            try {
+                currentData = JSON.parse(Buffer.from(getFile.content, 'base64').toString());
+            } catch (e) {
+                // If the file is empty or invalid JSON, we just start fresh
+                currentData = { queue: [] };
+            }
+        } else if (getRes.status === 401 || getRes.status === 403) {
+             return { ok: false, error: 'Token GitHub invalide ou manquant (env GITHUB_PAT).' };
+        } else if (getRes.status !== 404) {
+             return { ok: false, error: 'Erreur inattendue Github API: ' + getRes.statusText };
+        }
 
         // 2. Ajouter la recette
         if (!currentData.queue) currentData.queue = [];
         currentData.queue.push({ videoUrl, country, timestamp: new Date().toISOString() });
 
         // 3. Sauvegarder sur GitHub
+        const payload: any = {
+            message: '➕ Nouvelle recette distante en attente',
+            content: Buffer.from(JSON.stringify(currentData, null, 2)).toString('base64')
+        };
+        
+        if (fileSha) {
+            payload.sha = fileSha; // Requis pour mettre à jour un fichier existant
+        }
+
         const putRes = await fetch(`https://api.github.com/repos/${githubRepo}/contents/${queuePath}`, {
             method: 'PUT',
             headers: { 
                 'Authorization': `Bearer ${githubToken}`, 
                 'Content-Type': 'application/json' 
             },
-            body: JSON.stringify({
-                message: '➕ Nouvelle recette distante en attente',
-                content: Buffer.from(JSON.stringify(currentData, null, 2)).toString('base64'),
-                sha: getFile.sha
-            })
+            body: JSON.stringify(payload)
         });
 
-        return { ok: putRes.ok };
+        if (!putRes.ok) {
+            const errorDetails = await putRes.text();
+            return { ok: false, error: 'Erreur lors de la sauvegarde sur Github: ' + errorDetails };
+        }
+
+        return { ok: true };
     } catch (e: any) {
         return { ok: false, error: e.message };
     }
