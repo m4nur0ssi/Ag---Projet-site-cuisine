@@ -171,18 +171,33 @@ async function handleRequest(request: Request) {
         }
     }
 
-    // Étape 1 : Si on n'a pas de pays, on envoie la liste sous forme de TABLEAU (Array) très simple
-    // pour éviter les bugs du raccourci iOS avec les dictionnaires et les emojis.
+    // Étape 1 : Si on n'a pas de pays, on envoie le dictionnaire attendu par le Raccourci iOS.
+    // IMPORTANT : Les CLEFS (Keys) doivent être sans emoji pour ne pas faire buguer le raccourci, 
+    // et les VALEURS contiennent les emojis pour qu'ils s'affichent joliment dans le menu !
     if (!selectedCountry && !checkOnly && body.checkOnly !== 'true' && body.checkOnly !== true) {
-        const countriesArr = [
-            "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban",
-            "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🗺️ Autre",
-            "🐣 Pâques", "🎄 Noël", "😊 Facile", "🍝 Dolce Vita", "💡 Astuce"
-        ];
+        const countryMenu: any = {
+            "France": "🇫🇷 France",
+            "Italie": "🇮🇹 Italie",
+            "Espagne": "🇪🇸 Espagne",
+            "Grèce": "🇬🇷 Grèce",
+            "Liban": "🇱🇧 Liban",
+            "USA": "🇺🇸 USA",
+            "Mexique": "🇲🇽 Mexique",
+            "Orient": "🕌 Orient",
+            "Asie": "🥢 Asie",
+            "Autre": "🗺️ Autre",
+            "Paques": "🐣 Pâques",
+            "Noel": "🎄 Noël",
+            "Facile": "😊 Facile",
+            "Dolce": "🍝 Dolce Vita",
+            "Astuce": "💡 Astuce"
+        };
 
         const response = NextResponse.json({ 
-            status: countriesArr, // <-- Raccourcis iOS préfère un tableau direct pour "Choisir dans la liste"
-            v: "00:15-FIX-MENU",
+            status: countryMenu,
+            countries: countryMenu, 
+            pays: countryMenu,
+            v: "00:16-FIX-DICTIONARY",
             message: 'Quel pays ?'
         });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
