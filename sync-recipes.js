@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-// fetch est natif en Node 18+ (actuellement Node 24 vus les logs)
+const { exec, execSync } = require('child_process');
 
 /**
  * Script de synchronisation des recettes depuis WordPress vers le projet local
@@ -64,8 +64,6 @@ function extractRecipeData(post) {
 
     // 2. Extraction des ingrédients
     let ingredients = [];
-    const ingredientMatches = pluginContent.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi);
-    const ingTitleIndex = pluginContent.indexOf('<h3'); 
     
     // On essaie d'extraire les ingrédients du bloc mpprecipe
     const ingBlockMatch = pluginContent.match(/<ul[^>]*id=["']mpprecipe-ingredients-list["'][^>]*>([\s\S]*?)<\/ul>/i);
@@ -89,12 +87,11 @@ function extractRecipeData(post) {
     }
 
     // 4. Fallback intelligent pour les étapes si le plugin est absent ou vide
-    if (steps.length < 2 || (steps.length === 1 && steps[0].length < 15)) {
-        let textForSteps = cleanContent;
-        // Supprimer complètement le bloc container
-        textForSteps = textForSteps.replace(/<div[^>]*mpprecipe-container[^>]*>[\s\S]*?<\/div>/gi, '');
+    // IMPORTANT : On utilise rawDescription pour ne pas avoir de résidus du plugin !
+    if (steps.length < 2) {
+        let textForSteps = rawDescription;
         // Supprimer tags complexes
-        textForSteps = textForSteps.replace(/<div[^>]*>|<\/div>|<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>/gi, '');
+        textForSteps = textForSteps.replace(/<div[^>]*>|<\/div>|<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>/gi, ' ');
         
         const blocks = textForSteps.split(/<img[^>]*>|<hr[^>]*>|<p[^>]*>|<\/p>|<br\s*\/?>/i);
         
@@ -106,7 +103,8 @@ function extractRecipeData(post) {
             const low = s.toLowerCase();
             if (low.includes('cliquez pour') || low.includes('save recipe') || low.includes('print recipe') || low.includes('regarder la vidéo')) return false;
             if (low === 'ingredients' || low === 'préparation' || low === 'conseils de préparation') return false;
-            if (s.startsWith('" style=') || s.startsWith('style=')) return false;
+            // Éliminer les résidus de tags mal coupés
+            if (s.includes('style=') || s.includes('width=') || s.includes('height=')) return false;
             return true;
         });
 
@@ -116,10 +114,10 @@ function extractRecipeData(post) {
     }
 
     // 5. Extraction des métadonnées (temps, parts, difficulté)
-    const prepTimeMatch = pluginContent.match(/Préparation :<\/strong> (\d+)/i);
-    const cookTimeMatch = pluginContent.match(/Cuisson :<\/strong> (\d+)/i);
-    const servingsMatch = pluginContent.match(/Parts :<\/strong> (\d+)/i);
-    const difficultyMatch = pluginContent.match(/Difficulté :<\/strong> (.*?)</i);
+    const prepTimeMatch = pluginContent.match(/Préparation :<\/strong>\s*(\d+)/i);
+    const cookTimeMatch = pluginContent.match(/Cuisson :<\/strong>\s*(\d+)/i);
+    const servingsMatch = pluginContent.match(/Parts :<\/strong>\s*(\d+)/i);
+    const difficultyMatch = pluginContent.match(/Difficulté :<\/strong>\s*(.*?)</i);
 
     // 6. Extraction de la vidéo TikTok
     let videoHtml = "";
@@ -139,8 +137,8 @@ function extractRecipeData(post) {
         image: post._embedded?.['wp:featuredmedia']?.[0]?.source_url 
             ? `/api/image-proxy?url=${encodeURIComponent(post._embedded['wp:featuredmedia'][0].source_url)}&v=${new Date(post.modified).getTime()}`
             : "/images/recipe-placeholder.jpg",
-        category: post.categories?.includes(14) ? "plats" : "patisserie", // Mapping basique
-        difficulty: (difficultyMatch?.[1]?.toLowerCase() || "moyen"),
+        category: post.categories?.includes(14) ? "plats" : "patisserie",
+        difficulty: (difficultyMatch?.[1]?.toLowerCase().trim() || "moyen"),
         prepTime: parseInt(prepTimeMatch?.[1] || "15"),
         cookTime: parseInt(cookTimeMatch?.[1] || "30"),
         servings: parseInt(servingsMatch?.[1] || "4"),
@@ -162,28 +160,18 @@ async function syncRecipes() {
     
     let allPosts = [];
     let page = 1;
-    let totalPages = 1;
 
     try {
-        do {
-            const url = `${WORDPRESS_API_URL}/posts?per_page=100&page=${page}&status=publish&_embed&orderby=modified&nocache=${Date.now()}`;
-            console.log(`\nPage ${page}...`);
-            console.log(`📡 Connexion : ${url}`);
+        const url = `${WORDPRESS_API_URL}/posts?per_page=100&page=${page}&status=publish&_embed&orderby=modified&nocache=${Date.now()}`;
+        console.log(`📡 Connexion : ${url}`);
 
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            
-            totalPages = parseInt(response.headers.get('X-WP-TotalPages') || "1");
-            const posts = await response.json();
-            
-            for (const post of posts) {
-                if (DELETE_ID && String(post.id) === DELETE_ID) continue;
-                allPosts.push(extractRecipeData(post));
-            }
-
-            if (!SYNC_ALL) break; // Mode rapide : 1 seule page
-            page++;
-        } while (page <= totalPages);
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        
+        const posts = await response.json();
+        for (const post of posts) {
+            allPosts.push(extractRecipeData(post));
+        }
 
         // Sauvegarde mockData.ts
         const fileContent = `import { Recipe } from '../types';
@@ -199,7 +187,6 @@ export const mockRecipes: Recipe[] = ${JSON.stringify(allPosts, null, 4)};
 
         fs.writeFileSync(MOCK_DATA_PATH, fileContent);
         
-        // Sauvegarde stats
         fs.writeFileSync(SYNC_STATS_PATH, JSON.stringify({
             lastSync: new Date().toISOString(),
             totalRecipes: allPosts.length,
