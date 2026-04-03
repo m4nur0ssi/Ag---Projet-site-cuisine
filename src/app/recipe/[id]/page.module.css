@@ -645,6 +645,21 @@
     transform: scale(1.1) rotate(5deg);
 }
 
+:global([data-theme='light']) .heroFocusBtn {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
+}
+
+:global([data-theme='light']) .heroFocusBtn:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: var(--accent);
+}
+
+:global([data-theme='light']) .focusBtnIcon {
+    color: white; /* Assure la visibilité du triangle blanc sur fond couleur */
+    box-shadow: 0 4px 15px rgba(var(--dynamic-accent-rgb), 0.3);
+}
+
 /* =====================================================
    META STRIP — Floating Info Cards UX 2026
    ===================================================== */
@@ -2949,7 +2964,7 @@
 }
 
 :root[data-theme='light'] .cardHeaderActions {
-    /* Garder les boutons sombres sur l'image pour contraste, mais ajuster si besoin */
+    border-color: rgba(0, 0, 0, 0.05); /* Filigrane léger pour la structure */
 }
 
 :root[data-theme='light'] .topLeftFlag,

@@ -254,26 +254,96 @@
 
 .viewMoreCardGrid {
     display: flex;
-    width: 440px;
+    width: 280px;
     height: 100%;
-    min-height: 300px; /* MATCH LARGER HORIZONTAL CARD HEIGHT */
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 28px;
+    min-height: 480px; /* MATCH RECIPE CARD HEIGHT */
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
     text-decoration: none;
-    transition: all 0.4s var(--transition-smooth);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.viewMoreText {
-    font-weight: 800;
-    color: var(--color-text-primary);
+/* Category Reflections */
+.viewMoreCardGrid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(var(--cat-color-rgb, 127, 13, 242), 0.18) 0%, transparent 80%);
+    opacity: 0.5;
+    transition: all 0.5s ease;
 }
+
+.viewMoreCardGrid:hover {
+    transform: translateY(-8px);
+    border-color: rgba(var(--cat-color-rgb, 127, 13, 242), 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(var(--cat-color-rgb, 127, 13, 242), 0.2);
+}
+
+.viewMoreCardGrid:hover::before {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.viewMoreContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    z-index: 2;
+}
+
+.viewMoreTextTop,
+.viewMoreTextBottom {
+    font-family: var(--font-primary);
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+    text-align: center;
+    /* Style NOIR-BRUN-DORÉ Premium - PLUS RICHE */
+    background: linear-gradient(135deg, #ffffff 0%, #d4af37 35%, #5d4037 50%, #d4af37 65%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+    line-height: 1;
+}
+
+.viewMoreTextBottom {
+    font-size: 3.2rem;
+    opacity: 0.9;
+}
+
+.viewMoreCardGrid:hover .viewMoreTextTop {
+    transform: translateY(-5px) scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+}
+
+.viewMoreCardGrid:hover .viewMoreTextBottom {
+    transform: translateY(5px) scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+}
+
+/* Category RGB Definitions for reflections */
+.cat_aperitifs { --cat-color-rgb: 239, 68, 68; }
+.cat_entrees { --cat-color-rgb: 16, 185, 129; }
+.cat_plats { --cat-color-rgb: 245, 158, 11; }
+.cat_vegetarien { --cat-color-rgb: 5, 150, 105; }
+.cat_desserts { --cat-color-rgb: 236, 72, 153; }
+.cat_patisserie { --cat-color-rgb: 139, 92, 246; }
+.cat_restaurant { --cat-color-rgb: 59, 130, 246; }
 
 .resultsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
     padding: 0 20px;
     margin-top: 20px;

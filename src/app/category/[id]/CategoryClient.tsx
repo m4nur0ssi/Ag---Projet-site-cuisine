@@ -28,7 +28,7 @@ export default function CategoryClient({ id, category, recipes, categories }: Ca
                     isHome={true} 
                     onSelect={(tag) => {
                         const mainCategories = ['aperitifs', 'entrees', 'plats', 'desserts', 'patisserie', 'restaurant', 'vegetarien'];
-                        if (tag === '') {
+                        if (tag === '' || tag.toLowerCase() === id.toLowerCase()) {
                             router.push('/');
                         } else if (mainCategories.includes(tag.toLowerCase())) {
                             router.push(`/category/${tag.toLowerCase()}`);

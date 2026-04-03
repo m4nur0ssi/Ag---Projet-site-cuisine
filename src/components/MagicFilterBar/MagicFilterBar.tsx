@@ -57,7 +57,6 @@ const countries: FilterItem[] = [
 
 const trends: FilterItem[] = [
     { id: 'healthy', name: 'Healthy', icon: '🥗', tag: 'Healthy' },
-    { id: 'astuces', name: 'Astuces', icon: '💡', tag: 'Astuces' },
     { id: 'airfryer', name: 'Airfryer', icon: '💨', tag: 'airfryer' },
     { id: 'barbecue', name: 'Barbecue', icon: '🍖', tag: 'Barbecue' },
     { id: 'pas-cher', name: 'Pas Cher', icon: '🪙', tag: 'Pas cher' },
@@ -94,7 +93,7 @@ export default function MagicFilterBar({
         const rect = container.getBoundingClientRect();
         
         const x = e.clientX - rect.left;
-        const threshold = 100;
+        const threshold = 200; // ZONE DE DÉTECTION ÉLARGIE POUR ÉVITER LES JUMPS
         
         let percentage;
         if (x < threshold) {
@@ -102,6 +101,7 @@ export default function MagicFilterBar({
         } else if (x > rect.width - threshold) {
             percentage = 1;
         } else {
+            // Zone morte centrale plus large pour permettre de cliquer sans que ça bouge
             percentage = (x - threshold) / (rect.width - 2 * threshold);
         }
         

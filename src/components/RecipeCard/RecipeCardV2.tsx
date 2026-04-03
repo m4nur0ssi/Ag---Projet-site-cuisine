@@ -9,6 +9,7 @@ import ShareButton from '@/components/ShareButton/ShareButton';
 import VoteButton from '@/components/VoteButton/VoteButton';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './RecipeCard.module.css';
+import { getSmartCategory } from '@/lib/recipeUtils';
 
 interface RecipeCardProps {
     recipe: Recipe;
@@ -165,13 +166,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
             onMouseLeave={handleMouseLeave}
         >
             <div className={styles.cardHeader}>
-                <div className={styles.headerLeft}>
-                    {flag && (
-                        <div className={styles.headerFlag}>
-                            {flag}
-                        </div>
-                    )}
-                </div>
+                <div className={styles.headerLeft} />
                 
                 <h3 className={styles.topTitle}>{recipe.title}</h3>
                 
@@ -201,12 +196,24 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
                     </div>
                 </div>
 
-                <div className={styles.hashtagOverlay}>
-                    {recipeHashtags.slice(0, 1).map((has: { id: string; name: string }) => (
-                         <div 
-                             key={has.id} 
-                             className={`${styles.hashtagBadge} ${styles.badge_tendances}`}
-                         >
+                {flag && recipeCountryTag && (
+                    <div className={styles.topLeftOverlay}>
+                        <div className={styles.countryBadge}>
+                            <span className={styles.countryFlag}>{flag}</span>
+                            <span className={styles.countryName}>{recipeCountryTag}</span>
+                        </div>
+                    </div>
+                )}
+
+                <div className={styles.bottomCenterOverlay}>
+                    <div className={styles.categoryBadgeBottom}>
+                        {getSmartCategory(recipe)}
+                    </div>
+                </div>
+
+                <div className={styles.bottomRightOverlay}>
+                    {recipeHashtags.map((has: { id: string; name: string }) => (
+                         <div key={has.id} className={`${styles.hashtagBadge} ${styles['badge_' + has.id] || ''}`}>
                              <span className={styles.hashtagLabel}>#{has.name.toUpperCase()}</span>
                          </div>
                     ))}

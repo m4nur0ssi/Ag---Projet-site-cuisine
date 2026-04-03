@@ -77,30 +77,132 @@
     background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-tertiary) 100%);
 }
 
-.hashtagOverlay {
+.bottomRightOverlay {
     position: absolute;
     bottom: 12px;
     right: 12px;
     z-index: 10;
     pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+}
+
+.topLeftOverlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.countryBadge {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: 8px;
+    padding: 0 14px;
+    height: 44px; /* Matches headerActions padding + size */
+    background: rgba(220, 225, 220, 0.5);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme='light'] .countryBadge {
+    background: rgba(230, 235, 230, 0.6);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.countryFlag {
+    font-size: 1.35rem;
+    filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black);
+}
+
+.countryName {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: white;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme='light'] .countryName {
+    color: #1a1a1a;
+    text-shadow: none;
+}
+
+.bottomCenterOverlay {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    pointer-events: none;
+}
+
+.categoryBadgeBottom {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    height: 36px;
+    background: rgba(220, 225, 220, 0.3);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme='light'] .categoryBadgeBottom {
+    background: rgba(230, 235, 230, 0.6);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #1a1a1a;
+    text-shadow: none;
 }
 
 .hashtagBadge {
-    padding: 6px 14px;
-    background: rgba(var(--dynamic-accent-rgb, 127, 13, 242), 0.2);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    padding: 0 14px;
+    height: 32px; /* A bit taller for premium feel */
+    width: auto; /* Fluid width as requested (like category buttons) */
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--badge-color-rgb, 127, 13, 242), 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-radius: 100px;
-    border: 1px solid rgba(var(--dynamic-accent-rgb, 127, 13, 242), 0.5);
-    color: white;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(var(--badge-color-rgb, 127, 13, 242), 0.3);
+    color: rgb(var(--badge-color-rgb, 255, 255, 255));
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.hashtagBadge:hover {
+    background: rgba(var(--badge-color-rgb, 127, 13, 242), 0.25);
+    transform: scale(1.05);
 }
 
 .hashtagLabel {
     font-size: 9px;
-    font-weight: 950;
-    letter-spacing: 0.1em;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .videoIndicator {
@@ -304,17 +406,16 @@
     color: white;
 }
 
-.badge_vege { background: rgba(16, 185, 129, 0.8); }
-.badge_healthy { background: rgba(59, 130, 246, 0.8); }
-.badge_airfryer { background: rgba(245, 158, 11, 0.8); }
-.badge_famille { background: rgba(236, 72, 153, 0.8); }
-.badge_gourmand { background: rgba(127, 13, 242, 0.8); }
-.badge_express { background: rgba(239, 68, 68, 0.8); }
-.badge_sous-vide { background: rgba(59, 130, 246, 0.8); }
-.badge_barbecue { background: rgba(234, 88, 12, 0.8); }
-.badge_rapide { background: rgba(34, 197, 94, 0.8); }
-.badge_astuces { background: rgba(168, 85, 247, 0.8); }
-.badge_leger { background: rgba(45, 212, 191, 0.8); }
+.badge_vege { --badge-color-rgb: 16, 185, 129; } /* Green */
+.badge_healthy { --badge-color-rgb: 59, 130, 246; } /* Blue */
+.badge_airfryer { --badge-color-rgb: 245, 158, 11; } /* Amber */
+.badge_famille { --badge-color-rgb: 236, 72, 153; } /* Pink */
+.badge_gourmand { --badge-color-rgb: 139, 92, 246; } /* Purple */
+.badge_express, .badge_rapide { --badge-color-rgb: 239, 68, 68; } /* Red */
+.badge_sous-vide { --badge-color-rgb: 6, 182, 212; } /* Cyan */
+.badge_barbecue { --badge-color-rgb: 249, 115, 22; } /* Orange */
+.badge_astuces { --badge-color-rgb: 168, 85, 247; } /* Violet */
+.badge_leger { --badge-color-rgb: 45, 212, 191; } /* Teal */
 
 .badge_country {
     background: var(--glass-bg-dark);

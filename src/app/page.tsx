@@ -11,7 +11,7 @@ import RecipeCard from '@/components/RecipeCard/RecipeCardV2';
 import ResumeRecipe from '@/components/ResumeRecipe/ResumeRecipe';
 import MagicFilterBar from '@/components/MagicFilterBar/MagicFilterBar';
 import BackToTop from '@/components/BackToTop/BackToTop';
-import SyncFooter from '@/components/SyncFooter/SyncFooter';
+
 import styles from './page.module.css';
 
 const categories = [
@@ -31,32 +31,91 @@ function HomeContent() {
 
     const hasNoRecipes = !mockRecipes || mockRecipes.length === 0;
 
-    // Filtrer les recettes par tous les tags actifs (Logique AND)
+    // Filtrage des recettes par tags avec règles intelligentes
     const filteredRecipes = useMemo(() => {
         if (hasNoRecipes || activeTags.length === 0) return mockRecipes || [];
         
-        return mockRecipes.filter(r => {
+        let results = mockRecipes.filter(r => {
             const recipeTags = r.tags?.map(t => t.toLowerCase()) || [];
-            const recipeCat = r.category?.toLowerCase();
+            const recipeCat = r.category?.toLowerCase() || "";
+            const title = (r.title || "").toLowerCase();
             
-            return activeTags.every(currentTag => {
+            return activeTags.some(currentTag => {
                 const tagLower = currentTag.toLowerCase();
                 
                 // Logique spéciale pour Végétarien
                 if (tagLower === 'vegetarien') {
-                    return recipeTags.some(t => t.includes('végé') || t.includes('vege') || t.includes('vegetarien')) || recipeCat === 'vegetarien';
+                    return recipeTags.some(t => t.includes('végé') || t.includes('vege') || t.includes('vegetarien')) || recipeCat === 'vegetarien' || title.includes('végé') || title.includes('vgt');
                 }
 
-                // Pour les pays (France, Italie, etc.), on veut un match plus précis
+                // Logique spéciale pour Pâques (Agneau = Pâques)
+                if (tagLower === 'pâques') {
+                    return recipeTags.some(t => t.toLowerCase() === 'pâques' || t.toLowerCase() === 'agneau') || title.includes('agneau');
+                }
+
+                // Pour les pays (France, Italie, etc.)
                 const countries = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'asie', 'afrique'];
                 if (countries.includes(tagLower)) {
                     return recipeTags.some(t => t.toLowerCase() === tagLower);
                 }
                 
-                // Par défaut : match catégorie ou tag (includes)
-                return recipeCat === tagLower || recipeTags.some(t => t.includes(tagLower));
+                // 2. Détection du type de plat (Salé vs Sucré)
+                const isSavory = title.includes('poulet') || title.includes('viande') || title.includes('gratin') || 
+                               title.includes('pâtes') || title.includes('pizza') || title.includes('salade') ||
+                               title.includes('agneau') || title.includes('poisson') || title.includes('riz') ||
+                               title.includes('burger') || title.includes('soupe') || title.includes('quiche') ||
+                               title.includes('croquetas') || title.includes('apéro') || title.includes('tapas') ||
+                               title.includes('légume') || title.includes('fromage') || title.includes('patate') ||
+                               title.includes('pomme de terre') || title.includes('oeuf') || title.includes('œuf') ||
+                               title.includes('crevette') || title.includes('saumon') || title.includes('thon') ||
+                               title.includes('pesto') || title.includes('tomate') || title.includes('bagel') ||
+                               title.includes('bruschetta') || title.includes('casatiello') || title.includes('focaccia') ||
+                               title.includes('bread') || title.includes('pain') || title.includes('olive');
+
+                const isPlat = (title.includes('poulet') || title.includes('agneau') || title.includes('gratin') || 
+                              title.includes('burger') || title.includes('viande') || title.includes('pâtes') ||
+                              title.includes('riz') || title.includes('rôti') || title.includes('confit') ||
+                              recipeTags.includes('plat') || recipeCat.includes('plat') || recipeCat.includes('plats')) && !title.includes('apéro');
+                
+                const isApero = title.includes('croquetas') || title.includes('apéro') || title.includes('tapas') || 
+                              title.includes('cocktail') || recipeTags.includes('aperitif') || recipeTags.includes('apéro') ||
+                              recipeCat.includes('aperitifs') || recipeCat.includes('apéro') || title.includes('houmous');
+
+                const isEntree = title.includes('salade') || title.includes('soupe') || title.includes('velouté') ||
+                               title.includes('œuf') || title.includes('entrée') || recipeTags.includes('entrée') ||
+                               recipeCat.includes('entrees') || recipeCat.includes('entrée') || title.includes('carpaccio');
+
+                const isDessert = (title.includes('chocolat') || title.includes('sucre') || 
+                                 title.includes('fruit') || title.includes('tiramisu') || title.includes('crème') ||
+                                 title.includes('mousse') || title.includes('yaourt') || title.includes('sorbet') ||
+                                 title.includes('glace') || recipeCat.includes('dessert') || recipeTags.includes('desserts') || recipeTags.includes('dessert')) && !isSavory && !title.includes('gâteau') && !title.includes('cake');
+
+                const isPatisserie = (title.includes('gâteau') || title.includes('cake') || title.includes('tarte sucrée') || 
+                                    title.includes('cookie') || title.includes('muffins') || title.includes('pâtisserie') ||
+                                    recipeCat.includes('patisserie')) && !isSavory;
+
+                // Attribution Prioritaire
+                if (tagLower === 'plats' && isPlat) return true;
+                if (tagLower === 'aperitifs' && isApero) return true;
+                if (tagLower === 'entrees' && isEntree) return true;
+                if (tagLower === 'desserts' && isDessert) return true;
+                if (tagLower === 'patisserie' && isPatisserie) return true;
+
+                // Par défaut : match catégorie ou tag
+                const isMatch = recipeCat === tagLower || recipeCat.includes(tagLower) || tagLower.includes(recipeCat) || recipeTags.some(t => t.includes(tagLower));
+                
+                if ((tagLower === 'patisserie' || tagLower === 'desserts') && isSavory) return false;
+
+                return isMatch;
             });
         });
+
+        // SHUFFLE pour La Dolce Vita (Italie uniquement)
+        if (activeTags.length === 1 && activeTags[0].toLowerCase() === 'italie') {
+            return [...results].sort(() => Math.random() - 0.5);
+        }
+
+        return results;
     }, [activeTags, hasNoRecipes]);
 
     // Texte d'affichage des filtres
@@ -128,13 +187,18 @@ function HomeContent() {
         }
     }, [setActiveTags]);
 
-    // Initialisation via query param (ex: /?tag=France)
+    // Initialisation via query param (ex: /?tags=Italie,Pâtes)
     useEffect(() => {
-        const tag = searchParams.get('tag');
-        if (tag) {
-            // FORCE SET (Exclusivité demandée par le client pour les liens directs)
-            setActiveTags([tag]);
-            
+        const tagsParam = searchParams.get('tags');
+        const tagParam = searchParams.get('tag'); // Garder compatibilité avec l'ancien
+        
+        if (tagsParam) {
+            setActiveTags(tagsParam.split(','));
+        } else if (tagParam) {
+            setActiveTags([tagParam]);
+        }
+        
+        if (tagsParam || tagParam) {
             // Scroll direct
             setTimeout(() => {
                 const resultsSection = document.getElementById('categories-title');
@@ -187,7 +251,9 @@ function HomeContent() {
                 {activeTags.length === 0 && (
                     <>
                         <HeroHome />
-                        <div className={styles.sectionSpacer} />
+                        <div className={styles.sectionSpacer} style={{ height: '20px' }} />
+                        <ResumeRecipe />
+                        <div className={styles.sectionSpacer} style={{ height: '30px' }} />
                         <ThematicGroup activeTags={activeTags} />
                         <div className={styles.sectionSpacer} />
                     </>
@@ -195,14 +261,6 @@ function HomeContent() {
 
                 {/* ANCRE ET TITRE DE RÉSULTATS */}
                 <div id="categories-title" className={styles.categoriesAnchor}></div>
-                
-                {activeTags.length === 0 && (
-                    <>
-                        <div className={styles.sectionSpacer} style={{ height: '40px' }} />
-                        <ResumeRecipe />
-                        <div className={styles.sectionSpacer} style={{ height: '40px' }} />
-                    </>
-                )}
                 
                 <motion.div
                     key={activeTags.join('|') || 'all'}
@@ -260,15 +318,75 @@ function HomeContent() {
 
                     {activeTags.length === 0 && categories.map((category) => {
                         const allCategoryRecipes = mockRecipes.filter(r => {
+                            const title = r.title.toLowerCase();
                             const tags = r.tags?.map(t => t.toLowerCase()) || [];
-                            const cat = r.category?.toLowerCase();
-                            if (category.id === 'vegetarien') {
-                                return tags.some(t => t.includes('végé') || t.includes('vege') || t.includes('vegetarien')) || cat === 'vegetarien';
+                            const cat = r.category?.toLowerCase() || "";
+                            const catId = category.id.toLowerCase();
+                            
+                            // 1. Logique Spéciale Végétarien
+                            if (catId === 'vegetarien') {
+                                return tags.some(t => t.includes('végé') || t.includes('vege') || t.includes('vegetarien')) || 
+                                       cat.includes('vegetarien') || 
+                                       title.includes('végé') || title.includes('vgt');
                             }
-                            return cat === category.id || tags.includes(category.id);
+
+                            // 2. Détection du type de plat (Salé vs Sucré)
+                            const isSavory = title.includes('poulet') || title.includes('viande') || title.includes('gratin') || 
+                                           title.includes('pâtes') || title.includes('pizza') || title.includes('salade') ||
+                                           title.includes('agneau') || title.includes('poisson') || title.includes('riz') ||
+                                           title.includes('burger') || title.includes('soupe') || title.includes('quiche') ||
+                                           title.includes('croquetas') || title.includes('apéro') || title.includes('tapas') ||
+                                           title.includes('légume') || title.includes('fromage') || title.includes('patate') ||
+                                           title.includes('pomme de terre') || title.includes('oeuf') || title.includes('œuf') ||
+                                           title.includes('crevette') || title.includes('saumon') || title.includes('thon') ||
+                                           title.includes('pesto') || title.includes('tomate') || title.includes('bagel') ||
+                                           title.includes('bruschetta') || title.includes('casatiello') || title.includes('focaccia') ||
+                                           title.includes('bread') || title.includes('pain') || title.includes('olive');
+
+                            const isPlat = (title.includes('poulet') || title.includes('agneau') || title.includes('gratin') || 
+                                          title.includes('burger') || title.includes('viande') || title.includes('pâtes') ||
+                                          title.includes('riz') || title.includes('rôti') || title.includes('confit') ||
+                                          tags.includes('plat') || cat.includes('plat') || cat.includes('plats')) && !title.includes('apéro');
+                            
+                            const isApero = title.includes('croquetas') || title.includes('apéro') || title.includes('tapas') || 
+                                          title.includes('cocktail') || tags.includes('aperitif') || tags.includes('apéro') ||
+                                          cat.includes('aperitifs') || cat.includes('apéro') || title.includes('houmous');
+
+                            const isEntree = title.includes('salade') || title.includes('soupe') || title.includes('velouté') ||
+                                           title.includes('œuf') || title.includes('entrée') || tags.includes('entrée') ||
+                                           cat.includes('entrees') || cat.includes('entrée') || title.includes('carpaccio');
+
+                            const isDessert = (title.includes('chocolat') || title.includes('sucre') || 
+                                             title.includes('fruit') || title.includes('tiramisu') || title.includes('crème') ||
+                                             title.includes('mousse') || title.includes('yaourt') || title.includes('sorbet') ||
+                                             title.includes('glace') || cat.includes('dessert')) && !isSavory && !title.includes('gâteau') && !title.includes('cake');
+
+                            const isPatisserie = (title.includes('gâteau') || title.includes('cake') || title.includes('tarte sucrée') || 
+                                                title.includes('cookie') || title.includes('muffins') || title.includes('pâtisserie') ||
+                                                cat.includes('patisserie')) && !isSavory;
+
+                            // Attribution Prioritaire
+                            if (catId === 'plats' && isPlat) return true;
+                            if (catId === 'aperitifs' && isApero) return true;
+                            if (catId === 'entrees' && isEntree) return true;
+                            if (catId === 'desserts' && isDessert) return true;
+                            if (catId === 'patisserie' && isPatisserie) return true;
+
+                            // 3. Fallback Match classique (si pas déjà classé par mot-clé)
+                            const isMatch = cat.includes(catId) || 
+                                           catId.includes(cat) || 
+                                           tags.some(t => t.includes(catId) || catId.includes(t.toLowerCase()));
+                            
+                            // Sécurité pour éviter les doublons ou erreurs si c'est du salé dans du sucré
+                            if ((catId === 'patisserie' || catId === 'desserts') && isSavory) return false;
+
+                            return isMatch;
                         });
-                        const categoryRecipes = allCategoryRecipes.slice(0, 10);
+
+                        // Optimisation performance : slice(0, 20) pour la page d'accueil
+                        const categoryRecipes = allCategoryRecipes.slice(0, 20);
                         if (categoryRecipes.length === 0) return null;
+                        
                         return <CategoryGroup 
                             key={category.id} 
                             category={category} 
@@ -279,33 +397,49 @@ function HomeContent() {
                 </motion.div>
             </main>
             <BackToTop />
-            <SyncFooter />
         </div>
     );
 }
 
 function CategoryGroup({ category, recipes, activeTags }: { category: any, recipes: any[], activeTags: string[] }) {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const scrollSpeed = useRef(0);
+    const animationFrame = useRef<number>();
+
+    const updateScroll = useCallback(() => {
+        if (scrollRef.current && scrollSpeed.current !== 0) {
+            scrollRef.current.scrollLeft += scrollSpeed.current;
+        }
+        animationFrame.current = requestAnimationFrame(updateScroll);
+    }, []);
+
+    useEffect(() => {
+        animationFrame.current = requestAnimationFrame(updateScroll);
+        return () => {
+            if (animationFrame.current) cancelAnimationFrame(animationFrame.current);
+        };
+    }, [updateScroll]);
+
     const handleMouseMove = useCallback((e: React.MouseEvent) => {
         if (!scrollRef.current) return;
         if (window.matchMedia('(pointer: coarse)').matches) return;
         const container = scrollRef.current;
         const rect = container.getBoundingClientRect();
         const x = e.clientX - rect.left;
-        const threshold = 50; 
-        let percentage;
+        
+        const threshold = 180; 
         if (x < threshold) {
-            percentage = 0;
+            scrollSpeed.current = -Math.pow((threshold - x) / threshold, 2) * 15;
         } else if (x > rect.width - threshold) {
-            percentage = 1;
+            scrollSpeed.current = Math.pow((x - (rect.width - threshold)) / threshold, 2) * 15;
         } else {
-            percentage = (x - threshold) / (rect.width - 2 * threshold);
+            scrollSpeed.current = 0;
         }
-        const scrollWidth = container.scrollWidth;
-        const clientWidth = container.clientWidth;
-        const maxScroll = scrollWidth - clientWidth;
-        container.scrollLeft = percentage * maxScroll;
     }, []);
+
+    const handleMouseLeave = () => {
+        scrollSpeed.current = 0;
+    };
 
     return (
         <section className={styles.categorySection}>
@@ -333,16 +467,21 @@ function CategoryGroup({ category, recipes, activeTags }: { category: any, recip
                     ref={scrollRef}
                     className={styles.categoryCarousel}
                     onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
                 >
                     {recipes.map((recipe: any) => (
                         <div key={recipe.id} className={styles.carouselItem}>
                             <RecipeCard recipe={recipe} activeTags={activeTags} />
                         </div>
                     ))}
-                    <div className={styles.carouselItem} style={{ flex: '0 0 200px' }}>
-                        <Link href={`/category/${category.id}`} className={styles.viewMoreCardGrid}>
+                    <div className={styles.carouselItem} style={{ flex: '0 0 280px', width: '280px' }}>
+                        <Link 
+                            href={`/category/${category.id}`} 
+                            className={`${styles.viewMoreCardGrid} ${styles['cat_' + category.id]}`}
+                        >
                             <div className={styles.viewMoreContent}>
-                                <span className={styles.viewMoreText}>Voir tout</span>
+                                <span className={styles.viewMoreTextTop}>Voir</span>
+                                <span className={styles.viewMoreTextBottom}>tout</span>
                             </div>
                         </Link>
                     </div>
@@ -354,12 +493,29 @@ function CategoryGroup({ category, recipes, activeTags }: { category: any, recip
 
 function ThematicGroup({ activeTags }: { activeTags: string[] }) {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const scrollSpeed = useRef(0);
+    const animationFrame = useRef<number>();
+
+    const updateScroll = useCallback(() => {
+        if (scrollRef.current && scrollSpeed.current !== 0) {
+            scrollRef.current.scrollLeft += scrollSpeed.current;
+        }
+        animationFrame.current = requestAnimationFrame(updateScroll);
+    }, []);
+
+    useEffect(() => {
+        animationFrame.current = requestAnimationFrame(updateScroll);
+        return () => {
+            if (animationFrame.current) cancelAnimationFrame(animationFrame.current);
+        };
+    }, [updateScroll]);
+
     const thematiques = [
-        { id: 'paques', name: 'Pâques est là', tag: 'Pâques', image: '/images/themes/paques.jpg' },
-        { id: 'noel', name: "C'est Noël", tag: 'Noël', image: '/images/themes/noel.jpg' },
-        { id: 'astuces', name: 'Astuces', tag: 'Astuces', image: '/images/themes/astuces.jpg' },
-        { id: 'simplissime', name: 'Simplissime', tag: 'Simplissime', image: '/images/themes/simplissime.jpg' },
-        { id: 'dolce-vita', name: 'La Dolce Vita', tag: 'Italie', image: '/images/themes/dolce-vita.jpg' }
+        { id: 'paques', name: 'Pâques est là', tags: ['Pâques'], image: '/images/themes/paques.jpg?v=999' },
+        { id: 'noel', name: "C'est Noël", tags: ['Noël'], image: '/images/themes/noel.jpg' },
+        { id: 'astuces', name: 'Astuces', tags: ['Astuces'], image: '/images/themes/astuces.jpg' },
+        { id: 'simplissime', name: 'Simplissime', tags: ['Simplissime'], image: '/images/themes/simplissime.jpg' },
+        { id: 'dolce-vita', name: 'La Dolce Vita', tags: ['Italie'], image: '/images/themes/dolce-vita.jpg' }
     ];
 
     const handleMouseMove = useCallback((e: React.MouseEvent) => {
@@ -368,20 +524,20 @@ function ThematicGroup({ activeTags }: { activeTags: string[] }) {
         const container = scrollRef.current;
         const rect = container.getBoundingClientRect();
         const x = e.clientX - rect.left;
-        const threshold = 50; 
-        let percentage;
+        
+        const threshold = 180; 
         if (x < threshold) {
-            percentage = 0;
+            scrollSpeed.current = -Math.pow((threshold - x) / threshold, 2) * 15;
         } else if (x > rect.width - threshold) {
-            percentage = 1;
+            scrollSpeed.current = Math.pow((x - (rect.width - threshold)) / threshold, 2) * 15;
         } else {
-            percentage = (x - threshold) / (rect.width - 2 * threshold);
+            scrollSpeed.current = 0;
         }
-        const scrollWidth = container.scrollWidth;
-        const clientWidth = container.clientWidth;
-        const maxScroll = scrollWidth - clientWidth;
-        container.scrollLeft = percentage * maxScroll;
     }, []);
+
+    const handleMouseLeave = () => {
+        scrollSpeed.current = 0;
+    };
 
     if (activeTags.length > 0) return null;
 
@@ -406,11 +562,12 @@ function ThematicGroup({ activeTags }: { activeTags: string[] }) {
                     ref={scrollRef}
                     className={styles.thematicCarousel}
                     onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
                 >
                     {thematiques.map((theme) => (
                         <Link 
                             key={theme.id} 
-                            href={`/?tag=${theme.tag}`} 
+                            href={`/?tags=${theme.tags.join(',')}`} 
                             className={styles.thematicCard}
                         >
                             <img src={theme.image} alt={theme.name} className={styles.thematicImage} />

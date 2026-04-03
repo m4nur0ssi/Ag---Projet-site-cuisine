@@ -134,7 +134,7 @@
 .toolsGroup {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px; /* Un peu plus d'espace pour un look premium et aéré */
 }
 
 .toolBtn {
@@ -188,7 +188,7 @@
     background: transparent;
     border: none;
     padding: 0;
-    margin-left: 8px;
+    margin-left: 0; /* Suppression de la marge pour respecter l'espacement du gap */
     cursor: pointer;
 }
 
