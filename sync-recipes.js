@@ -137,7 +137,31 @@ function extractRecipeData(post) {
         image: post._embedded?.['wp:featuredmedia']?.[0]?.source_url 
             ? `/api/image-proxy?url=${encodeURIComponent(post._embedded['wp:featuredmedia'][0].source_url.replace(WORDPRESS_LOCAL_IP, WORDPRESS_PUBLIC_IP))}&v=${new Date(post.modified).getTime()}`
             : "/images/recipe-placeholder.jpg",
-        category: post.categories?.includes(14) ? "plats" : "patisserie",
+        category: (() => {
+            const title = decodeHtmlEntities(post.title.rendered).toLowerCase();
+            const tags = (post._embedded?.['wp:term']?.[1]?.map(tag => tag.name.toLowerCase()) || []);
+            
+            // 1. Détection par tags prioritaires (si présents sur WordPress)
+            if (tags.includes('glaces') || tags.includes('sorbet')) return "glaces";
+            if (tags.includes('boissons') || tags.includes('cocktail')) return "boissons";
+            if (tags.includes('apéro') || tags.includes('apéritifs')) return "apéritifs";
+            if (tags.includes('entrées')) return "entrées";
+            if (tags.includes('plats')) return "plats";
+            if (tags.includes('desserts')) return "desserts";
+            if (tags.includes('pâtisserie')) return "pâtisserie";
+
+            // 2. Détection par mots-clés dans le titre (comme dans lib/recipeUtils)
+            if (title.includes('glace') || title.includes('sorbet')) return "glaces";
+            if (title.includes('boisson') || title.includes('cocktail') || title.includes('rafraîchissement')) return "boissons";
+            if (title.includes('croquetas') || title.includes('apéro') || title.includes('tapas') || title.includes('houmous')) return "apéritifs";
+            if (title.includes('salade') || title.includes('soupe') || title.includes('velouté') || title.includes('œuf') || title.includes('carpaccio')) return "entrées";
+            if (['gâteau', 'cake', 'tarte', 'cookie', 'muffins', 'pâtisserie'].some(k => title.includes(k))) return "desserts";
+            if (['chocolat', 'sucre', 'fruit', 'tiramisu', 'mousse', 'dessert'].some(k => title.includes(k))) return "desserts";
+
+            // 3. Fallback sur la catégorie WordPress ou "plats" par défaut
+            if (post.categories?.includes(14)) return "plats"; // ID WordPress pour Plats
+            return "plats"; // Fin du règne de la pâtisserie par défaut !
+        })(),
         difficulty: (difficultyMatch?.[1]?.toLowerCase().trim() || "moyen"),
         prepTime: parseInt(prepTimeMatch?.[1] || "15"),
         cookTime: parseInt(cookTimeMatch?.[1] || "30"),
