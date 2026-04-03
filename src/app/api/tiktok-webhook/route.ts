@@ -149,7 +149,7 @@ async function handleRequest(request: Request) {
         if (isDup) {
              return NextResponse.json({ 
                 success: false, 
-                status: 'duplicate',
+                status: 'Duplicate',
                 message: dupMessage,
                 url: videoUrl
             });
