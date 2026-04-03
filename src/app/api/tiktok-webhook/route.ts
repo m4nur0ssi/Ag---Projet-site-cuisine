@@ -176,8 +176,9 @@ async function handleRequest(request: Request) {
     if (!selectedCountry && !checkOnly && body.checkOnly !== 'true' && body.checkOnly !== true) {
         const countriesList = [
             "France", "Italie", "Espagne", "Grèce", "Liban",
-            "USA", "Mexique", "Orient", "Asie", "Autre",
-            "Pâques", "Noël", "Facile", "Dolce Vita", "Astuce"
+            "USA", "Mexique", "Orient", "Asie", "Afrique",
+            "Rapide", "Facile", "Pâques", "Dolce Vita", "Astuce",
+            "Glaces", "Boissons", "Goûter", "Healthy", "Végé"
         ];
         
         const countryMenu: any = {};
