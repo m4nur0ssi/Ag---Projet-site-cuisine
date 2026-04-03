@@ -160,17 +160,38 @@ async function syncRecipes() {
     
     let allPosts = [];
     let page = 1;
+    let hasMore = true;
 
     try {
-        const url = `${WORDPRESS_API_URL}/posts?per_page=100&page=${page}&status=publish&_embed&orderby=modified&nocache=${Date.now()}`;
-        console.log(`📡 Connexion : ${url}`);
+        while (hasMore) {
+            const url = `${WORDPRESS_API_URL}/posts?per_page=100&page=${page}&status=publish&_embed&orderby=modified&nocache=${Date.now()}`;
+            console.log(`📡 Connexion page ${page} : ${url}`);
 
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const posts = await response.json();
-        for (const post of posts) {
-            allPosts.push(extractRecipeData(post));
+            const response = await fetch(url);
+            if (!response.ok) {
+                if (response.status === 400 && page > 1) {
+                    hasMore = false;
+                    break;
+                }
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
+            const posts = await response.json();
+            if (posts.length === 0) {
+                hasMore = false;
+                break;
+            }
+
+            console.log(`   📥 Reçu ${posts.length} recettes de la page ${page}...`);
+            for (const post of posts) {
+                allPosts.push(extractRecipeData(post));
+            }
+
+            if (posts.length < 100) {
+                hasMore = false;
+            } else {
+                page++;
+            }
         }
 
         // Sauvegarde mockData.ts
