@@ -135,7 +135,7 @@ function extractRecipeData(post) {
         title: decodeHtmlEntities(post.title.rendered),
         description: description,
         image: post._embedded?.['wp:featuredmedia']?.[0]?.source_url 
-            ? `/api/image-proxy?url=${encodeURIComponent(post._embedded['wp:featuredmedia'][0].source_url)}&v=${new Date(post.modified).getTime()}`
+            ? `/api/image-proxy?url=${encodeURIComponent(post._embedded['wp:featuredmedia'][0].source_url.replace(WORDPRESS_LOCAL_IP, WORDPRESS_PUBLIC_IP))}&v=${new Date(post.modified).getTime()}`
             : "/images/recipe-placeholder.jpg",
         category: post.categories?.includes(14) ? "plats" : "patisserie",
         difficulty: (difficultyMatch?.[1]?.toLowerCase().trim() || "moyen"),
