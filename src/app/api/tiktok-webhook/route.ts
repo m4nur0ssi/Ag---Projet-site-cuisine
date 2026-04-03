@@ -172,32 +172,22 @@ async function handleRequest(request: Request) {
     }
 
     // Étape 1 : Si on n'a pas de pays, on envoie le dictionnaire attendu par le Raccourci iOS.
-    // IMPORTANT : Les CLEFS (Keys) doivent être sans emoji pour ne pas faire buguer le raccourci, 
-    // et les VALEURS contiennent les emojis pour qu'ils s'affichent joliment dans le menu !
+    // AUCUN EMOJI NULLE PART : iOS Shortcuts crashe complètement qaund on lui passe des emojis dans ce dictionnaire.
     if (!selectedCountry && !checkOnly && body.checkOnly !== 'true' && body.checkOnly !== true) {
-        const countryMenu: any = {
-            "France": "🇫🇷 France",
-            "Italie": "🇮🇹 Italie",
-            "Espagne": "🇪🇸 Espagne",
-            "Grèce": "🇬🇷 Grèce",
-            "Liban": "🇱🇧 Liban",
-            "USA": "🇺🇸 USA",
-            "Mexique": "🇲🇽 Mexique",
-            "Orient": "🕌 Orient",
-            "Asie": "🥢 Asie",
-            "Autre": "🗺️ Autre",
-            "Paques": "🐣 Pâques",
-            "Noel": "🎄 Noël",
-            "Facile": "😊 Facile",
-            "Dolce": "🍝 Dolce Vita",
-            "Astuce": "💡 Astuce"
-        };
+        const countriesList = [
+            "France", "Italie", "Espagne", "Grèce", "Liban",
+            "USA", "Mexique", "Orient", "Asie", "Autre",
+            "Pâques", "Noël", "Facile", "Dolce Vita", "Astuce"
+        ];
+        
+        const countryMenu: any = {};
+        countriesList.forEach(c => countryMenu[c] = c);
 
         const response = NextResponse.json({ 
             status: countryMenu,
             countries: countryMenu, 
             pays: countryMenu,
-            v: "00:16-FIX-DICTIONARY",
+            v: "00:17-NO-EMOJIS",
             message: 'Quel pays ?'
         });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
