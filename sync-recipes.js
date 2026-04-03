@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { fetch } = require('undici'); // Pour Node < 18, si besoin, mais Vercel est >= 18
+// fetch est natif en Node 18+ (actuellement Node 24 vus les logs)
 
 /**
  * Script de synchronisation des recettes depuis WordPress vers le projet local

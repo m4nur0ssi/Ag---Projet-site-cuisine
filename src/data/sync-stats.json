@@ -1,9 +1,5 @@
 {
-  "lastSync": "2026-04-03T08:45:14Z",
-  "trigger": "schedule",
-  "action": "schedule",
-  "postId": "",
-  "mode": "full",
-  "status": "success",
-  "ts": 1775205914
+  "lastSync": "2026-04-03T08:54:46.025Z",
+  "totalRecipes": 173,
+  "status": "success"
 }
