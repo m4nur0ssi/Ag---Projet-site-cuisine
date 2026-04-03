@@ -37,8 +37,25 @@ async function addToQueue(videoUrl: string, country: string) {
              return { ok: false, error: 'Erreur inattendue Github API: ' + getRes.statusText };
         }
 
-        // 2. Ajouter la recette
+        // 2. Vérifier les doublons
         if (!currentData.queue) currentData.queue = [];
+        
+        // 2.a - Doublon dans la file d'attente ?
+        const isDuplicateInQueue = currentData.queue.some((item: any) => item.videoUrl === videoUrl);
+        if (isDuplicateInQueue) {
+            return { ok: false, error: 'already_queued', message: '⚠️ Cette recette est déjà en file d\'attente !' };
+        }
+
+        // 2.b - Doublon déjà publié ?
+        const match = videoUrl.match(/video\/(\d+)/);
+        const videoId = match ? match[1] : null;
+        if (videoId) {
+            const isAlreadyPublished = mockRecipes.some(r => r.videoHtml && r.videoHtml.includes(videoId));
+            if (isAlreadyPublished) {
+                return { ok: false, error: 'already_published', message: '✅ Cette recette est déjà publiée sur le site !' };
+            }
+        }
+
         currentData.queue.push({ videoUrl, country, timestamp: new Date().toISOString() });
 
         // 3. Sauvegarder sur GitHub
@@ -146,6 +163,17 @@ async function handleRequest(request: Request) {
     console.log(`✅ Webhook : Envoi en cuisine ! (Pays : ${selectedCountry || 'Autre'})`);
     
     const queueResult = await addToQueue(videoUrl, selectedCountry || '🗺️ Autre');
+
+    // Message personnalisé si c'est un doublon
+    if (queueResult.ok === false && queueResult.message) {
+        return NextResponse.json({ 
+            success: false, 
+            status: 'duplicate',
+            message: queueResult.message,
+            url: videoUrl,
+            debug_queue_result: queueResult
+        });
+    }
 
     return NextResponse.json({ 
         success: true, 
