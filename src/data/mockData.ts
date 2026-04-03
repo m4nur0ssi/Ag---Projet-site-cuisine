@@ -2,11 +2,98 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/04/2026 11:21:00
+ * Dernière mise à jour: 03/04/2026 11:45:15
  * Total: 100 recettes
  */
-export const exportSyncId = "1775208060182";
+export const exportSyncId = "1775209515171";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4797",
+        "title": "Croquetas de Jambon (version budget)",
+        "description": "Découvrez une recette de croquetas de jambon dorées, croustillantes et délicieuses, une version budget du classique espagnol, parfaites pour l&rsquo;apéritif ou comme tapas.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F192.168.1.200%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775209010867.jpg&v=1775209015000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7287279168671223072\" data-video-id=\"7287279168671223072\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7287279168671223072\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de pancetta coupée en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 cuillères à soupe de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 grande échalote, finement hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             100g de jambon Serrano, finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             4 cuillères à soupe de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Environ 600ml de lait demi-écrémé ou entier"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de Manchego râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une petite pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Une grande pincée de granulés d&rsquo;ail, de muscade et de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             1/2 cube de bouillon de poulet de bonne qualité"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 grand œuf battu avec un filet de lait (pour la panure)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Environ 100g de farine tout usage (pour la panure)"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Environ 75g de chapelure (pour la panure)"
+            }
+        ],
+        "steps": [
+            "Ajouter la pancetta dans une poêle froide et monter le feu à vif.",
+            "Une fois la pancetta presque croustillante, baisser le feu à moyen et ajouter le beurre, l&rsquo;échalote et le jambon Serrano.",
+            "Cuire jusqu&rsquo;à ce que l&rsquo;échalote soit ramollie et la viande croustillante.",
+            "Incorporer la farine et remuer jusqu&rsquo;à ce qu&rsquo;elle soit bien mélangée, cuire quelques minutes jusqu&rsquo;à ce qu&rsquo;elle dégage une odeur de noisette et parfumée.",
+            "Verser le lait en remuant continuellement.",
+            "Une fois incorporé et épaissi, mélanger les assaisonnements et le fromage.",
+            "Une fois le fromage fondu, verser le mélange dans un plat/plateau froid.",
+            "Une fois refroidi à température ambiante, placer au réfrigérateur pendant au moins 4 heures ou toute une nuit, ou alternativement au congélateur pendant environ 1 à 2 heures.",
+            "Une fois refroidi, retirer du réfrigérateur/congélateur et rouler des cuillères à soupe bombées en la forme désirée (l&rsquo;auteur recommande de le faire après avoir légèrement enrobé la croqueta de farine pour moins de désordre).",
+            "Enrober de farine, puis du mélange d&rsquo;œuf et enfin de chapelure.",
+            "Faire frire dans de l&rsquo;huile chaude pendant environ 2-3 minutes jusqu&rsquo;à ce qu&rsquo;elles soient dorées et bien chaudes à l&rsquo;intérieur.",
+            "Déguster avec un verre de sangria glacée ou une bière espagnole."
+        ],
+        "tags": [
+            "Espagne",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4794",
         "title": "Légumes rôtis à l&rsquo;italienne et ricotta",
@@ -7989,129 +8076,6 @@ export const mockRecipes: Recipe[] = [
             "sorrentina",
             "tomate",
             "traditionnel"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3537",
-        "title": "Layer Cake aux Fruits Rouges",
-        "description": "Découvrez la recette d&rsquo;un magnifique layer cake aux fruits rouges, parfait pour célébrer les occasions spéciales. Ce gâteau aérien, composé d&rsquo;une génoise moelleuse, d&rsquo;un confit de fraises acidulé et d&rsquo;une crème onctueuse au...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F192.168.1.200%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Flayer-cake.jpeg&v=1774450784000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&amp;_t=ZN-94a75OnTQuZ\" data-video-id=\"7535717785570135318\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&amp;_t=ZN-94a75OnTQuZ\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚 6 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 200g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 200g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "💧 100g d’eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 3 cuillères à soupe de fleur d’oranger"
-            },
-            {
-                "quantity": "",
-                "name": "🍓 250 g de fraises pour le confit"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 30 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 6 g de pectine"
-            },
-            {
-                "quantity": "",
-                "name": "🧀 450 g mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 600 g crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 50 g sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🍦 1 gousse de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🍓 Fraises pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Myrtilles pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🍇 Framboises pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Groseilles pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Fleurs comestibles pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 Menthe fraîche pour la déco"
-            }
-        ],
-        "steps": [
-            "Pour le biscuit génoise (la veille) : préchauffez le four à 175°C en chaleur traditionnelle.",
-            "Battez les œufs et le sucre à grande vitesse au robot pendant 10 min environ jusqu’à ce que la préparation triple de volume.",
-            "Ajoutez la farine tamisée en plusieurs fois, et mélangez délicatement à la maryse.",
-            "Chemisez un moule à manqué de 20 cm avec du papier sulfurisé (le fond et les côtés), en faisant dépasser le papier sulfurisé en hauteur de 10 cm si votre moule n’est pas assez haut.",
-            "Versez la pâte puis tapez le moule pour chasser l’air.",
-            "Enfournez 45 min sans ouvrir le four.",
-            "Vérifiez la cuisson avec la lame d’un couteau ou un pic en bois (sans traces).",
-            "Laissez refroidir et démoulez le lendemain.",
-            "Pour le confit de fraises (la veille) : cuire les fraises dans une casserole jusqu’à obtenir une légère compotée.",
-            "Ajouter le mélange sucre pectine, cuire encore 2-3 min.",
-            "Pour le sirop à la fleur d’oranger : faites chauffer 100 g d’eau et 100 g de sucre dans une casserole jusqu’à légère ébullition.",
-            "Réservez et versez 3 cuillères à soupe de fleur d’oranger.",
-            "Pour la crème : fouettez la crème liquide, le mascarpone, le sucre glace et la vanille au robot.",
-            "Pour le montage : découpez le biscuit en 2 puis imbibez les deux parties de sirop.",
-            "Pochez une couche de crème sur le premier biscuit, ajoutez le confit de fraises puis quelques fruits frais.",
-            "Répétez l’opération.",
-            "Terminez par recouvrir le gâteau de crème et lissez-la à la corne.",
-            "Recouvrez de fruits."
-        ],
-        "tags": [
-            "anniversaire",
-            "fleur d'oranger",
-            "fruits rouges",
-            "gâteau",
-            "layer cake",
-            "mariage",
-            "mascarpone",
-            "recette"
         ],
         "isFeatured": false,
         "isFavorite": false,
