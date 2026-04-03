@@ -2,11 +2,94 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/04/2026 11:14:19
+ * Dernière mise à jour: 03/04/2026 11:21:00
  * Total: 100 recettes
  */
-export const exportSyncId = "1775207659334";
+export const exportSyncId = "1775208060182";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4794",
+        "title": "Légumes rôtis à l&rsquo;italienne et ricotta",
+        "description": "Une recette simple et rapide de légumes rôtis (pommes de terre, tomates cerises, pois chiches) assaisonnés aux herbes, miel et vinaigre balsamique, servis sur un lit de ricotta crémeuse et parsemés de parmesan et d&rsquo;herbes fraîches. Idéal pou...",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7489093004754423062\" data-video-id=\"7489093004754423062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7489093004754423062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             450g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             300g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             180g de pois chiche"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cas de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cas de persillade"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cac d’ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cas d’huile d’olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cas de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 ricotta (250g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes fraîches (basilic…)"
+            }
+        ],
+        "steps": [
+            "Mélanger dans un plat des petites pommes de terre coupées en 2 (ou des grosses en petits morceaux) avec les tomates cerises et les pois chiches.",
+            "Ajouter la persillade, le thym, l’ail, le miel, l’huile d’olive et le vinaigre balsamique. Bien mélanger.",
+            "Faire cuire les légumes au four pendant 30-35 minutes à 200 degrés, en mélangeant à mi-cuisson.",
+            "Étaler une bonne couche de ricotta au fond de l’assiette (vous pouvez aussi utiliser de la burrata ou de la mozzarella).",
+            "Disposer les légumes bien rôtis sur la ricotta.",
+            "Parsemer de parmesan râpé et d&rsquo;herbes fraîches (comme du basilic)."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "rapide",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4761",
         "title": "Casatiello napoletano",
@@ -8029,105 +8112,6 @@ export const mockRecipes: Recipe[] = [
             "mariage",
             "mascarpone",
             "recette"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3539",
-        "title": "Gâteau spéculoos, fruits rouges et mascarpone",
-        "description": "Un dessert frais, fondant et gourmand qui a connu un grand succès sur les réseaux sociaux. Ce gâteau combine les saveurs douces des spéculoos avec la fraîcheur acidulée des fruits rouges et la légèreté du mascarpone. Parfait pour régaler 12 person...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F192.168.1.200%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgateau-mascarpone-ricotta-fruits-rouges-sans-cuisson.jpeg&v=1774450526000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@mesdelicieusescreations/video/7615294388188548385?_r=1&amp;_t=ZN-94a7b10AFV8\" data-video-id=\"7615294388188548385\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@mesdelicieusescreations/video/7615294388188548385?_r=1&amp;_t=ZN-94a7b10AFV8\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣 170 g de spéculoos"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 75 g de beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 600 ml de crème liquide entière"
-            },
-            {
-                "quantity": "",
-                "name": "🧀 250 g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 300 g de Philadelphia"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 90 g de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🍦 1 c. à café d’extrait de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🍓 200 g de fraises surgelées"
-            },
-            {
-                "quantity": "",
-                "name": "🍇 200 g de framboises surgelées"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 45 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 1 jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 170 g de pâte à tartiner spéculoos"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 1 petit paquet de biscuits cuillère"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 Un peu de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🍇 Framboises fraîches"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Spéculoos concassés"
-            }
-        ],
-        "steps": [
-            "Faites cuire les fraises, framboises, sucre et citron jusqu’à obtenir une marmelade. Laissez refroidir.",
-            "Mixez les spéculoos, mélangez avec le beurre fondu, tassez dans un cadre (≈ 19,5 × 27 cm) et placez au frais.",
-            "Fouettez la crème, le mascarpone, le Philadelphia, le sucre glace et la vanille jusqu’à obtenir une texture aérienne.",
-            "Montez le gâteau : disposez une couche de crème, puis des biscuits cuillère imbibés de lait, ensuite la marmelade, et terminez par une dernière couche de crème.",
-            "Placez le gâteau au frais toute la nuit.",
-            "Chauffez légèrement la pâte spéculoos, versez sur le gâteau et laissez figer.",
-            "Démoulez le gâteau, ajoutez des spéculoos concassés sur les côtés et décorez chaque part avec une framboise, un filet de pâte spéculoos et un peu de crème."
-        ],
-        "tags": [
-            "facile",
-            "fait maison",
-            "frais",
-            "fruits rouges",
-            "gourmand",
-            "mascarpone",
-            "spéculoos"
         ],
         "isFeatured": false,
         "isFavorite": false,
