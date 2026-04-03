@@ -115,10 +115,47 @@ async function handleRequest(request: Request) {
 
     if (!videoUrl) return NextResponse.json({ error: 'URL manquante' }, { status: 400 });
 
-    // --- DETECTION DU PAYS (ULTRA ROBUSTE) ---
+    // --- DETECTION DU PAYS ET DOUBLON ---
     let selectedCountry = searchParams.get('country') || body.country || searchParams.get('pays') || body.pays || '';
     
-    // Si on n'a toujours pas trouvé le pays, on fouille TOUT le body (au cas où l'iPhone l'envoie bizarrement)
+    // On vérifie d'abord si la recette est DÉJÀ en base AVANT de demander le pays !
+    if (!checkOnly) {
+        let isDup = false;
+        let dupMessage = '';
+        
+        // Check Github Queue via API (rapide)
+        try {
+            const githubToken = process.env.GITHUB_PAT;
+            if (githubToken) {
+                const getRes = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPO || 'm4nur0ssi/Ag---Projet-site-cuisine'}/contents/tiktok-bot/queue.json`, {
+                    headers: { 'Authorization': `Bearer ${githubToken}`, 'Accept': 'application/vnd.github.v3+json' }
+                });
+                if (getRes.ok) {
+                    const data = JSON.parse(Buffer.from((await getRes.json()).content, 'base64').toString());
+                    if (data.queue && data.queue.some((item: any) => item.videoUrl === videoUrl)) {
+                        isDup = true; dupMessage = '⚠️ Cette recette est déjà en file d\'attente !';
+                    }
+                }
+            }
+        } catch (e) {}
+
+        // Check Published Recipes
+        const match = videoUrl.match(/video\/(\d+)/);
+        const videoId = match ? match[1] : null;
+        if (!isDup && videoId && mockRecipes.some(r => r.videoHtml && r.videoHtml.includes(videoId))) {
+            isDup = true; dupMessage = '✅ Cette recette est déjà publiée sur le site !';
+        }
+
+        if (isDup) {
+             return NextResponse.json({ 
+                success: false, 
+                status: 'duplicate',
+                message: dupMessage,
+                url: videoUrl
+            });
+        }
+    }
+
     if (!selectedCountry && body && typeof body === 'object') {
         const countriesList = ["France", "Italie", "Espagne", "Grèce", "Liban", "USA", "Mexique", "Orient", "Asie", "Autre"];
         for (const val of Object.values(body)) {
@@ -134,25 +171,18 @@ async function handleRequest(request: Request) {
         }
     }
 
-    // --- LOGIQUE DE RÉPONSE ---
-    
-    // Étape 1 : Si on n'a pas de pays et qu'on ne demande pas juste un check, on envoie la liste
+    // Étape 1 : Si on n'a pas de pays, on envoie la liste sous forme de TABLEAU (Array) très simple
+    // pour éviter les bugs du raccourci iOS avec les dictionnaires et les emojis.
     if (!selectedCountry && !checkOnly && body.checkOnly !== 'true' && body.checkOnly !== true) {
         const countriesArr = [
-            // Pays
             "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban",
             "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🗺️ Autre",
-            // Thématiques du moment
             "🐣 Pâques", "🎄 Noël", "😊 Facile", "🍝 Dolce Vita", "💡 Astuce"
         ];
-        const countryDict: any = {};
-        countriesArr.forEach(c => countryDict[c] = c);
 
         const response = NextResponse.json({ 
-            status: countryDict,
-            countries: countryDict, 
-            pays: countryDict,
-            v: "00:13-NETLIFY-FORCE",
+            status: countriesArr, // <-- Raccourcis iOS préfère un tableau direct pour "Choisir dans la liste"
+            v: "00:15-FIX-MENU",
             message: 'Quel pays ?'
         });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');

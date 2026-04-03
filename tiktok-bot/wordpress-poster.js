@@ -180,7 +180,6 @@ async function postToWordPressXMLRPC(recipe) {
         featuredImageId = await uploadImageToWP(recipe.photoUrl, user, pass, wpUrl, encoding);
     }
 
-    let extraCategories = [];
     if (recipe.manualCountry) {
         let cleanCountry = recipe.manualCountry.replace(/^[^\wÀ-ÿ]+/, '').trim(); // Remove emojis at the start
         
@@ -189,10 +188,11 @@ async function postToWordPressXMLRPC(recipe) {
         if (cleanCountry.toLowerCase().includes('facile')) cleanCountry = 'Facile';
         if (cleanCountry.toLowerCase().includes('noël')) cleanCountry = 'Noël';
         if (cleanCountry.toLowerCase().includes('pâques')) cleanCountry = 'Pâques';
-        if (cleanCountry.toLowerCase().includes('astuce')) cleanCountry = 'Astuce';
+        if (cleanCountry.toLowerCase().includes('astuce')) cleanCountry = 'Astuces';
 
         if (cleanCountry && cleanCountry !== 'Autre') {
-            extraCategories.push(cleanCountry);
+            if (!recipe.tags) recipe.tags = [];
+            recipe.tags.push(cleanCountry);
         }
     }
 
@@ -202,7 +202,6 @@ async function postToWordPressXMLRPC(recipe) {
         <member><name>mt_keywords</name><value><string><![CDATA[${(recipe.tags || []).join(', ')}]]></string></value></member>
         <member><name>categories</name><value><array><data>
             <value><string>${categoryName}</string></value>
-            ${extraCategories.map(c => `<value><string>${c}</string></value>`).join('')}
         </data></array></value></member>
         <member><name>post_status</name><value><string>${recipe.status || 'publish'}</string></value></member>
         ${featuredImageId ? `<member><name>wp_post_thumbnail</name><value><string>${featuredImageId}</string></value></member>` : ''}
