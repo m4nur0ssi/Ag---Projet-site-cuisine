@@ -175,6 +175,17 @@ async function handleRequest(request: Request) {
         });
     }
 
+    // Message d'erreur s'il y a eu un autre souci (ex: Token manquant)
+    if (queueResult.ok === false) {
+        return NextResponse.json({ 
+            success: false, 
+            status: 'error',
+            message: `⚠️ Erreur système : ${queueResult.error}`,
+            url: videoUrl,
+            debug_queue_result: queueResult
+        }, { status: 500 });
+    }
+
     return NextResponse.json({ 
         success: true, 
         status: 'ok',
