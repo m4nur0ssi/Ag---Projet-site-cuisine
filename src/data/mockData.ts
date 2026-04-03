@@ -2,74 +2,309 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/04/2026 14:42:10
- * Total: 175 recettes
+ * Dernière mise à jour: 03/04/2026 17:59:56
+ * Total: 177 recettes
  */
-export const exportSyncId = "1775220130343";
+export const exportSyncId = "1775231996590";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "4797",
-        "title": "Croquetas de Jambon (version budget)",
-        "description": "Découvrez une recette de croquetas de jambon dorées, croustillantes et délicieuses, une version budget du classique espagnol, parfaites pour l&rsquo;apéritif ou comme tapas.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775209010867.jpg&v=1775209015000",
+        "id": "4808",
+        "title": "Peperonata",
+        "description": "Une recette italienne intemporelle de peperonata, un plat de légumes qui disparaît toujours en premier à table. À déguster froide.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775230642733.jpg&v=1775230650000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7287279168671223072\" data-video-id=\"7287279168671223072\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7287279168671223072\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7522086326829698326\" data-video-id=\"7522086326829698326\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7522086326829698326\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             150g de pancetta coupée en dés"
+                "name": "🥣\n             5 peperoni"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             2 cuillères à soupe de beurre"
+                "name": "🥣\n             5 cipolle"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 grande échalote, finement hachée"
+                "name": "🥣\n             1 spicchio d’aglio"
             },
             {
                 "quantity": "",
-                "name": "🥓\n             100g de jambon Serrano, finement haché"
+                "name": "🥣\n             40 gr capperi"
             },
             {
                 "quantity": "",
-                "name": "🌾\n             4 cuillères à soupe de farine tout usage"
+                "name": "🥣\n             30 gr aceto balsamico"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             Environ 600ml de lait demi-écrémé ou entier"
+                "name": "🌿\n             Qb basilico"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             100g de Manchego râpé"
+                "name": "🥣\n             Qb Pepe"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Une petite pincée de sel"
+                "name": "🥣\n             Qb Sale"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Une grande pincée de granulés d&rsquo;ail, de muscade et de poivre noir"
+                "name": "🥣\n             Qb olio Evo"
             },
             {
                 "quantity": "",
-                "name": "🍗\n             1/2 cube de bouillon de poulet de bonne qualité"
+                "name": "🥣\n             Qb Brodo Vegetale"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             1 grand œuf battu avec un filet de lait (pour la panure)"
+                "name": "🥣\n             100 gr Passata di Pomodoro"
+            }
+        ],
+        "steps": [
+            "Couper les oignons en julienne. Les laisser tremper un peu dans de l&rsquo;eau froide et du vinaigre.",
+            "Faire dorer les oignons dans une bonne quantité d&rsquo;huile d&rsquo;olive.",
+            "Couper les poivrons après les avoir épépinés et les faire dorer également.",
+            "Mélanger les deux composés (oignons et poivrons) dans la casserole, en laissant prendre un peu de flamme.",
+            "Déglacer avec du vinaigre balsamique, saler et poivrer. Arroser le tout de bouillon de légumes et de passata de tomate.",
+            "Ajouter une bonne quantité de basilic et quelques câpres. Faire cuire à très basse température pendant 20 minutes.",
+            "Déguster froide."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4805",
+        "title": "Peperonata",
+        "description": "Une recette italienne intemporelle et très appréciée, la Peperonata est un plat savoureux à base de poivrons et d&rsquo;oignons, souvent le premier à disparaître de la table. Idéale à déguster froide.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7522086326829698326\" data-video-id=\"7522086326829698326\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7522086326829698326\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             5 poivrons"
             },
             {
                 "quantity": "",
-                "name": "🌾\n             Environ 100g de farine tout usage (pour la panure)"
+                "name": "🧅\n             5 oignons"
             },
             {
                 "quantity": "",
-                "name": "🥖\n             Environ 75g de chapelure (pour la panure)"
+                "name": "🧄\n             1 gousse d’ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             40 gr de câpres"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             30 gr de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Qs basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Qs poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Qs sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Qs huile d&rsquo;olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Qs bouillon de légumes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             100 gr de purée de tomates"
+            }
+        ],
+        "steps": [
+            "Coupez les oignons en julienne. Laissez-les tremper un moment dans de l&rsquo;eau froide et du vinaigre.",
+            "Faites revenir les oignons dans une bonne quantité d&rsquo;huile d&rsquo;olive jusqu&rsquo;à ce qu&rsquo;ils soient bien dorés.",
+            "Coupez les poivrons après les avoir épépinés et faites-les également revenir jusqu&rsquo;à ce qu&rsquo;ils soient bien dorés.",
+            "Mélangez les deux préparations (oignons et poivrons) dans la casserole.",
+            "Déglacez avec le vinaigre balsamique et ajustez l&rsquo;assaisonnement avec du sel et du poivre.",
+            "Arrosez le tout avec le bouillon de légumes et la purée de tomates.",
+            "Ajoutez une bonne quantité de basilic et quelques câpres.",
+            "Faites cuire à très basse température pendant 20 minutes.",
+            "Dégustez la Peperonata froide."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4794",
+        "title": "Légumes rôtis à l&rsquo;italienne et ricotta",
+        "description": "Une recette simple et rapide de légumes rôtis (pommes de terre, tomates cerises, pois chiches) assaisonnés aux herbes, miel et vinaigre balsamique, servis sur un lit de ricotta crémeuse et parsemés de parmesan et d&rsquo;herbes fraîches. Idéal pou...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcarottes-roties.jpg&v=1775222381000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7489093004754423062\" data-video-id=\"7489093004754423062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7489093004754423062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 450g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 300g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 180g de pois chiche"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 cas de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 cas de persillade"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 cac d’ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 4 cas d’huile d’olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 2 cas de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 ricotta (250g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Herbes fraîches (basilic…)"
+            }
+        ],
+        "steps": [
+            "Mélanger dans un plat des petites pommes de terre coupées en 2 (ou des grosses en petits morceaux) avec les tomates cerises et les pois chiches.",
+            "Ajouter la persillade, le thym, l’ail, le miel, l’huile d’olive et le vinaigre balsamique. Bien mélanger.",
+            "Faire cuire les légumes au four pendant 30-35 minutes à 200 degrés, en mélangeant à mi-cuisson.",
+            "Étaler une bonne couche de ricotta au fond de l’assiette (vous pouvez aussi utiliser de la burrata ou de la mozzarella).",
+            "Disposer les légumes bien rôtis sur la ricotta.",
+            "Parsemer de parmesan râpé et d&rsquo;herbes fraîches (comme du basilic)."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "rapide",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4797",
+        "title": "Croquetas de Jambon",
+        "description": "Découvrez une recette de croquetas de jambon dorées, croustillantes et délicieuses, une version budget du classique espagnol, parfaites pour l&rsquo;apéritif ou comme tapas.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcroquette.jpeg&v=1775222289000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7287279168671223072\" data-video-id=\"7287279168671223072\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7287279168671223072\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 150g de pancetta coupée en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 2 cuillères à soupe de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 grande échalote, finement hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n 100g de jambon Serrano, finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 4 cuillères à soupe de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Environ 600ml de lait demi-écrémé ou entier"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100g de Manchego râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Une petite pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Une grande pincée de granulés d&rsquo;ail, de muscade et de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 1/2 cube de bouillon de poulet de bonne qualité"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 1 grand œuf battu avec un filet de lait (pour la panure)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n Environ 100g de farine tout usage (pour la panure)"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n Environ 75g de chapelure (pour la panure)"
             }
         ],
         "steps": [
@@ -89,89 +324,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Espagne",
             "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4794",
-        "title": "Légumes rôtis à l&rsquo;italienne et ricotta",
-        "description": "Une recette simple et rapide de légumes rôtis (pommes de terre, tomates cerises, pois chiches) assaisonnés aux herbes, miel et vinaigre balsamique, servis sur un lit de ricotta crémeuse et parsemés de parmesan et d&rsquo;herbes fraîches. Idéal pou...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7489093004754423062\" data-video-id=\"7489093004754423062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7489093004754423062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             450g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             300g de tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             180g de pois chiche"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 cas de thym"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 cas de persillade"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cac d’ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             4 cas d’huile d’olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cas de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cas de vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 ricotta (250g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Herbes fraîches (basilic…)"
-            }
-        ],
-        "steps": [
-            "Mélanger dans un plat des petites pommes de terre coupées en 2 (ou des grosses en petits morceaux) avec les tomates cerises et les pois chiches.",
-            "Ajouter la persillade, le thym, l’ail, le miel, l’huile d’olive et le vinaigre balsamique. Bien mélanger.",
-            "Faire cuire les légumes au four pendant 30-35 minutes à 200 degrés, en mélangeant à mi-cuisson.",
-            "Étaler une bonne couche de ricotta au fond de l’assiette (vous pouvez aussi utiliser de la burrata ou de la mozzarella).",
-            "Disposer les légumes bien rôtis sur la ricotta.",
-            "Parsemer de parmesan râpé et d&rsquo;herbes fraîches (comme du basilic)."
-        ],
-        "tags": [
-            "Healthy",
-            "Italie",
-            "rapide",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -3032,7 +3184,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3991",
         "title": "Riz jaune du Moyen-Orient",
         "description": "Un délicieux riz jaune du Moyen-Orient, parfumé au curcuma et au thym, agrémenté de légumes (carotte, céleri, oignon), d&rsquo;amandes grillées et de raisins secs. Une recette végétarienne et saine, parfaite comme plat principal ou accompagnement.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774522065626.jpg&v=1774522098000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
