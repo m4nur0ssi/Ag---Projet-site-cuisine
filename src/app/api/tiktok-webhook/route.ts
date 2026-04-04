@@ -170,11 +170,9 @@ async function handleRequest(request: Request) {
         }
 
         if (isDup) {
-             return NextResponse.json({ 
-                success: false, 
-                status: 'Duplicate',
-                message: dupMessage,
-                url: videoUrl
+             return new Response(dupMessage, { 
+                status: 200, 
+                headers: { 'Content-Type': 'text/plain; charset=utf-8' } 
             });
         }
     }
