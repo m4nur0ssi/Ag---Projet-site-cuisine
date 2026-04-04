@@ -117,6 +117,7 @@ async function handleRequest(request: Request) {
 
     // --- DETECTION DU PAYS ET DOUBLON ---
     let selectedCountry = searchParams.get('country') || body.country || searchParams.get('pays') || body.pays || '';
+    const githubToken = process.env.GITHUB_PAT;
     
     // On vérifie d'abord si la recette est DÉJÀ en base AVANT de demander le pays !
     if (!checkOnly) {
@@ -125,7 +126,6 @@ async function handleRequest(request: Request) {
         
         // Check Github Queue via API (rapide)
         try {
-            const githubToken = process.env.GITHUB_PAT;
             if (githubToken) {
                 const getRes = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPO || 'm4nur0ssi/Ag---Projet-site-cuisine'}/contents/tiktok-bot/queue.json`, {
                     headers: { 'Authorization': `Bearer ${githubToken}`, 'Accept': 'application/vnd.github.v3+json' }
@@ -175,10 +175,10 @@ async function handleRequest(request: Request) {
     // AUCUN EMOJI NULLE PART : iOS Shortcuts crashe complètement qaund on lui passe des emojis dans ce dictionnaire.
     if (!selectedCountry && !checkOnly && body.checkOnly !== 'true' && body.checkOnly !== true) {
         const countriesList = [
-            "France", "Italie", "Espagne", "Grèce", "Liban",
+            "France", "Italie", "Espagne", "Grece", "Liban",
             "USA", "Mexique", "Orient", "Asie", "Afrique",
-            "Rapide", "Facile", "Pâques", "Dolce Vita", "Astuce",
-            "Glaces", "Boissons", "Goûter", "Healthy", "Végé"
+            "Rapide", "Facile", "Paques", "Dolce Vita", "Astuce",
+            "Glaces", "Boissons", "Gouter", "Healthy", "Vege"
         ];
         
         const countryMenu: any = {};
@@ -188,7 +188,8 @@ async function handleRequest(request: Request) {
             status: countryMenu,
             countries: countryMenu, 
             pays: countryMenu,
-            v: "00:17-NO-EMOJIS",
+            v: "SYNC-FIX-V1",
+            debug_pat_active: !!githubToken,
             message: 'Quel pays ?'
         });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
@@ -198,7 +199,7 @@ async function handleRequest(request: Request) {
     // Étape 2 : Si on a un pays (ou que c'est un POST forcé), on ENVOIE EN CUISINE !
     console.log(`✅ Webhook : Envoi en cuisine ! (Pays : ${selectedCountry || 'Autre'})`);
     
-    const queueResult = await addToQueue(videoUrl, selectedCountry || '🗺️ Autre');
+    const queueResult = await addToQueue(videoUrl, selectedCountry || 'Autre');
 
     // Message personnalisé si c'est un doublon
     if (queueResult.ok === false && queueResult.message) {
@@ -225,8 +226,9 @@ async function handleRequest(request: Request) {
     return NextResponse.json({ 
         success: true, 
         status: 'ok',
-        v: "RELAX-VRAIMENT",
-        message: `C'est en cuisine ! (Pays: ${selectedCountry || '🗺️ Autre'})`,
+        v: "SYNC-FIX-SUCCESS",
+        debug_pat_active: !!process.env.GITHUB_PAT,
+        message: `C'est en cuisine ! (Pays: ${selectedCountry || 'Autre'})`,
         url: videoUrl,
         debug_received_country: selectedCountry,
         debug_queue_result: queueResult
