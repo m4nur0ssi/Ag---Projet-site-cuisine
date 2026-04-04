@@ -191,15 +191,7 @@ async function handleRequest(request: Request) {
         const countryMenu: any = {};
         countriesList.forEach(c => countryMenu[c] = c);
 
-        const response = NextResponse.json({ 
-            status: countryMenu,
-            countries: countryMenu, 
-            pays: countryMenu,
-            v: "SYNC-FIX-V1",
-            debug_pat_active: !!githubToken,
-            message: 'Quel pays ?',
-            url: videoUrl
-        });
+        const response = NextResponse.json(countryMenu);
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         return response;
     }
