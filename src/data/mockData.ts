@@ -2,11 +2,129 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/04/2026 20:48:16
- * Total: 179 recettes
+ * Dernière mise à jour: 04/04/2026 20:51:10
+ * Total: 181 recettes
  */
-export const exportSyncId = "1775328496681";
+export const exportSyncId = "1775328670754";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4823",
+        "title": "Ramen de poulet",
+        "description": "Un ramen de poulet savoureux avec un bouillon parfumé au curry et lait de coco, garni de poulet mariné, pak choi, œuf mollet et mayo kimchi.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775328524368.jpg&v=1775328537000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7614948218761137430\" data-video-id=\"7614948218761137430\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7614948218761137430\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Hauts de cuisse désossés"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Sauce soja sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sriracha"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🍄\n             Champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons cébettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Pâte de curry rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Bouillon de légumes"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nouilles"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pak choi"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Mayo kimchi"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre de cacahuètes"
+            }
+        ],
+        "steps": [
+            "Mariner le poulet avec sauce soja sucrée, sauce huître, huile de sésame, sriracha, ail, poivre et thym.",
+            "Faire revenir échalote, ail, gingembre, champignons et cébettes avec l’huile de sésame dans une cocotte chaude.",
+            "Ajouter pâte de curry, bouillon et lait de coco et laisser mijoter.",
+            "Cuire le poulet dans une poêle bien chaude.",
+            "Faire revenir le pak choi par la suite.",
+            "Cuire les œufs 6 min pour obtenir des œufs mollets.",
+            "Dresser avec les nouilles, le bouillon, le poulet, le pak choi, l&rsquo;œuf mollet, les cébettes, les graines de sésame et la mayo kimchi."
+        ],
+        "tags": [
+            "asiatique",
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4820",
         "title": "Конвертики из баклажанов",
@@ -7783,6 +7901,114 @@ export const mockRecipes: Recipe[] = [
             "airfryer",
             "Famille",
             "Orient"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4324",
+        "title": "Tarte 100% chocolat",
+        "description": "Une tarte entièrement au chocolat qui explore différentes textures (croustillant, moelleux, fondant, aérien) pour une expérience gustative riche et mémorable, grâce à une pâte sucrée, un biscuit financier, un crémeux et une ganache montée.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FTarte2-400x500-1.jpg&v=1774517603000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7620135208846740758\" data-video-id=\"7620135208846740758\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620135208846740758\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             150g de beurre (pâte sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             95g de sucre glace (pâte sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             30g de poudre d’amandes (pâte sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel (pâte sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             60g d’oeufs (pâte sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             250g de farine (pâte sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             112g de poudre d’amandes (biscuit financier cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             27g de cacao (biscuit financier cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             135g de sucre glace (biscuit financier cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             36g de farine (biscuit financier cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             112g de blancs d’oeufs (biscuit financier cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             112g de beurre (biscuit financier cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             150g de crème (crémeux chocolat)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150g de lait (crémeux chocolat)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             60g de jaunes (crémeux chocolat)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             30g de sucre (crémeux chocolat)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             120g de chocolat noir 70% (crémeux chocolat)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             425g de crème (ganache montée chocolat)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             2 feuilles de gélatine (ganache montée chocolat)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             150g de chocolat noir (ganache montée chocolat)"
+            }
+        ],
+        "steps": [
+            "Pour la pâte sucrée : Crémer le beurre avec le sucre, le sel et la poudre d’amandes. Ajouter les oeufs puis la farine.",
+            "Pour le biscuit financier cacao : Mélanger tous les extraits secs (poudre d’amandes, cacao, sucre glace, farine). Ajouter le beurre fondu et les blancs. Cuisson à 170°.",
+            "Pour le crémeux chocolat : Réaliser une crème anglaise (mélanger crème, lait, jaunes, sucre et cuire doucement). Verser sur le chocolat et mélanger.",
+            "Pour la ganache montée chocolat : Porter 175g de crème à ébullition. Ajouter la gélatine et verser sur le chocolat. Faire une émulsion, ajouter le reste de crème et mixer. Laisser reposer 1 journée au froid avant de monter."
+        ],
+        "tags": [
+            "Dessert maison",
+            "France",
+            "Tarte au chocolat"
         ],
         "isFeatured": false,
         "isFavorite": false,
