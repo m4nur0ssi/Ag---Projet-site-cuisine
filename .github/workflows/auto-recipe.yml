@@ -121,6 +121,7 @@ jobs:
           node sync-recipes.js --recent --delete-id=${{ github.event.inputs.delete_id }} || echo "Ignored sync error"
         env:
           WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
+          WP_FORCE_PUBLIC: "true"
         continue-on-error: true
 
       - name: Mise a jour timestamp forcee

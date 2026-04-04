@@ -2,19 +2,24 @@ const fs = require('fs');
 const path = require('path');
 const { exec, execSync } = require('child_process');
 
+// On utilise node-fetch (v2) pour plus de stabilité dans GitHub Actions (Node 18+)
+const fetch = require('node-fetch');
+
 /**
  * Script de synchronisation des recettes depuis WordPress vers le projet local
  * Ce script interroge l'API REST de WordPress et génère le fichier mockData.ts
  */
 
-// On essaie de détecter l'IP la plus rapide (Local vs Public)
+// Configuration des IP
 const WORDPRESS_DOMAIN = 'lesrec3ttesm4giques.fr';
 const WORDPRESS_PUBLIC_IP = process.env.WP_PUBLIC_IP || '109.221.250.122';
 const WORDPRESS_LOCAL_IP = '192.168.1.200';
 
-// Fonction pour choisir l'IP dynamiquement (test de connexion rapide)
-let ACTIVE_IP = WORDPRESS_LOCAL_IP; 
-if (process.env.WP_FORCE_PUBLIC === 'true') ACTIVE_IP = WORDPRESS_PUBLIC_IP;
+// Détection intelligente de l'environnement
+const isCI = process.env.GITHUB_ACTIONS === 'true';
+let ACTIVE_IP = (isCI || process.env.WP_FORCE_PUBLIC === 'true') ? WORDPRESS_PUBLIC_IP : WORDPRESS_LOCAL_IP;
+
+console.log(`📡 Environnement: ${isCI ? 'GitHub CI' : 'Local'} | IP choisie: ${ACTIVE_IP}`);
 
 const WORDPRESS_API_URL = `http://${ACTIVE_IP}/wordpress/wp-json/wp/v2`;
 const IMAGE_BASE_URL = `http://${WORDPRESS_PUBLIC_IP}`;
