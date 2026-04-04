@@ -219,36 +219,23 @@ async function handleRequest(request: Request) {
 
     // Message personnalisé si c'est un doublon
     if (queueResult.ok === false && queueResult.message) {
-        return NextResponse.json({ 
-            success: false, 
-            status: 'duplicate',
-            message: queueResult.message,
-            url: videoUrl,
-            debug_queue_result: queueResult
+        return new Response(queueResult.message, { 
+            status: 200, 
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' } 
         });
     }
 
     // Message d'erreur s'il y a eu un autre souci (ex: Token manquant)
     if (queueResult.ok === false) {
-        return NextResponse.json({ 
-            success: false, 
-            status: 'error',
-            message: `Erreur: ${queueResult.error}. Verifiez la clé GITHUB_PAT sur Vercel !`,
-            url: videoUrl,
-            debug_pat_active: !!githubToken,
-            debug_queue_result: queueResult
-        }, { status: 500 });
+        return new Response(`Erreur: ${queueResult.error}. Verifiez la clé GITHUB_PAT sur Vercel !`, { 
+            status: 500, 
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' } 
+        });
     }
 
-    return NextResponse.json({ 
-        success: true, 
-        status: 'ok',
-        v: "SYNC-FIX-SUCCESS",
-        debug_pat_active: !!process.env.GITHUB_PAT,
-        message: `C'est en cuisine ! (Pays: ${selectedCountry || 'Autre'})`,
-        url: videoUrl,
-        debug_received_country: selectedCountry,
-        debug_queue_result: queueResult
+    return new Response(`C'est en cuisine ! (Pays: ${selectedCountry || 'Autre'})`, {
+        status: 200,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' }
     });
 } catch (err: any) {
     console.error('❌ Critical Error:', err.message);
