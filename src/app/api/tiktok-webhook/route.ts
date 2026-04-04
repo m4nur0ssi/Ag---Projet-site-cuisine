@@ -113,7 +113,14 @@ async function handleRequest(request: Request) {
        try { const t = await request.clone().text(); if (t.includes('tiktok.com')) videoUrl = t.trim(); } catch(e) {}
     }
 
-    if (!videoUrl) return NextResponse.json({ error: 'URL manquante' }, { status: 400 });
+    if (!videoUrl) {
+        return NextResponse.json({ 
+            error: 'URL manquante', 
+            v: "SYNC-FIX-ERROR",
+            debug_body: body,
+            debug_params: Object.fromEntries(searchParams.entries())
+        }, { status: 400 });
+    }
 
     // --- DETECTION DU PAYS ET DOUBLON ---
     let selectedCountry = searchParams.get('country') || body.country || searchParams.get('pays') || body.pays || '';
@@ -190,7 +197,8 @@ async function handleRequest(request: Request) {
             pays: countryMenu,
             v: "SYNC-FIX-V1",
             debug_pat_active: !!githubToken,
-            message: 'Quel pays ?'
+            message: 'Quel pays ?',
+            url: videoUrl
         });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         return response;
@@ -217,8 +225,9 @@ async function handleRequest(request: Request) {
         return NextResponse.json({ 
             success: false, 
             status: 'error',
-            message: `⚠️ Erreur système : ${queueResult.error}`,
+            message: `Erreur: ${queueResult.error}. Verifiez la clé GITHUB_PAT sur Vercel !`,
             url: videoUrl,
+            debug_pat_active: !!githubToken,
             debug_queue_result: queueResult
         }, { status: 500 });
     }
