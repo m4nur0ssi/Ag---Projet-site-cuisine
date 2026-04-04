@@ -1,31 +1,6 @@
 {
   "queue": [
     {
-      "videoUrl": "https://www.tiktok.com/@test/video/1111111111111111111",
-      "country": "Glace",
-      "timestamp": "2026-04-04T17:55:53.988Z"
-    },
-    {
-      "videoUrl": "https://www.tiktok.com/@test/video/UNIK_888888888888",
-      "country": "Glace",
-      "timestamp": "2026-04-04T18:05:33.696Z"
-    },
-    {
-      "videoUrl": "https://www.tiktok.com/@test/video/6000000000000000000",
-      "country": "Glace",
-      "timestamp": "2026-04-04T18:06:37.081Z"
-    },
-    {
-      "videoUrl": "https://www.tiktok.com/@test/video/UNIK_FINAL_SUCCESS_CHECK",
-      "country": "Glace",
-      "timestamp": "2026-04-04T18:07:02.283Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNRXAGDT3/",
-      "country": "Italie",
-      "timestamp": "2026-04-04T18:30:12.274Z"
-    },
-    {
       "videoUrl": "https://vm.tiktok.com/ZNRXAb77G/",
       "country": "Asie",
       "timestamp": "2026-04-04T18:38:46.463Z"

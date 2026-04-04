@@ -76,36 +76,44 @@ async function run() {
         
         if (data.queue && data.queue.length > 0) {
             console.log(`\n📬 ${data.queue.length} recette(s) trouvée(s) dans la file d'attente GitHub...`);
-            const item = data.queue[0];
-            const videoUrl = item.url || item.videoUrl;
             
-            // Extraction ID pour vérifier les doublons
-            const { extractTikTokId } = require('./wordpress-poster');
-            const videoId = extractTikTokId(videoUrl);
-            
-            if (videoId && isAlreadyProcessed(videoId)) {
-                console.log(`   ⏭️ Déjà traitée (${videoId}), on la retire de la file.`);
+            while (data.queue.length > 0) {
+                const item = data.queue[0];
+                const videoUrl = item.url || item.videoUrl;
+                
+                // Extraction ID pour vérifier les doublons
+                const { extractTikTokId } = require('./wordpress-poster');
+                const videoId = extractTikTokId(videoUrl);
+                
+                if (videoId && isAlreadyProcessed(videoId)) {
+                    console.log(`   ⏭️ Déjà traitée (${videoId}), on la retire de la file.`);
+                    data.queue.shift();
+                    fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
+                    continue;
+                }
+
+                console.log(`🪄 Traitement de la file en cours : ${videoUrl}`);
+                const recipeName = await processRecipe({ 
+                    videoUrl, 
+                    description: 'Recette iPhone (Cloud)', 
+                    author: 'cloud-shortcut', 
+                    country: item.country 
+                });
+                
+                if (typeof recipeName === 'string') {
+                    if (videoId) markAsProcessed(videoId);
+                    fs.writeFileSync(path.join(__dirname, 'latest-recipe.txt'), recipeName);
+                    console.log(`   ✅ Success : "${recipeName}"`);
+                } else {
+                    console.log(`   ⚠️ Echec ou Ignoré : ${videoUrl}`);
+                }
+                
+                // On retire TOUJOURS l'item de la file après tentative pour ne pas bloquer
                 data.queue.shift();
                 fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
-                return run(); // On passe à la suivante immédiatement
             }
-
-            console.log(`🪄 Traitement de la file en cours : ${videoUrl}`);
-            const recipeName = await processRecipe({ 
-                videoUrl, 
-                description: 'Recette iPhone (Cloud)', 
-                author: 'cloud-shortcut', 
-                country: item.country 
-            });
-            
-            if (typeof recipeName === 'string') {
-                if (videoId) markAsProcessed(videoId);
-                data.queue.shift(); // Supprimer de la file seulement si succès
-                fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
-                fs.writeFileSync(path.join(__dirname, 'latest-recipe.txt'), recipeName);
-                console.log(`   ✅ File mise à jour. Recette : "${recipeName}"`);
-            }
-            return; 
+            console.log("✅ File d'attente épuisée.");
+            return;
         }
     }
 

@@ -197,15 +197,14 @@ async function handleRequest(request: Request) {
     if (!selectedCountry && !checkOnly && body.checkOnly !== 'true' && body.checkOnly !== true) {
         const countriesList = [
             "France", "Italie", "Espagne", "Grece", "Liban",
-            "USA", "Mexique", "Orient", "Asie", "Afrique",
-            "Rapide", "Facile", "Paques", "Dolce Vita", "Astuce",
-            "Glaces", "Boissons", "Gouter", "Healthy", "Vege"
+            "USA", "Mexique", "Orient", "Asie", "Autre", "Glaces", "Patisserie", 
+            "Boissons", "Petit-Dej", "Aperitif", "Cakes & Tartes", "Healthy", "Vegan", "Vegetarien"
         ];
         
         const countryMenu: any = {};
         countriesList.forEach(c => countryMenu[c] = c);
 
-        const response = NextResponse.json({ status: countryMenu });
+        const response = NextResponse.json(countryMenu);
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         return response;
     }
