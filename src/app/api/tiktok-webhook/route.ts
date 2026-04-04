@@ -123,7 +123,23 @@ async function handleRequest(request: Request) {
     }
 
     // --- DETECTION DU PAYS ET DOUBLON ---
-    let selectedCountry = searchParams.get('country') || body.country || searchParams.get('pays') || body.pays || '';
+    let selectedCountry = searchParams.get('country') || body.country || searchParams.get('pays') || body.pays || body.selection || '';
+    
+    // Si c'est un POST avec du texte brut (souvent le cas des raccourcis iOS)
+    if (!selectedCountry && request.method === 'POST') {
+        try {
+            const rawBody = await request.clone().text();
+            // Si le corps contient juste le nom du pays ou "pays=France"
+            if (rawBody.length < 50) {
+               if (rawBody.includes('=')) {
+                   selectedCountry = rawBody.split('=')[1];
+               } else {
+                   selectedCountry = rawBody.trim();
+               }
+            }
+        } catch(e) {}
+    }
+
     const githubToken = process.env.GITHUB_PAT;
     
     // On vérifie d'abord si la recette est DÉJÀ en base AVANT de demander le pays !
