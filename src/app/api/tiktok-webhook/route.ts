@@ -207,7 +207,7 @@ async function handleRequest(request: Request) {
         const countryMenu: any = {};
         countriesList.forEach(c => countryMenu[c] = c);
 
-        const response = NextResponse.json(countryMenu);
+        const response = NextResponse.json({ status: countryMenu });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         return response;
     }
