@@ -193,20 +193,20 @@ async function handleRequest(request: Request) {
     }
 
     // Étape 1 : Si on n'a pas de pays, on envoie le dictionnaire attendu par le Raccourci iOS.
-    // On matche le format du bot local (server.js) pour être sûr que l'iPhone comprenne.
     if (!selectedCountry) {
         const countriesList = [
-            "France", "Italie", "Espagne", "Grece", "Liban",
-            "USA", "Mexique", "Orient", "Asie", "Glaces", "Patisserie", 
-            "Boissons", "Petit-Dej", "Aperitif", "Cakes & Tartes", "Healthy", "Vegan", "Vegetarien"
+            "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban", 
+            "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🍦 Glaces", "🍰 Patisserie", 
+            "🍹 Boissons", "🥐 Petit-Dej", "🥨 Aperitif", "🥧 Cakes & Tartes", "🥗 Healthy", "🥦 Vegan", "🥬 Vegetarien"
         ];
         
-        // On renvoie un objet comme le bot local
+        // On crée à la fois un dictionnaire ET une liste pour que le Raccourci trouve son bonheur
         const response = NextResponse.json({ 
             status: 'ok', 
             message: 'Quelle est l\'origine de cette recette ?',
-            countries: countriesList, // Liste pour compatibilité
-            pays: countriesList       // Liste française
+            countries: countriesList,
+            pays: countriesList,
+            list: countriesList
         });
         
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
