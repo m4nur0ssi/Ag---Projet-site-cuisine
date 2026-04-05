@@ -20,7 +20,7 @@ on:
         required: false
         default: ""
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 */12 * * *"
   push:
     paths:
       - 'tiktok-bot/queue.json'
@@ -115,8 +115,7 @@ jobs:
           WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
 
-      - name: Synchronisation complete depuis WordPress
-        if: ${{ github.event.inputs.trigger_source != 'tiktok-shortcut' }}
+      - name: Synchronisation complète depuis WordPress
         run: |
           node sync-recipes.js --recent --delete-id=${{ github.event.inputs.delete_id }} || echo "Ignored sync error"
         env:
@@ -140,9 +139,8 @@ jobs:
                   tiktok-bot/queue.json 2>/dev/null || true
           
           if git diff --staged --quiet; then
-            echo "⚠️ Aucun changement detected. Forçage sync-stats..."
-            echo "{\"lastSync\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"trigger\":\"forced\",\"ts\":$(date +%s)}" > src/data/sync-stats.json
-            git add src/data/sync-stats.json
+            echo "✅ Aucun changement détecté, arrêt sans commit."
+            exit 0
           fi
           
           COMMIT_MSG="🔄 Cloud Sync: ${{ github.event.inputs.trigger_source || 'auto' }} - $(date -u '+%Y-%m-%d %H:%M')"

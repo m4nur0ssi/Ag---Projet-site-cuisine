@@ -9,9 +9,9 @@ on:
       - wp_recipe_deleted      # Recette supprimée
       - wp_full_sync           # Sync complète forcée
 
-  # 2. Schedule automatique toutes les 2h
+  # 2. Schedule automatique toutes les 6h (au lieu de 2h pour réduire le bruit)
   schedule:
-    - cron: "0 */2 * * *"
+    - cron: "0 */6 * * *"
 
   # 3. Déclenchement manuel avec options
   workflow_dispatch:
@@ -150,11 +150,10 @@ jobs:
 
           git add src/data/mockData.ts src/data/sync-stats.json 2>/dev/null || true
 
-          # Si rien n'a changé, on force quand même un touch sur stats
+          # Si rien n'a changé, on ne committe PAS pour éviter de trigger Vercel inutilement
           if git diff --staged --quiet; then
-            echo "⚠️ mockData.ts inchangé, touch sync-stats..."
-            echo "{\"lastSync\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"status\":\"no-change\",\"ts\":$(date +%s)}" > src/data/sync-stats.json
-            git add src/data/sync-stats.json
+            echo "✅ Aucun changement dans mockData.ts, on arrête ici."
+            exit 0
           fi
 
           # Message de commit contextuel
