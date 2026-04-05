@@ -192,7 +192,7 @@ async function handleRequest(request: Request) {
         }
     }
 
-    // Étape 1 : Si on n'a pas de pays, on envoie le dictionnaire attendu par le Raccourci iOS.
+    // Étape 1 : Si on n'a pas de pays, on envoie la réponse multi-format attendue par le Raccourci iOS.
     if (!selectedCountry) {
         const countriesList = [
             "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban", 
@@ -200,15 +200,20 @@ async function handleRequest(request: Request) {
             "🍹 Boissons", "🥐 Petit-Dej", "🥨 Aperitif", "🥧 Cakes & Tartes", "🥗 Healthy", "🥦 Vegan", "🥬 Vegetarien"
         ];
         
-        // On crée à la fois un dictionnaire ET une liste pour que le Raccourci trouve son bonheur
-        const response = NextResponse.json({ 
+        // On crée un objet "ultime" qui contient tous les formats possibles
+        const responseObj: any = { 
+            ok: true,
             status: 'ok', 
             message: 'Quelle est l\'origine de cette recette ?',
             countries: countriesList,
             pays: countriesList,
             list: countriesList
-        });
+        };
+
+        // On ajoute aussi les pays en tant que clés directes (Format Dictionnaire)
+        countriesList.forEach(c => responseObj[c] = c);
         
+        const response = NextResponse.json(responseObj);
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         return response;
     }
