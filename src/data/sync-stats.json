@@ -1,1 +1,9 @@
-{"lastSync":"2026-04-05T18:27:27Z","trigger":"push/schedule","status":"success"}
+{
+  "lastSync": "2026-04-05T18:34:09Z",
+  "trigger": "schedule",
+  "action": "schedule",
+  "postId": "",
+  "mode": "full",
+  "status": "success",
+  "ts": 1775414049
+}
