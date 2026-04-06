@@ -177,23 +177,39 @@ async function handleRequest(request: Request) {
         }
     }
 
-    if (!selectedCountry && body && typeof body === 'object') {
-        const countriesList = ["France", "Italie", "Espagne", "Grèce", "Liban", "USA", "Mexique", "Orient", "Asie", "Autre"];
-        for (const val of Object.values(body)) {
-            if (typeof val === 'string') {
-                for (const pc of countriesList) {
-                    if (val.includes(pc)) {
+    // Étape 1 : Si on n'a pas de pays, on cherche partout dans les params et le body
+    if (!selectedCountry) {
+        const knownCountries = ["France", "Italie", "Espagne", "Grece", "Grèce", "Liban", 
+            "USA", "Mexique", "Orient", "Asie", "Glaces", "Patisserie", 
+            "Boissons", "Petit", "Aperitif", "Cakes", "Healthy", "Vegan", "Vegetarien"];
+
+        // Scan TOUS les paramètres de l'URL
+        searchParams.forEach((val) => {
+            if (!selectedCountry && val) {
+                for (const c of knownCountries) {
+                    if (val.includes(c)) { selectedCountry = val; break; }
+                }
+            }
+        });
+
+        // Scan TOUTES les clés du body (y compris Choixpays, selection, paysChoice...)
+        if (!selectedCountry && body && typeof body === 'object') {
+            for (const [key, val] of Object.entries(body)) {
+                if (!selectedCountry && typeof val === 'string') {
+                    // Clé connue OU valeur qui ressemble à un pays
+                    if (['Choixpays', 'choixpays', 'selection', 'paysChoice', 'pays', 'country'].includes(key)) {
                         selectedCountry = val;
                         break;
                     }
+                    for (const c of knownCountries) {
+                        if (val.includes(c)) { selectedCountry = val; break; }
+                    }
                 }
             }
-            if (selectedCountry) break;
         }
     }
 
-    // Étape 1 : Si on n'a pas de pays, on envoie le dictionnaire au format attendu par le Raccourci iOS.
-    // Le raccourci lit "status" et attend un dictionnaire → il affiche "Choisir dans Dictionnaire"
+    // Si toujours pas de pays → on renvoie le menu + debug pour comprendre ce que le raccourci envoie
     if (!selectedCountry) {
         const paysDict: any = {
             "France":       "🇫🇷 France",
@@ -215,7 +231,14 @@ async function handleRequest(request: Request) {
             "Vegan":        "🥦 Vegan",
             "Vegetarien":   "🥬 Vegetarien"
         };
-        const response = NextResponse.json({ status: paysDict });
+        // Debug temporaire : montre ce que le raccourci a envoyé
+        const debugInfo = {
+            method: request.method,
+            queryParams: Object.fromEntries(searchParams.entries()),
+            bodyKeys: Object.keys(body),
+        };
+        console.log('🔍 DEBUG - Pays non trouvé:', JSON.stringify(debugInfo));
+        const response = NextResponse.json({ status: paysDict, _debug: debugInfo });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         return response;
     }
