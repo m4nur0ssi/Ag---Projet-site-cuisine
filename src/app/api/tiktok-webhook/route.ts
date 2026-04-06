@@ -105,22 +105,20 @@ async function handleRequest(request: Request) {
     let selectedCountry = searchParams.get('country') || body.country || searchParams.get('pays') || body.pays || '';
     
     if (!selectedCountry) {
-        // Liste ultra-réduite et propre pour iOS
-        const countriesList = [
+        const pays = [
             "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban", 
             "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🍦 Glaces", "🍰 Patisserie", 
             "🍹 Boissons", "🥐 Petit-Dej", "🥨 Aperitif", "🥧 Cakes & Tartes", "🥗 Healthy", "🥦 Vegan", "🥬 Vegetarien"
         ];
         
-        // On renvoie le format "Dictionnaire" que ton iPhone semble préférer
-        const responseObj: any = { status: 'ok', ok: true };
-        countriesList.forEach(c => responseObj[c.split(' ').pop() || c] = c);
-        
-        // On rajoute aussi les listes au cas où
-        responseObj.countries = countriesList;
-        responseObj.pays = countriesList;
-
-        const response = NextResponse.json(responseObj);
+        // Réponse claire et sans collision : status est une STRING, pays/countries sont des LISTES
+        const response = NextResponse.json({
+            status: 'ok',
+            ok: true,
+            message: 'Choisissez un pays ou une thématique',
+            pays,
+            countries: pays
+        });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         return response;
     }
