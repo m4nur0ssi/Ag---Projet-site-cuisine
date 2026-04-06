@@ -231,14 +231,8 @@ async function handleRequest(request: Request) {
             "Vegan":        "🥦 Vegan",
             "Vegetarien":   "🥬 Vegetarien"
         };
-        // Debug temporaire : montre ce que le raccourci a envoyé
-        const debugInfo = {
-            method: request.method,
-            queryParams: Object.fromEntries(searchParams.entries()),
-            bodyKeys: Object.keys(body),
-        };
-        console.log('🔍 DEBUG - Pays non trouvé:', JSON.stringify(debugInfo));
-        const response = NextResponse.json({ status: paysDict, _debug: debugInfo });
+        console.log('🔍 Pays non trouvé — on affiche le menu de sélection');
+        const response = NextResponse.json({ status: paysDict });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         return response;
     }
