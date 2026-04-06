@@ -2,11 +2,136 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/04/2026 13:23:56
- * Total: 183 recettes
+ * Dernière mise à jour: 06/04/2026 13:41:31
+ * Total: 185 recettes
  */
-export const exportSyncId = "1775481836729";
+export const exportSyncId = "1775482891671";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4844",
+        "title": "Crumble aux pommes, caramel et glace vanille",
+        "description": "Un classique indémodable, ce crumble aux pommes offre une garniture juteuse et une couche croustillante, parfait pour l&rsquo;automne. Servi avec de la glace à la vanille et du caramel, c&rsquo;est un dessert réconfortant et facile à réaliser.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775482760627.jpg&v=1775489974000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420474770711383302\" data-video-id=\"7420474770711383302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420474770711383302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             4 pommes Honeycrisp - pelées et coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1/2 tasse de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de quatre-épices"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel (pour la garniture)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à café de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tasse de flocons d&rsquo;avoine rapides"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 tasse de sucre roux (pour le crumble)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 tasse de farine (pour le crumble)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1/2 tasse de beurre non salé - fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel (pour le crumble)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Glace à la vanille (pour servir)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Caramel (pour servir)"
+            }
+        ],
+        "steps": [
+            "**Préparation de la garniture aux pommes :** Dans un grand bol, mélangez les pommes pelées et coupées en dés, le sucre roux, la cannelle, le quatre-épices, le sel et la farine tout usage. Ajoutez le jus de citron. Laissez reposer à température ambiante pendant 15 minutes.",
+            "**Préparation du crumble :** Dans un autre grand bol, mélangez les flocons d&rsquo;avoine rapides, le sucre roux, la farine et le sel. Une fois bien combiné, ajoutez lentement le beurre fondu en mélangeant bien pour qu&rsquo;il soit uniformément réparti dans le crumble.",
+            "**Assemblage :** Remplissez des ramequins aux trois quarts avec la garniture aux pommes. Déposez 2 à 3 cuillères à soupe de crumble sur le dessus et pressez légèrement.",
+            "**Cuisson :** Préchauffez le four à 175°C (350°F). Enfournez les ramequins sur la grille du milieu pendant 25 à 30 minutes.",
+            "**Service :** Une fois cuit, laissez refroidir pendant 5 minutes avant de servir. Accompagnez de glace à la vanille et de caramel."
+        ],
+        "tags": [
+            "Automne",
+            "facile",
+            "Famille",
+            "Glaces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4841",
+        "title": "Crispy Potato Chips Salad",
+        "description": "Une salade printanière irrésistible avec des chips de pommes de terre croustillantes, des légumes frais et une vinaigrette savoureuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775481798882.jpg&v=1775489027000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624195511733488929\" data-video-id=\"7624195511733488929\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624195511733488929\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Chips de pommes de terre croustillantes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Légumes variés"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigrette"
+            }
+        ],
+        "steps": [
+            "Mélanger les chips de pommes de terre croustillantes avec les légumes et la vinaigrette."
+        ],
+        "tags": [
+            "Famille",
+            "Pas cher",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4838",
         "title": "Caramel Apple Crumble",
