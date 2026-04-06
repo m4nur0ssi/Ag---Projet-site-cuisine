@@ -2,11 +2,96 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/04/2026 12:47:32
- * Total: 182 recettes
+ * Dernière mise à jour: 06/04/2026 13:23:56
+ * Total: 183 recettes
  */
-export const exportSyncId = "1775479652671";
+export const exportSyncId = "1775481836729";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4838",
+        "title": "Caramel Apple Crumble",
+        "description": "Un crumble aux pommes classique avec une garniture juteuse et un dessus croustillant, servi avec de la glace à la vanille et du caramel.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775481704400.jpg&v=1775488920000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420474770711383302\" data-video-id=\"7420474770711383302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420474770711383302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             4 pommes Honeycrisp - pelées et coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 tasse de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de quatre-épices"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à café de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tasse de flocons d&rsquo;avoine rapides"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tasse de cassonade (pour le crumble)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 tasse de farine (pour le crumble)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1/2 tasse de beurre non salé - fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel (pour le crumble)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Glace à la vanille (pour servir)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Caramel (pour servir)"
+            }
+        ],
+        "steps": [
+            "Pour la garniture : Mélangez les pommes, la cassonade, la cannelle, le quatre-épices, le sel, la farine et le jus de citron dans un grand bol. Laissez reposer à température ambiante pendant 15 minutes.",
+            "Pour le crumble : Dans un grand bol, mélangez les flocons d&rsquo;avoine, la cassonade, la farine et le sel. Incorporez lentement le beurre fondu en mélangeant bien pour qu&rsquo;il soit uniformément réparti.",
+            "Remplissez des ramequins aux trois quarts avec la garniture aux pommes. Déposez 2 à 3 cuillères à soupe de crumble sur le dessus et pressez légèrement.",
+            "Préchauffez le four à 175°C (350°F) et faites cuire pendant 25 à 30 minutes sur la grille du milieu.",
+            "Laissez refroidir pendant 5 minutes avant de servir. Accompagnez de glace à la vanille et de caramel."
+        ],
+        "tags": [
+            "Famille",
+            "Glaces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4835",
         "title": "Crispy Potato Chips Salad",
