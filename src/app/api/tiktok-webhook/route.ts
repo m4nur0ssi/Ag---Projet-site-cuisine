@@ -98,27 +98,41 @@ async function handleRequest(request: Request) {
     const isPublished = videoId && mockRecipes.some(r => r.videoHtml && r.videoHtml.includes(videoId));
 
     if (isPublished) {
-      return new Response('✅ Déjà publiée ! 🍳', { status: 200, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+      // Le raccourci lit "status" et vérifie si c'est "Duplicate" → alerte "déjà dans ta cuisine"
+      const response = NextResponse.json({ status: 'Duplicate' });
+      response.headers.set('Cache-Control', 'no-store');
+      return response;
     }
 
     // --- 2. GESTION DU MENU ---
     let selectedCountry = searchParams.get('country') || body.country || searchParams.get('pays') || body.pays || '';
     
     if (!selectedCountry) {
-        const pays = [
-            "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban", 
-            "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🍦 Glaces", "🍰 Patisserie", 
-            "🍹 Boissons", "🥐 Petit-Dej", "🥨 Aperitif", "🥧 Cakes & Tartes", "🥗 Healthy", "🥦 Vegan", "🥬 Vegetarien"
-        ];
-        
-        // Réponse claire et sans collision : status est une STRING, pays/countries sont des LISTES
-        const response = NextResponse.json({
-            status: 'ok',
-            ok: true,
-            message: 'Choisissez un pays ou une thématique',
-            pays,
-            countries: pays
-        });
+        // Le raccourci iOS lit la clé "status" et attend un DICTIONNAIRE pour afficher le menu
+        // Si c'est un doublon, status = "Duplicate" → le raccourci affiche l'alerte
+        const paysDict: any = {
+            "France":         "🇫🇷 France",
+            "Italie":         "🇮🇹 Italie",
+            "Espagne":        "🇪🇸 Espagne",
+            "Grece":          "🇬🇷 Grèce",
+            "Liban":          "🇱🇧 Liban",
+            "USA":            "🇺🇸 USA",
+            "Mexique":        "🇲🇽 Mexique",
+            "Orient":         "🕌 Orient",
+            "Asie":           "🥢 Asie",
+            "Glaces":         "🍦 Glaces",
+            "Patisserie":     "🍰 Patisserie",
+            "Boissons":       "🍹 Boissons",
+            "Petit-Dej":      "🥐 Petit-Dej",
+            "Aperitif":       "🥨 Aperitif",
+            "Cakes Tartes":   "🥧 Cakes & Tartes",
+            "Healthy":        "🥗 Healthy",
+            "Vegan":          "🥦 Vegan",
+            "Vegetarien":     "🥬 Vegetarien"
+        };
+
+        // status = le dictionnaire lui-même → le raccourci affiche le menu de sélection
+        const response = NextResponse.json({ status: paysDict });
         response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         return response;
     }
