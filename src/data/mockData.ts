@@ -2,11 +2,132 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/04/2026 13:41:31
- * Total: 185 recettes
+ * Dernière mise à jour: 06/04/2026 13:45:33
+ * Total: 187 recettes
  */
-export const exportSyncId = "1775482891671";
+export const exportSyncId = "1775483133329";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4850",
+        "title": "Honey Garlic Lemon Pepper Chicken Thighs",
+        "description": "Des cuisses de poulet désossées, marinées avec un mélange d&rsquo;épices citron-poivre, ail, paprika fumé et oignon, puis cuites au four. Elles sont ensuite enrobées d&rsquo;une sauce sucrée-salée au miel, ail, citron et sauce soja pour une finiti...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775482956847.jpg&v=1775490184000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624562084348546318\" data-video-id=\"7624562084348546318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624562084348546318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 bone-in Chicken Thighs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tsp Lemon Pepper Seasoning"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tsp Garlic Powder"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 tsp Smoked Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Kosher Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Black Pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Onion Powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 tbsp Olive Oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tbsp Unsalted Butter"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ¼ cup Honey"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 slices of Lemon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tsp minced garlic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tbsp freshly squeezed Lemon Juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tsp Low-Sodium Soy Sauce"
+            }
+        ],
+        "steps": [
+            "Nettoyez et séchez les cuisses de poulet. Dans un petit bol, combinez l&rsquo;assaisonnement citron-poivre, la poudre d&rsquo;ail, le paprika fumé, le sel casher, le poivre noir et la poudre d&rsquo;oignon. Incorporez l&rsquo;huile d&rsquo;olive pour former une pâte d&rsquo;assaisonnement. Enduisez entièrement les cuisses avec la pâte, en l&rsquo;étalant sous la peau pour aromatiser la viande. Transférez le poulet dans un sac refermable ou un récipient avec couvercle. Laissez mariner les cuisses pendant au moins 2 heures ou jusqu&rsquo;à une nuit.",
+            "Lorsque le poulet a fini de mariner, préchauffez le four à 215°C (425°F). Tapissez une grande plaque de cuisson ou un plat de 23x33cm (9&#215;13 pouces) de papier d&rsquo;aluminium, placez une grille de cuisson sur la plaque et vaporisez-la d&rsquo;un spray de cuisson antiadhésif.",
+            "Placez les cuisses sur la grille, côté peau vers le bas. Faites cuire, à découvert, pendant 30 minutes. Retournez les cuisses et continuez à cuire pendant 20 à 25 minutes, jusqu&rsquo;à ce qu&rsquo;elles soient bien cuites. La température interne doit être d&rsquo;au moins 75°C (165°F). Lorsque vous coupez le poulet près de la partie la plus épaisse, tous les jus doivent être clairs. Pendant que le poulet cuit, nous pouvons préparer la sauce.",
+            "Dans une grande poêle à feu moyen-doux, faites fondre le beurre. Quand le beurre est fondu, ajoutez le miel, les tranches de citron, l&rsquo;ail, le jus de citron, la sauce soja et 1 cuillère à soupe d&rsquo;eau. Portez la sauce à frémissement, puis laissez cuire, en remuant périodiquement, jusqu&rsquo;à ce qu&rsquo;elle épaississe, environ 5 minutes.",
+            "Lorsque le poulet est cuit, badigeonnez la sauce sur les deux côtés et faites cuire pendant 5 minutes supplémentaires, jusqu&rsquo;à ce que la sauce ait bruni et soit devenue collante. Laissez les cuisses refroidir pendant 3 à 5 minutes, puis dégustez !"
+        ],
+        "tags": [
+            "Famille",
+            "France",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4847",
+        "title": "Crispy Potato Chips Salad",
+        "description": "Une salade printanière irrésistible composée de chips de pommes de terre croustillantes, de légumes frais et d&rsquo;une sauce savoureuse. Parfaite pour une touche d&rsquo;originalité.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775482852020.jpg&v=1775490079000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624195511733488929\" data-video-id=\"7624195511733488929\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624195511733488929\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Chips de pommes de terre croustillantes"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Légumes variés (pour salade)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Sauce salade"
+            }
+        ],
+        "steps": [
+            "Mélanger les chips de pommes de terre croustillantes avec les légumes et la sauce."
+        ],
+        "tags": [
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4844",
         "title": "Crumble aux pommes, caramel et glace vanille",
