@@ -2,11 +2,49 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/04/2026 11:55:24
- * Total: 181 recettes
+ * Dernière mise à jour: 06/04/2026 12:47:32
+ * Total: 182 recettes
  */
-export const exportSyncId = "1775476524087";
+export const exportSyncId = "1775479652671";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4835",
+        "title": "Crispy Potato Chips Salad",
+        "description": "Une salade printanière irrésistible composée de chips de pommes de terre croustillantes mélangées à des légumes frais et une vinaigrette savoureuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775476487252.jpg&v=1775483715000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624195511733488929\" data-video-id=\"7624195511733488929\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624195511733488929\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Chips de pommes de terre croustillantes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Légumes (variés)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigrette"
+            }
+        ],
+        "steps": [
+            "Mélanger les chips de pommes de terre croustillantes avec les légumes et la vinaigrette."
+        ],
+        "tags": [
+            "Famille",
+            "Pas cher",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4832",
         "title": "Crumble aux pommes et caramel avec glace à la vanille",
