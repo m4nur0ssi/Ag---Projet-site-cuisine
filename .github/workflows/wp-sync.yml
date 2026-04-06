@@ -148,26 +148,28 @@ jobs:
           git config user.name "WP-Sync Bot"
           git config user.email "m4nu.r0ssi@gmail.com"
 
-          git add src/data/mockData.ts src/data/sync-stats.json 2>/dev/null || true
+          # On ajoute tout ce qui a pu être modifié par les scripts
+          git add src/data/mockData.ts src/data/sync-stats.json tiktok-bot/processed-videos.json tiktok-bot/queue.json 2>/dev/null || true
 
-          # Si rien n'a changé, on ne committe PAS pour éviter de trigger Vercel inutilement
+          # Si rien n'a changé, on ne committe PAS
           if git diff --staged --quiet; then
-            echo "✅ Aucun changement dans mockData.ts, on arrête ici."
+            echo "✅ Aucun changement détecté, arrêt."
             exit 0
           fi
 
           # Message de commit contextuel
           ACTION="${{ github.event.action || github.event.inputs.mode || 'schedule' }}"
-          # Nettoyage des guillemets dans le titre pour éviter de casser le commit -m
           POST_TITLE=$(echo "${{ github.event.client_payload.post_title || '' }}" | tr -d '"')
 
           if [ -n "$POST_TITLE" ]; then
             COMMIT_MSG="🍳 WP Sync: $POST_TITLE (ID: ${{ steps.mode.outputs.post_id }})"
           else
-            COMMIT_MSG="🔄 WP Sync: $ACTION - $(date -u '+%Y-%m-%d %H:%M') UTC"
+            COMMIT_MSG="🔄 WP Sync: $ACTION - $(date -u '+%Y-%m-%d %H:%M')"
           fi
 
-          git commit -m "$COMMIT_MSG" || echo "Nothing to commit"
-          git pull --rebase origin main || true
+          git commit -m "$COMMIT_MSG"
+          
+          # Pull avec rebase et stash automatique pour éviter les erreurs d'unstaged changes
+          git pull --rebase --autostash origin main
           git push origin main
-          echo "✅ Push terminé → Netlify va redéployer automatiquement"
+          echo "✅ Push terminé"
