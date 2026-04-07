@@ -1,19 +1,18 @@
 name: 🔄 WordPress → GitHub Sync
 
 on:
-  # 1. Webhook depuis WordPress (via repository_dispatch)
+  # ── Seul déclencheur légitime en production : le webhook WordPress ──────────
+  # Le plugin wp-github-webhook.php envoie un repository_dispatch à chaque
+  # publication / modification / suppression d'une recette WordPress.
   repository_dispatch:
     types:
       - wp_recipe_published    # Nouvelle recette publiée
       - wp_recipe_updated      # Recette modifiée
       - wp_recipe_deleted      # Recette supprimée
-      - wp_full_sync           # Sync complète forcée
+      - wp_full_sync           # Sync complète forcée (depuis l'admin WP)
 
-  # 2. Schedule automatique toutes les 6h (au lieu de 2h pour réduire le bruit)
-  schedule:
-    - cron: "0 */6 * * *"
-
-  # 3. Déclenchement manuel avec options
+  # ── Déclenchement manuel — URGENCE / DEBUG UNIQUEMENT ──────────────────────
+  # Ne pas utiliser en production. Le webhook WordPress gère tout automatiquement.
   workflow_dispatch:
     inputs:
       mode:
@@ -31,7 +30,7 @@ on:
 
 concurrency:
   group: wp-github-sync
-  cancel-in-progress: false   # On ne cancelle pas : chaque push WP est important
+  cancel-in-progress: false   # Chaque push WP est important, on ne cancelle pas
 
 jobs:
   sync:
@@ -80,11 +79,6 @@ jobs:
             fi
           fi
 
-          # Schedule → full sync
-          if [ "$EVENT" = "schedule" ]; then
-            MODE="full"
-          fi
-
           echo "mode=$MODE" >> $GITHUB_OUTPUT
           echo "post_id=$POST_ID" >> $GITHUB_OUTPUT
           echo "delete_id=$DELETE_ID" >> $GITHUB_OUTPUT
@@ -103,7 +97,7 @@ jobs:
           WP_FORCE_PUBLIC: "true"
         continue-on-error: false
 
-      # ------------------------------------------------------------------  
+      # ------------------------------------------------------------------
       # Sync RAPIDE (dernière page seulement)
       # ------------------------------------------------------------------
       - name: ⚡ Sync rapide (recettes récentes)
@@ -125,7 +119,7 @@ jobs:
       - name: 📊 Update sync-stats.json
         run: |
           TRIGGER="${{ github.event_name }}"
-          ACTION="${{ github.event.action || github.event.inputs.mode || 'schedule' }}"
+          ACTION="${{ github.event.action || github.event.inputs.mode || 'manual' }}"
           POST_ID="${{ steps.mode.outputs.post_id }}"
 
           cat > src/data/sync-stats.json << EOF
@@ -141,24 +135,21 @@ jobs:
           EOF
 
       # ------------------------------------------------------------------
-      # Commit & Push
+      # Commit & Push → déclenche automatiquement le redéploiement Vercel
       # ------------------------------------------------------------------
       - name: 💾 Commit & Push changes
         run: |
           git config user.name "WP-Sync Bot"
           git config user.email "m4nu.r0ssi@gmail.com"
 
-          # On ajoute tout ce qui a pu être modifié par les scripts
-          git add src/data/mockData.ts src/data/sync-stats.json tiktok-bot/processed-videos.json tiktok-bot/queue.json 2>/dev/null || true
+          git add src/data/mockData.ts src/data/sync-stats.json 2>/dev/null || true
 
-          # Si rien n'a changé, on ne committe PAS
           if git diff --staged --quiet; then
             echo "✅ Aucun changement détecté, arrêt."
             exit 0
           fi
 
-          # Message de commit contextuel
-          ACTION="${{ github.event.action || github.event.inputs.mode || 'schedule' }}"
+          ACTION="${{ github.event.action || github.event.inputs.mode || 'webhook' }}"
           POST_TITLE=$(echo "${{ github.event.client_payload.post_title || '' }}" | tr -d '"')
 
           if [ -n "$POST_TITLE" ]; then
@@ -168,8 +159,6 @@ jobs:
           fi
 
           git commit -m "$COMMIT_MSG"
-          
-          # Pull avec rebase et stash automatique pour éviter les erreurs d'unstaged changes
           git pull --rebase --autostash origin main
           git push origin main
-          echo "✅ Push terminé"
+          echo "✅ Push terminé → Vercel redéploie automatiquement"

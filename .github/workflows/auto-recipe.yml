@@ -1,6 +1,13 @@
-name: Recettes Magiques - Auto Pipeline
+name: Recettes Magiques - Auto Pipeline (iPhone → TikTok → WordPress)
 
 on:
+  # ── Déclencheur principal : ajout d'une recette depuis l'iPhone ─────────────
+  # L'iOS Shortcut commit dans tiktok-bot/queue.json → ce pipeline se lance
+  push:
+    paths:
+      - 'tiktok-bot/queue.json'
+
+  # ── Déclenchement manuel — TEST / DEBUG UNIQUEMENT ──────────────────────────
   workflow_dispatch:
     inputs:
       video_url:
@@ -19,11 +26,6 @@ on:
         description: "ID de la recette a supprimer de force (optionnel)"
         required: false
         default: ""
-  schedule:
-    - cron: "0 */12 * * *"
-  push:
-    paths:
-      - 'tiktok-bot/queue.json'
 
 concurrency:
   group: sync-recipes
@@ -72,26 +74,8 @@ jobs:
           PORT=3456
           ENVEOF
 
-      - name: Mise en file d'attente (si demande distante via Manual Trigger)
-        if: ${{ github.event.inputs.trigger_source == 'tiktok-shortcut' && github.event.inputs.video_url != '' }}
-        run: |
-          node -e '
-            const fs = require("fs");
-            const qPath = "tiktok-bot/queue.json";
-            let q = { queue: [] };
-            if (fs.existsSync(qPath)) q = JSON.parse(fs.readFileSync(qPath, "utf8"));
-            q.queue.push({ 
-              url: process.env.URL, 
-              country: process.env.COUNTRY,
-              ts: new Date().toISOString()
-            });
-            fs.writeFileSync(qPath, JSON.stringify(q, null, 2));
-          '
-        env:
-          URL: ${{ github.event.inputs.video_url }}
-          COUNTRY: ${{ github.event.inputs.country }}
-
-      - name: 🍳 TRAITEMENT CLOUD (Favoris + File d'attente)
+      # ── TRAITEMENT CLOUD : file d'attente iPhone + favoris TikTok ────────────
+      - name: 🍳 TRAITEMENT CLOUD (File d'attente iPhone + Favoris TikTok)
         run: node tiktok-bot/github-runner.js
         env:
           TIKTOK_SESSION_ID: ${{ secrets.TIKTOK_SESSION_ID }}
@@ -103,6 +87,7 @@ jobs:
           WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
 
+      # ── NETTOYAGE DES BROUILLONS INCOMPLETS ─────────────────────────────────
       - name: 🧹 NETTOYAGE DES BROUILLONS (Reprocess Stubs)
         run: node tiktok-bot/reprocess-stubs.js
         env:
@@ -114,42 +99,32 @@ jobs:
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
           WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-
-      - name: Synchronisation complète depuis WordPress
-        run: |
-          node sync-recipes.js --recent --delete-id=${{ github.event.inputs.delete_id }} || echo "Ignored sync error"
-        env:
-          WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
-          WP_FORCE_PUBLIC: "true"
         continue-on-error: true
 
-      - name: Mise a jour timestamp forcee
-        run: |
-          echo "{\"lastSync\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"trigger\":\"${{ github.event.inputs.trigger_source || 'push/schedule' }}\",\"status\":\"success\"}" > src/data/sync-stats.json
+      # ── NOTE : La sync WordPress → mockData.ts est gérée automatiquement ────
+      # par wp-sync.yml via le webhook WordPress (repository_dispatch).
+      # On ne la duplique PAS ici pour éviter les conflits de concurrence.
 
       - name: Commit et Push vers GitHub
         run: |
           git config user.name "rossi manuel"
           git config user.email "m4nu.r0ssi@gmail.com"
-          
-          # On ajoute TOUS les fichiers qui ont pu changer
-          git add src/data/mockData.ts \
-                  src/data/sync-stats.json \
-                  tiktok-bot/processed-videos.json \
+
+          git add tiktok-bot/processed-videos.json \
                   tiktok-bot/queue.json 2>/dev/null || true
-          
+
           if git diff --staged --quiet; then
             echo "✅ Aucun changement détecté, arrêt sans commit."
             exit 0
           fi
-          
-          COMMIT_MSG="🔄 Cloud Sync: ${{ github.event.inputs.trigger_source || 'auto' }} - $(date -u '+%Y-%m-%d %H:%M')"
+
+          COMMIT_MSG="🔄 Cloud Sync: ${{ github.event.inputs.trigger_source || 'push-queue' }} - $(date -u '+%Y-%m-%d %H:%M')"
           if [ -f tiktok-bot/latest-recipe.txt ]; then
              RECIPE_NAME=$(cat tiktok-bot/latest-recipe.txt)
              COMMIT_MSG="🍳 Nouvelle recette (Cloud): $RECIPE_NAME"
              rm tiktok-bot/latest-recipe.txt
           fi
-          
+
           git commit -m "$COMMIT_MSG" || echo "Rien a committer"
           git pull --rebase origin main || true
           git push origin main

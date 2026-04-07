@@ -131,3 +131,83 @@
     color: var(--color-text-tertiary);
     font-style: italic;
 }
+
+/* ── Mode navigation : Pays / Tendances / Thématiques ────────────────────── */
+
+.navGroups {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 8px 4px;
+}
+
+.navGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.navGroupLabel {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--color-accent-purple);
+    padding: 0 4px;
+}
+
+.navGroupItems {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.navChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 50px;
+    background: var(--liquid-bg, rgba(255,255,255,0.05));
+    border: 1px solid var(--glass-border);
+    color: var(--color-text-primary);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.navChip:hover {
+    background: rgba(127, 13, 242, 0.15);
+    border-color: rgba(127, 13, 242, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(127, 13, 242, 0.2);
+}
+
+.navChip:active {
+    transform: translateY(0);
+}
+
+.chipIcon {
+    font-size: 1rem;
+}
+
+.chipName {
+    font-size: 0.85rem;
+}
+
+/* ── Miniature recette (mode recherche) ─────────────────────────────────── */
+
+.thumbWrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.miniFlag {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    font-size: 1rem;
+    z-index: 1;
+}
