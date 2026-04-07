@@ -2,11 +2,96 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 01:23:08
- * Total: 187 recettes
+ * Dernière mise à jour: 07/04/2026 02:52:16
+ * Total: 188 recettes
  */
-export const exportSyncId = "1775524988700";
+export const exportSyncId = "1775530336901";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4853",
+        "title": "Caramel Apple Crumble",
+        "description": "Un crumble aux pommes classique avec une garniture juteuse et un dessus croustillant, servi avec de la glace à la vanille et du caramel.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775530208735.jpg&v=1775537424000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420474770711383302\" data-video-id=\"7420474770711383302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420474770711383302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             4 pommes Honeycrisp - pelées et coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 tasse de cassonade (pour la garniture)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de quatre-épices"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel (pour la garniture)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à café de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tasse de flocons d&rsquo;avoine rapides"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tasse de cassonade (pour le crumble)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 tasse de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1/2 tasse de beurre non salé - fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel (pour le crumble)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Glace à la vanille (pour servir)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Caramel (pour servir)"
+            }
+        ],
+        "steps": [
+            "Pour la garniture : Mélanger les pommes pelées et coupées en dés, la cassonade, la cannelle, le quatre-épices, le sel, la farine et le jus de citron dans un grand bol. Laisser reposer à température ambiante pendant 15 minutes.",
+            "Pour le crumble : Dans un grand bol, mélanger les flocons d&rsquo;avoine, la cassonade, la farine et le sel. Une fois bien combiné, ajouter lentement le beurre fondu et mélanger jusqu&rsquo;à ce qu&rsquo;il soit uniformément réparti.",
+            "Remplir des ramequins aux trois quarts avec la garniture aux pommes. Placer 2 à 3 cuillères à soupe de crumble sur le dessus et presser légèrement.",
+            "Préchauffer le four à 175°C (350°F) et cuire au four pendant 25 à 30 minutes sur la grille du milieu.",
+            "Une fois cuit, laisser refroidir pendant 5 minutes avant de servir. Accompagner de glace à la vanille et de caramel."
+        ],
+        "tags": [
+            "Famille",
+            "Glaces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4850",
         "title": "Honey Garlic Lemon Pepper Chicken Thighs",
