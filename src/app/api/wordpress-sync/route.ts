@@ -65,8 +65,8 @@ export async function POST(request: Request) {
 
         console.log(`🚀 Déclenchement wp-sync.yml (action: ${githubEventType}, post_id: ${postId || 'inconnu'})`);
 
-        // Déclenche wp-sync.yml via repository_dispatch
-        const response = await fetch('https://api.github.com/repos/m4nur0ssi/Ag---Projet-site-cuisine/dispatches', {
+        // Déclenche wp-sync.yml via repository_dispatch pour le SITE
+        const responseSite = await fetch('https://api.github.com/repos/m4nur0ssi/Ag---Projet-site-cuisine/dispatches', {
             method: 'POST',
             headers: {
                 'Accept': 'application/vnd.github.v3+json',
@@ -84,10 +84,30 @@ export async function POST(request: Request) {
             })
         });
 
-        if (response.status !== 204) {
-            const err = await response.text();
-            console.error(`❌ GitHub API error ${response.status}: ${err}`);
-            throw new Error(`GitHub API: ${response.status}`);
+        // Déclenche wp-sync.yml via repository_dispatch pour l'APPLICATION IPHONE
+        const responseApp = await fetch('https://api.github.com/repos/m4nur0ssi/AG-App-Iphone-cuisine/dispatches', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/vnd.github.v3+json',
+                'Authorization': `Bearer ${githubToken}`,
+                'Content-Type': 'application/json',
+                'User-Agent': 'RecetteMagique',
+            },
+            body: JSON.stringify({
+                event_type: githubEventType,
+                client_payload: {
+                    trigger: 'wordpress-webhook',
+                    post_id: String(postId),
+                    timestamp: new Date().toISOString(),
+                }
+            })
+        });
+
+        if (responseSite.status !== 204 || responseApp.status !== 204) {
+            const errSite = await responseSite.text();
+            const errApp = await responseApp.text();
+            console.error(`❌ GitHub API error Site:${responseSite.status}/App:${responseApp.status} | Site:${errSite} / App:${errApp}`);
+            throw new Error(`GitHub API: Site ${responseSite.status}, App ${responseApp.status}`);
         }
 
         console.log('✅ GitHub notifié — synchronisation en cours !');
