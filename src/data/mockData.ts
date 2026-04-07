@@ -2,66 +2,66 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 21:10:08
+ * Dernière mise à jour: 07/04/2026 21:18:04
  * Total: 185 recettes
  */
-export const exportSyncId = "1775596209009";
+export const exportSyncId = "1775596684606";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4991",
         "title": "Recettes de Smoothies variés",
         "description": "Trois recettes de smoothies rapides et nutritifs, idéales pour la perte de poids, avec des options fruitées (mangue, ananas), crémeuses (yaourt grec, pomme, cannelle, miel) et énergétiques (avocat, dattes).",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775596047069.jpg&v=1775603272000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775596047069.jpg&v=1775603797000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610843257785847062\" data-video-id=\"7610843257785847062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610843257785847062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610843257785847062\" data-video-id=\"7610843257785847062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610843257785847062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             1 Mangue"
+                "name": "🥣\n 1 Mangue"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             100g d’ananas"
+                "name": "🥣\n 100g d’ananas"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             250ml de lait de coco"
+                "name": "🥛\n 250ml de lait de coco"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 Pomme"
+                "name": "🥣\n 2 Pomme"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             250g yaourt grec"
+                "name": "🥣\n 250g yaourt grec"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             200ml lait d’avoine"
+                "name": "🥛\n 200ml lait d’avoine"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cac de canelle"
+                "name": "🥣\n 1 cac de canelle"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             1 cac de miel"
+                "name": "🍯\n 1 cac de miel"
             },
             {
                 "quantity": "",
-                "name": "🥑\n             1 avocat"
+                "name": "🥑\n 1 avocat"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             400ml de lait d’amande"
+                "name": "🥛\n 400ml de lait d’amande"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             7 dattes"
+                "name": "🥣\n 7 dattes"
             }
         ],
         "steps": [
@@ -69,7 +69,6 @@ export const mockRecipes: Recipe[] = [
             "Servir frais."
         ],
         "tags": [
-            "Healthy",
             "Rafraîchissements"
         ],
         "isFeatured": false,
