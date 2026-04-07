@@ -2,74 +2,74 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 10:14:44
+ * Dernière mise à jour: 07/04/2026 12:12:51
  * Total: 187 recettes
  */
-export const exportSyncId = "1775556884334";
+export const exportSyncId = "1775563971661";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4916",
         "title": "Casatiello stracciato",
         "description": "Une version super simple et traditionnelle du Casatiello stracciato, un plat italien convivial et gourmand, parfait pour les fêtes ou un repas en famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775556661509.jpg&v=1775563881000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcasatiello-stracciato.jpeg&v=1775571098000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624906581947288854\" data-video-id=\"7624906581947288854\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624906581947288854\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624906581947288854\" data-video-id=\"7624906581947288854\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624906581947288854\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🌾\n             1 kg de farine 00 (pour pizza)"
+                "name": "🌾\n 1 kg de farine 00 (pour pizza)"
             },
             {
                 "quantity": "",
-                "name": "💧\n             850 g d’eau (à température ambiante)"
+                "name": "💧\n 850 g d’eau (à température ambiante)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             90 g de saindoux"
+                "name": "🥣\n 90 g de saindoux"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             7 g de levure boulangère sèche instantané"
+                "name": "🥣\n 7 g de levure boulangère sèche instantané"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             13 g de sel"
+                "name": "🧂\n 13 g de sel"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre noir en abondance"
+                "name": "🌶️\n Poivre noir en abondance"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             Parmesan râpé en abondance"
+                "name": "🧀\n Parmesan râpé en abondance"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             5 œufs durs"
+                "name": "🥚\n 5 œufs durs"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 scamorza"
+                "name": "🥣\n 1 scamorza"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             250 g d’emmental"
+                "name": "🥣\n 250 g d’emmental"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 saucisson"
+                "name": "🥣\n 1 saucisson"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fromages secs et affinés (pecorino romano, provolone doux ou piquant - facultatif)"
+                "name": "🥣\n Fromages secs et affinés (pecorino romano, provolone doux ou piquant - facultatif)"
             },
             {
                 "quantity": "",
-                "name": "🥓\n             Charcuterie (jambon, cicoli, lard - facultatif)"
+                "name": "🥓\n Charcuterie (jambon, cicoli, lard - facultatif)"
             }
         ],
         "steps": [
@@ -78,8 +78,8 @@ export const mockRecipes: Recipe[] = [
             "Faire cuire au four statique, en bas, à 180°C pendant 1 heure."
         ],
         "tags": [
-            "Famille",
-            "Italie"
+            "Italie",
+            "Pâques"
         ],
         "isFeatured": false,
         "isFavorite": false,
