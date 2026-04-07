@@ -2,11 +2,100 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 16:46:38
- * Total: 191 recettes
+ * Dernière mise à jour: 07/04/2026 16:50:26
+ * Total: 193 recettes
  */
-export const exportSyncId = "1775573198553";
+export const exportSyncId = "1775573426825";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4964",
+        "title": "Honey Garlic Lemon Pepper Chicken Thighs",
+        "description": "Une recette savoureuse de cuisses de poulet marinées et cuites au four, puis enrobées d&rsquo;une sauce collante au miel, à l&rsquo;ail, au citron et au poivre.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775573099749.jpg&v=1775573142000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624562084348546318\" data-video-id=\"7624562084348546318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624562084348546318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             4 cuisses de poulet avec os"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 c. à café d&rsquo;assaisonnement citron-poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 c. à café de poudre d&rsquo;ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 c. à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de sel casher"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 c. à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 c. à café de poudre d&rsquo;oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à soupe d&rsquo;huile d&rsquo;olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 c. à soupe de beurre non salé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             ¼ tasse de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             4 tranches de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 c. à café d&rsquo;ail haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 c. à soupe de jus de citron fraîchement pressé"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 c. à café de sauce soja faible en sodium"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 c. à soupe d&rsquo;eau"
+            }
+        ],
+        "steps": [
+            "Nettoyez et séchez les cuisses de poulet. Dans un petit bol, mélangez l&rsquo;assaisonnement citron-poivre, la poudre d&rsquo;ail, le paprika, le sel, le poivre noir et la poudre d&rsquo;oignon. Incorporez l&rsquo;huile d&rsquo;olive pour faire une pâte d&rsquo;assaisonnement. Enduisez entièrement les cuisses avec la pâte, en l&rsquo;étalant sous la peau pour aromatiser la viande. Transférez le poulet dans un sac à fermeture éclair ou un récipient avec couvercle. Laissez mariner les cuisses pendant au moins 2 heures ou jusqu&rsquo;à une nuit.",
+            "Lorsque le poulet a fini de mariner, préchauffez le four à 215°C (425°F). Tapissez une grande plaque de cuisson ou un plat de cuisson de 23x33cm (9&#215;13 pouces) de papier d&rsquo;aluminium, placez une grille de cuisson dans le plat et vaporisez la grille de cuisson d&rsquo;un spray de cuisson antiadhésif.",
+            "Placez les cuisses sur la grille, côté peau vers le bas. Faites cuire, à découvert, pendant 30 minutes. Retournez les cuisses et continuez à cuire pendant 20 à 25 minutes, jusqu&rsquo;à ce qu&rsquo;elles soient bien cuites. La température interne doit être d&rsquo;au moins 75°C (165°F). Lorsque vous coupez le poulet près de la partie la plus épaisse, tous les jus doivent être clairs.",
+            "Pendant que le poulet cuit, préparez la sauce. Dans une grande poêle à feu moyen-doux, faites fondre le beurre. Une fois le beurre fondu, ajoutez le miel, les tranches de citron, l&rsquo;ail, le jus de citron, la sauce soja et 1 cuillère à soupe d&rsquo;eau. Portez la sauce à frémissement, puis laissez cuire, en remuant périodiquement, jusqu&rsquo;à ce qu&rsquo;elle épaississe, environ 5 minutes.",
+            "Lorsque le poulet est cuit, badigeonnez la sauce sur les deux côtés et faites cuire pendant 5 minutes supplémentaires, jusqu&rsquo;à ce que la sauce soit dorée et collante. Laissez les cuisses refroidir pendant 3 à 5 minutes, puis dégustez !"
+        ],
+        "tags": [
+            "Famille",
+            "France",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4958",
         "title": "Crispy Potato Chips Salad",
@@ -7696,6 +7785,84 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4105",
+        "title": "Salade de rubans de carottes healthy",
+        "description": "Cette salade de rubans de carottes virale est fraîche, croquante et pleine de saveur ! Préparée avec de fines lanières de carottes, du sésame, de l&rsquo;ail, du citron et du chili crisp, c&rsquo;est une salade rapide et délicieuse prête en quelqu...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FKJ-Viral-Carrot-Ribbon-Salad-5-1-scaled.jpg&v=1774518706000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7614418128931425566\" data-video-id=\"7614418128931425566\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7614418128931425566\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             4–6 carottes moyennes ou grandes"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ½ bouquet de coriandre, hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1–3 oignons verts (ciboule), hachés"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d&rsquo;ail, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d&rsquo;huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             2 cuillères à soupe de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus d&rsquo;½ citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de chili crisp épicé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel au goût"
+            }
+        ],
+        "steps": [
+            "Épluchez les carottes, puis utilisez un économe pour faire de fines lanières de carottes comme dans la vidéo. Continuez jusqu&rsquo;à ce que la carotte devienne trop fine pour être pelée.",
+            "Gardez les morceaux de carottes restants pour une soupe, une purée ou un autre plat.",
+            "Placez les rubans de carottes dans un grand bol.",
+            "Ajoutez la coriandre, les oignons verts, l&rsquo;ail, les graines de sésame, le vinaigre de riz, le jus de citron, l&rsquo;huile de sésame, la sauce soja, le miel, le chili crisp et le sel.",
+            "Mélangez bien le tout jusqu&rsquo;à ce que les carottes soient enrobées de la vinaigrette.",
+            "Laissez la salade reposer 10 à 15 minutes pour une meilleure saveur, ou dégustez immédiatement."
+        ],
+        "tags": [
+            "Asie",
+            "Healthy",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
