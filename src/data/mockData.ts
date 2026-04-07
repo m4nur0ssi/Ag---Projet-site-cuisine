@@ -2,16 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 08:38:40
+ * Dernière mise à jour: 07/04/2026 08:42:05
  * Total: 182 recettes
  */
-export const exportSyncId = "1775551120705";
+export const exportSyncId = "1775551325442";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4859",
         "title": "Poulet mariné au citron",
         "description": "Des cuisses de poulet désossées, marinées avec un mélange d&rsquo;épices citron-poivre, ail, paprika fumé et oignon, puis cuites au four. Elles sont ensuite enrobées d&rsquo;une sauce sucrée-salée au miel, ail, citron et sauce soja pour une finiti...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775530434882.jpg&v=1775558233000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775530434882.jpg&v=1775558442000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
