@@ -2,11 +2,49 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 16:43:08
+ * Dernière mise à jour: 07/04/2026 16:46:38
  * Total: 191 recettes
  */
-export const exportSyncId = "1775572988377";
+export const exportSyncId = "1775573198553";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4958",
+        "title": "Crispy Potato Chips Salad",
+        "description": "Une salade de printemps irrésistible avec des chips de pommes de terre croustillantes, des légumes frais et une vinaigrette savoureuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775572870181.jpg&v=1775572903000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624195511733488929\" data-video-id=\"7624195511733488929\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624195511733488929\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Chips de pommes de terre croustillantes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Légumes variés"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigrette"
+            }
+        ],
+        "steps": [
+            "Mélanger les chips de pommes de terre croustillantes avec les légumes et la vinaigrette."
+        ],
+        "tags": [
+            "Famille",
+            "Pas cher",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4943",
         "title": "Juicy Chicken Adana Kebab",
@@ -7815,69 +7853,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Salade d'été",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4091",
-        "title": "Calzone de Poulet",
-        "description": "Une calzone de poulet riche en protéines (45g) et faible en calories (255 kcal) pour un repas sain et savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcordon-bleu-maison.jpg&v=1774518508000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618276164997614870\" data-video-id=\"7618276164997614870\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618276164997614870\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             300 à 400gr de filet de poulet cru"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             2 tranches de blanc de poulet/ dinde ou jambon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             40gr de mozza (20gr par portion)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             2 tranches de comté ou fromage de votre choix"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             4 tranches de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             Un peu de chapelure"
-            }
-        ],
-        "steps": [
-            "Assaisonner les 300 à 400gr de filet de poulet cru avec du sel, du poivre et du paprika fumé.",
-            "Garnir les calzones avec le poulet assaisonné, les 2 tranches de blanc de poulet/dinde ou jambon, les 40gr de mozza (20gr par portion), les 2 tranches de comté ou fromage de votre choix et les 4 tranches de tomate.",
-            "Saupoudrer d&rsquo;un peu de chapelure.",
-            "Enfourner 20 min à 180º (ou 200º pour un résultat plus croustillant et doré)."
-        ],
-        "tags": [
-            "Healthy",
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
