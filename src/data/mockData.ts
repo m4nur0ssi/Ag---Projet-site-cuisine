@@ -2,16 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 20:18:26
+ * Dernière mise à jour: 07/04/2026 18:19:01
  * Total: 194 recettes
  */
-export const exportSyncId = "1775585907007";
+export const exportSyncId = "1775585941065";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4973",
         "title": "Poulet Adana Kebab",
         "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n&rsquo;importe quel accompagnement.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775585802462.jpg&v=1775585815000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775585802462.jpg&v=1775593015000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
