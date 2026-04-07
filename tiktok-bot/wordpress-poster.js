@@ -187,14 +187,20 @@ async function postToWordPressXMLRPC(recipe) {
     if (recipe.manualCountry) {
         let cleanCountry = recipe.manualCountry.replace(/^[^\wÀ-ÿ]+/, '').trim(); // Remove emojis at the start
         
-        // Custom mapping for iOS app themes
-        if (cleanCountry.toLowerCase().includes('dolce vita')) cleanCountry = 'Dolce Vita';
-        if (cleanCountry.toLowerCase().includes('facile')) cleanCountry = 'Facile';
-        if (cleanCountry.toLowerCase().includes('noël') || cleanCountry.toLowerCase().includes('noel')) cleanCountry = 'Noël';
-        if (cleanCountry.toLowerCase().includes('pâques') || cleanCountry.toLowerCase().includes('paques')) cleanCountry = 'Pâques';
-        if (cleanCountry.toLowerCase().includes('astuce')) cleanCountry = 'Astuces';
-        if (cleanCountry.toLowerCase().includes('glace')) { cleanCountry = 'Les Glaces'; recipe.category = 'glaces'; }
-        if (cleanCountry.toLowerCase().includes('rafra')) { cleanCountry = 'Rafraîchissements'; recipe.category = 'rafraichissements'; }
+        // Mapping des thématiques → nom propre + catégorie WordPress
+        const cl = cleanCountry.toLowerCase();
+        if (cl.includes('dolce vita'))  cleanCountry = 'Dolce Vita';
+        if (cl.includes('facile'))      cleanCountry = 'Facile';
+        
+        // Thématiques saisonnières/événementielles → catégorie propre (priorité sur l'IA)
+        if (cl.includes('astuce'))      { cleanCountry = 'Astuces';        categoryName = 'Astuces'; }
+        if (cl.includes('simplissime')) { cleanCountry = 'Simplissime';    categoryName = 'Simplissime'; }
+        if (cl.includes('noël') || cl.includes('noel')) { cleanCountry = 'Noël'; categoryName = 'Noël'; }
+        if (cl.includes('pâques') || cl.includes('paques')) { cleanCountry = 'Pâques'; }
+        
+        // Thématiques produit → catégorie propre + override
+        if (cl.includes('glace'))  { cleanCountry = 'Les Glaces';         categoryName = 'Les Glaces';         recipe.category = 'glaces'; }
+        if (cl.includes('rafra')) { cleanCountry = 'Rafraîchissements';  categoryName = 'Rafraîchissements'; recipe.category = 'rafraichissements'; }
 
         if (cleanCountry && cleanCountry !== 'Autre') {
             if (!recipe.tags) recipe.tags = [];
