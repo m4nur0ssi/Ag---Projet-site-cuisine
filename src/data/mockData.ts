@@ -2,11 +2,38 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 19:13:28
- * Total: 185 recettes
+ * Dernière mise à jour: 07/04/2026 19:46:55
+ * Total: 186 recettes
  */
-export const exportSyncId = "1775589208094";
+export const exportSyncId = "1775591215420";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4985",
+        "title": "Cake Hack",
+        "description": "Un &lsquo;hack&rsquo; ou une astuce créative liée à la présentation ou au service d&rsquo;une part de gâteau, posant la question de sa taille généreuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775591007982.jpg&v=1775598227000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616292309314866453\" data-video-id=\"7616292309314866453\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616292309314866453\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Astuces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4973",
         "title": "Poulet Adana Kebab",
