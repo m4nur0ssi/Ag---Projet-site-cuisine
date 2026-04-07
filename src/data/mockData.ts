@@ -2,16 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 08:51:35
+ * Dernière mise à jour: 07/04/2026 08:55:11
  * Total: 182 recettes
  */
-export const exportSyncId = "1775551895275";
+export const exportSyncId = "1775552111399";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4829",
         "title": "Crumble aux pommes et glace vanille",
         "description": "Un classique indémodable, ce crumble aux pommes et caramel est croustillant sur le dessus et garni d&rsquo;une compote de pommes juteuse. Servi chaud avec de la glace à la vanille et un filet de caramel.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775473669693.jpg&v=1775558993000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcrumble.jpeg&v=1775559163000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -76,7 +76,6 @@ export const mockRecipes: Recipe[] = [
             "**Service :** Une fois cuit, laissez refroidir pendant 5 minutes avant de servir. Terminez avec une boule de glace à la vanille et un filet de caramel."
         ],
         "tags": [
-            "Famille",
             "Glaces",
             "USA",
             "Végé"
