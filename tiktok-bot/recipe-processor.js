@@ -222,18 +222,8 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
     }
 
     if (analysis.isQuotaExceeded) {
-        console.log('   ⚠️ Quota IA dépassé. Création d\'une recette temporaire (Stub)...');
-        isStub = true;
-        analysis = {
-            recipeName: title || "Recette TikTok en attente",
-            summary: "Cette recette est en cours d'analyse par notre IA. Elle sera complétée automatiquement très bientôt ! ✨",
-            ingredients: [],
-            steps: [],
-            category: 'Plats',
-            tags: ['À ENRICHIR', 'Stub'],
-            photoSearchKeyword: title,
-            isDraft: true
-        };
+        console.log('   ⏳ Quota Gemini dépassé — recette laissée en file d\'attente pour retry demain (reset minuit UTC).');
+        return false; // La recette reste dans la queue GitHub, sera retraitée automatiquement
     }
 
     if (['dessert', 'patisserie', 'sucré'].some(c => analysis.category.toLowerCase().includes(c))) analysis.category = 'desserts';
