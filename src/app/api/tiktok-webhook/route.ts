@@ -181,7 +181,8 @@ async function handleRequest(request: Request) {
     if (!selectedCountry) {
         const knownCountries = ["France", "Italie", "Espagne", "Grece", "Grèce", "Liban", 
             "USA", "Mexique", "Orient", "Asie", "Afrique", "Aperitifs", "Aperitif", "Entrees", "Entrée", "Entree",
-            "Plats", "Plat", "Vegetarien", "Desserts", "Dessert", "Patisserie", "Restaurant", "Paques", "Pâques", "Noel", "Noël", "Astuces", "Simplissime"];
+            "Plats", "Plat", "Vegetarien", "Desserts", "Dessert", "Patisserie", "Restaurant",
+            "Glaces", "Glace", "Rafraichissements", "Rafraîchissements", "Paques", "Pâques", "Noel", "Noël", "Astuces", "Simplissime"];
 
         // Scan TOUS les paramètres de l'URL
         searchParams.forEach((val) => {
@@ -213,31 +214,35 @@ async function handleRequest(request: Request) {
     if (!selectedCountry) {
         const paysDict: any = {
             // Pays & Régions
-            "France":       "🇫🇷 France",
-            "Italie":       "🇮🇹 Italie",
-            "Espagne":      "🇪🇸 Espagne",
-            "Grece":        "🇬🇷 Grèce",
-            "Liban":        "🇱🇧 Liban",
-            "USA":          "🇺🇸 USA",
-            "Mexique":      "🇲🇽 Mexique",
-            "Orient":       "🕌 Orient",
-            "Asie":         "🥢 Asie",
-            "Afrique":      "🌍 Afrique",
+            "France":               "🇫🇷 France",
+            "Italie":               "🇮🇹 Italie",
+            "Espagne":              "🇪🇸 Espagne",
+            "Grece":                "🇬🇷 Grèce",
+            "Liban":                "🇱🇧 Liban",
+            "USA":                  "🇺🇸 USA",
+            "Mexique":              "🇲🇽 Mexique",
+            "Orient":               "🕌 Orient",
+            "Asie":                 "🥢 Asie",
+            "Afrique":              "🌍 Afrique",
             
             // Catégories de plats
-            "Aperitifs":    "🥨 Apéritifs",
-            "Entrees":      "🥗 Entrées",
-            "Plats":        "🍲 Plats",
-            "Vegetarien":   "🥬 Végétarien",
-            "Desserts":     "🍰 Desserts",
-            "Patisserie":   "🥐 Pâtisserie",
-            "Restaurant":   "🍽️ Restaurant",
+            "Aperitifs":            "🥨 Apéritifs",
+            "Entrees":              "🥗 Entrées",
+            "Plats":                "🍲 Plats",
+            "Vegetarien":           "🥬 Végétarien",
+            "Desserts":             "🍰 Desserts",
+            "Patisserie":           "🥐 Pâtisserie",
+            "Restaurant":           "🍽️ Restaurant",
 
-            // Thématiques et Tendances
-            "Paques":       "🥚 Pâques",
-            "Noel":         "🎄 Noël",
-            "Astuces":      "💡 Astuces",
-            "Simplissime":  "⏱️ Simplissime"
+            // Spécialités glacées & boissons
+            "Glaces":               "🧊 Les Glaces",
+            "Rafraichissements":    "🥤 Rafraîchissements",
+
+            // Thématiques et Tendances (sans Famille)
+            "Paques":               "🥚 Pâques",
+            "Noel":                 "🎄 Noël",
+            "Astuces":              "💡 Astuces",
+            "Simplissime":          "⏱️ Simplissime"
         };
         console.log('🔍 Pays non trouvé — on affiche le menu de sélection');
         const response = NextResponse.json({ status: paysDict });

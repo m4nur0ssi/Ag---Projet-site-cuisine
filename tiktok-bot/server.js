@@ -57,7 +57,15 @@ app.post('/tiktok-recipe', async (req, res) => {
     // RÉPONSE ULTRA-RAPIDE POUR LE RACCOURCI (Liste des pays)
     if (payload.checkOnly) {
         console.log("   ✅ CheckOnly reçu : Envoi de la liste des pays.");
-        const countriesList = ["🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban", "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🌍 Afrique"];
+        const countriesList = [
+            // Pays & Régions
+            "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban",
+            "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🌍 Afrique",
+            // Catégories spéciales
+            "🧊 Les Glaces", "🥤 Rafraîchissements",
+            // Thématiques & Tendances
+            "🥚 Pâques", "🎄 Noël", "💡 Astuces", "⏱️ Simplissime"
+        ];
         return res.json({ 
             status: 'ok', 
             message: 'Quelle est l\'origine de cette recette ?',

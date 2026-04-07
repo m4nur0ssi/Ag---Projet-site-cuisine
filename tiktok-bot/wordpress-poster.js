@@ -171,9 +171,13 @@ async function postToWordPressXMLRPC(recipe) {
 
     let categoryName = 'Plats';
     const catSearch = (recipe.category || '').toLowerCase();
-    if (catSearch.includes('apéritif') || catSearch.includes('boisson') || catSearch.includes('aperitifs')) categoryName = 'Apéritifs';
+    if (catSearch.includes('glace') || catSearch.includes('sorbet') || catSearch.includes('gelato')) categoryName = 'Les Glaces';
+    else if (catSearch.includes('rafra') || catSearch.includes('boisson') || catSearch.includes('cocktail') || catSearch.includes('smoothie')) categoryName = 'Rafraîchissements';
+    else if (catSearch.includes('apéritif') || catSearch.includes('aperitifs')) categoryName = 'Apéritifs';
     else if (catSearch.includes('dessert') || catSearch.includes('pâtisserie') || catSearch.includes('gâteau') || catSearch.includes('sucré')) categoryName = 'Desserts';
+    else if (catSearch.includes('patisserie')) categoryName = 'Pâtisserie';
     else if (catSearch.includes('entrée')) categoryName = 'Entrées';
+    else if (catSearch.includes('végétarien') || catSearch.includes('vegetarien')) categoryName = 'Végétarien';
 
     let featuredImageId = null;
     if (recipe.photoUrl) {
@@ -186,9 +190,11 @@ async function postToWordPressXMLRPC(recipe) {
         // Custom mapping for iOS app themes
         if (cleanCountry.toLowerCase().includes('dolce vita')) cleanCountry = 'Dolce Vita';
         if (cleanCountry.toLowerCase().includes('facile')) cleanCountry = 'Facile';
-        if (cleanCountry.toLowerCase().includes('noël')) cleanCountry = 'Noël';
-        if (cleanCountry.toLowerCase().includes('pâques')) cleanCountry = 'Pâques';
+        if (cleanCountry.toLowerCase().includes('noël') || cleanCountry.toLowerCase().includes('noel')) cleanCountry = 'Noël';
+        if (cleanCountry.toLowerCase().includes('pâques') || cleanCountry.toLowerCase().includes('paques')) cleanCountry = 'Pâques';
         if (cleanCountry.toLowerCase().includes('astuce')) cleanCountry = 'Astuces';
+        if (cleanCountry.toLowerCase().includes('glace')) { cleanCountry = 'Les Glaces'; recipe.category = 'glaces'; }
+        if (cleanCountry.toLowerCase().includes('rafra')) { cleanCountry = 'Rafraîchissements'; recipe.category = 'rafraichissements'; }
 
         if (cleanCountry && cleanCountry !== 'Autre') {
             if (!recipe.tags) recipe.tags = [];

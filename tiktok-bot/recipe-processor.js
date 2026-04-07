@@ -32,16 +32,23 @@ async function isRecipeWithGemini(description, title) {
         "summary": "Petit résumé", 
         "ingredients": ["ing1", "ing2"], 
         "steps": ["étape 1", "étape 2"], 
-        "category": "aperitifs|entrees|plats|desserts|patisserie|vegetarien", 
+        "category": "aperitifs|entrees|plats|desserts|patisserie|vegetarien|glaces|rafraichissements", 
         "tags": ["tag1"], 
         "photoSearchKeyword": "mot clé pour photo" 
     }
     
-    IMPORTANCE POUR LES TAGS : 
-    1. RÉGIME/TENDANCE : Si sain/équilibré -> "Healthy". Si végétarien -> "Végé". Si convivial/enfants -> "Famille". Si grillade -> "Barbecue". Si ingrédients basiques/économiques -> "Pas cher".
+    RÈGLES POUR LA CATÉGORIE :
+    - Si glace, sorbet, gelato, granita -> catégorie "glaces"
+    - Si cocktail, smoothie, jus, limonade, citronnade, boisson fraîche, mocktail, milkshake -> catégorie "rafraichissements"
+    - Si gâteau, tarte, viennoiserie, croissant, brioche -> catégorie "patisserie"
+    
+    RÈGLES POUR LES TAGS : 
+    1. RÉGIME/TENDANCE : Si sain/équilibré -> "Healthy". Si végétarien -> "Végé". Si grillade/barbecue -> "Barbecue". Si ingrédients basiques/économiques -> "Pas cher".
     2. PAYS : Choisis UN pays dans cette liste : France, Italie, Espagne, Grèce, Liban, USA, Mexique, Orient, Asie, Afrique.
     Si le pays d'origine est évident mais n'est pas dans la liste, utilise le plus proche ou "Afrique". 
-    Si ce n'est pas clair, laisse le champ tags vide.`;
+    Si ce n'est pas clair, laisse le champ tags vide.
+    3. SAISONS/ÉVÉNEMENTS : Si la recette contient de l'agneau ou lamb -> ajoute le tag "Pâques". Si recette typique de Noël -> ajoute "Noël".
+    4. NE PAS utiliser le tag "Famille" (supprimé).`;
 
     const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest', 'gemini-2.5-pro', 'gemini-pro-latest'];
     
@@ -227,6 +234,54 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
     }
 
     if (['dessert', 'patisserie', 'sucré'].some(c => analysis.category.toLowerCase().includes(c))) analysis.category = 'desserts';
+
+    // ================================================================
+    // POST-TRAITEMENT INTELLIGENT : smart tagging & catégorisation
+    // ================================================================
+    const allTextLower = (
+        (analysis.recipeName || '') + ' ' +
+        (analysis.summary || '') + ' ' +
+        ((analysis.ingredients || []).join(' '))
+    ).toLowerCase();
+
+    if (!analysis.tags) analysis.tags = [];
+
+    // Agneau ou lamb → Pâques automatiquement
+    if (allTextLower.includes('agneau') || allTextLower.includes('lamb')) {
+        if (!analysis.tags.some(t => t.toLowerCase().includes('paques') || t.toLowerCase().includes('pâques'))) {
+            analysis.tags.push('Pâques');
+        }
+    }
+
+    // Glace/sorbet/gelato → catégorie glaces
+    if (allTextLower.includes('glace') || allTextLower.includes('sorbet') || allTextLower.includes('gelato') || allTextLower.includes('granita')) {
+        if (['gâteau', 'cake', 'bûche', 'tarte'].some(k => allTextLower.includes(k))) {
+            // Pâtisserie glacée → reste desserts/patisserie + tag Glaces
+            if (!analysis.tags.includes('Glaces')) analysis.tags.push('Glaces');
+        } else {
+            analysis.category = 'glaces';
+        }
+    }
+
+    // Cocktail/smoothie/boisson fraîche → rafraichissements
+    if (['cocktail', 'smoothie', 'jus de', 'limonade', 'citronnade', 'mocktail', 'frappé', 'milkshake'].some(k => allTextLower.includes(k))) {
+        analysis.category = 'rafraichissements';
+    }
+
+    // Override si l'utilisateur a choisi une thématique depuis le raccourci iPhone
+    if (country) {
+        const cl = country.toLowerCase();
+        if (cl.includes('glace')) analysis.category = 'glaces';
+        if (cl.includes('rafra')) analysis.category = 'rafraichissements';
+        if (cl.includes('paques') || cl.includes('pâques')) {
+            if (!analysis.tags.some(t => t.toLowerCase().includes('paques') || t.toLowerCase().includes('pâques'))) {
+                analysis.tags.push('Pâques');
+            }
+        }
+    }
+
+    // Supprimer le tag Famille s'il a été ajouté par l'IA (supprimé de la logique)
+    analysis.tags = analysis.tags.filter(t => !t.toLowerCase().includes('famille'));
 
     console.log(`   🖼️ Recherche d'une photo pour: ${analysis.photoSearchKeyword}...`);
     let photoUrl = '';
