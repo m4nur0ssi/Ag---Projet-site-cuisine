@@ -2,11 +2,109 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 12:44:24
- * Total: 184 recettes
+ * Dernière mise à jour: 07/04/2026 13:12:57
+ * Total: 185 recettes
  */
-export const exportSyncId = "1775565864983";
+export const exportSyncId = "1775567577768";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4925",
+        "title": "Caramel Apple Crumble with vanilla ice cream",
+        "description": "Ce dessert classique présente une garniture de pommes juteuses sous un crumble croustillant et sucré, servi chaud avec de la glace à la vanille et du caramel. Parfait pour l&rsquo;automne.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775567435904.jpg&v=1775574651000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420474770711383302\" data-video-id=\"7420474770711383302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420474770711383302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             **Pour la garniture :**"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             4 pommes Honeycrisp - pelées et coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1/2 tasse de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de piment de la Jamaïque"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à café de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron (uniquement le jus)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             **Pour le crumble :**"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tasse de flocons d&rsquo;avoine rapides"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 tasse de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 tasse de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1/2 tasse de beurre non salé - fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             **Pour servir :**"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Glace à la vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Caramel"
+            }
+        ],
+        "steps": [
+            "**Préparation de la garniture aux pommes :** Dans un grand bol, mélangez les pommes Honeycrisp pelées et coupées en dés, le sucre roux, la cannelle, le piment de la Jamaïque, le sel, la farine tout usage et le jus de citron. Laissez reposer à température ambiante pendant 15 minutes.",
+            "**Préparation du crumble :** Dans un autre grand bol, mélangez les flocons d&rsquo;avoine rapides, le sucre roux, la farine et le sel. Une fois bien combiné, ajoutez lentement le beurre fondu en mélangeant bien pour qu&rsquo;il soit uniformément réparti dans le crumble.",
+            "**Assemblage :** Remplissez vos ramequins aux trois quarts avec la garniture aux pommes. Déposez 2 à 3 cuillères à soupe de crumble sur le dessus et pressez légèrement.",
+            "**Cuisson :** Préchauffez le four à 175°C (350°F). Enfournez les ramequins sur la grille du milieu pendant 25 à 30 minutes.",
+            "**Service :** Une fois cuit, laissez refroidir pendant 5 minutes avant de servir. Terminez avec une boule de glace à la vanille et un filet de caramel."
+        ],
+        "tags": [
+            "Dessert d'automne",
+            "Famille",
+            "Glaces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4823",
         "title": "Ramen de poulet",
