@@ -2,11 +2,129 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 12:19:18
+ * Dernière mise à jour: 07/04/2026 12:23:47
  * Total: 184 recettes
  */
-export const exportSyncId = "1775564358655";
+export const exportSyncId = "1775564627189";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4823",
+        "title": "Ramen de poulet",
+        "description": "Un ramen de poulet savoureux avec un bouillon parfumé au curry et lait de coco, garni de poulet mariné, pak choi, œuf mollet et mayo kimchi.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Framen-poulet.jpeg&v=1775571751000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7614948218761137430\" data-video-id=\"7614948218761137430\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7614948218761137430\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Hauts de cuisse désossés"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n Sauce soja sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Sriracha"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n Échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🍄\n Champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n Oignons cébettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Pâte de curry rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n Bouillon de légumes"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Nouilles"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pak choi"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n Œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Mayo kimchi"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Beurre de cacahuètes"
+            }
+        ],
+        "steps": [
+            "Mariner le poulet avec sauce soja sucrée, sauce huître, huile de sésame, sriracha, ail, poivre et thym.",
+            "Faire revenir échalote, ail, gingembre, champignons et cébettes avec l’huile de sésame dans une cocotte chaude.",
+            "Ajouter pâte de curry, bouillon et lait de coco et laisser mijoter.",
+            "Cuire le poulet dans une poêle bien chaude.",
+            "Faire revenir le pak choi par la suite.",
+            "Cuire les œufs 6 min pour obtenir des œufs mollets.",
+            "Dresser avec les nouilles, le bouillon, le poulet, le pak choi, l&rsquo;œuf mollet, les cébettes, les graines de sésame et la mayo kimchi."
+        ],
+        "tags": [
+            "asiatique",
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4916",
         "title": "Casatiello stracciato",
@@ -498,124 +616,6 @@ export const mockRecipes: Recipe[] = [
             "barbecue",
             "France",
             "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4823",
-        "title": "Ramen de poulet",
-        "description": "Un ramen de poulet savoureux avec un bouillon parfumé au curry et lait de coco, garni de poulet mariné, pak choi, œuf mollet et mayo kimchi.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775328524368.jpg&v=1775335737000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7614948218761137430\" data-video-id=\"7614948218761137430\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7614948218761137430\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Hauts de cuisse désossés"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Sauce soja sucré"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sauce huître"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sriracha"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gingembre"
-            },
-            {
-                "quantity": "",
-                "name": "🍄\n             Champignons"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignons cébettes"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Pâte de curry rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Bouillon de légumes"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Lait de coco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Nouilles"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pak choi"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Graines de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Mayo kimchi"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre de cacahuètes"
-            }
-        ],
-        "steps": [
-            "Mariner le poulet avec sauce soja sucrée, sauce huître, huile de sésame, sriracha, ail, poivre et thym.",
-            "Faire revenir échalote, ail, gingembre, champignons et cébettes avec l’huile de sésame dans une cocotte chaude.",
-            "Ajouter pâte de curry, bouillon et lait de coco et laisser mijoter.",
-            "Cuire le poulet dans une poêle bien chaude.",
-            "Faire revenir le pak choi par la suite.",
-            "Cuire les œufs 6 min pour obtenir des œufs mollets.",
-            "Dresser avec les nouilles, le bouillon, le poulet, le pak choi, l&rsquo;œuf mollet, les cébettes, les graines de sésame et la mayo kimchi."
-        ],
-        "tags": [
-            "asiatique",
-            "Asie"
         ],
         "isFeatured": false,
         "isFavorite": false,
