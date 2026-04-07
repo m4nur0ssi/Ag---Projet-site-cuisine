@@ -2,11 +2,165 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 09:40:00
- * Total: 184 recettes
+ * Dernière mise à jour: 07/04/2026 09:42:56
+ * Total: 185 recettes
  */
-export const exportSyncId = "1775554800699";
+export const exportSyncId = "1775554976672";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4877",
+        "title": "Kebab Adana",
+        "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n&rsquo;importe quel accompagnement.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fadana.jpeg&v=1775562061000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624951410710318358\" data-video-id=\"7624951410710318358\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624951410710318358\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 550 g de blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 3 gousses d&rsquo;ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n ½ poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à soupe de sumac"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à café de flocons de chili"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à soupe de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n ½ cuillère à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n ½ cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 2 cuillères à soupe de pâte de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d&rsquo;olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100 g de yaourt (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d&rsquo;ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Jus de citron (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d&rsquo;olive (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Flocons de chili (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Herbes (pour la sauce)"
+            }
+        ],
+        "steps": [
+            "Hacher le blanc de poulet jusqu&rsquo;à obtenir une consistance de viande hachée.",
+            "Hacher l&rsquo;oignon, l&rsquo;ail, le persil et le poivron rouge.",
+            "Ajouter le mélange haché (oignon, ail, persil, poivron) au poulet haché et mélanger avec le sumac, les flocons de chili, le paprika fumé, le paprika, le cumin, le curcuma, la pâte de tomate et le sel.",
+            "Étaler la préparation sur une plaque de cuisson et arroser d&rsquo;huile d&rsquo;olive.",
+            "Cuire au four à 200°C (400°F) pendant 25 minutes.",
+            "Pour la sauce : Mélanger 100g de yaourt, 1 gousse d&rsquo;ail hachée, du jus de citron, du paprika, du sel, de l&rsquo;huile d&rsquo;olive, des flocons de chili et des herbes.",
+            "Servir le kebab avec la sauce au yaourt, un accompagnement et une salade fraîche."
+        ],
+        "tags": [
+            "Grèce",
+            "Orient"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4888",
+        "title": "Crispy Potato Chips Salad",
+        "description": "Une salade de printemps rafraîchissante et irrésistible, composée de chips de pommes de terre croustillantes mélangées à des légumes et une vinaigrette savoureuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775554793266.jpg&v=1775562019000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624195511733488929\" data-video-id=\"7624195511733488929\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624195511733488929\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Chips de pommes de terre croustillantes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Légumes (veggies)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigrette (dressing)"
+            }
+        ],
+        "steps": [
+            "Mélanger les chips de pommes de terre croustillantes avec les légumes et la vinaigrette."
+        ],
+        "tags": [
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4818",
         "title": "Cookie Nutella Pie",
@@ -55,125 +209,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4877",
-        "title": "Kebab Adana au Poulet Juteux",
-        "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n&rsquo;importe quel accompagnement.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624951410710318358\" data-video-id=\"7624951410710318358\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624951410710318358\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             550 g de blanc de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d&rsquo;ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             ½ poivron rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de sumac"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de flocons de chili"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à soupe de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ cuillère à café de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ cuillère à café de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             2 cuillères à soupe de pâte de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 g de yaourt (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d&rsquo;ail (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Flocons de chili (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Herbes (pour la sauce)"
-            }
-        ],
-        "steps": [
-            "Hacher le blanc de poulet jusqu&rsquo;à obtenir une consistance de viande hachée.",
-            "Hacher l&rsquo;oignon, l&rsquo;ail, le persil et le poivron rouge.",
-            "Ajouter le mélange haché (oignon, ail, persil, poivron) au poulet haché et mélanger avec le sumac, les flocons de chili, le paprika fumé, le paprika, le cumin, le curcuma, la pâte de tomate et le sel.",
-            "Étaler la préparation sur une plaque de cuisson et arroser d&rsquo;huile d&rsquo;olive.",
-            "Cuire au four à 200°C (400°F) pendant 25 minutes.",
-            "Pour la sauce : Mélanger 100g de yaourt, 1 gousse d&rsquo;ail hachée, du jus de citron, du paprika, du sel, de l&rsquo;huile d&rsquo;olive, des flocons de chili et des herbes.",
-            "Servir le kebab avec la sauce au yaourt, un accompagnement et une salade fraîche."
-        ],
-        "tags": [
-            "Famille",
-            "Grèce",
-            "Orient"
         ],
         "isFeatured": false,
         "isFavorite": false,
