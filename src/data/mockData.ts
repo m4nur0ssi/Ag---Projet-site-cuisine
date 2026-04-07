@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 12:12:51
- * Total: 187 recettes
+ * Dernière mise à jour: 07/04/2026 12:19:18
+ * Total: 184 recettes
  */
-export const exportSyncId = "1775563971661";
+export const exportSyncId = "1775564358655";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4916",
@@ -80,142 +80,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Pâques"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4913",
-        "title": "Sundae Caramel Maison",
-        "description": "Une recette facile et rapide pour réaliser un délicieux sundae caramel maison, inspiré des célèbres glaces de fast-food.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775556498519.jpg&v=1775563722000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7376682408357170464\" data-video-id=\"7376682408357170464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7376682408357170464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             500g de crème liquide entière"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             250g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             60g de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             170g de lait concentré sucré"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             De l&rsquo;arôme vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Du caramel beurre salé"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Desserts",
-            "Famille",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4901",
-        "title": "Caramel Apple Crumble with vanilla ice cream",
-        "description": "Un crumble aux pommes classique avec une garniture juteuse et un dessus croustillant, servi avec de la glace à la vanille et du caramel. Un dessert d&rsquo;automne facile et réconfortant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775555919302.jpg&v=1775563152000",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420474770711383302\" data-video-id=\"7420474770711383302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420474770711383302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             4 pommes Honeycrisp - pelées et coupées en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1/2 tasse de sucre roux (pour la garniture)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de quatre-épices"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de sel (pour la garniture)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             2 cuillères à café de farine tout usage"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tasse de flocons d&rsquo;avoine rapides"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 tasse de sucre roux (pour le crumble)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             1 tasse de farine (pour le crumble)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             1/2 tasse de beurre non salé - fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de sel (pour le crumble)"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             Glace à la vanille (pour servir)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Caramel (pour servir)"
-            }
-        ],
-        "steps": [
-            "Pour la garniture : Dans un grand bol, mélangez les pommes pelées et coupées en dés, 1/2 tasse de sucre roux, la cannelle, le quatre-épices, 1 cuillère à café de sel, la farine tout usage et le jus de citron. Laissez reposer à température ambiante pendant 15 minutes.",
-            "Pour le crumble : Dans un autre grand bol, mélangez les flocons d&rsquo;avoine rapides, 1 tasse de sucre roux, 1 tasse de farine et 1 cuillère à café de sel. Une fois bien combiné, ajoutez lentement le beurre fondu de manière uniforme. Mélangez bien pour vous assurer que le beurre est uniformément réparti dans le crumble.",
-            "Préchauffez le four à 350°F (environ 175°C).",
-            "Remplissez vos ramequins aux trois quarts avec la garniture aux pommes. Placez 2 à 3 cuillères à soupe de crumble sur le dessus et appuyez légèrement.",
-            "Faites cuire au four pendant 25 à 30 minutes sur la grille du milieu.",
-            "Une fois cuit, laissez refroidir pendant 5 minutes avant de servir.",
-            "Terminez avec de la glace à la vanille et un filet de caramel."
-        ],
-        "tags": [
-            "Famille",
-            "Glaces",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -435,91 +299,6 @@ export const mockRecipes: Recipe[] = [
             "Faire cuire au four préchauffé à 180 °C (chaleur statique) pendant environ 25 à 30 minutes."
         ],
         "tags": [
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4868",
-        "title": "Caramel Apple Crumble with vanilla ice cream",
-        "description": "Un crumble aux pommes classique avec une garniture juteuse et un dessus croustillant, servi avec de la glace à la vanille et du caramel. Une combinaison parfaite pour un dessert réconfortant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775553048789.jpg&v=1775560277000",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420474770711383302\" data-video-id=\"7420474770711383302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420474770711383302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             4 Honey crisp Apples - peeled and diced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cup Brown sugar (for filling)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tsp Cinnamon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tsp Allspice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tsp Salt (for filling)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tsp AP flour"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 Lemon juice only"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cup quick Oats"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cup Brown sugar (for topping)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cup Flour (for topping)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cup unsalted Butter - melted"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tsp Salt (for topping)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Vanilla ice cream"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Caramel"
-            }
-        ],
-        "steps": [
-            "Pour la garniture : Dans un grand bol, mélangez les pommes pelées et coupées en dés, le sucre roux, la cannelle, le piment de la Jamaïque, le sel, la farine tout usage et le jus de citron. Laissez reposer à température ambiante pendant 15 minutes avant utilisation.",
-            "Pour le crumble : Dans un grand bol, mélangez les flocons d&rsquo;avoine rapides, le sucre roux, la farine et le sel. Une fois bien combiné, ajoutez lentement le beurre fondu de manière uniforme. Mélangez bien pour vous assurer que le beurre est uniformément réparti dans le crumble.",
-            "Prenez vos ramequins et remplissez-les aux 3/4 avec la garniture aux pommes. Placez 2 à 3 cuillères à soupe de crumble sur le dessus et appuyez légèrement.",
-            "Préchauffez le four à 350°F (environ 175°C) et faites cuire pendant 25 à 30 minutes sur la grille du milieu du four.",
-            "Une fois entièrement cuit, laissez refroidir pendant 5 minutes avant de servir. Terminez avec de la glace à la vanille et du caramel."
-        ],
-        "tags": [
-            "Famille",
-            "Glaces",
             "USA"
         ],
         "isFeatured": false,
