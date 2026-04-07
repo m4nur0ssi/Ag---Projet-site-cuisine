@@ -2,11 +2,133 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 02:52:16
- * Total: 188 recettes
+ * Dernière mise à jour: 07/04/2026 02:56:20
+ * Total: 190 recettes
  */
-export const exportSyncId = "1775530336901";
+export const exportSyncId = "1775530580419";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4859",
+        "title": "Honey Garlic Lemon Pepper Chicken Thighs",
+        "description": "Des cuisses de poulet désossées, marinées avec un mélange d&rsquo;épices citron-poivre, ail, paprika fumé et oignon, puis cuites au four. Elles sont ensuite enrobées d&rsquo;une sauce sucrée-salée au miel, ail, citron et sauce soja pour une finiti...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775530434882.jpg&v=1775537657000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624562084348546318\" data-video-id=\"7624562084348546318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624562084348546318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 bone-in Chicken Thighs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tsp Lemon Pepper Seasoning"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tsp Garlic Powder"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 tsp Smoked Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Kosher Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Black Pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Onion Powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 tbsp Olive Oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tbsp Unsalted Butter"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ¼ cup Honey"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 slices of Lemon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tsp minced garlic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tbsp freshly squeezed Lemon Juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tsp Low-Sodium Soy Sauce"
+            }
+        ],
+        "steps": [
+            "Clean and pat the chicken thighs dry. In a small bowl, combine lemon pepper seasoning, garlic powder, paprika, salt, black pepper, and onion powder. Stir in olive oil to make a seasoning paste. Fully coat the thighs with the paste, spreading it underneath the skin. Transfer to a zip-top bag or container and marinate for at least 2 hours or up to overnight.",
+            "Preheat oven to 425°F (215°C). Line a large baking pan with foil, set a baking rack in the pan, and coat with nonstick cooking spray.",
+            "Place thighs on the rack skin side down. Bake, uncovered, for 30 minutes. Turn over and continue to bake for 20 to 25 minutes, until cooked through (internal temperature 165°F/75°C).",
+            "While chicken bakes, prepare the sauce: In a large skillet over medium-low heat, melt butter. Add honey, lemon slices, minced garlic, lemon juice, soy sauce, and 1 tablespoon water. Bring to a simmer, then cook, stirring periodically, until it thickens (about 5 minutes).",
+            "When chicken is done, brush the sauce all over both sides and bake for an additional 5 minutes, until the sauce has browned and turned sticky. Allow thighs to cool for 3 to 5 minutes before serving."
+        ],
+        "tags": [
+            "Famille",
+            "France",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4856",
+        "title": "Crispy Potato Chips Salad",
+        "description": "Une salade de printemps irrésistible et croustillante, composée de chips de pommes de terre mélangées à des légumes frais et une vinaigrette savoureuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775530321571.jpg&v=1775537544000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624195511733488929\" data-video-id=\"7624195511733488929\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624195511733488929\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Chips de pommes de terre croustillantes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Légumes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigrette"
+            }
+        ],
+        "steps": [
+            "Mélanger les chips de pommes de terre croustillantes avec les légumes et une vinaigrette incroyable."
+        ],
+        "tags": [
+            "Famille",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4853",
         "title": "Caramel Apple Crumble",
