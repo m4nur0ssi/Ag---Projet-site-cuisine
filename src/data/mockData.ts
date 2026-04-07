@@ -2,11 +2,100 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 09:42:56
- * Total: 185 recettes
+ * Dernière mise à jour: 07/04/2026 09:48:36
+ * Total: 184 recettes
  */
-export const exportSyncId = "1775554976672";
+export const exportSyncId = "1775555316979";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4892",
+        "title": "Cuisses de poulet miel, ail, citron et poivre",
+        "description": "Découvrez cette recette de cuisses de poulet marinées au citron, poivre, ail et paprika, puis cuites au four et nappées d&rsquo;une sauce sucrée-salée au miel, ail, citron et sauce soja. Un plat savoureux et facile à préparer.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775554981007.jpg&v=1775562200000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624562084348546318\" data-video-id=\"7624562084348546318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624562084348546318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             4 cuisses de poulet avec os"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 c. à café d&rsquo;assaisonnement citron-poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 c. à café de poudre d&rsquo;ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 c. à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de sel casher"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 c. à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 c. à café de poudre d&rsquo;oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à soupe d&rsquo;huile d&rsquo;olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 c. à soupe de beurre non salé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             ¼ tasse de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             4 tranches de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 c. à café d&rsquo;ail haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 c. à soupe de jus de citron fraîchement pressé"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 c. à café de sauce soja faible en sodium"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 c. à soupe d&rsquo;eau"
+            }
+        ],
+        "steps": [
+            "1. Nettoyer et sécher les cuisses de poulet. Dans un petit bol, mélanger l&rsquo;assaisonnement citron-poivre, la poudre d&rsquo;ail, le paprika, le sel, le poivre noir et la poudre d&rsquo;oignon. Incorporer l&rsquo;huile d&rsquo;olive pour former une pâte d&rsquo;assaisonnement. Enduire entièrement les cuisses de cette pâte, en l&rsquo;étalant sous la peau pour aromatiser la viande. Transférer le poulet dans un sac refermable ou un récipient avec couvercle. Laisser mariner les cuisses pendant au moins 2 heures ou toute une nuit.",
+            "2. Une fois le poulet mariné, préchauffer le four à 215°C (425°F). Tapisser une grande plaque de cuisson ou un plat de 23x33cm (9&#215;13 pouces) de papier d&rsquo;aluminium, y placer une grille de cuisson et la vaporiser d&rsquo;un spray de cuisson antiadhésif.",
+            "3. Placer les cuisses sur la grille, côté peau vers le bas. Cuire au four, à découvert, pendant 30 minutes. Retourner les cuisses et continuer à cuire pendant 20 à 25 minutes, jusqu&rsquo;à ce qu&rsquo;elles soient bien cuites. La température interne doit être d&rsquo;au moins 75°C (165°F). En coupant le poulet près de la partie la plus épaisse, les jus doivent être clairs. Pendant la cuisson du poulet, préparer la sauce.",
+            "4. Dans une grande poêle à feu moyen-doux, faire fondre le beurre. Une fois le beurre fondu, ajouter le miel, les tranches de citron, l&rsquo;ail, le jus de citron, la sauce soja et 1 cuillère à soupe d&rsquo;eau. Porter la sauce à frémissement, puis cuire, en remuant périodiquement, jusqu&rsquo;à ce qu&rsquo;elle épaississe, environ 5 minutes.",
+            "5. Une fois le poulet cuit, badigeonner la sauce sur les deux côtés et cuire au four pendant 5 minutes supplémentaires, jusqu&rsquo;à ce que la sauce soit dorée et collante. Laisser refroidir les cuisses pendant 3 à 5 minutes, puis déguster !"
+        ],
+        "tags": [
+            "Famille",
+            "France",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4877",
         "title": "Kebab Adana",
@@ -7883,171 +7972,6 @@ export const mockRecipes: Recipe[] = [
             "barbecue",
             "Famille",
             "Grèce"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4073",
-        "title": "Roulés Phyllo aux Épinards",
-        "description": "Une délicieuse recette de roulés à base de pâte phyllo, garnis d&rsquo;épinards et de fromage, puis cuits au four jusqu&rsquo;à dorer. Parfait pour un apéritif ou une entrée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774517895112.jpg&v=1774521534000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7423482402019855658\" data-video-id=\"7423482402019855658\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7423482402019855658\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             4 feuilles de pâte phyllo fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250 g de fromage demi-gras"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             500 g de feuilles d&rsquo;épinards"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 cuillères à soupe d&rsquo;huile (pour la garniture)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             ½ verre de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ½ verre d&rsquo;huile (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d&rsquo;œuf (pour dorer, facultatif)"
-            }
-        ],
-        "steps": [
-            "Si vous utilisez des épinards frais, lavez-les soigneusement et égouttez-les.",
-            "Hachez les épinards et émiettez le fromage par-dessus. Ajoutez 4 cuillères à soupe d&rsquo;huile et le sel, puis mélangez bien avec une cuillère pour la garniture.",
-            "Dans un autre bol, battez les ingrédients de la sauce (½ verre de lait, ½ verre d&rsquo;huile, 1 œuf, 1 cuillère à café de levure chimique) avec un fouet.",
-            "Divisez les feuilles de pâte phyllo en 4. Utilisez la sauce préparée à l&rsquo;intérieur et sur la pâte phyllo pour former les roulés avec la garniture épinards-fromage.",
-            "Si désiré, ajoutez 1 jaune d&rsquo;œuf au reste de la sauce et étalez-le sur le dessus des roulés.",
-            "Faites cuire dans un four préchauffé à 175°C (350°F) jusqu&rsquo;à ce qu&rsquo;ils soient dorés. Bon appétit !"
-        ],
-        "tags": [
-            "Orient",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4505",
-        "title": "Samboussek Libanais",
-        "description": "Découvrez la recette des Samboussek, de délicieux petits chaussons libanais farcis à la viande hachée et aux pignons de pin, parfaits pour un apéritif ou une entrée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fsamboussak-1.jpg&v=1774521505000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7277600158777494817\" data-video-id=\"7277600158777494817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7277600158777494817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n 500g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 1 cuillère à café de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 cuillère à café de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 80 ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 80 ml d’huile"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n Environ 80 ml d’eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 3 gousses d’ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 400g de viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 40g de pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Gingembre moulu"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Coriandre moulue"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Épices libanaises"
-            }
-        ],
-        "steps": [
-            "Préparer la pâte en mélangeant la farine, le sel, le sucre, la levure chimique, le lait, l&rsquo;huile et l&rsquo;eau. Pétrir jusqu&rsquo;à obtenir une pâte homogène.",
-            "Laisser reposer la pâte pendant 30 minutes.",
-            "Préparer la farce en faisant revenir l&rsquo;oignon et l&rsquo;ail, puis ajouter la viande hachée et les pignons de pin. Assaisonner avec le sel, le poivre, le cumin, le gingembre moulu, la coriandre moulue et les épices libanaises.",
-            "Étaler la pâte et découper des cercles. Garnir chaque cercle de farce et refermer pour former des chaussons.",
-            "Cuire les samboussek (frits ou au four) jusqu&rsquo;à ce qu&rsquo;ils soient dorés."
-        ],
-        "tags": [
-            "Famille",
-            "Liban"
         ],
         "isFeatured": false,
         "isFavorite": false,
