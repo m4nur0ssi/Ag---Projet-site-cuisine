@@ -2,11 +2,128 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 14:53:21
- * Total: 193 recettes
+ * Dernière mise à jour: 07/04/2026 18:19:01
+ * Total: 194 recettes
  */
-export const exportSyncId = "1775573601300";
+export const exportSyncId = "1775585941065";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4973",
+        "title": "Poulet Adana Kebab",
+        "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n&rsquo;importe quel accompagnement.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775585802462.jpg&v=1775593015000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624951410710318358\" data-video-id=\"7624951410710318358\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624951410710318358\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             550 g de blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d&rsquo;ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ½ poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de sumac"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de flocons de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 cuillères à soupe de pâte de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d&rsquo;olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de yaourt (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d&rsquo;ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d&rsquo;olive (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Herbes (pour la sauce)"
+            }
+        ],
+        "steps": [
+            "Hacher le blanc de poulet jusqu&rsquo;à ce qu&rsquo;il soit émincé.",
+            "Hacher l&rsquo;oignon, l&rsquo;ail, le persil et le poivron rouge.",
+            "Ajouter au poulet et mélanger avec les épices et la pâte de tomate.",
+            "Étaler sur une plaque de cuisson et arroser d&rsquo;huile d&rsquo;olive.",
+            "Cuire au four à 200°C (400°F) pendant 25 minutes."
+        ],
+        "tags": [
+            "Famille",
+            "Grèce",
+            "Orient"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4970",
         "title": "Juicy Chicken Adana Kebab",
