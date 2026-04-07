@@ -2,16 +2,69 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 09:23:08
+ * Dernière mise à jour: 07/04/2026 09:40:00
  * Total: 184 recettes
  */
-export const exportSyncId = "1775553788802";
+export const exportSyncId = "1775554800699";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4818",
+        "title": "Cookie Nutella Pie",
+        "description": "Un délicieux Cookie Nutella Pie, super rapide et facile à réaliser, parfait pour un moment gourmand sans compter les calories.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fnutella-cookie-pie-slice-683x1024-1.jpeg&v=1775560973000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7623772126775921953\" data-video-id=\"7623772126775921953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7623772126775921953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n 200 g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 150 g de sucre (brun ou blanc)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 320 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 100 g de pépites de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3-4 cuillères à soupe de Nutella"
+            }
+        ],
+        "steps": [
+            "Mélanger le beurre et le sucre jusqu&rsquo;à obtenir une consistance crémeuse, puis incorporer l&rsquo;œuf.",
+            "Ajouter la farine et pétrir pour former une pâte. Incorporer les pépites de chocolat.",
+            "Diviser la pâte en deux. Presser la première moitié dans un moule à charnière d&rsquo;environ 18 cm pour former le fond, en remontant légèrement les bords.",
+            "Étaler le Nutella sur la pâte, en veillant à ne pas aller jusqu&rsquo;au bord pour éviter les débordements.",
+            "Déposer le reste de la pâte sur le dessus, en l&rsquo;aplatissant ou en la « recouvrant » légèrement.",
+            "Facultatif : Ajouter quelques pépites de chocolat supplémentaires sur le dessus.",
+            "Faire cuire au four préchauffé à 180 °C (chaleur statique) pendant environ 25 à 30 minutes."
+        ],
+        "tags": [
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4877",
         "title": "Kebab Adana au Poulet Juteux",
         "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n&rsquo;importe quel accompagnement.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775553454724.jpg&v=1775560688000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -611,60 +664,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "asiatique",
             "Asie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4818",
-        "title": "Cookie Nutella Pie",
-        "description": "Un délicieux Cookie Nutella Pie, super rapide et facile à réaliser, parfait pour un moment gourmand sans compter les calories.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7623772126775921953\" data-video-id=\"7623772126775921953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7623772126775921953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n             200 g de beurre mou"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             150 g de sucre (brun ou blanc)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             320 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100 g de pépites de chocolat"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3-4 cuillères à soupe de Nutella"
-            }
-        ],
-        "steps": [
-            "Mélanger le beurre et le sucre jusqu&rsquo;à obtenir une consistance crémeuse, puis incorporer l&rsquo;œuf.",
-            "Ajouter la farine et pétrir pour former une pâte. Incorporer les pépites de chocolat.",
-            "Diviser la pâte en deux. Presser la première moitié dans un moule à charnière d&rsquo;environ 18 cm pour former le fond, en remontant légèrement les bords.",
-            "Étaler le Nutella sur la pâte, en veillant à ne pas aller jusqu&rsquo;au bord pour éviter les débordements.",
-            "Déposer le reste de la pâte sur le dessus, en l&rsquo;aplatissant ou en la « recouvrant » légèrement.",
-            "Facultatif : Ajouter quelques pépites de chocolat supplémentaires sur le dessus.",
-            "Faire cuire au four préchauffé à 180 °C (chaleur statique) pendant environ 25 à 30 minutes."
-        ],
-        "tags": [
-            "Famille",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
