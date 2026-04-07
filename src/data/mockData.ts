@@ -2,11 +2,64 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 21:30:35
- * Total: 185 recettes
+ * Dernière mise à jour: 07/04/2026 21:40:54
+ * Total: 186 recettes
  */
-export const exportSyncId = "1775597435667";
+export const exportSyncId = "1775598054298";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4995",
+        "title": "Cocktail Bora Bora sans alcool",
+        "description": "Un cocktail coloré et rafraîchissant sans alcool, facile à réaliser et parfait pour toutes les occasions.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775597813419.jpg&v=1775605048000",
+        "category": "boissons",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7279373915577716000\" data-video-id=\"7279373915577716000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7279373915577716000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Sirop de fraise"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Jus de fruit de la passion"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Jus d’orange"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Glaçons"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lamelles de pomme (pour la garniture)"
+            }
+        ],
+        "steps": [
+            "Mettre des glaçons dans un verre.",
+            "Ajouter le jus d’orange.",
+            "Ajouter le jus de citron.",
+            "Ajouter le jus de fruit de la passion.",
+            "Verser le sirop de fraise en dernier.",
+            "Garnir de lamelles de pomme.",
+            "Déguster immédiatement."
+        ],
+        "tags": [
+            "Rafraîchissements"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4991",
         "title": "Recettes de Smoothies variés",
