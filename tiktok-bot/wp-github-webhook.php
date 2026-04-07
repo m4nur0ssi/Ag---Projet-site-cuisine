@@ -112,7 +112,7 @@ function lrm_settings_page(): void {
         <form method="post" action="<?= esc_url(admin_url('admin-post.php')) ?>">
             <input type="hidden" name="action" value="lrm_force_sync">
             <?php wp_nonce_field('lrm_force_sync'); ?>
-            <?php submit_button('🔄 Forcer une Sync Complète → GitHub → Netlify', 'secondary'); ?>
+            <?php submit_button('🔄 Forcer une Sync Complète → GitHub → Vercel', 'secondary'); ?>
         </form>
     </div>
     <?php
@@ -129,7 +129,7 @@ add_action('admin_post_lrm_force_sync', function () {
 
 add_action('admin_notices', function () {
     if (!isset($_GET['lrm_synced'])) return;
-    echo '<div class="notice notice-success is-dismissible"><p>✅ <strong>Sync GitHub déclenchée !</strong> Netlify va redéployer dans ~2 minutes.</p></div>';
+    echo '<div class="notice notice-success is-dismissible"><p>✅ <strong>Sync GitHub déclenchée !</strong> Vercel va redéployer dans ~2 minutes.</p></div>';
 });
 
 // ─── BARRE D'ADMIN ───────────────────────────────────────────────────────────
@@ -137,8 +137,8 @@ add_action('admin_bar_menu', function (WP_Admin_Bar $bar) {
     if (!current_user_can('manage_options')) return;
     $bar->add_node([
         'id'    => 'lrm-sync',
-        'title' => '🔄 Sync Netlify',
+        'title' => '🔄 Sync Vercel',
         'href'  => wp_nonce_url(admin_url('admin-post.php?action=lrm_force_sync'), 'lrm_force_sync'),
-        'meta'  => ['title' => 'Forcer WordPress → GitHub → Netlify'],
+        'meta'  => ['title' => 'Forcer WordPress → GitHub → Vercel'],
     ]);
 }, 999);
