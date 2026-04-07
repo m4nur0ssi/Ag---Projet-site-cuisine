@@ -4,7 +4,7 @@
  * Recupere le dernier favori TikTok et le traite.
  */
 require('dotenv').config({ path: __dirname + '/.env' });
-const fetch = require('node-fetch');
+// Node 18+ : fetch natif intégré, pas besoin de node-fetch
 const fs = require('fs');
 const path = require('path');
 
