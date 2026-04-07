@@ -2,11 +2,96 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 09:08:20
+ * Dernière mise à jour: 07/04/2026 09:13:57
  * Total: 182 recettes
  */
-export const exportSyncId = "1775552900526";
+export const exportSyncId = "1775553237625";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4868",
+        "title": "Caramel Apple Crumble with vanilla ice cream",
+        "description": "Un crumble aux pommes classique avec une garniture juteuse et un dessus croustillant, servi avec de la glace à la vanille et du caramel. Une combinaison parfaite pour un dessert réconfortant.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775553048789.jpg&v=1775560277000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420474770711383302\" data-video-id=\"7420474770711383302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420474770711383302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 Honey crisp Apples - peeled and diced"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cup Brown sugar (for filling)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Cinnamon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Allspice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Salt (for filling)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tsp AP flour"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 Lemon juice only"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cup quick Oats"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cup Brown sugar (for topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cup Flour (for topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cup unsalted Butter - melted"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Salt (for topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Vanilla ice cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Caramel"
+            }
+        ],
+        "steps": [
+            "Pour la garniture : Dans un grand bol, mélangez les pommes pelées et coupées en dés, le sucre roux, la cannelle, le piment de la Jamaïque, le sel, la farine tout usage et le jus de citron. Laissez reposer à température ambiante pendant 15 minutes avant utilisation.",
+            "Pour le crumble : Dans un grand bol, mélangez les flocons d&rsquo;avoine rapides, le sucre roux, la farine et le sel. Une fois bien combiné, ajoutez lentement le beurre fondu de manière uniforme. Mélangez bien pour vous assurer que le beurre est uniformément réparti dans le crumble.",
+            "Prenez vos ramequins et remplissez-les aux 3/4 avec la garniture aux pommes. Placez 2 à 3 cuillères à soupe de crumble sur le dessus et appuyez légèrement.",
+            "Préchauffez le four à 350°F (environ 175°C) et faites cuire pendant 25 à 30 minutes sur la grille du milieu du four.",
+            "Une fois entièrement cuit, laissez refroidir pendant 5 minutes avant de servir. Terminez avec de la glace à la vanille et du caramel."
+        ],
+        "tags": [
+            "Famille",
+            "Glaces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4847",
         "title": "Salade de chips crousti",
@@ -318,76 +403,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "asiatique",
             "Asie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4820",
-        "title": "Конвертики из баклажанов",
-        "description": "Une recette délicieuse et réconfortante de « confitures » d&rsquo;aubergines. Des tranches d&rsquo;aubergines sont cuites au four, puis garnies de boulettes de viande hachée assaisonnée, roulées en forme d&rsquo;enveloppes et mijotées dans une ric...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624558992265661717\" data-video-id=\"7624558992265661717\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624558992265661717\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍆\n             Bаклажаны - 3 шт. (Aubergines - 3 pièces)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Фарш говяжий - 350 г. (Viande hachée de bœuf - 350 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Лук репчатый - 1/2 шт. (Oignon - 1/2 pièce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Кинза / Петрушка - небольшой пучок. (Coriandre / Persil - petit bouquet)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Чеснок - 1 зубчик. (Ail - 1 gousse)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Соль, перец - по вкусу. (Sel, poivre - au goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Сладкий перец хлопьями - 1/2 ч.л. (Flocons de poivron doux - 1/2 c. à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Масло топленое - 1 ст.л. (Ghee / Beurre clarifié - 1 c. à soupe)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Помидоры в собственном соку - 400 мл. (Tomates en conserve dans leur jus - 400 ml)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Моцарелла в рассоле - 125 г. (Mozzarella en saumure - 125 g)"
-            }
-        ],
-        "steps": [
-            "Coupez les aubergines en tranches, saupoudrez de sel des deux côtés et laissez reposer 15-20 minutes.",
-            "Disposez les tranches sur une plaque de cuisson recouverte de papier sulfurisé, badigeonnez d&rsquo;huile et faites cuire au four à 200°C pendant environ 25 minutes, jusqu&rsquo;à ce qu&rsquo;elles soient tendres.",
-            "Pour la farce, mélangez soigneusement les ingrédients comme montré dans la vidéo, frappez la préparation quelques fois et formez des petites boulettes plates de 40g chacune, en humidifiant vos mains avec de l&rsquo;eau propre pour faciliter le façonnage.",
-            "Sortez les aubergines cuites, superposez-les comme montré dans la vidéo, placez une boulette au centre, roulez pour former une enveloppe.",
-            "Dans une casserole à fond épais, mettez le beurre (clarifié ou normal) et versez les tomates en conserve. Portez à ébullition, ajoutez du sel, du poivre et du sucre si nécessaire.",
-            "Disposez les « enveloppes » d&rsquo;aubergines et faites cuire à feu modéré, à couvert, pendant 20 minutes. Ensuite, ajoutez des tranches de mozzarella et terminez la cuisson au four jusqu&rsquo;à obtenir une croûte dorée."
-        ],
-        "tags": [
-            "Famille",
-            "Italie",
-            "Orient"
         ],
         "isFeatured": false,
         "isFavorite": false,
