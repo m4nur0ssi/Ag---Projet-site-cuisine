@@ -148,7 +148,9 @@ function extractRecipeData(post) {
             
             // 1. Détection par tags prioritaires (si présents sur WordPress)
             if (tags.includes('glaces') || tags.includes('sorbet')) return "glaces";
-            if (tags.includes('boissons') || tags.includes('cocktail')) return "boissons";
+            // Rafraîchissements : toutes variantes (rafraichissements / rafraîchissements / smoothie...)
+            if (tags.some(t => t.includes('rafra'))) return "rafraichissements";
+            if (tags.includes('boissons') || tags.includes('cocktail') || tags.includes('smoothie') || tags.includes('jus')) return "rafraichissements";
             if (tags.includes('apéro') || tags.includes('apéritifs')) return "aperitifs";
             if (tags.includes('entrées')) return "entrees";
             if (tags.includes('plats')) return "plats";
@@ -157,7 +159,7 @@ function extractRecipeData(post) {
 
             // 2. Détection par mots-clés dans le titre
             if (title.includes('glace') || title.includes('sorbet')) return "glaces";
-            if (title.includes('boisson') || title.includes('cocktail') || title.includes('rafraîchissement')) return "boissons";
+            if (title.includes('smoothie') || title.includes('boisson') || title.includes('cocktail') || title.includes('rafraîchissement') || title.includes('jus de')) return "rafraichissements";
             if (title.includes('croquetas') || title.includes('apéro') || title.includes('tapas') || title.includes('houmous')) return "aperitifs";
             if (title.includes('salade') || title.includes('soupe') || title.includes('velouté') || title.includes('œuf') || title.includes('carpaccio')) return "entrees";
             if (['gâteau', 'cake', 'tarte', 'cookie', 'muffins', 'pâtisserie'].some(k => title.includes(k))) return "desserts";

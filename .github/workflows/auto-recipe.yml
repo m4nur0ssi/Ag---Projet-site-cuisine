@@ -7,6 +7,11 @@ on:
     paths:
       - 'tiktok-bot/queue.json'
 
+  # ── Cron automatique : vérification favoris TikTok sans Mac ──────────────────
+  # Fonctionne 24h/24 même si le Mac est éteint
+  schedule:
+    - cron: '15 * * * *'  # Toutes les heures (à H:15)
+
   # ── Déclenchement manuel — TEST / DEBUG UNIQUEMENT ──────────────────────────
   workflow_dispatch:
     inputs:

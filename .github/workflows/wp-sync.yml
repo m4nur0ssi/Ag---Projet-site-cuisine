@@ -11,6 +11,11 @@ on:
       - wp_recipe_deleted      # Recette supprimée
       - wp_full_sync           # Sync complète forcée (depuis l'admin WP)
 
+  # ── Sync de secours quotidienne ───────────────────────────────────────────────
+  # Même si le webhook WordPress est tombé, le site sera syncé chaque nuit à 3h
+  schedule:
+    - cron: '0 3 * * *'  # Tous les jours à 3h du matin (UTC)
+
   # ── Déclenchement manuel — URGENCE / DEBUG UNIQUEMENT ──────────────────────
   # Ne pas utiliser en production. Le webhook WordPress gère tout automatiquement.
   workflow_dispatch:
@@ -65,6 +70,12 @@ jobs:
           POST_ID="${{ github.event.inputs.post_id || github.event.client_payload.post_id || '' }}"
           DELETE_ID="${{ github.event.inputs.delete_id || github.event.client_payload.delete_id || '' }}"
           EVENT="${{ github.event_name }}"
+
+          # Cron nocturne → sync complète de sécurité
+          if [ "$EVENT" = "schedule" ]; then
+            MODE="full"
+            echo "🌙 Sync nocturne cron → mode full"
+          fi
 
           # Webhook WP → sync complète si full_sync, sinon recent
           if [ "$EVENT" = "repository_dispatch" ]; then
