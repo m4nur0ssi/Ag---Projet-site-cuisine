@@ -2,11 +2,47 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 08:55:11
+ * Dernière mise à jour: 07/04/2026 09:08:20
  * Total: 182 recettes
  */
-export const exportSyncId = "1775552111399";
+export const exportSyncId = "1775552900526";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4847",
+        "title": "Salade de chips crousti",
+        "description": "Une salade printanière irrésistible composée de chips de pommes de terre croustillantes, de légumes frais et d&rsquo;une sauce savoureuse. Parfaite pour une touche d&rsquo;originalité.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775482852020.jpg&v=1775559981000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624195511733488929\" data-video-id=\"7624195511733488929\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624195511733488929\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n Chips de pommes de terre croustillantes"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n Légumes variés (pour salade)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n Sauce salade"
+            }
+        ],
+        "steps": [
+            "Mélanger les chips de pommes de terre croustillantes avec les légumes et la sauce."
+        ],
+        "tags": [
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4829",
         "title": "Crumble aux pommes et glace vanille",
@@ -164,42 +200,6 @@ export const mockRecipes: Recipe[] = [
             "barbecue",
             "France",
             "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4847",
-        "title": "Crispy Potato Chips Salad",
-        "description": "Une salade printanière irrésistible composée de chips de pommes de terre croustillantes, de légumes frais et d&rsquo;une sauce savoureuse. Parfaite pour une touche d&rsquo;originalité.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775482852020.jpg&v=1775490079000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624195511733488929\" data-video-id=\"7624195511733488929\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624195511733488929\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Chips de pommes de terre croustillantes"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Légumes variés (pour salade)"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Sauce salade"
-            }
-        ],
-        "steps": [
-            "Mélanger les chips de pommes de terre croustillantes avec les légumes et la sauce."
-        ],
-        "tags": [
-            "USA",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
