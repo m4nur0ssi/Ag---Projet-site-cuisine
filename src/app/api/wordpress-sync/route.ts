@@ -52,8 +52,18 @@ export async function POST(request: Request) {
 
         // Extraction de l'ID du post si dispo
         const postId = body?.post?.ID || body?.post?.id || body?.post_id || body?.ID || '';
+        
+        // Extraction de l'action de WordPress
+        const wpAction = body?.action || searchParams.get('action') || 'post_update';
+        let githubEventType = 'wp_recipe_updated';
 
-        console.log(`🚀 Déclenchement wp-sync.yml (post_id: ${postId || 'inconnu'})`);
+        if (wpAction.includes('create') || wpAction === 'post_published') {
+            githubEventType = 'wp_recipe_published';
+        } else if (wpAction.includes('delete') || wpAction.includes('trash')) {
+            githubEventType = 'wp_recipe_deleted';
+        }
+
+        console.log(`🚀 Déclenchement wp-sync.yml (action: ${githubEventType}, post_id: ${postId || 'inconnu'})`);
 
         // Déclenche wp-sync.yml via repository_dispatch
         const response = await fetch('https://api.github.com/repos/m4nur0ssi/Ag---Projet-site-cuisine/dispatches', {
@@ -65,7 +75,7 @@ export async function POST(request: Request) {
                 'User-Agent': 'RecetteMagique',
             },
             body: JSON.stringify({
-                event_type: 'wp_recipe_published',
+                event_type: githubEventType,
                 client_payload: {
                     trigger: 'wordpress-webhook',
                     post_id: String(postId),

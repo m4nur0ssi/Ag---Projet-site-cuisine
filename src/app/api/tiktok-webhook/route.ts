@@ -180,8 +180,8 @@ async function handleRequest(request: Request) {
     // Étape 1 : Si on n'a pas de pays, on cherche partout dans les params et le body
     if (!selectedCountry) {
         const knownCountries = ["France", "Italie", "Espagne", "Grece", "Grèce", "Liban", 
-            "USA", "Mexique", "Orient", "Asie", "Glaces", "Patisserie", 
-            "Boissons", "Petit", "Aperitif", "Cakes", "Healthy", "Vegan", "Vegetarien"];
+            "USA", "Mexique", "Orient", "Asie", "Afrique", "Aperitifs", "Aperitif", "Entrees", "Entrée", "Entree",
+            "Plats", "Plat", "Vegetarien", "Desserts", "Dessert", "Patisserie", "Restaurant", "Paques", "Pâques", "Noel", "Noël", "Astuces", "Simplissime"];
 
         // Scan TOUS les paramètres de l'URL
         searchParams.forEach((val) => {
@@ -212,6 +212,7 @@ async function handleRequest(request: Request) {
     // Si toujours pas de pays → on renvoie le menu + debug pour comprendre ce que le raccourci envoie
     if (!selectedCountry) {
         const paysDict: any = {
+            // Pays & Régions
             "France":       "🇫🇷 France",
             "Italie":       "🇮🇹 Italie",
             "Espagne":      "🇪🇸 Espagne",
@@ -221,15 +222,22 @@ async function handleRequest(request: Request) {
             "Mexique":      "🇲🇽 Mexique",
             "Orient":       "🕌 Orient",
             "Asie":         "🥢 Asie",
-            "Glaces":       "🍦 Glaces",
-            "Patisserie":   "🍰 Patisserie",
-            "Boissons":     "🍹 Boissons",
-            "Petit-Dej":    "🥐 Petit-Dej",
-            "Aperitif":     "🥨 Aperitif",
-            "CakesTartes":  "🥧 Cakes & Tartes",
-            "Healthy":      "🥗 Healthy",
-            "Vegan":        "🥦 Vegan",
-            "Vegetarien":   "🥬 Vegetarien"
+            "Afrique":      "🌍 Afrique",
+            
+            // Catégories de plats
+            "Aperitifs":    "🥨 Apéritifs",
+            "Entrees":      "🥗 Entrées",
+            "Plats":        "🍲 Plats",
+            "Vegetarien":   "🥬 Végétarien",
+            "Desserts":     "🍰 Desserts",
+            "Patisserie":   "🥐 Pâtisserie",
+            "Restaurant":   "🍽️ Restaurant",
+
+            // Thématiques et Tendances
+            "Paques":       "🥚 Pâques",
+            "Noel":         "🎄 Noël",
+            "Astuces":      "💡 Astuces",
+            "Simplissime":  "⏱️ Simplissime"
         };
         console.log('🔍 Pays non trouvé — on affiche le menu de sélection');
         const response = NextResponse.json({ status: paysDict });
