@@ -2,11 +2,89 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 08:42:05
+ * Dernière mise à jour: 07/04/2026 08:51:35
  * Total: 182 recettes
  */
-export const exportSyncId = "1775551325442";
+export const exportSyncId = "1775551895275";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4829",
+        "title": "Crumble aux pommes et glace vanille",
+        "description": "Un classique indémodable, ce crumble aux pommes et caramel est croustillant sur le dessus et garni d&rsquo;une compote de pommes juteuse. Servi chaud avec de la glace à la vanille et un filet de caramel.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775473669693.jpg&v=1775558993000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420474770711383302\" data-video-id=\"7420474770711383302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420474770711383302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 4 pommes Honeycrisp - pelées et coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 tasse de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à café de quatre-épices"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 2 cuillères à café de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1/2 jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 tasse de flocons d&rsquo;avoine rapides"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 tasse de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 1 tasse de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 1/2 tasse de beurre non salé - fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de sel"
+            }
+        ],
+        "steps": [
+            "**Préparation de la garniture aux pommes :** Dans un grand bol, mélangez les pommes pelées et coupées en dés, la cassonade, la cannelle, le quatre-épices, le sel, la farine tout usage et le jus de citron. Laissez reposer à température ambiante pendant 15 minutes.",
+            "**Préparation du crumble :** Dans un autre grand bol, mélangez les flocons d&rsquo;avoine rapides, la cassonade, la farine et le sel. Une fois bien combiné, ajoutez lentement le beurre fondu en mélangeant bien pour qu&rsquo;il soit uniformément réparti dans le crumble.",
+            "**Assemblage :** Remplissez vos ramequins aux trois quarts avec la garniture aux pommes. Déposez 2 à 3 cuillères à soupe de crumble sur le dessus et pressez légèrement.",
+            "**Cuisson :** Préchauffez le four à 175°C (350°F). Enfournez les ramequins sur la grille du milieu pendant 25 à 30 minutes.",
+            "**Service :** Une fois cuit, laissez refroidir pendant 5 minutes avant de servir. Terminez avec une boule de glace à la vanille et un filet de caramel."
+        ],
+        "tags": [
+            "Famille",
+            "Glaces",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4859",
         "title": "Poulet mariné au citron",
@@ -121,84 +199,6 @@ export const mockRecipes: Recipe[] = [
             "Mélanger les chips de pommes de terre croustillantes avec les légumes et la sauce."
         ],
         "tags": [
-            "USA",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4829",
-        "title": "Crumble aux pommes et caramel avec glace à la vanille",
-        "description": "Un classique indémodable, ce crumble aux pommes et caramel est croustillant sur le dessus et garni d&rsquo;une compote de pommes juteuse. Servi chaud avec de la glace à la vanille et un filet de caramel.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775473669693.jpg&v=1775480884000",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420474770711383302\" data-video-id=\"7420474770711383302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420474770711383302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             4 pommes Honeycrisp - pelées et coupées en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 tasse de cassonade"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de quatre-épices"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             2 cuillères à café de farine tout usage"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tasse de flocons d&rsquo;avoine rapides"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tasse de cassonade"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             1 tasse de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             1/2 tasse de beurre non salé - fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de sel"
-            }
-        ],
-        "steps": [
-            "**Préparation de la garniture aux pommes :** Dans un grand bol, mélangez les pommes pelées et coupées en dés, la cassonade, la cannelle, le quatre-épices, le sel, la farine tout usage et le jus de citron. Laissez reposer à température ambiante pendant 15 minutes.",
-            "**Préparation du crumble :** Dans un autre grand bol, mélangez les flocons d&rsquo;avoine rapides, la cassonade, la farine et le sel. Une fois bien combiné, ajoutez lentement le beurre fondu en mélangeant bien pour qu&rsquo;il soit uniformément réparti dans le crumble.",
-            "**Assemblage :** Remplissez vos ramequins aux trois quarts avec la garniture aux pommes. Déposez 2 à 3 cuillères à soupe de crumble sur le dessus et pressez légèrement.",
-            "**Cuisson :** Préchauffez le four à 175°C (350°F). Enfournez les ramequins sur la grille du milieu pendant 25 à 30 minutes.",
-            "**Service :** Une fois cuit, laissez refroidir pendant 5 minutes avant de servir. Terminez avec une boule de glace à la vanille et un filet de caramel."
-        ],
-        "tags": [
-            "Famille",
-            "Glaces",
             "USA",
             "Végé"
         ],
