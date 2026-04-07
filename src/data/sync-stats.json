@@ -1,9 +1,9 @@
 {
-  "lastSync": "2026-04-07T12:32:43Z",
+  "lastSync": "2026-04-07T12:44:25Z",
   "trigger": "workflow_dispatch",
   "action": "recent",
   "postId": "",
   "mode": "recent",
   "status": "success",
-  "ts": 1775565163
+  "ts": 1775565865
 }
