@@ -2,11 +2,130 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 09:18:51
- * Total: 183 recettes
+ * Dernière mise à jour: 07/04/2026 09:23:08
+ * Total: 184 recettes
  */
-export const exportSyncId = "1775553531055";
+export const exportSyncId = "1775553788802";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4877",
+        "title": "Kebab Adana au Poulet Juteux",
+        "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n&rsquo;importe quel accompagnement.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775553454724.jpg&v=1775560688000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624951410710318358\" data-video-id=\"7624951410710318358\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624951410710318358\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             550 g de blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d&rsquo;ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ½ poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de sumac"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de flocons de chili"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 cuillères à soupe de pâte de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d&rsquo;olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de yaourt (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d&rsquo;ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d&rsquo;olive (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Flocons de chili (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Herbes (pour la sauce)"
+            }
+        ],
+        "steps": [
+            "Hacher le blanc de poulet jusqu&rsquo;à obtenir une consistance de viande hachée.",
+            "Hacher l&rsquo;oignon, l&rsquo;ail, le persil et le poivron rouge.",
+            "Ajouter le mélange haché (oignon, ail, persil, poivron) au poulet haché et mélanger avec le sumac, les flocons de chili, le paprika fumé, le paprika, le cumin, le curcuma, la pâte de tomate et le sel.",
+            "Étaler la préparation sur une plaque de cuisson et arroser d&rsquo;huile d&rsquo;olive.",
+            "Cuire au four à 200°C (400°F) pendant 25 minutes.",
+            "Pour la sauce : Mélanger 100g de yaourt, 1 gousse d&rsquo;ail hachée, du jus de citron, du paprika, du sel, de l&rsquo;huile d&rsquo;olive, des flocons de chili et des herbes.",
+            "Servir le kebab avec la sauce au yaourt, un accompagnement et une salade fraîche."
+        ],
+        "tags": [
+            "Famille",
+            "Grèce",
+            "Orient"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4874",
         "title": "Honey Garlic Lemon Pepper Chicken Thighs",
@@ -501,7 +620,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4818",
         "title": "Cookie Nutella Pie",
         "description": "Un délicieux Cookie Nutella Pie, super rapide et facile à réaliser, parfait pour un moment gourmand sans compter les calories.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775305707176.jpg&v=1775312919000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
