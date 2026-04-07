@@ -2,16 +2,65 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 18:19:01
- * Total: 194 recettes
+ * Dernière mise à jour: 07/04/2026 20:24:02
+ * Total: 195 recettes
  */
-export const exportSyncId = "1775585941065";
+export const exportSyncId = "1775586242200";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4977",
+        "title": "Sundae Maison Caramel Beurre Salé Façon McDonald&rsquo;s",
+        "description": "Découvrez comment réaliser facilement et rapidement un délicieux sundae maison au caramel beurre salé, inspiré du célèbre dessert de McDonald&rsquo;s.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7376682408357170464\" data-video-id=\"7376682408357170464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7376682408357170464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             500g de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             170g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             De l&rsquo;arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Du caramel beurre salé (maison ou du commerce)"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
+        ],
+        "tags": [
+            "Desserts",
+            "Famille",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4973",
         "title": "Poulet Adana Kebab",
         "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n&rsquo;importe quel accompagnement.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775585802462.jpg&v=1775593015000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775585802462.jpg&v=1775585815000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
