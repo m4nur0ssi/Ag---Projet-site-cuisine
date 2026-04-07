@@ -2,17 +2,17 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 21:40:54
- * Total: 186 recettes
+ * Dernière mise à jour: 07/04/2026 21:50:14
+ * Total: 185 recettes
  */
-export const exportSyncId = "1775598054298";
+export const exportSyncId = "1775598614765";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4995",
         "title": "Cocktail Bora Bora sans alcool",
         "description": "Un cocktail coloré et rafraîchissant sans alcool, facile à réaliser et parfait pour toutes les occasions.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775597813419.jpg&v=1775605048000",
-        "category": "boissons",
+        "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -52,74 +52,6 @@ export const mockRecipes: Recipe[] = [
             "Verser le sirop de fraise en dernier.",
             "Garnir de lamelles de pomme.",
             "Déguster immédiatement."
-        ],
-        "tags": [
-            "Rafraîchissements"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4991",
-        "title": "Recettes de Smoothies variés",
-        "description": "Trois recettes de smoothies rapides et nutritifs, idéales pour la perte de poids, avec des options fruitées (mangue, ananas), crémeuses (yaourt grec, pomme, cannelle, miel) et énergétiques (avocat, dattes).",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775596047069.jpg&v=1775603797000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610843257785847062\" data-video-id=\"7610843257785847062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610843257785847062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 1 Mangue"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 100g d’ananas"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 250ml de lait de coco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 Pomme"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 250g yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 200ml lait d’avoine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 cac de canelle"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 1 cac de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n 1 avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 400ml de lait d’amande"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 7 dattes"
-            }
-        ],
-        "steps": [
-            "Pour chaque smoothie, mixer tous les ingrédients correspondants jusqu&rsquo;à obtenir une consistance lisse et homogène.",
-            "Servir frais."
         ],
         "tags": [
             "Rafraîchissements"
