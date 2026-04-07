@@ -2,11 +2,100 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 09:13:57
- * Total: 182 recettes
+ * Dernière mise à jour: 07/04/2026 09:18:51
+ * Total: 183 recettes
  */
-export const exportSyncId = "1775553237625";
+export const exportSyncId = "1775553531055";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4874",
+        "title": "Honey Garlic Lemon Pepper Chicken Thighs",
+        "description": "Une recette de cuisses de poulet désossées et avec peau, marinées dans un mélange d&rsquo;épices citron-poivre, ail, paprika, puis cuites au four et nappées d&rsquo;une sauce sucrée-salée au miel, ail, citron et sauce soja. Idéal pour un plat prin...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775553338984.jpg&v=1775560569000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624562084348546318\" data-video-id=\"7624562084348546318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624562084348546318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             4 cuisses de poulet avec os"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 c. à café d&rsquo;assaisonnement citron-poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 c. à café de poudre d&rsquo;ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 c. à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de sel casher"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 c. à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 c. à café de poudre d&rsquo;oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à soupe d&rsquo;huile d&rsquo;olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 c. à soupe de beurre non salé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             ¼ tasse de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             4 tranches de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 c. à café d&rsquo;ail haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 c. à soupe de jus de citron fraîchement pressé"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 c. à café de sauce soja faible en sodium"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 c. à soupe d&rsquo;eau"
+            }
+        ],
+        "steps": [
+            "Préparer le poulet : Nettoyer et sécher les cuisses. Dans un petit bol, combiner l&rsquo;assaisonnement citron-poivre, la poudre d&rsquo;ail, le paprika, le sel, le poivre noir et la poudre d&rsquo;oignon. Incorporer l&rsquo;huile d&rsquo;olive pour faire une pâte d&rsquo;assaisonnement. Enduire entièrement les cuisses avec la pâte, en l&rsquo;étalant sous la peau pour aromatiser la viande. Transférer le poulet dans un sac refermable ou un récipient avec couvercle. Laisser mariner les cuisses pendant au moins 2 heures ou jusqu&rsquo;à une nuit.",
+            "Lorsque le poulet a fini de mariner, préchauffer le four à 215°C (425°F). Tapisser une grande plaque de cuisson ou un plat de cuisson de 23x33cm (9&#215;13 pouces) de papier d&rsquo;aluminium, placer une grille de cuisson sur la plaque et vaporiser la grille d&rsquo;un spray de cuisson antiadhésif.",
+            "Placer les cuisses sur la grille, côté peau vers le bas. Cuire, à découvert, pendant 30 minutes. Retourner les cuisses et continuer à cuire pendant 20 à 25 minutes, jusqu&rsquo;à ce qu&rsquo;elles soient bien cuites. La température interne doit être d&rsquo;au moins 75°C (165°F). En coupant le poulet près de la partie la plus épaisse, tous les jus doivent être clairs. Pendant que le poulet cuit, nous pouvons préparer la sauce.",
+            "Préparer la sauce : Dans une grande poêle à feu moyen-doux, faire fondre le beurre. Lorsque le beurre est fondu, ajouter le miel, les tranches de citron, l&rsquo;ail, le jus de citron, la sauce soja et 1 cuillère à soupe d&rsquo;eau. Porter la sauce à frémissement, puis cuire, en remuant périodiquement, jusqu&rsquo;à ce qu&rsquo;elle épaississe, environ 5 minutes.",
+            "Lorsque le poulet est cuit, badigeonner la sauce sur les deux côtés et cuire au four pendant 5 minutes supplémentaires, jusqu&rsquo;à ce que la sauce ait bruni et soit devenue collante. Laisser les cuisses refroidir pendant 3 à 5 minutes, puis déguster!"
+        ],
+        "tags": [
+            "Famille",
+            "France",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4868",
         "title": "Caramel Apple Crumble with vanilla ice cream",
