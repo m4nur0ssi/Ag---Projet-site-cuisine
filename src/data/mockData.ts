@@ -2,78 +2,78 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 08:15:21
+ * Dernière mise à jour: 07/04/2026 08:38:40
  * Total: 182 recettes
  */
-export const exportSyncId = "1775549721160";
+export const exportSyncId = "1775551120705";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4859",
-        "title": "Honey Garlic Lemon Pepper Chicken Thighs",
+        "title": "Poulet mariné au citron",
         "description": "Des cuisses de poulet désossées, marinées avec un mélange d&rsquo;épices citron-poivre, ail, paprika fumé et oignon, puis cuites au four. Elles sont ensuite enrobées d&rsquo;une sauce sucrée-salée au miel, ail, citron et sauce soja pour une finiti...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775530434882.jpg&v=1775537657000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775530434882.jpg&v=1775558233000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624562084348546318\" data-video-id=\"7624562084348546318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624562084348546318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624562084348546318\" data-video-id=\"7624562084348546318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624562084348546318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             4 bone-in Chicken Thighs"
+                "name": "🥣\n 4 bone-in Chicken Thighs"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 tsp Lemon Pepper Seasoning"
+                "name": "🥣\n 2 tsp Lemon Pepper Seasoning"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 tsp Garlic Powder"
+                "name": "🥣\n 2 tsp Garlic Powder"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             2 tsp Smoked Paprika"
+                "name": "🧂\n 2 tsp Smoked Paprika"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 tsp Kosher Salt"
+                "name": "🥣\n 1 tsp Kosher Salt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 tsp Black Pepper"
+                "name": "🥣\n 1 tsp Black Pepper"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 tsp Onion Powder"
+                "name": "🥣\n 1 tsp Onion Powder"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             3 tbsp Olive Oil"
+                "name": "🥣\n 3 tbsp Olive Oil"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 tbsp Unsalted Butter"
+                "name": "🥣\n 2 tbsp Unsalted Butter"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ¼ cup Honey"
+                "name": "🥣\n ¼ cup Honey"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             4 slices of Lemon"
+                "name": "🥣\n 4 slices of Lemon"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             4 tsp minced garlic"
+                "name": "🥣\n 4 tsp minced garlic"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 tbsp freshly squeezed Lemon Juice"
+                "name": "🥣\n 1 tbsp freshly squeezed Lemon Juice"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 tsp Low-Sodium Soy Sauce"
+                "name": "🥣\n 2 tsp Low-Sodium Soy Sauce"
             }
         ],
         "steps": [
@@ -84,7 +84,7 @@ export const mockRecipes: Recipe[] = [
             "When chicken is done, brush the sauce all over both sides and bake for an additional 5 minutes, until the sauce has browned and turned sticky. Allow thighs to cool for 3 to 5 minutes before serving."
         ],
         "tags": [
-            "Famille",
+            "barbecue",
             "France",
             "USA"
         ],
