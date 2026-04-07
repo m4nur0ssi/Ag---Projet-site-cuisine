@@ -2,11 +2,60 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/04/2026 10:05:58
- * Total: 185 recettes
+ * Dernière mise à jour: 07/04/2026 10:10:47
+ * Total: 186 recettes
  */
-export const exportSyncId = "1775556358414";
+export const exportSyncId = "1775556647372";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4913",
+        "title": "Sundae Caramel Maison",
+        "description": "Une recette facile et rapide pour réaliser un délicieux sundae caramel maison, inspiré des célèbres glaces de fast-food.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775556498519.jpg&v=1775563722000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7376682408357170464\" data-video-id=\"7376682408357170464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7376682408357170464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             500g de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             170g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             De l&rsquo;arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Du caramel beurre salé"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Famille",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4901",
         "title": "Caramel Apple Crumble with vanilla ice cream",
