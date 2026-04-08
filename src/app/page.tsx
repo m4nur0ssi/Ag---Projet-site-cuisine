@@ -1,5 +1,5 @@
 'use client';
-// Vercel Deployment Sync V17.9 - iPhone Power Edition
+// Vercel Deployment Sync V18.0 - Thématiques Saison + Fix Accents
 import { useState, useMemo, useRef, useCallback, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
