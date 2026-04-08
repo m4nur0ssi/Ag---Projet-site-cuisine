@@ -60,11 +60,10 @@ app.post('/tiktok-recipe', async (req, res) => {
         const countriesList = [
             // Pays & Régions
             "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban",
-            "🇺🇸 USA", "🇲🇽 Mexique", "🕌 Orient", "🥢 Asie", "🌍 Afrique",
-            // Catégories spéciales
-            "🧊 Les Glaces", "🥤 Rafraîchissements",
             // Thématiques & Tendances
-            "🥚 Pâques", "🎄 Noël", "💡 Astuces", "⏱️ Simplissime"
+            "☀️ Voilà l'été", "❄️ C'est l'hiver", "🥚 Pâques", "🎄 Noël", "💡 Astuces", "⏱️ Simplissime",
+            // Catégories spéciales
+            "🧊 Les Glaces", "🥤 Rafraîchissements"
         ];
         return res.json({ 
             status: 'ok', 

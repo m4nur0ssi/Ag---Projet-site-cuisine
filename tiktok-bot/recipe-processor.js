@@ -32,7 +32,7 @@ async function isRecipeWithGemini(description, title) {
         "summary": "Petit résumé", 
         "ingredients": ["ing1", "ing2"], 
         "steps": ["étape 1", "étape 2"], 
-        "category": "aperitifs|entrees|plats|desserts|patisserie|vegetarien|glaces|rafraichissements", 
+        "category": "aperitifs|entrees|plats|desserts|patisserie|vegetarien|glaces|rafraichissements|voila-lete|cest-lhiver", 
         "tags": ["tag1"], 
         "photoSearchKeyword": "mot clé pour photo" 
     }
@@ -41,13 +41,15 @@ async function isRecipeWithGemini(description, title) {
     - Si glace, sorbet, gelato, granita -> catégorie "glaces"
     - Si cocktail, smoothie, jus, limonade, citronnade, boisson fraîche, mocktail, milkshake -> catégorie "rafraichissements"
     - Si gâteau, tarte, viennoiserie, croissant, brioche -> catégorie "patisserie"
+    - Si recette estivale, fruits d'été, barbecue, salade fraîche, plage -> catégorie "voila-lete"
+    - Si soupe d'hiver, raclette, fondue, gratins d'hiver, plat mijoté de saison froide -> catégorie "cest-lhiver"
     
     RÈGLES POUR LES TAGS : 
     1. RÉGIME/TENDANCE : Si sain/équilibré -> "Healthy". Si végétarien -> "Végé". Si grillade/barbecue -> "Barbecue". Si ingrédients basiques/économiques -> "Pas cher".
     2. PAYS : Choisis UN pays dans cette liste : France, Italie, Espagne, Grèce, Liban, USA, Mexique, Orient, Asie, Afrique.
     Si le pays d'origine est évident mais n'est pas dans la liste, utilise le plus proche ou "Afrique". 
     Si ce n'est pas clair, laisse le champ tags vide.
-    3. SAISONS/ÉVÉNEMENTS : Si la recette contient de l'agneau ou lamb -> ajoute le tag "Pâques". Si recette typique de Noël -> ajoute "Noël".
+    3. SAISONS/ÉVÉNEMENTS : Si la recette contient de l'agneau ou lamb -> ajoute le tag "Pâques". Si recette typique de Noël -> ajoute "Noël". Si estival -> ajoute "Voilà l'été". Si hivernal -> ajoute "C'est l'hiver".
     4. NE PAS utiliser le tag "Famille" (supprimé).`;
 
     const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest', 'gemini-2.5-pro', 'gemini-pro-latest'];
@@ -177,9 +179,12 @@ async function checkWordPressDuplicate(videoUrl) {
             const posts = await res.json();
             // Filtrage strict : on vérifie que l'un des posts correspond vraiment à la vidéo
             const found = posts.some(p => {
-                if (!p.link) return false;
-                if (videoId && p.link.includes(videoId)) return true;
-                if (videoUrl && p.link.includes(videoUrl)) return true;
+                const content = (p.content?.rendered || '').toLowerCase();
+                const title = (p.title?.rendered || '').toLowerCase();
+                const link = (p.link || '').toLowerCase();
+                
+                if (videoId && (content.includes(videoId) || link.includes(videoId))) return true;
+                if (videoUrl && (content.includes(videoUrl) || link.includes(videoUrl))) return true;
                 return false;
             });
             if (found) {
@@ -273,6 +278,14 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         const cl = country.toLowerCase();
         if (cl.includes('glace')) analysis.category = 'glaces';
         if (cl.includes('rafra')) analysis.category = 'rafraichissements';
+        if (cl.includes('été') || cl.includes('ete')) {
+            analysis.category = 'voila-lete';
+            if (!analysis.tags.includes("Voilà l'été")) analysis.tags.push("Voilà l'été");
+        }
+        if (cl.includes('hiver')) {
+            analysis.category = 'cest-lhiver';
+            if (!analysis.tags.includes("C'est l'hiver")) analysis.tags.push("C'est l'hiver");
+        }
         if (cl.includes('paques') || cl.includes('pâques')) {
             if (!analysis.tags.some(t => t.toLowerCase().includes('paques') || t.toLowerCase().includes('pâques'))) {
                 analysis.tags.push('Pâques');

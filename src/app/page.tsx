@@ -21,6 +21,8 @@ const categories = [
     { id: 'vegetarien', name: 'Végétarien' },
     { id: 'desserts', name: 'Desserts' },
     { id: 'patisserie', name: 'Pâtisserie' },
+    { id: 'glaces', name: 'Les Glaces 🍨' },
+    { id: 'rafraichissements', name: 'Rafraîchissements 🥤' },
     { id: 'restaurant', name: 'Restaurant' }
 ];
 
@@ -94,12 +96,21 @@ function HomeContent() {
                                     title.includes('cookie') || title.includes('muffins') || title.includes('pâtisserie') ||
                                     recipeCat.includes('patisserie')) && !isSavory;
 
+                const isGlace = title.includes('glace') || title.includes('sorbet') || title.includes('gelato') || 
+                               recipeCat.includes('glaces') || recipeTags.includes('glaces');
+
+                const isRafraich = title.includes('cocktail') || title.includes('smoothie') || title.includes('jus') || 
+                                 title.includes('limonade') || title.includes('boisson') || 
+                                 recipeCat.includes('rafraichissements') || recipeTags.includes('rafraichissements');
+
                 // Attribution Prioritaire
                 if (tagLower === 'plats' && isPlat) return true;
                 if (tagLower === 'aperitifs' && isApero) return true;
                 if (tagLower === 'entrees' && isEntree) return true;
                 if (tagLower === 'desserts' && isDessert) return true;
                 if (tagLower === 'patisserie' && isPatisserie) return true;
+                if (tagLower === 'glaces' && isGlace) return true;
+                if (tagLower === 'rafraichissements' && isRafraich) return true;
 
                 // Par défaut : match catégorie ou tag
                 const isMatch = recipeCat === tagLower || recipeCat.includes(tagLower) || tagLower.includes(recipeCat) || recipeTags.some(t => t.includes(tagLower));
@@ -365,12 +376,21 @@ function HomeContent() {
                                                 title.includes('cookie') || title.includes('muffins') || title.includes('pâtisserie') ||
                                                 cat.includes('patisserie')) && !isSavory;
 
+                            const isGlace = title.includes('glace') || title.includes('sorbet') || title.includes('gelato') || 
+                                           cat.includes('glaces') || tags.includes('glaces');
+
+                            const isRafraich = title.includes('cocktail') || title.includes('smoothie') || title.includes('jus') || 
+                                             title.includes('limonade') || title.includes('boisson') || 
+                                             cat.includes('rafraichissements') || tags.includes('rafraichissements');
+
                             // Attribution Prioritaire
                             if (catId === 'plats' && isPlat) return true;
                             if (catId === 'aperitifs' && isApero) return true;
                             if (catId === 'entrees' && isEntree) return true;
                             if (catId === 'desserts' && isDessert) return true;
                             if (catId === 'patisserie' && isPatisserie) return true;
+                            if (catId === 'glaces' && isGlace) return true;
+                            if (catId === 'rafraichissements' && isRafraich) return true;
 
                             // 3. Fallback Match classique (si pas déjà classé par mot-clé)
                             const isMatch = cat.includes(catId) || 
@@ -512,6 +532,8 @@ function ThematicGroup({ activeTags }: { activeTags: string[] }) {
 
     const thematiques = [
         { id: 'paques', name: 'Pâques est là', tags: ['Pâques'], image: '/images/themes/paques.jpg?v=999' },
+        { id: 'voila-lete', name: "Voilà l'Été ☀️", tags: ['voila-lete'], image: '/images/themes/voila-lete.jpg' },
+        { id: 'cest-lhiver', name: "C'est l'Hiver ❄️", tags: ['cest-lhiver'], image: '/images/themes/cest-lhiver.jpg' },
         { id: 'noel', name: "C'est Noël", tags: ['Noël'], image: '/images/themes/noel.jpg' },
         { id: 'glaces', name: 'Les Glaces', tags: ['glaces'], image: '/images/themes/glaces.jpg' },
         { id: 'rafraichissements', name: 'Rafraîchissements', tags: ['rafraichissements'], image: '/images/themes/rafraichissements.jpg' },

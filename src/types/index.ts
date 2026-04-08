@@ -3,7 +3,7 @@ export interface Recipe {
     title: string;
     description: string;
     image: string;
-    category: 'aperitifs' | 'entrees' | 'plats' | 'desserts' | 'patisserie' | 'restaurant' | 'vegetarien' | 'glaces' | 'rafraichissements' | 'boissons' | 'facile' | 'boulangerie' | 'sauces' | 'petit-dejeuner';
+    category: 'aperitifs' | 'entrees' | 'plats' | 'desserts' | 'patisserie' | 'restaurant' | 'vegetarien' | 'glaces' | 'rafraichissements' | 'boissons' | 'facile' | 'boulangerie' | 'sauces' | 'petit-dejeuner' | 'voila-lete' | 'cest-lhiver';
 
     difficulty: 'facile' | 'moyen' | 'difficile';
     prepTime: number; // minutes

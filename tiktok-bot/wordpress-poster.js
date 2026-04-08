@@ -197,6 +197,8 @@ async function postToWordPressXMLRPC(recipe) {
         if (cl.includes('simplissime')) { cleanCountry = 'Simplissime';    categoryName = 'Simplissime'; }
         if (cl.includes('noël') || cl.includes('noel')) { cleanCountry = 'Noël'; categoryName = 'Noël'; }
         if (cl.includes('pâques') || cl.includes('paques')) { cleanCountry = 'Pâques'; }
+        if (cl.includes('été') || cl.includes('ete')) { cleanCountry = "Voilà l'été"; categoryName = "Voilà l'été"; }
+        if (cl.includes('hiver')) { cleanCountry = "C'est l'hiver"; categoryName = "C'est l'hiver"; }
         
         // Thématiques produit → catégorie propre + override
         if (cl.includes('glace'))  { cleanCountry = 'Les Glaces';         categoryName = 'Les Glaces';         recipe.category = 'glaces'; }
