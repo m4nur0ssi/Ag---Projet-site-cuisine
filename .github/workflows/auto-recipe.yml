@@ -134,7 +134,7 @@ jobs:
           COMMIT_MSG="🔄 Cloud Sync [skip ci]: ${{ github.event.inputs.trigger_source || 'push-queue' }} - $(date -u '+%Y-%m-%d %H:%M')"
           if [ -f tiktok-bot/latest-recipe.txt ]; then
              RECIPE_NAME=$(cat tiktok-bot/latest-recipe.txt)
-             COMMIT_MSG="🍳 Nouvelle recette (Cloud): $RECIPE_NAME"
+             COMMIT_MSG="🍳 Nouvelle recette [skip ci]: $RECIPE_NAME"
              rm tiktok-bot/latest-recipe.txt
           fi
 
