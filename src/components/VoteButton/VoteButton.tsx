@@ -23,11 +23,15 @@ export default function VoteButton({ recipeId, initialVotes = 0, className, hide
         setHasVoted(voted);
         if (voted) setShowCount(true);
 
-        // 2. Fetch real-time global votes from API
+        // 2. Fetch real-time global votes from API — visible by ALL users if votes > 0
         fetch(`/api/votes?recipeId=${recipeId}`)
             .then(res => res.json())
             .then(data => {
-                if (data.votes !== undefined) setVotes(data.votes);
+                if (data.votes !== undefined) {
+                    setVotes(data.votes);
+                    // Show count to EVERYONE when there are votes (not just those who voted)
+                    if (data.votes > 0) setShowCount(true);
+                }
             })
             .catch(() => {});
     }, [recipeId]);
