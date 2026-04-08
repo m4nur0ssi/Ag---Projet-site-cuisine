@@ -81,6 +81,10 @@ jobs:
           PORT=3456
           ENVEOF
 
+      # ── NETTOYAGE PRÉVENTIF : évite d'utiliser un latest-recipe.txt périmé ──────
+      - name: 🧹 Supprimer latest-recipe.txt périmé (si checkout l'a ramené)
+        run: rm -f tiktok-bot/latest-recipe.txt
+
       # ── TRAITEMENT CLOUD : file d'attente iPhone + favoris TikTok ────────────
       - name: 🍳 TRAITEMENT CLOUD (File d'attente iPhone + Favoris TikTok)
         run: node tiktok-bot/github-runner.js
@@ -127,7 +131,7 @@ jobs:
             exit 0
           fi
 
-          COMMIT_MSG="🔄 Cloud Sync: ${{ github.event.inputs.trigger_source || 'push-queue' }} - $(date -u '+%Y-%m-%d %H:%M')"
+          COMMIT_MSG="🔄 Cloud Sync [skip ci]: ${{ github.event.inputs.trigger_source || 'push-queue' }} - $(date -u '+%Y-%m-%d %H:%M')"
           if [ -f tiktok-bot/latest-recipe.txt ]; then
              RECIPE_NAME=$(cat tiktok-bot/latest-recipe.txt)
              COMMIT_MSG="🍳 Nouvelle recette (Cloud): $RECIPE_NAME"

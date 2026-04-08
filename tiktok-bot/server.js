@@ -169,7 +169,7 @@ async function checkRemoteQueue() {
     
     try {
         // 1. On récupère les nouveaux ordres sur GitHub
-        execSync('git pull origin main', { cwd: repoPath });
+        execSync('git pull --rebase --autostash origin main', { cwd: repoPath });
 
         if (!fs.existsSync(queuePath)) return;
         let data = JSON.parse(fs.readFileSync(queuePath, 'utf8'));
