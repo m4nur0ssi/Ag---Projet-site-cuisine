@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/04/2026 05:04:55
- * Total: 186 recettes
+ * Dernière mise à jour: 08/04/2026 15:32:53
+ * Total: 185 recettes
  */
-export const exportSyncId = "1775624695682";
+export const exportSyncId = "1775662373496";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4998",
@@ -46,64 +46,11 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Mettre des glaçons dans un verre.",
-            "Ajouter le jus d&rsquo;orange.",
+            "Ajouter le jus d'orange.",
             "Ajouter le jus de citron.",
             "Ajouter le jus de fruit de la passion.",
             "Terminer avec le sirop de fraise.",
             "Garnir le verre de lamelles de pomme.",
-            "Déguster immédiatement."
-        ],
-        "tags": [
-            "Rafraîchissements"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4995",
-        "title": "Cocktail Bora Bora sans alcool",
-        "description": "Un cocktail coloré et rafraîchissant sans alcool, facile à réaliser et parfait pour toutes les occasions.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775597813419.jpg&v=1775605048000",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7279373915577716000\" data-video-id=\"7279373915577716000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7279373915577716000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Sirop de fraise"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Jus de fruit de la passion"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Jus d’orange"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Glaçons"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Lamelles de pomme (pour la garniture)"
-            }
-        ],
-        "steps": [
-            "Mettre des glaçons dans un verre.",
-            "Ajouter le jus d’orange.",
-            "Ajouter le jus de citron.",
-            "Ajouter le jus de fruit de la passion.",
-            "Verser le sirop de fraise en dernier.",
-            "Garnir de lamelles de pomme.",
             "Déguster immédiatement."
         ],
         "tags": [
@@ -221,7 +168,7 @@ export const mockRecipes: Recipe[] = [
             "Cuire le poulet dans une poêle bien chaude.",
             "Faire revenir le pak choi par la suite.",
             "Cuire les œufs 6 min pour obtenir des œufs mollets.",
-            "Dresser avec les nouilles, le bouillon, le poulet, le pak choi, l&rsquo;œuf mollet, les cébettes, les graines de sésame et la mayo kimchi."
+            "Dresser avec les nouilles, le bouillon, le poulet, le pak choi, l'œuf mollet, les cébettes, les graines de sésame et la mayo kimchi."
         ],
         "tags": [
             "asiatique",
@@ -297,7 +244,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer la pâte avec la farine, l&rsquo;eau, le saindoux, la levure et le sel.",
+            "Préparer la pâte avec la farine, l'eau, le saindoux, la levure et le sel.",
             "Incorporer le poivre, le parmesan, les œufs durs, la scamorza, l'emmental et le saucisson (ainsi que les fromages et charcuteries facultatifs si désiré).",
             "Faire cuire au four statique, en bas, à 180°C pendant 1 heure."
         ],
@@ -312,7 +259,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4898",
         "title": "Sundae Maison Caramel Beurre Salé",
-        "description": "Recette facile et rapide pour réaliser un sundae maison au caramel beurre salé, inspiré des célèbres glaces de McDonald&rsquo;s. Une dinguerie à reproduire chez soi !",
+        "description": "Recette facile et rapide pour réaliser un sundae maison au caramel beurre salé, inspiré des célèbres glaces de McDonald's. Une dinguerie à reproduire chez soi !",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775555343058.jpg&v=1775562571000",
         "category": "desserts",
         "difficulty": "moyen",
@@ -339,7 +286,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍦\n             De l&rsquo;arôme vanille"
+                "name": "🍦\n             De l'arôme vanille"
             },
             {
                 "quantity": "",
@@ -361,7 +308,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4877",
         "title": "Kebab Adana",
-        "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n&rsquo;importe quel accompagnement.",
+        "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n'importe quel accompagnement.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fadana.jpeg&v=1775562061000",
         "category": "plats",
         "difficulty": "moyen",
@@ -380,7 +327,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 3 gousses d&rsquo;ail"
+                "name": "🧄\n 3 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -424,7 +371,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n Huile d&rsquo;olive"
+                "name": "🍾\n Huile d'olive"
             },
             {
                 "quantity": "",
@@ -432,7 +379,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 1 gousse d&rsquo;ail (pour la sauce)"
+                "name": "🧄\n 1 gousse d'ail (pour la sauce)"
             },
             {
                 "quantity": "",
@@ -448,7 +395,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n Huile d&rsquo;olive (pour la sauce)"
+                "name": "🍾\n Huile d'olive (pour la sauce)"
             },
             {
                 "quantity": "",
@@ -460,12 +407,12 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Hacher le blanc de poulet jusqu&rsquo;à obtenir une consistance de viande hachée.",
-            "Hacher l&rsquo;oignon, l&rsquo;ail, le persil et le poivron rouge.",
+            "Hacher le blanc de poulet jusqu'à obtenir une consistance de viande hachée.",
+            "Hacher l'oignon, l'ail, le persil et le poivron rouge.",
             "Ajouter le mélange haché (oignon, ail, persil, poivron) au poulet haché et mélanger avec le sumac, les flocons de chili, le paprika fumé, le paprika, le cumin, le curcuma, la pâte de tomate et le sel.",
-            "Étaler la préparation sur une plaque de cuisson et arroser d&rsquo;huile d&rsquo;olive.",
+            "Étaler la préparation sur une plaque de cuisson et arroser d'huile d'olive.",
             "Cuire au four à 200°C (400°F) pendant 25 minutes.",
-            "Pour la sauce : Mélanger 100g de yaourt, 1 gousse d&rsquo;ail hachée, du jus de citron, du paprika, du sel, de l&rsquo;huile d&rsquo;olive, des flocons de chili et des herbes.",
+            "Pour la sauce : Mélanger 100g de yaourt, 1 gousse d'ail hachée, du jus de citron, du paprika, du sel, de l'huile d'olive, des flocons de chili et des herbes.",
             "Servir le kebab avec la sauce au yaourt, un accompagnement et une salade fraîche."
         ],
         "tags": [
@@ -514,11 +461,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Mélanger le beurre et le sucre jusqu&rsquo;à obtenir une consistance crémeuse, puis incorporer l&rsquo;œuf.",
+            "Mélanger le beurre et le sucre jusqu'à obtenir une consistance crémeuse, puis incorporer l'œuf.",
             "Ajouter la farine et pétrir pour former une pâte. Incorporer les pépites de chocolat.",
-            "Diviser la pâte en deux. Presser la première moitié dans un moule à charnière d&rsquo;environ 18 cm pour former le fond, en remontant légèrement les bords.",
-            "Étaler le Nutella sur la pâte, en veillant à ne pas aller jusqu&rsquo;au bord pour éviter les débordements.",
-            "Déposer le reste de la pâte sur le dessus, en l&rsquo;aplatissant ou en la « recouvrant » légèrement.",
+            "Diviser la pâte en deux. Presser la première moitié dans un moule à charnière d'environ 18 cm pour former le fond, en remontant légèrement les bords.",
+            "Étaler le Nutella sur la pâte, en veillant à ne pas aller jusqu'au bord pour éviter les débordements.",
+            "Déposer le reste de la pâte sur le dessus, en l'aplatissant ou en la « recouvrant » légèrement.",
             "Facultatif : Ajouter quelques pépites de chocolat supplémentaires sur le dessus.",
             "Faire cuire au four préchauffé à 180 °C (chaleur statique) pendant environ 25 à 30 minutes."
         ],
@@ -532,7 +479,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4847",
         "title": "Salade de chips crousti",
-        "description": "Une salade printanière irrésistible composée de chips de pommes de terre croustillantes, de légumes frais et d&rsquo;une sauce savoureuse. Parfaite pour une touche d&rsquo;originalité.",
+        "description": "Une salade printanière irrésistible composée de chips de pommes de terre croustillantes, de légumes frais et d'une sauce savoureuse. Parfaite pour une touche d'originalité.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775482852020.jpg&v=1775559981000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -568,7 +515,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4829",
         "title": "Crumble aux pommes et glace vanille",
-        "description": "Un classique indémodable, ce crumble aux pommes et caramel est croustillant sur le dessus et garni d&rsquo;une compote de pommes juteuse. Servi chaud avec de la glace à la vanille et un filet de caramel.",
+        "description": "Un classique indémodable, ce crumble aux pommes et caramel est croustillant sur le dessus et garni d'une compote de pommes juteuse. Servi chaud avec de la glace à la vanille et un filet de caramel.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcrumble.jpeg&v=1775559163000",
         "category": "glaces",
         "difficulty": "moyen",
@@ -607,7 +554,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 tasse de flocons d&rsquo;avoine rapides"
+                "name": "🥣\n 1 tasse de flocons d'avoine rapides"
             },
             {
                 "quantity": "",
@@ -628,7 +575,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "**Préparation de la garniture aux pommes :** Dans un grand bol, mélangez les pommes pelées et coupées en dés, la cassonade, la cannelle, le quatre-épices, le sel, la farine tout usage et le jus de citron. Laissez reposer à température ambiante pendant 15 minutes.",
-            "**Préparation du crumble :** Dans un autre grand bol, mélangez les flocons d&rsquo;avoine rapides, la cassonade, la farine et le sel. Une fois bien combiné, ajoutez lentement le beurre fondu en mélangeant bien pour qu&rsquo;il soit uniformément réparti dans le crumble.",
+            "**Préparation du crumble :** Dans un autre grand bol, mélangez les flocons d'avoine rapides, la cassonade, la farine et le sel. Une fois bien combiné, ajoutez lentement le beurre fondu en mélangeant bien pour qu'il soit uniformément réparti dans le crumble.",
             "**Assemblage :** Remplissez vos ramequins aux trois quarts avec la garniture aux pommes. Déposez 2 à 3 cuillères à soupe de crumble sur le dessus et pressez légèrement.",
             "**Cuisson :** Préchauffez le four à 175°C (350°F). Enfournez les ramequins sur la grille du milieu pendant 25 à 30 minutes.",
             "**Service :** Une fois cuit, laissez refroidir pendant 5 minutes avant de servir. Terminez avec une boule de glace à la vanille et un filet de caramel."
@@ -645,7 +592,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4859",
         "title": "Poulet mariné au citron",
-        "description": "Des cuisses de poulet désossées, marinées avec un mélange d&rsquo;épices citron-poivre, ail, paprika fumé et oignon, puis cuites au four. Elles sont ensuite enrobées d&rsquo;une sauce sucrée-salée au miel, ail, citron et sauce soja pour une finiti...",
+        "description": "Des cuisses de poulet désossées, marinées avec un mélange d'épices citron-poivre, ail, paprika fumé et oignon, puis cuites au four. Elles sont ensuite enrobées d'une sauce sucrée-salée au miel, ail, citron et sauce soja pour une finition caramélis...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775530434882.jpg&v=1775558442000",
         "category": "plats",
         "difficulty": "moyen",
@@ -785,8 +732,8 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Couper les oignons en julienne. Les laisser tremper un peu dans de l&rsquo;eau froide et du vinaigre.",
-            "Faire dorer les oignons dans une bonne quantité d&rsquo;huile d&rsquo;olive.",
+            "Couper les oignons en julienne. Les laisser tremper un peu dans de l'eau froide et du vinaigre.",
+            "Faire dorer les oignons dans une bonne quantité d'huile d'olive.",
             "Couper les poivrons après les avoir épépinés et les faire dorer également.",
             "Mélanger les deux composés (oignons et poivrons) dans la casserole, en laissant prendre un peu de flamme.",
             "Déglacer avec du vinaigre balsamique, saler et poivrer. Arroser le tout de bouillon de légumes et de passata de tomate.",
@@ -804,8 +751,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4794",
-        "title": "Légumes rôtis à l&rsquo;italienne et ricotta",
-        "description": "Une recette simple et rapide de légumes rôtis (pommes de terre, tomates cerises, pois chiches) assaisonnés aux herbes, miel et vinaigre balsamique, servis sur un lit de ricotta crémeuse et parsemés de parmesan et d&rsquo;herbes fraîches. Idéal pou...",
+        "title": "Légumes rôtis à l'italienne et ricotta",
+        "description": "Une recette simple et rapide de légumes rôtis (pommes de terre, tomates cerises, pois chiches) assaisonnés aux herbes, miel et vinaigre balsamique, servis sur un lit de ricotta crémeuse et parsemés de parmesan et d'herbes fraîches. Idéal pour un r...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcarottes-roties.jpg&v=1775229581000",
         "category": "plats",
         "difficulty": "moyen",
@@ -873,7 +820,7 @@ export const mockRecipes: Recipe[] = [
             "Faire cuire les légumes au four pendant 30-35 minutes à 200 degrés, en mélangeant à mi-cuisson.",
             "Étaler une bonne couche de ricotta au fond de l’assiette (vous pouvez aussi utiliser de la burrata ou de la mozzarella).",
             "Disposer les légumes bien rôtis sur la ricotta.",
-            "Parsemer de parmesan râpé et d&rsquo;herbes fraîches (comme du basilic)."
+            "Parsemer de parmesan râpé et d'herbes fraîches (comme du basilic)."
         ],
         "tags": [
             "Healthy",
@@ -888,7 +835,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4797",
         "title": "Croquetas de Jambon",
-        "description": "Découvrez une recette de croquetas de jambon dorées, croustillantes et délicieuses, une version budget du classique espagnol, parfaites pour l&rsquo;apéritif ou comme tapas.",
+        "description": "Découvrez une recette de croquetas de jambon dorées, croustillantes et délicieuses, une version budget du classique espagnol, parfaites pour l'apéritif ou comme tapas.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcroquette.jpeg&v=1775229489000",
         "category": "aperitifs",
         "difficulty": "moyen",
@@ -931,7 +878,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🌶️\n Une grande pincée de granulés d&rsquo;ail, de muscade et de poivre noir"
+                "name": "🌶️\n Une grande pincée de granulés d'ail, de muscade et de poivre noir"
             },
             {
                 "quantity": "",
@@ -952,16 +899,16 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Ajouter la pancetta dans une poêle froide et monter le feu à vif.",
-            "Une fois la pancetta presque croustillante, baisser le feu à moyen et ajouter le beurre, l&rsquo;échalote et le jambon Serrano.",
-            "Cuire jusqu&rsquo;à ce que l&rsquo;échalote soit ramollie et la viande croustillante.",
-            "Incorporer la farine et remuer jusqu&rsquo;à ce qu&rsquo;elle soit bien mélangée, cuire quelques minutes jusqu&rsquo;à ce qu&rsquo;elle dégage une odeur de noisette et parfumée.",
+            "Une fois la pancetta presque croustillante, baisser le feu à moyen et ajouter le beurre, l'échalote et le jambon Serrano.",
+            "Cuire jusqu'à ce que l'échalote soit ramollie et la viande croustillante.",
+            "Incorporer la farine et remuer jusqu'à ce qu'elle soit bien mélangée, cuire quelques minutes jusqu'à ce qu'elle dégage une odeur de noisette et parfumée.",
             "Verser le lait en remuant continuellement.",
             "Une fois incorporé et épaissi, mélanger les assaisonnements et le fromage.",
             "Une fois le fromage fondu, verser le mélange dans un plat/plateau froid.",
             "Une fois refroidi à température ambiante, placer au réfrigérateur pendant au moins 4 heures ou toute une nuit, ou alternativement au congélateur pendant environ 1 à 2 heures.",
-            "Une fois refroidi, retirer du réfrigérateur/congélateur et rouler des cuillères à soupe bombées en la forme désirée (l&rsquo;auteur recommande de le faire après avoir légèrement enrobé la croqueta de farine pour moins de désordre).",
-            "Enrober de farine, puis du mélange d&rsquo;œuf et enfin de chapelure.",
-            "Faire frire dans de l&rsquo;huile chaude pendant environ 2-3 minutes jusqu&rsquo;à ce qu&rsquo;elles soient dorées et bien chaudes à l&rsquo;intérieur.",
+            "Une fois refroidi, retirer du réfrigérateur/congélateur et rouler des cuillères à soupe bombées en la forme désirée (l'auteur recommande de le faire après avoir légèrement enrobé la croqueta de farine pour moins de désordre).",
+            "Enrober de farine, puis du mélange d'œuf et enfin de chapelure.",
+            "Faire frire dans de l'huile chaude pendant environ 2-3 minutes jusqu'à ce qu'elles soient dorées et bien chaudes à l'intérieur.",
             "Déguster avec un verre de sangria glacée ou une bière espagnole."
         ],
         "tags": [
@@ -975,7 +922,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4761",
         "title": "Casatiello napoletano",
-        "description": "Le Casatiello napoletano est un pain salé traditionnel de Naples, généralement préparé pour Pâques. Il est richement garni de fromages, de charcuteries comme le saucisson sec et les lardons, et décoré d&rsquo;œufs entiers sur le dessus avant d&rsq...",
+        "description": "Le Casatiello napoletano est un pain salé traditionnel de Naples, généralement préparé pour Pâques. Il est richement garni de fromages, de charcuteries comme le saucisson sec et les lardons, et décoré d'œufs entiers sur le dessus avant d'être cuit...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcasatiello-calendario-2024.jpeg&v=1775130907000",
         "category": "plats",
         "difficulty": "moyen",
@@ -990,7 +937,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 350 g d&rsquo;eau"
+                "name": "💧\n 350 g d'eau"
             },
             {
                 "quantity": "",
@@ -1014,7 +961,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n 200 g d&rsquo;Emmental"
+                "name": "🥣\n 200 g d'Emmental"
             },
             {
                 "quantity": "",
@@ -1038,10 +985,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "1. Préparation de la pâte: Dans un bol, versez la farine, l&rsquo;eau et la levure de boulanger. Mélangez avec une spatule en bois. Ajoutez ensuite le sel et continuez à mélanger. Pétrissez bien la pâte à la main pendant environ 10 minutes, jusqu&rsquo;à obtenir une pâte lisse.",
-            "2. Levée: Placez la pâte dans un récipient avec un filet d&rsquo;huile d&rsquo;olive, couvrez avec du film plastique et laissez lever pendant 2 heures à température ambiante.",
+            "1. Préparation de la pâte: Dans un bol, versez la farine, l'eau et la levure de boulanger. Mélangez avec une spatule en bois. Ajoutez ensuite le sel et continuez à mélanger. Pétrissez bien la pâte à la main pendant environ 10 minutes, jusqu'à obtenir une pâte lisse.",
+            "2. Levée: Placez la pâte dans un récipient avec un filet d'huile d'olive, couvrez avec du film plastique et laissez lever pendant 2 heures à température ambiante.",
             "3. Étaler la pâte: Une fois la pâte levée, étalez-la bien avec un rouleau à pâtisserie ou avec les mains. Étalez uniformément le beurre sur toute la surface de la pâte.",
-            "4. Garniture: Répartissez le saucisson, les lardons, l&rsquo;Emmental, la scamorza et le Parmigiano sur la pâte, en laissant le bord libre. Ajoutez du poivre selon votre goût.",
+            "4. Garniture: Répartissez le saucisson, les lardons, l'Emmental, la scamorza et le Parmigiano sur la pâte, en laissant le bord libre. Ajoutez du poivre selon votre goût.",
             "5. Fermeture: Coupez légèrement les bords et roulez la pâte sur elle-même pour former un cylindre. Faites des incisions en forme de croix sur les bords coupés.",
             "6. Ajout des œufs: Placez 4 œufs au-dessus de la pâte et utilisez les incisions pour décorer.",
             "7. Préparation à la cuisson: Mettez la pâte dans un moule préalablement beurré et couvrez. Laissez reposer pendant encore 30 minutes.",
@@ -1057,7 +1004,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4702",
         "title": "Hot Chili Chicken Burgers",
-        "description": "Préparez des burgers de poulet épicés avec des pains maison infusés aux chips de nacho, du poulet mariné et pané aux nacho, le tout frit et cuit au four pour un repas savoureux et croustillant, parfait pour l&rsquo;iftar.",
+        "description": "Préparez des burgers de poulet épicés avec des pains maison infusés aux chips de nacho, du poulet mariné et pané aux nacho, le tout frit et cuit au four pour un repas savoureux et croustillant, parfait pour l'iftar.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHot-chilibroodjes-eindresultaat-Kookmutsjes-copyright-867x1300-1.jpeg&v=1774955536000",
         "category": "plats",
         "difficulty": "moyen",
@@ -1108,7 +1055,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🌾\n Poudre d&rsquo;oignon: 7 g (4g pour le poulet, 3g pour le mélange de farine)"
+                "name": "🌾\n Poudre d'oignon: 7 g (4g pour le poulet, 3g pour le mélange de farine)"
             },
             {
                 "quantity": "",
@@ -1130,20 +1077,20 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Moudre finement 200 g de chips de nacho dans un robot culinaire. Réserver 40 g pour la pâte et 160 g pour la panure du poulet.",
             "Dans un bol, mélanger le lait tiède, la levure instantanée et 30 g de sauce chili forte. Bien mélanger et laisser reposer 5 minutes.",
-            "Ajouter 1 œuf battu et bien mélanger. Incorporer ensuite 475 g de farine, 8 g de sel, 40 g de chips de nacho moulues et le beurre. Pétrir pendant 10-12 minutes jusqu&rsquo;à obtenir une pâte lisse.",
-            "Couvrir la pâte et la laisser lever dans un endroit chaud pendant 1 heure, ou jusqu&rsquo;à ce qu&rsquo;elle ait doublé de volume.",
-            "Laver et couper les cuisses de poulet en morceaux. Dans un bol, les mélanger avec 3 g de sel, le poivre de Cayenne, 4 g de poudre d&rsquo;oignon, 2 g de poivre noir et 25 g de sauce chili forte. Bien mélanger et laisser mariner.",
-            "Dans un autre bol, mélanger 75 g de farine, 1 g de sel, 2 g de poivre noir et 3 g de poudre d&rsquo;oignon (ce sera le mélange de farine pour la panure).",
+            "Ajouter 1 œuf battu et bien mélanger. Incorporer ensuite 475 g de farine, 8 g de sel, 40 g de chips de nacho moulues et le beurre. Pétrir pendant 10-12 minutes jusqu'à obtenir une pâte lisse.",
+            "Couvrir la pâte et la laisser lever dans un endroit chaud pendant 1 heure, ou jusqu'à ce qu'elle ait doublé de volume.",
+            "Laver et couper les cuisses de poulet en morceaux. Dans un bol, les mélanger avec 3 g de sel, le poivre de Cayenne, 4 g de poudre d'oignon, 2 g de poivre noir et 25 g de sauce chili forte. Bien mélanger et laisser mariner.",
+            "Dans un autre bol, mélanger 75 g de farine, 1 g de sel, 2 g de poivre noir et 3 g de poudre d'oignon (ce sera le mélange de farine pour la panure).",
             "Battre 2 œufs dans un troisième bol.",
-            "Enrober d&rsquo;abord le poulet dans le mélange de farine, puis le tremper dans les œufs battus, et enfin le recouvrir des 160 g restants de chips de nacho moulues.",
+            "Enrober d'abord le poulet dans le mélange de farine, puis le tremper dans les œufs battus, et enfin le recouvrir des 160 g restants de chips de nacho moulues.",
             "Placer le poulet pané sur une plaque de cuisson recouverte de papier sulfurisé.",
             "Dégazer la pâte et la diviser en 12 morceaux égaux. Façonner chaque morceau en boule.",
-            "Étaler chaque boule avec un rouleau à pâtisserie en un cercle d&rsquo;environ 13 cm.",
-            "Battre le dernier œuf. Plier la pâte en deux et badigeonner le dessus avec l&rsquo;œuf battu.",
+            "Étaler chaque boule avec un rouleau à pâtisserie en un cercle d'environ 13 cm.",
+            "Battre le dernier œuf. Plier la pâte en deux et badigeonner le dessus avec l'œuf battu.",
             "Tremper la pâte badigeonnée dans les chips de nacho moulues et la placer sur une plaque de cuisson recouverte de papier sulfurisé.",
-            "Laisser les pains lever pendant 30 minutes, ou jusqu&rsquo;à ce qu&rsquo;ils aient doublé de volume.",
-            "Faire chauffer une couche peu profonde d&rsquo;huile de tournesol (environ 2 cm) dans une poêle à feu moyen (175°C).",
-            "Frire les pains des deux côtés jusqu&rsquo;à ce qu&rsquo;ils soient dorés. Égoutter sur du papier absorbant.",
+            "Laisser les pains lever pendant 30 minutes, ou jusqu'à ce qu'ils aient doublé de volume.",
+            "Faire chauffer une couche peu profonde d'huile de tournesol (environ 2 cm) dans une poêle à feu moyen (175°C).",
+            "Frire les pains des deux côtés jusqu'à ce qu'ils soient dorés. Égoutter sur du papier absorbant.",
             "Préchauffer le four à 175°C et cuire le poulet pendant 25-30 minutes.",
             "Ouvrir les pains et les garnir de sauce, de laitue et du poulet cuit."
         ],
@@ -1182,7 +1129,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 2 gousses d&rsquo;ail"
+                "name": "🧄\n 2 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -1206,11 +1153,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍗\n 1 cuillère à café d&rsquo;épices pour poulet"
+                "name": "🍗\n 1 cuillère à café d'épices pour poulet"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1,5 cuillère à café d&rsquo;assaisonnement pour légumes"
+                "name": "🥣\n 1,5 cuillère à café d'assaisonnement pour légumes"
             },
             {
                 "quantity": "",
@@ -1231,15 +1178,15 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Peler et couper les pommes de terre en dés.",
-            "Dans une poêle, faire fondre 50g de beurre et y faire dorer les pommes de terre jusqu&rsquo;à ce qu&rsquo;elles soient croustillantes. Les transférer dans un plat allant au four.",
-            "Dans la même poêle, faire revenir le blanc de poulet coupé en morceaux avec un peu d&rsquo;huile.",
-            "Ajouter l&rsquo;ail haché, l&rsquo;oignon émincé et les poivrons coupés en dés, puis continuer à faire revenir quelques minutes.",
-            "Déposer le mélange poulet-légumes sur les pommes de terre dans le plat. Saupoudrer d&rsquo;épices pour poulet.",
+            "Dans une poêle, faire fondre 50g de beurre et y faire dorer les pommes de terre jusqu'à ce qu'elles soient croustillantes. Les transférer dans un plat allant au four.",
+            "Dans la même poêle, faire revenir le blanc de poulet coupé en morceaux avec un peu d'huile.",
+            "Ajouter l'ail haché, l'oignon émincé et les poivrons coupés en dés, puis continuer à faire revenir quelques minutes.",
+            "Déposer le mélange poulet-légumes sur les pommes de terre dans le plat. Saupoudrer d'épices pour poulet.",
             "Pour la sauce béchamel : Dans une casserole, faire fondre 2 cuillères à soupe de beurre. Ajouter la farine et mélanger pour former un roux.",
-            "Incorporer progressivement le lait en fouettant constamment pour éviter les grumeaux. Ajouter l&rsquo;assaisonnement pour légumes, le poivre, le paprika et le piment. Laisser épaissir à feu doux en remuant.",
+            "Incorporer progressivement le lait en fouettant constamment pour éviter les grumeaux. Ajouter l'assaisonnement pour légumes, le poivre, le paprika et le piment. Laisser épaissir à feu doux en remuant.",
             "Verser la sauce béchamel sur le poulet et les pommes de terre dans le plat.",
             "Saupoudrer généreusement de fromage râpé.",
-            "Enfourner à 180°C (chaleur haut et bas) pendant 20 à 25 minutes, ou jusqu&rsquo;à ce que le gratin soit doré et bouillonnant. Servir chaud."
+            "Enfourner à 180°C (chaleur haut et bas) pendant 20 à 25 minutes, ou jusqu'à ce que le gratin soit doré et bouillonnant. Servir chaud."
         ],
         "tags": [
             "France",
@@ -1252,7 +1199,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4722",
         "title": "Crispy Smashed Potatoes",
-        "description": "Des pommes de terre écrasées ultra croustillantes à l&rsquo;extérieur et moelleuses à l&rsquo;intérieur, incroyablement addictives.",
+        "description": "Des pommes de terre écrasées ultra croustillantes à l'extérieur et moelleuses à l'intérieur, incroyablement addictives.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fair-fryer-smashed-potatoes-4-683x1024-1.jpeg&v=1774888757000",
         "category": "plats",
         "difficulty": "moyen",
@@ -1346,7 +1293,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n 80 ml d&rsquo;huile de tournesol"
+                "name": "🍾\n 80 ml d'huile de tournesol"
             },
             {
                 "quantity": "",
@@ -1366,14 +1313,14 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥛\n 200 g de crème Kinder Bueno (légèrement réchauffée pour faciliter l&rsquo;étalement)"
+                "name": "🥛\n 200 g de crème Kinder Bueno (légèrement réchauffée pour faciliter l'étalement)"
             }
         ],
         "steps": [
             "**Préparer le fond :** Écraser finement les biscuits. Mélanger avec le beurre fondu. Presser le mélange dans un moule à charnière (Ø 26 cm). Mettre au frais.",
-            "**Préparer la crème (One-Pot) :** Dans un saladier, mélanger le fromage blanc 0%, le fromage blanc 20%, le fromage frais, les œufs, le sucre, la crème liquide, l&rsquo;huile, le lait et la poudre de pudding. Bien mélanger jusqu&rsquo;à obtenir une consistance lisse. Incorporer le chocolat blanc fondu et la crème Kinder Bueno. Verser la crème sur le fond de biscuits. Tapoter légèrement le moule sur la table pour faire sortir les bulles d&rsquo;air.",
+            "**Préparer la crème (One-Pot) :** Dans un saladier, mélanger le fromage blanc 0%, le fromage blanc 20%, le fromage frais, les œufs, le sucre, la crème liquide, l'huile, le lait et la poudre de pudding. Bien mélanger jusqu'à obtenir une consistance lisse. Incorporer le chocolat blanc fondu et la crème Kinder Bueno. Verser la crème sur le fond de biscuits. Tapoter légèrement le moule sur la table pour faire sortir les bulles d'air.",
             "**Cuisson :** Faire cuire à 170 °C pendant environ 55 à 60 minutes. Le centre peut encore être légèrement tremblant, cela garantira un cheesecake extra crémeux.",
-            "**Refroidissement et glaçage :** Après la cuisson, laisser reposer 30 minutes dans le four entrouvert. Placer ensuite au réfrigérateur, idéalement toute une nuit. Réchauffer légèrement le glaçage Bueno et l&rsquo;étaler sur le dessus.",
+            "**Refroidissement et glaçage :** Après la cuisson, laisser reposer 30 minutes dans le four entrouvert. Placer ensuite au réfrigérateur, idéalement toute une nuit. Réchauffer légèrement le glaçage Bueno et l'étaler sur le dessus.",
             "**Servir :** Décorer avec des morceaux de Kinder Bueno Blanc et des miettes de biscuits. Déguster bien frais 😋."
         ],
         "tags": [
@@ -1386,8 +1333,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4714",
-        "title": "Pommes de terre Hasselback, poulet crémeux Cajun et broccolini à l&rsquo;air fryer",
-        "description": "Un repas réconfortant, facile et sain, composé de pommes de terre Hasselback croustillantes, de poulet crémeux à la cajun et de broccolini cuit à l&rsquo;air fryer.",
+        "title": "Pommes de terre Hasselback, poulet crémeux Cajun et broccolini à l'air fryer",
+        "description": "Un repas réconfortant, facile et sain, composé de pommes de terre Hasselback croustillantes, de poulet crémeux à la cajun et de broccolini cuit à l'air fryer.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpatate.jpeg&v=1774888204000",
         "category": "plats",
         "difficulty": "moyen",
@@ -1414,11 +1361,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍎\n 3 c. à soupe d&rsquo;huile d&rsquo;olive (2 pour les pommes de terre, 1 pour le poulet)"
+                "name": "🍎\n 3 c. à soupe d'huile d'olive (2 pour les pommes de terre, 1 pour le poulet)"
             },
             {
                 "quantity": "",
-                "name": "🧄\n 4-5 gousses d&rsquo;ail (hachées)"
+                "name": "🧄\n 4-5 gousses d'ail (hachées)"
             },
             {
                 "quantity": "",
@@ -1426,11 +1373,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧅\n 1½ c. à café de granules d&rsquo;oignon"
+                "name": "🧅\n 1½ c. à café de granules d'oignon"
             },
             {
                 "quantity": "",
-                "name": "🧄\n 1½ c. à café de granules d&rsquo;ail"
+                "name": "🧄\n 1½ c. à café de granules d'ail"
             },
             {
                 "quantity": "",
@@ -1442,11 +1389,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1-2 c. à café d&rsquo;assaisonnement tout usage"
+                "name": "🥣\n 1-2 c. à café d'assaisonnement tout usage"
             },
             {
                 "quantity": "",
-                "name": "🍗\n 3 c. à café d&rsquo;assaisonnement Cajun (1½ pour le poulet, 1½ pour la sauce)"
+                "name": "🍗\n 3 c. à café d'assaisonnement Cajun (1½ pour le poulet, 1½ pour la sauce)"
             },
             {
                 "quantity": "",
@@ -1462,7 +1409,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧅\n 2 c. à café de poudre d&rsquo;oignon (1 pour le poulet, 1 pour la sauce)"
+                "name": "🧅\n 2 c. à café de poudre d'oignon (1 pour le poulet, 1 pour la sauce)"
             },
             {
                 "quantity": "",
@@ -1474,12 +1421,12 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparation des pommes de terre Hasselback : Coupez chaque pomme de terre finement en tranches sans aller jusqu&rsquo;au bout. Dans un bol, mélangez 3 c. à soupe de beurre fondu, 2 c. à soupe d&rsquo;huile d&rsquo;olive, l&rsquo;ail haché, 1½ c. à café de paprika, 1½ c. à café de granules d&rsquo;oignon, 1½ c. à café de granules d&rsquo;ail, 1 c. à café de persil séché, du sel, du poivre et 1-2 c. à café d&rsquo;assaisonnement tout usage. Badigeonnez généreusement les pommes de terre avec ce mélange, en veillant à bien faire pénétrer dans les couches.",
-            "Cuisson des pommes de terre : Faites cuire les pommes de terre à l&rsquo;air fryer à 180°C pendant 35 à 45 minutes (selon leur taille). Badigeonnez-les avec du beurre supplémentaire à mi-cuisson pour une finition croustillante.",
-            "Préparation du poulet Cajun : Dans un bol, ajoutez le poulet tranché. Arrosez d&rsquo;1 c. à soupe d&rsquo;huile d&rsquo;olive. Saupoudrez 1½ c. à café d&rsquo;assaisonnement Cajun, ½ c. à café de sel, ½ c. à café de poivre noir, 1 c. à café de paprika et 1 c. à café de poudre d&rsquo;oignon. Mélangez bien jusqu&rsquo;à ce que chaque morceau soit entièrement enrobé. Laissez reposer 10 à 15 minutes (facultatif).",
-            "Cuisson du poulet : Faites revenir le poulet à la poêle à feu moyen-vif jusqu&rsquo;à ce qu&rsquo;il soit doré et bien cuit.",
-            "Préparation de la sauce Cajun : Dans la même poêle, faites fondre 1 c. à soupe de beurre et faites cuire le ½ oignon haché jusqu&rsquo;à ce qu&rsquo;il soit tendre. Ajoutez 150-200 ml de crème épaisse et les mêmes assaisonnements que pour le poulet (1½ c. à café d&rsquo;assaisonnement Cajun, ½ c. à café de sel, ½ c. à café de poivre noir, 1 c. à café de paprika, 1 c. à café de poudre d&rsquo;oignon). Laissez mijoter jusqu&rsquo;à épaississement.",
-            "Assemblage : Remettez le poulet cuit dans la sauce et enrobez-le bien. Servez le poulet crémeux Cajun avec les pommes de terre Hasselback et le broccolini (cuit à l&rsquo;air fryer ou selon votre méthode préférée)."
+            "Préparation des pommes de terre Hasselback : Coupez chaque pomme de terre finement en tranches sans aller jusqu'au bout. Dans un bol, mélangez 3 c. à soupe de beurre fondu, 2 c. à soupe d'huile d'olive, l'ail haché, 1½ c. à café de paprika, 1½ c. à café de granules d'oignon, 1½ c. à café de granules d'ail, 1 c. à café de persil séché, du sel, du poivre et 1-2 c. à café d'assaisonnement tout usage. Badigeonnez généreusement les pommes de terre avec ce mélange, en veillant à bien faire pénétrer dans les couches.",
+            "Cuisson des pommes de terre : Faites cuire les pommes de terre à l'air fryer à 180°C pendant 35 à 45 minutes (selon leur taille). Badigeonnez-les avec du beurre supplémentaire à mi-cuisson pour une finition croustillante.",
+            "Préparation du poulet Cajun : Dans un bol, ajoutez le poulet tranché. Arrosez d'1 c. à soupe d'huile d'olive. Saupoudrez 1½ c. à café d'assaisonnement Cajun, ½ c. à café de sel, ½ c. à café de poivre noir, 1 c. à café de paprika et 1 c. à café de poudre d'oignon. Mélangez bien jusqu'à ce que chaque morceau soit entièrement enrobé. Laissez reposer 10 à 15 minutes (facultatif).",
+            "Cuisson du poulet : Faites revenir le poulet à la poêle à feu moyen-vif jusqu'à ce qu'il soit doré et bien cuit.",
+            "Préparation de la sauce Cajun : Dans la même poêle, faites fondre 1 c. à soupe de beurre et faites cuire le ½ oignon haché jusqu'à ce qu'il soit tendre. Ajoutez 150-200 ml de crème épaisse et les mêmes assaisonnements que pour le poulet (1½ c. à café d'assaisonnement Cajun, ½ c. à café de sel, ½ c. à café de poivre noir, 1 c. à café de paprika, 1 c. à café de poudre d'oignon). Laissez mijoter jusqu'à épaississement.",
+            "Assemblage : Remettez le poulet cuit dans la sauce et enrobez-le bien. Servez le poulet crémeux Cajun avec les pommes de terre Hasselback et le broccolini (cuit à l'air fryer ou selon votre méthode préférée)."
         ],
         "tags": [
             "airfryer",
@@ -1497,7 +1444,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4716",
         "title": "Cheesy Beef Crunch Pockets",
-        "description": "Des poches croustillantes et savoureuses garnies de bœuf haché, de poivrons, de maïs et de mozzarella fondante, le tout enveloppé dans des galettes de pain plat et cuit au four jusqu&rsquo;à obtenir une texture dorée et croustillante.",
+        "description": "Des poches croustillantes et savoureuses garnies de bœuf haché, de poivrons, de maïs et de mozzarella fondante, le tout enveloppé dans des galettes de pain plat et cuit au four jusqu'à obtenir une texture dorée et croustillante.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcheesy.jpeg&v=1774888057000",
         "category": "plats",
         "difficulty": "moyen",
@@ -1573,7 +1520,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4719",
         "title": "Choux vanille caramel",
-        "description": "Une recette classique de choux à la crème, garnis d&rsquo;une onctueuse crème pâtissière à la vanille et d&rsquo;une crème montée, le tout dans une pâte à choux légère et dorée.",
+        "description": "Une recette classique de choux à la crème, garnis d'une onctueuse crème pâtissière à la vanille et d'une crème montée, le tout dans une pâte à choux légère et dorée.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchou.jpeg&v=1774887970000",
         "category": "plats",
         "difficulty": "moyen",
@@ -1596,7 +1543,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚\n 4 jaunes d&rsquo;œufs"
+                "name": "🥚\n 4 jaunes d'œufs"
             },
             {
                 "quantity": "",
@@ -1612,7 +1559,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 250 gr d&rsquo;eau"
+                "name": "💧\n 250 gr d'eau"
             },
             {
                 "quantity": "",
@@ -1637,20 +1584,20 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Bouillir le lait avec la gousse de vanille grattée.",
-            "Mélanger le sucre avec les jaunes d&rsquo;œufs et la maïzena.",
-            "Ajouter le lait bouillant au mélange sucre/jaunes/maïzena, puis remettre le tout sur le feu et porter à ébullition en remuant constamment jusqu&rsquo;à épaississement.",
-            "Retirer du feu, puis ajouter le beurre et mélanger jusqu&rsquo;à incorporation.",
+            "Mélanger le sucre avec les jaunes d'œufs et la maïzena.",
+            "Ajouter le lait bouillant au mélange sucre/jaunes/maïzena, puis remettre le tout sur le feu et porter à ébullition en remuant constamment jusqu'à épaississement.",
+            "Retirer du feu, puis ajouter le beurre et mélanger jusqu'à incorporation.",
             "Filmer la crème pâtissière au contact et laisser refroidir complètement.",
             "Fouetter la crème pâtissière refroidie pour la lisser.",
             "Monter la crème entière bien froide en chantilly.",
             "Incorporer délicatement la crème montée à la crème pâtissière fouettée.",
-            "Bouillir l&rsquo;eau avec le beurre, le sel et le sucre.",
+            "Bouillir l'eau avec le beurre, le sel et le sucre.",
             "Hors du feu, ajouter la farine en une seule fois et mélanger vivement.",
-            "Remettre la casserole sur feu moyen et dessécher la pâte pendant quelques secondes en remuant constamment, jusqu&rsquo;à ce qu&rsquo;elle se décolle des parois.",
+            "Remettre la casserole sur feu moyen et dessécher la pâte pendant quelques secondes en remuant constamment, jusqu'à ce qu'elle se décolle des parois.",
             "Verser la pâte dans un saladier et laisser tiédir.",
-            "Ajouter les œufs un par un, en fouettant bien après chaque ajout, jusqu&rsquo;à l&rsquo;obtention d&rsquo;une pâte lisse et homogène.",
+            "Ajouter les œufs un par un, en fouettant bien après chaque ajout, jusqu'à l'obtention d'une pâte lisse et homogène.",
             "Pocher la pâte à choux sur une plaque recouverte de papier sulfurisé, en formant des petits choux.",
-            "Enfourner à 180°C pendant environ 30 minutes, jusqu&rsquo;à ce qu&rsquo;ils soient bien dorés et gonflés.",
+            "Enfourner à 180°C pendant environ 30 minutes, jusqu'à ce qu'ils soient bien dorés et gonflés.",
             "Garnir les choux refroidis avec la crème vanille."
         ],
         "tags": [
@@ -1664,7 +1611,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4725",
         "title": "Crispy Beef Tacos",
-        "description": "Une recette de tacos au bœuf croustillants, garnis de fromage mozzarella, accompagnés d&rsquo;une sauce maison crémeuse et d&rsquo;une salsa fraîche.",
+        "description": "Une recette de tacos au bœuf croustillants, garnis de fromage mozzarella, accompagnés d'une sauce maison crémeuse et d'une salsa fraîche.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FCrispy-Braised-Chipotle-Beef-Tacos-1.jpeg&v=1774887851000",
         "category": "plats",
         "difficulty": "moyen",
@@ -1703,15 +1650,15 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 1 cuillère à café de poudre d&rsquo;ail"
+                "name": "🧄\n 1 cuillère à café de poudre d'ail"
             },
             {
                 "quantity": "",
-                "name": "🧅\n 1 cuillère à café de poudre d&rsquo;oignon"
+                "name": "🧅\n 1 cuillère à café de poudre d'oignon"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à café d&rsquo;origan"
+                "name": "🥣\n 1 cuillère à café d'origan"
             },
             {
                 "quantity": "",
@@ -1727,7 +1674,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 3 gousses d&rsquo;ail"
+                "name": "🧄\n 3 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -1735,7 +1682,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 1/2 tasse d&rsquo;eau"
+                "name": "💧\n 1/2 tasse d'eau"
             },
             {
                 "quantity": "",
@@ -1883,7 +1830,7 @@ export const mockRecipes: Recipe[] = [
             "In a large skillet over medium heat, add the olive oil, shallots, and minced garlic. Sauté for 1 minute. Stir in the red pepper flakes.",
             "Mix in the tomato paste, then add the vodka. Let it cook for 30-60 seconds to allow the alcohol to evaporate.",
             "Pour in the heavy cream and add 1/4 cup of grated Parmigiano Reggiano, along with a pinch of salt and the black pepper. Stir well and reduce the heat to low.",
-            "Once the pasta is al dente, add it to the skillet. Increase the heat to medium and add the remaining Parmigiano Reggiano and about 1/4 cup of the reserved pasta water. Stir everything together, adding more pasta water if necessary, until the pasta is well-coated with a creamy sauce. Adjust the sauce consistency according to your preference by adding more pasta water if it&rsquo;s too thick.",
+            "Once the pasta is al dente, add it to the skillet. Increase the heat to medium and add the remaining Parmigiano Reggiano and about 1/4 cup of the reserved pasta water. Stir everything together, adding more pasta water if necessary, until the pasta is well-coated with a creamy sauce. Adjust the sauce consistency according to your preference by adding more pasta water if it's too thick.",
             "Serve the pasta in bowls. Sprinkle with chopped parsley, top with a piece of burrata, and garnish with additional red pepper flakes. Drizzle with a bit more olive oil.",
             "Finish with a sprinkle of grated Parmigiano Reggiano, if desired, and serve warm. Enjoy!"
         ],
@@ -1898,7 +1845,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4692",
         "title": "Couscous Marocain",
-        "description": "Un couscous marocain traditionnel et généreux, composé de légumes variés, de poulet, d&rsquo;agneau et de merguez, servi avec une semoule parfumée. Une garniture sucrée aux raisins secs est proposée en option pour une touche d&rsquo;originalité.",
+        "description": "Un couscous marocain traditionnel et généreux, composé de légumes variés, de poulet, d'agneau et de merguez, servi avec une semoule parfumée. Une garniture sucrée aux raisins secs est proposée en option pour une touche d'originalité.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecette-couscous-marocain.jpeg&v=1774702154000",
         "category": "plats",
         "difficulty": "moyen",
@@ -2053,7 +2000,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n 3 c.a.s d&rsquo;huile d&rsquo;olive (pour la farce)"
+                "name": "🍾\n 3 c.a.s d'huile d'olive (pour la farce)"
             },
             {
                 "quantity": "",
@@ -2101,20 +2048,20 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧈\n Beurre fondu ou huile d&rsquo;olive (pour le montage)"
+                "name": "🧈\n Beurre fondu ou huile d'olive (pour le montage)"
             }
         ],
         "steps": [
-            "Pour la farce : Faire chauffer l&rsquo;huile d&rsquo;olive dans une poêle. Ajouter l&rsquo;oignon et le faire revenir jusqu&rsquo;à ce qu&rsquo;il soit translucide.",
-            "Ajouter la viande hachée, saler, poivrer et ajouter les 7 épices libanaises. Faire cuire en émiettant la viande jusqu&rsquo;à évaporation de l&rsquo;eau.",
+            "Pour la farce : Faire chauffer l'huile d'olive dans une poêle. Ajouter l'oignon et le faire revenir jusqu'à ce qu'il soit translucide.",
+            "Ajouter la viande hachée, saler, poivrer et ajouter les 7 épices libanaises. Faire cuire en émiettant la viande jusqu'à évaporation de l'eau.",
             "Ajouter les pignons de pin (si utilisés), mélanger et retirer du feu. Laisser refroidir complètement.",
-            "Pour la pâte à kebbeh : Rincer rapidement le boulghour puis le couvrir d&rsquo;eau froide pendant au moins 15 min. Égoutter le soigneusement (presser à la main).",
-            "Dans un grand bol, mélanger le boulgour, la viande crue, l&rsquo;oignon râpé et les épices. Pétrir longuement à la main ou au robot jusqu&rsquo;à obtention d&rsquo;une pâte homogène et souple.",
-            "Ajouter un peu d&rsquo;eau froide si la pâte est trop sèche. La texture doit être lisse, malléable et non collante.",
+            "Pour la pâte à kebbeh : Rincer rapidement le boulghour puis le couvrir d'eau froide pendant au moins 15 min. Égoutter le soigneusement (presser à la main).",
+            "Dans un grand bol, mélanger le boulgour, la viande crue, l'oignon râpé et les épices. Pétrir longuement à la main ou au robot jusqu'à obtention d'une pâte homogène et souple.",
+            "Ajouter un peu d'eau froide si la pâte est trop sèche. La texture doit être lisse, malléable et non collante.",
             "Pour le montage : Préchauffer le four à 180°C. Huiler un plat rond ou rectangulaire.",
             "Étaler la moitié de la pâte en couche régulière. Répartir la farce refroidie uniformément.",
-            "Couvrir avec l&rsquo;autre moitié de la pâte (utiliser des mains mouillées pour lisser).",
-            "Tracer ensuite des losanges ou carrés au couteau. Arroser la surface de beurre fondu ou d&rsquo;huile d&rsquo;olive.",
+            "Couvrir avec l'autre moitié de la pâte (utiliser des mains mouillées pour lisser).",
+            "Tracer ensuite des losanges ou carrés au couteau. Arroser la surface de beurre fondu ou d'huile d'olive.",
             "Enfourner pendant 35-40 min (le temps dépend de la puissance du four).",
             "Servir avec du yaourt nature, de la mélasse de grenade, de la salade fattoush ou des quartiers de citron."
         ],
@@ -2128,7 +2075,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4676",
         "title": "Cheesecake à la vanille",
-        "description": "Un cheesecake gourmand à la vanille, composé d&rsquo;une croûte de biscuits au cacao, d&rsquo;un croustillant praliné noisette avec des crêpes dentelles, d&rsquo;une crème onctueuse au fromage frais et mascarpone, et d&rsquo;une ganache au chocola...",
+        "description": "Un cheesecake gourmand à la vanille, composé d'une croûte de biscuits au cacao, d'un croustillant praliné noisette avec des crêpes dentelles, d'une crème onctueuse au fromage frais et mascarpone, et d'une ganache au chocolat blanc.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FCheesecake.jpeg&v=1774617941000",
         "category": "desserts",
         "difficulty": "moyen",
@@ -2223,7 +2170,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 75ml d&rsquo;eau tiède"
+                "name": "💧\n 75ml d'eau tiède"
             },
             {
                 "quantity": "",
@@ -2239,7 +2186,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n 15ml d&rsquo;huile de sésame"
+                "name": "🍾\n 15ml d'huile de sésame"
             }
         ],
         "steps": [
@@ -2342,7 +2289,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3927",
         "title": "Arayes Skewers (Rouleaux de viande grillés)",
-        "description": "Élevez votre barbecue avec ces amusants rouleaux de viande grillés! C&rsquo;est un plat qui plaît à coup sûr et très amusant à préparer en famille.",
+        "description": "Élevez votre barbecue avec ces amusants rouleaux de viande grillés! C'est un plat qui plaît à coup sûr et très amusant à préparer en famille.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Farayes-Kafta-.jpg&v=1774526723000",
         "category": "plats",
         "difficulty": "moyen",
@@ -2373,7 +2320,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 cuillère à café de poudre d&rsquo;ail"
+                "name": "🧄\n             1 cuillère à café de poudre d'ail"
             },
             {
                 "quantity": "",
@@ -2385,12 +2332,12 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "1. Mettez la viande hachée, l&rsquo;oignon, le persil, les épices et le ketchup dans un bol, mélangez jusqu&rsquo;à ce que le tout soit combiné.",
+            "1. Mettez la viande hachée, l'oignon, le persil, les épices et le ketchup dans un bol, mélangez jusqu'à ce que le tout soit combiné.",
             "2. Placez un wrap sur une surface plane, étalez une poignée du mélange de viande uniformément (la couche de viande doit être fine).",
-            "3. Roulez le wrap en un rouleau. Continuez avec le reste des wraps jusqu&rsquo;à ce que le mélange de viande soit épuisé.",
-            "4. Placez les wraps roulés côte à côte, connectez-les ensemble avec des brochettes. Vous aurez besoin d&rsquo;environ 4-5 brochettes. Note : gardez des espaces relativement grands entre les brochettes pour qu&rsquo;il soit facile de couper entre elles.",
-            "5. Coupez les wraps entre les brochettes avec un couteau bien aiguisé, de manière à former des brochettes d&rsquo;arayes roulés.",
-            "6. Saisissez les brochettes sur un grill de chaque côté jusqu&rsquo;à la cuisson désirée. Servez avec vos sauces préférées!"
+            "3. Roulez le wrap en un rouleau. Continuez avec le reste des wraps jusqu'à ce que le mélange de viande soit épuisé.",
+            "4. Placez les wraps roulés côte à côte, connectez-les ensemble avec des brochettes. Vous aurez besoin d'environ 4-5 brochettes. Note : gardez des espaces relativement grands entre les brochettes pour qu'il soit facile de couper entre elles.",
+            "5. Coupez les wraps entre les brochettes avec un couteau bien aiguisé, de manière à former des brochettes d'arayes roulés.",
+            "6. Saisissez les brochettes sur un grill de chaque côté jusqu'à la cuisson désirée. Servez avec vos sauces préférées!"
         ],
         "tags": [
             "barbecue",
@@ -2404,7 +2351,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3930",
         "title": "Easy Grilled Eggplant Contorno",
-        "description": "Une recette simple d&rsquo;aubergines grillées, assaisonnées d&rsquo;une vinaigrette méditerranéenne à base d&rsquo;huile d&rsquo;olive, de vinaigre de vin blanc, d&rsquo;ail, de persil frais et de piment.",
+        "description": "Une recette simple d'aubergines grillées, assaisonnées d'une vinaigrette méditerranéenne à base d'huile d'olive, de vinaigre de vin blanc, d'ail, de persil frais et de piment.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827201356.jpg&v=1774526704000",
         "category": "plats",
         "difficulty": "moyen",
@@ -2419,11 +2366,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive (pour badigeonner)"
+                "name": "🍾\n             Huile d'olive (pour badigeonner)"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             5 cuillères à soupe d&rsquo;huile d&rsquo;olive (pour la vinaigrette)"
+                "name": "🍾\n             5 cuillères à soupe d'huile d'olive (pour la vinaigrette)"
             },
             {
                 "quantity": "",
@@ -2435,7 +2382,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 gousse d&rsquo;ail écrasée"
+                "name": "🧄\n             1 gousse d'ail écrasée"
             },
             {
                 "quantity": "",
@@ -2447,9 +2394,9 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Badigeonner chaque tranche d&rsquo;aubergine d&rsquo;huile d&rsquo;olive avant de la griller.",
-            "Préparer la vinaigrette : mélanger l&rsquo;huile d&rsquo;olive, le vinaigre de vin blanc, l&rsquo;ail écrasé, le persil frais, le pimenton concassé et une pincée de sel.",
-            "Griller les tranches d&rsquo;aubergine jusqu&rsquo;à ce qu&rsquo;elles soient tendres et légèrement carbonisées.",
+            "Badigeonner chaque tranche d'aubergine d'huile d'olive avant de la griller.",
+            "Préparer la vinaigrette : mélanger l'huile d'olive, le vinaigre de vin blanc, l'ail écrasé, le persil frais, le pimenton concassé et une pincée de sel.",
+            "Griller les tranches d'aubergine jusqu'à ce qu'elles soient tendres et légèrement carbonisées.",
             "Arroser les aubergines grillées de la vinaigrette !"
         ],
         "tags": [
@@ -2559,7 +2506,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3938",
         "title": "Classic Tomato Basil Bruschetta",
-        "description": "Une recette simple et classique de bruschetta avec une garniture fraîche de tomates, basilic, oignon rouge, assaisonnée d&rsquo;huile d&rsquo;olive et de sauce balsamique, servie sur du pain grillé avec de la mozzarella fraîche.",
+        "description": "Une recette simple et classique de bruschetta avec une garniture fraîche de tomates, basilic, oignon rouge, assaisonnée d'huile d'olive et de sauce balsamique, servie sur du pain grillé avec de la mozzarella fraîche.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827443436.jpg&v=1774526611000",
         "category": "plats",
         "difficulty": "moyen",
@@ -2586,7 +2533,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe d&rsquo;huile d&rsquo;olive"
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
             },
             {
                 "quantity": "",
@@ -2602,12 +2549,12 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧈\n             Beurre ou huile d&rsquo;olive, pour griller"
+                "name": "🧈\n             Beurre ou huile d'olive, pour griller"
             }
         ],
         "steps": [
-            "Dans un bol, mélangez les tomates coupées en dés, l&rsquo;oignon rouge et le basilic. Assaisonnez avec du sel, du poivre, de l&rsquo;huile d&rsquo;olive et un filet de sauce balsamique. Mélangez bien et mettez de côté.",
-            "Faites griller vos tranches de pain dans une poêle avec un peu de beurre ou d&rsquo;huile d&rsquo;olive jusqu&rsquo;à ce qu&rsquo;elles soient dorées et croustillantes.",
+            "Dans un bol, mélangez les tomates coupées en dés, l'oignon rouge et le basilic. Assaisonnez avec du sel, du poivre, de l'huile d'olive et un filet de sauce balsamique. Mélangez bien et mettez de côté.",
+            "Faites griller vos tranches de pain dans une poêle avec un peu de beurre ou d'huile d'olive jusqu'à ce qu'elles soient dorées et croustillantes.",
             "Disposez une tranche de mozzarella fraîche sur chaque tranche de pain grillé et déposez généreusement le mélange de tomates par-dessus.",
             "Servez immédiatement, éventuellement avec un peu de basilic frais supplémentaire."
         ],
@@ -2622,7 +2569,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3943",
         "title": "Tenders de poulet avec Mac &#038; Cheese",
-        "description": "Une recette populaire de tenders de poulet croustillants au miel piquant, accompagnés d&rsquo;un Mac &#038; Cheese crémeux et gratiné. Idéal pour un repas convivial, ce plat est une version revisitée d&rsquo;une recette virale.",
+        "description": "Une recette populaire de tenders de poulet croustillants au miel piquant, accompagnés d'un Mac &#038; Cheese crémeux et gratiné. Idéal pour un repas convivial, ce plat est une version revisitée d'une recette virale.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774522936966.jpg&v=1774526550000",
         "category": "plats",
         "difficulty": "moyen",
@@ -2785,9 +2732,9 @@ export const mockRecipes: Recipe[] = [
             "Pétrir la margarine et les sucres ensemble pendant environ trois minutes.",
             "Ajouter les deux œufs et pétrir deux minutes.",
             "Incorporer les deux farines, le demi sachet de levure chimique et la fleur de sel.",
-            "Pétrir trois minutes jusqu&rsquo;à obtenir une pâte bien homogène.",
+            "Pétrir trois minutes jusqu'à obtenir une pâte bien homogène.",
             "Ajouter les pépites de chocolat et pétrir encore deux minutes.",
-            "Former des boules de cookies d&rsquo;environ 100g chacune et les placer au congélateur 20 à 30 minutes.",
+            "Former des boules de cookies d'environ 100g chacune et les placer au congélateur 20 à 30 minutes.",
             "Préchauffer le four à 200°C.",
             "Enfourner les cookies 10 minutes à 200°C.",
             "Sortir les cookies du four et les laisser refroidir au moins 30 minutes avant de déguster."
@@ -2871,12 +2818,12 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "**Préparation de la pâte :** Dans un grand bol, mélanger la farine, le sucre blanc et le sel. Ajouter la levure fraîche émiettée, le lait tiède, le beurre fondu et les œufs. Pétrir la pâte pendant environ 10 minutes jusqu&rsquo;à ce qu&rsquo;elle soit lisse et élastique. Couvrir et laisser lever dans un endroit chaud pendant 1h30 à 2h, ou jusqu&rsquo;à ce qu&rsquo;elle double de volume.",
+            "**Préparation de la pâte :** Dans un grand bol, mélanger la farine, le sucre blanc et le sel. Ajouter la levure fraîche émiettée, le lait tiède, le beurre fondu et les œufs. Pétrir la pâte pendant environ 10 minutes jusqu'à ce qu'elle soit lisse et élastique. Couvrir et laisser lever dans un endroit chaud pendant 1h30 à 2h, ou jusqu'à ce qu'elle double de volume.",
             "**Préparation de la garniture :** Pendant ce temps, mélanger la cassonade et la cannelle en poudre dans un petit bol.",
-            "**Façonnage des rolls :** Dégazer la pâte et l&rsquo;étaler en un grand rectangle (environ 40&#215;50 cm) sur un plan de travail légèrement fariné. Étaler uniformément les 50 g de beurre doux ramolli sur toute la surface de la pâte. Saupoudrer ensuite généreusement le mélange cassonade-cannelle.",
-            "**Roulage et découpe :** Rouler la pâte serrée sur elle-même en partant du côté le plus long pour former un boudin. Couper le boudin en 12 à 15 tronçons égaux d&rsquo;environ 3-4 cm d&rsquo;épaisseur.",
-            "**Seconde levée et cuisson :** Placer les cinnamon rolls dans un plat de cuisson beurré ou tapissé de papier sulfurisé, en laissant un peu d&rsquo;espace entre chaque. Couvrir et laisser lever une seconde fois pendant 30 à 45 minutes. Préchauffer le four à 180°C. Badigeonner les rolls d&rsquo;un peu de lait avant d&rsquo;enfourner pour un dessus doré. Cuire pendant 20 à 25 minutes, jusqu&rsquo;à ce qu&rsquo;ils soient bien dorés et moelleux.",
-            "**Préparation du glaçage :** Pendant que les cinnamon rolls refroidissent légèrement, mélanger le Saint Môret, le sucre glace et 1 à 2 cuillères à soupe de lait (et la vanille si désiré) jusqu&rsquo;à obtenir un glaçage lisse et crémeux.",
+            "**Façonnage des rolls :** Dégazer la pâte et l'étaler en un grand rectangle (environ 40&#215;50 cm) sur un plan de travail légèrement fariné. Étaler uniformément les 50 g de beurre doux ramolli sur toute la surface de la pâte. Saupoudrer ensuite généreusement le mélange cassonade-cannelle.",
+            "**Roulage et découpe :** Rouler la pâte serrée sur elle-même en partant du côté le plus long pour former un boudin. Couper le boudin en 12 à 15 tronçons égaux d'environ 3-4 cm d'épaisseur.",
+            "**Seconde levée et cuisson :** Placer les cinnamon rolls dans un plat de cuisson beurré ou tapissé de papier sulfurisé, en laissant un peu d'espace entre chaque. Couvrir et laisser lever une seconde fois pendant 30 à 45 minutes. Préchauffer le four à 180°C. Badigeonner les rolls d'un peu de lait avant d'enfourner pour un dessus doré. Cuire pendant 20 à 25 minutes, jusqu'à ce qu'ils soient bien dorés et moelleux.",
+            "**Préparation du glaçage :** Pendant que les cinnamon rolls refroidissent légèrement, mélanger le Saint Môret, le sucre glace et 1 à 2 cuillères à soupe de lait (et la vanille si désiré) jusqu'à obtenir un glaçage lisse et crémeux.",
             "**Finition :** Napper généreusement les cinnamon rolls tièdes avec le glaçage. Servir immédiatement."
         ],
         "tags": [
@@ -3015,7 +2962,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3960",
         "title": "Torrijas Caramelisées",
-        "description": "Une recette de Torrijas traditionnelles espagnoles, tendres à l&rsquo;intérieur et croustillantes à l&rsquo;extérieur grâce à un délicieux caramel maison, parfaites pour la Semaine Sainte et à accompagner d&rsquo;une boule de glace.",
+        "description": "Une recette de Torrijas traditionnelles espagnoles, tendres à l'intérieur et croustillantes à l'extérieur grâce à un délicieux caramel maison, parfaites pour la Semaine Sainte et à accompagner d'une boule de glace.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773828797191.jpg&v=1774526342000",
         "category": "plats",
         "difficulty": "moyen",
@@ -3042,7 +2989,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Zestes d&rsquo;orange et de citron"
+                "name": "🍋\n             Zestes d'orange et de citron"
             },
             {
                 "quantity": "",
@@ -3066,10 +3013,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Versez le lait et la crème dans une casserole. Ajoutez les aromatiques (cannelle, zestes d&rsquo;orange et de citron) et le sucre. Chauffez à feu moyen et retirez du feu juste avant l&rsquo;ébullition. Laissez infuser environ 30 minutes jusqu&rsquo;à ce que le mélange tiédisse, puis filtrez.",
-            "Coupez le brioche en tranches épaisses d&rsquo;environ 3-4cm. Versez la moitié du mélange de lait et crème dans un plat, disposez le brioche et arrosez avec le reste du liquide. Laissez tremper pendant 1-2 heures (plus le temps est long, plus elles seront tendres, mais aussi plus difficiles à manipuler).",
-            "Dans une poêle, préparez le caramel en chauffant le sucre à feu moyen-élevé avec une cuillère à soupe d&rsquo;eau. Remuez de temps en temps jusqu&rsquo;à ce qu&rsquo;il commence à fondre.",
-            "Quand le sucre est totalement fondu et a pris couleur, retirez du feu pour éviter qu&rsquo;il ne brûle et incorporez le beurre. Mélangez bien jusqu&rsquo;à ce qu&rsquo;il fonde et nappez les torrijas, environ 5 secondes par côté. Les proportions de caramel permettent de napper environ 2 torrijas.",
+            "Versez le lait et la crème dans une casserole. Ajoutez les aromatiques (cannelle, zestes d'orange et de citron) et le sucre. Chauffez à feu moyen et retirez du feu juste avant l'ébullition. Laissez infuser environ 30 minutes jusqu'à ce que le mélange tiédisse, puis filtrez.",
+            "Coupez le brioche en tranches épaisses d'environ 3-4cm. Versez la moitié du mélange de lait et crème dans un plat, disposez le brioche et arrosez avec le reste du liquide. Laissez tremper pendant 1-2 heures (plus le temps est long, plus elles seront tendres, mais aussi plus difficiles à manipuler).",
+            "Dans une poêle, préparez le caramel en chauffant le sucre à feu moyen-élevé avec une cuillère à soupe d'eau. Remuez de temps en temps jusqu'à ce qu'il commence à fondre.",
+            "Quand le sucre est totalement fondu et a pris couleur, retirez du feu pour éviter qu'il ne brûle et incorporez le beurre. Mélangez bien jusqu'à ce qu'il fonde et nappez les torrijas, environ 5 secondes par côté. Les proportions de caramel permettent de napper environ 2 torrijas.",
             "Servez avec de la glace à la vanille (ou votre glace préférée) et dégustez !"
         ],
         "tags": [
@@ -3084,7 +3031,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3962",
         "title": "Papas aliñás",
-        "description": "Une recette espagnole classique et rafraîchissante, parfaite pour l&rsquo;été. Cette tapa andalouse se compose de pommes de terre, d&rsquo;oignon, d&rsquo;œufs durs et de thon (ou melva), le tout assaisonné généreusement d&rsquo;huile d&rsquo;oliv...",
+        "description": "Une recette espagnole classique et rafraîchissante, parfaite pour l'été. Cette tapa andalouse se compose de pommes de terre, d'oignon, d'œufs durs et de thon (ou melva), le tout assaisonné généreusement d'huile d'olive vierge extra et de vinaigre ...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FPapas-ali%C3%B1%C3%A1s.jpeg&v=1774526278000",
         "category": "plats",
         "difficulty": "moyen",
@@ -3115,7 +3062,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Aceite de oliva virgen extra (huile d&rsquo;olive vierge extra)"
+                "name": "🍾\n             Aceite de oliva virgen extra (huile d'olive vierge extra)"
             },
             {
                 "quantity": "",
@@ -3127,10 +3074,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Faire cuire les pommes de terre jusqu&rsquo;à ce qu&rsquo;elles soient tendres. Faire cuire les œufs pour qu&rsquo;ils soient durs.",
+            "Faire cuire les pommes de terre jusqu'à ce qu'elles soient tendres. Faire cuire les œufs pour qu'ils soient durs.",
             "Pendant que les pommes de terre sont encore chaudes, les couper en morceaux. Couper la cebolla (ou cebolleta) et les œufs durs en dés. Hacher finement le persil frais.",
             "Dans un saladier, mélanger les pommes de terre coupées, la cebolla, les œufs durs, le thon égoutté (si utilisé) et le persil haché.",
-            "Assaisonner généreusement avec de l&rsquo;huile d&rsquo;olive vierge extra, du vinaigre de Xérès et du sel.",
+            "Assaisonner généreusement avec de l'huile d'olive vierge extra, du vinaigre de Xérès et du sel.",
             "Bien mélanger tous les ingrédients et laisser refroidir complètement avant de servir pour obtenir le goût authentique."
         ],
         "tags": [
@@ -3145,7 +3092,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3965",
         "title": "Patatas Bravas comme à Madrid",
-        "description": "Revivez l&rsquo;ambiance des vacances à Madrid avec ces Patatas Bravas croustillantes et leur sauce épicée, parfaites pour un apéro convivial.",
+        "description": "Revivez l'ambiance des vacances à Madrid avec ces Patatas Bravas croustillantes et leur sauce épicée, parfaites pour un apéro convivial.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773829018639.jpg&v=1774526253000",
         "category": "plats",
         "difficulty": "moyen",
@@ -3192,10 +3139,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "**Préparation des pommes de terre :** Coupez les pommes de terre, puis trempez-les dans de l&rsquo;eau froide et laissez-les au minimum 30 minutes au réfrigérateur.",
-            "**Première cuisson des pommes de terre :** Égouttez et séchez très bien les pommes de terre. Plongez-les dans un premier bain d&rsquo;huile chaude (150°C) pendant environ 15 minutes.",
-            "**Deuxième cuisson des pommes de terre :** Égouttez les pommes de terre, puis plongez-les dans un deuxième bain d&rsquo;huile à 200°C pendant environ 5 minutes pour les dorer et les rendre croustillantes.",
-            "**Préparation de la sauce :** Dans une autre poêle, faites revenir l&rsquo;oignon jaune haché et la gousse d&rsquo;ail écrasée dans 2 CàS d&rsquo;huile d&rsquo;olive.",
+            "**Préparation des pommes de terre :** Coupez les pommes de terre, puis trempez-les dans de l'eau froide et laissez-les au minimum 30 minutes au réfrigérateur.",
+            "**Première cuisson des pommes de terre :** Égouttez et séchez très bien les pommes de terre. Plongez-les dans un premier bain d'huile chaude (150°C) pendant environ 15 minutes.",
+            "**Deuxième cuisson des pommes de terre :** Égouttez les pommes de terre, puis plongez-les dans un deuxième bain d'huile à 200°C pendant environ 5 minutes pour les dorer et les rendre croustillantes.",
+            "**Préparation de la sauce :** Dans une autre poêle, faites revenir l'oignon jaune haché et la gousse d'ail écrasée dans 2 CàS d'huile d'olive.",
             "**Épaississement de la sauce :** Ajoutez 1 CàS bombée de farine et 2 CàS rases de pimenton (paprika fumé). Mélangez bien.",
             "**Cuisson de la sauce :** Incorporez progressivement 250 à 300 ml de bouillon de volaille, en ajustant la quantité pour obtenir la consistance désirée.",
             "**Assaisonnement de la sauce :** Ajoutez 1 cac de La Costaude (ou un mélange de paprika doux et piquant, 2 doses de doux pour 1 dose de piquant). Salez et poivrez à votre goût.",
@@ -3213,7 +3160,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3967",
         "title": "San Sebastian Cheesecake",
-        "description": "Une recette détaillée pour un cheesecake basque brûlé, crémeux à l&rsquo;intérieur et caramélisé à l&rsquo;extérieur, parfait pour un dessert gourmand.",
+        "description": "Une recette détaillée pour un cheesecake basque brûlé, crémeux à l'intérieur et caramélisé à l'extérieur, parfait pour un dessert gourmand.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F20250203203320-San-Sebastian-Cheesecake-Recipe-Cvjeya-ttuS_9339a0de-e42b-4182-94cd-11cb0b296bc2.jpeg&v=1774526183000",
         "category": "desserts",
         "difficulty": "moyen",
@@ -3258,11 +3205,11 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Mélanger le cream cheese à température ambiante avec le sucre.",
             "Après avoir bien mélangé, incorporer les œufs un par un.",
-            "Ajouter le jus de citron, le sel, l&rsquo;extrait de vanille, la farine et bien mélanger.",
+            "Ajouter le jus de citron, le sel, l'extrait de vanille, la farine et bien mélanger.",
             "Ajouter ensuite la crème et incorporer délicatement à la cuillère ou à la spatule (ne pas utiliser de mixeur).",
             "Verser le mélange bien homogène dans un moule à gâteau de 9&#215;4 pouces après avoir placé du papier sulfurisé.",
             "Préchauffer le four à 450F (environ 230°C).",
-            "Cuire au four jusqu&rsquo;à ce que le dessus soit brûlé.",
+            "Cuire au four jusqu'à ce que le dessus soit brûlé.",
             "Laisser refroidir à température ambiante pendant 2 heures.",
             "Placer ensuite au réfrigérateur toute une nuit."
         ],
@@ -3275,8 +3222,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3969",
-        "title": "Œufs à l&rsquo;espagnole",
-        "description": "Une recette savoureuse d&rsquo;œufs à l&rsquo;espagnole, parfaite pour une personne qui mange bien, avec des poivrons, des tomates et des épices.",
+        "title": "Œufs à l'espagnole",
+        "description": "Une recette savoureuse d'œufs à l'espagnole, parfaite pour une personne qui mange bien, avec des poivrons, des tomates et des épices.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Foeufs-a-lespagnole-legumes-dete-et-jambon-1-scaled-1.jpeg&v=1774526119000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -3371,7 +3318,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n             1 l d&rsquo;eau"
+                "name": "💧\n             1 l d'eau"
             },
             {
                 "quantity": "",
@@ -3379,7 +3326,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             2 gousses d&rsquo;ail"
+                "name": "🧄\n             2 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -3399,7 +3346,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive"
+                "name": "🍾\n             Huile d'olive"
             },
             {
                 "quantity": "",
@@ -3407,14 +3354,14 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Assaisonnez la viande et faites-la revenir dans une cocotte avec un peu d&rsquo;huile.",
-            "Lorsque la viande est dorée, ajoutez l&rsquo;ail haché, l&rsquo;oignon et le poivron. Cuisinez au moins 10 minutes en remuant souvent.",
+            "Assaisonnez la viande et faites-la revenir dans une cocotte avec un peu d'huile.",
+            "Lorsque la viande est dorée, ajoutez l'ail haché, l'oignon et le poivron. Cuisinez au moins 10 minutes en remuant souvent.",
             "Lorsque les légumes sont tendres, ajoutez le vin et laissez réduire.",
             "Pendant ce temps, pelez, lavez et cassez les pommes de terre (chascar).",
             "Ajoutez les pommes de terre à la cocotte et cuisinez 2 minutes de plus, en remuant souvent.",
             "Ajoutez la cuillère à café de paprika et cuisinez 1 minute.",
             "Ajoutez la feuille de laurier.",
-            "Couvrez d&rsquo;eau, rectifiez l&rsquo;assaisonnement si nécessaire, couvrez et laissez mijoter à feu doux pendant 50 minutes. Le temps de cuisson peut varier selon la variété de pomme de terre et de veau."
+            "Couvrez d'eau, rectifiez l'assaisonnement si nécessaire, couvrez et laissez mijoter à feu doux pendant 50 minutes. Le temps de cuisson peut varier selon la variété de pomme de terre et de veau."
         ],
         "tags": [
             "Espagne",
@@ -3428,7 +3375,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3975",
         "title": "Bambas de Nata",
-        "description": "Une pâtisserie espagnole classique : de moelleux petits pains à la levure garnis de crème fouettée légèrement sucrée. C&rsquo;est une gourmandise simple et très appréciée, que l&rsquo;on trouve couramment dans les boulangeries en Espagne.",
+        "description": "Une pâtisserie espagnole classique : de moelleux petits pains à la levure garnis de crème fouettée légèrement sucrée. C'est une gourmandise simple et très appréciée, que l'on trouve couramment dans les boulangeries en Espagne.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773829876550.jpg&v=1774526019000",
         "category": "plats",
         "difficulty": "moyen",
@@ -3467,7 +3414,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍦\n             1 c. à café d&rsquo;extrait de vanille"
+                "name": "🍦\n             1 c. à café d'extrait de vanille"
             },
             {
                 "quantity": "",
@@ -3479,7 +3426,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍦\n             1 c. à café d&rsquo;extrait de vanille"
+                "name": "🍦\n             1 c. à café d'extrait de vanille"
             },
             {
                 "quantity": "",
@@ -3487,12 +3434,12 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Tamiser la farine dans un bol et former un puits au centre. Ajouter la levure, 1 cuillère à café de sucre et un peu de lait tiède. Laisser reposer 8 à 10 minutes jusqu&rsquo;à ce que la levure devienne mousseuse.",
-            "Ajouter le reste du sucre, le sel, l&rsquo;œuf, l&rsquo;extrait de vanille et le reste du lait. Pétrir avec un crochet à pâte jusqu&rsquo;à obtenir une pâte lisse.",
-            "Ajouter le beurre mou en dernier et continuer à pétrir pendant 8 à 10 minutes jusqu&rsquo;à ce que la pâte soit molle, élastique et se décolle des parois du bol. Couvrir et laisser lever environ 60 minutes.",
+            "Tamiser la farine dans un bol et former un puits au centre. Ajouter la levure, 1 cuillère à café de sucre et un peu de lait tiède. Laisser reposer 8 à 10 minutes jusqu'à ce que la levure devienne mousseuse.",
+            "Ajouter le reste du sucre, le sel, l'œuf, l'extrait de vanille et le reste du lait. Pétrir avec un crochet à pâte jusqu'à obtenir une pâte lisse.",
+            "Ajouter le beurre mou en dernier et continuer à pétrir pendant 8 à 10 minutes jusqu'à ce que la pâte soit molle, élastique et se décolle des parois du bol. Couvrir et laisser lever environ 60 minutes.",
             "Diviser la pâte en 9 portions égales (environ 50 g par pièce), former des boules lisses et les placer sur une plaque de cuisson recouverte de papier sulfurisé. Couvrir et laisser lever encore 20 à 30 minutes. Badigeonner légèrement le dessus avec un peu de crème.",
-            "Cuire au four préchauffé à 180 °C / 350 °F (chaleur haut/bas) pendant 15 à 18 minutes jusqu&rsquo;à ce qu&rsquo;ils soient légèrement dorés. Laisser refroidir complètement.",
-            "Fouetter la crème froide avec le sucre glace et la vanille jusqu&rsquo;à ce qu&rsquo;elle soit ferme.",
+            "Cuire au four préchauffé à 180 °C / 350 °F (chaleur haut/bas) pendant 15 à 18 minutes jusqu'à ce qu'ils soient légèrement dorés. Laisser refroidir complètement.",
+            "Fouetter la crème froide avec le sucre glace et la vanille jusqu'à ce qu'elle soit ferme.",
             "Couper les Bambas horizontalement, garnir généreusement ou pocher la crème, replacer les dessus et saupoudrer généreusement de sucre glace. Moelleux, aériens et merveilleusement simples – une pâtisserie classique fourrée à la crème qui ne manque jamais de ravir."
         ],
         "tags": [
@@ -3507,7 +3454,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3978",
         "title": "Msemmen - Crêpe marocaine feuilletée",
-        "description": "Le Msemmen est une crêpe marocaine feuilletée traditionnelle, préparée à base de farine et de semoule, puis pliée et cuite à la poêle jusqu&rsquo;à obtenir une texture dorée et croustillante. Il peut être dégusté chaud, nature, avec du sirop ou en...",
+        "description": "Le Msemmen est une crêpe marocaine feuilletée traditionnelle, préparée à base de farine et de semoule, puis pliée et cuite à la poêle jusqu'à obtenir une texture dorée et croustillante. Il peut être dégusté chaud, nature, avec du sirop ou en accom...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773829966741.jpg&v=1774525953000",
         "category": "plats",
         "difficulty": "moyen",
@@ -3530,7 +3477,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n             340ml d&rsquo;eau tiède"
+                "name": "💧\n             340ml d'eau tiède"
             },
             {
                 "quantity": "",
@@ -3546,13 +3493,13 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer la pâte : Dans un grand bol, mélanger la farine de blé, la semoule fine et le sel. Incorporer progressivement l&rsquo;eau tiède jusqu&rsquo;à obtenir une pâte molle.",
-            "Pétrir la pâte : Placer la pâte sur une surface propre et pétrir pendant environ 10 minutes, jusqu&rsquo;à ce qu&rsquo;elle devienne lisse et élastique.",
-            "Laisser reposer la pâte : Diviser la pâte en petites boules, de la taille d&rsquo;une balle de golf. Placer sur un plateau, couvrir d&rsquo;un linge et laisser reposer au moins 30 minutes (plus c&rsquo;est long, mieux c&rsquo;est).",
-            "Préparer pour le pliage : Dans un bol, mélanger la semoule supplémentaire avec de l&rsquo;huile végétale. Garder le beurre mou prêt.",
-            "Façonner les Msemmen : Travailler une boule à la fois, l&rsquo;aplatir sur une surface huilée en un cercle fin. Badigeonner d&rsquo;un peu de beurre mou et de semoule.",
+            "Préparer la pâte : Dans un grand bol, mélanger la farine de blé, la semoule fine et le sel. Incorporer progressivement l'eau tiède jusqu'à obtenir une pâte molle.",
+            "Pétrir la pâte : Placer la pâte sur une surface propre et pétrir pendant environ 10 minutes, jusqu'à ce qu'elle devienne lisse et élastique.",
+            "Laisser reposer la pâte : Diviser la pâte en petites boules, de la taille d'une balle de golf. Placer sur un plateau, couvrir d'un linge et laisser reposer au moins 30 minutes (plus c'est long, mieux c'est).",
+            "Préparer pour le pliage : Dans un bol, mélanger la semoule supplémentaire avec de l'huile végétale. Garder le beurre mou prêt.",
+            "Façonner les Msemmen : Travailler une boule à la fois, l'aplatir sur une surface huilée en un cercle fin. Badigeonner d'un peu de beurre mou et de semoule.",
             "Plier la pâte : Plier les côtés supérieur et inférieur du cercle vers le centre, puis superposer les côtés gauche et droit pour former un carré.",
-            "Cuire les Msemmen : Chauffer une poêle ou un grill à feu moyen. Cuire chaque carré 2-3 minutes de chaque côté, jusqu&rsquo;à ce qu&rsquo;ils soient dorés et croustillants.",
+            "Cuire les Msemmen : Chauffer une poêle ou un grill à feu moyen. Cuire chaque carré 2-3 minutes de chaque côté, jusqu'à ce qu'ils soient dorés et croustillants.",
             "Servir : Déguster les Msemmen chauds, avec du sirop, ou en accompagnement de plats salés."
         ],
         "tags": [
@@ -3566,8 +3513,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3983",
-        "title": "Shawarma au poulet avec sauce à l&rsquo;ail et frites",
-        "description": "Une recette facile de shawarma au poulet maison, accompagné d&rsquo;une sauce à l&rsquo;ail crémeuse, d&rsquo;oignons au sumac et de frites, le tout enveloppé dans un wrap grillé.",
+        "title": "Shawarma au poulet avec sauce à l'ail et frites",
+        "description": "Une recette facile de shawarma au poulet maison, accompagné d'une sauce à l'ail crémeuse, d'oignons au sumac et de frites, le tout enveloppé dans un wrap grillé.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FH%C3%A4hnchen-Schawarma-selber-machen-Rezept.jpg&v=1774525885000",
         "category": "plats",
         "difficulty": "moyen",
@@ -3582,7 +3529,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive"
+                "name": "🍾\n             Huile d'olive"
             },
             {
                 "quantity": "",
@@ -3594,11 +3541,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Jus d&rsquo;1 citron (pour le poulet)"
+                "name": "🍋\n             Jus d'1 citron (pour le poulet)"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Assaisonnement (Paprika, curcuma, poivre noir, sel, piment, poudre d&rsquo;ail)"
+                "name": "🧂\n             Assaisonnement (Paprika, curcuma, poivre noir, sel, piment, poudre d'ail)"
             },
             {
                 "quantity": "",
@@ -3622,7 +3569,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Jus d&rsquo;½ citron (pour les oignons)"
+                "name": "🍋\n             Jus d'½ citron (pour les oignons)"
             },
             {
                 "quantity": "",
@@ -3646,12 +3593,12 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Dans un bol : Ajoutez les lanières de poulet, l&rsquo;huile d&rsquo;olive, l&rsquo;assaisonnement, la pâte de tomate et le jus de citron. Mélangez bien et laissez mariner.",
-            "Cuisson : Faites chauffer une poêle et faites cuire le poulet jusqu&rsquo;à ce qu&rsquo;il soit doré.",
-            "Préparez la sauce à l&rsquo;ail : Mélangez le yaourt, la mayonnaise, l&rsquo;ail haché et le persil dans un bol.",
-            "Préparez les oignons au sumac : Dans un autre bol, mélangez l&rsquo;oignon rouge, le sumac, le persil et le jus de citron. Mélangez bien.",
-            "Assemblez le wrap : Étalez la sauce à l&rsquo;ail sur le wrap. Ajoutez le poulet cuit. Ajoutez les oignons au sumac. Ajoutez l&rsquo;harissa (ou Sriracha), le concombre, la tomate et les frites. Arrosez de plus de sauce à l&rsquo;ail.",
-            "Pliez et grillez : Pliez le bas du wrap, puis les côtés. Faites griller dans une poêle jusqu&rsquo;à ce qu&rsquo;il soit doré. Bon appétit !"
+            "Dans un bol : Ajoutez les lanières de poulet, l'huile d'olive, l'assaisonnement, la pâte de tomate et le jus de citron. Mélangez bien et laissez mariner.",
+            "Cuisson : Faites chauffer une poêle et faites cuire le poulet jusqu'à ce qu'il soit doré.",
+            "Préparez la sauce à l'ail : Mélangez le yaourt, la mayonnaise, l'ail haché et le persil dans un bol.",
+            "Préparez les oignons au sumac : Dans un autre bol, mélangez l'oignon rouge, le sumac, le persil et le jus de citron. Mélangez bien.",
+            "Assemblez le wrap : Étalez la sauce à l'ail sur le wrap. Ajoutez le poulet cuit. Ajoutez les oignons au sumac. Ajoutez l'harissa (ou Sriracha), le concombre, la tomate et les frites. Arrosez de plus de sauce à l'ail.",
+            "Pliez et grillez : Pliez le bas du wrap, puis les côtés. Faites griller dans une poêle jusqu'à ce qu'il soit doré. Bon appétit !"
         ],
         "tags": [
             "Famille",
@@ -3665,7 +3612,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3986",
         "title": "Pita farci kefta de poulet (Arayes)",
-        "description": "Ce plat, aussi appelé Arayes, est une spécialité du Moyen-Orient. Il s&rsquo;agit de pains pita farcis d&rsquo;une préparation savoureuse à base de kefta de poulet, d&rsquo;oignon, d&rsquo;herbes et d&rsquo;épices, puis dorés à la poêle et servis ...",
+        "description": "Ce plat, aussi appelé Arayes, est une spécialité du Moyen-Orient. Il s'agit de pains pita farcis d'une préparation savoureuse à base de kefta de poulet, d'oignon, d'herbes et d'épices, puis dorés à la poêle et servis avec une sauce au tahini et fr...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773830271409.jpg&v=1774525821000",
         "category": "plats",
         "difficulty": "moyen",
@@ -3708,7 +3655,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive"
+                "name": "🍾\n             Huile d'olive"
             },
             {
                 "quantity": "",
@@ -3728,7 +3675,7 @@ export const mockRecipes: Recipe[] = [
             "Hachez le poulet avec l’oignon, les herbes, l’ail et les épices (cumin, paprika, curcuma).",
             "Farcissez vos pains pita avec la préparation au poulet.",
             "Faites revenir les pains farcis dans l’huile d’olive à la poêle de chaque côté à feu doux.",
-            "Mélangez 1 cas de tahini et 2 cas de fromage blanc avec un peu de jus de citron pour la sauce d&rsquo;accompagnement."
+            "Mélangez 1 cas de tahini et 2 cas de fromage blanc avec un peu de jus de citron pour la sauce d'accompagnement."
         ],
         "tags": [
             "Famille",
@@ -3826,7 +3773,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3991",
         "title": "Riz jaune du Moyen-Orient",
-        "description": "Un délicieux riz jaune du Moyen-Orient, parfumé au curcuma et au thym, agrémenté de légumes (carotte, céleri, oignon), d&rsquo;amandes grillées et de raisins secs. Une recette végétarienne et saine, parfaite comme plat principal ou accompagnement.",
+        "description": "Un délicieux riz jaune du Moyen-Orient, parfumé au curcuma et au thym, agrémenté de légumes (carotte, céleri, oignon), d'amandes grillées et de raisins secs. Une recette végétarienne et saine, parfaite comme plat principal ou accompagnement.",
         "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
@@ -3891,7 +3838,7 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "1. Sauté the chopped onion in the olive oil until it is translucent. Then put the rice and cook until it is also transparent.",
             "2. In the meantime, bring the water to a boil together with the turmeric, carrot and celery chopped into small cubes, salt, pepper and thyme.",
-            "3. When the water starts boiling, pour the mixture over the rice, incorporate, cover with a towel, put the lid on and lift the edges of the towel over the lid. BE VERY CAREFUL with the towel so it doesn&rsquo;t catch fire.",
+            "3. When the water starts boiling, pour the mixture over the rice, incorporate, cover with a towel, put the lid on and lift the edges of the towel over the lid. BE VERY CAREFUL with the towel so it doesn't catch fire.",
             "4. Boil on high heat for 1 minute, then cook on low heat for 22 minutes.",
             "5. Sprinkle with almonds, parsley and raisins, mix well and serve. Good appetite!"
         ],
@@ -3942,7 +3889,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n             2 1/2 tasses d&rsquo;eau tiède"
+                "name": "💧\n             2 1/2 tasses d'eau tiède"
             },
             {
                 "quantity": "",
@@ -3970,11 +3917,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Mélangez le boulgour et la semoule avec l&rsquo;eau tiède.",
+            "Mélangez le boulgour et la semoule avec l'eau tiède.",
             "Couvrez et laissez reposer pendant 1 heure.",
             "Pétrissez très bien le mélange à la main ou au robot culinaire.",
             "Façonnez le kibbeh (en le remplissant avec la farce préparée).",
-            "Faites-le frire dans l&rsquo;huile."
+            "Faites-le frire dans l'huile."
         ],
         "tags": [
             "Liban"
@@ -4057,14 +4004,14 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "**Préparation de la pâte :** Dans un grand récipient ou un robot, mélanger la semoule moyenne, la semoule fine, l&rsquo;huile d&rsquo;olive et le sel. Ajouter progressivement les 300 ml d&rsquo;eau et pétrir jusqu&rsquo;à obtenir une pâte souple et homogène.",
-            "**Préparation de la farce :** Hacher les oignons et les poivrons. Dans une poêle, faire revenir les oignons et les poivrons jusqu&rsquo;à ce qu&rsquo;ils soient tendres.",
-            "Ajouter la viande hachée (ou poulet/thon) et faire cuire en l&rsquo;émiettant.",
+            "**Préparation de la pâte :** Dans un grand récipient ou un robot, mélanger la semoule moyenne, la semoule fine, l'huile d'olive et le sel. Ajouter progressivement les 300 ml d'eau et pétrir jusqu'à obtenir une pâte souple et homogène.",
+            "**Préparation de la farce :** Hacher les oignons et les poivrons. Dans une poêle, faire revenir les oignons et les poivrons jusqu'à ce qu'ils soient tendres.",
+            "Ajouter la viande hachée (ou poulet/thon) et faire cuire en l'émiettant.",
             "Incorporer la tomate coupée en dés, la tomate concentrée, le sel, le poivre, le piment doux et le piment fort. Bien mélanger et laisser mijoter quelques minutes.",
-            "Ajouter un demi verre d&rsquo;eau et laisser la farce cuire jusqu&rsquo;à ce que le liquide soit absorbé et que la farce soit bien cuite. Laisser refroidir légèrement.",
+            "Ajouter un demi verre d'eau et laisser la farce cuire jusqu'à ce que le liquide soit absorbé et que la farce soit bien cuite. Laisser refroidir légèrement.",
             "**Assemblage et cuisson :** Diviser la pâte en quatre boules égales. Étaler deux boules pour former deux galettes de taille moyenne.",
-            "Répartir la farce sur une des galettes, en laissant un bord libre. Recouvrir avec la deuxième galette et bien souder les bords. Répéter l&rsquo;opération pour la deuxième kesra.",
-            "Faire cuire les kesras farcies dans une poêle chaude (ou sur un tajine) à feu moyen, quelques minutes de chaque côté, jusqu&rsquo;à ce qu&rsquo;elles soient dorées et croustillantes."
+            "Répartir la farce sur une des galettes, en laissant un bord libre. Recouvrir avec la deuxième galette et bien souder les bords. Répéter l'opération pour la deuxième kesra.",
+            "Faire cuire les kesras farcies dans une poêle chaude (ou sur un tajine) à feu moyen, quelques minutes de chaque côté, jusqu'à ce qu'elles soient dorées et croustillantes."
         ],
         "tags": [
             "Famille",
@@ -4169,7 +4116,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4002",
         "title": "Lahsa Yéménite",
-        "description": "Un plat yéménite traditionnel à base d&rsquo;oignons, de tomates et d&rsquo;œufs, mijoté avec des épices et du fromage liquide, puis servi avec du pain. Idéal pour le petit-déjeuner.",
+        "description": "Un plat yéménite traditionnel à base d'oignons, de tomates et d'œufs, mijoté avec des épices et du fromage liquide, puis servi avec du pain. Idéal pour le petit-déjeuner.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmaxresdefault.jpeg&v=1774525532000",
         "category": "plats",
         "difficulty": "moyen",
@@ -4196,7 +4143,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive"
+                "name": "🍾\n             Huile d'olive"
             },
             {
                 "quantity": "",
@@ -4225,10 +4172,10 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Hacher les légumes.",
-            "Faire revenir l&rsquo;oignon dans un filet d&rsquo;huile d&rsquo;olive.",
-            "Une fois l&rsquo;oignon doré, ajouter les tomates. Assaisonner avec du sel, du poivre, du cumin, de la coriandre, du paprika et de la purée de tomates (et toute autre épice préférée).",
-            "Laisser cuire les tomates à feu moyen-doux jusqu&rsquo;à ce qu&rsquo;elles soient dissoutes.",
-            "Éteindre le feu, puis casser les œufs dans le mélange. Mélanger soigneusement et ajouter un peu d&rsquo;eau.",
+            "Faire revenir l'oignon dans un filet d'huile d'olive.",
+            "Une fois l'oignon doré, ajouter les tomates. Assaisonner avec du sel, du poivre, du cumin, de la coriandre, du paprika et de la purée de tomates (et toute autre épice préférée).",
+            "Laisser cuire les tomates à feu moyen-doux jusqu'à ce qu'elles soient dissoutes.",
+            "Éteindre le feu, puis casser les œufs dans le mélange. Mélanger soigneusement et ajouter un peu d'eau.",
             "Rallumer le feu à doux et étaler le fromage sur le dessus.",
             "Couvrir et laisser cuire pendant 3 à 5 minutes.",
             "Garnir, servir avec du pain et déguster."
@@ -4346,7 +4293,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4008",
         "title": "Koobideh Kebab et Salade Shirazi",
-        "description": "Une recette traditionnelle iranienne de Koobideh Kebab, accompagnée d&rsquo;une rafraîchissante Salade Shirazi et d&rsquo;un beurre citronné.",
+        "description": "Une recette traditionnelle iranienne de Koobideh Kebab, accompagnée d'une rafraîchissante Salade Shirazi et d'un beurre citronné.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831071825.jpg&v=1774525491000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -4365,7 +4312,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1-2 gousses d&rsquo;ail"
+                "name": "🧄\n             1-2 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -4413,7 +4360,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive"
+                "name": "🍾\n             Huile d'olive"
             },
             {
                 "quantity": "",
@@ -4426,7 +4373,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Pour la préparation des Koobideh kebab, suivre les instructions détaillées dans la vidéo.",
-            "Pour la Salade Shirazi, couper les tomates cerises, le concombre et le demi-oignon en petits dés. Mélanger avec le jus de citron, la menthe, le sumac, l&rsquo;huile d&rsquo;olive, le sel et le poivre.",
+            "Pour la Salade Shirazi, couper les tomates cerises, le concombre et le demi-oignon en petits dés. Mélanger avec le jus de citron, la menthe, le sumac, l'huile d'olive, le sel et le poivre.",
             "Pour le beurre citronné, faire fondre le beurre et y ajouter le jus de citron."
         ],
         "tags": [
@@ -4460,7 +4407,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             3 gousses d&rsquo;ail hachées"
+                "name": "🧄\n             3 gousses d'ail hachées"
             },
             {
                 "quantity": "",
@@ -4480,7 +4427,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             80 ml d&rsquo;huile d&rsquo;olive extra vierge (plus pour la friture)"
+                "name": "🍾\n             80 ml d'huile d'olive extra vierge (plus pour la friture)"
             },
             {
                 "quantity": "",
@@ -4488,7 +4435,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Pour l&rsquo;enrobage :"
+                "name": "🥣\n             Pour l'enrobage :"
             },
             {
                 "quantity": "",
@@ -4500,7 +4447,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             3 gousses d&rsquo;ail hachées"
+                "name": "🧄\n             3 gousses d'ail hachées"
             },
             {
                 "quantity": "",
@@ -4528,9 +4475,9 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "1. Préparer la farce des boulettes : Dans un grand bol, mélanger la viande hachée, l&rsquo;ail haché, l&rsquo;œuf, la chapelure, le cumin, le sel, le poivre, l&rsquo;huile d&rsquo;olive et le vin. Bien mélanger jusqu&rsquo;à obtenir une consistance homogène. Couvrir de film plastique et réfrigérer pendant 30 minutes. (Pendant ce temps, couper l&rsquo;ail pour la sauce et préparer le jus de tomate.)",
-            "2. Façonner et frire : Façonner le mélange en boulettes ovales. Enrober légèrement chaque boulette de farine et les faire frire dans de l&rsquo;huile d&rsquo;olive jusqu&rsquo;à ce qu&rsquo;elles soient dorées. Réserver.",
-            "3. Préparer la sauce tomate : Dans une casserole, faire chauffer un peu d&rsquo;huile d&rsquo;olive. Ajouter le cumin, le poivre, puis immédiatement l&rsquo;ail coupé. Faire revenir brièvement pendant pas plus d&rsquo;une minute. Incorporer le jus de tomate, assaisonner de sel, ajouter une pincée de sucre et le bâton de cannelle. Laisser mijoter doucement jusqu&rsquo;à ce que la sauce épaississe, environ 10 minutes.",
+            "1. Préparer la farce des boulettes : Dans un grand bol, mélanger la viande hachée, l'ail haché, l'œuf, la chapelure, le cumin, le sel, le poivre, l'huile d'olive et le vin. Bien mélanger jusqu'à obtenir une consistance homogène. Couvrir de film plastique et réfrigérer pendant 30 minutes. (Pendant ce temps, couper l'ail pour la sauce et préparer le jus de tomate.)",
+            "2. Façonner et frire : Façonner le mélange en boulettes ovales. Enrober légèrement chaque boulette de farine et les faire frire dans de l'huile d'olive jusqu'à ce qu'elles soient dorées. Réserver.",
+            "3. Préparer la sauce tomate : Dans une casserole, faire chauffer un peu d'huile d'olive. Ajouter le cumin, le poivre, puis immédiatement l'ail coupé. Faire revenir brièvement pendant pas plus d'une minute. Incorporer le jus de tomate, assaisonner de sel, ajouter une pincée de sucre et le bâton de cannelle. Laisser mijoter doucement jusqu'à ce que la sauce épaississe, environ 10 minutes.",
             "4. Combiner : Ajouter les soutzoukakia frits dans la sauce et laisser mijoter ensemble pendant 6 à 8 minutes pour que les saveurs se mélangent. Retirer du feu, saupoudrer de persil haché et servir immédiatement."
         ],
         "tags": [
@@ -4544,7 +4491,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4013",
         "title": "Mahmoos Gutaifi",
-        "description": "Un plat de poulet et riz originaire d&rsquo;Arabie Saoudite, parfumé aux épices et servi avec une sauce au yaourt.",
+        "description": "Un plat de poulet et riz originaire d'Arabie Saoudite, parfumé aux épices et servi avec une sauce au yaourt.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimage-recette-de-Mahmoos-Gutaifi.jpeg&v=1774525359000",
         "category": "plats",
         "difficulty": "moyen",
@@ -4567,7 +4514,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 tête d&rsquo;ail"
+                "name": "🧄\n             1 tête d'ail"
             },
             {
                 "quantity": "",
@@ -4599,7 +4546,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 Caf d&rsquo;ail en poudre"
+                "name": "🧄\n             1 Caf d'ail en poudre"
             },
             {
                 "quantity": "",
@@ -4619,7 +4566,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 gousse d&rsquo;ail confit"
+                "name": "🧄\n             1 gousse d'ail confit"
             },
             {
                 "quantity": "",
@@ -4717,7 +4664,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4019",
         "title": "Eggplant Fatteh (Fatteh aux aubergines)",
-        "description": "Le Fatteh aux aubergines est un plat moyen-oriental apprécié, facile à préparer et parfait pour impressionner avec un minimum d&rsquo;effort. Cette version végétalienne utilise du yaourt de soja non sucré.",
+        "description": "Le Fatteh aux aubergines est un plat moyen-oriental apprécié, facile à préparer et parfait pour impressionner avec un minimum d'effort. Cette version végétalienne utilise du yaourt de soja non sucré.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774521664248.jpg&v=1774525277000",
         "category": "plats",
         "difficulty": "moyen",
@@ -4807,7 +4754,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4022",
         "title": "Shish Taouk Libanais",
-        "description": "Recette de brochettes de poulet marinées à la libanaise, servies avec une sauce à l&rsquo;ail et un mélange d&rsquo;oignons et persil. Idéal pour un repas convivial au barbecue.",
+        "description": "Recette de brochettes de poulet marinées à la libanaise, servies avec une sauce à l'ail et un mélange d'oignons et persil. Idéal pour un repas convivial au barbecue.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fh%C3%A4hnchen-shish-taouk-web.jpg&v=1774525246000",
         "category": "plats",
         "difficulty": "moyen",
@@ -4979,14 +4926,14 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Dans une cocotte ou une grande poêle, faire revenir les épices entières (bâton de cannelle, cardamomes, clous de girofle, graines de cumin, feuilles de laurier/curry) dans de l&rsquo;huile ou du ghee.",
-            "Ajouter l&rsquo;oignon coupé en dés et faire revenir jusqu&rsquo;à ce qu&rsquo;il soit translucide.",
-            "Incorporer la pâte d&rsquo;ail et de gingembre et cuire quelques instants.",
-            "Ajouter la viande d&rsquo;agneau et la faire dorer de tous les côtés.",
+            "Dans une cocotte ou une grande poêle, faire revenir les épices entières (bâton de cannelle, cardamomes, clous de girofle, graines de cumin, feuilles de laurier/curry) dans de l'huile ou du ghee.",
+            "Ajouter l'oignon coupé en dés et faire revenir jusqu'à ce qu'il soit translucide.",
+            "Incorporer la pâte d'ail et de gingembre et cuire quelques instants.",
+            "Ajouter la viande d'agneau et la faire dorer de tous les côtés.",
             "Incorporer les tomates concassées ou fraîches, le curcuma, le cumin, la coriandre moulue, le curry madras pimenté et le piment en poudre (facultatif). Saler et poivrer.",
-            "Couvrir et laisser mijoter à feu doux jusqu&rsquo;à ce que la viande soit super tendre et la sauce bien parfumée.",
+            "Couvrir et laisser mijoter à feu doux jusqu'à ce que la viande soit super tendre et la sauce bien parfumée.",
             "En fin de cuisson, ajouter le jus de citron et les feuilles de fenugrek (si disponibles).",
-            "Servir l&rsquo;agneau Madras chaud, accompagné de naan ou de riz, et garni d&rsquo;un peu de piment et de coriandre fraîche ou de persil."
+            "Servir l'agneau Madras chaud, accompagné de naan ou de riz, et garni d'un peu de piment et de coriandre fraîche ou de persil."
         ],
         "tags": [
             "Asie"
@@ -5187,8 +5134,8 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer la sauce avec l&rsquo;oignon, les tomates, l&rsquo;ail, le concentré de tomate, les pois chiche et les épices.",
-            "Préparer la farce avec la viande hachée, le riz, la coriandre, l&rsquo;ail, le cumin, le sel, le poivre et l&rsquo;œuf.",
+            "Préparer la sauce avec l'oignon, les tomates, l'ail, le concentré de tomate, les pois chiche et les épices.",
+            "Préparer la farce avec la viande hachée, le riz, la coriandre, l'ail, le cumin, le sel, le poivre et l'œuf.",
             "Farcir les courgettes et les pommes de terre avec la préparation de viande.",
             "Cuire les légumes farcis dans la sauce et laisser mijoter dans un tajine."
         ],
@@ -5207,7 +5154,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4034",
         "title": "Tzatziki Grec Célèbre",
-        "description": "Aucune table grecque n&rsquo;est complète sans cette trempette crémeuse, aillée et rafraîchissante ! Que vous la serviez avec du pain pita chaud, des viandes grillées ou simplement comme collation, le tzatziki apporte une touche méditerranéenne à ...",
+        "description": "Aucune table grecque n'est complète sans cette trempette crémeuse, aillée et rafraîchissante ! Que vous la serviez avec du pain pita chaud, des viandes grillées ou simplement comme collation, le tzatziki apporte une touche méditerranéenne à chaque...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831998424-scaled.jpg&v=1774524941000",
         "category": "plats",
         "difficulty": "moyen",
@@ -5226,15 +5173,15 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             2–3 gousses d&rsquo;ail, finement râpées"
+                "name": "🧄\n             2–3 gousses d'ail, finement râpées"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             2 cuillères à soupe d&rsquo;aneth frais, finement haché"
+                "name": "🌿\n             2 cuillères à soupe d'aneth frais, finement haché"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             3 cuillères à soupe d&rsquo;huile d&rsquo;olive extra vierge"
+                "name": "🍾\n             3 cuillères à soupe d'huile d'olive extra vierge"
             },
             {
                 "quantity": "",
@@ -5246,13 +5193,13 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Râpez le concombre à l&rsquo;aide du côté gros d&rsquo;une râpe.",
+            "Râpez le concombre à l'aide du côté gros d'une râpe.",
             "Placez-le dans un torchon propre ou une étamine et pressez pour en extraire le plus de liquide possible. Cette étape permet de garder votre tzatziki épais et crémeux.",
-            "Dans un bol, mélangez le concombre égoutté, le yaourt grec, l&rsquo;ail râpé, l&rsquo;aneth, l&rsquo;huile d&rsquo;olive, le vinaigre, le sel et le poivre.",
-            "Mélangez délicatement le tout jusqu&rsquo;à obtenir une consistance lisse et homogène.",
-            "Goûtez et ajustez l&rsquo;assaisonnement si nécessaire.",
+            "Dans un bol, mélangez le concombre égoutté, le yaourt grec, l'ail râpé, l'aneth, l'huile d'olive, le vinaigre, le sel et le poivre.",
+            "Mélangez délicatement le tout jusqu'à obtenir une consistance lisse et homogène.",
+            "Goûtez et ajustez l'assaisonnement si nécessaire.",
             "Couvrez et réfrigérez pendant au moins 30 minutes pour laisser les saveurs se mélanger (facultatif mais recommandé).",
-            "Avant de servir, arrosez d&rsquo;un peu d&rsquo;huile d&rsquo;olive extra vierge et servez avec des olives de Kalamata sur le côté."
+            "Avant de servir, arrosez d'un peu d'huile d'olive extra vierge et servez avec des olives de Kalamata sur le côté."
         ],
         "tags": [
             "Grèce",
@@ -5322,7 +5269,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4040",
         "title": "Bifteki avec Tzatziki et Riz aux Tomates",
-        "description": "Un plat grec complet composé de boulettes de viande (Bifteki) farcies à la feta, accompagnées d&rsquo;une sauce Tzatziki rafraîchissante et d&rsquo;un riz aux tomates savoureux.",
+        "description": "Un plat grec complet composé de boulettes de viande (Bifteki) farcies à la feta, accompagnées d'une sauce Tzatziki rafraîchissante et d'un riz aux tomates savoureux.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774521104109.jpg&v=1774524757000",
         "category": "plats",
         "difficulty": "moyen",
@@ -5462,7 +5409,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4043",
         "title": "Courgettes à la Feta Fouettée",
-        "description": "Un plat d&rsquo;accompagnement estival frais, léger et savoureux. Les courgettes poêlées apportent une touche de chaleur dorée, tandis que la feta fouettée à la menthe et au citron offre un contraste frais et crémeux. Facile à préparer, parfait po...",
+        "description": "Un plat d'accompagnement estival frais, léger et savoureux. Les courgettes poêlées apportent une touche de chaleur dorée, tandis que la feta fouettée à la menthe et au citron offre un contraste frais et crémeux. Facile à préparer, parfait pour les...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcourgette.jpeg&v=1774524669000",
         "category": "plats",
         "difficulty": "moyen",
@@ -5477,7 +5424,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive extra vierge, pour graisser et arroser"
+                "name": "🍾\n             Huile d'olive extra vierge, pour graisser et arroser"
             },
             {
                 "quantity": "",
@@ -5485,7 +5432,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Jus d&rsquo;½ citron (pour servir)"
+                "name": "🍋\n             Jus d'½ citron (pour servir)"
             },
             {
                 "quantity": "",
@@ -5505,15 +5452,15 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             4 cuillères à soupe d&rsquo;huile d&rsquo;olive extra vierge"
+                "name": "🍾\n             4 cuillères à soupe d'huile d'olive extra vierge"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Jus d&rsquo;½ citron"
+                "name": "🍋\n             Jus d'½ citron"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 petite gousse d&rsquo;ail (facultatif)"
+                "name": "🧄\n             1 petite gousse d'ail (facultatif)"
             },
             {
                 "quantity": "",
@@ -5521,9 +5468,9 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "1. Préparer les courgettes : Graisser légèrement une poêle avec de l&rsquo;huile d&rsquo;olive. Badigeonner les deux côtés des tranches de courgettes avec de l&rsquo;huile d&rsquo;olive, et assaisonner de sel et de poivre. Faire revenir à feu moyen jusqu&rsquo;à ce qu&rsquo;elles soient dorées des deux côtés.",
-            "2. Préparer la feta fouettée : Dans un mixeur ou un robot culinaire, combiner la feta, le yaourt grec, les feuilles de menthe, l&rsquo;huile d&rsquo;olive, le jus de citron, l&rsquo;ail (si utilisé) et le poivre noir. Mixer jusqu&rsquo;à obtenir une consistance lisse et crémeuse. Mettre de côté.",
-            "3. Assembler le plat : Étaler la feta fouettée sur un plat de service. Disposer les tranches de courgettes chaudes par-dessus. Arroser d&rsquo;un peu plus d&rsquo;huile d&rsquo;olive, presser le reste du ½ citron sur le tout, et finir avec du persil frais haché."
+            "1. Préparer les courgettes : Graisser légèrement une poêle avec de l'huile d'olive. Badigeonner les deux côtés des tranches de courgettes avec de l'huile d'olive, et assaisonner de sel et de poivre. Faire revenir à feu moyen jusqu'à ce qu'elles soient dorées des deux côtés.",
+            "2. Préparer la feta fouettée : Dans un mixeur ou un robot culinaire, combiner la feta, le yaourt grec, les feuilles de menthe, l'huile d'olive, le jus de citron, l'ail (si utilisé) et le poivre noir. Mixer jusqu'à obtenir une consistance lisse et crémeuse. Mettre de côté.",
+            "3. Assembler le plat : Étaler la feta fouettée sur un plat de service. Disposer les tranches de courgettes chaudes par-dessus. Arroser d'un peu plus d'huile d'olive, presser le reste du ½ citron sur le tout, et finir avec du persil frais haché."
         ],
         "tags": [
             "Grèce",
@@ -5620,10 +5567,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparation de la marinade et du poulet : Dans un bol, mélanger 2 yaourts grecs, le jus de 2 citrons, l&rsquo;ail haché, un filet d&rsquo;huile d&rsquo;olive, 1 cas d&rsquo;origan, 1 cas de thym et 1 cas de paprika. Ajouter les cubes de poulet et laisser mariner au réfrigérateur pendant 30 minutes à plusieurs heures.",
-            "Préparation du tzatziki : Râper le concombre et l&rsquo;égoutter soigneusement en le pressant. Dans un autre bol, mélanger le concombre égoutté avec 4 yaourts grecs, un filet d&rsquo;huile d&rsquo;olive, le jus d&rsquo;un citron, l&rsquo;aneth ciselé et la menthe ciselée.",
-            "Cuisson du poulet : Enfiler les cubes de poulet marinés sur des pics à brochettes et les cuire (griller ou poêler) jusqu&rsquo;à ce qu&rsquo;ils soient dorés et cuits à cœur.",
-            "Dressage : Couper la tomate et l&rsquo;oignon rouge en tranches. Servir le poulet dans du pain pita avec le tzatziki, la tomate, l&rsquo;oignon rouge et des frites à l&rsquo;origan."
+            "Préparation de la marinade et du poulet : Dans un bol, mélanger 2 yaourts grecs, le jus de 2 citrons, l'ail haché, un filet d'huile d'olive, 1 cas d'origan, 1 cas de thym et 1 cas de paprika. Ajouter les cubes de poulet et laisser mariner au réfrigérateur pendant 30 minutes à plusieurs heures.",
+            "Préparation du tzatziki : Râper le concombre et l'égoutter soigneusement en le pressant. Dans un autre bol, mélanger le concombre égoutté avec 4 yaourts grecs, un filet d'huile d'olive, le jus d'un citron, l'aneth ciselé et la menthe ciselée.",
+            "Cuisson du poulet : Enfiler les cubes de poulet marinés sur des pics à brochettes et les cuire (griller ou poêler) jusqu'à ce qu'ils soient dorés et cuits à cœur.",
+            "Dressage : Couper la tomate et l'oignon rouge en tranches. Servir le poulet dans du pain pita avec le tzatziki, la tomate, l'oignon rouge et des frites à l'origan."
         ],
         "tags": [
             "Famille",
@@ -5704,7 +5651,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4052",
         "title": "Moussaka Grecque",
-        "description": "La moussaka est le plat réconfortant ultime de Grèce, un plat copieux et savoureux qui rassemble des couches de pommes de terre tendres, d&rsquo;aubergines riches, de sauce à la viande épicée et de béchamel crémeuse. C&rsquo;est une célébration de...",
+        "description": "La moussaka est le plat réconfortant ultime de Grèce, un plat copieux et savoureux qui rassemble des couches de pommes de terre tendres, d'aubergines riches, de sauce à la viande épicée et de béchamel crémeuse. C'est une célébration des saveurs mé...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833018073.jpg&v=1774524451000",
         "category": "plats",
         "difficulty": "moyen",
@@ -5807,11 +5754,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparez la sauce à la viande : Faites chauffer l&rsquo;huile d&rsquo;olive dans une poêle à feu moyen. Faites revenir le bœuf haché jusqu&rsquo;à ce qu&rsquo;il soit doré. Ajoutez les oignons et l&rsquo;ail mixés, en remuant jusqu&rsquo;à ce qu&rsquo;ils soient parfumés. Versez le cognac ou le vin et laissez mijoter pendant 1 à 2 minutes. Ajoutez les tomates mixées, le jus de tomate, le bâton de cannelle, la feuille de laurier, le sel et le poivre. Baissez le feu et laissez la sauce cuire pendant 25 minutes. Incorporez le persil haché, laissez cuire 1 minute de plus et réservez.",
-            "Préparez les légumes : Coupez les pommes de terre et les aubergines en tranches de 6 mm d&rsquo;épaisseur. Faites frire les tranches de pommes de terre jusqu&rsquo;à ce qu&rsquo;elles soient dorées et réservez. Faites frire les tranches d&rsquo;aubergines dans de l&rsquo;huile d&rsquo;olive jusqu&rsquo;à ce qu&rsquo;elles soient ramollies et légèrement dorées. Placez-les sur du papier absorbant pour éliminer l&rsquo;excès d&rsquo;huile.",
-            "Préparez la sauce béchamel : Dans une casserole, mélangez le lait et la fécule de maïs. Remuez constamment à feu moyen jusqu&rsquo;à ce que le mélange épaississe. Ajoutez le beurre, la muscade, le sel et le poivre. Mélangez bien. Retirez du feu et incorporez le fromage râpé et les jaunes d&rsquo;œufs au fouet. Réservez.",
-            "Assemblez la moussaka : Préchauffez le four à 160°C (320°F). Graissez un plat de cuisson et saupoudrez uniformément de chapelure au fond. Ajoutez une couche de fromage râpé, puis une couche de pommes de terre frites. Ajoutez une autre couche de fromage râpé, suivie d&rsquo;une couche d&rsquo;aubergines frites. Salez légèrement. Étalez uniformément la sauce à la viande sur les légumes. Ajoutez une autre couche de pommes de terre, suivie d&rsquo;une dernière couche d&rsquo;aubergines. Versez la sauce béchamel sur le dessus, en l&rsquo;étalant uniformément. Saupoudrez de fromage râpé.",
-            "Cuisson : Faites cuire au four préchauffé pendant 50 minutes, ou jusqu&rsquo;à ce que le dessus soit doré et bouillonnant.",
+            "Préparez la sauce à la viande : Faites chauffer l'huile d'olive dans une poêle à feu moyen. Faites revenir le bœuf haché jusqu'à ce qu'il soit doré. Ajoutez les oignons et l'ail mixés, en remuant jusqu'à ce qu'ils soient parfumés. Versez le cognac ou le vin et laissez mijoter pendant 1 à 2 minutes. Ajoutez les tomates mixées, le jus de tomate, le bâton de cannelle, la feuille de laurier, le sel et le poivre. Baissez le feu et laissez la sauce cuire pendant 25 minutes. Incorporez le persil haché, laissez cuire 1 minute de plus et réservez.",
+            "Préparez les légumes : Coupez les pommes de terre et les aubergines en tranches de 6 mm d'épaisseur. Faites frire les tranches de pommes de terre jusqu'à ce qu'elles soient dorées et réservez. Faites frire les tranches d'aubergines dans de l'huile d'olive jusqu'à ce qu'elles soient ramollies et légèrement dorées. Placez-les sur du papier absorbant pour éliminer l'excès d'huile.",
+            "Préparez la sauce béchamel : Dans une casserole, mélangez le lait et la fécule de maïs. Remuez constamment à feu moyen jusqu'à ce que le mélange épaississe. Ajoutez le beurre, la muscade, le sel et le poivre. Mélangez bien. Retirez du feu et incorporez le fromage râpé et les jaunes d'œufs au fouet. Réservez.",
+            "Assemblez la moussaka : Préchauffez le four à 160°C (320°F). Graissez un plat de cuisson et saupoudrez uniformément de chapelure au fond. Ajoutez une couche de fromage râpé, puis une couche de pommes de terre frites. Ajoutez une autre couche de fromage râpé, suivie d'une couche d'aubergines frites. Salez légèrement. Étalez uniformément la sauce à la viande sur les légumes. Ajoutez une autre couche de pommes de terre, suivie d'une dernière couche d'aubergines. Versez la sauce béchamel sur le dessus, en l'étalant uniformément. Saupoudrez de fromage râpé.",
+            "Cuisson : Faites cuire au four préchauffé pendant 50 minutes, ou jusqu'à ce que le dessus soit doré et bouillonnant.",
             "Servez : Laissez la moussaka refroidir pendant 1 à 2 heures avant de la couper et de la servir. Dégustez ce plat grec réconfortant et emblématique avec une salade fraîche ou du pain croustillant !"
         ],
         "tags": [
@@ -5844,11 +5791,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             5 cuillères à soupe d&rsquo;huile d&rsquo;olive extra vierge"
+                "name": "🍾\n             5 cuillères à soupe d'huile d'olive extra vierge"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à café d&rsquo;origan séché"
+                "name": "🥣\n             1 cuillère à café d'origan séché"
             },
             {
                 "quantity": "",
@@ -5857,7 +5804,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Coupez les poitrines de poulet en cubes.",
-            "Mélangez le poulet avec l&rsquo;huile d&rsquo;olive extra vierge, l&rsquo;origan séché, le sel et le poivre.",
+            "Mélangez le poulet avec l'huile d'olive extra vierge, l'origan séché, le sel et le poivre.",
             "Enfilez le poulet sur les 5 brochettes.",
             "Faites cuire sur du papier sulfurisé pendant 35 minutes à 350 Fahrenheit (180 Celsius).",
             "Versez du jus de citron sur votre poulet cuit.",
@@ -5875,7 +5822,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4058",
         "title": "Spanakopita",
-        "description": "Une spécialité grecque traditionnelle, la Spanakopita est un feuilleté savoureux à base de feuilles de bricks croustillantes, garni d&rsquo;un mélange d&rsquo;épinards, de fromage, d&rsquo;œufs et de yaourt, puis cuit au four.",
+        "description": "Une spécialité grecque traditionnelle, la Spanakopita est un feuilleté savoureux à base de feuilles de bricks croustillantes, garni d'un mélange d'épinards, de fromage, d'œufs et de yaourt, puis cuit au four.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833264222.jpg&v=1774524307000",
         "category": "plats",
         "difficulty": "moyen",
@@ -5927,7 +5874,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4061",
         "title": "Beef Koftas with Yogurt Dill Sauce",
-        "description": "Une recette grecque de koftas de bœuf, parfaites pour un barbecue d&rsquo;été en famille, servies avec une sauce au yaourt et à l&rsquo;aneth et du pain pita.",
+        "description": "Une recette grecque de koftas de bœuf, parfaites pour un barbecue d'été en famille, servies avec une sauce au yaourt et à l'aneth et du pain pita.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833349129.jpg&v=1774524212000",
         "category": "plats",
         "difficulty": "moyen",
@@ -6004,7 +5951,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4064",
         "title": "Salade de carottes croquantes au sésame",
-        "description": "Des carottes fraîches et croquantes mélangées à une vinaigrette légère au sésame et au miel, avec du gingembre, de l&rsquo;ail et des oignons verts. Simple, saine et pleine de saveur — parfaite comme accompagnement ou salade rapide.",
+        "description": "Des carottes fraîches et croquantes mélangées à une vinaigrette légère au sésame et au miel, avec du gingembre, de l'ail et des oignons verts. Simple, saine et pleine de saveur — parfaite comme accompagnement ou salade rapide.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcarottes_sesames_2107523045.jpg&v=1774524121000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -6027,7 +5974,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d&rsquo;huile de sésame"
+                "name": "🍾\n             2 cuillères à soupe d'huile de sésame"
             },
             {
                 "quantity": "",
@@ -6043,7 +5990,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 gousse d&rsquo;ail, râpée"
+                "name": "🧄\n             1 gousse d'ail, râpée"
             },
             {
                 "quantity": "",
@@ -6059,8 +6006,8 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Mélangez les carottes avec une pincée de sel. Laissez reposer 5 à 10 minutes, puis égouttez l&rsquo;excès de liquide.",
-            "Dans un bol, mélangez l&rsquo;huile de sésame, le miel, le jus de citron, le gingembre, l&rsquo;ail, les graines de sésame et le chili crisp.",
+            "Mélangez les carottes avec une pincée de sel. Laissez reposer 5 à 10 minutes, puis égouttez l'excès de liquide.",
+            "Dans un bol, mélangez l'huile de sésame, le miel, le jus de citron, le gingembre, l'ail, les graines de sésame et le chili crisp.",
             "Ajoutez les carottes, les oignons verts et la coriandre. Mélangez bien.",
             "Goûtez, ajustez le sel et servez."
         ],
@@ -6103,7 +6050,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             2-3 gousses d&rsquo;ail"
+                "name": "🧄\n             2-3 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -6139,7 +6086,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Langue d&rsquo;oiseau (pour l&rsquo;accompagnement)"
+                "name": "🥣\n             Langue d'oiseau (pour l'accompagnement)"
             }
         ],
         "steps": [
@@ -6225,7 +6172,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4094",
         "title": "Mini poivrons farcis à la grecque",
-        "description": "Une recette facile de mini poivrons farcis avec une garniture savoureuse à base de feta, yaourt grec, tomate et herbes fraîches, parfaits pour l&rsquo;apéritif.",
+        "description": "Une recette facile de mini poivrons farcis avec une garniture savoureuse à base de feta, yaourt grec, tomate et herbes fraîches, parfaits pour l'apéritif.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Faperol.jpeg&v=1774523887000",
         "category": "plats",
         "difficulty": "moyen",
@@ -6284,10 +6231,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer la farce : Dans un bol, mélanger la feta émiettée, le yaourt grec, l&rsquo;ail râpé, les oignons cébettes émincés, la tomate en dés, la ciboulette ciselée, l&rsquo;origan séché, l&rsquo;aneth frais ciselé et le poivre noir.",
+            "Préparer la farce : Dans un bol, mélanger la feta émiettée, le yaourt grec, l'ail râpé, les oignons cébettes émincés, la tomate en dés, la ciboulette ciselée, l'origan séché, l'aneth frais ciselé et le poivre noir.",
             "Préparer les poivrons : Couper les mini poivrons en deux dans le sens de la longueur et retirer les graines.",
             "Farcir les poivrons : Remplir chaque moitié de poivron avec la préparation à la feta.",
-            "Cuisson : Disposer les poivrons farcis sur une plaque de cuisson. Arroser d&rsquo;un filet d&rsquo;huile d&rsquo;olive et d&rsquo;une cuillère à soupe de miel. Enfourner pour 40 minutes au four préchauffé à 180 degrés."
+            "Cuisson : Disposer les poivrons farcis sur une plaque de cuisson. Arroser d'un filet d'huile d'olive et d'une cuillère à soupe de miel. Enfourner pour 40 minutes au four préchauffé à 180 degrés."
         ],
         "tags": [
             "Grèce",
@@ -6301,7 +6248,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4096",
         "title": "Salade healthy concombre avocats",
-        "description": "Une salade fraîche, vibrante et pleine de saveur à base de concombre, avocat, grenade, noix et sumac. Légère, croquante et naturellement sans produits laitiers, elle est assaisonnée de citron et d&rsquo;huile d&rsquo;olive.",
+        "description": "Une salade fraîche, vibrante et pleine de saveur à base de concombre, avocat, grenade, noix et sumac. Légère, croquante et naturellement sans produits laitiers, elle est assaisonnée de citron et d'huile d'olive.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FPistachio-Crunch-Cucumber-Avocado-Salad-3.jpeg&v=1774523792000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -6336,11 +6283,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Zeste + jus d&rsquo;1 citron"
+                "name": "🍋\n             Zeste + jus d'1 citron"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d&rsquo;huile d&rsquo;olive"
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
             },
             {
                 "quantity": "",
@@ -6353,10 +6300,10 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "1. Coupez finement les concombres en rubans ou en tranches et placez-les dans un grand bol.",
-            "2. Ajoutez l&rsquo;oignon rouge coupé en dés et l&rsquo;avocat coupé en cubes.",
+            "2. Ajoutez l'oignon rouge coupé en dés et l'avocat coupé en cubes.",
             "3. Ajoutez les noix hachées et les graines de grenade.",
             "4. Incorporez le persil frais.",
-            "5. Ajoutez le zeste de citron, le jus de citron, l&rsquo;huile d&rsquo;olive, le sel, le poivre et 1 cuillère à café de sumac directement sur la salade et mélangez délicatement jusqu&rsquo;à ce que tout soit uniformément enrobé.",
+            "5. Ajoutez le zeste de citron, le jus de citron, l'huile d'olive, le sel, le poivre et 1 cuillère à café de sumac directement sur la salade et mélangez délicatement jusqu'à ce que tout soit uniformément enrobé.",
             "6. Servez immédiatement pour une fraîcheur optimale."
         ],
         "tags": [
@@ -6406,8 +6353,8 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Mélanger les gnocchis avec l&rsquo;huile d&rsquo;olive, le paprika, l&rsquo;origan et l&rsquo;ail en poudre.",
-            "Cuire les gnocchis assaisonnés au air fryer pendant 15 minutes, jusqu&rsquo;à ce qu&rsquo;ils soient bien croustillants.",
+            "Mélanger les gnocchis avec l'huile d'olive, le paprika, l'origan et l'ail en poudre.",
+            "Cuire les gnocchis assaisonnés au air fryer pendant 15 minutes, jusqu'à ce qu'ils soient bien croustillants.",
             "Servir chaud, saupoudré de parmesan."
         ],
         "tags": [
@@ -6422,7 +6369,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4159",
         "title": "Brochettes Bœuf Fromage Airfryer",
-        "description": "Des brochettes de bavette marinée et de Comté, rapides à préparer et à cuire à l&rsquo;Airfryer.",
+        "description": "Des brochettes de bavette marinée et de Comté, rapides à préparer et à cuire à l'Airfryer.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbrochette.jpeg&v=1774523641000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -6465,7 +6412,7 @@ export const mockRecipes: Recipe[] = [
             "Faire mariner la viande avec la sauce soja, la moutarde, le miel, l’ail haché et le poivre.",
             "Découper le Comté en morceaux.",
             "Former des brochettes sur des pics en bois en alternant les morceaux de viande marinée et de Comté.",
-            "Cuire les brochettes à l&rsquo;Airfryer à 200 degrés pendant 7 minutes pour une viande saignante."
+            "Cuire les brochettes à l'Airfryer à 200 degrés pendant 7 minutes pour une viande saignante."
         ],
         "tags": [
             "Famille"
@@ -6512,7 +6459,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             1 filet d&rsquo;huile d&rsquo;olive"
+                "name": "🍾\n             1 filet d'huile d'olive"
             },
             {
                 "quantity": "",
@@ -6541,12 +6488,12 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Couper les filets de poulet en dés de taille égale.",
-            "Dans un grand bol, mélanger les dés de poulet avec le poivre, le sel, les 5 cl de sauce soja salée, l&rsquo;œuf et la fécule de maïs jusqu&rsquo;à ce que le poulet soit bien enrobé.",
+            "Dans un grand bol, mélanger les dés de poulet avec le poivre, le sel, les 5 cl de sauce soja salée, l'œuf et la fécule de maïs jusqu'à ce que le poulet soit bien enrobé.",
             "Préchauffer le Airfryer à 210°C.",
-            "Placer le poulet enrobé dans le panier du Airfryer en une seule couche, en veillant à ne pas surcharger. Ajouter un filet d&rsquo;huile d&rsquo;olive si désiré.",
+            "Placer le poulet enrobé dans le panier du Airfryer en une seule couche, en veillant à ne pas surcharger. Ajouter un filet d'huile d'olive si désiré.",
             "Faire cuire pendant 14 minutes à 210°C, en secouant le panier à mi-cuisson pour une cuisson uniforme et un croustillant optimal.",
             "Pendant la cuisson du poulet, préparer la sauce marinade : dans un petit bol, mélanger la cassonade, les 5 cl de sauce soja, la sauce sriracha et le miel.",
-            "Servir le popcorn de poulet croustillant chaud, arrosé de la sauce marinade. Garnir d&rsquo;oignon cébette ciselé et de graines de sésame."
+            "Servir le popcorn de poulet croustillant chaud, arrosé de la sauce marinade. Garnir d'oignon cébette ciselé et de graines de sésame."
         ],
         "tags": [
             "airfryer",
@@ -6561,7 +6508,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4138",
-        "title": "Tenders de poulet croustillants à l&rsquo;Air Fryer",
+        "title": "Tenders de poulet croustillants à l'Air Fryer",
         "description": "T’as eu un AirFryer à Noël ? T’es obligé de tester cette recette de tenders de poulet ultra croustillant, prêt en 15 minutes.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FPoulet-KFC-facile.jpeg&v=1774523376000",
         "category": "plats",
@@ -6633,7 +6580,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4132",
         "title": "Paccheri aux noix de cajou et tomates cerises",
-        "description": "Une recette de pâtes (paccheri) avec une sauce crémeuse à base de tomates cerises confites et de noix de cajou, relevée d&rsquo;ail et de Grana Padano.",
+        "description": "Une recette de pâtes (paccheri) avec une sauce crémeuse à base de tomates cerises confites et de noix de cajou, relevée d'ail et de Grana Padano.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpaytes.jpeg&v=1774523258000",
         "category": "plats",
         "difficulty": "moyen",
@@ -6656,7 +6603,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 petite gousse d&rsquo;ail"
+                "name": "🧄\n             1 petite gousse d'ail"
             },
             {
                 "quantity": "",
@@ -6664,7 +6611,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Un filet d&rsquo;huile d&rsquo;olive extra vierge"
+                "name": "🍾\n             Un filet d'huile d'olive extra vierge"
             },
             {
                 "quantity": "",
@@ -6672,7 +6619,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 pincée d&rsquo;origan"
+                "name": "🥣\n             1 pincée d'origan"
             },
             {
                 "quantity": "",
@@ -6696,8 +6643,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4176",
-        "title": "Souris d&rsquo;agneau confites",
-        "description": "Une recette gourmande de souris d&rsquo;agneau confites, marinées avec des épices, du miel et de la moutarde, servies avec des pommes de terre grenailles.",
+        "title": "Souris d'agneau confites",
+        "description": "Une recette gourmande de souris d'agneau confites, marinées avec des épices, du miel et de la moutarde, servies avec des pommes de terre grenailles.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fi196620-souris-d-agneau.jpeg&v=1774523137000",
         "category": "plats",
         "difficulty": "moyen",
@@ -6757,7 +6704,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4129",
         "title": "Salade de Gnocchis Croustillants",
-        "description": "Des gnocchis croustillants préparés à la friteuse à air, associés à une salade romaine fraîche et une vinaigrette crémeuse à l&rsquo;aneth. Un mélange de chaud et froid, de crémeux et de croquant, parfait pour un dîner léger ou une salade copieuse.",
+        "description": "Des gnocchis croustillants préparés à la friteuse à air, associés à une salade romaine fraîche et une vinaigrette crémeuse à l'aneth. Un mélange de chaud et froid, de crémeux et de croquant, parfait pour un dîner léger ou une salade copieuse.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffilled-600x600-1.jpeg&v=1774523068000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -6784,11 +6731,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive"
+                "name": "🍾\n             Huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             Poudre d&rsquo;ail"
+                "name": "🧄\n             Poudre d'ail"
             },
             {
                 "quantity": "",
@@ -6824,10 +6771,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Mélanger les gnocchis avec l&rsquo;huile d&rsquo;olive et toutes les épices (poudre d&rsquo;ail, paprika, sel pimenté, poivre, origan).",
-            "Cuire les gnocchis dans la friteuse à air à 200 degrés Celsius pendant environ 22 minutes jusqu&rsquo;à ce qu&rsquo;ils soient croustillants.",
-            "Couper la salade romaine, le concombre et l&rsquo;oignon rouge, puis les placer dans un saladier.",
-            "Mélanger toutes les ingrédients de la vinaigrette (yaourt, crème aigre, jus de citron, poudre d&rsquo;ail, sel pimenté, poivre, aneth frais) jusqu&rsquo;à obtenir une consistance crémeuse.",
+            "Mélanger les gnocchis avec l'huile d'olive et toutes les épices (poudre d'ail, paprika, sel pimenté, poivre, origan).",
+            "Cuire les gnocchis dans la friteuse à air à 200 degrés Celsius pendant environ 22 minutes jusqu'à ce qu'ils soient croustillants.",
+            "Couper la salade romaine, le concombre et l'oignon rouge, puis les placer dans un saladier.",
+            "Mélanger toutes les ingrédients de la vinaigrette (yaourt, crème aigre, jus de citron, poudre d'ail, sel pimenté, poivre, aneth frais) jusqu'à obtenir une consistance crémeuse.",
             "Verser la vinaigrette sur la salade et mélanger.",
             "Ajouter les gnocchis croustillants sur la salade, mélanger brièvement le tout et servir."
         ],
@@ -6897,7 +6844,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Préparez la mayonnaise César : mélangez 2 jaunes d’œufs avec 1 cuillère à soupe de moutarde à l’ancienne.",
-            "Montez la mayonnaise en incorporant l&rsquo;huile de tournesol en filet, petit à petit, jusqu’à obtenir la bonne consistance.",
+            "Montez la mayonnaise en incorporant l'huile de tournesol en filet, petit à petit, jusqu’à obtenir la bonne consistance.",
             "Ajoutez 6 anchois finement coupés et 1 belle gousse d’ail à la mayonnaise.",
             "Préparez le poulet pané : assaisonnez le blanc de volaille avec du sel et du poivre.",
             "Panez le poulet à l’anglaise.",
@@ -6914,8 +6861,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4123",
-        "title": "Épaule d&rsquo;agneau comme un chef",
-        "description": "Découvrez comment cuisiner une épaule d&rsquo;agneau savoureuse et fondante, un plat mijoté qui ne sèche pas, parfait pour un repas de chef à la maison.",
+        "title": "Épaule d'agneau comme un chef",
+        "description": "Découvrez comment cuisiner une épaule d'agneau savoureuse et fondante, un plat mijoté qui ne sèche pas, parfait pour un repas de chef à la maison.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FEpaule-dagneau-rotie-au-miel-et-aux-herbes-1024x687-1.jpeg&v=1774522874000",
         "category": "plats",
         "difficulty": "moyen",
@@ -6962,8 +6909,8 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer l&rsquo;épaule d&rsquo;agneau avec les oignons, l&rsquo;ail, le paprika fumé, le vin rouge (ou bouillon), l&rsquo;eau, le bouquet garni, le sel et le poivre.",
-            "Cuire l&rsquo;ensemble à couvert, à frémissement, pendant 3 à 4 heures."
+            "Préparer l'épaule d'agneau avec les oignons, l'ail, le paprika fumé, le vin rouge (ou bouillon), l'eau, le bouquet garni, le sel et le poivre.",
+            "Cuire l'ensemble à couvert, à frémissement, pendant 3 à 4 heures."
         ],
         "tags": [
             "Famille",
@@ -6976,7 +6923,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4120",
         "title": "Gâteau roulé Léopard",
-        "description": "Un gâteau roulé original et inratable, décoré d&rsquo;un motif léopard distinctif. Moelleux et facile à rouler, il est parfait pour impressionner et régaler toute la famille. Garnissez-le de pâte à tartiner pour une touche gourmande.",
+        "description": "Un gâteau roulé original et inratable, décoré d'un motif léopard distinctif. Moelleux et facile à rouler, il est parfait pour impressionner et régaler toute la famille. Garnissez-le de pâte à tartiner pour une touche gourmande.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774135864620.jpg&v=1774522737000",
         "category": "desserts",
         "difficulty": "moyen",
@@ -7019,16 +6966,16 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Tiédir le lait et l&rsquo;huile pendant 15 secondes au micro-ondes.",
-            "Séparer les blancs des jaunes d&rsquo;œufs.",
-            "Mélanger les jaunes d&rsquo;œufs avec le lait et l&rsquo;huile.",
-            "Incorporer la farine et mélanger jusqu&rsquo;à obtenir une pâte homogène.",
-            "Monter les blancs d&rsquo;œufs en neige ferme avec le sucre pour former une meringue.",
+            "Tiédir le lait et l'huile pendant 15 secondes au micro-ondes.",
+            "Séparer les blancs des jaunes d'œufs.",
+            "Mélanger les jaunes d'œufs avec le lait et l'huile.",
+            "Incorporer la farine et mélanger jusqu'à obtenir une pâte homogène.",
+            "Monter les blancs d'œufs en neige ferme avec le sucre pour former une meringue.",
             "Incorporer délicatement la meringue à la préparation aux jaunes.",
             "Diviser la pâte en trois portions : 80g, 40g et le reste.",
             "Mélanger 80g de pâte avec 1 cuillère à café de cacao en poudre pour la pâte marron clair.",
             "Mélanger 40g de pâte avec 2 cuillères à café de cacao en poudre pour la pâte foncée.",
-            "Mélanger la plus grosse portion de pâte avec 1 cuillère à café d&rsquo;extrait de vanille.",
+            "Mélanger la plus grosse portion de pâte avec 1 cuillère à café d'extrait de vanille.",
             "Sur un tapis génoise (ou toile de cuisson), pocher les motifs clairs.",
             "Cuire au four préchauffé à 180 °C pendant 2 minutes.",
             "Pocher les contours foncés autour des motifs clairs.",
@@ -7049,8 +6996,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4117",
-        "title": "Poulet rôti à l&rsquo;espagnol",
-        "description": "Un poulet entier rôti avec des légumes, du chorizo et des épices typiques d&rsquo;Espagne, parfait pour un repas convivial.",
+        "title": "Poulet rôti à l'espagnol",
+        "description": "Un poulet entier rôti avec des légumes, du chorizo et des épices typiques d'Espagne, parfait pour un repas convivial.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F5867.jpeg&v=1774522625000",
         "category": "plats",
         "difficulty": "moyen",
@@ -7077,7 +7024,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             4 gousses d&rsquo;ail"
+                "name": "🧄\n             4 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -7089,7 +7036,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 Cas d&rsquo;origan"
+                "name": "🥣\n             1 Cas d'origan"
             },
             {
                 "quantity": "",
@@ -7101,7 +7048,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive"
+                "name": "🍾\n             Huile d'olive"
             },
             {
                 "quantity": "",
@@ -7178,7 +7125,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Préparer la pâte brisée.",
-            "Badigeonner la pâte avec le jaune d&rsquo;œuf, la piquer et la saupoudrer de sésame blanc et noir.",
+            "Badigeonner la pâte avec le jaune d'œuf, la piquer et la saupoudrer de sésame blanc et noir.",
             "Cuire la pâte pendant 15 minutes à 180 degrés.",
             "Garnir la tarte cuite avec les billes de mozzarella, la mâche, les olives vertes, les tomates séchées, le jambon sec et le fromage frais."
         ],
@@ -7193,7 +7140,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4108",
         "title": "Salade de chou épicée au citron",
-        "description": "Une salade de chou croquante et râpée, mélangée avec de l&rsquo;ail, des oignons verts, du piment, des graines de sésame grillées, de l&rsquo;huile chaude et du jus de citron frais. Légère, acidulée, légèrement épicée et incroyablement rafraîchiss...",
+        "description": "Une salade de chou croquante et râpée, mélangée avec de l'ail, des oignons verts, du piment, des graines de sésame grillées, de l'huile chaude et du jus de citron frais. Légère, acidulée, légèrement épicée et incroyablement rafraîchissante – l'acc...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchouc.jpeg&v=1774522405000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -7212,7 +7159,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             2–3 gousses d&rsquo;ail (hachées)"
+                "name": "🧄\n             2–3 gousses d'ail (hachées)"
             },
             {
                 "quantity": "",
@@ -7224,7 +7171,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             3 cuillères à soupe d&rsquo;huile (pour chauffer)"
+                "name": "🥣\n             3 cuillères à soupe d'huile (pour chauffer)"
             },
             {
                 "quantity": "",
@@ -7237,10 +7184,10 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Coupez le chou en fines lanières.",
-            "Saupoudrez de sel, mélangez et laissez reposer 15 minutes pour libérer l&rsquo;humidité.",
-            "Pressez pour éliminer l&rsquo;excès de liquide.",
-            "Ajoutez les oignons verts, l&rsquo;ail, la poudre de chili et les graines de sésame.",
-            "Faites chauffer l&rsquo;huile jusqu&rsquo;à ce qu&rsquo;elle soit très chaude et versez-la délicatement sur le mélange pour faire ressortir les saveurs.",
+            "Saupoudrez de sel, mélangez et laissez reposer 15 minutes pour libérer l'humidité.",
+            "Pressez pour éliminer l'excès de liquide.",
+            "Ajoutez les oignons verts, l'ail, la poudre de chili et les graines de sésame.",
+            "Faites chauffer l'huile jusqu'à ce qu'elle soit très chaude et versez-la délicatement sur le mélange pour faire ressortir les saveurs.",
             "Ajoutez le jus de citron frais et mélangez bien le tout pour combiner."
         ],
         "tags": [
@@ -7270,7 +7217,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚\n 2 blancs d&rsquo;œufs"
+                "name": "🥚\n 2 blancs d'œufs"
             },
             {
                 "quantity": "",
@@ -7278,7 +7225,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍅\n 8 filets de tomates séchées à l&rsquo;huile"
+                "name": "🍅\n 8 filets de tomates séchées à l'huile"
             },
             {
                 "quantity": "",
@@ -7290,7 +7237,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n huile d&rsquo;arachide (quantité suffisante pour frire)"
+                "name": "🥣\n huile d'arachide (quantité suffisante pour frire)"
             }
         ],
         "steps": [
@@ -7306,7 +7253,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4105",
         "title": "Salade de rubans de carottes healthy",
-        "description": "Cette salade de rubans de carottes virale est fraîche, croquante et pleine de saveur ! Préparée avec de fines lanières de carottes, du sésame, de l&rsquo;ail, du citron et du chili crisp, c&rsquo;est une salade rapide et délicieuse prête en quelqu...",
+        "description": "Cette salade de rubans de carottes virale est fraîche, croquante et pleine de saveur ! Préparée avec de fines lanières de carottes, du sésame, de l'ail, du citron et du chili crisp, c'est une salade rapide et délicieuse prête en quelques minutes.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FKJ-Viral-Carrot-Ribbon-Salad-5-1-scaled.jpg&v=1774522306000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -7329,7 +7276,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             3 gousses d&rsquo;ail, hachées"
+                "name": "🧄\n             3 gousses d'ail, hachées"
             },
             {
                 "quantity": "",
@@ -7337,7 +7284,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d&rsquo;huile de sésame"
+                "name": "🍾\n             2 cuillères à soupe d'huile de sésame"
             },
             {
                 "quantity": "",
@@ -7349,7 +7296,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Jus d&rsquo;½ citron"
+                "name": "🍋\n             Jus d'½ citron"
             },
             {
                 "quantity": "",
@@ -7365,11 +7312,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Épluchez les carottes, puis utilisez un économe pour faire de fines lanières de carottes comme dans la vidéo. Continuez jusqu&rsquo;à ce que la carotte devienne trop fine pour être pelée.",
+            "Épluchez les carottes, puis utilisez un économe pour faire de fines lanières de carottes comme dans la vidéo. Continuez jusqu'à ce que la carotte devienne trop fine pour être pelée.",
             "Gardez les morceaux de carottes restants pour une soupe, une purée ou un autre plat.",
             "Placez les rubans de carottes dans un grand bol.",
-            "Ajoutez la coriandre, les oignons verts, l&rsquo;ail, les graines de sésame, le vinaigre de riz, le jus de citron, l&rsquo;huile de sésame, la sauce soja, le miel, le chili crisp et le sel.",
-            "Mélangez bien le tout jusqu&rsquo;à ce que les carottes soient enrobées de la vinaigrette.",
+            "Ajoutez la coriandre, les oignons verts, l'ail, les graines de sésame, le vinaigre de riz, le jus de citron, l'huile de sésame, la sauce soja, le miel, le chili crisp et le sel.",
+            "Mélangez bien le tout jusqu'à ce que les carottes soient enrobées de la vinaigrette.",
             "Laissez la salade reposer 10 à 15 minutes pour une meilleure saveur, ou dégustez immédiatement."
         ],
         "tags": [
@@ -7384,7 +7331,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4102",
         "title": "Salade fraîche mangue avocat et pistaches",
-        "description": "Une salade fraîche, colorée et pleine de saveurs, combinant mangue sucrée, avocat crémeux, tomates cerises, olives Kalamata et pistaches croquantes, le tout relevé par une vinaigrette citron-huile d&rsquo;olive. Idéale comme accompagnement sain ou...",
+        "description": "Une salade fraîche, colorée et pleine de saveurs, combinant mangue sucrée, avocat crémeux, tomates cerises, olives Kalamata et pistaches croquantes, le tout relevé par une vinaigrette citron-huile d'olive. Idéale comme accompagnement sain ou repas...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimg_2954-scaled.jpg&v=1774522201000",
         "category": "entrees",
         "difficulty": "moyen",
@@ -7419,7 +7366,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1/2 tasse d&rsquo;olives Kalamata, tranchées"
+                "name": "🥣\n             1/2 tasse d'olives Kalamata, tranchées"
             },
             {
                 "quantity": "",
@@ -7431,7 +7378,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive (pour la vinaigrette)"
+                "name": "🍾\n             Huile d'olive (pour la vinaigrette)"
             },
             {
                 "quantity": "",
@@ -7443,11 +7390,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Couper la mangue et l&rsquo;avocat en cubes.",
+            "Couper la mangue et l'avocat en cubes.",
             "Couper le poivron rouge en dés et les tomates cerises en deux.",
-            "Émincer finement l&rsquo;oignon rouge et trancher les olives Kalamata.",
+            "Émincer finement l'oignon rouge et trancher les olives Kalamata.",
             "Ajouter tous les ingrédients dans un grand bol avec le persil haché et les pistaches.",
-            "Arroser d&rsquo;huile d&rsquo;olive et de jus de citron.",
+            "Arroser d'huile d'olive et de jus de citron.",
             "Assaisonner de sel et de poivre noir.",
             "Ajouter la menthe si désiré et mélanger délicatement le tout."
         ],
@@ -7512,7 +7459,7 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Assaisonner les 300 à 400gr de filet de poulet cru avec du sel, du poivre et du paprika fumé.",
             "Garnir les calzones avec le poulet assaisonné, les 2 tranches de blanc de poulet/dinde ou jambon, les 40gr de mozza (20gr par portion), les 2 tranches de comté ou fromage de votre choix et les 4 tranches de tomate.",
-            "Saupoudrer d&rsquo;un peu de chapelure.",
+            "Saupoudrer d'un peu de chapelure.",
             "Enfourner 20 min à 180º (ou 200º pour un résultat plus croustillant et doré)."
         ],
         "tags": [
@@ -7565,7 +7512,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer le butternut avec de l&rsquo;huile d&rsquo;olive et le cuire 40 à 50 minutes à 190°C.",
+            "Préparer le butternut avec de l'huile d'olive et le cuire 40 à 50 minutes à 190°C.",
             "Mixer le butternut cuit avec 120 g de crème fraîche pour obtenir une purée.",
             "Faire cuire les saint Jacques dans du beurre demi sel, 1 à 2 minutes de chaque côté.",
             "Faire cuire le chorizo.",
@@ -7747,11 +7694,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             1/4 dl d&rsquo;huile d&rsquo;olive"
+                "name": "🍾\n             1/4 dl d'huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             3 gousses d&rsquo;ail"
+                "name": "🧄\n             3 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -7791,7 +7738,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n             1.5 dl d&rsquo;eau tiède"
+                "name": "💧\n             1.5 dl d'eau tiède"
             },
             {
                 "quantity": "",
@@ -7819,7 +7766,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             3 c. à soupe d&rsquo;huile"
+                "name": "🥣\n             3 c. à soupe d'huile"
             },
             {
                 "quantity": "",
@@ -7831,11 +7778,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🌿\n             2 c. à soupe d&rsquo;aneth frais"
+                "name": "🌿\n             2 c. à soupe d'aneth frais"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             1 c. à soupe d&rsquo;huile d&rsquo;olive extra vierge"
+                "name": "🍾\n             1 c. à soupe d'huile d'olive extra vierge"
             },
             {
                 "quantity": "",
@@ -7843,7 +7790,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 petite gousse d&rsquo;ail"
+                "name": "🧄\n             1 petite gousse d'ail"
             },
             {
                 "quantity": "",
@@ -7887,19 +7834,19 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Dans un bol, mélangez le poulet avec toutes les épices sèches, l&rsquo;oignon, le citron, l&rsquo;ail et le yaourt. Mélangez bien, couvrez de film plastique et réfrigérez. Laissez mariner le poulet au réfrigérateur pendant au moins une heure, idéalement toute une nuit.",
+            "Dans un bol, mélangez le poulet avec toutes les épices sèches, l'oignon, le citron, l'ail et le yaourt. Mélangez bien, couvrez de film plastique et réfrigérez. Laissez mariner le poulet au réfrigérateur pendant au moins une heure, idéalement toute une nuit.",
             "Préchauffez le four à 250 degrés.",
             "Placez le poulet mariné sur une plaque de cuisson ou une poêle à griller et faites-le griller au four pendant 20 minutes.",
-            "Pour le pain pita : Dans un bol, mélangez l&rsquo;eau, le lait, le sucre en poudre et la levure sèche. Couvrez de film plastique et laissez reposer à température ambiante pendant 10 minutes.",
+            "Pour le pain pita : Dans un bol, mélangez l'eau, le lait, le sucre en poudre et la levure sèche. Couvrez de film plastique et laissez reposer à température ambiante pendant 10 minutes.",
             "Ajoutez le sel, la farine de blé et le thym, puis mélangez uniformément (à la main ou avec une cuillère).",
-            "Ajoutez l&rsquo;huile et pétrissez uniformément. Couvrez de film plastique et laissez lever à température ambiante pendant 1 heure.",
-            "Déposez la pâte sur un plan de travail fariné et divisez-la en 6 morceaux. Roulez chaque morceau en boule, puis aplatissez-le en un pain de type tortilla d&rsquo;environ 17-20 cm de diamètre.",
+            "Ajoutez l'huile et pétrissez uniformément. Couvrez de film plastique et laissez lever à température ambiante pendant 1 heure.",
+            "Déposez la pâte sur un plan de travail fariné et divisez-la en 6 morceaux. Roulez chaque morceau en boule, puis aplatissez-le en un pain de type tortilla d'environ 17-20 cm de diamètre.",
             "Faites chauffer une poêle sur la cuisinière et faites cuire chaque pain environ 2 minutes et demie à 3 minutes de chaque côté.",
-            "Pour le tzatziki : Dans un bol, versez le yaourt grec (idéalement dans une serviette pour qu&rsquo;il s&rsquo;égoutte pendant 1 à 2 heures).",
+            "Pour le tzatziki : Dans un bol, versez le yaourt grec (idéalement dans une serviette pour qu'il s'égoutte pendant 1 à 2 heures).",
             "Râpez le concombre et pressez-le pour en extraire le liquide.",
-            "Mélangez le concombre râpé avec l&rsquo;aneth, le citron, l&rsquo;huile d&rsquo;olive, l&rsquo;ail, le sel et le poivre.",
+            "Mélangez le concombre râpé avec l'aneth, le citron, l'huile d'olive, l'ail, le sel et le poivre.",
             "Pour la sauce russe : Mélangez la mayonnaise, le ketchup, le raifort, la sauce chili syrienne, le vinaigre de vin blanc, le sel et le poivre.",
-            "Sortez le poulet, coupez-le en morceaux et disposez-le sur le pain pita. Garnissez de légumes de votre choix, de frites, d&rsquo;origan et des sauces (tzatziki et sauce russe).",
+            "Sortez le poulet, coupez-le en morceaux et disposez-le sur le pain pita. Garnissez de légumes de votre choix, de frites, d'origan et des sauces (tzatziki et sauce russe).",
             "Roulez le tout et dégustez votre délicieux gyros !"
         ],
         "tags": [
@@ -7914,7 +7861,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4073",
         "title": "Roulés Phyllo aux Épinards",
-        "description": "Une délicieuse recette de roulés à base de pâte phyllo, garnis d&rsquo;épinards et de fromage, puis cuits au four jusqu&rsquo;à dorer. Parfait pour un apéritif ou une entrée.",
+        "description": "Une délicieuse recette de roulés à base de pâte phyllo, garnis d'épinards et de fromage, puis cuits au four jusqu'à dorer. Parfait pour un apéritif ou une entrée.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774517895112.jpg&v=1774521534000",
         "category": "plats",
         "difficulty": "moyen",
@@ -7933,11 +7880,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥗\n             500 g de feuilles d&rsquo;épinards"
+                "name": "🥗\n             500 g de feuilles d'épinards"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             4 cuillères à soupe d&rsquo;huile (pour la garniture)"
+                "name": "🥣\n             4 cuillères à soupe d'huile (pour la garniture)"
             },
             {
                 "quantity": "",
@@ -7949,7 +7896,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ½ verre d&rsquo;huile (pour la sauce)"
+                "name": "🥣\n             ½ verre d'huile (pour la sauce)"
             },
             {
                 "quantity": "",
@@ -7961,16 +7908,16 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚\n             1 jaune d&rsquo;œuf (pour dorer, facultatif)"
+                "name": "🥚\n             1 jaune d'œuf (pour dorer, facultatif)"
             }
         ],
         "steps": [
             "Si vous utilisez des épinards frais, lavez-les soigneusement et égouttez-les.",
-            "Hachez les épinards et émiettez le fromage par-dessus. Ajoutez 4 cuillères à soupe d&rsquo;huile et le sel, puis mélangez bien avec une cuillère pour la garniture.",
-            "Dans un autre bol, battez les ingrédients de la sauce (½ verre de lait, ½ verre d&rsquo;huile, 1 œuf, 1 cuillère à café de levure chimique) avec un fouet.",
-            "Divisez les feuilles de pâte phyllo en 4. Utilisez la sauce préparée à l&rsquo;intérieur et sur la pâte phyllo pour former les roulés avec la garniture épinards-fromage.",
-            "Si désiré, ajoutez 1 jaune d&rsquo;œuf au reste de la sauce et étalez-le sur le dessus des roulés.",
-            "Faites cuire dans un four préchauffé à 175°C (350°F) jusqu&rsquo;à ce qu&rsquo;ils soient dorés. Bon appétit !"
+            "Hachez les épinards et émiettez le fromage par-dessus. Ajoutez 4 cuillères à soupe d'huile et le sel, puis mélangez bien avec une cuillère pour la garniture.",
+            "Dans un autre bol, battez les ingrédients de la sauce (½ verre de lait, ½ verre d'huile, 1 œuf, 1 cuillère à café de levure chimique) avec un fouet.",
+            "Divisez les feuilles de pâte phyllo en 4. Utilisez la sauce préparée à l'intérieur et sur la pâte phyllo pour former les roulés avec la garniture épinards-fromage.",
+            "Si désiré, ajoutez 1 jaune d'œuf au reste de la sauce et étalez-le sur le dessus des roulés.",
+            "Faites cuire dans un four préchauffé à 175°C (350°F) jusqu'à ce qu'ils soient dorés. Bon appétit !"
         ],
         "tags": [
             "Orient",
@@ -8062,11 +8009,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer la pâte en mélangeant la farine, le sel, le sucre, la levure chimique, le lait, l&rsquo;huile et l&rsquo;eau. Pétrir jusqu&rsquo;à obtenir une pâte homogène.",
+            "Préparer la pâte en mélangeant la farine, le sel, le sucre, la levure chimique, le lait, l'huile et l'eau. Pétrir jusqu'à obtenir une pâte homogène.",
             "Laisser reposer la pâte pendant 30 minutes.",
-            "Préparer la farce en faisant revenir l&rsquo;oignon et l&rsquo;ail, puis ajouter la viande hachée et les pignons de pin. Assaisonner avec le sel, le poivre, le cumin, le gingembre moulu, la coriandre moulue et les épices libanaises.",
+            "Préparer la farce en faisant revenir l'oignon et l'ail, puis ajouter la viande hachée et les pignons de pin. Assaisonner avec le sel, le poivre, le cumin, le gingembre moulu, la coriandre moulue et les épices libanaises.",
             "Étaler la pâte et découper des cercles. Garnir chaque cercle de farce et refermer pour former des chaussons.",
-            "Cuire les samboussek (frits ou au four) jusqu&rsquo;à ce qu&rsquo;ils soient dorés."
+            "Cuire les samboussek (frits ou au four) jusqu'à ce qu'ils soient dorés."
         ],
         "tags": [
             "Famille",
@@ -8206,7 +8153,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             3 cuillères à soupe d&rsquo;huile"
+                "name": "🥣\n             3 cuillères à soupe d'huile"
             },
             {
                 "quantity": "",
@@ -8241,8 +8188,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4321",
-        "title": "Tajine de poulet aux olives à l&rsquo;Airfryer",
-        "description": "Une recette facile et rapide de tajine de poulet aux olives, préparée à l&rsquo;Airfryer pour un plat savoureux et pratique.",
+        "title": "Tajine de poulet aux olives à l'Airfryer",
+        "description": "Une recette facile et rapide de tajine de poulet aux olives, préparée à l'Airfryer pour un plat savoureux et pratique.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftajine-poulet.jpeg&v=1774521292000",
         "category": "plats",
         "difficulty": "moyen",
@@ -8317,9 +8264,9 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer une marinade avec les cuisses de poulet, les oignons, l&rsquo;ail, le persil, la coriandre, le sel, le poivre, le paprika, le curcuma, le cumin, le gingembre et l&rsquo;huile d’olive.",
+            "Préparer une marinade avec les cuisses de poulet, les oignons, l'ail, le persil, la coriandre, le sel, le poivre, le paprika, le curcuma, le cumin, le gingembre et l'huile d’olive.",
             "Ajouter le citron confit, les olives vertes dénoyautées, le cube de bouillon et les brins de safran à la préparation.",
-            "Cuire les cuisses de poulet marinées dans l&rsquo;Airfryer à 180°C pendant 35 minutes, en les retournant à mi-cuisson."
+            "Cuire les cuisses de poulet marinées dans l'Airfryer à 180°C pendant 35 minutes, en les retournant à mi-cuisson."
         ],
         "tags": [
             "airfryer",
@@ -8488,26 +8435,26 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚\n             1 jaune d&rsquo;œuf"
+                "name": "🥚\n             1 jaune d'œuf"
             },
             {
                 "quantity": "",
-                "name": "🍦\n             1 cuillère à café d&rsquo;extrait de vanille"
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
             }
         ],
         "steps": [
-            "Coupez du film alimentaire en petits carrés. Déposez ½ cuillère à café de Nutella sur chaque carré de film alimentaire. Pliez pour sceller et congelez jusqu&rsquo;à ce que ce soit solide. (Répétez pour le nombre de cookies fourrés au Nutella que vous prévoyez de faire.)",
-            "Dans un grand bol, ajoutez le beurre froid coupé en dés et fouettez jusqu&rsquo;à obtenir une consistance légèrement crémeuse. Ajoutez le sucre blanc et la cassonade, puis fouettez jusqu&rsquo;à ce que le tout soit bien combiné et moelleux.",
-            "Ajoutez les œufs, l&rsquo;extrait de vanille et les pépites ou morceaux de chocolat. Fouettez jusqu&rsquo;à incorporation complète.",
-            "Ajoutez la farine, la levure chimique, le bicarbonate de soude et le sel. Mélangez délicatement jusqu&rsquo;à ce que le tout soit juste combiné, ne mélangez pas trop.",
+            "Coupez du film alimentaire en petits carrés. Déposez ½ cuillère à café de Nutella sur chaque carré de film alimentaire. Pliez pour sceller et congelez jusqu'à ce que ce soit solide. (Répétez pour le nombre de cookies fourrés au Nutella que vous prévoyez de faire.)",
+            "Dans un grand bol, ajoutez le beurre froid coupé en dés et fouettez jusqu'à obtenir une consistance légèrement crémeuse. Ajoutez le sucre blanc et la cassonade, puis fouettez jusqu'à ce que le tout soit bien combiné et moelleux.",
+            "Ajoutez les œufs, l'extrait de vanille et les pépites ou morceaux de chocolat. Fouettez jusqu'à incorporation complète.",
+            "Ajoutez la farine, la levure chimique, le bicarbonate de soude et le sel. Mélangez délicatement jusqu'à ce que le tout soit juste combiné, ne mélangez pas trop.",
             "Portionnez la pâte en boules de 90g. Pressez un morceau de Nutella congelé au centre de chaque boule de pâte, scellez bien et roulez en une boule lisse.",
             "Placez les boules de pâte à cookies farcies sur un plateau et congelez pendant au moins 30 minutes (ou toute une nuit pour de meilleurs résultats).",
             "Préchauffez le four à 180°C (350°F).",
-            "Prenez n&rsquo;importe quel plat de cuisson (rond, carré, rectangulaire) et tapissez-le de papier sulfurisé. Disposez les boules de pâte à cookies congelées en laissant un peu d&rsquo;espace entre elles.",
-            "Faites cuire pendant 10-15 minutes (le temps dépend du type de moule) ou jusqu&rsquo;à ce que le dessus soit légèrement doré tandis que les centres restent moelleux et fondants.",
+            "Prenez n'importe quel plat de cuisson (rond, carré, rectangulaire) et tapissez-le de papier sulfurisé. Disposez les boules de pâte à cookies congelées en laissant un peu d'espace entre elles.",
+            "Faites cuire pendant 10-15 minutes (le temps dépend du type de moule) ou jusqu'à ce que le dessus soit légèrement doré tandis que les centres restent moelleux et fondants.",
             "Retirez du four et laissez refroidir légèrement.",
             "Servez chaud avec de la glace et de la sauce au chocolat, régalez-vous !✨",
-            "NOTE : Conservez les boules de pâte supplémentaires dans un récipient hermétique ou un sac de congélation et congelez-les pour plus tard. Chaque fois qu&rsquo;une envie de cookie vous prend, faites-les cuire directement du congélateur🫶🏻"
+            "NOTE : Conservez les boules de pâte supplémentaires dans un récipient hermétique ou un sac de congélation et congelez-les pour plus tard. Chaque fois qu'une envie de cookie vous prend, faites-les cuire directement du congélateur🫶🏻"
         ],
         "tags": [
             "Famille",
@@ -8583,7 +8530,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Coupez la patate douce en rondelles d&rsquo;environ 5cm, puis placez-les dans un saladier et assaisonnez de sel, poivre, herbes de Provence et huile d’olive.",
+            "Coupez la patate douce en rondelles d'environ 5cm, puis placez-les dans un saladier et assaisonnez de sel, poivre, herbes de Provence et huile d’olive.",
             "Disposez les rondelles sur une plaque allant au four pendant 10/15min à 220 degrés.",
             "Pendant ce temps, mélangez le fromage de chèvre frais avec le lait, un peu de sel, poivre et un peu d’herbes de Provence.",
             "Une fois les patates douces prêtes, disposez une cuillère de chèvre frais par-dessus, quelques noix de pécan concassées, quelques cranberries et enfin un filet de miel.",
@@ -8600,7 +8547,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "4350",
         "title": "Arayes libanais et Tzatziki maison",
-        "description": "Découvrez la recette des Arayes libanais, des pains pita garnis d&rsquo;une savoureuse farce à la viande hachée et aux épices, accompagnés d&rsquo;un Tzatziki maison rafraîchissant.",
+        "description": "Découvrez la recette des Arayes libanais, des pains pita garnis d'une savoureuse farce à la viande hachée et aux épices, accompagnés d'un Tzatziki maison rafraîchissant.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774391892305.jpg&v=1774521000000",
         "category": "plats",
         "difficulty": "moyen",
@@ -8692,7 +8639,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Pour la réalisation de la recette des arayes, suivre la vidéo TikTok.",
-            "Pour le Tzatziki maison : mélanger le yaourt grec, le concombre râpé, le jus de citron vert, l&rsquo;ail haché, un filet d&rsquo;huile d&rsquo;olive, du sel et du poivre."
+            "Pour le Tzatziki maison : mélanger le yaourt grec, le concombre râpé, le jus de citron vert, l'ail haché, un filet d'huile d'olive, du sel et du poivre."
         ],
         "tags": [
             "barbecue",
@@ -8706,7 +8653,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3531",
         "title": "Torta della Nonna",
-        "description": "Aujourd&rsquo;hui, nous partageons la recette d&rsquo;une délicieuse spécialité italienne : la Torta della Nonna. Son nom signifie « Gâteau de la Grand-mère », et ce dessert classique vous transportera directement dans la cuisine chaleureuse d&rsq...",
+        "description": "Aujourd'hui, nous partageons la recette d'une délicieuse spécialité italienne : la Torta della Nonna. Son nom signifie « Gâteau de la Grand-mère », et ce dessert classique vous transportera directement dans la cuisine chaleureuse d'une nonna itali...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftorta.jpeg&v=1774454730000",
         "category": "patisserie",
         "difficulty": "moyen",
@@ -8733,7 +8680,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋 Zeste d&rsquo;un citron"
+                "name": "🍋 Zeste d'un citron"
             },
             {
                 "quantity": "",
@@ -8749,7 +8696,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚 2 jaunes d&rsquo;œufs"
+                "name": "🥚 2 jaunes d'œufs"
             },
             {
                 "quantity": "",
@@ -8757,7 +8704,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍦 1 cuillère à café d&rsquo;extrait de vanille ou les graines d&rsquo;une gousse de vanille"
+                "name": "🍦 1 cuillère à café d'extrait de vanille ou les graines d'une gousse de vanille"
             },
             {
                 "quantity": "",
@@ -8773,11 +8720,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer la pâte sablée : Mélanger la farine, le beurre froid, le sucre, les œufs, le zeste de citron et le sel dans un bol. Pétrir jusqu&rsquo;à obtenir une pâte lisse, l&rsquo;envelopper dans du film alimentaire et réfrigérer pendant 30 minutes.",
-            "Préparer la garniture : Faire chauffer le lait dans une casserole. Dans un bol séparé, mélanger la fécule de maïs, les jaunes d&rsquo;œufs, le sucre et l&rsquo;extrait de vanille avec un peu de lait froid jusqu&rsquo;à obtenir un mélange lisse. Ajouter progressivement le mélange au lait chaud, en remuant continuellement. Ajouter le zeste de citron, cuire jusqu&rsquo;à épaississement, puis laisser la crème refroidir.",
+            "Préparer la pâte sablée : Mélanger la farine, le beurre froid, le sucre, les œufs, le zeste de citron et le sel dans un bol. Pétrir jusqu'à obtenir une pâte lisse, l'envelopper dans du film alimentaire et réfrigérer pendant 30 minutes.",
+            "Préparer la garniture : Faire chauffer le lait dans une casserole. Dans un bol séparé, mélanger la fécule de maïs, les jaunes d'œufs, le sucre et l'extrait de vanille avec un peu de lait froid jusqu'à obtenir un mélange lisse. Ajouter progressivement le mélange au lait chaud, en remuant continuellement. Ajouter le zeste de citron, cuire jusqu'à épaississement, puis laisser la crème refroidir.",
             "Diviser la pâte réfrigérée en deux parties (ratio 60:40). Abaisser la plus grande partie et la placer dans le moule à tarte de 25 cm de diamètre. Étaler uniformément la garniture refroidie par-dessus.",
             "Abaisser la plus petite partie et la placer sur la garniture. Presser fermement les bords et utiliser une fourchette pour piquer des trous sur le dessus.",
-            "Saupoudrer de pignons de pin sur le dessus et cuire au four à 160°C en chaleur tournante pendant 35-40 minutes jusqu&rsquo;à ce qu&rsquo;elle soit dorée.",
+            "Saupoudrer de pignons de pin sur le dessus et cuire au four à 160°C en chaleur tournante pendant 35-40 minutes jusqu'à ce qu'elle soit dorée.",
             "Laisser la tarte refroidir complètement dans le moule avant de la démouler.",
             "Saupoudrer de sucre glace. Votre Torta della Nonna est prête à servir !"
         ],
@@ -8800,7 +8747,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3533",
         "title": "Gnocchi di ricotta alla sorrentina",
-        "description": "Ces gnocchis de ricotta à la sorrentina évoquent les saveurs réconfortantes de la cuisine traditionnelle italienne. Un plat généreux qui promet de remplir votre cuisine d&rsquo;arômes délicieux et votre cœur de bonheur, comme chez grand-mère. Parf...",
+        "description": "Ces gnocchis de ricotta à la sorrentina évoquent les saveurs réconfortantes de la cuisine traditionnelle italienne. Un plat généreux qui promet de remplir votre cuisine d'arômes délicieux et votre cœur de bonheur, comme chez grand-mère. Parfaits p...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FGnocchi-alla-Sorrentina-1200px-Inside-the-rustic-kitchen-1.jpeg&v=1774454638000",
         "category": "plats",
         "difficulty": "moyen",
@@ -8879,7 +8826,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3537",
         "title": "Layer Cake aux Fruits Rouges",
-        "description": "Découvrez la recette d&rsquo;un magnifique layer cake aux fruits rouges, parfait pour célébrer les occasions spéciales. Ce gâteau aérien, composé d&rsquo;une génoise moelleuse, d&rsquo;un confit de fraises acidulé et d&rsquo;une crème onctueuse au...",
+        "description": "Découvrez la recette d'un magnifique layer cake aux fruits rouges, parfait pour célébrer les occasions spéciales. Ce gâteau aérien, composé d'une génoise moelleuse, d'un confit de fraises acidulé et d'une crème onctueuse au mascarpone, est sublimé...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Flayer-cake.jpeg&v=1774454384000",
         "category": "desserts",
         "difficulty": "moyen",
@@ -9101,7 +9048,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3541",
         "title": "Flan au Caramel",
-        "description": "Ce flan au caramel est un dessert qui prouve que des ingrédients simples peuvent créer quelque chose d&rsquo;incroyable. Une crème onctueuse et riche, cuite doucement au bain-marie, nappée d&rsquo;un caramel ambré profond qui fondra dans la sauce ...",
+        "description": "Ce flan au caramel est un dessert qui prouve que des ingrédients simples peuvent créer quelque chose d'incroyable. Une crème onctueuse et riche, cuite doucement au bain-marie, nappée d'un caramel ambré profond qui fondra dans la sauce une fois dém...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fflan.jpeg&v=1774453830000",
         "category": "plats",
         "difficulty": "moyen",
@@ -9132,7 +9079,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍦 1 cuillère à soupe d&rsquo;extrait de vanille"
+                "name": "🍦 1 cuillère à soupe d'extrait de vanille"
             },
             {
                 "quantity": "",
@@ -9141,12 +9088,12 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Préchauffer le four à 160°C (325°F).",
-            "Faire fondre le sucre dans une casserole à feu moyen jusqu&rsquo;à obtenir un caramel ambré profond. Verser immédiatement au fond de votre plat de cuisson ou moule et laisser prendre.",
-            "Dans un blender, combiner les œufs, le lait évaporé, le lait concentré sucré, le fromage à la crème, la vanille et la cannelle. Mixer jusqu&rsquo;à obtenir une consistance parfaitement lisse.",
+            "Faire fondre le sucre dans une casserole à feu moyen jusqu'à obtenir un caramel ambré profond. Verser immédiatement au fond de votre plat de cuisson ou moule et laisser prendre.",
+            "Dans un blender, combiner les œufs, le lait évaporé, le lait concentré sucré, le fromage à la crème, la vanille et la cannelle. Mixer jusqu'à obtenir une consistance parfaitement lisse.",
             "Verser le mélange de crème sur le caramel durci.",
-            "Couvrir hermétiquement de papier aluminium et placer le plat dans un plus grand plat allant au four. Remplir le plat d&rsquo;eau chaude jusqu&rsquo;à mi-hauteur des bords du plat à flan.",
-            "Cuire au four pendant 1 heure 10 minutes à 1 heure 20 minutes, selon la température de votre bain-marie, jusqu&rsquo;à ce que la crème soit juste prise.",
-            "Laisser refroidir, puis réfrigérer jusqu&rsquo;à ce que le tout soit complètement refroidi.",
+            "Couvrir hermétiquement de papier aluminium et placer le plat dans un plus grand plat allant au four. Remplir le plat d'eau chaude jusqu'à mi-hauteur des bords du plat à flan.",
+            "Cuire au four pendant 1 heure 10 minutes à 1 heure 20 minutes, selon la température de votre bain-marie, jusqu'à ce que la crème soit juste prise.",
+            "Laisser refroidir, puis réfrigérer jusqu'à ce que le tout soit complètement refroidi.",
             "Passer un couteau sur le bord et démouler sur une assiette pour libérer le caramel."
         ],
         "tags": [
@@ -9164,7 +9111,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3549",
         "title": "Pavlova à la compotée de fraises des bois et chantilly",
-        "description": "Découvrez cette pavlova spectaculaire qui a conquis Instagram ! Une meringue française aérienne garnie d&rsquo;une compotée acidulée de fraises des bois, d&rsquo;un sorbet rafraîchissant au babeurre et d&rsquo;un lemon curd onctueux. Un dessert d&...",
+        "description": "Découvrez cette pavlova spectaculaire qui a conquis Instagram ! Une meringue française aérienne garnie d'une compotée acidulée de fraises des bois, d'un sorbet rafraîchissant au babeurre et d'un lemon curd onctueux. Un dessert d'été parfait pour i...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpavlova-scaled-1.jpg&v=1774453682000",
         "category": "glaces",
         "difficulty": "moyen",
@@ -9175,7 +9122,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥚 135g de blancs d&rsquo;œufs"
+                "name": "🥚 135g de blancs d'œufs"
             },
             {
                 "quantity": "",
@@ -9251,7 +9198,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣 15g de poudre d&rsquo;amande"
+                "name": "🥣 15g de poudre d'amande"
             },
             {
                 "quantity": "",
@@ -9263,11 +9210,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚 25g d&rsquo;œuf entier"
+                "name": "🥚 25g d'œuf entier"
             },
             {
                 "quantity": "",
-                "name": "🥣 75g de poudre d&rsquo;amande"
+                "name": "🥣 75g de poudre d'amande"
             },
             {
                 "quantity": "",
@@ -9279,7 +9226,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚 75g d&rsquo;œufs"
+                "name": "🥚 75g d'œufs"
             },
             {
                 "quantity": "",
@@ -9311,18 +9258,18 @@ export const mockRecipes: Recipe[] = [
             "Versez sur le chocolat blanc et la gélatine.",
             "Mixez.",
             "Filmez au contact et mettre au frais une nuit ou 12 heures minimum.",
-            "Pour la pâte sucrée : dans un cul de poule, mettre toutes les poudres (farine, sucre glace, poudre d&rsquo;amande, fleur de sel).",
-            "Ajoutez le beurre en morceaux et mélangez jusqu&rsquo;à obtenir la texture d&rsquo;un sablage.",
-            "Ajoutez l&rsquo;œuf entier.",
+            "Pour la pâte sucrée : dans un cul de poule, mettre toutes les poudres (farine, sucre glace, poudre d'amande, fleur de sel).",
+            "Ajoutez le beurre en morceaux et mélangez jusqu'à obtenir la texture d'un sablage.",
+            "Ajoutez l'œuf entier.",
             "Mélangez très rapidement et formez une boule.",
             "Mettre au frais.",
             "Après repos, foncez vos cercles à tarte.",
             "Précurez les fonds de tarte environ 15 minutes à 165 degrés.",
-            "Pour la crème d&rsquo;amande : dans un cul de poule, mélangez le beurre pommade avec le sucre glace.",
+            "Pour la crème d'amande : dans un cul de poule, mélangez le beurre pommade avec le sucre glace.",
             "Versez ensuite les œufs battus et mélangez.",
-            "Ajoutez la poudre d&rsquo;amande.",
+            "Ajoutez la poudre d'amande.",
             "Mélangez.",
-            "Versez la crème d&rsquo;amande dans les fonds de tarte précuits.",
+            "Versez la crème d'amande dans les fonds de tarte précuits.",
             "Enfournez de nouveau environ 10 minutes à 165 degrés.",
             "Pour le confit de mangue passion : chauffez la purée de fruits exotiques avec la mangue coupée en dés et le fruit de la passion.",
             "Ajoutez la pectine et le sucre.",
@@ -9332,8 +9279,8 @@ export const mockRecipes: Recipe[] = [
             "Montage : démoulez les dômes mangue passion et versez du nappage neutre.",
             "Placez les dômes sur les tartelettes.",
             "Fouettez la ganache vanille montée.",
-            "Mettez la ganache en poche munie d&rsquo;une douille pétale 125.",
-            "À l&rsquo;aide d&rsquo;un tourne disque, faites un tourbillon de ganache sur chaque tartelette."
+            "Mettez la ganache en poche munie d'une douille pétale 125.",
+            "À l'aide d'un tourne disque, faites un tourbillon de ganache sur chaque tartelette."
         ],
         "tags": [
             "exotique",
@@ -9351,7 +9298,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3555",
         "title": "Cupcakes crème brûlée",
-        "description": "Découvrez une recette gourmande de cupcakes inspirés de la célèbre crème brûlée. Ces petits gâteaux moelleux sont garnis d&rsquo;une onctueuse crème pâtissière à la vanille, puis recouverts d&rsquo;une fine couche de sucre caramélisé au chalumeau,...",
+        "description": "Découvrez une recette gourmande de cupcakes inspirés de la célèbre crème brûlée. Ces petits gâteaux moelleux sont garnis d'une onctueuse crème pâtissière à la vanille, puis recouverts d'une fine couche de sucre caramélisé au chalumeau, offrant un ...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcupcake.jpeg&v=1774453096000",
         "category": "patisserie",
         "difficulty": "moyen",
@@ -9416,13 +9363,13 @@ export const mockRecipes: Recipe[] = [
             "Remettre le tout dans la casserole avec le reste du lait.",
             "Cuire sur feu moyen en mélangeant constamment jusqu’à ébullition et épaississement de la crème.",
             "Laisser refroidir la crème pâtissière au réfrigérateur pendant environ 3 heures.",
-            "Pour les cupcakes, mélanger tous les ingrédients (beurre fondu, sucre en poudre, œufs, yaourt, arôme de vanille, farine, levure chimique) dans un grand bol jusqu&rsquo;à obtenir une pâte homogène.",
+            "Pour les cupcakes, mélanger tous les ingrédients (beurre fondu, sucre en poudre, œufs, yaourt, arôme de vanille, farine, levure chimique) dans un grand bol jusqu'à obtenir une pâte homogène.",
             "Répartir la pâte dans des moules à cupcakes.",
             "Cuire les cupcakes dans un four préchauffé à 175 °C pendant environ 15 minutes.",
             "Laisser refroidir complètement les cupcakes après la cuisson.",
             "Une fois les cupcakes et la crème pâtissière refroidis, garnir les cupcakes de crème pâtissière.",
             "Saupoudrer généreusement de sucre sur la crème pâtissière.",
-            "Caraméliser le sucre à l&rsquo;aide d&rsquo;un chalumeau de cuisine jusqu&rsquo;à obtenir une croûte dorée et craquante."
+            "Caraméliser le sucre à l'aide d'un chalumeau de cuisine jusqu'à obtenir une croûte dorée et craquante."
         ],
         "tags": [
             "chalumeau",
@@ -9441,7 +9388,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3562",
         "title": "Tartelettes aux Fruits Rouges et Vanille",
-        "description": "Découvrez ces délicieuses tartelettes composées d&rsquo;une pâte sucrée croustillante, d&rsquo;une crème d&rsquo;amande onctueuse, d&rsquo;un confit de fruits rouges acidulé et d&rsquo;une ganache montée à la vanille aérienne. Une explosion de sav...",
+        "description": "Découvrez ces délicieuses tartelettes composées d'une pâte sucrée croustillante, d'une crème d'amande onctueuse, d'un confit de fruits rouges acidulé et d'une ganache montée à la vanille aérienne. Une explosion de saveurs pour un dessert raffiné.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte.jpeg&v=1774452882000",
         "category": "desserts",
         "difficulty": "moyen",
@@ -9476,7 +9423,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣 15g poudre d&rsquo;amande"
+                "name": "🥣 15g poudre d'amande"
             },
             {
                 "quantity": "",
@@ -9488,11 +9435,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚 25g d&rsquo;œuf entier"
+                "name": "🥚 25g d'œuf entier"
             },
             {
                 "quantity": "",
-                "name": "🥣 75g de poudre d&rsquo;amande"
+                "name": "🥣 75g de poudre d'amande"
             },
             {
                 "quantity": "",
@@ -9504,7 +9451,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚 75g d&rsquo;œufs"
+                "name": "🥚 75g d'œufs"
             },
             {
                 "quantity": "",
@@ -9540,18 +9487,18 @@ export const mockRecipes: Recipe[] = [
             "Versez sur le chocolat blanc et la gélatine.",
             "Mixez.",
             "Filmez au contact et mettre au frais une nuit ou 12 heures minimum.",
-            "Pour la pâte sucrée : dans un cul de poule, mettre toutes les poudres (farine, sucre glace, poudre d&rsquo;amande, fleur de sel).",
-            "Ajoutez le beurre froid en morceaux et mélangez jusqu&rsquo;à obtenir la texture d&rsquo;un sablage.",
-            "Ajoutez l&rsquo;œuf entier.",
+            "Pour la pâte sucrée : dans un cul de poule, mettre toutes les poudres (farine, sucre glace, poudre d'amande, fleur de sel).",
+            "Ajoutez le beurre froid en morceaux et mélangez jusqu'à obtenir la texture d'un sablage.",
+            "Ajoutez l'œuf entier.",
             "Mélangez très rapidement et formez une boule.",
             "Mettre au frais.",
             "Après repos, foncez vos cercles à tarte.",
             "Préchauffez le four à 165 degrés.",
             "Précuire les fonds de tarte environ 15 minutes.",
-            "Pour la crème d&rsquo;amande : mélangez le beurre pommade avec le sucre glace.",
+            "Pour la crème d'amande : mélangez le beurre pommade avec le sucre glace.",
             "Versez ensuite les œufs battus et mélangez.",
-            "Ajoutez la poudre d&rsquo;amande et mélangez.",
-            "Versez la crème d&rsquo;amande dans les fonds de tarte précuits.",
+            "Ajoutez la poudre d'amande et mélangez.",
+            "Versez la crème d'amande dans les fonds de tarte précuits.",
             "Ajoutez des framboises.",
             "Enfournez de nouveau environ 10 minutes à 165 degrés.",
             "Pour le confit de fruits rouges : chauffez la purée de fruits rouges avec les framboises.",
@@ -9561,8 +9508,8 @@ export const mockRecipes: Recipe[] = [
             "Versez le reste dans un moule demi-sphères de 4cm et mettez au congélateur.",
             "Montage : démoulez les dômes fruits rouges et versez du nappage neutre.",
             "Placez-les sur les tartelettes.",
-            "Fouettez la ganache vanille et mettez-la en poche munie d&rsquo;une douille pétale 125.",
-            "À l&rsquo;aide d&rsquo;un tourne disque, faites un tourbillon de ganache sur chaque tartelette."
+            "Fouettez la ganache vanille et mettez-la en poche munie d'une douille pétale 125.",
+            "À l'aide d'un tourne disque, faites un tourbillon de ganache sur chaque tartelette."
         ],
         "tags": [
             "confit",
@@ -9582,7 +9529,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3597",
         "title": "Tabouleh à la libanaise",
-        "description": "Découvrez la recette authentique du tabouleh à la libanaise, une salade fraîche et parfumée, emblème de la cuisine du Moyen-Orient. Ce plat végétarien met à l&rsquo;honneur le persil plat, la menthe, les tomates et le boulgour fin, relevés par une...",
+        "description": "Découvrez la recette authentique du tabouleh à la libanaise, une salade fraîche et parfumée, emblème de la cuisine du Moyen-Orient. Ce plat végétarien met à l'honneur le persil plat, la menthe, les tomates et le boulgour fin, relevés par une vinai...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftaboule-libanais1-875-x-990.jpeg&v=1774452630000",
         "category": "plats",
         "difficulty": "moyen",
@@ -9658,7 +9605,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3634",
         "title": "Toum express",
-        "description": "Découvrez le Toum, une crème d&rsquo;ail libanaise express et facile à réaliser. Parfaite pour accompagner vos sandwichs, salades ou à déguster en dip, cette recette rapide et savoureuse est une véritable pépite culinaire. Elle apportera une touch...",
+        "description": "Découvrez le Toum, une crème d'ail libanaise express et facile à réaliser. Parfaite pour accompagner vos sandwichs, salades ou à déguster en dip, cette recette rapide et savoureuse est une véritable pépite culinaire. Elle apportera une touche d'au...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftoum-libanesiche-knoblauchcreme-6.jpg&v=1774451977000",
         "category": "plats",
         "difficulty": "moyen",
@@ -9669,15 +9616,15 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🧄 Une dizaine de gousses d&rsquo;ail (une tête d&rsquo;ail entière)"
+                "name": "🧄 Une dizaine de gousses d'ail (une tête d'ail entière)"
             },
             {
                 "quantity": "",
-                "name": "🍾 20cl d&rsquo;huile neutre (huile de pépins de raisin)"
+                "name": "🍾 20cl d'huile neutre (huile de pépins de raisin)"
             },
             {
                 "quantity": "",
-                "name": "🍋 Le jus d&rsquo;un demi citron"
+                "name": "🍋 Le jus d'un demi citron"
             },
             {
                 "quantity": "",
@@ -9685,7 +9632,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾 Un trait d&rsquo;huile d&rsquo;olive (pour le dip)"
+                "name": "🍾 Un trait d'huile d'olive (pour le dip)"
             },
             {
                 "quantity": "",
@@ -9693,12 +9640,12 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Peler et dégermer les gousses d&rsquo;ail.",
-            "Placer les gousses d&rsquo;ail dans un mixeur.",
+            "Peler et dégermer les gousses d'ail.",
+            "Placer les gousses d'ail dans un mixeur.",
             "Ajouter le jus de citron et le sel.",
-            "Mixer jusqu&rsquo;à obtenir une pâte.",
-            "Pendant que le mixeur tourne, ajouter l&rsquo;huile neutre en filet très fin, comme pour une mayonnaise, jusqu&rsquo;à obtenir une émulsion crémeuse et épaisse.",
-            "Pour servir en dip, ajouter un trait d&rsquo;huile d&rsquo;olive et un peu de zaatar."
+            "Mixer jusqu'à obtenir une pâte.",
+            "Pendant que le mixeur tourne, ajouter l'huile neutre en filet très fin, comme pour une mayonnaise, jusqu'à obtenir une émulsion crémeuse et épaisse.",
+            "Pour servir en dip, ajouter un trait d'huile d'olive et un peu de zaatar."
         ],
         "tags": [
             "ail",
@@ -9770,13 +9717,13 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Mélanger les biscuits digestifs moulus avec le beurre fondu, le sucre brun et la cannelle.",
-            "Tasser le mélange au fond d&rsquo;un moule à tarte de 20 cm de diamètre.",
+            "Tasser le mélange au fond d'un moule à tarte de 20 cm de diamètre.",
             "Cuire la base au four à 160°C pendant 7 minutes, puis laisser refroidir de côté.",
-            "Dans un robot culinaire, mixer tous les ingrédients de la garniture (dattes, fromage, lait concentré, crème, café) jusqu&rsquo;à obtenir une texture lisse.",
-            "Optionnel : filtrer le mélange à l&rsquo;aide d&rsquo;une passoire pour retirer les éventuels petits morceaux de dattes.",
+            "Dans un robot culinaire, mixer tous les ingrédients de la garniture (dattes, fromage, lait concentré, crème, café) jusqu'à obtenir une texture lisse.",
+            "Optionnel : filtrer le mélange à l'aide d'une passoire pour retirer les éventuels petits morceaux de dattes.",
             "Verser la crème sur la base de biscuit et enfourner à nouveau à 150°C pendant 20 à 25 minutes.",
             "Laisser refroidir au réfrigérateur pendant au moins 3 heures.",
-            "Saupoudrer d&rsquo;une pincée de fleur de sel avant de servir, accompagné d&rsquo;un peu de crème."
+            "Saupoudrer d'une pincée de fleur de sel avant de servir, accompagné d'un peu de crème."
         ],
         "tags": [
             "Cuisine orientale",
@@ -9793,7 +9740,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3657",
         "title": "Tartelettes au Citron",
-        "description": "Une pâtisserie française classique et élégante composée d&rsquo;une pâte sucrée croustillante, d&rsquo;une crème pâtissière au citron soyeuse et d&rsquo;un lemon curd brillant.",
+        "description": "Une pâtisserie française classique et élégante composée d'une pâte sucrée croustillante, d'une crème pâtissière au citron soyeuse et d'un lemon curd brillant.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte-citron.jpeg&v=1774451280000",
         "category": "desserts",
         "difficulty": "moyen",
@@ -9816,7 +9763,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚 1 jaune d&rsquo;œuf"
+                "name": "🥚 1 jaune d'œuf"
             },
             {
                 "quantity": "",
@@ -9824,7 +9771,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧 1–2 cuillères à café d&rsquo;eau froide"
+                "name": "💧 1–2 cuillères à café d'eau froide"
             },
             {
                 "quantity": "",
@@ -9832,7 +9779,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚 2 jaunes d&rsquo;œufs (pour la crème)"
+                "name": "🥚 2 jaunes d'œufs (pour la crème)"
             },
             {
                 "quantity": "",
@@ -9856,7 +9803,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥚 1 œuf + 1 jaune d&rsquo;œuf (pour le curd)"
+                "name": "🥚 1 œuf + 1 jaune d'œuf (pour le curd)"
             },
             {
                 "quantity": "",
@@ -9880,11 +9827,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer la crème pâtissière : Faire chauffer le lait. Fouetter les jaunes d&rsquo;œufs, le sucre et la fécule. Verser lentement le lait chaud sur le mélange, remettre dans la casserole et cuire jusqu&rsquo;à épaississement. Incorporer le jus de citron, le zeste et le beurre. Laisser refroidir.",
-            "Préparer le lemon curd : Cuire l&rsquo;œuf, le jaune d&rsquo;œuf, le sucre et le jus de citron à feu moyen en remuant jusqu&rsquo;à épaississement. Retirer du feu, incorporer le beurre et le zeste. Laisser refroidir.",
-            "Préparer la pâte : Mélanger la farine, le sucre et le sel. Sabler avec le beurre. Ajouter le jaune d&rsquo;œuf et pétrir brièvement. Ajouter de l&rsquo;eau froide si nécessaire. Réfrigérer 30 minutes.",
-            "Former les fonds de tarte : Étaler la pâte sur 3 mm d&rsquo;épaisseur, découper 6 cercles et les placer dans les moules. Utiliser les chutes pour les bords. Piquer le fond avec une fourchette.",
-            "Cuisson : Cuire à blanc avec du papier sulfurisé et des poids pendant 15 minutes. Retirer les poids et cuire 10 à 15 minutes de plus jusqu&rsquo;à ce que la pâte soit dorée. Laisser refroidir complètement.",
+            "Préparer la crème pâtissière : Faire chauffer le lait. Fouetter les jaunes d'œufs, le sucre et la fécule. Verser lentement le lait chaud sur le mélange, remettre dans la casserole et cuire jusqu'à épaississement. Incorporer le jus de citron, le zeste et le beurre. Laisser refroidir.",
+            "Préparer le lemon curd : Cuire l'œuf, le jaune d'œuf, le sucre et le jus de citron à feu moyen en remuant jusqu'à épaississement. Retirer du feu, incorporer le beurre et le zeste. Laisser refroidir.",
+            "Préparer la pâte : Mélanger la farine, le sucre et le sel. Sabler avec le beurre. Ajouter le jaune d'œuf et pétrir brièvement. Ajouter de l'eau froide si nécessaire. Réfrigérer 30 minutes.",
+            "Former les fonds de tarte : Étaler la pâte sur 3 mm d'épaisseur, découper 6 cercles et les placer dans les moules. Utiliser les chutes pour les bords. Piquer le fond avec une fourchette.",
+            "Cuisson : Cuire à blanc avec du papier sulfurisé et des poids pendant 15 minutes. Retirer les poids et cuire 10 à 15 minutes de plus jusqu'à ce que la pâte soit dorée. Laisser refroidir complètement.",
             "Assemblage : Étaler une fine couche de lemon curd au fond, ajouter la crème pâtissière au citron, puis terminer par une couche lisse de lemon curd sur le dessus. Décorer avec de la menthe fraîche."
         ],
         "tags": [
@@ -9926,7 +9873,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄 3 gousses d&rsquo;ail"
+                "name": "🧄 3 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -9938,7 +9885,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣 3 Cas d&rsquo;épices tex-mex"
+                "name": "🥣 3 Cas d'épices tex-mex"
             },
             {
                 "quantity": "",
@@ -9958,7 +9905,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄 1 gousse d&rsquo;ail (pour le gratin)"
+                "name": "🧄 1 gousse d'ail (pour le gratin)"
             },
             {
                 "quantity": "",
@@ -9986,14 +9933,14 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Pour le bœuf : Faire revenir la viande avec l&rsquo;oignon, la carotte et l&rsquo;ail.",
+            "Pour le bœuf : Faire revenir la viande avec l'oignon, la carotte et l'ail.",
             "Ajouter la sauce tomate, le concentré de tomates, les épices tex-mex, le thym et le laurier.",
-            "Couvrir de bouillon et laisser mijoter longuement jusqu&rsquo;à ce que la viande s&rsquo;effiloche facilement.",
+            "Couvrir de bouillon et laisser mijoter longuement jusqu'à ce que la viande s'effiloche facilement.",
             "Pour le gratin : Éplucher et couper les pommes de terre en fines rondelles.",
-            "Mélanger le lait, la crème, l&rsquo;ail haché, la muscade, le thym, le sel et le poivre.",
+            "Mélanger le lait, la crème, l'ail haché, la muscade, le thym, le sel et le poivre.",
             "Disposer les pommes de terre dans un plat à gratin, verser le mélange liquide par-dessus.",
-            "Enfourner jusqu&rsquo;à ce que les pommes de terre soient tendres et le dessus doré.",
-            "Servir le bœuf effiloché accompagné d&rsquo;une part de gratin dauphinois."
+            "Enfourner jusqu'à ce que les pommes de terre soient tendres et le dessus doré.",
+            "Servir le bœuf effiloché accompagné d'une part de gratin dauphinois."
         ],
         "tags": [
             "Bœuf",
@@ -10010,7 +9957,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3836",
         "title": "Tartine fraîcheur avocat saumon",
-        "description": "Une tartine gourmande et croquante alliant la douceur de l&rsquo;avocat écrasé au saumon fumé, relevée par des oignons frits et une touche de crème balsamique.",
+        "description": "Une tartine gourmande et croquante alliant la douceur de l'avocat écrasé au saumon fumé, relevée par des oignons frits et une touche de crème balsamique.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftartine.jpg&v=1774450800000",
         "category": "plats",
         "difficulty": "moyen",
@@ -10071,7 +10018,7 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Dans une poêle, faire revenir les tartines avec de l’huile d’olive et des herbes de Provence.",
             "Écraser les avocats dans un récipient.",
-            "Étaler l&rsquo;avocat écrasé sur les tartines grillées.",
+            "Étaler l'avocat écrasé sur les tartines grillées.",
             "Disposer le saumon fumé, les tomates cerises et les oignons frits par-dessus.",
             "Terminer en étalant un filet d’huile d’olive et de la crème balsamique."
         ],
@@ -10083,7 +10030,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3839",
         "title": "Fougasse traditionnelle aux herbes",
-        "description": "Un pain traditionnel de Provence en forme de feuille, caractérisé par sa croûte croustillante, sa mie moelleuse et ses arômes d&rsquo;herbes séchées et d&rsquo;huile d&rsquo;olive.",
+        "description": "Un pain traditionnel de Provence en forme de feuille, caractérisé par sa croûte croustillante, sa mie moelleuse et ses arômes d'herbes séchées et d'huile d'olive.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffougasse.jpeg&v=1774450385000",
         "category": "plats",
         "difficulty": "moyen",
@@ -10098,7 +10045,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 150 g d&rsquo;eau (pour le poolish)"
+                "name": "💧\n 150 g d'eau (pour le poolish)"
             },
             {
                 "quantity": "",
@@ -10106,7 +10053,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 210 g d&rsquo;eau"
+                "name": "💧\n 210 g d'eau"
             },
             {
                 "quantity": "",
@@ -10122,7 +10069,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n 40 g d&rsquo;huile d&rsquo;olive"
+                "name": "🍾\n 40 g d'huile d'olive"
             },
             {
                 "quantity": "",
@@ -10138,17 +10085,17 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1/4 c. à café d&rsquo;origan séché"
+                "name": "🥣\n 1/4 c. à café d'origan séché"
             }
         ],
         "steps": [
-            "Préparer le poolish la veille : mélanger la farine, l&rsquo;eau et la levure. Laisser reposer à température ambiante pendant 8 à 16 heures.",
-            "Mélanger tous les ingrédients de la pâte (y compris le poolish) jusqu&rsquo;à obtenir un mélange homogène. Couvrir et laisser reposer 30 minutes.",
-            "Réaliser des étirements et pliages (stretch & fold) de la pâte, puis laisser reposer 30 minutes. Répéter l&rsquo;opération 1 à 3 fois toutes les 30 minutes.",
+            "Préparer le poolish la veille : mélanger la farine, l'eau et la levure. Laisser reposer à température ambiante pendant 8 à 16 heures.",
+            "Mélanger tous les ingrédients de la pâte (y compris le poolish) jusqu'à obtenir un mélange homogène. Couvrir et laisser reposer 30 minutes.",
+            "Réaliser des étirements et pliages (stretch & fold) de la pâte, puis laisser reposer 30 minutes. Répéter l'opération 1 à 3 fois toutes les 30 minutes.",
             "Préchauffer le four et une plaque de cuisson (ou pierre à pizza) à 250°C.",
             "Une fois que la pâte a doublé ou triplé de volume, la déposer sur une surface bien farinée.",
-            "Couper la pâte en deux, former des triangles grossiers, les placer sur du papier sulfurisé et pratiquer des incisions à l&rsquo;aide d&rsquo;un coupe-pâte pour créer les trous caractéristiques.",
-            "Placer sur la plaque chaude et cuire 20 à 25 minutes jusqu&rsquo;à ce que le pain soit bien doré (option : ajouter de la vapeur les 12 premières minutes).",
+            "Couper la pâte en deux, former des triangles grossiers, les placer sur du papier sulfurisé et pratiquer des incisions à l'aide d'un coupe-pâte pour créer les trous caractéristiques.",
+            "Placer sur la plaque chaude et cuire 20 à 25 minutes jusqu'à ce que le pain soit bien doré (option : ajouter de la vapeur les 12 premières minutes).",
             "Laisser refroidir quelques minutes avant de déguster."
         ],
         "tags": [],
@@ -10261,12 +10208,12 @@ export const mockRecipes: Recipe[] = [
             "Préchauffer le four à 165 °C en chaleur tournante.",
             "Éplucher la betterave, la carotte et le navet.",
             "Trancher les légumes très finement à la mandoline (environ 2 mm).",
-            "Sécher soigneusement les tranches avec un torchon ou de l&rsquo;essuie-tout.",
+            "Sécher soigneusement les tranches avec un torchon ou de l'essuie-tout.",
             "Déposer les tranches sur une plaque de cuisson en une seule couche.",
-            "Ajouter l&rsquo;assaisonnement (huile d&rsquo;olive, sel, parmesan et épices au choix).",
-            "Enfourner 15 à 25 minutes selon l&rsquo;épaisseur, en surveillant de près à partir de 15 minutes.",
+            "Ajouter l'assaisonnement (huile d'olive, sel, parmesan et épices au choix).",
+            "Enfourner 15 à 25 minutes selon l'épaisseur, en surveillant de près à partir de 15 minutes.",
             "Pour plus de croustillant, retourner les chips à mi-cuisson.",
-            "Laisser refroidir sur une grille pour qu&rsquo;elles finissent de durcir."
+            "Laisser refroidir sur une grille pour qu'elles finissent de durcir."
         ],
         "tags": [],
         "isFeatured": false,
@@ -10276,7 +10223,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3857",
         "title": "Feuilleté apéritif au fromage et ail",
-        "description": "Un amuse-bouche maison facile et rapide à base de pâte feuilletée, fromage frais, parmesan, ail et persil, idéal pour l&rsquo;apéritif.",
+        "description": "Un amuse-bouche maison facile et rapide à base de pâte feuilletée, fromage frais, parmesan, ail et persil, idéal pour l'apéritif.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftorsade.jpeg&v=1774449765000",
         "category": "plats",
         "difficulty": "moyen",
@@ -10307,7 +10254,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 2 gousses d&rsquo;ail"
+                "name": "🧄\n 2 gousses d'ail"
             },
             {
                 "quantity": "",
@@ -10325,7 +10272,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3863",
         "title": "Feuilletés chèvre miel",
-        "description": "Une recette d&rsquo;apéritif ultra simple et rapide à réaliser avec seulement quelques ingrédients pour un résultat gourmand sucré-salé.",
+        "description": "Une recette d'apéritif ultra simple et rapide à réaliser avec seulement quelques ingrédients pour un résultat gourmand sucré-salé.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchevre.jpeg&v=1774449463000",
         "category": "plats",
         "difficulty": "moyen",
@@ -10389,7 +10336,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n 2 cuillères à soupe d&rsquo;huile d&rsquo;olive"
+                "name": "🍾\n 2 cuillères à soupe d'huile d'olive"
             },
             {
                 "quantity": "",
@@ -10401,14 +10348,14 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 220 ml d&rsquo;eau tiède"
+                "name": "💧\n 220 ml d'eau tiède"
             }
         ],
         "steps": [
-            "Mélanger le lait tiède, la levure sèche, le sucre et l&rsquo;huile d&rsquo;olive.",
+            "Mélanger le lait tiède, la levure sèche, le sucre et l'huile d'olive.",
             "Laisser reposer le mélange pendant 10 minutes pour activer la levure.",
             "Dans un bol, verser la farine et le sel, puis ajouter le mélange de levure.",
-            "Ajouter l&rsquo;eau tiède.",
+            "Ajouter l'eau tiède.",
             "Pétrir la pâte pendant 8 minutes au robot ou à la main.",
             "Former une boule, couvrir et laisser reposer pendant 1h à 1h30.",
             "Former les mini pizzas et enfourner pour 12 minutes à 180 degrés."
@@ -10452,10 +10399,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Dans un bol, mélangez le jaune d&rsquo;œuf, la moutarde, le sel et le jus de citron.",
-            "Commencez à fouetter le mélange à l&rsquo;aide d&rsquo;une fourchette.",
-            "Versez l&rsquo;huile en un filet très mince tout en continuant de fouetter énergiquement.",
-            "Poursuivez l&rsquo;opération jusqu&rsquo;à ce que la mayonnaise monte et devienne bien ferme et onctueuse."
+            "Dans un bol, mélangez le jaune d'œuf, la moutarde, le sel et le jus de citron.",
+            "Commencez à fouetter le mélange à l'aide d'une fourchette.",
+            "Versez l'huile en un filet très mince tout en continuant de fouetter énergiquement.",
+            "Poursuivez l'opération jusqu'à ce que la mayonnaise monte et devienne bien ferme et onctueuse."
         ],
         "tags": [
             "France",
@@ -10515,11 +10462,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Émincer finement l&rsquo;échalote et ciseler la ciboulette.",
-            "Dans un bol, mélanger le thon égoutté, le fromage blanc, l&rsquo;échalote, la ciboulette et le jus de citron.",
+            "Émincer finement l'échalote et ciseler la ciboulette.",
+            "Dans un bol, mélanger le thon égoutté, le fromage blanc, l'échalote, la ciboulette et le jus de citron.",
             "Râper la carotte et couper le demi-avocat en lamelles.",
             "Étaler la préparation au thon sur la galette wrap.",
-            "Ajouter la salade, les carottes râpées et les lamelles d&rsquo;avocat.",
+            "Ajouter la salade, les carottes râpées et les lamelles d'avocat.",
             "Rouler le wrap bien serré et déguster."
         ],
         "tags": [],
@@ -10562,10 +10509,10 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Laver et découper les légumes en bâtonnets ou en fines tranches.",
-            "Préparer la pâte à tempura en mélangeant la farine avec l&rsquo;eau très froide jusqu&rsquo;à obtenir une texture fluide.",
-            "Faire chauffer l&rsquo;huile de friture.",
-            "Tremper les morceaux de légumes dans la pâte puis les plonger immédiatement dans l&rsquo;huile chaude.",
-            "Laisser frire quelques minutes jusqu&rsquo;à ce qu&rsquo;ils soient dorés et croustillants.",
+            "Préparer la pâte à tempura en mélangeant la farine avec l'eau très froide jusqu'à obtenir une texture fluide.",
+            "Faire chauffer l'huile de friture.",
+            "Tremper les morceaux de légumes dans la pâte puis les plonger immédiatement dans l'huile chaude.",
+            "Laisser frire quelques minutes jusqu'à ce qu'ils soient dorés et croustillants.",
             "Égoutter sur du papier absorbant et servir chaud."
         ],
         "tags": [
@@ -10661,7 +10608,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3904",
         "title": "Gnocchis Croustillants",
-        "description": "Une recette facile et rapide de gnocchis croustillants préparés au airfryer, parfaits pour l&rsquo;apéritif, accompagnés d&rsquo;une sauce fraîche au fromage blanc.",
+        "description": "Une recette facile et rapide de gnocchis croustillants préparés au airfryer, parfaits pour l'apéritif, accompagnés d'une sauce fraîche au fromage blanc.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgnocchis-crousti-apero.jpeg&v=1774447996000",
         "category": "plats",
         "difficulty": "moyen",
@@ -10684,11 +10631,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 1 C A S d&rsquo;ail en poudre"
+                "name": "🧄\n 1 C A S d'ail en poudre"
             },
             {
                 "quantity": "",
-                "name": "🍾\n 2 cl d&rsquo;huile d&rsquo;olive"
+                "name": "🍾\n 2 cl d'huile d'olive"
             },
             {
                 "quantity": "",
@@ -10696,7 +10643,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 1 gousse d&rsquo;ail hachée"
+                "name": "🧄\n 1 gousse d'ail hachée"
             },
             {
                 "quantity": "",
@@ -10704,7 +10651,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n 1 filet d&rsquo;huile d&rsquo;olive"
+                "name": "🍾\n 1 filet d'huile d'olive"
             },
             {
                 "quantity": "",
@@ -10712,9 +10659,9 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Dans un saladier, mélangez les gnocchis à poêler avec le paprika, le zaatar, l&rsquo;ail en poudre et les 2 cl d&rsquo;huile d&rsquo;olive.",
-            "Faites cuire les gnocchis assaisonnés dans un airfryer préchauffé à 180°C pendant 15 minutes, jusqu&rsquo;à ce qu&rsquo;ils soient bien croustillants.",
-            "Pendant ce temps, préparez la sauce : dans un bol, mélangez le fromage blanc, l&rsquo;ail haché, la ciboulette ciselée, un filet d&rsquo;huile d&rsquo;olive et une pincée de poivre.",
+            "Dans un saladier, mélangez les gnocchis à poêler avec le paprika, le zaatar, l'ail en poudre et les 2 cl d'huile d'olive.",
+            "Faites cuire les gnocchis assaisonnés dans un airfryer préchauffé à 180°C pendant 15 minutes, jusqu'à ce qu'ils soient bien croustillants.",
+            "Pendant ce temps, préparez la sauce : dans un bol, mélangez le fromage blanc, l'ail haché, la ciboulette ciselée, un filet d'huile d'olive et une pincée de poivre.",
             "Servez les gnocchis croustillants chauds accompagnés de la sauce au fromage blanc."
         ],
         "tags": [
@@ -10743,11 +10690,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n 1 filet d&rsquo;huile d&rsquo;olive"
+                "name": "🍾\n 1 filet d'huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🧄\n 1 C A S d&rsquo;ail en poudre"
+                "name": "🧄\n 1 C A S d'ail en poudre"
             },
             {
                 "quantity": "",
@@ -10759,7 +10706,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🌶️\n 1 pincée de piment d&rsquo;Espelette"
+                "name": "🌶️\n 1 pincée de piment d'Espelette"
             },
             {
                 "quantity": "",
@@ -10772,10 +10719,10 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Préparer les carottes (laver, éplucher si nécessaire, couper en bâtonnets ou rondelles).",
-            "Dans un grand bol, mélanger les carottes avec l&rsquo;huile d&rsquo;olive, l&rsquo;ail en poudre, le paprika, le cumin et le piment d&rsquo;Espelette.",
+            "Dans un grand bol, mélanger les carottes avec l'huile d'olive, l'ail en poudre, le paprika, le cumin et le piment d'Espelette.",
             "Ajouter le parmesan râpé et bien mélanger pour enrober les carottes.",
             "Étaler les carottes sur une plaque de cuisson recouverte de papier sulfurisé.",
-            "Cuire au four préchauffé à 180°C pendant 30 minutes, ou jusqu&rsquo;à ce que les carottes soient tendres et légèrement croustillantes.",
+            "Cuire au four préchauffé à 180°C pendant 30 minutes, ou jusqu'à ce que les carottes soient tendres et légèrement croustillantes.",
             "Parsemer de persil frais haché avant de servir."
         ],
         "tags": [
@@ -10833,7 +10780,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Commencez par allumer votre barbecue. Pour la marinade, ajoutez toutes les épices sur votre poulet et mélangez bien pour enrober.",
-            "Pour la cuisson, commencez par faire griller les deux faces du poulet (2-3 minutes de chaque côté). Si vous avez un couvercle sur votre barbecue, vous pouvez les mettre en dehors de la braise avec le couvercle pour finir la cuisson et les garder au chaud. Sinon, tournez-les fréquemment pour éviter qu&rsquo;ils ne brûlent.",
+            "Pour la cuisson, commencez par faire griller les deux faces du poulet (2-3 minutes de chaque côté). Si vous avez un couvercle sur votre barbecue, vous pouvez les mettre en dehors de la braise avec le couvercle pour finir la cuisson et les garder au chaud. Sinon, tournez-les fréquemment pour éviter qu'ils ne brûlent.",
             "Servez chaud et bon appétit !"
         ],
         "tags": [
@@ -10911,7 +10858,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3915",
         "title": "Poulet mariné au yaourt",
-        "description": "Une marinade saine, faible en gras et riche en protéines pour le poulet, parfaite pour les barbecues d&rsquo;été. Elle est crémeuse, savoureuse et facile à préparer.",
+        "description": "Une marinade saine, faible en gras et riche en protéines pour le poulet, parfaite pour les barbecues d'été. Elle est crémeuse, savoureuse et facile à préparer.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fyogurt-marinated-chicken-1.jpeg&v=1774447150000",
         "category": "plats",
         "difficulty": "moyen",
@@ -10995,7 +10942,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3918",
         "title": "Ailes de poulet BBQ croustillantes",
-        "description": "Découvrez ces ailes de poulet BBQ irrésistibles, croustillantes à l&rsquo;extérieur et juteuses à l&rsquo;intérieur ! Parfaitement marinées avec une sauce BBQ épicée et une touche de miel, elles sont idéales pour les soirées barbecue, les invités ...",
+        "description": "Découvrez ces ailes de poulet BBQ irrésistibles, croustillantes à l'extérieur et juteuses à l'intérieur ! Parfaitement marinées avec une sauce BBQ épicée et une touche de miel, elles sont idéales pour les soirées barbecue, les invités ou simplemen...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Failes-poulet-barbecue-1178px-tinyjpg.jpeg&v=1774446860000",
         "category": "plats",
         "difficulty": "moyen",
@@ -11006,7 +10953,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🧄\n 1 kg d&rsquo;ailes de poulet"
+                "name": "🧄\n 1 kg d'ailes de poulet"
             },
             {
                 "quantity": "",
@@ -11018,7 +10965,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 1 L d&rsquo;eau froide"
+                "name": "💧\n 1 L d'eau froide"
             },
             {
                 "quantity": "",
@@ -11038,7 +10985,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n 6 cs d&rsquo;huile"
+                "name": "🥣\n 6 cs d'huile"
             },
             {
                 "quantity": "",
@@ -11054,16 +11001,16 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n 8 cs d&rsquo;huile"
+                "name": "🥣\n 8 cs d'huile"
             }
         ],
         "steps": [
             "Couper les ailes de poulet au niveau du cartilage entre les os.",
-            "Dans un saladier, mélanger les ailes avec le sucre, le sel et l&rsquo;eau froide. Couvrir de film alimentaire et laisser mariner au réfrigérateur pendant au moins 2 heures.",
-            "Égoutter les ailes, puis les masser soigneusement avec le mélange d&rsquo;épices (paprika, flocons de piment, thym, poivre noir), 6 cs d&rsquo;huile et 2 cc de sel.",
+            "Dans un saladier, mélanger les ailes avec le sucre, le sel et l'eau froide. Couvrir de film alimentaire et laisser mariner au réfrigérateur pendant au moins 2 heures.",
+            "Égoutter les ailes, puis les masser soigneusement avec le mélange d'épices (paprika, flocons de piment, thym, poivre noir), 6 cs d'huile et 2 cc de sel.",
             "Placer les ailes, côté peau vers le haut, dans un plat allant au four.",
-            "Cuire au four préchauffé à 230°C pendant environ 35 à 40 minutes, jusqu&rsquo;à ce qu&rsquo;elles soient bien croustillantes. Surveiller la cuisson car chaque four est différent.",
-            "Pendant ce temps, mélanger la sauce barbecue, le miel et les 8 cs d&rsquo;huile.",
+            "Cuire au four préchauffé à 230°C pendant environ 35 à 40 minutes, jusqu'à ce qu'elles soient bien croustillantes. Surveiller la cuisson car chaque four est différent.",
+            "Pendant ce temps, mélanger la sauce barbecue, le miel et les 8 cs d'huile.",
             "Badigeonner généreusement les ailes de poulet avec cette sauce.",
             "Remettre au four pour 10 minutes supplémentaires afin de les laisser caraméliser."
         ],
@@ -11080,7 +11027,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3921",
         "title": "Pommes de terre grenailles au parmesan et gruyère",
-        "description": "Un accompagnement gourmand et facile à réaliser, parfait pour un barbecue, avec des pommes de terre grenailles rôties au four, enrobées d&rsquo;épices et gratinées au parmesan et gruyère.",
+        "description": "Un accompagnement gourmand et facile à réaliser, parfait pour un barbecue, avec des pommes de terre grenailles rôties au four, enrobées d'épices et gratinées au parmesan et gruyère.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpommes-de-terre-parmesan-H.jpeg&v=1774446589000",
         "category": "plats",
         "difficulty": "moyen",
@@ -11144,7 +11091,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3924",
         "title": "Steak With Crying Tiger Sauce",
-        "description": "Un steak de jupe tendre et juteux avec du feu, de l&rsquo;acidité et du mordant. Mariné dans de la sauce soja, de la sauce poisson, du citron vert et une touche de piment. Grillé fortement sur une poêle en fonte, marqué en losange, tranché finemen...",
+        "description": "Un steak de jupe tendre et juteux avec du feu, de l'acidité et du mordant. Mariné dans de la sauce soja, de la sauce poisson, du citron vert et une touche de piment. Grillé fortement sur une poêle en fonte, marqué en losange, tranché finement et n...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fviande.jpg&v=1774446337000",
         "category": "plats",
         "difficulty": "moyen",
@@ -11175,7 +11122,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 1 gousse d&rsquo;ail, finement râpée"
+                "name": "🧄\n 1 gousse d'ail, finement râpée"
             },
             {
                 "quantity": "",
@@ -11215,7 +11162,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer la marinade : Dans un bol, mélanger 2 cuillères à soupe de sauce poisson, 2 cuillères à soupe de sauce soja, 1 cuillère à soupe de jus de citron vert, 1 cuillère à soupe de sucre roux, 1 gousse d&rsquo;ail finement râpée et ½ cuillère à café de flocons de piment.",
+            "Préparer la marinade : Dans un bol, mélanger 2 cuillères à soupe de sauce poisson, 2 cuillères à soupe de sauce soja, 1 cuillère à soupe de jus de citron vert, 1 cuillère à soupe de sucre roux, 1 gousse d'ail finement râpée et ½ cuillère à café de flocons de piment.",
             "Faire mariner le steak de jupe dans cette préparation (pré-trempage facultatif).",
             "Griller le steak fortement sur une poêle en fonte, en le marquant en losange.",
             "Trancher finement le steak grillé.",
@@ -11232,8 +11179,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3935",
-        "title": "Travers d&rsquo;agneau collants au Gochujang",
-        "description": "Une recette savoureuse de travers d&rsquo;agneau marinés dans une sauce épicée et sucrée au gochujang, puis rôtis au four jusqu&rsquo;à obtenir une texture tendre et collante.",
+        "title": "Travers d'agneau collants au Gochujang",
+        "description": "Une recette savoureuse de travers d'agneau marinés dans une sauce épicée et sucrée au gochujang, puis rôtis au four jusqu'à obtenir une texture tendre et collante.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftravers-scaled.jpeg&v=1774445406000",
         "category": "plats",
         "difficulty": "moyen",
@@ -11244,7 +11191,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 1kg de travers d&rsquo;agneau"
+                "name": "🥣\n 1kg de travers d'agneau"
             },
             {
                 "quantity": "",
@@ -11252,7 +11199,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 4 gousses d&rsquo;ail, pelées"
+                "name": "🧄\n 4 gousses d'ail, pelées"
             },
             {
                 "quantity": "",
@@ -11288,11 +11235,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "1. Dans un mixeur, mélangez l&rsquo;échalote, l&rsquo;ail, le gingembre, le vinaigre, le gochujang et le sucre pour faire la marinade. N&rsquo;ajoutez qu&rsquo;une cuillère à soupe de gochujang si vous n&rsquo;êtes pas sûr de vouloir épicé.",
-            "2. Placez les travers d&rsquo;agneau dans un plat allant au four et versez la marinade. Laissez mariner pendant au moins 20 minutes ou jusqu&rsquo;à 24 heures au réfrigérateur.",
-            "3. Préchauffez votre four à 160°C/140°C ventilateur/Thermostat 3. Couvrez les travers d&rsquo;agneau de papier d&rsquo;aluminium puis faites rôtir pendant 2-3 heures.",
-            "4. Découvrez les travers d&rsquo;agneau, mélangez bien puis faites rôtir à découvert pendant 25 minutes supplémentaires jusqu&rsquo;à ce que la sauce épaississe et devienne collante.",
-            "5. Saupoudrez de graines de sésame, de piment frais et d&rsquo;oignon nouveau. Dégustez !"
+            "1. Dans un mixeur, mélangez l'échalote, l'ail, le gingembre, le vinaigre, le gochujang et le sucre pour faire la marinade. N'ajoutez qu'une cuillère à soupe de gochujang si vous n'êtes pas sûr de vouloir épicé.",
+            "2. Placez les travers d'agneau dans un plat allant au four et versez la marinade. Laissez mariner pendant au moins 20 minutes ou jusqu'à 24 heures au réfrigérateur.",
+            "3. Préchauffez votre four à 160°C/140°C ventilateur/Thermostat 3. Couvrez les travers d'agneau de papier d'aluminium puis faites rôtir pendant 2-3 heures.",
+            "4. Découvrez les travers d'agneau, mélangez bien puis faites rôtir à découvert pendant 25 minutes supplémentaires jusqu'à ce que la sauce épaississe et devienne collante.",
+            "5. Saupoudrez de graines de sésame, de piment frais et d'oignon nouveau. Dégustez !"
         ],
         "tags": [
             "agneau",
@@ -11307,7 +11254,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3898",
         "title": "Rillettes de Thon",
-        "description": "Une recette facile et rapide pour l&rsquo;apéro, ces rillettes de thon sont un incontournable, simples, rapides et délicieuses. Idéales à déguster avec des amis.",
+        "description": "Une recette facile et rapide pour l'apéro, ces rillettes de thon sont un incontournable, simples, rapides et délicieuses. Idéales à déguster avec des amis.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825781506.jpg&v=1773829409000",
         "category": "plats",
         "difficulty": "moyen",
@@ -11427,7 +11374,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Couper la patate douce en rondelles d&rsquo;environ 5cm. Les placer dans un saladier et assaisonner de sel, poivre, herbes de Provence et huile d’olive.",
+            "Couper la patate douce en rondelles d'environ 5cm. Les placer dans un saladier et assaisonner de sel, poivre, herbes de Provence et huile d’olive.",
             "Disposer les rondelles sur une plaque allant au four et cuire pendant 10 à 15 minutes à 220 degrés.",
             "Pendant ce temps, mélanger le fromage de chèvre frais avec le lait, un peu de sel, poivre et un peu d’herbes de Provence.",
             "Une fois les patates douces prêtes, disposer une cuillère de chèvre frais par-dessus chaque rondelle.",
@@ -11444,7 +11391,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3892",
         "title": "Gazpacho maison",
-        "description": "Une recette de gazpacho que l&rsquo;auteur prépare chaque semaine, découverte à Barcelone. L&rsquo;importance est mise sur les ingrédients de saison, notamment les tomates. Idéal pour ceux qui aiment les salades et cherchent une soupe froide rafra...",
+        "description": "Une recette de gazpacho que l'auteur prépare chaque semaine, découverte à Barcelone. L'importance est mise sur les ingrédients de saison, notamment les tomates. Idéal pour ceux qui aiment les salades et cherchent une soupe froide rafraîchissante.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825538731.jpg&v=1773829242000",
         "category": "plats",
         "difficulty": "moyen",
@@ -11514,7 +11461,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3848",
         "title": "Boulettes de pommes de terre épinards et mozzarella",
-        "description": "De délicieuses boulettes végétariennes et croustillantes à base de pommes de terre, d&rsquo;épinards et de tofu, avec un cœur fondant à la mozzarella.",
+        "description": "De délicieuses boulettes végétariennes et croustillantes à base de pommes de terre, d'épinards et de tofu, avec un cœur fondant à la mozzarella.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773761649742.jpg&v=1773765254000",
         "category": "plats",
         "difficulty": "moyen",
@@ -11569,12 +11516,12 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Cuire les pommes de terre à l&rsquo;eau ou à la vapeur, puis les écraser en purée.",
-            "Hacher l&rsquo;échalote et l&rsquo;ail, puis les faire revenir à la poêle avec les épinards dans un peu d&rsquo;huile d&rsquo;olive.",
+            "Cuire les pommes de terre à l'eau ou à la vapeur, puis les écraser en purée.",
+            "Hacher l'échalote et l'ail, puis les faire revenir à la poêle avec les épinards dans un peu d'huile d'olive.",
             "Dans un saladier, mélanger la purée de pommes de terre, les épinards cuits et le tofu émietté. Assaisonner avec le sel et le poivre.",
             "Former des boulettes avec la préparation en insérant un morceau de mozzarella au centre de chacune.",
-            "Préparer la panure : passer successivement chaque boulette dans la farine, puis dans l&rsquo;œuf battu, et enfin dans la chapelure.",
-            "Faire dorer les boulettes à la poêle avec de l&rsquo;huile d&rsquo;olive jusqu&rsquo;à ce qu&rsquo;elles soient bien croustillantes."
+            "Préparer la panure : passer successivement chaque boulette dans la farine, puis dans l'œuf battu, et enfin dans la chapelure.",
+            "Faire dorer les boulettes à la poêle avec de l'huile d'olive jusqu'à ce qu'elles soient bien croustillantes."
         ],
         "tags": [],
         "isFeatured": false,
@@ -11670,7 +11617,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3720",
         "title": "Saumon croustillant et mayonnaise épicée",
-        "description": "Une recette facile et rapide de saumon croustillant cuit à l&rsquo;airfryer, servi avec une mayonnaise épicée maison et du riz.",
+        "description": "Une recette facile et rapide de saumon croustillant cuit à l'airfryer, servi avec une mayonnaise épicée maison et du riz.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FSaumon_epice_063.jpg&v=1773762698000",
         "category": "plats",
         "difficulty": "moyen",
@@ -11689,7 +11636,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n 2 CAS huile d&rsquo;olive"
+                "name": "🍾\n 2 CAS huile d'olive"
             },
             {
                 "quantity": "",
@@ -11714,9 +11661,9 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Couper le saumon en cubes",
-            "Mélanger le saumon avec les épices et l&rsquo;huile",
+            "Mélanger le saumon avec les épices et l'huile",
             "Mettre les cubes de saumon dans la chapelure",
-            "Cuire à l&rsquo;Airfryer à 200 degrés pendant 8-10 minutes",
+            "Cuire à l'Airfryer à 200 degrés pendant 8-10 minutes",
             "Faire la sauce avec la sauce aigre douce, la mayonnaise, le yaourt, la sriracha et le jus de citron",
             "Servir le saumon sur du riz et ajouter la sauce"
         ],
@@ -11853,7 +11800,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3726",
         "title": "Escalopes de poulet sauce champignons",
-        "description": "Un plat principal gourmand et riche en protéines, composé d&rsquo;escalopes de poulet et de pommes de terre rôties, nappées d&rsquo;une sauce crémeuse aux champignons, oignon et ail. Idéal pour une perte de poids sans frustration.",
+        "description": "Un plat principal gourmand et riche en protéines, composé d'escalopes de poulet et de pommes de terre rôties, nappées d'une sauce crémeuse aux champignons, oignon et ail. Idéal pour une perte de poids sans frustration.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773533730690.jpg&v=1773762675000",
         "category": "plats",
         "difficulty": "moyen",
@@ -11932,7 +11879,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3729",
         "title": "Curry de pois chiches aux noix de cajou grillées",
-        "description": "Une recette végétarienne savoureuse et facile à préparer, à base de pois chiches, de lait de coco et d&rsquo;un mélange d&rsquo;épices, garnie de noix de cajou grillées et de coriandre fraîche.",
+        "description": "Une recette végétarienne savoureuse et facile à préparer, à base de pois chiches, de lait de coco et d'un mélange d'épices, garnie de noix de cajou grillées et de coriandre fraîche.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773535664386.jpg&v=1773762663000",
         "category": "plats",
         "difficulty": "moyen",
@@ -12023,7 +11970,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3732",
         "title": "Tajine de Kefta Végétarien",
-        "description": "Un tajine savoureux et végétarien composé de boulettes de lentilles et champignons épicées, mijotées dans une sauce tomate riche avec des oignons caramélisés, et garni d&rsquo;œufs. Idéal à déguster avec du pain.",
+        "description": "Un tajine savoureux et végétarien composé de boulettes de lentilles et champignons épicées, mijotées dans une sauce tomate riche avec des oignons caramélisés, et garni d'œufs. Idéal à déguster avec du pain.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773535963287.jpg&v=1773762652000",
         "category": "plats",
         "difficulty": "moyen",
@@ -12094,7 +12041,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d&rsquo;olive (pour la cuisson des boulettes)"
+                "name": "🍾\n             Huile d'olive (pour la cuisson des boulettes)"
             },
             {
                 "quantity": "",
@@ -12102,10 +12049,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Mixer au hachoir ou blender tous les ingrédients pour les boulettes (lentilles, farine, champignons, curcuma, gingembre, persil, œuf) puis former les boulettes à l&rsquo;aide d&rsquo;une fourchette.",
-            "Faire revenir les boulettes dans une poêle bien chaude avec un filet d’huile d’olive pendant 5 minutes jusqu&rsquo;à ce qu&rsquo;elles soient dorées, puis les retirer.",
+            "Mixer au hachoir ou blender tous les ingrédients pour les boulettes (lentilles, farine, champignons, curcuma, gingembre, persil, œuf) puis former les boulettes à l'aide d'une fourchette.",
+            "Faire revenir les boulettes dans une poêle bien chaude avec un filet d’huile d’olive pendant 5 minutes jusqu'à ce qu'elles soient dorées, puis les retirer.",
             "Ciseler les oignons, les faire caraméliser, puis ajouter la sauce tomate et le concentré de tomate. Baisser le feu et laisser mijoter 10 minutes.",
-            "Ajouter les boulettes à la sauce, casser 3 œufs par-dessus comme sur la vidéo, recouvrir et laisser cuire 5 minutes. Garnir d&rsquo;herbes de votre choix. Servir chaud avec du pain."
+            "Ajouter les boulettes à la sauce, casser 3 œufs par-dessus comme sur la vidéo, recouvrir et laisser cuire 5 minutes. Garnir d'herbes de votre choix. Servir chaud avec du pain."
         ],
         "tags": [
             "champignons",
@@ -12198,7 +12145,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3741",
         "title": "Uova in purgatorio",
-        "description": "Recette italienne d&rsquo;origine napolitaine, les « oeufs au purgatoire » sont un plat simple et délicieux à base d&rsquo;œufs pochés dans une sauce tomate mijotée. Ses couleurs rappellent le rouge des flammes et le blanc des âmes en rédemption. ...",
+        "description": "Recette italienne d'origine napolitaine, les « oeufs au purgatoire » sont un plat simple et délicieux à base d'œufs pochés dans une sauce tomate mijotée. Ses couleurs rappellent le rouge des flammes et le blanc des âmes en rédemption. Une recette ...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fuova-in-purgatorio.jpg&v=1773762627000",
         "category": "plats",
         "difficulty": "moyen",
@@ -12345,7 +12292,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3803",
         "title": "Guacamole",
-        "description": "Une recette classique et facile pour préparer un délicieux guacamole maison, parfait pour l&rsquo;apéritif ou accompagner vos plats mexicains.",
+        "description": "Une recette classique et facile pour préparer un délicieux guacamole maison, parfait pour l'apéritif ou accompagner vos plats mexicains.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fguacamole-mexicain-hyper-simple-et-hyper-bon-4254-1200.jpeg&v=1773762590000",
         "category": "plats",
         "difficulty": "moyen",
@@ -12372,7 +12319,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n Jus d&rsquo;un demi-citron vert"
+                "name": "🍋\n Jus d'un demi-citron vert"
             },
             {
                 "quantity": "",
@@ -12388,11 +12335,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Couper les avocats en deux, retirer le noyau et récupérer la chair à l&rsquo;aide d&rsquo;une cuillère. Écraser la chair à la fourchette dans un bol.",
-            "Hacher finement l&rsquo;oignon rouge, la tomate (épépinée) et la coriandre fraîche.",
-            "Ajouter l&rsquo;oignon, la tomate et la coriandre aux avocats écrasés.",
+            "Couper les avocats en deux, retirer le noyau et récupérer la chair à l'aide d'une cuillère. Écraser la chair à la fourchette dans un bol.",
+            "Hacher finement l'oignon rouge, la tomate (épépinée) et la coriandre fraîche.",
+            "Ajouter l'oignon, la tomate et la coriandre aux avocats écrasés.",
             "Verser le jus de citron vert. Saler et poivrer selon votre goût. Si désiré, ajouter un peu de piment frais haché.",
-            "Mélanger délicatement tous les ingrédients. Goûter et ajuster l&rsquo;assaisonnement si nécessaire.",
+            "Mélanger délicatement tous les ingrédients. Goûter et ajuster l'assaisonnement si nécessaire.",
             "Servir immédiatement avec des tortillas chips ou en accompagnement."
         ],
         "tags": [
@@ -12411,7 +12358,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3811",
         "title": "Flammekueche",
-        "description": "Découvrez la recette traditionnelle alsacienne de la Flammekueche, aussi appelée tarte flambée. Une pâte fine et croustillante garnie d&rsquo;une base crémeuse de fromage blanc et crème fraîche, d&rsquo;oignons finement émincés et de lardons fumés...",
+        "description": "Découvrez la recette traditionnelle alsacienne de la Flammekueche, aussi appelée tarte flambée. Une pâte fine et croustillante garnie d'une base crémeuse de fromage blanc et crème fraîche, d'oignons finement émincés et de lardons fumés, cuite à tr...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFlammekuche_1280x720.jpg&v=1773762580000",
         "category": "plats",
         "difficulty": "moyen",
@@ -12426,11 +12373,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 300 g d&rsquo;eau"
+                "name": "💧\n 300 g d'eau"
             },
             {
                 "quantity": "",
-                "name": "🍾\n 10 g d&rsquo;huile neutre"
+                "name": "🍾\n 10 g d'huile neutre"
             },
             {
                 "quantity": "",
@@ -12458,15 +12405,15 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n Quelques cuillères d&rsquo;huile neutre"
+                "name": "🍾\n Quelques cuillères d'huile neutre"
             }
         ],
         "steps": [
-            "Prépare la pâte: Mélange farine, eau, huile et sel jusqu&rsquo;à obtenir un mélange homogène. Couvre pendant 10 min puis pétris de nouveau quelques minutes pour obtenir une pâte lisse non collante. Filme ta pâte et laisse poser 1h.",
-            "Prépare la garniture: Découpe tes oignons très finement. Fais de même avec le lard qu&rsquo;on va couper en petits lardons. Pour la base, mélange à parts égales fromage blanc et crème fraîche (adapte les quantités selon ton besoin). Tu peux rajouter du poivre et de la muscade.",
-            "Façonnage de la flammekueche: Après 1h de pause, divise ta pâte en 4 pâtons puis abaisse-la très finement sur un plan de travail bien fariné. Roule ta pâte sur ton rouleau pour la transférer sur une plaque bien farinée également. Dispose ta crème (2 bonnes cuillères), les oignons ainsi que les lardons et termine par une cuillère d&rsquo;huile neutre pour que ça dore.",
-            "Cuisson de la flammekueche: Chauffe ton four à puissance maximale et dispose une plaque qui restera à l&rsquo;intérieur (il faut qu&rsquo;elle soit bien chaude). Quand ton four a atteint son max (ex: 250°), fais glisser ta tarte flambée sur la plaque bien chaude. Cela va créer un choc de température et la cuire très rapidement, entre 8 et 12 minutes selon ton four. Il faut qu&rsquo;elle commence à griller sur le dessus.",
-            "Dressage et dégustation: Il ne reste plus qu&rsquo;à la débarrasser, la couper en morceaux et la manger bien chaude !"
+            "Prépare la pâte: Mélange farine, eau, huile et sel jusqu'à obtenir un mélange homogène. Couvre pendant 10 min puis pétris de nouveau quelques minutes pour obtenir une pâte lisse non collante. Filme ta pâte et laisse poser 1h.",
+            "Prépare la garniture: Découpe tes oignons très finement. Fais de même avec le lard qu'on va couper en petits lardons. Pour la base, mélange à parts égales fromage blanc et crème fraîche (adapte les quantités selon ton besoin). Tu peux rajouter du poivre et de la muscade.",
+            "Façonnage de la flammekueche: Après 1h de pause, divise ta pâte en 4 pâtons puis abaisse-la très finement sur un plan de travail bien fariné. Roule ta pâte sur ton rouleau pour la transférer sur une plaque bien farinée également. Dispose ta crème (2 bonnes cuillères), les oignons ainsi que les lardons et termine par une cuillère d'huile neutre pour que ça dore.",
+            "Cuisson de la flammekueche: Chauffe ton four à puissance maximale et dispose une plaque qui restera à l'intérieur (il faut qu'elle soit bien chaude). Quand ton four a atteint son max (ex: 250°), fais glisser ta tarte flambée sur la plaque bien chaude. Cela va créer un choc de température et la cuire très rapidement, entre 8 et 12 minutes selon ton four. Il faut qu'elle commence à griller sur le dessus.",
+            "Dressage et dégustation: Il ne reste plus qu'à la débarrasser, la couper en morceaux et la manger bien chaude !"
         ],
         "tags": [
             "apéritif",
@@ -12484,7 +12431,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3826",
         "title": "Focaccia inratable",
-        "description": "Découvrez la recette de cette délicieuse focaccia, très simple à réaliser avec peu d&rsquo;étapes et sans pétrissage. Un temps de repos d&rsquo;une nuit au réfrigérateur permet d&rsquo;obtenir une focaccia bien alvéolée et un goût incroyable, mais...",
+        "description": "Découvrez la recette de cette délicieuse focaccia, très simple à réaliser avec peu d'étapes et sans pétrissage. Un temps de repos d'une nuit au réfrigérateur permet d'obtenir une focaccia bien alvéolée et un goût incroyable, mais une version plus ...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFocaccia-surdej.jpg&v=1773762567000",
         "category": "plats",
         "difficulty": "moyen",
@@ -12524,12 +12471,12 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Mélanger tous les ingrédients à la cuillère pendant 1 à 2 minutes.",
-            "Laisser reposer la pâte 15 minutes, puis faire 4 rabats en mouillant les mains avec de l&rsquo;eau. Couvrir la pâte.",
-            "Laisser reposer la pâte encore 15 minutes, faire 4 rabats. Répéter l&rsquo;opération une 3ème fois. Couvrir et laisser fermenter 1 nuit au réfrigérateur.",
+            "Laisser reposer la pâte 15 minutes, puis faire 4 rabats en mouillant les mains avec de l'eau. Couvrir la pâte.",
+            "Laisser reposer la pâte encore 15 minutes, faire 4 rabats. Répéter l'opération une 3ème fois. Couvrir et laisser fermenter 1 nuit au réfrigérateur.",
             "Le lendemain, déposer la pâte (sans la dégazer) dans un plat huilé (23&#215;33 cm). Faire 4 rabats et laisser reposer 2 heures à température ambiante en couvrant le plat.",
             "Déposer un bon filet d’huile d’olive sur la pâte et faire des trous du bout des doigts. Ajouter de la fleur de sel, du romarin ou les ingrédients de votre choix.",
             "Cuire environ 25 minutes à 220 degrés.",
-            "Note rapide (alternative) : Si vous n&rsquo;avez pas le temps de laisser reposer la pâte une nuit, laissez-la pointer 1h30 après les 3 séries de rabats (espacées de 15 min), puis encore 1h après l&rsquo;avoir déposée dans le plat huilé. Reprendre ensuite à l&rsquo;étape 5. La focaccia sera un peu moins alvéolée."
+            "Note rapide (alternative) : Si vous n'avez pas le temps de laisser reposer la pâte une nuit, laissez-la pointer 1h30 après les 3 séries de rabats (espacées de 15 min), puis encore 1h après l'avoir déposée dans le plat huilé. Reprendre ensuite à l'étape 5. La focaccia sera un peu moins alvéolée."
         ],
         "tags": [
             "apéritif",
@@ -12580,11 +12527,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Dans un grand bol, mélanger la farine, le yaourt grec, l&rsquo;eau, la levure boulangère, le sel et l&rsquo;huile d&rsquo;olive jusqu&rsquo;à obtenir une pâte homogène.",
+            "Dans un grand bol, mélanger la farine, le yaourt grec, l'eau, la levure boulangère, le sel et l'huile d'olive jusqu'à obtenir une pâte homogène.",
             "Pétrir la pâte pendant quelques minutes sur un plan de travail légèrement fariné.",
-            "Laisser reposer la pâte dans un bol couvert jusqu&rsquo;à ce qu&rsquo;elle double de volume (environ 1 heure).",
+            "Laisser reposer la pâte dans un bol couvert jusqu'à ce qu'elle double de volume (environ 1 heure).",
             "Dégazer la pâte, la diviser en portions égales et former des disques de pain pita.",
-            "Préchauffer le four à 250°C. Cuire les pains pita pendant environ 10 minutes, jusqu&rsquo;à ce qu&rsquo;ils soient gonflés et légèrement dorés."
+            "Préchauffer le four à 250°C. Cuire les pains pita pendant environ 10 minutes, jusqu'à ce qu'ils soient gonflés et légèrement dorés."
         ],
         "tags": [
             "Liban",
@@ -12664,13 +12611,13 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧 Un peu d&rsquo;eau"
+                "name": "💧 Un peu d'eau"
             }
         ],
         "steps": [
-            "Préparation des patates : Couper les patates douces en cubes, les mélanger dans un récipient avec le spray d&rsquo;huile et les épices barbecue. Cuire au airfryer à 200°C pendant 25-30 min en secouant à mi-cuisson.",
-            "Préparation du poulet : Mélanger le poulet coupé avec l&rsquo;œuf et les épices (sel, poivre, paprika, ail). Ajouter les 20g de fécule de maïs et bien mélanger pour enrober. Cuire au airfryer à 200°C pendant 13-15 min.",
-            "Préparation de la sauce : Mélanger tous les ingrédients du glaçage (sweet chili, sauce forte, miel, soja, vinaigre, citron) avec la fécule diluée dans un peu d&rsquo;eau. Chauffer dans une poêle jusqu&rsquo;à épaississement.",
+            "Préparation des patates : Couper les patates douces en cubes, les mélanger dans un récipient avec le spray d'huile et les épices barbecue. Cuire au airfryer à 200°C pendant 25-30 min en secouant à mi-cuisson.",
+            "Préparation du poulet : Mélanger le poulet coupé avec l'œuf et les épices (sel, poivre, paprika, ail). Ajouter les 20g de fécule de maïs et bien mélanger pour enrober. Cuire au airfryer à 200°C pendant 13-15 min.",
+            "Préparation de la sauce : Mélanger tous les ingrédients du glaçage (sweet chili, sauce forte, miel, soja, vinaigre, citron) avec la fécule diluée dans un peu d'eau. Chauffer dans une poêle jusqu'à épaississement.",
             "Enrobage : Verser la sauce sur le poulet cuit dans un récipient et secouer pour bien napper chaque morceau.",
             "Assemblage : Servir le poulet avec les patates douces et ajouter des toppings au choix (herbes fraîches, sésame, oignons frits ou skyr citronné)."
         ],
@@ -12744,7 +12691,7 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Dispose le bacon sur une plaque recouverte de papier cuisson et enfourne 10 minutes à 190°C jusqu’à ce qu’il soit bien doré. Laisse refroidir puis hache-le finement.",
             "Émince l’oignon en petits morceaux et fais-le revenir à la poêle avec un peu de beurre jusqu’à ce qu’il soit bien caramélisé.",
-            "Pour la sauce : hache finement les cornichons puis mélange-les avec la mayonnaise, le ketchup, le paprika fumé et l&rsquo;ail en poudre.",
+            "Pour la sauce : hache finement les cornichons puis mélange-les avec la mayonnaise, le ketchup, le paprika fumé et l'ail en poudre.",
             "Prépare les frites : si elles sont maison, épluche les pommes de terre, coupe-les et plonge-les dans l’huile bien chaude pour une cuisson en deux bains pour un maximum de croustillant. Si elles sont surgelées, suis les instructions du paquet.",
             "Dispose les frites dans un plat, ajoute le cheddar par-dessus et passe au four quelques minutes pour qu’il fonde bien.",
             "Termine en ajoutant la sauce, le bacon haché, les oignons caramélisés et la ciboulette hachée."
@@ -12806,7 +12753,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3717",
         "title": "Boulettes de poulet en sauce oignon caramélisé",
-        "description": "Une recette savoureuse de boulettes de poulet préparées avec des légumes râpés et des épices, puis cuites au four, avant d&rsquo;être mijotées dans une sauce riche et parfumée à base d&rsquo;oignons caramélisés, de silan (sirop de dattes) et d&rsq...",
+        "description": "Une recette savoureuse de boulettes de poulet préparées avec des légumes râpés et des épices, puis cuites au four, avant d'être mijotées dans une sauce riche et parfumée à base d'oignons caramélisés, de silan (sirop de dattes) et d'un mélange d'ép...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboulettes-poulet-oignon-63-1500x1001-1.jpeg&v=1773681266000",
         "category": "plats",
         "difficulty": "moyen",
@@ -12837,7 +12784,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧅\n 1/2 botte d&rsquo;oignon vert (ciboule)"
+                "name": "🧅\n 1/2 botte d'oignon vert (ciboule)"
             },
             {
                 "quantity": "",
@@ -12877,7 +12824,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾\n Huile d&rsquo;olive (pour la cuisson des boulettes)"
+                "name": "🍾\n Huile d'olive (pour la cuisson des boulettes)"
             },
             {
                 "quantity": "",
@@ -12909,7 +12856,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄\n 1 c. à café d&rsquo;ail granulé"
+                "name": "🧄\n 1 c. à café d'ail granulé"
             },
             {
                 "quantity": "",
@@ -12917,19 +12864,19 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧\n 2,5 tasses d&rsquo;eau"
+                "name": "💧\n 2,5 tasses d'eau"
             },
             {
                 "quantity": "",
-                "name": "🍾\n Huile d&rsquo;olive (pour la cuisson de la sauce)"
+                "name": "🍾\n Huile d'olive (pour la cuisson de la sauce)"
             }
         ],
         "steps": [
-            "**Préparation des boulettes :** Dans un grand bol, mélanger le poulet haché avec l&rsquo;oignon, la courgette et la pomme de terre râpés finement. Ajouter la coriandre, la menthe et l&rsquo;oignon vert hachés, l&rsquo;œuf, la chapelure et toutes les épices (sel, baharat, poivre noir, paprika, hawaij). Arroser d&rsquo;un filet d&rsquo;huile d&rsquo;olive et bien pétrir jusqu&rsquo;à obtenir une pâte homogène.",
-            "Façonner la pâte en boulettes et les disposer sur une plaque de cuisson recouverte de papier sulfurisé. Arroser les boulettes d&rsquo;un filet d&rsquo;huile d&rsquo;olive.",
+            "**Préparation des boulettes :** Dans un grand bol, mélanger le poulet haché avec l'oignon, la courgette et la pomme de terre râpés finement. Ajouter la coriandre, la menthe et l'oignon vert hachés, l'œuf, la chapelure et toutes les épices (sel, baharat, poivre noir, paprika, hawaij). Arroser d'un filet d'huile d'olive et bien pétrir jusqu'à obtenir une pâte homogène.",
+            "Façonner la pâte en boulettes et les disposer sur une plaque de cuisson recouverte de papier sulfurisé. Arroser les boulettes d'un filet d'huile d'olive.",
             "Enfourner les boulettes dans un four préchauffé à 180°C pendant 25 minutes.",
-            "**Préparation de la sauce :** Hacher les oignons en lanières. Dans une cocotte (type sauteuse) avec un peu d&rsquo;huile d&rsquo;olive, faire revenir les oignons à feu doux. Laisser caraméliser les oignons en remuant de temps en temps jusqu&rsquo;à ce qu&rsquo;ils prennent une couleur profonde. Si des résidus se forment au fond, ajouter un peu d&rsquo;eau pour les déglacer et aider à la caramélisation.",
-            "Ajouter les épices (sel, baharat, paprika doux, poivre noir, ail granulé, ras el hanout), le silan et 2,5 tasses d&rsquo;eau dans la cocotte. Fermer et porter à ébullition.",
+            "**Préparation de la sauce :** Hacher les oignons en lanières. Dans une cocotte (type sauteuse) avec un peu d'huile d'olive, faire revenir les oignons à feu doux. Laisser caraméliser les oignons en remuant de temps en temps jusqu'à ce qu'ils prennent une couleur profonde. Si des résidus se forment au fond, ajouter un peu d'eau pour les déglacer et aider à la caramélisation.",
+            "Ajouter les épices (sel, baharat, paprika doux, poivre noir, ail granulé, ras el hanout), le silan et 2,5 tasses d'eau dans la cocotte. Fermer et porter à ébullition.",
             "Incorporer délicatement les boulettes précuites dans la sauce. Fermer la cocotte et laisser mijoter à feu moyen-doux pendant environ 30 minutes.",
             "Éteindre le feu et servir chaud. Bon appétit !"
         ],
@@ -12941,7 +12888,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3626",
         "title": "Houmous bil Lahmé",
-        "description": "Découvrez la recette libanaise authentique du Houmous bil Lahmé, un plat savoureux qui combine la douceur du houmous crémeux avec la richesse d&rsquo;une garniture de viande de bœuf parfumée. Parfait pour un mezzé convivial, ce plat est à la fois ...",
+        "description": "Découvrez la recette libanaise authentique du Houmous bil Lahmé, un plat savoureux qui combine la douceur du houmous crémeux avec la richesse d'une garniture de viande de bœuf parfumée. Parfait pour un mezzé convivial, ce plat est à la fois facile...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHummus-with-Beef-1.jpg&v=1773679217000",
         "category": "aperitifs",
         "difficulty": "moyen",
@@ -13028,14 +12975,14 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer le houmous : faire tremper les pois chiches la veille, puis les cuire jusqu&rsquo;à ce qu&rsquo;ils soient très tendres. Les égoutter en conservant un peu d&rsquo;eau de cuisson.",
-            "Mixer les pois chiches avec le tahini, le jus de citron, l&rsquo;ail, l&rsquo;huile d&rsquo;olive, le cumin (si utilisé), le sel et le poivre jusqu&rsquo;à obtenir une texture lisse et crémeuse. Ajouter un peu d&rsquo;eau de cuisson si nécessaire pour ajuster la consistance.",
+            "Préparer le houmous : faire tremper les pois chiches la veille, puis les cuire jusqu'à ce qu'ils soient très tendres. Les égoutter en conservant un peu d'eau de cuisson.",
+            "Mixer les pois chiches avec le tahini, le jus de citron, l'ail, l'huile d'olive, le cumin (si utilisé), le sel et le poivre jusqu'à obtenir une texture lisse et crémeuse. Ajouter un peu d'eau de cuisson si nécessaire pour ajuster la consistance.",
             "Préparer la garniture de viande : couper le bœuf en petits dés.",
-            "Hacher finement l&rsquo;oignon et l&rsquo;ail.",
-            "Faire dorer les pignons de pin dans une poêle avec un peu d&rsquo;huile d&rsquo;olive ou de ghee.",
-            "Dans la même poêle, faire revenir l&rsquo;oignon et l&rsquo;ail hachés jusqu&rsquo;à ce qu&rsquo;ils soient tendres.",
+            "Hacher finement l'oignon et l'ail.",
+            "Faire dorer les pignons de pin dans une poêle avec un peu d'huile d'olive ou de ghee.",
+            "Dans la même poêle, faire revenir l'oignon et l'ail hachés jusqu'à ce qu'ils soient tendres.",
             "Ajouter les dés de bœuf et faire dorer sur toutes les faces.",
-            "Incorporer les 7 épices libanaises, la mélasse de grenade, le jus de citron, le sel et le poivre. Cuire quelques minutes jusqu&rsquo;à ce que la viande soit bien enrobée et cuite.",
+            "Incorporer les 7 épices libanaises, la mélasse de grenade, le jus de citron, le sel et le poivre. Cuire quelques minutes jusqu'à ce que la viande soit bien enrobée et cuite.",
             "Pour servir, étaler le houmous dans un plat.",
             "Garnir généreusement avec la préparation de viande et les pignons de pin.",
             "Parsemer de persil frais ciselé."
@@ -13094,12 +13041,12 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Faire dorer la pancetta dans une poêle.",
             "Ajouter le beurre et la farine pour former un roux.",
-            "Verser progressivement le lait en mélangeant jusqu&rsquo;à épaississement.",
+            "Verser progressivement le lait en mélangeant jusqu'à épaississement.",
             "Incorporer le fromage Manchego et le jambon.",
-            "Placer la préparation au frais pour qu&rsquo;elle durcisse.",
+            "Placer la préparation au frais pour qu'elle durcisse.",
             "Façonner les croquetas à la main.",
             "Paner les croquetas (passage dans la chapelure).",
-            "Frire dans l&rsquo;huile chaude jusqu&rsquo;à ce qu&rsquo;elles soient dorées."
+            "Frire dans l'huile chaude jusqu'à ce qu'elles soient dorées."
         ],
         "tags": [
             "croquetas",
@@ -13116,7 +13063,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3701",
         "title": "Tarte aux framboises et pistache",
-        "description": "Une délicieuse tarte estivale composée d&rsquo;une pâte sablée croustillante, d&rsquo;une crème d&rsquo;amande (optionnelle), d&rsquo;un coulis de fruits rouges, et d&rsquo;une onctueuse crème pâtissière à la pistache, le tout garni de framboises ...",
+        "description": "Une délicieuse tarte estivale composée d'une pâte sablée croustillante, d'une crème d'amande (optionnelle), d'un coulis de fruits rouges, et d'une onctueuse crème pâtissière à la pistache, le tout garni de framboises fraîches.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773497706585.jpg&v=1773501520000",
         "category": "desserts",
         "difficulty": "moyen",
@@ -13206,7 +13153,7 @@ export const mockRecipes: Recipe[] = [
             "Enfournez la pâte dans un four préchauffé à 160°C pendant 20 min.",
             "Pour la crème d’amande (optionnel) : Mélangez le beurre bien mou, le sucre glace, la poudre d’amande et l’œuf. Versez cette crème dans le fond de tarte précuit et remettez à cuire à 160°C pendant 15 min (jusqu’à ce que tout soit doré).",
             "Pour le coulis de fruits rouges : Faites cuire tout doucement les fruits rouges surgelés et le sucre jusqu’à ébullition. Une fois cuit, mixez et laissez tiédir.",
-            "Étalez le coulis tiède sur votre fond de tarte (avec ou sans crème d&rsquo;amande).",
+            "Étalez le coulis tiède sur votre fond de tarte (avec ou sans crème d'amande).",
             "Pour la crème pâtissière à la pistache : Faites chauffer le lait sur feu moyen.",
             "Dans un autre récipient, fouettez les jaunes d’œufs avec le sucre, puis ajoutez la maïzena et incorporez-la bien.",
             "Une fois que le lait est chaud, versez 1/3 sur le mélange précédent et mélangez bien.",
@@ -13390,7 +13337,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3535",
         "title": "Frites Longues Japonaises",
-        "description": "Découvrez comment préparer des frites longues et croustillantes d&rsquo;inspiration japonaise. Cette recette utilise des pommes de terre écrasées, assaisonnées et frites pour un snack original et savoureux. Parfaites pour un apéritif ou un accompa...",
+        "description": "Découvrez comment préparer des frites longues et croustillantes d'inspiration japonaise. Cette recette utilise des pommes de terre écrasées, assaisonnées et frites pour un snack original et savoureux. Parfaites pour un apéritif ou un accompagnemen...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffrites_japonaises_clean_1773262998128.png&v=1773266623000",
         "category": "plats",
         "difficulty": "moyen",
@@ -13417,7 +13364,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧄 1 cuillère à café de poudre d&rsquo;ail"
+                "name": "🧄 1 cuillère à café de poudre d'ail"
             },
             {
                 "quantity": "",
@@ -13438,19 +13385,19 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Pelez et coupez les pommes de terre en morceaux.",
-            "Faites-les bouillir dans de l&rsquo;eau salée pendant environ 12 à 15 minutes jusqu&rsquo;à ce qu&rsquo;elles soient très tendres.",
-            "Égouttez les pommes de terre et écrasez-les jusqu&rsquo;à obtenir une purée lisse sans grumeaux.",
+            "Faites-les bouillir dans de l'eau salée pendant environ 12 à 15 minutes jusqu'à ce qu'elles soient très tendres.",
+            "Égouttez les pommes de terre et écrasez-les jusqu'à obtenir une purée lisse sans grumeaux.",
             "Laissez refroidir.",
-            "Assaisonnez avec : sel, poivre noir, poudre d&rsquo;ail, paprika, flocons de piment, fécule de maïs et persil.",
-            "Mélangez bien jusqu&rsquo;à ce que le mélange devienne une texture souple semblable à une pâte.",
+            "Assaisonnez avec : sel, poivre noir, poudre d'ail, paprika, flocons de piment, fécule de maïs et persil.",
+            "Mélangez bien jusqu'à ce que le mélange devienne une texture souple semblable à une pâte.",
             "Mettez le mélange de pommes de terre dans un sac de congélation.",
-            "Aplatissez-le uniformément sur une épaisseur d&rsquo;environ 1 à 1,5 cm.",
+            "Aplatissez-le uniformément sur une épaisseur d'environ 1 à 1,5 cm.",
             "Placez le sac au réfrigérateur pendant 30 minutes pour que le mélange durcisse.",
             "Retirez du sac et coupez en forme de longues frites.",
-            "Chauffez l&rsquo;huile à 180°C.",
-            "Placez délicatement les frites dans l&rsquo;huile.",
-            "Important : Ne les bougez pas pendant la première minute pour qu&rsquo;elles se figent et ne se cassent pas.",
-            "Faites frire pendant 3 à 5 minutes jusqu&rsquo;à ce qu&rsquo;elles soient croustillantes et dorées.",
+            "Chauffez l'huile à 180°C.",
+            "Placez délicatement les frites dans l'huile.",
+            "Important : Ne les bougez pas pendant la première minute pour qu'elles se figent et ne se cassent pas.",
+            "Faites frire pendant 3 à 5 minutes jusqu'à ce qu'elles soient croustillantes et dorées.",
             "Retirez et saupoudrez de persil séché sur le dessus."
         ],
         "tags": [
@@ -13466,8 +13413,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3480",
-        "title": "Piccata de poulet à l&rsquo;italienne",
-        "description": "Découvrez une délicieuse recette de Piccata de poulet, un classique de la cuisine italienne. Ce plat savoureux met en vedette des blancs de poulet tendres, parfumés au citron et au thym, accompagnés d&rsquo;une purée de pommes de terre onctueuse. ...",
+        "title": "Piccata de poulet à l'italienne",
+        "description": "Découvrez une délicieuse recette de Piccata de poulet, un classique de la cuisine italienne. Ce plat savoureux met en vedette des blancs de poulet tendres, parfumés au citron et au thym, accompagnés d'une purée de pommes de terre onctueuse. Une re...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3480_1773151081832.png&v=1773154700000",
         "category": "plats",
         "difficulty": "moyen",
@@ -13490,7 +13437,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🌶️ Piment d&rsquo;Espelette"
+                "name": "🌶️ Piment d'Espelette"
             },
             {
                 "quantity": "",
@@ -13546,7 +13493,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3483",
         "title": "CROSTONI SALSICCIA E STRACCHINO",
-        "description": "Découvrez les Crostoni Salsiccia e Stracchino, l&rsquo;antipasto toscan par excellence. Ces délicieuses tranches de pain sont généreusement garnies d&rsquo;un mélange savoureux de saucisse italienne, de stracchino crémeux et de graines de fenouil ...",
+        "description": "Découvrez les Crostoni Salsiccia e Stracchino, l'antipasto toscan par excellence. Ces délicieuses tranches de pain sont généreusement garnies d'un mélange savoureux de saucisse italienne, de stracchino crémeux et de graines de fenouil toastées. Le...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3483_1773151063039.png&v=1773154680000",
         "category": "plats",
         "difficulty": "moyen",
@@ -13573,7 +13520,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾 Huile d&rsquo;olive (pour la plaque de four)"
+                "name": "🍾 Huile d'olive (pour la plaque de four)"
             }
         ],
         "steps": [
@@ -13604,7 +13551,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3486",
         "title": "Cake Caramel Chocolat",
-        "description": "Découvrez la recette gourmande d&rsquo;un cake caramel chocolat, parfait pour les amateurs de douceurs. Ce gâteau combine la richesse du chocolat avec la douceur du caramel beurre salé, le tout enrobé d&rsquo;un glaçage rocher croustillant.",
+        "description": "Découvrez la recette gourmande d'un cake caramel chocolat, parfait pour les amateurs de douceurs. Ce gâteau combine la richesse du chocolat avec la douceur du caramel beurre salé, le tout enrobé d'un glaçage rocher croustillant.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3486_1773151043025.png&v=1773154661000",
         "category": "patisserie",
         "difficulty": "moyen",
@@ -13837,7 +13784,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Cuisson des galettes",
-            "Préparation de la sauce : mélanger le yaourt grec, le jus de citron, la menthe, l&rsquo;ail en poudre et la fleur de sel."
+            "Préparation de la sauce : mélanger le yaourt grec, le jus de citron, la menthe, l'ail en poudre et la fleur de sel."
         ],
         "tags": [
             "accompagnement",
@@ -13854,7 +13801,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "3505",
         "title": "Poulet croustillant sauce aigre-douce",
-        "description": "Cette recette propose de préparer un poulet croustillant enrobé d&rsquo;une sauce savoureuse et équilibrée. Les filets de poulet sont panés avec un mélange de maïzena et de farine, puis frits pour obtenir une texture croustillante. La sauce, à bas...",
+        "description": "Cette recette propose de préparer un poulet croustillant enrobé d'une sauce savoureuse et équilibrée. Les filets de poulet sont panés avec un mélange de maïzena et de farine, puis frits pour obtenir une texture croustillante. La sauce, à base de s...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3505_1773150978428.png&v=1773154601000",
         "category": "plats",
         "difficulty": "moyen",
@@ -13881,7 +13828,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "💧 2 cs d&rsquo;eau"
+                "name": "💧 2 cs d'eau"
             },
             {
                 "quantity": "",
@@ -13909,7 +13856,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍾 1 cs d&rsquo;huile de sésame"
+                "name": "🍾 1 cs d'huile de sésame"
             },
             {
                 "quantity": "",
@@ -14049,7 +13996,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Joji est un restaurant asiatique et plus particulièrement japonais. Nous ne sommes pas ici dans un restaurant avec buffet autour duquel vous trouverez des frites et des nuggets. Vous ne trouverez pas non plus de sushi, de maki ou de brochettes au fromage.",
-            "ici, vous vous trouvez dans un restaurant chaleureusement décoré avec du bois et de la musique. La cuisine y est soignée et typique. L&rsquo;accueil est très sympa et aux petits soins.",
+            "ici, vous vous trouvez dans un restaurant chaleureusement décoré avec du bois et de la musique. La cuisine y est soignée et typique. L'accueil est très sympa et aux petits soins.",
             "Mon plat préféré : Croquettes d’effiloché de porc au kimchi, sauce Haixian",
             "l’accueil, l’ambiance, la musique, le visuel des plats",
             "Un peu cher, pas le meilleur japonais pour moi",
@@ -14087,7 +14034,7 @@ export const mockRecipes: Recipe[] = [
             "Le vrai plus : le stand de pancakes minute. Pancakes salés garnis de bacon, sirop d’érable et œuf au plat ou Pancakes sucrés avec Nutella et fruits frais, c’est vous qui choisissez !",
             "Pour les boissons, direction le bar où une sélection de boissons chaudes est à votre disposition en libre-service (café, thé noir, chaï latte et chocolat chaud). À la demande, de très bons jus de fruits frais sont au choix. Nous avons adoré les mix de fruits, surtout le pomme-gingembre-ananas.",
             "Mon plat préféré : tout est bon !",
-            "l’accueil, l&rsquo;ambiance, la musique",
+            "l’accueil, l'ambiance, la musique",
             "pas de soda compris dans le brunch à 39€",
             "peu importe, la déco est très sympa 😉",
             "2 rue du 4 septembre, 75002 Paris"
@@ -14121,8 +14068,8 @@ export const mockRecipes: Recipe[] = [
             "Au Venezia à Paris, pas un plat typique ne manque à la carte. Vous pouvez alors vous composer un véritable repas italien, comme on en mange à Rome, Naples ou encore Florence : en entrée antipasti, puis penne calabrese, et enfin en dessert le traditionnel tiramisu. Buon appetito !",
             "UN REPAS SANS CHICHIS – L’Italie, c’est avant tout de la convivialité et une ambiance familiale. Des valeurs que ce restaurant n’a pas oubliées ! Une décoration et des mets sans prétention, pour vous sentir aussi à l’aise qu’à la maison.",
             "UN CADRE ACCUEILLANT – Le Venezia se dévoile dans toute sa simplicité et l’on peut alors profiter de tout le charme d’un véritable restaurant italien",
-            "Mon plat préféré : l&rsquo;escalope panée aux spaghettis à la sauce tomate ou Scaloppina di Vitello alla Milanaise",
-            "l&rsquo;accueil, ça parle italien, la déco, les plats, la retransmission des matchs de foot, le prix",
+            "Mon plat préféré : l'escalope panée aux spaghettis à la sauce tomate ou Scaloppina di Vitello alla Milanaise",
+            "l'accueil, ça parle italien, la déco, les plats, la retransmission des matchs de foot, le prix",
             "Celle à côté de la tv, au fond 😉",
             "3 rue Corbineau, 75012 Paris",
             "Metro Bercy (M6, M14) - Bus Bercy (24, 87)",
@@ -14155,10 +14102,10 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous les appétits !",
             "AU PROGRAMME - Une carte le midi, une le soir, et suggestions qui changent tous les jours. En cuisine, on mise sur le frais et les produits du marché.",
-            "GOURMET – Les plats flirtent avec la gastronomie tout en restant simples et bien exécutés : foie gras poêlé sur pain d&rsquo;épice maison, risotto aux girolles, souris d&rsquo;agneau confite ou encore canard à l&rsquo;orange..",
-            "Mon plat préféré : j&rsquo;ai bien aimé le carpaccio de tomates avec sa belle burrata",
+            "GOURMET – Les plats flirtent avec la gastronomie tout en restant simples et bien exécutés : foie gras poêlé sur pain d'épice maison, risotto aux girolles, souris d'agneau confite ou encore canard à l'orange..",
+            "Mon plat préféré : j'ai bien aimé le carpaccio de tomates avec sa belle burrata",
             "l’accueil, la simplicité de la décoration soignée, le service, les plats",
-            "le prix même si c&rsquo;est logique",
+            "le prix même si c'est logique",
             "au fond avec vue sur la cuisine😉",
             "82, allee de Montfermeil, 93340, Le Raincy",
             "Parking Montfermeil (110m)",
@@ -14175,8 +14122,8 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "278",
-        "title": "L&rsquo;Odysee",
-        "description": "    Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l&rsquo;Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La ca...",
+        "title": "L'Odysee",
+        "description": "    Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte es...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557022352000",
         "category": "plats",
         "difficulty": "moyen",
@@ -14191,11 +14138,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l&rsquo;Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte est minimaliste, les crêpes sont dans la moyenne mais il n&rsquo;y a rien de spécial. Perso, je n&rsquo;y retournerai pas mais l&rsquo;ambiance est « assez » sympa.",
+            "Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte est minimaliste, les crêpes sont dans la moyenne mais il n'y a rien de spécial. Perso, je n'y retournerai pas mais l'ambiance est « assez » sympa.",
             "Mon plat préféré : La Vulcan (Reblochon de Suisse, pommes de terre, lardons, emmental, oignons caramélisés au cidre)",
             "La décoration, les vidéos Star Wars en tâche de fond.",
             "Prix dans la moyenne, peu de choix, galère pour se garer.",
-            "Celle devant l&rsquo;écran.",
+            "Celle devant l'écran.",
             "6 Rue Dante, 75005 Paris",
             "M10 –Maubert-Mutualité"
         ],
@@ -14209,7 +14156,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "237",
         "title": "Le club des cinq",
-        "description": "    Cinq amis recréent le mythique Club des Cinq grâce à un restaurant à la décoration très revival 80&rsquo;s. Vous pourrez admirer la photo de Mac Gyver ou celle de Goldorak qui ornent les murs de l&rsquo;endroit, et vous dînerez adossé à une bi...",
+        "description": "    Cinq amis recréent le mythique Club des Cinq grâce à un restaurant à la décoration très revival 80's. Vous pourrez admirer la photo de Mac Gyver ou celle de Goldorak qui ornent les murs de l'endroit, et vous dînerez adossé à une bibliothèque r...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F03%2Fclub.jpg&v=1526258087000",
         "category": "plats",
         "difficulty": "moyen",
@@ -14224,11 +14171,11 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Cinq amis recréent le mythique Club des Cinq grâce à un restaurant à la décoration très revival 80&rsquo;s. Vous pourrez admirer la photo de Mac Gyver ou celle de Goldorak qui ornent les murs de l&rsquo;endroit, et vous dînerez adossé à une bibliothèque remplie de BD de Tintin, de Rubik&rsquo;s cube et autres objets qui vous rappelleront les souvenirs de votre adolescence.",
-            "Côté nourriture, on retrouve un mélange de la cuisine traditionnelle et de celle de notre enfance. Envie d&rsquo;une salade de Babybels rôtis ? D&rsquo;un foie gras avec sa confiture d&rsquo;oignon à la grenadine ? Ou d&rsquo;un Tiramisu au Kinder ? Au Club des Cinq, c&rsquo;est ambiance régressive assurée !",
-            "Une bonne adresse pour un resto à faire en bande d&rsquo;amis.",
+            "Cinq amis recréent le mythique Club des Cinq grâce à un restaurant à la décoration très revival 80's. Vous pourrez admirer la photo de Mac Gyver ou celle de Goldorak qui ornent les murs de l'endroit, et vous dînerez adossé à une bibliothèque remplie de BD de Tintin, de Rubik's cube et autres objets qui vous rappelleront les souvenirs de votre adolescence.",
+            "Côté nourriture, on retrouve un mélange de la cuisine traditionnelle et de celle de notre enfance. Envie d'une salade de Babybels rôtis ? D'un foie gras avec sa confiture d'oignon à la grenadine ? Ou d'un Tiramisu au Kinder ? Au Club des Cinq, c'est ambiance régressive assurée !",
+            "Une bonne adresse pour un resto à faire en bande d'amis.",
             "Mon plat préféré : le burger au poulet croustillant et avocat.",
-            "  Le service, l&rsquo;ambiance, la musique des année 80.",
+            "  Le service, l'ambiance, la musique des année 80.",
             "  Les desserts pas très savoureux.",
             " Au fond, sur la banquette, en face de la salle de classe.",
             " 7 rue des Batignolles, 75017, Paris  "
@@ -14293,9 +14240,9 @@ export const mockRecipes: Recipe[] = [
             "Attention ovni ou plutôt Yūfō en nippon....",
             "Connaissez vous les rāmen  ? Mais si vous savez les soupes avec plein de trucs dedans !",
             "A la base, le Ramen est un plat chinois à base de pâtes tirées à la main par le cuisinier appelés la mian. Le premier Japonais à avoir goûté aux  rāmen  serait  Tokugawa Mitsukuni  (1628-1701), seigneur du  clan Mito , à l’ époque d’Edo , . Un lettré chinois en exil au Japon,  Zhu Zhiyu   (en)  (1600-1682), lui aurait présenté des nouilles composées de farine de blé tendre et de poudre de racine de lotus, une soupe de nouilles proche des  udon . Cette variété de  rāmen  est encore commercialisée de nos jours sous l’appellation  Mito-han rāmen  ( rāmen  du clan Mito), dans la ville de  Mito .",
-            "Le restaurant de République est tout petit et les serveurs criant les ordres en japonais assez speed et pour la moitié de type européen jeunes et disponibles. Assez surprenant quand tu vois une grande blonde crier kashitsuke ! Les tables collées contre les murs sont assez petites et le confort est assez minimaliste mais malgré tout on s&rsquo;y sent bien. Si vous pouvez vous percher sur les tabourets du bar devant la cuisine au fond du restau, allez-y ! Vous pourrez découvrir le sérieux et le professionnalisme des cuisiniers qui posent délicatement les ingrédients dans les  rāmen  ou qui préparent amoureusement les buns.",
+            "Le restaurant de République est tout petit et les serveurs criant les ordres en japonais assez speed et pour la moitié de type européen jeunes et disponibles. Assez surprenant quand tu vois une grande blonde crier kashitsuke ! Les tables collées contre les murs sont assez petites et le confort est assez minimaliste mais malgré tout on s'y sent bien. Si vous pouvez vous percher sur les tabourets du bar devant la cuisine au fond du restau, allez-y ! Vous pourrez découvrir le sérieux et le professionnalisme des cuisiniers qui posent délicatement les ingrédients dans les  rāmen  ou qui préparent amoureusement les buns.",
             "Mon plat préféré : les buns évidemment.",
-            "  Le service, les buns au porc, l&rsquo;ambiance nippone, le prix.",
+            "  Le service, les buns au porc, l'ambiance nippone, le prix.",
             "  Peu de tables et les places de stationnement sont rares.",
             " Le comptoir devant la cuisine !",
             "  6 place Jacques Bonsergent 75010 Paris  ",
@@ -14313,7 +14260,7 @@ export const mockRecipes: Recipe[] = [
     {
         "id": "115",
         "title": "Trattoria La Cicciolina",
-        "description": "    Ce nouveau resto italien a décidément beaucoup d’allure. Son patronyme quelque peu coquin : La Cicciolina. Le propriétaire Max, il pizz aiolo Francesco et l&rsquo;équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies s...",
+        "description": "    Ce nouveau resto italien a décidément beaucoup d’allure. Son patronyme quelque peu coquin : La Cicciolina. Le propriétaire Max, il pizz aiolo Francesco et l'équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies spécial...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2Ffolsom-studio-decoration-restaurant-paris-cicciolina_00028-1376x916.jpg&v=1519243312000",
         "category": "plats",
         "difficulty": "moyen",
@@ -14330,13 +14277,13 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Ce nouveau resto italien a décidément beaucoup d’allure.",
             "Son patronyme quelque peu coquin : La Cicciolina.",
-            "Le propriétaire Max, il pizz aiolo Francesco et l&rsquo;équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies spécialités italiennes !",
-            "L&rsquo;essentiel de l&rsquo;Italie – Chez La Cicciolina, tous les produits sont frais et fabriqués artisanalement avec des ingrédients sélectionnés pour leurs saveurs. Côté carte, le choix est large : pizzas bien sûr mais aussi de grands classiques parfaitement maîtrisés (melanzane alla parmigiana, gnocchis alla sorrentina…).",
-            "Un lieu à connaître – Depuis le Métro Ménilmontant, vous n’aurez aucun mal à rejoindre cette adresse. Une table ? La table avec l’olivier au milieu.  Ambiance se prêtant aussi bien au rencart qu&rsquo;à la soirée entre amis.",
+            "Le propriétaire Max, il pizz aiolo Francesco et l'équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies spécialités italiennes !",
+            "L'essentiel de l'Italie – Chez La Cicciolina, tous les produits sont frais et fabriqués artisanalement avec des ingrédients sélectionnés pour leurs saveurs. Côté carte, le choix est large : pizzas bien sûr mais aussi de grands classiques parfaitement maîtrisés (melanzane alla parmigiana, gnocchis alla sorrentina…).",
+            "Un lieu à connaître – Depuis le Métro Ménilmontant, vous n’aurez aucun mal à rejoindre cette adresse. Une table ? La table avec l’olivier au milieu.  Ambiance se prêtant aussi bien au rencart qu'à la soirée entre amis.",
             "Mon plat préféré : la burrata accompagnée des 2 parts de pizza typique",
-            " Les pizzas, l&rsquo;atmosphère romantique, le foot sur l&rsquo;écran géant, la terrasse,facile pour se garer.",
+            " Les pizzas, l'atmosphère romantique, le foot sur l'écran géant, la terrasse,facile pour se garer.",
             " Un petit peu   cher et pas trop de choix.",
-            " Celle avec l&rsquo;olivier !  ",
+            " Celle avec l'olivier !  ",
             " 11 rue Crespin du Gast 75011 Paris  "
         ],
         "tags": [
