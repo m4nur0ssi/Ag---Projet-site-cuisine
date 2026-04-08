@@ -513,7 +513,8 @@ function ThematicGroup({ activeTags }: { activeTags: string[] }) {
     const thematiques = [
         { id: 'paques', name: 'Pâques est là', tags: ['Pâques'], image: '/images/themes/paques.jpg?v=999' },
         { id: 'noel', name: "C'est Noël", tags: ['Noël'], image: '/images/themes/noel.jpg' },
-        { id: 'astuces', name: 'Astuces', tags: ['Astuces'], image: '/images/themes/astuces.jpg' },
+        { id: 'glaces', name: 'Les Glaces', tags: ['glaces'], image: '/images/themes/glaces.jpg' },
+        { id: 'rafraichissements', name: 'Rafraîchissements', tags: ['rafraichissements'], image: '/images/themes/rafraichissements.jpg' },
         { id: 'simplissime', name: 'Simplissime', tags: ['Simplissime'], image: '/images/themes/simplissime.jpg' },
         { id: 'dolce-vita', name: 'La Dolce Vita', tags: ['Italie'], image: '/images/themes/dolce-vita.jpg' }
     ];
