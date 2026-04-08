@@ -55,6 +55,26 @@ function HomeContent() {
                     return recipeTags.some(t => t.toLowerCase() === 'pâques' || t.toLowerCase() === 'agneau') || title.includes('agneau');
                 }
 
+                // Thématiques saisonnières
+                if (tagLower === 'voila-lete') {
+                    return recipeCat === 'voila-lete' || recipeTags.some(t => t.includes('été') || t.includes('ete') || t.toLowerCase().includes("voilà") || t.includes('voila-lete'));
+                }
+                if (tagLower === 'cest-lhiver') {
+                    return recipeCat === 'cest-lhiver' || recipeTags.some(t => t.includes('hiver') || t.toLowerCase().includes("c'est l'hiver") || t.includes('cest-lhiver'));
+                }
+                if (tagLower === 'glaces') {
+                    return recipeCat === 'glaces' || recipeTags.some(t => t.includes('glace') || t.includes('sorbet') || t.includes('gelato'));
+                }
+                if (tagLower === 'rafraichissements') {
+                    return recipeCat === 'rafraichissements' || recipeTags.some(t => t.includes('rafra'));
+                }
+                if (tagLower === 'noël' || tagLower === 'noel') {
+                    return recipeTags.some(t => t.toLowerCase().includes('noël') || t.toLowerCase().includes('noel'));
+                }
+                if (tagLower === 'simplissime') {
+                    return recipeTags.some(t => t.toLowerCase().includes('simplissime'));
+                }
+
                 // Pour les pays (France, Italie, etc.)
                 const countries = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'asie', 'afrique'];
                 if (countries.includes(tagLower)) {

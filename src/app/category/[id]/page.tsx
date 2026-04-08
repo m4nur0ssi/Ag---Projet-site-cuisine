@@ -9,7 +9,14 @@ const categories = {
     'vegetarien': { name: 'Végétarien', icon: '🥬' },
     'desserts': { name: 'Desserts', icon: '🍰' },
     'patisserie': { name: 'Pâtisserie', icon: '🥐' },
-    'restaurant': { name: 'Restaurant', icon: '🍽️' }
+    'restaurant': { name: 'Restaurant', icon: '🍽️' },
+    'voila-lete': { name: "Voilà l'Été ☀️", icon: '☀️' },
+    'cest-lhiver': { name: "C'est l'Hiver ❄️", icon: '❄️' },
+    'glaces': { name: 'Les Glaces 🍨', icon: '🍨' },
+    'rafraichissements': { name: 'Rafraîchissements 🥤', icon: '🥤' },
+    'noel': { name: "C'est Noël 🎄", icon: '🎄' },
+    'paques': { name: 'Pâques 🐣', icon: '🐣' },
+    'simplissime': { name: 'Simplissime ⚡', icon: '⚡' }
 };
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
@@ -29,11 +36,32 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
         const cat = r.category?.toLowerCase() || "";
         const catId = id.toLowerCase();
         
-        // 1. Logique Spéciale Végétarien
+        // 1. Logique Spéciale : catégories par TAG (thématiques saisonnières)
         if (catId === 'vegetarien') {
             return tags.some(t => t.includes('végé') || t.includes('vege') || t.includes('vegetarien')) || 
                    cat.includes('vegetarien') || 
                    title.includes('végé') || title.includes('vgt');
+        }
+        if (catId === 'voila-lete') {
+            return cat === 'voila-lete' || tags.some(t => t.includes('été') || t.includes('ete') || t === "voilà l'été" || t.includes('voila-lete'));
+        }
+        if (catId === 'cest-lhiver') {
+            return cat === 'cest-lhiver' || tags.some(t => t.includes('hiver') || t === "c'est l'hiver" || t.includes('cest-lhiver'));
+        }
+        if (catId === 'glaces') {
+            return cat === 'glaces' || tags.some(t => t.includes('glace') || t.includes('sorbet') || t.includes('gelato'));
+        }
+        if (catId === 'rafraichissements') {
+            return cat === 'rafraichissements' || tags.some(t => t.includes('rafra'));
+        }
+        if (catId === 'noel') {
+            return tags.some(t => t.toLowerCase().includes('noël') || t.toLowerCase().includes('noel'));
+        }
+        if (catId === 'paques') {
+            return tags.some(t => t.toLowerCase().includes('pâques') || t.toLowerCase().includes('paques') || t.toLowerCase().includes('agneau'));
+        }
+        if (catId === 'simplissime') {
+            return tags.some(t => t.toLowerCase().includes('simplissime'));
         }
 
         // 2. Détection du type de plat (Salé vs Sucré)

@@ -60,7 +60,13 @@ function decodeHtmlEntities(text) {
         .replace(/&laquo;/g, '"')
         .replace(/&raquo;/g, '"')
         .replace(/&nbsp;/g, " ")
-        .replace(/\u00A0/g, " ");
+        .replace(/\u00A0/g, " ")
+        // Caractères typographiques Unicode directs (WordPress Smart Quotes)
+        .replace(/[\u2018\u2019\u201A\u201B]/g, "'")
+        .replace(/[\u201C\u201D\u201E\u201F]/g, '"')
+        .replace(/[\u2013\u2014]/g, "-")
+        .replace(/\u2026/g, "...")
+        .replace(/\u00AB/g, '"').replace(/\u00BB/g, '"');
 }
 
 /**
