@@ -96,8 +96,13 @@ async function handleRequest(request: Request) {
         const checkOnly = searchParams.get('checkOnly') === 'true';
 
         let body: any = {};
+        let rawBodyText = '';
         if (request.method === 'POST') {
-            try { body = await request.json(); } catch (e) { }
+            // Lire le body UNE SEULE FOIS en texte brut, puis tenter le parse JSON
+            try { rawBodyText = await request.text(); } catch (e) { }
+            if (rawBodyText) {
+                try { body = JSON.parse(rawBodyText); } catch (e) { }
+            }
         }
 
         const finalSecret = secret || body.secret || '';
@@ -108,9 +113,10 @@ async function handleRequest(request: Request) {
         }
 
         // --- MODE TIKTOK ---
+        // Cherche l'URL dans les params GET, le body JSON, ou le texte brut du body
         let videoUrl = searchParams.get('url') || body.url || body.videoUrl || '';
-        if (!videoUrl && request.method === 'POST') {
-            try { const t = await request.clone().text(); if (t.includes('tiktok.com')) videoUrl = t.trim(); } catch (e) { }
+        if (!videoUrl && rawBodyText && rawBodyText.includes('tiktok.com')) {
+            videoUrl = rawBodyText.trim();
         }
 
         // --- MODE MENU PAYS (checkOnly sans URL) ---
@@ -159,18 +165,15 @@ async function handleRequest(request: Request) {
         let selectedCountry = searchParams.get('country') || body.country || searchParams.get('pays') || body.pays || body.selection || '';
 
         // Si c'est un POST avec du texte brut (souvent le cas des raccourcis iOS)
-        if (!selectedCountry && request.method === 'POST') {
-            try {
-                const rawBody = await request.clone().text();
-                // Si le corps contient juste le nom du pays ou "pays=France"
-                if (rawBody.length < 50) {
-                    if (rawBody.includes('=')) {
-                        selectedCountry = rawBody.split('=')[1];
-                    } else {
-                        selectedCountry = rawBody.trim();
-                    }
+        if (!selectedCountry && request.method === 'POST' && rawBodyText) {
+            // Si le corps contient juste le nom du pays ou "pays=France"
+            if (rawBodyText.length < 50) {
+                if (rawBodyText.includes('=')) {
+                    selectedCountry = rawBodyText.split('=')[1];
+                } else {
+                    selectedCountry = rawBodyText.trim();
                 }
-            } catch (e) { }
+            }
         }
 
         const githubToken = process.env.GITHUB_PAT;
