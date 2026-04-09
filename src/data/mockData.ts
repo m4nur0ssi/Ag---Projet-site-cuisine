@@ -2,11 +2,69 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/04/2026 18:23:09
- * Total: 194 recettes
+ * Dernière mise à jour: 09/04/2026 22:05:18
+ * Total: 195 recettes
  */
-export const exportSyncId = "1775758989593";
+export const exportSyncId = "1775772318486";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5031",
+        "title": "Citron liégeois",
+        "description": "Un dessert frais et onctueux, le Citron Liégeois combine un lemon curd maison acidulé avec une chantilly légère, le tout poché pour une présentation élégante et un mélange de saveurs en bouche.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775772180743.jpg&v=1775779410000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626809436673215766\" data-video-id=\"7626809436673215766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626809436673215766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n             150 ml de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 cas de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             120 ml de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             90 g de sucrant au choix (70g + 20g)"
+            }
+        ],
+        "steps": [
+            "Commencer par fouetter les 3 oeufs avec 70g de sucrant jusqu'à obtenir un mélange mousseux.",
+            "Faire bouillir les 150 ml de jus de citron 1 à 2 minutes à feu vif dans une casserole.",
+            "Verser le jus de citron chaud sur le mélange oeufs/sucrant en remuant énergiquement.",
+            "Remettre la préparation sur feu moyen et cuire pendant 3 minutes sans cesser de remuer, jusqu'à épaississement.",
+            "Hors du feu, ajouter les 50g de beurre en morceaux et fouetter pour lier l'ensemble.",
+            "Réserver le lemon curd obtenu au frais pendant 1 à 2 heures.",
+            "Monter les 120 ml de crème liquide entière en chantilly avec les 20g de sucrant restant, au batteur, pendant environ 5 minutes.",
+            "Mettre une douille dans une poche à douille.",
+            "Garnir deux autres poches à douille séparées avec le lemon curd et la chantilly, puis couper leurs extrémités.",
+            "Enfiler les deux poches (lemon curd et chantilly) dans la poche à douille principale.",
+            "Pocher le Citron Liégeois pour obtenir un dessert bi-goût."
+        ],
+        "tags": [
+            "citron",
+            "Desserts"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5028",
         "title": "Salade de pommes de terre rôties à la burrata",
