@@ -8,7 +8,7 @@ const fetch = require('node-fetch');
  * @returns {Promise<any>} - The parsed JSON response or raw text
  */
 async function callClaude(prompt, model = 'claude-sonnet-4-6') {
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    const apiKey = (process.env.ANTHROPIC_API_KEY || '').trim().replace(/[\r\n\t]/g, '');
     if (!apiKey) {
         console.error("   ⚠️ ANTHROPIC_API_KEY manquante dans le .env");
         return null;
