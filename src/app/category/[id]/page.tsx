@@ -43,10 +43,16 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
                    title.includes('végé') || title.includes('vgt');
         }
         if (catId === 'voila-lete') {
-            return cat === 'voila-lete' || tags.some(t => t.includes('été') || t.includes('ete') || t === "voilà l'été" || t.includes('voila-lete'));
+            const summerKeywords = ['été', 'ete', 'voilà', 'voila-lete', 'salade', 'bbq', 'barbecue', 'grillade', 'plancha'];
+            return cat === 'voila-lete' || 
+                   tags.some(t => summerKeywords.some(k => t.toLowerCase().includes(k))) ||
+                   summerKeywords.some(k => title.toLowerCase().includes(k));
         }
         if (catId === 'cest-lhiver') {
-            return cat === 'cest-lhiver' || tags.some(t => t.includes('hiver') || t === "c'est l'hiver" || t.includes('cest-lhiver'));
+            const winterKeywords = ['hiver', "c'est l'hiver", 'cest-lhiver', 'soupe', 'velouté', 'gratin', 'four', 'réconfortant', 'familial', 'pot-au-feu', 'tartiflette', 'raclette'];
+            return cat === 'cest-lhiver' || 
+                   tags.some(t => winterKeywords.some(k => t.toLowerCase().includes(k))) ||
+                   winterKeywords.some(k => title.toLowerCase().includes(k));
         }
         if (catId === 'glaces') {
             return cat === 'glaces' || tags.some(t => t.includes('glace') || t.includes('sorbet') || t.includes('gelato'));

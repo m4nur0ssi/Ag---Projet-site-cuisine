@@ -57,10 +57,16 @@ function HomeContent() {
 
                 // Thématiques saisonnières
                 if (tagLower === 'voila-lete') {
-                    return recipeCat === 'voila-lete' || recipeTags.some(t => t.includes('été') || t.includes('ete') || t.toLowerCase().includes("voilà") || t.includes('voila-lete'));
+                    const summerKeywords = ['été', 'ete', 'voilà', 'voila-lete', 'salade', 'bbq', 'barbecue', 'grillade', 'plancha'];
+                    return recipeCat === 'voila-lete' || 
+                           recipeTags.some(t => summerKeywords.some(k => t.toLowerCase().includes(k))) ||
+                           summerKeywords.some(k => title.toLowerCase().includes(k));
                 }
                 if (tagLower === 'cest-lhiver') {
-                    return recipeCat === 'cest-lhiver' || recipeTags.some(t => t.includes('hiver') || t.toLowerCase().includes("c'est l'hiver") || t.includes('cest-lhiver'));
+                    const winterKeywords = ['hiver', "c'est l'hiver", 'cest-lhiver', 'soupe', 'velouté', 'gratin', 'four', 'réconfortant', 'familial', 'pot-au-feu', 'tartiflette', 'raclette'];
+                    return recipeCat === 'cest-lhiver' || 
+                           recipeTags.some(t => winterKeywords.some(k => t.toLowerCase().includes(k))) ||
+                           winterKeywords.some(k => title.toLowerCase().includes(k));
                 }
                 if (tagLower === 'glaces') {
                     return recipeCat === 'glaces' || recipeTags.some(t => t.includes('glace') || t.includes('sorbet') || t.includes('gelato'));
