@@ -1,5 +1,9 @@
 {
-  "lastSync": "2026-04-09T10:14:19.180Z",
-  "totalRecipes": 187,
-  "environment": "local"
+  "lastSync": "2026-04-09T10:19:54Z",
+  "trigger": "workflow_dispatch",
+  "action": "recent",
+  "postId": "",
+  "mode": "recent",
+  "status": "success",
+  "ts": 1775729994
 }
