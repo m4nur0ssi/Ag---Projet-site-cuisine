@@ -2,11 +2,113 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/04/2026 18:03:55
- * Total: 193 recettes
+ * Dernière mise à jour: 09/04/2026 18:23:09
+ * Total: 194 recettes
  */
-export const exportSyncId = "1775757835184";
+export const exportSyncId = "1775758989593";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5028",
+        "title": "Salade de pommes de terre rôties à la burrata",
+        "description": "Une salade originale et gourmande composée de pommes de terre grenailles rôties, de courgettes caramélisées au soja, d'olives, de parmesan et d'une burrata crémeuse, le tout relevé par une sauce fraîche aux tomates cerises, citron et herbes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775758867702.jpg&v=1775766081000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618991785041349910\" data-video-id=\"7618991785041349910\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618991785041349910\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             500g de pommes de terre grenailles"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             20g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cas de soja salé"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Une poignée de salade (ou herbes)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60g d'olives noires"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             150g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             6g de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zeste + le jus d'1 citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cas d'huile tournesol"
+            }
+        ],
+        "steps": [
+            "Laver les pommes de terre, les couper en deux et les faire rôtir au four avec le beurre coupé en morceaux et du sel, pendant 30 minutes à 200 degrés.",
+            "Couper les courgettes et les faire revenir 10 minutes dans une poêle avec un filet d'huile et du thym. Ajouter le soja et les faire caraméliser à feu fort pendant 5 minutes.",
+            "Pour la sauce, mélanger dans un bol tous les ingrédients : tomates cerises, persil, échalote, ail émincé, sel, zeste et jus de citron, miel, huile d'olive et huile de tournesol.",
+            "Dans un saladier, mélanger les pommes de terre juste tièdes, la salade (ou herbes), les courgettes caramélisées, la sauce, les olives coupées en petits morceaux et le parmesan râpé.",
+            "Servir la salade avec la burrata."
+        ],
+        "tags": [
+            "Entrées",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5025",
         "title": "Top 3 meilleures recettes de knacki",
