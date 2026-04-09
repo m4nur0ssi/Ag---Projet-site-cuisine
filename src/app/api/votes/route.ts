@@ -1,95 +1,95 @@
 import { NextResponse } from 'next/server';
 
 /**
- * LOGIQUE DE SYNCHRONISATION MONDIALE (FIREBASE / FIRESTORE)
- * On utilise l'API REST native de Google Firestore pour une synchronisation optimale.
- * Variables requises dans .env.local :
- * - FIREBASE_PROJECT_ID: L'ID de ton projet Firebase
- * - FIREBASE_API_KEY: (Optionnel pour REST public)
+ * API Votes — Supabase (REST natif, zéro SDK)
+ * Variables Vercel requises :
+ *   NEXT_PUBLIC_SUPABASE_URL  = https://wtlyosjvmutrkinyvrqu.supabase.co
+ *   SUPABASE_SERVICE_ROLE_KEY = sb_secret_...
  */
 
-const PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
-const DATABASE_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/votes`;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+function supabaseHeaders() {
+    return {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY!,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Prefer': 'return=representation'
+    };
+}
+
+// ── GET /api/votes?recipeId=xxx ──────────────────────────────────────────────
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const recipeId = searchParams.get('recipeId');
 
-    if (!PROJECT_ID) {
-        console.warn('⚠️ Firebase Project ID non configuré. Mode local uniquement.');
-        return NextResponse.json({ votes: 0, warning: 'Firebase ID missing' });
+    if (!SUPABASE_URL || !SUPABASE_KEY) {
+        console.warn('⚠️ Supabase non configuré — votes locaux uniquement.');
+        return NextResponse.json({ votes: 0, warning: 'Supabase not configured' });
     }
 
     try {
         if (recipeId) {
-            const res = await fetch(`${DATABASE_URL}/${recipeId}`, {
-                next: { revalidate: 0 }
-            });
-            
-            if (!res.ok) return NextResponse.json({ votes: 0 }); // Document n'existe pas encore
-            
-            const data = await res.json();
-            // Firestore format: fields.count.integerValue
-            const votes = parseInt(data.fields?.count?.integerValue || "0");
+            const res = await fetch(
+                `${SUPABASE_URL}/rest/v1/votes?recipe_id=eq.${encodeURIComponent(recipeId)}&select=count`,
+                { headers: supabaseHeaders(), next: { revalidate: 0 } }
+            );
+
+            if (!res.ok) {
+                const err = await res.text();
+                console.error('Supabase GET error:', err);
+                return NextResponse.json({ votes: 0 });
+            }
+
+            const rows = await res.json();
+            const votes = rows.length > 0 ? (rows[0].count ?? 0) : 0;
             return NextResponse.json({ votes });
         }
 
-        // Tout récupérer (List Documents)
-        const res = await fetch(DATABASE_URL);
-        const data = await res.json();
-        const simplified = (data.documents || []).map((doc: any) => ({
-            id: doc.name.split('/').pop(),
-            votes: parseInt(doc.fields?.count?.integerValue || "0")
-        }));
-        return NextResponse.json(simplified);
+        // Tous les votes (pour usage futur)
+        const res = await fetch(
+            `${SUPABASE_URL}/rest/v1/votes?select=recipe_id,count`,
+            { headers: supabaseHeaders() }
+        );
+        const rows = await res.json();
+        return NextResponse.json(rows);
+
     } catch (e: any) {
-        return NextResponse.json({ error: e.message }, { status: 500 });
+        console.error('API Votes GET error:', e.message);
+        return NextResponse.json({ votes: 0, error: e.message });
     }
 }
 
+// ── POST /api/votes  { recipeId, action: 'add'|'remove' } ───────────────────
 export async function POST(request: Request) {
-    if (!PROJECT_ID) {
-        return NextResponse.json({ error: 'Firebase non configuré' }, { status: 500 });
+    if (!SUPABASE_URL || !SUPABASE_KEY) {
+        return NextResponse.json({ error: 'Supabase non configuré' }, { status: 500 });
     }
 
     try {
         const { recipeId, action } = await request.json();
-        if (!recipeId) return NextResponse.json({ error: 'ID manquant' }, { status: 400 });
+        if (!recipeId) return NextResponse.json({ error: 'recipeId manquant' }, { status: 400 });
 
-        // 1. Récupérer le compte actuel pour faire un "Update"
-        const getRes = await fetch(`${DATABASE_URL}/${recipeId}`);
-        let currentCount = 0;
-        
-        if (getRes.ok) {
-            const currentData = await getRes.json();
-            currentCount = parseInt(currentData.fields?.count?.integerValue || "0");
-        }
+        const fnName = action === 'remove' ? 'decrement_vote' : 'increment_vote';
 
-        // 2. Calculer le nouveau compte
-        const newCount = action === 'remove' ? Math.max(0, currentCount - 1) : currentCount + 1;
-
-        // 3. Update/Create (PATCH sur Firestore REST)
-        // Note: L'API REST de Firestore utilise un système de masquage pour les mises à jour
-        const updateRes = await fetch(`${DATABASE_URL}/${recipeId}?updateMask.fieldPaths=count`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                fields: {
-                    count: { integerValue: String(newCount) }
-                }
-            })
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fnName}`, {
+            method: 'POST',
+            headers: supabaseHeaders(),
+            body: JSON.stringify({ rid: recipeId })
         });
 
-        if (!updateRes.ok) {
-            const err = await updateRes.text();
-            throw new Error(`Erreur Firestore: ${err}`);
+        if (!res.ok) {
+            const err = await res.text();
+            console.error(`Supabase RPC ${fnName} error:`, err);
+            throw new Error(`Supabase error: ${err}`);
         }
 
-        return NextResponse.json({ success: true, votes: newCount });
+        const newCount = await res.json();
+        return NextResponse.json({ success: true, votes: newCount ?? 0 });
+
     } catch (e: any) {
-        console.error('API Votes Firestore Error:', e);
+        console.error('API Votes POST error:', e.message);
         return NextResponse.json({ error: e.message }, { status: 500 });
     }
 }
