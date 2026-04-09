@@ -7,11 +7,12 @@ const { sendNotificationEmail } = require('./email-notifier');
 const { searchPhoto } = require('./photo-search');
 
 const { callGemini } = require('./gemini-config');
+const { callClaude } = require('./claude-config');
 
 async function isRecipeWithGemini(description, title) {
     const desc = (description || '').toLowerCase();
     const isManual = desc.includes('iphone') || desc.includes('remote') || (title && title.toLowerCase().includes('iphone'));
-    
+
     // On a réduit la sévérité : si c'est manuel ou un "Stub" WordPress, on tente l'analyse même avec peu de texte
     const isStub = title && title.includes('attente');
     if (!description || description.trim().length < 5) {
@@ -53,12 +54,12 @@ async function isRecipeWithGemini(description, title) {
     4. NE PAS utiliser le tag "Famille" (supprimé).`;
 
     const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest', 'gemini-2.5-pro', 'gemini-pro-latest'];
-    
+
     for (const model of models) {
         try {
             console.log(`   🧠 Analyse Gemini (${model})...`);
             const parsed = await callGemini(prompt, model, true);
-            
+
             if (parsed) {
                 if (parsed.isRecipe) {
                     console.log(`   ✅ Succès avec ${model} !`);
@@ -71,12 +72,35 @@ async function isRecipeWithGemini(description, title) {
             }
         } catch (e) {
             if (e.message === 'QUOTA_EXCEEDED') {
-                console.error(`   🚨 Toutes les clés API ont épuisé leur quota.`);
-                return { isRecipe: true, isQuotaExceeded: true };
+                console.error(`   🚨 Quota Gemini épuisé — Tentative avec Claude (Anthropic)...`);
+                break; // Sortir de la boucle Gemini et tenter Claude
             }
             console.error(`   ❌ Exception ${model}:`, e.message);
         }
     }
+
+    // 🔄 FALLBACK : Claude (Anthropic) si Gemini est en quota ou indisponible
+    if (process.env.ANTHROPIC_API_KEY) {
+        try {
+            console.log(`   🤖 Fallback Claude (claude-sonnet-4-6)...`);
+            const parsed = await callClaude(prompt, 'claude-sonnet-4-6');
+            if (parsed) {
+                if (parsed.isRecipe) {
+                    console.log(`   ✅ Succès avec Claude !`);
+                    parsed.recipeName = parsed.recipeName || parsed.title || parsed.name || "Nouvelle Recette";
+                    return parsed;
+                } else {
+                    console.log(`   🚫 Claude dit : Ce n'est pas une recette.`);
+                    return parsed;
+                }
+            }
+        } catch (e) {
+            console.error(`   ❌ Exception Claude:`, e.message);
+        }
+    } else {
+        console.error(`   ⚠️ ANTHROPIC_API_KEY manquante — impossible d'utiliser Claude comme fallback.`);
+    }
+
     return null;
 }
 
@@ -90,8 +114,8 @@ async function fetchTikTokMetadata(videoUrl) {
             webId ? `ttwid=${webId}` : ''
         ].filter(Boolean).join('; ');
 
-        const res = await fetch(videoUrl, { 
-            headers: { 
+        const res = await fetch(videoUrl, {
+            headers: {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 'Cookie': cookieStr
@@ -99,20 +123,20 @@ async function fetchTikTokMetadata(videoUrl) {
             redirect: 'follow'
         });
         const html = await res.text();
-        
+
         // Tentative 1 : JSON Rehydration (Le plus fiable)
         const jsonMatch = html.match(/<script id="__UNIVERSAL_DATA_FOR_REHYDRATION__" type="application\/json">([\s\S]*?)<\/script>/);
         if (jsonMatch) {
             const data = JSON.parse(jsonMatch[1]);
             const scope = data.__DEFAULT_SCOPE__ || {};
             // On cherche dans plusieurs chemins possibles (desktop vs mobile/reflow)
-            const itemStruct = scope['webapp.video-detail']?.itemInfo?.itemStruct || 
-                               scope['webapp.reflow.video.detail']?.itemInfo?.itemStruct;
-            
+            const itemStruct = scope['webapp.video-detail']?.itemInfo?.itemStruct ||
+                scope['webapp.reflow.video.detail']?.itemInfo?.itemStruct;
+
             if (itemStruct) {
-                return { 
-                    title: itemStruct.desc, 
-                    description: itemStruct.desc, 
+                return {
+                    title: itemStruct.desc,
+                    description: itemStruct.desc,
                     finalUrl: res.url,
                     author: itemStruct.author?.uniqueId
                 };
@@ -147,14 +171,14 @@ async function fetchTikTokMetadata(videoUrl) {
         const titleMatch = html.match(/<title>(.*?)<\/title>/);
         const metaDescMatch = html.match(/<meta name="description" content="(.*?)">/);
         const ogDescMatch = html.match(/<meta property="og:description" content="(.*?)">/);
-        
+
         const bestDesc = (metaDescMatch ? metaDescMatch[1] : (ogDescMatch ? ogDescMatch[1] : (titleMatch ? titleMatch[1] : '')));
-        
+
         if (bestDesc && !bestDesc.includes('TikTok - Make Your Day')) {
-            return { 
-                title: bestDesc, 
+            return {
+                title: bestDesc,
                 description: bestDesc,
-                finalUrl: res.url 
+                finalUrl: res.url
             };
         }
     } catch (e) {
@@ -168,13 +192,13 @@ async function checkWordPressDuplicate(videoUrl) {
     try {
         const { extractTikTokId } = require('./wordpress-poster');
         const videoId = extractTikTokId(videoUrl);
-        
+
         const wpBase = (process.env.WP_URL || '').replace(/\/$/, '');
-        
+
         // On cherche par l'ID de la vidéo s'il existe, sinon par l'URL
         const query = videoId ? videoId : videoUrl;
-        const res = await fetch(`${wpBase}/wp-json/wp/v2/posts?search=${encodeURIComponent(query)}&_fields=id,link`);
-        
+        const res = await fetch(`${wpBase}/wp-json/wp/v2/posts?search=${encodeURIComponent(query)}&_fields=id,link,content,title&per_page=5`);
+
         if (res.ok) {
             const posts = await res.json();
             // Filtrage strict : on vérifie que l'un des posts correspond vraiment à la vidéo
@@ -182,7 +206,7 @@ async function checkWordPressDuplicate(videoUrl) {
                 const content = (p.content?.rendered || '').toLowerCase();
                 const title = (p.title?.rendered || '').toLowerCase();
                 const link = (p.link || '').toLowerCase();
-                
+
                 if (videoId && (content.includes(videoId) || link.includes(videoId))) return true;
                 if (videoUrl && (content.includes(videoUrl) || link.includes(videoUrl))) return true;
                 return false;
@@ -203,12 +227,12 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         return false;
     }
     console.log(`\n📋 Analyse : ${videoUrl}`);
-    
+
     // Recovery
     console.log(`   🔍 Récupération des infos TikTok...`);
     const metadata = await fetchTikTokMetadata(videoUrl);
     const isGeneric = !description || description.toLowerCase().includes('recette iphone') || description.toLowerCase().includes('remote');
-    
+
     if (metadata) {
         description = isGeneric ? metadata.description : description;
         videoUrl = metadata.finalUrl || videoUrl;
@@ -226,7 +250,7 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
 
     console.log(`   🧠 Analyse de la recette par l'IA...`);
     let analysis = await isRecipeWithGemini(description, title);
-    
+
     let isStub = false;
     if (!analysis || !analysis.isRecipe) {
         console.log('   🚫 Ce n\'est pas une recette selon l\'IA (ou erreur Quota).');
@@ -299,17 +323,17 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
     console.log(`   🖼️ Recherche d'une photo pour: ${analysis.photoSearchKeyword}...`);
     let photoUrl = '';
     const { findPhoto } = require('./photo-search');
-    try { photoUrl = await findPhoto(analysis.photoSearchKeyword || analysis.recipeName); } catch(e){}
+    try { photoUrl = await findPhoto(analysis.photoSearchKeyword || analysis.recipeName); } catch (e) { }
 
     console.log(`   📝 Publication sur WordPress...`);
     const { postToWordPress } = require('./wordpress-poster');
     author = 'manu'; // Default author
-    const postResult = await postToWordPress({ 
-        ...analysis, 
-        title: analysis.recipeName, 
-        tiktokUrl: videoUrl, 
-        tiktokAuthor: author, 
-        photoUrl, 
+    const postResult = await postToWordPress({
+        ...analysis,
+        title: analysis.recipeName,
+        tiktokUrl: videoUrl,
+        tiktokAuthor: author,
+        photoUrl,
         manualCountry: country,
         status: isStub ? 'draft' : 'publish'
     });
@@ -317,7 +341,7 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
     if (postResult?.success) {
         console.log(`   🚀 SUCCESS : "${analysis.recipeName}" est en ligne !`);
         console.log(`   📝 Brouillon à review : ${process.env.WP_URL}/wp-admin/post.php?post=${postResult.postId}&action=edit`);
-        
+
         // Notification Email (TOTALEMENT DÉSACTIVÉ)
         /*
         console.log(`   📧 Envoi du mail de notification...`);
@@ -337,8 +361,8 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         // Sync local et deploiement Vercel
         console.log(`   📦 Synchro local et déploiement Vercel...`);
         const { execSync } = require('child_process');
-        try { execSync(`node sync-recipes.js --recent`, { cwd: path.join(__dirname, '..') }); } catch(e){}
-        
+        try { execSync(`node sync-recipes.js --recent`, { cwd: path.join(__dirname, '..') }); } catch (e) { }
+
         if (!process.env.GITHUB_ACTIONS) {
             const deployCmd = 'git add . && git commit -m "🍳 Nouvelle recette: ' + analysis.recipeName + '" && git push origin main';
             require('child_process').exec(deployCmd, { cwd: path.join(__dirname, '..') });

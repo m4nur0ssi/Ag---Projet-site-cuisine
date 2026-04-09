@@ -93,6 +93,8 @@ async function run() {
                 }
 
                 console.log(`🪄 Traitement de la file en cours : ${videoUrl}`);
+                // ⚠️ Marquer comme traité AVANT publication pour éviter les doublons si le workflow tourne deux fois
+                if (videoId) markAsProcessed(videoId);
                 const recipeName = await processRecipe({ 
                     videoUrl, 
                     description: 'Recette iPhone (Cloud)', 
@@ -101,7 +103,6 @@ async function run() {
                 });
                 
                 if (typeof recipeName === 'string') {
-                    if (videoId) markAsProcessed(videoId);
                     fs.writeFileSync(path.join(__dirname, 'latest-recipe.txt'), recipeName);
                     console.log(`   ✅ Success : "${recipeName}"`);
                 } else {
