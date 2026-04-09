@@ -2,11 +2,124 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/04/2026 15:05:57
- * Total: 192 recettes
+ * Dernière mise à jour: 09/04/2026 16:21:32
+ * Total: 193 recettes
  */
-export const exportSyncId = "1775747157831";
+export const exportSyncId = "1775751692671";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5025",
+        "title": "Top 3 meilleures recettes de knacki",
+        "description": "Trois façons délicieuses et simples de préparer les knackis, des saucisses populaires et faciles à cuisiner.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775751559947.jpg&v=1775758775000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7595638473307082006\" data-video-id=\"7595638473307082006\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7595638473307082006\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Knackis (saucisses)"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Pain de hot-dog ou pain de mie"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Ketchup"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre ou huile"
+            }
+        ],
+        "steps": [
+            "Préparer les knackis en les incisant légèrement pour une meilleure cuisson.",
+            "Recette 1 : Faire griller les knackis à la poêle avec un peu de beurre jusqu'à ce qu'ils soient dorés, les servir dans un pain avec moutarde et ketchup.",
+            "Recette 2 : Enrouler les knackis dans du fromage râpé et les passer au four ou à la poêle jusqu'à ce que le fromage soit fondu et gratiné.",
+            "Recette 3 : Couper les knackis en rondelles et les faire revenir avec des œufs brouillés pour un repas rapide et gourmand.",
+            "Servir chaud et déguster immédiatement."
+        ],
+        "tags": [
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5022",
+        "title": "Sandwich chaud à la viande hachée (style Patty melt)",
+        "description": "Une véritable dinguerie à tester absolument !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775747022772.jpg&v=1775754264000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626408980570590486\" data-video-id=\"7626408980570590486\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626408980570590486\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥖\n             3 tranches de pain de mie"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Environ 150 g de viande hachée (facultatif : assaisonnée de paprika, persil, sel et poivre)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 tranches de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 à 4 cornichons"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sauce burger (ou sauce algérienne selon votre préférence)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Un peu d'huile pour la cuisson"
+            }
+        ],
+        "steps": [
+            "Étalez la viande hachée directement sur deux tranches de pain de mie.",
+            "Coupez l'oignon en lamelles. Faites-le revenir dans une poêle avec un peu d'huile jusqu'à ce qu'il soit bien doré et légèrement caramélisé. Réservez.",
+            "Dans la même poêle, déposez les tranches de pain côté viande contre la poêle. Laissez cuire quelques minutes, puis retournez pour faire légèrement dorer le pain.",
+            "Sur une tranche avec la viande, ajoutez : 1 tranche de cheddar, des oignons caramélisés, un peu de sauce burger ou sauce algérienne, les cornichons, la deuxième tranche de cheddar.",
+            "Ajoutez la troisième tranche de pain de mie et refermez le sandwich.",
+            "Remettez le sandwich dans la poêle et faites-le griller de chaque côté jusqu'à ce que le pain soit bien doré et croustillant et que le fromage soit fondu.",
+            "Servez chaud, c'est prêt à déguster !"
+        ],
+        "tags": [
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5019",
         "title": "Sandwich chaud à la viande hachée (style Patty melt)",
@@ -7749,85 +7862,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Asie",
             "Healthy",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4102",
-        "title": "Salade fraîche mangue avocat et pistaches",
-        "description": "Une salade fraîche, colorée et pleine de saveurs, combinant mangue sucrée, avocat crémeux, tomates cerises, olives Kalamata et pistaches croquantes, le tout relevé par une vinaigrette citron-huile d'olive. Idéale comme accompagnement sain ou repas...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimg_2954-scaled.jpg&v=1774522201000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616471688728939806\" data-video-id=\"7616471688728939806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616471688728939806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 mangue, coupée en cubes"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1/2 poivron rouge, coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tasse de tomates cerises (environ 200 g), coupées en deux"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge, finement émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1/2 bouquet de persil, haché"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             1 avocat, coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 tasse d'olives Kalamata, tranchées"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             1/4 tasse de pistaches, hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre noir, au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de 1 citron (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Menthe fraîche, hachée ou déchirée à la main (facultatif)"
-            }
-        ],
-        "steps": [
-            "Couper la mangue et l'avocat en cubes.",
-            "Couper le poivron rouge en dés et les tomates cerises en deux.",
-            "Émincer finement l'oignon rouge et trancher les olives Kalamata.",
-            "Ajouter tous les ingrédients dans un grand bol avec le persil haché et les pistaches.",
-            "Arroser d'huile d'olive et de jus de citron.",
-            "Assaisonner de sel et de poivre noir.",
-            "Ajouter la menthe si désiré et mélanger délicatement le tout."
-        ],
-        "tags": [
-            "Healthy",
-            "Salade d'été",
             "Végé"
         ],
         "isFeatured": false,
