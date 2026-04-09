@@ -119,9 +119,10 @@ async function handleRequest(request: Request) {
             videoUrl = rawBodyText.trim();
         }
 
-        // --- MODE MENU PAYS (checkOnly sans URL) ---
-        // Le raccourci iOS appelle d'abord sans URL pour obtenir la liste des pays
-        if (!videoUrl && checkOnly) {
+        // --- MODE MENU PAYS (sans URL = afficher le menu des pays) ---
+        // Le raccourci iOS appelle sans URL pour obtenir la liste des pays
+        // Que ce soit avec checkOnly=true ou non
+        if (!videoUrl) {
             const paysDict: any = {
                 "France": "🇫🇷 France",
                 "Italie": "🇮🇹 Italie",
@@ -150,15 +151,6 @@ async function handleRequest(request: Request) {
             const response = NextResponse.json({ status: paysDict });
             response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
             return response;
-        }
-
-        if (!videoUrl) {
-            return NextResponse.json({
-                error: 'URL manquante',
-                v: "SYNC-FIX-ERROR",
-                debug_body: body,
-                debug_params: Object.fromEntries(searchParams.entries())
-            }, { status: 400 });
         }
 
         // --- DETECTION DU PAYS ET DOUBLON ---
