@@ -342,22 +342,6 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         console.log(`   🚀 SUCCESS : "${analysis.recipeName}" est en ligne !`);
         console.log(`   📝 Brouillon à review : ${process.env.WP_URL}/wp-admin/post.php?post=${postResult.postId}&action=edit`);
 
-        // Notification Email (TOTALEMENT DÉSACTIVÉ)
-        /*
-        console.log(`   📧 Envoi du mail de notification...`);
-        const { sendNotificationEmail } = require('./email-notifier');
-        await sendNotificationEmail({
-            recipeName: analysis.recipeName,
-            postId: postResult.postId,
-            adminUrl: `${process.env.WP_URL}/wp-admin/post.php?post=${postResult.postId}&action=edit`,
-            publicUrl: `https://lesrecettesmagiques.vercel.app/recette/${analysis.recipeName.toLowerCase().replace(/\s+/g, '-')}`,
-            ingredients: analysis.ingredients,
-            steps: analysis.steps,
-            tiktokUrl: videoUrl,
-            photoUrl: photoUrl
-        });
-        */
-
         // Sync local et deploiement Vercel
         console.log(`   📦 Synchro local et déploiement Vercel...`);
         const { execSync } = require('child_process');
@@ -367,6 +351,39 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
             const deployCmd = 'git add . && git commit -m "🍳 Nouvelle recette: ' + analysis.recipeName + '" && git push origin main';
             require('child_process').exec(deployCmd, { cwd: path.join(__dirname, '..') });
         }
+
+        // 📱 Sync automatique de l'app iPhone après chaque publication
+        const ghPat = process.env.GH_PAT_SYNC;
+        if (ghPat) {
+            try {
+                console.log(`   📱 Envoi du signal de sync à l'app iPhone...`);
+                const nodeFetch = require('node-fetch');
+                const ghRes = await nodeFetch('https://api.github.com/repos/m4nur0ssi/AG-App-Iphone-cuisine/dispatches', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/vnd.github+json',
+                        'Authorization': 'Bearer ' + ghPat,
+                        'X-GitHub-Api-Version': '2022-11-28',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        event_type: 'wp_full_sync',
+                        client_payload: { trigger: 'recipe-published', source: 'site-cuisine', recipe: analysis.recipeName }
+                    })
+                });
+                if (ghRes.status === 204) {
+                    console.log(`   ✅ Signal iPhone envoyé !`);
+                } else {
+                    const errText = await ghRes.text();
+                    console.warn(`   ⚠️ Signal iPhone HTTP ${ghRes.status}: ${errText.substring(0, 100)}`);
+                }
+            } catch (e) {
+                console.warn(`   ⚠️ Impossible d'envoyer le signal iPhone: ${e.message}`);
+            }
+        } else {
+            console.log(`   ℹ️ GH_PAT_SYNC absent — sync iPhone ignorée (OK en GitHub Actions, le wp-sync.yml s'en charge).`);
+        }
+
         return analysis.recipeName;
     } else {
         console.log(`   ❌ Échec de la publication WordPress.`);
