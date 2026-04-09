@@ -2,11 +2,92 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/04/2026 14:38:39
- * Total: 189 recettes
+ * Dernière mise à jour: 09/04/2026 14:46:55
+ * Total: 190 recettes
  */
-export const exportSyncId = "1775745519277";
+export const exportSyncId = "1775746015653";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5016",
+        "title": "Gratin mexicain protéiné",
+        "description": "Un gratin mexicain simple, gourmand, complet et rassasiant, parfait pour le batch cooking et préparer 3-4 repas à l'avance.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775745886084.jpg&v=1775753101000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604930506031140118\" data-video-id=\"7604930506031140118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604930506031140118\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥩\n             600 g de bœuf haché (5%)"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             700 g de pommes de terre en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             200 g de haricots rouges (égouttés)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             200 g de tomates concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de skyr ou fromage blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             100 g de cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à s. d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices mexicaines : cumin, paprika, chili (à doser)"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 190°C.",
+            "Mettre tous les ingrédients (sauf le fromage) directement dans un grand plat allant au four.",
+            "Mélanger bien pour tout répartir et ajouter le cheddar.",
+            "Couvrir et enfourner 45 à 50 minutes."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Healthy",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5013",
         "title": "Salade de pâtes croustillantes",
