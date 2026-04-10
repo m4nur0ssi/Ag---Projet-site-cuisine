@@ -2,11 +2,103 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 15:49:36
+ * Dernière mise à jour: 10/04/2026 15:57:08
  * Total: 191 recettes
  */
-export const exportSyncId = "1775836176218";
+export const exportSyncId = "1775836628711";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "3997",
+        "title": "Kesra farcie à la viande hachée",
+        "description": "Une délicieuse Kesra farcie à la viande hachée, prête en seulement 30 minutes. Cette recette permet de réaliser deux galettes de taille moyenne.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fkesra_farci_v2_1775836443310.jpg&v=1775843745000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7588853135418854678\" data-video-id=\"7588853135418854678\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7588853135418854678\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 300 gr de semoule moyenne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 400 gr de semoule fine"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 100 gr d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel (pour la pâte)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 300 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 2 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 cuillère à soupe de tomates concentrées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 tomate coupée en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel (pour la farce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment doux"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment fort"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 400 gr de viande hachée (ou poulet, ou thon)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 1 demi verre d'eau (pour la farce)"
+            }
+        ],
+        "steps": [
+            "**Préparation de la pâte :** Dans un grand récipient ou un robot, mélanger la semoule moyenne, la semoule fine, l'huile d'olive et le sel. Ajouter progressivement les 300 ml d'eau et pétrir jusqu'à obtenir une pâte souple et homogène.",
+            "**Préparation de la farce :** Hacher les oignons et les poivrons. Dans une poêle, faire revenir les oignons et les poivrons jusqu'à ce qu'ils soient tendres.",
+            "Ajouter la viande hachée (ou poulet/thon) et faire cuire en l'émiettant.",
+            "Incorporer la tomate coupée en dés, la tomate concentrée, le sel, le poivre, le piment doux et le piment fort. Bien mélanger et laisser mijoter quelques minutes.",
+            "Ajouter un demi verre d'eau et laisser la farce cuire jusqu'à ce que le liquide soit absorbé et que la farce soit bien cuite. Laisser refroidir légèrement.",
+            "**Assemblage et cuisson :** Diviser la pâte en quatre boules égales. Étaler deux boules pour former deux galettes de taille moyenne.",
+            "Répartir la farce sur une des galettes, en laissant un bord libre. Recouvrir avec la deuxième galette et bien souder les bords. Répéter l'opération pour la deuxième kesra.",
+            "Faire cuire les kesras farcies dans une poêle chaude (ou sur un tajine) à feu moyen, quelques minutes de chaque côté, jusqu'à ce qu'elles soient dorées et croustillantes."
+        ],
+        "tags": [
+            "Famille",
+            "Kesra",
+            "Orient"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "3991",
         "title": "Riz jaune du Moyen-Orient",
@@ -4348,98 +4440,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Liban",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3997",
-        "title": "Kesra farcie à la viande hachée",
-        "description": "Une délicieuse Kesra farcie à la viande hachée, prête en seulement 30 minutes. Cette recette permet de réaliser deux galettes de taille moyenne.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774522013384.jpg&v=1774525629000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7588853135418854678\" data-video-id=\"7588853135418854678\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7588853135418854678\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             300 gr de semoule moyenne"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             400 gr de semoule fine"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             100 gr d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour la pâte)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             300 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 poivrons"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 cuillère à soupe de tomates concentrées"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate coupée en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment doux"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment fort"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             400 gr de viande hachée (ou poulet, ou thon)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             1 demi verre d'eau (pour la farce)"
-            }
-        ],
-        "steps": [
-            "**Préparation de la pâte :** Dans un grand récipient ou un robot, mélanger la semoule moyenne, la semoule fine, l'huile d'olive et le sel. Ajouter progressivement les 300 ml d'eau et pétrir jusqu'à obtenir une pâte souple et homogène.",
-            "**Préparation de la farce :** Hacher les oignons et les poivrons. Dans une poêle, faire revenir les oignons et les poivrons jusqu'à ce qu'ils soient tendres.",
-            "Ajouter la viande hachée (ou poulet/thon) et faire cuire en l'émiettant.",
-            "Incorporer la tomate coupée en dés, la tomate concentrée, le sel, le poivre, le piment doux et le piment fort. Bien mélanger et laisser mijoter quelques minutes.",
-            "Ajouter un demi verre d'eau et laisser la farce cuire jusqu'à ce que le liquide soit absorbé et que la farce soit bien cuite. Laisser refroidir légèrement.",
-            "**Assemblage et cuisson :** Diviser la pâte en quatre boules égales. Étaler deux boules pour former deux galettes de taille moyenne.",
-            "Répartir la farce sur une des galettes, en laissant un bord libre. Recouvrir avec la deuxième galette et bien souder les bords. Répéter l'opération pour la deuxième kesra.",
-            "Faire cuire les kesras farcies dans une poêle chaude (ou sur un tajine) à feu moyen, quelques minutes de chaque côté, jusqu'à ce qu'elles soient dorées et croustillantes."
-        ],
-        "tags": [
-            "Famille",
-            "Kesra",
-            "Orient"
         ],
         "isFeatured": false,
         "isFavorite": false,
