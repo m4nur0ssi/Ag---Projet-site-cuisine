@@ -2,11 +2,181 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 09:32:24
+ * Dernière mise à jour: 10/04/2026 09:52:35
  * Total: 193 recettes
  */
-export const exportSyncId = "1775813544819";
+export const exportSyncId = "1775814755536";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5002",
+        "title": "Salade de Tortellini Croustillants",
+        "description": "Une salade estivale et gourmande, composée de tortellini cuits à l'airfryer pour un croustillant irrésistible, mélangés à des légumes frais (concombre, tomates cerise, échalotes, mozza) et une sauce onctueuse au fromage blanc, huile d'olive, vinai...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade-de-tortellinis-b-23-1024x683-1.jpeg&v=1775821882000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7614838971708755222\" data-video-id=\"7614838971708755222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7614838971708755222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 4 cas de fromage blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Echalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Tomates cerise"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Mozza"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Tortellini"
+            }
+        ],
+        "steps": [
+            "Dans un bol, préparer la sauce en mélangeant 4 cuillères à soupe de fromage blanc, de l'huile d'olive, du sel, du poivre, du vinaigre, du fromage râpé et du parmesan.",
+            "Laver et couper le concombre, les échalotes, les tomates cerise et la mozza en morceaux.",
+            "Faire cuire les tortellini dans de l'eau bouillante pendant 1 à 2 minutes.",
+            "Égoutter les tortellini et les transférer dans l'airfryer. Ajouter les fromages (râpé et parmesan) et un filet d'huile d'olive.",
+            "Faire dorer les tortellini à 180°C dans l'airfryer pendant 10 minutes, jusqu'à ce qu'ils soient bien croustillants.",
+            "Dans un grand saladier, mélanger les légumes coupés, les tortellini croustillants et la sauce préparée. Servir frais."
+        ],
+        "tags": [
+            "Entrées",
+            "Italie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5007",
+        "title": "Gnocchis crémeux au poulet, champignons et parmesan",
+        "description": "Une recette ultra gourmande de gnocchis dans une sauce crémeuse au bouillon de volaille, champignons, brocolis et parmesan, avec des filets de poulet grillés au paprika. Prête en 20 minutes seulement !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fgnocchis.jpeg&v=1775820635000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7625327110466571543\" data-video-id=\"7625327110466571543\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7625327110466571543\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 500g de gnocchis"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 300g de filet de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café d'ail en poudre + sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 15g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 250g de champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 400ml de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 20cl de crème légère"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 2 cuillères à soupe de maïzena + 5cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 40g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n Brocolis (quantité non précisée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n Sauce soja (quantité non précisée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Filet d'huile"
+            }
+        ],
+        "steps": [
+            "Couper finement les champignons et le brocoli.",
+            "Recouvrir les filets de poulet avec l'ail, le paprika et le sel.",
+            "Faire cuire le poulet dans une poêle avec la moitié du beurre et un filet d'huile jusqu'à ce qu'il soit bien grillé, puis le réserver.",
+            "Dans la même poêle, ajouter le reste du beurre et les champignons, les faire dorer pendant 7 à 8 minutes.",
+            "Ajouter les brocolis, verser le bouillon de volaille, la crème, le mélange maïzena + eau et le parmesan râpé.",
+            "Couvrir et laisser cuire quelques minutes.",
+            "Ajouter la sauce soja, les gnocchis et le persil, mélanger.",
+            "Laisser mijoter 2 minutes puis ajouter le poulet grillé avant de servir."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5013",
         "title": "Salade de pâtes croustillantes",
@@ -447,176 +617,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "citron",
             "Desserts"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5007",
-        "title": "Gnocchis crémeux au poulet, champignons et parmesan",
-        "description": "Une recette ultra gourmande de gnocchis dans une sauce crémeuse au bouillon de volaille, champignons, brocolis et parmesan, avec des filets de poulet grillés au paprika. Prête en 20 minutes seulement !",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7625327110466571543\" data-video-id=\"7625327110466571543\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7625327110466571543\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g de gnocchis"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             300g de filet de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café d'ail en poudre + sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             15g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250g de champignons"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             400ml de bouillon de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             20cl de crème légère"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             2 cuillères à soupe de maïzena + 5cl d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             40g de parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🥦\n             Brocolis (quantité non précisée)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Sauce soja (quantité non précisée)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Filet d'huile"
-            }
-        ],
-        "steps": [
-            "Couper finement les champignons et le brocoli.",
-            "Recouvrir les filets de poulet avec l'ail, le paprika et le sel.",
-            "Faire cuire le poulet dans une poêle avec la moitié du beurre et un filet d'huile jusqu'à ce qu'il soit bien grillé, puis le réserver.",
-            "Dans la même poêle, ajouter le reste du beurre et les champignons, les faire dorer pendant 7 à 8 minutes.",
-            "Ajouter les brocolis, verser le bouillon de volaille, la crème, le mélange maïzena + eau et le parmesan râpé.",
-            "Couvrir et laisser cuire quelques minutes.",
-            "Ajouter la sauce soja, les gnocchis et le persil, mélanger.",
-            "Laisser mijoter 2 minutes puis ajouter le poulet grillé avant de servir."
-        ],
-        "tags": [
-            "Healthy",
-            "Italie",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5002",
-        "title": "Salade de Tortellini Croustillants à l'Airfryer",
-        "description": "Une salade estivale et gourmande, composée de tortellini cuits à l'airfryer pour un croustillant irrésistible, mélangés à des légumes frais (concombre, tomates cerise, échalotes, mozza) et une sauce onctueuse au fromage blanc, huile d'olive, vinai...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775668322042.jpg&v=1775675549000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7614838971708755222\" data-video-id=\"7614838971708755222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7614838971708755222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             4 cas de fromage blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Vinaigre"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Fromage râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Echalotes"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates cerise"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Mozza"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Tortellini"
-            }
-        ],
-        "steps": [
-            "Dans un bol, préparer la sauce en mélangeant 4 cuillères à soupe de fromage blanc, de l'huile d'olive, du sel, du poivre, du vinaigre, du fromage râpé et du parmesan.",
-            "Laver et couper le concombre, les échalotes, les tomates cerise et la mozza en morceaux.",
-            "Faire cuire les tortellini dans de l'eau bouillante pendant 1 à 2 minutes.",
-            "Égoutter les tortellini et les transférer dans l'airfryer. Ajouter les fromages (râpé et parmesan) et un filet d'huile d'olive.",
-            "Faire dorer les tortellini à 180°C dans l'airfryer pendant 10 minutes, jusqu'à ce qu'ils soient bien croustillants.",
-            "Dans un grand saladier, mélanger les légumes coupés, les tortellini croustillants et la sauce préparée. Servir frais."
-        ],
-        "tags": [
-            "Entrées",
-            "Italie",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
