@@ -2,11 +2,90 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 15:39:05
- * Total: 192 recettes
+ * Dernière mise à jour: 10/04/2026 15:44:36
+ * Total: 191 recettes
  */
-export const exportSyncId = "1775835545485";
+export const exportSyncId = "1775835876624";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "3975",
+        "title": "Bambas de Nata",
+        "description": "Une pâtisserie espagnole classique : de moelleux petits pains à la levure garnis de crème fouettée légèrement sucrée. C'est une gourmandise simple et très appréciée, que l'on trouve couramment dans les boulangeries en Espagne.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7592729849161125142\" data-video-id=\"7592729849161125142\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7592729849161125142\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 250 g de farine tout usage (environ 2 tasses)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 7 g de levure sèche (2¼ c. à café / 1 sachet)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 40 g de sucre (3 c. à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 œuf (taille M)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 110 ml de lait tiède (½ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 40 g de beurre mou (3 c. à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 c. à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 400 ml de crème épaisse froide (1⅔ tasses)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1-2 c. à soupe de sucre glace (au goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 c. à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Sucre glace (pour la finition)"
+            }
+        ],
+        "steps": [
+            "Tamiser la farine dans un bol et former un puits au centre. Ajouter la levure, 1 cuillère à café de sucre et un peu de lait tiède. Laisser reposer 8 à 10 minutes jusqu'à ce que la levure devienne mousseuse.",
+            "Ajouter le reste du sucre, le sel, l'œuf, l'extrait de vanille et le reste du lait. Pétrir avec un crochet à pâte jusqu'à obtenir une pâte lisse.",
+            "Ajouter le beurre mou en dernier et continuer à pétrir pendant 8 à 10 minutes jusqu'à ce que la pâte soit molle, élastique et se décolle des parois du bol. Couvrir et laisser lever environ 60 minutes.",
+            "Diviser la pâte en 9 portions égales (environ 50 g par pièce), former des boules lisses et les placer sur une plaque de cuisson recouverte de papier sulfurisé. Couvrir et laisser lever encore 20 à 30 minutes. Badigeonner légèrement le dessus avec un peu de crème.",
+            "Cuire au four préchauffé à 180 °C / 350 °F (chaleur haut/bas) pendant 15 à 18 minutes jusqu'à ce qu'ils soient légèrement dorés. Laisser refroidir complètement.",
+            "Fouetter la crème froide avec le sucre glace et la vanille jusqu'à ce qu'elle soit ferme.",
+            "Couper les Bambas horizontalement, garnir généreusement ou pocher la crème, replacer les dessus et saupoudrer généreusement de sucre glace. Moelleux, aériens et merveilleusement simples - une pâtisserie classique fourrée à la crème qui ne manque jamais de ravir."
+        ],
+        "tags": [
+            "Espagne",
+            "Famille",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5007",
         "title": "Gnocchis crémeux au poulet, champignons",
@@ -3875,85 +3954,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "3975",
-        "title": "Bambas de Nata",
-        "description": "Une pâtisserie espagnole classique : de moelleux petits pains à la levure garnis de crème fouettée légèrement sucrée. C'est une gourmandise simple et très appréciée, que l'on trouve couramment dans les boulangeries en Espagne.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773829876550.jpg&v=1774526019000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7592729849161125142\" data-video-id=\"7592729849161125142\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7592729849161125142\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             250 g de farine tout usage (environ 2 tasses)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             7 g de levure sèche (2¼ c. à café / 1 sachet)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             40 g de sucre (3 c. à soupe)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 œuf (taille M)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             110 ml de lait tiède (½ tasse)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             40 g de beurre mou (3 c. à soupe)"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 c. à café d'extrait de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             400 ml de crème épaisse froide (1⅔ tasses)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1-2 c. à soupe de sucre glace (au goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 c. à café d'extrait de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre glace (pour la finition)"
-            }
-        ],
-        "steps": [
-            "Tamiser la farine dans un bol et former un puits au centre. Ajouter la levure, 1 cuillère à café de sucre et un peu de lait tiède. Laisser reposer 8 à 10 minutes jusqu'à ce que la levure devienne mousseuse.",
-            "Ajouter le reste du sucre, le sel, l'œuf, l'extrait de vanille et le reste du lait. Pétrir avec un crochet à pâte jusqu'à obtenir une pâte lisse.",
-            "Ajouter le beurre mou en dernier et continuer à pétrir pendant 8 à 10 minutes jusqu'à ce que la pâte soit molle, élastique et se décolle des parois du bol. Couvrir et laisser lever environ 60 minutes.",
-            "Diviser la pâte en 9 portions égales (environ 50 g par pièce), former des boules lisses et les placer sur une plaque de cuisson recouverte de papier sulfurisé. Couvrir et laisser lever encore 20 à 30 minutes. Badigeonner légèrement le dessus avec un peu de crème.",
-            "Cuire au four préchauffé à 180 °C / 350 °F (chaleur haut/bas) pendant 15 à 18 minutes jusqu'à ce qu'ils soient légèrement dorés. Laisser refroidir complètement.",
-            "Fouetter la crème froide avec le sucre glace et la vanille jusqu'à ce qu'elle soit ferme.",
-            "Couper les Bambas horizontalement, garnir généreusement ou pocher la crème, replacer les dessus et saupoudrer généreusement de sucre glace. Moelleux, aériens et merveilleusement simples - une pâtisserie classique fourrée à la crème qui ne manque jamais de ravir."
-        ],
-        "tags": [
-            "Espagne",
-            "Famille",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "3978",
         "title": "Msemmen - Crêpe marocaine feuilletée",
         "description": "Le Msemmen est une crêpe marocaine feuilletée traditionnelle, préparée à base de farine et de semoule, puis pliée et cuite à la poêle jusqu'à obtenir une texture dorée et croustillante. Il peut être dégusté chaud, nature, avec du sirop ou en accom...",
@@ -4348,85 +4348,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Orient",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3994",
-        "title": "Kibbeh au Bulgur",
-        "description": "Une délicieuse et savoureuse recette de kibbeh au boulgour du Moyen-Orient.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774522049419.jpg&v=1774525653000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7260502267403488538\" data-video-id=\"7260502267403488538\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7260502267403488538\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tasses de boulgour fin ou extra fin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tasse de semoule de blé dur (grosse, ou jareesh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour la pâte)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1/2 cuillère à café de poivre noir (pour la pâte)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 cuillère à café de poudre de curry (pour la pâte)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 cuillère à café de cumin (pour la pâte)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             2 1/2 tasses d'eau tiède"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 kg de viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1-2 oignons, finement hachés"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1/3 bouquet de persil, finement haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Épices (poivre noir et 7 épices ou épice de votre choix) (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile pour la friture"
-            }
-        ],
-        "steps": [
-            "Mélangez le boulgour et la semoule avec l'eau tiède.",
-            "Couvrez et laissez reposer pendant 1 heure.",
-            "Pétrissez très bien le mélange à la main ou au robot culinaire.",
-            "Façonnez le kibbeh (en le remplissant avec la farce préparée).",
-            "Faites-le frire dans l'huile."
-        ],
-        "tags": [
-            "Liban"
         ],
         "isFeatured": false,
         "isFavorite": false,
