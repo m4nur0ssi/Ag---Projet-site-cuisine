@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 16:44:58
- * Total: 191 recettes
+ * Dernière mise à jour: 10/04/2026 16:53:20
+ * Total: 190 recettes
  */
-export const exportSyncId = "1775839498251";
+export const exportSyncId = "1775840000454";
 export const mockRecipes: Recipe[] = [
     {
         "id": "4013",
@@ -5633,63 +5633,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "4037",
-        "title": "Spanakopita",
-        "description": "Une tourte croustillante aux épinards et fêta, et c'est toujours un régal",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773832293156.jpg&v=1774524851000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7615298335536286998\" data-video-id=\"7615298335536286998\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7615298335536286998\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥗\n             400 g d'épinards"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             200 g de fêta"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Aneth"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Origan"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             10 feuilles filo ou phyllo"
-            }
-        ],
-        "steps": [
-            "Hacher les épinards, faire tomber quelques minutes, laisser évaporer un maximum d'eau. Laisser tiédir puis mélanger avec la fêta émiettée les œufs le basilic l'aneth et l'origan.",
-            "Dans un plat peu importe rond, carré ou rectangle, badigeonner de l'huile d'olive au pinceau puis une feuille filo, à nouveau de l'huile et ainsi de suite pour en empiler 5, placer la farce, puis recouvrir avec le reste de la pâte filo soit comme sur la vidéo soit en couches. Badigeonner d'huile d'olive et enfourner 30-35 minutes à 190 degrés. Laisser reposer 10 minutes avant de servir."
-        ],
-        "tags": [
-            "Grèce",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4040",
         "title": "Bifteki avec Tzatziki et Riz aux Tomates",
         "description": "Un plat grec complet composé de boulettes de viande (Bifteki) farcies à la feta, accompagnées d'une sauce Tzatziki rafraîchissante et d'un riz aux tomates savoureux.",
@@ -6246,7 +6189,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4058",
         "title": "Spanakopita",
         "description": "Une spécialité grecque traditionnelle, la Spanakopita est un feuilleté savoureux à base de feuilles de bricks croustillantes, garni d'un mélange d'épinards, de fromage, d'œufs et de yaourt, puis cuit au four.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833264222.jpg&v=1774524307000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
