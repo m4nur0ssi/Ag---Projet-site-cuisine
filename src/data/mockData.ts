@@ -2,11 +2,102 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 09:27:27
- * Total: 194 recettes
+ * Dernière mise à jour: 10/04/2026 09:32:24
+ * Total: 193 recettes
  */
-export const exportSyncId = "1775813247475";
+export const exportSyncId = "1775813544819";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5013",
+        "title": "Salade de pâtes croustillantes",
+        "description": "Une salade originale à base de pâtes cuites au air fryer pour un effet croustillant, mélangées à de la laitue, des tomates cerises et une sauce crémeuse au yogourt.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade-pates.jpeg&v=1775820471000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7607184647579127048\" data-video-id=\"7607184647579127048\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7607184647579127048\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n 250 à 300 g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 3 tasses de laitue iceberg hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 tasse de tomates cerises coupées en deux"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1/2 oignon rouge tranché finement"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 2 c. à soupe de persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 c. à thé d'aneth haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 2 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à soupe de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 tasse de yogourt nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 2 c. à soupe de crème sure"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 c. à thé de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 c. à thé de jus de cornichon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1/2 c. à thé de poudre d'ail"
+            }
+        ],
+        "steps": [
+            "Cuire les pâtes al dente 8-10 min dans l'eau salée. Égoutter et laisser sécher.",
+            "Mélanger les pâtes avec l'huile d'olive, le paprika, le parmesan, le sel et le poivre.",
+            "Cuire les pâtes assaisonnées au air fryer à 390 °F pendant 15-18 min en secouant à mi-cuisson.",
+            "Préparer la sauce en mélangeant le yogourt nature, la crème sure, la moutarde, le jus de cornichon, la poudre d'ail, le sel et le poivre.",
+            "Dans un grand bol, assembler la laitue, les tomates cerises, l'oignon rouge, le persil, l'aneth et les pâtes croustillantes. Ajouter la sauce et mélanger."
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5016",
         "title": "Gratin mexicain protéiné",
@@ -362,128 +453,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5013",
-        "title": "Salade de pâtes croustillantes",
-        "description": "Une salade originale à base de pâtes cuites au air fryer pour un effet croustillant, mélangées à de la laitue, des tomates cerises et une sauce crémeuse au yogourt.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775745397132.jpg&v=1775752612000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7607184647579127048\" data-video-id=\"7607184647579127048\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7607184647579127048\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             250 à 300 g de pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             3 tasses de laitue iceberg hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tasse de tomates cerises coupées en deux"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge tranché finement"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             2 c. à soupe de persil haché"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 c. à thé d'aneth haché"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 c. à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c. à soupe de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 tasse de yogourt nature"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             2 c. à soupe de crème sure"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 c. à thé de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à thé de jus de cornichon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1/2 c. à thé de poudre d'ail"
-            }
-        ],
-        "steps": [
-            "Cuire les pâtes al dente 8-10 min dans l'eau salée. Égoutter et laisser sécher.",
-            "Mélanger les pâtes avec l'huile d'olive, le paprika, le parmesan, le sel et le poivre.",
-            "Cuire les pâtes assaisonnées au air fryer à 390 °F pendant 15-18 min en secouant à mi-cuisson.",
-            "Préparer la sauce en mélangeant le yogourt nature, la crème sure, la moutarde, le jus de cornichon, la poudre d'ail, le sel et le poivre.",
-            "Dans un grand bol, assembler la laitue, les tomates cerises, l'oignon rouge, le persil, l'aneth et les pâtes croustillantes. Ajouter la sauce et mélanger."
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Italie",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5010",
-        "title": "Secret onion dish",
-        "description": "Un plat mystérieux et savoureux à base d'oignons.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775730235505.jpg&v=1775737449000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616398843759922454\" data-video-id=\"7616398843759922454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616398843759922454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n             oignon"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Astuces"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5007",
         "title": "Gnocchis crémeux au poulet, champignons et parmesan",
         "description": "Une recette ultra gourmande de gnocchis dans une sauce crémeuse au bouillon de volaille, champignons, brocolis et parmesan, avec des filets de poulet grillés au paprika. Prête en 20 minutes seulement !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775729550798.jpg&v=1775736765000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
