@@ -2,11 +2,151 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 17:00:04
- * Total: 190 recettes
+ * Dernière mise à jour: 10/04/2026 17:06:30
+ * Total: 189 recettes
  */
-export const exportSyncId = "1775840404318";
+export const exportSyncId = "1775840791009";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4040",
+        "title": "Bifteki avec Tzatziki et Riz aux Tomates",
+        "description": "Un plat grec complet composé de boulettes de viande (Bifteki) farcies à la feta, accompagnées d'une sauce Tzatziki rafraîchissante et d'un riz aux tomates savoureux.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbifteki_tzatziki_rice_homemade_1775840116718.jpg&v=1775847635000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7541829683864702230\" data-video-id=\"7541829683864702230\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7541829683864702230\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 400g Hackfleisch"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 Brötchen"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n evtl. etwas Paniermehl, wenn der Teig noch zu weich ist!"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 Zwiebel (pour Bifteki)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3 Knoblauchzehen (pour Bifteki)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Bund frische Petersilie (pour Bifteki)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 Ei, Größe S"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Salz (pour Bifteki)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pfeffer (pour Bifteki)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Oregano"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Kreuzkümmel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika Edelsüß"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Vegeta, optional"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ca. 100g Feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 300g Griechischer Joghurt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 Salatgurke"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n mind. 3 Knoblauchzehen (pour Tzatziki)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Frischer Dill"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Olivenöl"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Salz (pour Tzatziki)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 Zwiebel (pour Tomatenreis)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 125g Langkornreis"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 EL Tomatenmark"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n ca. 100ml Passierte Tomaten"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ca. 250ml Gemüsebrühe"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Griechische Gewürzmischung, optional"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Salz (pour Tomatenreis)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Petersilie (pour Tomatenreis)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n rote Zwiebel, optional"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Famille",
+            "Grèce"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4058",
         "title": "Spanakopita",
@@ -5685,146 +5825,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "4040",
-        "title": "Bifteki avec Tzatziki et Riz aux Tomates",
-        "description": "Un plat grec complet composé de boulettes de viande (Bifteki) farcies à la feta, accompagnées d'une sauce Tzatziki rafraîchissante et d'un riz aux tomates savoureux.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7541829683864702230\" data-video-id=\"7541829683864702230\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7541829683864702230\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             400g Hackfleisch"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 Brötchen"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             evtl. etwas Paniermehl, wenn der Teig noch zu weich ist!"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Zwiebel (pour Bifteki)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 Knoblauchzehen (pour Bifteki)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Bund frische Petersilie (pour Bifteki)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Ei, Größe S"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salz (pour Bifteki)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pfeffer (pour Bifteki)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Oregano"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Kreuzkümmel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika Edelsüß"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Vegeta, optional"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ca. 100g Feta"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300g Griechischer Joghurt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Salatgurke"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             mind. 3 Knoblauchzehen (pour Tzatziki)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Frischer Dill"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Olivenöl"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salz (pour Tzatziki)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 Zwiebel (pour Tomatenreis)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             125g Langkornreis"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 EL Tomatenmark"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             ca. 100ml Passierte Tomaten"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ca. 250ml Gemüsebrühe"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Griechische Gewürzmischung, optional"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Salz (pour Tomatenreis)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Petersilie (pour Tomatenreis)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             rote Zwiebel, optional"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Famille",
-            "Grèce"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4043",
         "title": "Courgettes à la Feta Fouettée",
         "description": "Un plat d'accompagnement estival frais, léger et savoureux. Les courgettes poêlées apportent une touche de chaleur dorée, tandis que la feta fouettée à la menthe et au citron offre un contraste frais et crémeux. Facile à préparer, parfait pour les...",
@@ -6182,56 +6182,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "Grèce"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4055",
-        "title": "Chicken Souvlaki",
-        "description": "Cette recette de Souvlaki au poulet apporte les saveurs de la Grèce à votre cuisine ! Simple mais délicieuse, elle vous fera manger comme un Grec.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774520735951.jpg&v=1774524361000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7359295757796543786\" data-video-id=\"7359295757796543786\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7359295757796543786\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             environ 1 livre (400g) de poitrines de poulet désossées et sans peau, coupées en cubes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5 brochettes"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             5 cuillères à soupe d'huile d'olive extra vierge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café d'origan séché"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel &#038; poivre"
-            }
-        ],
-        "steps": [
-            "Coupez les poitrines de poulet en cubes.",
-            "Mélangez le poulet avec l'huile d'olive extra vierge, l'origan séché, le sel et le poivre.",
-            "Enfilez le poulet sur les 5 brochettes.",
-            "Faites cuire sur du papier sulfurisé pendant 35 minutes à 350 Fahrenheit (180 Celsius).",
-            "Versez du jus de citron sur votre poulet cuit.",
-            "Servez avec du tzatziki, des tomates tranchées, des oignons tranchés, du pain pita grec et du persil frais haché."
-        ],
-        "tags": [
-            "Famille",
-            "Grèce",
-            "Healthy"
         ],
         "isFeatured": false,
         "isFavorite": false,
