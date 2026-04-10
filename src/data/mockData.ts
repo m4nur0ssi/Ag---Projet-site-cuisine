@@ -2,16 +2,97 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 15:44:36
+ * Dernière mise à jour: 10/04/2026 15:49:36
  * Total: 191 recettes
  */
-export const exportSyncId = "1775835876624";
+export const exportSyncId = "1775836176218";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "3991",
+        "title": "Riz jaune du Moyen-Orient",
+        "description": "Un délicieux riz jaune du Moyen-Orient, parfumé au curcuma et au thym, agrémenté de légumes (carotte, céleri, oignon), d'amandes grillées et de raisins secs. Une recette végétarienne et saine, parfaite comme plat principal ou accompagnement.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Friz.jpg&v=1775843181000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7339944050939809056\" data-video-id=\"7339944050939809056\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7339944050939809056\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 300g long grain rice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 tablespoons chopped roasted almonds"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 tablespoons soaked raisins"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 small celery root"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 white onion"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 carrot"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 tablespoon chopped parsley"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 teaspoon turmeric"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 2 thyme sprigs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 450 ml water"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 5 tablespoons olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Salt (to taste)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pepper (to taste)"
+            }
+        ],
+        "steps": [
+            "1. Sauté the chopped onion in the olive oil until it is translucent. Then put the rice and cook until it is also transparent.",
+            "2. In the meantime, bring the water to a boil together with the turmeric, carrot and celery chopped into small cubes, salt, pepper and thyme.",
+            "3. When the water starts boiling, pour the mixture over the rice, incorporate, cover with a towel, put the lid on and lift the edges of the towel over the lid. BE VERY CAREFUL with the towel so it doesn't catch fire.",
+            "4. Boil on high heat for 1 minute, then cook on low heat for 22 minutes.",
+            "5. Sprinkle with almonds, parsley and raisins, mix well and serve. Good appetite!"
+        ],
+        "tags": [
+            "Healthy",
+            "Orient",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "3975",
         "title": "Bambas de Nata",
         "description": "Une pâtisserie espagnole classique : de moelleux petits pains à la levure garnis de crème fouettée légèrement sucrée. C'est une gourmandise simple et très appréciée, que l'on trouve couramment dans les boulangeries en Espagne.",
-        "image": "/images/recipe-placeholder.jpg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbombas.jpg&v=1775842988000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4266,87 +4347,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Healthy",
             "Liban",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3991",
-        "title": "Riz jaune du Moyen-Orient",
-        "description": "Un délicieux riz jaune du Moyen-Orient, parfumé au curcuma et au thym, agrémenté de légumes (carotte, céleri, oignon), d'amandes grillées et de raisins secs. Une recette végétarienne et saine, parfaite comme plat principal ou accompagnement.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7339944050939809056\" data-video-id=\"7339944050939809056\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7339944050939809056\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             300g long grain rice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tablespoons chopped roasted almonds"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tablespoons soaked raisins"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 small celery root"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 white onion"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 carrot"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tablespoon chopped parsley"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 teaspoon turmeric"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             2 thyme sprigs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             450 ml water"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5 tablespoons olive oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt (to taste)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pepper (to taste)"
-            }
-        ],
-        "steps": [
-            "1. Sauté the chopped onion in the olive oil until it is translucent. Then put the rice and cook until it is also transparent.",
-            "2. In the meantime, bring the water to a boil together with the turmeric, carrot and celery chopped into small cubes, salt, pepper and thyme.",
-            "3. When the water starts boiling, pour the mixture over the rice, incorporate, cover with a towel, put the lid on and lift the edges of the towel over the lid. BE VERY CAREFUL with the towel so it doesn't catch fire.",
-            "4. Boil on high heat for 1 minute, then cook on low heat for 22 minutes.",
-            "5. Sprinkle with almonds, parsley and raisins, mix well and serve. Good appetite!"
-        ],
-        "tags": [
-            "Healthy",
-            "Orient",
             "Végé"
         ],
         "isFeatured": false,
