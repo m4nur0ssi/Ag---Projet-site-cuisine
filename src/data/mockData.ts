@@ -2,11 +2,63 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 16:53:20
+ * Dernière mise à jour: 10/04/2026 17:00:04
  * Total: 190 recettes
  */
-export const exportSyncId = "1775840000454";
+export const exportSyncId = "1775840404318";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4058",
+        "title": "Spanakopita",
+        "description": "Une spécialité grecque traditionnelle, la Spanakopita est un feuilleté savoureux à base de feuilles de bricks croustillantes, garni d'un mélange d'épinards, de fromage, d'œufs et de yaourt, puis cuit au four.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fspanakopita_homemade_mom_1775839779733.jpg&v=1775847469000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7356319561278393632\" data-video-id=\"7356319561278393632\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7356319561278393632\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Feuilles de bricks"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fromage de vache"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n Epinards"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 5 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 yaourts nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pincée de levure boulangère"
+            }
+        ],
+        "steps": [
+            "Dans un bol, cassez 2 œufs, ajoutez les 2 yaourts nature et une pincée de levure boulangère, puis mélangez bien pour obtenir une sauce.",
+            "Dans un autre bol, mélangez le fromage de vache, les épinards et les 3 œufs restants pour former la garniture.",
+            "Prenez 3 feuilles de bricks, appliquez la sauce (mélange œuf/yaourt) sur les feuilles, puis disposez la garniture aux épinards et fromage. Pliez les feuilles pour former des feuilletés.",
+            "Faites cuire au four à 200°C pendant 30 minutes."
+        ],
+        "tags": [
+            "Famille",
+            "Grèce",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4013",
         "title": "Mahmoos Gutaifi",
@@ -5636,7 +5688,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4040",
         "title": "Bifteki avec Tzatziki et Riz aux Tomates",
         "description": "Un plat grec complet composé de boulettes de viande (Bifteki) farcies à la feta, accompagnées d'une sauce Tzatziki rafraîchissante et d'un riz aux tomates savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774521104109.jpg&v=1774524757000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6180,58 +6232,6 @@ export const mockRecipes: Recipe[] = [
             "Famille",
             "Grèce",
             "Healthy"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4058",
-        "title": "Spanakopita",
-        "description": "Une spécialité grecque traditionnelle, la Spanakopita est un feuilleté savoureux à base de feuilles de bricks croustillantes, garni d'un mélange d'épinards, de fromage, d'œufs et de yaourt, puis cuit au four.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7356319561278393632\" data-video-id=\"7356319561278393632\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7356319561278393632\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Feuilles de bricks"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fromage de vache"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Epinards"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             5 oeufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 yaourts nature"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pincée de levure boulangère"
-            }
-        ],
-        "steps": [
-            "Dans un bol, cassez 2 œufs, ajoutez les 2 yaourts nature et une pincée de levure boulangère, puis mélangez bien pour obtenir une sauce.",
-            "Dans un autre bol, mélangez le fromage de vache, les épinards et les 3 œufs restants pour former la garniture.",
-            "Prenez 3 feuilles de bricks, appliquez la sauce (mélange œuf/yaourt) sur les feuilles, puis disposez la garniture aux épinards et fromage. Pliez les feuilles pour former des feuilletés.",
-            "Faites cuire au four à 200°C pendant 30 minutes."
-        ],
-        "tags": [
-            "Famille",
-            "Grèce",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
