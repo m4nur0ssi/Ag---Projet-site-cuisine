@@ -2,16 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 10:04:45
- * Total: 193 recettes
+ * Dernière mise à jour: 10/04/2026 15:39:05
+ * Total: 192 recettes
  */
-export const exportSyncId = "1775815485910";
+export const exportSyncId = "1775835545485";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5007",
         "title": "Gnocchis crémeux au poulet, champignons",
         "description": "Une recette ultra gourmande de gnocchis dans une sauce crémeuse au bouillon de volaille, champignons, brocolis et parmesan, avec des filets de poulet grillés au paprika. Prête en 20 minutes seulement !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fgnocchis.jpeg&v=1775822625000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fgnocchis.jpeg&v=1775822632000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3176,119 +3176,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3943",
-        "title": "Tenders de poulet avec Mac &#038; Cheese",
-        "description": "Une recette populaire de tenders de poulet croustillants au miel piquant, accompagnés d'un Mac &#038; Cheese crémeux et gratiné. Idéal pour un repas convivial, ce plat est une version revisitée d'une recette virale.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774522936966.jpg&v=1774526550000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7522516359050317069\" data-video-id=\"7522516359050317069\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7522516359050317069\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             chicken tenderloins"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Onion powder"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Garlic powder"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cayenne"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Ranch seasoning"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Buttermilk"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Eggs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             flour"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cornstarch"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             elbow noodles"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Butter"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Heavy cream"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Evaporated milk"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Colby &#038; Monterey Jack cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             sharp cheddar cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mozzarella cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Hot sauce"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Franks redhot Hot honey"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Honey"
-            }
-        ],
-        "steps": [
-            "Pour le Mac &#038; Cheese : Cuire au four à 350 F (environ 175°C) pendant 15-20 minutes, puis gratiner au grill pendant 1 minute.",
-            "Les étapes détaillées pour la préparation des tenders de poulet (enrobage humide et sec, friture) et de la sauce au miel piquant ne sont pas fournies dans la description."
-        ],
-        "tags": [
-            "dîner",
-            "facile",
-            "Famille",
-            "fromage",
-            "poulet",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
