@@ -2,11 +2,110 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 16:38:54
+ * Dernière mise à jour: 10/04/2026 16:44:58
  * Total: 191 recettes
  */
-export const exportSyncId = "1775839134548";
+export const exportSyncId = "1775839498251";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4013",
+        "title": "Mahmoos Gutaifi",
+        "description": "Un plat de poulet et riz originaire d'Arabie Saoudite, parfumé aux épices et servi avec une sauce au yaourt.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmahmoos_gutaifi_chef_plating_1775839187356.jpg&v=1775846620000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7563328855201713410\" data-video-id=\"7563328855201713410\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7563328855201713410\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 400g de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignons rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignons jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 tête d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 piment vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 bâton de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3 feuilles de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 Cas de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 Caf de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 Caf de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 Caf de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 Caf d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 Cas de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 Caf de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n 1 verre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 3 Cas de lait fermenté (ou yaourt grec)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail confit"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions de la vidéo pour la préparation."
+        ],
+        "tags": [
+            "Orient"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4019",
         "title": "Eggplant Fatteh (Fatteh aux aubergines)",
@@ -4996,105 +5095,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "Grèce"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4013",
-        "title": "Mahmoos Gutaifi",
-        "description": "Un plat de poulet et riz originaire d'Arabie Saoudite, parfumé aux épices et servi avec une sauce au yaourt.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimage-recette-de-Mahmoos-Gutaifi.jpeg&v=1774525359000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7563328855201713410\" data-video-id=\"7563328855201713410\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7563328855201713410\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             400g de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 tête d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 piment vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bâton de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 feuilles de laurier"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 Cas de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Caf de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 Caf de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 Caf de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 Caf d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 Cas de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 Caf de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             1 verre de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             3 Cas de lait fermenté (ou yaourt grec)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail confit"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions de la vidéo pour la préparation."
-        ],
-        "tags": [
-            "Orient"
         ],
         "isFeatured": false,
         "isFavorite": false,
