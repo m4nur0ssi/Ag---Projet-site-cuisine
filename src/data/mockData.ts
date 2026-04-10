@@ -2,11 +2,68 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 09:18:34
- * Total: 195 recettes
+ * Dernière mise à jour: 10/04/2026 09:22:05
+ * Total: 194 recettes
  */
-export const exportSyncId = "1775812714245";
+export const exportSyncId = "1775812925430";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5022",
+        "title": "Sandwich chaud à la viande hachée (style Patty melt)",
+        "description": "Une véritable dinguerie à tester absolument !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsandwi.jpeg&v=1775820043000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626408980570590486\" data-video-id=\"7626408980570590486\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626408980570590486\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥖\n 3 tranches de pain de mie"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Environ 150 g de viande hachée (facultatif : assaisonnée de paprika, persil, sel et poivre)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 2 tranches de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3 à 4 cornichons"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sauce burger (ou sauce algérienne selon votre préférence)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Un peu d'huile pour la cuisson"
+            }
+        ],
+        "steps": [
+            "Étalez la viande hachée directement sur deux tranches de pain de mie.",
+            "Coupez l'oignon en lamelles. Faites-le revenir dans une poêle avec un peu d'huile jusqu'à ce qu'il soit bien doré et légèrement caramélisé. Réservez.",
+            "Dans la même poêle, déposez les tranches de pain côté viande contre la poêle. Laissez cuire quelques minutes, puis retournez pour faire légèrement dorer le pain.",
+            "Sur une tranche avec la viande, ajoutez : 1 tranche de cheddar, des oignons caramélisés, un peu de sauce burger ou sauce algérienne, les cornichons, la deuxième tranche de cheddar.",
+            "Ajoutez la troisième tranche de pain de mie et refermez le sandwich.",
+            "Remettez le sandwich dans la poêle et faites-le griller de chaque côté jusqu'à ce que le pain soit bien doré et croustillant et que le fromage soit fondu.",
+            "Servez chaud, c'est prêt à déguster !"
+        ],
+        "tags": [
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5025",
         "title": "Top 3 meilleures recettes de knacki",
@@ -218,121 +275,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "citron",
             "Desserts"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5022",
-        "title": "Sandwich chaud à la viande hachée (style Patty melt)",
-        "description": "Une véritable dinguerie à tester absolument !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775747022772.jpg&v=1775754264000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626408980570590486\" data-video-id=\"7626408980570590486\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626408980570590486\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥖\n             3 tranches de pain de mie"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Environ 150 g de viande hachée (facultatif : assaisonnée de paprika, persil, sel et poivre)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             2 tranches de fromage cheddar"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 à 4 cornichons"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sauce burger (ou sauce algérienne selon votre préférence)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Un peu d'huile pour la cuisson"
-            }
-        ],
-        "steps": [
-            "Étalez la viande hachée directement sur deux tranches de pain de mie.",
-            "Coupez l'oignon en lamelles. Faites-le revenir dans une poêle avec un peu d'huile jusqu'à ce qu'il soit bien doré et légèrement caramélisé. Réservez.",
-            "Dans la même poêle, déposez les tranches de pain côté viande contre la poêle. Laissez cuire quelques minutes, puis retournez pour faire légèrement dorer le pain.",
-            "Sur une tranche avec la viande, ajoutez : 1 tranche de cheddar, des oignons caramélisés, un peu de sauce burger ou sauce algérienne, les cornichons, la deuxième tranche de cheddar.",
-            "Ajoutez la troisième tranche de pain de mie et refermez le sandwich.",
-            "Remettez le sandwich dans la poêle et faites-le griller de chaque côté jusqu'à ce que le pain soit bien doré et croustillant et que le fromage soit fondu.",
-            "Servez chaud, c'est prêt à déguster !"
-        ],
-        "tags": [
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5019",
-        "title": "Sandwich chaud à la viande hachée (style Patty melt)",
-        "description": "Une véritable dinguerie à tester absolument 👌👌👌",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775746975412.jpg&v=1775754190000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626408980570590486\" data-video-id=\"7626408980570590486\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626408980570590486\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥖\n             3 tranches de pain de mie"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Environ 150 g de viande hachée (facultatif : assaisonnée de paprika, persil, sel et poivre)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             2 tranches de fromage cheddar"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 à 4 cornichons"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sauce burger (ou sauce algérienne selon votre préférence)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Un peu d'huile pour la cuisson"
-            }
-        ],
-        "steps": [
-            "Étaler la viande hachée directement sur deux tranches de pain de mie.",
-            "Couper l'oignon en lamelles et le faire revenir dans une poêle avec un peu d'huile jusqu'à ce qu'il soit bien doré et légèrement caramélisé. Réserver.",
-            "Dans la même poêle, déposer les tranches de pain côté viande contre la poêle. Laisser cuire quelques minutes, puis retourner pour faire légèrement dorer le pain.",
-            "Sur une tranche avec la viande, ajouter : 1 tranche de cheddar, des oignons caramélisés, un peu de sauce burger ou sauce algérienne, les cornichons, la deuxième tranche de cheddar.",
-            "Ajouter la troisième tranche de pain de mie et refermer le sandwich.",
-            "Remettre le sandwich dans la poêle et le faire griller de chaque côté jusqu'à ce que le pain soit bien doré et croustillant et que le fromage soit fondu.",
-            "Servir chaud, c'est prêt à déguster !"
-        ],
-        "tags": [
-            "Pas cher",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
