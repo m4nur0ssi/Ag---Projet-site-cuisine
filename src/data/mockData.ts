@@ -2,11 +2,111 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 16:28:11
+ * Dernière mise à jour: 10/04/2026 16:33:07
  * Total: 191 recettes
  */
-export const exportSyncId = "1775838491660";
+export const exportSyncId = "1775838787057";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4005",
+        "title": "Kefta au tahini au four",
+        "description": "Un plat parfumé, fondant et ultra savoureux.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fkefta_tahini_magazine_1775838030073.jpg&v=1775845751000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7611477632105893123\" data-video-id=\"7611477632105893123\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7611477632105893123\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 500 g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon finement coupé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Persil ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 càs d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 càs de cardamome en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 petite càc de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 càs de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 3 gros oignons coupés en quartiers"
+            },
+            {
+                "quantity": "",
+                "name": "🥔\n 1 grosse pomme de terre coupée"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 4 à 5 belles tomates coupées"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 yaourts grecs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Le jus de cuisson"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Le jus d'½ citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3 belles cuillères de tahini"
+            }
+        ],
+        "steps": [
+            "Dans un plat huilé allant au four, dispose dans cet ordre : les oignons, les pommes de terre, les tomates. Ajoute l'ail émincé, un filet d'huile d'olive, du sel et du poivre. Enfourne à 200°C pendant 40 minutes. (Si ça colore trop vite, couvre avec une feuille d'aluminium.)",
+            "Pendant ce temps, prépare la kefta : Mélange la viande avec l'oignon, le persil, l'ail en poudre, la cardamome, la cannelle, le paprika, le sel et le poivre. Malaxe bien et forme des boudins.",
+            "Après les 40 minutes de cuisson des légumes, sors le plat du four et dépose les keftas par-dessus. Remets au four pendant 15 minutes.",
+            "Sors à nouveau le plat et récupère le jus de cuisson. Mélange-le avec les 2 yaourts grecs, le jus de citron et le tahini.",
+            "Verse cette sauce sur le plat et remets au four quelques minutes pour que ça gratine légèrement. Servir chaud avec du pain."
+        ],
+        "tags": [
+            "Famille",
+            "Orient"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4002",
         "title": "Lahsa Yéménite",
@@ -4608,106 +4708,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Liban"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4005",
-        "title": "Kefta au tahini au four",
-        "description": "Un plat parfumé, fondant et ultra savoureux.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7611477632105893123\" data-video-id=\"7611477632105893123\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7611477632105893123\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500 g de viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon finement coupé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Persil ciselé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 càs d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 càs de cardamome en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 petite càc de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 càs de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             3 gros oignons coupés en quartiers"
-            },
-            {
-                "quantity": "",
-                "name": "🥔\n             1 grosse pomme de terre coupée"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             4 à 5 belles tomates coupées"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Filet d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 yaourts grecs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Le jus de cuisson"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus d'½ citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 belles cuillères de tahini"
-            }
-        ],
-        "steps": [
-            "Dans un plat huilé allant au four, dispose dans cet ordre : les oignons, les pommes de terre, les tomates. Ajoute l'ail émincé, un filet d'huile d'olive, du sel et du poivre. Enfourne à 200°C pendant 40 minutes. (Si ça colore trop vite, couvre avec une feuille d'aluminium.)",
-            "Pendant ce temps, prépare la kefta : Mélange la viande avec l'oignon, le persil, l'ail en poudre, la cardamome, la cannelle, le paprika, le sel et le poivre. Malaxe bien et forme des boudins.",
-            "Après les 40 minutes de cuisson des légumes, sors le plat du four et dépose les keftas par-dessus. Remets au four pendant 15 minutes.",
-            "Sors à nouveau le plat et récupère le jus de cuisson. Mélange-le avec les 2 yaourts grecs, le jus de citron et le tahini.",
-            "Verse cette sauce sur le plat et remets au four quelques minutes pour que ça gratine légèrement. Servir chaud avec du pain."
-        ],
-        "tags": [
-            "Famille",
-            "Orient"
         ],
         "isFeatured": false,
         "isFavorite": false,
