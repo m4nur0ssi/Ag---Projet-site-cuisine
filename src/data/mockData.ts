@@ -2,46 +2,46 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/04/2026 05:16:54
+ * Dernière mise à jour: 10/04/2026 09:03:07
  * Total: 195 recettes
  */
-export const exportSyncId = "1775798214564";
+export const exportSyncId = "1775811787564";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5031",
         "title": "Citron liégeois",
         "description": "Un dessert frais et onctueux, le Citron Liégeois combine un lemon curd maison acidulé avec une chantilly légère, le tout poché pour une présentation élégante et un mélange de saveurs en bouche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775772180743.jpg&v=1775779410000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcitron.jpg&v=1775818909000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626809436673215766\" data-video-id=\"7626809436673215766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626809436673215766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626809436673215766\" data-video-id=\"7626809436673215766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626809436673215766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍋\n             150 ml de jus de citron"
+                "name": "🍋\n 150 ml de jus de citron"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             3 oeufs"
+                "name": "🥚\n 3 oeufs"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             50 g de beurre"
+                "name": "🧈\n 50 g de beurre"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             2 cas de mascarpone"
+                "name": "🧀\n 2 cas de mascarpone"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             120 ml de crème liquide entière"
+                "name": "🥛\n 120 ml de crème liquide entière"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             90 g de sucrant au choix (70g + 20g)"
+                "name": "🥣\n 90 g de sucrant au choix (70g + 20g)"
             }
         ],
         "steps": [
