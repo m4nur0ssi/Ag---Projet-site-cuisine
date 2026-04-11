@@ -2,11 +2,68 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/04/2026 08:29:34
- * Total: 188 recettes
+ * Dernière mise à jour: 11/04/2026 14:08:55
+ * Total: 189 recettes
  */
-export const exportSyncId = "1775896174893";
+export const exportSyncId = "1775916535599";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5086",
+        "title": "Café batido con Kinder Bueno",
+        "description": "Une boisson rafraîchissante et gourmande à base de café fouetté, de Nutella, de Kinder Bueno fondu et de glaçons, parfaite pour les amateurs de café et de chocolat.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775916415244.jpg&v=1775923630000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7475804401832086806\" data-video-id=\"7475804401832086806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7475804401832086806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Nutella"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Glaçons"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Kinder Bueno (mélangé avec du lait chaud pour qu'il fonde)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cuillères de café (pour la crème)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère de sucre (pour la crème)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Eau (pour couvrir le café et le sucre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Un petit morceau de Kinder Bueno (pour décorer)"
+            }
+        ],
+        "steps": [
+            "Faire fondre le Kinder Bueno avec du lait chaud.",
+            "Préparer la crème de café en mélangeant 2 cuillères de café, 1 cuillère de sucre et en couvrant d'eau, puis fouetter jusqu'à obtenir une crème.",
+            "Dans un verre, ajouter du Nutella, des glaçons, le Kinder Bueno fondu.",
+            "Verser la crème de café par-dessus.",
+            "Décorer avec un petit morceau de Kinder Bueno et déguster."
+        ],
+        "tags": [
+            "Espagne",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5083",
         "title": "Ma Boisson de l'Été!",
