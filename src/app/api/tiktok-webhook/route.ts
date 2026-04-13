@@ -207,16 +207,19 @@ async function handleRequest(request: Request) {
 
         // Étape 1 : Si on n'a pas de pays, on cherche partout dans les params et le body
         if (!selectedCountry) {
-            const knownCountries = ["France", "Italie", "Espagne", "Grece", "Grèce", "Liban",
-                "USA", "Mexique", "Orient", "Asie", "Afrique", "Aperitifs", "Aperitif", "Entrees", "Entrée", "Entree",
-                "Plats", "Plat", "Vegetarien", "Desserts", "Dessert", "Patisserie", "Restaurant",
-                "Glaces", "Glace", "Rafraichissements", "Rafraîchissements", "Paques", "Pâques", "Noel", "Noël", "Astuces", "Simplissime"];
+            const knownCountries = [
+                "France", "Italie", "Espagne", "Grece", "Grèce", "Liban",
+                "USA", "Mexique", "Orient", "Asie", "Afrique", "Aperitifs", "Aperitif", "Apéritifs", "Apéritif", "Entrees", "Entrée", "Entree",
+                "Plats", "Plat", "Vegetarien", "Végétarien", "Desserts", "Dessert", "Patisserie", "Pâtisserie", "Restaurant",
+                "Glaces", "Glace", "Rafraichissements", "Rafraîchissements", "Paques", "Pâques", "Noel", "Noël", "Astuces", "Simplissime", "Barbecue", "Bbq", "Sandwichs", "Gratins", "Soupes", "Salades"
+            ];
 
             // Scan TOUS les paramètres de l'URL
             searchParams.forEach((val) => {
                 if (!selectedCountry && val) {
+                    const lval = val.toLowerCase();
                     for (const c of knownCountries) {
-                        if (val.includes(c)) { selectedCountry = val; break; }
+                        if (lval.includes(c.toLowerCase())) { selectedCountry = val; break; }
                     }
                 }
             });
@@ -230,8 +233,9 @@ async function handleRequest(request: Request) {
                             selectedCountry = val;
                             break;
                         }
+                        const lval = val.toLowerCase();
                         for (const c of knownCountries) {
-                            if (val.includes(c)) { selectedCountry = val; break; }
+                            if (lval.includes(c.toLowerCase())) { selectedCountry = val; break; }
                         }
                     }
                 }
