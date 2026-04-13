@@ -104,6 +104,35 @@ async function isRecipeWithGemini(description, title) {
     return null;
 }
 
+/**
+ * Résout une URL courte TikTok (vm.tiktok.com, vt.tiktok.com) vers l'URL longue.
+ * Retourne l'URL finale et l'ID vidéo si trouvé.
+ */
+async function resolveShortUrl(videoUrl) {
+    const isShort = /vm\.tiktok\.com|vt\.tiktok\.com/.test(videoUrl);
+    if (!isShort) return { resolvedUrl: videoUrl };
+
+    console.log(`    🔗 URL courte détectée (${videoUrl}), résolution...`);
+    try {
+        // Utiliser un HEAD pour suivre les redirects sans télécharger le body
+        const res = await fetch(videoUrl, {
+            method: 'GET',
+            redirect: 'follow',
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            }
+        });
+        const finalUrl = res.url || videoUrl;
+        const idMatch = finalUrl.match(/\/video\/(\d+)/);
+        const videoId = idMatch ? idMatch[1] : null;
+        console.log(`    ✅ URL résolue : ${finalUrl} (ID: ${videoId || 'inconnu'})`);
+        return { resolvedUrl: finalUrl, videoId };
+    } catch (e) {
+        console.log(`    ⚠️ Résolution URL courte échouée : ${e.message}`);
+        return { resolvedUrl: videoUrl };
+    }
+}
+
 async function fetchTikTokMetadata(videoUrl) {
     if (!videoUrl) return null;
     try {
@@ -114,7 +143,11 @@ async function fetchTikTokMetadata(videoUrl) {
             webId ? `ttwid=${webId}` : ''
         ].filter(Boolean).join('; ');
 
-        const res = await fetch(videoUrl, {
+        // ── Étape 0 : Résoudre les URLs courtes AVANT tout le reste ──────────────
+        const { resolvedUrl, videoId: resolvedId } = await resolveShortUrl(videoUrl);
+        const effectiveUrl = resolvedUrl;
+
+        const res = await fetch(effectiveUrl, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -123,42 +156,68 @@ async function fetchTikTokMetadata(videoUrl) {
             redirect: 'follow'
         });
         const html = await res.text();
+        const finalUrl = res.url || effectiveUrl;
 
         // Tentative 1 : JSON Rehydration (Le plus fiable)
         const jsonMatch = html.match(/<script id="__UNIVERSAL_DATA_FOR_REHYDRATION__" type="application\/json">([\s\S]*?)<\/script>/);
         if (jsonMatch) {
-            const data = JSON.parse(jsonMatch[1]);
-            const scope = data.__DEFAULT_SCOPE__ || {};
-            // On cherche dans plusieurs chemins possibles (desktop vs mobile/reflow)
-            const itemStruct = scope['webapp.video-detail']?.itemInfo?.itemStruct ||
-                scope['webapp.reflow.video.detail']?.itemInfo?.itemStruct;
+            try {
+                const data = JSON.parse(jsonMatch[1]);
+                const scope = data.__DEFAULT_SCOPE__ || {};
+                const itemStruct = scope['webapp.video-detail']?.itemInfo?.itemStruct ||
+                    scope['webapp.reflow.video.detail']?.itemInfo?.itemStruct;
 
-            if (itemStruct) {
-                return {
-                    title: itemStruct.desc,
-                    description: itemStruct.desc,
-                    finalUrl: res.url,
-                    author: itemStruct.author?.uniqueId
-                };
+                if (itemStruct) {
+                    return {
+                        title: itemStruct.desc,
+                        description: itemStruct.desc,
+                        finalUrl: finalUrl,
+                        author: itemStruct.author?.uniqueId
+                    };
+                }
+            } catch (e) {
+                console.log(`    ⚠️ Parse JSON rehydration échoué: ${e.message}`);
             }
         }
 
-        // Fallback: OEmbed API (Très robuste pour la description)
+        // Tentative 2 : OEmbed API (Très robuste pour la description)
         console.log(`    🔍 Récupération via OEmbed...`);
         try {
-            const videoIdMatch = videoUrl.match(/\/(?:video|v)\/(\d+)/);
-            let videoId = videoIdMatch ? videoIdMatch[1] : null;
+            // Priorité : ID extrait depuis l'URL résolue ou la finalUrl
+            const idFromFinal = finalUrl.match(/\/video\/(\d+)/)?.[1];
+            const videoId = idFromFinal || resolvedId || videoUrl.match(/\/video\/(\d+)/)?.[1];
+
             if (videoId) {
-                // Essayer l'URL OEmbed avec un auteur générique @a (très robuste, évite les 400 sur URLs mobiles/short)
                 const oEmbedUrl = `https://www.tiktok.com/oembed?url=https://www.tiktok.com/@a/video/${videoId}`;
                 const oRes = await fetch(oEmbedUrl);
                 const oData = await oRes.json();
                 if (oData && oData.title) {
-                    console.log(`    ✅ Infos récupérées via OEmbed.`);
+                    console.log(`    ✅ Infos récupérées via OEmbed (ID: ${videoId}).`);
                     return {
                         title: oData.title.split('\n')[0],
                         description: oData.title,
-                        finalUrl: res.url, // Use the final URL from the initial fetch
+                        finalUrl: finalUrl,
+                        author: oData.author_name
+                    };
+                }
+            } else {
+                // Fallback si toujours pas d'ID : OEmbed direct sur l'URL courte originale
+                const oEmbedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(videoUrl)}`;
+                console.log(`    🔍 OEmbed direct sur URL courte : ${oEmbedUrl}`);
+                const oRes = await fetch(oEmbedUrl);
+                const oData = await oRes.json();
+                if (oData && oData.title) {
+                    console.log(`    ✅ Infos récupérées via OEmbed (URL courte).`);
+                    // Extraire l'ID vidéo depuis l'URL OEmbed retournée
+                    const embedUrl = oData.embed_product_id || '';
+                    const idFromOEmbed = embedUrl || oData.video_id || null;
+                    const longUrl = idFromOEmbed
+                        ? `https://www.tiktok.com/@${oData.author_unique_id || 'a'}/video/${idFromOEmbed}`
+                        : finalUrl;
+                    return {
+                        title: oData.title.split('\n')[0],
+                        description: oData.title,
+                        finalUrl: longUrl,
                         author: oData.author_name
                     };
                 }
@@ -167,9 +226,9 @@ async function fetchTikTokMetadata(videoUrl) {
             console.log(`    ⚠️ OEmbed échoué : ${e.message}`);
         }
 
-        // Tentative 2 : Meta Tags classiques (Fallback)
+        // Tentative 3 : Meta Tags classiques (Fallback)
         const titleMatch = html.match(/<title>(.*?)<\/title>/);
-        const metaDescMatch = html.match(/<meta name="description" content="(.*?)">/);
+        const metaDescMatch = html.match(/<meta name="description" content="(.*?)">/)
         const ogDescMatch = html.match(/<meta property="og:description" content="(.*?)">/);
 
         const bestDesc = (metaDescMatch ? metaDescMatch[1] : (ogDescMatch ? ogDescMatch[1] : (titleMatch ? titleMatch[1] : '')));
@@ -178,7 +237,7 @@ async function fetchTikTokMetadata(videoUrl) {
             return {
                 title: bestDesc,
                 description: bestDesc,
-                finalUrl: res.url
+                finalUrl: finalUrl
             };
         }
     } catch (e) {
@@ -228,6 +287,20 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
     }
     console.log(`\n📋 Analyse : ${videoUrl}`);
 
+    // ── Étape 0 : Résoudre l'URL courte en URL longue AVANT tout ────────────────
+    // Ex: vm.tiktok.com/ZNRVdYEyx/ → tiktok.com/@user/video/1234567890
+    const isShort = /vm\.tiktok\.com|vt\.tiktok\.com/.test(videoUrl);
+    if (isShort) {
+        console.log(`   🔗 URL courte détectée, résolution préalable...`);
+        const { resolvedUrl } = await resolveShortUrl(videoUrl);
+        if (resolvedUrl && resolvedUrl !== videoUrl) {
+            console.log(`   ✅ URL résolue : ${resolvedUrl}`);
+            videoUrl = resolvedUrl;
+        } else {
+            console.log(`   ⚠️ Résolution échouée, on continue avec l'URL courte.`);
+        }
+    }
+
     // Recovery
     console.log(`   🔍 Récupération des infos TikTok...`);
     const metadata = await fetchTikTokMetadata(videoUrl);
@@ -235,8 +308,11 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
 
     if (metadata) {
         description = isGeneric ? metadata.description : description;
-        videoUrl = metadata.finalUrl || videoUrl;
-        console.log(`   ✅ Infos ok : "${metadata.title?.substring(0, 30)}..."`);
+        // Si on a obtenu une URL longue avec l'ID, on l'utilise
+        if (metadata.finalUrl && metadata.finalUrl !== videoUrl) {
+            videoUrl = metadata.finalUrl;
+        }
+        console.log(`   ✅ Infos ok : "${metadata.title?.substring(0, 50)}..."`);
     } else {
         console.log(`   ⚠️ Impossible de lire les infos TikTok, utilisation de la description brute.`);
     }
