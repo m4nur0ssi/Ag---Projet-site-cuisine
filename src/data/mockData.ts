@@ -2,11 +2,66 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/04/2026 08:36:56
+ * Dernière mise à jour: 14/04/2026 08:48:17
  * Total: 192 recettes
  */
-export const exportSyncId = "1776155816814";
+export const exportSyncId = "1776156497655";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5095",
+        "title": "Poire farcie au camembert, lard caramélisé",
+        "description": "La recette aux plus de 6M de vues, qui m'a fait connaître sur les réseaux l'année dernière et que tu peux retrouver dans le Cheese Book de @lecheesegeek 🔥 Pour 2 pers.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecette-poire-chevre-lard.jpg&v=1776163513000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7564068619785686294\" data-video-id=\"7564068619785686294\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7564068619785686294\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍐\n 2 poires bio"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 camembert"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n 10 tranches de lard (ici nature)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n Quelques noix"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Eplucher les poires en gardant la queue.",
+            "Les creuses par le dessous en essayant de faire la plus petite ouverture mais en les creusant le plus possible à l'intérieur, sans percer leur chair.",
+            "Découper le camembert en petites cubes et concasser des cerneaux de noix.",
+            "Remplir les poires avec le camembert et les noix en tassant bien pour en mettre la maximum.",
+            "Disposer 2 tranches de lard sur une plaque de cuisson en croix et disposer les poires par dessus.",
+            "Rabattre les tranches vers le haut puis enrober le tout avec 3 tranches supplémentaires pour bien recouvrir toute la poire.",
+            "Badigeonner délicatement le lard de miel.",
+            "Enfourner à 180°C pendant 20min.",
+            "Poivrer."
+        ],
+        "tags": [
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "3892",
         "title": "Gazpacho maison",
@@ -130,65 +185,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5095",
-        "title": "Poire farcie au camembert, lard caramélisé",
-        "description": "La recette aux plus de 6M de vues, qui m'a fait connaître sur les réseaux l'année dernière et que tu peux retrouver dans le Cheese Book de @lecheesegeek 🔥 Pour 2 pers.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776115910534.jpg&v=1776160910000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7564068619785686294\" data-video-id=\"7564068619785686294\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7564068619785686294\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍐\n 2 poires bio"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1/2 camembert"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n 10 tranches de lard (ici nature)"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n Quelques noix"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n Miel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            }
-        ],
-        "steps": [
-            "Eplucher les poires en gardant la queue.",
-            "Les creuses par le dessous en essayant de faire la plus petite ouverture mais en les creusant le plus possible à l'intérieur, sans percer leur chair.",
-            "Découper le camembert en petites cubes et concasser des cerneaux de noix.",
-            "Remplir les poires avec le camembert et les noix en tassant bien pour en mettre la maximum.",
-            "Disposer 2 tranches de lard sur une plaque de cuisson en croix et disposer les poires par dessus.",
-            "Rabattre les tranches vers le haut puis enrober le tout avec 3 tranches supplémentaires pour bien recouvrir toute la poire.",
-            "Badigeonner délicatement le lard de miel.",
-            "Enfourner à 180°C pendant 20min.",
-            "Poivrer."
-        ],
-        "tags": [
-            "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5098",
         "title": "Pomme duchesse ail &#038; beurre truffé",
         "description": "Des pommes duchesse classiques revisitées avec de l'ail et du beurre truffé, parfaites pour accompagner vos repas de fêtes de fin d'année.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776153142979.jpg&v=1776160358000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
