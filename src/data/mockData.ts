@@ -2,11 +2,68 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/04/2026 09:58:27
- * Total: 193 recettes
+ * Dernière mise à jour: 14/04/2026 11:40:06
+ * Total: 194 recettes
  */
-export const exportSyncId = "1776160707801";
+export const exportSyncId = "1776166806181";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5120",
+        "title": "CRÊPES INRATABLE",
+        "description": "Une recette simple et inratable de crêpes sans grumeaux, fondantes en bouche avec un goût de beurre. Les quantités peuvent être divisées par deux pour une dizaine de crêpes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776166637238.jpg&v=1776173860000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7296921109449035041\" data-video-id=\"7296921109449035041\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7296921109449035041\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             250 gr de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60 gr de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             6 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 ml d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             80 gr de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             750 ml de lait"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, versez la farine tamisée, le sucre et les œufs un par un. Mélangez bien.",
+            "Ajoutez l'huile et mélangez.",
+            "Ajoutez le beurre fondu et mélangez.",
+            "Ajoutez le lait et mélangez jusqu'à obtenir une pâte homogène.",
+            "Laissez reposer la pâte 1 heure (facultatif si vous manquez de temps).",
+            "Faites chauffer une poêle, mettez une noix de beurre.",
+            "Avec une louche, prenez un peu de préparation et versez-la dans la poêle chaude.",
+            "Laissez cuire la crêpe et retournez-la à l'aide d'une spatule.",
+            "Servez chaud, nature ou tartinées de sucre en poudre, sucre glace, Nutella ou confiture."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5117",
         "title": "CRISPY RICE SALAD WITH CREAMY SWEET CHILLI DRESSING",
