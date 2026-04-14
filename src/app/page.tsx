@@ -42,7 +42,7 @@ function HomeContent() {
             const recipeCat = r.category?.toLowerCase() || "";
             const title = (r.title || "").toLowerCase();
             
-            return activeTags.some(currentTag => {
+            return activeTags.every(currentTag => {
                 const tagLower = currentTag.toLowerCase();
                 
                 // Logique spéciale pour Végétarien
