@@ -2,16 +2,110 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/04/2026 08:57:31
+ * Dernière mise à jour: 14/04/2026 09:04:50
  * Total: 192 recettes
  */
-export const exportSyncId = "1776157051678";
+export const exportSyncId = "1776157491013";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5089",
+        "title": "Millefeuilles de pomme de terre",
+        "description": "Une recette simple et savoureuse de millefeuilles de pommes de terre, assaisonnées d'une marinade à l'huile d'olive, à l'ail et au sel Herbamare, puis cuites au four jusqu'à être dorées et fondantes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FMillefeuilles-pdt.jpg&v=1776164534000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7627392830545136918\" data-video-id=\"7627392830545136918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7627392830545136918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n Pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 3 càs d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 2 à 3 càc de sel Herbamare"
+            }
+        ],
+        "steps": [
+            "Préparer la marinade en mélangeant l'huile d'olive, l'ail râpé et le sel Herbamare.",
+            "Couper les pommes de terre en fines tranches.",
+            "Disposer les tranches de pommes de terre en les superposant pour former des millefeuilles ou un gratin, en badigeonnant chaque couche ou l'ensemble avec la marinade.",
+            "Cuire au four préchauffé à 180 degrés pendant 45 à 50 minutes, jusqu'à ce que les pommes de terre soient tendres et dorées."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5092",
+        "title": "Pâte brisée maison",
+        "description": "Une recette familiale de pâte brisée, rapide et facile à réaliser à la main en 2 minutes, sans robot et sans repos, avec des ingrédients du placard. Idéale pour toutes vos tartes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpate-brisee.jpg&v=1776164352000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7627504703664049411\" data-video-id=\"7627504703664049411\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7627504703664049411\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 3 verres de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ½ verre d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n ½ verre d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 poignée de graines de sésame ou d'herbes de Provence (facultatif)"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, ajoute directement 3 verres de farine, ½ verre d'huile, ½ verre d'eau, 1 œuf et, si tu veux, une poignée de graines de sésame ou d'herbes de Provence.",
+            "Mélange à la main jusqu'à obtenir une pâte homogène. Pas besoin de pétrir longtemps.",
+            "Farine légèrement ton plan de travail, dépose la pâte et étale-la au rouleau.",
+            "Beurre et farine ton moule à tarte, dépose la pâte, ajoute la garniture de ton choix et enfourne 30 à 40 minutes à 180°C."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5098",
         "title": "Pomme duchesse ail &#038; beurre truffé",
         "description": "Des pommes duchesse classiques revisitées avec de l'ail et du beurre truffé, parfaites pour accompagner vos repas de fêtes de fin d'année.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpomme-duchesse-1.jpg&v=1776164103000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpomme-duchesse-1.jpg&v=1776164166000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -239,100 +333,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "Rafraîchissements",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5092",
-        "title": "Pâte brisée maison",
-        "description": "Une recette familiale de pâte brisée, rapide et facile à réaliser à la main en 2 minutes, sans robot et sans repos, avec des ingrédients du placard. Idéale pour toutes vos tartes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776097373489.jpg&v=1776104588000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7627504703664049411\" data-video-id=\"7627504703664049411\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7627504703664049411\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             3 verres de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ½ verre d'huile"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             ½ verre d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 poignée de graines de sésame ou d'herbes de Provence (facultatif)"
-            }
-        ],
-        "steps": [
-            "Dans un saladier, ajoute directement 3 verres de farine, ½ verre d'huile, ½ verre d'eau, 1 œuf et, si tu veux, une poignée de graines de sésame ou d'herbes de Provence.",
-            "Mélange à la main jusqu'à obtenir une pâte homogène. Pas besoin de pétrir longtemps.",
-            "Farine légèrement ton plan de travail, dépose la pâte et étale-la au rouleau.",
-            "Beurre et farine ton moule à tarte, dépose la pâte, ajoute la garniture de ton choix et enfourne 30 à 40 minutes à 180°C."
-        ],
-        "tags": [
-            "France",
-            "Pas cher",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5089",
-        "title": "Millefeuilles de pomme de terre",
-        "description": "Une recette simple et savoureuse de millefeuilles de pommes de terre, assaisonnées d'une marinade à l'huile d'olive, à l'ail et au sel Herbamare, puis cuites au four jusqu'à être dorées et fondantes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775916995253.jpg&v=1775924209000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7627392830545136918\" data-video-id=\"7627392830545136918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7627392830545136918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 càs d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail râpée"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             2 à 3 càc de sel Herbamare"
-            }
-        ],
-        "steps": [
-            "Préparer la marinade en mélangeant l'huile d'olive, l'ail râpé et le sel Herbamare.",
-            "Couper les pommes de terre en fines tranches.",
-            "Disposer les tranches de pommes de terre en les superposant pour former des millefeuilles ou un gratin, en badigeonnant chaque couche ou l'ensemble avec la marinade.",
-            "Cuire au four préchauffé à 180 degrés pendant 45 à 50 minutes, jusqu'à ce que les pommes de terre soient tendres et dorées."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France",
-            "Healthy",
-            "Pas cher",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
