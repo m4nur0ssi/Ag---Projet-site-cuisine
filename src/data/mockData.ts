@@ -2,16 +2,76 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/04/2026 08:48:17
+ * Dernière mise à jour: 14/04/2026 08:57:31
  * Total: 192 recettes
  */
-export const exportSyncId = "1776156497655";
+export const exportSyncId = "1776157051678";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5098",
+        "title": "Pomme duchesse ail &#038; beurre truffé",
+        "description": "Des pommes duchesse classiques revisitées avec de l'ail et du beurre truffé, parfaites pour accompagner vos repas de fêtes de fin d'année.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpomme-duchesse-1.jpg&v=1776164103000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7446114586127830294\" data-video-id=\"7446114586127830294\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7446114586127830294\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 4 ou 5 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 jaunes d'oeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 3 gousses d'ail haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n un bloc de beurre truffé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n persil + ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n muscade, sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n de la brisure de truffe (optionnel)"
+            }
+        ],
+        "steps": [
+            "Faire une première cuisson de 10 minutes à 200°C.",
+            "Badigeonner le tout de beurre fondu.",
+            "Terminer la cuisson par environ 10 minutes à 200°C."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Noël",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5095",
         "title": "Poire farcie au camembert, lard caramélisé",
         "description": "La recette aux plus de 6M de vues, qui m'a fait connaître sur les réseaux l'année dernière et que tu peux retrouver dans le Cheese Book de @lecheesegeek 🔥 Pour 2 pers.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecette-poire-chevre-lard.jpg&v=1776163513000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecette-poire-chevre-lard.jpg&v=1776163574000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -179,66 +239,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "Rafraîchissements",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5098",
-        "title": "Pomme duchesse ail &#038; beurre truffé",
-        "description": "Des pommes duchesse classiques revisitées avec de l'ail et du beurre truffé, parfaites pour accompagner vos repas de fêtes de fin d'année.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7446114586127830294\" data-video-id=\"7446114586127830294\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7446114586127830294\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             4 ou 5 pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 jaunes d'oeuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             un bloc de beurre truffé"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             persil + ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             muscade, sel, poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             de la brisure de truffe (optionnel)"
-            }
-        ],
-        "steps": [
-            "Faire une première cuisson de 10 minutes à 200°C.",
-            "Badigeonner le tout de beurre fondu.",
-            "Terminer la cuisson par environ 10 minutes à 200°C."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France",
-            "Noël",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
