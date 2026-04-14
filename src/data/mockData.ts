@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/04/2026 08:03:15
- * Total: 193 recettes
+ * Dernière mise à jour: 14/04/2026 08:12:57
+ * Total: 192 recettes
  */
-export const exportSyncId = "1776153795671";
+export const exportSyncId = "1776154377518";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5095",
@@ -2593,93 +2593,6 @@ export const mockRecipes: Recipe[] = [
             "Italie",
             "rapide",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4797",
-        "title": "Croquetas de Jambon",
-        "description": "Découvrez une recette de croquetas de jambon dorées, croustillantes et délicieuses, une version budget du classique espagnol, parfaites pour l'apéritif ou comme tapas.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcroquette.jpeg&v=1775229489000",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7287279168671223072\" data-video-id=\"7287279168671223072\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7287279168671223072\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 150g de pancetta coupée en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 2 cuillères à soupe de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 grande échalote, finement hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n 100g de jambon Serrano, finement haché"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 4 cuillères à soupe de farine tout usage"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n Environ 600ml de lait demi-écrémé ou entier"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 100g de Manchego râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Une petite pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Une grande pincée de granulés d'ail, de muscade et de poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n 1/2 cube de bouillon de poulet de bonne qualité"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 1 grand œuf battu avec un filet de lait (pour la panure)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n Environ 100g de farine tout usage (pour la panure)"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n Environ 75g de chapelure (pour la panure)"
-            }
-        ],
-        "steps": [
-            "Ajouter la pancetta dans une poêle froide et monter le feu à vif.",
-            "Une fois la pancetta presque croustillante, baisser le feu à moyen et ajouter le beurre, l'échalote et le jambon Serrano.",
-            "Cuire jusqu'à ce que l'échalote soit ramollie et la viande croustillante.",
-            "Incorporer la farine et remuer jusqu'à ce qu'elle soit bien mélangée, cuire quelques minutes jusqu'à ce qu'elle dégage une odeur de noisette et parfumée.",
-            "Verser le lait en remuant continuellement.",
-            "Une fois incorporé et épaissi, mélanger les assaisonnements et le fromage.",
-            "Une fois le fromage fondu, verser le mélange dans un plat/plateau froid.",
-            "Une fois refroidi à température ambiante, placer au réfrigérateur pendant au moins 4 heures ou toute une nuit, ou alternativement au congélateur pendant environ 1 à 2 heures.",
-            "Une fois refroidi, retirer du réfrigérateur/congélateur et rouler des cuillères à soupe bombées en la forme désirée (l'auteur recommande de le faire après avoir légèrement enrobé la croqueta de farine pour moins de désordre).",
-            "Enrober de farine, puis du mélange d'œuf et enfin de chapelure.",
-            "Faire frire dans de l'huile chaude pendant environ 2-3 minutes jusqu'à ce qu'elles soient dorées et bien chaudes à l'intérieur.",
-            "Déguster avec un verre de sangria glacée ou une bière espagnole."
-        ],
-        "tags": [
-            "Espagne",
-            "Pas cher"
         ],
         "isFeatured": false,
         "isFavorite": false,
