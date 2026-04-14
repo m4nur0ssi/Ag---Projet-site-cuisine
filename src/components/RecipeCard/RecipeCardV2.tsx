@@ -10,6 +10,7 @@ import VoteButton from '@/components/VoteButton/VoteButton';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './RecipeCard.module.css';
 import { getSmartCategory } from '@/lib/recipeUtils';
+import { decodeHtml } from '@/lib/utils';
 
 interface RecipeCardProps {
     recipe: Recipe;
@@ -168,7 +169,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
             <div className={styles.cardHeader}>
                 <div className={styles.headerLeft} />
                 
-                <h3 className={styles.topTitle}>{recipe.title}</h3>
+                <h3 className={styles.topTitle}>{decodeHtml(recipe.title)}</h3>
                 
                 <div className={styles.headerRight} />
             </div>

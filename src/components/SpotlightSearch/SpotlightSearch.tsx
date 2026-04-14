@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { mockRecipes } from '@/data/mockData';
+import { decodeHtml } from '@/lib/utils';
 import styles from './SpotlightSearch.module.css';
 
 export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -84,7 +85,7 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                                         <img src={recipe.image} alt="" className={styles.thumb} />
                                     </div>
                                     <div className={styles.resultInfo}>
-                                        <div className={styles.resultTitle}>{recipe.title}</div>
+                                        <div className={styles.resultTitle}>{decodeHtml(recipe.title)}</div>
                                         <div className={styles.resultMeta}>{recipe.category} • {recipe.difficulty}</div>
                                     </div>
                                 </Link>

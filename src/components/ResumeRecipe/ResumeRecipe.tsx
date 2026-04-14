@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { mockRecipes } from '@/data/mockData';
+import { decodeHtml } from '@/lib/utils';
 import styles from './ResumeRecipe.module.css';
 
 export default function ResumeRecipe() {
@@ -26,7 +27,7 @@ export default function ResumeRecipe() {
                 <span className={styles.icon}>🍳</span>
                 <div className={styles.textGroup}>
                     <div className={styles.label}>Continuer ma cuisine</div>
-                    <div className={styles.title}>{recipe.title}</div>
+                    <div className={styles.title}>{decodeHtml(recipe.title)}</div>
                 </div>
             </div>
             <div className={styles.chevron}>→</div>

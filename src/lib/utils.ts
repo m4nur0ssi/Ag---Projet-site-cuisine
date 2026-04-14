@@ -34,3 +34,32 @@ function formatNumber(num: number): string {
     // Otherwise return with up to 2 decimals
     return rounded.toFixed(rounded % 0.1 === 0 ? 1 : 2).replace(/\.0+$/, '');
 }
+
+/**
+ * Decodes HTML entities commonly found in WordPress content
+ */
+export function decodeHtml(html: string): string {
+    if (!html) return '';
+
+    const entities: Record<string, string> = {
+        '&#038;': '&', '&amp;': '&', '&#8217;': "'", '&rsquo;': "'",
+        '&#8211;': '-', '&ndash;': '-', '&nbsp;': ' ',
+        '&Agrave;': 'À', '&agrave;': 'à', '&Eacute;': 'É', '&eacute;': 'é',
+        '&Egrave;': 'È', '&egrave;': 'è', '&circ;': '^', '&icirc;': 'î',
+        '&ocirc;': 'ô', '&ucirc;': 'û', '&lt;': '<', '&gt;': '>',
+        '&quot;': '"', '&apos;': "'", '&deg;': '°', '&euro;': '€',
+        '&lsquo;': "'", '&ldquo;': '"', '&rdquo;': '"',
+        '&#8220;': '"', '&#8221;': '"', '&#8216;': "'", '&#039;': "'",
+        '&hellip;': '...', '&#8230;': '...', '&bull;': '•', '&middot;': '·'
+    };
+
+    let decoded = html.replace(/&[a-z0-9#]+;/gi, (match) => {
+        const lower = match.toLowerCase();
+        return entities[match] || entities[lower] || match;
+    });
+
+    decoded = decoded.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)));
+    decoded = decoded.replace(/&#x([a-f0-9]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+
+    return decoded.replace(/\s+/g, ' ').trim();
+}
