@@ -2,11 +2,40 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/04/2026 18:26:34
- * Total: 203 recettes
+ * Dernière mise à jour: 15/04/2026 19:56:41
+ * Total: 204 recettes
  */
-export const exportSyncId = "1776277594187";
+export const exportSyncId = "1776283001899";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5150",
+        "title": "Creamy Marry Me Chicken Orzo",
+        "description": "Un orzo crémeux au poulet et tomates séchées, réconfortant et savoureux, parfait après une longue journée. Ce plat est décrit comme équilibré et riche en protéines, avec 580 calories, 42g de protéines, 45g de glucides et 24g de matières grasses.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776282858573.jpg&v=1776290076000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7534772772480847136\" data-video-id=\"7534772772480847136\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7534772772480847136\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5147",
         "title": "Pâtes crémeuses au Boursin &#038; poivrons grillés",
