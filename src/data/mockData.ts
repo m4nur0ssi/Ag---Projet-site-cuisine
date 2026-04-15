@@ -2,11 +2,105 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/04/2026 19:56:41
- * Total: 204 recettes
+ * Dernière mise à jour: 15/04/2026 20:19:49
+ * Total: 205 recettes
  */
-export const exportSyncId = "1776283001899";
+export const exportSyncId = "1776284389459";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5153",
+        "title": "Brochettes de poulet accompagné de purée maison",
+        "description": "Une recette facile et rapide de brochettes de poulet marinées aux épices, cuites à l'air fryer, accompagnées d'une onctueuse purée de pommes de terre maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776284249093.jpg&v=1776291466000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7627149873606921494\" data-video-id=\"7627149873606921494\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7627149873606921494\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 kg de blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 c. à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à soupe de yaourt nature"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 c. à café de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             1 c. à café d'assaisonnement poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ½ c. à café de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ c. à café de curry"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ¼ c. à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de sel (selon goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             1,2 kg de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            }
+        ],
+        "steps": [
+            "Coupez le poulet en morceaux.",
+            "Dans un grand bol, mélangez le concentré de tomate, le yaourt nature, le paprika, le thym, l'assaisonnement poulet, le piment, le curry, le poivre noir, le sel et l'ail haché pour la marinade.",
+            "Ajoutez les morceaux de poulet à la marinade et mélangez bien. Laissez mariner au moins 1 heure (idéalement plus) au réfrigérateur.",
+            "Enfilez le poulet mariné sur des brochettes.",
+            "Disposez les brochettes dans le panier de votre air fryer en les espaçant bien.",
+            "Faites cuire les brochettes 15 minutes à 190°C, en les retournant à mi-cuisson, jusqu'à ce qu'elles soient dorées et juteuses.",
+            "Faites cuire les pommes de terre à la vapeur jusqu'à ce qu'elles soient tendres.",
+            "Écrasez ou mixez les pommes de terre selon la texture souhaitée.",
+            "Ajoutez le lait, le beurre et le sel aux pommes de terre écrasées. Mélangez jusqu'à obtenir une purée lisse.",
+            "Servez les brochettes avec la purée et arrosez avec le jus de cuisson du poulet pour plus de goût."
+        ],
+        "tags": [
+            "France",
+            "Orient",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5150",
         "title": "Creamy Marry Me Chicken Orzo",
