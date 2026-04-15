@@ -2,11 +2,67 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/04/2026 08:59:13
- * Total: 199 recettes
+ * Dernière mise à jour: 15/04/2026 15:12:12
+ * Total: 200 recettes
  */
-export const exportSyncId = "1776243553852";
+export const exportSyncId = "1776265932773";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5138",
+        "title": "Brochettes de bœuf au fromage façon yakitori",
+        "description": "Un mélange ultra gourmand entre la cuisine japonaise et nos envies de fromage fondant. Du bœuf tendre, du comté coulant, le tout nappé d'une sauce sucrée-salée irrésistible.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776265756171.jpg&v=1776272980000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7622329014820031766\" data-video-id=\"7622329014820031766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7622329014820031766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Bœuf (bavette, rumsteck ou filet)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Comté"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             8 càs de sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 càs de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             1 càs de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment (optionnel)"
+            }
+        ],
+        "steps": [
+            "Prépare les brochettes avec le bœuf et le comté.",
+            "Grille les brochettes.",
+            "Nappe les brochettes de sauce.",
+            "Laisse caraméliser."
+        ],
+        "tags": [
+            "asiatique",
+            "Asie",
+            "barbecue"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5135",
         "title": "Banana Cups",
