@@ -2,11 +2,70 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/04/2026 05:16:10
- * Total: 196 recettes
+ * Dernière mise à jour: 15/04/2026 08:22:20
+ * Total: 197 recettes
  */
-export const exportSyncId = "1776230170693";
+export const exportSyncId = "1776241340944";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5129",
+        "title": "Bouillis de Tapioca",
+        "description": "Un classique dessert en Afrique de l'Ouest et Centrale.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776241134509.jpg&v=1776248362000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7603042682176441623\" data-video-id=\"7603042682176441623\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7603042682176441623\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "💧\n             30cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             160g de tapioca"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             20cl lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             citronnelle"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             gingembre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5126",
         "title": "Astuce pour préparer un poivron",
