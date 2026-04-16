@@ -2,11 +2,152 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 11:47:14
+ * Dernière mise à jour: 16/04/2026 11:54:07
  * Total: 204 recettes
  */
-export const exportSyncId = "1776340034634";
+export const exportSyncId = "1776340447468";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5144",
+        "title": "Batata Harra",
+        "description": "Un plat de pommes de terre croustillantes coupées en dés, mélangées à une sauce aillée, tomate et épicée. Servi sur un lit de sauce au yaourt et tahini, et garni de coriandre fraîche.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FBatata-Harra-mx-01.jpg&v=1776347432000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7504700271566540054\" data-video-id=\"7504700271566540054\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7504700271566540054\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n Pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Épices (mélange piquant)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Yaourt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Tahini"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Coriandre fraîche"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Liban"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5147",
+        "title": "Pâtes crémeuses au Boursin &#038; poivrons grillés",
+        "description": "Une recette de pâtes crémeuses et savoureuses, préparées avec du Boursin, des poivrons grillés, de l'ail et de l'oignon, le tout mijoté en une seule poêle pour un plat réconfortant et facile.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fimage-0651923-20230819-ob_0c0337_pate-boursin-courgette.jpg&v=1776347245000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7629017416076381462\" data-video-id=\"7629017416076381462\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7629017416076381462\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n 3 gousses d'ail, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon blanc, finement émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 c. à café d'origan séché"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n ½ c. à café de flocons de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 150 g de Boursin"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 100 à 120 g de poivrons grillés"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 c. à café de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 300 ml de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 400 ml d'eau (pour les pâtes)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 à 1,5 c. à café de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n ½ c. à café de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍝\n 250 g de spaghetti"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 1 c. à soupe de parmesan râpé pour servir"
+            }
+        ],
+        "steps": [
+            "Dans une grande poêle, faire chauffer l'huile d'olive et faire revenir l'oignon et l'ail jusqu'à ce qu'ils deviennent fondants.",
+            "Ajouter le paprika, l'origan et les flocons de piment, puis mélanger.",
+            "Mixer le Boursin avec les poivrons grillés, le concentré de tomate, le vinaigre balsamique et le bouillon jusqu'à obtenir une sauce lisse.",
+            "Verser dans la poêle, ajouter les spaghettis crus directement dans la sauce, puis ajouter l'eau sur les pâtes.",
+            "Couvrir et laisser mijoter une dizaine de minutes, en remuant régulièrement, jusqu'à ce que les pâtes soient al dente et la sauce bien crémeuse.",
+            "Découvrir en fin de cuisson pour ajuster la texture.",
+            "Servir immédiatement avec du parmesan et quelques flocons de piment."
+        ],
+        "tags": [
+            "France",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5153",
         "title": "Brochettes de poulet et purée maison",
@@ -102,151 +243,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5147",
-        "title": "Pâtes crémeuses au Boursin &#038; poivrons grillés",
-        "description": "Une recette de pâtes crémeuses et savoureuses, préparées avec du Boursin, des poivrons grillés, de l'ail et de l'oignon, le tout mijoté en une seule poêle pour un plat réconfortant et facile.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776277429705.jpg&v=1776284656000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7629017416076381462\" data-video-id=\"7629017416076381462\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7629017416076381462\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail, hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon blanc, finement émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c. à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à café d'origan séché"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             ½ c. à café de flocons de piment"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150 g de Boursin"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             100 à 120 g de poivrons grillés"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 c. à café de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 c. à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             300 ml de bouillon de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             400 ml d'eau (pour les pâtes)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 à 1,5 c. à café de vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             ½ c. à café de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍝\n             250 g de spaghetti"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 c. à soupe de parmesan râpé pour servir"
-            }
-        ],
-        "steps": [
-            "Dans une grande poêle, faire chauffer l'huile d'olive et faire revenir l'oignon et l'ail jusqu'à ce qu'ils deviennent fondants.",
-            "Ajouter le paprika, l'origan et les flocons de piment, puis mélanger.",
-            "Mixer le Boursin avec les poivrons grillés, le concentré de tomate, le vinaigre balsamique et le bouillon jusqu'à obtenir une sauce lisse.",
-            "Verser dans la poêle, ajouter les spaghettis crus directement dans la sauce, puis ajouter l'eau sur les pâtes.",
-            "Couvrir et laisser mijoter une dizaine de minutes, en remuant régulièrement, jusqu'à ce que les pâtes soient al dente et la sauce bien crémeuse.",
-            "Découvrir en fin de cuisson pour ajuster la texture.",
-            "Servir immédiatement avec du parmesan et quelques flocons de piment."
-        ],
-        "tags": [
-            "France",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5144",
-        "title": "Batata Harra",
-        "description": "Un plat de pommes de terre croustillantes coupées en dés, mélangées à une sauce aillée, tomate et épicée. Servi sur un lit de sauce au yaourt et tahini, et garni de coriandre fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776275502777.jpg&v=1776282718000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7504700271566540054\" data-video-id=\"7504700271566540054\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7504700271566540054\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Épices (mélange piquant)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Yaourt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Tahini"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre fraîche"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Liban"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5141",
         "title": "Pepper Steak over White Rice",
         "description": "Une recette de Pepper Steak servi sur du riz blanc, avec une marinade savoureuse et une sauce riche, facile à préparer à la maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776274420350.jpg&v=1776281639000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
