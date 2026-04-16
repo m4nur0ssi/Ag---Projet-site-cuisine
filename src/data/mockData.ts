@@ -2,11 +2,44 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 12:26:27
+ * Dernière mise à jour: 16/04/2026 12:40:26
  * Total: 204 recettes
  */
-export const exportSyncId = "1776342387633";
+export const exportSyncId = "1776343226163";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5126",
+        "title": "Astuce pour préparer un poivron",
+        "description": "Découvrez une méthode simple et efficace pour couper et nettoyer un poivron rapidement, minimisant le gaspillage et le désordre.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fr-varietes-poivrons-couleurs-139254272as-662fdd6021b08.jpg&v=1776350302000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/6928474585725734149\" data-video-id=\"6928474585725734149\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/6928474585725734149\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 poivron"
+            }
+        ],
+        "steps": [
+            "Couper les deux extrémités du poivron.",
+            "Faire une incision verticale sur un côté du poivron.",
+            "Dérouler le poivron à plat et retirer facilement le cœur et les graines.",
+            "Couper le poivron en lanières ou en dés selon l'utilisation souhaitée."
+        ],
+        "tags": [
+            "Astuces",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5129",
         "title": "Bouillis de Tapioca",
@@ -584,39 +617,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5126",
-        "title": "Astuce pour préparer un poivron",
-        "description": "Découvrez une méthode simple et efficace pour couper et nettoyer un poivron rapidement, minimisant le gaspillage et le désordre.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776197282014.jpg&v=1776204500000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/6928474585725734149\" data-video-id=\"6928474585725734149\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/6928474585725734149\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 poivron"
-            }
-        ],
-        "steps": [
-            "Couper les deux extrémités du poivron.",
-            "Faire une incision verticale sur un côté du poivron.",
-            "Dérouler le poivron à plat et retirer facilement le cœur et les graines.",
-            "Couper le poivron en lanières ou en dés selon l'utilisation souhaitée."
-        ],
-        "tags": [
-            "Astuces",
-            "Healthy",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5123",
         "title": "Cannelés Bordelais",
         "description": "Une recette authentique pour préparer les célèbres cannelés de Bordeaux, avec leur cœur moelleux et leur croûte caramélisée.",
@@ -673,7 +673,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5120",
         "title": "CRÊPES INRATABLE",
         "description": "Une recette simple et inratable de crêpes sans grumeaux, fondantes en bouche avec un goût de beurre. Les quantités peuvent être divisées par deux pour une dizaine de crêpes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776166637238.jpg&v=1776173860000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
