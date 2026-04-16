@@ -2,90 +2,90 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 17:47:41
+ * Dernière mise à jour: 16/04/2026 17:54:11
  * Total: 205 recettes
  */
-export const exportSyncId = "1776361661548";
+export const exportSyncId = "1776362051552";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5199",
         "title": "Pastitsio Grec Maison",
         "description": "Un Pastitsio grec maison, composé de couches de bucatini parfaitement cuites, d'une riche sauce à la viande hachée et d'une béchamel crémeuse et onctueuse. Un plat réconfortant qui nourrit le corps et réchauffe l'âme.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776361512491.jpg&v=1776368725000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2F1776036681-pastitsio-grec-savoureux-gratin-de-pates-a-la-bolognaise-et-bechamel.jpg&v=1776369167000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7413839141865147691\" data-video-id=\"7413839141865147691\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7413839141865147691\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7413839141865147691\" data-video-id=\"7413839141865147691\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7413839141865147691\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍝\n             1 livre (600g) de pâtes bucatini"
+                "name": "🍝\n 1 livre (600g) de pâtes bucatini"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             7 cuillères à soupe d'huile d'olive extra vierge"
+                "name": "🍾\n 7 cuillères à soupe d'huile d'olive extra vierge"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 livre (500g) de viande hachée"
+                "name": "🥣\n 1 livre (500g) de viande hachée"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             2 oignons, mixés"
+                "name": "🧅\n 2 oignons, mixés"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             3 gousses d'ail, mixées"
+                "name": "🧄\n 3 gousses d'ail, mixées"
             },
             {
                 "quantity": "",
-                "name": "🍅\n             3 tomates, mixées"
+                "name": "🍅\n 3 tomates, mixées"
             },
             {
                 "quantity": "",
-                "name": "🍅\n             1/3 tasse (80ml) de jus de tomate"
+                "name": "🍅\n 1/3 tasse (80ml) de jus de tomate"
             },
             {
                 "quantity": "",
-                "name": "💧\n             1/3 tasse (80ml) de vin blanc"
+                "name": "💧\n 1/3 tasse (80ml) de vin blanc"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 feuille de laurier"
+                "name": "🥣\n 1 feuille de laurier"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 bâton de cannelle"
+                "name": "🥣\n 1 bâton de cannelle"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel et poivre au goût"
+                "name": "🧂\n Sel et poivre au goût"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             50 oz (1,5 litre) de lait"
+                "name": "🥛\n 50 oz (1,5 litre) de lait"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             6 cuillères à soupe de fécule de maïs (Maïzena)"
+                "name": "🥣\n 6 cuillères à soupe de fécule de maïs (Maïzena)"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             2 cuillères à soupe de beurre"
+                "name": "🧈\n 2 cuillères à soupe de beurre"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             ½ cuillère à café de noix de muscade moulue"
+                "name": "🧂\n ½ cuillère à café de noix de muscade moulue"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             1,5 tasse (300g) de fromage râpé (ex: Kefalotyri, Parmesan)"
+                "name": "🧀\n 1,5 tasse (300g) de fromage râpé (ex: Kefalotyri, Parmesan)"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             3 jaunes d'œufs"
+                "name": "🥚\n 3 jaunes d'œufs"
             }
         ],
         "steps": [
