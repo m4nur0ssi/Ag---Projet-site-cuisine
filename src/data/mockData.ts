@@ -2,11 +2,64 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 12:54:19
+ * Dernière mise à jour: 16/04/2026 13:00:13
  * Total: 204 recettes
  */
-export const exportSyncId = "1776344059884";
+export const exportSyncId = "1776344413254";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5123",
+        "title": "Cannelés Bordelais",
+        "description": "Une recette authentique pour préparer les célèbres cannelés de Bordeaux, avec leur cœur moelleux et leur croûte caramélisée.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCanneles-bordelais-recette-Lilie-Bakery.jpg&v=1776351516000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7334758974522150176\" data-video-id=\"7334758974522150176\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7334758974522150176\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 50 cl de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 50 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 250 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 125 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 œufs entiers + 2 jaunes d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 2 cuillère à soupe de rhum ambré"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 gousse de vanille"
+            }
+        ],
+        "steps": [
+            "Faire cuire 10 minutes au four à 240°c puis 30 minutes à 180°C, plus si nécessaire pour obtenir une couleur caramélisée.",
+            "Enfin, démoulez vos Canelés chauds."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5117",
         "title": "Crispy rice",
@@ -764,59 +817,6 @@ export const mockRecipes: Recipe[] = [
             "France",
             "Orient",
             "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5123",
-        "title": "Cannelés Bordelais",
-        "description": "Une recette authentique pour préparer les célèbres cannelés de Bordeaux, avec leur cœur moelleux et leur croûte caramélisée.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7334758974522150176\" data-video-id=\"7334758974522150176\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7334758974522150176\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             50 cl de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             50 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             250 g de sucre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             125 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs entiers + 2 jaunes d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             2 cuillère à soupe de rhum ambré"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 gousse de vanille"
-            }
-        ],
-        "steps": [
-            "Faire cuire 10 minutes au four à 240°c puis 30 minutes à 180°C, plus si nécessaire pour obtenir une couleur caramélisée.",
-            "Enfin, démoulez vos Canelés chauds."
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
