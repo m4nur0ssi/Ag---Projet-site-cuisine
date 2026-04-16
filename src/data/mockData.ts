@@ -2,82 +2,82 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 05:23:19
- * Total: 205 recettes
+ * Dernière mise à jour: 16/04/2026 11:47:14
+ * Total: 204 recettes
  */
-export const exportSyncId = "1776316999467";
+export const exportSyncId = "1776340034634";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5153",
-        "title": "Brochettes de poulet accompagné de purée maison",
+        "title": "Brochettes de poulet et purée maison",
         "description": "Une recette facile et rapide de brochettes de poulet marinées aux épices, cuites à l'air fryer, accompagnées d'une onctueuse purée de pommes de terre maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776284249093.jpg&v=1776291466000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcarapelli-brochette-poulet-533x800-1.jpg&v=1776347090000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7627149873606921494\" data-video-id=\"7627149873606921494\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7627149873606921494\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7627149873606921494\" data-video-id=\"7627149873606921494\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7627149873606921494\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍗\n             1 kg de blanc de poulet"
+                "name": "🍗\n 1 kg de blanc de poulet"
             },
             {
                 "quantity": "",
-                "name": "🍅\n             1 c. à soupe de concentré de tomate"
+                "name": "🍅\n 1 c. à soupe de concentré de tomate"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 c. à soupe de yaourt nature"
+                "name": "🥣\n 1 c. à soupe de yaourt nature"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             1 c. à café de paprika"
+                "name": "🧂\n 1 c. à café de paprika"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             1 c. à café de thym"
+                "name": "🌿\n 1 c. à café de thym"
             },
             {
                 "quantity": "",
-                "name": "🍗\n             1 c. à café d'assaisonnement poulet"
+                "name": "🍗\n 1 c. à café d'assaisonnement poulet"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             ½ c. à café de piment"
+                "name": "🌶️\n ½ c. à café de piment"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             ½ c. à café de curry"
+                "name": "🧂\n ½ c. à café de curry"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             ¼ c. à café de poivre noir"
+                "name": "🌶️\n ¼ c. à café de poivre noir"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             1 c. à café de sel (selon goût)"
+                "name": "🧂\n 1 c. à café de sel (selon goût)"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             2 gousses d'ail hachées"
+                "name": "🧄\n 2 gousses d'ail hachées"
             },
             {
                 "quantity": "",
-                "name": "🍎\n             1,2 kg de pommes de terre"
+                "name": "🍎\n 1,2 kg de pommes de terre"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             100 g de lait"
+                "name": "🥛\n 100 g de lait"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             40 g de beurre"
+                "name": "🧈\n 40 g de beurre"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel"
+                "name": "🧂\n Sel"
             }
         ],
         "steps": [
@@ -96,35 +96,6 @@ export const mockRecipes: Recipe[] = [
             "France",
             "Orient",
             "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5150",
-        "title": "Creamy Marry Me Chicken Orzo",
-        "description": "Un orzo crémeux au poulet et tomates séchées, réconfortant et savoureux, parfait après une longue journée. Ce plat est décrit comme équilibré et riche en protéines, avec 580 calories, 42g de protéines, 45g de glucides et 24g de matières grasses.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776282858573.jpg&v=1776290076000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7534772772480847136\" data-video-id=\"7534772772480847136\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7534772772480847136\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
