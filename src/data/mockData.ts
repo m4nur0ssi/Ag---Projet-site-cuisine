@@ -2,11 +2,236 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 11:57:39
+ * Dernière mise à jour: 16/04/2026 12:26:27
  * Total: 204 recettes
  */
-export const exportSyncId = "1776340659054";
+export const exportSyncId = "1776342387633";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5129",
+        "title": "Bouillis de Tapioca",
+        "description": "Un classique dessert en Afrique de l'Ouest et Centrale.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCoconut-Tapioca-Pudding.jpg&v=1776349498000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7603042682176441623\" data-video-id=\"7603042682176441623\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7603042682176441623\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "💧\n 30cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 160g de tapioca"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 20cl lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n citronnelle"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n gingembre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5132",
+        "title": "Yovo doko",
+        "description": "Découvrez la recette des Yovo doko, des beignets traditionnels du Bénin, simples à réaliser, frits et saupoudrés de sucre glace. Une douceur vegan parfaite pour une pause gourmande.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fi148299-.jpeg&v=1776348198000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7467596452118695170\" data-video-id=\"7467596452118695170\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7467596452118695170\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 300g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 75g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 300ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 5g de levure de boulanger"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 càs d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            }
+        ],
+        "steps": [
+            "Formez la pâte et laissez reposer 1h dans un endroit chaud",
+            "Faites frire les beignets dans l'huile.",
+            "Saupoudrez de sucre glace."
+        ],
+        "tags": [
+            "Afrique",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5135",
+        "title": "Coupelles de banane plantin",
+        "description": "Une recette d'entrée pour impressionner vos invités.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCoupelles-de-bananes-plantains1-rotated-1.jpg&v=1776348096000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7400056860658765088\" data-video-id=\"7400056860658765088\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7400056860658765088\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍌\n 2 bananes plantains pas très mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n Crevettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 poivron rouge, coupé en petits dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 cuillère à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n 1 avocat mûr"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5138",
+        "title": "Brochettes de bœuf au fromage façon yakitori",
+        "description": "Un mélange ultra gourmand entre la cuisine japonaise et nos envies de fromage fondant. Du bœuf tendre, du comté coulant, le tout nappé d'une sauce sucrée-salée irrésistible.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fyakitori-poulet-airfryer.jpeg&v=1776347868000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7622329014820031766\" data-video-id=\"7622329014820031766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7622329014820031766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n Bœuf (bavette, rumsteck ou filet)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Comté"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 8 càs de sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 càs de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n 1 càs de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 piment (optionnel)"
+            }
+        ],
+        "steps": [
+            "Prépare les brochettes avec le bœuf et le comté.",
+            "Grille les brochettes.",
+            "Nappe les brochettes de sauce.",
+            "Laisse caraméliser."
+        ],
+        "tags": [
+            "asiatique",
+            "Asie",
+            "barbecue"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5141",
         "title": "Pepper Steak over White Rice",
@@ -353,231 +578,6 @@ export const mockRecipes: Recipe[] = [
             "France",
             "Orient",
             "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5138",
-        "title": "Brochettes de bœuf au fromage façon yakitori",
-        "description": "Un mélange ultra gourmand entre la cuisine japonaise et nos envies de fromage fondant. Du bœuf tendre, du comté coulant, le tout nappé d'une sauce sucrée-salée irrésistible.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776265756171.jpg&v=1776272980000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7622329014820031766\" data-video-id=\"7622329014820031766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7622329014820031766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             Bœuf (bavette, rumsteck ou filet)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Comté"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             8 càs de sauce soja salée"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 càs de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             1 càs de vinaigre de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 piment (optionnel)"
-            }
-        ],
-        "steps": [
-            "Prépare les brochettes avec le bœuf et le comté.",
-            "Grille les brochettes.",
-            "Nappe les brochettes de sauce.",
-            "Laisse caraméliser."
-        ],
-        "tags": [
-            "asiatique",
-            "Asie",
-            "barbecue"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5135",
-        "title": "Banana Cups",
-        "description": "Une recette d'entrée pour impressionner vos invités.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776243310297.jpg&v=1776250552000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7400056860658765088\" data-video-id=\"7400056860658765088\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7400056860658765088\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍌\n             2 bananes plantains pas très mûres"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile de friture"
-            },
-            {
-                "quantity": "",
-                "name": "🦐\n             Crevettes"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 poivron rouge, coupé en petits dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 cuillère à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             1 avocat mûr"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5132",
-        "title": "Yovo doko",
-        "description": "Découvrez la recette des Yovo doko, des beignets traditionnels du Bénin, simples à réaliser, frits et saupoudrés de sucre glace. Une douceur vegan parfaite pour une pause gourmande.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776241749662.jpg&v=1776248964000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7467596452118695170\" data-video-id=\"7467596452118695170\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7467596452118695170\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             300g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             75g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             300ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5g de levure de boulanger"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 càs d'huile"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            }
-        ],
-        "steps": [
-            "Formez la pâte et laissez reposer 1h dans un endroit chaud",
-            "Faites frire les beignets dans l'huile.",
-            "Saupoudrez de sucre glace."
-        ],
-        "tags": [
-            "Afrique",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5129",
-        "title": "Bouillis de Tapioca",
-        "description": "Un classique dessert en Afrique de l'Ouest et Centrale.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776241134509.jpg&v=1776248362000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7603042682176441623\" data-video-id=\"7603042682176441623\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7603042682176441623\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "💧\n             30cl d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             160g de tapioca"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             20cl lait de coco"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             arôme vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             citronnelle"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             gingembre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique"
         ],
         "isFeatured": false,
         "isFavorite": false,
