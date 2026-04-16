@@ -2,11 +2,71 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 13:05:11
- * Total: 204 recettes
+ * Dernière mise à jour: 16/04/2026 13:10:15
+ * Total: 203 recettes
  */
-export const exportSyncId = "1776344711415";
+export const exportSyncId = "1776345015777";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5135",
+        "title": "Coupelles de banane plantain",
+        "description": "Une recette d'entrée pour impressionner vos invités.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCoupelles-de-bananes-plantains1-rotated-1.jpg&v=1776352004000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7400056860658765088\" data-video-id=\"7400056860658765088\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7400056860658765088\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍌\n 2 bananes plantains pas très mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n Crevettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 poivron rouge, coupé en petits dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 cuillère à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n 1 avocat mûr"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5123",
         "title": "Cannelés Bordelais",
@@ -356,66 +416,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5135",
-        "title": "Coupelles de banane plantin",
-        "description": "Une recette d'entrée pour impressionner vos invités.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCoupelles-de-bananes-plantains1-rotated-1.jpg&v=1776348096000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7400056860658765088\" data-video-id=\"7400056860658765088\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7400056860658765088\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍌\n 2 bananes plantains pas très mûres"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile de friture"
-            },
-            {
-                "quantity": "",
-                "name": "🦐\n Crevettes"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 poivron rouge, coupé en petits dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n 1 cuillère à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel et poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n 1 avocat mûr"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5138",
         "title": "Brochettes de bœuf au fromage façon yakitori",
         "description": "Un mélange ultra gourmand entre la cuisine japonaise et nos envies de fromage fondant. Du bœuf tendre, du comté coulant, le tout nappé d'une sauce sucrée-salée irrésistible.",
@@ -633,96 +633,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Liban"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5147",
-        "title": "Pâtes crémeuses au Boursin &#038; poivrons grillés",
-        "description": "Une recette de pâtes crémeuses et savoureuses, préparées avec du Boursin, des poivrons grillés, de l'ail et de l'oignon, le tout mijoté en une seule poêle pour un plat réconfortant et facile.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fimage-0651923-20230819-ob_0c0337_pate-boursin-courgette.jpg&v=1776347245000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7629017416076381462\" data-video-id=\"7629017416076381462\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7629017416076381462\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧄\n 3 gousses d'ail, hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon blanc, finement émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c. à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 c. à café d'origan séché"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n ½ c. à café de flocons de piment"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 150 g de Boursin"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 100 à 120 g de poivrons grillés"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 1 c. à café de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 1 c. à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n 300 ml de bouillon de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 400 ml d'eau (pour les pâtes)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 1 à 1,5 c. à café de vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n ½ c. à café de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍝\n 250 g de spaghetti"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 1 c. à soupe de parmesan râpé pour servir"
-            }
-        ],
-        "steps": [
-            "Dans une grande poêle, faire chauffer l'huile d'olive et faire revenir l'oignon et l'ail jusqu'à ce qu'ils deviennent fondants.",
-            "Ajouter le paprika, l'origan et les flocons de piment, puis mélanger.",
-            "Mixer le Boursin avec les poivrons grillés, le concentré de tomate, le vinaigre balsamique et le bouillon jusqu'à obtenir une sauce lisse.",
-            "Verser dans la poêle, ajouter les spaghettis crus directement dans la sauce, puis ajouter l'eau sur les pâtes.",
-            "Couvrir et laisser mijoter une dizaine de minutes, en remuant régulièrement, jusqu'à ce que les pâtes soient al dente et la sauce bien crémeuse.",
-            "Découvrir en fin de cuisson pour ajuster la texture.",
-            "Servir immédiatement avec du parmesan et quelques flocons de piment."
-        ],
-        "tags": [
-            "France",
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
