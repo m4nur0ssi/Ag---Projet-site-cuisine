@@ -2,66 +2,66 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 17:38:10
+ * Dernière mise à jour: 16/04/2026 17:43:39
  * Total: 204 recettes
  */
-export const exportSyncId = "1776361090823";
+export const exportSyncId = "1776361419943";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5193",
         "title": "Scarpaccia courgettes et oignons",
         "description": "Une recette simple et rapide de Scarpaccia, une sorte de galette salée aux courgettes et oignons, parfaite pour un repas léger ou un accompagnement.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776360956784.jpg&v=1776368181000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fune-specialite-toscane-estivale-sublimee-par-la-touche-d-un-grand-chef.jpg&v=1776368480000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7473529751588654358\" data-video-id=\"7473529751588654358\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7473529751588654358\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7473529751588654358\" data-video-id=\"7473529751588654358\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7473529751588654358\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             3 courgettes"
+                "name": "🥣\n 3 courgettes"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 gros oignon"
+                "name": "🧅\n 1 gros oignon"
             },
             {
                 "quantity": "",
-                "name": "🌾\n             300g de farine (1 bol)"
+                "name": "🌾\n 300g de farine (1 bol)"
             },
             {
                 "quantity": "",
-                "name": "💧\n             1 bol d'eau"
+                "name": "💧\n 1 bol d'eau"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             Parmesan"
+                "name": "🧀\n Parmesan"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d'olive"
+                "name": "🍾\n Huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Paprika fumé"
+                "name": "🧂\n Paprika fumé"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel"
+                "name": "🧂\n Sel"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "🌶️\n Poivre"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             Ail"
+                "name": "🧄\n Ail"
             },
             {
                 "quantity": "",
-                "name": "🥖\n             Chapelure"
+                "name": "🥖\n Chapelure"
             }
         ],
         "steps": [
