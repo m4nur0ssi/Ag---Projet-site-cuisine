@@ -2,16 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 13:00:13
+ * Dernière mise à jour: 16/04/2026 13:05:11
  * Total: 204 recettes
  */
-export const exportSyncId = "1776344413254";
+export const exportSyncId = "1776344711415";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5123",
         "title": "Cannelés Bordelais",
         "description": "Une recette authentique pour préparer les célèbres cannelés de Bordeaux, avec leur cœur moelleux et leur croûte caramélisée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCanneles-bordelais-recette-Lilie-Bakery.jpg&v=1776351516000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCanneles-bordelais-recette-Lilie-Bakery.jpg&v=1776351827000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
