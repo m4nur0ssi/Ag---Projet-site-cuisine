@@ -2,11 +2,127 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/04/2026 11:54:07
+ * Dernière mise à jour: 16/04/2026 11:57:39
  * Total: 204 recettes
  */
-export const exportSyncId = "1776340447468";
+export const exportSyncId = "1776340659054";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5141",
+        "title": "Pepper Steak over White Rice",
+        "description": "Une recette de Pepper Steak servi sur du riz blanc, avec une marinade savoureuse et une sauce riche, facile à préparer à la maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpepper-steak-gravy-rice-bowl-1.jpg&v=1776347679000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7540697702531747102\" data-video-id=\"7540697702531747102\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7540697702531747102\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Steak (type au choix, ex: haut de surlonge)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n Oignons verts"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel - 1 cuillère à soupe (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre - 1 cuillère à soupe (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Poudre d'ail - 1 cuillère à soupe (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n Poudre d'oignon - 1 cuillère à soupe (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n Bouillon de poulet ou de bœuf - 1 cuillère à soupe (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail haché - 2 gousses (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Pâte de gingembre - 1 cuillère à café (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n Sauce soja - 3 cuillères à soupe (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Sucre - 2 cuillères à soupe (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n Sauce Worcestershire - 1 cuillère à soupe (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n Vinaigre de riz - 1 cuillère à soupe (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Bicarbonate de soude - 1 cuillère à café (pour marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n Bouillon de bœuf - 1/4 tasse (pour sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n Sauce soja - 2 cuillères à soupe (pour sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fécule de maïs - 1 cuillère à soupe (pour sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre - 1 cuillère à soupe (pour sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Sucre - 1-2 cuillères à soupe (optionnel, pour sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n Riz blanc (pour servir)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5144",
         "title": "Batata Harra",
@@ -237,122 +353,6 @@ export const mockRecipes: Recipe[] = [
             "France",
             "Orient",
             "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5141",
-        "title": "Pepper Steak over White Rice",
-        "description": "Une recette de Pepper Steak servi sur du riz blanc, avec une marinade savoureuse et une sauce riche, facile à préparer à la maison.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7540697702531747102\" data-video-id=\"7540697702531747102\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7540697702531747102\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Steak (type au choix, ex: haut de surlonge)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivron rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignons verts"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel - 1 cuillère à soupe (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre - 1 cuillère à soupe (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Poudre d'ail - 1 cuillère à soupe (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Poudre d'oignon - 1 cuillère à soupe (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Bouillon de poulet ou de bœuf - 1 cuillère à soupe (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail haché - 2 gousses (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Pâte de gingembre - 1 cuillère à café (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Sauce soja - 3 cuillères à soupe (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre - 2 cuillères à soupe (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Sauce Worcestershire - 1 cuillère à soupe (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             Vinaigre de riz - 1 cuillère à soupe (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Bicarbonate de soude - 1 cuillère à café (pour marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🥩\n             Bouillon de bœuf - 1/4 tasse (pour sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Sauce soja - 2 cuillères à soupe (pour sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fécule de maïs - 1 cuillère à soupe (pour sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre - 1 cuillère à soupe (pour sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre - 1-2 cuillères à soupe (optionnel, pour sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             Riz blanc (pour servir)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
