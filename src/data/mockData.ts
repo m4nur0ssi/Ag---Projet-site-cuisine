@@ -2,11 +2,66 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 25/04/2026 05:05:46
- * Total: 208 recettes
+ * Dernière mise à jour: 25/04/2026 16:22:35
+ * Total: 209 recettes
  */
-export const exportSyncId = "1777093546018";
+export const exportSyncId = "1777134155842";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5225",
+        "title": "Croque-cake",
+        "description": "Un croque-monsieur revisité en format cake, idéal pour toute la famille.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1777133985842.jpg&v=1777141205000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7623462598859623703\" data-video-id=\"7623462598859623703\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7623462598859623703\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥖\n             Pain de mie 9 tranches"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon blanc 6 tranches"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Fromage râpé 125gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait 40cl"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre 40gr"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine 40gr"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment doux fumé 2gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Tranche de leerdammer 6 tranches"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5222",
         "title": "Ferrero Rocher inspired chocolate hazelnut cookies",
