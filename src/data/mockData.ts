@@ -2,11 +2,112 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 28/04/2026 05:50:18
- * Total: 209 recettes
+ * Dernière mise à jour: 28/04/2026 09:43:26
+ * Total: 210 recettes
  */
-export const exportSyncId = "1777355418069";
+export const exportSyncId = "1777369406257";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5228",
+        "title": "Chili con carne",
+        "description": "Un plat mijoté réconfortant et épicé, originaire du Mexique, à base de viande hachée de bœuf, de haricots rouges, de maïs et de légumes, parfait pour les journées froides.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1777369211226.jpg&v=1777376431000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7631218499083439392\" data-video-id=\"7631218499083439392\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7631218499083439392\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             500 g de viande hachée de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             400 ml de coulis de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             400 ml d'eau ou de bouillon de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron rouge (coupé en petits cubes)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 poignées de coriandre fraîche (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             250 g de haricots rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons (ciselés)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail (hachées)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càs de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càc d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 à 2 càc de flocons de chili"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càc de poudre de chili"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 càs de jus de citron ou 1 càs de vinaigre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             ½ càc de sucre"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, ajoute un bon filet d'huile puis fais revenir les oignons jusqu'à ce qu'ils deviennent translucides.",
+            "Ajoute le poivron, l'ail, la poudre de chili, les flocons de chili, la tomate râpée, une poignée de coriandre (facultatif), l'origan, le cumin et le paprika. Mélange, couvre et laisse cuire 5 minutes à feu doux.",
+            "Découvre, pousse le mélange sur un côté de la casserole. Ajoute la viande hachée de l'autre côté, émiette-la puis mélange avec la préparation.",
+            "Couvre et laisse cuire 5 minutes à feu doux en mélangeant régulièrement pour bien émietter la viande.",
+            "Ajoute le coulis de tomate, l'eau ou le bouillon, le sel et le sucre. Mélange, augmente à feu moyen, couvre et laisse mijoter 20 minutes. Pense à remuer de temps en temps pour éviter que ça accroche.",
+            "Ajoute les haricots rouges, le maïs et le jus de citron (ou vinaigre). Mélange, ajoute le reste de coriandre (facultatif), couvre et laisse cuire encore 10 minutes à feu moyen."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5225",
         "title": "Croque-cake",
