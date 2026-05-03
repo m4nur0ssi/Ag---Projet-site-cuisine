@@ -2,11 +2,100 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/05/2026 05:50:40
- * Total: 210 recettes
+ * Dernière mise à jour: 03/05/2026 10:23:42
+ * Total: 211 recettes
  */
-export const exportSyncId = "1777787440509";
+export const exportSyncId = "1777803822123";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5231",
+        "title": "Poulet Marry me",
+        "description": "Une recette de poulet crémeux et savoureux, mijoté dans une sauce au paprika, tomates séchées et parmesan, parfait pour un dîner rapide et facile.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1777803579173.jpg&v=1777810812000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634970970989595926\" data-video-id=\"7634970970989595926\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634970970989595926\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             6 hauts de cuisse de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             60g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             3 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             200ml de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300ml de crème liquide 30%"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3 cas de paprika doux"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cas de piment doux"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cas d'herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            }
+        ],
+        "steps": [
+            "Faire dorer les hauts de cuisse de poulet dans un mélange d'huile et de beurre.",
+            "Retirer le poulet et faire revenir les échalotes hachées et l'ail émincé dans la même poêle.",
+            "Ajouter la farine et mélanger, puis déglacer avec le bouillon de poulet.",
+            "Incorporer la crème liquide, le paprika doux, le piment doux, les herbes de Provence et le poivre. Laisser épaissir légèrement.",
+            "Remettre le poulet dans la sauce et ajouter les tomates séchées coupées. Laisser mijoter jusqu'à ce que le poulet soit cuit et la sauce épaissie.",
+            "Avant de servir, incorporer le parmesan râpé et parsemer de persil frais haché."
+        ],
+        "tags": [
+            "France",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5228",
         "title": "Chili con carne",
