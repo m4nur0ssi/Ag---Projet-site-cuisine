@@ -2,11 +2,63 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/05/2026 05:54:41
- * Total: 211 recettes
+ * Dernière mise à jour: 04/05/2026 06:59:16
+ * Total: 212 recettes
  */
-export const exportSyncId = "1777874081707";
+export const exportSyncId = "1777877956240";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5234",
+        "title": "Sorbet coco créole maison",
+        "description": "Un sorbet coco créole maison, réalisé pour la première fois avec succès grâce au Ninja Creami. Une texture ultra onctueuse et un goût intense de coco pour un véritable voyage dans les Caraïbes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1777877766863.jpg&v=1777884996000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633855612375272726\" data-video-id=\"7633855612375272726\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633855612375272726\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             400 ml de lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Cannelle &#038; muscade (selon vos goûts)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 c. à café d'arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à café d'amande amère"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste de citron vert (à votre convenance)"
+            }
+        ],
+        "steps": [
+            "Mélanger le lait de coco, le lait concentré sucré, la cannelle, la muscade, l'arôme vanille, l'amande amère et le zeste de citron vert dans un récipient.",
+            "Verser la préparation dans le pot du Ninja Creami.",
+            "Placer le pot au congélateur pendant au moins 24 heures.",
+            "Une fois le mélange bien congelé, le turbiner dans le Ninja Creami en utilisant le programme 'Sorbet' ou 'Glace' jusqu'à obtenir une texture onctueuse."
+        ],
+        "tags": [
+            "Afrique",
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5231",
         "title": "Poulet Marry me",
