@@ -2,11 +2,93 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/05/2026 13:31:13
+ * Dernière mise à jour: 04/05/2026 14:09:17
  * Total: 212 recettes
  */
-export const exportSyncId = "1777901473886";
+export const exportSyncId = "1777903757913";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5222",
+        "title": "Cookie Ferrero Rocher",
+        "description": "Des cookies inspirés des Ferrero Rocher, avec un cœur fondant au Nutella et à la pâte de noisette, enrobés de chocolat et de noisettes croquantes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FIMG_8387-er-720x1049-1.jpg&v=1777910806000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630174879999986966\" data-video-id=\"7630174879999986966\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630174879999986966\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 115g cold chopped unsalted butter"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 80g caster sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 80g light brown sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 238g plain flour"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ½ tsp salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 & ½ tsp baking powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ¼ tsp baking soda"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 whole egg + egg yolk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ½ tsp vanilla"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 250g Cooking or Milk chocolate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 cup Chopped and roasted hazelnuts"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Nutella and hazelnut spread"
+            }
+        ],
+        "steps": [
+            "Cut cling wrap into small squares. Scoop ½ teaspoon Nutella and Scoop ½ teaspoon of Hazelnut spread onto individual cling-wrap squares. Fold to seal and freeze until solid. (Repeat for however many stuffed cookies you plan to make.)",
+            "In a large mixing bowl, add the cubed butter and whisk until slightly creamy. Add the white sugar and light brown sugar, then whisk together until well combined and fluffy.",
+            "Add the eggs, vanilla extract. Whisk until fully incorporated.",
+            "Add the flour, baking powder, baking soda, and salt. Gently mix until just combined, do not overmix.",
+            "Portion the dough into 65g-70g balls. Press a frozen Nutella hazelnut piece into the centre of each dough ball, seal well, and roll into a smooth ball.",
+            "Place the cookie dough balls onto a tray and freeze for at least 1 hour (or overnight for best results).",
+            "Preheat oven to 175-180C (350°F). Bake for 10-15 minutes or until the tops are lightly golden while the centres remain soft.",
+            "Remove from the oven and let cool.",
+            "Melt the cooking or milk chocolate using double broiler method and add chopped & roasted hazelnuts in it.",
+            "Spread a layer of melted chocolate-hazelnut mixture onto baking paper, just enough to coat the base of the cookie. Gently place the cooled cookie on top, then spoon more of the mixture over it, making sure the cookie is fully covered and evenly coated.",
+            "Let the chocolate mixture set completely before serving, Enjoy!"
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5228",
         "title": "Chili con carne",
@@ -299,88 +381,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5222",
-        "title": "Ferrero Rocher inspired chocolate hazelnut cookies",
-        "description": "Des cookies inspirés des Ferrero Rocher, avec un cœur fondant au Nutella et à la pâte de noisette, enrobés de chocolat et de noisettes croquantes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1776840349603.jpg&v=1776847566000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630174879999986966\" data-video-id=\"7630174879999986966\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630174879999986966\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             115g cold chopped unsalted butter"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80g caster sugar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80g light brown sugar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             238g plain flour"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ½ tsp salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 &#038; ½ tsp baking powder"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ¼ tsp baking soda"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 whole egg + egg yolk"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ½ tsp vanilla"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             250g Cooking or Milk chocolate"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cup Chopped and roasted hazelnuts"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Nutella and hazelnut spread"
-            }
-        ],
-        "steps": [
-            "Cut cling wrap into small squares. Scoop ½ teaspoon Nutella and Scoop ½ teaspoon of Hazelnut spread onto individual cling-wrap squares. Fold to seal and freeze until solid. (Repeat for however many stuffed cookies you plan to make.)",
-            "In a large mixing bowl, add the cubed butter and whisk until slightly creamy. Add the white sugar and light brown sugar, then whisk together until well combined and fluffy.",
-            "Add the eggs, vanilla extract. Whisk until fully incorporated.",
-            "Add the flour, baking powder, baking soda, and salt. Gently mix until just combined, do not overmix.",
-            "Portion the dough into 65g-70g balls. Press a frozen Nutella hazelnut piece into the centre of each dough ball, seal well, and roll into a smooth ball.",
-            "Place the cookie dough balls onto a tray and freeze for at least 1 hour (or overnight for best results).",
-            "Preheat oven to 175-180C (350°F). Bake for 10-15 minutes or until the tops are lightly golden while the centres remain soft.",
-            "Remove from the oven and let cool.",
-            "Melt the cooking or milk chocolate using double broiler method and add chopped &#038; roasted hazelnuts in it.",
-            "Spread a layer of melted chocolate-hazelnut mixture onto baking paper, just enough to coat the base of the cookie. Gently place the cooled cookie on top, then spoon more of the mixture over it, making sure the cookie is fully covered and evenly coated.",
-            "Let the chocolate mixture set completely before serving, Enjoy!"
-        ],
-        "tags": [
-            "pâtisserie",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
