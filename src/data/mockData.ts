@@ -2,11 +2,137 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/05/2026 17:34:00
- * Total: 213 recettes
+ * Dernière mise à jour: 05/05/2026 18:11:08
+ * Total: 214 recettes
  */
-export const exportSyncId = "1778002440051";
+export const exportSyncId = "1778004668973";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5257",
+        "title": "Crispy Veggie Balls",
+        "description": "Des boules de légumes croustillantes à base de pommes de terre, carottes et brocoli, assaisonnées et cuites à l'air-fryer ou au four, servies avec une sauce crémeuse au citron et à l'ail.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778004359403.jpg&v=1778011611000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7569330769391308035\" data-video-id=\"7569330769391308035\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7569330769391308035\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             Carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n             Brocoli"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Herbes (aromatiques)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan végétalien"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Mayonnaise/yaourt végétalien (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail (pour la sauce)"
+            }
+        ],
+        "steps": [
+            "Faire bouillir les légumes (pommes de terre, carottes, brocoli) jusqu'à ce qu'ils soient tendres.",
+            "Écraser les légumes avec les épices (huile d'olive, fécule de maïs, poudre d'ail, paprika, herbes, sel, poivre) et la fécule de maïs.",
+            "Rouler la préparation en boules.",
+            "Faire frire à l'air-fryer ou cuire au four jusqu'à ce qu'elles soient dorées et croustillantes.",
+            "Mélanger les boules cuites avec du persil et du parmesan végétalien.",
+            "Servir avec une sauce crémeuse à base de mayonnaise/yaourt végétalien, citron et ail."
+        ],
+        "tags": [
+            "Entrées",
+            "Healthy",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5254",
+        "title": "Sorbet aux raisins et Sprite",
+        "description": "Un sorbet rafraîchissant et facile à réaliser avec seulement deux ingrédients : des raisins et du Sprite, à congeler pendant 24 heures et à passer au Ninja Creami.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778002242114.jpg&v=1778009499000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7480866076818033942\" data-video-id=\"7480866076818033942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7480866076818033942\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Raisins"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sprite"
+            }
+        ],
+        "steps": [
+            "Mettre les raisins et le Sprite dans un récipient compatible Ninja Creami.",
+            "Congeler le mélange pendant 24 heures.",
+            "Passer le mélange congelé au Ninja Creami pour obtenir un sorbet."
+        ],
+        "tags": [
+            "Les Glaces",
+            "Pas cher",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5222",
         "title": "Cookie Ferrero Rocher",
@@ -7621,127 +7747,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "citron",
-            "Grèce"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4052",
-        "title": "Moussaka Grecque",
-        "description": "La moussaka est le plat réconfortant ultime de Grèce, un plat copieux et savoureux qui rassemble des couches de pommes de terre tendres, d'aubergines riches, de sauce à la viande épicée et de béchamel crémeuse. C'est une célébration des saveurs mé...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833018073.jpg&v=1774524451000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7461711347886083370\" data-video-id=\"7461711347886083370\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7461711347886083370\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tbsp extra virgin olive oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 pound (600 g) ground beef"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 onions, blended"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 garlic cloves, blended"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/4 cup (50 ml) cognac or white wine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 tomatoes peeled and blended"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/3 cup (80 ml) tomato juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cinnamon stick"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bay leaf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt and pepper, to taste"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bunch parsley, chopped"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 potatoes, cut lengthwise into 1/4-inch (6 mm) slices"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 eggplants, cut lengthwise into 1/4-inch (6 mm) slices"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Olive oil for frying"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1.5 liters milk"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6 tbsp cornstarch"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tbsp butter"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 tsp nutmeg"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt and pepper, to taste"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 egg yolks"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cup (120 g) grated cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/4 cup (50 g) breadcrumbs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cup (120g) Grated cheese for layering and topping"
-            }
-        ],
-        "steps": [
-            "Préparez la sauce à la viande : Faites chauffer l'huile d'olive dans une poêle à feu moyen. Faites revenir le bœuf haché jusqu'à ce qu'il soit doré. Ajoutez les oignons et l'ail mixés, en remuant jusqu'à ce qu'ils soient parfumés. Versez le cognac ou le vin et laissez mijoter pendant 1 à 2 minutes. Ajoutez les tomates mixées, le jus de tomate, le bâton de cannelle, la feuille de laurier, le sel et le poivre. Baissez le feu et laissez la sauce cuire pendant 25 minutes. Incorporez le persil haché, laissez cuire 1 minute de plus et réservez.",
-            "Préparez les légumes : Coupez les pommes de terre et les aubergines en tranches de 6 mm d'épaisseur. Faites frire les tranches de pommes de terre jusqu'à ce qu'elles soient dorées et réservez. Faites frire les tranches d'aubergines dans de l'huile d'olive jusqu'à ce qu'elles soient ramollies et légèrement dorées. Placez-les sur du papier absorbant pour éliminer l'excès d'huile.",
-            "Préparez la sauce béchamel : Dans une casserole, mélangez le lait et la fécule de maïs. Remuez constamment à feu moyen jusqu'à ce que le mélange épaississe. Ajoutez le beurre, la muscade, le sel et le poivre. Mélangez bien. Retirez du feu et incorporez le fromage râpé et les jaunes d'œufs au fouet. Réservez.",
-            "Assemblez la moussaka : Préchauffez le four à 160°C (320°F). Graissez un plat de cuisson et saupoudrez uniformément de chapelure au fond. Ajoutez une couche de fromage râpé, puis une couche de pommes de terre frites. Ajoutez une autre couche de fromage râpé, suivie d'une couche d'aubergines frites. Salez légèrement. Étalez uniformément la sauce à la viande sur les légumes. Ajoutez une autre couche de pommes de terre, suivie d'une dernière couche d'aubergines. Versez la sauce béchamel sur le dessus, en l'étalant uniformément. Saupoudrez de fromage râpé.",
-            "Cuisson : Faites cuire au four préchauffé pendant 50 minutes, ou jusqu'à ce que le dessus soit doré et bouillonnant.",
-            "Servez : Laissez la moussaka refroidir pendant 1 à 2 heures avant de la couper et de la servir. Dégustez ce plat grec réconfortant et emblématique avec une salade fraîche ou du pain croustillant !"
-        ],
-        "tags": [
-            "Famille",
             "Grèce"
         ],
         "isFeatured": false,
