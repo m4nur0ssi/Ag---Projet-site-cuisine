@@ -2,11 +2,97 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/05/2026 08:29:22
- * Total: 214 recettes
+ * Dernière mise à jour: 06/05/2026 13:28:25
+ * Total: 215 recettes
  */
-export const exportSyncId = "1778056162842";
+export const exportSyncId = "1778074105017";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5265",
+        "title": "Salade de pommes de terre protéinée",
+        "description": "Un plat frais, gourmand et ultra complet pour tenir sa diète.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778073757460.jpg&v=1778081013000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630509941375159574\" data-video-id=\"7630509941375159574\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630509941375159574\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1000 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             150 g d'avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250 g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             300 g de blanc de poulet cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de petit fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de bacon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             50 g d'oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             15 g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à café d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            }
+        ],
+        "steps": [
+            "Cuire les pommes de terre: Coupez les pommes de terre en morceaux. Assaisonnez avec sel, poivre, ail, paprika fumé et un peu de cassonade. Faites-les revenir dans une poêle avec un filet d'huile d'olive. Ajoutez un petit filet d'eau si besoin pour éviter que ça accroche. Faites cuire jusqu'à ce qu'elles soient fondantes et légèrement dorées. Laissez-les refroidir complètement avant l'assemblage.",
+            "Préparer les légumes: Émincez finement l'oignon rouge. Coupez l'avocat en cubes. Coupez les tomates cerises en deux ou en quartiers.",
+            "Préparer la sauce: Dans un bol, mélangez le petit fromage frais. Ajoutez sel, poivre, ail, paprika fumé et l'huile d'olive. Ajoutez le miel puis mélangez jusqu'à obtenir une sauce homogène.",
+            "Préparer la garniture: Coupez le poulet en morceaux. Assurez-vous que le poulet est froid avant l'assemblage. Faites griller le bacon dans une poêle jusqu'à ce qu'il soit croustillant.",
+            "Assemblage: Dans un grand saladier, mélangez les pommes de terre froides, l'oignon, l'avocat et les tomates. Ajoutez le poulet froid. Versez la sauce et mélangez pour bien enrober.",
+            "Finition: Ajoutez le bacon grillé chaud et croustillant sur le dessus."
+        ],
+        "tags": [
+            "Entrées",
+            "Healthy",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5254",
         "title": "Sorbet aux raisins et Sprite",
