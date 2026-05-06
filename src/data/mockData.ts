@@ -2,82 +2,82 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/05/2026 05:50:50
+ * Dernière mise à jour: 06/05/2026 08:17:49
  * Total: 214 recettes
  */
-export const exportSyncId = "1778046650083";
+export const exportSyncId = "1778055469457";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5257",
         "title": "Crispy Veggie Balls",
         "description": "Des boules de légumes croustillantes à base de pommes de terre, carottes et brocoli, assaisonnées et cuites à l'air-fryer ou au four, servies avec une sauce crémeuse au citron et à l'ail.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778004359403.jpg&v=1778011611000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FART_rev1-4-1.jpg&v=1778062404000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7569330769391308035\" data-video-id=\"7569330769391308035\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7569330769391308035\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7569330769391308035\" data-video-id=\"7569330769391308035\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7569330769391308035\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍎\n             Pommes de terre"
+                "name": "🍎\n Pommes de terre"
             },
             {
                 "quantity": "",
-                "name": "🥕\n             Carottes"
+                "name": "🥕\n Carottes"
             },
             {
                 "quantity": "",
-                "name": "🥦\n             Brocoli"
+                "name": "🥦\n Brocoli"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d'olive"
+                "name": "🍾\n Huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Fécule de maïs"
+                "name": "🥣\n Fécule de maïs"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             Poudre d'ail"
+                "name": "🧄\n Poudre d'ail"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Paprika"
+                "name": "🧂\n Paprika"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Herbes (aromatiques)"
+                "name": "🥣\n Herbes (aromatiques)"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel"
+                "name": "🧂\n Sel"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "🌶️\n Poivre"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Persil"
+                "name": "🌿\n Persil"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             Parmesan végétalien"
+                "name": "🧀\n Parmesan végétalien"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             Mayonnaise/yaourt végétalien (pour la sauce)"
+                "name": "🥫\n Mayonnaise/yaourt végétalien (pour la sauce)"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Citron (pour la sauce)"
+                "name": "🍋\n Citron (pour la sauce)"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             Ail (pour la sauce)"
+                "name": "🧄\n Ail (pour la sauce)"
             }
         ],
         "steps": [
@@ -89,6 +89,7 @@ export const mockRecipes: Recipe[] = [
             "Servir avec une sauce crémeuse à base de mayonnaise/yaourt végétalien, citron et ail."
         ],
         "tags": [
+            "accompagnement",
             "Entrées",
             "Healthy",
             "Végé"
