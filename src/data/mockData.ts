@@ -2,11 +2,47 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/05/2026 13:28:25
+ * Dernière mise à jour: 06/05/2026 14:19:58
  * Total: 215 recettes
  */
-export const exportSyncId = "1778074105017";
+export const exportSyncId = "1778077199004";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5254",
+        "title": "Sorbet aux raisins et Sprite",
+        "description": "Un sorbet rafraîchissant et facile à réaliser avec seulement deux ingrédients : des raisins et du Sprite, à congeler pendant 24 heures et à passer au Ninja Creami.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F627d3957ee14a.jpg&v=1778084190000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7480866076818033942\" data-video-id=\"7480866076818033942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7480866076818033942\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Raisins"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Sprite"
+            }
+        ],
+        "steps": [
+            "Mettre les raisins et le Sprite dans un récipient compatible Ninja Creami.",
+            "Congeler le mélange pendant 24 heures.",
+            "Passer le mélange congelé au Ninja Creami pour obtenir un sorbet."
+        ],
+        "tags": [
+            "Les Glaces",
+            "Pas cher",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5265",
         "title": "Salade de pommes de terre protéinée",
@@ -87,42 +123,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Entrées",
             "Healthy",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5254",
-        "title": "Sorbet aux raisins et Sprite",
-        "description": "Un sorbet rafraîchissant et facile à réaliser avec seulement deux ingrédients : des raisins et du Sprite, à congeler pendant 24 heures et à passer au Ninja Creami.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F627d3957ee14a.jpg&v=1778063172000",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7480866076818033942\" data-video-id=\"7480866076818033942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7480866076818033942\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n Raisins"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Sprite"
-            }
-        ],
-        "steps": [
-            "Mettre les raisins et le Sprite dans un récipient compatible Ninja Creami.",
-            "Congeler le mélange pendant 24 heures.",
-            "Passer le mélange congelé au Ninja Creami pour obtenir un sorbet."
-        ],
-        "tags": [
-            "Les Glaces",
-            "Pas cher",
-            "Végé",
             "Voilà l'été"
         ],
         "isFeatured": false,
