@@ -123,32 +123,55 @@ async function handleRequest(request: Request) {
         // Le raccourci iOS appelle sans URL pour obtenir la liste des pays
         // Que ce soit avec checkOnly=true ou non
         if (!videoUrl) {
-            const paysDict: any = {
-                "France": "🇫🇷 France",
-                "Italie": "🇮🇹 Italie",
-                "Espagne": "🇪🇸 Espagne",
-                "Grece": "🇬🇷 Grèce",
-                "Liban": "🇱🇧 Liban",
-                "USA": "🇺🇸 USA",
-                "Mexique": "🇲🇽 Mexique",
-                "Orient": "🕌 Orient",
-                "Asie": "🥢 Asie",
-                "Afrique": "🌍 Afrique",
-                "Aperitifs": "🥨 Apéritifs",
-                "Entrees": "🥗 Entrées",
-                "Plats": "🍲 Plats",
-                "Vegetarien": "🥬 Végétarien",
-                "Desserts": "🍰 Desserts",
-                "Patisserie": "🥐 Pâtisserie",
-                "Restaurant": "🍽️ Restaurant",
-                "Glaces": "🧊 Les Glaces",
-                "Rafraichissements": "🥤 Rafraîchissements",
-                "Paques": "🥚 Pâques",
-                "Noel": "🎄 Noël",
-                "Astuces": "💡 Astuces",
-                "Simplissime": "⏱️ Simplissime"
-            };
-            const response = NextResponse.json({ status: paysDict });
+            const rawChoices = [
+                { name: "Accompagnements", icon: "🥗" },
+                { name: "Afrique", icon: "🌍" },
+                { name: "Airfryer", icon: "💨" },
+                { name: "Apéritifs", icon: "🍸" },
+                { name: "Asie", icon: "🥢" },
+                { name: "Astuces", icon: "💡" },
+                { name: "Barbecue", icon: "🔥" },
+                { name: "C'est l'hiver", icon: "❄️" },
+                { name: "Desserts", icon: "🍰" },
+                { name: "Dolce Vita", icon: "🍕" },
+                { name: "Entrées", icon: "🥙" },
+                { name: "Epicé", icon: "🌶️" },
+                { name: "Espagne", icon: "🇪🇸" },
+                { name: "Express", icon: "⚡" },
+                { name: "Famille", icon: "👨‍👩‍👧‍👦" },
+                { name: "France", icon: "🇫🇷" },
+                { name: "Glaces", icon: "🍦" },
+                { name: "Gratins", icon: "🥘" },
+                { name: "Grèce", icon: "🇬🇷" },
+                { name: "Healthy", icon: "🥑" },
+                { name: "Italie", icon: "🇮🇹" },
+                { name: "Liban", icon: "🇱🇧" },
+                { name: "Mexique", icon: "🇲🇽" },
+                { name: "Noël", icon: "🎄" },
+                { name: "Orient", icon: "🕌" },
+                { name: "Pas cher", icon: "💰" },
+                { name: "Pâques", icon: "🐣" },
+                { name: "Pâtisserie", icon: "🥐" },
+                { name: "Plats", icon: "🍝" },
+                { name: "Rafraîchissements", icon: "🍹" },
+                { name: "Restaurant", icon: "🍽️" },
+                { name: "Salades", icon: "🥗" },
+                { name: "Sandwichs", icon: "🥪" },
+                { name: "Sauces", icon: "🥣" },
+                { name: "Simplissime", icon: "✨" },
+                { name: "Soupes", icon: "🥣" },
+                { name: "USA", icon: "🇺🇸" },
+                { name: "Végétarien", icon: "🥬" },
+                { name: "Voilà l'été", icon: "☀️" },
+                { name: "Autre", icon: "🗺️" }
+            ];
+
+            const paysDict: Record<string, string> = {};
+            rawChoices.forEach(c => {
+                paysDict[`${c.icon} ${c.name}`] = c.name;
+            });
+
+            const response = NextResponse.json({ status: paysDict, v: "00:14-ALL-IN-ONE" });
             response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
             return response;
         }
@@ -208,10 +231,12 @@ async function handleRequest(request: Request) {
         // Étape 1 : Si on n'a pas de pays, on cherche partout dans les params et le body
         if (!selectedCountry) {
             const knownCountries = [
-                "France", "Italie", "Espagne", "Grece", "Grèce", "Liban",
-                "USA", "Mexique", "Orient", "Asie", "Afrique", "Aperitifs", "Aperitif", "Apéritifs", "Apéritif", "Entrees", "Entrée", "Entree",
-                "Plats", "Plat", "Vegetarien", "Végétarien", "Desserts", "Dessert", "Patisserie", "Pâtisserie", "Restaurant",
-                "Glaces", "Glace", "Rafraichissements", "Rafraîchissements", "Paques", "Pâques", "Noel", "Noël", "Astuces", "Simplissime", "Barbecue", "Bbq", "Sandwichs", "Gratins", "Soupes", "Salades"
+                "Afrique", "Airfryer", "Aperitifs", "Aperitif", "Apéritifs", "Apéritif", "Asie", "Astuces", 
+                "Barbecue", "Bbq", "Desserts", "Dessert", "Entrees", "Entree", "Entrées", "Entrée", "Epice", "Epicé", "Épicé", "Espagne", 
+                "Express", "France", "Glaces", "Glace", "Gratins", "Gratin", "Grece", "Grèce", "Healthy", "Italie", "Liban", "Mexique", 
+                "Noel", "Noël", "Orient", "Paques", "Pâques", "Pas Cher", "Pas-Cher", "Patisserie", "Pâtisserie", 
+                "Plats", "Plat", "Rafraichissements", "Rafraîchissements", "Restaurant", "Salades", "Salade", 
+                "Sandwichs", "Sandwich", "Simplissime", "Soupes", "Soupe", "USA", "Vegetarien", "Végétarien"
             ];
 
             // Scan TOUS les paramètres de l'URL
@@ -245,36 +270,39 @@ async function handleRequest(request: Request) {
         // Si toujours pas de pays → on renvoie le menu + debug pour comprendre ce que le raccourci envoie
         if (!selectedCountry) {
             const paysDict: any = {
-                // Pays & Régions
-                "France": "🇫🇷 France",
-                "Italie": "🇮🇹 Italie",
-                "Espagne": "🇪🇸 Espagne",
-                "Grece": "🇬🇷 Grèce",
-                "Liban": "🇱🇧 Liban",
-                "USA": "🇺🇸 USA",
-                "Mexique": "🇲🇽 Mexique",
-                "Orient": "🕌 Orient",
-                "Asie": "🥢 Asie",
                 "Afrique": "🌍 Afrique",
-
-                // Catégories de plats
+                "Airfryer": "💨 Airfryer",
                 "Aperitifs": "🥨 Apéritifs",
-                "Entrees": "🥗 Entrées",
-                "Plats": "🍲 Plats",
-                "Vegetarien": "🥬 Végétarien",
-                "Desserts": "🍰 Desserts",
-                "Patisserie": "🥐 Pâtisserie",
-                "Restaurant": "🍽️ Restaurant",
-
-                // Spécialités glacées & boissons
-                "Glaces": "🧊 Les Glaces",
-                "Rafraichissements": "🥤 Rafraîchissements",
-
-                // Thématiques et Tendances (sans Famille)
-                "Paques": "🥚 Pâques",
-                "Noel": "🎄 Noël",
+                "Asie": "🥢 Asie",
                 "Astuces": "💡 Astuces",
-                "Simplissime": "⏱️ Simplissime"
+                "Barbecue": "🍖 Barbecue",
+                "Desserts": "🍰 Desserts",
+                "Entrees": "🥗 Entrées",
+                "Epice": "🌶️ Epicé",
+                "Espagne": "🇪🇸 Espagne",
+                "Express": "⚡ Express",
+                "France": "🇫🇷 France",
+                "Glaces": "🧊 Les Glaces",
+                "Gratins": "🥘 Gratins",
+                "Grece": "🇬🇷 Grèce",
+                "Healthy": "🥗 Healthy",
+                "Italie": "🇮🇹 Italie",
+                "Liban": "🇱🇧 Liban",
+                "Mexique": "🇲🇽 Mexique",
+                "Noel": "🎄 Noël",
+                "Orient": "🕌 Orient",
+                "Paques": "🥚 Pâques",
+                "PasCher": "🪙 Pas Cher",
+                "Patisserie": "🥐 Pâtisserie",
+                "Plats": "🍲 Plats",
+                "Rafraichissements": "🥤 Rafraîchissements",
+                "Restaurant": "🍽️ Restaurant",
+                "Salades": "🥗 Salades",
+                "Sandwichs": "🥪 Sandwichs",
+                "Simplissime": "⏱️ Simplissime",
+                "Soupes": "🥣 Soupes",
+                "USA": "🇺🇸 USA",
+                "Vegetarien": "🥬 Végétarien"
             };
             console.log('🔍 Pays non trouvé — on affiche le menu de sélection');
             const response = NextResponse.json({ status: paysDict });

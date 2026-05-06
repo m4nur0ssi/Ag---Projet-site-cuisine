@@ -1,0 +1,387 @@
+.section {
+    padding: 10px 0; /* Espacement vertical réduit */
+    overflow: hidden;
+    position: relative;
+    background: transparent !important;
+}
+
+:root[data-theme='light'] .section,
+:root[data-theme='light'] .scrollContainer,
+:root[data-theme='light'] .track {
+    background: transparent !important;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-start; /* Ensure left alignment */
+    align-items: center;
+    padding: 0 40px 8px; /* Match left padding of scrollContainer */
+}
+
+.titlePillWrapper {
+    background: rgba(255, 255, 255, 0.1); /* Plus opaque comme les cartes */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Bordure plus nette */
+    border-radius: 24px; /* Unifié avec les titres de recettes */
+    padding: 6px 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sectionTitle {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 950;
+    font-size: 1.1rem; /* Match recipe titles exactly */
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin: 0;
+    text-transform: capitalize;
+    
+    /* Moving Gradient */
+    background: linear-gradient(
+        90deg, 
+        #10b981, 
+        #3b82f6, 
+        #a855f7, 
+        #f43f5e,
+        #10b981
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.viewAll {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.viewAll:active {
+    transform: scale(0.9);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+:root[data-theme='light'] .sectionTitle {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+:root[data-theme='light'] .titlePillWrapper {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme='light'] .viewAll {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1c1c1e;
+}
+
+.scrollIndicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.scrollContainer {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 40px 10px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch; /* Momentum scroll iOS native */
+    overscroll-behavior-x: contain;
+    display: flex;
+    align-items: center;
+    touch-action: pan-x pan-y;
+}
+
+.track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    perspective: 2000px;
+    padding-bottom: 5px;
+    will-change: transform; /* Force GPU */
+    transform: translateZ(0); /* High perf bridge */
+}
+
+.itemWrapper {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 380px;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    margin: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.itemLarge {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 380px;
+}
+
+.itemSmall {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 380px;
+}
+
+[data-theme='light'] .glassFloor {
+    display: none;
+}
+
+.glassFloor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 15px 0; /* Plus compact sur mobile */
+    }
+    
+    .header {
+        padding: 0 20px 8px;
+    }
+
+    .titlePillWrapper {
+        padding: 5px 14px;
+        border-radius: 20px; /* Unifié mobile */
+    }
+
+    .sectionTitle {
+        font-size: 1rem; /* Match mobile recipe titles */
+    }
+
+    .scrollContainer {
+        padding: 10px 0 10px 20px; /* Plus serré verticalement */
+        mask-image: none;
+    }
+    
+    .itemSmall,
+    .itemLarge,
+    .itemWrapper {
+        flex: 0 0 240px;
+        width: 240px;
+        height: 380px;
+    }
+
+    .track {
+        gap: 20px; /* Même espace fin sur mobile */
+    }
+}
+
+.viewAllCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 380px; /* Aligné sur .card */
+    border-radius: 44px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[data-theme='light'] .viewAllCard {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    background: #ffffff !important;
+    border: none !important;
+}
+
+.viewAllCard:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.small .viewAllCard {
+    height: 380px; /* Même hauteur que .small .card */
+    border-radius: 34px;
+}
+
+.viewAllContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    text-align: center;
+    gap: 12px;
+}
+
+.viewAllText {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Supprimé viewAllSub */
+
+.viewAllGlass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    pointer-events: none;
+}
+
+.titleCard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    color: white;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: all 0.5s var(--ios-easing);
+}
+
+.titleCard.clickable {
+    cursor: pointer;
+}
+
+.titleCard.clickable:active {
+    transform: scale(0.92) translateY(4px);
+    filter: brightness(1.2);
+}
+
+:root[data-theme='light'] .titleCard {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+.titleCardSmall {
+    border-radius: 34px;
+}
+
+.titleCardContent {
+    padding: 30px;
+    text-align: center;
+    z-index: 2;
+}
+
+.categoryMainTitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.2;
+    margin: 16px 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.decorativeLine {
+    width: 40px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+.longTitle {
+    font-size: 1rem !important; /* Smaller size to fit words like ACCOMPAGNEMENTS */
+    letter-spacing: 0.02em;
+    word-break: normal;
+}
+
+.small .categoryMainTitle { font-size: 1.8rem; }
+.small .longTitle { font-size: 0.9rem !important; }
+
+.titleCardGlass {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .titleCard {
+        border-radius: 32px;
+    }
+    
+    .categoryMainTitle {
+        font-size: 24px;
+    }
+
+    .scrollContainer {
+        padding: 5px 0 10px 20px; /* Encore un peu plus serré pour le nouveau design */
+    }
+
+    .viewAllCard {
+        border-radius: 32px;
+    }
+    
+    .viewAllIcon {
+        font-size: 40px;
+    }
+    
+    .viewAllText {
+        font-size: 20px;
+    }
+}

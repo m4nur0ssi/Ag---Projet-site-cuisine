@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mode d'emploi - Badges</title>
+    <style>
+        :root {
+            --red: #e74c3c;
+            --green: #2ecc71;
+            --blue: #3498db;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f6fa;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 2px solid #e1e8ed;
+        }
+        .header {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 2.2em;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+        .section {
+            padding: 30px 40px;
+            border-bottom: 2px dashed #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        .section-title {
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .badge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 2px solid #e1e8ed;
+            transition: transform 0.2s;
+        }
+        .card-full {
+            grid-column: 1 / -1;
+            background: #fff0f0;
+            border-color: #ffcccc;
+        }
+        .card-green { background: #f0fff4; border-color: #c6f6d5; }
+        .card-blue { background: #ebf8ff; border-color: #bee3f8; }
+        .card-yellow { background: #fffff0; border-color: #fef08a; }
+        .card-gray { background: #f7fafc; border-color: #e2e8f0; opacity: 0.7;}
+        
+        .icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+        .action-title {
+            font-size: 1.6em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        .action-desc {
+            font-size: 1.25em;
+            color: #666;
+            line-height: 1.4;
+        }
+        .badge-image-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .badge-shape {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4em;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.05);
+        }
+        .badge-shape.black {
+            background: #333;
+            border-color: #111;
+            border-radius: 30px;
+            height: 160px;
+            width: 110px;
+            box-shadow: inset 0 5px 15px rgba(255,255,255,0.2);
+        }
+
+        @media screen and (max-width: 600px) {
+            .badge-grid { grid-template-columns: 1fr; }
+            .container { border-radius: 0; box-shadow: none; border: none; }
+            body { padding: 0; background: white; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            📟 GUIDE DES TÉLÉCOMMANDES
+        </div>
+
+        <!-- ALARME -->
+        <div class="section">
+            <div class="section-title">
+                ⚪ Le Badge Alarme (Blanc)
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="file:///Users/manu/Downloads/som2401489-somfy-protect-telecommande-badge-de-desactivation-mains-libres_1.jpg" alt="Badge Alarme Blanc" style="max-height: 200px; max-width: 100%; border-radius: 50%; box-shadow: 0 10px 20px rgba(0,0,0,0.15);">
+            </div>
+
+            <div class="badge-grid">
+                <div class="card card-full" style="background:#ffe3e3; border-color:#ffb3b3;">
+                    <div class="icon">🔒</div>
+                    <div class="action-title">ACTIVER L'ALARME</div>
+                    <div class="action-desc">Bouton en <strong>haut à gauche</strong>.<br>Cadenas fermé.<br>À appuyer quand vous <strong>QUITTEZ</strong> la maison.</div>
+                </div>
+                
+                <div class="card card-green">
+                    <div class="icon">🔓</div>
+                    <div class="action-title">DÉSACTIVER</div>
+                    <div class="action-desc">Bouton en <strong>haut à droite</strong>.<br>À appuyer avant d'<strong>ENTRER</strong>.</div>
+                </div>
+
+                <div class="card card-blue">
+                    <div class="icon">🛡️</div>
+                    <div class="action-title">MODE NUIT</div>
+                    <div class="action-desc">Bouton en <strong>bas à gauche</strong>.<br>Active une partie (rez-de-chaussée).</div>
+                </div>
+
+                <div class="card card-full" style="background: white; border: 3px solid var(--red);">
+                    <div class="icon">🔔</div>
+                    <div class="action-title" style="color:var(--red);">URGENCE / SOS</div>
+                    <div class="action-desc">Bouton en <strong>bas à droite</strong>.<br>Déclenche la sirène immédiatement !</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTAIL -->
+        <div class="section">
+            <div class="section-title">
+                ⚫ Le Badge Portail (Noir)
+            </div>
+
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="file:///Users/manu/Downloads/telecommande-rts-keytis-4-canaux-somfy-1841064.jpg" alt="Badge Portail Noir" style="max-height: 200px; max-width: 100%; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); display: inline-block;">
+            </div>
+
+            <div class="badge-grid">
+                <div class="card card-full" style="border: 3px solid var(--dark); background: #f8fafc;">
+                    <div class="icon">🟢</div>
+                    <div class="action-title">OUVRIR EN GRAND</div>
+                    <div class="action-desc">Le <strong>GROS bouton central</strong>.<br>Pour faire passer la voiture.</div>
+                </div>
+
+                <div class="card card-yellow">
+                    <div class="icon">🚶</div>
+                    <div class="action-title">MODE PIÉTON</div>
+                    <div class="action-desc">Le <strong>petit bouton de gauche</strong>.<br>Ouvre juste ce qu'il faut à pied.</div>
+                </div>
+
+                <div class="card card-gray">
+                    <div class="icon">❌</div>
+                    <div class="action-title">LES AUTRES BOUTONS</div>
+                    <div class="action-desc">Centre et droite : <strong>Ils ne servent à rien</strong>. Ne pas utiliser.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

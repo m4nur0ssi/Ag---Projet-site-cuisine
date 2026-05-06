@@ -1,18 +1,16 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { mockRecipes } from '../../data/mockData';
 import styles from './MagicFilterBar.module.css';
-import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
 interface FilterItem {
     id: string;
     name: string;
     icon: string | React.ReactNode;
     tag?: string;
+    color?: string;
 }
 
 const AFRICA_SILHOUETTE = (
@@ -23,118 +21,62 @@ const AFRICA_SILHOUETTE = (
 
 interface MagicFilterBarProps {
     activeTags: string[];
-    onSelect: (tag: string) => void;
+    onSelect: (tag: string, groupId?: string) => void;
     showBack?: boolean;
     backUrl?: string;
     backLabel?: string;
     isHome?: boolean;
-    hideActiveRow?: boolean;
     listCount?: number;
 }
 
 const categories: FilterItem[] = [
-    { id: 'aperitifs', name: 'Apéritifs', icon: '🍹' },
-    { id: 'entrees', name: 'Entrées', icon: '🥗' },
-    { id: 'plats', name: 'Plats', icon: '🍲' },
-    { id: 'vegetarien', name: 'Végé', icon: '🥬' },
-    { id: 'desserts', name: 'Desserts', icon: '🍰' },
-    { id: 'patisserie', name: 'Pâtisserie', icon: '🥐' },
-    { id: 'restaurant', name: 'Restaurant', icon: '🍽️' },
+    { id: 'cat-aperitifs', name: 'Apéritifs', icon: '', tag: 'aperitifs', color: '#FF7E5F' },
+    { id: 'cat-entrees', name: 'Entrées', icon: '', tag: 'entrees', color: '#76B852' },
+    { id: 'cat-plats', name: 'Plats', icon: '', tag: 'plats', color: '#8E2DE2' },
+    { id: 'cat-accompagnements', name: 'Accompagnements', icon: '', tag: 'accompagnements', color: '#00C853' },
+    { id: 'cat-desserts', name: 'Desserts', icon: '', tag: 'desserts', color: '#F80759' },
+    { id: 'cat-patisserie', name: 'Pâtisserie', icon: '', tag: 'patisserie', color: '#FFB347' },
 ];
 
 const countries: FilterItem[] = [
-    { id: 'france', name: 'France', icon: '🇫🇷', tag: 'france' },
-    { id: 'italie', name: 'Italie', icon: '🇮🇹', tag: 'italie' },
-    { id: 'espagne', name: 'Espagne', icon: '🇪🇸', tag: 'espagne' },
-    { id: 'grece', name: 'Grèce', icon: '🇬🇷', tag: 'grece' },
-    { id: 'liban', name: 'Liban', icon: '🇱🇧', tag: 'liban' },
-    { id: 'usa', name: 'USA', icon: '🇺🇸', tag: 'usa' },
-    { id: 'mexique', name: 'Mexique', icon: '🇲🇽', tag: 'mexique' },
-    { id: 'orient', name: 'Orient', icon: '🕌', tag: 'orient' },
-    { id: 'asie', name: 'Asie', icon: '🥢', tag: 'asie' },
-    { id: 'afrique', name: 'Afrique', icon: AFRICA_SILHOUETTE, tag: 'afrique' },
+    { id: 'cnt-france', name: 'France', icon: '🇫🇷', tag: 'France', color: '#0055A4' },
+    { id: 'cnt-italie', name: 'Italie', icon: '🇮🇹', tag: 'Italie', color: '#008C45' },
+    { id: 'cnt-espagne', name: 'Espagne', icon: '🇪🇸', tag: 'Espagne', color: '#F1BF00' },
+    { id: 'cnt-grece', name: 'Grèce', icon: '🇬🇷', tag: 'Grece', color: '#0D5EAF' },
+    { id: 'cnt-liban', name: 'Liban', icon: '🇱🇧', tag: 'Liban', color: '#EE161F' },
+    { id: 'cnt-usa', name: 'USA', icon: '🇺🇸', tag: 'USA', color: '#B22234' },
+    { id: 'cnt-mexique', name: 'Mexique', icon: '🇲🇽', tag: 'Mexique', color: '#006847' },
+    { id: 'cnt-orient', name: 'Orient', icon: '🕌', tag: 'Orient', color: '#8B4513' },
+    { id: 'cnt-asie', name: 'Asie', icon: '🥢', tag: 'Asie', color: '#E41E26' },
+    { id: 'cnt-afrique', name: 'Afrique', icon: AFRICA_SILHOUETTE, tag: 'Afrique', color: '#FFD700' },
 ];
 
 const trends: FilterItem[] = [
-    { id: 'healthy', name: 'Healthy', icon: '🥗', tag: 'Healthy' },
-    { id: 'airfryer', name: 'Airfryer', icon: '💨', tag: 'airfryer' },
-    { id: 'barbecue', name: 'Barbecue', icon: '🍖', tag: 'Barbecue' },
-    { id: 'pas-cher', name: 'Pas Cher', icon: '🪙', tag: 'Pas cher' },
-    { id: 'express', name: 'Express', icon: '⚡', tag: 'Express' },
-    { id: 'epice', name: 'Epicé', icon: '🌶️', tag: 'épicé' },
+    { id: 'trn-paques', name: 'Pâques', icon: '', tag: 'pâques', color: '#ffcc33' },
+    { id: 'trn-noel', name: 'Noël', icon: '', tag: 'Noël', color: '#ff3b30' },
+    { id: 'trn-summer', name: "Voilà l'été", icon: '☀️', tag: 'voila-lete', color: '#FF7E5F' },
+    { id: 'trn-winter', name: "C'est l'hiver", icon: '❄️', tag: 'cest-lhiver', color: '#3B82F6' },
+    { id: 'trn-glaces', name: 'Les Glaces', icon: '', tag: 'glaces', color: '#F472B6' },
+    { id: 'trn-boissons', name: 'Rafraîchissements', icon: '', tag: 'boissons', color: '#3B82F6' },
+    { id: 'trn-simplissime', name: 'Simplissime', icon: '', tag: 'simplissime', color: '#FFD700' },
+    { id: 'trn-dolce-vita', name: 'Dolce Vita', icon: '', tag: 'italie', color: '#008C45' },
+    { id: 'trn-healthy', name: 'Healthy', icon: '', tag: 'Healthy', color: '#A8E063' },
+    { id: 'trn-astuces', name: 'Astuces', icon: '', tag: 'Astuces', color: '#FFD700' },
+    { id: 'trn-airfryer', name: 'Airfryer', icon: '', tag: 'Airfryer', color: '#43C6AC' },
+    { id: 'trn-barbecue', name: 'Barbecue', icon: '', tag: 'Barbecue', color: '#FF416C' },
+    { id: 'trn-pas-cher', name: 'Pas Cher', icon: '', tag: 'Pas cher', color: '#0BA360' },
+    { id: 'trn-express', name: 'Express', icon: '', tag: 'Express', color: '#FDFC47' },
+    { id: 'trn-sauces', name: 'Sauces', icon: '', tag: 'sauces', color: '#FF8C00' },
+    { id: 'trn-famille', name: 'Famille', icon: '', tag: 'famille', color: '#FF416C' },
+    { id: 'trn-vege', name: 'Végé', icon: '', tag: 'vegetarien', color: '#00C853' }
 ];
 
 export default function MagicFilterBar({ 
     activeTags, 
     onSelect, 
-    showBack = false, 
-    backUrl,
-    backLabel,
-    isHome = false,
-    hideActiveRow = false,
-    listCount = 0
 }: MagicFilterBarProps) {
-    const router = useRouter();
-    const [activeGroup, setActiveGroup] = useState('categories');
-    const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
+    const [activeGroup, setActiveGroup] = useState<string | null>(null);
     const [dynamicAccent, setDynamicAccent] = useState('#7f0df2');
-    const [isLuckyRolling, setIsLuckyRolling] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-    const itemsScrollRef = useRef<HTMLDivElement>(null);
-
-    const handleItemsMouseMove = (e: React.MouseEvent) => {
-        if (!itemsScrollRef.current) return;
-        
-        // Uniquement sur Desktop
-        if (window.matchMedia('(pointer: coarse)').matches) return;
-
-        const container = itemsScrollRef.current;
-        const rect = container.getBoundingClientRect();
-        
-        const x = e.clientX - rect.left;
-        const threshold = 200; // ZONE DE DÉTECTION ÉLARGIE POUR ÉVITER LES JUMPS
-        
-        let percentage;
-        if (x < threshold) {
-            percentage = 0;
-        } else if (x > rect.width - threshold) {
-            percentage = 1;
-        } else {
-            // Zone morte centrale plus large pour permettre de cliquer sans que ça bouge
-            percentage = (x - threshold) / (rect.width - 2 * threshold);
-        }
-        
-        const scrollWidth = container.scrollWidth;
-        const clientWidth = container.clientWidth;
-        const maxScroll = scrollWidth - clientWidth;
-        
-        if (maxScroll > 0) {
-            container.scrollLeft = percentage * maxScroll;
-        }
-    };
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-        const handleScroll = () => setScrolled(window.scrollY > 40);
-
-        const handleToggleGroup = (e: any) => {
-            const groupId = e.detail;
-            setExpandedGroup(prev => prev === groupId ? null : groupId);
-            setActiveGroup(groupId);
-        };
-
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        window.addEventListener('scroll', handleScroll);
-        window.addEventListener('magic-toggle-group', handleToggleGroup);
-
-        return () => {
-            window.removeEventListener('resize', checkMobile);
-            window.removeEventListener('scroll', handleScroll);
-            window.removeEventListener('magic-toggle-group', handleToggleGroup);
-        };
-    }, []);
 
     useEffect(() => {
         const colors: Record<string, string> = {
@@ -146,232 +88,112 @@ export default function MagicFilterBar({
             'afrique': '#eab308',
             'vegetarien': '#4ade80',
             'desserts': '#f472b6',
-            'patisserie': '#d97706'
+            'patisserie': '#d97706',
+            'accompagnements': '#00C853',
+            'aperitifs': '#FF7E5F',
+            'entrees': '#76B852',
+            'plats': '#8E2DE2'
         };
         const lastTag = activeTags[activeTags.length - 1];
-        if (lastTag && colors[lastTag]) setDynamicAccent(colors[lastTag]);
+        if (lastTag && colors[lastTag.toLowerCase()]) setDynamicAccent(colors[lastTag.toLowerCase()]);
         else setDynamicAccent('#7f0df2');
     }, [activeTags]);
 
-    const handleLuckyClick = () => {
-        setIsLuckyRolling(true);
-        setTimeout(() => {
-            const randomIndex = Math.floor(Math.random() * mockRecipes.length);
-            const recipe = mockRecipes[randomIndex];
-            setIsLuckyRolling(false);
-            window.location.href = `/recipe/${recipe.id}`;
-        }, 800);
-    };
-
-    const Rail = ({ items }: { items: FilterItem[] }) => (
-        <div className={styles.railContainer}>
-            <div className={styles.railScroll}>
-                <div className={styles.railContent}>
-                    {items.map((item) => (
-                        <motion.button
-                            key={item.id}
-                            className={`${styles.filterItem} ${activeTags.includes(item.tag || item.id) ? styles.active : ''}`}
-                            onClick={() => {
-                                onSelect(item.tag || item.id);
-                                if (isMobile) setExpandedGroup(null);
-                            }}
-                            whileHover={{ scale: 1.05, translateY: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <span className={styles.itemIcon}>{item.icon}</span>
-                            <span className={styles.itemName}>{item.name}</span>
-                        </motion.button>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-
     const groups = [
-        { id: 'categories', icon: '🍴', label: 'Plats', items: categories },
-        { id: 'countries', icon: '🌍', label: 'Pays', items: countries },
-        { id: 'trends', icon: '🏷️', label: 'Tendances', items: trends },
+        { id: 'categories', label: 'Catégories', items: categories },
+        { id: 'countries', label: 'Pays', items: countries },
+        { id: 'trends', label: 'Tendance', items: trends },
     ];
 
-    const currentItems = groups.find(g => g.id === activeGroup)?.items || categories;
+    const toggleGroup = (id: string) => {
+        setActiveGroup(prev => prev === id ? null : id);
+    };
 
     return (
-        <div className={`${styles.mobileLayoutContainer} ${scrolled ? styles.shrunk : ''}`}>
-            <div className={styles.stickyWrapper}>
-                {!isMobile && (
-                    <div className={styles.pcLayout}>
-                        {isHome && (
-                            <motion.div className={styles.container}>
-                                <div className={styles.glassInnerPC}>
-                                    <div className={styles.groupSwitcher}>
-                                        {groups.map((group) => (
-                                            <button
-                                                key={group.id}
-                                                className={`${styles.groupBtn} ${activeGroup === group.id ? styles.groupBtnActive : ''}`}
-                                                onClick={() => {
-                                                    setActiveGroup(group.id);
-                                                    setExpandedGroup(group.id);
-                                                }}
-                                            >
-                                                <span className={styles.groupIcon}>{group.icon}</span>
-                                                <span className={styles.groupLabelPC}>{group.label}</span>
-                                            </button>
-                                        ))}
-                                    </div>
-                                    <div className={styles.separator} />
-                                    <div className={styles.itemsScrollContainerPC}>
-                                        <div 
-                                            ref={itemsScrollRef}
-                                            className={styles.itemsScrollPC}
-                                            onMouseMove={handleItemsMouseMove}
-                                        >
-                                            <div className={styles.itemsWrapperPC}>
-                                                {currentItems.map((item) => (
-                                                    <motion.button
-                                                        key={item.id}
-                                                        className={`${styles.filterItem} ${activeTags.includes(item.tag || item.id) ? styles.active : ''}`}
-                                                        onClick={() => onSelect(item.tag || item.id)}
-                                                        whileHover={{ scale: 1.05, translateY: -2 }}
-                                                        whileTap={{ scale: 0.95 }}
-                                                    >
-                                                        {item.icon && activeGroup !== 'categories' && <span className={styles.itemIcon}>{item.icon}</span>}
-                                                        <span className={styles.itemName}>{item.name}</span>
-                                                        {activeTags.includes(item.tag || item.id) && (
-                                                            <motion.span 
-                                                                layoutId="active-dot" 
-                                                                className={styles.activeDot}
-                                                                initial={{ scale: 0 }}
-                                                                animate={{ scale: 1 }}
-                                                            />
-                                                        )}
-                                                    </motion.button>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={styles.separator} />
-                                    <div className={styles.actionsPC}>
-                                        <motion.button 
-                                            className={styles.luckyBtn}
-                                            onClick={handleLuckyClick}
-                                            animate={isLuckyRolling ? { rotate: [0, -5, 5, -5, 5, 0] } : {}}
-                                        >
-                                            🍀
-                                        </motion.button>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )}
-                    </div>
-                )}
-
-                <AnimatePresence>
-                    {activeTags.length > 0 && !hideActiveRow && (
-                        <motion.div 
-                            className={styles.activeFiltersRow}
-                            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                            transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
+        <div className={styles.systemWrapper}>
+            {/* MAIN DOCK */}
+            <div className={styles.wellDock}>
+                {groups.map((group) => {
+                    const isMenuOpen = activeGroup === group.id;
+                    const hasSelection = group.items.some(i => activeTags.includes(i.tag || i.id));
+                    const isActive = isMenuOpen || hasSelection;
+                    return (
+                        <button
+                            key={group.id}
+                            className={`${styles.dockItem} ${isActive ? styles.active : ''}`}
+                            onClick={() => toggleGroup(group.id)}
                         >
-                            <AnimatePresence mode="popLayout">
-                                {activeTags.map(t => (
-                                    <motion.div 
-                                        key={t}
-                                        className={styles.activePillElement}
-                                        layout
-                                        initial={{ scale: 0.8, opacity: 0 }}
-                                        animate={{ scale: 1, opacity: 1 }}
-                                        exit={{ scale: 0.8, opacity: 0 }}
-                                        transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                                    >
-                                        <span className={styles.activePillText}>{t.charAt(0).toUpperCase() + t.slice(1)}</span>
-                                        <button 
-                                            className={styles.removeTagBtn}
-                                            onClick={() => onSelect(t)}
-                                        >
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                                <path d="M18 6L6 18M6 6l12 12"/>
-                                            </svg>
-                                        </button>
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
-                            <AnimatePresence>
-                                {activeTags.length > 1 && (
-                                    <motion.button 
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.8 }}
-                                        className={styles.clearAllBtn} 
-                                        onClick={() => window.dispatchEvent(new CustomEvent('magic-reset-filters'))}
-                                    >
-                                        EFFACER TOUT
-                                    </motion.button>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-
-
-
-                {isMobile && (
-                    <div className={styles.mobileContainer}>
-                        {showBack && backUrl && (
-                            <div className={styles.mobileBackRow}>
-                                <button
-                                    className={styles.mobileBackBtn}
-                                    onClick={() => router.push(backUrl)}
-                                >
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M15 18l-6-6 6-6" />
-                                    </svg>
-                                    {backLabel || 'Retour'}
-                                </button>
-                            </div>
-                        )}
-
-                        <AnimatePresence>
-                            {(expandedGroup || isHome) && (
+                            {group.label}
+                            {isActive && (
                                 <motion.div 
-                                    key="expanded-menu"
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: 'auto', opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    className={styles.mobileExpandedMenu}
-                                >
-                                    <Rail 
-                                        items={groups.find(g => g.id === (expandedGroup || activeGroup))?.items || []} 
-                                    />
-                                </motion.div>
+                                    layoutId={`mainIndicator-${group.id}`} 
+                                    className={styles.activeIndicator}
+                                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                                />
                             )}
-                        </AnimatePresence>
-                    </div>
-                )}
+                        </button>
+                    );
+                })}
             </div>
 
-            {isMobile && (
-                <AnimatePresence>
-                    {!scrolled && isHome && (
-                        <motion.div 
-                            className={styles.mobileActions}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 20 }}
-                        >
-                            <motion.button 
-                                className={styles.luckyBtnMobile}
-                                onClick={handleLuckyClick}
-                                animate={isLuckyRolling ? { rotate: [0, -10, 10, -10, 10, 0], scale: 1.1 } : {}}
-                            >
-                                🍀 Tente ta chance
-                            </motion.button>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            )}
-            
+            {/* SECONDARY DOCK (UNFOLDED) */}
+            <AnimatePresence>
+                {activeGroup && (
+                    <motion.div
+                        key="secondary-dock"
+                        initial={{ height: 0, opacity: 0, scale: 0.95, y: -10 }}
+                        animate={{ height: 'auto', opacity: 1, scale: 1, y: 0 }}
+                        exit={{ height: 0, opacity: 0, scale: 0.95, y: -10 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        className={styles.unfoldedWrapper}
+                    >
+                        <div className={styles.wellDockSecondary}>
+                            <div className={styles.railScrollArea}>
+                                <div className={styles.itemsRail}>
+                                    {groups.find(g => g.id === activeGroup)?.items?.map((item) => {
+                                        const itemTag = item.tag || item.id;
+                                        const isSelected = activeTags.includes(itemTag);
+                                        return (
+                                            <motion.button
+                                                key={item.id}
+                                                className={`${styles.subItem} ${isSelected ? styles.selected : ''}`}
+                                                onClick={() => {
+                                                    onSelect(itemTag, activeGroup || undefined);
+                                                    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                                                        navigator.vibrate(isSelected ? [10] : [15, 30, 15]);
+                                                    }
+                                                }}
+                                                whileHover={{ scale: 1.02 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                style={{ 
+                                                    '--active-color': item.color || '#ff3b30'
+                                                } as any}
+                                            >
+                                                {isSelected && (
+                                                    <motion.div 
+                                                        layoutId={`aura-glow-${activeGroup}`}
+                                                        className={styles.auraGlow}
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        exit={{ opacity: 0 }}
+                                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                                        style={{ background: `radial-gradient(circle, ${item.color || '#ff3b30'} 0%, transparent 70%)` }}
+                                                    />
+                                                )}
+                                                {activeGroup === 'countries' && item.icon && (
+                                                    <span className={styles.itemIcon}>{item.icon}</span>
+                                                )}
+                                                <span className={styles.itemName}>{item.name}</span>
+                                            </motion.button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             <Glow dynamicAccent={dynamicAccent} />
         </div>
     );

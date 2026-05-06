@@ -1,0 +1,111 @@
+.container {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none; /* Let children re-enable auto */
+}
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    z-index: 5001;
+    pointer-events: auto;
+}
+
+.sheet {
+    position: relative;
+    width: 94%;
+    height: 92vh;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--ios-26-bg);
+    color: var(--ios-26-text-main);
+    z-index: 5100;
+    border-radius: 44px 44px 0 0;
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: auto;
+    border: 1px solid var(--ios-26-border);
+}
+
+.dragHandle {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 5px;
+    background: var(--ios-26-text-muted, rgba(255, 255, 255, 0.2));
+    opacity: 0.8;
+    border-radius: 3px;
+    z-index: 10;
+}
+
+[data-theme='light'] .sheet {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .sheet {
+    background: #111111;
+    color: #ffffff;
+}
+
+.scrollArea {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 120px;
+    z-index: 10;
+    scrollbar-width: none;
+}
+
+.scrollArea::-webkit-scrollbar {
+    display: none;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 14px;
+    font-weight: 800;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.closeBtn:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: scale(1.1);
+}
+
+.closeBtn:active {
+    transform: scale(0.9);
+}

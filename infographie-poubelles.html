@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide des Poubelle - Noir et Blanc</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Arial Black', sans-serif;
+            background-color: #fff;
+            color: #000;
+            margin: 0;
+            padding: 40px;
+            width: 794px;
+            height: 1123px;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            border: 10px solid #000;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            border-bottom: 10px solid #000;
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 55px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .bin-section {
+            flex: 1;
+            border: 6px solid #000;
+            margin-bottom: 30px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .bin-title {
+            font-size: 50px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .bin-subtitle {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-decoration: underline;
+        }
+        .days-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .day-card {
+            border: 8px solid #000;
+            padding: 20px 40px;
+            font-size: 45px;
+            font-weight: 900;
+            background: #fff;
+        }
+        .instruction {
+            font-size: 32px;
+            font-weight: 900;
+            background: #000;
+            color: #fff;
+            padding: 15px 40px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>SORTIR LES POUBELLES</h1>
+        </div>
+
+        <!-- POUBELLE VERTE -->
+        <div class="bin-section">
+            <div class="bin-title">POUBELLE VERTE</div>
+            <div class="bin-subtitle">(Ordures Ménagères)</div>
+            
+            <div class="days-container">
+                <div class="day-card">LUNDI</div>
+                <div class="day-card">JEUDI</div>
+            </div>
+            
+            <div class="instruction">👉 À sortir le SOIR</div>
+        </div>
+
+        <!-- POUBELLE JAUNE -->
+        <div class="bin-section">
+            <div class="bin-title">POUBELLE JAUNE</div>
+            <div class="bin-subtitle">(Recyclage / Tri)</div>
+            
+            <div class="days-container">
+                <div class="day-card">MARDI</div>
+            </div>
+            
+            <div class="instruction">👉 À sortir le SOIR</div>
+        </div>
+
+        <div style="text-align: center; font-size: 22px; font-weight: bold; margin-top: 20px; font-style: italic;">
+            Note : Utilisez le badge NOIR (petit bouton gauche) pour sortir les poubelles.
+        </div>
+    </div>
+
+</body>
+</html>
