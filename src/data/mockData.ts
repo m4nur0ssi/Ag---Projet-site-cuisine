@@ -2,11 +2,110 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/05/2026 05:53:42
- * Total: 215 recettes
+ * Dernière mise à jour: 07/05/2026 11:24:19
+ * Total: 216 recettes
  */
-export const exportSyncId = "1778133222319";
+export const exportSyncId = "1778153060002";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5268",
+        "title": "Frites de courgettes",
+        "description": "Une recette simple et rapide de frites de courgettes croustillantes, idéales pour l'apéritif, préparées à l'air fryer et accompagnées d'une sauce fraîche au yaourt grec et aux herbes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778152813110.jpg&v=1778160047000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626078785212845334\" data-video-id=\"7626078785212845334\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626078785212845334\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 grosse courgette bien épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             25g de chapelure panko"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             piment en flocon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3/4 grosses cuillères de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 c.à soupe de fromage frais type philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel d'abeille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices de ton choix"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             menthe"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5254",
         "title": "Sorbet aux raisins et Sprite",
