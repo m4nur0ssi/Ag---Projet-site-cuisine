@@ -2,11 +2,71 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/05/2026 11:24:19
- * Total: 216 recettes
+ * Dernière mise à jour: 07/05/2026 11:42:41
+ * Total: 217 recettes
  */
-export const exportSyncId = "1778153060002";
+export const exportSyncId = "1778154161090";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5271",
+        "title": "Crinkles au chocolat",
+        "description": "Découvrez la recette des crinkles au chocolat, des biscuits moelleux et craquelés, généreusement enrobés de sucre glace. Parfaits pour une pause gourmande ou à partager.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778153996273.jpg&v=1778161214000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636734150220860675\" data-video-id=\"7636734150220860675\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636734150220860675\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat fondu (chocolat pâtissier à 52% de cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             165g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 bol de sucre glace"
+            }
+        ],
+        "steps": [
+            "Dans un grand récipient, mélange les œufs avec le sucre et le sucre vanillé.",
+            "Ajoute le beurre mou et le chocolat fondu, mélange bien.",
+            "Ajoute enfin la farine et la levure chimique, mélange jusqu'à obtenir une pâte homogène.",
+            "La pâte est collante, c'est normal: place-la au frigo, filmée au contact (recouverte d'un film plastique) toute la nuit.",
+            "Le lendemain, laisse-la tiédir quelques minutes puis formes-en des petites boules. La pâte est un peu compliquée à travailler, fais de ton mieux: je te conseille de t'aider d'une cuillère à glace.",
+            "Roule chaque crinkle très généreusement dans le sucre glace, sur toute la surface, puis mets-les au four environ 10mn à 180°."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5268",
         "title": "Frites de courgettes",
