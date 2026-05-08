@@ -2,11 +2,87 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/05/2026 05:22:55
- * Total: 217 recettes
+ * Dernière mise à jour: 08/05/2026 16:38:08
+ * Total: 218 recettes
  */
-export const exportSyncId = "1778217775571";
+export const exportSyncId = "1778258288920";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5274",
+        "title": "La tarte aux pommes de Mamie Nono",
+        "description": "Simple, rapide et ça fait toujours plaisir !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778258110841.jpg&v=1778265332000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7597140608603442454\" data-video-id=\"7597140608603442454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7597140608603442454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             Pâte brisée"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine 250g"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre 125g"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre 15g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fève de tonka"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Eau 70g"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             3 pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50g de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine 30g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Poudre d'amande 40g"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             Compote de pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Vanille épuisée"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5271",
         "title": "Crinkles au chocolat",
