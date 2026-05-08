@@ -176,6 +176,7 @@ jobs:
 
       - name: 📱 Trigger iPhone App Sync
         if: always()
+                continue-on-error: true
         run: |
           echo "🚀 Déclenchement sync App iPhone (toujours, même si site cuisine a eu une erreur)..."
 
@@ -192,7 +193,7 @@ jobs:
           if [ "$HTTP_CODE" = "204" ]; then
             echo "✅ Signal wp_full_sync envoyé à l'App iPhone (HTTP $HTTP_CODE)"
           else
-            echo "⚠️ Réponse inattendue HTTP $HTTP_CODE :"
+            echo "⚠️ Réponse inattendue HTTP $HTTP_CODE :  - non bloquant"
             cat /tmp/gh_response.txt
-            exit 1
+          
           fi
