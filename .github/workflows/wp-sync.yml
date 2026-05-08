@@ -118,11 +118,13 @@ jobs:
           if [ -n "${{ steps.mode.outputs.delete_id }}" ]; then
             DELETE_FLAG="--delete-id=${{ steps.mode.outputs.delete_id }}"
           fi
-          node sync-recipes.js --full $DELETE_FLAG
+          # Note: sync-recipes.js utilise --recent pour limiter la sync.
+          # Sans flag = sync complète (comportement voulu pour le mode recent aussi)
+          node sync-recipes.js $DELETE_FLAG
         env:
           WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
           WP_FORCE_PUBLIC: "true"
-        continue-on-error: true
+        continue-on-error: false
 
       # ------------------------------------------------------------------
       # Mise à jour du fichier de stats
@@ -176,9 +178,18 @@ jobs:
 
       - name: 📱 Trigger iPhone App Sync
         if: always()
-                continue-on-error: true
+        # continue-on-error: true → ce step est secondaire, il ne doit JAMAIS
+        # faire échouer le job principal (sync WP → mockData.ts).
+        # Si GH_PAT_SYNC est expiré ou invalide, on log un warning et on continue.
+        continue-on-error: true
         run: |
-          echo "🚀 Déclenchement sync App iPhone (toujours, même si site cuisine a eu une erreur)..."
+          echo "🚀 Déclenchement sync App iPhone..."
+
+          # Vérification préalable : le secret est-il configuré ?
+          if [ -z "${{ secrets.GH_PAT_SYNC }}" ]; then
+            echo "⚠️ Secret GH_PAT_SYNC non configuré — cascade iPhone ignorée."
+            exit 0
+          fi
 
           JSON_BODY='{"event_type":"wp_full_sync","client_payload":{"trigger":"wp-sync-cascade","source":"site-cuisine"}}'
 
@@ -193,7 +204,8 @@ jobs:
           if [ "$HTTP_CODE" = "204" ]; then
             echo "✅ Signal wp_full_sync envoyé à l'App iPhone (HTTP $HTTP_CODE)"
           else
-            echo "⚠️ Réponse inattendue HTTP $HTTP_CODE :  - non bloquant"
+            echo "⚠️ Cascade iPhone non déclenchée (HTTP $HTTP_CODE) — job principal non affecté."
+            echo "   → Vérifier/régénérer le secret GH_PAT_SYNC sur GitHub."
             cat /tmp/gh_response.txt
-          
+            # Pas de exit 1 : ce step est non bloquant
           fi
