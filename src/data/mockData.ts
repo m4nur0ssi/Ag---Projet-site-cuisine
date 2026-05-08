@@ -2,11 +2,92 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/05/2026 16:38:08
- * Total: 218 recettes
+ * Dernière mise à jour: 08/05/2026 16:48:37
+ * Total: 219 recettes
  */
-export const exportSyncId = "1778258288920";
+export const exportSyncId = "1778258917473";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5277",
+        "title": "Tarte Normande",
+        "description": "Une tarte normande classique et gourmande, composée d'une pâte sablée, de pommes fondantes et d'une garniture crémeuse aux amandes, avec une touche facultative de Calvados.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778258744778.jpg&v=1778265971000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604576197472816406\" data-video-id=\"7604576197472816406\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604576197472816406\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre froid"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             3 à 4 pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 ml de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé (ou 1 c. à café d'extrait de vanille)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à soupe de calvados (facultatif)"
+            }
+        ],
+        "steps": [
+            "Prépare la pâte : sable la farine, le sucre glace et le beurre du bout des doigts.",
+            "Ajoute l'œuf, forme une boule et laisse reposer 30 min au frais.",
+            "Étale la pâte, fonce ton moule et pique le fond.",
+            "Coupe les pommes en lamelles et dispose-les joliment sur la pâte.",
+            "Mélange les œufs, le sucre, la vanille, la crème et la poudre d'amande (+ calvados).",
+            "Verse ce mélange sur les pommes.",
+            "Enfourne à 180°C (chaleur tournante) pendant 35 à 40 minutes, jusqu'à ce que le dessus soit doré."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Glaces",
+            "pâtisserie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5274",
         "title": "La tarte aux pommes de Mamie Nono",
