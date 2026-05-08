@@ -6,7 +6,7 @@ import { Recipe } from '@/types';
 import { decodeHtml } from '@/lib/utils';
 import dynamic from 'next/dynamic';
 import Portal from '@/components/Portal';
-import styles from './RecipeCardiOS26.module.css';
+import styles from './RecipeCard.module.css';
 
 const RecipeSheet = dynamic(() => import('@/components/RecipeSheet/RecipeSheet'), { ssr: false });
 const FavoriteButton = dynamic(() => import('@/components/FavoriteButton/FavoriteButton'), { ssr: false });

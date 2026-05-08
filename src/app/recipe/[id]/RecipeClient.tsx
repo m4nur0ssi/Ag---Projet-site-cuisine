@@ -685,7 +685,6 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                     <MagicFilterBar
                         activeTags={recipe.tags || []}
                         showBack={true}
-                        hideActiveRow={true}
                         backUrl={`/category/${recipe.category}`}
                         backLabel={recipe.category === 'aperitifs' ? 'Apéritifs' :
                             recipe.category === 'entrees' ? 'Entrées' :

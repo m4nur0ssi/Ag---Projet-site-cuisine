@@ -18,6 +18,8 @@ export interface Recipe {
     isVoted?: boolean;
     votes?: number;
     address?: string;
+    website?: string;
+    reviews?: any[];
 }
 
 
