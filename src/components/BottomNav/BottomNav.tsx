@@ -268,7 +268,6 @@ export default function BottomNav() {
                     <SpotlightSearch 
                         isOpen={isSearchOpen} 
                         onClose={() => setIsSearchOpen(false)} 
-                        onRecipeSelect={handleRecipeSelect}
                     />
                 )}
             </AnimatePresence>

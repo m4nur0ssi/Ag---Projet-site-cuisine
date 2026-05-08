@@ -7,7 +7,7 @@ import Header from '@/components/Header/Header';
 import MagicFilterBar from '@/components/MagicFilterBar/MagicFilterBar';
 import FavoriteButton from '@/components/FavoriteButton/FavoriteButton';
 import ShareButton from '@/components/ShareButton/ShareButton';
-import VoteButton from '@/components/VoteButton/VoteButtonSheet';
+import VoteButton from '@/components/VoteButton/VoteButton';
 import VideoSection from '@/components/VideoSection/VideoSection';
 import { Recipe } from '@/types';
 import { scaleQuantity } from '@/lib/utils';
@@ -262,7 +262,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, recipe.id);
+                startTimer(minutes, shortLabel);
             }
         }
     };
@@ -403,7 +403,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 const shortLabel = cleanLabel.length > 50
                     ? cleanLabel.substring(0, 47) + '...'
                     : cleanLabel;
-                startTimer(minutes, shortLabel, recipe.id);
+                startTimer(minutes, shortLabel);
             }
         } else {
             setFocusMode(false);

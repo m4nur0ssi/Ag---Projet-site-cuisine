@@ -723,8 +723,6 @@ export default function Home() {
                 <Header
                     title={activeFiltersLabel}
                     large={!scrolled}
-                    onClear={clearAllFilters}
-                    showClear={activeTags.length > 0}
                 />
                 <MagicFilterBar
                     activeTags={activeTags}
