@@ -1,0 +1,16 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.gridItem {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.gridItem:hover {
+    transform: translateY(-4px);
+}
