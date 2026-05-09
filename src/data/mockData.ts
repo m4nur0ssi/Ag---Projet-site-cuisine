@@ -2,11 +2,94 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 09:35:27
- * Total: 222 recettes
+ * Dernière mise à jour: 09/05/2026 12:00:10
+ * Total: 224 recettes
  */
-export const exportSyncId = "1778319327093";
+export const exportSyncId = "1778328010075";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5290",
+        "title": "Melanzane ripiene",
+        "description": "Tradition, famille et saveurs d'Italie. Des aubergines farcies à la viande hachée et au fromage, accompagnées d'une sauce tomate.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778327684248.jpg&v=1778334914000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635676193156549910\" data-video-id=\"7635676193156549910\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635676193156549910\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n             3 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             400 g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Scamorza (ou mozzarella)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de pain (seulement la mie)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             500 g de purée de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5287",
         "title": "High-Protein Chicken Bacon Ranch Pasta",
@@ -15179,6 +15262,55 @@ export const mockRecipes: Recipe[] = [
             "Prépare les frites : si elles sont maison, épluche les pommes de terre, coupe-les et plonge-les dans l'huile bien chaude pour une cuisson en deux bains pour un maximum de croustillant. Si elles sont surgelées, suis les instructions du paquet.",
             "Dispose les frites dans un plat, ajoute le cheddar par-dessus et passe au four quelques minutes pour qu'il fonde bien.",
             "Termine en ajoutant la sauce, le bacon haché, les oignons caramélisés et la ciboulette hachée."
+        ],
+        "tags": [],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3714",
+        "title": "Farfalle al salmone",
+        "description": "Une recette gourmande, crémeuse et ultra efficace de farfalle au saumon fumé, avec une sauce qui enrobe parfaitement les pâtes. Simple et irrésistible.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFarfalle-al-salmone-Ricetta-Farfalle-al-salmone.jpg&v=1773681494000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610855148310580502\" data-video-id=\"7610855148310580502\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610855148310580502\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n 500gr de Farfalle"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n 300gr straccetti de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 1 noisette de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 40 cl crème spéciale cuisson"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 100gr de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 cuillère de sauce tomate napolitaine"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
         ],
         "tags": [],
         "isFeatured": false,
