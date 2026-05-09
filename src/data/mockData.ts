@@ -2,11 +2,62 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 17:03:07
- * Total: 237 recettes
+ * Dernière mise à jour: 09/05/2026 17:12:44
+ * Total: 239 recettes
  */
-export const exportSyncId = "1778346187596";
+export const exportSyncId = "1778346764842";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5338",
+        "title": "Pommes de terre rôties à l'anglaise",
+        "description": "Découvrez la recette des pommes de terre rôties à l'anglaise, réputées pour être les plus croustillantes. Facile à réaliser, cette méthode garantit un accompagnement savoureux et irrésistible.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778346159582.jpg&v=1778353408000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7594879353310219542\" data-video-id=\"7594879353310219542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7594879353310219542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 kg de pommes de terre (type farineuses), coupées en quartiers"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             150 ml d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 tête d'ail, gousses séparées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            }
+        ],
+        "steps": [
+            "Préchauffe le four à 200°C chaleur tournante. Épluche et coupe les pommes de terre en quartiers. Mets les pommes de terre dans de l'eau froide pendant 10 min (pour enlever l'excès d'amidon). Égoutte-les, puis fais-les bouillir 10 min jusqu'à ce qu'elles commencent à être tendres. Égoutte à nouveau, laisse-les sécher 5 min dans une passoire et secoue-les pour râper un peu l'extérieur.",
+            "Pendant ce temps, verse l'huile dans un plat allant au four. Mets-le au four 8 à 10 min pour que l'huile soit bien chaude. Ajoute les pommes de terre (face plate contre le fond) Enfourne 35 à 40 min jusqu'à ce qu'elles soient légèrement dorées.",
+            "Sors le plat, retourne les pommes de terre, ajoute l'ail. Remets au four 20 à 30 min jusqu'à ce que tout soit très doré et croustillant.",
+            "Sors tout de l'huile, mets dans un saladier. Ajouté le thym, sale, poivre et mélange. Sers immédiatement. Régalez-vous 🫶"
+        ],
+        "tags": [
+            "France",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5335",
         "title": "PÂTES CRÈME DE BUTTERNUT, LARDONS GRILLÉS ET OIGNONS CARAMÉLISÉS",
@@ -15176,6 +15227,92 @@ export const mockRecipes: Recipe[] = [
             "Faire dorer les boulettes à la poêle avec de l'huile d'olive jusqu'à ce qu'elles soient bien croustillantes."
         ],
         "tags": [],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3796",
+        "title": "Gaspacho Concombre Menthe Feta",
+        "description": "Une recette végétarienne, légère, à IG bas et sans gluten, parfaite pour tes repas d'été. Simple et rapide à réaliser !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgaspacho2.jpg&v=1773763744000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7394500969913961760\" data-video-id=\"7394500969913961760\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7394500969913961760\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n 3 concombres"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon (rouge ou blanc)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 150g de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 150g de fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n une poignée de menthe fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n huile d'olive (pour les toppings)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n fêta émiettée (pour les toppings)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n menthe (pour les toppings)"
+            }
+        ],
+        "steps": [
+            "Mixer tous les ingrédients.",
+            "Laisser reposer quelques heures au frigo.",
+            "Servir et déguster."
+        ],
+        "tags": [
+            "Concombre",
+            "Espagne",
+            "été",
+            "Féta",
+            "Healthy",
+            "menthe",
+            "rapide",
+            "Sans Gluten",
+            "Soupe Froide",
+            "Végé"
+        ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
