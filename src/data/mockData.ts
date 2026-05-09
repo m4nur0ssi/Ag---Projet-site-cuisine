@@ -2,11 +2,160 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 12:00:10
- * Total: 224 recettes
+ * Dernière mise à jour: 09/05/2026 13:02:52
+ * Total: 225 recettes
  */
-export const exportSyncId = "1778328010075";
+export const exportSyncId = "1778331772839";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5299",
+        "title": "EASY Shrimp Pasta without Cream",
+        "description": "Une recette facile de pâtes aux crevettes, sans crème, avec des tomates cerises, de l'ail et une touche de citron pour un plat savoureux et léger.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778331463973.jpg&v=1778338689000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7326930682444270881\" data-video-id=\"7326930682444270881\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7326930682444270881\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tbsp olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             350g shrimp"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cloves of garlic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 pepper (red)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g cherry tomatoes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15g butter"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Parsley"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Juice 1/2 lemon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g pasta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 ladles of pasta water"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sweet paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Chili"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Gouda"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5293",
+        "title": "Rösti au saumon",
+        "description": "Le rösti au saumon pour un brunch ou juste avec une salade c'est toujours un régal !",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7324641790273867041\" data-video-id=\"7324641790273867041\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7324641790273867041\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             4 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             4 tranches de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 gros œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais type Philadelphia ou Saint Moret"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron bio non traité"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            }
+        ],
+        "steps": [
+            "Éplucher et raper les pommes de terre. Dans un torchon propre déposer les pommes de terre et presser pour retirer l'excédent d'eau. Émincer l'oignon et écraser l'ail.",
+            "Mélanger les pommes de terre râpées, l'oignon, l'ail, le sel, le poivre, le paprika et les œufs. Dans une poêle bien chaude et huilée, former une galette. Cuire 7 à 10 minutes par face. Retourner à l'aide d'une assiette.",
+            "Fouetter le fromage frais avec le jus d'un demi citron. Étaler ce mélange sur le rösti, déposer des tranches de saumon, de la ciboulette ciselée, du jus de citron et quelques zestes de citron 🍋 C'est prêt !"
+        ],
+        "tags": [
+            "Simplissime"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5290",
         "title": "Melanzane ripiene",
@@ -15262,55 +15411,6 @@ export const mockRecipes: Recipe[] = [
             "Prépare les frites : si elles sont maison, épluche les pommes de terre, coupe-les et plonge-les dans l'huile bien chaude pour une cuisson en deux bains pour un maximum de croustillant. Si elles sont surgelées, suis les instructions du paquet.",
             "Dispose les frites dans un plat, ajoute le cheddar par-dessus et passe au four quelques minutes pour qu'il fonde bien.",
             "Termine en ajoutant la sauce, le bacon haché, les oignons caramélisés et la ciboulette hachée."
-        ],
-        "tags": [],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3714",
-        "title": "Farfalle al salmone",
-        "description": "Une recette gourmande, crémeuse et ultra efficace de farfalle au saumon fumé, avec une sauce qui enrobe parfaitement les pâtes. Simple et irrésistible.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFarfalle-al-salmone-Ricetta-Farfalle-al-salmone.jpg&v=1773681494000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610855148310580502\" data-video-id=\"7610855148310580502\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610855148310580502\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n 500gr de Farfalle"
-            },
-            {
-                "quantity": "",
-                "name": "🐟\n 300gr straccetti de saumon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 1 noisette de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 1 filet d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 40 cl crème spéciale cuisson"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 100gr de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 1 cuillère de sauce tomate napolitaine"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
         ],
         "tags": [],
         "isFeatured": false,
