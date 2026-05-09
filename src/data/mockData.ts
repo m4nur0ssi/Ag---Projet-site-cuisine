@@ -2,11 +2,158 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 15:15:19
- * Total: 231 recettes
+ * Dernière mise à jour: 09/05/2026 15:24:43
+ * Total: 233 recettes
  */
-export const exportSyncId = "1778339720007";
+export const exportSyncId = "1778340283850";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5323",
+        "title": "Frites aux bœuf et oignons caramélisés",
+        "description": "Une recette simple et savoureuse de frites accompagnées de bœuf en lanières et d'oignons caramélisés, parfumée au ras el hanout et persil.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778339984774.jpg&v=1778347221000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7612326717729885462\" data-video-id=\"7612326717729885462\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7612326717729885462\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Bœuf (en petits lanières)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à café de ras el hanout"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            }
+        ],
+        "steps": [
+            "Préparer les frites : Éplucher et couper les pommes de terre en frites. Les rincer et bien les sécher. Les faire frire ou cuire au four avec un peu d'huile et du sel jusqu'à ce qu'elles soient dorées.",
+            "Caraméliser l'oignon : Émincer l'oignon. Faire chauffer 1 à 2 c. à soupe d'huile dans une poêle. Cuire l'oignon à feu moyen-doux 10-15 min jusqu'à ce qu'il devienne doré et légèrement sucré. Ajouter l'ail haché et cuire 1 minute.",
+            "Cuire le bœuf : Ajouter le bœuf dans la poêle. Assaisonner avec le ras el hanout, sel et poivre. Cuire 5-7 minutes en mélangeant.",
+            "Assemblage : Mettre les frites dans une assiette ou un plat. Ajouter le mélange bœuf-oignon dessus. Parsemer de persil."
+        ],
+        "tags": [
+            "Orient",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5320",
+        "title": "Pommes de terre gratinées aux oignons caramélisés et gruyère",
+        "description": "Un plat réconfortant de pommes de terre Yukon Gold gratinées, agrémentées d'oignons caramélisés et nappées d'une sauce crémeuse au gruyère, le tout doré au four.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778339693437.jpg&v=1778346936000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7591915663199849750\" data-video-id=\"7591915663199849750\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7591915663199849750\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             8 pommes de terre Yukon Gold"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 à 3 oignons jaunes moyens"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 cuillères à soupe de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             45 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             30 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             720 ml de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             115 de gruyère râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 CàC de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/2 CàC de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 CàS de thym séché"
+            }
+        ],
+        "steps": [
+            "Préchauffez le four à 200°C en chaleur tournante. Mélangez les pommes de terre avec l'huile d'olive et le sel, puis disposez-les dans un plat allant au four. Enfournez pour environ 1 heure, jusqu'à ce qu'elles soient tendres à cœur et bien dorées.",
+            "Pendant la cuisson des pommes de terre, faites fondre le beurre dans une poêle à feu moyen-doux. Ajoutez les oignons émincés et laissez-les cuire lentement, en remuant de temps en temps, jusqu'à ce qu'ils soient fondants et caramélisés. Réservez.",
+            "Dans une casserole, faites fondre le beurre à feu moyen. Ajoutez l'ail haché et faites revenir 30 secondes. Incorporez la farine et mélangez pour former un roux.",
+            "Versez le lait progressivement, en fouettant constamment pour éviter les grumeaux. Ajoutez le sel, le poivre et le thym, puis poursuivez la cuisson à feu moyen jusqu'à ce que la sauce épaississe et devienne bien nappante.",
+            "Retirez la casserole du feu et incorporez progressivement le gruyère râpé, en mélangeant, jusqu'à obtenir une sauce lisse et crémeuse.",
+            "Incisez chaque pomme de terre cuite en formant une croix sur le dessus, puis écrasez légèrement l'intérieur à l'aide d'une fourchette.",
+            "Répartissez les oignons caramélisés sur les pommes de terre, puis nappez généreusement de sauce au gruyère. Ajoutez le reste de gruyère râpé sur le dessus.",
+            "Placez le plat sous le grill du four à 250 degrés pendant 5 à 10 minutes, jusqu'à ce que le dessus soit bien doré et gratiné.",
+            "Laissez reposer 10 minutes avant de servir Régalez-vous 🫶"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5317",
         "title": "Crispy Butter Garlic Potatoes",
