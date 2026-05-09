@@ -2,11 +2,134 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 13:02:52
- * Total: 225 recettes
+ * Dernière mise à jour: 09/05/2026 13:13:14
+ * Total: 227 recettes
  */
-export const exportSyncId = "1778331772839";
+export const exportSyncId = "1778332394703";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5305",
+        "title": "Frites d'avocat",
+        "description": "Une idée parfaite pour un apéro entre amis, tout simple à réaliser, vous allez vous régaler !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778332101451.jpg&v=1778339345000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7441247702337195296\" data-video-id=\"7441247702337195296\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7441247702337195296\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥑\n             2 avocats"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de parmesan"
+            }
+        ],
+        "steps": [
+            "Couper les avocats en forme de frites.",
+            "Tremper les frites d'avocat dans l'œuf battu, puis les enrober de parmesan.",
+            "Cuire au four à 180 degrés pendant 15 minutes (fonctionne aussi au airfryer)."
+        ],
+        "tags": [
+            "Pas cher",
+            "Simplissime",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5302",
+        "title": "Pennes au poulet",
+        "description": "Une recette facile et savoureuse de pennes au poulet, avec une sauce crémeuse au parmesan, parfaite pour un repas rapide et réconfortant.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778331756863.jpg&v=1778338989000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7351474494399122721\" data-video-id=\"7351474494399122721\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7351474494399122721\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             Pennes"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Filets de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fleurette"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil plat"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curry"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5299",
         "title": "EASY Shrimp Pasta without Cream",
