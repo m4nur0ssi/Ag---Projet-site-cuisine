@@ -2,11 +2,78 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 14:04:16
- * Total: 230 recettes
+ * Dernière mise à jour: 09/05/2026 15:15:19
+ * Total: 231 recettes
  */
-export const exportSyncId = "1778335456774";
+export const exportSyncId = "1778339720007";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5317",
+        "title": "Crispy Butter Garlic Potatoes",
+        "description": "Des pommes de terre croustillantes à l'extérieur et moelleuses à l'intérieur, parfumées au beurre et à l'ail, parfaites comme accompagnement ou apéritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778339414055.jpg&v=1778346638000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633848196837543200\" data-video-id=\"7633848196837543200\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633848196837543200\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre (Yukon Gold ou Russet) - 700 g (1.5 lb)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel - pour la cuisson et au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre - 2-3 cuillères à soupe"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail - 3-4 gousses, tranchées"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais - petite poignée, haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika - 1/2 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Assaisonnement italien - 1/2 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir - au goût"
+            }
+        ],
+        "steps": [
+            "Peler les pommes de terre et les couper en morceaux de taille égale.",
+            "Porter une casserole d'eau salée à ébullition. Ajouter les pommes de terre et cuire pendant 10-15 minutes, jusqu'à ce qu'elles soient tendres à la fourchette (une fourchette doit s'enfoncer facilement).",
+            "Bien égoutter et laisser reposer quelques minutes pour qu'elles sèchent - cela les aide à devenir plus croustillantes.",
+            "Chauffer une poêle à feu moyen et ajouter le beurre.",
+            "Ajouter les pommes de terre et cuire sans remuer pendant 3-4 minutes pour obtenir une croûte dorée.",
+            "Ensuite, remuer et continuer à cuire jusqu'à ce qu'elles soient croustillantes de tous les côtés.",
+            "Ajouter l'ail tranché, le paprika et l'assaisonnement italien. Remuer doucement et cuire pendant environ 30-60 secondes - ne pas laisser l'ail brûler.",
+            "Éteindre le feu, ajouter le persil frais, le poivre noir et une pincée de sel si nécessaire.",
+            "Mélanger le tout.",
+            "Servir chaud - croustillantes à l'extérieur, moelleuses à l'intérieur, pleines de saveur de beurre et d'ail."
+        ],
+        "tags": [
+            "France",
+            "Italie",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5314",
         "title": "Boulettes de poulet à la crème forestière, purée maison",
