@@ -2,11 +2,96 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 15:24:43
- * Total: 233 recettes
+ * Dernière mise à jour: 09/05/2026 16:11:32
+ * Total: 234 recettes
  */
-export const exportSyncId = "1778340283850";
+export const exportSyncId = "1778343092963";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5326",
+        "title": "Paninis Express à la Viande Hachée",
+        "description": "Des paninis ultra fondants, super rapides et trop bons, garnis de viande hachée épicée et de mozzarella, parfaits pour un repas express.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778342777602.jpg&v=1778350007000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7607869803067493654\" data-video-id=\"7607869803067493654\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7607869803067493654\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Ras el hanout"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pâte à pizza"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella"
+            }
+        ],
+        "steps": [
+            "Faire frire la viande hachée dans un filet d'huile.",
+            "Ajouter l'oignon et l'ail, puis faire revenir quelques minutes.",
+            "Assaisonner avec 1 cuillère à café de ras el hanout, 1 cuillère à café de paprika, de la coriandre, du sel et du poivre.",
+            "Verser 1/2 verre d'eau et laisser mijoter jusqu'à évaporation totale.",
+            "Ajouter un peu de persil.",
+            "Couper la pâte à pizza en 4 parts.",
+            "Sur chaque part, déposer 1 cuillère de farce à la viande hachée et une tranche de mozzarella.",
+            "Refermer la pâte, bien serrer les bords et aplatir légèrement.",
+            "Faire cuire les paninis sur une poêle ou dans une machine à panini jusqu'à ce qu'ils soient bien dorés et croustillants."
+        ],
+        "tags": [
+            "Orient",
+            "Pas cher",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5323",
         "title": "Frites aux bœuf et oignons caramélisés",
