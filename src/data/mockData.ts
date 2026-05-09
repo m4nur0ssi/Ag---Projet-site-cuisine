@@ -2,11 +2,157 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 16:11:32
- * Total: 234 recettes
+ * Dernière mise à jour: 09/05/2026 16:21:02
+ * Total: 236 recettes
  */
-export const exportSyncId = "1778343092963";
+export const exportSyncId = "1778343662359";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5332",
+        "title": "Pommes de terre farcies super cheesy",
+        "description": "Des pommes de terre cuites au four ou à l'air fryer, évidées et garnies d'une purée crémeuse mélangée à du beurre, de la crème fraîche, du fromage, des oignons et des lardons de dinde, puis gratinées pour un plat réconfortant et gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778343355707.jpg&v=1778350590000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7328078960389033248\" data-video-id=\"7328078960389033248\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7328078960389033248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             4 grosses pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             De l'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Environ 70 gr de lardons (de dinde)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30 gr de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 gr de crème fraîche (15 %)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 poignée de fromage râpé (mélange d'emmental et mozzarella)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180 degrés (ou utiliser un air fryer). Piquer les pommes de terre avec une fourchette et les badigeonner d'huile d'olive. Enfourner 45 minutes (ou jusqu'à ce qu'elles soient tendres).",
+            "Pendant la cuisson des pommes de terre, faire revenir l'oignon émincé et les lardons de dinde avec un peu d'huile d'olive jusqu'à ce qu'ils soient dorés, puis réserver.",
+            "Vérifier la cuisson des pommes de terre : elles doivent être tendres. Si ce n'est pas le cas, prolonger la cuisson.",
+            "Couper le dessus des pommes de terre, puis récupérer délicatement l'intérieur avec une cuillère.",
+            "Dans un grand bol, écraser la purée de pommes de terre à l'aide d'une fourchette. Rajouter le beurre, le sel, le poivre, 1/2 cuillère à café de paprika, l'oignon, les lardons, la crème fraîche et le fromage râpé. Mélanger le tout.",
+            "Remplir les coques de pommes de terre avec la préparation.",
+            "Rajouter encore un peu de fromage râpé sur le dessus, des lardons, puis enfourner de nouveau à 200 degrés pendant 5 à 10 minutes, jusqu'à ce que le fromage soit légèrement grillé.",
+            "Au moment de servir, parsemer de ciboulette ou de persil."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5329",
+        "title": "Brick Poulet Curry",
+        "description": "Croustillantes à l'extérieur, fondantes à l'intérieur... ces bricks au poulet curry sont un vrai délice à partager. Le mélange de pommes de terre, de poulet épicé et de fromage fondant fait toute la différence. Faciles à préparer et pleines de sav...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778343057578.jpg&v=1778350302000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7559612567107292438\" data-video-id=\"7559612567107292438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7559612567107292438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Feuilles de brick"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             1 blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             4 petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 brique crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 tranches de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 poignée de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à soupe de curry"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            }
+        ],
+        "steps": [
+            "Fais cuire les pommes de terre à l'eau, puis écrase-les grossièrement.",
+            "Fais revenir l'oignon et l'ail émincés dans un peu d'huile.",
+            "Ajoute le poulet coupé en petits morceaux, sale, poivre et incorpore le curry.",
+            "Quand le poulet est bien cuit, ajoute les pommes de terre écrasées, le persil, la crème fraîche, le cheddar en morceaux et le fromage râpé. Laisse refroidir totalement."
+        ],
+        "tags": [
+            "Orient",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5326",
         "title": "Paninis Express à la Viande Hachée",
