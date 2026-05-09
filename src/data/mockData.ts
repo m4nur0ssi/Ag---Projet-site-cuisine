@@ -2,11 +2,40 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 09:20:44
- * Total: 221 recettes
+ * Dernière mise à jour: 09/05/2026 09:35:27
+ * Total: 222 recettes
  */
-export const exportSyncId = "1778318444818";
+export const exportSyncId = "1778319327093";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5287",
+        "title": "High-Protein Chicken Bacon Ranch Pasta",
+        "description": "Une pâte crémeuse et savoureuse, riche en protéines, avec du poulet, du bacon croustillant et une sauce généreuse. Une recette addictive et l'une des meilleures de l'auteur.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778319004947.jpg&v=1778326244000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7526612302334823713\" data-video-id=\"7526612302334823713\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7526612302334823713\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Simplissime",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5283",
         "title": "Chakchouka végétarienne",
