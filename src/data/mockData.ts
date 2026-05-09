@@ -2,11 +2,68 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/05/2026 18:35:29
- * Total: 220 recettes
+ * Dernière mise à jour: 09/05/2026 09:20:44
+ * Total: 221 recettes
  */
-export const exportSyncId = "1778265329233";
+export const exportSyncId = "1778318444818";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5283",
+        "title": "Chakchouka végétarienne",
+        "description": "Une chakchouka végétarienne et protéinée, préparée avec des œufs, tomates, haricots rouges et petits pois, assaisonnée à l'ail et aux épices.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7611505151139908887\" data-video-id=\"7611505151139908887\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7611505151139908887\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n 1 Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive 15ml"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 3 Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n Haricots rouges 200g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Petits pois 75g"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Sauce tomate 150g"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 Œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Ail, sel, poivre, paprika fumé, ciboulette"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Orient",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5280",
         "title": "Rochers Tiramisu",
