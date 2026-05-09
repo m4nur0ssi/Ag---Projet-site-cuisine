@@ -176,7 +176,7 @@ jobs:
 
       - name: 📱 Trigger iPhone App Sync
         if: always()
-                continue-on-error: true
+        continue-on-error: true
         run: |
           echo "🚀 Déclenchement sync App iPhone (toujours, même si site cuisine a eu une erreur)..."
 
