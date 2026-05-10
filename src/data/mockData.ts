@@ -2,11 +2,39 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/05/2026 18:01:14
- * Total: 241 recettes
+ * Dernière mise à jour: 10/05/2026 21:20:29
+ * Total: 243 recettes
  */
-export const exportSyncId = "1778436074527";
+export const exportSyncId = "1778448029588";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5350",
+        "title": "Délice de viande au mangal",
+        "description": "Une recette simple et rapide de viande grillée, parfaite pour le mangal. C'est un plat savoureux et sans complications.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778447722270.jpg&v=1778454948000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7609284037458283798\" data-video-id=\"7609284037458283798\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7609284037458283798\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5347",
         "title": "Les Nems Vietnamiens",
@@ -15241,6 +15269,80 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "asiatique",
             "barbecue"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3935",
+        "title": "Travers d'agneau collants au Gochujang",
+        "description": "Une recette savoureuse de travers d'agneau marinés dans une sauce épicée et sucrée au gochujang, puis rôtis au four jusqu'à obtenir une texture tendre et collante.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftravers-scaled.jpeg&v=1774445406000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7242232496908143899\" data-video-id=\"7242232496908143899\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7242232496908143899\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 1kg de travers d'agneau"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 grande échalote, pelée et hachée grossièrement"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 4 gousses d'ail, pelées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 4cm de gingembre, haché grossièrement"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 4 cuillères à soupe de vinaigre de cidre ou de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1-3 cuillères à soupe de pâte de gochujang (selon le goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 2 cuillères à soupe de kecap manis (ou sauce soja)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 4 cuillères à soupe de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cuillères à café de graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 piment rouge, tranché"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon nouveau, tranché"
+            }
+        ],
+        "steps": [
+            "1. Dans un mixeur, mélangez l'échalote, l'ail, le gingembre, le vinaigre, le gochujang et le sucre pour faire la marinade. N'ajoutez qu'une cuillère à soupe de gochujang si vous n'êtes pas sûr de vouloir épicé.",
+            "2. Placez les travers d'agneau dans un plat allant au four et versez la marinade. Laissez mariner pendant au moins 20 minutes ou jusqu'à 24 heures au réfrigérateur.",
+            "3. Préchauffez votre four à 160°C/140°C ventilateur/Thermostat 3. Couvrez les travers d'agneau de papier d'aluminium puis faites rôtir pendant 2-3 heures.",
+            "4. Découvrez les travers d'agneau, mélangez bien puis faites rôtir à découvert pendant 25 minutes supplémentaires jusqu'à ce que la sauce épaississe et devienne collante.",
+            "5. Saupoudrez de graines de sésame, de piment frais et d'oignon nouveau. Dégustez !"
+        ],
+        "tags": [
+            "agneau",
+            "Asie",
+            "Collant",
+            "Gochujang"
         ],
         "isFeatured": false,
         "isFavorite": false,
