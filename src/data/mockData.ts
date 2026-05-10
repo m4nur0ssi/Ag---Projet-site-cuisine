@@ -2,11 +2,116 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/05/2026 21:20:29
- * Total: 243 recettes
+ * Dernière mise à jour: 10/05/2026 21:30:37
+ * Total: 245 recettes
  */
-export const exportSyncId = "1778448029588";
+export const exportSyncId = "1778448637023";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5356",
+        "title": "STICKS DE POMMES DE TERRE À L'AIL ET AU PARMESAN",
+        "description": "Des bâtonnets de pommes de terre croustillants et savoureux, préparés en tranches fines, pressés, puis frits et assaisonnés à l'ail et au parmesan, servis avec un pesto maison frais.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633734673868295446\" data-video-id=\"7633734673868295446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633734673868295446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1 kg de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             100 g de gras de canard (ou huile d'olive)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             750 ml d'huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 C A S d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (quantité selon goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30 g de parmesan (pour les sticks)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail (pour le pesto)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60 g de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30 g de parmesan (pour le pesto)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 bouquets de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             15 cl d'huile d'olive (pour le pesto)"
+            }
+        ],
+        "steps": [
+            "1. Préchauffer le four à 130°C.",
+            "2. À l'aide d'une mandoline, réaliser de très fines tranches de pommes de terre. Si besoin, faire fondre la graisse de canard quelques secondes au micro-ondes (à défaut, remplacer par de l'huile d'olive).",
+            "3. Mélanger les tranches de pommes de terre avec le gras de canard fondu et une bonne pincée de sel.",
+            "4. Chemiser un moule à cake avec du papier cuisson et disposer les tranches de pommes de terre en couches régulières. Recouvrir d'une autre feuille de papier cuisson et tasser avec un poids. Enfourner 2h30.",
+            "5. À la sortie du four, placer un poids sur les pommes de terre pour bien les compresser (par exemple, un récipient rempli d'eau) et laisser refroidir 20 minutes. Placer ensuite au frais pendant au moins 6 heures.",
+            "6. Démouler le bloc de pommes de terre et découper des bâtonnets de 2 à 3 cm de large.",
+            "7. Plonger les bâtonnets dans l'huile de friture chauffée à 180°C et laisser frire 3 à 5 minutes, pour qu'ils soient bien dorés et croustillants. Égoutter et saupoudrer immédiatement d'ail en poudre, de sel et de parmesan.",
+            "8. À part, mixer tous les ingrédients du pesto (ajuster la quantité d'huile d'olive selon la texture souhaitée).",
+            "9. Servir les sticks de pommes de terre avec le pesto !"
+        ],
+        "tags": [
+            "Apéritifs",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5353",
+        "title": "Khachapuri sur brochettes",
+        "description": "Une version originale du Khachapuri géorgien, cuit sur des brochettes au barbecue.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638185029469932823\" data-video-id=\"7638185029469932823\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638185029469932823\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "Orient",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5350",
         "title": "Délice de viande au mangal",
@@ -15186,6 +15291,70 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "3921",
+        "title": "Pommes de terre grenailles au parmesan et gruyère",
+        "description": "Un accompagnement gourmand et facile à réaliser, parfait pour un barbecue, avec des pommes de terre grenailles rôties au four, enrobées d'épices et gratinées au parmesan et gruyère.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpommes-de-terre-parmesan-H.jpeg&v=1774446589000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7390476713433599264\" data-video-id=\"7390476713433599264\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7390476713433599264\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 500g de pommes de terre grenaille"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 c.à.c de piment d'espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c.à.c de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 40 ml d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 50 g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 30 g de gruyère"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n thym"
+            }
+        ],
+        "steps": [
+            "Lavez et séchez les pommes de terre grenaille (sans les éplucher).",
+            "Dans un saladier, coupez les pommes de terre puis versez l'huile d'olive, le paprika, le piment, le persil ciselé, le thym et le sel.",
+            "Mélangez les pommes de terre jusqu'à ce qu'elles soient bien enrobées du mélange.",
+            "Dans un plat allant au four, parsemez le fond de parmesan puis de gruyère, puis étalez les pommes de terre grenaille.",
+            "Préchauffez votre four à 180 °C et enfournez environ 35 minutes."
+        ],
+        "tags": [
+            "barbecue",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "3924",
         "title": "Steak With Crying Tiger Sauce",
         "description": "Un steak de jupe tendre et juteux avec du feu, de l'acidité et du mordant. Mariné dans de la sauce soja, de la sauce poisson, du citron vert et une touche de piment. Grillé fortement sur une poêle en fonte, marqué en losange, tranché finement et n...",
@@ -15269,80 +15438,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "asiatique",
             "barbecue"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3935",
-        "title": "Travers d'agneau collants au Gochujang",
-        "description": "Une recette savoureuse de travers d'agneau marinés dans une sauce épicée et sucrée au gochujang, puis rôtis au four jusqu'à obtenir une texture tendre et collante.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftravers-scaled.jpeg&v=1774445406000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7242232496908143899\" data-video-id=\"7242232496908143899\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7242232496908143899\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 1kg de travers d'agneau"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 grande échalote, pelée et hachée grossièrement"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 4 gousses d'ail, pelées"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 4cm de gingembre, haché grossièrement"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 4 cuillères à soupe de vinaigre de cidre ou de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1-3 cuillères à soupe de pâte de gochujang (selon le goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 2 cuillères à soupe de kecap manis (ou sauce soja)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 4 cuillères à soupe de sucre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 cuillères à café de graines de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 piment rouge, tranché"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon nouveau, tranché"
-            }
-        ],
-        "steps": [
-            "1. Dans un mixeur, mélangez l'échalote, l'ail, le gingembre, le vinaigre, le gochujang et le sucre pour faire la marinade. N'ajoutez qu'une cuillère à soupe de gochujang si vous n'êtes pas sûr de vouloir épicé.",
-            "2. Placez les travers d'agneau dans un plat allant au four et versez la marinade. Laissez mariner pendant au moins 20 minutes ou jusqu'à 24 heures au réfrigérateur.",
-            "3. Préchauffez votre four à 160°C/140°C ventilateur/Thermostat 3. Couvrez les travers d'agneau de papier d'aluminium puis faites rôtir pendant 2-3 heures.",
-            "4. Découvrez les travers d'agneau, mélangez bien puis faites rôtir à découvert pendant 25 minutes supplémentaires jusqu'à ce que la sauce épaississe et devienne collante.",
-            "5. Saupoudrez de graines de sésame, de piment frais et d'oignon nouveau. Dégustez !"
-        ],
-        "tags": [
-            "agneau",
-            "Asie",
-            "Collant",
-            "Gochujang"
         ],
         "isFeatured": false,
         "isFavorite": false,
