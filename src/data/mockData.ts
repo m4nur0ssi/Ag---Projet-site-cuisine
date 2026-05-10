@@ -2,11 +2,79 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/05/2026 17:12:44
+ * Dernière mise à jour: 10/05/2026 05:55:50
  * Total: 239 recettes
  */
-export const exportSyncId = "1778346764842";
+export const exportSyncId = "1778392550326";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5341",
+        "title": "Invisible aux pommes",
+        "description": "Une recette facile et saine de gâteau invisible aux pommes, parfait pour un dessert léger ou un goûter équilibré. Ce gâteau est préparé avec de l'huile de coco et du lait d'avoine, puis cuit au four jusqu'à ce qu'il soit doré.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7164799009062669573\" data-video-id=\"7164799009062669573\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7164799009062669573\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             50g farine (2 cà soupe pleines)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50g sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             10cl lait d'avoine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20g huile de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             8 pommes"
+            }
+        ],
+        "steps": [
+            "Mélanger la farine, le sel et la levure chimique.",
+            "Battre les œufs avec le sucre jusqu'à ce que le mélange blanchisse.",
+            "Tout en battant, ajouter l'huile de coco, le lait d'avoine et l'arôme vanille.",
+            "Verser le mélange de farine, mélanger à nouveau.",
+            "Peler les pommes et les trancher finement au couteau.",
+            "Versez la pâte sur les pommes, bien mélanger et verser dans le moule à cake.",
+            "Enfourner à 200° C chaleur tournante pour 35 minutes.",
+            "Quand le gâteau est refroidi, le démouler et saupoudrer de sucre glace avant de servir."
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5338",
         "title": "Pommes de terre rôties à l'anglaise",
@@ -15227,92 +15295,6 @@ export const mockRecipes: Recipe[] = [
             "Faire dorer les boulettes à la poêle avec de l'huile d'olive jusqu'à ce qu'elles soient bien croustillantes."
         ],
         "tags": [],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3796",
-        "title": "Gaspacho Concombre Menthe Feta",
-        "description": "Une recette végétarienne, légère, à IG bas et sans gluten, parfaite pour tes repas d'été. Simple et rapide à réaliser !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgaspacho2.jpg&v=1773763744000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7394500969913961760\" data-video-id=\"7394500969913961760\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7394500969913961760\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥒\n 3 concombres"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon (rouge ou blanc)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 150g de yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 150g de fêta"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n une poignée de menthe fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n 1 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n huile d'olive (pour les toppings)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n fêta émiettée (pour les toppings)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n menthe (pour les toppings)"
-            }
-        ],
-        "steps": [
-            "Mixer tous les ingrédients.",
-            "Laisser reposer quelques heures au frigo.",
-            "Servir et déguster."
-        ],
-        "tags": [
-            "Concombre",
-            "Espagne",
-            "été",
-            "Féta",
-            "Healthy",
-            "menthe",
-            "rapide",
-            "Sans Gluten",
-            "Soupe Froide",
-            "Végé"
-        ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
