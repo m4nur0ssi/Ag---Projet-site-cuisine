@@ -2,11 +2,81 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 13:35:30
+ * Dernière mise à jour: 11/05/2026 13:52:12
  * Total: 245 recettes
  */
-export const exportSyncId = "1778506530193";
+export const exportSyncId = "1778507532964";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5335",
+        "title": "Pates butternut et lardons grillés",
+        "description": "Une recette réconfortante de pâtes aux perles, nappées d'une onctueuse crème de butternut, agrémentées de lardons grillés et d'oignons caramélisés. Parfait pour l'automne ou l'hiver.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FSpaghetti_w2_3-Petite.jpeg&v=1778514504000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7431238513460268320\" data-video-id=\"7431238513460268320\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7431238513460268320\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 petit butternut"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 2 cuillères à soupe de crème semi-épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🍝\n 1 portion de pâtes perles"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n 1 barquette de lardons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 190 degrés. Couper le demi butternut et le faire cuire au four pendant 45 minutes.",
+            "Pendant ce temps, émincer l'oignon et le faire revenir dans un filet d'huile d'olive jusqu'à ce qu'il soit caramélisé. Réserver.",
+            "Dans la même poêle, faire griller les lardons jusqu'à ce qu'ils soient croustillants. Réserver.",
+            "Faire cuire les pâtes perles selon les instructions du paquet.",
+            "Une fois le butternut cuit, récupérer la chair et la mixer avec la crème semi-épaisse. Assaisonner avec le sel, le poivre, le paprika et le thym.",
+            "Mélanger la crème de butternut avec les pâtes cuites. Incorporer les lardons grillés et les oignons caramélisés. Servir chaud."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Italie",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5332",
         "title": "Pommes de terre farcies super cheesy",
@@ -77,76 +147,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5335",
-        "title": "Pates butternut et lardons grillés",
-        "description": "Une recette réconfortante de pâtes aux perles, nappées d'une onctueuse crème de butternut, agrémentées de lardons grillés et d'oignons caramélisés. Parfait pour l'automne ou l'hiver.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778345868638.jpg&v=1778513342000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7431238513460268320\" data-video-id=\"7431238513460268320\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7431238513460268320\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 1/2 petit butternut"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 2 cuillères à soupe de crème semi-épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🍝\n 1 portion de pâtes perles"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n 1 barquette de lardons"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            }
-        ],
-        "steps": [
-            "Préchauffer le four à 190 degrés. Couper le demi butternut et le faire cuire au four pendant 45 minutes.",
-            "Pendant ce temps, émincer l'oignon et le faire revenir dans un filet d'huile d'olive jusqu'à ce qu'il soit caramélisé. Réserver.",
-            "Dans la même poêle, faire griller les lardons jusqu'à ce qu'ils soient croustillants. Réserver.",
-            "Faire cuire les pâtes perles selon les instructions du paquet.",
-            "Une fois le butternut cuit, récupérer la chair et la mixer avec la crème semi-épaisse. Assaisonner avec le sel, le poivre, le paprika et le thym.",
-            "Mélanger la crème de butternut avec les pâtes cuites. Incorporer les lardons grillés et les oignons caramélisés. Servir chaud."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Italie",
-            "Plats"
         ],
         "isFeatured": false,
         "isFavorite": false,
