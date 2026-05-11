@@ -2,16 +2,100 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 14:23:06
+ * Dernière mise à jour: 11/05/2026 14:32:21
  * Total: 241 recettes
  */
-export const exportSyncId = "1778509386587";
+export const exportSyncId = "1778509941163";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5299",
+        "title": "Spaghettis aux crevettes et tomates cerises",
+        "description": "Une recette facile de pâtes aux crevettes, sans crème, avec des tomates cerises, de l'ail et une touche de citron pour un plat savoureux et léger.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrevette.jpeg&v=1778516941000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7326930682444270881\" data-video-id=\"7326930682444270881\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7326930682444270881\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 4 tbsp olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 350g shrimp"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cloves of garlic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 pepper (red)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100g cherry tomatoes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 15g butter"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Parsley"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Juice 1/2 lemon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 250g pasta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 ladles of pasta water"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sweet paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Chili"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Gouda"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5305",
         "title": "Frites d'avocat",
         "description": "Une idée parfaite pour un apéro entre amis, tout simple à réaliser, vous allez vous régaler !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1dbd79f0-e1b0-448e-8089-d95d98a55f17_8a8ksWM.jpg&v=1778516377000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1dbd79f0-e1b0-448e-8089-d95d98a55f17_8a8ksWM.jpg&v=1778516464000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1147,174 +1231,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "pâtisserie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5302",
-        "title": "Pennes au poulet",
-        "description": "Une recette facile et savoureuse de pennes au poulet, avec une sauce crémeuse au parmesan, parfaite pour un repas rapide et réconfortant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778331756863.jpg&v=1778338989000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7351474494399122721\" data-video-id=\"7351474494399122721\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7351474494399122721\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             Pennes"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             Filets de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème fleurette"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Bouillon de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil plat"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Curry"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5299",
-        "title": "EASY Shrimp Pasta without Cream",
-        "description": "Une recette facile de pâtes aux crevettes, sans crème, avec des tomates cerises, de l'ail et une touche de citron pour un plat savoureux et léger.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778331463973.jpg&v=1778338689000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7326930682444270881\" data-video-id=\"7326930682444270881\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7326930682444270881\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tbsp olive oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             350g shrimp"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cloves of garlic"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 pepper (red)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g cherry tomatoes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             15g butter"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Parsley"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Juice 1/2 lemon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250g pasta"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 ladles of pasta water"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sweet paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Chili"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Gouda"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -15261,6 +15177,63 @@ export const mockRecipes: Recipe[] = [
             "Asie",
             "Collant",
             "Gochujang"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3898",
+        "title": "Rillettes de Thon",
+        "description": "Une recette facile et rapide pour l'apéro, ces rillettes de thon sont un incontournable, simples, rapides et délicieuses. Idéales à déguster avec des amis.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825781506.jpg&v=1773829409000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7287986513025961248\" data-video-id=\"7287986513025961248\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7287986513025961248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de thon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de st Moret"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Mélangez bien tous les ingrédients (thon, St Moret, échalote, ciboulette, jus de citron, sel et poivre).",
+            "Laissez reposer au frais.",
+            "Servez avec du pain grillé au four et un filet d'huile d'olive."
+        ],
+        "tags": [
+            "facile",
+            "France",
+            "Healthy",
+            "rapide",
+            "Tartinade"
         ],
         "isFeatured": false,
         "isFavorite": false,
