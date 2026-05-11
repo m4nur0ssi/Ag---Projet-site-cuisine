@@ -2,11 +2,137 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 14:32:21
- * Total: 241 recettes
+ * Dernière mise à jour: 11/05/2026 16:15:31
+ * Total: 242 recettes
  */
-export const exportSyncId = "1778509941163";
+export const exportSyncId = "1778516131260";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5414",
+        "title": "Tiramisu croustillant façon Magnum",
+        "description": "Découvrez une recette ultra simple de tiramisu croustillant façon Magnum, inspirée de la pâtisserie. Ce dessert chic combine l'intensité du chocolat avec la douceur fondante du tiramisu, offrant une texture croquante à l'extérieur et fondante à l'...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778515910198.jpg&v=1778523126000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549959886512164118\" data-video-id=\"7549959886512164118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549959886512164118\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             3 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             250 g de mascarpone (ramolli à température ambiante)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat noir fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 ml de crème liquide entière (35 % MG, non sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Biscuits à la cuillère (env. 12)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 ml de café fort refroidi"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200 g de chocolat noir (pour le glaçage croustillant)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             40 g d'huile de coco (pour le glaçage croustillant)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5293",
+        "title": "Rösti au saumon",
+        "description": "Le rösti au saumon pour un brunch ou juste avec une salade c'est toujours un régal !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frosti.jpg&v=1778517128000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7324641790273867041\" data-video-id=\"7324641790273867041\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7324641790273867041\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 4 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n 4 tranches de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 gros œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fromage frais type Philadelphia ou Saint Moret"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 citron bio non traité"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre"
+            }
+        ],
+        "steps": [
+            "Éplucher et raper les pommes de terre. Dans un torchon propre déposer les pommes de terre et presser pour retirer l'excédent d'eau. Émincer l'oignon et écraser l'ail.",
+            "Mélanger les pommes de terre râpées, l'oignon, l'ail, le sel, le poivre, le paprika et les œufs. Dans une poêle bien chaude et huilée, former une galette. Cuire 7 à 10 minutes par face. Retourner à l'aide d'une assiette.",
+            "Fouetter le fromage frais avec le jus d'un demi citron. Étaler ce mélange sur le rösti, déposer des tranches de saumon, de la ciboulette ciselée, du jus de citron et quelques zestes de citron 🍋 C'est prêt !"
+        ],
+        "tags": [
+            "Healthy",
+            "Simplissime"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5299",
         "title": "Spaghettis aux crevettes et tomates cerises",
@@ -1237,75 +1363,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5293",
-        "title": "Rösti au saumon",
-        "description": "Le rösti au saumon pour un brunch ou juste avec une salade c'est toujours un régal !",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7324641790273867041\" data-video-id=\"7324641790273867041\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7324641790273867041\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             4 pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🐟\n             4 tranches de saumon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 gros œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fromage frais type Philadelphia ou Saint Moret"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron bio non traité"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            }
-        ],
-        "steps": [
-            "Éplucher et raper les pommes de terre. Dans un torchon propre déposer les pommes de terre et presser pour retirer l'excédent d'eau. Émincer l'oignon et écraser l'ail.",
-            "Mélanger les pommes de terre râpées, l'oignon, l'ail, le sel, le poivre, le paprika et les œufs. Dans une poêle bien chaude et huilée, former une galette. Cuire 7 à 10 minutes par face. Retourner à l'aide d'une assiette.",
-            "Fouetter le fromage frais avec le jus d'un demi citron. Étaler ce mélange sur le rösti, déposer des tranches de saumon, de la ciboulette ciselée, du jus de citron et quelques zestes de citron 🍋 C'est prêt !"
-        ],
-        "tags": [
-            "Simplissime"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5290",
         "title": "Melanzane ripiene",
         "description": "Tradition, famille et saveurs d'Italie. Des aubergines farcies à la viande hachée et au fromage, accompagnées d'une sauce tomate.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778327684248.jpg&v=1778334914000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
