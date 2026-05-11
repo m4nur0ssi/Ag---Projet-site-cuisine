@@ -2,11 +2,50 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 14:08:11
- * Total: 242 recettes
+ * Dernière mise à jour: 11/05/2026 14:23:06
+ * Total: 241 recettes
  */
-export const exportSyncId = "1778508491622";
+export const exportSyncId = "1778509386587";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5305",
+        "title": "Frites d'avocat",
+        "description": "Une idée parfaite pour un apéro entre amis, tout simple à réaliser, vous allez vous régaler !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1dbd79f0-e1b0-448e-8089-d95d98a55f17_8a8ksWM.jpg&v=1778516377000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7441247702337195296\" data-video-id=\"7441247702337195296\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7441247702337195296\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥑\n 2 avocats"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 50g de parmesan"
+            }
+        ],
+        "steps": [
+            "Couper les avocats en forme de frites.",
+            "Tremper les frites d'avocat dans l'œuf battu, puis les enrober de parmesan.",
+            "Cuire au four à 180 degrés pendant 15 minutes (fonctionne aussi au airfryer)."
+        ],
+        "tags": [
+            "Pas cher",
+            "Simplissime",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5314",
         "title": "Boulettes de poulet à la crème forestière, purée maison",
@@ -1107,229 +1146,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Pas cher",
             "pâtisserie",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5311",
-        "title": "Flatbread au poulet au beurre",
-        "description": "Découvrez comment préparer de délicieux pains plats garnis d'une garniture crémeuse au poulet au beurre et au fromage. Parfaits pour un repas savoureux, ces pains peuvent être cuits à la poêle ou au four.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7597834018301791510\" data-video-id=\"7597834018301791510\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7597834018301791510\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n             25 g de beurre non salé"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             20 ml d'huile de tournesol"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             600 g de cuisses de poulet, coupées en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5 g de garam masala (1⅔ c. à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             2 g de coriandre moulue (⅔ c. à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             2 g de cumin moulu (⅔ c. à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 g de poudre d'ail (1 c. à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             4 g de poudre d'oignon (1⅓ c. à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 g de piment de Cayenne (⅔ c. à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             30 g de pâte de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             50 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100 ml de crème épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             15 g de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             1 cube de bouillon de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             100 g de fromage râpé (Gouda)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             350 g de farine tout usage"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             50 g de fromage frais aux herbes"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             4 g de sel (⅔ c. à café)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6 g de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             170 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Tranches de fromage supplémentaires"
-            }
-        ],
-        "steps": [
-            "Faites chauffer le beurre et l'huile de tournesol dans une poêle à fond épais à feu moyen-vif.",
-            "Ajoutez les cuisses de poulet, le garam masala, la coriandre moulue, le cumin moulu, la poudre d'ail, la poudre d'oignon et le piment de Cayenne. Faites frire pendant 5 à 6 minutes.",
-            "Ajoutez la pâte de tomate, l'eau, la crème et le miel. Mélangez bien et laissez mijoter pendant 5 à 7 minutes jusqu'à ce que la sauce épaississe légèrement.",
-            "Émiettez le cube de bouillon de poulet dans la poêle.",
-            "Ajoutez le fromage râpé et remuez jusqu'à obtenir une consistance crémeuse. Retirez du feu et laissez le mélange de poulet refroidir complètement.",
-            "Dans un grand bol, placez la farine, la levure chimique, le fromage frais aux herbes, le sel et l'eau. Pétrissez pendant 10 à 12 minutes jusqu'à obtenir une pâte lisse.",
-            "Couvrez et laissez la pâte reposer pendant 10 minutes.",
-            "Divisez la pâte en 8 morceaux égaux d'environ 70 g chacun et formez des boules.",
-            "Abaissez une boule de pâte en un cercle. Placez une tranche de fromage sur une moitié et étalez environ 90 g du mélange de poulet par-dessus.",
-            "Humidifiez légèrement les bords, pliez la pâte pour la fermer et pressez fermement les bords pour sceller.",
-            "Placez la pâte farcie sur une feuille de papier sulfurisé.",
-            "Faites chauffer une poêle à fond épais avec un peu d'huile. Faites cuire les pains à feu moyen-vif jusqu'à ce qu'ils soient dorés et cuits des deux côtés.",
-            "Conseil : Vous pouvez également cuire ces pains au four. Préchauffez le four à 200°C (390°F) et faites cuire pendant 15 à 20 minutes (badigeonnez d'huile ou de beurre)."
-        ],
-        "tags": [
-            "Asie",
-            "Orient"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5308",
-        "title": "Tortilla de viande hachée",
-        "description": "Une recette en moins de 10min simple et hyper gourmande.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778334587433.jpg&v=1778341812000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7218519033975524614\" data-video-id=\"7218519033975524614\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7218519033975524614\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             environ 500gr de viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon coupé en cubes"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             de l'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             un mélange de persil et de coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 galette de tortilla"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             mozzarella râpé"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "express",
-            "Mexique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5305",
-        "title": "Frites d'avocat",
-        "description": "Une idée parfaite pour un apéro entre amis, tout simple à réaliser, vous allez vous régaler !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778332101451.jpg&v=1778339345000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7441247702337195296\" data-video-id=\"7441247702337195296\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7441247702337195296\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥑\n             2 avocats"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf entier"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             50g de parmesan"
-            }
-        ],
-        "steps": [
-            "Couper les avocats en forme de frites.",
-            "Tremper les frites d'avocat dans l'œuf battu, puis les enrober de parmesan.",
-            "Cuire au four à 180 degrés pendant 15 minutes (fonctionne aussi au airfryer)."
-        ],
-        "tags": [
-            "Pas cher",
-            "Simplissime",
             "Végé"
         ],
         "isFeatured": false,
@@ -7591,6 +7407,92 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4679",
+        "title": "Bao Buns au Magret",
+        "description": "Recette pour préparer la pâte de 10 Bao Buns, garnis au magret de canard.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbao.jpeg&v=1774617895000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618958159981448470\" data-video-id=\"7618958159981448470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618958159981448470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Magret de canard"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 300g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 75ml de lait tiède"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 75ml d'eau tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 5g de levure boulangère"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 5g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 5g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 15ml d'huile de sésame"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4682",
+        "title": "Filet de bœuf façon Rossini",
+        "description": "Un plat classique et festif, idéal pour utiliser les restes de foie gras des fêtes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffilet-boeuf-rossini-gastronomique-scaled-1.jpeg&v=1774617848000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7594162118283382019\" data-video-id=\"7594162118283382019\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7594162118283382019\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n Filet de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Foie gras"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -15359,63 +15261,6 @@ export const mockRecipes: Recipe[] = [
             "Asie",
             "Collant",
             "Gochujang"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3898",
-        "title": "Rillettes de Thon",
-        "description": "Une recette facile et rapide pour l'apéro, ces rillettes de thon sont un incontournable, simples, rapides et délicieuses. Idéales à déguster avec des amis.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825781506.jpg&v=1773829409000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7287986513025961248\" data-video-id=\"7287986513025961248\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7287986513025961248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             150g de thon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150g de st Moret"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Mélangez bien tous les ingrédients (thon, St Moret, échalote, ciboulette, jus de citron, sel et poivre).",
-            "Laissez reposer au frais.",
-            "Servez avec du pain grillé au four et un filet d'huile d'olive."
-        ],
-        "tags": [
-            "facile",
-            "France",
-            "Healthy",
-            "rapide",
-            "Tartinade"
         ],
         "isFeatured": false,
         "isFavorite": false,
