@@ -2,16 +2,137 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 13:10:51
+ * Dernière mise à jour: 11/05/2026 13:20:32
  * Total: 245 recettes
  */
-export const exportSyncId = "1778505051503";
+export const exportSyncId = "1778505632350";
 export const mockRecipes: Recipe[] = [
     {
+        "id": "5344",
+        "title": "Apple Crumble Cake",
+        "description": "Un délicieux gâteau moelleux garni de pommes fondantes à la cannelle et surmonté d'un crumble croustillant. Parfait pour un dessert gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrumble-pomme.png&v=1778512589000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617203388974976289\" data-video-id=\"7617203388974976289\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617203388974976289\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 4 pommes (environ 500g), pelées et coupées en tranches"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 100g de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à soupe de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 2 cuillères à soupe d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Un peu de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 40g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 2 cuillères à café de fécule de maïs mélangée à 1 cuillère à soupe d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 240g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cuillères à café de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 110g de beurre ramolli"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 120g de sucre semoule"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50g de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 œufs, à température ambiante"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 110g de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 2 cuillères à soupe de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 60g de beurre froid, coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 100g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 130g de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 2 cuillères à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            }
+        ],
+        "steps": [
+            "Pour la garniture aux pommes : Dans une casserole à feu moyen, combiner les pommes, le sucre roux, la cannelle, le jus de citron, l'eau et le beurre. Bien mélanger et ajouter la fécule de maïs délayée. Cuire jusqu'à ce que les pommes soient tendres. Réserver pour refroidir.",
+            "Pour la croûte croustillante (crumble) : Combiner la farine, une pincée de sel, le sucre roux et la cannelle. Ajouter le beurre froid et frotter du bout des doigts jusqu'à obtenir une texture de grosses miettes.",
+            "Pour le gâteau : Dans un bol, battre le beurre ramolli, le sucre semoule et le sucre roux jusqu'à obtenir un mélange léger et mousseux. Ajouter les œufs et continuer de battre.",
+            "Incorporer progressivement la crème épaisse et le lait jusqu'à ce que le tout soit bien combiné.",
+            "Enfin, ajouter les ingrédients secs : farine, une pincée de sel et levure chimique. Mélanger délicatement.",
+            "Verser la pâte dans un moule à pâtisserie tapissé de papier sulfurisé.",
+            "Disposer les pommes préparées sur le dessus et saupoudrer de la garniture crumble.",
+            "Cuire au four à 180°C (350°F) pendant environ 45-50 minutes.",
+            "Une fois cuit, laisser refroidir complètement et déguster !"
+        ],
+        "tags": [
+            "Pas cher",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5350",
-        "title": "Délice de viande au mangal",
+        "title": "Steack haché garni au fromage",
         "description": "Une recette simple et rapide de viande grillée, parfaite pour le mangal. C'est un plat savoureux et sans complications.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fune-assiette-reconfortante-illustrant-lalliance-gourmande-entre-viande-et-fromage-fondant.jpg&v=1778512106000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fune-assiette-reconfortante-illustrant-lalliance-gourmande-entre-viande-et-fromage-fondant.jpg&v=1778512237000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -300,127 +421,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "pâtisserie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5344",
-        "title": "Apple Crumble Cake",
-        "description": "Un délicieux gâteau moelleux garni de pommes fondantes à la cannelle et surmonté d'un crumble croustillant. Parfait pour un dessert gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778413122130.jpg&v=1778420347000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617203388974976289\" data-video-id=\"7617203388974976289\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617203388974976289\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             4 pommes (environ 500g), pelées et coupées en tranches"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100g de sucre roux"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             2 cuillères à soupe d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Un peu de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             40g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             2 cuillères à café de fécule de maïs mélangée à 1 cuillère à soupe d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             240g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à café de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             110g de beurre ramolli"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             120g de sucre semoule"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             50g de sucre roux"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs, à température ambiante"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             110g de crème épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             2 cuillères à soupe de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             60g de beurre froid, coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             100g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             130g de sucre roux"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             2 cuillères à café de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            }
-        ],
-        "steps": [
-            "Pour la garniture aux pommes : Dans une casserole à feu moyen, combiner les pommes, le sucre roux, la cannelle, le jus de citron, l'eau et le beurre. Bien mélanger et ajouter la fécule de maïs délayée. Cuire jusqu'à ce que les pommes soient tendres. Réserver pour refroidir.",
-            "Pour la croûte croustillante (crumble) : Combiner la farine, une pincée de sel, le sucre roux et la cannelle. Ajouter le beurre froid et frotter du bout des doigts jusqu'à obtenir une texture de grosses miettes.",
-            "Pour le gâteau : Dans un bol, battre le beurre ramolli, le sucre semoule et le sucre roux jusqu'à obtenir un mélange léger et mousseux. Ajouter les œufs et continuer de battre.",
-            "Incorporer progressivement la crème épaisse et le lait jusqu'à ce que le tout soit bien combiné.",
-            "Enfin, ajouter les ingrédients secs : farine, une pincée de sel et levure chimique. Mélanger délicatement.",
-            "Verser la pâte dans un moule à pâtisserie tapissé de papier sulfurisé.",
-            "Disposer les pommes préparées sur le dessus et saupoudrer de la garniture crumble.",
-            "Cuire au four à 180°C (350°F) pendant environ 45-50 minutes.",
-            "Une fois cuit, laisser refroidir complètement et déguster !"
-        ],
-        "tags": [
-            "Pas cher",
-            "pâtisserie",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
