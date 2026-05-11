@@ -2,11 +2,208 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 13:27:50
+ * Dernière mise à jour: 11/05/2026 13:35:30
  * Total: 245 recettes
  */
-export const exportSyncId = "1778506070152";
+export const exportSyncId = "1778506530193";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5332",
+        "title": "Pommes de terre farcies super cheesy",
+        "description": "Des pommes de terre cuites au four ou à l'air fryer, évidées et garnies d'une purée crémeuse mélangée à du beurre, de la crème fraîche, du fromage, des oignons et des lardons de dinde, puis gratinées pour un plat réconfortant et gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpommes-de-terre-farcies.jpg&v=1778513530000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7328078960389033248\" data-video-id=\"7328078960389033248\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7328078960389033248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 4 grosses pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n De l'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n Environ 70 gr de lardons (de dinde)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 30 gr de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 200 gr de crème fraîche (15 %)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 1 poignée de fromage râpé (mélange d'emmental et mozzarella)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Ciboulette"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180 degrés (ou utiliser un air fryer). Piquer les pommes de terre avec une fourchette et les badigeonner d'huile d'olive. Enfourner 45 minutes (ou jusqu'à ce qu'elles soient tendres).",
+            "Pendant la cuisson des pommes de terre, faire revenir l'oignon émincé et les lardons de dinde avec un peu d'huile d'olive jusqu'à ce qu'ils soient dorés, puis réserver.",
+            "Vérifier la cuisson des pommes de terre : elles doivent être tendres. Si ce n'est pas le cas, prolonger la cuisson.",
+            "Couper le dessus des pommes de terre, puis récupérer délicatement l'intérieur avec une cuillère.",
+            "Dans un grand bol, écraser la purée de pommes de terre à l'aide d'une fourchette. Rajouter le beurre, le sel, le poivre, 1/2 cuillère à café de paprika, l'oignon, les lardons, la crème fraîche et le fromage râpé. Mélanger le tout.",
+            "Remplir les coques de pommes de terre avec la préparation.",
+            "Rajouter encore un peu de fromage râpé sur le dessus, des lardons, puis enfourner de nouveau à 200 degrés pendant 5 à 10 minutes, jusqu'à ce que le fromage soit légèrement grillé.",
+            "Au moment de servir, parsemer de ciboulette ou de persil."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5335",
+        "title": "Pates butternut et lardons grillés",
+        "description": "Une recette réconfortante de pâtes aux perles, nappées d'une onctueuse crème de butternut, agrémentées de lardons grillés et d'oignons caramélisés. Parfait pour l'automne ou l'hiver.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778345868638.jpg&v=1778513342000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7431238513460268320\" data-video-id=\"7431238513460268320\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7431238513460268320\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 petit butternut"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 2 cuillères à soupe de crème semi-épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🍝\n 1 portion de pâtes perles"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n 1 barquette de lardons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 190 degrés. Couper le demi butternut et le faire cuire au four pendant 45 minutes.",
+            "Pendant ce temps, émincer l'oignon et le faire revenir dans un filet d'huile d'olive jusqu'à ce qu'il soit caramélisé. Réserver.",
+            "Dans la même poêle, faire griller les lardons jusqu'à ce qu'ils soient croustillants. Réserver.",
+            "Faire cuire les pâtes perles selon les instructions du paquet.",
+            "Une fois le butternut cuit, récupérer la chair et la mixer avec la crème semi-épaisse. Assaisonner avec le sel, le poivre, le paprika et le thym.",
+            "Mélanger la crème de butternut avec les pâtes cuites. Incorporer les lardons grillés et les oignons caramélisés. Servir chaud."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Italie",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5338",
+        "title": "Pommes de terre rôties à l'anglaise",
+        "description": "Découvrez la recette des pommes de terre rôties à l'anglaise, réputées pour être les plus croustillantes. Facile à réaliser, cette méthode garantit un accompagnement savoureux et irrésistible.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F61267_w1024h576c1cx3072cy2048.jpg&v=1778513201000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7594879353310219542\" data-video-id=\"7594879353310219542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7594879353310219542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 1 kg de pommes de terre (type farineuses), coupées en quartiers"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 150 ml d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 tête d'ail, gousses séparées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Thym"
+            }
+        ],
+        "steps": [
+            "Préchauffe le four à 200°C chaleur tournante. Épluche et coupe les pommes de terre en quartiers. Mets les pommes de terre dans de l'eau froide pendant 10 min (pour enlever l'excès d'amidon). Égoutte-les, puis fais-les bouillir 10 min jusqu'à ce qu'elles commencent à être tendres. Égoutte à nouveau, laisse-les sécher 5 min dans une passoire et secoue-les pour râper un peu l'extérieur.",
+            "Pendant ce temps, verse l'huile dans un plat allant au four. Mets-le au four 8 à 10 min pour que l'huile soit bien chaude. Ajoute les pommes de terre (face plate contre le fond) Enfourne 35 à 40 min jusqu'à ce qu'elles soient légèrement dorées.",
+            "Sors le plat, retourne les pommes de terre, ajoute l'ail. Remets au four 20 à 30 min jusqu'à ce que tout soit très doré et croustillant.",
+            "Sors tout de l'huile, mets dans un saladier. Ajouté le thym, sale, poivre et mélange. Sers immédiatement. Régalez-vous 🫶"
+        ],
+        "tags": [
+            "accompagnement",
+            "France",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5341",
         "title": "Invisible aux pommes",
@@ -489,202 +686,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "pâtisserie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5338",
-        "title": "Pommes de terre rôties à l'anglaise",
-        "description": "Découvrez la recette des pommes de terre rôties à l'anglaise, réputées pour être les plus croustillantes. Facile à réaliser, cette méthode garantit un accompagnement savoureux et irrésistible.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778346159582.jpg&v=1778353408000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7594879353310219542\" data-video-id=\"7594879353310219542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7594879353310219542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             1 kg de pommes de terre (type farineuses), coupées en quartiers"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             150 ml d'huile neutre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 tête d'ail, gousses séparées"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            }
-        ],
-        "steps": [
-            "Préchauffe le four à 200°C chaleur tournante. Épluche et coupe les pommes de terre en quartiers. Mets les pommes de terre dans de l'eau froide pendant 10 min (pour enlever l'excès d'amidon). Égoutte-les, puis fais-les bouillir 10 min jusqu'à ce qu'elles commencent à être tendres. Égoutte à nouveau, laisse-les sécher 5 min dans une passoire et secoue-les pour râper un peu l'extérieur.",
-            "Pendant ce temps, verse l'huile dans un plat allant au four. Mets-le au four 8 à 10 min pour que l'huile soit bien chaude. Ajoute les pommes de terre (face plate contre le fond) Enfourne 35 à 40 min jusqu'à ce qu'elles soient légèrement dorées.",
-            "Sors le plat, retourne les pommes de terre, ajoute l'ail. Remets au four 20 à 30 min jusqu'à ce que tout soit très doré et croustillant.",
-            "Sors tout de l'huile, mets dans un saladier. Ajouté le thym, sale, poivre et mélange. Sers immédiatement. Régalez-vous 🫶"
-        ],
-        "tags": [
-            "France",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5335",
-        "title": "PÂTES CRÈME DE BUTTERNUT, LARDONS GRILLÉS ET OIGNONS CARAMÉLISÉS",
-        "description": "Une recette réconfortante de pâtes aux perles, nappées d'une onctueuse crème de butternut, agrémentées de lardons grillés et d'oignons caramélisés. Parfait pour l'automne ou l'hiver.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778345868638.jpg&v=1778353096000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7431238513460268320\" data-video-id=\"7431238513460268320\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7431238513460268320\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 petit butternut"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             2 cuillères à soupe de crème semi-épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🍝\n             1 portion de pâtes perles"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             1 barquette de lardons"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Préchauffer le four à 190 degrés. Couper le demi butternut et le faire cuire au four pendant 45 minutes.",
-            "Pendant ce temps, émincer l'oignon et le faire revenir dans un filet d'huile d'olive jusqu'à ce qu'il soit caramélisé. Réserver.",
-            "Dans la même poêle, faire griller les lardons jusqu'à ce qu'ils soient croustillants. Réserver.",
-            "Faire cuire les pâtes perles selon les instructions du paquet.",
-            "Une fois le butternut cuit, récupérer la chair et la mixer avec la crème semi-épaisse. Assaisonner avec le sel, le poivre, le paprika et le thym.",
-            "Mélanger la crème de butternut avec les pâtes cuites. Incorporer les lardons grillés et les oignons caramélisés. Servir chaud."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Italie",
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5332",
-        "title": "Pommes de terre farcies super cheesy",
-        "description": "Des pommes de terre cuites au four ou à l'air fryer, évidées et garnies d'une purée crémeuse mélangée à du beurre, de la crème fraîche, du fromage, des oignons et des lardons de dinde, puis gratinées pour un plat réconfortant et gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778343355707.jpg&v=1778350590000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7328078960389033248\" data-video-id=\"7328078960389033248\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7328078960389033248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             4 grosses pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             De l'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Environ 70 gr de lardons (de dinde)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             30 gr de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             200 gr de crème fraîche (15 %)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 poignée de fromage râpé (mélange d'emmental et mozzarella)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            }
-        ],
-        "steps": [
-            "Préchauffer le four à 180 degrés (ou utiliser un air fryer). Piquer les pommes de terre avec une fourchette et les badigeonner d'huile d'olive. Enfourner 45 minutes (ou jusqu'à ce qu'elles soient tendres).",
-            "Pendant la cuisson des pommes de terre, faire revenir l'oignon émincé et les lardons de dinde avec un peu d'huile d'olive jusqu'à ce qu'ils soient dorés, puis réserver.",
-            "Vérifier la cuisson des pommes de terre : elles doivent être tendres. Si ce n'est pas le cas, prolonger la cuisson.",
-            "Couper le dessus des pommes de terre, puis récupérer délicatement l'intérieur avec une cuillère.",
-            "Dans un grand bol, écraser la purée de pommes de terre à l'aide d'une fourchette. Rajouter le beurre, le sel, le poivre, 1/2 cuillère à café de paprika, l'oignon, les lardons, la crème fraîche et le fromage râpé. Mélanger le tout.",
-            "Remplir les coques de pommes de terre avec la préparation.",
-            "Rajouter encore un peu de fromage râpé sur le dessus, des lardons, puis enfourner de nouveau à 200 degrés pendant 5 à 10 minutes, jusqu'à ce que le fromage soit légèrement grillé.",
-            "Au moment de servir, parsemer de ciboulette ou de persil."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
