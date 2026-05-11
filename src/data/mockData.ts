@@ -2,11 +2,118 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 12:59:36
+ * Dernière mise à jour: 11/05/2026 13:05:03
  * Total: 245 recettes
  */
-export const exportSyncId = "1778504376256";
+export const exportSyncId = "1778504703865";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5347",
+        "title": "Les Nems Vietnamiens",
+        "description": "Découvrez comment préparer des nems vietnamiens croustillants, accompagnés de leur sauce traditionnelle.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FNems.jpg&v=1778511665000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" style=\"max-width: 605px; min-width: 325px;\" cite=\"https://www.tiktok.com/v/7620047616671239446\" data-video-id=\"7620047616671239446\">\n<section><a title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620047616671239446\" target=\"_blank\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a></section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n1 carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n20g de champignons noirs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n20g de pousses de soja"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n1 grosse échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n400g de viande hachée (porc ou poulet)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n100g de vermicelles"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n1 kubor"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n1 petite cuillère de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n1 grosse cuillère de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n1 grosse cuillère de sauce de poisson"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\nfeuilles de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\nhuile"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\nfeuilles de salades"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n3 c. à soupe de sauce nuoc-mâm"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n3 c. à soupe d'eau tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n1 c. à soupe de jus de citron pressé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n1 c. à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n1 petite gousse d'ail râpée ou hachée finement"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n1 petit piment rouge"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5353",
         "title": "Khachapuri sur brochettes",
@@ -193,113 +300,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "barbecue",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5347",
-        "title": "Les Nems Vietnamiens",
-        "description": "Quatrième recette d'une série de classiques asiatiques, découvrez comment préparer des nems vietnamiens croustillants, accompagnés de leur sauce traditionnelle.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778413964797.jpg&v=1778421195000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7620047616671239446\" data-video-id=\"7620047616671239446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620047616671239446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥕\n             1 carotte"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             20g de champignons noirs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             20g de pousses de soja"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 grosse échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             400g de viande hachée (porc ou poulet)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g de vermicelles"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 kubor"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 petite cuillère de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 grosse cuillère de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 grosse cuillère de sauce de poisson"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             feuilles de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             huile"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             feuilles de salades"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 c. à soupe de sauce nuoc-mâm"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             3 c. à soupe d'eau tiède"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 c. à soupe de jus de citron pressé"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 c. à soupe de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 petite gousse d'ail râpée ou hachée finement"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 petit piment rouge"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie"
         ],
         "isFeatured": false,
         "isFavorite": false,
