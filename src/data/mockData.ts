@@ -2,11 +2,94 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 16:15:31
+ * Dernière mise à jour: 11/05/2026 19:58:26
  * Total: 242 recettes
  */
-export const exportSyncId = "1778516131260";
+export const exportSyncId = "1778529506696";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5290",
+        "title": "Melanzane ripiene",
+        "description": "Tradition, famille et saveurs d'Italie. Des aubergines farcies à la viande hachée et au fromage, accompagnées d'une sauce tomate.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FRicetta-melanzane-ripiene-al-forno.jpg&v=1778536548000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635676193156549910\" data-video-id=\"7635676193156549910\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635676193156549910\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n 3 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 400 g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Scamorza (ou mozzarella)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 250 g de pain (seulement la mie)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 500 g de purée de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Basilic"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5414",
         "title": "Tiramisu croustillant façon Magnum",
@@ -1357,89 +1440,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "pâtisserie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5290",
-        "title": "Melanzane ripiene",
-        "description": "Tradition, famille et saveurs d'Italie. Des aubergines farcies à la viande hachée et au fromage, accompagnées d'une sauce tomate.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635676193156549910\" data-video-id=\"7635676193156549910\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635676193156549910\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍆\n             3 aubergines"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             400 g de viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Scamorza (ou mozzarella)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250 g de pain (seulement la mie)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             500 g de purée de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
