@@ -2,11 +2,251 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 13:52:12
- * Total: 245 recettes
+ * Dernière mise à jour: 11/05/2026 14:00:26
+ * Total: 244 recettes
  */
-export const exportSyncId = "1778507532964";
+export const exportSyncId = "1778508026360";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5320",
+        "title": "Gratin de pommes de terre béchamel",
+        "description": "Un plat réconfortant de pommes de terre Yukon Gold gratinées, agrémentées d'oignons caramélisés et nappées d'une sauce crémeuse au gruyère, le tout doré au four.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin.jpeg&v=1778514939000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7591915663199849750\" data-video-id=\"7591915663199849750\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7591915663199849750\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 8 pommes de terre Yukon Gold"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 à 3 oignons jaunes moyens"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 2 cuillères à soupe de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 45 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 30 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 720 ml de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 115 de gruyère râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1/2 CàC de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1/2 CàC de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 CàS de thym séché"
+            }
+        ],
+        "steps": [
+            "Préchauffez le four à 200°C en chaleur tournante. Mélangez les pommes de terre avec l'huile d'olive et le sel, puis disposez-les dans un plat allant au four. Enfournez pour environ 1 heure, jusqu'à ce qu'elles soient tendres à cœur et bien dorées.",
+            "Pendant la cuisson des pommes de terre, faites fondre le beurre dans une poêle à feu moyen-doux. Ajoutez les oignons émincés et laissez-les cuire lentement, en remuant de temps en temps, jusqu'à ce qu'ils soient fondants et caramélisés. Réservez.",
+            "Dans une casserole, faites fondre le beurre à feu moyen. Ajoutez l'ail haché et faites revenir 30 secondes. Incorporez la farine et mélangez pour former un roux.",
+            "Versez le lait progressivement, en fouettant constamment pour éviter les grumeaux. Ajoutez le sel, le poivre et le thym, puis poursuivez la cuisson à feu moyen jusqu'à ce que la sauce épaississe et devienne bien nappante.",
+            "Retirez la casserole du feu et incorporez progressivement le gruyère râpé, en mélangeant, jusqu'à obtenir une sauce lisse et crémeuse.",
+            "Incisez chaque pomme de terre cuite en formant une croix sur le dessus, puis écrasez légèrement l'intérieur à l'aide d'une fourchette.",
+            "Répartissez les oignons caramélisés sur les pommes de terre, puis nappez généreusement de sauce au gruyère. Ajoutez le reste de gruyère râpé sur le dessus.",
+            "Placez le plat sous le grill du four à 250 degrés pendant 5 à 10 minutes, jusqu'à ce que le dessus soit bien doré et gratiné.",
+            "Laissez reposer 10 minutes avant de servir Régalez-vous 🫶"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5326",
+        "title": "Paninis Express à la Viande Hachée",
+        "description": "Des paninis ultra fondants, super rapides et trop bons, garnis de viande hachée épicée et de mozzarella, parfaits pour un repas express.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpanini.jpg&v=1778514804000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7607869803067493654\" data-video-id=\"7607869803067493654\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7607869803067493654\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Ras el hanout"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pâte à pizza"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Mozzarella"
+            }
+        ],
+        "steps": [
+            "Faire frire la viande hachée dans un filet d'huile.",
+            "Ajouter l'oignon et l'ail, puis faire revenir quelques minutes.",
+            "Assaisonner avec 1 cuillère à café de ras el hanout, 1 cuillère à café de paprika, de la coriandre, du sel et du poivre.",
+            "Verser 1/2 verre d'eau et laisser mijoter jusqu'à évaporation totale.",
+            "Ajouter un peu de persil.",
+            "Couper la pâte à pizza en 4 parts.",
+            "Sur chaque part, déposer 1 cuillère de farce à la viande hachée et une tranche de mozzarella.",
+            "Refermer la pâte, bien serrer les bords et aplatir légèrement.",
+            "Faire cuire les paninis sur une poêle ou dans une machine à panini jusqu'à ce qu'ils soient bien dorés et croustillants."
+        ],
+        "tags": [
+            "Orient",
+            "Pas cher",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5329",
+        "title": "Brick Poulet Curry",
+        "description": "Croustillantes à l'extérieur, fondantes à l'intérieur... ces bricks au poulet curry sont un vrai délice à partager. Le mélange de pommes de terre, de poulet épicé et de fromage fondant fait toute la différence. Faciles à préparer et pleines de sav...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fbrickspouletcurry-fsms-1200.jpeg&v=1778514733000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7559612567107292438\" data-video-id=\"7559612567107292438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7559612567107292438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Feuilles de brick"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 1 blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n 4 petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 1 brique crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 2 tranches de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 1 poignée de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à soupe de curry"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre"
+            }
+        ],
+        "steps": [
+            "Fais cuire les pommes de terre à l'eau, puis écrase-les grossièrement.",
+            "Fais revenir l'oignon et l'ail émincés dans un peu d'huile.",
+            "Ajoute le poulet coupé en petits morceaux, sale, poivre et incorpore le curry.",
+            "Quand le poulet est bien cuit, ajoute les pommes de terre écrasées, le persil, la crème fraîche, le cheddar en morceaux et le fromage râpé. Laisse refroidir totalement."
+        ],
+        "tags": [
+            "Orient",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5335",
         "title": "Pates butternut et lardons grillés",
@@ -692,313 +932,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5329",
-        "title": "Brick Poulet Curry",
-        "description": "Croustillantes à l'extérieur, fondantes à l'intérieur... ces bricks au poulet curry sont un vrai délice à partager. Le mélange de pommes de terre, de poulet épicé et de fromage fondant fait toute la différence. Faciles à préparer et pleines de sav...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778343057578.jpg&v=1778350302000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7559612567107292438\" data-video-id=\"7559612567107292438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7559612567107292438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Feuilles de brick"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             1 blanc de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             4 petites pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             1 brique crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             2 tranches de fromage cheddar"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 poignée de mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c. à soupe de curry"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            }
-        ],
-        "steps": [
-            "Fais cuire les pommes de terre à l'eau, puis écrase-les grossièrement.",
-            "Fais revenir l'oignon et l'ail émincés dans un peu d'huile.",
-            "Ajoute le poulet coupé en petits morceaux, sale, poivre et incorpore le curry.",
-            "Quand le poulet est bien cuit, ajoute les pommes de terre écrasées, le persil, la crème fraîche, le cheddar en morceaux et le fromage râpé. Laisse refroidir totalement."
-        ],
-        "tags": [
-            "Orient",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5326",
-        "title": "Paninis Express à la Viande Hachée",
-        "description": "Des paninis ultra fondants, super rapides et trop bons, garnis de viande hachée épicée et de mozzarella, parfaits pour un repas express.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778342777602.jpg&v=1778350007000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7607869803067493654\" data-video-id=\"7607869803067493654\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7607869803067493654\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Ras el hanout"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pâte à pizza"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mozzarella"
-            }
-        ],
-        "steps": [
-            "Faire frire la viande hachée dans un filet d'huile.",
-            "Ajouter l'oignon et l'ail, puis faire revenir quelques minutes.",
-            "Assaisonner avec 1 cuillère à café de ras el hanout, 1 cuillère à café de paprika, de la coriandre, du sel et du poivre.",
-            "Verser 1/2 verre d'eau et laisser mijoter jusqu'à évaporation totale.",
-            "Ajouter un peu de persil.",
-            "Couper la pâte à pizza en 4 parts.",
-            "Sur chaque part, déposer 1 cuillère de farce à la viande hachée et une tranche de mozzarella.",
-            "Refermer la pâte, bien serrer les bords et aplatir légèrement.",
-            "Faire cuire les paninis sur une poêle ou dans une machine à panini jusqu'à ce qu'ils soient bien dorés et croustillants."
-        ],
-        "tags": [
-            "Orient",
-            "Pas cher",
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5323",
-        "title": "Frites aux bœuf et oignons caramélisés",
-        "description": "Une recette simple et savoureuse de frites accompagnées de bœuf en lanières et d'oignons caramélisés, parfumée au ras el hanout et persil.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778339984774.jpg&v=1778347221000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7612326717729885462\" data-video-id=\"7612326717729885462\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7612326717729885462\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Bœuf (en petits lanières)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à café de ras el hanout"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile"
-            }
-        ],
-        "steps": [
-            "Préparer les frites : Éplucher et couper les pommes de terre en frites. Les rincer et bien les sécher. Les faire frire ou cuire au four avec un peu d'huile et du sel jusqu'à ce qu'elles soient dorées.",
-            "Caraméliser l'oignon : Émincer l'oignon. Faire chauffer 1 à 2 c. à soupe d'huile dans une poêle. Cuire l'oignon à feu moyen-doux 10-15 min jusqu'à ce qu'il devienne doré et légèrement sucré. Ajouter l'ail haché et cuire 1 minute.",
-            "Cuire le bœuf : Ajouter le bœuf dans la poêle. Assaisonner avec le ras el hanout, sel et poivre. Cuire 5-7 minutes en mélangeant.",
-            "Assemblage : Mettre les frites dans une assiette ou un plat. Ajouter le mélange bœuf-oignon dessus. Parsemer de persil."
-        ],
-        "tags": [
-            "Orient",
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5320",
-        "title": "Pommes de terre gratinées aux oignons caramélisés et gruyère",
-        "description": "Un plat réconfortant de pommes de terre Yukon Gold gratinées, agrémentées d'oignons caramélisés et nappées d'une sauce crémeuse au gruyère, le tout doré au four.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778339693437.jpg&v=1778346936000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7591915663199849750\" data-video-id=\"7591915663199849750\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7591915663199849750\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             8 pommes de terre Yukon Gold"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de gros sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 à 3 oignons jaunes moyens"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             2 cuillères à soupe de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             45 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             30 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             720 ml de lait entier"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             115 de gruyère râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 CàC de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1/2 CàC de poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 CàS de thym séché"
-            }
-        ],
-        "steps": [
-            "Préchauffez le four à 200°C en chaleur tournante. Mélangez les pommes de terre avec l'huile d'olive et le sel, puis disposez-les dans un plat allant au four. Enfournez pour environ 1 heure, jusqu'à ce qu'elles soient tendres à cœur et bien dorées.",
-            "Pendant la cuisson des pommes de terre, faites fondre le beurre dans une poêle à feu moyen-doux. Ajoutez les oignons émincés et laissez-les cuire lentement, en remuant de temps en temps, jusqu'à ce qu'ils soient fondants et caramélisés. Réservez.",
-            "Dans une casserole, faites fondre le beurre à feu moyen. Ajoutez l'ail haché et faites revenir 30 secondes. Incorporez la farine et mélangez pour former un roux.",
-            "Versez le lait progressivement, en fouettant constamment pour éviter les grumeaux. Ajoutez le sel, le poivre et le thym, puis poursuivez la cuisson à feu moyen jusqu'à ce que la sauce épaississe et devienne bien nappante.",
-            "Retirez la casserole du feu et incorporez progressivement le gruyère râpé, en mélangeant, jusqu'à obtenir une sauce lisse et crémeuse.",
-            "Incisez chaque pomme de terre cuite en formant une croix sur le dessus, puis écrasez légèrement l'intérieur à l'aide d'une fourchette.",
-            "Répartissez les oignons caramélisés sur les pommes de terre, puis nappez généreusement de sauce au gruyère. Ajoutez le reste de gruyère râpé sur le dessus.",
-            "Placez le plat sous le grill du four à 250 degrés pendant 5 à 10 minutes, jusqu'à ce que le dessus soit bien doré et gratiné.",
-            "Laissez reposer 10 minutes avant de servir Régalez-vous 🫶"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5317",
         "title": "Crispy Butter Garlic Potatoes",
         "description": "Des pommes de terre croustillantes à l'extérieur et moelleuses à l'intérieur, parfumées au beurre et à l'ail, parfaites comme accompagnement ou apéritif.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778339414055.jpg&v=1778346638000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
