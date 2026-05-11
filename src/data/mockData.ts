@@ -2,11 +2,68 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/05/2026 21:30:37
+ * Dernière mise à jour: 11/05/2026 06:28:22
  * Total: 245 recettes
  */
-export const exportSyncId = "1778448637023";
+export const exportSyncId = "1778480902154";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5359",
+        "title": "FONDANT À LA NOIX DE COCO ET MASCARPONE",
+        "description": "Un fondant crémeux et rafraîchissant à la noix de coco et au mascarpone, facile à préparer sans cuisson et idéal pour un dessert gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778448557709.jpg&v=1778455800000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633733903215299862\" data-video-id=\"7633733903215299862\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633733903215299862\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             180 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             65 cl de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50 cl de lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             200 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 C A C d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             2 C A S de noix de coco râpée"
+            }
+        ],
+        "steps": [
+            "Mélanger le sucre et la fécule de maïs dans une grande casserole. Verser progressivement le lait et le lait de coco sans cesser de fouetter pour éviter les grumeaux.",
+            "Ajouter l'extrait de vanille et laisser épaissir à feu moyen sans arrêter de mélanger jusqu'à l'obtention d'une texture dense.",
+            "Hors du feu, incorporer le mascarpone et fouetter vigoureusement pour l'intégrer à la préparation.",
+            "Verser l'appareil dans un moule tapissé de papier cuisson puis laisser refroidir avant de placer au frais pendant au moins 4 heures (idéalement une nuit entière).",
+            "Avant de servir, saupoudrer de noix de coco râpée."
+        ],
+        "tags": [
+            "Pas cher",
+            "pâtisserie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5356",
         "title": "STICKS DE POMMES DE TERRE À L'AIL ET AU PARMESAN",
@@ -15221,70 +15278,6 @@ export const mockRecipes: Recipe[] = [
             "facile",
             "poulet",
             "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3921",
-        "title": "Pommes de terre grenailles au parmesan et gruyère",
-        "description": "Un accompagnement gourmand et facile à réaliser, parfait pour un barbecue, avec des pommes de terre grenailles rôties au four, enrobées d'épices et gratinées au parmesan et gruyère.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpommes-de-terre-parmesan-H.jpeg&v=1774446589000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7390476713433599264\" data-video-id=\"7390476713433599264\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7390476713433599264\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n 500g de pommes de terre grenaille"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 c.à.c de piment d'espelette"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c.à.c de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 40 ml d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 50 g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 30 g de gruyère"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n thym"
-            }
-        ],
-        "steps": [
-            "Lavez et séchez les pommes de terre grenaille (sans les éplucher).",
-            "Dans un saladier, coupez les pommes de terre puis versez l'huile d'olive, le paprika, le piment, le persil ciselé, le thym et le sel.",
-            "Mélangez les pommes de terre jusqu'à ce qu'elles soient bien enrobées du mélange.",
-            "Dans un plat allant au four, parsemez le fond de parmesan puis de gruyère, puis étalez les pommes de terre grenaille.",
-            "Préchauffez votre four à 180 °C et enfournez environ 35 minutes."
-        ],
-        "tags": [
-            "barbecue",
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
