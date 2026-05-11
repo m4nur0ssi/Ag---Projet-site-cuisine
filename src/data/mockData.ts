@@ -2,11 +2,117 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 12:50:27
+ * Dernière mise à jour: 11/05/2026 12:59:36
  * Total: 245 recettes
  */
-export const exportSyncId = "1778503827282";
+export const exportSyncId = "1778504376256";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5353",
+        "title": "Khachapuri sur brochettes",
+        "description": "Une version originale du Khachapuri géorgien, cuit sur des brochettes au barbecue.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Flong-pain-grill%C3%A9-de-khachapuri-sur-une-brochette-122222613.jpg&v=1778511187000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638185029469932823\" data-video-id=\"7638185029469932823\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638185029469932823\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "Orient",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5356",
+        "title": "Sticks de pommes de terre",
+        "description": "Des bâtonnets de pommes de terre croustillants et savoureux, préparés en tranches fines, pressés, puis frits et assaisonnés à l'ail et au parmesan, servis avec un pesto maison frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FSticks-de-pomme-de-terre-au-fromage.jpg&v=1778510952000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633734673868295446\" data-video-id=\"7633734673868295446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633734673868295446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 1 kg de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 100 g de gras de canard (ou huile d'olive)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 750 ml d'huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 C A S d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel (quantité selon goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 30 g de parmesan (pour les sticks)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 3 gousses d'ail (pour le pesto)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60 g de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 30 g de parmesan (pour le pesto)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 2 bouquets de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 15 cl d'huile d'olive (pour le pesto)"
+            }
+        ],
+        "steps": [
+            "1. Préchauffer le four à 130°C.",
+            "2. À l'aide d'une mandoline, réaliser de très fines tranches de pommes de terre. Si besoin, faire fondre la graisse de canard quelques secondes au micro-ondes (à défaut, remplacer par de l'huile d'olive).",
+            "3. Mélanger les tranches de pommes de terre avec le gras de canard fondu et une bonne pincée de sel.",
+            "4. Chemiser un moule à cake avec du papier cuisson et disposer les tranches de pommes de terre en couches régulières. Recouvrir d'une autre feuille de papier cuisson et tasser avec un poids. Enfourner 2h30.",
+            "5. À la sortie du four, placer un poids sur les pommes de terre pour bien les compresser (par exemple, un récipient rempli d'eau) et laisser refroidir 20 minutes. Placer ensuite au frais pendant au moins 6 heures.",
+            "6. Démouler le bloc de pommes de terre et découper des bâtonnets de 2 à 3 cm de large.",
+            "7. Plonger les bâtonnets dans l'huile de friture chauffée à 180°C et laisser frire 3 à 5 minutes, pour qu'ils soient bien dorés et croustillants. Égoutter et saupoudrer immédiatement d'ail en poudre, de sel et de parmesan.",
+            "8. À part, mixer tous les ingrédients du pesto (ajuster la quantité d'huile d'olive selon la texture souhaitée).",
+            "9. Servir les sticks de pommes de terre avec le pesto !"
+        ],
+        "tags": [
+            "accompagnement",
+            "Apéritifs",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5359",
         "title": "Fondant noix de coco",
@@ -59,111 +165,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "pâtisserie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5356",
-        "title": "STICKS DE POMMES DE TERRE À L'AIL ET AU PARMESAN",
-        "description": "Des bâtonnets de pommes de terre croustillants et savoureux, préparés en tranches fines, pressés, puis frits et assaisonnés à l'ail et au parmesan, servis avec un pesto maison frais.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633734673868295446\" data-video-id=\"7633734673868295446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633734673868295446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             1 kg de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             100 g de gras de canard (ou huile d'olive)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             750 ml d'huile de friture"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 C A S d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (quantité selon goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             30 g de parmesan (pour les sticks)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail (pour le pesto)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             60 g de pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             30 g de parmesan (pour le pesto)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             2 bouquets de basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             15 cl d'huile d'olive (pour le pesto)"
-            }
-        ],
-        "steps": [
-            "1. Préchauffer le four à 130°C.",
-            "2. À l'aide d'une mandoline, réaliser de très fines tranches de pommes de terre. Si besoin, faire fondre la graisse de canard quelques secondes au micro-ondes (à défaut, remplacer par de l'huile d'olive).",
-            "3. Mélanger les tranches de pommes de terre avec le gras de canard fondu et une bonne pincée de sel.",
-            "4. Chemiser un moule à cake avec du papier cuisson et disposer les tranches de pommes de terre en couches régulières. Recouvrir d'une autre feuille de papier cuisson et tasser avec un poids. Enfourner 2h30.",
-            "5. À la sortie du four, placer un poids sur les pommes de terre pour bien les compresser (par exemple, un récipient rempli d'eau) et laisser refroidir 20 minutes. Placer ensuite au frais pendant au moins 6 heures.",
-            "6. Démouler le bloc de pommes de terre et découper des bâtonnets de 2 à 3 cm de large.",
-            "7. Plonger les bâtonnets dans l'huile de friture chauffée à 180°C et laisser frire 3 à 5 minutes, pour qu'ils soient bien dorés et croustillants. Égoutter et saupoudrer immédiatement d'ail en poudre, de sel et de parmesan.",
-            "8. À part, mixer tous les ingrédients du pesto (ajuster la quantité d'huile d'olive selon la texture souhaitée).",
-            "9. Servir les sticks de pommes de terre avec le pesto !"
-        ],
-        "tags": [
-            "Apéritifs",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5353",
-        "title": "Khachapuri sur brochettes",
-        "description": "Une version originale du Khachapuri géorgien, cuit sur des brochettes au barbecue.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638185029469932823\" data-video-id=\"7638185029469932823\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638185029469932823\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "barbecue",
-            "Orient",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
