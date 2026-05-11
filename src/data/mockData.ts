@@ -2,16 +2,84 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 13:20:32
+ * Dernière mise à jour: 11/05/2026 13:27:50
  * Total: 245 recettes
  */
-export const exportSyncId = "1778505632350";
+export const exportSyncId = "1778506070152";
 export const mockRecipes: Recipe[] = [
     {
+        "id": "5341",
+        "title": "Invisible aux pommes",
+        "description": "Une recette facile et saine de gâteau invisible aux pommes, parfait pour un dessert léger ou un goûter équilibré. Ce gâteau est préparé avec de l'huile de coco et du lait d'avoine, puis cuit au four jusqu'à ce qu'il soit doré.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgateau-invisible-pommes-13.jpeg&v=1778512881000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7164799009062669573\" data-video-id=\"7164799009062669573\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7164799009062669573\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 50g farine (2 cà soupe pleines)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 3 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50g sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 10cl lait d'avoine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 20g huile de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n Extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n 8 pommes"
+            }
+        ],
+        "steps": [
+            "Mélanger la farine, le sel et la levure chimique.",
+            "Battre les œufs avec le sucre jusqu'à ce que le mélange blanchisse.",
+            "Tout en battant, ajouter l'huile de coco, le lait d'avoine et l'arôme vanille.",
+            "Verser le mélange de farine, mélanger à nouveau.",
+            "Peler les pommes et les trancher finement au couteau.",
+            "Versez la pâte sur les pommes, bien mélanger et verser dans le moule à cake.",
+            "Enfourner à 200° C chaleur tournante pour 35 minutes.",
+            "Quand le gâteau est refroidi, le démouler et saupoudrer de sucre glace avant de servir."
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5344",
-        "title": "Apple Crumble Cake",
+        "title": "Cumble aux pommes",
         "description": "Un délicieux gâteau moelleux garni de pommes fondantes à la cannelle et surmonté d'un crumble croustillant. Parfait pour un dessert gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrumble-pomme.png&v=1778512589000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrumble-pomme.png&v=1778512660000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -421,74 +489,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "pâtisserie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5341",
-        "title": "Invisible aux pommes",
-        "description": "Une recette facile et saine de gâteau invisible aux pommes, parfait pour un dessert léger ou un goûter équilibré. Ce gâteau est préparé avec de l'huile de coco et du lait d'avoine, puis cuit au four jusqu'à ce qu'il soit doré.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7164799009062669573\" data-video-id=\"7164799009062669573\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7164799009062669573\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             50g farine (2 cà soupe pleines)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 sachet de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             3 oeufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             50g sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             10cl lait d'avoine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             20g huile de coco"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             Extrait de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             8 pommes"
-            }
-        ],
-        "steps": [
-            "Mélanger la farine, le sel et la levure chimique.",
-            "Battre les œufs avec le sucre jusqu'à ce que le mélange blanchisse.",
-            "Tout en battant, ajouter l'huile de coco, le lait d'avoine et l'arôme vanille.",
-            "Verser le mélange de farine, mélanger à nouveau.",
-            "Peler les pommes et les trancher finement au couteau.",
-            "Versez la pâte sur les pommes, bien mélanger et verser dans le moule à cake.",
-            "Enfourner à 200° C chaleur tournante pour 35 minutes.",
-            "Quand le gâteau est refroidi, le démouler et saupoudrer de sucre glace avant de servir."
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
