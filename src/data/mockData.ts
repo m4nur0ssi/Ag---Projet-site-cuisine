@@ -2,50 +2,50 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 06:28:22
+ * Dernière mise à jour: 11/05/2026 12:50:27
  * Total: 245 recettes
  */
-export const exportSyncId = "1778480902154";
+export const exportSyncId = "1778503827282";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5359",
-        "title": "FONDANT À LA NOIX DE COCO ET MASCARPONE",
+        "title": "Fondant noix de coco",
         "description": "Un fondant crémeux et rafraîchissant à la noix de coco et au mascarpone, facile à préparer sans cuisson et idéal pour un dessert gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778448557709.jpg&v=1778455800000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffondant-noix-de-coco.jpg&v=1778510735000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633733903215299862\" data-video-id=\"7633733903215299862\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633733903215299862\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633733903215299862\" data-video-id=\"7633733903215299862\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633733903215299862\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             100 g de fécule de maïs"
+                "name": "🥣\n 100 g de fécule de maïs"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             180 g de sucre en poudre"
+                "name": "🍯\n 180 g de sucre en poudre"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             65 cl de lait"
+                "name": "🥛\n 65 cl de lait"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             50 cl de lait de coco"
+                "name": "🥛\n 50 cl de lait de coco"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             200 g de mascarpone"
+                "name": "🧀\n 200 g de mascarpone"
             },
             {
                 "quantity": "",
-                "name": "🍦\n             1 C A C d'extrait de vanille"
+                "name": "🍦\n 1 C A C d'extrait de vanille"
             },
             {
                 "quantity": "",
-                "name": "🥜\n             2 C A S de noix de coco râpée"
+                "name": "🥜\n 2 C A S de noix de coco râpée"
             }
         ],
         "steps": [
