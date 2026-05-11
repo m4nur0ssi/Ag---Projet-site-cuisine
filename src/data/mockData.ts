@@ -2,11 +2,193 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/05/2026 14:00:26
- * Total: 244 recettes
+ * Dernière mise à jour: 11/05/2026 14:08:11
+ * Total: 242 recettes
  */
-export const exportSyncId = "1778508026360";
+export const exportSyncId = "1778508491622";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5314",
+        "title": "Boulettes de poulet à la crème forestière, purée maison",
+        "description": "Découvrez une recette réconfortante de boulettes de poulet moelleuses, mijotées dans une onctueuse sauce forestière aux champignons, accompagnées d'une purée de pommes de terre maison. Un plat idéal pour les repas en famille.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fboulettes.jpg&v=1778515585000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7598974664089832706\" data-video-id=\"7598974664089832706\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7598974664089832706\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 600 g d'escalopes de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n ½ oignon (pour les boulettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail (pour les boulettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n Chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil séché"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 200 g de champignons frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 1 verre de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 1 briquette de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n 1,2 kg de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 100 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 40 g de beurre"
+            }
+        ],
+        "steps": [
+            "Mixer finement le poulet.",
+            "Ajouter le ½ oignon et l'ail hachés au poulet mixé.",
+            "Incorporer sel, poivre, paprika, piment (facultatif) et persil séché.",
+            "Ajouter un peu de chapelure jusqu'à obtenir une farce qui se tient.",
+            "Former des boulettes.",
+            "Faire dorer les boulettes dans une poêle avec un filet d'huile jusqu'à belle coloration, puis réserver.",
+            "Dans la même poêle, faire revenir l'oignon émincé.",
+            "Ajouter l'ail, puis les champignons coupés.",
+            "Laisser cuire jusqu'à évaporation de l'eau des champignons.",
+            "Verser le bouillon de poulet et laisser réduire légèrement.",
+            "Ajouter la crème, saler et poivrer.",
+            "Remettre les boulettes dans la sauce et laisser mijoter 10 minutes à feu doux.",
+            "Parsemer de persil frais en fin de cuisson.",
+            "Éplucher et couper les pommes de terre.",
+            "Faire cuire les pommes de terre à la vapeur ou dans de l'eau salée.",
+            "Égoutter les pommes de terre, puis les écraser ou les passer au presse-purée.",
+            "Incorporer le beurre puis le lait chaud aux pommes de terre écrasées.",
+            "Rectifier le sel et mélanger jusqu'à obtenir une purée bien lisse.",
+            "Disposer la purée dans l'assiette, ajouter les boulettes nappées de sauce forestière et déguster."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5317",
+        "title": "Pommes de terre rôties aux herbes",
+        "description": "Des pommes de terre croustillantes à l'extérieur et moelleuses à l'intérieur, parfumées au beurre et à l'ail, parfaites comme accompagnement ou apéritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FPdt_roties-aux-herbes.jpg&v=1778515267000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633848196837543200\" data-video-id=\"7633848196837543200\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633848196837543200\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n Pommes de terre (Yukon Gold ou Russet) - 700 g (1.5 lb)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel - pour la cuisson et au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Beurre - 2-3 cuillères à soupe"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail - 3-4 gousses, tranchées"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil frais - petite poignée, haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika - 1/2 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Assaisonnement italien - 1/2 cuillère à café"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre noir - au goût"
+            }
+        ],
+        "steps": [
+            "Peler les pommes de terre et les couper en morceaux de taille égale.",
+            "Porter une casserole d'eau salée à ébullition. Ajouter les pommes de terre et cuire pendant 10-15 minutes, jusqu'à ce qu'elles soient tendres à la fourchette (une fourchette doit s'enfoncer facilement).",
+            "Bien égoutter et laisser reposer quelques minutes pour qu'elles sèchent - cela les aide à devenir plus croustillantes.",
+            "Chauffer une poêle à feu moyen et ajouter le beurre.",
+            "Ajouter les pommes de terre et cuire sans remuer pendant 3-4 minutes pour obtenir une croûte dorée.",
+            "Ensuite, remuer et continuer à cuire jusqu'à ce qu'elles soient croustillantes de tous les côtés.",
+            "Ajouter l'ail tranché, le paprika et l'assaisonnement italien. Remuer doucement et cuire pendant environ 30-60 secondes - ne pas laisser l'ail brûler.",
+            "Éteindre le feu, ajouter le persil frais, le poivre noir et une pincée de sel si nécessaire.",
+            "Mélanger le tout.",
+            "Servir chaud - croustillantes à l'extérieur, moelleuses à l'intérieur, pleines de saveur de beurre et d'ail."
+        ],
+        "tags": [
+            "accompagnement",
+            "France",
+            "Italie",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5320",
         "title": "Gratin de pommes de terre béchamel",
@@ -926,187 +1108,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "pâtisserie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5317",
-        "title": "Crispy Butter Garlic Potatoes",
-        "description": "Des pommes de terre croustillantes à l'extérieur et moelleuses à l'intérieur, parfumées au beurre et à l'ail, parfaites comme accompagnement ou apéritif.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633848196837543200\" data-video-id=\"7633848196837543200\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633848196837543200\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre (Yukon Gold ou Russet) - 700 g (1.5 lb)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel - pour la cuisson et au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre - 2-3 cuillères à soupe"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail - 3-4 gousses, tranchées"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais - petite poignée, haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika - 1/2 cuillère à café"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Assaisonnement italien - 1/2 cuillère à café"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre noir - au goût"
-            }
-        ],
-        "steps": [
-            "Peler les pommes de terre et les couper en morceaux de taille égale.",
-            "Porter une casserole d'eau salée à ébullition. Ajouter les pommes de terre et cuire pendant 10-15 minutes, jusqu'à ce qu'elles soient tendres à la fourchette (une fourchette doit s'enfoncer facilement).",
-            "Bien égoutter et laisser reposer quelques minutes pour qu'elles sèchent - cela les aide à devenir plus croustillantes.",
-            "Chauffer une poêle à feu moyen et ajouter le beurre.",
-            "Ajouter les pommes de terre et cuire sans remuer pendant 3-4 minutes pour obtenir une croûte dorée.",
-            "Ensuite, remuer et continuer à cuire jusqu'à ce qu'elles soient croustillantes de tous les côtés.",
-            "Ajouter l'ail tranché, le paprika et l'assaisonnement italien. Remuer doucement et cuire pendant environ 30-60 secondes - ne pas laisser l'ail brûler.",
-            "Éteindre le feu, ajouter le persil frais, le poivre noir et une pincée de sel si nécessaire.",
-            "Mélanger le tout.",
-            "Servir chaud - croustillantes à l'extérieur, moelleuses à l'intérieur, pleines de saveur de beurre et d'ail."
-        ],
-        "tags": [
-            "France",
-            "Italie",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5314",
-        "title": "Boulettes de poulet à la crème forestière, purée maison",
-        "description": "Découvrez une recette réconfortante de boulettes de poulet moelleuses, mijotées dans une onctueuse sauce forestière aux champignons, accompagnées d'une purée de pommes de terre maison. Un plat idéal pour les repas en famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778335161502.jpg&v=1778342397000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7598974664089832706\" data-video-id=\"7598974664089832706\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7598974664089832706\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             600 g d'escalopes de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             ½ oignon (pour les boulettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail (pour les boulettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             Chapelure"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil séché"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             200 g de champignons frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             1 verre de bouillon de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             1 briquette de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             1,2 kg de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100 g de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             40 g de beurre"
-            }
-        ],
-        "steps": [
-            "Mixer finement le poulet.",
-            "Ajouter le ½ oignon et l'ail hachés au poulet mixé.",
-            "Incorporer sel, poivre, paprika, piment (facultatif) et persil séché.",
-            "Ajouter un peu de chapelure jusqu'à obtenir une farce qui se tient.",
-            "Former des boulettes.",
-            "Faire dorer les boulettes dans une poêle avec un filet d'huile jusqu'à belle coloration, puis réserver.",
-            "Dans la même poêle, faire revenir l'oignon émincé.",
-            "Ajouter l'ail, puis les champignons coupés.",
-            "Laisser cuire jusqu'à évaporation de l'eau des champignons.",
-            "Verser le bouillon de poulet et laisser réduire légèrement.",
-            "Ajouter la crème, saler et poivrer.",
-            "Remettre les boulettes dans la sauce et laisser mijoter 10 minutes à feu doux.",
-            "Parsemer de persil frais en fin de cuisson.",
-            "Éplucher et couper les pommes de terre.",
-            "Faire cuire les pommes de terre à la vapeur ou dans de l'eau salée.",
-            "Égoutter les pommes de terre, puis les écraser ou les passer au presse-purée.",
-            "Incorporer le beurre puis le lait chaud aux pommes de terre écrasées.",
-            "Rectifier le sel et mélanger jusqu'à obtenir une purée bien lisse.",
-            "Disposer la purée dans l'assiette, ajouter les boulettes nappées de sauce forestière et déguster."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -7590,92 +7591,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4679",
-        "title": "Bao Buns au Magret",
-        "description": "Recette pour préparer la pâte de 10 Bao Buns, garnis au magret de canard.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbao.jpeg&v=1774617895000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618958159981448470\" data-video-id=\"7618958159981448470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618958159981448470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n Magret de canard"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 300g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 75ml de lait tiède"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 75ml d'eau tiède"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 5g de levure boulangère"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 5g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 5g de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 15ml d'huile de sésame"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4682",
-        "title": "Filet de bœuf façon Rossini",
-        "description": "Un plat classique et festif, idéal pour utiliser les restes de foie gras des fêtes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffilet-boeuf-rossini-gastronomique-scaled-1.jpeg&v=1774617848000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7594162118283382019\" data-video-id=\"7594162118283382019\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7594162118283382019\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n Filet de bœuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Foie gras"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
