@@ -2,11 +2,159 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 16:07:46
+ * Dernière mise à jour: 12/05/2026 16:21:58
  * Total: 258 recettes
  */
-export const exportSyncId = "1778602066472";
+export const exportSyncId = "1778602918916";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5445",
+        "title": "Gâteau mousse au chocolat",
+        "description": "Un délicieux gâteau composé d'un biscuit moelleux au cacao et d'une onctueuse mousse au chocolat noir, parfait pour un dessert gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgateau-choco-scaled.jpg&v=1778609600000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7551440769798851843\" data-video-id=\"7551440769798851843\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7551440769798851843\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 125g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 20g de cacao"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 70g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1càc de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60ml d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 120g de lait (pour le biscuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 120g de café chaud"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 130g de lait (pour la mousse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 160g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 250g de crème entière froide"
+            }
+        ],
+        "steps": [
+            "Pour le biscuit : Mélanger les ingrédients secs (farine, cacao, sucre, levure chimique, sel).",
+            "Ajouter l'œuf, l'huile et le lait aux ingrédients secs, puis incorporer le café chaud.",
+            "Cuire le biscuit environ 15 minutes à 170°C.",
+            "Laisser le biscuit complètement refroidir.",
+            "Pour la mousse : Dans une casserole, mélanger les jaunes d'œufs avec le lait.",
+            "Transférer sur feu doux et cuire jusqu'à ce que la crème anglaise nappe la cuillère.",
+            "Verser la crème anglaise chaude sur le chocolat noir et mélanger jusqu'à obtenir une ganache lisse.",
+            "Faire monter la crème entière froide en chantilly.",
+            "Incorporer délicatement la crème montée à la ganache au chocolat.",
+            "Verser la mousse sur le gâteau refroidi.",
+            "Réserver au réfrigérateur pendant au minimum 1 nuit."
+        ],
+        "tags": [
+            "Desserts"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5448",
+        "title": "Crème brûlée de clémentine",
+        "description": "Un dessert ultra simple et vraiment délicieux, cette crème brûlée à la clémentine est parfaite pour les fêtes de Noël.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fclementine.jpeg&v=1778609335000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581555299698396438\" data-video-id=\"7581555299698396438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581555299698396438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Une dizaine de clémentines"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 60 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Zestes d'une clémentine bio (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Jus de 4/5 clémentines"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 200 g de crème entière"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 25 g de sucre pour la caramélisation"
+            }
+        ],
+        "steps": [
+            "Commencer par enlever l'intérieur des clémentines.",
+            "Dans un saladier, fouetter les jaunes d'œufs avec le sucre.",
+            "Ajouter les zestes, le jus de clémentine, la crème et le lait, puis bien mélanger.",
+            "Verser la crème dans les clémentines évidées et enfourner pour 1 heure à 100°C.",
+            "À la sortie du four, la crème doit être tremblotante au centre. Si elle n'est pas cuite, poursuivre un peu la cuisson.",
+            "Réserver au frais pendant 4 heures minimum.",
+            "Juste avant de servir, saupoudrer les crèmes de sucre puis caraméliser le dessus soit à l'aide d'un chalumeau, soit avec la fonction grill du four (attention dans ce cas quand ça commence à caraméliser ça va très très vite)."
+        ],
+        "tags": [
+            "Desserts",
+            "France",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5451",
         "title": "Mousse au chocolat",
@@ -261,158 +409,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5448",
-        "title": "Crème brûlée de clémentine pour Noël",
-        "description": "Un dessert ultra simple et vraiment délicieux, cette crème brûlée à la clémentine est parfaite pour les fêtes de Noël.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778580055439.jpg&v=1778587307000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581555299698396438\" data-video-id=\"7581555299698396438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581555299698396438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Une dizaine de clémentines"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             60 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Zestes d'une clémentine bio (optionnel)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Jus de 4/5 clémentines"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             200 g de crème entière"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             150 ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             25 g de sucre pour la caramélisation"
-            }
-        ],
-        "steps": [
-            "Commencer par enlever l'intérieur des clémentines.",
-            "Dans un saladier, fouetter les jaunes d'œufs avec le sucre.",
-            "Ajouter les zestes, le jus de clémentine, la crème et le lait, puis bien mélanger.",
-            "Verser la crème dans les clémentines évidées et enfourner pour 1 heure à 100°C.",
-            "À la sortie du four, la crème doit être tremblotante au centre. Si elle n'est pas cuite, poursuivre un peu la cuisson.",
-            "Réserver au frais pendant 4 heures minimum.",
-            "Juste avant de servir, saupoudrer les crèmes de sucre puis caraméliser le dessus soit à l'aide d'un chalumeau, soit avec la fonction grill du four (attention dans ce cas quand ça commence à caraméliser ça va très très vite)."
-        ],
-        "tags": [
-            "Desserts",
-            "France",
-            "Noël"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5445",
-        "title": "Gâteau mousse au chocolat",
-        "description": "Un délicieux gâteau composé d'un biscuit moelleux au cacao et d'une onctueuse mousse au chocolat noir, parfait pour un dessert gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778579791115.jpg&v=1778587041000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7551440769798851843\" data-video-id=\"7551440769798851843\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7551440769798851843\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             125g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             20g de cacao"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             70g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1càc de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             60ml d'huile"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             120g de lait (pour le biscuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             120g de café chaud"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             130g de lait (pour la mousse)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             160g de chocolat noir"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             250g de crème entière froide"
-            }
-        ],
-        "steps": [
-            "Pour le biscuit : Mélanger les ingrédients secs (farine, cacao, sucre, levure chimique, sel).",
-            "Ajouter l'œuf, l'huile et le lait aux ingrédients secs, puis incorporer le café chaud.",
-            "Cuire le biscuit environ 15 minutes à 170°C.",
-            "Laisser le biscuit complètement refroidir.",
-            "Pour la mousse : Dans une casserole, mélanger les jaunes d'œufs avec le lait.",
-            "Transférer sur feu doux et cuire jusqu'à ce que la crème anglaise nappe la cuillère.",
-            "Verser la crème anglaise chaude sur le chocolat noir et mélanger jusqu'à obtenir une ganache lisse.",
-            "Faire monter la crème entière froide en chantilly.",
-            "Incorporer délicatement la crème montée à la ganache au chocolat.",
-            "Verser la mousse sur le gâteau refroidi.",
-            "Réserver au réfrigérateur pendant au minimum 1 nuit."
-        ],
-        "tags": [
-            "Desserts"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5442",
         "title": "Strawberry Panna Cotta",
         "description": "Une recette classique de Panna Cotta italienne, crémeuse et onctueuse, surmontée d'un coulis frais aux fraises. Un dessert léger et rafraîchissant, parfait pour l'été.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778579552420.jpg&v=1778586799000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
