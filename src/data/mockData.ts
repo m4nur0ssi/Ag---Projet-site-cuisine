@@ -2,11 +2,151 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 12:16:19
- * Total: 254 recettes
+ * Dernière mise à jour: 12/05/2026 12:25:49
+ * Total: 256 recettes
  */
-export const exportSyncId = "1778588179339";
+export const exportSyncId = "1778588749985";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5457",
+        "title": "Crêpes colorées aux fruits et crème fouettée",
+        "description": "Un dessert maison délicieux et facile à réaliser : des crêpes colorées garnies de crème fouettée, de mascarpone, de fraises et de morceaux de gâteau, décorées de fruits frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778588370248.jpg&v=1778595619000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7342089174691990817\" data-video-id=\"7342089174691990817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7342089174691990817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 eggs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             35g (about 3 tablespoons) sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             12g (about 1 tablespoon) vegetable oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             190g (about ¾ cup) milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60g (about ½ cup) cake flour"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Red food coloring"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 teaspoon vanilla extract"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             180g (about ¾ cup) whipped cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20g (about 2 tablespoons) sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30g mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Strawberry cubes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             cake pieces"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fresh strawberries"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Blueberries"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Powdered sugar"
+            }
+        ],
+        "steps": [
+            "Mix eggs, sugar, oil, milk, flour, red food coloring, and vanilla in a bowl until smooth. Sift twice.",
+            "Heat a non-stick pan over low heat. Pour in some batter, tilting the pan to spread evenly. Remove excess batter. Cook for about 1 minute or until the crepe loosens easily from the edges. Repeat with the remaining batter. Let crepes cool on a wire rack.",
+            "In a clean bowl, whip the cream with sugar and mascarpone until firm. Keep it in a piping bag in the fridge.",
+            "Lay out a crepe, spread some whipped cream, add a piece of waffle or cake, more whipped cream, fresh strawberry cubes, and another layer of whipped cream.",
+            "Wrap and tie with kitchen twine. Decorate with strawberries, blueberries, and dust with powdered sugar."
+        ],
+        "tags": [
+            "Desserts",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5454",
+        "title": "Crème de Fraises",
+        "description": "Une recette simple et rapide pour préparer une délicieuse crème de fraises, parfaite pour un dessert ou une pâtisserie.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778588121097.jpg&v=1778595370000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7362477728659967265\" data-video-id=\"7362477728659967265\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7362477728659967265\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍓\n             220g de Fraises"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de gélatine (ou agar agar)"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             Quelques fraises (pour la décoration ou le service)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5451",
         "title": "Mousse au chocolat 1 seul ingrédient",
