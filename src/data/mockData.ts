@@ -2,11 +2,91 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 16:33:26
+ * Dernière mise à jour: 12/05/2026 16:36:33
  * Total: 258 recettes
  */
-export const exportSyncId = "1778603606275";
+export const exportSyncId = "1778603793387";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5436",
+        "title": "Flan vanille grillée",
+        "description": "Recette de flan vanille grillée pour un cercle de 20cm, avec une pâte sucrée vanille maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fflan-patissier-vanille-bourbon-a-partager.jpg.png&v=1778610820000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549604756398935318\" data-video-id=\"7549604756398935318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549604756398935318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 770 gr de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 5 gousses de vanille (ou vanille épuisée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 155 gr de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 175 gr de jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 65 gr de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 220 gr de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 110 gr de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 250 gr de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 150 gr de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 85 gr de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n 40 gr de poudre d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de fleur de sel"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5439",
         "title": "Tarte aux fraises et crème diplomate",
@@ -565,86 +645,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Desserts",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5436",
-        "title": "Flan vanille grillée",
-        "description": "Recette de flan vanille grillée pour un cercle de 20cm, avec une pâte sucrée vanille maison.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549604756398935318\" data-video-id=\"7549604756398935318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549604756398935318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             770 gr de lait entier"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             5 gousses de vanille (ou vanille épuisée)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             155 gr de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             175 gr de jaunes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             65 gr de maïzena"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             220 gr de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             110 gr de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             250 gr de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             150 gr de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             85 gr de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             40 gr de poudre d'amandes"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 gousse de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de fleur de sel"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
