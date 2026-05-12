@@ -2,11 +2,159 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 09:53:44
- * Total: 250 recettes
+ * Dernière mise à jour: 12/05/2026 10:02:14
+ * Total: 252 recettes
  */
-export const exportSyncId = "1778579624639";
+export const exportSyncId = "1778580134469";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5445",
+        "title": "Gâteau mousse au chocolat",
+        "description": "Un délicieux gâteau composé d'un biscuit moelleux au cacao et d'une onctueuse mousse au chocolat noir, parfait pour un dessert gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778579791115.jpg&v=1778587041000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7551440769798851843\" data-video-id=\"7551440769798851843\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7551440769798851843\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             125g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             20g de cacao"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1càc de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60ml d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             120g de lait (pour le biscuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             120g de café chaud"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             130g de lait (pour la mousse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             160g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250g de crème entière froide"
+            }
+        ],
+        "steps": [
+            "Pour le biscuit : Mélanger les ingrédients secs (farine, cacao, sucre, levure chimique, sel).",
+            "Ajouter l'œuf, l'huile et le lait aux ingrédients secs, puis incorporer le café chaud.",
+            "Cuire le biscuit environ 15 minutes à 170°C.",
+            "Laisser le biscuit complètement refroidir.",
+            "Pour la mousse : Dans une casserole, mélanger les jaunes d'œufs avec le lait.",
+            "Transférer sur feu doux et cuire jusqu'à ce que la crème anglaise nappe la cuillère.",
+            "Verser la crème anglaise chaude sur le chocolat noir et mélanger jusqu'à obtenir une ganache lisse.",
+            "Faire monter la crème entière froide en chantilly.",
+            "Incorporer délicatement la crème montée à la ganache au chocolat.",
+            "Verser la mousse sur le gâteau refroidi.",
+            "Réserver au réfrigérateur pendant au minimum 1 nuit."
+        ],
+        "tags": [
+            "Desserts"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5442",
+        "title": "Strawberry Panna Cotta",
+        "description": "Une recette classique de Panna Cotta italienne, crémeuse et onctueuse, surmontée d'un coulis frais aux fraises. Un dessert léger et rafraîchissant, parfait pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778579552420.jpg&v=1778586799000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7356626054846418209\" data-video-id=\"7356626054846418209\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7356626054846418209\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Cream: 2 cups"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sugar: 1/3 cup"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Gelatin: 2 sheets (or 8g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Vanilla: 1 tablespoon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Strawberries: 1 cup, chopped"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Water: 1/2 cup"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Gelatin: 1 sheet"
+            }
+        ],
+        "steps": [
+            "Soften 2 sheets of gelatin in cold water.",
+            "Heat cream, sugar, and vanilla until hot but not boiling.",
+            "Remove from heat, add the softened gelatin, and stir until melted.",
+            "Pour the mixture into glasses and let it cool.",
+            "Refrigerate until firm.",
+            "Soften 1 sheet of gelatin in cold water.",
+            "Heat chopped strawberries and water without boiling.",
+            "Add the softened gelatin and stir until melted.",
+            "Let the strawberry topping cool.",
+            "Pour the cooled strawberry topping over the firm panna cotta.",
+            "Refrigerate until set."
+        ],
+        "tags": [
+            "Desserts",
+            "Italie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5439",
         "title": "Tarte aux fraises et crème diplomate",
