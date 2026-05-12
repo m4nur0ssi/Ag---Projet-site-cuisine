@@ -2,11 +2,198 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 17:34:06
- * Total: 262 recettes
+ * Dernière mise à jour: 12/05/2026 20:11:21
+ * Total: 263 recettes
  */
-export const exportSyncId = "1778607246181";
+export const exportSyncId = "1778616681433";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5508",
+        "title": "Cinnamon Roll Muffins",
+        "description": "Super fluffy, filled with that delicious Philadelphia cream cheese, and topped with a buttery, cinnamon-sugar swirl that gives the perfect crunchy touch.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778616430856.jpg&v=1778623644000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7574486276993322270\" data-video-id=\"7574486276993322270\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7574486276993322270\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             240 g (2 cups) all-purpose flour, sifted"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tbsp baking powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ tsp salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tbsp ground cinnamon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp cornstarch"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             110 g (about ½ cup) granulated sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g (about ½ cup packed) brown sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cup (115 g) unsalted butter, melted or at room temperature"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ⅓ cup (80 ml) vegetable oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 eggs + 1 egg white"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1½ tbsp vanilla extract"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ⅓ cup (80 ml) milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ¼ cup (60 g) plain Greek yogurt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60 g unsalted butter, melted (for swirl)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60 g brown sugar (for swirl)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1½ tsp ground cinnamon (for swirl)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 oz (170 g) Philadelphia cream cheese, softened"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             7 tbsp (100 g) unsalted butter, softened (for filling)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cup (120 g) powdered sugar, sifted"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp vanilla extract (for filling)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tbsp heavy cream"
+            }
+        ],
+        "steps": [
+            "Pour la garniture tourbillon \" Cinnamon Roll \" : Mélangez le beurre fondu, le sucre roux et la cannelle jusqu'à obtenir une pâte épaisse. Transférez dans une poche à douille ou un petit sac en plastique dont vous aurez coupé un coin.",
+            "Pour la préparation des muffins : Préchauffez le four à 180 °C (350 °F) et préparez un moule à muffins avec de grandes caissettes ou graissez-le.",
+            "Dans un bol, mélangez les ingrédients secs (farine, levure chimique, sel, cannelle, fécule de maïs) et mettez de côté.",
+            "Dans un autre bol, battez le beurre avec les sucres (si vous utilisez du beurre fondu, mélangez simplement jusqu'à incorporation).",
+            "Ajoutez l'huile, les œufs, la vanille, le yaourt et le lait. Mélangez jusqu'à incorporation.",
+            "Incorporez délicatement les ingrédients secs avec une spatule ; ne mélangez pas trop.",
+            "Remplissez chaque caissette à muffins aux 2/3 avec la pâte.",
+            "Ajoutez un peu du mélange tourbillon à la cannelle sur le dessus en spirale, puis utilisez un cure-dent pour faire un léger mouvement circulaire afin de créer l'effet de tourbillon.",
+            "Faites cuire pendant 22 à 25 minutes, jusqu'à ce qu'un cure-dent inséré en ressorte propre (un peu d'humidité est acceptable, mais pas de pâte crue).",
+            "Laissez refroidir dans le moule pendant 5 minutes, puis transférez sur une grille.",
+            "Pour la garniture crémeuse (après cuisson) : Battez le beurre et le cream cheese jusqu'à obtenir une consistance crémeuse (2-3 min).",
+            "Ajoutez la vanille.",
+            "Incorporez progressivement le sucre glace jusqu'à ce que le mélange soit léger et mousseux.",
+            "Réfrigérez 15 à 20 minutes avant utilisation.",
+            "Pour garnir les muffins : Une fois refroidis, faites un petit trou au centre de chaque muffin (avec une douille ou un petit couteau).",
+            "Placez la garniture au cream cheese dans une poche à douille munie d'une douille ronde.",
+            "Remplissez le centre jusqu'à ce qu'un peu de garniture dépasse du muffin.",
+            "Vous pouvez laisser la surface lisse ou créer une petite \" montagne \" visible sur le dessus, comme un glaçage."
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5505",
+        "title": "Vanilla Cream Rolls",
+        "description": "This recipe combines the delicacy of puff pastry with the richness of Diplomat cream. A dreamy dessert that strikes the perfect balance between crispy, creamy, and sweet.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778607131994.jpg&v=1778614376000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7322915820089199905\" data-video-id=\"7322915820089199905\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7322915820089199905\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 roll puff pastry (240 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 ml milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 egg yolks"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 teaspoon vanilla extract"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20 g cornstarch"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             120 ml whipped cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 egg yolk + 1 tablespoon cream, beaten (for brushing)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Powdered sugar (for dusting)"
+            }
+        ],
+        "steps": [
+            "In a saucepan, mix milk, egg yolks, vanilla extract, sugar, and cornstarch. Heat the mixture, stirring until it thickens into a custard. Let the custard cool completely. Fold whipped cream into the cooled custard and refrigerate for an hour.",
+            "Roll out puff pastry and cut it into 20 evenly sized strips. Grease cannoli forms and wrap them with puff pastry strips, connecting two strips for each form.",
+            "Brush the prepared rolls with a mixture of beaten egg yolk and cream. Bake in a preheated oven at 180°C (fan) for 15-17 minutes until golden brown. Once baked, remove from the oven, release from the forms, and let them cool completely.",
+            "Retrieve the chilled cream from the refrigerator, fill a pastry bag, and pipe the cream into the cooled pastry pieces. Sprinkle with powdered sugar and serve chilled."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5502",
         "title": "Pain grillé, ganache au chocolat, huile d'olive et fleur de sel",
@@ -15224,79 +15411,6 @@ export const mockRecipes: Recipe[] = [
             "recette facile",
             "tex-mex"
         ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3836",
-        "title": "Tartine fraîcheur avocat saumon",
-        "description": "Une tartine gourmande et croquante alliant la douceur de l'avocat écrasé au saumon fumé, relevée par des oignons frits et une touche de crème balsamique.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftartine.jpg&v=1774450800000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7539860290234633494\" data-video-id=\"7539860290234633494\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7539860290234633494\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 4 tartines de pain"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n 4 avocats bien mûrs"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n 1/2 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n épices"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🐟\n Saumon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n Tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n oignons frits"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n crème balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n herbes de Provence"
-            }
-        ],
-        "steps": [
-            "Dans une poêle, faire revenir les tartines avec de l'huile d'olive et des herbes de Provence.",
-            "Écraser les avocats dans un récipient.",
-            "Étaler l'avocat écrasé sur les tartines grillées.",
-            "Disposer le saumon fumé, les tomates cerises et les oignons frits par-dessus.",
-            "Terminer en étalant un filet d'huile d'olive et de la crème balsamique."
-        ],
-        "tags": [],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
