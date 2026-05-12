@@ -2,11 +2,44 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 12:25:49
- * Total: 256 recettes
+ * Dernière mise à jour: 12/05/2026 14:57:15
+ * Total: 257 recettes
  */
-export const exportSyncId = "1778588749985";
+export const exportSyncId = "1778597835182";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5460",
+        "title": "CRÈMES CHOCOLAT 2 INGRÉDIENTS",
+        "description": "Le mélange coco chocolat est vraiment très bon ! Ça donne une crème tout en légèreté 🥰 il faut que vous testiez.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778597585761.jpg&v=1778604802000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7500977126292720898\" data-video-id=\"7500977126292720898\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7500977126292720898\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 conserve de lait de coco bio (400ml)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             160g de chocolat noir pâtissier"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5457",
         "title": "Crêpes colorées aux fruits et crème fouettée",
