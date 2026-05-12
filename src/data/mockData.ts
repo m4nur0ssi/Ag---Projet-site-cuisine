@@ -2,11 +2,106 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 10:02:14
- * Total: 252 recettes
+ * Dernière mise à jour: 12/05/2026 12:16:19
+ * Total: 254 recettes
  */
-export const exportSyncId = "1778580134469";
+export const exportSyncId = "1778588179339";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5451",
+        "title": "Mousse au chocolat 1 seul ingrédient",
+        "description": "Une recette de mousse au chocolat étonnamment simple, ne nécessitant que du chocolat et de l'eau pour un dessert rapide et facile, idéal pour les étudiants ou les envies de dernière minute.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778587905331.jpg&v=1778595125000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7387092919217311009\" data-video-id=\"7387092919217311009\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7387092919217311009\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             400ml d'eau"
+            }
+        ],
+        "steps": [
+            "Les étapes ne sont pas détaillées dans la description fournie."
+        ],
+        "tags": [
+            "Desserts",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5448",
+        "title": "Crème brûlée de clémentine pour Noël",
+        "description": "Un dessert ultra simple et vraiment délicieux, cette crème brûlée à la clémentine est parfaite pour les fêtes de Noël.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778580055439.jpg&v=1778587307000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581555299698396438\" data-video-id=\"7581555299698396438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581555299698396438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Une dizaine de clémentines"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Zestes d'une clémentine bio (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Jus de 4/5 clémentines"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 g de crème entière"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             25 g de sucre pour la caramélisation"
+            }
+        ],
+        "steps": [
+            "Commencer par enlever l'intérieur des clémentines.",
+            "Dans un saladier, fouetter les jaunes d'œufs avec le sucre.",
+            "Ajouter les zestes, le jus de clémentine, la crème et le lait, puis bien mélanger.",
+            "Verser la crème dans les clémentines évidées et enfourner pour 1 heure à 100°C.",
+            "À la sortie du four, la crème doit être tremblotante au centre. Si elle n'est pas cuite, poursuivre un peu la cuisson.",
+            "Réserver au frais pendant 4 heures minimum.",
+            "Juste avant de servir, saupoudrer les crèmes de sucre puis caraméliser le dessus soit à l'aide d'un chalumeau, soit avec la fonction grill du four (attention dans ce cas quand ça commence à caraméliser ça va très très vite)."
+        ],
+        "tags": [
+            "Desserts",
+            "France",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5445",
         "title": "Gâteau mousse au chocolat",
