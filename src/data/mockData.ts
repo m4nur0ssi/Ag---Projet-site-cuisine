@@ -2,11 +2,60 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 16:41:51
- * Total: 258 recettes
+ * Dernière mise à jour: 12/05/2026 17:26:32
+ * Total: 259 recettes
  */
-export const exportSyncId = "1778604111780";
+export const exportSyncId = "1778606792574";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5496",
+        "title": "Crème brûlée",
+        "description": "Le dessert qu'on aime tous mais qu'on oublie parfois...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778606533022.jpg&v=1778613747000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7352449094578654497\" data-video-id=\"7352449094578654497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7352449094578654497\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de lait demi écrémé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de crème entière"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             5 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             40g de cassonade"
+            }
+        ],
+        "steps": [
+            "Cuire au bain marie au four 35 min à 160°"
+        ],
+        "tags": [
+            "Desserts",
+            "France",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5457",
         "title": "Crêpes colorées aux fruits et crème fouettée",
