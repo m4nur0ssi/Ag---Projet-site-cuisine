@@ -2,11 +2,111 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 17:26:32
- * Total: 259 recettes
+ * Dernière mise à jour: 12/05/2026 17:34:06
+ * Total: 262 recettes
  */
-export const exportSyncId = "1778606792574";
+export const exportSyncId = "1778607246181";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5502",
+        "title": "Pain grillé, ganache au chocolat, huile d'olive et fleur de sel",
+        "description": "Une recette simple et gourmande de pain grillé garni d'une onctueuse ganache au chocolat, rehaussée d'un filet d'huile d'olive et d'une pincée de fleur de sel.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778606928871.jpg&v=1778614171000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7550734111812504854\" data-video-id=\"7550734111812504854\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7550734111812504854\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200g de crème liquide (30%)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Tranches de pain"
+            }
+        ],
+        "steps": [
+            "Faites chauffer la crème liquide jusqu'à ébullition puis versez-la sur le chocolat coupé en carrés.",
+            "Laissez reposer pendant 3 minutes puis mélangez jusqu'à ce que le chocolat fonde.",
+            "Ajoutez le beurre, une pincée de fleur de sel et remuez à nouveau.",
+            "Etalez la ganache sur un grand plat de service puis placez au frigo au moins 1h.",
+            "Pendant ce temps, faites griller des tranches de pain à la poêle avec de l'huile d'olive.",
+            "Une fois la ganache bien prise sortez-la du frigo.",
+            "Passez une cuillère à soupe sous l'eau chaude, séchez-la puis prélevez une cuillère de ganache joliment.",
+            "Disposez la cuillère sur le pain, arrosez d'huile d'olive et de fleur de sel. C'est prêt !"
+        ],
+        "tags": [
+            "Desserts"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5499",
+        "title": "Crèmes dessert vanille",
+        "description": "Des crèmes dessert vanille maison, faciles et gourmandes, inspirées d'une version au cacao. Idéales pour 4 pots, elles sont rapides à préparer et parfaites pour un dessert sain.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778606724842.jpg&v=1778613970000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554802244063923478\" data-video-id=\"7554802244063923478\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554802244063923478\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             500 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             4 sachets de sucre vanillé (ou 30 g de sucre + 1 gousse de vanille ou extrait de vanille)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 g de maïzena (25 g si vous voulez plus liquide façon Danette)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Une noix de beurre ou une cuillère de crème entière (facultatif, pour le crémeux et la brillance)"
+            }
+        ],
+        "steps": [
+            "Dans un bol, diluer la maïzena dans un peu de lait (froid ou à température ambiante) en fouettant sans cesse pour éviter les grumeaux.",
+            "Dans une casserole, faire chauffer le restant de lait avec le sucre et la vanille (ou sucre vanillé) jusqu'à ébullition.",
+            "Une fois à ébullition, ajouter la maïzena diluée dans le lait sans cesser de fouetter jusqu'à reprise de l'ébullition et que la crème épaississe.",
+            "Lorsque la crème nappe votre cuillère ou que le fouet laisse des traces, retirer du feu.",
+            "Pour apporter du crémeux et de la brillance, ajouter une noix de beurre ou une cuillère de crème entière en fin de cuisson (facultatif).",
+            "Répartir la préparation dans des pots ou ramequins et laisser refroidir à température ambiante.",
+            "Mettre au frais minimum 2 heures avant dégustation."
+        ],
+        "tags": [
+            "Desserts",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5496",
         "title": "Crème brûlée",
@@ -15124,6 +15224,79 @@ export const mockRecipes: Recipe[] = [
             "recette facile",
             "tex-mex"
         ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3836",
+        "title": "Tartine fraîcheur avocat saumon",
+        "description": "Une tartine gourmande et croquante alliant la douceur de l'avocat écrasé au saumon fumé, relevée par des oignons frits et une touche de crème balsamique.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftartine.jpg&v=1774450800000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7539860290234633494\" data-video-id=\"7539860290234633494\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7539860290234633494\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 4 tartines de pain"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n 4 avocats bien mûrs"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1/2 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n épices"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n Saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n oignons frits"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n crème balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n herbes de Provence"
+            }
+        ],
+        "steps": [
+            "Dans une poêle, faire revenir les tartines avec de l'huile d'olive et des herbes de Provence.",
+            "Écraser les avocats dans un récipient.",
+            "Étaler l'avocat écrasé sur les tartines grillées.",
+            "Disposer le saumon fumé, les tomates cerises et les oignons frits par-dessus.",
+            "Terminer en étalant un filet d'huile d'olive et de la crème balsamique."
+        ],
+        "tags": [],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
