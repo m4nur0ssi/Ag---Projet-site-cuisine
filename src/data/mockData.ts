@@ -2,11 +2,190 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 08:56:29
- * Total: 249 recettes
+ * Dernière mise à jour: 12/05/2026 09:53:44
+ * Total: 250 recettes
  */
-export const exportSyncId = "1778576189833";
+export const exportSyncId = "1778579624639";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5439",
+        "title": "Tarte aux fraises et crème diplomate",
+        "description": "Une délicieuse tarte printanière composée d'une pâte sablée croustillante et d'une onctueuse crème diplomate à la vanille, parfaite pour les beaux jours.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778579345396.jpg&v=1778586564000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7528893200703130903\" data-video-id=\"7528893200703130903\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7528893200703130903\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             120g de beurre froid"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             50g d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             270g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 gros jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             25g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4g de gélatine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             120g de crème liquide entière (minimum 30% de matière grasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Extrait de vanille"
+            }
+        ],
+        "steps": [
+            "Pour la pâte sablée : Dans le bol de votre mixeur, mettez tous les ingrédients secs (farine, sucre glace, poudre d'amande, sel) et le beurre froid coupé en morceaux.",
+            "Mélangez jusqu'à ce que le tout soit bien incorporé et qu'il ne reste plus de gros morceaux de beurre (attention à ne pas trop mélanger, ou votre pâte sera dure).",
+            "Ajoutez l'œuf et mélangez jusqu'à ce que le mélange soit presque homogène, puis finissez de mélanger à la main.",
+            "Enveloppez la pâte dans du film alimentaire et laissez-la reposer au réfrigérateur pendant au moins 1 heure. Si vous êtes pressé, vous pouvez la placer un peu au congélateur.",
+            "Pour la crème diplomate : Hydratez votre gélatine.",
+            "Dans un saladier, fouettez les jaunes d'œufs avec le sucre. Puis ajoutez la maïzena.",
+            "Dans une casserole, faites chauffer le lait avec la gousse de vanille grattée et portez à ébullition. Retirez du feu, couvrez de film alimentaire et laissez infuser au moins 20 minutes pour intensifier le goût de vanille.",
+            "Retirez la gousse de vanille et portez à nouveau le lait à ébullition. Versez-le sur le mélange œufs, sucre et maïzena, puis fouettez.",
+            "Reversez le tout dans la casserole et faites cuire à feu doux en remuant constamment jusqu'à ce que la crème épaississe.",
+            "Hors du feu, ajoutez le beurre, l'extrait de vanille et la gélatine, puis mélangez.",
+            "Couvrez la crème avec du film alimentaire au contact de la surface et laissez-la reposer au réfrigérateur pendant plusieurs heures.",
+            "Une fois la crème complètement refroidie, retirez-la du réfrigérateur, placez-la dans un saladier et fouettez-la pour la détendre.",
+            "Préparez une crème fouettée.",
+            "Incorporez-la progressivement à la crème pâtissière et mélangez jusqu'à obtenir une préparation homogène. Votre crème diplomate est prête."
+        ],
+        "tags": [
+            "France",
+            "Glaces",
+            "pâtisserie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5436",
+        "title": "Flan vanille grillée",
+        "description": "Recette de flan vanille grillée pour un cercle de 20cm, avec une pâte sucrée vanille maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778576084095.jpg&v=1778583334000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549604756398935318\" data-video-id=\"7549604756398935318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549604756398935318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             770 gr de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             5 gousses de vanille (ou vanille épuisée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             155 gr de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             175 gr de jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             65 gr de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             220 gr de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             110 gr de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             250 gr de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             150 gr de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             85 gr de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             40 gr de poudre d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de fleur de sel"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5433",
         "title": "Upside Down Berry Cake",
@@ -15210,64 +15389,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3910",
-        "title": "Hauts de cuisse de poulet marinés BBQ",
-        "description": "Une marinade express et savoureuse pour vos hauts de cuisse de poulet, parfaite pour changer des classiques du barbecue. Facile et rapide à préparer, cette recette plaira à coup sûr !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fhaut-de-cuisse-recipe%402x.jpeg&v=1774447552000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7489484337860087062\" data-video-id=\"7489484337860087062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7489484337860087062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n Haut de cuisse de poulet (désossé)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Épice cajun"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n Ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n Oignon en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n Citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n Miel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            }
-        ],
-        "steps": [
-            "Commencez par allumer votre barbecue. Pour la marinade, ajoutez toutes les épices sur votre poulet et mélangez bien pour enrober.",
-            "Pour la cuisson, commencez par faire griller les deux faces du poulet (2-3 minutes de chaque côté). Si vous avez un couvercle sur votre barbecue, vous pouvez les mettre en dehors de la braise avec le couvercle pour finir la cuisson et les garder au chaud. Sinon, tournez-les fréquemment pour éviter qu'ils ne brûlent.",
-            "Servez chaud et bon appétit !"
-        ],
-        "tags": [
-            "barbecue",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
