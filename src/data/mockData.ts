@@ -2,11 +2,92 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 08:39:21
- * Total: 245 recettes
+ * Dernière mise à jour: 12/05/2026 08:48:06
+ * Total: 246 recettes
  */
-export const exportSyncId = "1778575161167";
+export const exportSyncId = "1778575686833";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5427",
+        "title": "Gâteau petit beurre café chocolat",
+        "description": "Un gâteau sans cuisson facile à base de biscuits petit beurre trempés dans du café, garnis d'une crème onctueuse au chocolat blanc et vanille, le tout recouvert d'une riche ganache au chocolat.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778575400856.jpg&v=1778582624000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7558493289117256982\" data-video-id=\"7558493289117256982\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7558493289117256982\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             Environ 250g de biscuits petits beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Une tasse de café"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             500 ml de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 càc d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             40 g de fécule de maïs (Maïzena)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat (pour la ganache)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 ml de crème liquide entière (30 % MG de préférence)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10 g de beurre (pour la ganache)"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, fouetter les jaunes d'œufs avec le sucre jusqu'à ce que le mélange devienne pâle et mousseux.",
+            "Ajouter la fécule de maïs au mélange.",
+            "Dans une casserole, combiner le lait entier, l'extrait de vanille et le mélange de jaunes d'œufs, sucre et fécule. Cuire à feu moyen en fouettant sans arrêt jusqu'à ce que la crème épaississe (environ 2 minutes après le premier bouillon).",
+            "Hors du feu, ajouter le chocolat blanc haché et les 30g de beurre. Mélanger jusqu'à ce que le chocolat soit complètement fondu et que la crème soit lisse. Laisser refroidir.",
+            "Pour la ganache chocolat: Hacher 100g de chocolat en petits morceaux.",
+            "Faire chauffer 100 ml de crème liquide entière dans une casserole jusqu'à ce qu'elle frémisse.",
+            "Verser la crème chaude sur le chocolat haché.",
+            "Laisser reposer 1 à 2 minutes pour que la chaleur fasse fondre le chocolat.",
+            "Mélanger délicatement à l'aide d'une spatule.",
+            "Verser la ganache sur le gâteau refroidi."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5424",
         "title": "Les beignets de princesse Tiana",
