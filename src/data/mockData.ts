@@ -2,11 +2,99 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 16:36:33
+ * Dernière mise à jour: 12/05/2026 16:41:51
  * Total: 258 recettes
  */
-export const exportSyncId = "1778603793387";
+export const exportSyncId = "1778604111780";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5457",
+        "title": "Crêpes colorées aux fruits et crème fouettée",
+        "description": "Un dessert maison délicieux et facile à réaliser : des crêpes colorées garnies de crème fouettée, de mascarpone, de fraises et de morceaux de gâteau, décorées de fruits frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrepe-1.jpg&v=1778611157000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7342089174691990817\" data-video-id=\"7342089174691990817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7342089174691990817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 2 eggs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 35g (about 3 tablespoons) sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 12g (about 1 tablespoon) vegetable oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 190g (about ¾ cup) milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60g (about ½ cup) cake flour"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Red food coloring"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 teaspoon vanilla extract"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 180g (about ¾ cup) whipped cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 20g (about 2 tablespoons) sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 30g mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Strawberry cubes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n cake pieces"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fresh strawberries"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Blueberries"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Powdered sugar"
+            }
+        ],
+        "steps": [
+            "Mix eggs, sugar, oil, milk, flour, red food coloring, and vanilla in a bowl until smooth. Sift twice.",
+            "Heat a non-stick pan over low heat. Pour in some batter, tilting the pan to spread evenly. Remove excess batter. Cook for about 1 minute or until the crepe loosens easily from the edges. Repeat with the remaining batter. Let crepes cool on a wire rack.",
+            "In a clean bowl, whip the cream with sugar and mascarpone until firm. Keep it in a piping bag in the fridge.",
+            "Lay out a crepe, spread some whipped cream, add a piece of waffle or cake, more whipped cream, fresh strawberry cubes, and another layer of whipped cream.",
+            "Wrap and tie with kitchen twine. Decorate with strawberries, blueberries, and dust with powdered sugar."
+        ],
+        "tags": [
+            "Desserts",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5436",
         "title": "Flan vanille grillée",
@@ -553,94 +641,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Desserts",
-            "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5457",
-        "title": "Crêpes colorées aux fruits et crème fouettée",
-        "description": "Un dessert maison délicieux et facile à réaliser : des crêpes colorées garnies de crème fouettée, de mascarpone, de fraises et de morceaux de gâteau, décorées de fruits frais.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7342089174691990817\" data-video-id=\"7342089174691990817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7342089174691990817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2 eggs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             35g (about 3 tablespoons) sugar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             12g (about 1 tablespoon) vegetable oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             190g (about ¾ cup) milk"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             60g (about ½ cup) cake flour"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Red food coloring"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 teaspoon vanilla extract"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             180g (about ¾ cup) whipped cream"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             20g (about 2 tablespoons) sugar"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             30g mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Strawberry cubes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             cake pieces"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fresh strawberries"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Blueberries"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Powdered sugar"
-            }
-        ],
-        "steps": [
-            "Mix eggs, sugar, oil, milk, flour, red food coloring, and vanilla in a bowl until smooth. Sift twice.",
-            "Heat a non-stick pan over low heat. Pour in some batter, tilting the pan to spread evenly. Remove excess batter. Cook for about 1 minute or until the crepe loosens easily from the edges. Repeat with the remaining batter. Let crepes cool on a wire rack.",
-            "In a clean bowl, whip the cream with sugar and mascarpone until firm. Keep it in a piping bag in the fridge.",
-            "Lay out a crepe, spread some whipped cream, add a piece of waffle or cake, more whipped cream, fresh strawberry cubes, and another layer of whipped cream.",
-            "Wrap and tie with kitchen twine. Decorate with strawberries, blueberries, and dust with powdered sugar."
         ],
         "tags": [
             "Desserts",
