@@ -2,11 +2,155 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 08:31:14
- * Total: 243 recettes
+ * Dernière mise à jour: 12/05/2026 08:39:21
+ * Total: 245 recettes
  */
-export const exportSyncId = "1778574674101";
+export const exportSyncId = "1778575161167";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5424",
+        "title": "Les beignets de princesse Tiana",
+        "description": "Une recette inspirée de la Princesse Tiana pour réaliser des beignets moelleux et dorés. La pâte levée est frite puis garnie de miel et de sucre glace, parfaite pour un goûter gourmand.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7407849263885045024\" data-video-id=\"7407849263885045024\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7407849263885045024\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2c.s de levure boulangère instantanée"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             220ml de lait tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             360g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1c.c de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1c.c de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1cc fleur d'oranger"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40g sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40g beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             miel liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             sucre glace"
+            }
+        ],
+        "steps": [
+            "Dans la cuve du robot, verser la farine, la levure boulangère et le sel à l'opposé de la levure, le sucre, la vanille, la fleur d'oranger, le beurre fondu et le lait.",
+            "Pétrir vitesse moyenne jusqu'à obtenir une boule qui ne colle pas.",
+            "Ajouter de la farine si la pâte colle trop et continuer à pétrir.",
+            "Déposer la pâte dans un récipient haut, couvrir le récipient d'un torchon puis laisser pousser la pâte 1h30 au chaud. (Préchauffer le four à 150° pendant 15 minutes, l'éteindre, attendre 2 minutes puis placer le récipient à l'intérieur).",
+            "Dégazer la pâte puis l'étaler tout en gardant une certaine épaisseur, à l'aide d'un rouleau à pâtisserie, sur un plan de travail fariné.",
+            "Découper des rectangles puis laisser à nouveau reposer 2 heures ou moins, dans un endroit chaud (four chaud mais éteint).",
+            "Une fois que les beignets ont bien gonflés, les plonger avec précaution dans une huile chaude mais non bouillante. Une fois qu'ils sont suffisamment dorés des deux côtés, déposer ces derniers sur une feuille de papier absorbant afin de retirer le maximum d'huile.",
+            "Terminer par ajouter du miel de fleur d'oranger et saupoudrer de sucre glace !"
+        ],
+        "tags": [
+            "Pas cher",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5421",
+        "title": "Cheesecake sans cuisson noisette chocolat",
+        "description": "Un cheesecake sans cuisson facile à réaliser, composé d'une base biscuitée au cacao, d'une crème onctueuse au fromage frais et à la vanille, et d'une ganache brillante au chocolat et noisette.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778574699521.jpg&v=1778581917000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7559625571702033686\" data-video-id=\"7559625571702033686\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7559625571702033686\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             200 g de biscuits au cacao"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             80 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             400 g de fromage frais type Philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 ml de crème liquide entière (30 % MG minimum)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 càs de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             les graines d'½ gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 ml de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10 g de beurre"
+            }
+        ],
+        "steps": [
+            "Mixer les biscuits jusqu'à obtenir une poudre fine.",
+            "Mélanger les biscuits mixés avec le beurre fondu.",
+            "Tasser bien la base biscuitée au fond d'un moule à charnière (20-22 cm).",
+            "Fouetter le fromage frais avec le sucre glace et la vanille.",
+            "Monter la crème liquide en chantilly ferme.",
+            "Incorporer délicatement la chantilly au mélange fromage-sucre.",
+            "Verser la crème cheesecake sur la base biscuitée et lisser la surface.",
+            "Faire chauffer la crème pour la ganache jusqu'à frémissement.",
+            "Verser la crème chaude sur le chocolat haché et laisser reposer 1 minute.",
+            "Mélanger jusqu'à obtention d'une ganache lisse et brillante.",
+            "Ajouter le beurre à la ganache et mélanger.",
+            "Verser la ganache sur le cheesecake et laisser prendre au frais pendant plusieurs heures."
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5418",
         "title": "Nutella Brioche",
