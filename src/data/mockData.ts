@@ -2,11 +2,76 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 05:57:40
- * Total: 242 recettes
+ * Dernière mise à jour: 12/05/2026 08:31:14
+ * Total: 243 recettes
  */
-export const exportSyncId = "1778565460873";
+export const exportSyncId = "1778574674101";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5418",
+        "title": "Nutella Brioche",
+        "description": "Une délicieuse brioche moelleuse fourrée au Nutella, parfaite pour le petit-déjeuner ou le goûter.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778574473366.jpg&v=1778581689000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7571452810961767688\" data-video-id=\"7571452810961767688\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7571452810961767688\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             100ml warm milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30g granulated sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3g instant dry yeast"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 large egg"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g all purpose flour + few extra tbsp if it's a bit sticky"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 tsp salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g unsalted butter, softened"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nutella for filling"
+            }
+        ],
+        "steps": [
+            "1. In a bowl, combine the milk, sugar, and yeast. Stir until the yeast dissolves, then add the egg and mix well.",
+            "2. Add the flour and salt, then mix until a shaggy dough forms.",
+            "3. Gradually knead in the softened butter until the dough becomes smooth and elastic (about 8-10 minutes by hand or 5-6 minutes using a stand mixer).",
+            "4. Place the dough in a lightly greased bowl, cover, and let it rise for about 1 hour, or until doubled in size.",
+            "5. Once risen, punch down the dough and divide it into 8 equal portions (about 58 g each) and shape each into a ball.",
+            "6. Roll out each ball into a rectangle. Spoon 1-2 tablespoons of Nutella onto the upper part of the dough, then fold it over to cover the filling.",
+            "7. Using a knife, cut the bottom half of the dough into thin strips, then wrap toward the top to form a braided effect.",
+            "8. Arrange the rolls on a lined baking pan, cover, and let them rise again for 30-45 minutes, or until puffy.",
+            "9. Brush the tops with egg wash, then bake in a preheated oven at 180°C (350°F) for 18-20 minutes, or until golden.",
+            "10. Once baked, brush the rolls with melted butter. Enjoy warm!"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5290",
         "title": "Melanzane ripiene",
