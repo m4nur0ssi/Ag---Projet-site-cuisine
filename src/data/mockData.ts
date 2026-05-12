@@ -2,11 +2,59 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/05/2026 14:57:15
- * Total: 257 recettes
+ * Dernière mise à jour: 12/05/2026 15:48:39
+ * Total: 258 recettes
  */
-export const exportSyncId = "1778597835182";
+export const exportSyncId = "1778600919727";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5463",
+        "title": "Crème brûlée à la pistache",
+        "description": "Pour tous les fans de pistache, cette crème brûlée est un incontournable ! N'hésitez plus, essayez cette recette simple et rapide, vous ne le regretterez pas. Un grand pâtissier l'a dit : l'essayer, c'est l'adopter !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-brulee-pistache-A1.jpg&v=1778607886000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7424555202889469217\" data-video-id=\"7424555202889469217\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7424555202889469217\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n 3 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 20 g de pâte de pistache"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 45 cl de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Cassonade (pour la finition)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n Pistaches concassées (pour la finition)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5460",
         "title": "CRÈMES CHOCOLAT 2 INGRÉDIENTS",
