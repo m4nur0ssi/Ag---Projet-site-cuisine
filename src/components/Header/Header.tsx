@@ -173,31 +173,33 @@ export default function Header({
                         <div className={styles.navActionsSide}>
                             <div className={`${styles.searchPillWrapper} ${scrolled ? styles.isExpanded : ''}`}>
                                 {!scrolled ? (
-                                    <button className={styles.pillBtnSearch} onClick={() => setIsSearchOpen(true)}>
-                                        Recherche
-                                    </button>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        {rightAction}
+                                        <button className={styles.pillBtnSearch} onClick={() => setIsSearchOpen(true)}>
+                                            Recherche
+                                        </button>
+                                    </div>
                                 ) : (
                                     <div className={styles.expandedUtils}>
-                                        {rightAction ? rightAction : (
-                                            <div className={styles.toolsGroup}>
-                                                <button 
-                                                    className={styles.toolBtn}
-                                                    onClick={() => setIsSearchOpen(true)}
-                                                >
-                                                    🔍
-                                                </button>
-                                                <Link href="/favorites" className={`${styles.toolBtn} ${favoriteCount > 0 ? styles.hasFavorite : ''}`}>
-                                                    {favoriteCount > 0 ? '❤️' : '🤍'}
-                                                    {favoriteCount > 0 && (
-                                                        <span className={styles.navFavBadge}>{favoriteCount}</span>
-                                                    )}
-                                                </Link>
-                                                <Link href="/shopping-list" className={styles.toolBtn}>
-                                                    🛒
-                                                </Link>
-                                                <ThemeToggle className={styles.themeToggleWrapper} />
-                                            </div>
-                                        )}
+                                        <div className={styles.toolsGroup}>
+                                            {rightAction}
+                                            <button
+                                                className={styles.toolBtn}
+                                                onClick={() => setIsSearchOpen(true)}
+                                            >
+                                                🔍
+                                            </button>
+                                            <Link href="/favorites" className={`${styles.toolBtn} ${favoriteCount > 0 ? styles.hasFavorite : ''}`}>
+                                                {favoriteCount > 0 ? '❤️' : '🤍'}
+                                                {favoriteCount > 0 && (
+                                                    <span className={styles.navFavBadge}>{favoriteCount}</span>
+                                                )}
+                                            </Link>
+                                            <Link href="/shopping-list" className={styles.toolBtn}>
+                                                🛒
+                                            </Link>
+                                            <ThemeToggle className={styles.themeToggleWrapper} />
+                                        </div>
                                     </div>
                                 )}
                             </div>

@@ -31,6 +31,8 @@
 .modalMode .metaItem {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.08);
+    flex-direction: column;
+    gap: 6px;
 }
 
 .modalMode .ingredientCard,
@@ -429,48 +431,59 @@
    ===================================================== */
 .metaStrip {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
-    gap: 12px;
-    padding: 0 40px;
+    padding: 0 20px;
     background: transparent;
-    max-width: 1200px;
     margin: 0 auto 30px auto;
     width: 100%;
+    box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
     .metaStrip {
-        padding: 0 20px;
-        gap: 8px;
+        padding: 0 16px;
     }
-}
-
-.metaItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    flex: 1;
-    min-height: 60px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .metaContent {
     display: flex;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+}
+
+.metaItem {
+    display: flex;
+    flex-direction: column;     /* label au-dessus, valeur en-dessous */
     align-items: center;
     justify-content: center;
+    gap: 6px;
+    padding: 20px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    flex: 1;                    /* partage la largeur totale */
+    min-height: 80px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.metaLabel {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1;
     text-align: center;
 }
 
 .metaValue {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: var(--color-text-primary);
     line-height: 1;
+    text-align: center;
 }
 
 .metaDivider {
@@ -1661,17 +1674,19 @@
     }
 
     .metaStrip {
-        padding: 0 15px;
-        gap: 8px;
-        justify-content: center;
+        padding: 0 12px;
         margin-bottom: 25px;
-        flex-wrap: wrap; /* Fallback for very small screens */
+    }
+
+    .metaContent {
+        gap: 8px;
     }
 
     .metaItem {
-        padding: 8px 12px;
-        gap: 8px;
+        padding: 16px 6px;
+        gap: 5px;
         border-radius: 16px;
+        min-height: 72px;
     }
 
     .metaIcon {
@@ -1679,11 +1694,12 @@
     }
 
     .metaLabel {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
+        letter-spacing: 1px;
     }
 
     .metaValue {
-        font-size: 0.8rem;
+        font-size: 1.1rem;
     }
 
     /* Floating Buttons Ingrédients */

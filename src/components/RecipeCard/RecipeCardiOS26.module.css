@@ -1,0 +1,662 @@
+/* ────────────────────────────────────────────────
+   RECIPE CARD iOS 26 — TikTok Portrait Style
+   ──────────────────────────────────────────────── */
+
+[data-theme='light'] .recipeContainer {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+
+.recipeContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Un peu moins sur grille */
+    width: 100%;
+    max-width: 240px;
+    align-items: center;
+    will-change: transform, opacity; /* Force GPU acceleration */
+}
+
+.recipeContainer.isGrid {
+    max-width: none;
+    width: 100%;
+}
+
+.titlePill {
+    width: 100%;
+    max-width: 240px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, 0.05); /* Look bouton */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px; /* Arrondi parfait */
+    z-index: 50;
+    cursor: pointer;
+    transition: all 0.4s var(--ios-easing);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.isGrid .titlePill {
+    height: 36px; /* Plus compact */
+    padding: 0 10px;
+    border-radius: 18px;
+    max-width: none;
+}
+
+
+[data-theme='light'] .titlePill {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='light'] .titlePill .titleText {
+    /* Keep gradients in light mode for consistency */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.titlePill .titleText {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 950;
+    margin: 0;
+    line-height: 1.1;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+}
+
+.card {
+    position: relative;
+    width: 240px;
+    height: 380px;
+    border-radius: 44px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.6);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    touch-action: pan-x pan-y;
+    cursor: pointer;
+    z-index: 10;
+}
+
+[data-theme='light'] .card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important; 
+    background: #ffffff !important;
+    border: none !important;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.08) 45%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.08) 55%,
+        transparent
+    );
+    z-index: 5;
+    transform: rotate(25deg);
+    transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.card:hover::after {
+    left: 100%;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 80px 150px -30px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.03);
+}
+
+.isGrid .card {
+    width: 100%;
+    height: 260px; /* Un peu plus compact pour fitter sur écran */
+    border-radius: 28px;
+}
+
+/* ── Titre intégré dans la photo (mode test) ──────────── */
+/* Pill frosted-glass positionnée en haut de la carte, même style que le titlePill flottant */
+.inCardTitleOverlay {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    right: 10px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
+    z-index: 20;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.inCardTitleText {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 950;
+    margin: 0;
+    line-height: 1.1;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    /* Le gradient est injecté via inline style depuis le composant (titleGradient par catégorie) */
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* recipeContainer sans pill flottant : on aligne la carte avec la TitleCard (qui a withOffset:52px) */
+.recipeContainer.inCardMode {
+    padding-top: 52px;
+}
+
+/* Cœur repositionné en bas à droite quand titre est dans la carte */
+.bottomRightHeart {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 50;
+    pointer-events: auto;
+}
+
+.videoInCard {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: black;
+}
+
+.iframeInCard {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.visualContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.imageWrapper,
+.videoWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.image {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .image {
+    transform: scale(1.06);
+}
+
+.placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1c1c1e 0%, #000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholderIcon {
+    font-size: 80px;
+    opacity: 0.3;
+}
+
+.closeVideoInCard {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 101;
+    font-size: 14px;
+}
+
+/* ── Bouton Play TikTok Centré ────────────────── */
+.playCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: auto;
+}
+
+.playCenter:hover .playCircle {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.playCenter:active .playCircle {
+    transform: scale(0.95);
+}
+
+.playCircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Bouton Fermer vidéo ─────────────────────── */
+/* Removed old closeVideoBtn */
+
+.swipeHint {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-weight: 500;
+    pointer-events: none;
+    animation: bounce 2s infinite;
+    z-index: 3100;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* ── Gradient overlay bas (Neutralized) ── */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15%; 
+    background: transparent;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.topRightHeart {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 50;
+    pointer-events: auto;
+}
+
+.topLeftFlag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 50;
+    font-size: 1.45rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.45));
+    pointer-events: none;
+    user-select: none;
+}
+
+.minimalistHeart {
+    color: rgba(255, 255, 255, 0.95) !important;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+    -webkit-filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+[data-theme='light'] .minimalistHeart {
+    color: #4b5563 !important;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.topCenterActions {
+    display: none !important; /* Removed as requested */
+}
+
+.actionWell {
+    display: flex;
+    flex-direction: row; /* Horizontal pill as requested */
+    align-items: center;
+    justify-content: center;
+    gap: 22px; /* Premium spacing between floating icons */
+    padding: 8px 24px;
+    background: rgba(255, 255, 255, 0.08); /* Minimalist glass pill */
+    backdrop-filter: blur(25px) saturate(1.8);
+    -webkit-backdrop-filter: blur(25px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px; /* Perfect pill shape */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    pointer-events: auto; /* Re-enable clicks for buttons */
+}
+
+[data-theme='light'] .actionWell {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.premiumActionBtn {
+    width: 28px !important;
+    height: 28px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 !important; /* Minimalist icon-only look */
+    color: white !important;
+    background: transparent !important; /* Force transparent as requested */
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0 !important;
+}
+
+[data-theme='light'] .premiumActionBtn {
+    color: #4b5563 !important;
+}
+
+.premiumActionBtn:hover {
+    transform: scale(1.25);
+}
+
+.premiumActionBtn:active {
+    transform: scale(0.9);
+}
+
+.hashtagContainer {
+    display: none !important; /* Removed as requested */
+}
+
+.tagBadge {
+    padding: 6px 14px;
+    border-radius: 20px; /* Forme pilule parfaite */
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    max-width: calc(100% - 10px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Touche premium */
+}
+
+/* ── Gradient overlay haut (Neutralized) ── */
+.topOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* ── Titre centré en haut ───────────────────── */
+.topCenteredTitle {
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    right: 20px;
+    z-index: 15;
+    text-align: center;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.unifiedActionWell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 40px;
+    padding: 6px 0;
+    gap: 20px;
+    box-shadow: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme='light'] .unifiedActionWell {
+    background: transparent;
+    border-color: transparent;
+}
+
+.transparentWell {
+    background: transparent !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+.miniAction {
+    color: #1c1c1e !important;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.miniAction:active { transform: scale(0.8); }
+
+.largeWell {
+    padding: 14px 34px;
+    gap: 32px;
+}
+
+/* ────────────────────────────────────────────────
+   Top Badges (Mirroring Bottom Actions)
+   ──────────────────────────────────────────────── */
+.subHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.topBadgeBubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    padding: 0 14px;
+    transition: all 0.4s ease;
+}
+
+[data-theme='light'] .topBadgeBubble {
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.small .topBadgeBubble {
+    padding: 4px 12px;
+    gap: 8px;
+}
+
+.flagBadge {
+    font-size: 40px; /* Even bigger as requested */
+    display: flex;
+    align-items: center;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.timeBadge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 950; /* Extra bold */
+    font-size: 20px; /* Bigger */
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+[data-theme='light'] .timeBadge {
+    color: #000;
+    text-shadow: none;
+}
+
+.small .flagBadge { font-size: 16px; }
+.small .timeBadge { font-size: 11px; }
+
+.timeIcon {
+    opacity: 0.8;
+}
+
+.title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px; /* Big impact as requested */
+    font-weight: 950;
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -1.5px;
+    text-transform: capitalize;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+    max-width: 95%;
+    transition: all 0.4s ease;
+}
+
+[data-theme='light'] .title {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* ── Mode Small (Carrousel) ─────────────────── */
+.small {
+    width: 240px;
+    height: 380px;
+    border-radius: 34px;
+}
+
+.small + .titlePill .titleText {
+    font-size: 0.9rem;
+    padding: 4px 16px;
+}
+
+.small .roundBadge {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.small .unifiedActionWell {
+    padding: 6px 14px;
+    gap: 14px;
+}
+
+.small .miniAction {
+    font-size: 16px !important;
+}
+
+.small .tagBadge {
+    font-size: 0.65rem;
+    padding: 4px 10px;
+}
+
+/* ────────────────────────────────────────────────
+   Responsive mobile ─────────────────────────
+   ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .card {
+        border-radius: 32px;
+    }
+
+    .titlePill .titleText {
+        font-size: 1rem;
+    }
+
+    .roundBadge {
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+    }
+
+    .unifiedActionWell {
+        padding: 5px 12px;
+        gap: 12px;
+    }
+
+    .miniAction {
+        font-size: 14px !important;
+    }
+}
