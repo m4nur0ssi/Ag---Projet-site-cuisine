@@ -2,11 +2,79 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/05/2026 13:46:50
- * Total: 264 recettes
+ * Dernière mise à jour: 13/05/2026 20:25:15
+ * Total: 265 recettes
  */
-export const exportSyncId = "1778680010798";
+export const exportSyncId = "1778703915169";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5514",
+        "title": "Tiramisu",
+        "description": "Recette de tiramisu maison avec un biscuit fait maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778703686809.jpg&v=1778710901000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463909495878569238\" data-video-id=\"7463909495878569238\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463909495878569238\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             500g de Mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             6 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100g de cacao en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tasses à café"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café d'Amaretto"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             180g de blancs d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             150g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             120g de jaune d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             150g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40g de sucre glace"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5511",
         "title": "Riz Jollof",
