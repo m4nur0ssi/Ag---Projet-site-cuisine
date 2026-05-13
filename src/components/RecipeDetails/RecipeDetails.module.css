@@ -976,16 +976,16 @@
     position: relative;
     width: 80px;
     height: 80px;
-    border-radius: 50%; /* Cercle parfait */
-    background: rgba(255, 255, 255, 0.08); /* Fond gris subtil (clair sur sombre) */
-    border: none !important; /* Pas de cadre blanc */
+    border-radius: 22px;
+    background: #ffffff;
+    border: none !important;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     overflow: hidden;
     transition: all 0.4s var(--liquid-easing);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .ingredientCard:hover .ingIconWrap {
@@ -1000,10 +1000,10 @@
 }
 
 .ingImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+    width: 88%;
+    height: 88%;
+    object-fit: contain;
+    object-position: center;
 }
 
 /* Overlay checkmark */
@@ -1655,9 +1655,10 @@
     .ingIconWrap {
         width: 60px;
         height: 60px;
-        border-radius: 50%; /* Cercle sur mobile aussi */
+        border-radius: 16px;
         border: none !important;
-        background: rgba(255, 255, 255, 0.12); /* Gris légèrement plus prononcé sur mobile */
+        background: #ffffff;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.12);
     }
 
     .ingEmoji {
@@ -1842,11 +1843,16 @@
     stroke: #ef4444 !important;
 }
 
-:global([data-theme='light']) .ingredientCard, 
+:global([data-theme='light']) .ingredientCard,
 :global([data-theme='light']) .stepCard {
     background: #ffffff !important;
     border-color: rgba(0, 0, 0, 0.15) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+:global([data-theme='light']) .ingIconWrap {
+    background: #f2f2f7 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
 }
 
 :global([data-theme='light']) .tabsBar {
