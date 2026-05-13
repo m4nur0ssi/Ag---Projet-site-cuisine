@@ -8,12 +8,12 @@
     max-width: 1240px;
     margin: 0 auto;
     padding: 0;
-    padding-top: 360px;
+    /* padding-top géré dynamiquement en inline style */
 }
 
 @media (max-width: 768px) {
     .main {
-        padding-top: 300px;
+        /* padding-top géré dynamiquement en inline style */
     }
 }
 
@@ -29,7 +29,7 @@
 }
 
 .stickyHeaderMenu {
-    position: fixed !important;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -484,4 +484,23 @@
     padding: 16px 36px;
     cursor: pointer;
     box-shadow: var(--shadow-premium);
+}
+
+.sectionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.resultsWrapper {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.noRecipes {
+    color: var(--color-text-tertiary);
+    font-size: 18px;
+    text-align: center;
+    padding: 80px 20px;
+    font-weight: 600;
 }

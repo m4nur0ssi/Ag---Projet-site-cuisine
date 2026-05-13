@@ -130,14 +130,16 @@ export default function RecipeSheet({ recipe, isOpen, onClose }: RecipeSheetProp
                                 <div className={styles.dragHandle} style={{ position: 'relative', top: 0 }} />
                             </div>
 
-                            <div 
+                            {/* Croix fixe — hors du scrollArea pour rester cliquable */}
+                            <button className={styles.closeBtn} onClick={onClose}>✕</button>
+
+                            <div
                                 className={styles.scrollArea}
                                 ref={scrollRef}
                                 onTouchStart={handleTouchStart}
                                 onTouchEnd={handleTouchEnd}
-                                style={{ paddingTop: '30px' }} // Laisse la place pour le drag handle
+                                style={{ paddingTop: '30px' }}
                             >
-                                <button className={styles.closeBtn} onClick={onClose} style={{ top: '10px' }}>✕</button>
                                 <RecipeDetails recipe={recipe} isModal={true} />
                             </div>
                         </motion.div>

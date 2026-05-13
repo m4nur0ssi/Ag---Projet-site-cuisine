@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import Header from '../components/Header/Header';
 import RecipeCarousel from '../components/RecipeCarousel/RecipeCarousel';
 import RecipeGrid from '../components/RecipeGrid/RecipeGrid';
+import RecipeSheet from '../components/RecipeSheet/RecipeSheet';
 import dynamic from 'next/dynamic';
 const MagicFilterBar = dynamic(() => import('../components/MagicFilterBar/MagicFilterBar'), { ssr: false });
 import { useRouter } from 'next/navigation';
@@ -13,11 +14,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import styles from './page.module.css';
 
 export default function Home() {
+    const router = useRouter();
     const [scrolled, setScrolled] = useState(false);
     const [activeFilters, setActiveFilters] = useState<{tag: string, group: string}[]>([]);
     const activeTags = useMemo(() => activeFilters.map(f => f.tag), [activeFilters]);
     const [touchStart, setTouchStart] = useState<number>(0);
     const [touchEnd, setTouchEnd] = useState<number>(0);
+    const [randomRecipe, setRandomRecipe] = useState<any>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,6 +28,16 @@ export default function Home() {
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Listener pour reset depuis le header (clic sur titre)
+    useEffect(() => {
+        const handleReset = () => {
+            setActiveFilters([]);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        window.addEventListener('magic-reset-filters', handleReset);
+        return () => window.removeEventListener('magic-reset-filters', handleReset);
     }, []);
 
     const handleTagSelect = (tag: string, groupId?: string) => {
@@ -49,47 +62,50 @@ export default function Home() {
     };
 
     const handleCarouselTitleClick = (title: string) => {
-        // Strip emojis but KEEP accents (very important for French labels mapping)
         const cleanTitle = title.replace(/[^\w\sàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ]/g, '').toLowerCase().trim();
-        
+
+        // Mapping titre → tag (doit correspondre EXACTEMENT aux tags MagicFilterBar)
         const mapping: Record<string, string> = {
+            // Thématiques
             'thématiques du moment': 'thématiques',
             'thématiques': 'thématiques',
+            // Nouveautés (pas dans MagicFilterBar → trend générique)
             'les nouveautés': 'nouveautés',
-            'spécial pâques': 'pâques',
-            'paques': 'pâques',
-            'pâques': 'pâques',
-            'pâques est là': 'pâques',
-            'paques est la': 'pâques',
-            'simplissime': 'simplissime',
+            'nouveautés': 'nouveautés',
+            // Catégories
             'apéro gourmand': 'aperitifs',
+            'apéritifs': 'aperitifs',
             'entrées fraîches': 'entrees',
+            'entrées': 'entrees',
             'plats de chef': 'plats',
+            'plats': 'plats',
             'douceurs sucrées': 'desserts',
+            'desserts': 'desserts',
             'atelier de pâtisserie': 'patisserie',
             'atelier pâtisserie': 'patisserie',
             'pâtisserie': 'patisserie',
+            'pâtisseries': 'patisserie',
+            'accompagnements': 'accompagnements',
             'comme au resto': 'restaurant',
             'green healthy': 'vegetarien',
+            // Tendances — tags en minuscules (normalisés avec MagicFilterBar)
             'la dolce vita': 'italie',
-            // Avec apostrophe (version brute)
-            'c\'est noël': 'Noël',
-            'noël': 'Noël',
-            'noel': 'Noël',
-            // Sans apostrophe (après nettoyage regex)
-            'cest noël': 'Noël',
-            'cest noel': 'Noël',
-            'spécial noël': 'Noël',
-            'special noel': 'Noël',
-            // Été / Hiver
-            'voilà l\'été': 'voila-lete',
+            'dolce vita': 'italie',
+            'cest noël': 'noël',
+            'noël': 'noël',
+            'noel': 'noël',
+            'cest noel': 'noël',
+            'spécial noël': 'noël',
+            'pâques est là': 'pâques',
+            'paques est la': 'pâques',
+            'spécial pâques': 'pâques',
+            'pâques': 'pâques',
+            'paques': 'pâques',
+            'simplissime': 'simplissime',
             'voila lete': 'voila-lete',
             'voilà lete': 'voila-lete',
-            'c\'est l\'hiver': 'cest-lhiver',
             'cest lhiver': 'cest-lhiver',
-            'cest lhiver ': 'cest-lhiver',
-            // Autres
-            'astuces': 'Astuces',
+            'astuces': 'astuces',
             'les glaces': 'glaces',
             'glaces': 'glaces',
             'rafraîchissements': 'boissons',
@@ -105,17 +121,33 @@ export default function Home() {
             'famille': 'famille',
             'familial': 'famille',
             'végé': 'vegetarien',
-            'vege': 'vegetarien'
+            'vege': 'vegetarien',
         };
 
         const tag = mapping[cleanTitle] || cleanTitle;
-        handleTagSelect(tag);
+
+        // Grouper le tag correctement
+        const lowerTag = tag.toLowerCase();
+        const categoriesIds = ['aperitifs', 'entrees', 'plats', 'vegetarien', 'desserts', 'patisserie', 'restaurant', 'apéro', 'entrée', 'accompagnements'];
+        const countriesIds = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'asie', 'afrique'];
+        let groupId = 'trends';
+        if (categoriesIds.some(c => lowerTag.includes(c))) groupId = 'categories';
+        else if (countriesIds.some(c => lowerTag.includes(c))) groupId = 'countries';
+
+        // REMPLACER tous les filtres (ne pas empiler)
+        setActiveFilters([{ tag, group: groupId }]);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const clearAllFilters = () => {
+    const clearAllFilters = useCallback(() => {
         setActiveFilters([]);
-    };
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
+
+    const handleRandomRecipe = useCallback(() => {
+        const recipe = mockRecipes[Math.floor(Math.random() * mockRecipes.length)];
+        setRandomRecipe(recipe);
+    }, []);
 
     const handleTouchStart = (e: React.TouchEvent) => {
         setTouchStart(e.targetTouches[0].clientX);
@@ -194,10 +226,15 @@ export default function Home() {
                     return hasCheap && !hasExpensive && !['desserts', 'patisserie', 'glaces', 'boissons', 'sauces'].includes(recipeCat);
                 }
 
-                // 7. SAUCES (Que des sauces)
+                // 7. SAUCES (strictement les sauces — pas les plats avec sauce)
                 if (tagLower === 'sauces' || tagLower === 'sauce') {
-                    return recipeCat === 'sauces' || recipeTags.some(t => t.toLowerCase() === 'sauces' || t.toLowerCase() === 'sauce') ||
-                           ['sauce', 'pesto', 'mayo', 'ketchup', 'vinaigrette', 'béarnaise', 'tzatziki', 'guacamole', 'kebab'].some(k => titleLower.includes(k));
+                    if (recipeCat === 'sauces') return true;
+                    if (recipeTags.some(t => t.toLowerCase() === 'sauce' || t.toLowerCase() === 'sauces')) return true;
+                    // Titre qui commence par "sauce" ou est une sauce nommée
+                    const pureStauces = ['pesto', 'mayo', 'mayonnaise', 'ketchup', 'vinaigrette', 'béarnaise', 'hollandaise', 'tzatziki', 'guacamole', 'aïoli', 'tapenade', 'chimichurri', 'rémoulade', 'beurre blanc'];
+                    if (pureStauces.some(k => titleLower.includes(k))) return true;
+                    if (titleLower.startsWith('sauce ') || titleLower === 'sauce') return true;
+                    return false;
                 }
 
                 // 8. HEALTHY (Différent de végétarien)
@@ -226,6 +263,13 @@ export default function Home() {
                 if (tagLower === 'barbecue' || tagLower === 'bbq') {
                     if (recipeTags.some(t => t.toLowerCase() === 'barbecue' || t.toLowerCase() === 'bbq') || titleLower.includes('barbecue') || titleLower.includes('bbq')) return true;
                     return fullText.includes('barbecue') || fullText.includes('bbq') || fullText.includes('grill') || fullText.includes('plancha');
+                }
+
+                // ASTUCES
+                if (tagLower === 'astuces' || tagLower === 'astuce') {
+                    return recipeTags.some(t => t.toLowerCase() === 'astuce' || t.toLowerCase() === 'astuces') ||
+                           recipeCat === 'astuces' ||
+                           titleLower.includes('astuce');
                 }
 
                 if (tagLower === 'noël' || tagLower === 'noel') {
@@ -284,6 +328,16 @@ export default function Home() {
                 if (tagLower === 'entrees') {
                     return recipeCat === 'entrees' || recipeCat === 'entrée' || recipeTags.includes('entrée') ||
                            ['salade', 'soupe', 'velouté', 'carpaccio', 'entrée'].some(k => titleLower.includes(k));
+                }
+
+                if (tagLower === 'accompagnements' || tagLower === 'accompagnement') {
+                    if (recipeCat === 'accompagnements' || recipeCat === 'accompagnement' ||
+                        recipeTags.some(t => t.includes('accompagnement'))) return true;
+                    // Même logique que categorizedRecipes : légume/féculent sans viande
+                    const meatKeywords = ['poulet', 'bœuf', 'boeuf', 'porc', 'veau', 'agneau', 'canard', 'dinde', 'saucisse', 'chorizo', 'lardon', 'jambon', 'poisson', 'saumon', 'thon', 'crevette', 'canard'];
+                    const hasMeat = meatKeywords.some(m => fullText.includes(m));
+                    const accompKeywords = ['purée', 'frites', 'potatoes', 'légume', 'riz', 'pâtes', 'pomme de terre', 'patate', 'gratin', 'poêlée', 'ratatouille'];
+                    return accompKeywords.some(k => titleLower.includes(k)) && !hasMeat;
                 }
 
                 if (tagLower === 'nouveautés' || tagLower === 'nouveauté') {
@@ -461,10 +515,115 @@ export default function Home() {
 
     const thematicThemes = [
         {
+            id: 'theme-airfryer',
+            title: "Airfryer",
+            description: 'La cuisine croustillante et saine.',
+            image: '/images/themes/airfryer.png',
+            category: 'plats',
+            tags: ['airfryer'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 5,
+            cookTime: 15,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-barbecue',
+            title: "Barbecue",
+            description: 'Le goût authentique de la braise.',
+            image: '/images/themes/barbecue.png',
+            category: 'plats',
+            tags: ['barbecue'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 10,
+            cookTime: 20,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-healthy',
+            title: "Healthy",
+            description: 'Manger bien, se sentir bien.',
+            image: '/images/themes/healthy.png',
+            category: 'vegetarien',
+            tags: ['healthy'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 10,
+            cookTime: 10,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-pas-cher',
+            title: "Pas Cher",
+            description: 'Cuisiner malin à petit prix.',
+            image: '/images/themes/pas-cher.png',
+            category: 'plats',
+            tags: ['pas cher'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 10,
+            cookTime: 15,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-express',
+            title: "Express",
+            description: "Prêt en un clin d'œil.",
+            image: '/images/themes/express.png',
+            category: 'plats',
+            tags: ['express'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 5,
+            cookTime: 5,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-famille',
+            title: "Famille",
+            description: 'Pour les grandes tablées.',
+            image: '/images/themes/famille.png',
+            category: 'plats',
+            tags: ['famille'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 15,
+            cookTime: 30,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-vege',
+            title: "Végé",
+            description: "Le végétal à l'honneur.",
+            image: '/images/themes/vegetarien.png',
+            category: 'vegetarien',
+            tags: ['vegetarien'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 15,
+            cookTime: 20,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
             id: 'theme-easter-2024',
             title: 'Pâques est là',
-            description: 'Un délicieux plat d\'agneau Pascal.',
-            image: 'images/themes/paques.jpg',
+            description: "Un délicieux plat d'agneau Pascal.",
+            image: '/images/themes/paques.jpg',
             category: 'plats',
             tags: ['Pâques'],
             isFavorite: false,
@@ -477,9 +636,9 @@ export default function Home() {
         },
         {
             id: 'theme-xmas-2024',
-            title: 'C\'est Noël',
+            title: "C'est Noël",
             description: 'La magie des fêtes dans votre assiette.',
-            image: 'images/themes/noel.jpg',
+            image: '/images/themes/noel.jpg',
             category: 'plats',
             tags: ['Noël'],
             isFavorite: false,
@@ -494,7 +653,7 @@ export default function Home() {
             id: 'theme-glaces',
             title: 'Les Glaces',
             description: 'Une sélection de sorbets et glaces artisanales.',
-            image: 'images/themes/glaces.jpg',
+            image: '/images/themes/glaces.jpg',
             category: 'desserts',
             tags: ['glaces'],
             isFavorite: false,
@@ -509,7 +668,7 @@ export default function Home() {
             id: 'theme-refresh',
             title: 'Rafraîchissements',
             description: 'Des boissons fraîches pour tous les goûts.',
-            image: 'images/themes/rafraichissements.jpg',
+            image: '/images/themes/rafraichissements.jpg',
             category: 'boissons',
             tags: ['boissons'],
             isFavorite: false,
@@ -524,7 +683,7 @@ export default function Home() {
             id: 'theme-simplissime',
             title: 'Simplissime',
             description: 'Mini poivrons farcis à la grecque.',
-            image: 'images/themes/simplissime.jpg',
+            image: '/images/themes/simplissime.jpg',
             category: 'aperitifs',
             tags: ['simplissime'],
             isFavorite: false,
@@ -539,7 +698,7 @@ export default function Home() {
             id: 'theme-dolce-vita',
             title: 'La Dolce Vita',
             description: 'Boulettes de viandes ultra gourmandes.',
-            image: 'images/themes/dolce-vita.jpg',
+            image: '/images/themes/dolce-vita.jpg',
             category: 'plats',
             tags: ['italie'],
             isFavorite: false,
@@ -554,7 +713,7 @@ export default function Home() {
             id: 'theme-voila-lete',
             title: "Voilà l'Été ☀️",
             description: 'Les meilleures recettes estivales.',
-            image: 'images/themes/voila-lete.jpg',
+            image: '/images/themes/voila-lete.jpg',
             category: 'plats',
             tags: ['voila-lete'],
             isFavorite: false,
@@ -569,7 +728,7 @@ export default function Home() {
             id: 'theme-cest-lhiver',
             title: "C'est l'Hiver ❄️",
             description: 'Recettes chaleureuses pour les jours froids.',
-            image: 'images/themes/cest-lhiver.jpg',
+            image: '/images/themes/cest-lhiver.jpg',
             category: 'plats',
             tags: ['cest-lhiver'],
             isFavorite: false,
@@ -584,7 +743,7 @@ export default function Home() {
             id: 'theme-astuces',
             title: "Astuces 💡",
             description: 'Les petits secrets qui changent tout.',
-            image: 'images/themes/astuces.jpg',
+            image: '/images/themes/astuces.jpg',
             category: 'autres',
             tags: ['Astuces'],
             isFavorite: false,
@@ -598,8 +757,8 @@ export default function Home() {
         {
             id: 'theme-sauces',
             title: "Sauces",
-            description: '',
-            image: 'images/themes/sauces.png',
+            description: 'Les meilleures sauces maison.',
+            image: '/images/themes/sauces.png',
             category: 'sauces',
             tags: ['sauces'],
             isFavorite: false,
@@ -609,113 +768,25 @@ export default function Home() {
             servings: 4,
             ingredients: [],
             steps: []
-        },
-        {
-            id: 'theme-healthy',
-            title: "Healthy",
-            description: '',
-            image: 'images/themes/healthy.png',
-            category: 'vegetarien',
-            tags: ['healthy'],
-            isFavorite: false,
-            difficulty: 'facile',
-            prepTime: 10,
-            cookTime: 10,
-            servings: 4,
-            ingredients: [],
-            steps: []
-        },
-        {
-            id: 'theme-airfryer',
-            title: "Airfryer",
-            description: '',
-            image: 'images/themes/airfryer.png',
-            category: 'plats',
-            tags: ['airfryer'],
-            isFavorite: false,
-            difficulty: 'facile',
-            prepTime: 5,
-            cookTime: 15,
-            servings: 4,
-            ingredients: [],
-            steps: []
-        },
-        {
-            id: 'theme-barbecue',
-            title: "Barbecue",
-            description: '',
-            image: 'images/themes/barbecue.png',
-            category: 'plats',
-            tags: ['barbecue'],
-            isFavorite: false,
-            difficulty: 'facile',
-            prepTime: 10,
-            cookTime: 20,
-            servings: 4,
-            ingredients: [],
-            steps: []
-        },
-        {
-            id: 'theme-pas-cher',
-            title: "Pas Cher",
-            description: '',
-            image: 'images/themes/pas-cher.png',
-            category: 'plats',
-            tags: ['pas cher'],
-            isFavorite: false,
-            difficulty: 'facile',
-            prepTime: 10,
-            cookTime: 15,
-            servings: 4,
-            ingredients: [],
-            steps: []
-        },
-        {
-            id: 'theme-express',
-            title: "Express",
-            description: '',
-            image: 'images/themes/express.png',
-            category: 'plats',
-            tags: ['express'],
-            isFavorite: false,
-            difficulty: 'facile',
-            prepTime: 5,
-            cookTime: 5,
-            servings: 4,
-            ingredients: [],
-            steps: []
-        },
-        {
-            id: 'theme-famille',
-            title: "Famille",
-            description: '',
-            image: 'images/themes/famille.png',
-            category: 'plats',
-            tags: ['famille'],
-            isFavorite: false,
-            difficulty: 'facile',
-            prepTime: 15,
-            cookTime: 30,
-            servings: 4,
-            ingredients: [],
-            steps: []
-        },
-        {
-            id: 'theme-vege',
-            title: "Végé",
-            description: '',
-            image: 'images/themes/vegetarien.png',
-            category: 'vegetarien',
-            tags: ['vegetarien'],
-            isFavorite: false,
-            difficulty: 'facile',
-            prepTime: 15,
-            cookTime: 20,
-            servings: 4,
-            ingredients: [],
-            steps: []
         }
     ];
+
+    const randomBtn = (
+        <button
+            onClick={handleRandomRecipe}
+            title="Recette aléatoire"
+            style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                fontSize: '1.5rem', lineHeight: 1, padding: '4px 8px',
+                filter: 'drop-shadow(0 0 6px rgba(16,185,129,0.6))',
+                transition: 'transform 0.3s ease',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.transform = 'rotate(20deg) scale(1.2)')}
+            onMouseLeave={e => (e.currentTarget.style.transform = '')}
+        >
+            🍀
+        </button>
+    );
 
     return (
         <div className={styles.page}>
@@ -723,16 +794,28 @@ export default function Home() {
                 <Header
                     title={activeFiltersLabel}
                     large={!scrolled}
+                    rightAction={randomBtn}
                 />
                 <MagicFilterBar
                     activeTags={activeTags}
                     onSelect={handleTagSelect}
+                    onClear={activeTags.length > 0 ? clearAllFilters : undefined}
                     isHome={true}
                 />
             </div>
 
-            <main 
+            {/* Recette aléatoire */}
+            {randomRecipe && (
+                <RecipeSheet
+                    recipe={randomRecipe}
+                    isOpen={true}
+                    onClose={() => setRandomRecipe(null)}
+                />
+            )}
+
+            <main
                 className={styles.main}
+                style={{ paddingTop: scrolled ? '120px' : '420px', transition: 'padding-top 0.5s cubic-bezier(0.16,1,0.3,1)' }}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -762,9 +845,12 @@ export default function Home() {
                         {activeTags.length === 0 && (
                             <>
                                 <RecipeCarousel
-                                    recipes={thematicThemes as any}
+                                    recipes={[
+                                        { id: 't-main', title: 'Thématiques', image: '/images/categories/thematiques.jpg', tags: ['thématiques'] } as any,
+                                        ...thematicThemes
+                                    ]}
                                     title="Thématiques du Moment"
-                                    size="large"
+                                    compact={true}
                                     onTitleClick={handleCarouselTitleClick}
                                     onCardClick={(recipe) => handleCarouselTitleClick(recipe.title)}
                                 />
@@ -776,56 +862,54 @@ export default function Home() {
                                     onTitleClick={handleCarouselTitleClick}
                                 />
 
-                                <div className={styles.sectionsContainer}>
-                                    {categorizedRecipes['aperitifs']?.length > 0 && (
-                                        <RecipeCarousel
-                                            recipes={categorizedRecipes['aperitifs']}
-                                            title="Apéritifs"
-                                            size="small"
-                                            onTitleClick={handleCarouselTitleClick}
-                                        />
-                                    )}
-                                    {categorizedRecipes['entrees']?.length > 0 && (
-                                        <RecipeCarousel
-                                            recipes={categorizedRecipes['entrees']}
-                                            title="Entrées"
-                                            size="small"
-                                            onTitleClick={handleCarouselTitleClick}
-                                        />
-                                    )}
-                                    {categorizedRecipes['plats']?.length > 0 && (
-                                        <RecipeCarousel
-                                            recipes={categorizedRecipes['plats']}
-                                            title="Plats"
-                                            size="small"
-                                            onTitleClick={handleCarouselTitleClick}
-                                        />
-                                    )}
-                                    {categorizedRecipes['accompagnements']?.length > 0 && (
-                                        <RecipeCarousel
-                                            recipes={categorizedRecipes['accompagnements']}
-                                            title="Accompagnements"
-                                            size="small"
-                                            onTitleClick={handleCarouselTitleClick}
-                                        />
-                                    )}
-                                    {categorizedRecipes['desserts']?.length > 0 && (
-                                        <RecipeCarousel
-                                            recipes={categorizedRecipes['desserts']}
-                                            title="Desserts"
-                                            size="small"
-                                            onTitleClick={handleCarouselTitleClick}
-                                        />
-                                    )}
-                                    {categorizedRecipes['patisseries']?.length > 0 && (
-                                        <RecipeCarousel
-                                            recipes={categorizedRecipes['patisseries']}
-                                            title="Pâtisseries"
-                                            size="small"
-                                            onTitleClick={handleCarouselTitleClick}
-                                        />
-                                    )}
-                                </div>
+                                {categorizedRecipes['aperitifs']?.length > 0 && (
+                                    <RecipeCarousel
+                                        recipes={categorizedRecipes['aperitifs']}
+                                        title="Apéritifs"
+                                        size="small"
+                                        onTitleClick={handleCarouselTitleClick}
+                                    />
+                                )}
+                                {categorizedRecipes['entrees']?.length > 0 && (
+                                    <RecipeCarousel
+                                        recipes={categorizedRecipes['entrees']}
+                                        title="Entrées"
+                                        size="small"
+                                        onTitleClick={handleCarouselTitleClick}
+                                    />
+                                )}
+                                {categorizedRecipes['plats']?.length > 0 && (
+                                    <RecipeCarousel
+                                        recipes={categorizedRecipes['plats']}
+                                        title="Plats"
+                                        size="small"
+                                        onTitleClick={handleCarouselTitleClick}
+                                    />
+                                )}
+                                {categorizedRecipes['accompagnements']?.length > 0 && (
+                                    <RecipeCarousel
+                                        recipes={categorizedRecipes['accompagnements']}
+                                        title="Accompagnements"
+                                        size="small"
+                                        onTitleClick={handleCarouselTitleClick}
+                                    />
+                                )}
+                                {categorizedRecipes['desserts']?.length > 0 && (
+                                    <RecipeCarousel
+                                        recipes={categorizedRecipes['desserts']}
+                                        title="Desserts"
+                                        size="small"
+                                        onTitleClick={handleCarouselTitleClick}
+                                    />
+                                )}
+                                {categorizedRecipes['patisseries']?.length > 0 && (
+                                    <RecipeCarousel
+                                        recipes={categorizedRecipes['patisseries']}
+                                        title="Pâtisseries"
+                                        size="small"
+                                        onTitleClick={handleCarouselTitleClick}
+                                    />
+                                )}
                             </>
                         )}
 

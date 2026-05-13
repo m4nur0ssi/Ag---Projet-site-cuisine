@@ -6,7 +6,7 @@ import { Recipe } from '@/types';
 import { decodeHtml } from '@/lib/utils';
 import dynamic from 'next/dynamic';
 import Portal from '@/components/Portal';
-import styles from './RecipeCard.module.css';
+import styles from './RecipeCardiOS26.module.css';
 
 const RecipeSheet = dynamic(() => import('@/components/RecipeSheet/RecipeSheet'), { ssr: false });
 const FavoriteButton = dynamic(() => import('@/components/FavoriteButton/FavoriteButton'), { ssr: false });
@@ -27,11 +27,12 @@ interface RecipeCardiOS26Props {
     onSheetClose?: () => void;
     customGradient?: string;
     customOnClick?: () => void;
+    inCardTitle?: boolean; // Test : titre intégré dans la photo
 }
 
-export default function RecipeCardiOS26({ 
-    recipe, 
-    onPlayToggle, 
+export default function RecipeCardiOS26({
+    recipe,
+    onPlayToggle,
     size = 'large',
     isGrid = false,
     isFavoritesPage = false,
@@ -42,7 +43,8 @@ export default function RecipeCardiOS26({
     onSheetOpen,
     onSheetClose,
     customGradient,
-    customOnClick
+    customOnClick,
+    inCardTitle = false,
 }: RecipeCardiOS26Props) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -145,17 +147,17 @@ export default function RecipeCardiOS26({
     const isThematicCard = recipe.id?.startsWith('theme-');
 
     return (
-        <div className={`${styles.recipeContainer} ${isGrid ? styles.isGrid : ''}`}>
-            {/* 1. Floating Title Pill ABOVE the card */}
-            {!hideTitle && !isThematicCard && (
-                <motion.div 
+        <div className={`${styles.recipeContainer} ${isGrid ? styles.isGrid : ''} ${inCardTitle ? styles.inCardMode : ''}`}>
+            {/* 1. Floating Title Pill ABOVE the card (mode normal) */}
+            {!hideTitle && !isThematicCard && !inCardTitle && (
+                <motion.div
                     className={styles.titlePill}
                     whileHover={{ scale: 1.05 }}
                     onClick={handleOpenDetail}
                 >
-                    <h3 
+                    <h3
                         className={styles.titleText}
-                        style={{ 
+                        style={{
                             backgroundImage: titleGradient,
                             WebkitBackgroundClip: 'text',
                             backgroundClip: 'text',
@@ -175,14 +177,9 @@ export default function RecipeCardiOS26({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 onClick={() => {
-                    if (customOnClick) {
-                        customOnClick();
-                        return;
-                    }
+                    if (customOnClick) { customOnClick(); return; }
                     if (onCloseSplash) onCloseSplash();
-                    if (typeof navigator !== 'undefined' && navigator.vibrate) {
-                        navigator.vibrate(10);
-                    }
+                    if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(10);
                     onSheetOpen?.();
                     setIsSheetOpen(true);
                 }}
@@ -195,17 +192,42 @@ export default function RecipeCardiOS26({
                             src={recipe.image}
                             alt={recipe.title}
                             fill
-                            style={{ objectFit: 'cover' }}
+                            style={{
+                                objectFit: 'cover',
+                                // Cartes thématiques en grille : montrer le haut de l'image
+                                // pour que la barre de titre (baked-in) soit visible et non tronquée
+                                objectPosition: (isThematicCard && isGrid) ? '50% 0%' : 'center',
+                            }}
                             className={styles.image}
                         />
                     )}
                 </div>
 
+                {/* Titre intégré dans la carte (mode inCardTitle) */}
+                {inCardTitle && !isThematicCard && (
+                    <div className={styles.inCardTitleOverlay}>
+                        <h3
+                            className={styles.inCardTitleText}
+                            style={{
+                                backgroundImage: titleGradient,
+                                WebkitBackgroundClip: 'text',
+                                backgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                            }}
+                        >
+                            {truncateTitle(decodeHtml(recipe.title))}
+                        </h3>
+                    </div>
+                )}
+
                 {/* Overlays */}
-                
-                {/* Top Right: Heart Accent (Minimalist) */}
+
+                {/* Cœur — en bas à droite si inCardTitle, sinon en haut à droite */}
                 {!isIntroMode && !isThematicCard && (
-                    <div className={styles.topRightHeart} onClick={(e) => e.stopPropagation()}>
+                    <div
+                        className={inCardTitle ? styles.bottomRightHeart : styles.topRightHeart}
+                        onClick={(e) => e.stopPropagation()}
+                    >
                         <FavoriteButton
                             recipeId={recipe.id}
                             initialFavorite={recipe.isFavorite}

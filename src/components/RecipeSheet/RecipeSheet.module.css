@@ -81,24 +81,24 @@
 
 .closeBtn {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 36px;
-    height: 36px;
-    border-radius: 18px;
-    background: rgba(0, 0, 0, 0.4);
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(60, 60, 67, 0.6);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: none;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 1000;
-    font-size: 14px;
+    z-index: 5500; /* au-dessus du dragHandle (100) et du scrollArea (10) */
+    font-size: 16px;
     font-weight: 800;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .closeBtn:hover {
