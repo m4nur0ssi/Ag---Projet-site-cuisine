@@ -2,11 +2,84 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/05/2026 06:16:59
- * Total: 263 recettes
+ * Dernière mise à jour: 13/05/2026 13:46:50
+ * Total: 264 recettes
  */
-export const exportSyncId = "1778653019678";
+export const exportSyncId = "1778680010798";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5511",
+        "title": "Riz Jollof",
+        "description": "Découvrez la recette du Riz Jollof, un plat africain savoureux et parfumé, mijoté lentement pour une texture parfaite.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778679778645.jpg&v=1778686994000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639031335524273440\" data-video-id=\"7639031335524273440\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639031335524273440\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             1 kg de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             3 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 Tomates fraîches (tomates en fruits)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 cuillères à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fond de veau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cube d'assaisonnement"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             40-50 cl d'eau"
+            }
+        ],
+        "steps": [
+            "Laisser mijoter à feu doux.",
+            "Couvrir avec du papier film.",
+            "Fermer la marmite pour une cuisson bien lente et un riz bien parfumé."
+        ],
+        "tags": [
+            "Afrique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5508",
         "title": "Cinnamon Roll Muffins",
