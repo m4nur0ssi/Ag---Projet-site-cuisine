@@ -45,13 +45,18 @@ async function isRecipeWithGemini(description, title) {
     - Si recette estivale, fruits d'été, barbecue, salade fraîche, plage -> catégorie "voila-lete"
     - Si soupe d'hiver, raclette, fondue, gratins d'hiver, plat mijoté de saison froide -> catégorie "cest-lhiver"
     
-    RÈGLES POUR LES TAGS : 
+    RÈGLES POUR LES TAGS :
     1. RÉGIME/TENDANCE : Si sain/équilibré -> "Healthy". Si végétarien -> "Végé". Si grillade/barbecue -> "Barbecue". Si ingrédients basiques/économiques -> "Pas cher".
     2. PAYS : Choisis UN pays dans cette liste : France, Italie, Espagne, Grèce, Liban, USA, Mexique, Orient, Asie, Afrique.
-    Si le pays d'origine est évident mais n'est pas dans la liste, utilise le plus proche ou "Afrique". 
+    Si le pays d'origine est évident mais n'est pas dans la liste, utilise le plus proche ou "Afrique".
     Si ce n'est pas clair, laisse le champ tags vide.
     3. SAISONS/ÉVÉNEMENTS : Si la recette contient de l'agneau ou lamb -> ajoute le tag "Pâques". Si recette typique de Noël -> ajoute "Noël". Si estival -> ajoute "Voilà l'été". Si hivernal -> ajoute "C'est l'hiver".
-    4. NE PAS utiliser le tag "Famille" (supprimé).`;
+    4. NE PAS utiliser le tag "Famille" (supprimé).
+    5. TYPE DE PLAT (ajoute UN de ces tags si la recette correspond, peu importe la catégorie) :
+       - Si c'est une salade (composée, verte, de pâtes, de fruits, de quinoa, bowl froid) -> ajoute "Salades".
+       - Si c'est une soupe, velouté, bouillon, gaspacho, potage, minestrone, ramen -> ajoute "Soupes".
+       - Si c'est un gratin (dauphinois, parmentier, tian, lasagnes au four, plat au four nappé de fromage/béchamel) -> ajoute "Gratins".
+       - Si la recette est piquante/relevée (piment, harissa, sambal, curry fort, chili, sriracha, paprika fumé en quantité, jalapeño, habanero) -> ajoute "Épicé".`;
 
     const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest', 'gemini-2.5-pro', 'gemini-pro-latest'];
 

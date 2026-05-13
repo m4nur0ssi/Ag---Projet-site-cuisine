@@ -123,53 +123,49 @@ async function handleRequest(request: Request) {
         // Le raccourci iOS appelle sans URL pour obtenir la liste des pays
         // Que ce soit avec checkOnly=true ou non
         if (!videoUrl) {
-            const rawChoices = [
-                { name: "Accompagnements", icon: "🥗" },
-                { name: "Afrique", icon: "🌍" },
-                { name: "Airfryer", icon: "💨" },
-                { name: "Apéritifs", icon: "🍸" },
-                { name: "Asie", icon: "🥢" },
-                { name: "Astuces", icon: "💡" },
-                { name: "Barbecue", icon: "🔥" },
-                { name: "C'est l'hiver", icon: "❄️" },
-                { name: "Desserts", icon: "🍰" },
-                { name: "Dolce Vita", icon: "🍕" },
-                { name: "Entrées", icon: "🥙" },
-                { name: "Epicé", icon: "🌶️" },
-                { name: "Espagne", icon: "🇪🇸" },
-                { name: "Express", icon: "⚡" },
-                { name: "Famille", icon: "👨‍👩‍👧‍👦" },
-                { name: "France", icon: "🇫🇷" },
-                { name: "Glaces", icon: "🍦" },
-                { name: "Gratins", icon: "🥘" },
-                { name: "Grèce", icon: "🇬🇷" },
-                { name: "Healthy", icon: "🥑" },
-                { name: "Italie", icon: "🇮🇹" },
-                { name: "Liban", icon: "🇱🇧" },
-                { name: "Mexique", icon: "🇲🇽" },
-                { name: "Noël", icon: "🎄" },
-                { name: "Orient", icon: "🕌" },
-                { name: "Pas cher", icon: "💰" },
-                { name: "Pâques", icon: "🐣" },
-                { name: "Pâtisserie", icon: "🥐" },
-                { name: "Plats", icon: "🍝" },
-                { name: "Rafraîchissements", icon: "🍹" },
-                { name: "Restaurant", icon: "🍽️" },
-                { name: "Salades", icon: "🥗" },
-                { name: "Sandwichs", icon: "🥪" },
-                { name: "Sauces", icon: "🥣" },
-                { name: "Simplissime", icon: "✨" },
-                { name: "Soupes", icon: "🥣" },
-                { name: "USA", icon: "🇺🇸" },
-                { name: "Végétarien", icon: "🥬" },
-                { name: "Voilà l'été", icon: "☀️" },
-                { name: "Autre", icon: "🗺️" }
+            // Liste triée A→Z, sans emojis : pays, catégories et thématiques uniquement
+            const sortedNames = [
+                "Accompagnements",
+                "Afrique",
+                "Airfryer",
+                "Apéritifs",
+                "Asie",
+                "Astuces",
+                "Barbecue",
+                "C'est l'hiver",
+                "Desserts",
+                "Entrées",
+                "Épicé",
+                "Espagne",
+                "Express",
+                "Famille",
+                "France",
+                "Gratins",
+                "Grèce",
+                "Healthy",
+                "Italie",
+                "Les Glaces",
+                "Liban",
+                "Mexique",
+                "Noël",
+                "Orient",
+                "Pas Cher",
+                "Pâques",
+                "Pâtes",
+                "Pâtisserie",
+                "Plats",
+                "Rafraîchissements",
+                "Salades",
+                "Sauces",
+                "Simplissime",
+                "Soupes",
+                "USA",
+                "Végétarien",
+                "Voilà l'été"
             ];
 
             const paysDict: Record<string, string> = {};
-            rawChoices.forEach(c => {
-                paysDict[`${c.icon} ${c.name}`] = c.name;
-            });
+            sortedNames.forEach(n => { paysDict[n] = n; });
 
             const response = NextResponse.json({ status: paysDict, v: "00:14-ALL-IN-ONE" });
             response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
@@ -231,12 +227,22 @@ async function handleRequest(request: Request) {
         // Étape 1 : Si on n'a pas de pays, on cherche partout dans les params et le body
         if (!selectedCountry) {
             const knownCountries = [
-                "Afrique", "Airfryer", "Aperitifs", "Aperitif", "Apéritifs", "Apéritif", "Asie", "Astuces", 
-                "Barbecue", "Bbq", "Desserts", "Dessert", "Entrees", "Entree", "Entrées", "Entrée", "Epice", "Epicé", "Épicé", "Espagne", 
-                "Express", "France", "Glaces", "Glace", "Gratins", "Gratin", "Grece", "Grèce", "Healthy", "Italie", "Liban", "Mexique", 
-                "Noel", "Noël", "Orient", "Paques", "Pâques", "Pas Cher", "Pas-Cher", "Patisserie", "Pâtisserie", 
-                "Plats", "Plat", "Rafraichissements", "Rafraîchissements", "Restaurant", "Salades", "Salade", 
-                "Sandwichs", "Sandwich", "Simplissime", "Soupes", "Soupe", "USA", "Vegetarien", "Végétarien"
+                "Accompagnements", "Accompagnement",
+                "Afrique", "Airfryer", "Aperitifs", "Aperitif", "Apéritifs", "Apéritif", "Asie", "Astuces",
+                "Barbecue", "Bbq",
+                "C'est l'hiver", "Cest l'hiver", "C'est lhiver", "Hiver",
+                "Desserts", "Dessert", "Entrees", "Entree", "Entrées", "Entrée",
+                "Epice", "Epicé", "Épicé", "Espagne",
+                "Express", "Famille", "France",
+                "Glaces", "Glace", "Les Glaces",
+                "Gratins", "Gratin", "Grece", "Grèce", "Healthy", "Italie", "Liban", "Mexique",
+                "Noel", "Noël", "Orient", "Paques", "Pâques", "Pas Cher", "Pas-Cher",
+                "Pates", "Pâtes", "Patisserie", "Pâtisserie",
+                "Plats", "Plat", "Rafraichissements", "Rafraîchissements",
+                "Salades", "Salade", "Sauces", "Sauce", "Simplissime",
+                "Soupes", "Soupe",
+                "USA", "Vegetarien", "Végétarien",
+                "Voilà l'été", "Voila l'été", "Voilà lété", "Eté", "Été"
             ];
 
             // Scan TOUS les paramètres de l'URL
@@ -269,41 +275,48 @@ async function handleRequest(request: Request) {
 
         // Si toujours pas de pays → on renvoie le menu + debug pour comprendre ce que le raccourci envoie
         if (!selectedCountry) {
-            const paysDict: any = {
-                "Afrique": "🌍 Afrique",
-                "Airfryer": "💨 Airfryer",
-                "Aperitifs": "🥨 Apéritifs",
-                "Asie": "🥢 Asie",
-                "Astuces": "💡 Astuces",
-                "Barbecue": "🍖 Barbecue",
-                "Desserts": "🍰 Desserts",
-                "Entrees": "🥗 Entrées",
-                "Epice": "🌶️ Epicé",
-                "Espagne": "🇪🇸 Espagne",
-                "Express": "⚡ Express",
-                "France": "🇫🇷 France",
-                "Glaces": "🧊 Les Glaces",
-                "Gratins": "🥘 Gratins",
-                "Grece": "🇬🇷 Grèce",
-                "Healthy": "🥗 Healthy",
-                "Italie": "🇮🇹 Italie",
-                "Liban": "🇱🇧 Liban",
-                "Mexique": "🇲🇽 Mexique",
-                "Noel": "🎄 Noël",
-                "Orient": "🕌 Orient",
-                "Paques": "🥚 Pâques",
-                "PasCher": "🪙 Pas Cher",
-                "Patisserie": "🥐 Pâtisserie",
-                "Plats": "🍲 Plats",
-                "Rafraichissements": "🥤 Rafraîchissements",
-                "Restaurant": "🍽️ Restaurant",
-                "Salades": "🥗 Salades",
-                "Sandwichs": "🥪 Sandwichs",
-                "Simplissime": "⏱️ Simplissime",
-                "Soupes": "🥣 Soupes",
-                "USA": "🇺🇸 USA",
-                "Vegetarien": "🥬 Végétarien"
-            };
+            // Liste triée A→Z, sans emojis : pays, catégories et thématiques uniquement
+            const sortedNames = [
+                "Accompagnements",
+                "Afrique",
+                "Airfryer",
+                "Apéritifs",
+                "Asie",
+                "Astuces",
+                "Barbecue",
+                "C'est l'hiver",
+                "Desserts",
+                "Entrées",
+                "Épicé",
+                "Espagne",
+                "Express",
+                "Famille",
+                "France",
+                "Gratins",
+                "Grèce",
+                "Healthy",
+                "Italie",
+                "Les Glaces",
+                "Liban",
+                "Mexique",
+                "Noël",
+                "Orient",
+                "Pas Cher",
+                "Pâques",
+                "Pâtes",
+                "Pâtisserie",
+                "Plats",
+                "Rafraîchissements",
+                "Salades",
+                "Sauces",
+                "Simplissime",
+                "Soupes",
+                "USA",
+                "Végétarien",
+                "Voilà l'été"
+            ];
+            const paysDict: Record<string, string> = {};
+            sortedNames.forEach(n => { paysDict[n] = n; });
             console.log('🔍 Pays non trouvé — on affiche le menu de sélection');
             const response = NextResponse.json({ status: paysDict });
             response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');

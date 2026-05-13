@@ -300,6 +300,24 @@ export default function Home() {
                     return recipeTags.includes('simplissime') || recipeCat === 'simplissime';
                 }
 
+                // Thèmes "type de plat" : salades, soupes, gratins, épicé
+                if (tagLower === 'salades') {
+                    return recipeTags.some(t => t.toLowerCase().startsWith('salade')) ||
+                           /\bsalade(s)?\b/.test(titleLower);
+                }
+                if (tagLower === 'soupes') {
+                    return recipeTags.some(t => t.toLowerCase().startsWith('soupe')) ||
+                           /\b(soupe(s)?|velout[ée](s)?|gaspacho|potage|bouillon|minestrone|ramen)\b/.test(titleLower);
+                }
+                if (tagLower === 'gratins') {
+                    return recipeTags.some(t => t.toLowerCase().startsWith('gratin')) ||
+                           /\bgratin(s|[ée]e?)?\b/.test(titleLower);
+                }
+                if (tagLower === 'epice' || tagLower === 'épicé' || tagLower === 'epicé') {
+                    return recipeTags.some(t => /^[ée]pic/.test(t.toLowerCase())) ||
+                           /\b([ée]pic[ée]?|piquant|piment|harissa|sambal|sriracha|jalape[ñn]o|habanero|chili)\b/.test(titleLower);
+                }
+
                 if (tagLower === 'thématiques' || tagLower === 'thématique') {
                     const themedKeywords = ['glace', 'sorbet', 'boisson', 'cocktail', 'pâques', 'paques', 'noël', 'noel', 'agneau', 'chocolat'];
                     const themedCats = ['glaces', 'boissons', 'pâques', 'noël', 'simplissime', 'italie'];
@@ -765,6 +783,66 @@ export default function Home() {
             difficulty: 'facile',
             prepTime: 5,
             cookTime: 5,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-epice',
+            title: "Épicé",
+            description: 'Recettes relevées pour les amateurs de piquant.',
+            image: '/images/themes/epice.png',
+            category: 'plats',
+            tags: ['epice'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 10,
+            cookTime: 20,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-salades',
+            title: "Salades",
+            description: 'Fraîcheur, croquant et couleurs dans l’assiette.',
+            image: '/images/themes/salades.png',
+            category: 'entrees',
+            tags: ['salades'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 15,
+            cookTime: 0,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-soupes',
+            title: "Soupes",
+            description: 'Réconfortantes, veloutées, mijotées avec amour.',
+            image: '/images/themes/soupes.png',
+            category: 'plats',
+            tags: ['soupes'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 10,
+            cookTime: 30,
+            servings: 4,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-gratins',
+            title: "Gratins",
+            description: 'Le fondant gratiné qui fait l’unanimité.',
+            image: '/images/themes/gratins.png',
+            category: 'plats',
+            tags: ['gratins'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 15,
+            cookTime: 35,
             servings: 4,
             ingredients: [],
             steps: []
