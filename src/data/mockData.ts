@@ -2,11 +2,184 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/05/2026 22:23:29
- * Total: 276 recettes
+ * Dernière mise à jour: 14/05/2026 22:31:32
+ * Total: 278 recettes
  */
-export const exportSyncId = "1778797409142";
+export const exportSyncId = "1778797892132";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5564",
+        "title": "Poulet coco épicé à la brésilienne",
+        "description": "Un poulet aux cuisses tendres, mijoté dans une sauce crémeuse à la noix de coco, relevé d'une touche de citron vert et de coriandre, inspiré de la cuisine brésilienne. Un plat réconfortant avec une touche tropicale.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778797573246.jpg&v=1778804813000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636452967511624983\" data-video-id=\"7636452967511624983\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636452967511624983\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             400 g (14 oz) de cuisses de poulet désossées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre noir fraîchement moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus d'½ citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment (ajuster au goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             0,5 c. à café de cayenne (ajuster au goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon, haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron rouge, tranché"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 tomates de taille moyenne, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 c. à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 boîte de lait de coco (400 ml / 13.5 oz)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ c. à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de paprika ou paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             0,5 c. à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             Riz blanc ou riz à la noix de coco (pour servir)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Quartiers de citron vert (pour garnir)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche, hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment rouge frais (facultatif, pour plus de piquant)"
+            }
+        ],
+        "steps": [
+            "Assaisonner le poulet : Mélanger le poulet avec le jus de citron vert, le sel, le poivre, le paprika, les flocons de piment, le cayenne (facultatif) et l'huile d'olive. Laisser reposer 10-15 min.",
+            "Saisir le poulet : Faire chauffer une poêle à feu moyen-vif. Ajouter les cuisses de poulet et saisir 6-8 min par côté jusqu'à ce qu'elles soient dorées. Retirer et réserver.",
+            "Préparer la sauce : Dans la même poêle, faire revenir l'oignon jusqu'à ce qu'il soit tendre (3-4 min). Ajouter l'ail et cuire 30 sec. Incorporer le poivron, la tomate, le concentré de tomate et les épices, cuire 2-3 min jusqu'à ce que ce soit parfumé.",
+            "Ajouter le lait de coco : Verser la boîte entière, remuer et porter à frémissement doux. Cuire quelques minutes jusqu'à ce que la sauce épaississe légèrement.",
+            "Terminer le poulet : Remettre le poulet dans la poêle. Laisser mijoter 5-10 min ou jusqu'à ce qu'il soit entièrement cuit et que la sauce soit crémeuse. Incorporer la coriandre. Goûter et ajuster l'assaisonnement ou le piquant.",
+            "Servir : Servir le poulet avec la sauce sur une généreuse portion de riz. Garnir de coriandre supplémentaire et de quartiers de citron vert. Bon appétit !"
+        ],
+        "tags": [
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5561",
+        "title": "Chermoula relevée et parfumée",
+        "description": "Une sauce Chermoula relevée et parfumée, traditionnellement préparée au pilon, idéale pour accompagner vos plats de poisson, viandes ou légumes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778797352115.jpg&v=1778804594000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7354465771629710625\" data-video-id=\"7354465771629710625\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7354465771629710625\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌿\n             1 poignée de persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 poignée de coriandre hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cac de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cac de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cac de harissa"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron jaune pressé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             10cl d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Hacher finement le persil et la coriandre, puis râper les gousses d'ail.",
+            "Ajouter le cumin, le paprika, la harissa et le sel, puis bien mélanger.",
+            "Verser le jus de citron et l'huile d'olive, puis mélanger de nouveau."
+        ],
+        "tags": [
+            "Afrique",
+            "épicé",
+            "Healthy",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5558",
         "title": "Pâtes à l'ail",
