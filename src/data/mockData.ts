@@ -2,11 +2,167 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/05/2026 17:25:17
- * Total: 269 recettes
+ * Dernière mise à jour: 14/05/2026 17:32:50
+ * Total: 270 recettes
  */
-export const exportSyncId = "1778779517310";
+export const exportSyncId = "1778779970516";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5531",
+        "title": "Carottes rôties sauce crémeuse",
+        "description": "Une recette de carottes rôties au paprika fumé, accompagnées d'une sauce crémeuse à base d'œufs et de fromage frais. Parfaite en entrée ou en plat principal, elle est facile et rapide à réaliser.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778779615379.jpg&v=1778786857000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7470192359112854806\" data-video-id=\"7470192359112854806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7470192359112854806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             10 petites carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3cs d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1cs de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs aux plats"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1/2 cc de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Quelques cerneaux de noix (pour le dressage)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques épices (pour le dressage)"
+            }
+        ],
+        "steps": [
+            "Rincer, essuyer et couper les carottes en 2.",
+            "Déposer les carottes sur une plaque recouverte de papier cuisson.",
+            "Verser l'huile d'olive, le paprika, le sel et le poivre sur les carottes, puis bien mélanger.",
+            "Faire cuire au four à 190 degrés (chaleur tournante) pendant 35 minutes, en retournant les carottes à mi-cuisson.",
+            "Pendant ce temps, préparer la sauce : dans un blender, mixer les 2 œufs aux plats, les 50g de fromage frais et la 1/2 cc de moutarde.",
+            "Pour le dressage, verser la sauce dans une assiette.",
+            "Ajouter les carottes rôties.",
+            "Verser un peu d'huile au paprika restante de la plaque de cuisson.",
+            "Ajouter quelques cerneaux de noix et des épices pour garnir."
+        ],
+        "tags": [
+            "Accompagnements",
+            "épicé",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5528",
+        "title": "Légumes rôtis / sauce cacahuètes-coco",
+        "description": "Une recette végétarienne facile et rapide de légumes rôtis (patates douces et carottes) accompagnés d'une onctueuse sauce crémeuse à la cacahuète et au lait de coco.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778779402420.jpg&v=1778786645000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7311351798126660897\" data-video-id=\"7311351798126660897\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7311351798126660897\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥔\n             300g de patates douces"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             300g de carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             5 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cas de soja salé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cas de gomasio"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cac de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cac de crème de sésame (tahin)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 grosse cas de beurre de cacahuète"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             40cl de crème de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cas de soja salé"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 verre d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four (température non spécifiée, généralement 180-200°C pour des légumes rôtis).",
+            "Couper les patates douces et les carottes en morceaux de taille similaire.",
+            "Dans un grand bol, mélanger les légumes coupés avec l'huile d'olive, 2 cas de soja salé, le miel, le gomasio, le paprika fumé et la crème de sésame (tahin).",
+            "Étaler les légumes sur une plaque de cuisson recouverte de papier sulfurisé et les faire rôtir au four jusqu'à ce qu'ils soient tendres et légèrement dorés.",
+            "Pendant ce temps, préparer la sauce : dans une casserole, mélanger le beurre de cacahuète, la crème de coco, les 2 cas de soja salé restants, l'eau et le poivre.",
+            "Laisser mijoter la sauce à feu doux pendant une dizaine de minutes, en remuant de temps en temps, jusqu'à ce qu'elle épaississe légèrement.",
+            "Servir les légumes rôtis chauds, nappés généreusement de la sauce cacahuète-coco."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Asie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5525",
         "title": "Salade de poivrons à l'orientale",
@@ -15081,96 +15237,6 @@ export const mockRecipes: Recipe[] = [
             "passion",
             "pâtisserie",
             "tartelette",
-            "vanille"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3555",
-        "title": "Cupcakes crème brûlée",
-        "description": "Découvrez une recette gourmande de cupcakes inspirés de la célèbre crème brûlée. Ces petits gâteaux moelleux sont garnis d'une onctueuse crème pâtissière à la vanille, puis recouverts d'une fine couche de sucre caramélisé au chalumeau, offrant un ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcupcake.jpeg&v=1774453096000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@sofeskitchen/video/7614920819331910934?_r=1&amp;_t=ZN-94bI94O9d26\" data-video-id=\"7614920819331910934\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@sofeskitchen/video/7614920819331910934?_r=1&amp;_t=ZN-94bI94O9d26\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈 80 g de beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 80 g de sucre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 2 oeufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍦 60 g de yaourt vanille ou nature"
-            },
-            {
-                "quantity": "",
-                "name": "🍦 Arôme de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 90 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 1/2 sachet de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 500 g de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🍦 1 gousse de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 4 jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 100 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 65 g de maïzena"
-            }
-        ],
-        "steps": [
-            "Pour la crème pâtissière, mélanger le sucre, les jaunes d'œufs et la maïzena dans un bol.",
-            "Faire bouillir le lait avec la gousse de vanille fendue et grattée dans une casserole.",
-            "Verser la moitié du lait bouillant sur le mélange précédent (sucre, jaunes, maïzena) tout en fouettant.",
-            "Remettre le tout dans la casserole avec le reste du lait.",
-            "Cuire sur feu moyen en mélangeant constamment jusqu'à ébullition et épaississement de la crème.",
-            "Laisser refroidir la crème pâtissière au réfrigérateur pendant environ 3 heures.",
-            "Pour les cupcakes, mélanger tous les ingrédients (beurre fondu, sucre en poudre, œufs, yaourt, arôme de vanille, farine, levure chimique) dans un grand bol jusqu'à obtenir une pâte homogène.",
-            "Répartir la pâte dans des moules à cupcakes.",
-            "Cuire les cupcakes dans un four préchauffé à 175 °C pendant environ 15 minutes.",
-            "Laisser refroidir complètement les cupcakes après la cuisson.",
-            "Une fois les cupcakes et la crème pâtissière refroidis, garnir les cupcakes de crème pâtissière.",
-            "Saupoudrer généreusement de sucre sur la crème pâtissière.",
-            "Caraméliser le sucre à l'aide d'un chalumeau de cuisine jusqu'à obtenir une croûte dorée et craquante."
-        ],
-        "tags": [
-            "chalumeau",
-            "crème brûlée",
-            "cupcakes",
-            "dessert",
-            "facile",
-            "gourmand",
-            "pâtisserie",
             "vanille"
         ],
         "isFeatured": false,
