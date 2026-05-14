@@ -2,11 +2,87 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/05/2026 20:57:17
- * Total: 272 recettes
+ * Dernière mise à jour: 14/05/2026 21:09:15
+ * Total: 273 recettes
  */
-export const exportSyncId = "1778792237987";
+export const exportSyncId = "1778792955735";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5549",
+        "title": "Pâtes aux oignon et champignon",
+        "description": "Une recette simple et rapide de pâtes aux champignons et oignons, agrémentée de crème, de parmesan et d'une touche de vin blanc.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778792694510.jpg&v=1778799908000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7506929248565873942\" data-video-id=\"7506929248565873942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7506929248565873942\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de spaguetti"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de champignon de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Cas d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             15cl de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             20g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30g de Parmesan (ou granapadano)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             2-3 Cas de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             persil"
+            }
+        ],
+        "steps": [
+            "Suivre la vidéo pour les étapes de préparation."
+        ],
+        "tags": [
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5538",
         "title": "Creamy Pasta",
