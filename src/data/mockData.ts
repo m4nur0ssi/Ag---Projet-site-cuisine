@@ -2,11 +2,77 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/05/2026 19:08:34
- * Total: 271 recettes
+ * Dernière mise à jour: 14/05/2026 20:57:17
+ * Total: 272 recettes
  */
-export const exportSyncId = "1778785714693";
+export const exportSyncId = "1778792237987";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5538",
+        "title": "Creamy Pasta",
+        "description": "Une recette simple et rapide de pâtes crémeuses avec une sauce à base d'oignon, ail, tomates et crème.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778792022709.jpg&v=1778799237000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7539164252993490198\" data-video-id=\"7539164252993490198\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7539164252993490198\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200g pasta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 onion"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 garlic cloves"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 teaspoon canned tomatoes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Black pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Oregano"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200ml heavy cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             About 1/2 cup pasta water"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "Pas cher",
+            "pates",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5535",
         "title": "Boulettes de brocolis",
