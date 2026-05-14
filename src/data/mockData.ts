@@ -2,11 +2,172 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/05/2026 21:09:15
- * Total: 273 recettes
+ * Dernière mise à jour: 14/05/2026 21:17:15
+ * Total: 275 recettes
  */
-export const exportSyncId = "1778792955735";
+export const exportSyncId = "1778793435660";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5555",
+        "title": "Spicy Orzo",
+        "description": "C'est gourmand, facile, prêt en 20 min et bien réconfortant !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778793114293.jpg&v=1778800357000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7556646819078491414\" data-video-id=\"7556646819078491414\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7556646819078491414\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200g d'orzo"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             200g de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cac d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cac de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             20g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n             100g de brocolis"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             60g de tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 cas de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             700ml de bouillon (volaille)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             15cl de crème légère"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             8g de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Sauce pimentée"
+            }
+        ],
+        "steps": [
+            "Assaisonner les morceaux de poulet avec de l'ail, du paprika, du sel et du poivre.",
+            "Les faire dorer quelques minutes dans une poêle avec un filet d'huile, la moitié du beurre et les réserver.",
+            "Dans la même poêle, ajouter le reste du beurre avec les champignons, les brocolis, les gousses d'ail émincées, les tomates séchées coupées en petits morceaux, les pâtes, le concentré de tomates et bien mélanger.",
+            "Verser ensuite le bouillon et mélanger jusqu'à ce que les pâtes soient bien aldente.",
+            "En fin de cuisson ajouter la crème, le parmesan, le persil, bien mélanger et remettre les morceaux de poulet.",
+            "Vous pouvez ajouter un peu de sauce piquante si vous aimez ça et c'est déjà prêt."
+        ],
+        "tags": [
+            "épicé",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5552",
+        "title": "Goat Cheese Pasta",
+        "description": "Maybe you're more used to goat cheese on toast with a little honey, but this recipe will make you want to enjoy it with pasta more often.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778792886323.jpg&v=1778800126000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7434501804143955233\" data-video-id=\"7434501804143955233\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7434501804143955233\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Linguine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Goat cheese"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Heavy cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Onion"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Honey"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thyme"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt &#038; pepper"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5549",
         "title": "Pâtes aux oignon et champignon",
