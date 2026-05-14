@@ -2,11 +2,77 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/05/2026 21:17:15
- * Total: 275 recettes
+ * Dernière mise à jour: 14/05/2026 22:23:29
+ * Total: 276 recettes
  */
-export const exportSyncId = "1778793435660";
+export const exportSyncId = "1778797409142";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5558",
+        "title": "Pâtes à l'ail",
+        "description": "Une recette simple et rapide de pâtes à l'ail, agrémentée de parmesan, piment et herbes aromatiques pour un plat savoureux.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778797148663.jpg&v=1778804362000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7487321864449133826\" data-video-id=\"7487321864449133826\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7487321864449133826\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             Pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description."
+        ],
+        "tags": [
+            "épicé",
+            "Italie",
+            "Pas cher",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5555",
         "title": "Spicy Orzo",
