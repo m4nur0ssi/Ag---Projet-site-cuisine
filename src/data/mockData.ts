@@ -2,11 +2,153 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/05/2026 17:17:14
- * Total: 266 recettes
+ * Dernière mise à jour: 14/05/2026 17:25:17
+ * Total: 269 recettes
  */
-export const exportSyncId = "1778779034259";
+export const exportSyncId = "1778779517310";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5525",
+        "title": "Salade de poivrons à l'orientale",
+        "description": "Elle ce consomme tiède ou froide, c'est vraiment un délice! Parfait pour accompagner vos repas. A partager sans modération !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778779212532.jpg&v=1778786453000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7346293135573552417\" data-video-id=\"7346293135573552417\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7346293135573552417\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             2 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             3 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cas de mélasse de grenade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel/poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignons rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cas de sumac"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 cas de tomate concentré"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Healthy",
+            "Orient",
+            "Pas cher",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5522",
+        "title": "Salade de courgettes grillées",
+        "description": "Une salade de courgettes grillées servie avec de la stracciatella et une vinaigrette au piment, ail et échalote, parfaite pour la saison des courgettes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778778992693.jpg&v=1778786235000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7394864384209718561\" data-video-id=\"7394864384209718561\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7394864384209718561\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/2 piment rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron (jus + zeste)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une poignée de menthe fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une poignée de basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cuillères à soupe de stracciatella"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive extra vierge"
+            }
+        ],
+        "steps": [
+            "Pour faire la vinaigrette, hachez l'ail, puis combinez-le avec le piment et l'échalote finement coupés en dés. Ajoutez la menthe hachée, le zeste et le jus d'un citron, le sel, le poivre, puis incorporez lentement l'huile d'olive en fouettant jusqu'à obtenir une vinaigrette crémeuse (environ 50ml).",
+            "Coupez les courgettes en rondelles, assaisonnez avec du sel, du poivre et de l'huile d'olive. Faites chauffer une poêle à griller jusqu'à ce qu'elle fume, puis saisissez les courgettes de chaque côté jusqu'à ce qu'elles soient grillées (2-3 minutes).",
+            "Pour servir, placez les courgettes sur une assiette, puis garnissez de feuilles de basilic, de cuillerées de stracciatella, puis de généreuses quantités de vinaigrette - bon appétit !"
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Italie",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5517",
         "title": "Riz à l'ail",
@@ -14939,6 +15081,96 @@ export const mockRecipes: Recipe[] = [
             "passion",
             "pâtisserie",
             "tartelette",
+            "vanille"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3555",
+        "title": "Cupcakes crème brûlée",
+        "description": "Découvrez une recette gourmande de cupcakes inspirés de la célèbre crème brûlée. Ces petits gâteaux moelleux sont garnis d'une onctueuse crème pâtissière à la vanille, puis recouverts d'une fine couche de sucre caramélisé au chalumeau, offrant un ...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcupcake.jpeg&v=1774453096000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@sofeskitchen/video/7614920819331910934?_r=1&amp;_t=ZN-94bI94O9d26\" data-video-id=\"7614920819331910934\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@sofeskitchen/video/7614920819331910934?_r=1&amp;_t=ZN-94bI94O9d26\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈 80 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 80 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 2 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍦 60 g de yaourt vanille ou nature"
+            },
+            {
+                "quantity": "",
+                "name": "🍦 Arôme de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 90 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 1/2 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 500 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍦 1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 4 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 100 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 65 g de maïzena"
+            }
+        ],
+        "steps": [
+            "Pour la crème pâtissière, mélanger le sucre, les jaunes d'œufs et la maïzena dans un bol.",
+            "Faire bouillir le lait avec la gousse de vanille fendue et grattée dans une casserole.",
+            "Verser la moitié du lait bouillant sur le mélange précédent (sucre, jaunes, maïzena) tout en fouettant.",
+            "Remettre le tout dans la casserole avec le reste du lait.",
+            "Cuire sur feu moyen en mélangeant constamment jusqu'à ébullition et épaississement de la crème.",
+            "Laisser refroidir la crème pâtissière au réfrigérateur pendant environ 3 heures.",
+            "Pour les cupcakes, mélanger tous les ingrédients (beurre fondu, sucre en poudre, œufs, yaourt, arôme de vanille, farine, levure chimique) dans un grand bol jusqu'à obtenir une pâte homogène.",
+            "Répartir la pâte dans des moules à cupcakes.",
+            "Cuire les cupcakes dans un four préchauffé à 175 °C pendant environ 15 minutes.",
+            "Laisser refroidir complètement les cupcakes après la cuisson.",
+            "Une fois les cupcakes et la crème pâtissière refroidis, garnir les cupcakes de crème pâtissière.",
+            "Saupoudrer généreusement de sucre sur la crème pâtissière.",
+            "Caraméliser le sucre à l'aide d'un chalumeau de cuisine jusqu'à obtenir une croûte dorée et craquante."
+        ],
+        "tags": [
+            "chalumeau",
+            "crème brûlée",
+            "cupcakes",
+            "dessert",
+            "facile",
+            "gourmand",
+            "pâtisserie",
             "vanille"
         ],
         "isFeatured": false,
