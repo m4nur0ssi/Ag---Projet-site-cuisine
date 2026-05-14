@@ -2,11 +2,60 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/05/2026 17:32:50
- * Total: 270 recettes
+ * Dernière mise à jour: 14/05/2026 19:08:34
+ * Total: 271 recettes
  */
-export const exportSyncId = "1778779970516";
+export const exportSyncId = "1778785714693";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5535",
+        "title": "Boulettes de brocolis",
+        "description": "Une façon ludique de cuisiner tes brocolis et surtout de les faire manger aux petits comme aux grands récalcitrants !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778785462217.jpg&v=1778792679000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7469843967371169046\" data-video-id=\"7469843967371169046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7469843967371169046\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥦\n             100g de brocolis précuits"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             60g de chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de mozzarella ou fromage râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5531",
         "title": "Carottes rôties sauce crémeuse",
