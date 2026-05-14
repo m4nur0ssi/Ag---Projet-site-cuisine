@@ -2,11 +2,59 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/05/2026 06:15:17
- * Total: 265 recettes
+ * Dernière mise à jour: 14/05/2026 17:17:14
+ * Total: 266 recettes
  */
-export const exportSyncId = "1778739317407";
+export const exportSyncId = "1778779034259";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5517",
+        "title": "Riz à l'ail",
+        "description": "La recette qui me sauve au quotidien ! Simple, rapide, efficace... le riz à l'ail s'accompagne avec tout, et quand on aime l'ail, on ne peut plus s'en passer.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778778771849.jpg&v=1778785988000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7607521387946839318\" data-video-id=\"7607521387946839318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7607521387946839318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             6 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             1 verre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 verres d'eau (bouillon de volaille facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             40 g d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon cébette"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5514",
         "title": "Tiramisu",
