@@ -2,11 +2,104 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 07:49:32
- * Total: 288 recettes
+ * Dernière mise à jour: 15/05/2026 10:42:53
+ * Total: 289 recettes
  */
-export const exportSyncId = "1778831372812";
+export const exportSyncId = "1778841773842";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5597",
+        "title": "Soupe au brocoli et cheddar",
+        "description": "La saison des soupes approche et la soupe au brocoli et cheddar est l'une des meilleures ! Garnie de morceaux de bacon croustillants et servie avec du pain beurré et croustillant, c'est délicieux ! Le tout préparé dans une seule marmite pour un ne...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778841423242.jpg&v=1778848644000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7410185645622152479\" data-video-id=\"7410185645622152479\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7410185645622152479\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             oignon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             5-6 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             3 cuillères à soupe de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1/4 tasse de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             4 tasses de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1/2 tasse de lait 2%"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1/2 tasse de crème légère (half &#038; half)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 tasses de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n             brocoli"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             carottes râpées (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             pain français grillé et beurré"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5594",
         "title": "Marry Me Gnocchi Soup",
