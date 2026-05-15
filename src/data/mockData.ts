@@ -2,11 +2,94 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 10:42:53
- * Total: 289 recettes
+ * Dernière mise à jour: 15/05/2026 10:48:17
+ * Total: 290 recettes
  */
-export const exportSyncId = "1778841773842";
+export const exportSyncId = "1778842097752";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5600",
+        "title": "Caramelized Onion Soup",
+        "description": "Une soupe réconfortante et végétarienne à base d'oignons caramélisés, de pommes de terre, de fromage frais et de bouillon de légumes, assaisonnée de thym et de moutarde, parfaite pour les jours froids.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7578568784487730454\" data-video-id=\"7578568784487730454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7578568784487730454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 large white onions"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 garlic cloves, finely chopped"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             800 ml vegetable broth"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             600 g potatoes, 1-cm cubes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g cream cheese (v)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Some oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 tbsp thyme"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tbsp mustard"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Finely chopped parsley"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Chili flakes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Bread for dipping"
+            }
+        ],
+        "steps": [
+            "Slice the onions and caramelize them in some oil with a pinch of salt for 15-20 minutes.",
+            "Add garlic, thyme, pepper and mustard and briefly sauté.",
+            "Stir in the cream cheese until fully melted.",
+            "Pour in the vegetable broth and bring to a boil.",
+            "Add the potato cubes and simmer for 15 minutes until tender.",
+            "Season with salt and pepper.",
+            "Top with parsley and chili flakes. Serve with toasted bread on the side."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5597",
         "title": "Soupe au brocoli et cheddar",
