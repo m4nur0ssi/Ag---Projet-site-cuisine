@@ -2,11 +2,103 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 04:21:28
- * Total: 283 recettes
+ * Dernière mise à jour: 15/05/2026 04:31:52
+ * Total: 285 recettes
  */
-export const exportSyncId = "1778818888308";
+export const exportSyncId = "1778819512338";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5582",
+        "title": "Mushroom Soup",
+        "description": "Une soupe crémeuse et réconfortante aux champignons (bruns et Shiitake), agrémentée de vin blanc, de crème et d'herbes, servie avec des croûtons croustillants au parmesan.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778818865272.jpg&v=1778826098000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7571812876915100949\" data-video-id=\"7571812876915100949\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7571812876915100949\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             10-12 gousses d'ail, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon blanc, coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 paquets de champignons de Paris bruns, hachés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 paquet de champignons Shiitake, hachés"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Bouillon de poulet/bœuf selon les besoins"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             ½ tasse de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             ½ bâtonnet de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             ⅓ tasse de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 bouquet de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             ⅓ tasse de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain (pour les croûtons)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cuillères à soupe d'huile d'olive (pour les croûtons)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan au goût (pour les croûtons)"
+            }
+        ],
+        "steps": [
+            "Commencez par faire revenir les oignons et l'ail dans le beurre. Ajoutez les champignons dans la marmite et laissez-les cuire.",
+            "Déglacez avec le vin blanc, puis ajoutez la farine. Laissez cuire 3 à 5 minutes, puis ajoutez le bouillon. Ajoutez le thym avant de couvrir et de laisser mijoter pendant 30 minutes.",
+            "Ajoutez la sauce Worcestershire, la crème et la sauce soja, puis assaisonnez avec du sel et du poivre.",
+            "Coupez le pain en carrés et faites-le griller avec de l'huile d'olive jusqu'à ce qu'il soit croustillant. Terminez avec du parmesan.",
+            "Servez avec vos croûtons, plus de champignons et de crème, et dégustez !"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5579",
         "title": "Tenders de poulet sauce miel fouettée épicée",
@@ -6828,6 +6920,81 @@ export const mockRecipes: Recipe[] = [
             "Espagne",
             "Rafraîchissements",
             "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3957",
+        "title": "Cookies",
+        "description": "Une recette pour des cookies géants et ultra gourmands, inspirés de New York, fourrés à la pâte à tartiner Bueno et agrémentés de morceaux de Kinder Bueno.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcookies_sans_beurre_homemade_1775840598269.jpg&v=1775848114000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7538140427933781270\" data-video-id=\"7538140427933781270\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7538140427933781270\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n 200 g beurre froid (salé ou non)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100 g vergeoise brune"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50 g sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 càs extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 440 g farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 sachet levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 grosse pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 200 g chocolat haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 4 barres Kinder Bueno en morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pâte à tartiner Bueno"
+            }
+        ],
+        "steps": [
+            "Déposez au congélateur 11 cuillères à café de pâte à tartiner.",
+            "À la main ou dans votre robot, fouettez le beurre et les sucres jusqu'à ce qu'ils soient homogènes. Ajoutez l'œuf et la vanille, puis fouettez de nouveau.",
+            "Incorporez la farine, la levure et le sel, puis mélangez juste assez pour que la pâte soit homogène.",
+            "Ajoutez les chocolats et mélangez à nouveau.",
+            "Formez des boules de 100 g chacune, aplatissez-les légèrement avec la paume de la main, déposez au centre la pâte à tartiner congelée, puis refermez.",
+            "Placez les boules au congélateur pendant au moins 1 h.",
+            "Après ce temps, enfournez pendant 12 à 15 minutes dans un four préchauffé à 180 °C (chaleur tournante). Si vous réalisez des cookies de 50gr, enfournez 10/11mn.",
+            "Laissez refroidir avant de les déplacer."
+        ],
+        "tags": [
+            "Famille",
+            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
