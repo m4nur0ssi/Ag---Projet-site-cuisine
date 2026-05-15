@@ -2,11 +2,93 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 00:21:13
- * Total: 282 recettes
+ * Dernière mise à jour: 15/05/2026 04:21:28
+ * Total: 283 recettes
  */
-export const exportSyncId = "1778804473145";
+export const exportSyncId = "1778818888308";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5579",
+        "title": "Tenders de poulet sauce miel fouettée épicée",
+        "description": "Une recette incroyable de tenders de poulet croustillants avec une sauce miel fouettée épicée, parfaite pour les amateurs de sucré/salé. À tester absolument !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778818551652.jpg&v=1778825775000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7438894105792384288\" data-video-id=\"7438894105792384288\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7438894105792384288\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             3 escalopes de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             250 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment de Cayenne"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             15 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             250 g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment"
+            }
+        ],
+        "steps": [
+            "Couper les escalopes de poulet en lanières pour former les tenders.",
+            "Dans un premier bol, mélanger la farine avec le sel, le poivre, le piment de Cayenne et les herbes de Provence.",
+            "Dans un second bol, battre les œufs avec l'eau.",
+            "Passer chaque lanière de poulet d'abord dans le mélange de farine, puis dans les œufs battus, et enfin à nouveau dans la farine pour une double panure.",
+            "Faire chauffer l'huile de friture et faire frire les tenders jusqu'à ce qu'ils soient dorés et croustillants.",
+            "Pour la sauce, fouetter le miel avec le sel, le poivre, l'ail en poudre, le paprika et les flocons de piment pendant environ 10 minutes jusqu'à obtenir une belle texture.",
+            "Servir les tenders chauds avec la sauce miel fouettée épicée."
+        ],
+        "tags": [
+            "épicé",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5576",
         "title": "Pasta al forno bianca",
