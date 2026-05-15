@@ -2,11 +2,69 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 14:42:16
- * Total: 297 recettes
+ * Dernière mise à jour: 15/05/2026 14:55:37
+ * Total: 298 recettes
  */
-export const exportSyncId = "1778856136341";
+export const exportSyncId = "1778856937973";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5624",
+        "title": "Sauce Verte",
+        "description": "Une sauce verte facile à cuisiner, parfaite pour accompagner vos viandes et grillades.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778856591653.jpg&v=1778863811000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7637783035911359766\" data-video-id=\"7637783035911359766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7637783035911359766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌿\n             1 botte de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 cuillères de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre et un peu d'arôme maggi"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 cuillère de crème fraîche épaisse"
+            }
+        ],
+        "steps": [
+            "Mixer tous les ingrédients jusqu'à obtenir une sauce homogène."
+        ],
+        "tags": [
+            "barbecue",
+            "Pas cher",
+            "Sauces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5621",
         "title": "Poivrons rôtis farcis à la ricotta, roquette &#038; balsamique",
