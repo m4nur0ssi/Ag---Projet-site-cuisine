@@ -2,11 +2,84 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 10:57:06
- * Total: 291 recettes
+ * Dernière mise à jour: 15/05/2026 13:09:14
+ * Total: 292 recettes
  */
-export const exportSyncId = "1778842626208";
+export const exportSyncId = "1778850554047";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5606",
+        "title": "GRATIN dauphinois à MA FAÇON",
+        "description": "Un gratin dauphinois revisité, crémeux et fondant, préparé avec des pommes de terre finement tranchées, de l'ail confit, un mélange de crèmes, de la noix de muscade, du thym et du comté, cuit au four jusqu'à être parfaitement gratiné.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778850215358.jpg&v=1778857435000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7558880515923725590\" data-video-id=\"7558880515923725590\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7558880515923725590\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥔\n             1,2 kilos de pomme de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 tête d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cas de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             15g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cac de noix de muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cas de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             80g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            }
+        ],
+        "steps": [
+            "Couper le chapeau de la tête d'ail, la mettre dans une mini cocotte ou en papillote avec une pincée de sel et un filet d'huile. Cuire 35 min à 200°C.",
+            "Laver et couper les pommes de terre en rondelles assez fines. Les disposer dans un plat les unes collées aux autres.",
+            "Dans une casserole, faire fondre le beurre avec la crème liquide et la crème épaisse. Ajouter la noix de muscade, le thym, la pulpe de la tête d'ail confite, le tiers du comté, un peu de sel et du poivre. Mixer le tout.",
+            "Verser la sauce dans le plat pour recouvrir toutes les pommes de terre. Recouvrir le plat en superposant une feuille de papier cuisson et une feuille d'aluminium. Cuire 1h à 190°C.",
+            "Au bout d'une heure, retirer les feuilles et ajouter le reste du comté pour 15 min supplémentaires en mode grill."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Gratins"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5603",
         "title": "Soupe crémeuse au poulet et aux nouilles",
