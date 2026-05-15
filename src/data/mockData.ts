@@ -2,11 +2,87 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 04:31:52
+ * Dernière mise à jour: 15/05/2026 06:24:08
  * Total: 285 recettes
  */
-export const exportSyncId = "1778819512338";
+export const exportSyncId = "1778826248979";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5585",
+        "title": "Gratin de poulet effiloché, patates et sauce façon Boursin",
+        "description": "Une recette facile de gratin avec du poulet effiloché, des patates coupées en petits cubes et une sauce crémeuse façon Boursin. Comptez environ 1h de préparation et cuisson.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778819227384.jpg&v=1778826461000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7560417585964109078\" data-video-id=\"7560417585964109078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7560417585964109078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             3 blancs de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 à 5 patates"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             200 g de fromage ail et fines herbes (type Boursin ou Tartare)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème semi liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre demi-sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil (pour la finition)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Gratins"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5582",
         "title": "Mushroom Soup",
@@ -6920,81 +6996,6 @@ export const mockRecipes: Recipe[] = [
             "Espagne",
             "Rafraîchissements",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3957",
-        "title": "Cookies",
-        "description": "Une recette pour des cookies géants et ultra gourmands, inspirés de New York, fourrés à la pâte à tartiner Bueno et agrémentés de morceaux de Kinder Bueno.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcookies_sans_beurre_homemade_1775840598269.jpg&v=1775848114000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7538140427933781270\" data-video-id=\"7538140427933781270\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7538140427933781270\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n 200 g beurre froid (salé ou non)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 100 g vergeoise brune"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 50 g sucre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n 1 càs extrait de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 440 g farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 sachet levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 grosse pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n 200 g chocolat haché"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 4 barres Kinder Bueno en morceaux"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Pâte à tartiner Bueno"
-            }
-        ],
-        "steps": [
-            "Déposez au congélateur 11 cuillères à café de pâte à tartiner.",
-            "À la main ou dans votre robot, fouettez le beurre et les sucres jusqu'à ce qu'ils soient homogènes. Ajoutez l'œuf et la vanille, puis fouettez de nouveau.",
-            "Incorporez la farine, la levure et le sel, puis mélangez juste assez pour que la pâte soit homogène.",
-            "Ajoutez les chocolats et mélangez à nouveau.",
-            "Formez des boules de 100 g chacune, aplatissez-les légèrement avec la paume de la main, déposez au centre la pâte à tartiner congelée, puis refermez.",
-            "Placez les boules au congélateur pendant au moins 1 h.",
-            "Après ce temps, enfournez pendant 12 à 15 minutes dans un four préchauffé à 180 °C (chaleur tournante). Si vous réalisez des cookies de 50gr, enfournez 10/11mn.",
-            "Laissez refroidir avant de les déplacer."
-        ],
-        "tags": [
-            "Famille",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
