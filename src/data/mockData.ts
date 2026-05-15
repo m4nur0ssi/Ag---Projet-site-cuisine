@@ -2,11 +2,211 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 13:09:14
- * Total: 292 recettes
+ * Dernière mise à jour: 15/05/2026 13:19:30
+ * Total: 294 recettes
  */
-export const exportSyncId = "1778850554047";
+export const exportSyncId = "1778851170998";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5612",
+        "title": "CANNELONIS POULET ET CHAMPIGNONS",
+        "description": "Une recette automnale de cannellonis gratinés au poulet, champignons, ricotta et une béchamel onctueuse au comté et moutarde à l'ancienne. Un plat super réconfortant et savoureux, parfait pour la saison des plats gratinés.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7573723389190343958\" data-video-id=\"7573723389190343958\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7573723389190343958\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             4 hauts de cuisse de poulet désossés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de champignons de Paris (ou mix forestier)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 petit bouquet de persil plat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à s. d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 noisette de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40 g de beurre (pour la béchamel)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             40 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             500 ml de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             100 g de comté râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 c. à s. bombée de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10 à 12 cannellonis"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             20 g de comté râpé (pour le montage)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            }
+        ],
+        "steps": [
+            "Coupe le poulet en petits morceaux et fais-le bien dorer à la poêle.",
+            "Fais revenir champignons, ail et échalote dans une noisette de beurre sur feu vif.",
+            "Mélange le poulet, les champignons, le persil et la ricotta, puis assaisonne (sel, poivre, muscade).",
+            "Pour la béchamel : Fais fondre le beurre, ajoute la farine et mélange.",
+            "Verse le lait, fouette jusqu'à épaississement, puis ajoute la moutarde et le comté. Assaisonne (sel, poivre blanc, muscade).",
+            "Garnis les cannellonis avec la farce (à l'aide d'une poche ou d'un sac congélation).",
+            "Verse un peu de béchamel au fond d'un plat, dispose les cannellonis, recouvre du reste de béchamel et du comté râpé.",
+            "Enfourne 40 min à 180°C.",
+            "Parsème de persil frais avant de servir et régale-toi !"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Gratins",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5609",
+        "title": "Gratin de pâtes de l'été",
+        "description": "Un délicieux gratin de pâtes estival, parfait pour l'été et pouvant être préparé au four ou au barbecue. Cette recette met en vedette des pâtes courtes, des légumes frais comme la courgette et les tomates cerises, le tout gratiné à la mozzarella e...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778850488580.jpg&v=1778857737000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7524744036926770464\" data-video-id=\"7524744036926770464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7524744036926770464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             200g de pâtes courtes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             150ml de sauce tomate"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10cl de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1/2 cube de bouillon de poule"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             200g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 courgette"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 grosse boule de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             3 càs de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 à 2 càs de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             de belles tranches de coppa"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Cuire les pâtes al dente. Pendant ce temps, faire revenir l'oignon rouge émincé grossièrement dans de l'huile d'olive, ajouter les tomates, la courgette coupée en dés.",
+            "Mouiller de vin blanc, ajouter le cube de bouillon émietté et laisser réduire. Ajouter la sauce tomate, le mascarpone, 2 càs de parmesan, bien mélanger et rectifier l'assaisonnement si besoin.",
+            "Ajouter les pâtes, bien mélanger et terminer avec la mozzarella et le reste du parmesan.",
+            "Enfourner pendant 5 à 10min en position grill.",
+            "Servir avec de la coppa, du basilic, un peu de poivre et un filet d'huile d'olive. Déguster immédiatement."
+        ],
+        "tags": [
+            "barbecue",
+            "Gratins",
+            "Italie",
+            "pates",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5606",
         "title": "GRATIN dauphinois à MA FAÇON",
