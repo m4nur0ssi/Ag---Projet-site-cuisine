@@ -2,11 +2,64 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 15:06:08
- * Total: 299 recettes
+ * Dernière mise à jour: 15/05/2026 15:54:02
+ * Total: 300 recettes
  */
-export const exportSyncId = "1778857568498";
+export const exportSyncId = "1778860442908";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5630",
+        "title": "Focaccia charcuterie",
+        "description": "Une focaccia garnie de charcuterie, parfaite pour les apéritifs d'été et les réceptions. Une façon amusante de combiner pain et charcuterie en un seul plat.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778860077656.jpg&v=1778867299000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639795035566918934\" data-video-id=\"7639795035566918934\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639795035566918934\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g bread flour"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             7g dried fast action yeast"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tsp fine sea salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 tbsp olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp flaky sea salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Handful of rosemary"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Charcuterie"
+            }
+        ],
+        "steps": [
+            "Make the focaccia as normal.",
+            "Before baking, add 2 oiled ramekins in the middle and shape the focaccia around them."
+        ],
+        "tags": [
+            "Italie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5627",
         "title": "Porc Char Sui",
