@@ -2,11 +2,114 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 14:26:26
- * Total: 295 recettes
+ * Dernière mise à jour: 15/05/2026 14:42:16
+ * Total: 297 recettes
  */
-export const exportSyncId = "1778855186054";
+export const exportSyncId = "1778856136341";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5621",
+        "title": "Poivrons rôtis farcis à la ricotta, roquette &#038; balsamique",
+        "description": "Des poivrons longs rôtis et épluchés, farcis d'un mélange crémeux de ricotta, oignon rouge et roquette, puis roulés et assaisonnés d'huile d'olive, de vinaigre balsamique et de basilic frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778855769075.jpg&v=1778862996000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639396479022550305\" data-video-id=\"7639396479022550305\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639396479022550305\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             4 poivrons longs (type corne de bœuf ou Sweet Palermo)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             500 g de ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             ½ oignon rouge, finement émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             1 grosse poignée de roquette, ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive (généreuse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de basilic"
+            }
+        ],
+        "steps": [
+            "Préchauffe ton four à 200°C.",
+            "Dispose les poivrons entiers sur une plaque recouverte de papier cuisson, puis enfourne pour 30 minutes, jusqu'à ce qu'ils soient bien tendres et légèrement grillés.",
+            "Dans un saladier, mélange la ricotta avec l'oignon rouge, la roquette, un bon filet d'huile d'olive, du sel et du poivre.",
+            "Place au frais le temps que les poivrons refroidissent.",
+            "À la sortie du four, dépose les poivrons dans une assiette et couvre-les de film alimentaire.",
+            "Laisse-les \" suer \" quelques minutes : la peau se retirera toute seule.",
+            "Épluche les poivrons, coupe-les en deux et retire les graines.",
+            "Dépose une quenelle de farce sur une extrémité, puis roule délicatement chaque morceau comme un petit rouleau.",
+            "Dispose les rouleaux dans une assiette.",
+            "Arrose d'un filet d'huile d'olive et de vinaigre balsamique, ajoute une pincée de fleur de sel et quelques feuilles de basilic frais."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Healthy",
+            "Italie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5618",
+        "title": "Sushis italiens",
+        "description": "Une fusion originale entre le sushi japonais et les saveurs italiennes, pour une recette facile et surprenante.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639272616238271777\" data-video-id=\"7639272616238271777\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639272616238271777\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5615",
         "title": "Poireaux CONFITS &#038; gratinés",
