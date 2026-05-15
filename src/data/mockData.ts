@@ -2,11 +2,113 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 06:24:08
- * Total: 285 recettes
+ * Dernière mise à jour: 15/05/2026 07:39:31
+ * Total: 286 recettes
  */
-export const exportSyncId = "1778826248979";
+export const exportSyncId = "1778830771589";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5588",
+        "title": "Loaded Potato Soup",
+        "description": "Une soupe de pommes de terre crémeuse et réconfortante, garnie de tofu fumé croustillant et de fromage végétalien, parfaite pour les journées froides.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778830444819.jpg&v=1778837666000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7467261316957277462\" data-video-id=\"7467261316957277462\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7467261316957277462\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             400 g de pommes de terre, coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 branche de céleri"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 cuillère à soupe de beurre végétalien"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250 ml de crème végétalienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250 ml de lait d'avoine/soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             400 ml de bouillon de légumes"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 poignée de fromage râpé végétalien"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café rase de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café rase de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café rase de muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café rase de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             400 g de tofu fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika en poudre (pour le tofu)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de sirop d'agave (pour le tofu)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons de printemps (pour la garniture)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Flocons de chili (pour la garniture)"
+            }
+        ],
+        "steps": [
+            "Couper le tofu fumé en dés et le faire revenir. Assaisonner avec le sirop d'agave et le paprika en poudre, puis réserver.",
+            "Faire revenir les oignons et le céleri.",
+            "Ajouter la farine, le beurre et la crème, puis porter le tout à ébullition en remuant.",
+            "Ajouter les pommes de terre et le bouillon de légumes, puis laisser mijoter pendant 7 minutes.",
+            "Incorporer le fromage râpé et assaisonner. Déguster avec le tofu fumé et les autres garnitures."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5585",
         "title": "Gratin de poulet effiloché, patates et sauce façon Boursin",
