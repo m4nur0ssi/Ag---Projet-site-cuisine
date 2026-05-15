@@ -2,11 +2,96 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/05/2026 10:48:17
- * Total: 290 recettes
+ * Dernière mise à jour: 15/05/2026 10:57:06
+ * Total: 291 recettes
  */
-export const exportSyncId = "1778842097752";
+export const exportSyncId = "1778842626208";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5603",
+        "title": "Soupe crémeuse au poulet et aux nouilles",
+        "description": "Une soupe réconfortante et crémeuse au poulet, nouilles et légumes, parfaite pour les journées froides.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7592686604196547862\" data-video-id=\"7592686604196547862\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7592686604196547862\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon, coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/4 de chou blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             2 carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 patate douce"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à soupe d'assaisonnement knorr secret d'arômes"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             30 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             1,4 de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             3 blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300 ml de crème liquide légère"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de cheveux d'ange"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre noir et persil frais haché"
+            }
+        ],
+        "steps": [
+            "Faites chauffer l'huile d'olive dans une grande cocotte. Ajoutez l'oignon, les carottes, la patate douce et le chou blanc. Faites revenir doucement à feu moyen jusqu'à ce que les légumes deviennent fondants, sans les colorer.",
+            "Ajoutez l'ail et le mélange d'épices. Mélangez et laissez chauffer 1 à 2 minutes pour libérer les arômes. Incorporez la farine et mélangez pendant environ 2 minutes afin d'éliminer le goût de farine crue.",
+            "Versez le bouillon de poulet. Ajoutez les blancs de poulet et les feuilles de laurier. Portez à frémissement et laissez cuire 10 à 15 minutes.",
+            "Retirez le poulet, effilochez-le puis remettez-le dans la casserole. Incorporez la crème et laissez mijoter quelques minutes, jusqu'à ce que la soupe épaississe légèrement.",
+            "Ajoutez les nouilles aux œufs et poursuivez la cuisson jusqu'à ce qu'elles soient bien tendres.",
+            "Salez, poivrez, ajoutez le persil frais haché et servez bien chaud. Régalez-vous 🫶"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5600",
         "title": "Caramelized Onion Soup",
