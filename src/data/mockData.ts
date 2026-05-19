@@ -2,11 +2,399 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 13:29:07
+ * Dernière mise à jour: 19/05/2026 13:43:59
  * Total: 300 recettes
  */
-export const exportSyncId = "1779197347267";
+export const exportSyncId = "1779198239876";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5591",
+        "title": "Soupe Pékinoise",
+        "description": "Découvrez la recette traditionnelle de la soupe aigre et douce, aussi connue sous le nom de soupe pékinoise. Une version savoureuse et réconfortante avec des légumes, du tofu, des champignons et des œufs.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmain-header.jpg&v=1779205070000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639413236248497430\" data-video-id=\"7639413236248497430\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639413236248497430\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍐\n 30 g de poireau"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 càs de purée de piment"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 800 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 60 ml de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 càs de sauce soja foncée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60 g de bambou"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60 g d'oreilles de Judas hydratées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 80 g de tofu moelleux"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1,5 càc de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 càc de poivre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 80 ml de vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🥔\n Fécule de pomme de terre + eau (pour épaissir)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 3 œufs"
+            }
+        ],
+        "steps": [
+            "Taillez toute la garniture : les tomates et le poireau en petits cubes, puis le bambou, le tofu et les oreilles de Judas en bâtonnets.",
+            "Dans une casserole avec un peu d'huile, faites revenir le poireau puis la tomate afin d'obtenir une texture légèrement compotée.",
+            "Ajoutez ensuite la purée de piment puis mélangez bien.",
+            "Versez l'eau puis assaisonnez avec le sel et le poivre blanc.",
+            "Portez à ébullition avant d'ajouter les garnitures ainsi que la sauce soja.",
+            "Épaississez ensuite avec le mélange eau + fécule puis colorez légèrement avec la sauce soja foncée.",
+            "Une fois la soupe bien nappante, laissez frémir puis ajoutez les œufs battus. Laissez cuire environ 30 secondes avant de mélanger pour une meilleure texture.",
+            "Ajoutez ensuite le vinaigre puis il ne reste plus qu'à dresser.",
+            "Adaptez selon vos goûts : plus de piment si vous aimez relevé, plus de vinaigre si vous aimez l'acidité."
+        ],
+        "tags": [
+            "asiatique",
+            "C'est l'hiver",
+            "épicé",
+            "Healthy",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5594",
+        "title": "Soupe aux Gnocchi et poulet",
+        "description": "Une soupe réconfortante et savoureuse aux gnocchis, poulet rôti, épinards, légumes et fromages, parfaite pour les journées froides.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FMarry-me-chicken-soup-with-gnocchi.jpg&v=1779204905000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7575895405980863765\" data-video-id=\"7575895405980863765\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7575895405980863765\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n Filet de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Assaisonnement italien"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Old Bay"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignons blancs, coupés en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 12-15 gousses d'ail, tranchées"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n 1 grande carotte, coupée en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 branche de céleri, coupée en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 cuillère à soupe de pâte de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 4-8 morceaux de tomates séchées, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Bouillon de poulet (selon besoin)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 paquet de gnocchis"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 1 tasse de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan (au goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 1/2 tasse de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre (au goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n 1 bouquet d'épinards, hachés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil (pour garniture)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Crème épaisse (pour garniture)"
+            }
+        ],
+        "steps": [
+            "Assaisonnez le filet de poulet avec l'assaisonnement italien, la poudre d'ail, l'Old Bay, le paprika, l'huile d'olive, le sel et le poivre. Faites cuire au four à 180°C pendant environ 25-35 minutes. Coupez-le en petits morceaux.",
+            "Faites revenir les oignons, l'ail, les carottes et le céleri, puis faites-les cuire avec la pâte de tomate.",
+            "Ajoutez les tomates séchées et le bouillon de poulet.",
+            "Ajoutez les gnocchis, la crème et le poulet rôti. Laissez les gnocchis cuire pendant environ 2-5 minutes avant d'ajouter les fromages. Enfin, ajoutez les épinards et assaisonnez au goût.",
+            "Servez et dégustez !"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Italie",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5597",
+        "title": "Soupe au brocoli et cheddar",
+        "description": "La saison des soupes approche et la soupe au brocoli et cheddar est l'une des meilleures ! Garnie de morceaux de bacon croustillants et servie avec du pain beurré et croustillant, c'est délicieux ! Le tout préparé dans une seule marmite pour un ne...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecette-veloute-brocoli-cheddar.jpg&v=1779204439000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7410185645622152479\" data-video-id=\"7410185645622152479\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7410185645622152479\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n oignon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 5-6 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 3 cuillères à soupe de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 1/4 tasse de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 4 tasses de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 1/2 tasse de lait 2%"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 1/2 tasse de crème légère (half & half)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 2 tasses de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n brocoli"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n carottes râpées (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n pain français grillé et beurré"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5600",
+        "title": "Soupe aux oignons",
+        "description": "Une soupe réconfortante et végétarienne à base d'oignons caramélisés, de pommes de terre, de fromage frais et de bouillon de légumes, assaisonnée de thym et de moutarde, parfaite pour les jours froids.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffrench-onion-soup.png.jpeg&v=1779204221000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7578568784487730454\" data-video-id=\"7578568784487730454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7578568784487730454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 4 large white onions"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3 garlic cloves, finely chopped"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 800 ml vegetable broth"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 600 g potatoes, 1-cm cubes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 200 g cream cheese (v)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Some oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 tbsp thyme"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 tbsp mustard"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Finely chopped parsley"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Chili flakes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Bread for dipping"
+            }
+        ],
+        "steps": [
+            "Slice the onions and caramelize them in some oil with a pinch of salt for 15-20 minutes.",
+            "Add garlic, thyme, pepper and mustard and briefly sauté.",
+            "Stir in the cream cheese until fully melted.",
+            "Pour in the vegetable broth and bring to a boil.",
+            "Add the potato cubes and simmer for 15 minutes until tender.",
+            "Season with salt and pepper.",
+            "Top with parsley and chili flakes. Serve with toasted bread on the side."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5603",
         "title": "Soupe crémeuse au poulet et aux nouilles",
@@ -717,394 +1105,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5600",
-        "title": "Caramelized Onion Soup",
-        "description": "Une soupe réconfortante et végétarienne à base d'oignons caramélisés, de pommes de terre, de fromage frais et de bouillon de légumes, assaisonnée de thym et de moutarde, parfaite pour les jours froids.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7578568784487730454\" data-video-id=\"7578568784487730454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7578568784487730454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             4 large white onions"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 garlic cloves, finely chopped"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             800 ml vegetable broth"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             600 g potatoes, 1-cm cubes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             200 g cream cheese (v)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Some oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 tbsp thyme"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tbsp mustard"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Finely chopped parsley"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Chili flakes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Bread for dipping"
-            }
-        ],
-        "steps": [
-            "Slice the onions and caramelize them in some oil with a pinch of salt for 15-20 minutes.",
-            "Add garlic, thyme, pepper and mustard and briefly sauté.",
-            "Stir in the cream cheese until fully melted.",
-            "Pour in the vegetable broth and bring to a boil.",
-            "Add the potato cubes and simmer for 15 minutes until tender.",
-            "Season with salt and pepper.",
-            "Top with parsley and chili flakes. Serve with toasted bread on the side."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Soupes",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5597",
-        "title": "Soupe au brocoli et cheddar",
-        "description": "La saison des soupes approche et la soupe au brocoli et cheddar est l'une des meilleures ! Garnie de morceaux de bacon croustillants et servie avec du pain beurré et croustillant, c'est délicieux ! Le tout préparé dans une seule marmite pour un ne...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7410185645622152479\" data-video-id=\"7410185645622152479\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7410185645622152479\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n             oignon blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             5-6 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             3 cuillères à soupe de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             poudre d'oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             poudre d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             1/4 tasse de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             4 tasses de bouillon de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             1/2 tasse de lait 2%"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             1/2 tasse de crème légère (half &#038; half)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             2 tasses de fromage cheddar"
-            },
-            {
-                "quantity": "",
-                "name": "🥦\n             brocoli"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             carottes râpées (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             bacon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             pain français grillé et beurré"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Soupes",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5594",
-        "title": "Marry Me Gnocchi Soup",
-        "description": "Une soupe réconfortante et savoureuse aux gnocchis, poulet rôti, épinards, légumes et fromages, parfaite pour les journées froides.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7575895405980863765\" data-video-id=\"7575895405980863765\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7575895405980863765\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             Filet de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Assaisonnement italien"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Poudre d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Old Bay"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons blancs, coupés en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             12-15 gousses d'ail, tranchées"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             1 grande carotte, coupée en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 branche de céleri, coupée en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 cuillère à soupe de pâte de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             4-8 morceaux de tomates séchées, hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Bouillon de poulet (selon besoin)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 paquet de gnocchis"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             1 tasse de crème épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan (au goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1/2 tasse de fromage cheddar"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (au goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             1 bouquet d'épinards, hachés"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil (pour garniture)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème épaisse (pour garniture)"
-            }
-        ],
-        "steps": [
-            "Assaisonnez le filet de poulet avec l'assaisonnement italien, la poudre d'ail, l'Old Bay, le paprika, l'huile d'olive, le sel et le poivre. Faites cuire au four à 180°C pendant environ 25-35 minutes. Coupez-le en petits morceaux.",
-            "Faites revenir les oignons, l'ail, les carottes et le céleri, puis faites-les cuire avec la pâte de tomate.",
-            "Ajoutez les tomates séchées et le bouillon de poulet.",
-            "Ajoutez les gnocchis, la crème et le poulet rôti. Laissez les gnocchis cuire pendant environ 2-5 minutes avant d'ajouter les fromages. Enfin, ajoutez les épinards et assaisonnez au goût.",
-            "Servez et dégustez !"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Italie",
-            "Soupes"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5591",
-        "title": "Soupe Pékinoise",
-        "description": "Découvrez la recette traditionnelle de la soupe aigre et douce, aussi connue sous le nom de soupe pékinoise. Une version savoureuse et réconfortante avec des légumes, du tofu, des champignons et des œufs.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639413236248497430\" data-video-id=\"7639413236248497430\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639413236248497430\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍐\n             30 g de poireau"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 càs de purée de piment"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             800 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             60 ml de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 càs de sauce soja foncée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             60 g de bambou"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             60 g d'oreilles de Judas hydratées"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80 g de tofu moelleux"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1,5 càc de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 càc de poivre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             80 ml de vinaigre"
-            },
-            {
-                "quantity": "",
-                "name": "🥔\n             Fécule de pomme de terre + eau (pour épaissir)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             3 œufs"
-            }
-        ],
-        "steps": [
-            "Taillez toute la garniture : les tomates et le poireau en petits cubes, puis le bambou, le tofu et les oreilles de Judas en bâtonnets.",
-            "Dans une casserole avec un peu d'huile, faites revenir le poireau puis la tomate afin d'obtenir une texture légèrement compotée.",
-            "Ajoutez ensuite la purée de piment puis mélangez bien.",
-            "Versez l'eau puis assaisonnez avec le sel et le poivre blanc.",
-            "Portez à ébullition avant d'ajouter les garnitures ainsi que la sauce soja.",
-            "Épaississez ensuite avec le mélange eau + fécule puis colorez légèrement avec la sauce soja foncée.",
-            "Une fois la soupe bien nappante, laissez frémir puis ajoutez les œufs battus. Laissez cuire environ 30 secondes avant de mélanger pour une meilleure texture.",
-            "Ajoutez ensuite le vinaigre puis il ne reste plus qu'à dresser.",
-            "Adaptez selon vos goûts : plus de piment si vous aimez relevé, plus de vinaigre si vous aimez l'acidité."
-        ],
-        "tags": [
-            "asiatique",
-            "C'est l'hiver",
-            "épicé",
-            "Healthy",
-            "Soupes"
         ],
         "isFeatured": false,
         "isFavorite": false,
