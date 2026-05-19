@@ -2,11 +2,84 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 16:33:08
- * Total: 298 recettes
+ * Dernière mise à jour: 19/05/2026 16:57:45
+ * Total: 297 recettes
  */
-export const exportSyncId = "1779208388822";
+export const exportSyncId = "1779209865929";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5531",
+        "title": "Carottes rôties sauce crémeuse",
+        "description": "Une recette de carottes rôties au paprika fumé, accompagnées d'une sauce crémeuse à base d'œufs et de fromage frais. Parfaite en entrée ou en plat principal, elle est facile et rapide à réaliser.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcarotteroties.jpg&v=1779216771000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7470192359112854806\" data-video-id=\"7470192359112854806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7470192359112854806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n 10 petites carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 3cs d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1cs de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 œufs aux plats"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 50g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1/2 cc de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n Quelques cerneaux de noix (pour le dressage)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Quelques épices (pour le dressage)"
+            }
+        ],
+        "steps": [
+            "Rincer, essuyer et couper les carottes en 2.",
+            "Déposer les carottes sur une plaque recouverte de papier cuisson.",
+            "Verser l'huile d'olive, le paprika, le sel et le poivre sur les carottes, puis bien mélanger.",
+            "Faire cuire au four à 190 degrés (chaleur tournante) pendant 35 minutes, en retournant les carottes à mi-cuisson.",
+            "Pendant ce temps, préparer la sauce : dans un blender, mixer les 2 œufs aux plats, les 50g de fromage frais et la 1/2 cc de moutarde.",
+            "Pour le dressage, verser la sauce dans une assiette.",
+            "Ajouter les carottes rôties.",
+            "Verser un peu d'huile au paprika restante de la plaque de cuisson.",
+            "Ajouter quelques cerneaux de noix et des épices pour garnir."
+        ],
+        "tags": [
+            "Accompagnements",
+            "épicé",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5535",
         "title": "Boulettes de brocolis",
@@ -2229,79 +2302,6 @@ export const mockRecipes: Recipe[] = [
             "Italie",
             "Pas cher",
             "pates",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5531",
-        "title": "Carottes rôties sauce crémeuse",
-        "description": "Une recette de carottes rôties au paprika fumé, accompagnées d'une sauce crémeuse à base d'œufs et de fromage frais. Parfaite en entrée ou en plat principal, elle est facile et rapide à réaliser.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7470192359112854806\" data-video-id=\"7470192359112854806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7470192359112854806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥕\n             10 petites carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3cs d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1cs de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs aux plats"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             50g de fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1/2 cc de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Quelques cerneaux de noix (pour le dressage)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques épices (pour le dressage)"
-            }
-        ],
-        "steps": [
-            "Rincer, essuyer et couper les carottes en 2.",
-            "Déposer les carottes sur une plaque recouverte de papier cuisson.",
-            "Verser l'huile d'olive, le paprika, le sel et le poivre sur les carottes, puis bien mélanger.",
-            "Faire cuire au four à 190 degrés (chaleur tournante) pendant 35 minutes, en retournant les carottes à mi-cuisson.",
-            "Pendant ce temps, préparer la sauce : dans un blender, mixer les 2 œufs aux plats, les 50g de fromage frais et la 1/2 cc de moutarde.",
-            "Pour le dressage, verser la sauce dans une assiette.",
-            "Ajouter les carottes rôties.",
-            "Verser un peu d'huile au paprika restante de la plaque de cuisson.",
-            "Ajouter quelques cerneaux de noix et des épices pour garnir."
-        ],
-        "tags": [
-            "Accompagnements",
-            "épicé",
             "Végé"
         ],
         "isFeatured": false,
@@ -7257,65 +7257,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Pas cher",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5129",
-        "title": "Bouillis de Tapioca",
-        "description": "Un classique dessert en Afrique de l'Ouest et Centrale.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCoconut-Tapioca-Pudding.jpg&v=1776349498000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7603042682176441623\" data-video-id=\"7603042682176441623\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7603042682176441623\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "💧\n 30cl d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 160g de tapioca"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 20cl lait de coco"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n Sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n arôme vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n citronnelle"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n gingembre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique"
         ],
         "isFeatured": false,
         "isFavorite": false,
