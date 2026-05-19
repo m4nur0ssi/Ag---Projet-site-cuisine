@@ -2,11 +2,180 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 09:33:18
+ * Dernière mise à jour: 19/05/2026 09:47:10
  * Total: 300 recettes
  */
-export const exportSyncId = "1779183198301";
+export const exportSyncId = "1779184030405";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5615",
+        "title": "Poireaux confits &#038; gratinés",
+        "description": "Une recette de poireaux confits et gratinés, incroyablement fondants et tendres, nappés d'une sauce crémeuse au comté et citron. Un plat végétarien réconfortant, parfait pour l'hiver.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fm1532-hd-gratin-poireaux-1.jpg&v=1779190566000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619730383227112726\" data-video-id=\"7619730383227112726\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619730383227112726\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍐\n 8-10 poireaux"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 4 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 4 cas de soja salé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 cas d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cac de sirop d'érable"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 15g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 25cl de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 2 cas de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 cas de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 bouillon émietté"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Le zeste d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 70g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 15cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil (pour le service)"
+            }
+        ],
+        "steps": [
+            "Couper les poireaux en tronçons (4cm), les rincer et les disposer au fond d'un plat.",
+            "Mélanger l'huile d'olive, le soja salé, l'ail et le sirop d'érable pour la marinade. La verser sur les poireaux, puis ajouter les 15cl d'eau.",
+            "Recouvrir le plat avec une feuille de papier cuisson humidifiée et froissée, puis ajouter une feuille d'aluminium.",
+            "Cuire au four 30-35 min à 200 degrés.",
+            "Pendant ce temps, faire fondre le beurre dans une casserole.",
+            "Ajouter la crème épaisse, la crème liquide, le thym, le comté, le zeste de citron, le bouillon émietté et le poivre. Mixer la sauce.",
+            "Verser la sauce dans le plat pour recouvrir tous les poireaux.",
+            "Ajouter encore un peu de comté sur le dessus.",
+            "Faire gratiner au four 20-25 min à 200 degrés (sous surveillance).",
+            "Servir bien chaud avec un peu de persil."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Gratins",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5621",
+        "title": "Poivrons rôtis farcis à la ricotta",
+        "description": "Des poivrons longs rôtis et épluchés, farcis d'un mélange crémeux de ricotta, oignon rouge et roquette, puis roulés et assaisonnés d'huile d'olive, de vinaigre balsamique et de basilic frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FR698_TRIO_DE_MINI_POIVRONS_FARCIS_RICOTTA_150G.jpg&v=1779190148000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639396479022550305\" data-video-id=\"7639396479022550305\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639396479022550305\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n 4 poivrons longs (type corne de bœuf ou Sweet Palermo)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 500 g de ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n ½ oignon rouge, finement émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n 1 grosse poignée de roquette, ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive (généreuse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Quelques feuilles de basilic"
+            }
+        ],
+        "steps": [
+            "Préchauffe ton four à 200°C.",
+            "Dispose les poivrons entiers sur une plaque recouverte de papier cuisson, puis enfourne pour 30 minutes, jusqu'à ce qu'ils soient bien tendres et légèrement grillés.",
+            "Dans un saladier, mélange la ricotta avec l'oignon rouge, la roquette, un bon filet d'huile d'olive, du sel et du poivre.",
+            "Place au frais le temps que les poivrons refroidissent.",
+            "À la sortie du four, dépose les poivrons dans une assiette et couvre-les de film alimentaire.",
+            "Laisse-les \" suer \" quelques minutes : la peau se retirera toute seule.",
+            "Épluche les poivrons, coupe-les en deux et retire les graines.",
+            "Dépose une quenelle de farce sur une extrémité, puis roule délicatement chaque morceau comme un petit rouleau.",
+            "Dispose les rouleaux dans une assiette.",
+            "Arrose d'un filet d'huile d'olive et de vinaigre balsamique, ajoute une pincée de fleur de sel et quelques feuilles de basilic frais."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Healthy",
+            "Italie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5606",
         "title": "Gratin dauphinois",
@@ -309,81 +478,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5621",
-        "title": "Poivrons rôtis farcis à la ricotta, roquette &#038; balsamique",
-        "description": "Des poivrons longs rôtis et épluchés, farcis d'un mélange crémeux de ricotta, oignon rouge et roquette, puis roulés et assaisonnés d'huile d'olive, de vinaigre balsamique et de basilic frais.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FR698_TRIO_DE_MINI_POIVRONS_FARCIS_RICOTTA_150G.jpg&v=1779189056000",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639396479022550305\" data-video-id=\"7639396479022550305\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639396479022550305\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n 4 poivrons longs (type corne de bœuf ou Sweet Palermo)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 500 g de ricotta"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n ½ oignon rouge, finement émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n 1 grosse poignée de roquette, ciselée"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive (généreuse)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Fleur de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Quelques feuilles de basilic"
-            }
-        ],
-        "steps": [
-            "Préchauffe ton four à 200°C.",
-            "Dispose les poivrons entiers sur une plaque recouverte de papier cuisson, puis enfourne pour 30 minutes, jusqu'à ce qu'ils soient bien tendres et légèrement grillés.",
-            "Dans un saladier, mélange la ricotta avec l'oignon rouge, la roquette, un bon filet d'huile d'olive, du sel et du poivre.",
-            "Place au frais le temps que les poivrons refroidissent.",
-            "À la sortie du four, dépose les poivrons dans une assiette et couvre-les de film alimentaire.",
-            "Laisse-les \" suer \" quelques minutes : la peau se retirera toute seule.",
-            "Épluche les poivrons, coupe-les en deux et retire les graines.",
-            "Dépose une quenelle de farce sur une extrémité, puis roule délicatement chaque morceau comme un petit rouleau.",
-            "Dispose les rouleaux dans une assiette.",
-            "Arrose d'un filet d'huile d'olive et de vinaigre balsamique, ajoute une pincée de fleur de sel et quelques feuilles de basilic frais."
-        ],
-        "tags": [
-            "Apéritifs",
-            "Healthy",
-            "Italie",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5624",
         "title": "Sauce Verte",
         "description": "Une sauce verte facile à cuisiner, parfaite pour accompagner vos viandes et grillades.",
@@ -538,100 +632,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5615",
-        "title": "Poireaux CONFITS &#038; gratinés",
-        "description": "Une recette de poireaux confits et gratinés, incroyablement fondants et tendres, nappés d'une sauce crémeuse au comté et citron. Un plat végétarien réconfortant, parfait pour l'hiver.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778854786330.jpg&v=1778862009000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619730383227112726\" data-video-id=\"7619730383227112726\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619730383227112726\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍐\n             8-10 poireaux"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             4 cas d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 cas de soja salé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cas d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cac de sirop d'érable"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             15g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             25cl de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             2 cas de crème épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 cas de thym"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 bouillon émietté"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le zeste d'1 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             70g de comté"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             15cl d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil (pour le service)"
-            }
-        ],
-        "steps": [
-            "Couper les poireaux en tronçons (4cm), les rincer et les disposer au fond d'un plat.",
-            "Mélanger l'huile d'olive, le soja salé, l'ail et le sirop d'érable pour la marinade. La verser sur les poireaux, puis ajouter les 15cl d'eau.",
-            "Recouvrir le plat avec une feuille de papier cuisson humidifiée et froissée, puis ajouter une feuille d'aluminium.",
-            "Cuire au four 30-35 min à 200 degrés.",
-            "Pendant ce temps, faire fondre le beurre dans une casserole.",
-            "Ajouter la crème épaisse, la crème liquide, le thym, le comté, le zeste de citron, le bouillon émietté et le poivre. Mixer la sauce.",
-            "Verser la sauce dans le plat pour recouvrir tous les poireaux.",
-            "Ajouter encore un peu de comté sur le dessus.",
-            "Faire gratiner au four 20-25 min à 200 degrés (sous surveillance).",
-            "Servir bien chaud avec un peu de persil."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Gratins",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -809,7 +809,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5597",
         "title": "Soupe au brocoli et cheddar",
         "description": "La saison des soupes approche et la soupe au brocoli et cheddar est l'une des meilleures ! Garnie de morceaux de bacon croustillants et servie avec du pain beurré et croustillant, c'est délicieux ! Le tout préparé dans une seule marmite pour un ne...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778841423242.jpg&v=1778848644000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -902,7 +902,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5594",
         "title": "Marry Me Gnocchi Soup",
         "description": "Une soupe réconfortante et savoureuse aux gnocchis, poulet rôti, épinards, légumes et fromages, parfaite pour les journées froides.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778831083250.jpg&v=1778838315000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1023,7 +1023,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5591",
         "title": "Soupe Pékinoise",
         "description": "Découvrez la recette traditionnelle de la soupe aigre et douce, aussi connue sous le nom de soupe pékinoise. Une version savoureuse et réconfortante avec des légumes, du tofu, des champignons et des œufs.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778830744520.jpg&v=1778837986000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1114,7 +1114,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5588",
         "title": "Loaded Potato Soup",
         "description": "Une soupe de pommes de terre crémeuse et réconfortante, garnie de tofu fumé croustillant et de fromage végétalien, parfaite pour les journées froides.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778830444819.jpg&v=1778837666000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1216,7 +1216,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5585",
         "title": "Gratin de poulet effiloché, patates et sauce façon Boursin",
         "description": "Une recette facile de gratin avec du poulet effiloché, des patates coupées en petits cubes et une sauce crémeuse façon Boursin. Comptez environ 1h de préparation et cuisson.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778819227384.jpg&v=1778826461000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1292,7 +1292,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5582",
         "title": "Mushroom Soup",
         "description": "Une soupe crémeuse et réconfortante aux champignons (bruns et Shiitake), agrémentée de vin blanc, de crème et d'herbes, servie avec des croûtons croustillants au parmesan.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778818865272.jpg&v=1778826098000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1384,7 +1384,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5579",
         "title": "Tenders de poulet sauce miel fouettée épicée",
         "description": "Une recette incroyable de tenders de poulet croustillants avec une sauce miel fouettée épicée, parfaite pour les amateurs de sucré/salé. À tester absolument !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778818551652.jpg&v=1778825775000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1466,7 +1466,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5576",
         "title": "Pasta al forno bianca",
         "description": "Découvrez le plaisir simple et irrésistible d'un plat qui parle au cœur.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778804225652.jpg&v=1778811439000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1535,7 +1535,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5573",
         "title": "Creamy Paprika Beef Pasta",
         "description": "Une recette de pâtes crémeuses au bœuf et paprika fumé, qui a généré des millions de vues sur toutes les plateformes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778803932591.jpg&v=1778811175000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1609,7 +1609,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5570",
         "title": "Pasta alla Montecarlo",
         "description": "Une recette de pâtes crémeuses à la Montecarlo avec du bœuf haché, du pesto et une touche de peperoncini, pour un goût de vacances 5 étoiles.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778803721386.jpg&v=1778810936000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1683,7 +1683,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5567",
         "title": "Harira marocaine",
         "description": "La Harira est une soupe marocaine traditionnelle, riche et savoureuse, souvent préparée et consommée pendant le mois de Ramadan pour rompre le jeûne. Elle est composée d'agneau, de légumes, de légumineuses et d'épices.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778797825603.jpg&v=1778805068000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1778,7 +1778,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5564",
         "title": "Poulet coco épicé à la brésilienne",
         "description": "Un poulet aux cuisses tendres, mijoté dans une sauce crémeuse à la noix de coco, relevé d'une touche de citron vert et de coriandre, inspiré de la cuisine brésilienne. Un plat réconfortant avec une touche tropicale.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778797573246.jpg&v=1778804813000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1886,7 +1886,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5561",
         "title": "Chermoula relevée et parfumée",
         "description": "Une sauce Chermoula relevée et parfumée, traditionnellement préparée au pilon, idéale pour accompagner vos plats de poisson, viandes ou légumes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778797352115.jpg&v=1778804594000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1951,7 +1951,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5558",
         "title": "Pâtes à l'ail",
         "description": "Une recette simple et rapide de pâtes à l'ail, agrémentée de parmesan, piment et herbes aromatiques pour un plat savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778797148663.jpg&v=1778804362000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2017,7 +2017,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5555",
         "title": "Spicy Orzo",
         "description": "C'est gourmand, facile, prêt en 20 min et bien réconfortant !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778793114293.jpg&v=1778800357000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2122,7 +2122,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5552",
         "title": "Goat Cheese Pasta",
         "description": "Maybe you're more used to goat cheese on toast with a little honey, but this recipe will make you want to enjoy it with pasta more often.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778792886323.jpg&v=1778800126000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2178,7 +2178,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5549",
         "title": "Pâtes aux oignon et champignon",
         "description": "Une recette simple et rapide de pâtes aux champignons et oignons, agrémentée de crème, de parmesan et d'une touche de vin blanc.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778792694510.jpg&v=1778799908000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2254,7 +2254,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5538",
         "title": "Creamy Pasta",
         "description": "Une recette simple et rapide de pâtes crémeuses avec une sauce à base d'oignon, ail, tomates et crème.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778792022709.jpg&v=1778799237000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2320,7 +2320,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5535",
         "title": "Boulettes de brocolis",
         "description": "Une façon ludique de cuisiner tes brocolis et surtout de les faire manger aux petits comme aux grands récalcitrants !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778785462217.jpg&v=1778792679000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2369,7 +2369,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5531",
         "title": "Carottes rôties sauce crémeuse",
         "description": "Une recette de carottes rôties au paprika fumé, accompagnées d'une sauce crémeuse à base d'œufs et de fromage frais. Parfaite en entrée ou en plat principal, elle est facile et rapide à réaliser.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778779615379.jpg&v=1778786857000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2442,7 +2442,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5528",
         "title": "Légumes rôtis / sauce cacahuètes-coco",
         "description": "Une recette végétarienne facile et rapide de légumes rôtis (patates douces et carottes) accompagnés d'une onctueuse sauce crémeuse à la cacahuète et au lait de coco.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778779402420.jpg&v=1778786645000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2525,7 +2525,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5525",
         "title": "Salade de poivrons à l'orientale",
         "description": "Elle ce consomme tiède ou froide, c'est vraiment un délice! Parfait pour accompagner vos repas. A partager sans modération !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778779212532.jpg&v=1778786453000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2594,7 +2594,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5522",
         "title": "Salade de courgettes grillées",
         "description": "Une salade de courgettes grillées servie avec de la stracciatella et une vinaigrette au piment, ail et échalote, parfaite pour la saison des courgettes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778778992693.jpg&v=1778786235000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2667,7 +2667,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5517",
         "title": "Riz à l'ail",
         "description": "La recette qui me sauve au quotidien ! Simple, rapide, efficace... le riz à l'ail s'accompagne avec tout, et quand on aime l'ail, on ne peut plus s'en passer.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778778771849.jpg&v=1778785988000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2715,7 +2715,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5514",
         "title": "Tiramisu",
         "description": "Recette de tiramisu maison avec un biscuit fait maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778703686809.jpg&v=1778710901000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2783,7 +2783,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5511",
         "title": "Riz Jollof",
         "description": "Découvrez la recette du Riz Jollof, un plat africain savoureux et parfumé, mijoté lentement pour une texture parfaite.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778679778645.jpg&v=1778686994000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2856,7 +2856,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5508",
         "title": "Cinnamon Roll Muffins",
         "description": "Super fluffy, filled with that delicious Philadelphia cream cheese, and topped with a buttery, cinnamon-sugar swirl that gives the perfect crunchy touch.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778616430856.jpg&v=1778623644000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
