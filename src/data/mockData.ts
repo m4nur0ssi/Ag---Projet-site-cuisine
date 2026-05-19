@@ -2,11 +2,87 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 13:54:23
+ * Dernière mise à jour: 19/05/2026 14:02:57
  * Total: 300 recettes
  */
-export const exportSyncId = "1779198863197";
+export const exportSyncId = "1779199377318";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5585",
+        "title": "Gratin de poulet effiloché et pommes de terre",
+        "description": "Une recette facile de gratin avec du poulet effiloché, des patates coupées en petits cubes et une sauce crémeuse façon Boursin. Comptez environ 1h de préparation et cuisson.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FW720xH450R1.6-c6d9ba0f-8deb-4381-977d-23c81fa5918b-cba1a3fc-bc1a-4e31-954b-5666a3f75da1.jpeg&v=1779206355000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7560417585964109078\" data-video-id=\"7560417585964109078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7560417585964109078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 3 blancs de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 4 à 5 patates"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 200 g de fromage ail et fines herbes (type Boursin ou Tartare)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Crème semi liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Mozzarella râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Beurre demi-sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil (pour la finition)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Gratins"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5588",
         "title": "Loaded Potato Soup",
@@ -1207,82 +1283,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5585",
-        "title": "Gratin de poulet effiloché, patates et sauce façon Boursin",
-        "description": "Une recette facile de gratin avec du poulet effiloché, des patates coupées en petits cubes et une sauce crémeuse façon Boursin. Comptez environ 1h de préparation et cuisson.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7560417585964109078\" data-video-id=\"7560417585964109078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7560417585964109078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             3 blancs de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 à 5 patates"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             200 g de fromage ail et fines herbes (type Boursin ou Tartare)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème semi liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Cheddar râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mozzarella râpée"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre demi-sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil (pour la finition)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Gratins"
         ],
         "isFeatured": false,
         "isFavorite": false,
