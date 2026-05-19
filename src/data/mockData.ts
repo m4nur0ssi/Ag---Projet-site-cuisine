@@ -2,11 +2,162 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 14:19:02
- * Total: 300 recettes
+ * Dernière mise à jour: 19/05/2026 14:30:57
+ * Total: 299 recettes
  */
-export const exportSyncId = "1779200342701";
+export const exportSyncId = "1779201057177";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5576",
+        "title": "Pasta al forno bianca",
+        "description": "Découvrez le plaisir simple et irrésistible d'un plat qui parle au cœur.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FW720xH450R1.6-c6d9ba0f-8deb-4381-977d-23c81fa5918b-cba1a3fc-bc1a-4e31-954b-5666a3f75da1-1.jpeg&v=1779207796000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554066251908222230\" data-video-id=\"7554066251908222230\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554066251908222230\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n 400 g de rigatoni"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 3 mozzarella fior di latte (environ 125 g chacune)"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n 4 tranches de jambon cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 piment"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 500 g de champignons de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Basilic frais selon le goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 1 litre de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 85 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 85 g de farine"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Gratins",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5579",
+        "title": "Tenders de poulet sauce miel fouettée épicée",
+        "description": "Une recette incroyable de tenders de poulet croustillants avec une sauce miel fouettée épicée, parfaite pour les amateurs de sucré/salé. À tester absolument !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F154575_w1024h1024c1cx600cy337cxt0cyt0cxb1200cyb675.jpg&v=1779207703000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7438894105792384288\" data-video-id=\"7438894105792384288\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7438894105792384288\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 3 escalopes de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 250 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment de Cayenne"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 15 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 250 g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Flocons de piment"
+            }
+        ],
+        "steps": [
+            "Couper les escalopes de poulet en lanières pour former les tenders.",
+            "Dans un premier bol, mélanger la farine avec le sel, le poivre, le piment de Cayenne et les herbes de Provence.",
+            "Dans un second bol, battre les œufs avec l'eau.",
+            "Passer chaque lanière de poulet d'abord dans le mélange de farine, puis dans les œufs battus, et enfin à nouveau dans la farine pour une double panure.",
+            "Faire chauffer l'huile de friture et faire frire les tenders jusqu'à ce qu'ils soient dorés et croustillants.",
+            "Pour la sauce, fouetter le miel avec le sel, le poivre, l'ail en poudre, le paprika et les flocons de piment pendant environ 10 minutes jusqu'à obtenir une belle texture.",
+            "Servir les tenders chauds avec la sauce miel fouettée épicée."
+        ],
+        "tags": [
+            "épicé",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5582",
         "title": "Soupe aux champignons",
@@ -1375,231 +1526,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5579",
-        "title": "Tenders de poulet sauce miel fouettée épicée",
-        "description": "Une recette incroyable de tenders de poulet croustillants avec une sauce miel fouettée épicée, parfaite pour les amateurs de sucré/salé. À tester absolument !",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7438894105792384288\" data-video-id=\"7438894105792384288\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7438894105792384288\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             3 escalopes de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             250 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment de Cayenne"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Herbes de Provence"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 oeufs"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             15 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile de friture"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             250 g de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Flocons de piment"
-            }
-        ],
-        "steps": [
-            "Couper les escalopes de poulet en lanières pour former les tenders.",
-            "Dans un premier bol, mélanger la farine avec le sel, le poivre, le piment de Cayenne et les herbes de Provence.",
-            "Dans un second bol, battre les œufs avec l'eau.",
-            "Passer chaque lanière de poulet d'abord dans le mélange de farine, puis dans les œufs battus, et enfin à nouveau dans la farine pour une double panure.",
-            "Faire chauffer l'huile de friture et faire frire les tenders jusqu'à ce qu'ils soient dorés et croustillants.",
-            "Pour la sauce, fouetter le miel avec le sel, le poivre, l'ail en poudre, le paprika et les flocons de piment pendant environ 10 minutes jusqu'à obtenir une belle texture.",
-            "Servir les tenders chauds avec la sauce miel fouettée épicée."
-        ],
-        "tags": [
-            "épicé",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5576",
-        "title": "Pasta al forno bianca",
-        "description": "Découvrez le plaisir simple et irrésistible d'un plat qui parle au cœur.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554066251908222230\" data-video-id=\"7554066251908222230\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554066251908222230\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             400 g de rigatoni"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             3 mozzarella fior di latte (environ 125 g chacune)"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             4 tranches de jambon cuit"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 piment"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             500 g de champignons de Paris"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Basilic frais selon le goût"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             1 litre de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             85 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             85 g de farine"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Gratins",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5573",
-        "title": "Creamy Paprika Beef Pasta",
-        "description": "Une recette de pâtes crémeuses au bœuf et paprika fumé, qui a généré des millions de vues sur toutes les plateformes.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7611621335608954134\" data-video-id=\"7611621335608954134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7611621335608954134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             400g pasta (rigatoni)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 onion, diced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             500g minced beef"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 garlic cloves, minced"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 tbsp smoked paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tbsp tomato paste"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 x 400g tin of chopped tomatoes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150ml beef stock"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             150g mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             40g Parmesan, grated, plus extra for serving"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             10g parsley, chopped"
-            }
-        ],
-        "steps": [
-            "Heat oil in a large pan over medium high heat. Add the minced beef, spread it out and leave it to caramelise. Once deeply browned underneath, break it up and cook until browned all over.",
-            "Add the onion and cook 4 to 5 minutes until softened. Stir in the garlic and smoked paprika, cook 1 minute.",
-            "Add the tomato paste and cook 1 minute to deepen the flavour.",
-            "Pour in the chopped tomatoes and beef stock. Simmer 10 minutes until thick and rich.",
-            "Cook the pasta in well salted water until al dente. Drain, saving a splash of pasta water.",
-            "Add the pasta to the sauce with mascarpone, parmesan and parsley. Toss with a splash of pasta water until glossy and silky.",
-            "Taste, adjust seasoning, finish with extra parmesan and serve."
-        ],
-        "tags": [
-            "Italie",
-            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
