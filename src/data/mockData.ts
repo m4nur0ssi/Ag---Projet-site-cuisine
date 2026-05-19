@@ -2,11 +2,96 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 09:47:10
+ * Dernière mise à jour: 19/05/2026 13:29:07
  * Total: 300 recettes
  */
-export const exportSyncId = "1779184030405";
+export const exportSyncId = "1779197347267";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5603",
+        "title": "Soupe crémeuse au poulet et aux nouilles",
+        "description": "Une soupe réconfortante et crémeuse au poulet, nouilles et légumes, parfaite pour les journées froides.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsoupe-cremeuse-poulet-et-nouilles.jpg&v=1779204073000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7592686604196547862\" data-video-id=\"7592686604196547862\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7592686604196547862\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon, coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/4 de chou blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n 2 carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 patate douce"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 c. à soupe d'assaisonnement knorr secret d'arômes"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 30 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 1,4 de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 3 blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 feuilles de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 300 ml de crème liquide légère"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 250 g de cheveux d'ange"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre noir et persil frais haché"
+            }
+        ],
+        "steps": [
+            "Faites chauffer l'huile d'olive dans une grande cocotte. Ajoutez l'oignon, les carottes, la patate douce et le chou blanc. Faites revenir doucement à feu moyen jusqu'à ce que les légumes deviennent fondants, sans les colorer.",
+            "Ajoutez l'ail et le mélange d'épices. Mélangez et laissez chauffer 1 à 2 minutes pour libérer les arômes. Incorporez la farine et mélangez pendant environ 2 minutes afin d'éliminer le goût de farine crue.",
+            "Versez le bouillon de poulet. Ajoutez les blancs de poulet et les feuilles de laurier. Portez à frémissement et laissez cuire 10 à 15 minutes.",
+            "Retirez le poulet, effilochez-le puis remettez-le dans la casserole. Incorporez la crème et laissez mijoter quelques minutes, jusqu'à ce que la soupe épaississe légèrement.",
+            "Ajoutez les nouilles aux œufs et poursuivez la cuisson jusqu'à ce qu'elles soient bien tendres.",
+            "Salez, poivrez, ajoutez le persil frais haché et servez bien chaud. Régalez-vous 🫶"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5615",
         "title": "Poireaux confits &#038; gratinés",
@@ -632,91 +717,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5603",
-        "title": "Soupe crémeuse au poulet et aux nouilles",
-        "description": "Une soupe réconfortante et crémeuse au poulet, nouilles et légumes, parfaite pour les journées froides.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7592686604196547862\" data-video-id=\"7592686604196547862\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7592686604196547862\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon, coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/4 de chou blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             2 carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 patate douce"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à soupe d'assaisonnement knorr secret d'arômes"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             30 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             1,4 de bouillon de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             3 blanc de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 feuilles de laurier"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             300 ml de crème liquide légère"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250 g de cheveux d'ange"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre noir et persil frais haché"
-            }
-        ],
-        "steps": [
-            "Faites chauffer l'huile d'olive dans une grande cocotte. Ajoutez l'oignon, les carottes, la patate douce et le chou blanc. Faites revenir doucement à feu moyen jusqu'à ce que les légumes deviennent fondants, sans les colorer.",
-            "Ajoutez l'ail et le mélange d'épices. Mélangez et laissez chauffer 1 à 2 minutes pour libérer les arômes. Incorporez la farine et mélangez pendant environ 2 minutes afin d'éliminer le goût de farine crue.",
-            "Versez le bouillon de poulet. Ajoutez les blancs de poulet et les feuilles de laurier. Portez à frémissement et laissez cuire 10 à 15 minutes.",
-            "Retirez le poulet, effilochez-le puis remettez-le dans la casserole. Incorporez la crème et laissez mijoter quelques minutes, jusqu'à ce que la soupe épaississe légèrement.",
-            "Ajoutez les nouilles aux œufs et poursuivez la cuisson jusqu'à ce qu'elles soient bien tendres.",
-            "Salez, poivrez, ajoutez le persil frais haché et servez bien chaud. Régalez-vous 🫶"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Soupes"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -2981,7 +2981,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5505",
         "title": "Vanilla Cream Rolls",
         "description": "This recipe combines the delicacy of puff pastry with the richness of Diplomat cream. A dreamy dessert that strikes the perfect balance between crispy, creamy, and sweet.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778607131994.jpg&v=1778614376000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3043,7 +3043,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5502",
         "title": "Pain grillé, ganache au chocolat, huile d'olive et fleur de sel",
         "description": "Une recette simple et gourmande de pain grillé garni d'une onctueuse ganache au chocolat, rehaussée d'un filet d'huile d'olive et d'une pincée de fleur de sel.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778606928871.jpg&v=1778614171000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3097,7 +3097,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5499",
         "title": "Crèmes dessert vanille",
         "description": "Des crèmes dessert vanille maison, faciles et gourmandes, inspirées d'une version au cacao. Idéales pour 4 pots, elles sont rapides à préparer et parfaites pour un dessert sain.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778606724842.jpg&v=1778613970000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3143,7 +3143,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5496",
         "title": "Crème brûlée",
         "description": "Le dessert qu'on aime tous mais qu'on oublie parfois...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778606533022.jpg&v=1778613747000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3835,7 +3835,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5433",
         "title": "Upside Down Berry Cake",
         "description": "Une recette facile de gâteau aux baies mélangées, parfait pour une séance de pâtisserie réconfortante ou pour les fêtes de Noël.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778575861692.jpg&v=1778583110000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3907,7 +3907,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5430",
         "title": "Le Paris-Brest",
         "description": "Recette complète du Paris-Brest, un grand classique de la pâtisserie française, avec pâte à choux, craquelin, praliné maison et crème pralinée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778575633681.jpg&v=1778582883000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4035,7 +4035,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5427",
         "title": "Gâteau petit beurre café chocolat",
         "description": "Un gâteau sans cuisson facile à base de biscuits petit beurre trempés dans du café, garnis d'une crème onctueuse au chocolat blanc et vanille, le tout recouvert d'une riche ganache au chocolat.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778575400856.jpg&v=1778582624000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4188,7 +4188,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5421",
         "title": "Cheesecake sans cuisson noisette chocolat",
         "description": "Un cheesecake sans cuisson facile à réaliser, composé d'une base biscuitée au cacao, d'une crème onctueuse au fromage frais et à la vanille, et d'une ganache brillante au chocolat et noisette.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778574699521.jpg&v=1778581917000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4260,7 +4260,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5418",
         "title": "Nutella Brioche",
         "description": "Une délicieuse brioche moelleuse fourrée au Nutella, parfaite pour le petit-déjeuner ou le goûter.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778574473366.jpg&v=1778581689000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4408,7 +4408,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5414",
         "title": "Tiramisu croustillant façon Magnum",
         "description": "Découvrez une recette ultra simple de tiramisu croustillant façon Magnum, inspirée de la pâtisserie. Ce dessert chic combine l'intensité du chocolat avec la douceur fondante du tiramisu, offrant une texture croquante à l'extérieur et fondante à l'...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778515910198.jpg&v=1778523126000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5763,7 +5763,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5287",
         "title": "High-Protein Chicken Bacon Ranch Pasta",
         "description": "Une pâte crémeuse et savoureuse, riche en protéines, avec du poulet, du bacon croustillant et une sauce généreuse. Une recette addictive et l'une des meilleures de l'auteur.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778319004947.jpg&v=1778326244000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5849,7 +5849,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5280",
         "title": "Rochers Tiramisu",
         "description": "Une recette gourmande de rochers Tiramisu, composés de boudoirs imbibés de café, d'une crème onctueuse au mascarpone et d'un glaçage croquant au chocolat et aux amandes ou noisettes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778265078248.jpg&v=1778272311000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5911,7 +5911,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5277",
         "title": "Tarte Normande",
         "description": "Une tarte normande classique et gourmande, composée d'une pâte sablée, de pommes fondantes et d'une garniture crémeuse aux amandes, avec une touche facultative de Calvados.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778258744778.jpg&v=1778265971000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5992,7 +5992,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5274",
         "title": "La tarte aux pommes de Mamie Nono",
         "description": "Simple, rapide et ça fait toujours plaisir !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778258110841.jpg&v=1778265332000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6068,7 +6068,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5271",
         "title": "Crinkles au chocolat",
         "description": "Découvrez la recette des crinkles au chocolat, des biscuits moelleux et craquelés, généreusement enrobés de sucre glace. Parfaits pour une pause gourmande ou à partager.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778153996273.jpg&v=1778161214000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6128,7 +6128,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5268",
         "title": "Frites de courgettes",
         "description": "Une recette simple et rapide de frites de courgettes croustillantes, idéales pour l'apéritif, préparées à l'air fryer et accompagnées d'une sauce fraîche au yaourt grec et aux herbes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778152813110.jpg&v=1778160047000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6263,7 +6263,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5265",
         "title": "Salade de pommes de terre protéinée",
         "description": "Un plat frais, gourmand et ultra complet pour tenir sa diète.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778073757460.jpg&v=1778081013000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6764,7 +6764,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5225",
         "title": "Croque-cake",
         "description": "Un croque-monsieur revisité en format cake, idéal pour toute la famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1777133985842.jpg&v=1777141205000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8153,7 +8153,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5086",
         "title": "Café batido con Kinder Bueno",
         "description": "Une boisson rafraîchissante et gourmande à base de café fouetté, de Nutella, de Kinder Bueno fondu et de glaçons, parfaite pour les amateurs de café et de chocolat.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775916415244.jpg&v=1775923630000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9710,7 +9710,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4998",
         "title": "Cocktail Bora Bora sans alcool",
         "description": "Un cocktail coloré et sans alcool, facile à réaliser, garni de lamelles de pomme.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775602611084.jpg&v=1775609825000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9959,7 +9959,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4898",
         "title": "Sundae Maison Caramel Beurre Salé",
         "description": "Recette facile et rapide pour réaliser un sundae maison au caramel beurre salé, inspiré des célèbres glaces de McDonald's. Une dinguerie à reproduire chez soi !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775555343058.jpg&v=1775562571000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10126,7 +10126,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4847",
         "title": "Salade de chips crousti",
         "description": "Une salade printanière irrésistible composée de chips de pommes de terre croustillantes, de légumes frais et d'une sauce savoureuse. Parfaite pour une touche d'originalité.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775482852020.jpg&v=1775559981000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10239,7 +10239,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4859",
         "title": "Poulet mariné au citron",
         "description": "Des cuisses de poulet désossées, marinées avec un mélange d'épices citron-poivre, ail, paprika fumé et oignon, puis cuites au four. Elles sont ensuite enrobées d'une sauce sucrée-salée au miel, ail, citron et sauce soja pour une finition caramélis...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecipe_1775530434882.jpg&v=1775558442000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11315,7 +11315,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4705",
         "title": "Creamy Vodka Tortiglioni &#038; Burrata",
         "description": "Une recette réconfortante de pâtes Tortiglioni ou Rigatoni dans une sauce crémeuse à la vodka, riche et épicée, sublimée par de la burrata fraîche. Parfaite pour célébrer le printemps.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774707517069.jpg&v=1774711127000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22217,7 +22217,7 @@ export const mockRecipes: Recipe[] = [
         "id": "1300",
         "title": "Joji - Paris 4",
         "description": "    Joji est un restaurant asiatique et plus particulièrement japonais. Nous ne sommes pas ici dans un restaurant avec buffet autour duquel vous trouverez des frites et des nuggets. Vous ne trouverez pas non plus de sushi, de maki ou de brochettes...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2F7ECA4B5D-8EF8-4674-8567-C29B4AA61CCC.jpeg&v=1753396196000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22248,7 +22248,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3108",
         "title": "Bianca - Brunch à Paris (Bourse)",
         "description": "      Proche de la Place de la Bourse et de la Bibliothèque Nationale de France Richelieu, le restaurant Bianca présente un brunch qui est présenté sous forme de buffet à volonté installé dans la première salle spacieuse à l'entrée du restaurant. ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2024%2F09%2Frec1.jpeg&v=1727696617000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22322,7 +22322,7 @@ export const mockRecipes: Recipe[] = [
         "id": "1214",
         "title": "Ble coeur - Le Raincy",
         "description": "      Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2F753470BD-C1C0-4D62-BE5E-050B11772353.jpeg&v=1662945342000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
