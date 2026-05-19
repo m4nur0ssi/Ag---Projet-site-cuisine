@@ -2,11 +2,247 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 16:04:49
- * Total: 299 recettes
+ * Dernière mise à jour: 19/05/2026 16:18:00
+ * Total: 298 recettes
  */
-export const exportSyncId = "1779206689604";
+export const exportSyncId = "1779207480956";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5555",
+        "title": "Orzo épicé",
+        "description": "C'est gourmand, facile, prêt en 20 min et bien réconfortant !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fspicy-sausage-orzo.jpg&v=1779214266000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7556646819078491414\" data-video-id=\"7556646819078491414\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7556646819078491414\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 200g d'orzo"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 200g de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 cac d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cac de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 20g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100g de champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n 100g de brocolis"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 60g de tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 cas de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 700ml de bouillon (volaille)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 15cl de crème légère"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 50g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 8g de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Sauce pimentée"
+            }
+        ],
+        "steps": [
+            "Assaisonner les morceaux de poulet avec de l'ail, du paprika, du sel et du poivre.",
+            "Les faire dorer quelques minutes dans une poêle avec un filet d'huile, la moitié du beurre et les réserver.",
+            "Dans la même poêle, ajouter le reste du beurre avec les champignons, les brocolis, les gousses d'ail émincées, les tomates séchées coupées en petits morceaux, les pâtes, le concentré de tomates et bien mélanger.",
+            "Verser ensuite le bouillon et mélanger jusqu'à ce que les pâtes soient bien aldente.",
+            "En fin de cuisson ajouter la crème, le parmesan, le persil, bien mélanger et remettre les morceaux de poulet.",
+            "Vous pouvez ajouter un peu de sauce piquante si vous aimez ça et c'est déjà prêt."
+        ],
+        "tags": [
+            "épicé",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5558",
+        "title": "Pâtes à l'ail",
+        "description": "Une recette simple et rapide de pâtes à l'ail, agrémentée de parmesan, piment et herbes aromatiques pour un plat savoureux.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fshutterstock-1212205699.jpeg&v=1779213911000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7487321864449133826\" data-video-id=\"7487321864449133826\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7487321864449133826\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n Pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Thym"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description."
+        ],
+        "tags": [
+            "épicé",
+            "Italie",
+            "Pas cher",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5561",
+        "title": "Chermoula relevée et parfumée",
+        "description": "Une sauce Chermoula relevée et parfumée, traditionnellement préparée au pilon, idéale pour accompagner vos plats de poisson, viandes ou légumes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FChermoula_recette_maison.jpg&v=1779213766000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7354465771629710625\" data-video-id=\"7354465771629710625\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7354465771629710625\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌿\n 1 poignée de persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 poignée de coriandre hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cac de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cac de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cac de harissa"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 citron jaune pressé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 10cl d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Hacher finement le persil et la coriandre, puis râper les gousses d'ail.",
+            "Ajouter le cumin, le paprika, la harissa et le sel, puis bien mélanger.",
+            "Verser le jus de citron et l'huile d'olive, puis mélanger de nouveau."
+        ],
+        "tags": [
+            "Afrique",
+            "épicé",
+            "Healthy",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5564",
         "title": "Poulet coco épicé à la brésilienne",
@@ -1803,298 +2039,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5561",
-        "title": "Chermoula relevée et parfumée",
-        "description": "Une sauce Chermoula relevée et parfumée, traditionnellement préparée au pilon, idéale pour accompagner vos plats de poisson, viandes ou légumes.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7354465771629710625\" data-video-id=\"7354465771629710625\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7354465771629710625\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌿\n             1 poignée de persil haché"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 poignée de coriandre hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cac de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cac de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cac de harissa"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron jaune pressé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             10cl d'huile d'olive"
-            }
-        ],
-        "steps": [
-            "Hacher finement le persil et la coriandre, puis râper les gousses d'ail.",
-            "Ajouter le cumin, le paprika, la harissa et le sel, puis bien mélanger.",
-            "Verser le jus de citron et l'huile d'olive, puis mélanger de nouveau."
-        ],
-        "tags": [
-            "Afrique",
-            "épicé",
-            "Healthy",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5558",
-        "title": "Pâtes à l'ail",
-        "description": "Une recette simple et rapide de pâtes à l'ail, agrémentée de parmesan, piment et herbes aromatiques pour un plat savoureux.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7487321864449133826\" data-video-id=\"7487321864449133826\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7487321864449133826\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             Pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description."
-        ],
-        "tags": [
-            "épicé",
-            "Italie",
-            "Pas cher",
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5555",
-        "title": "Spicy Orzo",
-        "description": "C'est gourmand, facile, prêt en 20 min et bien réconfortant !",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7556646819078491414\" data-video-id=\"7556646819078491414\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7556646819078491414\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             200g d'orzo"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             200g de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cac d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cac de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cas d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             20g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g de champignons"
-            },
-            {
-                "quantity": "",
-                "name": "🥦\n             100g de brocolis"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             60g de tomates séchées"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 cas de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             700ml de bouillon (volaille)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             15cl de crème légère"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             50g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             8g de persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Sauce pimentée"
-            }
-        ],
-        "steps": [
-            "Assaisonner les morceaux de poulet avec de l'ail, du paprika, du sel et du poivre.",
-            "Les faire dorer quelques minutes dans une poêle avec un filet d'huile, la moitié du beurre et les réserver.",
-            "Dans la même poêle, ajouter le reste du beurre avec les champignons, les brocolis, les gousses d'ail émincées, les tomates séchées coupées en petits morceaux, les pâtes, le concentré de tomates et bien mélanger.",
-            "Verser ensuite le bouillon et mélanger jusqu'à ce que les pâtes soient bien aldente.",
-            "En fin de cuisson ajouter la crème, le parmesan, le persil, bien mélanger et remettre les morceaux de poulet.",
-            "Vous pouvez ajouter un peu de sauce piquante si vous aimez ça et c'est déjà prêt."
-        ],
-        "tags": [
-            "épicé",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5552",
-        "title": "Goat Cheese Pasta",
-        "description": "Maybe you're more used to goat cheese on toast with a little honey, but this recipe will make you want to enjoy it with pasta more often.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7434501804143955233\" data-video-id=\"7434501804143955233\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7434501804143955233\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Linguine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Bacon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Goat cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Heavy cream"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Onion"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Honey"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thyme"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt &#038; pepper"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
