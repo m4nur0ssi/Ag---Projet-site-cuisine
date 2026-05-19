@@ -2,11 +2,136 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 16:18:00
+ * Dernière mise à jour: 19/05/2026 16:33:08
  * Total: 298 recettes
  */
-export const exportSyncId = "1779207480956";
+export const exportSyncId = "1779208388822";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5535",
+        "title": "Boulettes de brocolis",
+        "description": "Une façon ludique de cuisiner tes brocolis et surtout de les faire manger aux petits comme aux grands récalcitrants !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fboulettes-de-brocoli-en-friteuse-a-air_1200x800.jpg&v=1779214890000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7469843967371169046\" data-video-id=\"7469843967371169046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7469843967371169046\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥦\n 100g de brocolis précuits"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n 60g de chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 50g de mozzarella ou fromage râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5549",
+        "title": "Pâtes aux oignon et champignon",
+        "description": "Une recette simple et rapide de pâtes aux champignons et oignons, agrémentée de crème, de parmesan et d'une touche de vin blanc.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fspaghettichampignons-vd2i-1200.jpeg&v=1779214663000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7506929248565873942\" data-video-id=\"7506929248565873942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7506929248565873942\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 150g de spaguetti"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100g de champignon de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 Cas d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 15cl de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 20g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 30g de Parmesan (ou granapadano)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 2-3 Cas de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n persil"
+            }
+        ],
+        "steps": [
+            "Suivre la vidéo pour les étapes de préparation."
+        ],
+        "tags": [
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5555",
         "title": "Orzo épicé",
@@ -2045,82 +2170,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5549",
-        "title": "Pâtes aux oignon et champignon",
-        "description": "Une recette simple et rapide de pâtes aux champignons et oignons, agrémentée de crème, de parmesan et d'une touche de vin blanc.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7506929248565873942\" data-video-id=\"7506929248565873942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7506929248565873942\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             150g de spaguetti"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g de champignon de Paris"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Cas d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             15cl de crème"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             20g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             30g de Parmesan (ou granapadano)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             2-3 Cas de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             persil"
-            }
-        ],
-        "steps": [
-            "Suivre la vidéo pour les étapes de préparation."
-        ],
-        "tags": [
-            "Italie",
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5538",
         "title": "Creamy Pasta",
         "description": "Une recette simple et rapide de pâtes crémeuses avec une sauce à base d'oignon, ail, tomates et crème.",
@@ -2180,55 +2229,6 @@ export const mockRecipes: Recipe[] = [
             "Italie",
             "Pas cher",
             "pates",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5535",
-        "title": "Boulettes de brocolis",
-        "description": "Une façon ludique de cuisiner tes brocolis et surtout de les faire manger aux petits comme aux grands récalcitrants !",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7469843967371169046\" data-video-id=\"7469843967371169046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7469843967371169046\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥦\n             100g de brocolis précuits"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             60g de chapelure"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             50g de mozzarella ou fromage râpée"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Accompagnements",
-            "Pas cher",
             "Végé"
         ],
         "isFeatured": false,
