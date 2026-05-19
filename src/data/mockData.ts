@@ -2,11 +2,103 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 14:02:57
+ * Dernière mise à jour: 19/05/2026 14:19:02
  * Total: 300 recettes
  */
-export const exportSyncId = "1779199377318";
+export const exportSyncId = "1779200342701";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5582",
+        "title": "Soupe aux champignons",
+        "description": "Une soupe crémeuse et réconfortante aux champignons (bruns et Shiitake), agrémentée de vin blanc, de crème et d'herbes, servie avec des croûtons croustillants au parmesan.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1-LOW-RES-GF-Cream-of-Mushroom-Soup-20.jpg&v=1779207232000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7571812876915100949\" data-video-id=\"7571812876915100949\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7571812876915100949\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n 10-12 gousses d'ail, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon blanc, coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 paquets de champignons de Paris bruns, hachés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 paquet de champignons Shiitake, hachés"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Bouillon de poulet/bœuf selon les besoins"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n ½ tasse de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n ½ bâtonnet de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n ⅓ tasse de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 bouquet de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 2 cuillères à soupe de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 3 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n ⅓ tasse de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel et poivre au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pain (pour les croûtons)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 3 cuillères à soupe d'huile d'olive (pour les croûtons)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan au goût (pour les croûtons)"
+            }
+        ],
+        "steps": [
+            "Commencez par faire revenir les oignons et l'ail dans le beurre. Ajoutez les champignons dans la marmite et laissez-les cuire.",
+            "Déglacez avec le vin blanc, puis ajoutez la farine. Laissez cuire 3 à 5 minutes, puis ajoutez le bouillon. Ajoutez le thym avant de couvrir et de laisser mijoter pendant 30 minutes.",
+            "Ajoutez la sauce Worcestershire, la crème et la sauce soja, puis assaisonnez avec du sel et du poivre.",
+            "Coupez le pain en carrés et faites-le griller avec de l'huile d'olive jusqu'à ce qu'il soit croustillant. Terminez avec du parmesan.",
+            "Servez avec vos croûtons, plus de champignons et de crème, et dégustez !"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Soupes"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5585",
         "title": "Gratin de poulet effiloché et pommes de terre",
@@ -1283,98 +1375,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5582",
-        "title": "Mushroom Soup",
-        "description": "Une soupe crémeuse et réconfortante aux champignons (bruns et Shiitake), agrémentée de vin blanc, de crème et d'herbes, servie avec des croûtons croustillants au parmesan.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7571812876915100949\" data-video-id=\"7571812876915100949\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7571812876915100949\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧄\n             10-12 gousses d'ail, hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon blanc, coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 paquets de champignons de Paris bruns, hachés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 paquet de champignons Shiitake, hachés"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Bouillon de poulet/bœuf selon les besoins"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             ½ tasse de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             ½ bâtonnet de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             ⅓ tasse de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 bouquet de thym"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 cuillères à soupe de sauce Worcestershire"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             3 cuillères à soupe de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             ⅓ tasse de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pain (pour les croûtons)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 cuillères à soupe d'huile d'olive (pour les croûtons)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan au goût (pour les croûtons)"
-            }
-        ],
-        "steps": [
-            "Commencez par faire revenir les oignons et l'ail dans le beurre. Ajoutez les champignons dans la marmite et laissez-les cuire.",
-            "Déglacez avec le vin blanc, puis ajoutez la farine. Laissez cuire 3 à 5 minutes, puis ajoutez le bouillon. Ajoutez le thym avant de couvrir et de laisser mijoter pendant 30 minutes.",
-            "Ajoutez la sauce Worcestershire, la crème et la sauce soja, puis assaisonnez avec du sel et du poivre.",
-            "Coupez le pain en carrés et faites-le griller avec de l'huile d'olive jusqu'à ce qu'il soit croustillant. Terminez avec du parmesan.",
-            "Servez avec vos croûtons, plus de champignons et de crème, et dégustez !"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Soupes"
         ],
         "isFeatured": false,
         "isFavorite": false,
