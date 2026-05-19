@@ -2,16 +2,176 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 09:23:02
+ * Dernière mise à jour: 19/05/2026 09:33:18
  * Total: 300 recettes
  */
-export const exportSyncId = "1779182582540";
+export const exportSyncId = "1779183198301";
 export const mockRecipes: Recipe[] = [
     {
+        "id": "5606",
+        "title": "Gratin dauphinois",
+        "description": "Un gratin dauphinois revisité, crémeux et fondant, préparé avec des pommes de terre finement tranchées, de l'ail confit, un mélange de crèmes, de la noix de muscade, du thym et du comté, cuit au four jusqu'à être parfaitement gratiné.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin-dauphinois-cremeux-traditionnel.jpeg&v=1779190092000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7558880515923725590\" data-video-id=\"7558880515923725590\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7558880515923725590\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥔\n 1,2 kilos de pomme de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 tête d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 300g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 2 cas de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 15g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cac de noix de muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 cas de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 80g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Huile"
+            }
+        ],
+        "steps": [
+            "Couper le chapeau de la tête d'ail, la mettre dans une mini cocotte ou en papillote avec une pincée de sel et un filet d'huile. Cuire 35 min à 200°C.",
+            "Laver et couper les pommes de terre en rondelles assez fines. Les disposer dans un plat les unes collées aux autres.",
+            "Dans une casserole, faire fondre le beurre avec la crème liquide et la crème épaisse. Ajouter la noix de muscade, le thym, la pulpe de la tête d'ail confite, le tiers du comté, un peu de sel et du poivre. Mixer le tout.",
+            "Verser la sauce dans le plat pour recouvrir toutes les pommes de terre. Recouvrir le plat en superposant une feuille de papier cuisson et une feuille d'aluminium. Cuire 1h à 190°C.",
+            "Au bout d'une heure, retirer les feuilles et ajouter le reste du comté pour 15 min supplémentaires en mode grill."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Gratins"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5609",
+        "title": "Gratin de pâtes de l'été",
+        "description": "Un délicieux gratin de pâtes estival, parfait pour l'été et pouvant être préparé au four ou au barbecue. Cette recette met en vedette des pâtes courtes, des légumes frais comme la courgette et les tomates cerises, le tout gratiné à la mozzarella e...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpenne-burrata.jpg&v=1779189848000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7524744036926770464\" data-video-id=\"7524744036926770464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7524744036926770464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n 200g de pâtes courtes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 150ml de sauce tomate"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 10cl de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1/2 cube de bouillon de poule"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 200g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 courgette"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 1 grosse boule de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 3 càs de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 1 à 2 càs de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n de belles tranches de coppa"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivre"
+            }
+        ],
+        "steps": [
+            "Cuire les pâtes al dente. Pendant ce temps, faire revenir l'oignon rouge émincé grossièrement dans de l'huile d'olive, ajouter les tomates, la courgette coupée en dés.",
+            "Mouiller de vin blanc, ajouter le cube de bouillon émietté et laisser réduire. Ajouter la sauce tomate, le mascarpone, 2 càs de parmesan, bien mélanger et rectifier l'assaisonnement si besoin.",
+            "Ajouter les pâtes, bien mélanger et terminer avec la mozzarella et le reste du parmesan.",
+            "Enfourner pendant 5 à 10min en position grill.",
+            "Servir avec de la coppa, du basilic, un peu de poivre et un filet d'huile d'olive. Déguster immédiatement."
+        ],
+        "tags": [
+            "barbecue",
+            "Gratins",
+            "Italie",
+            "pates",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5612",
-        "title": "CANNELONIS POULET ET CHAMPIGNONS",
+        "title": "Cannellonis poulet et champignons",
         "description": "Une recette automnale de cannellonis gratinés au poulet, champignons, ricotta et une béchamel onctueuse au comté et moutarde à l'ancienne. Un plat super réconfortant et savoureux, parfait pour la saison des plats gratinés.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcannelloni-aux-champignons-0-16-9.jpg&v=1779189495000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcannelloni-aux-champignons-0-16-9.jpg&v=1779189556000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -472,166 +632,6 @@ export const mockRecipes: Recipe[] = [
             "C'est l'hiver",
             "Gratins",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5609",
-        "title": "Gratin de pâtes de l'été",
-        "description": "Un délicieux gratin de pâtes estival, parfait pour l'été et pouvant être préparé au four ou au barbecue. Cette recette met en vedette des pâtes courtes, des légumes frais comme la courgette et les tomates cerises, le tout gratiné à la mozzarella e...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778850488580.jpg&v=1778857737000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7524744036926770464\" data-video-id=\"7524744036926770464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7524744036926770464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             200g de pâtes courtes"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             150ml de sauce tomate"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             10cl de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1/2 cube de bouillon de poule"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             200g de tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 courgette"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 grosse boule de mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             3 càs de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 à 2 càs de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             de belles tranches de coppa"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            }
-        ],
-        "steps": [
-            "Cuire les pâtes al dente. Pendant ce temps, faire revenir l'oignon rouge émincé grossièrement dans de l'huile d'olive, ajouter les tomates, la courgette coupée en dés.",
-            "Mouiller de vin blanc, ajouter le cube de bouillon émietté et laisser réduire. Ajouter la sauce tomate, le mascarpone, 2 càs de parmesan, bien mélanger et rectifier l'assaisonnement si besoin.",
-            "Ajouter les pâtes, bien mélanger et terminer avec la mozzarella et le reste du parmesan.",
-            "Enfourner pendant 5 à 10min en position grill.",
-            "Servir avec de la coppa, du basilic, un peu de poivre et un filet d'huile d'olive. Déguster immédiatement."
-        ],
-        "tags": [
-            "barbecue",
-            "Gratins",
-            "Italie",
-            "pates",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5606",
-        "title": "GRATIN dauphinois à MA FAÇON",
-        "description": "Un gratin dauphinois revisité, crémeux et fondant, préparé avec des pommes de terre finement tranchées, de l'ail confit, un mélange de crèmes, de la noix de muscade, du thym et du comté, cuit au four jusqu'à être parfaitement gratiné.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778850215358.jpg&v=1778857435000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7558880515923725590\" data-video-id=\"7558880515923725590\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7558880515923725590\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥔\n             1,2 kilos de pomme de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 tête d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             300g de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             2 cas de crème fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             15g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cac de noix de muscade"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 cas de thym"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             80g de comté"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile"
-            }
-        ],
-        "steps": [
-            "Couper le chapeau de la tête d'ail, la mettre dans une mini cocotte ou en papillote avec une pincée de sel et un filet d'huile. Cuire 35 min à 200°C.",
-            "Laver et couper les pommes de terre en rondelles assez fines. Les disposer dans un plat les unes collées aux autres.",
-            "Dans une casserole, faire fondre le beurre avec la crème liquide et la crème épaisse. Ajouter la noix de muscade, le thym, la pulpe de la tête d'ail confite, le tiers du comté, un peu de sel et du poivre. Mixer le tout.",
-            "Verser la sauce dans le plat pour recouvrir toutes les pommes de terre. Recouvrir le plat en superposant une feuille de papier cuisson et une feuille d'aluminium. Cuire 1h à 190°C.",
-            "Au bout d'une heure, retirer les feuilles et ajouter le reste du comté pour 15 min supplémentaires en mode grill."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France",
-            "Gratins"
         ],
         "isFeatured": false,
         "isFavorite": false,
