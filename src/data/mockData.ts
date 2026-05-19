@@ -2,11 +2,227 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 09:13:14
+ * Dernière mise à jour: 19/05/2026 09:23:02
  * Total: 300 recettes
  */
-export const exportSyncId = "1779181994068";
+export const exportSyncId = "1779182582540";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5612",
+        "title": "CANNELONIS POULET ET CHAMPIGNONS",
+        "description": "Une recette automnale de cannellonis gratinés au poulet, champignons, ricotta et une béchamel onctueuse au comté et moutarde à l'ancienne. Un plat super réconfortant et savoureux, parfait pour la saison des plats gratinés.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcannelloni-aux-champignons-0-16-9.jpg&v=1779189495000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7573723389190343958\" data-video-id=\"7573723389190343958\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7573723389190343958\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 4 hauts de cuisse de poulet désossés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 250 g de champignons de Paris (ou mix forestier)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 petit bouquet de persil plat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 250 g de ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 c. à s. d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 1 noisette de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 40 g de beurre (pour la béchamel)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 40 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 500 ml de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 100 g de comté râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 c. à s. bombée de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 10 à 12 cannellonis"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 20 g de comté râpé (pour le montage)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil frais"
+            }
+        ],
+        "steps": [
+            "Coupe le poulet en petits morceaux et fais-le bien dorer à la poêle.",
+            "Fais revenir champignons, ail et échalote dans une noisette de beurre sur feu vif.",
+            "Mélange le poulet, les champignons, le persil et la ricotta, puis assaisonne (sel, poivre, muscade).",
+            "Pour la béchamel : Fais fondre le beurre, ajoute la farine et mélange.",
+            "Verse le lait, fouette jusqu'à épaississement, puis ajoute la moutarde et le comté. Assaisonne (sel, poivre blanc, muscade).",
+            "Garnis les cannellonis avec la farce (à l'aide d'une poche ou d'un sac congélation).",
+            "Verse un peu de béchamel au fond d'un plat, dispose les cannellonis, recouvre du reste de béchamel et du comté râpé.",
+            "Enfourne 40 min à 180°C.",
+            "Parsème de persil frais avant de servir et régale-toi !"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Gratins",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5618",
+        "title": "Sushis italiens",
+        "description": "Une fusion originale entre le sushi japonais et les saveurs italiennes, pour une recette facile et surprenante.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fhellonelo-sushis-italiens-1.jpg&v=1779189324000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639272616238271777\" data-video-id=\"7639272616238271777\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639272616238271777\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5621",
+        "title": "Poivrons rôtis farcis à la ricotta, roquette &#038; balsamique",
+        "description": "Des poivrons longs rôtis et épluchés, farcis d'un mélange crémeux de ricotta, oignon rouge et roquette, puis roulés et assaisonnés d'huile d'olive, de vinaigre balsamique et de basilic frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FR698_TRIO_DE_MINI_POIVRONS_FARCIS_RICOTTA_150G.jpg&v=1779189056000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639396479022550305\" data-video-id=\"7639396479022550305\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639396479022550305\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n 4 poivrons longs (type corne de bœuf ou Sweet Palermo)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 500 g de ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n ½ oignon rouge, finement émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n 1 grosse poignée de roquette, ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive (généreuse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Quelques feuilles de basilic"
+            }
+        ],
+        "steps": [
+            "Préchauffe ton four à 200°C.",
+            "Dispose les poivrons entiers sur une plaque recouverte de papier cuisson, puis enfourne pour 30 minutes, jusqu'à ce qu'ils soient bien tendres et légèrement grillés.",
+            "Dans un saladier, mélange la ricotta avec l'oignon rouge, la roquette, un bon filet d'huile d'olive, du sel et du poivre.",
+            "Place au frais le temps que les poivrons refroidissent.",
+            "À la sortie du four, dépose les poivrons dans une assiette et couvre-les de film alimentaire.",
+            "Laisse-les \" suer \" quelques minutes : la peau se retirera toute seule.",
+            "Épluche les poivrons, coupe-les en deux et retire les graines.",
+            "Dépose une quenelle de farce sur une extrémité, puis roule délicatement chaque morceau comme un petit rouleau.",
+            "Dispose les rouleaux dans une assiette.",
+            "Arrose d'un filet d'huile d'olive et de vinaigre balsamique, ajoute une pincée de fleur de sel et quelques feuilles de basilic frais."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Healthy",
+            "Italie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5624",
         "title": "Sauce Verte",
@@ -168,109 +384,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5621",
-        "title": "Poivrons rôtis farcis à la ricotta, roquette &#038; balsamique",
-        "description": "Des poivrons longs rôtis et épluchés, farcis d'un mélange crémeux de ricotta, oignon rouge et roquette, puis roulés et assaisonnés d'huile d'olive, de vinaigre balsamique et de basilic frais.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778855769075.jpg&v=1778862996000",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639396479022550305\" data-video-id=\"7639396479022550305\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639396479022550305\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             4 poivrons longs (type corne de bœuf ou Sweet Palermo)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             500 g de ricotta"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             ½ oignon rouge, finement émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             1 grosse poignée de roquette, ciselée"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive (généreuse)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques feuilles de basilic"
-            }
-        ],
-        "steps": [
-            "Préchauffe ton four à 200°C.",
-            "Dispose les poivrons entiers sur une plaque recouverte de papier cuisson, puis enfourne pour 30 minutes, jusqu'à ce qu'ils soient bien tendres et légèrement grillés.",
-            "Dans un saladier, mélange la ricotta avec l'oignon rouge, la roquette, un bon filet d'huile d'olive, du sel et du poivre.",
-            "Place au frais le temps que les poivrons refroidissent.",
-            "À la sortie du four, dépose les poivrons dans une assiette et couvre-les de film alimentaire.",
-            "Laisse-les \" suer \" quelques minutes : la peau se retirera toute seule.",
-            "Épluche les poivrons, coupe-les en deux et retire les graines.",
-            "Dépose une quenelle de farce sur une extrémité, puis roule délicatement chaque morceau comme un petit rouleau.",
-            "Dispose les rouleaux dans une assiette.",
-            "Arrose d'un filet d'huile d'olive et de vinaigre balsamique, ajoute une pincée de fleur de sel et quelques feuilles de basilic frais."
-        ],
-        "tags": [
-            "Apéritifs",
-            "Healthy",
-            "Italie",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5618",
-        "title": "Sushis italiens",
-        "description": "Une fusion originale entre le sushi japonais et les saveurs italiennes, pour une recette facile et surprenante.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639272616238271777\" data-video-id=\"7639272616238271777\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639272616238271777\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Apéritifs",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5615",
         "title": "Poireaux CONFITS &#038; gratinés",
         "description": "Une recette de poireaux confits et gratinés, incroyablement fondants et tendres, nappés d'une sauce crémeuse au comté et citron. Un plat végétarien réconfortant, parfait pour l'hiver.",
@@ -359,119 +472,6 @@ export const mockRecipes: Recipe[] = [
             "C'est l'hiver",
             "Gratins",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5612",
-        "title": "CANNELONIS POULET ET CHAMPIGNONS",
-        "description": "Une recette automnale de cannellonis gratinés au poulet, champignons, ricotta et une béchamel onctueuse au comté et moutarde à l'ancienne. Un plat super réconfortant et savoureux, parfait pour la saison des plats gratinés.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7573723389190343958\" data-video-id=\"7573723389190343958\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7573723389190343958\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             4 hauts de cuisse de poulet désossés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250 g de champignons de Paris (ou mix forestier)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 petit bouquet de persil plat"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250 g de ricotta"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 c. à s. d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             1 noisette de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Muscade"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             40 g de beurre (pour la béchamel)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             40 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             500 ml de lait entier"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             100 g de comté râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 c. à s. bombée de moutarde à l'ancienne"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             10 à 12 cannellonis"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             20 g de comté râpé (pour le montage)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais"
-            }
-        ],
-        "steps": [
-            "Coupe le poulet en petits morceaux et fais-le bien dorer à la poêle.",
-            "Fais revenir champignons, ail et échalote dans une noisette de beurre sur feu vif.",
-            "Mélange le poulet, les champignons, le persil et la ricotta, puis assaisonne (sel, poivre, muscade).",
-            "Pour la béchamel : Fais fondre le beurre, ajoute la farine et mélange.",
-            "Verse le lait, fouette jusqu'à épaississement, puis ajoute la moutarde et le comté. Assaisonne (sel, poivre blanc, muscade).",
-            "Garnis les cannellonis avec la farce (à l'aide d'une poche ou d'un sac congélation).",
-            "Verse un peu de béchamel au fond d'un plat, dispose les cannellonis, recouvre du reste de béchamel et du comté râpé.",
-            "Enfourne 40 min à 180°C.",
-            "Parsème de persil frais avant de servir et régale-toi !"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Gratins",
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
