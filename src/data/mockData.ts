@@ -2,50 +2,50 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/05/2026 06:40:48
+ * Dernière mise à jour: 19/05/2026 08:51:37
  * Total: 300 recettes
  */
-export const exportSyncId = "1779172848752";
+export const exportSyncId = "1779180697874";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5630",
         "title": "Focaccia charcuterie",
         "description": "Une focaccia garnie de charcuterie, parfaite pour les apéritifs d'été et les réceptions. Une façon amusante de combiner pain et charcuterie en un seul plat.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1778860077656.jpg&v=1778867299000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F2259902_w1200h1200c1cx600cy400cxt0cyt0cxb1200cyb800.jpg&v=1779187608000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639795035566918934\" data-video-id=\"7639795035566918934\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639795035566918934\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639795035566918934\" data-video-id=\"7639795035566918934\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639795035566918934\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             500g bread flour"
+                "name": "🥣\n 500g bread flour"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             7g dried fast action yeast"
+                "name": "🥣\n 7g dried fast action yeast"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 tsp fine sea salt"
+                "name": "🥣\n 2 tsp fine sea salt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             5 tbsp olive oil"
+                "name": "🥣\n 5 tbsp olive oil"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 tsp flaky sea salt"
+                "name": "🥣\n 1 tsp flaky sea salt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Handful of rosemary"
+                "name": "🥣\n Handful of rosemary"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Charcuterie"
+                "name": "🥣\n Charcuterie"
             }
         ],
         "steps": [
