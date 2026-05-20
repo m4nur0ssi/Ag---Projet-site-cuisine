@@ -2,11 +2,94 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/05/2026 06:39:49
+ * Dernière mise à jour: 20/05/2026 09:00:26
  * Total: 297 recettes
  */
-export const exportSyncId = "1779259189218";
+export const exportSyncId = "1779267626993";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5528",
+        "title": "Patates douces et carottes sauce coco",
+        "description": "Une recette végétarienne facile et rapide de légumes rôtis (patates douces et carottes) accompagnés d'une onctueuse sauce crémeuse à la cacahuète et au lait de coco.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F19116_3-2_1440-960.jpg&v=1779274474000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7311351798126660897\" data-video-id=\"7311351798126660897\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7311351798126660897\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥔\n 300g de patates douces"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n 300g de carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 5 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cas de soja salé"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cas de gomasio"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cac de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 2 cac de crème de sésame (tahin)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 1 grosse cas de beurre de cacahuète"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 40cl de crème de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cas de soja salé"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 1 verre d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four (température non spécifiée, généralement 180-200°C pour des légumes rôtis).",
+            "Couper les patates douces et les carottes en morceaux de taille similaire.",
+            "Dans un grand bol, mélanger les légumes coupés avec l'huile d'olive, 2 cas de soja salé, le miel, le gomasio, le paprika fumé et la crème de sésame (tahin).",
+            "Étaler les légumes sur une plaque de cuisson recouverte de papier sulfurisé et les faire rôtir au four jusqu'à ce qu'ils soient tendres et légèrement dorés.",
+            "Pendant ce temps, préparer la sauce : dans une casserole, mélanger le beurre de cacahuète, la crème de coco, les 2 cas de soja salé restants, l'eau et le poivre.",
+            "Laisser mijoter la sauce à feu doux pendant une dizaine de minutes, en remuant de temps en temps, jusqu'à ce qu'elle épaississe légèrement.",
+            "Servir les légumes rôtis chauds, nappés généreusement de la sauce cacahuète-coco."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Asie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5531",
         "title": "Carottes rôties sauce crémeuse",
@@ -2237,89 +2320,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5528",
-        "title": "Légumes rôtis / sauce cacahuètes-coco",
-        "description": "Une recette végétarienne facile et rapide de légumes rôtis (patates douces et carottes) accompagnés d'une onctueuse sauce crémeuse à la cacahuète et au lait de coco.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7311351798126660897\" data-video-id=\"7311351798126660897\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7311351798126660897\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥔\n             300g de patates douces"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             300g de carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             5 cas d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cas de soja salé"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cas de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cas de gomasio"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cac de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             2 cac de crème de sésame (tahin)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             1 grosse cas de beurre de cacahuète"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             40cl de crème de coco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cas de soja salé"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             1 verre d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Préchauffer le four (température non spécifiée, généralement 180-200°C pour des légumes rôtis).",
-            "Couper les patates douces et les carottes en morceaux de taille similaire.",
-            "Dans un grand bol, mélanger les légumes coupés avec l'huile d'olive, 2 cas de soja salé, le miel, le gomasio, le paprika fumé et la crème de sésame (tahin).",
-            "Étaler les légumes sur une plaque de cuisson recouverte de papier sulfurisé et les faire rôtir au four jusqu'à ce qu'ils soient tendres et légèrement dorés.",
-            "Pendant ce temps, préparer la sauce : dans une casserole, mélanger le beurre de cacahuète, la crème de coco, les 2 cas de soja salé restants, l'eau et le poivre.",
-            "Laisser mijoter la sauce à feu doux pendant une dizaine de minutes, en remuant de temps en temps, jusqu'à ce qu'elle épaississe légèrement.",
-            "Servir les légumes rôtis chauds, nappés généreusement de la sauce cacahuète-coco."
-        ],
-        "tags": [
-            "Accompagnements",
-            "Asie",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
