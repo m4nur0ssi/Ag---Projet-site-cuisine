@@ -2,11 +2,80 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 21/05/2026 06:41:55
+ * Dernière mise à jour: 21/05/2026 13:43:07
  * Total: 297 recettes
  */
-export const exportSyncId = "1779345715362";
+export const exportSyncId = "1779370987251";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5525",
+        "title": "Salade de poivrons à l'orientale",
+        "description": "Elle ce consomme tiède ou froide, c'est vraiment un délice! Parfait pour accompagner vos repas. A partager sans modération !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FAvec-deux-ingredients-seulement-cette-salade-marocaine-sent-bon-la-Mediterranee.jpg&v=1779377819000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7346293135573552417\" data-video-id=\"7346293135573552417\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7346293135573552417\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n 2 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 3 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 3 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cas de mélasse de grenade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel/poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignons rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cas de sumac"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 cas de tomate concentré"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Healthy",
+            "Orient",
+            "Pas cher",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5528",
         "title": "Patates douces et carottes sauce coco",
@@ -2319,75 +2388,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5525",
-        "title": "Salade de poivrons à l'orientale",
-        "description": "Elle ce consomme tiède ou froide, c'est vraiment un délice! Parfait pour accompagner vos repas. A partager sans modération !",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7346293135573552417\" data-video-id=\"7346293135573552417\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7346293135573552417\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             2 tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             3 poivrons"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 cas d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cas de mélasse de grenade"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel/poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignons rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cas de sumac"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 cas de tomate concentré"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Accompagnements",
-            "Healthy",
-            "Orient",
-            "Pas cher",
-            "Salades",
-            "Végé",
             "Voilà l'été"
         ],
         "isFeatured": false,
