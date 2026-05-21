@@ -2,11 +2,84 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 21/05/2026 13:43:07
+ * Dernière mise à jour: 21/05/2026 13:57:44
  * Total: 297 recettes
  */
-export const exportSyncId = "1779370987251";
+export const exportSyncId = "1779371864222";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5522",
+        "title": "Salade de courgettes grillées",
+        "description": "Une salade de courgettes grillées servie avec de la stracciatella et une vinaigrette au piment, ail et échalote, parfaite pour la saison des courgettes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsalade-courgettes-feta.jpg&v=1779378680000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7394864384209718561\" data-video-id=\"7394864384209718561\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7394864384209718561\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1/2 piment rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1/2 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 citron (jus + zeste)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Une poignée de menthe fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Une poignée de basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 4 cuillères à soupe de stracciatella"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive extra vierge"
+            }
+        ],
+        "steps": [
+            "Pour faire la vinaigrette, hachez l'ail, puis combinez-le avec le piment et l'échalote finement coupés en dés. Ajoutez la menthe hachée, le zeste et le jus d'un citron, le sel, le poivre, puis incorporez lentement l'huile d'olive en fouettant jusqu'à obtenir une vinaigrette crémeuse (environ 50ml).",
+            "Coupez les courgettes en rondelles, assaisonnez avec du sel, du poivre et de l'huile d'olive. Faites chauffer une poêle à griller jusqu'à ce qu'elle fume, puis saisissez les courgettes de chaque côté jusqu'à ce qu'elles soient grillées (2-3 minutes).",
+            "Pour servir, placez les courgettes sur une assiette, puis garnissez de feuilles de basilic, de cuillerées de stracciatella, puis de généreuses quantités de vinaigrette - bon appétit !"
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Italie",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5525",
         "title": "Salade de poivrons à l'orientale",
@@ -2388,79 +2461,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5522",
-        "title": "Salade de courgettes grillées",
-        "description": "Une salade de courgettes grillées servie avec de la stracciatella et une vinaigrette au piment, ail et échalote, parfaite pour la saison des courgettes.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7394864384209718561\" data-video-id=\"7394864384209718561\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7394864384209718561\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2 courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1/2 piment rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron (jus + zeste)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Une poignée de menthe fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Une poignée de basilic frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 cuillères à soupe de stracciatella"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive extra vierge"
-            }
-        ],
-        "steps": [
-            "Pour faire la vinaigrette, hachez l'ail, puis combinez-le avec le piment et l'échalote finement coupés en dés. Ajoutez la menthe hachée, le zeste et le jus d'un citron, le sel, le poivre, puis incorporez lentement l'huile d'olive en fouettant jusqu'à obtenir une vinaigrette crémeuse (environ 50ml).",
-            "Coupez les courgettes en rondelles, assaisonnez avec du sel, du poivre et de l'huile d'olive. Faites chauffer une poêle à griller jusqu'à ce qu'elle fume, puis saisissez les courgettes de chaque côté jusqu'à ce qu'elles soient grillées (2-3 minutes).",
-            "Pour servir, placez les courgettes sur une assiette, puis garnissez de feuilles de basilic, de cuillerées de stracciatella, puis de généreuses quantités de vinaigrette - bon appétit !"
-        ],
-        "tags": [
-            "épicé",
-            "Healthy",
-            "Italie",
-            "Salades",
             "Voilà l'été"
         ],
         "isFeatured": false,
