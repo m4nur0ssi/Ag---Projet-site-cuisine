@@ -2,11 +2,178 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/05/2026 12:00:11
+ * Dernière mise à jour: 22/05/2026 12:17:10
  * Total: 296 recettes
  */
-export const exportSyncId = "1779451211540";
+export const exportSyncId = "1779452230045";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5433",
+        "title": "Gâteau aux fruits renversé",
+        "description": "Une recette facile de gâteau aux baies mélangées, parfait pour une séance de pâtisserie réconfortante ou pour les fêtes de Noël.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FCorn-_-Berry-Upside-Down-Cake-Lead-0.jpg&v=1779458467000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7570400527855504662\" data-video-id=\"7570400527855504662\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7570400527855504662\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 4 eggs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cup sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cup milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cup oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 1/2 cups flour (500ml)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 5g vanilla powder or a dash of vanilla extract"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 10g baking powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n frozen mixed berries"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n lemon zest"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n half a lemon juiced"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180C.",
+            "Battre les œufs et le sucre jusqu'à obtenir une consistance mousseuse.",
+            "Ajouter tous les ingrédients liquides.",
+            "Ajouter ensuite tous les ingrédients secs.",
+            "Ajouter les baies choisies (j'ai utilisé des baies mélangées surgelées) dans un moule à pâtisserie rond + ajouter du sucre.",
+            "Ajouter ensuite la pâte en s'assurant qu'elle couvre toutes les baies.",
+            "Cuire au four pendant 50-55 minutes.",
+            "Une fois refroidi, saupoudrer de sucre glace (facultatif)."
+        ],
+        "tags": [
+            "Noël",
+            "Pas cher",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5496",
+        "title": "Crème brûlée",
+        "description": "Le dessert qu'on aime tous mais qu'on oublie parfois...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-brulee-a-la-vanille-0229597343210853160-1.jpeg&v=1779458168000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7352449094578654497\" data-video-id=\"7352449094578654497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7352449094578654497\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 250ml de lait demi écrémé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 250ml de crème entière"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 70g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 5 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 40g de cassonade"
+            }
+        ],
+        "steps": [
+            "Cuire au bain marie au four 35 min à 160°"
+        ],
+        "tags": [
+            "Desserts",
+            "France",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5499",
+        "title": "Crèmes dessert vanille",
+        "description": "Des crèmes dessert vanille maison, faciles et gourmandes, inspirées d'une version au cacao. Idéales pour 4 pots, elles sont rapides à préparer et parfaites pour un dessert sain.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-vanille-thermomix-800x600-1.jpg&v=1779458039000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554802244063923478\" data-video-id=\"7554802244063923478\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554802244063923478\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 500 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 4 sachets de sucre vanillé (ou 30 g de sucre + 1 gousse de vanille ou extrait de vanille)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 30 g de maïzena (25 g si vous voulez plus liquide façon Danette)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Une noix de beurre ou une cuillère de crème entière (facultatif, pour le crémeux et la brillance)"
+            }
+        ],
+        "steps": [
+            "Dans un bol, diluer la maïzena dans un peu de lait (froid ou à température ambiante) en fouettant sans cesse pour éviter les grumeaux.",
+            "Dans une casserole, faire chauffer le restant de lait avec le sucre et la vanille (ou sucre vanillé) jusqu'à ébullition.",
+            "Une fois à ébullition, ajouter la maïzena diluée dans le lait sans cesser de fouetter jusqu'à reprise de l'ébullition et que la crème épaississe.",
+            "Lorsque la crème nappe votre cuillère ou que le fouet laisse des traces, retirer du feu.",
+            "Pour apporter du crémeux et de la brillance, ajouter une noix de beurre ou une cuillère de crème entière en fin de cuisson (facultatif).",
+            "Répartir la préparation dans des pots ou ramequins et laisser refroidir à température ambiante.",
+            "Mettre au frais minimum 2 heures avant dégustation."
+        ],
+        "tags": [
+            "Desserts",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5505",
         "title": "Vanilla Cream Rolls",
@@ -2844,101 +3011,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5499",
-        "title": "Crèmes dessert vanille",
-        "description": "Des crèmes dessert vanille maison, faciles et gourmandes, inspirées d'une version au cacao. Idéales pour 4 pots, elles sont rapides à préparer et parfaites pour un dessert sain.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554802244063923478\" data-video-id=\"7554802244063923478\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554802244063923478\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             500 ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             4 sachets de sucre vanillé (ou 30 g de sucre + 1 gousse de vanille ou extrait de vanille)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             30 g de maïzena (25 g si vous voulez plus liquide façon Danette)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Une noix de beurre ou une cuillère de crème entière (facultatif, pour le crémeux et la brillance)"
-            }
-        ],
-        "steps": [
-            "Dans un bol, diluer la maïzena dans un peu de lait (froid ou à température ambiante) en fouettant sans cesse pour éviter les grumeaux.",
-            "Dans une casserole, faire chauffer le restant de lait avec le sucre et la vanille (ou sucre vanillé) jusqu'à ébullition.",
-            "Une fois à ébullition, ajouter la maïzena diluée dans le lait sans cesser de fouetter jusqu'à reprise de l'ébullition et que la crème épaississe.",
-            "Lorsque la crème nappe votre cuillère ou que le fouet laisse des traces, retirer du feu.",
-            "Pour apporter du crémeux et de la brillance, ajouter une noix de beurre ou une cuillère de crème entière en fin de cuisson (facultatif).",
-            "Répartir la préparation dans des pots ou ramequins et laisser refroidir à température ambiante.",
-            "Mettre au frais minimum 2 heures avant dégustation."
-        ],
-        "tags": [
-            "Desserts",
-            "Healthy"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5496",
-        "title": "Crème brûlée",
-        "description": "Le dessert qu'on aime tous mais qu'on oublie parfois...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7352449094578654497\" data-video-id=\"7352449094578654497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7352449094578654497\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             250ml de lait demi écrémé"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             250ml de crème entière"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 gousse de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             70g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             5 jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             40g de cassonade"
-            }
-        ],
-        "steps": [
-            "Cuire au bain marie au four 35 min à 160°"
-        ],
-        "tags": [
-            "Desserts",
-            "France",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5457",
         "title": "Crêpes colorées aux fruits et crème fouettée",
         "description": "Un dessert maison délicieux et facile à réaliser : des crêpes colorées garnies de crème fouettée, de mascarpone, de fraises et de morceaux de gâteau, décorées de fruits frais.",
@@ -3576,78 +3648,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Desserts",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5433",
-        "title": "Upside Down Berry Cake",
-        "description": "Une recette facile de gâteau aux baies mélangées, parfait pour une séance de pâtisserie réconfortante ou pour les fêtes de Noël.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7570400527855504662\" data-video-id=\"7570400527855504662\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7570400527855504662\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             4 eggs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cup sugar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cup milk"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cup oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 1/2 cups flour (500ml)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5g vanilla powder or a dash of vanilla extract"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             10g baking powder"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             frozen mixed berries"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             lemon zest"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             half a lemon juiced"
-            }
-        ],
-        "steps": [
-            "Préchauffer le four à 180C.",
-            "Battre les œufs et le sucre jusqu'à obtenir une consistance mousseuse.",
-            "Ajouter tous les ingrédients liquides.",
-            "Ajouter ensuite tous les ingrédients secs.",
-            "Ajouter les baies choisies (j'ai utilisé des baies mélangées surgelées) dans un moule à pâtisserie rond + ajouter du sucre.",
-            "Ajouter ensuite la pâte en s'assurant qu'elle couvre toutes les baies.",
-            "Cuire au four pendant 50-55 minutes.",
-            "Une fois refroidi, saupoudrer de sucre glace (facultatif)."
-        ],
-        "tags": [
-            "Noël",
-            "Pas cher",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
