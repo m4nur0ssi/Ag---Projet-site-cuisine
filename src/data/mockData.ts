@@ -2,11 +2,71 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/05/2026 12:41:40
+ * Dernière mise à jour: 22/05/2026 13:00:30
  * Total: 295 recettes
  */
-export const exportSyncId = "1779453700317";
+export const exportSyncId = "1779454830371";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5414",
+        "title": "Tiramisu croustillant façon Magnum",
+        "description": "Découvrez une recette ultra simple de tiramisu croustillant façon Magnum, inspirée de la pâtisserie. Ce dessert chic combine l'intensité du chocolat avec la douceur fondante du tiramisu, offrant une texture croquante à l'extérieur et fondante à l'...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F40265082-ein-stueck-rocher-tiramisu-liegt-auf-einem-goldenen-teller-mit-einem-goldenen-loeffel-1Sef.jpg&v=1779461661000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549959886512164118\" data-video-id=\"7549959886512164118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549959886512164118\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n 3 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 60 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 250 g de mascarpone (ramolli à température ambiante)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 100 g de chocolat noir fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150 ml de crème liquide entière (35 % MG, non sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Biscuits à la cuillère (env. 12)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 150 ml de café fort refroidi"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 200 g de chocolat noir (pour le glaçage croustillant)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 40 g d'huile de coco (pour le glaçage croustillant)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5421",
         "title": "Cheesecake sans cuisson noisette chocolat",
@@ -4084,66 +4144,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5414",
-        "title": "Tiramisu croustillant façon Magnum",
-        "description": "Découvrez une recette ultra simple de tiramisu croustillant façon Magnum, inspirée de la pâtisserie. Ce dessert chic combine l'intensité du chocolat avec la douceur fondante du tiramisu, offrant une texture croquante à l'extérieur et fondante à l'...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549959886512164118\" data-video-id=\"7549959886512164118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549959886512164118\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             3 jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             60 g de sucre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             250 g de mascarpone (ramolli à température ambiante)"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100 g de chocolat noir fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             150 ml de crème liquide entière (35 % MG, non sucrée)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Biscuits à la cuillère (env. 12)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150 ml de café fort refroidi"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200 g de chocolat noir (pour le glaçage croustillant)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             40 g d'huile de coco (pour le glaçage croustillant)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
