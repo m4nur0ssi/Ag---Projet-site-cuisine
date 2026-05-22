@@ -2,11 +2,236 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/05/2026 12:26:50
- * Total: 296 recettes
+ * Dernière mise à jour: 22/05/2026 12:41:40
+ * Total: 295 recettes
  */
-export const exportSyncId = "1779452810181";
+export const exportSyncId = "1779453700317";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5421",
+        "title": "Cheesecake sans cuisson noisette chocolat",
+        "description": "Un cheesecake sans cuisson facile à réaliser, composé d'une base biscuitée au cacao, d'une crème onctueuse au fromage frais et à la vanille, et d'une ganache brillante au chocolat et noisette.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcheesecake-3-chocolats-3-530x700-1.jpeg&v=1779460438000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7559625571702033686\" data-video-id=\"7559625571702033686\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7559625571702033686\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n 200 g de biscuits au cacao"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 80 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 400 g de fromage frais type Philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 200 ml de crème liquide entière (30 % MG minimum)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 càs de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n les graines d'½ gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 100g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 100 ml de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 10 g de beurre"
+            }
+        ],
+        "steps": [
+            "Mixer les biscuits jusqu'à obtenir une poudre fine.",
+            "Mélanger les biscuits mixés avec le beurre fondu.",
+            "Tasser bien la base biscuitée au fond d'un moule à charnière (20-22 cm).",
+            "Fouetter le fromage frais avec le sucre glace et la vanille.",
+            "Monter la crème liquide en chantilly ferme.",
+            "Incorporer délicatement la chantilly au mélange fromage-sucre.",
+            "Verser la crème cheesecake sur la base biscuitée et lisser la surface.",
+            "Faire chauffer la crème pour la ganache jusqu'à frémissement.",
+            "Verser la crème chaude sur le chocolat haché et laisser reposer 1 minute.",
+            "Mélanger jusqu'à obtention d'une ganache lisse et brillante.",
+            "Ajouter le beurre à la ganache et mélanger.",
+            "Verser la ganache sur le cheesecake et laisser prendre au frais pendant plusieurs heures."
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5424",
+        "title": "Les beignets de princesse Tiana",
+        "description": "Une recette inspirée de la Princesse Tiana pour réaliser des beignets moelleux et dorés. La pâte levée est frite puis garnie de miel et de sucre glace, parfaite pour un goûter gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecette-beignets-Tiana.jpg&v=1779460288000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7407849263885045024\" data-video-id=\"7407849263885045024\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7407849263885045024\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2c.s de levure boulangère instantanée"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 220ml de lait tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 360g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1c.c de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1c.c de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1cc fleur d'oranger"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 40g sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 40g beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n miel liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n sucre glace"
+            }
+        ],
+        "steps": [
+            "Dans la cuve du robot, verser la farine, la levure boulangère et le sel à l'opposé de la levure, le sucre, la vanille, la fleur d'oranger, le beurre fondu et le lait.",
+            "Pétrir vitesse moyenne jusqu'à obtenir une boule qui ne colle pas.",
+            "Ajouter de la farine si la pâte colle trop et continuer à pétrir.",
+            "Déposer la pâte dans un récipient haut, couvrir le récipient d'un torchon puis laisser pousser la pâte 1h30 au chaud. (Préchauffer le four à 150° pendant 15 minutes, l'éteindre, attendre 2 minutes puis placer le récipient à l'intérieur).",
+            "Dégazer la pâte puis l'étaler tout en gardant une certaine épaisseur, à l'aide d'un rouleau à pâtisserie, sur un plan de travail fariné.",
+            "Découper des rectangles puis laisser à nouveau reposer 2 heures ou moins, dans un endroit chaud (four chaud mais éteint).",
+            "Une fois que les beignets ont bien gonflés, les plonger avec précaution dans une huile chaude mais non bouillante. Une fois qu'ils sont suffisamment dorés des deux côtés, déposer ces derniers sur une feuille de papier absorbant afin de retirer le maximum d'huile.",
+            "Terminer par ajouter du miel de fleur d'oranger et saupoudrer de sucre glace !"
+        ],
+        "tags": [
+            "Pas cher",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5427",
+        "title": "Gâteau petit beurre café chocolat",
+        "description": "Un gâteau sans cuisson facile à base de biscuits petit beurre trempés dans du café, garnis d'une crème onctueuse au chocolat blanc et vanille, le tout recouvert d'une riche ganache au chocolat.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpetit-beurre.jpg&v=1779459957000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7558493289117256982\" data-video-id=\"7558493289117256982\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7558493289117256982\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n Environ 250g de biscuits petits beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Une tasse de café"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 500 ml de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 càc d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 40 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 40 g de fécule de maïs (Maïzena)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 100 g de chocolat blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 30 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 100 g de chocolat (pour la ganache)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 100 ml de crème liquide entière (30 % MG de préférence)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 10 g de beurre (pour la ganache)"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, fouetter les jaunes d'œufs avec le sucre jusqu'à ce que le mélange devienne pâle et mousseux.",
+            "Ajouter la fécule de maïs au mélange.",
+            "Dans une casserole, combiner le lait entier, l'extrait de vanille et le mélange de jaunes d'œufs, sucre et fécule. Cuire à feu moyen en fouettant sans arrêt jusqu'à ce que la crème épaississe (environ 2 minutes après le premier bouillon).",
+            "Hors du feu, ajouter le chocolat blanc haché et les 30g de beurre. Mélanger jusqu'à ce que le chocolat soit complètement fondu et que la crème soit lisse. Laisser refroidir.",
+            "Pour la ganache chocolat: Hacher 100g de chocolat en petits morceaux.",
+            "Faire chauffer 100 ml de crème liquide entière dans une casserole jusqu'à ce qu'elle frémisse.",
+            "Verser la crème chaude sur le chocolat haché.",
+            "Laisser reposer 1 à 2 minutes pour que la chaleur fasse fondre le chocolat.",
+            "Mélanger délicatement à l'aide d'une spatule.",
+            "Verser la ganache sur le gâteau refroidi."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5430",
         "title": "Le Paris-Brest",
@@ -3776,296 +4001,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Desserts",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5427",
-        "title": "Gâteau petit beurre café chocolat",
-        "description": "Un gâteau sans cuisson facile à base de biscuits petit beurre trempés dans du café, garnis d'une crème onctueuse au chocolat blanc et vanille, le tout recouvert d'une riche ganache au chocolat.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7558493289117256982\" data-video-id=\"7558493289117256982\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7558493289117256982\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n             Environ 250g de biscuits petits beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Une tasse de café"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             500 ml de lait entier"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 càc d'extrait de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             40 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             40 g de fécule de maïs (Maïzena)"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100 g de chocolat blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             30 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100 g de chocolat (pour la ganache)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100 ml de crème liquide entière (30 % MG de préférence)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             10 g de beurre (pour la ganache)"
-            }
-        ],
-        "steps": [
-            "Dans un saladier, fouetter les jaunes d'œufs avec le sucre jusqu'à ce que le mélange devienne pâle et mousseux.",
-            "Ajouter la fécule de maïs au mélange.",
-            "Dans une casserole, combiner le lait entier, l'extrait de vanille et le mélange de jaunes d'œufs, sucre et fécule. Cuire à feu moyen en fouettant sans arrêt jusqu'à ce que la crème épaississe (environ 2 minutes après le premier bouillon).",
-            "Hors du feu, ajouter le chocolat blanc haché et les 30g de beurre. Mélanger jusqu'à ce que le chocolat soit complètement fondu et que la crème soit lisse. Laisser refroidir.",
-            "Pour la ganache chocolat: Hacher 100g de chocolat en petits morceaux.",
-            "Faire chauffer 100 ml de crème liquide entière dans une casserole jusqu'à ce qu'elle frémisse.",
-            "Verser la crème chaude sur le chocolat haché.",
-            "Laisser reposer 1 à 2 minutes pour que la chaleur fasse fondre le chocolat.",
-            "Mélanger délicatement à l'aide d'une spatule.",
-            "Verser la ganache sur le gâteau refroidi."
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5424",
-        "title": "Les beignets de princesse Tiana",
-        "description": "Une recette inspirée de la Princesse Tiana pour réaliser des beignets moelleux et dorés. La pâte levée est frite puis garnie de miel et de sucre glace, parfaite pour un goûter gourmand.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7407849263885045024\" data-video-id=\"7407849263885045024\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7407849263885045024\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2c.s de levure boulangère instantanée"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             220ml de lait tiède"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             360g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1c.c de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1c.c de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1cc fleur d'oranger"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             40g sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             40g beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             miel liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             sucre glace"
-            }
-        ],
-        "steps": [
-            "Dans la cuve du robot, verser la farine, la levure boulangère et le sel à l'opposé de la levure, le sucre, la vanille, la fleur d'oranger, le beurre fondu et le lait.",
-            "Pétrir vitesse moyenne jusqu'à obtenir une boule qui ne colle pas.",
-            "Ajouter de la farine si la pâte colle trop et continuer à pétrir.",
-            "Déposer la pâte dans un récipient haut, couvrir le récipient d'un torchon puis laisser pousser la pâte 1h30 au chaud. (Préchauffer le four à 150° pendant 15 minutes, l'éteindre, attendre 2 minutes puis placer le récipient à l'intérieur).",
-            "Dégazer la pâte puis l'étaler tout en gardant une certaine épaisseur, à l'aide d'un rouleau à pâtisserie, sur un plan de travail fariné.",
-            "Découper des rectangles puis laisser à nouveau reposer 2 heures ou moins, dans un endroit chaud (four chaud mais éteint).",
-            "Une fois que les beignets ont bien gonflés, les plonger avec précaution dans une huile chaude mais non bouillante. Une fois qu'ils sont suffisamment dorés des deux côtés, déposer ces derniers sur une feuille de papier absorbant afin de retirer le maximum d'huile.",
-            "Terminer par ajouter du miel de fleur d'oranger et saupoudrer de sucre glace !"
-        ],
-        "tags": [
-            "Pas cher",
-            "pâtisserie",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5421",
-        "title": "Cheesecake sans cuisson noisette chocolat",
-        "description": "Un cheesecake sans cuisson facile à réaliser, composé d'une base biscuitée au cacao, d'une crème onctueuse au fromage frais et à la vanille, et d'une ganache brillante au chocolat et noisette.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7559625571702033686\" data-video-id=\"7559625571702033686\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7559625571702033686\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍫\n             200 g de biscuits au cacao"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             80 g de beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             400 g de fromage frais type Philadelphia"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             200 ml de crème liquide entière (30 % MG minimum)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 càs de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             les graines d'½ gousse de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100g de chocolat"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100 ml de crème liquide entière"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             10 g de beurre"
-            }
-        ],
-        "steps": [
-            "Mixer les biscuits jusqu'à obtenir une poudre fine.",
-            "Mélanger les biscuits mixés avec le beurre fondu.",
-            "Tasser bien la base biscuitée au fond d'un moule à charnière (20-22 cm).",
-            "Fouetter le fromage frais avec le sucre glace et la vanille.",
-            "Monter la crème liquide en chantilly ferme.",
-            "Incorporer délicatement la chantilly au mélange fromage-sucre.",
-            "Verser la crème cheesecake sur la base biscuitée et lisser la surface.",
-            "Faire chauffer la crème pour la ganache jusqu'à frémissement.",
-            "Verser la crème chaude sur le chocolat haché et laisser reposer 1 minute.",
-            "Mélanger jusqu'à obtention d'une ganache lisse et brillante.",
-            "Ajouter le beurre à la ganache et mélanger.",
-            "Verser la ganache sur le cheesecake et laisser prendre au frais pendant plusieurs heures."
-        ],
-        "tags": [
-            "Glaces",
-            "pâtisserie",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5418",
-        "title": "Nutella Brioche",
-        "description": "Une délicieuse brioche moelleuse fourrée au Nutella, parfaite pour le petit-déjeuner ou le goûter.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7571452810961767688\" data-video-id=\"7571452810961767688\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7571452810961767688\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             100ml warm milk"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             30g granulated sugar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3g instant dry yeast"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 large egg"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250g all purpose flour + few extra tbsp if it's a bit sticky"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 tsp salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             50g unsalted butter, softened"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Nutella for filling"
-            }
-        ],
-        "steps": [
-            "1. In a bowl, combine the milk, sugar, and yeast. Stir until the yeast dissolves, then add the egg and mix well.",
-            "2. Add the flour and salt, then mix until a shaggy dough forms.",
-            "3. Gradually knead in the softened butter until the dough becomes smooth and elastic (about 8-10 minutes by hand or 5-6 minutes using a stand mixer).",
-            "4. Place the dough in a lightly greased bowl, cover, and let it rise for about 1 hour, or until doubled in size.",
-            "5. Once risen, punch down the dough and divide it into 8 equal portions (about 58 g each) and shape each into a ball.",
-            "6. Roll out each ball into a rectangle. Spoon 1-2 tablespoons of Nutella onto the upper part of the dough, then fold it over to cover the filling.",
-            "7. Using a knife, cut the bottom half of the dough into thin strips, then wrap toward the top to form a braided effect.",
-            "8. Arrange the rolls on a lined baking pan, cover, and let them rise again for 30-45 minutes, or until puffy.",
-            "9. Brush the tops with egg wash, then bake in a preheated oven at 180°C (350°F) for 18-20 minutes, or until golden.",
-            "10. Once baked, brush the rolls with melted butter. Enjoy warm!"
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
