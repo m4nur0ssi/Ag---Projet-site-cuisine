@@ -2,11 +2,139 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/05/2026 12:17:10
+ * Dernière mise à jour: 22/05/2026 12:26:50
  * Total: 296 recettes
  */
-export const exportSyncId = "1779452230045";
+export const exportSyncId = "1779452810181";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5430",
+        "title": "Le Paris-Brest",
+        "description": "Recette complète du Paris-Brest, un grand classique de la pâtisserie française, avec pâte à choux, craquelin, praliné maison et crème pralinée.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fparisbrest1fauchon-scaled.jpg&v=1779459458000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7197854345877048582\" data-video-id=\"7197854345877048582\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7197854345877048582\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 125g de lait demi écrémé (pâte à choux)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 125g d'eau (pâte à choux)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 110g de beurre (pâte à choux)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 140g de farine (pâte à choux)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cac rase de sel (pâte à choux)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 cac bombée de sucre semoule (pâte à choux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 5 oeufs (pâte à choux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n 100g de noisettes (praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100g d'amandes (praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 133g de sucre (praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 33g d'eau (praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de fleur de sel (praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 50g de farine (craquelin)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50g de sucre roux (craquelin)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 40g de beurre pommade (craquelin)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 1 feuille de gélatine (crème au praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 155g de lait demi écrémé (crème au praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 jaunes d'oeufs (crème au praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 30g de sucre semoule (crème au praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 15g de maizena (crème au praliné)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 70g beurre (crème au praliné)"
+            }
+        ],
+        "steps": [
+            "Craquelin: Mélanger le beurre, la farine et le sucre cassonade à la main puis étaler sur 2mm et faire des ronds de 3cm de diamètre.",
+            "Craquelin: Mettre au congélateur 30mn.",
+            "Pâte à choux: Faire chauffer à feu doux l'eau, le lait, le sucre, le sel et le beurre pour faire fondre le beurre puis porter à ébullition.",
+            "Pâte à choux: Hors du feu, ajouter la farine en une seule fois, mélanger et remettre sur feu moyen pour dessécher jusqu'à former une pâte qui se décolle bien des parois de la casserole.",
+            "Pâte à choux: Mettre la pâte dans le robot, battre les œufs et les ajouter petit à petit à la pâte jusqu'à obtenir une jolie vague.",
+            "Pâte à choux: Pocher avec une douille de 10mm des choux de 4cm.",
+            "Pâte à choux: Déposer le craquelin congelé puis mettre au four à 170° pendant 45mn.",
+            "Praliné: Faire torréfier noisettes et amandes à 150° pendant 15mn et laisser refroidir.",
+            "Praliné: Porter à ébullition le sucre et l'eau jusqu'à obtenir un caramel et faire refroidir sur du papier cuisson ou un silpat.",
+            "Praliné: Mixer les fruits secs avec le caramel pendant 10-15mn, selon la puissance de votre robot.",
+            "Praliné: Ajouter la fleur de sel dans votre praliné.",
+            "Crème praliné: Hydrater la gélatine pendant 10mn dans l'eau froide.",
+            "Crème praliné: Mélanger les jaunes avec le sucre puis ajouter la maïzena.",
+            "Crème praliné: Porter à ébullition le lait, ajouter la moitié sur le mélange précédent et remettre le tout à cuire sans cesser de mélanger jusqu'à avoir une belle crème.",
+            "Crème praliné: Hors du feu ajouter la gélatine, mélanger, ajouter le praliné et ensuite le beurre.",
+            "Crème praliné: Réserver dans un récipient à fond plat couvert d'un film alimentaire au frigo pendant 1h.",
+            "Crème praliné: Monter votre crème au robot à vitesse moyenne pendant 5mn.",
+            "Montage: Couper votre choux.",
+            "Montage: Pocher la crème.",
+            "Montage: Insérer du praliné.",
+            "Montage: Refermer le choux."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5433",
         "title": "Gâteau aux fruits renversé",
@@ -3648,134 +3776,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Desserts",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5430",
-        "title": "Le Paris-Brest",
-        "description": "Recette complète du Paris-Brest, un grand classique de la pâtisserie française, avec pâte à choux, craquelin, praliné maison et crème pralinée.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7197854345877048582\" data-video-id=\"7197854345877048582\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7197854345877048582\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             125g de lait demi écrémé (pâte à choux)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             125g d'eau (pâte à choux)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             110g de beurre (pâte à choux)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             140g de farine (pâte à choux)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cac rase de sel (pâte à choux)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cac bombée de sucre semoule (pâte à choux)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             5 oeufs (pâte à choux)"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             100g de noisettes (praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g d'amandes (praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             133g de sucre (praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             33g d'eau (praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de fleur de sel (praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             50g de farine (craquelin)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             50g de sucre roux (craquelin)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             40g de beurre pommade (craquelin)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             1 feuille de gélatine (crème au praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             155g de lait demi écrémé (crème au praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 jaunes d'oeufs (crème au praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             30g de sucre semoule (crème au praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             15g de maizena (crème au praliné)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             70g beurre (crème au praliné)"
-            }
-        ],
-        "steps": [
-            "Craquelin: Mélanger le beurre, la farine et le sucre cassonade à la main puis étaler sur 2mm et faire des ronds de 3cm de diamètre.",
-            "Craquelin: Mettre au congélateur 30mn.",
-            "Pâte à choux: Faire chauffer à feu doux l'eau, le lait, le sucre, le sel et le beurre pour faire fondre le beurre puis porter à ébullition.",
-            "Pâte à choux: Hors du feu, ajouter la farine en une seule fois, mélanger et remettre sur feu moyen pour dessécher jusqu'à former une pâte qui se décolle bien des parois de la casserole.",
-            "Pâte à choux: Mettre la pâte dans le robot, battre les œufs et les ajouter petit à petit à la pâte jusqu'à obtenir une jolie vague.",
-            "Pâte à choux: Pocher avec une douille de 10mm des choux de 4cm.",
-            "Pâte à choux: Déposer le craquelin congelé puis mettre au four à 170° pendant 45mn.",
-            "Praliné: Faire torréfier noisettes et amandes à 150° pendant 15mn et laisser refroidir.",
-            "Praliné: Porter à ébullition le sucre et l'eau jusqu'à obtenir un caramel et faire refroidir sur du papier cuisson ou un silpat.",
-            "Praliné: Mixer les fruits secs avec le caramel pendant 10-15mn, selon la puissance de votre robot.",
-            "Praliné: Ajouter la fleur de sel dans votre praliné.",
-            "Crème praliné: Hydrater la gélatine pendant 10mn dans l'eau froide.",
-            "Crème praliné: Mélanger les jaunes avec le sucre puis ajouter la maïzena.",
-            "Crème praliné: Porter à ébullition le lait, ajouter la moitié sur le mélange précédent et remettre le tout à cuire sans cesser de mélanger jusqu'à avoir une belle crème.",
-            "Crème praliné: Hors du feu ajouter la gélatine, mélanger, ajouter le praliné et ensuite le beurre.",
-            "Crème praliné: Réserver dans un récipient à fond plat couvert d'un film alimentaire au frigo pendant 1h.",
-            "Crème praliné: Monter votre crème au robot à vitesse moyenne pendant 5mn.",
-            "Montage: Couper votre choux.",
-            "Montage: Pocher la crème.",
-            "Montage: Insérer du praliné.",
-            "Montage: Refermer le choux."
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
