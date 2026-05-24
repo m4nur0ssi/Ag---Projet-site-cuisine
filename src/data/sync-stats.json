@@ -1,9 +1,9 @@
 {
-  "lastSync": "2026-05-23T06:00:03Z",
+  "lastSync": "2026-05-24T06:28:51Z",
   "trigger": "schedule",
   "action": "manual",
   "postId": "",
   "mode": "full",
   "status": "success",
-  "ts": 1779516003
+  "ts": 1779604131
 }
