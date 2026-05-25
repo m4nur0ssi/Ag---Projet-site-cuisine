@@ -2,11 +2,68 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 25/05/2026 07:03:08
- * Total: 296 recettes
+ * Dernière mise à jour: 25/05/2026 09:47:34
+ * Total: 297 recettes
  */
-export const exportSyncId = "1779692588473";
+export const exportSyncId = "1779702454345";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5739",
+        "title": "Crème au citron dans des citrons",
+        "description": "Un dessert printanier facile à réaliser, servi dans des citrons évidés, à base de crème, sucre et jus de citron, parfait pour les réceptions.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779702013353.jpg&v=1779709246000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7507455919152844074\" data-video-id=\"7507455919152844074\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7507455919152844074\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n             8 citrons (coupés en deux et évidés)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             3 tasses de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             3/4 tasse de sucre granulé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             12 cuillères à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            }
+        ],
+        "steps": [
+            "Rincer et faire tremper les citrons soigneusement.",
+            "Couper les citrons en deux et les évider à l'aide d'une cuillère.",
+            "Utiliser une passoire pour extraire le jus des citrons évidés et le réserver.",
+            "Dans une casserole à feu moyen, porter la crème épaisse, le sucre et le zeste de citron à faible ébullition.",
+            "Réduire le feu à moyen-doux et laisser mijoter pendant 5 minutes.",
+            "Retirer du feu.",
+            "Incorporer le jus de citron et l'extrait de vanille, et bien mélanger.",
+            "Passer le mélange à travers une passoire fine pour retirer tout le zeste.",
+            "Laisser la crème refroidir pendant 10 minutes avant de la verser dans les coques de citron.",
+            "Réfrigérer toute une nuit, ou au moins 5 heures, avant de servir."
+        ],
+        "tags": [
+            "pâtisserie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5736",
         "title": "Fraisier",
