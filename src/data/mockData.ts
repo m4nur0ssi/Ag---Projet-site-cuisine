@@ -2,11 +2,56 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 25/05/2026 09:47:34
- * Total: 297 recettes
+ * Dernière mise à jour: 25/05/2026 10:02:48
+ * Total: 298 recettes
  */
-export const exportSyncId = "1779702454345";
+export const exportSyncId = "1779703368414";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5742",
+        "title": "Bouchées glacées cacahuètes framboises chocolat",
+        "description": "Des collations gourmandes et saines, faciles à préparer et à conserver au frais. Idéales pour une pause rafraîchissante.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779702428305.jpg&v=1779709669000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7243678497997163803\" data-video-id=\"7243678497997163803\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7243678497997163803\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de yaourt grec (ou yaourt bien épais)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 belle càs de beurre de cacahuètes"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n             50g de framboises surgelées"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat"
+            }
+        ],
+        "steps": [
+            "Mélanger le yaourt, le beurre de cacahuètes et les framboises.",
+            "Déposer 6 tas du mélange sur une feuille de papier cuisson.",
+            "Laisser 2 heures au congélateur.",
+            "Faire fondre le chocolat.",
+            "Tremper chaque bouchée congelée dans le chocolat fondu.",
+            "Conserver au réfrigérateur 3 à 5 jours et sortir 10 minutes avant de déguster."
+        ],
+        "tags": [
+            "Healthy",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5739",
         "title": "Crème au citron dans des citrons",
