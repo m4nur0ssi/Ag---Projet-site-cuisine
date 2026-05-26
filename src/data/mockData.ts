@@ -2,11 +2,388 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/05/2026 22:03:06
- * Total: 313 recettes
+ * Dernière mise à jour: 26/05/2026 22:14:46
+ * Total: 316 recettes
  */
-export const exportSyncId = "1779832986322";
+export const exportSyncId = "1779833686990";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5795",
+        "title": "Paleron de boeuf confit 7h",
+        "description": "Une cuisson lente et douce à 120 degrés, pendant 7h, pour que la viande s'effiloche. Avant ça, il faut juste la masser avec des tomates et des poivrons compotés. C'est dingue.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581069041519856919\" data-video-id=\"7581069041519856919\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581069041519856919\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             1 paleron de bœuf (1,2 à 1,5 kg)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 tomates bien mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 tête d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 branches de romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de laurier"
+            }
+        ],
+        "steps": [
+            "Salez le paleron et faites-le dorer rapidement sur toutes ses faces.",
+            "Rôtissez au four (200°C, 40 min) les tomates, le poivron, le piment et la tête d'ail coupée en deux.",
+            "Une fois rôtie, pressez la tête d'ail pour en extraire la pulpe.",
+            "Mixez-la avec les légumes rôtis et ajoutez le paprika pour obtenir une marinade.",
+            "Badigeonnez le paleron de cette préparation, ajoutez romarin, laurier et un peu d'eau.",
+            "Faites cuire à 120°C pendant 7 h, en arrosant de temps en temps, jusqu'à ce que la viande s'effiloche."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5793",
+        "title": "Creamy Tuscan Chicken Pasta",
+        "description": "Une recette de pâtes crémeuses au poulet, tomates séchées, épinards et parmesan, inspirée de la cuisine toscane.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7557778645465566478\" data-video-id=\"7557778645465566478\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7557778645465566478\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 chicken breast (cut in half)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ tbsp paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ tbsp garlic powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ tbsp onion powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp black pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Dash of olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cups cooked pasta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tbsp olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tbsp butter"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 small onion, diced"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 garlic cloves, minced"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1½ cups cherry tomatoes, halved"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tbsp tomato paste"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ⅓ cup sun-dried tomatoes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tbsp Italian seasoning"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 tbsp paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt and pepper to taste"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ¾ cup heavy cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cup pasta water"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cups spinach (or less if preferred)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 cup grated Parmesan cheese"
+            }
+        ],
+        "steps": [
+            "Season chicken with paprika, garlic powder, onion powder, salt, and black pepper.",
+            "Heat 2 tbsp olive oil in a pan over medium heat. Add the chicken and cook on both sides until golden brown and the internal temperature reaches 165°F. Remove from the pan and set aside.",
+            "In the same pan, add butter and diced onion. Cook until onions are translucent, then add minced garlic and cook for about 1 minute.",
+            "Stir in cherry tomatoes and cook for 2-3 minutes until softened. Add tomato paste and sun-dried tomatoes, stirring for another minute.",
+            "Add Italian seasoning, paprika, salt, and pepper. Cook for 1 minute, then pour in the heavy cream and pasta water. Stir well and let it simmer for 2 minutes.",
+            "Add spinach and Parmesan cheese. Stir until the cheese is melted and the sauce is creamy.",
+            "Slice the cooked chicken and return it to the pan. Let it simmer briefly to absorb the flavors, then add the cooked pasta. Toss until everything is evenly coated.",
+            "Garnish with extra Parmesan and serve warm and enjoy!"
+        ],
+        "tags": [
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5791",
+        "title": "Brioche",
+        "description": "Découvrez comment préparer une brioche maison ultra moelleuse. Cette recette détaillée vous guide à travers les étapes de pétrissage, de repos, de façonnage en tresse et en boules (avec option pépites de chocolat), et de cuisson pour obtenir une b...",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7600138933766229271\" data-video-id=\"7600138933766229271\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7600138933766229271\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             130 g de lait (+ un peu pour la dorure)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20 g de levure boulangère fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             500 g de farine de blé (type 45) (+ un peu pour fariner)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             10 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             200 g de beurre doux froid, coupé en morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf (pour la dorure)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Pépites de chocolat (facultatif)"
+            }
+        ],
+        "steps": [
+            "Dans le bol, verser le lait, la levure boulangère, la farine, les œufs, le sel et le sucre.",
+            "Pétrir pendant 5 minutes.",
+            "Ajouter le beurre froid coupé en morceaux, puis pétrir à nouveau pendant 15 minutes, jusqu'à obtenir une pâte bien filante.",
+            "Transvaser la pâte dans un récipient fariné sans trop la toucher (elle est bien collante).",
+            "Couvrir d'un torchon et laisser reposer 1 heure ou plus au réfrigérateur pour qu'elle se stabilise et soit plus facile à travailler, ou à température ambiante.",
+            "Sortir la pâte du réfrigérateur et la déposer sur un plan de travail légèrement fariné.",
+            "La rabattre et la diviser en 2 parties égales.",
+            "Former une tresse avec l'une des parties.",
+            "Diviser l'autre partie en 8 boules de taille identique et ajouter des pépites de chocolat.",
+            "Déposer les 8 boules en marguerite dans un moule à manqué (Ø 20-22 cm) et placer la tresse dans un moule rectangulaire à cake.",
+            "Laisser pousser 2 heures à température ambiante, à l'abri des courants d'air.",
+            "Préchauffer le four à 170°C.",
+            "Battre le jaune d'œuf avec un peu de lait et badigeonner délicatement les brioches à l'aide d'un pinceau.",
+            "Enfourner et cuire environ 40 minutes, jusqu'à ce qu'elles soient bien dorées et moelleuses.",
+            "Laisser tiédir avant de déguster pour profiter pleinement de leur texture ultra moelleuse."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5789",
+        "title": "Pommes de terre farcies protéinées",
+        "description": "Une recette simple et gourmande de pommes de terre farcies, riche en protéines, idéale pour une diète.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7614945311630396694\" data-video-id=\"7614945311630396694\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7614945311630396694\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             600 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             200 g de steak haché 5 %"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 g de champignons de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 g de crème fraîche allégée"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de mozzarella râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à café d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             paprika fumé"
+            }
+        ],
+        "steps": [
+            "Pique les pommes de terre avec une fourchette puis enfourne-les 40 minutes à 200°C.",
+            "Pendant ce temps, ciselez l'oignon rouge et émincez les champignons.",
+            "Dans une poêle avec 1 c. à café d'huile d'olive, fais revenir l'oignon jusqu'à ce qu'il devienne légèrement translucide.",
+            "Ajoute ensuite les champignons, puis quelques minutes plus tard le steak haché 5 %.",
+            "Assaisonne avec sel, poivre et paprika fumé, puis laisse cuire.",
+            "Une fois la viande cuite, baisse le feu et ajoute la crème fraîche allégée. Mélange bien.",
+            "Les pommes de terre sont cuites : coupe-les au premier tiers et récupère la pulpe avec une cuillère. Si certaines parties sont un peu dures, utilise la pointe d'un couteau pour décoller la pulpe sans abîmer la peau de la pomme de terre.",
+            "Ajoute cette pulpe dans la poêle avec la préparation viande et un peu de mozzarella, puis mélange bien.",
+            "Garnis les pommes de terre avec ce mélange, ajoute encore un peu de mozzarella par-dessus.",
+            "Remets 5 minutes au four en mode grill à environ 220°C pour bien gratiner. Et voilà 🔥 Tu peux servir ça avec une petite salade si tu veux te donner bonne conscience."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Gratins",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5787",
+        "title": "McFlurry maison au Daim",
+        "description": "Une recette facile et rapide pour préparer un McFlurry maison au Daim en seulement 5 minutes grâce au Ninja Creami.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7475297955587706134\" data-video-id=\"7475297955587706134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7475297955587706134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             250 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 ml de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             30g de lait concentré"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 c-à-soupe de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g de Daim"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Entrées",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5785",
         "title": "Roast Potato Greek Salad",
@@ -14707,204 +15084,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "citron",
-            "Grèce"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4052",
-        "title": "Moussaka Grecque",
-        "description": "La moussaka est le plat réconfortant ultime de Grèce, un plat copieux et savoureux qui rassemble des couches de pommes de terre tendres, d'aubergines riches, de sauce à la viande épicée et de béchamel crémeuse. C'est une célébration des saveurs mé...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833018073.jpg&v=1774524451000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7461711347886083370\" data-video-id=\"7461711347886083370\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7461711347886083370\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tbsp extra virgin olive oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 pound (600 g) ground beef"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 onions, blended"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 garlic cloves, blended"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/4 cup (50 ml) cognac or white wine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 tomatoes peeled and blended"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/3 cup (80 ml) tomato juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cinnamon stick"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bay leaf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt and pepper, to taste"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bunch parsley, chopped"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 potatoes, cut lengthwise into 1/4-inch (6 mm) slices"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 eggplants, cut lengthwise into 1/4-inch (6 mm) slices"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Olive oil for frying"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1.5 liters milk"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6 tbsp cornstarch"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tbsp butter"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 tsp nutmeg"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt and pepper, to taste"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 egg yolks"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cup (120 g) grated cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/4 cup (50 g) breadcrumbs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cup (120g) Grated cheese for layering and topping"
-            }
-        ],
-        "steps": [
-            "Préparez la sauce à la viande : Faites chauffer l'huile d'olive dans une poêle à feu moyen. Faites revenir le bœuf haché jusqu'à ce qu'il soit doré. Ajoutez les oignons et l'ail mixés, en remuant jusqu'à ce qu'ils soient parfumés. Versez le cognac ou le vin et laissez mijoter pendant 1 à 2 minutes. Ajoutez les tomates mixées, le jus de tomate, le bâton de cannelle, la feuille de laurier, le sel et le poivre. Baissez le feu et laissez la sauce cuire pendant 25 minutes. Incorporez le persil haché, laissez cuire 1 minute de plus et réservez.",
-            "Préparez les légumes : Coupez les pommes de terre et les aubergines en tranches de 6 mm d'épaisseur. Faites frire les tranches de pommes de terre jusqu'à ce qu'elles soient dorées et réservez. Faites frire les tranches d'aubergines dans de l'huile d'olive jusqu'à ce qu'elles soient ramollies et légèrement dorées. Placez-les sur du papier absorbant pour éliminer l'excès d'huile.",
-            "Préparez la sauce béchamel : Dans une casserole, mélangez le lait et la fécule de maïs. Remuez constamment à feu moyen jusqu'à ce que le mélange épaississe. Ajoutez le beurre, la muscade, le sel et le poivre. Mélangez bien. Retirez du feu et incorporez le fromage râpé et les jaunes d'œufs au fouet. Réservez.",
-            "Assemblez la moussaka : Préchauffez le four à 160°C (320°F). Graissez un plat de cuisson et saupoudrez uniformément de chapelure au fond. Ajoutez une couche de fromage râpé, puis une couche de pommes de terre frites. Ajoutez une autre couche de fromage râpé, suivie d'une couche d'aubergines frites. Salez légèrement. Étalez uniformément la sauce à la viande sur les légumes. Ajoutez une autre couche de pommes de terre, suivie d'une dernière couche d'aubergines. Versez la sauce béchamel sur le dessus, en l'étalant uniformément. Saupoudrez de fromage râpé.",
-            "Cuisson : Faites cuire au four préchauffé pendant 50 minutes, ou jusqu'à ce que le dessus soit doré et bouillonnant.",
-            "Servez : Laissez la moussaka refroidir pendant 1 à 2 heures avant de la couper et de la servir. Dégustez ce plat grec réconfortant et emblématique avec une salade fraîche ou du pain croustillant !"
-        ],
-        "tags": [
-            "Famille",
-            "Grèce"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4061",
-        "title": "Beef Koftas with Yogurt Dill Sauce",
-        "description": "Une recette grecque de koftas de bœuf, parfaites pour un barbecue d'été en famille, servies avec une sauce au yaourt et à l'aneth et du pain pita.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833349129.jpg&v=1774524212000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7519899661902122263\" data-video-id=\"7519899661902122263\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7519899661902122263\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1kg 80/20 ground beef"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt and pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 small onion minced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 garlic cloves"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cup finely chopped fresh parsley"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/3 cup toasted walnuts"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 OZ feta cheese, crumbled"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3/4 cup thick Greek yogurt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 1/2 tbsp lemon juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1-2 garlic cloves, minced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tbsp fresh dill"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cucumbers, shredded"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pitta Bread"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "barbecue",
-            "Famille",
             "Grèce"
         ],
         "isFeatured": false,
