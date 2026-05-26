@@ -164,10 +164,11 @@ async function handleRequest(request: Request) {
                 "Voilà l'été"
             ];
 
+            // Array (ordre garanti JSON) + dict pour compatibilité anciens raccourcis
             const paysDict: Record<string, string> = {};
             sortedNames.forEach(n => { paysDict[n] = n; });
 
-            const response = NextResponse.json({ status: paysDict, v: "00:14-ALL-IN-ONE" });
+            const response = NextResponse.json({ status: sortedNames, pays: sortedNames, list: sortedNames, countries: paysDict, v: "00:14-ALL-IN-ONE" });
             response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
             return response;
         }
