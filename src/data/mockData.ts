@@ -2,11 +2,45 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/05/2026 10:02:57
- * Total: 303 recettes
+ * Dernière mise à jour: 26/05/2026 16:59:16
+ * Total: 305 recettes
  */
-export const exportSyncId = "1779789777996";
+export const exportSyncId = "1779814756990";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5768",
+        "title": "Radis beurre comme une fleur façon Jean-François Piège",
+        "description": "Une présentation artistique et facile du radis beurre, inspirée par le chef Jean-François Piège, parfaite pour un apéritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779814308986.jpg&v=1779821529000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7256818242142899483\" data-video-id=\"7256818242142899483\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7256818242142899483\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Radis"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs",
+            "France",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5765",
         "title": "Chocolate bomboloni",
@@ -22563,6 +22597,39 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "blé",
             "coeur"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "278",
+        "title": "L'Odysee",
+        "description": "    Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte es...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557022352000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte est minimaliste, les crêpes sont dans la moyenne mais il n'y a rien de spécial. Perso, je n'y retournerai pas mais l'ambiance est \" assez \" sympa.",
+            "Mon plat préféré : La Vulcan (Reblochon de Suisse, pommes de terre, lardons, emmental, oignons caramélisés au cidre)",
+            "La décoration, les vidéos Star Wars en tâche de fond.",
+            "Prix dans la moyenne, peu de choix, galère pour se garer.",
+            "Celle devant l'écran.",
+            "6 Rue Dante, 75005 Paris",
+            "M10 -Maubert-Mutualité"
+        ],
+        "tags": [
+            "creperie"
         ],
         "isFeatured": false,
         "isFavorite": false,
