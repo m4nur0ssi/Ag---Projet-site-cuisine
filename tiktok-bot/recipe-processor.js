@@ -4,7 +4,6 @@ const path = require('path');
 const fs = require('fs');
 const { postToWordPress } = require('./wordpress-poster.js');
 const { sendNotificationEmail } = require('./email-notifier');
-const { searchPhoto } = require('./photo-search');
 
 const { callGemini } = require('./gemini-config');
 const { callClaude } = require('./claude-config');
@@ -35,7 +34,6 @@ async function isRecipeWithGemini(description, title) {
         "steps": ["étape 1", "étape 2"], 
         "category": "aperitifs|entrees|plats|desserts|patisserie|vegetarien|glaces|rafraichissements|voila-lete|cest-lhiver", 
         "tags": ["tag1"], 
-        "photoSearchKeyword": "mot clé pour photo" 
     }
     
     RÈGLES POUR LA CATÉGORIE :
@@ -401,10 +399,7 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
     // Supprimer le tag Famille s'il a été ajouté par l'IA (supprimé de la logique)
     analysis.tags = analysis.tags.filter(t => !t.toLowerCase().includes('famille'));
 
-    console.log(`   🖼️ Recherche d'une photo pour: ${analysis.photoSearchKeyword}...`);
     let photoUrl = '';
-    const { findPhoto } = require('./photo-search');
-    try { photoUrl = await findPhoto(analysis.photoSearchKeyword || analysis.recipeName); } catch (e) { }
 
     console.log(`   📝 Publication sur WordPress...`);
     const { postToWordPress } = require('./wordpress-poster');
@@ -422,16 +417,6 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
     if (postResult?.success) {
         console.log(`   🚀 SUCCESS : "${analysis.recipeName}" est en ligne !`);
         console.log(`   📝 Brouillon à review : ${process.env.WP_URL}/wp-admin/post.php?post=${postResult.postId}&action=edit`);
-
-        // Sync local et deploiement Vercel
-        console.log(`   📦 Synchro local et déploiement Vercel...`);
-        const { execSync } = require('child_process');
-        try { execSync(`node sync-recipes.js --recent`, { cwd: path.join(__dirname, '..') }); } catch (e) { }
-
-        if (!process.env.GITHUB_ACTIONS) {
-            const deployCmd = 'git add . && git commit -m "🍳 Nouvelle recette: ' + analysis.recipeName + '" && git push origin main';
-            require('child_process').exec(deployCmd, { cwd: path.join(__dirname, '..') });
-        }
 
         // 📱 Sync automatique de l'app iPhone après chaque publication
         const ghPat = process.env.GH_PAT_SYNC;
