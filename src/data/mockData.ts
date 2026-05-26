@@ -2,11 +2,132 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/05/2026 19:35:23
- * Total: 307 recettes
+ * Dernière mise à jour: 26/05/2026 21:49:02
+ * Total: 310 recettes
  */
-export const exportSyncId = "1779824123853";
+export const exportSyncId = "1779832142103";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5779",
+        "title": "Nouilles chinoises sautées aux légumes",
+        "description": "Simple et efficace, voici une recette de nouilles chinoises sautées aux légumes.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7419721461671185697\" data-video-id=\"7419721461671185697\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7419721461671185697\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             170 g de nouilles chinoises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 shiitakés"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             une carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60 g de pois gourmands"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             30 g de poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de germes de soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             une branche de cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             une gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3 tr de gingembre de 1 mm"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 càs de sauce soja claire"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càs de sauce soja noire"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càs de sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 càs d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 càc de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             3 càs d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5777",
+        "title": "Pâtes Étudiantes Rapides et Pas Chères",
+        "description": "Une recette de pâtes simple, rapide et économique, idéale pour les étudiants.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779824052207.jpg&v=1779831298000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7548148742898191638\" data-video-id=\"7548148742898191638\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7548148742898191638\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "Pas cher",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5774",
         "title": "Nouvelle Recette",
@@ -6915,6 +7036,147 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5231",
+        "title": "Poulet Marry me",
+        "description": "Une recette de poulet crémeux et savoureux, mijoté dans une sauce au paprika, tomates séchées et parmesan, parfait pour un dîner rapide et facile.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecette-poulet-marry-me.jpg&v=1777907816000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634970970989595926\" data-video-id=\"7634970970989595926\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634970970989595926\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 6 hauts de cuisse de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 60g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 3 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 200ml de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 300ml de crème liquide 30%"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 3 cas de paprika doux"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 cas de piment doux"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 cas d'herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 3 tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 50g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            }
+        ],
+        "steps": [
+            "Faire dorer les hauts de cuisse de poulet dans un mélange d'huile et de beurre.",
+            "Retirer le poulet et faire revenir les échalotes hachées et l'ail émincé dans la même poêle.",
+            "Ajouter la farine et mélanger, puis déglacer avec le bouillon de poulet.",
+            "Incorporer la crème liquide, le paprika doux, le piment doux, les herbes de Provence et le poivre. Laisser épaissir légèrement.",
+            "Remettre le poulet dans la sauce et ajouter les tomates séchées coupées. Laisser mijoter jusqu'à ce que le poulet soit cuit et la sauce épaissie.",
+            "Avant de servir, incorporer le parmesan râpé et parsemer de persil frais haché."
+        ],
+        "tags": [
+            "France",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5234",
+        "title": "Sorbet coco créole maison",
+        "description": "Un sorbet coco créole maison, réalisé pour la première fois avec succès grâce au Ninja Creami. Une texture ultra onctueuse et un goût intense de coco pour un véritable voyage dans les Caraïbes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmaracook-sorbet-coco-antille_197529455.jpg&v=1777907562000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633855612375272726\" data-video-id=\"7633855612375272726\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633855612375272726\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 400 ml de lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150 g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Cannelle & muscade (selon vos goûts)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 c. à café d'arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 c. à café d'amande amère"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Zeste de citron vert (à votre convenance)"
+            }
+        ],
+        "steps": [
+            "Mélanger le lait de coco, le lait concentré sucré, la cannelle, la muscade, l'arôme vanille, l'amande amère et le zeste de citron vert dans un récipient.",
+            "Verser la préparation dans le pot du Ninja Creami.",
+            "Placer le pot au congélateur pendant au moins 24 heures.",
+            "Une fois le mélange bien congelé, le turbiner dans le Ninja Creami en utilisant le programme 'Sorbet' ou 'Glace' jusqu'à obtenir une texture onctueuse."
+        ],
+        "tags": [
+            "Afrique",
+            "Les Glaces",
+            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -22579,41 +22841,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "bianca",
             "italien"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "1187",
-        "title": "Il Venezia - Paris 12",
-        "description": "    Au Venezia à Paris, pas un plat typique ne manque à la carte. Vous pouvez alors vous composer un véritable repas italien, comme on en mange à Rome, Naples ou encore Florence : en entrée antipasti, puis penne calabrese, et enfin en dessert le t...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2Fvenezia-restaurant-italien-paris-12-1024x684-2.jpeg&v=1664225429000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Au Venezia à Paris, pas un plat typique ne manque à la carte. Vous pouvez alors vous composer un véritable repas italien, comme on en mange à Rome, Naples ou encore Florence : en entrée antipasti, puis penne calabrese, et enfin en dessert le traditionnel tiramisu. Buon appetito !",
-            "UN REPAS SANS CHICHIS - L'Italie, c'est avant tout de la convivialité et une ambiance familiale. Des valeurs que ce restaurant n'a pas oubliées ! Une décoration et des mets sans prétention, pour vous sentir aussi à l'aise qu'à la maison.",
-            "UN CADRE ACCUEILLANT - Le Venezia se dévoile dans toute sa simplicité et l'on peut alors profiter de tout le charme d'un véritable restaurant italien",
-            "Mon plat préféré : l'escalope panée aux spaghettis à la sauce tomate ou Scaloppina di Vitello alla Milanaise",
-            "l'accueil, ça parle italien, la déco, les plats, la retransmission des matchs de foot, le prix",
-            "Celle à côté de la tv, au fond 😉",
-            "3 rue Corbineau, 75012 Paris",
-            "Metro Bercy (M6, M14) - Bus Bercy (24, 87)",
-            "TheFork, a Trip advisor company"
-        ],
-        "tags": [
-            "Venezia"
         ],
         "isFeatured": false,
         "isFavorite": false,
