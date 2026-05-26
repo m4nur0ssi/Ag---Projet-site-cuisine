@@ -2,11 +2,92 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/05/2026 09:21:42
- * Total: 301 recettes
+ * Dernière mise à jour: 26/05/2026 09:42:00
+ * Total: 302 recettes
  */
-export const exportSyncId = "1779787302649";
+export const exportSyncId = "1779788520749";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5762",
+        "title": "Tiramisu Salé Tomates Olives",
+        "description": "Une version salée et rafraîchissante du tiramisu, parfaite pour l'apéritif ou une entrée légère, avec des tomates, du mascarpone, du pesto et de la straciatella.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779788119199.jpg&v=1779795341000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643483324614200609\" data-video-id=\"7643483324614200609\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643483324614200609\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             5/6 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 grosses cuillères à soupe de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             70 g de crème liquide entière bien froide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Un peu d'épices arôme du Sud"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Une demie échalote émincée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 biscuits apéritif secs type tuc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 bonnes cuillères à soupe de pesto"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g de straciatella (ou l'intérieur d'une burrata)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques olives pour la déco"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème de balsamique"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs",
+            "Italie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5758",
         "title": "Mediterranean Olive Oil Bread Dip",
