@@ -2,11 +2,66 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/05/2026 16:59:16
- * Total: 305 recettes
+ * Dernière mise à jour: 26/05/2026 19:35:23
+ * Total: 307 recettes
  */
-export const exportSyncId = "1779814756990";
+export const exportSyncId = "1779824123853";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5774",
+        "title": "Nouvelle Recette",
+        "description": "L'utilisateur a testé une recette virale et partage son expérience ou les résultats de son essai.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779823690696.jpg&v=1779830910000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626042918712757526\" data-video-id=\"7626042918712757526\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626042918712757526\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Astuces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5771",
+        "title": "Easy Vegan Chocolate Dessert",
+        "description": "Une recette simple et délicieuse de dessert au chocolat, adaptée aux régimes végétalien et végétarien.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779814696581.jpg&v=1779821941000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7621853365835746581\" data-video-id=\"7621853365835746581\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7621853365835746581\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5768",
         "title": "Radis beurre comme une fleur façon Jean-François Piège",
@@ -22565,6 +22620,41 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "1187",
+        "title": "Il Venezia - Paris 12",
+        "description": "    Au Venezia à Paris, pas un plat typique ne manque à la carte. Vous pouvez alors vous composer un véritable repas italien, comme on en mange à Rome, Naples ou encore Florence : en entrée antipasti, puis penne calabrese, et enfin en dessert le t...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2Fvenezia-restaurant-italien-paris-12-1024x684-2.jpeg&v=1664225429000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Au Venezia à Paris, pas un plat typique ne manque à la carte. Vous pouvez alors vous composer un véritable repas italien, comme on en mange à Rome, Naples ou encore Florence : en entrée antipasti, puis penne calabrese, et enfin en dessert le traditionnel tiramisu. Buon appetito !",
+            "UN REPAS SANS CHICHIS - L'Italie, c'est avant tout de la convivialité et une ambiance familiale. Des valeurs que ce restaurant n'a pas oubliées ! Une décoration et des mets sans prétention, pour vous sentir aussi à l'aise qu'à la maison.",
+            "UN CADRE ACCUEILLANT - Le Venezia se dévoile dans toute sa simplicité et l'on peut alors profiter de tout le charme d'un véritable restaurant italien",
+            "Mon plat préféré : l'escalope panée aux spaghettis à la sauce tomate ou Scaloppina di Vitello alla Milanaise",
+            "l'accueil, ça parle italien, la déco, les plats, la retransmission des matchs de foot, le prix",
+            "Celle à côté de la tv, au fond 😉",
+            "3 rue Corbineau, 75012 Paris",
+            "Metro Bercy (M6, M14) - Bus Bercy (24, 87)",
+            "TheFork, a Trip advisor company"
+        ],
+        "tags": [
+            "Venezia"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "1214",
         "title": "Ble coeur - Le Raincy",
         "description": "      Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous...",
@@ -22597,39 +22687,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "blé",
             "coeur"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "278",
-        "title": "L'Odysee",
-        "description": "    Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte es...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557022352000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte est minimaliste, les crêpes sont dans la moyenne mais il n'y a rien de spécial. Perso, je n'y retournerai pas mais l'ambiance est \" assez \" sympa.",
-            "Mon plat préféré : La Vulcan (Reblochon de Suisse, pommes de terre, lardons, emmental, oignons caramélisés au cidre)",
-            "La décoration, les vidéos Star Wars en tâche de fond.",
-            "Prix dans la moyenne, peu de choix, galère pour se garer.",
-            "Celle devant l'écran.",
-            "6 Rue Dante, 75005 Paris",
-            "M10 -Maubert-Mutualité"
-        ],
-        "tags": [
-            "creperie"
         ],
         "isFeatured": false,
         "isFavorite": false,
