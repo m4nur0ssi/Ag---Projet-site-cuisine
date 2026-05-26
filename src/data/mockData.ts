@@ -2,11 +2,128 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/05/2026 08:59:18
- * Total: 300 recettes
+ * Dernière mise à jour: 26/05/2026 09:21:42
+ * Total: 301 recettes
  */
-export const exportSyncId = "1779785958615";
+export const exportSyncId = "1779787302649";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5758",
+        "title": "Mediterranean Olive Oil Bread Dip",
+        "description": "Un dip méditerranéen savoureux et facile à préparer, parfait pour l'apéritif. Il combine l'huile d'olive, le glaçage balsamique, les olives vertes, les tomates séchées, le parmesan, le persil, l'ail, le sel et les flocons de piment.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779786907730.jpg&v=1779794124000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7628705178992020758\" data-video-id=\"7628705178992020758\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7628705178992020758\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Balsamic glaze"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Green olives"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sun-dried tomatoes"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan cheese"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Parsley"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Garlic (1 clove)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Chill flakes"
+            }
+        ],
+        "steps": [
+            "Dans un bol, combinez l'huile d'olive, le glaçage balsamique, les olives vertes hachées, les tomates séchées coupées, le parmesan râpé, le persil frais ciselé, l'ail haché, le sel et les flocons de piment.",
+            "Mélangez bien tous les ingrédients pour qu'ils soient uniformément répartis.",
+            "Servez le dip avec du pain frais ou grillé."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Grèce"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5751",
+        "title": "Feuilletés apéro façon pizza",
+        "description": "Des feuilletés apéro faciles et rapides à préparer, inspirés de la pizza, parfaits pour régaler vos invités en un clin d'œil.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7318347768991452449\" data-video-id=\"7318347768991452449\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7318347768991452449\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Du concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Du fromage râpé (mélange spécial pizza: emmental, mozzarella, edam)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Étale la pâte feuilletée et tartine-la de concentré de tomate sur toute sa surface.",
+            "Parsème de fromage râpé généreusement, puis ajoute un peu de sel et de poivre.",
+            "Appuie sur le fromage pour le faire bien coller à la pâte.",
+            "Replie la pâte sur elle-même puis découpe-la en allumettes.",
+            "Tords chaque allumette sur elle-même pour obtenir une jolie torsade.",
+            "Badigeonne chaque allumette de jaune d'œuf.",
+            "Enfourne 10-15 minutes à 180°C."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Italie",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5747",
         "title": "Cuillères en pâte feuilletée (sans gluten), saumon et fromage frais",
@@ -14951,94 +15068,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4129",
-        "title": "Salade de Gnocchis Croustillants",
-        "description": "Des gnocchis croustillants préparés à la friteuse à air, associés à une salade romaine fraîche et une vinaigrette crémeuse à l'aneth. Un mélange de chaud et froid, de crémeux et de croquant, parfait pour un dîner léger ou une salade copieuse.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffilled-600x600-1.jpeg&v=1774523068000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7600086099364416790\" data-video-id=\"7600086099364416790\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7600086099364416790\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Gnocchis (non cuits)"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Salade romaine"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Poudre d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel pimenté"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Origan"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Yaourt"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème aigre"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Aneth frais"
-            }
-        ],
-        "steps": [
-            "Mélanger les gnocchis avec l'huile d'olive et toutes les épices (poudre d'ail, paprika, sel pimenté, poivre, origan).",
-            "Cuire les gnocchis dans la friteuse à air à 200 degrés Celsius pendant environ 22 minutes jusqu'à ce qu'ils soient croustillants.",
-            "Couper la salade romaine, le concombre et l'oignon rouge, puis les placer dans un saladier.",
-            "Mélanger toutes les ingrédients de la vinaigrette (yaourt, crème aigre, jus de citron, poudre d'ail, sel pimenté, poivre, aneth frais) jusqu'à obtenir une consistance crémeuse.",
-            "Verser la vinaigrette sur la salade et mélanger.",
-            "Ajouter les gnocchis croustillants sur la salade, mélanger brièvement le tout et servir."
-        ],
-        "tags": [
-            "airfryer",
-            "facile",
-            "Healthy",
-            "Italie",
-            "rapide"
         ],
         "isFeatured": false,
         "isFavorite": false,
