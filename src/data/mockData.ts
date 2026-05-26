@@ -2,11 +2,70 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/05/2026 06:39:24
- * Total: 298 recettes
+ * Dernière mise à jour: 26/05/2026 08:59:18
+ * Total: 300 recettes
  */
-export const exportSyncId = "1779777564243";
+export const exportSyncId = "1779785958615";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5747",
+        "title": "Cuillères en pâte feuilletée (sans gluten), saumon et fromage frais",
+        "description": "Des cuillères apéritives croustillantes et sans gluten, préparées avec de la pâte feuilletée, garnies de fromage frais ail et fines herbes, de saumon fumé, de zeste de citron et d'aneth frais. Idéales pour un apéritif festif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779785513831.jpg&v=1779792738000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7450165790717840663\" data-video-id=\"7450165790717840663\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7450165790717840663\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 rouleau de pâte feuilletée sans gluten"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             100 g de fromage ail et fines herbes (ou fromage frais compact au choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             1 à 2 tranches de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zeste d'un citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques brins d'aneth frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf pour la dorure"
+            }
+        ],
+        "steps": [
+            "Déroulez la pâte feuilletée sans gluten sur une surface plane.",
+            "Placez une cuillère sur la pâte et découpez-en le contour à l'aide d'un couteau fin.",
+            "Répétez pour réaliser un maximum de cuillères.",
+            "Retirez l'excès de pâte et reformez une nouvelle tournée si nécessaire.",
+            "Disposez les formes de cuillères sur une plaque recouverte de papier cuisson.",
+            "Piquez légèrement le bout de chaque cuillère avec une fourchette pour éviter qu'elles ne gonflent trop.",
+            "Badigeonnez-les de jaune d'œuf à l'aide d'un pinceau.",
+            "Enfournez à 180°C pendant environ 10 minutes, jusqu'à ce que les cuillères soient bien dorées.",
+            "Sortez les cuillères feuilletées du four et laissez-les tiédir.",
+            "Placez le fromage ail et fines herbes dans une poche à douille (ou dans un sac congélation dont vous coupez le bout) et réalisez de petites pointes de fromage sur chaque cuillère.",
+            "Déposez ensuite un morceau de saumon fumé, ajoutez un peu de zeste de citron et une petite touche d'aneth frais.",
+            "Servez immédiatement pour un apéritif festif, croustillant et gourmand."
+        ],
+        "tags": [
+            "Apéritifs",
+            "C'est l'hiver"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5742",
         "title": "Bouchées glacées cacahuètes framboises chocolat",
@@ -14892,6 +14951,94 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4129",
+        "title": "Salade de Gnocchis Croustillants",
+        "description": "Des gnocchis croustillants préparés à la friteuse à air, associés à une salade romaine fraîche et une vinaigrette crémeuse à l'aneth. Un mélange de chaud et froid, de crémeux et de croquant, parfait pour un dîner léger ou une salade copieuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffilled-600x600-1.jpeg&v=1774523068000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7600086099364416790\" data-video-id=\"7600086099364416790\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7600086099364416790\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Gnocchis (non cuits)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Salade romaine"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel pimenté"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Yaourt"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème aigre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth frais"
+            }
+        ],
+        "steps": [
+            "Mélanger les gnocchis avec l'huile d'olive et toutes les épices (poudre d'ail, paprika, sel pimenté, poivre, origan).",
+            "Cuire les gnocchis dans la friteuse à air à 200 degrés Celsius pendant environ 22 minutes jusqu'à ce qu'ils soient croustillants.",
+            "Couper la salade romaine, le concombre et l'oignon rouge, puis les placer dans un saladier.",
+            "Mélanger toutes les ingrédients de la vinaigrette (yaourt, crème aigre, jus de citron, poudre d'ail, sel pimenté, poivre, aneth frais) jusqu'à obtenir une consistance crémeuse.",
+            "Verser la vinaigrette sur la salade et mélanger.",
+            "Ajouter les gnocchis croustillants sur la salade, mélanger brièvement le tout et servir."
+        ],
+        "tags": [
+            "airfryer",
+            "facile",
+            "Healthy",
+            "Italie",
+            "rapide"
         ],
         "isFeatured": false,
         "isFavorite": false,
