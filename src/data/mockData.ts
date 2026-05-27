@@ -2,11 +2,56 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/05/2026 13:45:07
+ * Dernière mise à jour: 27/05/2026 14:52:12
  * Total: 317 recettes
  */
-export const exportSyncId = "1779889507210";
+export const exportSyncId = "1779893532335";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5787",
+        "title": "McFlurry maison au Daim",
+        "description": "Une recette facile et rapide pour préparer un McFlurry maison au Daim en seulement 5 minutes grâce au Ninja Creami.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fflurry.jpeg&v=1779900297000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7475297955587706134\" data-video-id=\"7475297955587706134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7475297955587706134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 250 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150 ml de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 30g de lait concentré"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 c-à-soupe de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 50g de Daim"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Entrées",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5789",
         "title": "Pommes de terre farcies protéinées",
@@ -382,51 +427,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "France",
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5787",
-        "title": "McFlurry maison au Daim",
-        "description": "Une recette facile et rapide pour préparer un McFlurry maison au Daim en seulement 5 minutes grâce au Ninja Creami.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7475297955587706134\" data-video-id=\"7475297955587706134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7475297955587706134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             250 ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             150 ml de crème"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             30g de lait concentré"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 c-à-soupe de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             50g de Daim"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Entrées",
-            "Végé",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
