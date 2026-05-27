@@ -2,11 +2,40 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/05/2026 13:18:40
- * Total: 319 recettes
+ * Dernière mise à jour: 27/05/2026 13:33:12
+ * Total: 317 recettes
  */
-export const exportSyncId = "1779887920070";
+export const exportSyncId = "1779888792212";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5799",
+        "title": "Préparer des oeufs coulants",
+        "description": "Découvrez une bonne méthode pour préparer des œufs.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Foeuf.jpg&v=1779895129000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619722793541766422\" data-video-id=\"7619722793541766422\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619722793541766422\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n Œufs"
+            }
+        ],
+        "steps": [
+            "Voir la vidéo pour les étapes détaillées."
+        ],
+        "tags": [
+            "Astuces",
+            "Healthy",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5801",
         "title": "Riz à la viande hachée",
@@ -63,35 +92,6 @@ export const mockRecipes: Recipe[] = [
             "asiatique",
             "Healthy",
             "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5799",
-        "title": "Méthode de préparation des œufs",
-        "description": "Découvrez une bonne méthode pour préparer des œufs.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619722793541766422\" data-video-id=\"7619722793541766422\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619722793541766422\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             Œufs"
-            }
-        ],
-        "steps": [
-            "Voir la vidéo pour les étapes détaillées."
-        ],
-        "tags": [
-            "Astuces",
-            "Healthy",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -22601,172 +22601,6 @@ export const mockRecipes: Recipe[] = [
             "Déposez vos framboises, décorez et laissez la tarte au frigo quelques heures avant de déguster."
         ],
         "tags": [],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3576",
-        "title": "Ganache montée vanille",
-        "description": "Découvrez la ganache montée, une crème aérienne, légère et addictive, parfaite pour sublimer vos pâtisseries. Cette base polyvalente peut être aromatisée selon vos envies, offrant une texture idéale pour entremets, tartes, choux et macarons. Une v...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773311749644.png&v=1773315370000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&#038;_t=ZN-94co0Qv2KIg\" data-video-id=\"7600454701309791490\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&#038;_t=ZN-94co0Qv2KIg\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍫 60g de chocolat blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 100g de crème liquide (1)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 180g de crème liquide (2)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 2g de gélatine réhydratée"
-            },
-            {
-                "quantity": "",
-                "name": "🍦 1 gousse de vanille (ou autre aromate)"
-            }
-        ],
-        "steps": [
-            "Fendre la gousse de vanille, récupérer les graines et faire infuser avec la gousse dans la crème (1) après une courte ébullition pendant 30 minutes.",
-            "Faire fondre le chocolat blanc.",
-            "Retirer la gousse de vanille, chauffer la crème infusée et y ajouter la gélatine réhydratée.",
-            "Verser la crème chaude en 3 fois sur le chocolat blanc en créant une émulsion au centre.",
-            "Ajouter la crème froide (2) en une fois et mixer au mixeur plongeant.",
-            "Filmer au contact et laisser cristalliser une nuit au réfrigérateur."
-        ],
-        "tags": [
-            "chocolat blanc",
-            "creme",
-            "France",
-            "ganache montée",
-            "pâtisserie",
-            "recette facile",
-            "vanille"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3570",
-        "title": "Poulet Parmigiana",
-        "description": "Découvrez une recette de Poulet Parmigiana irrésistible, un plat réconfortant qui ravira vos papilles. Ce classique italien revisité promet une explosion de saveurs avec son poulet croustillant, sa sauce tomate maison et son fromage fondant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773301981468.png&v=1773305601000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" data-video-id=\"7603070096159886614\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗 2 escalopes de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 80 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥖 120 g de chapelure panko"
-            },
-            {
-                "quantity": "",
-                "name": "🧀 50 g de parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🍾 Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅 1 oignon jaune moyen"
-            },
-            {
-                "quantity": "",
-                "name": "🧄 2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾 1 c. à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍅 400 g de tomates concassées"
-            },
-            {
-                "quantity": "",
-                "name": "🍅 1 c. à café de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 1 c. à café d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Herbes italiennes"
-            },
-            {
-                "quantity": "",
-                "name": "🧀 200 à 250 g de fromage râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 Persil frais (optionnel)"
-            }
-        ],
-        "steps": [
-            "Préchauffe le four à 220°C.",
-            "Sale et poivre les escalopes de poulet.",
-            "Prépare trois assiettes : farine dans la première, œufs battus dans la deuxième, chapelure panko mélangée au parmesan, dans la troisième.",
-            "Passe chaque escalope successivement dans la farine, l'œuf puis la chapelure en appuyant bien.",
-            "Dépose le poulet pané sur une plaque recouverte de papier cuisson.",
-            "Arrose légèrement d'huile d'olive.",
-            "Enfourne 15 minutes en retournant à mi-cuisson, réserve hors du four.",
-            "Pendant ce temps, fais revenir l'oignon finement émincé dans une casserole avec l'huile d'olive à feu doux pendant environ 5 minutes.",
-            "Ajoute l'ail haché et laisse cuire 30 secondes.",
-            "Incorpore la purée de tomates, le concentré de tomate, le sel, le poivre et des épices italiennes.",
-            "Laisse mijoter à couvert 15 à 20 minutes jusqu'à obtenir une sauce épaisse.",
-            "Verse la sauce chaude dans un plat allant au four.",
-            "Ajoute le fromage râpé par-dessus sans mélanger.",
-            "Enfourne à 200°C pendant 10 à 12 minutes, jusqu'à ce que le fromage soit fondu et légèrement gratiné.",
-            "Sors le plat du four et verse immédiatement la sauce tomate-mozzarella bien fondante sur les escalopes de poulet.",
-            "Termine avec un peu d'origan si tu le souhaites et sers sans attendre."
-        ],
-        "tags": [
-            "facile",
-            "fromage",
-            "Italie",
-            "italien",
-            "parmigiana",
-            "poulet",
-            "rapide"
-        ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
