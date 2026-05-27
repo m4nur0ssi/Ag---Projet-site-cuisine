@@ -2,58 +2,58 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/05/2026 06:55:30
+ * Dernière mise à jour: 27/05/2026 13:18:40
  * Total: 319 recettes
  */
-export const exportSyncId = "1779864930951";
+export const exportSyncId = "1779887920070";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5801",
         "title": "Riz à la viande hachée",
         "description": "Une recette simple et rapide de riz à la viande hachée, assaisonnée avec de la sauce soja, de l'huile de sésame, du gingembre, de l'ail et de l'oignon.",
-        "image": "/images/recipe-placeholder.jpg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Friz.jpeg&v=1779894663000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7600469532138048770\" data-video-id=\"7600469532138048770\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7600469532138048770\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7600469532138048770\" data-video-id=\"7600469532138048770\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7600469532138048770\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             400 g de viande hachée (5 % MG)"
+                "name": "🥣\n 400 g de viande hachée (5 % MG)"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
+                "name": "🧅\n 1 oignon rouge"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
+                "name": "🧄\n 4 gousses d'ail"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             1 c. à s. d'huile de sésame"
+                "name": "🍾\n 1 c. à s. d'huile de sésame"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             5 à 10 g de gingembre"
+                "name": "🧂\n 5 à 10 g de gingembre"
             },
             {
                 "quantity": "",
-                "name": "🍚\n             1 bol de riz"
+                "name": "🍚\n 1 bol de riz"
             },
             {
                 "quantity": "",
-                "name": "💧\n             2 bols d'eau"
+                "name": "💧\n 2 bols d'eau"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             1 c. à s. de sauce soja foncée"
+                "name": "🥫\n 1 c. à s. de sauce soja foncée"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             2 c. à s. de sauce soja salée"
+                "name": "🥫\n 2 c. à s. de sauce soja salée"
             }
         ],
         "steps": [
