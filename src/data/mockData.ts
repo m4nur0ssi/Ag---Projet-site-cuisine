@@ -2,11 +2,227 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/05/2026 13:33:12
+ * Dernière mise à jour: 27/05/2026 13:45:07
  * Total: 317 recettes
  */
-export const exportSyncId = "1779888792212";
+export const exportSyncId = "1779889507210";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5789",
+        "title": "Pommes de terre farcies protéinées",
+        "description": "Une recette simple et gourmande de pommes de terre farcies, riche en protéines, idéale pour une diète.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpommes-de-terre-farcies-au-poulet-recette-gourmande-et-facile-7622.jpeg&v=1779896426000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7614945311630396694\" data-video-id=\"7614945311630396694\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7614945311630396694\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 600 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n 200 g de steak haché 5 %"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 150 g de champignons de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150 g de crème fraîche allégée"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 50 g de mozzarella râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 c. à café d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n paprika fumé"
+            }
+        ],
+        "steps": [
+            "Pique les pommes de terre avec une fourchette puis enfourne-les 40 minutes à 200°C.",
+            "Pendant ce temps, ciselez l'oignon rouge et émincez les champignons.",
+            "Dans une poêle avec 1 c. à café d'huile d'olive, fais revenir l'oignon jusqu'à ce qu'il devienne légèrement translucide.",
+            "Ajoute ensuite les champignons, puis quelques minutes plus tard le steak haché 5 %.",
+            "Assaisonne avec sel, poivre et paprika fumé, puis laisse cuire.",
+            "Une fois la viande cuite, baisse le feu et ajoute la crème fraîche allégée. Mélange bien.",
+            "Les pommes de terre sont cuites : coupe-les au premier tiers et récupère la pulpe avec une cuillère. Si certaines parties sont un peu dures, utilise la pointe d'un couteau pour décoller la pulpe sans abîmer la peau de la pomme de terre.",
+            "Ajoute cette pulpe dans la poêle avec la préparation viande et un peu de mozzarella, puis mélange bien.",
+            "Garnis les pommes de terre avec ce mélange, ajoute encore un peu de mozzarella par-dessus.",
+            "Remets 5 minutes au four en mode grill à environ 220°C pour bien gratiner. Et voilà 🔥 Tu peux servir ça avec une petite salade si tu veux te donner bonne conscience."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Gratins",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5795",
+        "title": "Paleron de boeuf confit 7h",
+        "description": "Une cuisson lente et douce à 120 degrés, pendant 7h, pour que la viande s'effiloche. Avant ça, il faut juste la masser avec des tomates et des poivrons compotés. C'est dingue.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpaleron-miel-the.jpg&v=1779895910000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581069041519856919\" data-video-id=\"7581069041519856919\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581069041519856919\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n 1 paleron de bœuf (1,2 à 1,5 kg)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 2 tomates bien mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 poivron"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 tête d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 2 branches de romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 feuilles de laurier"
+            }
+        ],
+        "steps": [
+            "Salez le paleron et faites-le dorer rapidement sur toutes ses faces.",
+            "Rôtissez au four (200°C, 40 min) les tomates, le poivron, le piment et la tête d'ail coupée en deux.",
+            "Une fois rôtie, pressez la tête d'ail pour en extraire la pulpe.",
+            "Mixez-la avec les légumes rôtis et ajoutez le paprika pour obtenir une marinade.",
+            "Badigeonnez le paleron de cette préparation, ajoutez romarin, laurier et un peu d'eau.",
+            "Faites cuire à 120°C pendant 7 h, en arrosant de temps en temps, jusqu'à ce que la viande s'effiloche."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5797",
+        "title": "Gnocchis crémeux au gorgonzola et bacon",
+        "description": "Des gnocchis moelleux enrobés d'une sauce onctueuse au gorgonzola, agrémentés de bacon croustillant, d'ail et d'oignon, parfaits pour un repas réconfortant.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgnocchis.jpg&v=1779895637000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610833656415866134\" data-video-id=\"7610833656415866134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610833656415866134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 700 g de gnocchis à poêler"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 7 tranches de poitrine fumée ou de bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 demi oignon jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 25 cl de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 150 g de gorgonzola"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 38 cl de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 c. à café d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Basilic (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan (optionnel)"
+            }
+        ],
+        "steps": [
+            "Dans une grande poêle à feu moyen, faites cuire le bacon jusqu'à ce qu'il soit doré et croustillant. Retirez-le et réservez.",
+            "Dans la même poêle, faites revenir l'oignon et l'ail jusqu'à ce qu'ils soient tendres et parfumés (3 à 4 minutes).",
+            "Versez le bouillon et la crème, puis laissez mijoter doucement. Ajoutez le gorgonzola et remuez jusqu'à ce qu'il soit complètement fondu et que la sauce soit lisse.",
+            "Ajoutez le paprika et l'origan, puis laissez mijoter 3 à 5 minutes, jusqu'à ce que la sauce épaississe légèrement.",
+            "Ajoutez les gnocchis directement dans la sauce. Couvrez et laissez mijoter 5 minutes en remuant de temps en temps, jusqu'à ce qu'ils soient tendres et bien enrobés.",
+            "Retirez du feu. Ajoutez le bacon croustillant et le parmesan (optionnel). Poivrez selon votre goût, puis ajoutez du basilic si souhaité."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5799",
         "title": "Préparer des oeufs coulants",
@@ -98,267 +314,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5797",
-        "title": "Gnocchis crémeux au gorgonzola et bacon",
-        "description": "Des gnocchis moelleux enrobés d'une sauce onctueuse au gorgonzola, agrémentés de bacon croustillant, d'ail et d'oignon, parfaits pour un repas réconfortant.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610833656415866134\" data-video-id=\"7610833656415866134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610833656415866134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             700 g de gnocchis à poêler"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             7 tranches de poitrine fumée ou de bacon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail, hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 demi oignon jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             25 cl de bouillon de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150 g de gorgonzola"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             38 cl de crème fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c. à café de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à café d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic (optionnel)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan (optionnel)"
-            }
-        ],
-        "steps": [
-            "Dans une grande poêle à feu moyen, faites cuire le bacon jusqu'à ce qu'il soit doré et croustillant. Retirez-le et réservez.",
-            "Dans la même poêle, faites revenir l'oignon et l'ail jusqu'à ce qu'ils soient tendres et parfumés (3 à 4 minutes).",
-            "Versez le bouillon et la crème, puis laissez mijoter doucement. Ajoutez le gorgonzola et remuez jusqu'à ce qu'il soit complètement fondu et que la sauce soit lisse.",
-            "Ajoutez le paprika et l'origan, puis laissez mijoter 3 à 5 minutes, jusqu'à ce que la sauce épaississe légèrement.",
-            "Ajoutez les gnocchis directement dans la sauce. Couvrez et laissez mijoter 5 minutes en remuant de temps en temps, jusqu'à ce qu'ils soient tendres et bien enrobés.",
-            "Retirez du feu. Ajoutez le bacon croustillant et le parmesan (optionnel). Poivrez selon votre goût, puis ajoutez du basilic si souhaité."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5795",
-        "title": "Paleron de boeuf confit 7h",
-        "description": "Une cuisson lente et douce à 120 degrés, pendant 7h, pour que la viande s'effiloche. Avant ça, il faut juste la masser avec des tomates et des poivrons compotés. C'est dingue.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581069041519856919\" data-video-id=\"7581069041519856919\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581069041519856919\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             1 paleron de bœuf (1,2 à 1,5 kg)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             2 tomates bien mûres"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 poivron"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 piment"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 tête d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c. à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gros sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             2 branches de romarin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 feuilles de laurier"
-            }
-        ],
-        "steps": [
-            "Salez le paleron et faites-le dorer rapidement sur toutes ses faces.",
-            "Rôtissez au four (200°C, 40 min) les tomates, le poivron, le piment et la tête d'ail coupée en deux.",
-            "Une fois rôtie, pressez la tête d'ail pour en extraire la pulpe.",
-            "Mixez-la avec les légumes rôtis et ajoutez le paprika pour obtenir une marinade.",
-            "Badigeonnez le paleron de cette préparation, ajoutez romarin, laurier et un peu d'eau.",
-            "Faites cuire à 120°C pendant 7 h, en arrosant de temps en temps, jusqu'à ce que la viande s'effiloche."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5793",
-        "title": "Creamy Tuscan Chicken Pasta",
-        "description": "Une recette de pâtes crémeuses au poulet, tomates séchées, épinards et parmesan, inspirée de la cuisine toscane.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7557778645465566478\" data-video-id=\"7557778645465566478\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7557778645465566478\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 chicken breast (cut in half)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ tbsp paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ½ tbsp garlic powder"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ½ tbsp onion powder"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tsp salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tsp black pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Dash of olive oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 cups cooked pasta"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tbsp olive oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tbsp butter"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 small onion, diced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 garlic cloves, minced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1½ cups cherry tomatoes, halved"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tbsp tomato paste"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ⅓ cup sun-dried tomatoes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tbsp Italian seasoning"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 tbsp paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt and pepper to taste"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ¾ cup heavy cream"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ½ cup pasta water"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cups spinach (or less if preferred)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 cup grated Parmesan cheese"
-            }
-        ],
-        "steps": [
-            "Season chicken with paprika, garlic powder, onion powder, salt, and black pepper.",
-            "Heat 2 tbsp olive oil in a pan over medium heat. Add the chicken and cook on both sides until golden brown and the internal temperature reaches 165°F. Remove from the pan and set aside.",
-            "In the same pan, add butter and diced onion. Cook until onions are translucent, then add minced garlic and cook for about 1 minute.",
-            "Stir in cherry tomatoes and cook for 2-3 minutes until softened. Add tomato paste and sun-dried tomatoes, stirring for another minute.",
-            "Add Italian seasoning, paprika, salt, and pepper. Cook for 1 minute, then pour in the heavy cream and pasta water. Stir well and let it simmer for 2 minutes.",
-            "Add spinach and Parmesan cheese. Stir until the cheese is melted and the sauce is creamy.",
-            "Slice the cooked chicken and return it to the pan. Let it simmer briefly to absorb the flavors, then add the cooked pasta. Toss until everything is evenly coated.",
-            "Garnish with extra Parmesan and serve warm and enjoy!"
-        ],
-        "tags": [
-            "Italie",
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5791",
         "title": "Brioche",
         "description": "Découvrez comment préparer une brioche maison ultra moelleuse. Cette recette détaillée vous guide à travers les étapes de pétrissage, de repos, de façonnage en tresse et en boules (avec option pépites de chocolat), et de cuisson pour obtenir une b...",
@@ -433,80 +388,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5789",
-        "title": "Pommes de terre farcies protéinées",
-        "description": "Une recette simple et gourmande de pommes de terre farcies, riche en protéines, idéale pour une diète.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7614945311630396694\" data-video-id=\"7614945311630396694\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7614945311630396694\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             600 g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥩\n             200 g de steak haché 5 %"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150 g de champignons de Paris"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             150 g de crème fraîche allégée"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             50 g de mozzarella râpée"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 c. à café d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             paprika fumé"
-            }
-        ],
-        "steps": [
-            "Pique les pommes de terre avec une fourchette puis enfourne-les 40 minutes à 200°C.",
-            "Pendant ce temps, ciselez l'oignon rouge et émincez les champignons.",
-            "Dans une poêle avec 1 c. à café d'huile d'olive, fais revenir l'oignon jusqu'à ce qu'il devienne légèrement translucide.",
-            "Ajoute ensuite les champignons, puis quelques minutes plus tard le steak haché 5 %.",
-            "Assaisonne avec sel, poivre et paprika fumé, puis laisse cuire.",
-            "Une fois la viande cuite, baisse le feu et ajoute la crème fraîche allégée. Mélange bien.",
-            "Les pommes de terre sont cuites : coupe-les au premier tiers et récupère la pulpe avec une cuillère. Si certaines parties sont un peu dures, utilise la pointe d'un couteau pour décoller la pulpe sans abîmer la peau de la pomme de terre.",
-            "Ajoute cette pulpe dans la poêle avec la préparation viande et un peu de mozzarella, puis mélange bien.",
-            "Garnis les pommes de terre avec ce mélange, ajoute encore un peu de mozzarella par-dessus.",
-            "Remets 5 minutes au four en mode grill à environ 220°C pour bien gratiner. Et voilà 🔥 Tu peux servir ça avec une petite salade si tu veux te donner bonne conscience."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Gratins",
-            "Healthy"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5787",
         "title": "McFlurry maison au Daim",
         "description": "Une recette facile et rapide pour préparer un McFlurry maison au Daim en seulement 5 minutes grâce au Ninja Creami.",
@@ -544,105 +425,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Entrées",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5785",
-        "title": "Roast Potato Greek Salad",
-        "description": "Une salade grecque estivale et rafraîchissante, combinant des pommes de terre rôties croustillantes avec une salade grecque fraîche et acidulée. Parfaite pour accompagner de l'agneau grillé ou à déguster seule.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7393010738937269536\" data-video-id=\"7393010738937269536\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7393010738937269536\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1.5kg maris pipers, peeled and cut into even chunks"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 tsp bicarbonate of soda"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Olive oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100ml extra virgin olive oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             40ml red wine vinegar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tsp dried oregano"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tsp Dijon mustard"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1-2 cloves of garlic, crushed"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1-2 tsp honey"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt and pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             10cm piece of cucumber, thinly sliced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             A large handful of cherry tomatoes, halved"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             A handful of Kalamata olives, halved"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Half a red onion, thinly sliced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             A handful of parsley"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g feta, crumbled"
-            }
-        ],
-        "steps": [
-            "1. Preheat your oven to 190c fan.",
-            "2. Add the potatoes to a large pan of cold water. Add salt, bicarb and bring to the boil. Boil until a knife slips through easily, around 10-15 minutes. Drain and allow to steam dry.",
-            "3. Pour a generous amount of oil into a large tray, place into the oven to get hot for a few minutes. Remove, add the potatoes, salt and turn to coat well In the oil. Roast for 50-60 minutes, turning a few times, until golden and crisp.",
-            "4. Meanwhile, combine the ingredients for the dressing and whisk well. Taste and adjust.",
-            "5. Once the potatoes are cooked, allow to cool for a few minutes. Top with the salad, feta and dressing and give a gentle mix. Enjoy!"
-        ],
-        "tags": [
-            "Grèce",
-            "Pâques",
-            "Salades",
             "Végé",
             "Voilà l'été"
         ],
@@ -22601,6 +22383,172 @@ export const mockRecipes: Recipe[] = [
             "Déposez vos framboises, décorez et laissez la tarte au frigo quelques heures avant de déguster."
         ],
         "tags": [],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3576",
+        "title": "Ganache montée vanille",
+        "description": "Découvrez la ganache montée, une crème aérienne, légère et addictive, parfaite pour sublimer vos pâtisseries. Cette base polyvalente peut être aromatisée selon vos envies, offrant une texture idéale pour entremets, tartes, choux et macarons. Une v...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773311749644.png&v=1773315370000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&#038;_t=ZN-94co0Qv2KIg\" data-video-id=\"7600454701309791490\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&#038;_t=ZN-94co0Qv2KIg\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫 60g de chocolat blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 100g de crème liquide (1)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 180g de crème liquide (2)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 2g de gélatine réhydratée"
+            },
+            {
+                "quantity": "",
+                "name": "🍦 1 gousse de vanille (ou autre aromate)"
+            }
+        ],
+        "steps": [
+            "Fendre la gousse de vanille, récupérer les graines et faire infuser avec la gousse dans la crème (1) après une courte ébullition pendant 30 minutes.",
+            "Faire fondre le chocolat blanc.",
+            "Retirer la gousse de vanille, chauffer la crème infusée et y ajouter la gélatine réhydratée.",
+            "Verser la crème chaude en 3 fois sur le chocolat blanc en créant une émulsion au centre.",
+            "Ajouter la crème froide (2) en une fois et mixer au mixeur plongeant.",
+            "Filmer au contact et laisser cristalliser une nuit au réfrigérateur."
+        ],
+        "tags": [
+            "chocolat blanc",
+            "creme",
+            "France",
+            "ganache montée",
+            "pâtisserie",
+            "recette facile",
+            "vanille"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3570",
+        "title": "Poulet Parmigiana",
+        "description": "Découvrez une recette de Poulet Parmigiana irrésistible, un plat réconfortant qui ravira vos papilles. Ce classique italien revisité promet une explosion de saveurs avec son poulet croustillant, sa sauce tomate maison et son fromage fondant.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773301981468.png&v=1773305601000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" data-video-id=\"7603070096159886614\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗 2 escalopes de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 80 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥖 120 g de chapelure panko"
+            },
+            {
+                "quantity": "",
+                "name": "🧀 50 g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾 Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅 1 oignon jaune moyen"
+            },
+            {
+                "quantity": "",
+                "name": "🧄 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾 1 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍅 400 g de tomates concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅 1 c. à café de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 1 c. à café d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 Herbes italiennes"
+            },
+            {
+                "quantity": "",
+                "name": "🧀 200 à 250 g de fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Persil frais (optionnel)"
+            }
+        ],
+        "steps": [
+            "Préchauffe le four à 220°C.",
+            "Sale et poivre les escalopes de poulet.",
+            "Prépare trois assiettes : farine dans la première, œufs battus dans la deuxième, chapelure panko mélangée au parmesan, dans la troisième.",
+            "Passe chaque escalope successivement dans la farine, l'œuf puis la chapelure en appuyant bien.",
+            "Dépose le poulet pané sur une plaque recouverte de papier cuisson.",
+            "Arrose légèrement d'huile d'olive.",
+            "Enfourne 15 minutes en retournant à mi-cuisson, réserve hors du four.",
+            "Pendant ce temps, fais revenir l'oignon finement émincé dans une casserole avec l'huile d'olive à feu doux pendant environ 5 minutes.",
+            "Ajoute l'ail haché et laisse cuire 30 secondes.",
+            "Incorpore la purée de tomates, le concentré de tomate, le sel, le poivre et des épices italiennes.",
+            "Laisse mijoter à couvert 15 à 20 minutes jusqu'à obtenir une sauce épaisse.",
+            "Verse la sauce chaude dans un plat allant au four.",
+            "Ajoute le fromage râpé par-dessus sans mélanger.",
+            "Enfourne à 200°C pendant 10 à 12 minutes, jusqu'à ce que le fromage soit fondu et légèrement gratiné.",
+            "Sors le plat du four et verse immédiatement la sauce tomate-mozzarella bien fondante sur les escalopes de poulet.",
+            "Termine avec un peu d'origan si tu le souhaites et sers sans attendre."
+        ],
+        "tags": [
+            "facile",
+            "fromage",
+            "Italie",
+            "italien",
+            "parmigiana",
+            "poulet",
+            "rapide"
+        ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
