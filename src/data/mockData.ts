@@ -2,11 +2,313 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/05/2026 14:52:12
+ * Dernière mise à jour: 27/05/2026 15:06:03
  * Total: 317 recettes
  */
-export const exportSyncId = "1779893532335";
+export const exportSyncId = "1779894363275";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5779",
+        "title": "Nouilles chinoises sautées aux légumes",
+        "description": "Simple et efficace, voici une recette de nouilles chinoises sautées aux légumes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fnouille.jpg&v=1779901025000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7419721461671185697\" data-video-id=\"7419721461671185697\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7419721461671185697\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 170 g de nouilles chinoises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3 shiitakés"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n une carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60 g de pois gourmands"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 30 g de poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 80 g de germes de soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n une branche de cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1/2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n une gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 3 tr de gingembre de 1 mm"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 3 càs de sauce soja claire"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 càs de sauce soja noire"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 càs de sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 càs d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 càc de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 3 càs d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5781",
+        "title": "Minis Beignets",
+        "description": "Recette facile de petits beignets moelleux et dorés, parfaits pour le goûter.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F280120251738061807.jpeg&v=1779900803000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7601914839782444310\" data-video-id=\"7601914839782444310\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7601914839782444310\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 250g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 30g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 4g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 sachet de levure boulangère sèche"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 125ml de lait tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 25g de beurre doux ramolli"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile neutre pour la friture"
+            }
+        ],
+        "steps": [
+            "Mélanger la farine, le sucre, le sucre vanillé, le sel et la levure boulangère sèche.",
+            "Ajouter le lait tiède et l'œuf, puis pétrir la pâte.",
+            "Incorporer le beurre doux ramolli et continuer de pétrir jusqu'à obtenir une pâte homogène et souple.",
+            "Laisser la pâte lever (1ère pousse) pendant 1h30 dans un endroit chaud.",
+            "Dégazer la pâte, puis former environ 15 minis beignets.",
+            "Laisser les beignets lever une seconde fois (2ème pousse) pendant 30 minutes.",
+            "Faire frire les minis beignets dans de l'huile neutre chaude jusqu'à ce qu'ils soient dorés."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5791",
+        "title": "Brioche",
+        "description": "Découvrez comment préparer une brioche maison ultra moelleuse. Cette recette détaillée vous guide à travers les étapes de pétrissage, de repos, de façonnage en tresse et en boules (avec option pépites de chocolat), et de cuisson pour obtenir une b...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fbrioche.jpg&v=1779900607000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7600138933766229271\" data-video-id=\"7600138933766229271\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7600138933766229271\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 130 g de lait (+ un peu pour la dorure)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 20 g de levure boulangère fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 500 g de farine de blé (type 45) (+ un peu pour fariner)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 10 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50 g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 200 g de beurre doux froid, coupé en morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 jaune d'œuf (pour la dorure)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n Pépites de chocolat (facultatif)"
+            }
+        ],
+        "steps": [
+            "Dans le bol, verser le lait, la levure boulangère, la farine, les œufs, le sel et le sucre.",
+            "Pétrir pendant 5 minutes.",
+            "Ajouter le beurre froid coupé en morceaux, puis pétrir à nouveau pendant 15 minutes, jusqu'à obtenir une pâte bien filante.",
+            "Transvaser la pâte dans un récipient fariné sans trop la toucher (elle est bien collante).",
+            "Couvrir d'un torchon et laisser reposer 1 heure ou plus au réfrigérateur pour qu'elle se stabilise et soit plus facile à travailler, ou à température ambiante.",
+            "Sortir la pâte du réfrigérateur et la déposer sur un plan de travail légèrement fariné.",
+            "La rabattre et la diviser en 2 parties égales.",
+            "Former une tresse avec l'une des parties.",
+            "Diviser l'autre partie en 8 boules de taille identique et ajouter des pépites de chocolat.",
+            "Déposer les 8 boules en marguerite dans un moule à manqué (Ø 20-22 cm) et placer la tresse dans un moule rectangulaire à cake.",
+            "Laisser pousser 2 heures à température ambiante, à l'abri des courants d'air.",
+            "Préchauffer le four à 170°C.",
+            "Battre le jaune d'œuf avec un peu de lait et badigeonner délicatement les brioches à l'aide d'un pinceau.",
+            "Enfourner et cuire environ 40 minutes, jusqu'à ce qu'elles soient bien dorées et moelleuses.",
+            "Laisser tiédir avant de déguster pour profiter pleinement de leur texture ultra moelleuse."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5783",
+        "title": "Gratin de patates douces à la viande hachée",
+        "description": "Un gratin équilibré et savoureux à base de patates douces, viande hachée, cottage cheese et avocat, parfait pour un repas nutritif et réconfortant.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin-patate-douce-viande-hache-mijoteetpapote.jpg&v=1779900450000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610854924938644758\" data-video-id=\"7610854924938644758\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610854924938644758\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥔\n 800 g de patates douces"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 350 g de viande hachée 5 %"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 200 g de cottage cheese"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n 2 petits avocats (150 g de chair)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 2 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 50 g de gruyère râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Mélange chili"
+            }
+        ],
+        "steps": [
+            "Épluche et coupe les patates douces en rondelles fines, puis enfourne-les à 200 °C pendant 20-25 min jusqu'à ce qu'elles soient fondantes.",
+            "Fais cuire la viande hachée à sec.",
+            "Ajoute le fromage râpé et enfourne 2 min.",
+            "Hors du four, ajoute l'oignon rouge finement émincé avec les tomates coupées en petits dés.",
+            "Ajoute le guacamole 100 % avocat et le cottage cheese (au-dessus ou à côté)."
+        ],
+        "tags": [
+            "épicé",
+            "Gratins",
+            "Healthy",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5787",
         "title": "McFlurry maison au Daim",
@@ -353,308 +655,6 @@ export const mockRecipes: Recipe[] = [
             "asiatique",
             "Healthy",
             "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5791",
-        "title": "Brioche",
-        "description": "Découvrez comment préparer une brioche maison ultra moelleuse. Cette recette détaillée vous guide à travers les étapes de pétrissage, de repos, de façonnage en tresse et en boules (avec option pépites de chocolat), et de cuisson pour obtenir une b...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7600138933766229271\" data-video-id=\"7600138933766229271\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7600138933766229271\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             130 g de lait (+ un peu pour la dorure)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             20 g de levure boulangère fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             500 g de farine de blé (type 45) (+ un peu pour fariner)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             10 g de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             50 g de sucre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             200 g de beurre doux froid, coupé en morceaux"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf (pour la dorure)"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             Pépites de chocolat (facultatif)"
-            }
-        ],
-        "steps": [
-            "Dans le bol, verser le lait, la levure boulangère, la farine, les œufs, le sel et le sucre.",
-            "Pétrir pendant 5 minutes.",
-            "Ajouter le beurre froid coupé en morceaux, puis pétrir à nouveau pendant 15 minutes, jusqu'à obtenir une pâte bien filante.",
-            "Transvaser la pâte dans un récipient fariné sans trop la toucher (elle est bien collante).",
-            "Couvrir d'un torchon et laisser reposer 1 heure ou plus au réfrigérateur pour qu'elle se stabilise et soit plus facile à travailler, ou à température ambiante.",
-            "Sortir la pâte du réfrigérateur et la déposer sur un plan de travail légèrement fariné.",
-            "La rabattre et la diviser en 2 parties égales.",
-            "Former une tresse avec l'une des parties.",
-            "Diviser l'autre partie en 8 boules de taille identique et ajouter des pépites de chocolat.",
-            "Déposer les 8 boules en marguerite dans un moule à manqué (Ø 20-22 cm) et placer la tresse dans un moule rectangulaire à cake.",
-            "Laisser pousser 2 heures à température ambiante, à l'abri des courants d'air.",
-            "Préchauffer le four à 170°C.",
-            "Battre le jaune d'œuf avec un peu de lait et badigeonner délicatement les brioches à l'aide d'un pinceau.",
-            "Enfourner et cuire environ 40 minutes, jusqu'à ce qu'elles soient bien dorées et moelleuses.",
-            "Laisser tiédir avant de déguster pour profiter pleinement de leur texture ultra moelleuse."
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5783",
-        "title": "Gratin de patates douces à la viande hachée",
-        "description": "Un gratin équilibré et savoureux à base de patates douces, viande hachée, cottage cheese et avocat, parfait pour un repas nutritif et réconfortant.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610854924938644758\" data-video-id=\"7610854924938644758\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610854924938644758\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥔\n             800 g de patates douces"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             350 g de viande hachée 5 %"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             200 g de cottage cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             2 petits avocats (150 g de chair)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             2 tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             50 g de gruyère râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Mélange chili"
-            }
-        ],
-        "steps": [
-            "Épluche et coupe les patates douces en rondelles fines, puis enfourne-les à 200 °C pendant 20-25 min jusqu'à ce qu'elles soient fondantes.",
-            "Fais cuire la viande hachée à sec.",
-            "Ajoute le fromage râpé et enfourne 2 min.",
-            "Hors du four, ajoute l'oignon rouge finement émincé avec les tomates coupées en petits dés.",
-            "Ajoute le guacamole 100 % avocat et le cottage cheese (au-dessus ou à côté)."
-        ],
-        "tags": [
-            "épicé",
-            "Gratins",
-            "Healthy",
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5781",
-        "title": "Minis Beignets",
-        "description": "Recette facile de petits beignets moelleux et dorés, parfaits pour le goûter.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7601914839782444310\" data-video-id=\"7601914839782444310\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7601914839782444310\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             250g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             30g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             4g de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 sachet de levure boulangère sèche"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             125ml de lait tiède"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             25g de beurre doux ramolli"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile neutre pour la friture"
-            }
-        ],
-        "steps": [
-            "Mélanger la farine, le sucre, le sucre vanillé, le sel et la levure boulangère sèche.",
-            "Ajouter le lait tiède et l'œuf, puis pétrir la pâte.",
-            "Incorporer le beurre doux ramolli et continuer de pétrir jusqu'à obtenir une pâte homogène et souple.",
-            "Laisser la pâte lever (1ère pousse) pendant 1h30 dans un endroit chaud.",
-            "Dégazer la pâte, puis former environ 15 minis beignets.",
-            "Laisser les beignets lever une seconde fois (2ème pousse) pendant 30 minutes.",
-            "Faire frire les minis beignets dans de l'huile neutre chaude jusqu'à ce qu'ils soient dorés."
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5779",
-        "title": "Nouilles chinoises sautées aux légumes",
-        "description": "Simple et efficace, voici une recette de nouilles chinoises sautées aux légumes.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7419721461671185697\" data-video-id=\"7419721461671185697\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7419721461671185697\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             170 g de nouilles chinoises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 shiitakés"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             une carotte"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             60 g de pois gourmands"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             30 g de poivron rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80 g de germes de soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             une branche de cébette"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             une gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             3 tr de gingembre de 1 mm"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             3 càs de sauce soja claire"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 càs de sauce soja noire"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 càs de sauce huître"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 càs d'huile de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 càc de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             3 càs d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Accompagnements",
-            "Asie"
         ],
         "isFeatured": false,
         "isFavorite": false,
