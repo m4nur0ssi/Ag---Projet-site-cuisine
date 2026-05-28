@@ -2,11 +2,125 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 28/05/2026 14:37:09
+ * Dernière mise à jour: 28/05/2026 14:53:34
  * Total: 314 recettes
  */
-export const exportSyncId = "1779979029649";
+export const exportSyncId = "1779980014251";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5747",
+        "title": "Cuillères en pâte feuilletée saumon et fromage frais",
+        "description": "Des cuillères apéritives croustillantes et sans gluten, préparées avec de la pâte feuilletée, garnies de fromage frais ail et fines herbes, de saumon fumé, de zeste de citron et d'aneth frais. Idéales pour un apéritif festif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcuilleres-aperitives-saumon-et-tartare-1109.640x480.jpg&v=1779986400000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7450165790717840663\" data-video-id=\"7450165790717840663\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7450165790717840663\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 1 rouleau de pâte feuilletée sans gluten"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 100 g de fromage ail et fines herbes (ou fromage frais compact au choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n 1 à 2 tranches de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Le zeste d'un citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Quelques brins d'aneth frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 jaune d'œuf pour la dorure"
+            }
+        ],
+        "steps": [
+            "Déroulez la pâte feuilletée sans gluten sur une surface plane.",
+            "Placez une cuillère sur la pâte et découpez-en le contour à l'aide d'un couteau fin.",
+            "Répétez pour réaliser un maximum de cuillères.",
+            "Retirez l'excès de pâte et reformez une nouvelle tournée si nécessaire.",
+            "Disposez les formes de cuillères sur une plaque recouverte de papier cuisson.",
+            "Piquez légèrement le bout de chaque cuillère avec une fourchette pour éviter qu'elles ne gonflent trop.",
+            "Badigeonnez-les de jaune d'œuf à l'aide d'un pinceau.",
+            "Enfournez à 180°C pendant environ 10 minutes, jusqu'à ce que les cuillères soient bien dorées.",
+            "Sortez les cuillères feuilletées du four et laissez-les tiédir.",
+            "Placez le fromage ail et fines herbes dans une poche à douille (ou dans un sac congélation dont vous coupez le bout) et réalisez de petites pointes de fromage sur chaque cuillère.",
+            "Déposez ensuite un morceau de saumon fumé, ajoutez un peu de zeste de citron et une petite touche d'aneth frais.",
+            "Servez immédiatement pour un apéritif festif, croustillant et gourmand."
+        ],
+        "tags": [
+            "Apéritifs",
+            "C'est l'hiver"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5751",
+        "title": "Feuilletés apéro façon pizza",
+        "description": "Des feuilletés apéro faciles et rapides à préparer, inspirés de la pizza, parfaits pour régaler vos invités en un clin d'œil.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FFeuilletes_aperitif_pesto.jpg&v=1779986260000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7318347768991452449\" data-video-id=\"7318347768991452449\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7318347768991452449\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 1 pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Du concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Du fromage râpé (mélange spécial pizza: emmental, mozzarella, edam)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Étale la pâte feuilletée et tartine-la de concentré de tomate sur toute sa surface.",
+            "Parsème de fromage râpé généreusement, puis ajoute un peu de sel et de poivre.",
+            "Appuie sur le fromage pour le faire bien coller à la pâte.",
+            "Replie la pâte sur elle-même puis découpe-la en allumettes.",
+            "Tords chaque allumette sur elle-même pour obtenir une jolie torsade.",
+            "Badigeonne chaque allumette de jaune d'œuf.",
+            "Enfourne 10-15 minutes à 180°C."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Italie",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5762",
         "title": "Tiramisu Salé Tomates Olives",
@@ -863,124 +977,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5751",
-        "title": "Feuilletés apéro façon pizza",
-        "description": "Des feuilletés apéro faciles et rapides à préparer, inspirés de la pizza, parfaits pour régaler vos invités en un clin d'œil.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7318347768991452449\" data-video-id=\"7318347768991452449\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7318347768991452449\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             1 pâte feuilletée"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Du concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Du fromage râpé (mélange spécial pizza: emmental, mozzarella, edam)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf (optionnel)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Étale la pâte feuilletée et tartine-la de concentré de tomate sur toute sa surface.",
-            "Parsème de fromage râpé généreusement, puis ajoute un peu de sel et de poivre.",
-            "Appuie sur le fromage pour le faire bien coller à la pâte.",
-            "Replie la pâte sur elle-même puis découpe-la en allumettes.",
-            "Tords chaque allumette sur elle-même pour obtenir une jolie torsade.",
-            "Badigeonne chaque allumette de jaune d'œuf.",
-            "Enfourne 10-15 minutes à 180°C."
-        ],
-        "tags": [
-            "Apéritifs",
-            "Italie",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5747",
-        "title": "Cuillères en pâte feuilletée (sans gluten), saumon et fromage frais",
-        "description": "Des cuillères apéritives croustillantes et sans gluten, préparées avec de la pâte feuilletée, garnies de fromage frais ail et fines herbes, de saumon fumé, de zeste de citron et d'aneth frais. Idéales pour un apéritif festif.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779785513831.jpg&v=1779792738000",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7450165790717840663\" data-video-id=\"7450165790717840663\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7450165790717840663\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             1 rouleau de pâte feuilletée sans gluten"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             100 g de fromage ail et fines herbes (ou fromage frais compact au choix)"
-            },
-            {
-                "quantity": "",
-                "name": "🐟\n             1 à 2 tranches de saumon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le zeste d'un citron"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques brins d'aneth frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf pour la dorure"
-            }
-        ],
-        "steps": [
-            "Déroulez la pâte feuilletée sans gluten sur une surface plane.",
-            "Placez une cuillère sur la pâte et découpez-en le contour à l'aide d'un couteau fin.",
-            "Répétez pour réaliser un maximum de cuillères.",
-            "Retirez l'excès de pâte et reformez une nouvelle tournée si nécessaire.",
-            "Disposez les formes de cuillères sur une plaque recouverte de papier cuisson.",
-            "Piquez légèrement le bout de chaque cuillère avec une fourchette pour éviter qu'elles ne gonflent trop.",
-            "Badigeonnez-les de jaune d'œuf à l'aide d'un pinceau.",
-            "Enfournez à 180°C pendant environ 10 minutes, jusqu'à ce que les cuillères soient bien dorées.",
-            "Sortez les cuillères feuilletées du four et laissez-les tiédir.",
-            "Placez le fromage ail et fines herbes dans une poche à douille (ou dans un sac congélation dont vous coupez le bout) et réalisez de petites pointes de fromage sur chaque cuillère.",
-            "Déposez ensuite un morceau de saumon fumé, ajoutez un peu de zeste de citron et une petite touche d'aneth frais.",
-            "Servez immédiatement pour un apéritif festif, croustillant et gourmand."
-        ],
-        "tags": [
-            "Apéritifs",
-            "C'est l'hiver"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5742",
         "title": "Bouchées glacées cacahuètes framboises chocolat",
         "description": "Des collations gourmandes et saines, faciles à préparer et à conserver au frais. Idéales pour une pause rafraîchissante.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779702428305.jpg&v=1779709669000",
+        "image": "/images/recipe-placeholder.jpg",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
