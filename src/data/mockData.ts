@@ -2,11 +2,216 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 28/05/2026 14:53:34
+ * Dernière mise à jour: 28/05/2026 15:07:56
  * Total: 314 recettes
  */
-export const exportSyncId = "1779980014251";
+export const exportSyncId = "1779980876304";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5736",
+        "title": "Fraisier",
+        "description": "Une recette détaillée pour réussir un fraisier classique, avec une génoise moelleuse et une crème mousseline onctueuse, parfait pour les amateurs de fraises. Le guide inclut la préparation de la génoise, de la crème pâtissière et de la crème au be...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffraisier-lilie-bakery.jpg&v=1779987721000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7637042674985389334\" data-video-id=\"7637042674985389334\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7637042674985389334\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n 200 g d'œufs (environ 4) pour la génoise"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 125 g de farine pour la génoise"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 125 g de sucre pour la génoise"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 500 g de lait pour la crème mousseline"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 80 g de jaune d'œufs (environ 4) pour la crème mousseline"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 130 g de sucre pour la crème mousseline"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 gousse de vanille (optionnel) pour la crème mousseline"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 30 g de farine pour la crème mousseline"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 30 g de maïzena pour la crème mousseline"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 220 g de beurre pour la crème mousseline"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n Fraises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Cercle de 20 ou 18 cm de diamètre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Rhodoïd de 6 cm de hauteur"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Poche à douille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Douille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Plateau rond doré (optionnel)"
+            }
+        ],
+        "steps": [
+            "**Préparation de la génoise :**",
+            "Dans un robot ou à l'aide d'un batteur, faites monter les œufs et le sucre jusqu'à ce que le mélange triple de volume.",
+            "Ajoutez ensuite la farine tamisée très délicatement.",
+            "Dans un moule beurré et fariné, renversez-y votre génoise.",
+            "Cuisson au four à 180 degrés, chaleur tournante, minimum 20 min (surveillez la cuisson).",
+            "**Préparation de la crème pâtissière :**",
+            "Mélangez dans un saladier le sucre et les jaunes d'œufs, ajoutez farine et maïzena, mélangez bien.",
+            "En même temps, mettez le lait à ébullition dans une casserole avec la vanille.",
+            "Mélangez ensuite le lait bouillant au mélange (œuf sucre farine maïzena).",
+            "Remettez sur le feu sans vous arrêter de mélanger jusqu'à épaississement.",
+            "Sortez votre crème de votre casserole, mettez-la dans un saladier, filmez-la au contact, et mettez au frais minimum 2h.",
+            "**Préparation de la crème mousseline :**",
+            "Mettez vos 220 g de beurre 2 min au bain-marie en petits morceaux pour les faire légèrement ramollir.",
+            "Direction le robot pendant au moins 15 min pour obtenir une bonne crème au beurre lisse et blanche.",
+            "Ajoutez-lui en 3 fois votre crème pâtissière sans vous arrêter de faire tourner le robot. Laissez battre 10 min aussi.",
+            "Votre crème est prête, votre génoise aussi. Référez-vous à la vidéo pour les étapes du montage."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5739",
+        "title": "Crème au citron dans des citrons",
+        "description": "Un dessert printanier facile à réaliser, servi dans des citrons évidés, à base de crème, sucre et jus de citron, parfait pour les réceptions.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpossets-au-citron.jpg&v=1779986945000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7507455919152844074\" data-video-id=\"7507455919152844074\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7507455919152844074\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n 8 citrons (coupés en deux et évidés)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 3 tasses de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 3/4 tasse de sucre granulé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Zeste d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 12 cuillères à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 cuillère à café d'extrait de vanille"
+            }
+        ],
+        "steps": [
+            "Rincer et faire tremper les citrons soigneusement.",
+            "Couper les citrons en deux et les évider à l'aide d'une cuillère.",
+            "Utiliser une passoire pour extraire le jus des citrons évidés et le réserver.",
+            "Dans une casserole à feu moyen, porter la crème épaisse, le sucre et le zeste de citron à faible ébullition.",
+            "Réduire le feu à moyen-doux et laisser mijoter pendant 5 minutes.",
+            "Retirer du feu.",
+            "Incorporer le jus de citron et l'extrait de vanille, et bien mélanger.",
+            "Passer le mélange à travers une passoire fine pour retirer tout le zeste.",
+            "Laisser la crème refroidir pendant 10 minutes avant de la verser dans les coques de citron.",
+            "Réfrigérer toute une nuit, ou au moins 5 heures, avant de servir."
+        ],
+        "tags": [
+            "pâtisserie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5742",
+        "title": "Bouchées glacées cacahuètes framboises chocolat",
+        "description": "Des collations gourmandes et saines, faciles à préparer et à conserver au frais. Idéales pour une pause rafraîchissante.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpims-maison4-833x1250-2.jpg&v=1779986811000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7243678497997163803\" data-video-id=\"7243678497997163803\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7243678497997163803\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 200g de yaourt grec (ou yaourt bien épais)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 1 belle càs de beurre de cacahuètes"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n 50g de framboises surgelées"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 200g de chocolat"
+            }
+        ],
+        "steps": [
+            "Mélanger le yaourt, le beurre de cacahuètes et les framboises.",
+            "Déposer 6 tas du mélange sur une feuille de papier cuisson.",
+            "Laisser 2 heures au congélateur.",
+            "Faire fondre le chocolat.",
+            "Tremper chaque bouchée congelée dans le chocolat fondu.",
+            "Conserver au réfrigérateur 3 à 5 jours et sortir 10 minutes avant de déguster."
+        ],
+        "tags": [
+            "Healthy",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5747",
         "title": "Cuillères en pâte feuilletée saumon et fromage frais",
@@ -971,211 +1176,6 @@ export const mockRecipes: Recipe[] = [
             "asiatique",
             "Healthy",
             "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5742",
-        "title": "Bouchées glacées cacahuètes framboises chocolat",
-        "description": "Des collations gourmandes et saines, faciles à préparer et à conserver au frais. Idéales pour une pause rafraîchissante.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7243678497997163803\" data-video-id=\"7243678497997163803\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7243678497997163803\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             200g de yaourt grec (ou yaourt bien épais)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             1 belle càs de beurre de cacahuètes"
-            },
-            {
-                "quantity": "",
-                "name": "🍇\n             50g de framboises surgelées"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200g de chocolat"
-            }
-        ],
-        "steps": [
-            "Mélanger le yaourt, le beurre de cacahuètes et les framboises.",
-            "Déposer 6 tas du mélange sur une feuille de papier cuisson.",
-            "Laisser 2 heures au congélateur.",
-            "Faire fondre le chocolat.",
-            "Tremper chaque bouchée congelée dans le chocolat fondu.",
-            "Conserver au réfrigérateur 3 à 5 jours et sortir 10 minutes avant de déguster."
-        ],
-        "tags": [
-            "Healthy",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5739",
-        "title": "Crème au citron dans des citrons",
-        "description": "Un dessert printanier facile à réaliser, servi dans des citrons évidés, à base de crème, sucre et jus de citron, parfait pour les réceptions.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779702013353.jpg&v=1779709246000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7507455919152844074\" data-video-id=\"7507455919152844074\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7507455919152844074\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍋\n             8 citrons (coupés en deux et évidés)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             3 tasses de crème épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             3/4 tasse de sucre granulé"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Zeste d'1 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             12 cuillères à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
-            }
-        ],
-        "steps": [
-            "Rincer et faire tremper les citrons soigneusement.",
-            "Couper les citrons en deux et les évider à l'aide d'une cuillère.",
-            "Utiliser une passoire pour extraire le jus des citrons évidés et le réserver.",
-            "Dans une casserole à feu moyen, porter la crème épaisse, le sucre et le zeste de citron à faible ébullition.",
-            "Réduire le feu à moyen-doux et laisser mijoter pendant 5 minutes.",
-            "Retirer du feu.",
-            "Incorporer le jus de citron et l'extrait de vanille, et bien mélanger.",
-            "Passer le mélange à travers une passoire fine pour retirer tout le zeste.",
-            "Laisser la crème refroidir pendant 10 minutes avant de la verser dans les coques de citron.",
-            "Réfrigérer toute une nuit, ou au moins 5 heures, avant de servir."
-        ],
-        "tags": [
-            "pâtisserie",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5736",
-        "title": "Fraisier",
-        "description": "Une recette détaillée pour réussir un fraisier classique, avec une génoise moelleuse et une crème mousseline onctueuse, parfait pour les amateurs de fraises. Le guide inclut la préparation de la génoise, de la crème pâtissière et de la crème au be...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecipe_1779483275047.jpg&v=1779490498000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7637042674985389334\" data-video-id=\"7637042674985389334\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7637042674985389334\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             200 g d'œufs (environ 4) pour la génoise"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             125 g de farine pour la génoise"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             125 g de sucre pour la génoise"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             500 g de lait pour la crème mousseline"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             80 g de jaune d'œufs (environ 4) pour la crème mousseline"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             130 g de sucre pour la crème mousseline"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 gousse de vanille (optionnel) pour la crème mousseline"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             30 g de farine pour la crème mousseline"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             30 g de maïzena pour la crème mousseline"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             220 g de beurre pour la crème mousseline"
-            },
-            {
-                "quantity": "",
-                "name": "🍓\n             Fraises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cercle de 20 ou 18 cm de diamètre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Rhodoïd de 6 cm de hauteur"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Poche à douille"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Douille"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Plateau rond doré (optionnel)"
-            }
-        ],
-        "steps": [
-            "**Préparation de la génoise :**",
-            "Dans un robot ou à l'aide d'un batteur, faites monter les œufs et le sucre jusqu'à ce que le mélange triple de volume.",
-            "Ajoutez ensuite la farine tamisée très délicatement.",
-            "Dans un moule beurré et fariné, renversez-y votre génoise.",
-            "Cuisson au four à 180 degrés, chaleur tournante, minimum 20 min (surveillez la cuisson).",
-            "**Préparation de la crème pâtissière :**",
-            "Mélangez dans un saladier le sucre et les jaunes d'œufs, ajoutez farine et maïzena, mélangez bien.",
-            "En même temps, mettez le lait à ébullition dans une casserole avec la vanille.",
-            "Mélangez ensuite le lait bouillant au mélange (œuf sucre farine maïzena).",
-            "Remettez sur le feu sans vous arrêter de mélanger jusqu'à épaississement.",
-            "Sortez votre crème de votre casserole, mettez-la dans un saladier, filmez-la au contact, et mettez au frais minimum 2h.",
-            "**Préparation de la crème mousseline :**",
-            "Mettez vos 220 g de beurre 2 min au bain-marie en petits morceaux pour les faire légèrement ramollir.",
-            "Direction le robot pendant au moins 15 min pour obtenir une bonne crème au beurre lisse et blanche.",
-            "Ajoutez-lui en 3 fois votre crème pâtissière sans vous arrêter de faire tourner le robot. Laissez battre 10 min aussi.",
-            "Votre crème est prête, votre génoise aussi. Référez-vous à la vidéo pour les étapes du montage."
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
