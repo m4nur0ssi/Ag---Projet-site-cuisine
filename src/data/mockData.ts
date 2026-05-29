@@ -2,11 +2,601 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 29/05/2026 15:54:30
- * Total: 323 recettes
+ * Dernière mise à jour: 29/05/2026 16:07:36
+ * Total: 328 recettes
  */
-export const exportSyncId = "1780070070550";
+export const exportSyncId = "1780070856209";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5878",
+        "title": "Maronsui's",
+        "description": "2 minutes top chrono pour réaliser ce dessert mythique de notre enfance (enfin pour certains 😅) et c'est tellement facile à faire 😁 Franchement pour ce qu'il y a dans un pot en plus, c'est quand même plus rentable de la faire sois même 😂",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7434999670482406688\" data-video-id=\"7434999670482406688\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7434999670482406688\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Marron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Chantilly"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mascarpone"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Desserts",
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5876",
+        "title": "SAUCE CALIFORNIA LOVE",
+        "description": "Une sauce crémeuse, douce, fumée et légèrement épicée, inspirée de la Californie. Parfaite pour accompagner bowls, wraps ou tenders, elle est saine et à base de carottes (que l'on ne sent pas !). Idéale pour ajouter du soleil à vos assiettes sans ...",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7521748446446062850\" data-video-id=\"7521748446446062850\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7521748446446062850\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             150 g de carottes bien cuites (ou en boîte)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de yaourt grec 0%"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50 g de sauce barbecue sans sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 càs de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2-3 piments chipotle (ou plus si t'es chaud)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 petite gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc de gingembre frais râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus + zeste d'½ citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càc de sirop d'agave ou érable (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ càc de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pincée de 5 épices chinoises"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre au goût"
+            }
+        ],
+        "steps": [
+            "Mettre tous les ingrédients dans un mixeur.",
+            "Mixer jusqu'à obtenir une consistance homogène et crémeuse.",
+            "Conserver au frais pendant 4 à 5 jours."
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Sauces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5874",
+        "title": "Courgettes façon TikTok",
+        "description": "Une idée pour préparer les courgettes.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610491247517633814\" data-video-id=\"7610491247517633814\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610491247517633814\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5872",
+        "title": "Sauce Ta Diète",
+        "description": "Une sauce crémeuse miel-moutarde, légèrement fumée avec une touche steakhouse grâce au Worcestershire, parfaite pour transformer les plats de régime en un vrai régal.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613808499729927446\" data-video-id=\"7613808499729927446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613808499729927446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             210 g de Skyr ou fromage blanc 0 %"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             90 g de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             30 g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 petite gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càc de sauce Worcestershire ou soja"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ càc de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 càc de vinaigre de cidre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre au goût"
+            }
+        ],
+        "steps": [
+            "Mélanger tous les ingrédients dans un blender.",
+            "Goûter et ajuster l'assaisonnement."
+        ],
+        "tags": [
+            "Healthy",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5870",
+        "title": "Moelleux au chocolat et mascarpone",
+        "description": "Une recette facile et gourmande de moelleux au chocolat et mascarpone, parfait pour un dessert rapide. Accompagné d'une sauce chocolat onctueuse.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7493894155484040470\" data-video-id=\"7493894155484040470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7493894155484040470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat noir fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             40g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100g de chocolat noir fondu (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100ml de crème liquide (pour la sauce)"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5868",
+        "title": "Pesto alla Genovese",
+        "description": "Découvrez comment préparer un authentique pesto alla Genovese et apprenez les meilleures techniques pour le conserver frais au réfrigérateur ou au congélateur pendant plusieurs mois.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617382495645912342\" data-video-id=\"7617382495645912342\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617382495645912342\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌿\n             50 g basilic frais (petites feuilles)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 g pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60 g parmigiano reggiano râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20 g pecorino sardo râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             120 ml huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3 gr de gros sel"
+            }
+        ],
+        "steps": [
+            "Laver délicatement les feuilles de basilic et bien les sécher.",
+            "Placer le bol du mixeur au réfrigérateur pendant quelques minutes afin qu'il soit bien froid. Cette étape aide à préserver la couleur du basilic.",
+            "Dans le bol bien froid, ajouter l'ail, les pignons de pin, le basilic et une pincée de sel.",
+            "Mixer très rapidement par impulsions pour éviter que la chaleur du mixeur n'abîme le basilic.",
+            "Ajouter ensuite la moitié du parmigiano et du pecorino.",
+            "Verser progressivement l'huile d'olive tout en mixant brièvement jusqu'à obtenir une sauce lisse et bien verte.",
+            "Réserver dans un bol, ajouter le reste du parmigiano et du pecorino et mélanger délicatement."
+        ],
+        "tags": [
+            "Italie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5866",
+        "title": "Pâte brisée",
+        "description": "Une recette simple pour préparer une pâte brisée maison, idéale pour les tartes salées ou sucrées.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610131753440791830\" data-video-id=\"7610131753440791830\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610131753440791830\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             250g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             125g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             70g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 pincées de sel ou 20g de sucre (si utilisation sucrée)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5864",
+        "title": "Fenouil grillé, houmous et chorizo",
+        "description": "Une recette savoureuse pour 4 personnes combinant du fenouil grillé, un houmous maison au citron confit et du chorizo doux, le tout relevé par des herbes fraîches et du piment d'Espelette.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7497179934910319895\" data-video-id=\"7497179934910319895\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7497179934910319895\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🫘\n             400 g de pois chiches cuits en conserve"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron confit (écorce seulement) coupé en petits dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 C A S de tahini"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 C A S de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail pelée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 C A S d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 C A C de cumin en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 C A C de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3 ou 4 C A S d'eau (ajuster selon la texture désirée)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 pincée de piment d'Espelette (pour le houmous)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 bulbes de fenouil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 C A S de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             1/2 chorizo doux"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 zeste de citron (pour le dressage)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             3 C A S d'huile de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 C A S de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques brins de basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 pincée de piment d'Espelette (pour le dressage)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Espagne",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5862",
+        "title": "Burgers de courgettes sains",
+        "description": "Des burgers sains et protéinés à base de courgettes, parfaits pour la perte de poids.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616346127775894817\" data-video-id=\"7616346127775894817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616346127775894817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5860",
+        "title": "Omurice",
+        "description": "Recette d'omurice, un plat japonais composé de riz frit et d'une omelette moelleuse.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7599728021142097183\" data-video-id=\"7599728021142097183\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7599728021142097183\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie",
+            "Astuces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5858",
+        "title": "Gâteau moelleux noisette &#038; chocolat",
+        "description": "Un gâteau sans gluten, moelleux, sans matière grasse ajoutée et sucré naturellement au sirop de Yacon. Léger et délicieux.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549975345097608470\" data-video-id=\"7549975345097608470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549975345097608470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150ml lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g poudre noisette"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             100g farine (avoine ou flocons mixés)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60g de sucrant au choix (sirop de yacon)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 CC sachet levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             80g pépites de chocolat (60g pour la pâte, 20g pour le dessus)"
+            }
+        ],
+        "steps": [
+            "Mélanger les 3 œufs, 150ml de lait, 100g de poudre de noisette, 100g de farine (avoine ou flocons mixés), 60g de sucrant (sirop de yacon) et 1 CC de levure chimique.",
+            "Incorporer 60g de pépites de chocolat à la préparation.",
+            "Verser la pâte dans un moule de 20cm de diamètre.",
+            "Ajouter les 20g restants de pépites de chocolat sur le dessus.",
+            "Cuire au four préchauffé à 180 degrés pendant 30 minutes.",
+            "Laisser tiédir environ 30 minutes avant de démouler et déguster."
+        ],
+        "tags": [
+            "Healthy",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5856",
+        "title": "Dessert au chocolat",
+        "description": "Une recette facile de dessert au chocolat, adaptée aux régimes végétarien et végétalien.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7621853365835746581\" data-video-id=\"7621853365835746581\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7621853365835746581\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5854",
         "title": "LE RADIS BEURRE COMME UNE FLEUR FAÇON JEAN-FRANÇOIS PIÈGE",
@@ -7014,66 +7604,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "France",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5271",
-        "title": "Crinkles au chocolat",
-        "description": "Découvrez la recette des crinkles au chocolat, des biscuits moelleux et craquelés, généreusement enrobés de sucre glace. Parfaits pour une pause gourmande ou à partager.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636734150220860675\" data-video-id=\"7636734150220860675\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636734150220860675\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             50g de beurre mou"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200g de chocolat fondu (chocolat pâtissier à 52% de cacao)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             165g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 sachet de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 bol de sucre glace"
-            }
-        ],
-        "steps": [
-            "Dans un grand récipient, mélange les œufs avec le sucre et le sucre vanillé.",
-            "Ajoute le beurre mou et le chocolat fondu, mélange bien.",
-            "Ajoute enfin la farine et la levure chimique, mélange jusqu'à obtenir une pâte homogène.",
-            "La pâte est collante, c'est normal: place-la au frigo, filmée au contact (recouverte d'un film plastique) toute la nuit.",
-            "Le lendemain, laisse-la tiédir quelques minutes puis formes-en des petites boules. La pâte est un peu compliquée à travailler, fais de ton mieux: je te conseille de t'aider d'une cuillère à glace.",
-            "Roule chaque crinkle très généreusement dans le sucre glace, sur toute la surface, puis mets-les au four environ 10mn à 180°."
-        ],
-        "tags": [
             "pâtisserie"
         ],
         "isFeatured": false,
@@ -14773,215 +15303,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "4028",
-        "title": "Lebanese Beef Wrap",
-        "description": "A quick, tasty dinner, and perfect for days when you have zero energy. This lazy meal is ready in under 15 minutes!",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774521459452.jpg&v=1774525104000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7528456230474485014\" data-video-id=\"7528456230474485014\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7528456230474485014\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             700gr Ground beef"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Onion (chopped)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fresh parsley"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tsp Black pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             2 tbsp Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Greek yogurt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Grated cucumber"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Dill"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Lemon juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Garlic powder"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Harissa"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sriracha"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Water"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Red onion"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sumac"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Lebanese flatbread"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pickles"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Olive oil"
-            }
-        ],
-        "steps": [
-            "In a blender or food processor, mix the ground beef, onion, parsley, salt, black pepper, and paprika until well combined.",
-            "Cut the Lebanese flatbread in half and open it. Spread a thin, even layer of the raw kofta mix onto one half.",
-            "Cover with the second half of the flatbread, making a closed sandwich.",
-            "Press lightly with a fork to spread the meat evenly.",
-            "Grill the wrap in a sandwich press or grill for 5 to 10 minutes until golden and cooked through.",
-            "Meanwhile, prepare the tzatziki by mixing Greek yogurt with grated cucumber (squeezed to remove excess water), dill, garlic powder, and salt.",
-            "Mix harissa, sriracha, and a little water to create the spicy sauce.",
-            "Prepare the salad by mixing thinly sliced red onion with sumac and chopped parsley.",
-            "Once the wrap is grilled, open it slightly, spread the tzatziki, then drizzle the spicy sauce and olive oil.",
-            "Top with the onion-parsley salad and pickles. Close the wrap and enjoy warm."
-        ],
-        "tags": [
-            "barbecue",
-            "Famille",
-            "Liban"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4031",
-        "title": "Dolma Algérienne",
-        "description": "Recette traditionnelle algérienne de légumes farcis à la viande hachée épicée, cuits dans une sauce savoureuse et mijotés dans un tajine.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831882962.jpg&v=1774525033000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7421569512757005601\" data-video-id=\"7421569512757005601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7421569512757005601\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pois chiche"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Ras elhanout"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             Riz cuit"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre"
-            }
-        ],
-        "steps": [
-            "Préparer la sauce avec l'oignon, les tomates, l'ail, le concentré de tomate, les pois chiche et les épices.",
-            "Préparer la farce avec la viande hachée, le riz, la coriandre, l'ail, le cumin, le sel, le poivre et l'œuf.",
-            "Farcir les courgettes et les pommes de terre avec la préparation de viande.",
-            "Cuire les légumes farcis dans la sauce et laisser mijoter dans un tajine."
-        ],
-        "tags": [
-            "Dolma",
-            "Famille",
-            "Légumes farcis",
-            "Orient",
-            "Tajine",
-            "viande hachée"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4034",
         "title": "Tzatziki Grec Célèbre",
         "description": "Aucune table grecque n'est complète sans cette trempette crémeuse, aillée et rafraîchissante ! Que vous la serviez avec du pain pita chaud, des viandes grillées ou simplement comme collation, le tzatziki apporte une touche méditerranéenne à chaque...",
@@ -22205,424 +22526,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3717",
-        "title": "Boulettes de poulet en sauce oignon caramélisé",
-        "description": "Une recette savoureuse de boulettes de poulet préparées avec des légumes râpés et des épices, puis cuites au four, avant d'être mijotées dans une sauce riche et parfumée à base d'oignons caramélisés, de silan (sirop de dattes) et d'un mélange d'ép...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboulettes-poulet-oignon-63-1500x1001-1.jpeg&v=1773681266000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616022499133820181\" data-video-id=\"7616022499133820181\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616022499133820181\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n **Pour les boulettes :**"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n 500g de poulet haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 courgette"
-            },
-            {
-                "quantity": "",
-                "name": "🥔\n 1 pomme de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1/2 botte d'oignon vert (ciboule)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 1/2 botte de coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 1/2 botte de menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n 1/2 tasse de chapelure"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c. à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 c. à café de baharat"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1/2 c. à café de poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c. à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 c. à café de hawaij"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive (pour la cuisson des boulettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n **Pour la sauce :**"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 8-9 oignons moyens"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1,5 c. à soupe de silan (sirop de dattes)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1,5 c. à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 c. à café de baharat"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c. à café rase de paprika doux"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1/2 c. à café de poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 c. à café d'ail granulé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1/2 c. à café de ras el hanout"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 2,5 tasses d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive (pour la cuisson de la sauce)"
-            }
-        ],
-        "steps": [
-            "**Préparation des boulettes :** Dans un grand bol, mélanger le poulet haché avec l'oignon, la courgette et la pomme de terre râpés finement. Ajouter la coriandre, la menthe et l'oignon vert hachés, l'œuf, la chapelure et toutes les épices (sel, baharat, poivre noir, paprika, hawaij). Arroser d'un filet d'huile d'olive et bien pétrir jusqu'à obtenir une pâte homogène.",
-            "Façonner la pâte en boulettes et les disposer sur une plaque de cuisson recouverte de papier sulfurisé. Arroser les boulettes d'un filet d'huile d'olive.",
-            "Enfourner les boulettes dans un four préchauffé à 180°C pendant 25 minutes.",
-            "**Préparation de la sauce :** Hacher les oignons en lanières. Dans une cocotte (type sauteuse) avec un peu d'huile d'olive, faire revenir les oignons à feu doux. Laisser caraméliser les oignons en remuant de temps en temps jusqu'à ce qu'ils prennent une couleur profonde. Si des résidus se forment au fond, ajouter un peu d'eau pour les déglacer et aider à la caramélisation.",
-            "Ajouter les épices (sel, baharat, paprika doux, poivre noir, ail granulé, ras el hanout), le silan et 2,5 tasses d'eau dans la cocotte. Fermer et porter à ébullition.",
-            "Incorporer délicatement les boulettes précuites dans la sauce. Fermer la cocotte et laisser mijoter à feu moyen-doux pendant environ 30 minutes.",
-            "Éteindre le feu et servir chaud. Bon appétit !"
-        ],
-        "tags": [],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3626",
-        "title": "Houmous bil Lahmé",
-        "description": "Découvrez la recette libanaise authentique du Houmous bil Lahmé, un plat savoureux qui combine la douceur du houmous crémeux avec la richesse d'une garniture de viande de bœuf parfumée. Parfait pour un mezzé convivial, ce plat est à la fois facile...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHummus-with-Beef-1.jpg&v=1773679217000",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@cookwithbash/video/7614507917307366678?_r=1&amp;_t=ZN-94dFJWTPPYk\" data-video-id=\"7614507917307366678\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@cookwithbash/video/7614507917307366678?_r=1&amp;_t=ZN-94dFJWTPPYk\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🫘 250 g de pois chiches secs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 4 c.à.s de tahini"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 3 c.à.s de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧄 1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾 2 c.à.s d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 1 c.à.c de cumin moulu (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 1 c.à.c de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 200 g de bœuf tendre type rumsteck, bavette ou bifteck"
-            },
-            {
-                "quantity": "",
-                "name": "🧅 1 petit oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄 1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 3 c.à.s de pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🍾 1 à 2 c.à.s d'huile d'olive ou de ghee"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 1 c.à.c de 7 épices libanaises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 1 c.à.s de mélasse de grenade"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 1 c.à.s de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 1 poignée de persil frais"
-            }
-        ],
-        "steps": [
-            "Préparer le houmous : faire tremper les pois chiches la veille, puis les cuire jusqu'à ce qu'ils soient très tendres. Les égoutter en conservant un peu d'eau de cuisson.",
-            "Mixer les pois chiches avec le tahini, le jus de citron, l'ail, l'huile d'olive, le cumin (si utilisé), le sel et le poivre jusqu'à obtenir une texture lisse et crémeuse. Ajouter un peu d'eau de cuisson si nécessaire pour ajuster la consistance.",
-            "Préparer la garniture de viande : couper le bœuf en petits dés.",
-            "Hacher finement l'oignon et l'ail.",
-            "Faire dorer les pignons de pin dans une poêle avec un peu d'huile d'olive ou de ghee.",
-            "Dans la même poêle, faire revenir l'oignon et l'ail hachés jusqu'à ce qu'ils soient tendres.",
-            "Ajouter les dés de bœuf et faire dorer sur toutes les faces.",
-            "Incorporer les 7 épices libanaises, la mélasse de grenade, le jus de citron, le sel et le poivre. Cuire quelques minutes jusqu'à ce que la viande soit bien enrobée et cuite.",
-            "Pour servir, étaler le houmous dans un plat.",
-            "Garnir généreusement avec la préparation de viande et les pignons de pin.",
-            "Parsemer de persil frais ciselé."
-        ],
-        "tags": [
-            "cuisine du monde",
-            "facile",
-            "Houmous",
-            "Liban",
-            "libanais",
-            "Mezze",
-            "rapide",
-            "Viande"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3648",
-        "title": "Croquetas à la pancetta et au Manchego",
-        "description": "Une recette gourmande de croquettes espagnoles croustillantes à base de pancetta, de jambon et de fromage Manchego fondant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbd-77.jpg&v=1773678891000",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@test/video/7287279168671223072\" data-video-id=\"7287279168671223072\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@test/video/7287279168671223072\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣 150g de pancetta"
-            },
-            {
-                "quantity": "",
-                "name": "🥓 100g de jambon"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 4 c.à.s de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 600ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 100g de fromage Manchego"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 Beurre"
-            }
-        ],
-        "steps": [
-            "Faire dorer la pancetta dans une poêle.",
-            "Ajouter le beurre et la farine pour former un roux.",
-            "Verser progressivement le lait en mélangeant jusqu'à épaississement.",
-            "Incorporer le fromage Manchego et le jambon.",
-            "Placer la préparation au frais pour qu'elle durcisse.",
-            "Façonner les croquetas à la main.",
-            "Paner les croquetas (passage dans la chapelure).",
-            "Frire dans l'huile chaude jusqu'à ce qu'elles soient dorées."
-        ],
-        "tags": [
-            "croquetas",
-            "Espagne",
-            "friture",
-            "fromage",
-            "pancetta",
-            "tapas"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3701",
-        "title": "Tarte aux framboises et pistache",
-        "description": "Une délicieuse tarte estivale composée d'une pâte sablée croustillante, d'une crème d'amande (optionnelle), d'un coulis de fruits rouges, et d'une onctueuse crème pâtissière à la pistache, le tout garni de framboises fraîches.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773497706585.jpg&v=1773501520000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@damlasdesserts/video/7355199709373353248?_r=1&#038;_t=ZN-94gQ0gChaUQ\" data-video-id=\"7355199709373353248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7355199709373353248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈 130g de beurre mou (pâte sablée)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 260g de farine (pâte sablée)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 90g de sucre glace (pâte sablée)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 30g poudre d'amande (pâte sablée)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 2g de sel (pâte sablée)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 1 œuf (pâte sablée)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 40g de beurre bien mou (crème d'amande)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 40g de sucre glace (crème d'amande)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 40g de poudre d'amande (crème d'amande)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 40g d'œuf (1 œuf) (crème d'amande)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 200g de fruits rouges surgelés (coulis)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 50g de sucre (coulis)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 375g de lait (crème pâtissière)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 3 jaunes d'œuf (crème pâtissière)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 45g de maïzena (crème pâtissière)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 70g de sucre (crème pâtissière)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 40g de beurre (crème pâtissière)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 1-2 cas purée de pistache"
-            }
-        ],
-        "steps": [
-            "Pour la pâte sablée : Mélangez le beurre coupé en petits morceaux, la farine, le sucre glace, la poudre d'amande et le sel jusqu'à obtenir un mélange sablé.",
-            "Ajoutez l'œuf et mélangez jusqu'à ce que la pâte commence à former une boule.",
-            "Filmez la pâte et laissez-la reposer 30 min au frigo.",
-            "Étalez la pâte entre 2 feuilles de papier sulfurisé, foncez votre moule à tarte, piquez le fond et placez-la au congélateur pour 1h.",
-            "Enfournez la pâte dans un four préchauffé à 160°C pendant 20 min.",
-            "Pour la crème d'amande (optionnel) : Mélangez le beurre bien mou, le sucre glace, la poudre d'amande et l'œuf. Versez cette crème dans le fond de tarte précuit et remettez à cuire à 160°C pendant 15 min (jusqu'à ce que tout soit doré).",
-            "Pour le coulis de fruits rouges : Faites cuire tout doucement les fruits rouges surgelés et le sucre jusqu'à ébullition. Une fois cuit, mixez et laissez tiédir.",
-            "Étalez le coulis tiède sur votre fond de tarte (avec ou sans crème d'amande).",
-            "Pour la crème pâtissière à la pistache : Faites chauffer le lait sur feu moyen.",
-            "Dans un autre récipient, fouettez les jaunes d'œufs avec le sucre, puis ajoutez la maïzena et incorporez-la bien.",
-            "Une fois que le lait est chaud, versez 1/3 sur le mélange précédent et mélangez bien.",
-            "Puis versez le reste du lait et mélangez bien. Reversez le tout dans la casserole et faites cuire jusqu'à ce que la crème s'épaississe.",
-            "Une fois la crème épaissie, retirez du feu et ajoutez les 40g de beurre doux, puis la purée de pistache.",
-            "Filmez la crème au contact et laissez-la tiédir.",
-            "Quand la crème est tiède, mettez-la dans une poche à douille et pochez-la sur votre tarte.",
-            "Déposez vos framboises, décorez et laissez la tarte au frigo quelques heures avant de déguster."
         ],
         "tags": [],
         "isFeatured": false,
