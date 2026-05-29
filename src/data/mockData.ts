@@ -2,11 +2,108 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 29/05/2026 06:46:43
- * Total: 314 recettes
+ * Dernière mise à jour: 29/05/2026 15:54:30
+ * Total: 323 recettes
  */
-export const exportSyncId = "1780037203685";
+export const exportSyncId = "1780070070550";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5854",
+        "title": "LE RADIS BEURRE COMME UNE FLEUR FAÇON JEAN-FRANÇOIS PIÈGE",
+        "description": "Une recette de radis au beurre présentés en forme de fleur, inspirée par le chef Jean-François Piège, idéale pour l'apéritif.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7256818242142899483\" data-video-id=\"7256818242142899483\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7256818242142899483\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Radis"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs",
+            "France",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5852",
+        "title": "Mediterranean Olive Oil Bread Dip",
+        "description": "Un dip méditerranéen savoureux et facile à préparer, parfait pour accompagner du pain. Il est composé d'huile d'olive, de vinaigre balsamique, d'olives vertes, de tomates séchées, de parmesan, de persil, d'ail et de flocons de piment.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7628705178992020758\" data-video-id=\"7628705178992020758\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7628705178992020758\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Olives vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail (1 gousse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "Grèce",
+            "Healthy",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5736",
         "title": "Fraisier",
@@ -6917,6 +7014,66 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5271",
+        "title": "Crinkles au chocolat",
+        "description": "Découvrez la recette des crinkles au chocolat, des biscuits moelleux et craquelés, généreusement enrobés de sucre glace. Parfaits pour une pause gourmande ou à partager.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636734150220860675\" data-video-id=\"7636734150220860675\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636734150220860675\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat fondu (chocolat pâtissier à 52% de cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             165g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 bol de sucre glace"
+            }
+        ],
+        "steps": [
+            "Dans un grand récipient, mélange les œufs avec le sucre et le sucre vanillé.",
+            "Ajoute le beurre mou et le chocolat fondu, mélange bien.",
+            "Ajoute enfin la farine et la levure chimique, mélange jusqu'à obtenir une pâte homogène.",
+            "La pâte est collante, c'est normal: place-la au frigo, filmée au contact (recouverte d'un film plastique) toute la nuit.",
+            "Le lendemain, laisse-la tiédir quelques minutes puis formes-en des petites boules. La pâte est un peu compliquée à travailler, fais de ton mieux: je te conseille de t'aider d'une cuillère à glace.",
+            "Roule chaque crinkle très généreusement dans le sucre glace, sur toute la surface, puis mets-les au four environ 10mn à 180°."
+        ],
+        "tags": [
             "pâtisserie"
         ],
         "isFeatured": false,
@@ -14616,6 +14773,215 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "4028",
+        "title": "Lebanese Beef Wrap",
+        "description": "A quick, tasty dinner, and perfect for days when you have zero energy. This lazy meal is ready in under 15 minutes!",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774521459452.jpg&v=1774525104000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7528456230474485014\" data-video-id=\"7528456230474485014\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7528456230474485014\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             700gr Ground beef"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Onion (chopped)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fresh parsley"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp Black pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 tbsp Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Greek yogurt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Grated cucumber"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Dill"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lemon juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Garlic powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Harissa"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sriracha"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Water"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Red onion"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sumac"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lebanese flatbread"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pickles"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Olive oil"
+            }
+        ],
+        "steps": [
+            "In a blender or food processor, mix the ground beef, onion, parsley, salt, black pepper, and paprika until well combined.",
+            "Cut the Lebanese flatbread in half and open it. Spread a thin, even layer of the raw kofta mix onto one half.",
+            "Cover with the second half of the flatbread, making a closed sandwich.",
+            "Press lightly with a fork to spread the meat evenly.",
+            "Grill the wrap in a sandwich press or grill for 5 to 10 minutes until golden and cooked through.",
+            "Meanwhile, prepare the tzatziki by mixing Greek yogurt with grated cucumber (squeezed to remove excess water), dill, garlic powder, and salt.",
+            "Mix harissa, sriracha, and a little water to create the spicy sauce.",
+            "Prepare the salad by mixing thinly sliced red onion with sumac and chopped parsley.",
+            "Once the wrap is grilled, open it slightly, spread the tzatziki, then drizzle the spicy sauce and olive oil.",
+            "Top with the onion-parsley salad and pickles. Close the wrap and enjoy warm."
+        ],
+        "tags": [
+            "barbecue",
+            "Famille",
+            "Liban"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4031",
+        "title": "Dolma Algérienne",
+        "description": "Recette traditionnelle algérienne de légumes farcis à la viande hachée épicée, cuits dans une sauce savoureuse et mijotés dans un tajine.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831882962.jpg&v=1774525033000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7421569512757005601\" data-video-id=\"7421569512757005601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7421569512757005601\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pois chiche"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Ras elhanout"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             Riz cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre"
+            }
+        ],
+        "steps": [
+            "Préparer la sauce avec l'oignon, les tomates, l'ail, le concentré de tomate, les pois chiche et les épices.",
+            "Préparer la farce avec la viande hachée, le riz, la coriandre, l'ail, le cumin, le sel, le poivre et l'œuf.",
+            "Farcir les courgettes et les pommes de terre avec la préparation de viande.",
+            "Cuire les légumes farcis dans la sauce et laisser mijoter dans un tajine."
+        ],
+        "tags": [
+            "Dolma",
+            "Famille",
+            "Légumes farcis",
+            "Orient",
+            "Tajine",
+            "viande hachée"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "4034",
         "title": "Tzatziki Grec Célèbre",
         "description": "Aucune table grecque n'est complète sans cette trempette crémeuse, aillée et rafraîchissante ! Que vous la serviez avec du pain pita chaud, des viandes grillées ou simplement comme collation, le tzatziki apporte une touche méditerranéenne à chaque...",
@@ -21839,6 +22205,424 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3717",
+        "title": "Boulettes de poulet en sauce oignon caramélisé",
+        "description": "Une recette savoureuse de boulettes de poulet préparées avec des légumes râpés et des épices, puis cuites au four, avant d'être mijotées dans une sauce riche et parfumée à base d'oignons caramélisés, de silan (sirop de dattes) et d'un mélange d'ép...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboulettes-poulet-oignon-63-1500x1001-1.jpeg&v=1773681266000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616022499133820181\" data-video-id=\"7616022499133820181\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616022499133820181\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n **Pour les boulettes :**"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 500g de poulet haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 courgette"
+            },
+            {
+                "quantity": "",
+                "name": "🥔\n 1 pomme de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1/2 botte d'oignon vert (ciboule)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1/2 botte de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1/2 botte de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n 1/2 tasse de chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 c. à café de baharat"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1/2 c. à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 c. à café de hawaij"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive (pour la cuisson des boulettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n **Pour la sauce :**"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 8-9 oignons moyens"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1,5 c. à soupe de silan (sirop de dattes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1,5 c. à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 c. à café de baharat"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à café rase de paprika doux"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1/2 c. à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 c. à café d'ail granulé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 c. à café de ras el hanout"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 2,5 tasses d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive (pour la cuisson de la sauce)"
+            }
+        ],
+        "steps": [
+            "**Préparation des boulettes :** Dans un grand bol, mélanger le poulet haché avec l'oignon, la courgette et la pomme de terre râpés finement. Ajouter la coriandre, la menthe et l'oignon vert hachés, l'œuf, la chapelure et toutes les épices (sel, baharat, poivre noir, paprika, hawaij). Arroser d'un filet d'huile d'olive et bien pétrir jusqu'à obtenir une pâte homogène.",
+            "Façonner la pâte en boulettes et les disposer sur une plaque de cuisson recouverte de papier sulfurisé. Arroser les boulettes d'un filet d'huile d'olive.",
+            "Enfourner les boulettes dans un four préchauffé à 180°C pendant 25 minutes.",
+            "**Préparation de la sauce :** Hacher les oignons en lanières. Dans une cocotte (type sauteuse) avec un peu d'huile d'olive, faire revenir les oignons à feu doux. Laisser caraméliser les oignons en remuant de temps en temps jusqu'à ce qu'ils prennent une couleur profonde. Si des résidus se forment au fond, ajouter un peu d'eau pour les déglacer et aider à la caramélisation.",
+            "Ajouter les épices (sel, baharat, paprika doux, poivre noir, ail granulé, ras el hanout), le silan et 2,5 tasses d'eau dans la cocotte. Fermer et porter à ébullition.",
+            "Incorporer délicatement les boulettes précuites dans la sauce. Fermer la cocotte et laisser mijoter à feu moyen-doux pendant environ 30 minutes.",
+            "Éteindre le feu et servir chaud. Bon appétit !"
+        ],
+        "tags": [],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3626",
+        "title": "Houmous bil Lahmé",
+        "description": "Découvrez la recette libanaise authentique du Houmous bil Lahmé, un plat savoureux qui combine la douceur du houmous crémeux avec la richesse d'une garniture de viande de bœuf parfumée. Parfait pour un mezzé convivial, ce plat est à la fois facile...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHummus-with-Beef-1.jpg&v=1773679217000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@cookwithbash/video/7614507917307366678?_r=1&amp;_t=ZN-94dFJWTPPYk\" data-video-id=\"7614507917307366678\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@cookwithbash/video/7614507917307366678?_r=1&amp;_t=ZN-94dFJWTPPYk\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🫘 250 g de pois chiches secs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 4 c.à.s de tahini"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 3 c.à.s de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄 1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾 2 c.à.s d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 1 c.à.c de cumin moulu (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 1 c.à.c de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 200 g de bœuf tendre type rumsteck, bavette ou bifteck"
+            },
+            {
+                "quantity": "",
+                "name": "🧅 1 petit oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄 1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 3 c.à.s de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🍾 1 à 2 c.à.s d'huile d'olive ou de ghee"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 1 c.à.c de 7 épices libanaises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 1 c.à.s de mélasse de grenade"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 1 c.à.s de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 1 poignée de persil frais"
+            }
+        ],
+        "steps": [
+            "Préparer le houmous : faire tremper les pois chiches la veille, puis les cuire jusqu'à ce qu'ils soient très tendres. Les égoutter en conservant un peu d'eau de cuisson.",
+            "Mixer les pois chiches avec le tahini, le jus de citron, l'ail, l'huile d'olive, le cumin (si utilisé), le sel et le poivre jusqu'à obtenir une texture lisse et crémeuse. Ajouter un peu d'eau de cuisson si nécessaire pour ajuster la consistance.",
+            "Préparer la garniture de viande : couper le bœuf en petits dés.",
+            "Hacher finement l'oignon et l'ail.",
+            "Faire dorer les pignons de pin dans une poêle avec un peu d'huile d'olive ou de ghee.",
+            "Dans la même poêle, faire revenir l'oignon et l'ail hachés jusqu'à ce qu'ils soient tendres.",
+            "Ajouter les dés de bœuf et faire dorer sur toutes les faces.",
+            "Incorporer les 7 épices libanaises, la mélasse de grenade, le jus de citron, le sel et le poivre. Cuire quelques minutes jusqu'à ce que la viande soit bien enrobée et cuite.",
+            "Pour servir, étaler le houmous dans un plat.",
+            "Garnir généreusement avec la préparation de viande et les pignons de pin.",
+            "Parsemer de persil frais ciselé."
+        ],
+        "tags": [
+            "cuisine du monde",
+            "facile",
+            "Houmous",
+            "Liban",
+            "libanais",
+            "Mezze",
+            "rapide",
+            "Viande"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3648",
+        "title": "Croquetas à la pancetta et au Manchego",
+        "description": "Une recette gourmande de croquettes espagnoles croustillantes à base de pancetta, de jambon et de fromage Manchego fondant.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbd-77.jpg&v=1773678891000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@test/video/7287279168671223072\" data-video-id=\"7287279168671223072\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@test/video/7287279168671223072\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣 150g de pancetta"
+            },
+            {
+                "quantity": "",
+                "name": "🥓 100g de jambon"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 4 c.à.s de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 600ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 100g de fromage Manchego"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 Beurre"
+            }
+        ],
+        "steps": [
+            "Faire dorer la pancetta dans une poêle.",
+            "Ajouter le beurre et la farine pour former un roux.",
+            "Verser progressivement le lait en mélangeant jusqu'à épaississement.",
+            "Incorporer le fromage Manchego et le jambon.",
+            "Placer la préparation au frais pour qu'elle durcisse.",
+            "Façonner les croquetas à la main.",
+            "Paner les croquetas (passage dans la chapelure).",
+            "Frire dans l'huile chaude jusqu'à ce qu'elles soient dorées."
+        ],
+        "tags": [
+            "croquetas",
+            "Espagne",
+            "friture",
+            "fromage",
+            "pancetta",
+            "tapas"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3701",
+        "title": "Tarte aux framboises et pistache",
+        "description": "Une délicieuse tarte estivale composée d'une pâte sablée croustillante, d'une crème d'amande (optionnelle), d'un coulis de fruits rouges, et d'une onctueuse crème pâtissière à la pistache, le tout garni de framboises fraîches.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773497706585.jpg&v=1773501520000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@damlasdesserts/video/7355199709373353248?_r=1&#038;_t=ZN-94gQ0gChaUQ\" data-video-id=\"7355199709373353248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7355199709373353248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈 130g de beurre mou (pâte sablée)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 260g de farine (pâte sablée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 90g de sucre glace (pâte sablée)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 30g poudre d'amande (pâte sablée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 2g de sel (pâte sablée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 1 œuf (pâte sablée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 40g de beurre bien mou (crème d'amande)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 40g de sucre glace (crème d'amande)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 40g de poudre d'amande (crème d'amande)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 40g d'œuf (1 œuf) (crème d'amande)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 200g de fruits rouges surgelés (coulis)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 50g de sucre (coulis)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 375g de lait (crème pâtissière)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 3 jaunes d'œuf (crème pâtissière)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 45g de maïzena (crème pâtissière)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 70g de sucre (crème pâtissière)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 40g de beurre (crème pâtissière)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 1-2 cas purée de pistache"
+            }
+        ],
+        "steps": [
+            "Pour la pâte sablée : Mélangez le beurre coupé en petits morceaux, la farine, le sucre glace, la poudre d'amande et le sel jusqu'à obtenir un mélange sablé.",
+            "Ajoutez l'œuf et mélangez jusqu'à ce que la pâte commence à former une boule.",
+            "Filmez la pâte et laissez-la reposer 30 min au frigo.",
+            "Étalez la pâte entre 2 feuilles de papier sulfurisé, foncez votre moule à tarte, piquez le fond et placez-la au congélateur pour 1h.",
+            "Enfournez la pâte dans un four préchauffé à 160°C pendant 20 min.",
+            "Pour la crème d'amande (optionnel) : Mélangez le beurre bien mou, le sucre glace, la poudre d'amande et l'œuf. Versez cette crème dans le fond de tarte précuit et remettez à cuire à 160°C pendant 15 min (jusqu'à ce que tout soit doré).",
+            "Pour le coulis de fruits rouges : Faites cuire tout doucement les fruits rouges surgelés et le sucre jusqu'à ébullition. Une fois cuit, mixez et laissez tiédir.",
+            "Étalez le coulis tiède sur votre fond de tarte (avec ou sans crème d'amande).",
+            "Pour la crème pâtissière à la pistache : Faites chauffer le lait sur feu moyen.",
+            "Dans un autre récipient, fouettez les jaunes d'œufs avec le sucre, puis ajoutez la maïzena et incorporez-la bien.",
+            "Une fois que le lait est chaud, versez 1/3 sur le mélange précédent et mélangez bien.",
+            "Puis versez le reste du lait et mélangez bien. Reversez le tout dans la casserole et faites cuire jusqu'à ce que la crème s'épaississe.",
+            "Une fois la crème épaissie, retirez du feu et ajoutez les 40g de beurre doux, puis la purée de pistache.",
+            "Filmez la crème au contact et laissez-la tiédir.",
+            "Quand la crème est tiède, mettez-la dans une poche à douille et pochez-la sur votre tarte.",
+            "Déposez vos framboises, décorez et laissez la tarte au frigo quelques heures avant de déguster."
         ],
         "tags": [],
         "isFeatured": false,
