@@ -2,11 +2,291 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/05/2026 09:12:07
+ * Dernière mise à jour: 30/05/2026 09:28:17
  * Total: 328 recettes
  */
-export const exportSyncId = "1780132327243";
+export const exportSyncId = "1780133297827";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5868",
+        "title": "Pesto alla Genovese",
+        "description": "Découvrez comment préparer un authentique pesto alla Genovese et apprenez les meilleures techniques pour le conserver frais au réfrigérateur ou au congélateur pendant plusieurs mois.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpesto.jpg&v=1780140000000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617382495645912342\" data-video-id=\"7617382495645912342\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617382495645912342\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌿\n 50 g basilic frais (petites feuilles)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 30 g pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60 g parmigiano reggiano râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 20 g pecorino sardo râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 120 ml huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 3 gr de gros sel"
+            }
+        ],
+        "steps": [
+            "Laver délicatement les feuilles de basilic et bien les sécher.",
+            "Placer le bol du mixeur au réfrigérateur pendant quelques minutes afin qu'il soit bien froid. Cette étape aide à préserver la couleur du basilic.",
+            "Dans le bol bien froid, ajouter l'ail, les pignons de pin, le basilic et une pincée de sel.",
+            "Mixer très rapidement par impulsions pour éviter que la chaleur du mixeur n'abîme le basilic.",
+            "Ajouter ensuite la moitié du parmigiano et du pecorino.",
+            "Verser progressivement l'huile d'olive tout en mixant brièvement jusqu'à obtenir une sauce lisse et bien verte.",
+            "Réserver dans un bol, ajouter le reste du parmigiano et du pecorino et mélanger délicatement."
+        ],
+        "tags": [
+            "Italie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5870",
+        "title": "Moelleux au chocolat et mascarpone",
+        "description": "Une recette facile et gourmande de moelleux au chocolat et mascarpone, parfait pour un dessert rapide. Accompagné d'une sauce chocolat onctueuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmoelleux-chocolat-recette.jpg&v=1780139844000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7493894155484040470\" data-video-id=\"7493894155484040470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7493894155484040470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n 250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 200g de chocolat noir fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 60g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 40g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 100g de chocolat noir fondu (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 100ml de crème liquide (pour la sauce)"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5876",
+        "title": "Sauce california love",
+        "description": "Une sauce crémeuse, douce, fumée et légèrement épicée, inspirée de la Californie. Parfaite pour accompagner bowls, wraps ou tenders, elle est saine et à base de carottes (que l'on ne sent pas !). Idéale pour ajouter du soleil à vos assiettes sans ...",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7521748446446062850\" data-video-id=\"7521748446446062850\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7521748446446062850\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n 150 g de carottes bien cuites (ou en boîte)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100 g de yaourt grec 0%"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50 g de sauce barbecue sans sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 càs de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 2-3 piments chipotle (ou plus si t'es chaud)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 petite gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 càc de gingembre frais râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Le jus + zeste d'½ citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 càc de sirop d'agave ou érable (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n ½ càc de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 pincée de 5 épices chinoises"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre au goût"
+            }
+        ],
+        "steps": [
+            "Mettre tous les ingrédients dans un mixeur.",
+            "Mixer jusqu'à obtenir une consistance homogène et crémeuse.",
+            "Conserver au frais pendant 4 à 5 jours."
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Sauces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5872",
+        "title": "Sauce Ta Diète",
+        "description": "Une sauce crémeuse miel-moutarde, légèrement fumée avec une touche steakhouse grâce au Worcestershire, parfaite pour transformer les plats de régime en un vrai régal.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce-big-mac-maison-ce-melange-precis-de-3-ingredients-la-rend-meilleure-que-chez-mcdo-en-5-minutes.jpeg&v=1780139641000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613808499729927446\" data-video-id=\"7613808499729927446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613808499729927446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 210 g de Skyr ou fromage blanc 0 %"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 90 g de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 30 g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 petite gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 càc de sauce Worcestershire ou soja"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n ½ càc de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 càc de vinaigre de cidre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre au goût"
+            }
+        ],
+        "steps": [
+            "Mélanger tous les ingrédients dans un blender.",
+            "Goûter et ajuster l'assaisonnement."
+        ],
+        "tags": [
+            "Healthy",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5878",
+        "title": "Maronsui's",
+        "description": "2 minutes top chrono pour réaliser ce dessert mythique de notre enfance (enfin pour certains 😅) et c'est tellement facile à faire 😁 Franchement pour ce qu'il y a dans un pot en plus, c'est quand même plus rentable de la faire sois même 😂",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FMaronsuis-fait-maison-12.jpg&v=1780139329000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7434999670482406688\" data-video-id=\"7434999670482406688\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7434999670482406688\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Marron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Chantilly"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Mascarpone"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Desserts",
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5880",
         "title": "Astuce Fraises et Guimauves",
@@ -34,314 +314,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Astuces",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5878",
-        "title": "Maronsui's",
-        "description": "2 minutes top chrono pour réaliser ce dessert mythique de notre enfance (enfin pour certains 😅) et c'est tellement facile à faire 😁 Franchement pour ce qu'il y a dans un pot en plus, c'est quand même plus rentable de la faire sois même 😂",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7434999670482406688\" data-video-id=\"7434999670482406688\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7434999670482406688\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Marron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Chantilly"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mascarpone"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Desserts",
-            "France",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5876",
-        "title": "SAUCE CALIFORNIA LOVE",
-        "description": "Une sauce crémeuse, douce, fumée et légèrement épicée, inspirée de la Californie. Parfaite pour accompagner bowls, wraps ou tenders, elle est saine et à base de carottes (que l'on ne sent pas !). Idéale pour ajouter du soleil à vos assiettes sans ...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7521748446446062850\" data-video-id=\"7521748446446062850\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7521748446446062850\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥕\n             150 g de carottes bien cuites (ou en boîte)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 g de yaourt grec 0%"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             50 g de sauce barbecue sans sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 càs de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2-3 piments chipotle (ou plus si t'es chaud)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 petite gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 càc de gingembre frais râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus + zeste d'½ citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 càc de sirop d'agave ou érable (optionnel)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ càc de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 pincée de 5 épices chinoises"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre au goût"
-            }
-        ],
-        "steps": [
-            "Mettre tous les ingrédients dans un mixeur.",
-            "Mixer jusqu'à obtenir une consistance homogène et crémeuse.",
-            "Conserver au frais pendant 4 à 5 jours."
-        ],
-        "tags": [
-            "épicé",
-            "Healthy",
-            "Sauces",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5874",
-        "title": "Courgettes façon TikTok",
-        "description": "Une idée pour préparer les courgettes.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610491247517633814\" data-video-id=\"7610491247517633814\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610491247517633814\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5872",
-        "title": "Sauce Ta Diète",
-        "description": "Une sauce crémeuse miel-moutarde, légèrement fumée avec une touche steakhouse grâce au Worcestershire, parfaite pour transformer les plats de régime en un vrai régal.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613808499729927446\" data-video-id=\"7613808499729927446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613808499729927446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             210 g de Skyr ou fromage blanc 0 %"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             90 g de moutarde à l'ancienne"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             30 g de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 petite gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 càc de sauce Worcestershire ou soja"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ càc de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 càc de vinaigre de cidre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre au goût"
-            }
-        ],
-        "steps": [
-            "Mélanger tous les ingrédients dans un blender.",
-            "Goûter et ajuster l'assaisonnement."
-        ],
-        "tags": [
-            "Healthy",
-            "Sauces"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5870",
-        "title": "Moelleux au chocolat et mascarpone",
-        "description": "Une recette facile et gourmande de moelleux au chocolat et mascarpone, parfait pour un dessert rapide. Accompagné d'une sauce chocolat onctueuse.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7493894155484040470\" data-video-id=\"7493894155484040470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7493894155484040470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n             250g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200g de chocolat noir fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 oeufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             60g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             40g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100g de chocolat noir fondu (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100ml de crème liquide (pour la sauce)"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description."
-        ],
-        "tags": [
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5868",
-        "title": "Pesto alla Genovese",
-        "description": "Découvrez comment préparer un authentique pesto alla Genovese et apprenez les meilleures techniques pour le conserver frais au réfrigérateur ou au congélateur pendant plusieurs mois.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617382495645912342\" data-video-id=\"7617382495645912342\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617382495645912342\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌿\n             50 g basilic frais (petites feuilles)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             30 g pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             60 g parmigiano reggiano râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             20 g pecorino sardo râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             120 ml huile d'olive extra vierge"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             3 gr de gros sel"
-            }
-        ],
-        "steps": [
-            "Laver délicatement les feuilles de basilic et bien les sécher.",
-            "Placer le bol du mixeur au réfrigérateur pendant quelques minutes afin qu'il soit bien froid. Cette étape aide à préserver la couleur du basilic.",
-            "Dans le bol bien froid, ajouter l'ail, les pignons de pin, le basilic et une pincée de sel.",
-            "Mixer très rapidement par impulsions pour éviter que la chaleur du mixeur n'abîme le basilic.",
-            "Ajouter ensuite la moitié du parmigiano et du pecorino.",
-            "Verser progressivement l'huile d'olive tout en mixant brièvement jusqu'à obtenir une sauce lisse et bien verte.",
-            "Réserver dans un bol, ajouter le reste du parmigiano et du pecorino et mélanger délicatement."
-        ],
-        "tags": [
-            "Italie",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -22164,6 +22136,79 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Mexique",
             "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3811",
+        "title": "Flammekueche",
+        "description": "Découvrez la recette traditionnelle alsacienne de la Flammekueche, aussi appelée tarte flambée. Une pâte fine et croustillante garnie d'une base crémeuse de fromage blanc et crème fraîche, d'oignons finement émincés et de lardons fumés, cuite à tr...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFlammekuche_1280x720.jpg&v=1773762580000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7508279665375776023\" data-video-id=\"7508279665375776023\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7508279665375776023\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 500 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 300 g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 10 g d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 10 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 300 g de poitrine fumée"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignons blancs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 300 g de crème fraîche épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 300 g de fromage blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1/2 c. à café de muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Quelques cuillères d'huile neutre"
+            }
+        ],
+        "steps": [
+            "Prépare la pâte: Mélange farine, eau, huile et sel jusqu'à obtenir un mélange homogène. Couvre pendant 10 min puis pétris de nouveau quelques minutes pour obtenir une pâte lisse non collante. Filme ta pâte et laisse poser 1h.",
+            "Prépare la garniture: Découpe tes oignons très finement. Fais de même avec le lard qu'on va couper en petits lardons. Pour la base, mélange à parts égales fromage blanc et crème fraîche (adapte les quantités selon ton besoin). Tu peux rajouter du poivre et de la muscade.",
+            "Façonnage de la flammekueche: Après 1h de pause, divise ta pâte en 4 pâtons puis abaisse-la très finement sur un plan de travail bien fariné. Roule ta pâte sur ton rouleau pour la transférer sur une plaque bien farinée également. Dispose ta crème (2 bonnes cuillères), les oignons ainsi que les lardons et termine par une cuillère d'huile neutre pour que ça dore.",
+            "Cuisson de la flammekueche: Chauffe ton four à puissance maximale et dispose une plaque qui restera à l'intérieur (il faut qu'elle soit bien chaude). Quand ton four a atteint son max (ex: 250°), fais glisser ta tarte flambée sur la plaque bien chaude. Cela va créer un choc de température et la cuire très rapidement, entre 8 et 12 minutes selon ton four. Il faut qu'elle commence à griller sur le dessus.",
+            "Dressage et dégustation: Il ne reste plus qu'à la débarrasser, la couper en morceaux et la manger bien chaude !"
+        ],
+        "tags": [
+            "apéritif",
+            "flammekueche",
+            "France",
+            "Fromage blanc",
+            "lardons",
+            "oignons",
+            "Tarte Flambée"
         ],
         "isFeatured": false,
         "isFavorite": false,
