@@ -2,30 +2,30 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/05/2026 06:17:06
- * Total: 329 recettes
+ * Dernière mise à jour: 30/05/2026 09:12:07
+ * Total: 328 recettes
  */
-export const exportSyncId = "1780121826811";
+export const exportSyncId = "1780132327243";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5880",
         "title": "Astuce Fraises et Guimauves",
         "description": "Une astuce simple et gourmande pour combiner fraises et guimauves, idéale pour une petite douceur estivale.",
-        "image": "/images/recipe-placeholder.jpg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffraise.jpg&v=1780139113000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604130598977899798\" data-video-id=\"7604130598977899798\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604130598977899798\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604130598977899798\" data-video-id=\"7604130598977899798\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604130598977899798\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍓\n             Fraises"
+                "name": "🍓\n Fraises"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Guimauves"
+                "name": "🥣\n Guimauves"
             }
         ],
         "steps": [
@@ -22164,79 +22164,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Mexique",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3811",
-        "title": "Flammekueche",
-        "description": "Découvrez la recette traditionnelle alsacienne de la Flammekueche, aussi appelée tarte flambée. Une pâte fine et croustillante garnie d'une base crémeuse de fromage blanc et crème fraîche, d'oignons finement émincés et de lardons fumés, cuite à tr...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFlammekuche_1280x720.jpg&v=1773762580000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7508279665375776023\" data-video-id=\"7508279665375776023\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7508279665375776023\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n 500 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 300 g d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 10 g d'huile neutre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 10 g de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 300 g de poitrine fumée"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 2 oignons blancs"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 300 g de crème fraîche épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 300 g de fromage blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1/2 c. à café de muscade"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Quelques cuillères d'huile neutre"
-            }
-        ],
-        "steps": [
-            "Prépare la pâte: Mélange farine, eau, huile et sel jusqu'à obtenir un mélange homogène. Couvre pendant 10 min puis pétris de nouveau quelques minutes pour obtenir une pâte lisse non collante. Filme ta pâte et laisse poser 1h.",
-            "Prépare la garniture: Découpe tes oignons très finement. Fais de même avec le lard qu'on va couper en petits lardons. Pour la base, mélange à parts égales fromage blanc et crème fraîche (adapte les quantités selon ton besoin). Tu peux rajouter du poivre et de la muscade.",
-            "Façonnage de la flammekueche: Après 1h de pause, divise ta pâte en 4 pâtons puis abaisse-la très finement sur un plan de travail bien fariné. Roule ta pâte sur ton rouleau pour la transférer sur une plaque bien farinée également. Dispose ta crème (2 bonnes cuillères), les oignons ainsi que les lardons et termine par une cuillère d'huile neutre pour que ça dore.",
-            "Cuisson de la flammekueche: Chauffe ton four à puissance maximale et dispose une plaque qui restera à l'intérieur (il faut qu'elle soit bien chaude). Quand ton four a atteint son max (ex: 250°), fais glisser ta tarte flambée sur la plaque bien chaude. Cela va créer un choc de température et la cuire très rapidement, entre 8 et 12 minutes selon ton four. Il faut qu'elle commence à griller sur le dessus.",
-            "Dressage et dégustation: Il ne reste plus qu'à la débarrasser, la couper en morceaux et la manger bien chaude !"
-        ],
-        "tags": [
-            "apéritif",
-            "flammekueche",
-            "France",
-            "Fromage blanc",
-            "lardons",
-            "oignons",
-            "Tarte Flambée"
         ],
         "isFeatured": false,
         "isFavorite": false,
