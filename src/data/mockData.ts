@@ -2,56 +2,160 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/05/2026 10:18:03
- * Total: 330 recettes
+ * Dernière mise à jour: 30/05/2026 13:33:35
+ * Total: 332 recettes
  */
-export const exportSyncId = "1780136283205";
+export const exportSyncId = "1780148015785";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "5902",
-        "title": "Smoothie Pastèque Fraise",
-        "description": "Un smoothie rafraîchissant et hydratant à base de pastèque, fraise, citron, miel et menthe, parfait pour l'été.",
+        "id": "5907",
+        "title": "Sauce Poivre Parfaite",
+        "description": "Une recette de sauce au poivre parfaite, riche et crémeuse, avec du brandy et du fond de veau, idéale pour accompagner vos viandes.",
         "image": "/images/recipe-placeholder.jpg",
-        "category": "rafraichissements",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7429792449842646304\" data-video-id=\"7429792449842646304\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7429792449842646304\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             500g de pastèque"
+                "name": "🌶️\n             2 cas de poivre noir concassé"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             250g de fraise"
+                "name": "🧈\n             30g de beurre"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Jus de 2 citrons"
+                "name": "🧅\n             2 petites échalotes"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             1 cas de miel"
+                "name": "🥣\n             10cl de brandy"
             },
             {
                 "quantity": "",
-                "name": "💧\n             200 à 250ml d'eau"
+                "name": "🥛\n             20cl de crème fraîche épaisse"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Quelques feuilles de menthe"
+                "name": "🥣\n             10cl de fond de veau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
             }
         ],
         "steps": [
-            "Mettre tous les ingrédients (pastèque, fraises, jus de citron, miel, eau et feuilles de menthe) dans un blender.",
-            "Mixer jusqu'à obtenir une consistance lisse et homogène.",
-            "Servir frais."
+            "Suivre les instructions détaillées dans la vidéo"
         ],
         "tags": [
+            "France",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5905",
+        "title": "Salade protéinée au poulet et chimichurri",
+        "description": "Une salade fraîche et protéinée à base de poulet, légumes et pois chiches, relevée par une sauce chimichurri maison pleine de saveurs.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643528928467881249\" data-video-id=\"7643528928467881249\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643528928467881249\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             Une bonne poignée de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             3 petits concombres"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             ½ oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1 boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             200 g d'escalope de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 à 2 c. à soupe de vinaigre blanc ou vinaigre de cidre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ½ tasse de persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ¼ tasse de coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petite échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 à 3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 petit piment rouge (ou poivron rouge)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             ½ à ¾ tasse d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à café d'origan séché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre noir"
+            }
+        ],
+        "steps": [
+            "Couper les tomates cerises en deux, les concombres en rondelles et l'oignon rouge finement. Égoutter et rincer les pois chiches et le maïs.",
+            "Cuire les escalopes de poulet (à la poêle, au four ou grillées), puis les couper en morceaux ou en lanières.",
+            "Pour la sauce chimichurri : Hacher finement le persil frais, la coriandre fraîche, l'échalote, l'ail et le piment rouge (ou poivron rouge).",
+            "Dans un bol, mélanger les herbes et légumes hachés avec le jus de citron, le vinaigre blanc (ou de cidre), l'huile d'olive extra vierge, l'origan séché, le sel et le poivre noir. Bien mélanger.",
+            "Dans un grand saladier, combiner les tomates cerises, les concombres, l'oignon rouge, les pois chiches, le maïs et les morceaux de poulet.",
+            "Verser généreusement la sauce chimichurri sur la salade et mélanger délicatement pour bien enrober tous les ingrédients. Ajuster l'assaisonnement si nécessaire."
+        ],
+        "tags": [
+            "épicé",
             "Healthy",
-            "Rafraîchissements",
+            "Salades",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -97,6 +201,57 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Les étapes de préparation ne sont pas détaillées dans la description fournie."
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5902",
+        "title": "Smoothie Pastèque Fraise",
+        "description": "Un smoothie rafraîchissant et hydratant à base de pastèque, fraise, citron, miel et menthe, parfait pour l'été.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de fraise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 à 250ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe"
+            }
+        ],
+        "steps": [
+            "Mettre tous les ingrédients (pastèque, fraises, jus de citron, miel, eau et feuilles de menthe) dans un blender.",
+            "Mixer jusqu'à obtenir une consistance lisse et homogène.",
+            "Servir frais."
         ],
         "tags": [
             "Healthy",
@@ -6838,58 +6993,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5338",
-        "title": "Pommes de terre rôties à l'anglaise",
-        "description": "Découvrez la recette des pommes de terre rôties à l'anglaise, réputées pour être les plus croustillantes. Facile à réaliser, cette méthode garantit un accompagnement savoureux et irrésistible.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F61267_w1024h576c1cx3072cy2048.jpg&v=1778513201000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7594879353310219542\" data-video-id=\"7594879353310219542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7594879353310219542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n 1 kg de pommes de terre (type farineuses), coupées en quartiers"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 150 ml d'huile neutre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 tête d'ail, gousses séparées"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Thym"
-            }
-        ],
-        "steps": [
-            "Préchauffe le four à 200°C chaleur tournante. Épluche et coupe les pommes de terre en quartiers. Mets les pommes de terre dans de l'eau froide pendant 10 min (pour enlever l'excès d'amidon). Égoutte-les, puis fais-les bouillir 10 min jusqu'à ce qu'elles commencent à être tendres. Égoutte à nouveau, laisse-les sécher 5 min dans une passoire et secoue-les pour râper un peu l'extérieur.",
-            "Pendant ce temps, verse l'huile dans un plat allant au four. Mets-le au four 8 à 10 min pour que l'huile soit bien chaude. Ajoute les pommes de terre (face plate contre le fond) Enfourne 35 à 40 min jusqu'à ce qu'elles soient légèrement dorées.",
-            "Sors le plat, retourne les pommes de terre, ajoute l'ail. Remets au four 20 à 30 min jusqu'à ce que tout soit très doré et croustillant.",
-            "Sors tout de l'huile, mets dans un saladier. Ajouté le thym, sale, poivre et mélange. Sers immédiatement. Régalez-vous 🫶"
-        ],
-        "tags": [
-            "accompagnement",
-            "France",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -14129,6 +14232,69 @@ export const mockRecipes: Recipe[] = [
             "Espagne",
             "Famille",
             "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3967",
+        "title": "San Sebastian Cheesecake",
+        "description": "Une recette détaillée pour un cheesecake basque brûlé, crémeux à l'intérieur et caramélisé à l'extérieur, parfait pour un dessert gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F20250203203320-San-Sebastian-Cheesecake-Recipe-Cvjeya-ttuS_9339a0de-e42b-4182-94cd-11cb0b296bc2.jpeg&v=1774526183000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7505622622432988458\" data-video-id=\"7505622622432988458\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7505622622432988458\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1kg Cream Cheese"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             320 grams Sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 large Eggs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 grams Fresh Lemon Juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15 grams Vanilla Extract"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 grams Sea Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             600 grams Heavy whipping cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 grams All Purpose Flour"
+            }
+        ],
+        "steps": [
+            "Mélanger le cream cheese à température ambiante avec le sucre.",
+            "Après avoir bien mélangé, incorporer les œufs un par un.",
+            "Ajouter le jus de citron, le sel, l'extrait de vanille, la farine et bien mélanger.",
+            "Ajouter ensuite la crème et incorporer délicatement à la cuillère ou à la spatule (ne pas utiliser de mixeur).",
+            "Verser le mélange bien homogène dans un moule à gâteau de 9&#215;4 pouces après avoir placé du papier sulfurisé.",
+            "Préchauffer le four à 450F (environ 230°C).",
+            "Cuire au four jusqu'à ce que le dessus soit brûlé.",
+            "Laisser refroidir à température ambiante pendant 2 heures.",
+            "Placer ensuite au réfrigérateur toute une nuit."
+        ],
+        "tags": [
+            "Espagne"
         ],
         "isFeatured": false,
         "isFavorite": false,
