@@ -2,11 +2,111 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/05/2026 09:47:02
- * Total: 327 recettes
+ * Dernière mise à jour: 30/05/2026 10:18:03
+ * Total: 330 recettes
  */
-export const exportSyncId = "1780134422893";
+export const exportSyncId = "1780136283205";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5902",
+        "title": "Smoothie Pastèque Fraise",
+        "description": "Un smoothie rafraîchissant et hydratant à base de pastèque, fraise, citron, miel et menthe, parfait pour l'été.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de fraise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 à 250ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe"
+            }
+        ],
+        "steps": [
+            "Mettre tous les ingrédients (pastèque, fraises, jus de citron, miel, eau et feuilles de menthe) dans un blender.",
+            "Mixer jusqu'à obtenir une consistance lisse et homogène.",
+            "Servir frais."
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5901",
+        "title": "Smoothie pastèque fraise citron",
+        "description": "Un smoothie rafraîchissant et rapide à préparer, idéal pour l'été et la perte de poids, à base de pastèque, fraise, citron, miel et menthe.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de fraise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de 2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 à 250ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5860",
         "title": "Omurice",
@@ -6738,6 +6838,58 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5338",
+        "title": "Pommes de terre rôties à l'anglaise",
+        "description": "Découvrez la recette des pommes de terre rôties à l'anglaise, réputées pour être les plus croustillantes. Facile à réaliser, cette méthode garantit un accompagnement savoureux et irrésistible.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F61267_w1024h576c1cx3072cy2048.jpg&v=1778513201000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7594879353310219542\" data-video-id=\"7594879353310219542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7594879353310219542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 1 kg de pommes de terre (type farineuses), coupées en quartiers"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 150 ml d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 tête d'ail, gousses séparées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Thym"
+            }
+        ],
+        "steps": [
+            "Préchauffe le four à 200°C chaleur tournante. Épluche et coupe les pommes de terre en quartiers. Mets les pommes de terre dans de l'eau froide pendant 10 min (pour enlever l'excès d'amidon). Égoutte-les, puis fais-les bouillir 10 min jusqu'à ce qu'elles commencent à être tendres. Égoutte à nouveau, laisse-les sécher 5 min dans une passoire et secoue-les pour râper un peu l'extérieur.",
+            "Pendant ce temps, verse l'huile dans un plat allant au four. Mets-le au four 8 à 10 min pour que l'huile soit bien chaude. Ajoute les pommes de terre (face plate contre le fond) Enfourne 35 à 40 min jusqu'à ce qu'elles soient légèrement dorées.",
+            "Sors le plat, retourne les pommes de terre, ajoute l'ail. Remets au four 20 à 30 min jusqu'à ce que tout soit très doré et croustillant.",
+            "Sors tout de l'huile, mets dans un saladier. Ajouté le thym, sale, poivre et mélange. Sers immédiatement. Régalez-vous 🫶"
+        ],
+        "tags": [
+            "accompagnement",
+            "France",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
