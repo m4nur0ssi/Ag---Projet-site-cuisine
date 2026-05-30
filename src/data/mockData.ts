@@ -2,11 +2,229 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/05/2026 09:28:17
- * Total: 328 recettes
+ * Dernière mise à jour: 30/05/2026 09:40:57
+ * Total: 327 recettes
  */
-export const exportSyncId = "1780133297827";
+export const exportSyncId = "1780134057476";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5864",
+        "title": "Fenouil grillé, houmous et chorizo",
+        "description": "Une recette savoureuse pour 4 personnes combinant du fenouil grillé, un houmous maison au citron confit et du chorizo doux, le tout relevé par des herbes fraîches et du piment d'Espelette.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffenouil.jpg&v=1780140771000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7497179934910319895\" data-video-id=\"7497179934910319895\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7497179934910319895\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🫘\n 400 g de pois chiches cuits en conserve"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 citron confit (écorce seulement) coupé en petits dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 C A S de tahini"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 2 C A S de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail pelée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 3 C A S d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1/2 C A C de cumin en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1/2 C A C de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 3 ou 4 C A S d'eau (ajuster selon la texture désirée)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 pincée de piment d'Espelette (pour le houmous)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 bulbes de fenouil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 C A S de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 50 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n 1/2 chorizo doux"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 zeste de citron (pour le dressage)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 3 C A S d'huile de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 C A S de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Quelques brins de basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 pincée de piment d'Espelette (pour le dressage)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Espagne",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5876",
+        "title": "Sauce california love",
+        "description": "Une sauce crémeuse, douce, fumée et légèrement épicée, inspirée de la Californie. Parfaite pour accompagner bowls, wraps ou tenders, elle est saine et à base de carottes (que l'on ne sent pas !). Idéale pour ajouter du soleil à vos assiettes sans ...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce.jpg&v=1780140533000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7521748446446062850\" data-video-id=\"7521748446446062850\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7521748446446062850\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n 150 g de carottes bien cuites (ou en boîte)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100 g de yaourt grec 0%"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50 g de sauce barbecue sans sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 càs de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 2-3 piments chipotle (ou plus si t'es chaud)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 petite gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 càc de gingembre frais râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Le jus + zeste d'½ citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 càc de sirop d'agave ou érable (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n ½ càc de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 pincée de 5 épices chinoises"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre au goût"
+            }
+        ],
+        "steps": [
+            "Mettre tous les ingrédients dans un mixeur.",
+            "Mixer jusqu'à obtenir une consistance homogène et crémeuse.",
+            "Conserver au frais pendant 4 à 5 jours."
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Sauces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5866",
+        "title": "Pâte brisée",
+        "description": "Une recette simple pour préparer une pâte brisée maison, idéale pour les tartes salées ou sucrées.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpate.jpg&v=1780140273000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610131753440791830\" data-video-id=\"7610131753440791830\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610131753440791830\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 250g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 125g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 70g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 2 pincées de sel ou 20g de sucre (si utilisation sucrée)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5868",
         "title": "Pesto alla Genovese",
@@ -111,82 +329,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5876",
-        "title": "Sauce california love",
-        "description": "Une sauce crémeuse, douce, fumée et légèrement épicée, inspirée de la Californie. Parfaite pour accompagner bowls, wraps ou tenders, elle est saine et à base de carottes (que l'on ne sent pas !). Idéale pour ajouter du soleil à vos assiettes sans ...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7521748446446062850\" data-video-id=\"7521748446446062850\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7521748446446062850\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥕\n 150 g de carottes bien cuites (ou en boîte)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 100 g de yaourt grec 0%"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 50 g de sauce barbecue sans sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 1 càs de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 2-3 piments chipotle (ou plus si t'es chaud)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 petite gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 càc de gingembre frais râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n Le jus + zeste d'½ citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 càc de sirop d'agave ou érable (optionnel)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n ½ càc de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 pincée de 5 épices chinoises"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel, poivre au goût"
-            }
-        ],
-        "steps": [
-            "Mettre tous les ingrédients dans un mixeur.",
-            "Mixer jusqu'à obtenir une consistance homogène et crémeuse.",
-            "Conserver au frais pendant 4 à 5 jours."
-        ],
-        "tags": [
-            "épicé",
-            "Healthy",
-            "Sauces",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -314,175 +456,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Astuces",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5866",
-        "title": "Pâte brisée",
-        "description": "Une recette simple pour préparer une pâte brisée maison, idéale pour les tartes salées ou sucrées.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610131753440791830\" data-video-id=\"7610131753440791830\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610131753440791830\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             250g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             125g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             70g d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 pincées de sel ou 20g de sucre (si utilisation sucrée)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Pas cher",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5864",
-        "title": "Fenouil grillé, houmous et chorizo",
-        "description": "Une recette savoureuse pour 4 personnes combinant du fenouil grillé, un houmous maison au citron confit et du chorizo doux, le tout relevé par des herbes fraîches et du piment d'Espelette.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7497179934910319895\" data-video-id=\"7497179934910319895\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7497179934910319895\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🫘\n             400 g de pois chiches cuits en conserve"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron confit (écorce seulement) coupé en petits dés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 C A S de tahini"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             2 C A S de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail pelée"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 C A S d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 C A C de cumin en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 C A C de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             3 ou 4 C A S d'eau (ajuster selon la texture désirée)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 pincée de piment d'Espelette (pour le houmous)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 bulbes de fenouil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 C A S de cassonade"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             50 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             1/2 chorizo doux"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 zeste de citron (pour le dressage)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             3 C A S d'huile de basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 C A S de pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques brins de basilic frais"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 pincée de piment d'Espelette (pour le dressage)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Espagne",
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5862",
-        "title": "Burgers de courgettes sains",
-        "description": "Des burgers sains et protéinés à base de courgettes, parfaits pour la perte de poids.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616346127775894817\" data-video-id=\"7616346127775894817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616346127775894817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy"
         ],
         "isFeatured": false,
         "isFavorite": false,
