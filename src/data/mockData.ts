@@ -2,11 +2,78 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 31/05/2026 21:53:51
- * Total: 333 recettes
+ * Dernière mise à jour: 31/05/2026 22:05:01
+ * Total: 334 recettes
  */
-export const exportSyncId = "1780264431865";
+export const exportSyncId = "1780265101219";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5913",
+        "title": "Calamars frits à l'Air Fryer",
+        "description": "Une recette simple et rapide de calamars frits à l'Air Fryer, parfaits pour l'apéro avec une sauce bien fraîche.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7620883582772464918\" data-video-id=\"7620883582772464918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620883582772464918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Calamars / Encornets"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélange la farine, l'ail en poudre, le zeste de citron, le paprika et le poivre.",
+            "Ajoute les calamars dans ce mélange, enrobe bien chaque morceau de farine.",
+            "Place le tout dans l'air fryer et ça part en cuisson pendant 10 minutes à 190°.",
+            "Ajoute un peu de fleur de sel et du persil avant de servir. Bon appétit."
+        ],
+        "tags": [
+            "airfryer",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5911",
         "title": "Panuozzo à la maison",
@@ -259,55 +326,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5901",
-        "title": "Smoothie pastèque fraise citron",
-        "description": "Un smoothie rafraîchissant et rapide à préparer, idéal pour l'été et la perte de poids, à base de pastèque, fraise, citron, miel et menthe.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g de pastèque"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250g de fraise"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de 2 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cas de miel"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             200 à 250ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques feuilles de menthe"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
-        ],
-        "tags": [
-            "Healthy",
-            "Rafraîchissements",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5902",
         "title": "Smoothie Pastèque Fraise",
         "description": "Un smoothie rafraîchissant et hydratant à base de pastèque, fraise, citron, miel et menthe, parfait pour l'été.",
@@ -348,6 +366,55 @@ export const mockRecipes: Recipe[] = [
             "Mettre tous les ingrédients (pastèque, fraises, jus de citron, miel, eau et feuilles de menthe) dans un blender.",
             "Mixer jusqu'à obtenir une consistance lisse et homogène.",
             "Servir frais."
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5901",
+        "title": "Smoothie pastèque fraise citron",
+        "description": "Un smoothie rafraîchissant et rapide à préparer, idéal pour l'été et la perte de poids, à base de pastèque, fraise, citron, miel et menthe.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de fraise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de 2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 à 250ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
         ],
         "tags": [
             "Healthy",
