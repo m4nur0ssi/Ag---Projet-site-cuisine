@@ -1,0 +1,30 @@
+.stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.star {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.15s ease, transform 0.15s ease;
+    padding: 2px;
+    line-height: 1;
+}
+
+.star:disabled {
+    cursor: default;
+}
+
+.star.active {
+    color: #FBBF24;
+}
+
+.star:not(:disabled):hover {
+    transform: scale(1.2);
+}
+
+.large .star { font-size: 1.8rem; }
+.small .star { font-size: 1rem; }

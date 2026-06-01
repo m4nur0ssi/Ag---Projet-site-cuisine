@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#5EEAD4"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bg)"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="300" cy="348" rx="115" ry="18" fill="#065F46" opacity="0.4" filter="url(#blur)"/>
+
+  <!-- === SALAD BOWL === -->
+  <!-- Bowl outer -->
+  <path d="M155,238 Q155,338 300,338 Q445,338 445,238 Q445,210 300,210 Q155,210 155,238 Z" fill="#D1FAE5"/>
+  <!-- Bowl inner shadow -->
+  <path d="M170,242 Q170,325 300,325 Q430,325 430,242 Q430,218 300,218 Q170,218 170,242 Z" fill="#A7F3D0"/>
+  <!-- Bowl rim -->
+  <ellipse cx="300" cy="210" rx="145" ry="28" fill="#6EE7B7"/>
+  <ellipse cx="300" cy="207" rx="143" ry="26" fill="#A7F3D0"/>
+  <ellipse cx="300" cy="204" rx="140" ry="23" fill="#D1FAE5"/>
+
+  <!-- Bowl highlight (left side) -->
+  <path d="M160,238 Q158,290 175,320" stroke="white" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.25"/>
+
+  <!-- === SALAD CONTENTS === -->
+  <!-- Dark green leaves (back) -->
+  <ellipse cx="230" cy="220" rx="60" ry="22" fill="#059669" transform="rotate(-15,230,220)"/>
+  <ellipse cx="370" cy="218" rx="55" ry="20" fill="#047857" transform="rotate(12,370,218)"/>
+  <ellipse cx="300" cy="215" rx="58" ry="20" fill="#065F46" transform="rotate(-5,300,215)"/>
+
+  <!-- Bright green leaves (front) -->
+  <ellipse cx="255" cy="225" rx="52" ry="19" fill="#34D399" transform="rotate(-20,255,225)"/>
+  <ellipse cx="345" cy="222" rx="50" ry="18" fill="#10B981" transform="rotate(18,345,222)"/>
+  <ellipse cx="300" cy="228" rx="48" ry="17" fill="#6EE7B7" transform="rotate(3,300,228)"/>
+
+  <!-- Tomato slices -->
+  <circle cx="248" cy="212" r="22" fill="#EF4444"/>
+  <circle cx="248" cy="212" r="18" fill="#F87171"/>
+  <circle cx="248" cy="212" r="10" fill="#FCA5A5" opacity="0.6"/>
+  <!-- Tomato seeds -->
+  <ellipse cx="243" cy="208" rx="3" ry="2" fill="#DC2626" opacity="0.6" transform="rotate(-30,243,208)"/>
+  <ellipse cx="254" cy="208" rx="3" ry="2" fill="#DC2626" opacity="0.6" transform="rotate(30,254,208)"/>
+  <ellipse cx="248" cy="216" rx="3" ry="2" fill="#DC2626" opacity="0.6"/>
+
+  <circle cx="352" cy="210" r="19" fill="#DC2626"/>
+  <circle cx="352" cy="210" r="15" fill="#EF4444"/>
+  <circle cx="352" cy="210" r="8" fill="#FCA5A5" opacity="0.6"/>
+
+  <!-- Cucumber rounds -->
+  <circle cx="300" cy="208" r="17" fill="#16A34A"/>
+  <circle cx="300" cy="208" r="13" fill="#4ADE80"/>
+  <circle cx="300" cy="208" r="7" fill="#BBF7D0" opacity="0.8"/>
+  <!-- Seeds -->
+  <ellipse cx="296" cy="205" rx="2" ry="1.5" fill="#15803D" opacity="0.7" transform="rotate(-30,296,205)"/>
+  <ellipse cx="305" cy="205" rx="2" ry="1.5" fill="#15803D" opacity="0.7" transform="rotate(30,305,205)"/>
+
+  <!-- Onion rings -->
+  <ellipse cx="218" cy="230" rx="18" ry="8" fill="#C084FC" opacity="0.75" transform="rotate(-10,218,230)"/>
+  <ellipse cx="218" cy="230" rx="14" ry="5" fill="none" stroke="#A855F7" stroke-width="2" opacity="0.6" transform="rotate(-10,218,230)"/>
+
+  <ellipse cx="384" cy="225" rx="16" ry="7" fill="#DDD6FE" opacity="0.75" transform="rotate(8,384,225)"/>
+</svg>

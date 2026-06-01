@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#3730A3"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bg)"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="300" cy="355" rx="130" ry="18" fill="#1E1B4B" opacity="0.5" filter="url(#blur)"/>
+
+  <!-- === CLOCHE (dome lid) === -->
+  <!-- Dome shadow inside -->
+  <ellipse cx="300" cy="240" rx="158" ry="118" fill="#2E27A0" opacity="0.4"/>
+  <!-- Dome body -->
+  <path d="M142,242 Q142,105 300,105 Q458,105 458,242 Z" fill="#C7D2FE"/>
+  <!-- Dome shading (right) -->
+  <path d="M390,130 Q458,170 458,242 L430,242 Q430,175 370,140 Z" fill="#818CF8" opacity="0.5"/>
+  <!-- Dome highlight (left) -->
+  <path d="M165,200 Q160,240 165,242" stroke="white" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.3"/>
+  <path d="M175,165 Q168,200 172,225" stroke="white" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.2"/>
+
+  <!-- === PLATE === -->
+  <!-- Plate base ellipse -->
+  <ellipse cx="300" cy="244" rx="160" ry="28" fill="#A5B4FC"/>
+  <ellipse cx="300" cy="241" rx="158" ry="25" fill="#C7D2FE"/>
+  <ellipse cx="300" cy="238" rx="155" ry="22" fill="#E0E7FF"/>
+  <!-- Plate rim highlight -->
+  <ellipse cx="300" cy="236" rx="152" ry="20" fill="none" stroke="white" stroke-width="2" opacity="0.35"/>
+
+  <!-- === DOME HANDLE === -->
+  <ellipse cx="300" cy="108" rx="28" ry="10" fill="#A5B4FC"/>
+  <rect x="285" y="82" width="30" height="28" rx="15" fill="#C7D2FE"/>
+  <rect x="287" y="84" width="26" height="24" rx="13" fill="#E0E7FF"/>
+  <ellipse cx="300" cy="82" rx="13" ry="6" fill="#C7D2FE"/>
+
+  <!-- === STEAM === -->
+  <path d="M255,85 Q248,65 255,50 Q262,35 255,20" stroke="white" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.3"/>
+  <path d="M300,82 Q293,62 300,47 Q307,32 300,17" stroke="white" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.25"/>
+  <path d="M345,85 Q338,65 345,50 Q352,35 345,20" stroke="white" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.2"/>
+</svg>

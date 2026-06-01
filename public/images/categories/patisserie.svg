@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#DDD6FE"/>
+      <stop offset="100%" stop-color="#5B21B6"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bg)"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="300" cy="352" rx="155" ry="18" fill="#2E1065" opacity="0.45" filter="url(#blur)"/>
+
+  <!-- === CROISSANT === -->
+
+  <!-- Main body -->
+  <path d="M120,290 Q100,230 145,185 Q185,145 240,160 Q280,170 300,210 Q320,170 360,160 Q415,145 455,185 Q500,230 480,290 Q460,325 410,310 Q360,295 330,260 Q315,240 300,245 Q285,240 270,260 Q240,295 190,310 Q140,325 120,290 Z"
+        fill="#D97706"/>
+
+  <!-- Mid tone -->
+  <path d="M128,285 Q110,232 152,190 Q188,153 238,167 Q276,176 298,214 Q322,176 362,167 Q412,153 448,190 Q490,232 472,285 Q454,318 407,304 Q360,291 332,257 Q316,238 300,243 Q284,238 268,257 Q240,291 193,304 Q146,318 128,285 Z"
+        fill="#F59E0B"/>
+
+  <!-- Highlight layer -->
+  <path d="M140,278 Q124,236 162,196 Q196,162 240,174 Q272,183 296,218 Q324,183 360,174 Q404,162 438,196 Q476,236 460,278 Q444,308 400,296 Q358,285 334,254 Q317,236 300,241 Q283,236 266,254 Q242,285 200,296 Q156,308 140,278 Z"
+        fill="#FCD34D" opacity="0.55"/>
+
+  <!-- Inner curve (dark valley) -->
+  <path d="M265,262 Q280,240 300,245 Q320,240 335,262 Q318,280 300,275 Q282,280 265,262 Z"
+        fill="#92400E" opacity="0.6"/>
+
+  <!-- Left tip dark -->
+  <ellipse cx="128" cy="285" rx="18" ry="12" fill="#B45309" transform="rotate(-20,128,285)"/>
+  <!-- Right tip dark -->
+  <ellipse cx="472" cy="285" rx="18" ry="12" fill="#B45309" transform="rotate(20,472,285)"/>
+
+  <!-- Glaze shine — left horn -->
+  <path d="M148,210 Q138,240 142,268" stroke="white" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.28"/>
+  <path d="M158,190 Q146,218 150,242" stroke="white" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.18"/>
+
+  <!-- Glaze shine — right horn -->
+  <path d="M452,210 Q462,240 458,268" stroke="white" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.22"/>
+
+  <!-- Lamination lines — left -->
+  <path d="M160,220 Q148,250 155,278" stroke="#92400E" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.45"/>
+  <path d="M175,205 Q162,238 170,265" stroke="#92400E" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.35"/>
+
+  <!-- Lamination lines — right -->
+  <path d="M440,220 Q452,250 445,278" stroke="#92400E" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.45"/>
+  <path d="M425,205 Q438,238 430,265" stroke="#92400E" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.35"/>
+
+  <!-- Top glaze dots -->
+  <ellipse cx="240" cy="170" rx="22" ry="8" fill="#FEF3C7" opacity="0.3" transform="rotate(-15,240,170)"/>
+  <ellipse cx="360" cy="170" rx="22" ry="8" fill="#FEF3C7" opacity="0.25" transform="rotate(15,360,170)"/>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#C2410C"/>
+    </radialGradient>
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FEF9C3" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FCD34D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bg)"/>
+
+  <!-- Soft center glow -->
+  <circle cx="300" cy="195" r="140" fill="url(#starGlow)" filter="url(#blur)"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="300" cy="358" rx="100" ry="14" fill="#7C2D12" opacity="0.4" filter="url(#blur)"/>
+
+  <!-- === MAIN STAR === -->
+  <!-- Outer rays (8-pointed) -->
+  <polygon
+    points="300,68 318,168 395,112 333,185 430,192 335,215 398,288 318,228 300,328 282,228 202,288 265,215 170,192 267,185 205,112 282,168"
+    fill="#FEF9C3" filter="url(#glow)"/>
+
+  <!-- Inner star (smaller, brighter) -->
+  <polygon
+    points="300,110 314,178 372,135 326,188 398,196 328,213 375,270 314,222 300,290 286,222 225,270 274,213 202,196 274,188 228,135 286,178"
+    fill="#FEF08A"/>
+
+  <!-- Center circle -->
+  <circle cx="300" cy="196" r="52" fill="#FEF9C3"/>
+  <circle cx="300" cy="196" r="44" fill="white" opacity="0.92"/>
+  <!-- Center shine -->
+  <circle cx="288" cy="184" r="16" fill="white" opacity="0.55"/>
+
+  <!-- === SMALL SPARKLES === -->
+  <!-- Top-left -->
+  <polygon points="148,95 153,115 173,120 153,125 148,145 143,125 123,120 143,115" fill="#FEF9C3" opacity="0.85" filter="url(#glow)"/>
+  <!-- Top-right -->
+  <polygon points="452,80 456,96 472,100 456,104 452,120 448,104 432,100 448,96" fill="white" opacity="0.8" filter="url(#glow)"/>
+  <!-- Bottom-left -->
+  <polygon points="140,298 144,312 158,316 144,320 140,334 136,320 122,316 136,312" fill="#FEF9C3" opacity="0.7"/>
+  <!-- Bottom-right -->
+  <polygon points="460,295 463,307 475,310 463,313 460,325 457,313 445,310 457,307" fill="white" opacity="0.7"/>
+
+  <!-- Tiny dots -->
+  <circle cx="108" cy="192" r="7" fill="#FEF9C3" opacity="0.65" filter="url(#glow)"/>
+  <circle cx="492" cy="200" r="8" fill="white" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="195" cy="338" r="5" fill="#FEF9C3" opacity="0.55"/>
+  <circle cx="405" cy="340" r="6" fill="white" opacity="0.5"/>
+  <circle cx="205" cy="65" r="5" fill="white" opacity="0.5"/>
+  <circle cx="400" cy="60" r="4" fill="#FEF9C3" opacity="0.5"/>
+
+  <!-- Confetti -->
+  <rect x="108" y="268" width="16" height="6" rx="3" fill="#C084FC" opacity="0.75" transform="rotate(-25,116,271)"/>
+  <rect x="476" y="260" width="14" height="6" rx="3" fill="#34D399" opacity="0.75" transform="rotate(20,483,263)"/>
+  <rect x="175" y="125" width="13" height="5" rx="2.5" fill="#F472B6" opacity="0.7" transform="rotate(35,181,127)"/>
+  <rect x="415" y="120" width="13" height="5" rx="2.5" fill="#60A5FA" opacity="0.7" transform="rotate(-30,421,122)"/>
+</svg>

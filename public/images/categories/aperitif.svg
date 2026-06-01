@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#FF9A5C"/>
+      <stop offset="100%" stop-color="#C94A10"/>
+    </radialGradient>
+    <filter id="shadow"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bg)"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="300" cy="342" rx="80" ry="14" fill="#A03800" opacity="0.45" filter="url(#shadow)"/>
+
+  <!-- === COCKTAIL GLASS === -->
+  <!-- Stem -->
+  <rect x="292" y="270" width="16" height="68" rx="8" fill="#FFD0A8"/>
+  <!-- Base -->
+  <ellipse cx="300" cy="336" rx="44" ry="10" fill="#FFBD90"/>
+  <ellipse cx="300" cy="333" rx="42" ry="9" fill="#FFD0A8"/>
+
+  <!-- Glass bowl (V shape filled) -->
+  <path d="M200,130 L300,272 L400,130 Z" fill="#FFD0A8" opacity="0.25"/>
+  <path d="M200,130 L300,272 L400,130 Q400,116 300,116 Q200,116 200,130 Z" fill="#FFD0A8" opacity="0.35"/>
+
+  <!-- Glass rim ellipse -->
+  <ellipse cx="300" cy="126" rx="100" ry="18" fill="#FFBD90" opacity="0.5"/>
+  <ellipse cx="300" cy="122" rx="98" ry="16" fill="#FFE8D4" opacity="0.6"/>
+
+  <!-- Liquid inside -->
+  <path d="M218,148 L300,265 L382,148 Q382,138 300,138 Q218,138 218,148 Z" fill="#FF7733" opacity="0.7"/>
+  <path d="M220,150 L296,260 L300,265 L304,260 L380,150" fill="none" stroke="#FFB088" stroke-width="2" opacity="0.5"/>
+
+  <!-- Glass shine lines -->
+  <path d="M220,135 L240,220" stroke="white" stroke-width="4" stroke-linecap="round" opacity="0.25"/>
+  <path d="M232,128 L245,175" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.2"/>
+
+  <!-- Olive on cocktail pick -->
+  <line x1="335" y1="108" x2="295" y2="175" stroke="#C8A060" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="335" cy="106" r="13" fill="#4A8020"/>
+  <circle cx="335" cy="106" r="7" fill="#C84040" opacity="0.85"/>
+  <circle cx="330" cy="101" r="4" fill="#6AAA30" opacity="0.5"/>
+
+  <!-- Rim highlight -->
+  <ellipse cx="300" cy="122" rx="96" ry="14" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+</svg>

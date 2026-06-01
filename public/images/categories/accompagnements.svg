@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#BEF264"/>
+      <stop offset="100%" stop-color="#4D7C0F"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bg)"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="300" cy="352" rx="125" ry="17" fill="#1A2E05" opacity="0.4" filter="url(#blur)"/>
+
+  <!-- === BOWL === -->
+  <!-- Bowl outer body -->
+  <path d="M168,248 Q168,340 300,340 Q432,340 432,248 Q432,222 300,222 Q168,222 168,248 Z" fill="#A3E635"/>
+  <!-- Bowl inner shadow/depth -->
+  <path d="M182,252 Q182,328 300,328 Q418,328 418,252 Q418,230 300,230 Q182,230 182,252 Z" fill="#84CC16"/>
+  <!-- Bowl rim -->
+  <ellipse cx="300" cy="222" rx="132" ry="26" fill="#65A30D"/>
+  <ellipse cx="300" cy="219" rx="130" ry="24" fill="#84CC16"/>
+  <ellipse cx="300" cy="216" rx="127" ry="21" fill="#A3E635"/>
+  <!-- Rim highlight -->
+  <ellipse cx="300" cy="214" rx="124" ry="19" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+  <!-- Bowl left highlight -->
+  <path d="M172,252 Q170,295 180,322" stroke="white" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.25"/>
+
+  <!-- === VEGETABLES IN BOWL === -->
+  <!-- Carrot pieces (orange) -->
+  <ellipse cx="248" cy="228" rx="28" ry="14" fill="#F97316" transform="rotate(-20,248,228)"/>
+  <ellipse cx="248" cy="228" rx="24" ry="11" fill="#FB923C" transform="rotate(-20,248,228)"/>
+  <ellipse cx="240" cy="223" rx="8" ry="4" fill="#FED7AA" opacity="0.5" transform="rotate(-20,240,223)"/>
+
+  <ellipse cx="228" cy="244" rx="24" ry="12" fill="#EA580C" transform="rotate(15,228,244)"/>
+  <ellipse cx="228" cy="244" rx="20" ry="9" fill="#F97316" transform="rotate(15,228,244)"/>
+
+  <!-- Potato pieces (golden) -->
+  <ellipse cx="310" cy="222" rx="30" ry="15" fill="#CA8A04" transform="rotate(5,310,222)"/>
+  <ellipse cx="310" cy="222" rx="26" ry="12" fill="#EAB308" transform="rotate(5,310,222)"/>
+  <ellipse cx="303" cy="217" rx="9" ry="5" fill="#FEF08A" opacity="0.6" transform="rotate(5,303,217)"/>
+
+  <ellipse cx="355" cy="230" rx="26" ry="13" fill="#A16207" transform="rotate(-10,355,230)"/>
+  <ellipse cx="355" cy="230" rx="22" ry="10" fill="#CA8A04" transform="rotate(-10,355,230)"/>
+
+  <!-- Zucchini round (dark green) -->
+  <circle cx="370" cy="218" r="18" fill="#15803D"/>
+  <circle cx="370" cy="218" r="14" fill="#16A34A"/>
+  <circle cx="370" cy="218" r="7" fill="#4ADE80" opacity="0.6"/>
+  <ellipse cx="366" cy="214" rx="4" ry="2.5" fill="#86EFAC" opacity="0.5"/>
+
+  <circle cx="268" cy="218" r="15" fill="#166534"/>
+  <circle cx="268" cy="218" r="11" fill="#15803D"/>
+  <circle cx="268" cy="218" r="5" fill="#4ADE80" opacity="0.6"/>
+
+  <!-- Red pepper piece -->
+  <path d="M305,238 Q318,230 328,238 Q335,248 322,255 Q310,258 303,250 Z" fill="#DC2626"/>
+  <path d="M307,239 Q318,232 327,239 Q333,247 321,253 Q310,256 305,249 Z" fill="#EF4444"/>
+  <ellipse cx="316" cy="241" rx="6" ry="3.5" fill="#FCA5A5" opacity="0.4"/>
+
+  <!-- Herb sprig -->
+  <line x1="240" y1="238" x2="252" y2="208" stroke="#14532D" stroke-width="2.5" stroke-linecap="round"/>
+  <ellipse cx="243" cy="234" rx="5" ry="2" fill="#16A34A" transform="rotate(65,243,234)"/>
+  <ellipse cx="246" cy="226" rx="5" ry="2" fill="#15803D" transform="rotate(68,246,226)"/>
+  <ellipse cx="249" cy="218" rx="4" ry="2" fill="#16A34A" transform="rotate(70,249,218)"/>
+</svg>
