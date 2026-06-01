@@ -2,66 +2,66 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 01/06/2026 10:19:39
- * Total: 337 recettes
+ * Dernière mise à jour: 01/06/2026 11:03:40
+ * Total: 335 recettes
  */
-export const exportSyncId = "1780309179564";
+export const exportSyncId = "1780311820900";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5919",
         "title": "Curry de pois chiche",
         "description": "Un curry végétarien et savoureux à base de pois chiches, lait de coco, légumes et épices, parfait pour un repas réconfortant.",
-        "image": "/images/recipe-placeholder.jpg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fcurry.jpeg&v=1780318540000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7570299929231396118\" data-video-id=\"7570299929231396118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7570299929231396118\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7570299929231396118\" data-video-id=\"7570299929231396118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7570299929231396118\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             400 g pois chiche"
+                "name": "🥣\n 400 g pois chiche"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             400ml lait de coco"
+                "name": "🥛\n 400ml lait de coco"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             Un oignons, haché"
+                "name": "🧅\n Un oignons, haché"
             },
             {
                 "quantity": "",
-                "name": "🥕\n             Une carotte, haché"
+                "name": "🥕\n Une carotte, haché"
             },
             {
                 "quantity": "",
-                "name": "🍅\n             2 c. à s concentré tomate"
+                "name": "🍅\n 2 c. à s concentré tomate"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             3 c. à s curry"
+                "name": "🧂\n 3 c. à s curry"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             1 c. à s cumin"
+                "name": "🧂\n 1 c. à s cumin"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             1 c. à s piment"
+                "name": "🌶️\n 1 c. à s piment"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Une poignée d'épinard"
+                "name": "🥣\n Une poignée d'épinard"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Coriandre / citron"
+                "name": "🍋\n Coriandre / citron"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             Beurre VG"
+                "name": "🧈\n Beurre VG"
             }
         ],
         "steps": [
@@ -22138,201 +22138,6 @@ export const mockRecipes: Recipe[] = [
             "plat principal",
             "rapide",
             "saumon"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3723",
-        "title": "Alfredo Chicken Pasta",
-        "description": "Une version crémeuse, fondante et ultra protéinée de la pasta Alfredo. Parfaite pour prendre soin de tes apports sans sacrifier le goût.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchicken-alfredo.jpg&v=1773762687000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7525831802825592096\" data-video-id=\"7525831802825592096\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7525831802825592096\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n 1200g de blanc de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 600g de fusilli"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 40g de mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 2 poivrons orange en lanières"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 2 oignons rouges"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 2 càs d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 càs d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 càs d'oignon en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 càs de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 càs d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 càc de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 càc de piment de cayenne"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 360g de cottage cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 100g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 150g de lait écrémé"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 20cl de crème liquide 4%"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            }
-        ],
-        "steps": [
-            "Aplatis les blancs de poulet entre deux feuilles de film alimentaire à l'aide d'une casserole.",
-            "Assaisonne-les avec toutes les épices (ail en poudre, oignon en poudre, paprika, origan, poivre, piment de cayenne).",
-            "Fais-les revenir dans une poêle bien chaude avec un filet d'huile, 3 à 4 minutes de chaque côté, puis retire-les.",
-            "Dans la même poêle, fais suer les oignons et les poivrons pendant 4 minutes.",
-            "Ajoute l'ail et laisse mijoter à feu doux jusqu'à ce que les légumes soient bien fondants.",
-            "Mixe les ingrédients de la sauce : crème liquide, cottage cheese, parmesan, lait, sel et poivre.",
-            "Coupe le poulet en morceaux, remets-le dans la poêle avec la sauce, et mélange bien.",
-            "Fais cuire les pâtes, garde un peu d'eau de cuisson, et ajoute-la dans la préparation pour ajuster la texture.",
-            "Incorpore les pâtes dans la sauce, ajoute la mozzarella râpée et le persil frais, mélange le tout, puis divise en 8 portions égales. C'est prêt !"
-        ],
-        "tags": [
-            "Alfredo",
-            "Healthy",
-            "italien",
-            "pates",
-            "poulet",
-            "protéiné"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3726",
-        "title": "Escalopes de poulet sauce champignons",
-        "description": "Un plat principal gourmand et riche en protéines, composé d'escalopes de poulet et de pommes de terre rôties, nappées d'une sauce crémeuse aux champignons, oignon et ail. Idéal pour une perte de poids sans frustration.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773533730690.jpg&v=1773762675000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463358865338273046\" data-video-id=\"7463358865338273046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463358865338273046\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             2 escalopes de poulet (400 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             500 g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 c.à.c d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300 g de champignons de paris"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 petit oignon (50 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail (5 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 c.à.c de moutarde de Dijon"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 c.à.s de vinaigre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 c.à.s de Maggi (ou sauce soja)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             250 ml de crème Rama 7%"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 petite poignée de ciboulette et persil frais ciselés"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Poivre, sel (selon goût)"
-            }
-        ],
-        "steps": [
-            "Préchauffe ton four à 200°C. Coupe les pommes de terre grossièrement, assaisonne-les (sel, poivre, herbes si tu veux), et mets-les sur une plaque avec un peu de spray d'huile. Ajoute les escalopes de poulet sur la même plaque. Enfourne environ 25-30 min (retourne à mi-cuisson). Les patates peuvent être faites au airfryer : 200° durant 23-25min // ainsi que le poulet: 200° durant 13-15min.",
-            "Pendant ce temps, émince les champignons, l'oignon et l'ail. Dans une poêle bien chaude, fais chauffer 1 c. à café d'huile d'olive puis ajoute les champignons. Fais-les revenir 5-7 min jusqu'à ce qu'ils deviennent plus tendres et légèrement dorés.",
-            "Ajoute ensuite l'oignon et l'ail, et laisse suer 3 min. Ajoute la ciboulette et le persil ciselés et déglace avec le vinaigre blanc, puis avec le Maggi. Mélange bien.",
-            "Incorpore la moutarde, puis verse la crème. Laisse mijoter quelques minutes à feu doux jusqu'à ce que la sauce épaississe. Ajuste l'assaisonnement avec du sel et du poivre selon ton goût.",
-            "Sors le poulet et les pommes de terre du four. Dispose-les dans une assiette creuse et nappe généreusement la sauce champignons par-dessus les escalopes."
-        ],
-        "tags": [
-            "champignons",
-            "Healthy",
-            "plat principal",
-            "pommes de terre",
-            "poulet"
         ],
         "isFeatured": false,
         "isFavorite": false,
