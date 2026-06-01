@@ -2,11 +2,296 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 01/06/2026 08:21:23
- * Total: 334 recettes
+ * Dernière mise à jour: 01/06/2026 10:19:39
+ * Total: 337 recettes
  */
-export const exportSyncId = "1780302083185";
+export const exportSyncId = "1780309179564";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5919",
+        "title": "Curry de pois chiche",
+        "description": "Un curry végétarien et savoureux à base de pois chiches, lait de coco, légumes et épices, parfait pour un repas réconfortant.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7570299929231396118\" data-video-id=\"7570299929231396118\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7570299929231396118\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400 g pois chiche"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             400ml lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Un oignons, haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             Une carotte, haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 c. à s concentré tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3 c. à s curry"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à s cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 c. à s piment"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Une poignée d'épinard"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Coriandre / citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre VG"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Healthy",
+            "Végé",
+            "Végétarien"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5917",
+        "title": "Salade aux pois chiches croustillants",
+        "description": "Non mais cette salade là !!! Je vous garantis que je vais la refaire TOUT l'été.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7640526770629922081\" data-video-id=\"7640526770629922081\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7640526770629922081\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1 boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 poignée de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques brins d'aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques brins de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à soupe d'huile d'olive (pour les pois chiches)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 c. à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1/2 c. à café d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre (pour les pois chiches)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à soupe d'huile d'olive (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 c. à café de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 c. à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1/2 c. à café d'herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre (pour la vinaigrette)"
+            }
+        ],
+        "steps": [
+            "Égoutter et sécher les pois chiches. Les mélanger avec l'huile d'olive et les épices, puis les faire cuire au four à 200°C pendant 20 à 25 minutes jusqu'à ce qu'ils soient croustillants.",
+            "Couper le concombre en rondelles, l'avocat en cubes et ciseler finement l'oignon rouge.",
+            "Hacher le persil et l'aneth très finement.",
+            "Préparer la vinaigrette en mélangeant tous les ingrédients.",
+            "Dans un saladier, réunir le concombre, l'avocat, l'oignon rouge, la feta émiettée, les herbes fraîches et les pignons de pin. Verser la vinaigrette puis mélanger délicatement.",
+            "Ajouter les pois chiches croustillants juste avant de servir."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5915",
+        "title": "Salade aux pois chiches croustillants",
+        "description": "Une salade fraîche et gourmande avec des pois chiches croustillants, avocat, concombre et feta, parfaite pour l'été.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7640526770629922081\" data-video-id=\"7640526770629922081\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7640526770629922081\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1 boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 poignée de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques brins d'aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques brins de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à soupe d'huile d'olive (pour les pois chiches)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 c. à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1/2 c. à café d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre (pour les pois chiches)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à soupe d'huile d'olive (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 c. à café de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 c. à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1/2 c. à café d'herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre (pour la vinaigrette)"
+            }
+        ],
+        "steps": [
+            "Égoutter et sécher les pois chiches. Les mélanger avec l'huile d'olive et les épices, puis les faire cuire au four à 200°C pendant 20 à 25 minutes jusqu'à ce qu'ils soient croustillants.",
+            "Couper le concombre en rondelles, l'avocat en cubes et ciseler finement l'oignon rouge.",
+            "Hacher le persil et l'aneth très finement.",
+            "Préparer la vinaigrette en mélangeant tous les ingrédients.",
+            "Dans un saladier, réunir le concombre, l'avocat, l'oignon rouge, la feta émiettée, les herbes fraîches et les pignons de pin. Verser la vinaigrette puis mélanger délicatement.",
+            "Ajouter les pois chiches croustillants juste avant de servir. Régalez-vous."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5913",
         "title": "Calamars frits à l'Air Fryer",
@@ -326,6 +611,55 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "5901",
+        "title": "Smoothie pastèque fraise citron",
+        "description": "Un smoothie rafraîchissant et rapide à préparer, idéal pour l'été et la perte de poids, à base de pastèque, fraise, citron, miel et menthe.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de fraise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de 2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 à 250ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5902",
         "title": "Smoothie Pastèque Fraise",
         "description": "Un smoothie rafraîchissant et hydratant à base de pastèque, fraise, citron, miel et menthe, parfait pour l'été.",
@@ -366,55 +700,6 @@ export const mockRecipes: Recipe[] = [
             "Mettre tous les ingrédients (pastèque, fraises, jus de citron, miel, eau et feuilles de menthe) dans un blender.",
             "Mixer jusqu'à obtenir une consistance lisse et homogène.",
             "Servir frais."
-        ],
-        "tags": [
-            "Healthy",
-            "Rafraîchissements",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5901",
-        "title": "Smoothie pastèque fraise citron",
-        "description": "Un smoothie rafraîchissant et rapide à préparer, idéal pour l'été et la perte de poids, à base de pastèque, fraise, citron, miel et menthe.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g de pastèque"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250g de fraise"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de 2 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cas de miel"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             200 à 250ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques feuilles de menthe"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
         ],
         "tags": [
             "Healthy",
