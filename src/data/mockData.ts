@@ -2,11 +2,333 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 01/06/2026 11:03:40
+ * Dernière mise à jour: 01/06/2026 11:19:11
  * Total: 335 recettes
  */
-export const exportSyncId = "1780311820900";
+export const exportSyncId = "1780312751796";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5907",
+        "title": "Sauce Poivre Parfaite",
+        "description": "Une recette de sauce au poivre parfaite, riche et crémeuse, avec du brandy et du fond de veau, idéale pour accompagner vos viandes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FSauce-au-poivre-5-baies.jpg&v=1780319461000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7429792449842646304\" data-video-id=\"7429792449842646304\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7429792449842646304\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n 2 cas de poivre noir concassé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 30g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 petites échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 10cl de brandy"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 20cl de crème fraîche épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 10cl de fond de veau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5909",
+        "title": "Beurre persillé à l'ail",
+        "description": "Une astuce simple pour préparer un beurre aromatisé au persil et à l'ail, idéal pour accompagner viandes, poissons, légumes ou simplement du pain.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fbeurre.jpg&v=1780319201000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7615298862835567894\" data-video-id=\"7615298862835567894\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7615298862835567894\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌿\n 1/3 de botte de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 5 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 250g de beurre demi sel"
+            }
+        ],
+        "steps": [
+            "Hacher finement le persil et l'ail.",
+            "Couper le beurre demi-sel en petits morceaux et le laisser 15 minutes à température ambiante pour qu'il ramollisse.",
+            "Mélanger le persil haché, l'ail haché et le beurre ramolli jusqu'à obtenir une préparation homogène.",
+            "Rouler le mélange en rondin dans du papier alimentaire.",
+            "Conserver au réfrigérateur ou au congélateur en portions."
+        ],
+        "tags": [
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5911",
+        "title": "Panuozzo",
+        "description": "Recette maison pour préparer des panuozzos, des sandwichs italiens à base de pâte à pizza.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsandw.jpg&v=1780319133000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645344736894651681\" data-video-id=\"7645344736894651681\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645344736894651681\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 260gr de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 50gr de semoule fine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3gr de levure boulangère"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 càc de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 càc de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 20ml huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 210ml d'eau tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Semoule fine pour le façonnage"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5913",
+        "title": "Calamars frits à l'Air Fryer",
+        "description": "Une recette simple et rapide de calamars frits à l'Air Fryer, parfaits pour l'apéro avec une sauce bien fraîche.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcalamars-frits-avec-friteuse-a-air_1200x800.jpg&v=1780319063000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7620883582772464918\" data-video-id=\"7620883582772464918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620883582772464918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Calamars / Encornets"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélange la farine, l'ail en poudre, le zeste de citron, le paprika et le poivre.",
+            "Ajoute les calamars dans ce mélange, enrobe bien chaque morceau de farine.",
+            "Place le tout dans l'air fryer et ça part en cuisson pendant 10 minutes à 190°.",
+            "Ajoute un peu de fleur de sel et du persil avant de servir. Bon appétit."
+        ],
+        "tags": [
+            "airfryer",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5917",
+        "title": "Salade aux pois chiches croustillants",
+        "description": "Non mais cette salade là !!! Je vous garantis que je vais la refaire TOUT l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FChickpea_Salad_1.jpg&v=1780318948000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7640526770629922081\" data-video-id=\"7640526770629922081\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7640526770629922081\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n 1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n 1 avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n 1 boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 80 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 poignée de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Quelques brins d'aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Quelques brins de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 c. à soupe d'huile d'olive (pour les pois chiches)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1/2 c. à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1/2 c. à café d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre (pour les pois chiches)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 3 c. à soupe d'huile d'olive (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Le jus d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 c. à café de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 c. à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1/2 c. à café d'herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre (pour la vinaigrette)"
+            }
+        ],
+        "steps": [
+            "Égoutter et sécher les pois chiches. Les mélanger avec l'huile d'olive et les épices, puis les faire cuire au four à 200°C pendant 20 à 25 minutes jusqu'à ce qu'ils soient croustillants.",
+            "Couper le concombre en rondelles, l'avocat en cubes et ciseler finement l'oignon rouge.",
+            "Hacher le persil et l'aneth très finement.",
+            "Préparer la vinaigrette en mélangeant tous les ingrédients.",
+            "Dans un saladier, réunir le concombre, l'avocat, l'oignon rouge, la feta émiettée, les herbes fraîches et les pignons de pin. Verser la vinaigrette puis mélanger délicatement.",
+            "Ajouter les pois chiches croustillants juste avant de servir."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5919",
         "title": "Curry de pois chiche",
@@ -73,435 +395,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Végé",
             "Végétarien"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5917",
-        "title": "Salade aux pois chiches croustillants",
-        "description": "Non mais cette salade là !!! Je vous garantis que je vais la refaire TOUT l'été.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7640526770629922081\" data-video-id=\"7640526770629922081\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7640526770629922081\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥒\n             1 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             1 avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             1 boîte de pois chiches"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80 g de feta"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 poignée de pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques brins d'aneth"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques brins de persil"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 c. à soupe d'huile d'olive (pour les pois chiches)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c. à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 c. à café de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1/2 c. à café d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre (pour les pois chiches)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 c. à soupe d'huile d'olive (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus d'1 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 c. à café de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 c. à café de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1/2 c. à café d'herbes de Provence"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre (pour la vinaigrette)"
-            }
-        ],
-        "steps": [
-            "Égoutter et sécher les pois chiches. Les mélanger avec l'huile d'olive et les épices, puis les faire cuire au four à 200°C pendant 20 à 25 minutes jusqu'à ce qu'ils soient croustillants.",
-            "Couper le concombre en rondelles, l'avocat en cubes et ciseler finement l'oignon rouge.",
-            "Hacher le persil et l'aneth très finement.",
-            "Préparer la vinaigrette en mélangeant tous les ingrédients.",
-            "Dans un saladier, réunir le concombre, l'avocat, l'oignon rouge, la feta émiettée, les herbes fraîches et les pignons de pin. Verser la vinaigrette puis mélanger délicatement.",
-            "Ajouter les pois chiches croustillants juste avant de servir."
-        ],
-        "tags": [
-            "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5915",
-        "title": "Salade aux pois chiches croustillants",
-        "description": "Une salade fraîche et gourmande avec des pois chiches croustillants, avocat, concombre et feta, parfaite pour l'été.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7640526770629922081\" data-video-id=\"7640526770629922081\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7640526770629922081\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥒\n             1 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             1 avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             1 boîte de pois chiches"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80 g de feta"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 poignée de pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques brins d'aneth"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques brins de persil"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 c. à soupe d'huile d'olive (pour les pois chiches)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c. à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 c. à café de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1/2 c. à café d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre (pour les pois chiches)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 c. à soupe d'huile d'olive (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus d'1 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 c. à café de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 c. à café de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1/2 c. à café d'herbes de Provence"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre (pour la vinaigrette)"
-            }
-        ],
-        "steps": [
-            "Égoutter et sécher les pois chiches. Les mélanger avec l'huile d'olive et les épices, puis les faire cuire au four à 200°C pendant 20 à 25 minutes jusqu'à ce qu'ils soient croustillants.",
-            "Couper le concombre en rondelles, l'avocat en cubes et ciseler finement l'oignon rouge.",
-            "Hacher le persil et l'aneth très finement.",
-            "Préparer la vinaigrette en mélangeant tous les ingrédients.",
-            "Dans un saladier, réunir le concombre, l'avocat, l'oignon rouge, la feta émiettée, les herbes fraîches et les pignons de pin. Verser la vinaigrette puis mélanger délicatement.",
-            "Ajouter les pois chiches croustillants juste avant de servir. Régalez-vous."
-        ],
-        "tags": [
-            "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5913",
-        "title": "Calamars frits à l'Air Fryer",
-        "description": "Une recette simple et rapide de calamars frits à l'Air Fryer, parfaits pour l'apéro avec une sauce bien fraîche.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7620883582772464918\" data-video-id=\"7620883582772464918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620883582772464918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Calamars / Encornets"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            }
-        ],
-        "steps": [
-            "Dans un bol, mélange la farine, l'ail en poudre, le zeste de citron, le paprika et le poivre.",
-            "Ajoute les calamars dans ce mélange, enrobe bien chaque morceau de farine.",
-            "Place le tout dans l'air fryer et ça part en cuisson pendant 10 minutes à 190°.",
-            "Ajoute un peu de fleur de sel et du persil avant de servir. Bon appétit."
-        ],
-        "tags": [
-            "airfryer",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5911",
-        "title": "Panuozzo à la maison",
-        "description": "Recette maison pour préparer des panuozzos, des sandwichs italiens à base de pâte à pizza.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645344736894651681\" data-video-id=\"7645344736894651681\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645344736894651681\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             260gr de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             50gr de semoule fine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3gr de levure boulangère"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 càc de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 càc de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             20ml huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             210ml d'eau tiède"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Semoule fine pour le façonnage"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5909",
-        "title": "Beurre persillé à l'ail",
-        "description": "Une astuce simple pour préparer un beurre aromatisé au persil et à l'ail, idéal pour accompagner viandes, poissons, légumes ou simplement du pain.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7615298862835567894\" data-video-id=\"7615298862835567894\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7615298862835567894\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌿\n             1/3 de botte de persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             5 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             250g de beurre demi sel"
-            }
-        ],
-        "steps": [
-            "Hacher finement le persil et l'ail.",
-            "Couper le beurre demi-sel en petits morceaux et le laisser 15 minutes à température ambiante pour qu'il ramollisse.",
-            "Mélanger le persil haché, l'ail haché et le beurre ramolli jusqu'à obtenir une préparation homogène.",
-            "Rouler le mélange en rondin dans du papier alimentaire.",
-            "Conserver au réfrigérateur ou au congélateur en portions."
-        ],
-        "tags": [
-            "Pas cher",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5907",
-        "title": "Sauce Poivre Parfaite",
-        "description": "Une recette de sauce au poivre parfaite, riche et crémeuse, avec du brandy et du fond de veau, idéale pour accompagner vos viandes.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7429792449842646304\" data-video-id=\"7429792449842646304\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7429792449842646304\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 cas de poivre noir concassé"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             30g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 petites échalotes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             10cl de brandy"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             20cl de crème fraîche épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             10cl de fond de veau"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Sauces"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -604,55 +497,6 @@ export const mockRecipes: Recipe[] = [
             "épicé",
             "Healthy",
             "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5901",
-        "title": "Smoothie pastèque fraise citron",
-        "description": "Un smoothie rafraîchissant et rapide à préparer, idéal pour l'été et la perte de poids, à base de pastèque, fraise, citron, miel et menthe.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g de pastèque"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250g de fraise"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de 2 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cas de miel"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             200 à 250ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques feuilles de menthe"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
-        ],
-        "tags": [
-            "Healthy",
-            "Rafraîchissements",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -22138,6 +21982,201 @@ export const mockRecipes: Recipe[] = [
             "plat principal",
             "rapide",
             "saumon"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3723",
+        "title": "Alfredo Chicken Pasta",
+        "description": "Une version crémeuse, fondante et ultra protéinée de la pasta Alfredo. Parfaite pour prendre soin de tes apports sans sacrifier le goût.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchicken-alfredo.jpg&v=1773762687000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7525831802825592096\" data-video-id=\"7525831802825592096\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7525831802825592096\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 1200g de blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 600g de fusilli"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 40g de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 2 poivrons orange en lanières"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 2 càs d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 càs d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 càs d'oignon en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 càs de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 càs d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 càc de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 càc de piment de cayenne"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 360g de cottage cheese"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 100g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150g de lait écrémé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 20cl de crème liquide 4%"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Aplatis les blancs de poulet entre deux feuilles de film alimentaire à l'aide d'une casserole.",
+            "Assaisonne-les avec toutes les épices (ail en poudre, oignon en poudre, paprika, origan, poivre, piment de cayenne).",
+            "Fais-les revenir dans une poêle bien chaude avec un filet d'huile, 3 à 4 minutes de chaque côté, puis retire-les.",
+            "Dans la même poêle, fais suer les oignons et les poivrons pendant 4 minutes.",
+            "Ajoute l'ail et laisse mijoter à feu doux jusqu'à ce que les légumes soient bien fondants.",
+            "Mixe les ingrédients de la sauce : crème liquide, cottage cheese, parmesan, lait, sel et poivre.",
+            "Coupe le poulet en morceaux, remets-le dans la poêle avec la sauce, et mélange bien.",
+            "Fais cuire les pâtes, garde un peu d'eau de cuisson, et ajoute-la dans la préparation pour ajuster la texture.",
+            "Incorpore les pâtes dans la sauce, ajoute la mozzarella râpée et le persil frais, mélange le tout, puis divise en 8 portions égales. C'est prêt !"
+        ],
+        "tags": [
+            "Alfredo",
+            "Healthy",
+            "italien",
+            "pates",
+            "poulet",
+            "protéiné"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3726",
+        "title": "Escalopes de poulet sauce champignons",
+        "description": "Un plat principal gourmand et riche en protéines, composé d'escalopes de poulet et de pommes de terre rôties, nappées d'une sauce crémeuse aux champignons, oignon et ail. Idéal pour une perte de poids sans frustration.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773533730690.jpg&v=1773762675000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463358865338273046\" data-video-id=\"7463358865338273046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463358865338273046\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             2 escalopes de poulet (400 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             500 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c.à.c d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de champignons de paris"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon (50 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (5 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 c.à.c de moutarde de Dijon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c.à.s de vinaigre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 c.à.s de Maggi (ou sauce soja)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250 ml de crème Rama 7%"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 petite poignée de ciboulette et persil frais ciselés"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Poivre, sel (selon goût)"
+            }
+        ],
+        "steps": [
+            "Préchauffe ton four à 200°C. Coupe les pommes de terre grossièrement, assaisonne-les (sel, poivre, herbes si tu veux), et mets-les sur une plaque avec un peu de spray d'huile. Ajoute les escalopes de poulet sur la même plaque. Enfourne environ 25-30 min (retourne à mi-cuisson). Les patates peuvent être faites au airfryer : 200° durant 23-25min // ainsi que le poulet: 200° durant 13-15min.",
+            "Pendant ce temps, émince les champignons, l'oignon et l'ail. Dans une poêle bien chaude, fais chauffer 1 c. à café d'huile d'olive puis ajoute les champignons. Fais-les revenir 5-7 min jusqu'à ce qu'ils deviennent plus tendres et légèrement dorés.",
+            "Ajoute ensuite l'oignon et l'ail, et laisse suer 3 min. Ajoute la ciboulette et le persil ciselés et déglace avec le vinaigre blanc, puis avec le Maggi. Mélange bien.",
+            "Incorpore la moutarde, puis verse la crème. Laisse mijoter quelques minutes à feu doux jusqu'à ce que la sauce épaississe. Ajuste l'assaisonnement avec du sel et du poivre selon ton goût.",
+            "Sors le poulet et les pommes de terre du four. Dispose-les dans une assiette creuse et nappe généreusement la sauce champignons par-dessus les escalopes."
+        ],
+        "tags": [
+            "champignons",
+            "Healthy",
+            "plat principal",
+            "pommes de terre",
+            "poulet"
         ],
         "isFeatured": false,
         "isFavorite": false,
