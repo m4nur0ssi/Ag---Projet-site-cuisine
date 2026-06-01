@@ -2,11 +2,165 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 01/06/2026 11:19:11
+ * Dernière mise à jour: 01/06/2026 11:52:56
  * Total: 335 recettes
  */
-export const exportSyncId = "1780312751796";
+export const exportSyncId = "1780314776829";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5902",
+        "title": "Smoothie Pastèque Fraise",
+        "description": "Un smoothie rafraîchissant et hydratant à base de pastèque, fraise, citron, miel et menthe, parfait pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecettes100faim-smoothie-fraise-framboise-pasteque.jpg&v=1780321682000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 500g de pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 250g de fraise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Jus de 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 200 à 250ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Quelques feuilles de menthe"
+            }
+        ],
+        "steps": [
+            "Mettre tous les ingrédients (pastèque, fraises, jus de citron, miel, eau et feuilles de menthe) dans un blender.",
+            "Mixer jusqu'à obtenir une consistance lisse et homogène.",
+            "Servir frais."
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5905",
+        "title": "Salade protéinée au poulet et chimichurri",
+        "description": "Une salade fraîche et protéinée à base de poulet, légumes et pois chiches, relevée par une sauce chimichurri maison pleine de saveurs.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsalade-de-poulet-a-la-sauce-chimichurri-90121f26.jpg&v=1780319760000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643528928467881249\" data-video-id=\"7643528928467881249\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643528928467881249\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n Une bonne poignée de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n 3 petits concombres"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n ½ oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n 1 boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 boîte de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 200 g d'escalope de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Jus d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 à 2 c. à soupe de vinaigre blanc ou vinaigre de cidre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n ½ tasse de persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n ¼ tasse de coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 petite échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 à 3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 petit piment rouge (ou poivron rouge)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n ½ à ¾ tasse d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 c. à café d'origan séché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel et poivre noir"
+            }
+        ],
+        "steps": [
+            "Couper les tomates cerises en deux, les concombres en rondelles et l'oignon rouge finement. Égoutter et rincer les pois chiches et le maïs.",
+            "Cuire les escalopes de poulet (à la poêle, au four ou grillées), puis les couper en morceaux ou en lanières.",
+            "Pour la sauce chimichurri : Hacher finement le persil frais, la coriandre fraîche, l'échalote, l'ail et le piment rouge (ou poivron rouge).",
+            "Dans un bol, mélanger les herbes et légumes hachés avec le jus de citron, le vinaigre blanc (ou de cidre), l'huile d'olive extra vierge, l'origan séché, le sel et le poivre noir. Bien mélanger.",
+            "Dans un grand saladier, combiner les tomates cerises, les concombres, l'oignon rouge, les pois chiches, le maïs et les morceaux de poulet.",
+            "Verser généreusement la sauce chimichurri sur la salade et mélanger délicatement pour bien enrober tous les ingrédients. Ajuster l'assaisonnement si nécessaire."
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5907",
         "title": "Sauce Poivre Parfaite",
@@ -395,160 +549,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Végé",
             "Végétarien"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5905",
-        "title": "Salade protéinée au poulet et chimichurri",
-        "description": "Une salade fraîche et protéinée à base de poulet, légumes et pois chiches, relevée par une sauce chimichurri maison pleine de saveurs.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643528928467881249\" data-video-id=\"7643528928467881249\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643528928467881249\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             Une bonne poignée de tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             3 petits concombres"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             ½ oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             1 boîte de pois chiches"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 boîte de maïs"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             200 g d'escalope de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus d'1 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 à 2 c. à soupe de vinaigre blanc ou vinaigre de cidre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             ½ tasse de persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             ¼ tasse de coriandre fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 petite échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 à 3 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 petit piment rouge (ou poivron rouge)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             ½ à ¾ tasse d'huile d'olive extra vierge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à café d'origan séché"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre noir"
-            }
-        ],
-        "steps": [
-            "Couper les tomates cerises en deux, les concombres en rondelles et l'oignon rouge finement. Égoutter et rincer les pois chiches et le maïs.",
-            "Cuire les escalopes de poulet (à la poêle, au four ou grillées), puis les couper en morceaux ou en lanières.",
-            "Pour la sauce chimichurri : Hacher finement le persil frais, la coriandre fraîche, l'échalote, l'ail et le piment rouge (ou poivron rouge).",
-            "Dans un bol, mélanger les herbes et légumes hachés avec le jus de citron, le vinaigre blanc (ou de cidre), l'huile d'olive extra vierge, l'origan séché, le sel et le poivre noir. Bien mélanger.",
-            "Dans un grand saladier, combiner les tomates cerises, les concombres, l'oignon rouge, les pois chiches, le maïs et les morceaux de poulet.",
-            "Verser généreusement la sauce chimichurri sur la salade et mélanger délicatement pour bien enrober tous les ingrédients. Ajuster l'assaisonnement si nécessaire."
-        ],
-        "tags": [
-            "épicé",
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5902",
-        "title": "Smoothie Pastèque Fraise",
-        "description": "Un smoothie rafraîchissant et hydratant à base de pastèque, fraise, citron, miel et menthe, parfait pour l'été.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645385942219377953\" data-video-id=\"7645385942219377953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645385942219377953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g de pastèque"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250g de fraise"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de 2 citrons"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cas de miel"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             200 à 250ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques feuilles de menthe"
-            }
-        ],
-        "steps": [
-            "Mettre tous les ingrédients (pastèque, fraises, jus de citron, miel, eau et feuilles de menthe) dans un blender.",
-            "Mixer jusqu'à obtenir une consistance lisse et homogène.",
-            "Servir frais."
-        ],
-        "tags": [
-            "Healthy",
-            "Rafraîchissements",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
