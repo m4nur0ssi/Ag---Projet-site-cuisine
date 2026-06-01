@@ -4,7 +4,7 @@ import RecipeClient from './RecipeClient';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
 
 export default async function RecipePage({ params }: { params: { id: string } }) {
-    const recipeIndex = mockRecipes.findIndex(r => r.id === params.id);
+    const recipeIndex = mockRecipes.findIndex(r => String(r.id) === String(params.id));
     const recipe = mockRecipes[recipeIndex];
 
     if (!recipe) {

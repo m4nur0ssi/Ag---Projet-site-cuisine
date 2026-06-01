@@ -12,10 +12,28 @@ interface RecipeSheetProps {
     onClose: () => void;
 }
 
-export default function RecipeSheet({ recipe, isOpen, onClose }: RecipeSheetProps) {
+export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose }: RecipeSheetProps) {
+    const [currentRecipe, setCurrentRecipe] = useState(initialRecipe);
     const [shouldRender, setShouldRender] = useState(isOpen);
     const scrollYRef = useRef(0);
     const controls = useDragControls();
+
+    // Sync when parent changes recipe
+    useEffect(() => { setCurrentRecipe(initialRecipe); }, [initialRecipe]);
+
+    // Listen for openRecipe event from similar recipes
+    useEffect(() => {
+        if (!isOpen) return;
+        const handler = (e: Event) => {
+            const r = (e as CustomEvent).detail;
+            if (r) {
+                setCurrentRecipe(r);
+                setTimeout(() => scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' }), 50);
+            }
+        };
+        window.addEventListener('openRecipe', handler);
+        return () => window.removeEventListener('openRecipe', handler);
+    }, [isOpen]);
     
     // Variables for manual swipe detection on scroll area
     const touchStartY = useRef(0);
@@ -23,15 +41,15 @@ export default function RecipeSheet({ recipe, isOpen, onClose }: RecipeSheetProp
     const scrollRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (isOpen && recipe) {
+        if (isOpen && currentRecipe) {
             localStorage.setItem('magic-last-viewed', JSON.stringify({
-                id: recipe.id,
-                title: recipe.title,
-                image: recipe.image
+                id: currentRecipe.id,
+                title: currentRecipe.title,
+                image: currentRecipe.image
             }));
             window.dispatchEvent(new Event('recipeViewed'));
         }
-    }, [isOpen, recipe]);
+    }, [isOpen, currentRecipe]);
 
     useEffect(() => {
         if (isOpen) {
@@ -82,7 +100,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose }: RecipeSheetProp
         }
     };
 
-    if (!recipe || !shouldRender) return null;
+    if (!currentRecipe || !shouldRender) return null;
 
     return (
         <Portal>
@@ -140,7 +158,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose }: RecipeSheetProp
                                 onTouchEnd={handleTouchEnd}
                                 style={{ paddingTop: '30px' }}
                             >
-                                <RecipeDetails recipe={recipe} isModal={true} />
+                                <RecipeDetails key={String(currentRecipe.id)} recipe={currentRecipe} isModal={true} />
                             </div>
                         </motion.div>
                     </div>

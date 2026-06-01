@@ -19,6 +19,9 @@ import SmartText from '@/components/SmartText/SmartText';
 import MagicConverter from '@/components/MagicConverter/MagicConverter';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import CommentSection from '@/components/CommentSection/CommentSection';
+import StarRating from '@/components/StarRating/StarRating';
+import { estimateRecipeCalories } from '@/lib/calories';
+import { mockRecipes } from '@/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './page.module.css';
 
@@ -57,6 +60,16 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
         window.addEventListener('shoppingListUpdated', updateCount);
         return () => window.removeEventListener('shoppingListUpdated', updateCount);
     }, []);
+
+    // Sauvegarder historique
+    useEffect(() => {
+        try {
+            const prev: string[] = JSON.parse(localStorage.getItem('recently-viewed') || '[]').map((r: any) => r.id || r);
+            const updated = [String(recipe.id), ...prev.filter(id => id !== String(recipe.id))].slice(0, 20);
+            localStorage.setItem('recently-viewed', JSON.stringify(updated));
+            window.dispatchEvent(new CustomEvent('recentlyViewedUpdated'));
+        } catch {}
+    }, [recipe.id]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -149,6 +162,33 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
     }, [recipe.id]);
 
     const ratio = useMemo(() => servings / (recipe.servings || 4), [servings, recipe.servings]);
+
+    const [personalNote, setPersonalNote] = useLocalStorage<string>(`recipe-note-${recipe.id}`, '');
+    const [noteExpanded, setNoteExpanded] = useState(false);
+    const calorieEstimate = useMemo(() =>
+        recipe.category !== 'restaurant' && recipe.ingredients?.length > 0
+            ? estimateRecipeCalories(recipe.ingredients, servings)
+            : null,
+    [recipe, servings]);
+    const similarRecipes = useMemo(() => {
+        return mockRecipes
+            .filter(r => String(r.id) !== String(recipe.id) && r.category !== 'restaurant')
+            .map(r => {
+                let score = 0;
+                if (r.category === recipe.category) score += 3;
+                const rTags = (r.tags || []).map(t => t.toLowerCase());
+                const myTags = (recipe.tags || []).map(t => t.toLowerCase());
+                score += rTags.filter(t => myTags.includes(t)).length * 2;
+                const myIngNames = (recipe.ingredients || []).map(i => i.name.toLowerCase());
+                const rIngNames = (r.ingredients || []).map(i => i.name.toLowerCase());
+                score += myIngNames.filter(n => rIngNames.some(rn => rn.includes(n) || n.includes(rn))).length;
+                return { recipe: r, score };
+            })
+            .filter(({ score }) => score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 6)
+            .map(({ recipe: r }) => r);
+    }, [recipe]);
 
     // Trend Hashtags Logic (Replicated from Homepage for consistency)
     const trendHashtags = useMemo(() => {
@@ -353,29 +393,37 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
         setCheckedIngredients(newChecked);
         triggerHaptic();
 
-        // SYNC AUTO AVEC LE HEADER (Compte Global)
-        // Si on déselectionne, on met à jour la liste globale immédiatement pour le badge
-        if (typeof window !== 'undefined' && isDeselecting) {
+        // SYNC AUTO — ajoute ou retire au clic
+        if (typeof window !== 'undefined') {
             const existingData = JSON.parse(window.localStorage.getItem('magic-shopping-list') || '{}');
-            if (existingData[recipe.id]) {
-                const ingredientName = recipe.ingredients[index].name;
-                // On retire cet ingrédient précis de la liste globale
-                existingData[recipe.id].ingredients = existingData[recipe.id].ingredients.filter((ing: any) => {
-                    // Comparaison souple pour ignorer les quantités scalées
-                    return !ing.name.toLowerCase().includes(ingredientName.toLowerCase().replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF\s]+/, '').split(' ')[0]);
-                });
+            const ing = recipe.ingredients[index];
+            const cleanName = ing.name.replace(/^[^\w\s]+\s*/, '');
+            const ingName = ing.quantity
+                ? `${scaleQuantity(ing.quantity, ratio)} ${cleanName}`
+                : scaleQuantity(cleanName, ratio);
 
-                // Si plus d'ingrédients pour cette recette, on supprime la recette de la liste
-                if (existingData[recipe.id].ingredients.length === 0) {
-                    delete existingData[recipe.id];
+            if (isDeselecting) {
+                if (existingData[recipe.id]) {
+                    const cleanKey = cleanName.toLowerCase().split(' ')[0];
+                    existingData[recipe.id].ingredients = existingData[recipe.id].ingredients.filter((i: any) =>
+                        !i.name.toLowerCase().includes(cleanKey)
+                    );
+                    if (existingData[recipe.id].ingredients.length === 0) delete existingData[recipe.id];
                 }
-
-                window.localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
-                window.dispatchEvent(new Event('shoppingListUpdated'));
-                window.dispatchEvent(new CustomEvent('magic-toast-notify', { 
-                    detail: isDeselecting ? 'Ingrédient retiré !' : 'Ingrédient ajouté !' 
-                }));
+            } else {
+                if (!existingData[recipe.id]) {
+                    existingData[recipe.id] = { title: recipe.title, image: recipe.image, ingredients: [] };
+                }
+                if (!existingData[recipe.id].image) existingData[recipe.id].image = recipe.image;
+                const already = existingData[recipe.id].ingredients.some((i: any) => i.name === ingName);
+                if (!already) existingData[recipe.id].ingredients.push({ name: ingName, checked: false });
             }
+
+            window.localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
+            window.dispatchEvent(new Event('shoppingListUpdated'));
+            window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+                detail: isDeselecting ? 'Retiré du panier' : 'Ajouté au panier !'
+            }));
         }
     };
 
@@ -972,6 +1020,30 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                             </div>
                         </>
                     )}
+                    {recipe.category !== 'restaurant' && (
+                        <>
+                            <div className={styles.metaDivider} />
+                            <div className={styles.metaItem}>
+                                <span className={styles.metaIcon}>⭐</span>
+                                <div>
+                                    <div className={styles.metaLabel}>Ma Note</div>
+                                    <StarRating recipeId={recipe.id} size="small" />
+                                </div>
+                            </div>
+                        </>
+                    )}
+                    {calorieEstimate && calorieEstimate.confidence !== 'low' && (
+                        <>
+                            <div className={styles.metaDivider} />
+                            <div className={styles.metaItem}>
+                                <span className={styles.metaIcon}>🔥</span>
+                                <div>
+                                    <div className={styles.metaLabel}>Calories</div>
+                                    <div className={styles.metaValue}>{calorieEstimate.perServing} kcal/pers.</div>
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 {/* Description pour restaurants */}
@@ -1030,17 +1102,6 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                                     </button>
                                     
                                     <MagicConverter />
-
-                                    <button 
-                                        className={`${styles.copyBtn} ${checkedCount > 0 ? styles.activeCopy : ''}`} 
-                                        onClick={copyIngredients}
-                                        disabled={checkedCount === 0}
-                                    >
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M12 5v14M5 12h14" />
-                                        </svg>
-                                        <span className={styles.hideMobileText}>Ajouter</span>
-                                    </button>
                                 </div>
                             </div>
                         )}
@@ -1210,6 +1271,64 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                                 dangerouslySetInnerHTML={{ __html: recipe.description }}
                             />
                         </div>
+                    </div>
+                )}
+
+                {/* Recettes similaires */}
+                {!focusMode && similarRecipes.length > 0 && (
+                    <div style={{ padding: '0 0 8px' }}>
+                        <div style={{ padding: '0 20px 10px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', opacity: 0.5, textTransform: 'uppercase' }}>
+                            Recettes similaires
+                        </div>
+                        <div style={{ display: 'flex', gap: 10, overflowX: 'auto', padding: '0 20px 4px', scrollbarWidth: 'none' }}>
+                            {similarRecipes.map(r => (
+                                <Link key={r.id} href={`/recipe/${r.id}`} style={{
+                                    flexShrink: 0, width: 140, background: 'rgba(255,255,255,0.06)',
+                                    border: '1px solid rgba(255,255,255,0.1)', borderRadius: 14,
+                                    overflow: 'hidden', textDecoration: 'none', display: 'block'
+                                }}>
+                                    <img src={r.image} alt={r.title} style={{ width: '100%', height: 90, objectFit: 'cover', display: 'block' }} />
+                                    <div style={{ padding: '6px 10px', fontSize: '0.75rem', color: 'white', fontWeight: 600, lineHeight: 1.3,
+                                        display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                                        {r.title}
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Note personnelle */}
+                {!focusMode && (
+                    <div style={{ padding: '4px 20px 20px' }}>
+                        <button
+                            onClick={() => setNoteExpanded(v => !v)}
+                            style={{
+                                display: 'flex', alignItems: 'center', gap: 8,
+                                background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
+                                borderRadius: 12, padding: '10px 16px', width: '100%',
+                                color: 'white', cursor: 'pointer', fontSize: '0.85rem'
+                            }}
+                        >
+                            <span style={{ flex: 1, textAlign: 'left', opacity: personalNote ? 1 : 0.5 }}>
+                                {personalNote ? 'Ma note personnelle' : 'Ajouter une note...'}
+                            </span>
+                            <span style={{ opacity: 0.5 }}>{noteExpanded ? '▲' : '▼'}</span>
+                        </button>
+                        {noteExpanded && (
+                            <textarea
+                                value={personalNote}
+                                onChange={e => setPersonalNote(e.target.value)}
+                                placeholder="Mes impressions, variantes, astuces..."
+                                rows={4}
+                                style={{
+                                    marginTop: 8, width: '100%', boxSizing: 'border-box',
+                                    background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.12)',
+                                    borderRadius: 10, padding: '10px 14px', color: 'white',
+                                    fontSize: '0.9rem', resize: 'vertical', fontFamily: 'inherit'
+                                }}
+                            />
+                        )}
                     </div>
                 )}
 

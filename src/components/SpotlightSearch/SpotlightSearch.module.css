@@ -83,6 +83,85 @@
     padding: 12px;
 }
 
+.quickFilters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.quickFilterBtn {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 5px 12px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.quickFilterBtn:hover {
+    background: rgba(255,255,255,0.15);
+    color: white;
+}
+
+.modeToggle {
+    display: flex;
+    gap: 8px;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.modeBtn {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modeBtnActive {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border-color: rgba(255,255,255,0.25);
+}
+
+.ingTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 16px;
+}
+
+.ingTag {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(99,102,241,0.3);
+    border: 1px solid rgba(99,102,241,0.5);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.ingTagRemove {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
 .recentTitle {
     padding: 15px 12px 5px 12px;
     font-size: 0.85rem;

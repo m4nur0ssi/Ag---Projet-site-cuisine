@@ -1,0 +1,421 @@
+/* ── Panneau semaine inline ── */
+.weekPanel {
+    width: 100%;
+    background: var(--color-bg, #0a0a0a);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    animation: slideDown 0.3s cubic-bezier(0.23,1,0.32,1);
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.weekPanelInner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 20px 16px;
+}
+
+.weekHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.weekTitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.weekCloseBtn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.daysRow {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+}
+
+.daysRow::-webkit-scrollbar { display: none; }
+
+.dayCard {
+    flex-shrink: 0;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dayName {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2px 0;
+}
+
+.mealSlot {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mealTag {
+    font-size: 0.58rem;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-left: 2px;
+}
+
+.recipeVignette {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+}
+
+.vignetteImg {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+    display: block;
+}
+
+.vignetteTitle {
+    font-size: 0.62rem;
+    color: white;
+    font-weight: 600;
+    padding: 4px 6px;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.removeVignette {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(220,38,38,0.85);
+    border: none;
+    color: white;
+    font-size: 0.55rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.emptySlot {
+    border-radius: 10px;
+    border: 1px dashed rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.03);
+    cursor: pointer;
+    width: 100%;
+    height: 82px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    transition: background 0.2s;
+}
+
+.emptySlot:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.emptyPlus {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.3);
+    line-height: 1;
+}
+
+.emptyText {
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* ── Picker overlay ── */
+.pickerOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 80px 20px 20px;
+}
+
+.pickerModal {
+    background: rgba(20,20,20,0.97);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 540px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    animation: popIn 0.25s cubic-bezier(0.23,1,0.32,1);
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.searchIcon {
+    font-size: 1.1rem;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.searchInput {
+    flex: 1;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.searchInput::placeholder {
+    color: rgba(255,255,255,0.3);
+}
+
+.escBtn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.modeToggle {
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.modeBtn {
+    flex: 1;
+    padding: 7px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.modeBtnActive {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border-color: rgba(255,255,255,0.2);
+}
+
+.groupBtns {
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.groupBtn {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.55);
+    border-radius: 20px;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.groupBtn:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.groupBtnActive {
+    background: rgba(139,92,246,0.2);
+    border-color: rgba(139,92,246,0.45);
+    color: #c4b5fd;
+}
+
+.filterChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.chip {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.75rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.12s;
+}
+
+.chip:hover, .chipActive {
+    background: rgba(255,255,255,0.16);
+    color: white;
+    border-color: rgba(255,255,255,0.3);
+}
+
+.ingTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.ingTag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(99,102,241,0.25);
+    border: 1px solid rgba(99,102,241,0.5);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.78rem;
+    color: white;
+}
+
+.ingTag button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.7rem;
+    line-height: 1;
+}
+
+.results {
+    overflow-y: auto;
+    flex: 1;
+    padding: 6px;
+}
+
+.resultsLabel {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 8px 10px 4px;
+}
+
+.noResult {
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    padding: 28px;
+    font-size: 0.85rem;
+}
+
+.resultRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background 0.12s;
+}
+
+.resultRow:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+.resultImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.resultInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.resultTitle {
+    font-size: 0.85rem;
+    color: white;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.resultMeta {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+}

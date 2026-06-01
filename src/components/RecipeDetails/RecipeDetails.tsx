@@ -19,6 +19,9 @@ import SmartText from '@/components/SmartText/SmartText';
 import MagicConverter from '@/components/MagicConverter/MagicConverter';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
+import StarRating from '@/components/StarRating/StarRating';
+import { estimateRecipeCalories } from '@/lib/calories';
+import { mockRecipes } from '@/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './RecipeDetails.module.css';
 
@@ -115,6 +118,44 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
 
     const ratio = useMemo(() => servings / (recipe.servings || 4), [servings, recipe.servings]);
+
+    const [personalNote, setPersonalNote] = useLocalStorage<string>(`recipe-note-${recipe.id}`, '');
+    const [noteExpanded, setNoteExpanded] = useState(false);
+    const [simPage, setSimPage] = useState(0);
+    const calorieEstimate = useMemo(() =>
+        recipe.category !== 'restaurant' && recipe.ingredients?.length > 0
+            ? estimateRecipeCalories(recipe.ingredients, servings)
+            : null,
+    [recipe, servings]);
+    const similarRecipes = useMemo(() => {
+        return mockRecipes
+            .filter(r => String(r.id) !== String(recipe.id) && r.category !== 'restaurant')
+            .map(r => {
+                let score = 0;
+                if (r.category === recipe.category) score += 3;
+                const rTags = (r.tags || []).map(t => t.toLowerCase());
+                const myTags = (recipe.tags || []).map(t => t.toLowerCase());
+                score += rTags.filter(t => myTags.includes(t)).length * 2;
+                const myIngNames = (recipe.ingredients || []).map(i => i.name.toLowerCase());
+                const rIngNames = (r.ingredients || []).map(i => i.name.toLowerCase());
+                score += myIngNames.filter(n => rIngNames.some(rn => rn.includes(n) || n.includes(rn))).length;
+                return { recipe: r, score };
+            })
+            .filter(({ score }) => score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 20)
+            .map(({ recipe: r }) => r);
+    }, [recipe]);
+
+    // Sauvegarder historique
+    useEffect(() => {
+        try {
+            const prev: string[] = JSON.parse(localStorage.getItem('recently-viewed') || '[]').map((r: any) => r.id || r);
+            const updated = [String(recipe.id), ...prev.filter(id => id !== String(recipe.id))].slice(0, 20);
+            localStorage.setItem('recently-viewed', JSON.stringify(updated));
+            window.dispatchEvent(new CustomEvent('recentlyViewedUpdated'));
+        } catch {}
+    }, [recipe.id]);
 
     // Mount animation & Reset check
     useEffect(() => {
@@ -720,6 +761,20 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             <div className={styles.metaLabel}>DIFFICULTÉ</div>
                             <div className={styles.metaValue}>{recipe.difficulty?.toUpperCase() || 'FACILE'}</div>
                         </div>
+                        <div className={styles.metaSeparator} />
+                        <div className={styles.metaItem}>
+                            <div className={styles.metaLabel}>MA NOTE</div>
+                            <StarRating recipeId={recipe.id} size="small" />
+                        </div>
+                        {calorieEstimate && calorieEstimate.confidence !== 'low' && (
+                            <>
+                                <div className={styles.metaSeparator} />
+                                <div className={styles.metaItem}>
+                                    <div className={styles.metaLabel}>~CALORIES</div>
+                                    <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             )}
@@ -887,13 +942,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 </div>
                                 <div className={styles.tabActionsUnified}>
                                     <MagicConverter />
-                                    <button className={styles.copyBtn} onClick={copyIngredients}>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-                                        </svg>
-                                        Mettre au panier
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1054,6 +1102,104 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     </div>
                 </div>
             )}
+            {/* Recettes similaires */}
+            {!focusMode && similarRecipes.length > 0 && (
+                <div style={{ padding: '0 0 8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px 10px' }}>
+                        <span style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', opacity: 0.5, textTransform: 'uppercase' }}>
+                            Recettes similaires
+                        </span>
+                        {similarRecipes.length > 5 && (
+                            <span style={{ fontSize: '0.7rem', opacity: 0.4 }}>
+                                {simPage * 5 + 1}-{Math.min(simPage * 5 + 5, similarRecipes.length)} / {similarRecipes.length}
+                            </span>
+                        )}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '0 20px 4px' }}>
+                        <div style={{ display: 'flex', gap: 10, flex: 1, overflow: 'hidden' }}>
+                            {similarRecipes.slice(simPage * 5, simPage * 5 + 5).map(r => (
+                                <button
+                                    key={r.id}
+                                    onClick={() => {
+                                        window.dispatchEvent(new CustomEvent('openRecipe', { detail: r }));
+                                        setSimPage(0);
+                                    }}
+                                    style={{
+                                        flexShrink: 0, width: 130, background: 'rgba(255,255,255,0.06)',
+                                        border: '1px solid rgba(255,255,255,0.1)', borderRadius: 14,
+                                        overflow: 'hidden', cursor: 'pointer', padding: 0, textAlign: 'left', display: 'block'
+                                    }}
+                                >
+                                    <img src={r.image} alt={r.title} style={{ width: '100%', height: 85, objectFit: 'cover', display: 'block' }} />
+                                    <div style={{ padding: '6px 10px', fontSize: '0.72rem', color: 'white', fontWeight: 600, lineHeight: 1.3,
+                                        display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                                        {r.title}
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+                        {/* Bouton page suivante */}
+                        {similarRecipes.length > 5 && (simPage + 1) * 5 < similarRecipes.length && (
+                            <button
+                                onClick={() => setSimPage(p => p + 1)}
+                                style={{
+                                    flexShrink: 0, width: 40, height: 100, background: 'rgba(255,255,255,0.1)',
+                                    border: '1px solid rgba(255,255,255,0.15)', borderRadius: 14,
+                                    cursor: 'pointer', color: 'white', fontSize: '1.4rem', display: 'flex',
+                                    alignItems: 'center', justifyContent: 'center'
+                                }}
+                            >›</button>
+                        )}
+                        {/* Bouton retour page précédente */}
+                        {simPage > 0 && (
+                            <button
+                                onClick={() => setSimPage(p => p - 1)}
+                                style={{
+                                    flexShrink: 0, width: 40, height: 100, background: 'rgba(255,255,255,0.1)',
+                                    border: '1px solid rgba(255,255,255,0.15)', borderRadius: 14,
+                                    cursor: 'pointer', color: 'white', fontSize: '1.4rem', display: 'flex',
+                                    alignItems: 'center', justifyContent: 'center', order: -1
+                                }}
+                            >‹</button>
+                        )}
+                    </div>
+                </div>
+            )}
+
+            {/* Note personnelle */}
+            {!focusMode && (
+                <div style={{ padding: '4px 20px 20px' }}>
+                    <button
+                        onClick={() => setNoteExpanded(v => !v)}
+                        style={{
+                            display: 'flex', alignItems: 'center', gap: 8,
+                            background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
+                            borderRadius: 12, padding: '10px 16px', width: '100%',
+                            color: 'white', cursor: 'pointer', fontSize: '0.85rem'
+                        }}
+                    >
+                        <span style={{ flex: 1, textAlign: 'left', opacity: personalNote ? 1 : 0.5 }}>
+                            {personalNote ? 'Ma note personnelle' : 'Ajouter une note...'}
+                        </span>
+                        <span style={{ opacity: 0.5 }}>{noteExpanded ? '▲' : '▼'}</span>
+                    </button>
+                    {noteExpanded && (
+                        <textarea
+                            value={personalNote}
+                            onChange={e => setPersonalNote(e.target.value)}
+                            placeholder="Mes impressions, variantes, astuces..."
+                            rows={4}
+                            style={{
+                                marginTop: 8, width: '100%', boxSizing: 'border-box',
+                                background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.12)',
+                                borderRadius: 10, padding: '10px 14px', color: 'white',
+                                fontSize: '0.9rem', resize: 'vertical', fontFamily: 'inherit'
+                            }}
+                        />
+                    )}
+                </div>
+            )}
+
             {focusMode && (
                 <div
                     className={styles.focusOverlay}

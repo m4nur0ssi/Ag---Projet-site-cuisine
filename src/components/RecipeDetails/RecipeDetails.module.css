@@ -780,11 +780,8 @@
     align-items: center;
     justify-content: flex-start;
     gap: 12px;
-    padding: 0 24px 30px 24px;
-    background: transparent !important;
-    position: sticky;
-    top: 5px;
-    z-index: 20;
+    padding: 0 24px 16px 24px;
+    background: transparent;
 }
 
 .ingredientsActionBlock {

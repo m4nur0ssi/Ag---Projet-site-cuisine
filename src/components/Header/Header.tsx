@@ -5,6 +5,7 @@ import Link from 'next/link';
 import SpotlightSearch from '../SpotlightSearch/SpotlightSearch';
 import SplitTitle from '../SplitTitle/SplitTitle';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import WeekPlanner from '../WeekPlanner/WeekPlanner';
 import { triggerSync } from '@/services/syncService';
 import styles from './Header.module.css';
 import { useRouter } from 'next/navigation';
@@ -41,6 +42,7 @@ export default function Header({
     const router = useRouter();
     const [scrolled, setScrolled] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [isPlannerOpen, setIsPlannerOpen] = useState(false);
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncStatus, setSyncStatus] = useState<'idle' | 'ok' | 'error'>('idle');
     const [toast, setToast] = useState<{ message: string; show: boolean }>({ message: '', show: false });
@@ -178,6 +180,9 @@ export default function Header({
                                         <button className={styles.pillBtnSearch} onClick={() => setIsSearchOpen(true)}>
                                             Recherche
                                         </button>
+                                        <button className={styles.toolBtn} title="Planificateur" onClick={() => { if (scrolled) window.scrollTo({ top: 0, behavior: 'smooth' }); setIsPlannerOpen(v => !v); }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem' }}>
+                                            📅
+                                        </button>
                                     </div>
                                 ) : (
                                     <div className={styles.expandedUtils}>
@@ -198,6 +203,9 @@ export default function Header({
                                             <Link href="/shopping-list" className={styles.toolBtn}>
                                                 🛒
                                             </Link>
+                                            <button className={styles.toolBtn} title="Planificateur de repas" onClick={() => { setIsPlannerOpen(v => !v); }} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                                                📅
+                                            </button>
                                             <ThemeToggle className={styles.themeToggleWrapper} />
                                         </div>
                                     </div>
@@ -217,6 +225,7 @@ export default function Header({
             </header>
 
             <SpotlightSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+            <WeekPlanner isOpen={isPlannerOpen} onClose={() => setIsPlannerOpen(false)} />
         </>
     );
 }

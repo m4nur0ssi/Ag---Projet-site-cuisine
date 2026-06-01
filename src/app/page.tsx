@@ -21,6 +21,20 @@ export default function Home() {
     const [touchStart, setTouchStart] = useState<number>(0);
     const [touchEnd, setTouchEnd] = useState<number>(0);
     const [randomRecipe, setRandomRecipe] = useState<any>(null);
+    const [recentlyViewed, setRecentlyViewed] = useState<typeof mockRecipes>([]);
+
+    useEffect(() => {
+        const load = () => {
+            try {
+                const ids: string[] = JSON.parse(localStorage.getItem('recently-viewed') || '[]').map((r: any) => r.id || r);
+                const recipes = ids.map(id => mockRecipes.find(r => String(r.id) === String(id))).filter(Boolean) as typeof mockRecipes;
+                setRecentlyViewed(recipes);
+            } catch {}
+        };
+        load();
+        window.addEventListener('recentlyViewedUpdated', load);
+        return () => window.removeEventListener('recentlyViewedUpdated', load);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -932,6 +946,16 @@ export default function Home() {
                                     onTitleClick={handleCarouselTitleClick}
                                     onCardClick={(recipe) => handleCarouselTitleClick(recipe.title)}
                                 />
+
+                                {recentlyViewed.length > 0 && (
+                                    <RecipeCarousel
+                                        recipes={recentlyViewed}
+                                        title="Récemment Vus 👁"
+                                        size="small"
+                                        hideTitleCard={true}
+                                        onTitleClick={handleCarouselTitleClick}
+                                    />
+                                )}
 
                                 <RecipeCarousel
                                     recipes={newRecipes}
