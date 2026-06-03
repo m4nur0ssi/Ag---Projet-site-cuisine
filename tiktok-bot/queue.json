@@ -1,24 +1,3 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNR7povQL/",
-      "country": "Healthy",
-      "timestamp": "2026-06-03T15:30:59.914Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNR7pEKjm/",
-      "country": "Healthy",
-      "timestamp": "2026-06-03T15:31:26.283Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNR7pcKM1/",
-      "country": "Healthy",
-      "timestamp": "2026-06-03T15:32:22.060Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNR7s1ktJ/",
-      "country": "Healthy",
-      "timestamp": "2026-06-03T15:33:18.244Z"
-    }
-  ]
+  "queue": []
 }
