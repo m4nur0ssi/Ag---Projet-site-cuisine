@@ -2,11 +2,236 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/06/2026 15:39:13
+ * Dernière mise à jour: 03/06/2026 17:47:31
  * Total: 339 recettes
  */
-export const exportSyncId = "1780501153822";
+export const exportSyncId = "1780508851110";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5943",
+        "title": "Brownie au brocolis",
+        "description": "Un brownie salé sain et délicieux à base de brocolis, idéal pour faire apprécier ce légume aux enfants et aux plus grands.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7479118888622656790\" data-video-id=\"7479118888622656790\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7479118888622656790\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥦\n             1 brocolis (frais ou congelé)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             160g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Lardons ou allumettes de jambon"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Comté râpé"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5941",
+        "title": "Gratin de Courgettes Protéiné",
+        "description": "Une super recette pour faire manger des courgettes aux petits comme aux grands récalcitrants. En plus de ça c'est ultra protéiné, tu vas te régaler !",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7518358291571903766\" data-video-id=\"7518358291571903766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7518358291571903766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella Rapée"
+            }
+        ],
+        "steps": [
+            "Bien égoutter les courgettes dans un torchon avant cuisson."
+        ],
+        "tags": [
+            "Gratins",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5939",
+        "title": "Curry d'aubergine, pois chiches et raïta",
+        "description": "Un curry végétarien parfumé aux aubergines fondantes, accompagné de pois chiches rôtis au paprika fumé et d'une sauce raïta fraîche au concombre et à la menthe. Idéal avec du pain ou du riz.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7245327007372905754\" data-video-id=\"7245327007372905754\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7245327007372905754\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2-3 càs de curry de madras en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 càs de coriandre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc de gingembre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🍆\n             1 belle aubergine"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 càs de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300ml de lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             200g de chair de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 poignée de coriandre fraîche hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 grosses càs de yaourt nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1/2 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càc de Garam masala en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 poignée de feuilles de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             5-6 feuilles de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             150g de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             Pain de votre choix (pita, naan, pain italien..) ou du riz"
+            }
+        ],
+        "steps": [
+            "1. Faites revenir l'oignon avec huile d'olive, sel, poivre et les épices (curry de madras, coriandre, gingembre) pendant 2min sur feu moyen dans une grande poêle ou cocotte que vous pouvez couvrir. Ajoutez ensuite le concentré de tomate, l'aubergine coupée en cubes, le lait de coco et la chair de tomate. Mélangez bien, salez, et faites cuire à couvert environ 20-25min en vérifiant que le fond n'accroche pas pendant la cuisson.",
+            "2. À la fin de la cuisson du curry, écrasez les aubergines à la fourchette, ajoutez la coriandre hachée, mélangez et laissez finir de réduire à découvert 1-3min. La consistance doit être fondante, pas liquide. Goûtez et ajustez si besoin (plus de curry, d'herbes, sel ?).",
+            "3. Pour les pois chiches, égouttez et rincez-les, puis faites-les simplement revenir avec de l'huile d'olive et beaucoup de paprika fumé (1 à 2 càs) sur feu moyen.",
+            "4. Pour la sauce raïta : mélangez le concombre épluché et coupé en petits morceaux avec les herbes hachées (coriandre, menthe), du sel, le Garam masala et le yaourt.",
+            "5. Servez le tout avec le pain de votre choix (cheese naan, pain pita, pain italien) ou du riz."
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Orient",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5937",
         "title": "Courgettes rôties et crème de mozza",
@@ -6808,120 +7033,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "Simplissime",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5314",
-        "title": "Boulettes de poulet à la crème forestière, purée maison",
-        "description": "Découvrez une recette réconfortante de boulettes de poulet moelleuses, mijotées dans une onctueuse sauce forestière aux champignons, accompagnées d'une purée de pommes de terre maison. Un plat idéal pour les repas en famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fboulettes.jpg&v=1778515585000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7598974664089832706\" data-video-id=\"7598974664089832706\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7598974664089832706\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n 600 g d'escalopes de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n ½ oignon (pour les boulettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 2 gousses d'ail (pour les boulettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n Chapelure"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Piment (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Persil séché"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 2 gousses d'ail (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 200 g de champignons frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n 1 verre de bouillon de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 1 briquette de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n 1,2 kg de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 100 g de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 40 g de beurre"
-            }
-        ],
-        "steps": [
-            "Mixer finement le poulet.",
-            "Ajouter le ½ oignon et l'ail hachés au poulet mixé.",
-            "Incorporer sel, poivre, paprika, piment (facultatif) et persil séché.",
-            "Ajouter un peu de chapelure jusqu'à obtenir une farce qui se tient.",
-            "Former des boulettes.",
-            "Faire dorer les boulettes dans une poêle avec un filet d'huile jusqu'à belle coloration, puis réserver.",
-            "Dans la même poêle, faire revenir l'oignon émincé.",
-            "Ajouter l'ail, puis les champignons coupés.",
-            "Laisser cuire jusqu'à évaporation de l'eau des champignons.",
-            "Verser le bouillon de poulet et laisser réduire légèrement.",
-            "Ajouter la crème, saler et poivrer.",
-            "Remettre les boulettes dans la sauce et laisser mijoter 10 minutes à feu doux.",
-            "Parsemer de persil frais en fin de cuisson.",
-            "Éplucher et couper les pommes de terre.",
-            "Faire cuire les pommes de terre à la vapeur ou dans de l'eau salée.",
-            "Égoutter les pommes de terre, puis les écraser ou les passer au presse-purée.",
-            "Incorporer le beurre puis le lait chaud aux pommes de terre écrasées.",
-            "Rectifier le sel et mélanger jusqu'à obtenir une purée bien lisse.",
-            "Disposer la purée dans l'assiette, ajouter les boulettes nappées de sauce forestière et déguster."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -14235,163 +14346,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "barbecue",
             "Healthy",
-            "Italie",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3932",
-        "title": "Grilled Lamb Chops With Vegetables",
-        "description": "Grilled Lamb Chops With Vegetables - Perfect Choice For Christmas Dinner 😋",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftravers.jpg&v=1774526641000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7174427413785627950\" data-video-id=\"7174427413785627950\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7174427413785627950\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Rack of Lamb (Lamb Chops)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             White Onion"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Garlic Cloves"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Rosemary"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thyme"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fresh Mint"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Lemon Zest"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Lemon Juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Olive Oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Oregano"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sugar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Peppers"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Zucchini"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Mushrooms"
-            }
-        ],
-        "steps": [
-            "Marinate the lamb chops for 15 minutes.",
-            "Grill vegetables (peppers, zucchini, mushrooms, white onions) for a side dish, starting 15 minutes before the lamb chops.",
-            "Grill lamb chops on both sides for 3.5 minutes in a 350-400 F preheated grill for medium-well (adjust for desired doneness).",
-            "Serve on a plate and drizzle with sauce."
-        ],
-        "tags": [
-            "barbecue",
-            "facile",
-            "Famille",
-            "Healthy",
-            "Noël"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3938",
-        "title": "Classic Tomato Basil Bruschetta",
-        "description": "Une recette simple et classique de bruschetta avec une garniture fraîche de tomates, basilic, oignon rouge, assaisonnée d'huile d'olive et de sauce balsamique, servie sur du pain grillé avec de la mozzarella fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827443436.jpg&v=1774526611000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7497665292496014614\" data-video-id=\"7497665292496014614\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7497665292496014614\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             2 tomates, finement coupées en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             ½ oignon rouge, finement coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Une poignée de basilic frais, haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre noir, au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de sauce balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Baguette ou ciabatta, tranchée"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mozzarella fraîche, tranchée"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre ou huile d'olive, pour griller"
-            }
-        ],
-        "steps": [
-            "Dans un bol, mélangez les tomates coupées en dés, l'oignon rouge et le basilic. Assaisonnez avec du sel, du poivre, de l'huile d'olive et un filet de sauce balsamique. Mélangez bien et mettez de côté.",
-            "Faites griller vos tranches de pain dans une poêle avec un peu de beurre ou d'huile d'olive jusqu'à ce qu'elles soient dorées et croustillantes.",
-            "Disposez une tranche de mozzarella fraîche sur chaque tranche de pain grillé et déposez généreusement le mélange de tomates par-dessus.",
-            "Servez immédiatement, éventuellement avec un peu de basilic frais supplémentaire."
-        ],
-        "tags": [
             "Italie",
             "Végé"
         ],
