@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { supabase, SupabaseUser } from '@/lib/supabase';
 import { pullFavorites } from '@/lib/favorites';
+import { pullShoppingState, startShoppingSync } from '@/lib/shoppingSync';
 
 export function useAuth() {
     const [user, setUser] = useState<SupabaseUser>(null);
@@ -12,11 +13,15 @@ export function useAuth() {
         const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
             setUser(session?.user ?? null);
             setLoading(false);
-            // Au login / 1re session : hydrate le cache favoris depuis Supabase (suit le compte).
+            // Au login / 1re session : hydrate favoris + état courses depuis Supabase (suit le compte).
             if (session && (event === 'SIGNED_IN' || event === 'INITIAL_SESSION')) {
                 pullFavorites().catch(() => {});
+                pullShoppingState().catch(() => {});
             }
         });
+
+        // Sync montante de l'état courses (débouncée). Idempotent.
+        startShoppingSync();
 
         // Fallback: lit aussi la session directement
         supabase.auth.getSession().then(({ data, error }) => {
