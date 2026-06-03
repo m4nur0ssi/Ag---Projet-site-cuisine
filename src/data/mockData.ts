@@ -2,11 +2,101 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/06/2026 07:31:17
- * Total: 335 recettes
+ * Dernière mise à jour: 03/06/2026 15:39:13
+ * Total: 339 recettes
  */
-export const exportSyncId = "1780471877637";
+export const exportSyncId = "1780501153822";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5937",
+        "title": "Courgettes rôties et crème de mozza",
+        "description": "Des courgettes rôties et marinées au miel, soja, origan et paprika fumé, servies avec une crème onctueuse à base de mozzarella, yaourt, herbes fraîches, ail et citron, le tout garni de grenade, mozzarella fraîche et pignons de pin grillés.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7361079703404301601\" data-video-id=\"7361079703404301601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7361079703404301601\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2-3 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 boule de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cas de yaourt"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une poignée d'herbes fraîches (menthe, basilic...)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1/2 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste d'un citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Grenade"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pignons de pin grillés"
+            }
+        ],
+        "steps": [
+            "Préparer la marinade en mélangeant 2 cas d'huile d'olive, 1 cas de soja salé, 1 cas de miel, 1 cac d'origan et du paprika fumé.",
+            "Couper les courgettes et les saisir à la poêle avec un peu de beurre pendant 10 minutes.",
+            "Transférer les courgettes dans un plat allant au four, les napper de marinade et cuire au four pendant 20 minutes à 200 degrés.",
+            "Pendant ce temps, préparer la sauce : mixer 1 boule de mozzarella, 3 cas de yaourt, une poignée d'herbes (menthe, basilic...), 1/2 gousse d'ail, 2 cas d'huile d'olive, 1 cas de miel, du sel et le zest d'un citron.",
+            "Servir les courgettes rôties avec la crème de mozza et garnir de grenade, de morceaux de mozzarella fraîche et de pignons de pin grillés."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5902",
         "title": "Smoothie Pastèque Fraise",
@@ -6718,6 +6808,120 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "Simplissime",
             "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5314",
+        "title": "Boulettes de poulet à la crème forestière, purée maison",
+        "description": "Découvrez une recette réconfortante de boulettes de poulet moelleuses, mijotées dans une onctueuse sauce forestière aux champignons, accompagnées d'une purée de pommes de terre maison. Un plat idéal pour les repas en famille.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fboulettes.jpg&v=1778515585000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7598974664089832706\" data-video-id=\"7598974664089832706\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7598974664089832706\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 600 g d'escalopes de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n ½ oignon (pour les boulettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail (pour les boulettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n Chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil séché"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 200 g de champignons frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n 1 verre de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 1 briquette de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n 1,2 kg de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 100 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 40 g de beurre"
+            }
+        ],
+        "steps": [
+            "Mixer finement le poulet.",
+            "Ajouter le ½ oignon et l'ail hachés au poulet mixé.",
+            "Incorporer sel, poivre, paprika, piment (facultatif) et persil séché.",
+            "Ajouter un peu de chapelure jusqu'à obtenir une farce qui se tient.",
+            "Former des boulettes.",
+            "Faire dorer les boulettes dans une poêle avec un filet d'huile jusqu'à belle coloration, puis réserver.",
+            "Dans la même poêle, faire revenir l'oignon émincé.",
+            "Ajouter l'ail, puis les champignons coupés.",
+            "Laisser cuire jusqu'à évaporation de l'eau des champignons.",
+            "Verser le bouillon de poulet et laisser réduire légèrement.",
+            "Ajouter la crème, saler et poivrer.",
+            "Remettre les boulettes dans la sauce et laisser mijoter 10 minutes à feu doux.",
+            "Parsemer de persil frais en fin de cuisson.",
+            "Éplucher et couper les pommes de terre.",
+            "Faire cuire les pommes de terre à la vapeur ou dans de l'eau salée.",
+            "Égoutter les pommes de terre, puis les écraser ou les passer au presse-purée.",
+            "Incorporer le beurre puis le lait chaud aux pommes de terre écrasées.",
+            "Rectifier le sel et mélanger jusqu'à obtenir une purée bien lisse.",
+            "Disposer la purée dans l'assiette, ajouter les boulettes nappées de sauce forestière et déguster."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -14031,6 +14235,163 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "barbecue",
             "Healthy",
+            "Italie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3932",
+        "title": "Grilled Lamb Chops With Vegetables",
+        "description": "Grilled Lamb Chops With Vegetables - Perfect Choice For Christmas Dinner 😋",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftravers.jpg&v=1774526641000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7174427413785627950\" data-video-id=\"7174427413785627950\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7174427413785627950\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Rack of Lamb (Lamb Chops)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             White Onion"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Garlic Cloves"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Rosemary"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thyme"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fresh Mint"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lemon Zest"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lemon Juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Olive Oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Oregano"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Peppers"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Zucchini"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Mushrooms"
+            }
+        ],
+        "steps": [
+            "Marinate the lamb chops for 15 minutes.",
+            "Grill vegetables (peppers, zucchini, mushrooms, white onions) for a side dish, starting 15 minutes before the lamb chops.",
+            "Grill lamb chops on both sides for 3.5 minutes in a 350-400 F preheated grill for medium-well (adjust for desired doneness).",
+            "Serve on a plate and drizzle with sauce."
+        ],
+        "tags": [
+            "barbecue",
+            "facile",
+            "Famille",
+            "Healthy",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3938",
+        "title": "Classic Tomato Basil Bruschetta",
+        "description": "Une recette simple et classique de bruschetta avec une garniture fraîche de tomates, basilic, oignon rouge, assaisonnée d'huile d'olive et de sauce balsamique, servie sur du pain grillé avec de la mozzarella fraîche.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827443436.jpg&v=1774526611000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7497665292496014614\" data-video-id=\"7497665292496014614\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7497665292496014614\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             2 tomates, finement coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             ½ oignon rouge, finement coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une poignée de basilic frais, haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre noir, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de sauce balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Baguette ou ciabatta, tranchée"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella fraîche, tranchée"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre ou huile d'olive, pour griller"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélangez les tomates coupées en dés, l'oignon rouge et le basilic. Assaisonnez avec du sel, du poivre, de l'huile d'olive et un filet de sauce balsamique. Mélangez bien et mettez de côté.",
+            "Faites griller vos tranches de pain dans une poêle avec un peu de beurre ou d'huile d'olive jusqu'à ce qu'elles soient dorées et croustillantes.",
+            "Disposez une tranche de mozzarella fraîche sur chaque tranche de pain grillé et déposez généreusement le mélange de tomates par-dessus.",
+            "Servez immédiatement, éventuellement avec un peu de basilic frais supplémentaire."
+        ],
+        "tags": [
             "Italie",
             "Végé"
         ],
