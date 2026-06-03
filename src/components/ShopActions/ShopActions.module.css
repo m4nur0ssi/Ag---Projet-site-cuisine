@@ -1,0 +1,94 @@
+.bar {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.shareBtn, .carreBtn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.15s cubic-bezier(0.23,1,0.32,1), box-shadow 0.2s, filter 0.2s;
+}
+.shareBtn {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    box-shadow: 0 4px 14px rgba(139,92,246,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.carreBtn {
+    background: #0066CC;
+    box-shadow: 0 4px 14px rgba(0,102,204,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.shareBtn:hover, .carreBtn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+.shareBtn:active, .carreBtn:active { transform: scale(0.96); }
+
+.barMd .shareBtn, .barMd .carreBtn { padding: 11px 14px; font-size: 0.88rem; border-radius: 14px; }
+
+/* Stepper Carrefour (panneau flottant bas) */
+.stepper {
+    position: fixed;
+    bottom: 88px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(420px, calc(100vw - 32px));
+    background: rgba(20,20,20,0.97);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 14px 16px;
+    z-index: 1000;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: stepIn 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+@keyframes stepIn { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+.stepHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #4da3ff;
+    margin-bottom: 10px;
+}
+.stepClose { background: none; border: none; color: rgba(255,255,255,0.5); cursor: pointer; font-size: 0.9rem; }
+
+.stepBody {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    margin-bottom: 12px;
+}
+.stepIcon { font-size: 1.5rem; }
+.stepName { flex: 1; font-size: 1.05rem; font-weight: 700; color: #fff; }
+.stepQty { font-weight: 800; color: #c4b5fd; }
+
+.stepNav { display: flex; gap: 8px; align-items: center; }
+.stepArrow, .stepNext, .stepDone, .stepSearch {
+    border: none;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #fff;
+    cursor: pointer;
+}
+.stepArrow { background: rgba(255,255,255,0.1); }
+.stepArrow:disabled { opacity: 0.4; cursor: default; }
+.stepSearch { flex: 1; background: #0066CC; }
+.stepNext { background: linear-gradient(135deg, #8b5cf6, #6366f1); }
+.stepDone { background: #22c55e; }

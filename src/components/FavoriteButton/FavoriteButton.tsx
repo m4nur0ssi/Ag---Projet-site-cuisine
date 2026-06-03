@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 import styles from './FavoriteButton.module.css';
 
 interface FavoriteButtonProps {
@@ -15,47 +16,76 @@ export default function FavoriteButton({ recipeId, initialFavorite = false, imag
     const [isFavorite, setIsFavorite] = useState(initialFavorite);
 
     useEffect(() => {
-        const updateState = () => {
-            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-            setIsFavorite(favorites.includes(recipeId));
+        const load = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                const { data } = await supabase
+                    .from('favorites')
+                    .select('recipe_id')
+                    .eq('user_id', session.user.id)
+                    .eq('recipe_id', recipeId)
+                    .maybeSingle();
+                setIsFavorite(!!data);
+            } else {
+                // Déconnecté : aucun favori (on ignore le localStorage anonyme)
+                setIsFavorite(false);
+            }
         };
 
-        updateState();
+        load();
 
-        window.addEventListener('storage', updateState);
-        window.addEventListener('magic-favorite-change', updateState);
+        const handleChange = () => {
+            supabase.auth.getSession().then(({ data: { session } }) => {
+                if (!session) setIsFavorite(false);
+            });
+        };
 
+        window.addEventListener('storage', handleChange);
+        window.addEventListener('magic-favorite-change', handleChange);
         return () => {
-            window.removeEventListener('storage', updateState);
-            window.removeEventListener('magic-favorite-change', updateState);
+            window.removeEventListener('storage', handleChange);
+            window.removeEventListener('magic-favorite-change', handleChange);
         };
     }, [recipeId]);
 
-    const toggleFavorite = (e: React.MouseEvent) => {
+    const toggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
+
+        // Les favoris sont réservés aux comptes connectés
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+            window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: 'Connecte-toi pour enregistrer tes favoris ❤️' }));
+            window.dispatchEvent(new CustomEvent('magic-open-auth'));
+            return;
+        }
 
         const newState = !isFavorite;
         setIsFavorite(newState);
 
-        // Sauvegarder dans localStorage
-        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        // localStorage (cache pour l'utilisateur connecté)
+        const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
         if (newState) {
-            if (!favorites.includes(recipeId)) {
-                favorites.push(recipeId);
-            }
+            if (!favs.includes(recipeId)) favs.push(recipeId);
         } else {
-            const index = favorites.indexOf(recipeId);
-            if (index > -1) favorites.splice(index, 1);
+            const idx = favs.indexOf(recipeId);
+            if (idx > -1) favs.splice(idx, 1);
         }
-        localStorage.setItem('favorites', JSON.stringify(favorites));
+        localStorage.setItem('favorites', JSON.stringify(favs));
 
-        // Total Offline: If favorited, try to pre-cache image
+        // Supabase
+        {
+            if (newState) {
+                await supabase.from('favorites').upsert({ user_id: session.user.id, recipe_id: recipeId });
+            } else {
+                await supabase.from('favorites').delete().eq('user_id', session.user.id).eq('recipe_id', recipeId);
+            }
+        }
+
         if (newState && imageUrl) {
             fetch(imageUrl, { mode: 'no-cors' }).catch(() => { });
         }
 
-        // Déclencher un événement storage pour mettre à jour les autres composants
         window.dispatchEvent(new Event('storage'));
         window.dispatchEvent(new Event('magic-favorite-change'));
     };

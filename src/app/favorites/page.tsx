@@ -8,16 +8,21 @@ import RecipeCard from '@/components/RecipeCard/RecipeCardV2';
 import BottomNav from '@/components/BottomNav/BottomNav';
 import { mockRecipes } from '@/data/mockData';
 import { Recipe } from '@/types';
+import { supabase } from '@/lib/supabase';
 import styles from './favorites.module.css';
 
 export default function FavoritesPage() {
     const router = useRouter();
     const [favoriteRecipes, setFavoriteRecipes] = useState<Recipe[]>([]);
     const [loading, setLoading] = useState(true);
+    const [authed, setAuthed] = useState<boolean | null>(null);
 
     useEffect(() => {
-        // Charger les favoris au montage (client-side uniquement)
-        const loadFavorites = () => {
+        // Favoris réservés aux connectés
+        const loadFavorites = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            setAuthed(!!session);
+            if (!session) { setFavoriteRecipes([]); setLoading(false); return; }
             const storedIds = JSON.parse(localStorage.getItem('favorites') || '[]');
             const filtered = mockRecipes.filter(r => storedIds.includes(r.id));
             setFavoriteRecipes(filtered);
@@ -26,9 +31,14 @@ export default function FavoritesPage() {
 
         loadFavorites();
 
-        // Écouter les changements dans localStorage (au cas où)
         window.addEventListener('storage', loadFavorites);
-        return () => window.removeEventListener('storage', loadFavorites);
+        window.addEventListener('magic-favorite-change', loadFavorites);
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(() => loadFavorites());
+        return () => {
+            window.removeEventListener('storage', loadFavorites);
+            window.removeEventListener('magic-favorite-change', loadFavorites);
+            subscription.unsubscribe();
+        };
     }, []);
 
     return (
@@ -52,6 +62,16 @@ export default function FavoritesPage() {
                 {loading ? (
                     <div className={styles.empty}>
                         <p>Chargement...</p>
+                    </div>
+                ) : !authed ? (
+                    <div className={styles.empty}>
+                        <span style={{ fontSize: '4rem', display: 'block', marginBottom: '1.5rem' }}>🔒</span>
+                        <h2>Connecte-toi pour voir tes favoris</h2>
+                        <p>Tes recettes favorites sont liées à ton compte.</p>
+                        <button
+                            onClick={() => window.dispatchEvent(new CustomEvent('magic-open-auth'))}
+                            style={{ marginTop: 18, padding: '10px 22px', borderRadius: 999, border: 'none', cursor: 'pointer', fontWeight: 700, color: '#fff', background: 'linear-gradient(135deg,#8b5cf6,#6366f1)' }}
+                        >Se connecter</button>
                     </div>
                 ) : favoriteRecipes.length > 0 ? (
                     <div className={styles.grid}>

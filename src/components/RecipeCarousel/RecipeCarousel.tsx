@@ -20,15 +20,15 @@ interface RecipeCarouselProps {
 
 const getCategoryData = (t: string) => {
     const c = t.toLowerCase();
-    if (c.includes('apéritif') || c.includes('aperitif') || c.includes('apéro')) return { image: '/images/categories/aperitif.jpg', color: '#10b981' };
-    if (c.includes('entrée') || c.includes('entree')) return { image: '/images/categories/entree.jpg', color: '#3b82f6' };
-    if (c.includes('plat')) return { image: '/images/categories/plats.jpg', color: '#f43f5e' };
-    if (c.includes('dessert') || c.includes('douceur')) return { image: '/images/categories/desserts.jpg', color: '#d946ef' };
-    if (c.includes('pâtisserie') || c.includes('patisserie')) return { image: '/images/categories/patisserie.jpg', color: '#f59e0b' };
+    if (c.includes('apéritif') || c.includes('aperitif') || c.includes('apéro')) return { image: '/images/categories/aperitif-theme.png', color: '#FF6B35' };
+    if (c.includes('entrée') || c.includes('entree')) return { image: '/images/categories/entree-theme.png', color: '#2DD4BF' };
+    if (c.includes('plat')) return { image: '/images/categories/plats-theme.png', color: '#6D28D9' };
+    if (c.includes('dessert') || c.includes('douceur')) return { image: '/images/categories/desserts-theme.png', color: '#EC4899' };
+    if (c.includes('pâtisserie') || c.includes('patisserie')) return { image: '/images/categories/patisserie-theme.png', color: '#A78BFA' };
     if (c.includes('restaurant') || c.includes('resto')) return { image: '/images/categories/restaurants.jpg', color: '#8b5cf6' };
     if (c.includes('thématiq') || t.includes('Thématiq')) return { image: '/images/categories/thematiques.jpg', color: '#4f46e5' };
-    if (c.includes('nouveauté') || c.includes('nouv')) return { image: '/images/categories/nouveautes.jpg', color: '#FF6B35' };
-    if (c.includes('accompagnement')) return { image: '/images/categories/accompagnements.jpg', color: '#10b981' };
+    if (c.includes('nouveauté') || c.includes('nouv')) return { image: '/images/categories/nouveautes-theme.png', color: '#F97316' };
+    if (c.includes('accompagnement')) return { image: '/images/categories/accompagnements-theme.png', color: '#84CC16' };
     if (c.includes('healthy') || c.includes('sain')) return { image: '/images/categories/entree.jpg', color: '#22c55e' };
     if (c.includes('airfryer')) return { image: '/images/categories/plats.jpg', color: '#f97316' };
     if (c.includes('barbecue') || c.includes('bbq')) return { image: '/images/categories/plats.jpg', color: '#b91c1c' };

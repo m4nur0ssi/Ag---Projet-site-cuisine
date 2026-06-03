@@ -113,7 +113,6 @@
 
 .searchPillWrapper:hover {
     background: var(--liquid-highlight);
-    transform: translateY(-2px);
 }
 
 .pillBtnSearch {
@@ -157,6 +156,24 @@
     background: var(--liquid-bg);
     transform: scale(1.2) translateY(-3px);
 }
+
+/* Bouton planificateur — icône seule (calendrier), même taille que trèfle/avatar */
+.plannerIconBtn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+.plannerIconBtn:hover { transform: scale(1.12); }
+.plannerIconBtn:active { transform: scale(0.94); }
 
 .navFavBadge {
     position: absolute;

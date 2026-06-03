@@ -6,9 +6,11 @@ import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import styles from './BottomNav.module.css';
 import dynamic from 'next/dynamic';
+import { supabase } from '@/lib/supabase';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import SpotlightSearch from '../SpotlightSearch/SpotlightSearch';
 import { mockRecipes } from '@/data/mockData';
+import { countConsolidatedLines } from '@/lib/ingredients';
 import { useTimer } from '@/components/Timer/TimerContext';
 import { decodeHtml } from '@/lib/utils';
 
@@ -155,20 +157,18 @@ export default function BottomNav() {
         updateLastViewed();
         window.addEventListener('recipeViewed', updateLastViewed);
         
-        const updateStats = () => {
-            // Shopping list
-            const shopData = JSON.parse(localStorage.getItem('magic-shopping-list') || '{}');
-            const totalItems = Object.values(shopData).reduce((acc: number, val: any) => {
-                if (!val.ingredients) return acc;
-                const unCheckedCount = val.ingredients.filter((ing: any) => typeof ing === 'object' ? !ing.checked : true).length;
-                return acc + unCheckedCount;
-            }, 0);
-            
-            // Favorites
-            const favoriteData = JSON.parse(localStorage.getItem('favorites') || '[]');
-            const totalFavorites = favoriteData.length;
+        const updateStats = async () => {
+            // Shopping list : nombre de lignes de la liste fusionnée (planif + ajouts manuels),
+            // identique au compteur de la page liste de courses.
+            const totalItems = countConsolidatedLines();
 
-            setStats({ 
+            // Favorites — réservés aux connectés
+            const { data: { session } } = await supabase.auth.getSession();
+            const totalFavorites = session
+                ? (JSON.parse(localStorage.getItem('favorites') || '[]') as any[]).length
+                : 0;
+
+            setStats({
                 shopping: totalItems as number,
                 favorites: totalFavorites as number
             });

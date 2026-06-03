@@ -1,0 +1,181 @@
+.wrapper {
+    position: relative;
+}
+
+.connectBtn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: white;
+    position: relative;
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.avatarBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 4px;
+    border-radius: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: white;
+    position: relative;
+    overflow: visible;
+    flex-shrink: 0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background 0.15s;
+}
+
+.avatarBtn:hover {
+    background: rgba(255,255,255,0.14);
+}
+
+.avatarInitial {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+}
+
+.avatarName {
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.avatarImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.syncDot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 2px solid var(--color-bg, #0a0a0a);
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 240px;
+    background: rgba(20,20,20,0.97);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    z-index: 10000;
+    animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.email {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 4px;
+    word-break: break-all;
+}
+
+.syncStatus {
+    font-size: 0.78rem;
+    color: #22c55e;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.signOutBtn {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: rgba(255,255,255,0.6);
+    padding: 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.signOutBtn:hover {
+    background: rgba(239,68,68,0.15);
+    color: #ef4444;
+    border-color: rgba(239,68,68,0.3);
+}
+
+.dropdownTitle {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
+}
+
+.dropdownDesc {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+.googleBtn, .appleBtn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    cursor: pointer;
+    font-size: 0.83rem;
+    font-weight: 600;
+    transition: all 0.15s;
+    margin-bottom: 8px;
+}
+
+.googleBtn {
+    background: white;
+    color: #333;
+}
+
+.googleBtn:hover {
+    background: #f5f5f5;
+}
+
+.appleBtn {
+    background: #1c1c1e;
+    color: white;
+    border-color: rgba(255,255,255,0.2);
+}
+
+.appleBtn:hover {
+    background: #2c2c2e;
+}

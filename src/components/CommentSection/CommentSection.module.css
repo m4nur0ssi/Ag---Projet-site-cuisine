@@ -137,6 +137,14 @@
     border-color: var(--color-accent-purple-light);
 }
 
+.pseudoDisplay {
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.7;
+    margin-bottom: 8px;
+    padding: 4px 0;
+}
+
 .textarea {
     width: 100%;
     min-height: 80px;

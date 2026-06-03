@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import Link from 'next/link';
 import { mockRecipes } from '@/data/mockData';
 import { decodeHtml } from '@/lib/utils';
 import styles from './SpotlightSearch.module.css';
@@ -17,6 +16,12 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
         'france': '🇫🇷', 'italie': '🇮🇹', 'espagne': '🇪🇸', 'mexique': '🇲🇽',
         'afrique': '🌍', 'orient': '🕌', 'asie': '🥢', 'usa': '🇺🇸',
         'liban': '🇱🇧', 'grece': '🇬🇷'
+    };
+
+    // Ouvre la recette en flottant (RecipeSheet global), pas de navigation /recipe/:id
+    const openRecipe = (recipe: any) => {
+        onClose();
+        setTimeout(() => window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: recipe })), 50);
     };
 
     // Mode recette
@@ -154,7 +159,7 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                                 const countryTag = recipe.tags?.find((t: string) => countryFlags[t.toLowerCase()]);
                                 const flag = countryTag ? countryFlags[countryTag.toLowerCase()] : '🪄';
                                 return (
-                                    <Link key={recipe.id} href={`/recipe/${recipe.id}`} className={styles.resultItem} onClick={onClose}>
+                                    <button type="button" key={recipe.id} className={styles.resultItem} onClick={() => openRecipe(recipe)} style={{ textAlign: 'left', background: 'none', border: 'none', width: '100%', cursor: 'pointer' }}>
                                         <div className={styles.thumbWrapper}>
                                             <span className={styles.miniFlag}>{flag}</span>
                                             <img src={recipe.image} alt="" className={styles.thumb} />
@@ -163,7 +168,7 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                                             <div className={styles.resultTitle}>{decodeHtml(recipe.title)}</div>
                                             <div className={styles.resultMeta}>{recipe.category} • {recipe.difficulty}</div>
                                         </div>
-                                    </Link>
+                                    </button>
                                 );
                             }) : (
                                 <div className={styles.noResult}>Aucun sort ne correspond à cette recherche... ✨</div>
@@ -179,7 +184,7 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                                 const countryTag = recipe.tags?.find((t: string) => countryFlags[t.toLowerCase()]);
                                 const flag = countryTag ? countryFlags[countryTag.toLowerCase()] : '🪄';
                                 return (
-                                    <Link key={recipe.id} href={`/recipe/${recipe.id}`} className={styles.resultItem} onClick={onClose}>
+                                    <button type="button" key={recipe.id} className={styles.resultItem} onClick={() => openRecipe(recipe)} style={{ textAlign: 'left', background: 'none', border: 'none', width: '100%', cursor: 'pointer' }}>
                                         <div className={styles.thumbWrapper}>
                                             <span className={styles.miniFlag}>{flag}</span>
                                             <img src={recipe.image} alt="" className={styles.thumb} />
@@ -188,7 +193,7 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                                             <div className={styles.resultTitle}>{decodeHtml(recipe.title)}</div>
                                             <div className={styles.resultMeta}>{recipe.category} • {matched}/{ingTags.length} ingrédient{ingTags.length > 1 ? 's' : ''}</div>
                                         </div>
-                                    </Link>
+                                    </button>
                                 );
                             }) : (
                                 <div className={styles.noResult}>Aucune recette avec ces ingrédients</div>

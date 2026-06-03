@@ -12,25 +12,38 @@
 }
 
 .weekPanelInner {
-    max-width: 1100px;
+    position: relative;
+    max-width: 1320px;
     margin: 0 auto;
-    padding: 12px 20px 16px;
+    padding: 14px 20px 18px;
 }
 
-.weekHeader {
+.topRight {
+    position: absolute;
+    top: 14px;
+    right: 18px;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
+    gap: 10px;
+    z-index: 5;
 }
 
-.weekTitle {
-    font-size: 0.85rem;
+.actionBtn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 999px;
+    padding: 7px 16px;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8rem;
     font-weight: 700;
-    color: rgba(255,255,255,0.7);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.15s cubic-bezier(0.23,1,0.32,1);
+    white-space: nowrap;
 }
+.actionBtn:hover { background: rgba(255,255,255,0.16); color: white; transform: translateY(-1px); }
+.actionBtn:active { transform: scale(0.96); }
 
 .weekCloseBtn {
     background: rgba(255,255,255,0.08);
@@ -44,6 +57,81 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+}
+.weekCloseBtn:hover { background: rgba(255,255,255,0.16); color: white; }
+
+/* ── Barre de contrôles : bascule de vue + outils ── */
+.controlsRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.themeChipsRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 14px;
+    animation: slideDown 0.2s cubic-bezier(0.23,1,0.32,1);
+}
+
+/* ── Bascule de vue ── */
+.viewToggle {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 4px;
+    width: fit-content;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.viewBtn {
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.23,1,0.32,1);
+    white-space: nowrap;
+}
+.viewBtn:hover { color: rgba(255,255,255,0.85); }
+
+.viewBtnActive {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(235,235,245,0.85));
+    color: #111;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+}
+
+/* ── Layout 2 colonnes ── */
+.layoutRow {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+}
+
+.mainArea {
+    flex: 1;
+    min-width: 0;
 }
 
 .daysRow {
@@ -58,7 +146,7 @@
 
 .dayCard {
     flex-shrink: 0;
-    width: 120px;
+    width: 150px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -75,6 +163,7 @@
 }
 
 .mealSlot {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -95,17 +184,29 @@
     cursor: pointer;
     border: 1px solid rgba(255,255,255,0.1);
     background: rgba(255,255,255,0.04);
+    height: 104px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s cubic-bezier(0.23,1,0.32,1), box-shadow 0.18s, border-color 0.18s;
+}
+
+.clickable:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: rgba(255,255,255,0.3);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.45);
 }
 
 .vignetteImg {
     width: 100%;
-    height: 60px;
+    height: 66px;
     object-fit: cover;
     display: block;
+    flex-shrink: 0;
 }
 
 .vignetteTitle {
-    font-size: 0.62rem;
+    flex: 1;
+    font-size: 0.7rem;
     color: white;
     font-weight: 600;
     padding: 4px 6px;
@@ -140,7 +241,7 @@
     background: rgba(255,255,255,0.03);
     cursor: pointer;
     width: 100%;
-    height: 82px;
+    height: 104px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -152,6 +253,16 @@
 .emptySlot:hover {
     background: rgba(255,255,255,0.08);
     border-color: rgba(255,255,255,0.3);
+}
+
+.emptySlotMuted {
+    border-radius: 10px;
+    border: 1px dashed rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .emptyPlus {
@@ -244,6 +355,15 @@
     padding: 10px 16px;
     border-bottom: 1px solid rgba(255,255,255,0.06);
 }
+
+.lockBanner {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+    color: #c4b5fd;
+    background: rgba(139,92,246,0.12);
+    border-bottom: 1px solid rgba(139,92,246,0.25);
+}
+.lockBanner strong { color: white; font-weight: 700; }
 
 .modeBtn {
     flex: 1;
@@ -418,4 +538,232 @@
 .resultMeta {
     font-size: 0.72rem;
     color: rgba(255,255,255,0.4);
+}
+
+/* ── Panneau aléatoire (espace noir à droite) ── */
+.sidePanel {
+    flex-shrink: 0;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 18px;
+    background: radial-gradient(120% 120% at 100% 0%, rgba(139,92,246,0.10), rgba(0,0,0,0) 60%),
+                rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.randomBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1 55%, #ec4899);
+    background-size: 180% 180%;
+    box-shadow: 0 8px 24px rgba(139,92,246,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+    transition: transform 0.15s cubic-bezier(0.23,1,0.32,1), box-shadow 0.2s;
+    animation: gradientShift 6s ease infinite;
+}
+.randomBtn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(139,92,246,0.5); }
+.randomBtn:active { transform: scale(0.97); }
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.randomDice {
+    font-size: 1.15rem;
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+}
+.randomBtn:hover .randomDice { transform: rotate(180deg) scale(1.15); }
+
+.sideLabel {
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+    padding-top: 2px;
+}
+
+/* Groupes dépliables Catégorie / Tendance / Pays */
+.sideGroups {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sideGroupBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.sideGroupBtn:hover { background: rgba(255,255,255,0.1); color: white; }
+
+.sideGroupActive {
+    background: rgba(139,92,246,0.18);
+    border-color: rgba(139,92,246,0.45);
+    color: #d6c9ff;
+}
+
+.chevron { font-size: 0.7rem; opacity: 0.7; }
+
+.sideChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding-top: 2px;
+    animation: slideDown 0.2s cubic-bezier(0.23,1,0.32,1);
+}
+
+.themeBubbles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+/* ── Vue Jour J : cartes plus grandes / verticales ── */
+.jourJCard {
+    width: 180px;
+}
+
+.courseTitle {
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.courseTitleBtn {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+.courseTitleBtn:hover {
+    color: rgba(255,255,255,0.9);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.deleteCourse {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 3;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(220,38,38,0.92);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    font-size: 0.65rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transition: transform 0.15s, background 0.15s;
+}
+.deleteCourse:hover { background: #ef4444; transform: scale(1.12); }
+
+/* La vignette Jour J est plus haute et garde le titre sous l'image */
+.jourJVignette {
+    height: 235px;
+}
+
+.jourJVignette .vignetteTitle { font-size: 0.74rem; }
+
+.jourJImg {
+    height: 188px !important;
+}
+
+.jourJEmpty {
+    height: 235px !important;
+}
+
+.themeBubble {
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.8);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s cubic-bezier(0.23,1,0.32,1);
+}
+.themeBubble:hover {
+    background: rgba(255,255,255,0.18);
+    color: white;
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-1px);
+}
+.themeBubble:active { transform: scale(0.95); }
+
+/* ── Réafficher une carte supprimée (Jour J) ── */
+.addCourses {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+}
+
+.addLabel {
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+}
+
+.addCourseBtn {
+    border: 1px dashed rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.8);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.addCourseBtn:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.4);
+    color: white;
+}
+
+/* ── Responsive : panneau sous le calendrier sur petit écran ── */
+@media (max-width: 860px) {
+    .layoutRow { flex-direction: column; }
+    .sidePanel { width: 100%; }
+    .themeBubbles { gap: 8px; }
 }

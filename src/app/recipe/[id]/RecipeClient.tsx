@@ -1298,41 +1298,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                     </div>
                 )}
 
-                {/* Note personnelle */}
-                {!focusMode && (
-                    <div style={{ padding: '4px 20px 20px' }}>
-                        <button
-                            onClick={() => setNoteExpanded(v => !v)}
-                            style={{
-                                display: 'flex', alignItems: 'center', gap: 8,
-                                background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
-                                borderRadius: 12, padding: '10px 16px', width: '100%',
-                                color: 'white', cursor: 'pointer', fontSize: '0.85rem'
-                            }}
-                        >
-                            <span style={{ flex: 1, textAlign: 'left', opacity: personalNote ? 1 : 0.5 }}>
-                                {personalNote ? 'Ma note personnelle' : 'Ajouter une note...'}
-                            </span>
-                            <span style={{ opacity: 0.5 }}>{noteExpanded ? '▲' : '▼'}</span>
-                        </button>
-                        {noteExpanded && (
-                            <textarea
-                                value={personalNote}
-                                onChange={e => setPersonalNote(e.target.value)}
-                                placeholder="Mes impressions, variantes, astuces..."
-                                rows={4}
-                                style={{
-                                    marginTop: 8, width: '100%', boxSizing: 'border-box',
-                                    background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.12)',
-                                    borderRadius: 10, padding: '10px 14px', color: 'white',
-                                    fontSize: '0.9rem', resize: 'vertical', fontFamily: 'inherit'
-                                }}
-                            />
-                        )}
-                    </div>
-                )}
-
-                <CommentSection />
+                {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
 
                 {/* Focus Mode Overlay */}
                 {focusMode && (

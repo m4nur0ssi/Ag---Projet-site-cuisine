@@ -10,3 +10,6 @@ wp.zip
 .vercel
 .env*.local
 tiktok-bot/latest-recipe.txt
+
+.claude/
+graphify-out/

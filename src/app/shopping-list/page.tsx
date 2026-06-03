@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import Link from 'next/link';
 import Header from '@/components/Header/Header';
+import WeekMenuCarousel from '@/components/WeekMenuCarousel/WeekMenuCarousel';
+import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone } from '@/lib/ingredients';
+import type { ConsolItem as ConsolItemType } from '@/lib/ingredients';
 import styles from './shopping-list.module.css';
 
 interface ListData {
@@ -10,114 +12,170 @@ interface ListData {
         title: string;
         image?: string;
         ingredients: { name: string; checked: boolean }[];
+        source?: 'planner' | 'manuel';
+        count?: number;
     }
 }
 
+interface ConsolItem { key: string; icon: string; name: string; unit: string; qty: number | null; }
+
 export default function ShoppingListPage() {
     const [shoppingList, setShoppingList] = useState<ListData>({});
+    const [weekPlan, setWeekPlan] = useState<Record<string, Record<string, any>>>({});
+    const [weekChecked, setWeekChecked] = useState<Set<string>>(new Set());
     const [mounted, setMounted] = useState(false);
+    const [selected, setSelected] = useState<Set<string>>(new Set());
+    const [weekMode, setWeekMode] = useState<'jour' | 'liste'>('jour');
+    const [carrefourIdx, setCarrefourIdx] = useState<number | null>(null);
+    const [manualName, setManualName] = useState('');
+    const [manualQty, setManualQty] = useState('');
+    const [includeJourJ, setIncludeJourJ] = useState(true);
+    const [done, setDone] = useState<Set<string>>(new Set());
 
     useEffect(() => {
         setMounted(true);
-        const data = JSON.parse(window.localStorage.getItem('magic-shopping-list') || '{}');
-        setShoppingList(data);
-        const onUpdate = () => {
-            const fresh = JSON.parse(window.localStorage.getItem('magic-shopping-list') || '{}');
-            setShoppingList(fresh);
+        const read = () => {
+            try { setShoppingList(JSON.parse(localStorage.getItem('magic-shopping-list') || '{}')); } catch { setShoppingList({}); }
+            try { setWeekPlan(JSON.parse(localStorage.getItem('meal-planner-week') || '{}')); } catch { setWeekPlan({}); }
+            try { setWeekChecked(new Set(JSON.parse(localStorage.getItem('meal-week-checked') || '[]'))); } catch { setWeekChecked(new Set()); }
+            try { setDone(new Set(JSON.parse(localStorage.getItem('shop-done') || '[]'))); } catch { setDone(new Set()); }
+            setIncludeJourJ(localStorage.getItem('jourj-in-fused') !== 'false');
         };
-        window.addEventListener('shoppingListUpdated', onUpdate);
-        return () => window.removeEventListener('shoppingListUpdated', onUpdate);
+        read();
+        window.addEventListener('shoppingListUpdated', read);
+        window.addEventListener('storage', read);
+        return () => {
+            window.removeEventListener('shoppingListUpdated', read);
+            window.removeEventListener('storage', read);
+        };
     }, []);
 
-    const saveAndSync = (newData: ListData) => {
-        window.localStorage.setItem('magic-shopping-list', JSON.stringify(newData));
-        setShoppingList(newData);
+    // Liste fusionnée = ingrédients de la semaine (hors cases cochées en vue "par jour")
+    //                   + ajouts manuels (recettes hors planificateur)
+    const items = useMemo<ConsolItem[]>(
+        () => buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ),
+        [shoppingList, weekPlan, weekChecked, includeJourJ]
+    );
+
+    // Sélection : RIEN coché par défaut. L'utilisateur coche ce qu'il veut acheter ;
+    // Partager/Carrefour ciblent les ingrédients cochés (de haut en bas).
+    const keysSig = items.map(i => i.key).join(',');
+    useEffect(() => {
+        setSelected(new Set());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [keysSig]);
+
+    const toggle = (key: string) => {
+        setSelected(prev => {
+            const n = new Set(prev);
+            n.has(key) ? n.delete(key) : n.add(key);
+            return n;
+        });
+    };
+
+    // Rayé / fait (clic sur le NOM) — persiste dans 'shop-done', reste visible barré.
+    const persistDone = (s: Set<string>) => {
+        localStorage.setItem('shop-done', JSON.stringify([...s]));
         window.dispatchEvent(new Event('shoppingListUpdated'));
+    };
+    // Clic sur le nom/pilule = rayer (fait). Reste visible barré, persisté.
+    const toggleDone = (it: ConsolItemType) => {
+        setDone(prev => {
+            const n = new Set(prev);
+            const ks = doneKeysOf(it);
+            const already = ks.every(k => n.has(k));
+            ks.forEach(k => (already ? n.delete(k) : n.add(k)));
+            persistDone(n);
+            return n;
+        });
+    };
+    const markDone = (it: ConsolItemType) => {
+        setDone(prev => {
+            const n = new Set(prev);
+            doneKeysOf(it).forEach(k => n.add(k));
+            persistDone(n);
+            return n;
+        });
+    };
+    const allSelected = items.length > 0 && selected.size === items.length;
+    const toggleAll = () => setSelected(allSelected ? new Set() : new Set(items.map(i => i.key)));
+
+    // Ajout manuel d'un article (alimentaire ou non : papier toilette, javel, etc.)
+    const addManual = () => {
+        const name = manualName.trim();
+        if (!name) return;
+        // Pas de quantité saisie → 1 par défaut (validation à la touche Entrée)
+        const qty = manualQty.trim() || '1';
+        const raw = `${qty} ${name}`;
+        setShoppingList(prev => {
+            const next = { ...prev };
+            const entry = next.manuel
+                ? { ...next.manuel, ingredients: [...next.manuel.ingredients] }
+                : { title: 'Ajouts manuels', source: 'manuel' as const, ingredients: [] as { name: string; checked: boolean }[] };
+            entry.ingredients.push({ name: raw, checked: false });
+            next.manuel = entry;
+            localStorage.setItem('magic-shopping-list', JSON.stringify(next));
+            return next;
+        });
+        window.dispatchEvent(new Event('shoppingListUpdated'));
+        setManualName('');
+        setManualQty('');
     };
 
     const clearList = () => {
-        if (confirm('Vider toute la liste ?')) {
-            window.localStorage.removeItem('magic-shopping-list');
-            setShoppingList({});
-            window.dispatchEvent(new Event('shoppingListUpdated'));
-        }
-    };
-
-    const removeRecipe = (id: string) => {
-        const newData = { ...shoppingList };
-        delete newData[id];
-        saveAndSync(newData);
-    };
-
-    const toggleCheck = (recipeId: string, ingIdx: number) => {
-        const newData = { ...shoppingList };
-        const recipe = newData[recipeId];
-        if (recipe?.ingredients[ingIdx]) {
-            const ing = recipe.ingredients[ingIdx];
-            if (typeof ing === 'string') {
-                recipe.ingredients[ingIdx] = { name: ing as string, checked: true };
-            } else {
-                ing.checked = !ing.checked;
-            }
-            saveAndSync(newData);
-            if (navigator.vibrate) navigator.vibrate(10);
-        }
-    };
-
-    const selectAll = (recipeId: string) => {
-        const newData = { ...shoppingList };
-        const recipe = newData[recipeId];
-        if (!recipe) return;
-        const allChecked = recipe.ingredients.every(i => (typeof i === 'object' ? i.checked : false));
-        recipe.ingredients = recipe.ingredients.map(i => ({
-            name: typeof i === 'string' ? i : i.name,
-            checked: !allChecked
-        }));
-        saveAndSync(newData);
-    };
-
-    // Tous les ingrédients cochés (toutes recettes)
-    const checkedItems = useMemo(() => {
-        const items: { recipeTitle: string; name: string }[] = [];
-        Object.values(shoppingList).forEach(data => {
-            data.ingredients.forEach(ing => {
-                const isObj = typeof ing === 'object';
-                if (isObj && ing.checked) items.push({ recipeTitle: data.title, name: ing.name.replace('- ', '') });
+        if (!confirm('Vider toute la liste ?')) return;
+        // 1) supprime les ajouts manuels / recettes
+        localStorage.removeItem('magic-shopping-list');
+        setShoppingList({});
+        // 2) coche (masque) tous les ingrédients planifiés de la semaine — la liste
+        //    fusionnée les inclut, sinon elle ne se viderait pas. Le menu reste intact.
+        const checked = new Set(weekChecked);
+        Object.keys(weekPlan).forEach(dayKey => {
+            const day = weekPlan[dayKey] || {};
+            Object.keys(day).forEach(mealKey => {
+                (day[mealKey]?.ingredients || []).forEach((_: any, idx: number) => {
+                    checked.add(`${dayKey}|${mealKey}|${idx}`);
+                });
             });
         });
-        return items;
-    }, [shoppingList]);
+        setWeekChecked(checked);
+        localStorage.setItem('meal-week-checked', JSON.stringify([...checked]));
+        window.dispatchEvent(new Event('shoppingListUpdated'));
+    };
+
+    const lineFor = (it: ConsolItem) =>
+        it.qty != null ? `${fmtQty(it.qty)}${it.unit ? ' ' + it.unit : ''} ${it.name}` : it.name;
 
     const buildShareText = () => {
-        if (checkedItems.length === 0) return '';
-        const byRecipe: Record<string, string[]> = {};
-        checkedItems.forEach(({ recipeTitle, name }) => {
-            if (!byRecipe[recipeTitle]) byRecipe[recipeTitle] = [];
-            byRecipe[recipeTitle].push(name);
-        });
-        return Object.entries(byRecipe)
-            .map(([title, items]) => `🍽 ${title}\n${items.map(i => `• ${i}`).join('\n')}`)
-            .join('\n\n');
+        const lines = items.filter(i => selected.has(i.key)).map(i => `• ${lineFor(i)}`);
+        return '🛒 Ma liste de courses\n\n' + lines.join('\n');
     };
 
-    const shareWhatsApp = () => {
+    const shareNative = async () => {
         const text = buildShareText();
-        window.open(`https://wa.me/?text=${encodeURIComponent('🛒 Ma liste de courses\n\n' + text)}`, '_blank');
+        if (typeof navigator !== 'undefined' && (navigator as any).share) {
+            try { await (navigator as any).share({ title: 'Ma liste de courses', text }); return; } catch { /* annulé */ }
+        }
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     };
+    const shareWhatsApp = () => window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText())}`, '_blank');
 
-    const shareSMS = () => {
-        const text = buildShareText();
-        window.open(`sms:?body=${encodeURIComponent('🛒 Ma liste de courses\n\n' + text)}`, '_blank');
+    // ── Commander sur Carrefour : recherche pas-à-pas (1 ingrédient à la fois) ──
+    const selectedItems = items.filter(i => selected.has(i.key));
+    const openCarrefourFor = (i: number) => {
+        const it = selectedItems[i];
+        if (!it) return;
+        window.open(`https://www.carrefour.fr/s?q=${encodeURIComponent(carrefourTerm(it.name))}`, 'carrefourCart');
+        markDone(it); // recherché sur Carrefour → rayé automatiquement au retour
     };
-
-    const shareEmail = () => {
-        const text = buildShareText();
-        window.open(`mailto:?subject=${encodeURIComponent('Ma liste de courses')}&body=${encodeURIComponent('🛒 Ma liste de courses\n\n' + text)}`, '_blank');
+    const startCarrefour = () => { if (!selectedItems.length) return; setCarrefourIdx(0); openCarrefourFor(0); };
+    const carrefourGo = (i: number) => {
+        const n = Math.max(0, Math.min(i, selectedItems.length - 1));
+        setCarrefourIdx(n);
+        openCarrefourFor(n);
     };
 
     if (!mounted) return null;
-
-    const recipesCount = Object.keys(shoppingList).length;
 
     return (
         <div className={styles.page}>
@@ -127,101 +185,156 @@ export default function ShoppingListPage() {
                 <div className={styles.headerRow}>
                     <div>
                         <h1 className={styles.mainTitle}>Courses</h1>
-                        <p className={styles.count}>{recipesCount} recette{recipesCount > 1 ? 's' : ''}</p>
+                        <p className={styles.count}>{items.length} ingrédient{items.length > 1 ? 's' : ''}</p>
                     </div>
-                    {recipesCount > 0 && (
-                        <button onClick={clearList} className={styles.clearBtn}>
-                            Tout vider
-                        </button>
+                    {items.length > 0 && (
+                        <button onClick={clearList} className={styles.clearBtn}>Tout vider</button>
                     )}
                 </div>
 
-                {recipesCount === 0 ? (
+                {/* Bascule Par jour / Liste fusionnée */}
+                <div className={styles.modeToggle}>
+                    <button
+                        className={`${styles.modeBtn} ${weekMode === 'jour' ? styles.modeBtnActive : ''}`}
+                        onClick={() => setWeekMode('jour')}
+                        onMouseEnter={() => setWeekMode('jour')}
+                    >Par jour</button>
+                    <button
+                        className={`${styles.modeBtn} ${weekMode === 'liste' ? styles.modeBtnActive : ''}`}
+                        onClick={() => setWeekMode('liste')}
+                        onMouseEnter={() => setWeekMode('liste')}
+                    >Liste fusionnée</button>
+                </div>
+
+                {weekMode === 'jour' ? (
+                    <WeekMenuCarousel />
+                ) : (
+                  <>
+                    {/* Ajout manuel d'un article (alimentaire ou ménager) */}
+                    <div className={styles.addItemBar}>
+                        <span className={styles.addItemPreview}>{manualName.trim() ? getIcon(manualName) : '🛒'}</span>
+                        <input
+                            className={styles.addItemInput}
+                            value={manualName}
+                            onChange={e => setManualName(e.target.value)}
+                            onKeyDown={e => { if (e.key === 'Enter') addManual(); }}
+                            placeholder="Ajouter un article"
+                        />
+                        <input
+                            className={styles.addItemQty}
+                            value={manualQty}
+                            onChange={e => setManualQty(e.target.value)}
+                            onKeyDown={e => { if (e.key === 'Enter') addManual(); }}
+                            placeholder="Qté"
+                        />
+                        <button className={styles.addItemBtn} onClick={addManual} disabled={!manualName.trim()} aria-label="Ajouter">+</button>
+                    </div>
+
+                    {items.length === 0 ? (
                     <div className={styles.empty}>
                         <div className={styles.emptyIcon}>🛒</div>
                         <h2 className={styles.emptyTitle}>Panier vide</h2>
                         <p className={styles.emptySubtitle}>
-                            Cliquez sur un ingrédient dans une recette pour l&apos;ajouter ici.
+                            Valide un menu dans le planificateur ou ajoute des ingrédients depuis une recette.
                         </p>
                     </div>
-                ) : (
-                    <div className={styles.list} style={{ paddingBottom: checkedItems.length > 0 ? 100 : 20 }}>
-                        {Object.entries(shoppingList).map(([id, data]) => {
-                            const allChecked = data.ingredients.every(i => (typeof i === 'object' ? i.checked : false));
-                            return (
-                                <div key={id} className={styles.recipeGroup}>
-                                    {/* Photo recette + titre */}
-                                    <div className={styles.recipeHeader} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                                        {data.image && (
-                                            <Link href={`/recipe/${id}`}>
-                                                <img src={data.image} alt={data.title} className={styles.recipeImage}
-                                                    style={{ width: 56, height: 56, borderRadius: 12, objectFit: 'cover', flexShrink: 0 }} />
-                                            </Link>
-                                        )}
-                                        <div style={{ flex: 1 }}>
-                                            <h3 className={styles.recipeTitle}>{data.title}</h3>
-                                            <button
-                                                onClick={() => selectAll(id)}
-                                                style={{ fontSize: '0.72rem', opacity: 0.6, background: 'none', border: 'none', color: 'white', cursor: 'pointer', padding: '2px 0' }}
-                                            >
-                                                {allChecked ? '☑ Tout décocher' : '☐ Tout sélectionner'}
-                                            </button>
-                                        </div>
-                                        <button onClick={() => removeRecipe(id)} className={styles.removeBtn} title="Retirer" aria-label="Retirer">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-                                            </svg>
+                    ) : (
+                    <>
+                        <div className={styles.selectBar}>
+                            <span className={styles.selectBarInfo}>{selected.size} / {items.length} sélectionné{selected.size > 1 ? 's' : ''}</span>
+                            <button className={styles.selectAllBtn} onClick={toggleAll}>
+                                {allSelected ? 'Tout désélectionner' : 'Tout sélectionner'}
+                            </button>
+                        </div>
+
+                        <div className={styles.consolList}>
+                            {items.map(it => {
+                                const sel = selected.has(it.key);
+                                const isDone = isItemDone(it, done);
+                                return (
+                                    <div
+                                        key={it.key}
+                                        className={`${styles.consolItem} ${sel ? styles.consolItemSel : ''} ${isDone ? styles.consolItemDone : ''}`}
+                                    >
+                                        {/* Clic sur la photo/nom = rayer (fait) */}
+                                        <span className={styles.consolIcon} onClick={() => toggleDone(it)}>{it.icon}</span>
+                                        <span className={styles.consolName} onClick={() => toggleDone(it)}>{it.display}</span>
+                                        {/* Clic sur le cercle = sélectionner (cible Carrefour/partage) */}
+                                        <button
+                                            className={styles.consolCheck}
+                                            onClick={(e) => { e.stopPropagation(); toggle(it.key); }}
+                                            aria-label="Sélectionner"
+                                        >
+                                            {sel && (
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                                    <polyline points="20 6 9 17 4 12" />
+                                                </svg>
+                                            )}
                                         </button>
                                     </div>
-
-                                    <div className={styles.ingredients}>
-                                        {data.ingredients.map((ing, idx) => {
-                                            const isObject = typeof ing === 'object' && ing !== null;
-                                            const name = isObject ? ing.name : (ing as string);
-                                            const checked = isObject ? ing.checked : false;
-                                            return (
-                                                <div
-                                                    key={idx}
-                                                    className={`${styles.ingItem} ${checked ? styles.checked : ''}`}
-                                                    onClick={() => toggleCheck(id, idx)}
-                                                >
-                                                    <div className={styles.checkboxContainer}>
-                                                        <svg className={styles.checkIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                                                            <polyline points="20 6 9 17 4 12" />
-                                                        </svg>
-                                                    </div>
-                                                    <label className={styles.label}>{name.replace('- ', '')}</label>
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                );
+                            })}
+                        </div>
+                    </>
+                    )}
+                  </>
                 )}
 
-                {/* Barre de partage flottante */}
-                {checkedItems.length > 0 && (
+                {/* Barre de partage flottante (mode liste uniquement) */}
+                {weekMode === 'liste' && selected.size > 0 && (
                     <div style={{
                         position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)',
-                        display: 'flex', gap: 10, background: 'rgba(20,20,20,0.95)',
+                        display: 'flex', gap: 10, alignItems: 'center', background: 'rgba(20,20,20,0.95)',
                         backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.12)',
                         borderRadius: 40, padding: '10px 16px', zIndex: 100,
                         boxShadow: '0 8px 32px rgba(0,0,0,0.5)'
                     }}>
-                        <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', alignSelf: 'center', marginRight: 4 }}>
-                            {checkedItems.length} sélectionné{checkedItems.length > 1 ? 's' : ''}
+                        <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginRight: 4 }}>
+                            {selected.size} à partager
                         </span>
-                        <button onClick={shareWhatsApp} style={btnStyle('#25D366')}>
-                            <WhatsAppIcon /> WhatsApp
+                        <button onClick={shareNative} style={btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)')}>
+                            <ShareIcon /> Partager
                         </button>
-                        <button onClick={shareSMS} style={btnStyle('#007AFF')}>
-                            💬 SMS
-                        </button>
-                        <button onClick={shareEmail} style={btnStyle('#FF9500')}>
-                            ✉️ Email
-                        </button>
+                        <button onClick={shareWhatsApp} style={btnStyle('#25D366')} title="WhatsApp"><WhatsAppIcon /></button>
+                        <button onClick={startCarrefour} style={btnStyle('#0066CC')} title="Commander sur Carrefour">🛒 Carrefour</button>
+                    </div>
+                )}
+
+                {/* Stepper Carrefour : ouvre la recherche ingrédient par ingrédient */}
+                {weekMode === 'liste' && carrefourIdx !== null && selectedItems[carrefourIdx] && (
+                    <div style={{
+                        position: 'fixed', bottom: 88, left: '50%', transform: 'translateX(-50%)',
+                        width: 'min(440px, 92vw)',
+                        display: 'flex', flexDirection: 'column', gap: 10,
+                        background: 'rgba(20,20,20,0.97)', backdropFilter: 'blur(20px)',
+                        border: '1px solid rgba(255,255,255,0.14)', borderRadius: 22,
+                        padding: '14px 16px', zIndex: 101, boxShadow: '0 12px 40px rgba(0,0,0,0.6)'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.05em', color: '#5aa9ff' }}>
+                                🛒 CARREFOUR · {carrefourIdx + 1}/{selectedItems.length}
+                            </span>
+                            <button onClick={() => setCarrefourIdx(null)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', fontSize: '0.9rem' }}>✕</button>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                            <span style={{ fontSize: '1.5rem' }}>{selectedItems[carrefourIdx].icon}</span>
+                            <span style={{ flex: 1, fontSize: '1.05rem', fontWeight: 700, color: '#fff' }}>{selectedItems[carrefourIdx].name}</span>
+                            {selectedItems[carrefourIdx].qty != null && (
+                                <span style={{ fontWeight: 800, color: '#c4b5fd' }}>{fmtQty(selectedItems[carrefourIdx].qty!)}{selectedItems[carrefourIdx].unit ? ` ${selectedItems[carrefourIdx].unit}` : ''}</span>
+                            )}
+                        </div>
+                        <div style={{ display: 'flex', gap: 8 }}>
+                            <button onClick={() => carrefourGo(carrefourIdx - 1)} disabled={carrefourIdx === 0}
+                                style={{ ...btnStyle('rgba(255,255,255,0.1)'), opacity: carrefourIdx === 0 ? 0.4 : 1 }}>◀</button>
+                            <button onClick={() => openCarrefourFor(carrefourIdx)} style={{ ...btnStyle('#0066CC'), flex: 1, justifyContent: 'center' }}>
+                                Rechercher sur Carrefour
+                            </button>
+                            {carrefourIdx < selectedItems.length - 1 ? (
+                                <button onClick={() => carrefourGo(carrefourIdx + 1)} style={btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)')}>Suivant ▶</button>
+                            ) : (
+                                <button onClick={() => setCarrefourIdx(null)} style={btnStyle('#22c55e')}>Terminé ✓</button>
+                            )}
+                        </div>
                     </div>
                 )}
             </main>
@@ -236,10 +349,20 @@ const btnStyle = (color: string): React.CSSProperties => ({
     fontWeight: 600, cursor: 'pointer'
 });
 
+function ShareIcon() {
+    return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
+            <polyline points="16 6 12 2 8 6" />
+            <line x1="12" y1="2" x2="12" y2="15" />
+        </svg>
+    );
+}
+
 function WhatsAppIcon() {
     return (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
         </svg>
     );
 }

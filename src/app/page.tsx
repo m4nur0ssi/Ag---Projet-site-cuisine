@@ -22,6 +22,16 @@ export default function Home() {
     const [touchEnd, setTouchEnd] = useState<number>(0);
     const [randomRecipe, setRandomRecipe] = useState<any>(null);
     const [recentlyViewed, setRecentlyViewed] = useState<typeof mockRecipes>([]);
+    const [plannerTooltipVisible, setPlannerTooltipVisible] = useState(false);
+
+    useEffect(() => {
+        const handler = (e: any) => setPlannerTooltipVisible(e.detail?.visible ?? false);
+        window.addEventListener('planner-tooltip', handler);
+        // La recette flottante est gérée globalement par <GlobalRecipeSheet />
+        return () => {
+            window.removeEventListener('planner-tooltip', handler);
+        };
+    }, []);
 
     useEffect(() => {
         const load = () => {
@@ -869,7 +879,8 @@ export default function Home() {
             title="Recette aléatoire"
             style={{
                 background: 'none', border: 'none', cursor: 'pointer',
-                fontSize: '1.5rem', lineHeight: 1, padding: '4px 8px',
+                width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '1.55rem', lineHeight: 1, padding: 0, flexShrink: 0,
                 filter: 'drop-shadow(0 0 6px rgba(16,185,129,0.6))',
                 transition: 'transform 0.3s ease',
             }}
@@ -888,12 +899,14 @@ export default function Home() {
                     large={!scrolled}
                     rightAction={randomBtn}
                 />
+                <div style={{ opacity: plannerTooltipVisible ? 0 : 1, transition: 'opacity 0.2s ease', pointerEvents: plannerTooltipVisible ? 'none' : 'auto' }}>
                 <MagicFilterBar
                     activeTags={activeTags}
                     onSelect={handleTagSelect}
                     onClear={activeTags.length > 0 ? clearAllFilters : undefined}
                     isHome={true}
                 />
+                </div>
             </div>
 
             {/* Recette aléatoire */}
