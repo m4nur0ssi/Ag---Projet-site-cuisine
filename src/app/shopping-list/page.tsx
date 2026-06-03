@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Header from '@/components/Header/Header';
 import WeekMenuCarousel from '@/components/WeekMenuCarousel/WeekMenuCarousel';
 import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone } from '@/lib/ingredients';
-import type { ConsolItem as ConsolItemType } from '@/lib/ingredients';
+import type { ConsolItem } from '@/lib/ingredients';
 import styles from './shopping-list.module.css';
 
 interface ListData {
@@ -16,8 +16,6 @@ interface ListData {
         count?: number;
     }
 }
-
-interface ConsolItem { key: string; icon: string; name: string; unit: string; qty: number | null; }
 
 export default function ShoppingListPage() {
     const [shoppingList, setShoppingList] = useState<ListData>({});
@@ -79,7 +77,7 @@ export default function ShoppingListPage() {
         window.dispatchEvent(new Event('shoppingListUpdated'));
     };
     // Clic sur le nom/pilule = rayer (fait). Reste visible barré, persisté.
-    const toggleDone = (it: ConsolItemType) => {
+    const toggleDone = (it: ConsolItem) => {
         setDone(prev => {
             const n = new Set(prev);
             const ks = doneKeysOf(it);
@@ -89,7 +87,7 @@ export default function ShoppingListPage() {
             return n;
         });
     };
-    const markDone = (it: ConsolItemType) => {
+    const markDone = (it: ConsolItem) => {
         setDone(prev => {
             const n = new Set(prev);
             doneKeysOf(it).forEach(k => n.add(k));
