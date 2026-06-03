@@ -9,6 +9,7 @@ import BottomNav from '@/components/BottomNav/BottomNav';
 import { mockRecipes } from '@/data/mockData';
 import { Recipe } from '@/types';
 import { supabase } from '@/lib/supabase';
+import { pullFavorites } from '@/lib/favorites';
 import styles from './favorites.module.css';
 
 export default function FavoritesPage() {
@@ -18,25 +19,33 @@ export default function FavoritesPage() {
     const [authed, setAuthed] = useState<boolean | null>(null);
 
     useEffect(() => {
-        // Favoris réservés aux connectés
-        const loadFavorites = async () => {
+        // Rendu depuis le cache local (rapide, et pour les events) — sans requête réseau.
+        const renderFromCache = () => {
+            let ids: string[] = [];
+            try { ids = JSON.parse(localStorage.getItem('favorites') || '[]'); } catch {}
+            setFavoriteRecipes(mockRecipes.filter(r => ids.includes(r.id)));
+        };
+
+        // Au montage / login : on tire la vérité depuis Supabase (favoris suivent le compte),
+        // puis on rend depuis le cache hydraté.
+        const init = async () => {
             const { data: { session } } = await supabase.auth.getSession();
             setAuthed(!!session);
             if (!session) { setFavoriteRecipes([]); setLoading(false); return; }
-            const storedIds = JSON.parse(localStorage.getItem('favorites') || '[]');
-            const filtered = mockRecipes.filter(r => storedIds.includes(r.id));
-            setFavoriteRecipes(filtered);
+            await pullFavorites();      // hydrate localStorage depuis le cloud
+            renderFromCache();
             setLoading(false);
         };
 
-        loadFavorites();
+        init();
 
-        window.addEventListener('storage', loadFavorites);
-        window.addEventListener('magic-favorite-change', loadFavorites);
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(() => loadFavorites());
+        // Les events ne font QUE re-render depuis le cache (pas de pull → pas de boucle).
+        window.addEventListener('storage', renderFromCache);
+        window.addEventListener('magic-favorite-change', renderFromCache);
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(() => init());
         return () => {
-            window.removeEventListener('storage', loadFavorites);
-            window.removeEventListener('magic-favorite-change', loadFavorites);
+            window.removeEventListener('storage', renderFromCache);
+            window.removeEventListener('magic-favorite-change', renderFromCache);
             subscription.unsubscribe();
         };
     }, []);

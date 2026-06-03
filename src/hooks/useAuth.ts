@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { supabase, SupabaseUser } from '@/lib/supabase';
+import { pullFavorites } from '@/lib/favorites';
 
 export function useAuth() {
     const [user, setUser] = useState<SupabaseUser>(null);
@@ -8,9 +9,13 @@ export function useAuth() {
 
     useEffect(() => {
         // onAuthStateChange est la source de vérité — fire immédiatement avec session courante
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
             setUser(session?.user ?? null);
             setLoading(false);
+            // Au login / 1re session : hydrate le cache favoris depuis Supabase (suit le compte).
+            if (session && (event === 'SIGNED_IN' || event === 'INITIAL_SESSION')) {
+                pullFavorites().catch(() => {});
+            }
         });
 
         // Fallback: lit aussi la session directement
