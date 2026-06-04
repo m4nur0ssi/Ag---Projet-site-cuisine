@@ -1,0 +1,769 @@
+/* ── Panneau semaine inline ── */
+.weekPanel {
+    width: 100%;
+    background: var(--color-bg, #0a0a0a);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    animation: slideDown 0.3s cubic-bezier(0.23,1,0.32,1);
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.weekPanelInner {
+    position: relative;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 14px 20px 18px;
+}
+
+.topRight {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+    z-index: 5;
+}
+
+.actionBtn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 999px;
+    padding: 7px 16px;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s cubic-bezier(0.23,1,0.32,1);
+    white-space: nowrap;
+}
+.actionBtn:hover { background: rgba(255,255,255,0.16); color: white; transform: translateY(-1px); }
+.actionBtn:active { transform: scale(0.96); }
+
+.weekCloseBtn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+}
+.weekCloseBtn:hover { background: rgba(255,255,255,0.16); color: white; }
+
+/* ── Barre de contrôles : bascule de vue + outils ── */
+.controlsRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.themeChipsRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 14px;
+    animation: slideDown 0.2s cubic-bezier(0.23,1,0.32,1);
+}
+
+/* ── Bascule de vue ── */
+.viewToggle {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 4px;
+    width: fit-content;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.viewBtn {
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.23,1,0.32,1);
+    white-space: nowrap;
+}
+.viewBtn:hover { color: rgba(255,255,255,0.85); }
+
+.viewBtnActive {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(235,235,245,0.85));
+    color: #111;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+}
+
+/* ── Layout 2 colonnes ── */
+.layoutRow {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+}
+
+.mainArea {
+    flex: 1;
+    min-width: 0;
+}
+
+.daysRow {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+}
+
+.daysRow::-webkit-scrollbar { display: none; }
+
+.dayCard {
+    flex-shrink: 0;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dayName {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2px 0;
+}
+
+.mealSlot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mealTag {
+    font-size: 0.58rem;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-left: 2px;
+}
+
+.recipeVignette {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    height: 104px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s cubic-bezier(0.23,1,0.32,1), box-shadow 0.18s, border-color 0.18s;
+}
+
+.clickable:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: rgba(255,255,255,0.3);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+}
+
+.vignetteImg {
+    width: 100%;
+    height: 66px;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+
+.vignetteTitle {
+    flex: 1;
+    font-size: 0.7rem;
+    color: white;
+    font-weight: 600;
+    padding: 4px 6px;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.removeVignette {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(220,38,38,0.85);
+    border: none;
+    color: white;
+    font-size: 0.55rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.emptySlot {
+    border-radius: 10px;
+    border: 1px dashed rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.03);
+    cursor: pointer;
+    width: 100%;
+    height: 104px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    transition: background 0.2s;
+}
+
+.emptySlot:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.emptySlotMuted {
+    border-radius: 10px;
+    border: 1px dashed rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emptyPlus {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.3);
+    line-height: 1;
+}
+
+.emptyText {
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* ── Picker overlay ── */
+.pickerOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 80px 20px 20px;
+}
+
+.pickerModal {
+    background: rgba(20,20,20,0.97);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 540px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    animation: popIn 0.25s cubic-bezier(0.23,1,0.32,1);
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.searchIcon {
+    font-size: 1.1rem;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.searchInput {
+    flex: 1;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.searchInput::placeholder {
+    color: rgba(255,255,255,0.3);
+}
+
+.escBtn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.modeToggle {
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.lockBanner {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+    color: #c4b5fd;
+    background: rgba(139,92,246,0.12);
+    border-bottom: 1px solid rgba(139,92,246,0.25);
+}
+.lockBanner strong { color: white; font-weight: 700; }
+
+.modeBtn {
+    flex: 1;
+    padding: 7px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.modeBtnActive {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border-color: rgba(255,255,255,0.2);
+}
+
+.groupBtns {
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.groupBtn {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.55);
+    border-radius: 20px;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.groupBtn:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.groupBtnActive {
+    background: rgba(139,92,246,0.2);
+    border-color: rgba(139,92,246,0.45);
+    color: #c4b5fd;
+}
+
+.filterChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.chip {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.75rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.12s;
+}
+
+.chip:hover, .chipActive {
+    background: rgba(255,255,255,0.16);
+    color: white;
+    border-color: rgba(255,255,255,0.3);
+}
+
+.ingTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.ingTag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(99,102,241,0.25);
+    border: 1px solid rgba(99,102,241,0.5);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.78rem;
+    color: white;
+}
+
+.ingTag button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.7rem;
+    line-height: 1;
+}
+
+.results {
+    overflow-y: auto;
+    flex: 1;
+    padding: 6px;
+}
+
+.resultsLabel {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 8px 10px 4px;
+}
+
+.noResult {
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    padding: 28px;
+    font-size: 0.85rem;
+}
+
+.resultRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background 0.12s;
+}
+
+.resultRow:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+.resultImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.resultInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.resultTitle {
+    font-size: 0.85rem;
+    color: white;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.resultMeta {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+}
+
+/* ── Panneau aléatoire (espace noir à droite) ── */
+.sidePanel {
+    flex-shrink: 0;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 18px;
+    background: radial-gradient(120% 120% at 100% 0%, rgba(139,92,246,0.10), rgba(0,0,0,0) 60%),
+                rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.randomBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1 55%, #ec4899);
+    background-size: 180% 180%;
+    box-shadow: 0 8px 24px rgba(139,92,246,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+    transition: transform 0.15s cubic-bezier(0.23,1,0.32,1), box-shadow 0.2s;
+    animation: gradientShift 6s ease infinite;
+}
+.randomBtn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(139,92,246,0.5); }
+.randomBtn:active { transform: scale(0.97); }
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.randomDice {
+    font-size: 1.15rem;
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+}
+.randomBtn:hover .randomDice { transform: rotate(180deg) scale(1.15); }
+
+.sideLabel {
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+    padding-top: 2px;
+}
+
+/* Groupes dépliables Catégorie / Tendance / Pays */
+.sideGroups {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sideGroupBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.sideGroupBtn:hover { background: rgba(255,255,255,0.1); color: white; }
+
+.sideGroupActive {
+    background: rgba(139,92,246,0.18);
+    border-color: rgba(139,92,246,0.45);
+    color: #d6c9ff;
+}
+
+.chevron { font-size: 0.7rem; opacity: 0.7; }
+
+.sideChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding-top: 2px;
+    animation: slideDown 0.2s cubic-bezier(0.23,1,0.32,1);
+}
+
+.themeBubbles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+/* ── Vue Jour J : cartes plus grandes / verticales ── */
+.jourJCard {
+    width: 180px;
+}
+
+.courseTitle {
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.courseTitleBtn {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+.courseTitleBtn:hover {
+    color: rgba(255,255,255,0.9);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.deleteCourse {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 3;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(220,38,38,0.92);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    font-size: 0.65rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transition: transform 0.15s, background 0.15s;
+}
+.deleteCourse:hover { background: #ef4444; transform: scale(1.12); }
+
+/* La vignette Jour J est plus haute et garde le titre sous l'image */
+.jourJVignette {
+    height: 235px;
+}
+
+.jourJVignette .vignetteTitle { font-size: 0.74rem; }
+
+.jourJImg {
+    height: 188px !important;
+}
+
+.jourJEmpty {
+    height: 235px !important;
+}
+
+.themeBubble {
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.8);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s cubic-bezier(0.23,1,0.32,1);
+}
+.themeBubble:hover {
+    background: rgba(255,255,255,0.18);
+    color: white;
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-1px);
+}
+.themeBubble:active { transform: scale(0.95); }
+
+/* ── Réafficher une carte supprimée (Jour J) ── */
+.addCourses {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+}
+
+.addLabel {
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+}
+
+.addCourseBtn {
+    border: 1px dashed rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.8);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.addCourseBtn:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.4);
+    color: white;
+}
+
+/* ── Responsive : panneau sous le calendrier sur petit écran ── */
+@media (max-width: 860px) {
+    .layoutRow { flex-direction: column; }
+    .sidePanel { width: 100%; }
+    .themeBubbles { gap: 8px; }
+}

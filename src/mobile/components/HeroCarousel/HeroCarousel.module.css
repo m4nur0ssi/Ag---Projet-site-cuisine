@@ -1,0 +1,143 @@
+.heroContainer {
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 16px;
+    z-index: 10;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.heroTitle {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.pagination {
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.dotActive {
+    width: 20px;
+    background: var(--color-accent-primary);
+    border-radius: 10px;
+}
+
+.carouselWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.3;
+    border-radius: 30px;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.imageContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 30px;
+}
+
+.slideImage {
+    transition: transform 0.8s ease;
+}
+
+.slide:hover .slideImage {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 60%);
+    border-radius: 30px;
+}
+
+.playButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 5;
+}
+
+.playIcon {
+    color: #fff;
+    font-size: 20px;
+    margin-left: 4px;
+}
+
+.slideContent {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+}
+
+.category {
+    padding: 4px 10px;
+    background: var(--color-accent-primary);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    border-radius: 100px;
+    text-transform: uppercase;
+}
+
+.title {
+    margin-top: 10px;
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.navBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prevBtn { left: 10px; }
+.nextBtn { right: 10px; }

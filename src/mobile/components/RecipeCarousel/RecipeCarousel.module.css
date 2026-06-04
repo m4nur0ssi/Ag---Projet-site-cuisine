@@ -1,0 +1,593 @@
+.section {
+    position: relative;
+    padding: 0;
+    margin-bottom: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+:root[data-theme='light'] .section,
+:root[data-theme='light'] .scrollContainer,
+:root[data-theme='light'] .track {
+    background: transparent !important;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-start; /* Ensure left alignment */
+    align-items: center;
+    padding: 0 40px 8px; /* Match left padding of scrollContainer */
+}
+
+.titlePillWrapper {
+    background: rgba(255, 255, 255, 0.1); /* Plus opaque comme les cartes */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Bordure plus nette */
+    border-radius: 24px; /* Unifié avec les titres de recettes */
+    padding: 6px 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sectionTitle {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 950;
+    font-size: 1.1rem; /* Match recipe titles exactly */
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin: 0;
+    text-transform: capitalize;
+    
+    /* Moving Gradient */
+    background: linear-gradient(
+        90deg, 
+        #10b981, 
+        #3b82f6, 
+        #a855f7, 
+        #f43f5e,
+        #10b981
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.viewAll {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.viewAll:active {
+    transform: scale(0.9);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+:root[data-theme='light'] .sectionTitle {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+:root[data-theme='light'] .titlePillWrapper {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme='light'] .viewAll {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1c1c1e;
+}
+
+.scrollIndicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.scrollContainer {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 40px 10px;
+    scroll-snap-type: x proximity; /* proximity = laisse le momentum dépasser plusieurs cartes */
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch; /* Momentum scroll iOS natif */
+    overscroll-behavior-x: contain;
+    display: flex;
+    align-items: center;
+    touch-action: pan-x pan-y;
+}
+
+.track {
+    display: flex;
+    gap: 1px;
+    width: max-content;
+    padding: 0;
+    align-items: center;
+}
+
+.itemWrapper {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 440px; /* Match total height of RecipeCard (Pill + Card + Gap) */
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    margin: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal; /* normal = le momentum peut sauter plusieurs cartes */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.itemLarge {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 440px;
+}
+
+.itemSmall {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 440px;
+}
+
+.compactSection {
+    padding: 0;
+    margin-top: -20px; /* Rapproche de la barre de menu */
+    margin-bottom: 20px; /* Espace normal après les petites tuiles */
+}
+
+.compactSection .scrollContainer {
+    padding: 0 20px 1px;
+    overflow-x: auto;
+    overflow-y: visible; /* Autorise les ombres */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.compactItem {
+    flex: 0 0 220px;
+    width: 220px;
+    height: 130px;
+    margin-right: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal; /* normal = le momentum peut sauter plusieurs cartes */
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    background: rgba(44, 44, 46, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.compactCard {
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    background: #1c1c1e;
+}
+
+.compactCard:active {
+    transform: scale(0.94);
+}
+
+.compactImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 65%;
+    z-index: 1;
+    display: block;
+}
+
+.compactBanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, transparent 0%, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
+    padding: 10px;
+    z-index: 2;
+}
+
+.compactTitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    margin: 0;
+    text-align: center;
+    line-height: 1.1;
+}
+
+/* Anciennes classes (à conserver pour compatibilité) */
+.itemThematic {
+    flex: 0 0 270px;
+    width: 270px;
+    height: 170px;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal; /* normal = le momentum peut sauter plusieurs cartes */
+}
+
+[data-theme='light'] .glassFloor {
+    display: none;
+}
+
+.glassFloor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 0; /* Plus compact sur mobile */
+    }
+    
+    .header {
+        padding: 0 20px 8px;
+    }
+
+    .titlePillWrapper {
+        padding: 5px 14px;
+        border-radius: 20px; /* Unifié mobile */
+    }
+
+    .sectionTitle {
+        font-size: 1rem; /* Match mobile recipe titles */
+    }
+
+    .scrollContainer {
+        padding: 10px 0 10px 20px; /* Plus serré verticalement */
+        mask-image: none;
+    }
+    
+    .itemSmall,
+    .itemLarge,
+    .itemWrapper {
+        flex: 0 0 240px;
+        width: 240px;
+        height: 440px;
+    }
+
+    .track {
+        gap: 20px; /* Même espace fin sur mobile */
+    }
+}
+
+.viewAllCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 380px; /* Aligné sur .card */
+    border-radius: 44px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[data-theme='light'] .viewAllCard {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    background: #ffffff !important;
+    border: none !important;
+}
+
+.viewAllCard:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.small .viewAllCard {
+    height: 380px; /* Même hauteur que .small .card */
+    border-radius: 34px;
+}
+
+.viewAllContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    text-align: center;
+    gap: 12px;
+}
+
+.viewAllText {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Supprimé viewAllSub */
+
+.viewAllGlass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    pointer-events: none;
+}
+
+.titleCard {
+    width: 240px; /* Force exact width to match RecipeCard */
+    height: 380px; /* Base height for the card area */
+    margin-top: 0; /* No margin by default (for thematic sections) */
+    background: linear-gradient(135deg, #4f46e5, #3730a3);
+    border-radius: 44px; /* Standard iOS 26 rounded corners */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.titleCard.withOffset {
+    margin-top: 52px; /* Align with recipe video cards (44px pill + 8px gap) */
+}
+
+/* Tuile thématique : card compacte horizontale */
+.titleCardThematic {
+    width: 260px;
+    height: 155px;
+    border-radius: 22px;
+    margin-top: 0;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+}
+
+.titleCardThematic:active {
+    transform: scale(0.94);
+}
+
+.titleCardThematic .fullBleedIcon {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.titleCardThematic .mainTitleIcon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.titleCardThematic .floatingBanner {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 12px 14px;
+    border: none;
+}
+
+.titleCardThematic .categoryMainTitle {
+    font-size: 0.8rem;
+    letter-spacing: 1.8px;
+    text-align: left;
+    color: #ffffff;
+    font-weight: 800;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+
+.titleCardThematic .titleSeparator {
+    display: none;
+}
+
+
+.fullBleedIcon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.mainTitleIcon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.titleCard:hover .mainTitleIcon {
+    transform: scale(1.05);
+}
+
+.floatingBanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 10px 18px;
+    /* Use the category color but make it lighter */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.categoryMainTitle {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 2.5px;
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.titleSeparator {
+    width: 30px;
+    height: 2px;
+    background: white;
+    margin-top: 8px;
+    border-radius: 1px;
+    opacity: 0.8;
+}
+
+:root[data-theme='dark'] .titleCard {
+    background: #1c1c1e;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+:root[data-theme='dark'] .bottomIconArea {
+    background: #2c2c2e;
+}
+
+:root[data-theme='dark'] .titleCard {
+    background: #1c1c1e;
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme='dark'] .categoryMainTitle {
+    color: #ffffff;
+}
+
+:root[data-theme='dark'] .titleCardGlass {
+    background: linear-gradient(to top, rgba(28, 28, 30, 0.8), transparent);
+}
+
+.titleCard.clickable {
+    cursor: pointer;
+}
+
+.titleCard.clickable:active {
+    transform: scale(0.92) translateY(4px);
+    filter: brightness(1.2);
+}
+
+@media (max-width: 768px) {
+    .titleCard {
+        border-radius: 24px;
+    }
+    
+    .categoryMainTitle {
+        font-size: 1.1rem;
+    }
+
+    .scrollContainer {
+        padding: 5px 0 10px 20px;
+    }
+
+    .viewAllCard {
+        border-radius: 24px;
+    }
+    
+    .viewAllIcon {
+        font-size: 40px;
+    }
+    
+    .viewAllText {
+        font-size: 20px;
+    }
+}
+
+.categoryIconFallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    opacity: 0.2;
+    transform: translateY(40px);
+}
+.viewAllCompactContent {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+}

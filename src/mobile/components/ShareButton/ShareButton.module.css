@@ -1,0 +1,25 @@
+.actionBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid currentColor; /* Identique au bouton favori */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10;
+    color: inherit;
+}
+
+.actionBtn:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.actionBtn:active {
+    transform: scale(0.92);
+    transition-duration: 0.1s;
+}

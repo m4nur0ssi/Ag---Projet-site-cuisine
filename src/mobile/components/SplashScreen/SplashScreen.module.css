@@ -1,0 +1,177 @@
+.splashContainer {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.iosFrame {
+    position: fixed;
+    inset: 12px; /* 3mm environ */
+    background: #000000;
+    border-radius: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 20px 40px;
+    z-index: 10;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 5px;
+    flex-shrink: 0;
+}
+
+.titleMain {
+    font-family: var(--font-outfit), sans-serif;
+    color: white;
+    font-weight: 900;
+    font-size: 2.8rem;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.titleMagiques {
+    font-family: var(--font-dancing), cursive;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-top: -5px;
+    background: linear-gradient(90deg, #F59E0B, #EA580C, #EC4899, #8B5CF6, #3B82F6, #10B981);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+  background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowShift 8s linear infinite;
+    display: block;
+}
+
+.recipeCount {
+    font-family: var(--font-outfit), sans-serif;
+    color: #FFFFFF; /* Pure White as requested */
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+/* SINGLE CARD CAROUSEL */
+.singleCarouselContainer {
+    flex: 1;
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    min-height: 0; /* Allow shrinking if needed */
+}
+
+.cyclingWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.activeCardStage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-height: 100%;
+}
+
+.activeTitle {
+    font-family: var(--font-outfit), sans-serif;
+    font-weight: 950;
+    font-size: 1.8rem;
+    text-align: center;
+    letter-spacing: -1px;
+    margin: 0;
+    padding: 0 20px;
+    line-height: 1.1;
+    text-transform: capitalize;
+    
+    background: linear-gradient(
+        90deg, 
+        #10b981, 
+        #3b82f6, 
+        #a855f7, 
+        #f43f5e,
+        #10b981
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+  background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+    flex-shrink: 0;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* EXPLORER BUTTON */
+.footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.explorerBtn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    font-family: var(--font-outfit), sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 16px 50px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.explorerBtn:active {
+    transform: scale(0.92);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% center; }
+    100% { background-position: 300% center; }
+}
+
+@media (max-width: 480px) {
+    .titleMain { font-size: 2.2rem; }
+    .titleMagiques { font-size: 2.8rem; }
+    .activeTitle { font-size: 1.5rem; }
+    .explorerBtn { padding: 14px 40px; font-size: 0.9rem; }
+}
+

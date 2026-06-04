@@ -1,0 +1,64 @@
+.page {
+    min-height: 100vh;
+    padding-bottom: 120px;
+    background: var(--color-bg-secondary);
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.stickyHeaderMenu {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--color-bg-secondary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: 100%;
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+    .stickyHeaderMenu {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+    }
+}
+
+.main {
+    padding-top: 100px; /* Espace pour le header sticky */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.categoryInfo {
+    padding: 20px 16px 10px;
+    text-align: center;
+}
+
+.count {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.empty {
+    text-align: center;
+    padding: 100px 20px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding-top: 80px;
+    }
+}
