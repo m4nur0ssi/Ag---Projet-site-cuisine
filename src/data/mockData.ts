@@ -2,11 +2,60 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/06/2026 13:31:33
- * Total: 336 recettes
+ * Dernière mise à jour: 04/06/2026 13:45:57
+ * Total: 334 recettes
  */
-export const exportSyncId = "1780579893493";
+export const exportSyncId = "1780580757522";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4898",
+        "title": "Sundae Maison Caramel Beurre Salé",
+        "description": "Recette facile et rapide pour réaliser un sundae maison au caramel beurre salé, inspiré des célèbres glaces de McDonald's. Une dinguerie à reproduire chez soi !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FSundae-maison-au-caramel-750x1125-1.jpg&v=1780586852000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7376682408357170464\" data-video-id=\"7376682408357170464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7376682408357170464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 500g de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 60g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 170g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n De l'arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Du caramel beurre salé (maison ou du commerce)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Famille",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4998",
         "title": "Cocktail Bora Bora sans alcool",
@@ -6899,63 +6948,148 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5448",
-        "title": "Crème brûlée de clémentine",
-        "description": "Un dessert ultra simple et vraiment délicieux, cette crème brûlée à la clémentine est parfaite pour les fêtes de Noël.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fclementine.jpeg&v=1778609335000",
+        "id": "5442",
+        "title": "Panna Cotta aux fraises",
+        "description": "Une recette classique de Panna Cotta italienne, crémeuse et onctueuse, surmontée d'un coulis frais aux fraises. Un dessert léger et rafraîchissant, parfait pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpanna-cotta-vanille-et-coulis-de-fraise-v2.jpeg&v=1778609795000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581555299698396438\" data-video-id=\"7581555299698396438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581555299698396438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7356626054846418209\" data-video-id=\"7356626054846418209\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7356626054846418209\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n Une dizaine de clémentines"
+                "name": "🥣\n Cream: 2 cups"
             },
             {
                 "quantity": "",
-                "name": "🥚\n 4 jaunes d'œufs"
+                "name": "🥣\n Sugar: 1/3 cup"
             },
             {
                 "quantity": "",
-                "name": "🍯\n 60 g de sucre"
+                "name": "🥣\n Gelatin: 2 sheets (or 8g)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Zestes d'une clémentine bio (optionnel)"
+                "name": "🥣\n Vanilla: 1 tablespoon"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Jus de 4/5 clémentines"
+                "name": "🥣\n Strawberries: 1 cup, chopped"
             },
             {
                 "quantity": "",
-                "name": "🥛\n 200 g de crème entière"
+                "name": "🥣\n Water: 1/2 cup"
             },
             {
                 "quantity": "",
-                "name": "🥛\n 150 ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 25 g de sucre pour la caramélisation"
+                "name": "🥣\n Gelatin: 1 sheet"
             }
         ],
         "steps": [
-            "Commencer par enlever l'intérieur des clémentines.",
-            "Dans un saladier, fouetter les jaunes d'œufs avec le sucre.",
-            "Ajouter les zestes, le jus de clémentine, la crème et le lait, puis bien mélanger.",
-            "Verser la crème dans les clémentines évidées et enfourner pour 1 heure à 100°C.",
-            "À la sortie du four, la crème doit être tremblotante au centre. Si elle n'est pas cuite, poursuivre un peu la cuisson.",
-            "Réserver au frais pendant 4 heures minimum.",
-            "Juste avant de servir, saupoudrer les crèmes de sucre puis caraméliser le dessus soit à l'aide d'un chalumeau, soit avec la fonction grill du four (attention dans ce cas quand ça commence à caraméliser ça va très très vite)."
+            "Soften 2 sheets of gelatin in cold water.",
+            "Heat cream, sugar, and vanilla until hot but not boiling.",
+            "Remove from heat, add the softened gelatin, and stir until melted.",
+            "Pour the mixture into glasses and let it cool.",
+            "Refrigerate until firm.",
+            "Soften 1 sheet of gelatin in cold water.",
+            "Heat chopped strawberries and water without boiling.",
+            "Add the softened gelatin and stir until melted.",
+            "Let the strawberry topping cool.",
+            "Pour the cooled strawberry topping over the firm panna cotta.",
+            "Refrigerate until set."
         ],
         "tags": [
             "Desserts",
-            "France",
-            "Noël"
+            "Italie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5445",
+        "title": "Gâteau mousse au chocolat",
+        "description": "Un délicieux gâteau composé d'un biscuit moelleux au cacao et d'une onctueuse mousse au chocolat noir, parfait pour un dessert gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgateau-choco-scaled.jpg&v=1778609600000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7551440769798851843\" data-video-id=\"7551440769798851843\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7551440769798851843\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 125g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 20g de cacao"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 70g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1càc de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60ml d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 120g de lait (pour le biscuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 120g de café chaud"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 130g de lait (pour la mousse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 160g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 250g de crème entière froide"
+            }
+        ],
+        "steps": [
+            "Pour le biscuit : Mélanger les ingrédients secs (farine, cacao, sucre, levure chimique, sel).",
+            "Ajouter l'œuf, l'huile et le lait aux ingrédients secs, puis incorporer le café chaud.",
+            "Cuire le biscuit environ 15 minutes à 170°C.",
+            "Laisser le biscuit complètement refroidir.",
+            "Pour la mousse : Dans une casserole, mélanger les jaunes d'œufs avec le lait.",
+            "Transférer sur feu doux et cuire jusqu'à ce que la crème anglaise nappe la cuillère.",
+            "Verser la crème anglaise chaude sur le chocolat noir et mélanger jusqu'à obtenir une ganache lisse.",
+            "Faire monter la crème entière froide en chantilly.",
+            "Incorporer délicatement la crème montée à la ganache au chocolat.",
+            "Verser la mousse sur le gâteau refroidi.",
+            "Réserver au réfrigérateur pendant au minimum 1 nuit."
+        ],
+        "tags": [
+            "Desserts"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -12493,42 +12627,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "4847",
-        "title": "Salade de chips crousti",
-        "description": "Une salade printanière irrésistible composée de chips de pommes de terre croustillantes, de légumes frais et d'une sauce savoureuse. Parfaite pour une touche d'originalité.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624195511733488929\" data-video-id=\"7624195511733488929\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624195511733488929\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n Chips de pommes de terre croustillantes"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n Légumes variés (pour salade)"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n Sauce salade"
-            }
-        ],
-        "steps": [
-            "Mélanger les chips de pommes de terre croustillantes avec les légumes et la sauce."
-        ],
-        "tags": [
-            "USA",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4829",
         "title": "Crumble aux pommes et glace vanille",
         "description": "Un classique indémodable, ce crumble aux pommes et caramel est croustillant sur le dessus et garni d'une compote de pommes juteuse. Servi chaud avec de la glace à la vanille et un filet de caramel.",
@@ -12599,166 +12697,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Glaces",
             "USA",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4859",
-        "title": "Poulet mariné au citron",
-        "description": "Des cuisses de poulet désossées, marinées avec un mélange d'épices citron-poivre, ail, paprika fumé et oignon, puis cuites au four. Elles sont ensuite enrobées d'une sauce sucrée-salée au miel, ail, citron et sauce soja pour une finition caramélis...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7624562084348546318\" data-video-id=\"7624562084348546318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7624562084348546318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 4 bone-in Chicken Thighs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 tsp Lemon Pepper Seasoning"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 tsp Garlic Powder"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 2 tsp Smoked Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 tsp Kosher Salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 tsp Black Pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 tsp Onion Powder"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 3 tbsp Olive Oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 tbsp Unsalted Butter"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n ¼ cup Honey"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 4 slices of Lemon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 4 tsp minced garlic"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 tbsp freshly squeezed Lemon Juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 tsp Low-Sodium Soy Sauce"
-            }
-        ],
-        "steps": [
-            "Clean and pat the chicken thighs dry. In a small bowl, combine lemon pepper seasoning, garlic powder, paprika, salt, black pepper, and onion powder. Stir in olive oil to make a seasoning paste. Fully coat the thighs with the paste, spreading it underneath the skin. Transfer to a zip-top bag or container and marinate for at least 2 hours or up to overnight.",
-            "Preheat oven to 425°F (215°C). Line a large baking pan with foil, set a baking rack in the pan, and coat with nonstick cooking spray.",
-            "Place thighs on the rack skin side down. Bake, uncovered, for 30 minutes. Turn over and continue to bake for 20 to 25 minutes, until cooked through (internal temperature 165°F/75°C).",
-            "While chicken bakes, prepare the sauce: In a large skillet over medium-low heat, melt butter. Add honey, lemon slices, minced garlic, lemon juice, soy sauce, and 1 tablespoon water. Bring to a simmer, then cook, stirring periodically, until it thickens (about 5 minutes).",
-            "When chicken is done, brush the sauce all over both sides and bake for an additional 5 minutes, until the sauce has browned and turned sticky. Allow thighs to cool for 3 to 5 minutes before serving."
-        ],
-        "tags": [
-            "barbecue",
-            "France",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4808",
-        "title": "Peperonata",
-        "description": "Une recette italienne intemporelle de peperonata, un plat de légumes qui disparaît toujours en premier à table. À déguster froide.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7522086326829698326\" data-video-id=\"7522086326829698326\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7522086326829698326\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             5 peperoni"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5 cipolle"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 spicchio d'aglio"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             40 gr capperi"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             30 gr aceto balsamico"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Qb basilico"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Qb Pepe"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Qb Sale"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Qb olio Evo"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Qb Brodo Vegetale"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 gr Passata di Pomodoro"
-            }
-        ],
-        "steps": [
-            "Couper les oignons en julienne. Les laisser tremper un peu dans de l'eau froide et du vinaigre.",
-            "Faire dorer les oignons dans une bonne quantité d'huile d'olive.",
-            "Couper les poivrons après les avoir épépinés et les faire dorer également.",
-            "Mélanger les deux composés (oignons et poivrons) dans la casserole, en laissant prendre un peu de flamme.",
-            "Déglacer avec du vinaigre balsamique, saler et poivrer. Arroser le tout de bouillon de légumes et de passata de tomate.",
-            "Ajouter une bonne quantité de basilic et quelques câpres. Faire cuire à très basse température pendant 20 minutes.",
-            "Déguster froide."
-        ],
-        "tags": [
-            "Healthy",
-            "Italie",
             "Végé"
         ],
         "isFeatured": false,
@@ -13682,96 +13620,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "4705",
-        "title": "Creamy Vodka Tortiglioni &#038; Burrata",
-        "description": "Une recette réconfortante de pâtes Tortiglioni ou Rigatoni dans une sauce crémeuse à la vodka, riche et épicée, sublimée par de la burrata fraîche. Parfaite pour célébrer le printemps.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7352931481745886506\" data-video-id=\"7352931481745886506\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7352931481745886506\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             8 ounces pasta (Tortiglioni or Rigatoni recommended)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cup heavy cream"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3/4 cup Parmigiano Reggiano (reserve some for garnish), grated"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 1/2 tablespoons tomato paste"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 shallots, finely chopped"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4-6 cloves garlic, minced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 1/2 ounces vodka"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 teaspoons red pepper flakes (reduce if you prefer less spicy)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 teaspoons black pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Kosher salt, to taste"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tablespoons olive oil or unsalted butter"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tablespoons fresh parsley, chopped (or chives as an alternative)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Burrata cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Red pepper flakes, for garnish"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             A drizzle of olive oil"
-            }
-        ],
-        "steps": [
-            "Bring a large pot of water to a boil. Add about 1 tablespoon of Kosher salt. Cook the pasta according to the package instructions until al dente. Drain, reserving 1 cup of the pasta cooking water.",
-            "In a large skillet over medium heat, add the olive oil, shallots, and minced garlic. Sauté for 1 minute. Stir in the red pepper flakes.",
-            "Mix in the tomato paste, then add the vodka. Let it cook for 30-60 seconds to allow the alcohol to evaporate.",
-            "Pour in the heavy cream and add 1/4 cup of grated Parmigiano Reggiano, along with a pinch of salt and the black pepper. Stir well and reduce the heat to low.",
-            "Once the pasta is al dente, add it to the skillet. Increase the heat to medium and add the remaining Parmigiano Reggiano and about 1/4 cup of the reserved pasta water. Stir everything together, adding more pasta water if necessary, until the pasta is well-coated with a creamy sauce. Adjust the sauce consistency according to your preference by adding more pasta water if it's too thick.",
-            "Serve the pasta in bowls. Sprinkle with chopped parsley, top with a piece of burrata, and garnish with additional red pepper flakes. Drizzle with a bit more olive oil.",
-            "Finish with a sprinkle of grated Parmigiano Reggiano, if desired, and serve warm. Enjoy!"
-        ],
-        "tags": [
-            "Famille",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4692",
         "title": "Couscous Marocain",
         "description": "Un couscous marocain traditionnel et généreux, composé de légumes variés, de poulet, d'agneau et de merguez, servi avec une semoule parfumée. Une garniture sucrée aux raisins secs est proposée en option pour une touche d'originalité.",
@@ -14427,6 +14275,69 @@ export const mockRecipes: Recipe[] = [
             "Famille",
             "Healthy",
             "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3938",
+        "title": "Classic Tomato Basil Bruschetta",
+        "description": "Une recette simple et classique de bruschetta avec une garniture fraîche de tomates, basilic, oignon rouge, assaisonnée d'huile d'olive et de sauce balsamique, servie sur du pain grillé avec de la mozzarella fraîche.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827443436.jpg&v=1774526611000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7497665292496014614\" data-video-id=\"7497665292496014614\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7497665292496014614\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             2 tomates, finement coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             ½ oignon rouge, finement coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une poignée de basilic frais, haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre noir, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de sauce balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Baguette ou ciabatta, tranchée"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella fraîche, tranchée"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre ou huile d'olive, pour griller"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélangez les tomates coupées en dés, l'oignon rouge et le basilic. Assaisonnez avec du sel, du poivre, de l'huile d'olive et un filet de sauce balsamique. Mélangez bien et mettez de côté.",
+            "Faites griller vos tranches de pain dans une poêle avec un peu de beurre ou d'huile d'olive jusqu'à ce qu'elles soient dorées et croustillantes.",
+            "Disposez une tranche de mozzarella fraîche sur chaque tranche de pain grillé et déposez généreusement le mélange de tomates par-dessus.",
+            "Servez immédiatement, éventuellement avec un peu de basilic frais supplémentaire."
+        ],
+        "tags": [
+            "Italie",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -22002,76 +21913,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "3848",
-        "title": "Boulettes de pommes de terre épinards et mozzarella",
-        "description": "De délicieuses boulettes végétariennes et croustillantes à base de pommes de terre, d'épinards et de tofu, avec un cœur fondant à la mozzarella.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773761649742.jpg&v=1773765254000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7197117564131151110\" data-video-id=\"7197117564131151110\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7197117564131151110\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             4 pommes de terre moyennes"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             200g de pousses d'épinards"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 boule de mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             125g de tofu (aux herbes)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             Chapelure"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            }
-        ],
-        "steps": [
-            "Cuire les pommes de terre à l'eau ou à la vapeur, puis les écraser en purée.",
-            "Hacher l'échalote et l'ail, puis les faire revenir à la poêle avec les épinards dans un peu d'huile d'olive.",
-            "Dans un saladier, mélanger la purée de pommes de terre, les épinards cuits et le tofu émietté. Assaisonner avec le sel et le poivre.",
-            "Former des boulettes avec la préparation en insérant un morceau de mozzarella au centre de chacune.",
-            "Préparer la panure : passer successivement chaque boulette dans la farine, puis dans l'œuf battu, et enfin dans la chapelure.",
-            "Faire dorer les boulettes à la poêle avec de l'huile d'olive jusqu'à ce qu'elles soient bien croustillantes."
-        ],
-        "tags": [],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "3796",
         "title": "Gaspacho Concombre Menthe Feta",
         "description": "Une recette végétarienne, légère, à IG bas et sans gluten, parfaite pour tes repas d'été. Simple et rapide à réaliser !",
@@ -22219,6 +22060,122 @@ export const mockRecipes: Recipe[] = [
             "plat principal",
             "rapide",
             "saumon"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3723",
+        "title": "Alfredo Chicken Pasta",
+        "description": "Une version crémeuse, fondante et ultra protéinée de la pasta Alfredo. Parfaite pour prendre soin de tes apports sans sacrifier le goût.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchicken-alfredo.jpg&v=1773762687000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7525831802825592096\" data-video-id=\"7525831802825592096\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7525831802825592096\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 1200g de blanc de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 600g de fusilli"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 40g de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 2 poivrons orange en lanières"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 2 càs d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 càs d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 càs d'oignon en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 càs de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 càs d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 càc de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 càc de piment de cayenne"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 360g de cottage cheese"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 100g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150g de lait écrémé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 20cl de crème liquide 4%"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Aplatis les blancs de poulet entre deux feuilles de film alimentaire à l'aide d'une casserole.",
+            "Assaisonne-les avec toutes les épices (ail en poudre, oignon en poudre, paprika, origan, poivre, piment de cayenne).",
+            "Fais-les revenir dans une poêle bien chaude avec un filet d'huile, 3 à 4 minutes de chaque côté, puis retire-les.",
+            "Dans la même poêle, fais suer les oignons et les poivrons pendant 4 minutes.",
+            "Ajoute l'ail et laisse mijoter à feu doux jusqu'à ce que les légumes soient bien fondants.",
+            "Mixe les ingrédients de la sauce : crème liquide, cottage cheese, parmesan, lait, sel et poivre.",
+            "Coupe le poulet en morceaux, remets-le dans la poêle avec la sauce, et mélange bien.",
+            "Fais cuire les pâtes, garde un peu d'eau de cuisson, et ajoute-la dans la préparation pour ajuster la texture.",
+            "Incorpore les pâtes dans la sauce, ajoute la mozzarella râpée et le persil frais, mélange le tout, puis divise en 8 portions égales. C'est prêt !"
+        ],
+        "tags": [
+            "Alfredo",
+            "Healthy",
+            "italien",
+            "pates",
+            "poulet",
+            "protéiné"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -24504,44 +24461,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Venezia"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "1214",
-        "title": "Ble coeur - Le Raincy",
-        "description": "      Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous les appétits !",
-            "AU PROGRAMME - Une carte le midi, une le soir, et suggestions qui changent tous les jours. En cuisine, on mise sur le frais et les produits du marché.",
-            "GOURMET - Les plats flirtent avec la gastronomie tout en restant simples et bien exécutés : foie gras poêlé sur pain d'épice maison, risotto aux girolles, souris d'agneau confite ou encore canard à l'orange..",
-            "Mon plat préféré : j'ai bien aimé le carpaccio de tomates avec sa belle burrata",
-            "l'accueil, la simplicité de la décoration soignée, le service, les plats",
-            "le prix même si c'est logique",
-            "au fond avec vue sur la cuisine😉",
-            "82, allee de Montfermeil, 93340, Le Raincy",
-            "Parking Montfermeil (110m)",
-            "RER E Le Raincy - Villemomble - Montfermeil",
-            "TheFork, a Trip advisor company"
-        ],
-        "tags": [
-            "blé",
-            "coeur"
         ],
         "isFeatured": false,
         "isFavorite": false,
