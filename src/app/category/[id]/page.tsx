@@ -1,5 +1,5 @@
 import { mockRecipes } from '@/data/mockData';
-import CategoryClient from './CategoryClient';
+import CategoryClient from './CategoryRouter';
 import { notFound } from 'next/navigation';
 
 const categories = {

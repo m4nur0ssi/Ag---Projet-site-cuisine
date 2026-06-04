@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { mockRecipes } from '@/data/mockData';
-import RecipeClient from './RecipeClient';
+import RecipeClient from './RecipeRouter';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
 
 export default async function RecipePage({ params }: { params: { id: string } }) {
