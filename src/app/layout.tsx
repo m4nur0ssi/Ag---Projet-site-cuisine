@@ -30,6 +30,7 @@ export const viewport = {
 import { TimerProvider } from '@/components/Timer/TimerContext'
 import SplashScreen from '@/components/SplashScreen/SplashScreen'
 import GlobalRecipeSheet from '@/components/GlobalRecipeSheet/GlobalRecipeSheet'
+import MobileNav from '@/components/MobileNav/MobileNav'
 
 export default function RootLayout({
     children,
@@ -65,6 +66,7 @@ export default function RootLayout({
                         {children}
                     </div>
                     <GlobalRecipeSheet />
+                    <MobileNav />
                 </TimerProvider>
                 <script
                     dangerouslySetInnerHTML={{

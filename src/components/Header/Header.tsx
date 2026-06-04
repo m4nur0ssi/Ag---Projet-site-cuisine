@@ -106,6 +106,10 @@ export default function Header({
         const handleSearchOpen = () => setIsSearchOpen(true);
         window.addEventListener('magic-search-open', handleSearchOpen);
 
+        // Ouverture du planificateur depuis le FAB mobile (ou ailleurs).
+        const handleOpenPlanner = () => setIsPlannerOpen(true);
+        window.addEventListener('magic-open-planner', handleOpenPlanner);
+
         const updateFavoriteCount = async () => {
             // Favoris réservés aux connectés : 0 si pas de session
             const { data: { session } } = await supabase.auth.getSession();
@@ -140,6 +144,7 @@ export default function Header({
 
         return () => {
             window.removeEventListener('magic-search-open', handleSearchOpen);
+            window.removeEventListener('magic-open-planner', handleOpenPlanner);
             window.removeEventListener('storage', updateFavoriteCount);
             window.removeEventListener('magic-favorite-change', updateFavoriteCount);
             window.removeEventListener('storage', updateShoppingCount);
@@ -270,6 +275,7 @@ export default function Header({
                                                 <span className={styles.navFavBadge} style={{ top: '-5px', right: '-7px' }}>{shoppingCount > 99 ? '99+' : shoppingCount}</span>
                                             </Link>
                                         )}
+                                        <ThemeToggle className={styles.themeToggleWrapper} />
                                         <AuthButton />
                                     </div>
                                 ) : (
