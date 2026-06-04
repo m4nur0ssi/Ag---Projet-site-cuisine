@@ -2,11 +2,259 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/06/2026 12:24:04
+ * Dernière mise à jour: 04/06/2026 12:39:45
  * Total: 339 recettes
  */
-export const exportSyncId = "1780575844097";
+export const exportSyncId = "1780576785131";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5937",
+        "title": "Courgettes rôties et crème de mozza",
+        "description": "Des courgettes rôties et marinées au miel, soja, origan et paprika fumé, servies avec une crème onctueuse à base de mozzarella, yaourt, herbes fraîches, ail et citron, le tout garni de grenade, mozzarella fraîche et pignons de pin grillés.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fcourgettes-mozza.jpeg&v=1780583479000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7361079703404301601\" data-video-id=\"7361079703404301601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7361079703404301601\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 2-3 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n Sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 1 boule de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3 cas de yaourt"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Une poignée d'herbes fraîches (menthe, basilic...)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1/2 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Zeste d'un citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Grenade"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pignons de pin grillés"
+            }
+        ],
+        "steps": [
+            "Préparer la marinade en mélangeant 2 cas d'huile d'olive, 1 cas de soja salé, 1 cas de miel, 1 cac d'origan et du paprika fumé.",
+            "Couper les courgettes et les saisir à la poêle avec un peu de beurre pendant 10 minutes.",
+            "Transférer les courgettes dans un plat allant au four, les napper de marinade et cuire au four pendant 20 minutes à 200 degrés.",
+            "Pendant ce temps, préparer la sauce : mixer 1 boule de mozzarella, 3 cas de yaourt, une poignée d'herbes (menthe, basilic...), 1/2 gousse d'ail, 2 cas d'huile d'olive, 1 cas de miel, du sel et le zest d'un citron.",
+            "Servir les courgettes rôties avec la crème de mozza et garnir de grenade, de morceaux de mozzarella fraîche et de pignons de pin grillés."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5939",
+        "title": "Curry d'aubergine, pois chiches et raïta",
+        "description": "Un curry végétarien parfumé aux aubergines fondantes, accompagné de pois chiches rôtis au paprika fumé et d'une sauce raïta fraîche au concombre et à la menthe. Idéal avec du pain ou du riz.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fcurry-aubergine.jpg&v=1780583356000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7245327007372905754\" data-video-id=\"7245327007372905754\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7245327007372905754\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 2-3 càs de curry de madras en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 càs de coriandre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 càc de gingembre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🍆\n 1 belle aubergine"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 càs de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 300ml de lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 200g de chair de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 poignée de coriandre fraîche hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 4 grosses càs de yaourt nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n 1/2 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 càc de Garam masala en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 poignée de feuilles de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 5-6 feuilles de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n 150g de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n Pain de votre choix (pita, naan, pain italien..) ou du riz"
+            }
+        ],
+        "steps": [
+            "1. Faites revenir l'oignon avec huile d'olive, sel, poivre et les épices (curry de madras, coriandre, gingembre) pendant 2min sur feu moyen dans une grande poêle ou cocotte que vous pouvez couvrir. Ajoutez ensuite le concentré de tomate, l'aubergine coupée en cubes, le lait de coco et la chair de tomate. Mélangez bien, salez, et faites cuire à couvert environ 20-25min en vérifiant que le fond n'accroche pas pendant la cuisson.",
+            "2. À la fin de la cuisson du curry, écrasez les aubergines à la fourchette, ajoutez la coriandre hachée, mélangez et laissez finir de réduire à découvert 1-3min. La consistance doit être fondante, pas liquide. Goûtez et ajustez si besoin (plus de curry, d'herbes, sel ?).",
+            "3. Pour les pois chiches, égouttez et rincez-les, puis faites-les simplement revenir avec de l'huile d'olive et beaucoup de paprika fumé (1 à 2 càs) sur feu moyen.",
+            "4. Pour la sauce raïta : mélangez le concombre épluché et coupé en petits morceaux avec les herbes hachées (coriandre, menthe), du sel, le Garam masala et le yaourt.",
+            "5. Servez le tout avec le pain de votre choix (cheese naan, pain pita, pain italien) ou du riz."
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Orient",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5941",
+        "title": "Gratin de Courgettes Protéiné",
+        "description": "Une super recette pour faire manger des courgettes aux petits comme aux grands récalcitrants. En plus de ça c'est ultra protéiné, tu vas te régaler !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fgratin-de-courgette-scaled-1.jpeg&v=1780583135000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7518358291571903766\" data-video-id=\"7518358291571903766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7518358291571903766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Mozzarella Rapée"
+            }
+        ],
+        "steps": [
+            "Bien égoutter les courgettes dans un torchon avant cuisson."
+        ],
+        "tags": [
+            "Gratins",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5943",
         "title": "Brownie au brocolis",
@@ -69,254 +317,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Healthy"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5941",
-        "title": "Gratin de Courgettes Protéiné",
-        "description": "Une super recette pour faire manger des courgettes aux petits comme aux grands récalcitrants. En plus de ça c'est ultra protéiné, tu vas te régaler !",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7518358291571903766\" data-video-id=\"7518358291571903766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7518358291571903766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2 courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 fêta"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mozzarella Rapée"
-            }
-        ],
-        "steps": [
-            "Bien égoutter les courgettes dans un torchon avant cuisson."
-        ],
-        "tags": [
-            "Gratins",
-            "Healthy"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5939",
-        "title": "Curry d'aubergine, pois chiches et raïta",
-        "description": "Un curry végétarien parfumé aux aubergines fondantes, accompagné de pois chiches rôtis au paprika fumé et d'une sauce raïta fraîche au concombre et à la menthe. Idéal avec du pain ou du riz.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7245327007372905754\" data-video-id=\"7245327007372905754\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7245327007372905754\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             2-3 càs de curry de madras en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 càs de coriandre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 càc de gingembre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🍆\n             1 belle aubergine"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 càs de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             300ml de lait de coco"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             200g de chair de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 poignée de coriandre fraîche hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 grosses càs de yaourt nature"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1/2 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 càc de Garam masala en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 poignée de feuilles de coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             5-6 feuilles de menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             150g de pois chiches"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             Pain de votre choix (pita, naan, pain italien..) ou du riz"
-            }
-        ],
-        "steps": [
-            "1. Faites revenir l'oignon avec huile d'olive, sel, poivre et les épices (curry de madras, coriandre, gingembre) pendant 2min sur feu moyen dans une grande poêle ou cocotte que vous pouvez couvrir. Ajoutez ensuite le concentré de tomate, l'aubergine coupée en cubes, le lait de coco et la chair de tomate. Mélangez bien, salez, et faites cuire à couvert environ 20-25min en vérifiant que le fond n'accroche pas pendant la cuisson.",
-            "2. À la fin de la cuisson du curry, écrasez les aubergines à la fourchette, ajoutez la coriandre hachée, mélangez et laissez finir de réduire à découvert 1-3min. La consistance doit être fondante, pas liquide. Goûtez et ajustez si besoin (plus de curry, d'herbes, sel ?).",
-            "3. Pour les pois chiches, égouttez et rincez-les, puis faites-les simplement revenir avec de l'huile d'olive et beaucoup de paprika fumé (1 à 2 càs) sur feu moyen.",
-            "4. Pour la sauce raïta : mélangez le concombre épluché et coupé en petits morceaux avec les herbes hachées (coriandre, menthe), du sel, le Garam masala et le yaourt.",
-            "5. Servez le tout avec le pain de votre choix (cheese naan, pain pita, pain italien) ou du riz."
-        ],
-        "tags": [
-            "épicé",
-            "Healthy",
-            "Orient",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5937",
-        "title": "Courgettes rôties et crème de mozza",
-        "description": "Des courgettes rôties et marinées au miel, soja, origan et paprika fumé, servies avec une crème onctueuse à base de mozzarella, yaourt, herbes fraîches, ail et citron, le tout garni de grenade, mozzarella fraîche et pignons de pin grillés.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7361079703404301601\" data-video-id=\"7361079703404301601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7361079703404301601\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2-3 courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Sauce soja salée"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Origan"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 boule de mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 cas de yaourt"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Une poignée d'herbes fraîches (menthe, basilic...)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1/2 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Zeste d'un citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Grenade"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pignons de pin grillés"
-            }
-        ],
-        "steps": [
-            "Préparer la marinade en mélangeant 2 cas d'huile d'olive, 1 cas de soja salé, 1 cas de miel, 1 cac d'origan et du paprika fumé.",
-            "Couper les courgettes et les saisir à la poêle avec un peu de beurre pendant 10 minutes.",
-            "Transférer les courgettes dans un plat allant au four, les napper de marinade et cuire au four pendant 20 minutes à 200 degrés.",
-            "Pendant ce temps, préparer la sauce : mixer 1 boule de mozzarella, 3 cas de yaourt, une poignée d'herbes (menthe, basilic...), 1/2 gousse d'ail, 2 cas d'huile d'olive, 1 cas de miel, du sel et le zest d'un citron.",
-            "Servir les courgettes rôties avec la crème de mozza et garnir de grenade, de morceaux de mozzarella fraîche et de pignons de pin grillés."
-        ],
-        "tags": [
-            "Healthy",
-            "Italie",
-            "Végé",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
