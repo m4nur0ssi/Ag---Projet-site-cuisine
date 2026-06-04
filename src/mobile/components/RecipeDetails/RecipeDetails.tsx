@@ -155,7 +155,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             })
             .filter(({ score }) => score > 0)
             .sort((a, b) => b.score - a.score)
-            .slice(0, 6)
+            .slice(0, 12)
             .map(({ recipe: r }) => r);
     }, [recipe]);
 
@@ -1182,21 +1182,18 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     <div style={{ padding: '0 20px 10px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', opacity: 0.5, textTransform: 'uppercase' }}>
                         Recettes similaires
                     </div>
-                    <div style={{ display: 'flex', gap: 10, overflowX: 'auto', padding: '0 20px 4px', scrollbarWidth: 'none' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, padding: '0 20px 4px', maxHeight: 360, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
                         {similarRecipes.map(r => (
                             <button
                                 key={r.id}
-                                onClick={() => {
-                                    // Dispatch pour ouvrir via RecipeSheet si disponible
-                                    window.dispatchEvent(new CustomEvent('openRecipe', { detail: r }));
-                                }}
+                                onClick={() => router.push(`/recipe/${r.id}`)}
                                 style={{
-                                    flexShrink: 0, width: 120, background: 'rgba(255,255,255,0.06)',
+                                    background: 'rgba(255,255,255,0.06)',
                                     border: '1px solid rgba(255,255,255,0.1)', borderRadius: 14,
                                     overflow: 'hidden', cursor: 'pointer', padding: 0, textAlign: 'left'
                                 }}
                             >
-                                <img src={r.image} alt={r.title} style={{ width: '100%', height: 80, objectFit: 'cover', display: 'block' }} />
+                                <img src={r.image} alt={r.title} style={{ width: '100%', height: 90, objectFit: 'cover', display: 'block' }} />
                                 <div style={{ padding: '6px 8px', fontSize: '0.72rem', color: 'white', fontWeight: 600, lineHeight: 1.3,
                                     display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                                     {r.title}

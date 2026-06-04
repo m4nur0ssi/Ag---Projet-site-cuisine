@@ -343,7 +343,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                 <div className={styles.weekPanelInner}>
                     {/* Actions haut-droite : Valider/Modifier + fermer */}
                     <div className={styles.topRight}>
-                        <button className={styles.actionBtn} onClick={() => {
+                        <button className={`${styles.actionBtn} ${validated ? styles.actionBtnEdit : styles.actionBtnValidate}`} title={validated ? 'Modifier' : 'Valider'} aria-label={validated ? 'Modifier' : 'Valider'} onClick={() => {
                             const next = !validated;
                             setValidated(next);
                             if (next) {
@@ -356,7 +356,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                 addPlanToShoppingList();
                             }
                         }}>
-                            {validated ? '✎ Modifier' : '✓ Valider'}
+                            {validated ? '✎' : '✓'}
                         </button>
                         <button className={styles.weekCloseBtn} onClick={onClose}>✕</button>
                     </div>
@@ -377,7 +377,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         {!validated && (
                             <div className={styles.toolbar}>
                                 <button className={styles.randomBtn} onClick={() => fill()}>
-                                    🎲 Aléatoire
+                                    Aléatoire
                                 </button>
                                 {SIDE_GROUPS.map(g => (
                                     <button

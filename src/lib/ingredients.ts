@@ -3,7 +3,10 @@
 export const normalizeIng = (s: string) =>
     (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
 
-const KNOWN_UNITS = ['g', 'kg', 'mg', 'ml', 'cl', 'l', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c', 'pincee', 'pincée', 'tasse', 'verre', 'sachet', 'gousse', 'tranche', 'feuille', 'boite', 'boîte'];
+// Unités de MESURE réelles uniquement. Les contenants (gousse, tranche, sachet, verre…)
+// sont volontairement EXCLUS : ils sont retirés du nom (stripMeasure) pour que
+// "1 gousse d'ail" fusionne avec "ail" (clé par nom, pas par contenant).
+const KNOWN_UNITS = ['g', 'kg', 'mg', 'ml', 'cl', 'l', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c'];
 
 // Mots de mesure/conditionnement à retirer du nom (pour affichage + recherche)
 const MEASURE_WORDS = [
@@ -157,6 +160,14 @@ export const splitIngredients = (raw: string): string[] => {
     return kept.length ? kept : [raw];
 };
 
+// Découpe une ligne groupée ("Pour le biscuit : 155g farine, 100g beurre, …")
+// en ingrédients individuels : retire le préfixe de section puis splitte (virgules / et / ou).
+export const expandIngredientLines = (raw: string): string[] => {
+    const s = cleanIngredientText(raw).replace(/^pour\s+[^:]{1,45}:\s*/i, '').trim();
+    if (!s) return [];
+    return splitIngredients(s);
+};
+
 export const capFirst = (s: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 export const fmtQty = (q: number) => (Number.isInteger(q) ? String(q) : String(Math.round(q * 100) / 100));
 
@@ -242,7 +253,11 @@ export const buildConsolidatedItems = (
             (recipe?.ingredients || []).forEach((ing: any, idx: number) => {
                 if (weekChecked.has(`${dayKey}|${mealKey}|${idx}`)) return;
                 const raw = `${ing?.quantity || ''} ${ing?.name || ''}`.trim();
-                if (raw) add(raw, { slotKey: `${dayKey}|${mealKey}|${idx}` });
+                if (!raw) return;
+                // Découpe les blocs groupés en ingrédients individuels (clé sous-indexée).
+                expandIngredientLines(raw).forEach((piece, sub) => {
+                    add(piece, { slotKey: `${dayKey}|${mealKey}|${idx}|${sub}` });
+                });
             });
         });
     });
@@ -253,13 +268,10 @@ export const buildConsolidatedItems = (
             if (raw) add(raw, { manual: true });
         });
     });
-    // Tri : ajouts manuels en TÊTE (le plus récent d'abord), puis le reste alphabétique.
-    return Array.from(map.values()).sort((a, b) => {
-        if (a.manual && b.manual) return (b.ord || 0) - (a.ord || 0);
-        if (a.manual) return -1;
-        if (b.manual) return 1;
-        return a.name.localeCompare(b.name);
-    });
+    // Tri : alphabétique par NOM d'ingrédient uniquement (quantités ignorées).
+    return Array.from(map.values()).sort((a, b) =>
+        a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' })
+    );
 };
 
 // Compte le nombre de lignes de la liste fusionnée (pour la pastille de nav).

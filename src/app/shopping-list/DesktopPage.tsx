@@ -152,7 +152,8 @@ export default function ShoppingListPage() {
     const shareNative = async () => {
         const text = buildShareText();
         if (typeof navigator !== 'undefined' && (navigator as any).share) {
-            try { await (navigator as any).share({ title: 'Ma liste de courses', text }); return; } catch { /* annulé */ }
+            try { await (navigator as any).share({ title: 'Ma liste de courses', text }); } catch { /* annulé */ }
+            return; // ne PAS retomber sur WhatsApp si annulé
         }
         window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     };

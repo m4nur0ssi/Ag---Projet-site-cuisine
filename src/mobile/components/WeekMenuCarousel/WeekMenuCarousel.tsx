@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import { decodeHtml } from '@/mobile/lib/utils';
-import { parseIngredient, getIngIcon, buildConsolidatedItems, cleanIngredientText } from '@/mobile/lib/ingredients';
+import { parseIngredient, getIngIcon, buildConsolidatedItems, cleanIngredientText, expandIngredientLines } from '@/mobile/lib/ingredients';
 import type { ConsolItem } from '@/mobile/lib/ingredients';
 import ShopActions from '@/mobile/components/ShopActions/ShopActions';
 import styles from './WeekMenuCarousel.module.css';
@@ -15,11 +15,10 @@ const GAP = 16;
 
 type Plan = Record<string, Record<string, any>>;
 
-const ingLine = (ing: any) => {
-    const raw = `${ing?.quantity || ''} ${ing?.name || ''}`.trim();
-    const p = parseIngredient(raw);
-    // Affichage FIDÈLE : quantité + unité exactement comme dans la recette.
-    return { icon: getIngIcon(p.name), name: cleanIngredientText(raw), qty: '' };
+// Ligne d'affichage depuis une chaîne brute (ingrédient déjà découpé).
+const lineFromRaw = (piece: string) => {
+    const p = parseIngredient(piece);
+    return { icon: getIngIcon(p.name), name: cleanIngredientText(piece) };
 };
 
 const openRecipe = (recipe: any) => {
@@ -44,7 +43,18 @@ const consolidateSlots = (
 };
 
 function MealBlock({ day, label, recipe, slotKey, isSelected, onSelect, done, ingSel, onToggleDone, onToggleIngSel, onShopped }: { day: string; label: string; recipe: any; slotKey: string; isSelected: boolean; onSelect: (key: string) => void; done: Set<string>; ingSel: Set<string>; onToggleDone: (key: string) => void; onToggleIngSel: (key: string) => void; onShopped: (item: ConsolItem) => void }) {
-    const ings = (recipe?.ingredients || []).filter((i: any) => i?.name);
+    const prodNameRaw = (s: string) => parseIngredient(s).name || s;
+    // Découpe les blocs groupés en ingrédients individuels (clés `day|label|origIdx|sub`
+    // = exactement celles de la consolidation/courses), puis tri alphabétique par nom.
+    const rows = (recipe?.ingredients || [])
+        .map((ing: any, origIdx: number) => ({ ing, origIdx }))
+        .filter((x: any) => x.ing?.name)
+        .flatMap(({ ing, origIdx }: any) =>
+            expandIngredientLines(`${ing.quantity || ''} ${ing.name || ''}`.trim())
+                .map((piece: string, sub: number) => ({ piece, key: `${day}|${label}|${origIdx}|${sub}` }))
+        )
+        .sort((a: { piece: string }, b: { piece: string }) =>
+            prodNameRaw(a.piece).localeCompare(prodNameRaw(b.piece), 'fr', { sensitivity: 'base' }));
     return (
         <div className={styles.meal}>
             <div className={styles.mealHead}>
@@ -73,14 +83,13 @@ function MealBlock({ day, label, recipe, slotKey, isSelected, onSelect, done, in
                         animate="show"
                         variants={{ show: { transition: { staggerChildren: 0.035, delayChildren: 0.05 } } }}
                     >
-                        {ings.map((ing: any, i: number) => {
-                            const l = ingLine(ing);
-                            const key = `${day}|${label}|${i}`;
+                        {rows.map(({ piece, key }: { piece: string; key: string }) => {
+                            const l = lineFromRaw(piece);
                             const isDone = done.has(key);
                             const isSel = ingSel.has(key);
                             return (
                                 <motion.li
-                                    key={i}
+                                    key={key}
                                     className={`${styles.ingItem} ${isDone ? styles.ingChecked : ''} ${isSel ? styles.ingSelected : ''}`}
                                     variants={{ hidden: { opacity: 0, x: 12 }, show: { opacity: 1, x: 0 } }}
                                     transition={{ type: 'spring', stiffness: 420, damping: 30 }}

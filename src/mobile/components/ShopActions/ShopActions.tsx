@@ -29,7 +29,8 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
 
     const share = async () => {
         if (typeof navigator !== 'undefined' && (navigator as any).share) {
-            try { await (navigator as any).share({ title, text }); return; } catch { /* annulé */ }
+            try { await (navigator as any).share({ title, text }); } catch { /* partage annulé : ne rien faire */ }
+            return; // ne PAS retomber sur WhatsApp si l'utilisateur annule
         }
         window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     };

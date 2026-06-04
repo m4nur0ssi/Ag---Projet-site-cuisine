@@ -130,11 +130,33 @@ export default function ShoppingListPage() {
     const shareNative = async () => {
         const text = buildShareText();
         if (typeof navigator !== 'undefined' && (navigator as Navigator & { share?: (d: unknown) => Promise<void> }).share) {
-            try { await (navigator as Navigator & { share: (d: unknown) => Promise<void> }).share({ title: 'Ma liste de courses', text }); return; } catch { /* annulé */ }
+            try { await (navigator as Navigator & { share: (d: unknown) => Promise<void> }).share({ title: 'Ma liste de courses', text }); } catch { /* annulé */ }
+            return; // ne PAS retomber sur WhatsApp si annulé
         }
         window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     };
     const shareWhatsApp = () => window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText())}`, '_blank');
+
+    // Partage du mode "Par recette" : toutes les recettes + leurs ingrédients (sans Carrefour)
+    const buildRecetteShareText = () => {
+        const blocks: string[] = [];
+        Object.values(shoppingList).forEach((r) => {
+            const lines = (r.ingredients || []).map((ing: { name: string } | string) => {
+                const n = typeof ing === 'string' ? ing : ing.name;
+                return `• ${n.replace('- ', '')}`;
+            });
+            blocks.push(`📖 ${r.title}\n${lines.join('\n')}`);
+        });
+        return '🛒 Ma liste de courses\n\n' + blocks.join('\n\n');
+    };
+    const shareRecette = async () => {
+        const text = buildRecetteShareText();
+        if (typeof navigator !== 'undefined' && (navigator as Navigator & { share?: (d: unknown) => Promise<void> }).share) {
+            try { await (navigator as Navigator & { share: (d: unknown) => Promise<void> }).share({ title: 'Ma liste de courses', text }); } catch { /* annulé */ }
+            return; // ne PAS retomber sur WhatsApp si annulé
+        }
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    };
 
     const selectedItems = items.filter(i => selected.has(i.key));
     const openCarrefourFor = (i: number) => {
@@ -268,11 +290,18 @@ export default function ShoppingListPage() {
                             <p className={styles.emptySubtitle}>Ajoutez des ingrédients depuis une recette.</p>
                         </div>
                     ) : (
-                        <div className={styles.list}>
-                            {Object.entries(shoppingList).map(([id, data]) => (
-                                <SwipeableRecipe key={id} id={id} data={data} removeRecipe={removeRecipe} toggleCheck={toggleCheck} />
-                            ))}
-                        </div>
+                        <>
+                            <div className={styles.list}>
+                                {Object.entries(shoppingList).map(([id, data]) => (
+                                    <SwipeableRecipe key={id} id={id} data={data} removeRecipe={removeRecipe} toggleCheck={toggleCheck} />
+                                ))}
+                            </div>
+                            {/* Partage (mode recette) — sans Carrefour */}
+                            <div style={{ position: 'fixed', bottom: 90, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 10, alignItems: 'center', background: 'rgba(20,20,20,0.95)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 40, padding: '10px 16px', zIndex: 100, boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}>
+                                <button onClick={shareRecette} style={btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)')}><ShareIcon /> Partager</button>
+                                <button onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(buildRecetteShareText())}`, '_blank')} style={btnStyle('#25D366')} title="WhatsApp"><WhatsAppIcon /></button>
+                            </div>
+                        </>
                     )
                 )}
             </main>
