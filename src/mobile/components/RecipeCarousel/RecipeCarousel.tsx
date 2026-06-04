@@ -118,25 +118,25 @@ export default function RecipeCarousel({ recipes, title = "Nouvelles Recettes �
 
 const getCategoryData = (t: string) => {
     const c = t.toLowerCase();
-    if (c.includes('apéritif') || c.includes('aperitif') || c.includes('apéro')) return { image: '/mobile-img/categories/aperitif.jpg', color: '#10b981' };
-    if (c.includes('entrée') || c.includes('entree')) return { image: '/mobile-img/categories/entree.jpg', color: '#3b82f6' };
-    if (c.includes('plat')) return { image: '/mobile-img/categories/plats.jpg', color: '#f43f5e' };
-    if (c.includes('dessert') || c.includes('douceur')) return { image: '/mobile-img/categories/desserts.jpg', color: '#d946ef' };
-    if (c.includes('pâtisserie') || c.includes('patisserie')) return { image: '/mobile-img/categories/patisserie.jpg', color: '#f59e0b' };
-    if (c.includes('restaurant') || c.includes('resto')) return { image: '/mobile-img/categories/restaurants.jpg?v=2', color: '#8b5cf6' };
-    if (c.includes('thématiq') || t.includes('Thématiq')) return { image: '/mobile-img/categories/thematiques.jpg?v=7', color: '#4f46e5' };
-    if (c.includes('nouveauté') || c.includes('nouv')) return { image: '/mobile-img/categories/nouveautes.jpg?v=2', color: '#FF6B35' };
-    if (c.includes('accompagnement')) return { image: '/mobile-img/categories/accompagnements.jpg', color: '#10b981' };
-    if (c.includes('pâtes') || c.includes('pates') || c.includes('pasta')) return { image: '/mobile-img/themes/pates.jpg', color: '#FF8C00' };
-    if (c.includes('healthy') || c.includes('sain')) return { image: '/mobile-img/categories/entree.jpg', color: '#22c55e' };
-    if (c.includes('airfryer')) return { image: '/mobile-img/categories/plats.jpg', color: '#f97316' };
-    if (c.includes('barbecue') || c.includes('bbq')) return { image: '/mobile-img/categories/plats.jpg', color: '#b91c1c' };
-    if (c.includes('pas cher')) return { image: '/mobile-img/categories/aperitif.jpg', color: '#eab308' };
-    if (c.includes('express') || c.includes('rapide')) return { image: '/mobile-img/categories/entree.jpg', color: '#3b82f6' };
-    if (c.includes('famille')) return { image: '/mobile-img/categories/plats.jpg', color: '#ec4899' };
-    if (c.includes('pâques')) return { image: '/mobile-img/categories/desserts.jpg', color: '#F59E0B' };
-    if (c.includes('noël')) return { image: '/mobile-img/categories/plats.jpg', color: '#10b981' };
-    return { image: '/mobile-img/categories/patisserie.jpg', color: '#f59e0b' };
+    if (c.includes('apéritif') || c.includes('aperitif') || c.includes('apéro')) return { image: '/images/categories/aperitif-theme.png', color: '#FF6B35' };
+    if (c.includes('entrée') || c.includes('entree')) return { image: '/images/categories/entree-theme.png', color: '#2DD4BF' };
+    if (c.includes('plat')) return { image: '/images/categories/plats-theme.png', color: '#6D28D9' };
+    if (c.includes('dessert') || c.includes('douceur')) return { image: '/images/categories/desserts-theme.png', color: '#EC4899' };
+    if (c.includes('pâtisserie') || c.includes('patisserie')) return { image: '/images/categories/patisserie-theme.png', color: '#A78BFA' };
+    if (c.includes('restaurant') || c.includes('resto')) return { image: '/images/categories/restaurants.jpg', color: '#8b5cf6' };
+    if (c.includes('thématiq') || t.includes('Thématiq')) return { image: '/images/categories/thematiques.jpg', color: '#4f46e5' };
+    if (c.includes('nouveauté') || c.includes('nouv')) return { image: '/images/categories/nouveautes-theme.png', color: '#F97316' };
+    if (c.includes('accompagnement')) return { image: '/images/categories/accompagnements-theme.png', color: '#84CC16' };
+    if (c.includes('pâtes') || c.includes('pates') || c.includes('pasta')) return { image: '/images/themes/pates.jpg', color: '#FF8C00' };
+    if (c.includes('healthy') || c.includes('sain')) return { image: '/images/categories/entree.jpg', color: '#22c55e' };
+    if (c.includes('airfryer')) return { image: '/images/categories/plats.jpg', color: '#f97316' };
+    if (c.includes('barbecue') || c.includes('bbq')) return { image: '/images/categories/plats.jpg', color: '#b91c1c' };
+    if (c.includes('pas cher')) return { image: '/images/categories/aperitif.jpg', color: '#eab308' };
+    if (c.includes('express') || c.includes('rapide')) return { image: '/images/categories/entree.jpg', color: '#3b82f6' };
+    if (c.includes('famille')) return { image: '/images/categories/plats.jpg', color: '#ec4899' };
+    if (c.includes('pâques')) return { image: '/images/categories/desserts.jpg', color: '#F59E0B' };
+    if (c.includes('noël')) return { image: '/images/categories/plats.jpg', color: '#10b981' };
+    return { image: '/images/categories/patisserie.jpg', color: '#f59e0b' };
 };
 
 // ─── CategoryTitleCard ─────────────────────────────────────────────────────────
