@@ -19,6 +19,12 @@ html.is-splashing .main-content-wrapper {
     visibility: hidden !important;
 }
 
+/* Pendant le splash mobile : masquer la barre de navigation du bas (sinon elle
+   s'affiche par-dessus le splash, z-index 25000 > splash 10000). */
+html.is-splashing #bottom-nav {
+    display: none !important;
+}
+
 :root {
   /* Deep Night Palette (Stitch 2026) - TOTAL DARK */
   --color-bg-primary: #000000;
