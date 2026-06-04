@@ -18,10 +18,17 @@ const detect = () =>
     window.matchMedia('(max-width: 1023px)').matches ||
     /iPhone|iPod|Android.*Mobile/i.test(navigator.userAgent);
 
+// Lecture synchrone du flag posé par le script inline du layout (avant React)
+const initialMobile = (): boolean | null => {
+    if (typeof window === 'undefined') return null; // SSR
+    const w = window as unknown as { __isMobile?: boolean };
+    if (typeof w.__isMobile === 'boolean') return w.__isMobile;
+    return detect();
+};
+
 export default function AppShell({ children }: { children: React.ReactNode }) {
-    // null = pas encore mesuré côté client → on rend l'arbre desktop (SSR + 1er paint),
-    // l'iPhone bascule en mobile après montage (flash masqué par le splash).
-    const [isMobile, setIsMobile] = useState<boolean | null>(null);
+    // 1er rendu client = déjà correct (flag inline) → pas de flash desktop sur iPhone.
+    const [isMobile, setIsMobile] = useState<boolean | null>(initialMobile);
 
     useEffect(() => {
         const calc = () => setIsMobile(detect());

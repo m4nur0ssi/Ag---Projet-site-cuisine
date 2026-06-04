@@ -35,7 +35,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="fr">
+        <html lang="fr" suppressHydrationWarning>
             <head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -45,12 +45,12 @@ export default function RootLayout({
                         __html: `
                             (function() {
                                 try {
-                                    var isIPhone = /iPhone/i.test(navigator.userAgent);
-                                    var hasSeenSplash = sessionStorage.getItem('hasSeenMagicSplash');
-                                    if (isIPhone && !hasSeenSplash) {
-                                        document.documentElement.classList.add('is-splashing');
-                                    }
-                                } catch (e) {}
+                                    var ua = navigator.userAgent || '';
+                                    var narrow = window.matchMedia('(max-width: 1024px)').matches;
+                                    var mobUA = /iPhone|iPod|iPad|Android|Mobile/i.test(ua);
+                                    window.__isMobile = !!(narrow || mobUA);
+                                    document.documentElement.classList.add(window.__isMobile ? 'is-mobile' : 'is-desktop');
+                                } catch (e) { window.__isMobile = false; }
                             })();
                         `,
                     }}
