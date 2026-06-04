@@ -458,3 +458,78 @@ select:focus {
         display: none !important;
     }
 }
+/* ===== Variables CSS de l'app mobile (scopées html.is-mobile, desktop intact) ===== */
+html.is-mobile {
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #000000;
+  --color-bg-tertiary: #121214;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-tertiary: rgba(255, 255, 255, 0.45);
+  --color-accent-primary: #7f0df2;
+  --color-accent-secondary: #a855f7;
+  --color-accent-orange: #f59e0b;
+  --color-accent-green: #10b981;
+  --color-accent-blue: #3b82f6;
+  --color-entrees: #10b981;
+  --color-plats: #f59e0b;
+  --color-desserts: #ef4444;
+  --color-potions: #3b82f6;
+  --glass-bg: rgba(28, 28, 30, 0.7);
+  --glass-bg-dark: rgba(0, 0, 0, 0.9);
+  --glass-bg-accent: rgba(127, 13, 242, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: 35px;
+  --liquid-bg: rgba(255, 255, 255, 0.08);
+  --liquid-border: rgba(255, 255, 255, 0.12);
+  --liquid-highlight: rgba(255, 255, 255, 0.3);
+  --liquid-blur: 30px;
+  --liquid-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  --liquid-easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-premium: 0 15px 40px rgba(0, 0, 0, 0.6);
+  --shadow-dock: 0 20px 60px rgba(0, 0, 0, 0.8);
+  --bg-primary: var(--color-bg-primary);
+  --text-primary: var(--color-text-primary);
+  --text-tertiary: var(--color-text-tertiary);
+  --accent-primary: var(--color-accent-primary);
+  --apple-glass: var(--glass-bg);
+  --apple-border: var(--glass-border);
+  --apple-hover: var(--color-bg-tertiary);
+  --ios-26-bg: #000000;
+  --ios-26-glass: rgba(18, 18, 18, 0.7);
+  --ios-26-accent: #007AFF;
+  --ios-26-radius: 38px;
+  --ios-26-blur: 50px;
+  --ios-26-border: rgba(255, 255, 255, 0.12);
+  --ios-26-text-main: #FFFFFF;
+  --ios-26-text-muted: rgba(255, 255, 255, 0.5);
+  --ios-26-gradient: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+  /* compléments */
+  --color-bg: var(--color-bg-primary);
+  --color-primary: var(--color-accent-primary);
+  --ios-text: var(--ios-26-text-main);
+  --ios-easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --glow-color: var(--color-accent-primary);
+  --accent-bg: rgba(127, 13, 242, 0.15);
+  --accent-glow: rgba(127, 13, 242, 0.4);
+  --active-color: var(--color-accent-primary);
+  --font-outfit: 'Outfit', system-ui, sans-serif;
+  --font-dancing: 'Dancing Script', cursive;
+}
+html.is-mobile[data-theme='light'] {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #ffffff;
+  --color-text-primary: #000000;
+  --color-text-secondary: rgba(0, 0, 0, 0.7);
+  --color-text-tertiary: rgba(0, 0, 0, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-bg-dark: rgba(255, 255, 255, 0.98);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --liquid-bg: transparent;
+  --ios-26-bg: #FFFFFF;
+  --ios-26-glass: rgba(255, 255, 255, 0.85);
+  --ios-26-border: rgba(0, 0, 0, 0.08);
+  --ios-26-text-main: #000000;
+  --ios-26-text-muted: rgba(0, 0, 0, 0.5);
+}
