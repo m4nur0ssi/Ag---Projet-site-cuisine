@@ -2,66 +2,66 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/06/2026 07:14:58
+ * Dernière mise à jour: 04/06/2026 12:24:04
  * Total: 339 recettes
  */
-export const exportSyncId = "1780557298837";
+export const exportSyncId = "1780575844097";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5943",
         "title": "Brownie au brocolis",
         "description": "Un brownie salé sain et délicieux à base de brocolis, idéal pour faire apprécier ce légume aux enfants et aux plus grands.",
-        "image": "/images/recipe-placeholder.jpg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbrowni.jpeg&v=1780582595000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7479118888622656790\" data-video-id=\"7479118888622656790\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7479118888622656790\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7479118888622656790\" data-video-id=\"7479118888622656790\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7479118888622656790\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥦\n             1 brocolis (frais ou congelé)"
+                "name": "🥦\n 1 brocolis (frais ou congelé)"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             2 œufs"
+                "name": "🥚\n 2 œufs"
             },
             {
                 "quantity": "",
-                "name": "🌾\n             160g de farine"
+                "name": "🌾\n 160g de farine"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1/2 fêta"
+                "name": "🥣\n 1/2 fêta"
             },
             {
                 "quantity": "",
-                "name": "🥓\n             Lardons ou allumettes de jambon"
+                "name": "🥓\n Lardons ou allumettes de jambon"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             250ml de lait"
+                "name": "🥛\n 250ml de lait"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel"
+                "name": "🧂\n Sel"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "🌶️\n Poivre"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             Ail en poudre"
+                "name": "🧄\n Ail en poudre"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d'olive"
+                "name": "🍾\n Huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             Comté râpé"
+                "name": "🧀\n Comté râpé"
             }
         ],
         "steps": [
