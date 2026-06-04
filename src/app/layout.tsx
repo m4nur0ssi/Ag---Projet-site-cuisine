@@ -27,9 +27,7 @@ export const viewport = {
     ],
 }
 
-import { TimerProvider } from '@/components/Timer/TimerContext'
-import SplashScreen from '@/components/SplashScreen/SplashScreen'
-import GlobalRecipeSheet from '@/components/GlobalRecipeSheet/GlobalRecipeSheet'
+import AppShell from '@/components/AppShell'
 
 export default function RootLayout({
     children,
@@ -59,13 +57,9 @@ export default function RootLayout({
                 />
             </head>
             <body>
-                <SplashScreen />
-                <TimerProvider>
-                    <div className="main-content-wrapper">
-                        {children}
-                    </div>
-                    <GlobalRecipeSheet />
-                </TimerProvider>
+                <AppShell>
+                    {children}
+                </AppShell>
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
