@@ -2,11 +2,153 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/06/2026 15:49:06
- * Total: 334 recettes
+ * Dernière mise à jour: 04/06/2026 22:08:31
+ * Total: 337 recettes
  */
-export const exportSyncId = "1780588146923";
+export const exportSyncId = "1780610911215";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5984",
+        "title": "Risotto pesto d'épinards &#038; burrata",
+        "description": "Un risotto crémeux et savoureux au pesto d'épinards maison, agrémenté de burrata fondante pour une touche gourmande.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7457968003745942806\" data-video-id=\"7457968003745942806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7457968003745942806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             80g d'épinards"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             35g d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             8cl d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cube de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1,2L d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             320g de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Burrata"
+            }
+        ],
+        "steps": [
+            "Couper et faire revenir l'oignon",
+            "Réaliser le pesto : dans un blender, mettre les épinards, l'huile d'olive, le parmesan et les amandes puis mixer",
+            "Mettre le bouillon dans l'eau qui bout",
+            "Ajouter le riz dans la poêle et mélanger jusqu'à ce que le riz soit nacré",
+            "Verser deux louches de bouillon dans la poêle et remuer jusqu'à ce qu'il soit absorbé. Répéter l'opération en ajoutant deux louches de bouillon à la fois, jusqu'à ce que le riz soit cuit",
+            "Ajouter le parmesan et le beurre, assaisonner",
+            "Verser le pesto et mélanger",
+            "Dresser votre assiette avec la burrata"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5983",
+        "title": "Risotto pesto d'épinards &#038; burrata",
+        "description": "Un risotto crémeux au pesto d'épinards maison, agrémenté de burrata fondante pour un plat réconfortant et savoureux.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7457968003745942806\" data-video-id=\"7457968003745942806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7457968003745942806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             80g d'épinards"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             35g d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             8cl d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cube de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1,2L d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             320g de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Burrata"
+            }
+        ],
+        "steps": [
+            "Couper et faire revenir l'oignon.",
+            "Réaliser le pesto : dans un blender, mettre les épinards, l'huile d'olive, le parmesan et les amandes puis mixer.",
+            "Mettre le bouillon dans l'eau qui bout.",
+            "Ajouter le riz dans la poêle et mélanger jusqu'à ce que le riz soit nacré.",
+            "Verser deux louches de bouillon dans la poêle et remuer jusqu'à ce qu'il soit absorbé. Répéter l'opération en ajoutant deux louches de bouillon à la fois, jusqu'à ce que le riz soit cuit.",
+            "Ajouter le parmesan et le beurre, assaisonner.",
+            "Verser le pesto et mélanger.",
+            "Dresser votre assiette avec la burrata."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5427",
         "title": "Gâteau petit beurre café chocolat",
@@ -6635,6 +6777,94 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5457",
+        "title": "Crêpes colorées aux fruits et crème fouettée",
+        "description": "Un dessert maison délicieux et facile à réaliser : des crêpes colorées garnies de crème fouettée, de mascarpone, de fraises et de morceaux de gâteau, décorées de fruits frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrepe-1.jpg&v=1778611157000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7342089174691990817\" data-video-id=\"7342089174691990817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7342089174691990817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 2 eggs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 35g (about 3 tablespoons) sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 12g (about 1 tablespoon) vegetable oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 190g (about ¾ cup) milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60g (about ½ cup) cake flour"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Red food coloring"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 teaspoon vanilla extract"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 180g (about ¾ cup) whipped cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 20g (about 2 tablespoons) sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 30g mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Strawberry cubes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n cake pieces"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fresh strawberries"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Blueberries"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Powdered sugar"
+            }
+        ],
+        "steps": [
+            "Mix eggs, sugar, oil, milk, flour, red food coloring, and vanilla in a bowl until smooth. Sift twice.",
+            "Heat a non-stick pan over low heat. Pour in some batter, tilting the pan to spread evenly. Remove excess batter. Cook for about 1 minute or until the crepe loosens easily from the edges. Repeat with the remaining batter. Let crepes cool on a wire rack.",
+            "In a clean bowl, whip the cream with sugar and mascarpone until firm. Keep it in a piping bag in the fridge.",
+            "Lay out a crepe, spread some whipped cream, add a piece of waffle or cake, more whipped cream, fresh strawberry cubes, and another layer of whipped cream.",
+            "Wrap and tie with kitchen twine. Decorate with strawberries, blueberries, and dust with powdered sugar."
+        ],
+        "tags": [
+            "Desserts",
+            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
