@@ -2,11 +2,176 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/06/2026 13:17:33
- * Total: 338 recettes
+ * Dernière mise à jour: 04/06/2026 13:31:33
+ * Total: 336 recettes
  */
-export const exportSyncId = "1780579053998";
+export const exportSyncId = "1780579893493";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "4998",
+        "title": "Cocktail Bora Bora sans alcool",
+        "description": "Un cocktail coloré et sans alcool, facile à réaliser, garni de lamelles de pomme.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcoktail.jpg&v=1780586514000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7279373915577716000\" data-video-id=\"7279373915577716000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7279373915577716000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Sirop de fraise"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Jus de fruit de la passion"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Jus d'orange"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Glaçons"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Lamelles de pomme"
+            }
+        ],
+        "steps": [
+            "Mettre des glaçons dans un verre.",
+            "Ajouter le jus d'orange.",
+            "Ajouter le jus de citron.",
+            "Ajouter le jus de fruit de la passion.",
+            "Terminer avec le sirop de fraise.",
+            "Garnir le verre de lamelles de pomme.",
+            "Déguster immédiatement."
+        ],
+        "tags": [
+            "Rafraîchissements"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5086",
+        "title": "Café batido con Kinder Bueno",
+        "description": "Une boisson rafraîchissante et gourmande à base de café fouetté, de Nutella, de Kinder Bueno fondu et de glaçons, parfaite pour les amateurs de café et de chocolat.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcaf%C3%A9.jpeg&v=1780586322000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7475804401832086806\" data-video-id=\"7475804401832086806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7475804401832086806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Nutella"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Glaçons"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Kinder Bueno (mélangé avec du lait chaud pour qu'il fonde)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 2 cuillères de café (pour la crème)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 cuillère de sucre (pour la crème)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Eau (pour couvrir le café et le sucre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Un petit morceau de Kinder Bueno (pour décorer)"
+            }
+        ],
+        "steps": [
+            "Faire fondre le Kinder Bueno avec du lait chaud.",
+            "Préparer la crème de café en mélangeant 2 cuillères de café, 1 cuillère de sucre et en couvrant d'eau, puis fouetter jusqu'à obtenir une crème.",
+            "Dans un verre, ajouter du Nutella, des glaçons, le Kinder Bueno fondu.",
+            "Verser la crème de café par-dessus.",
+            "Décorer avec un petit morceau de Kinder Bueno et déguster."
+        ],
+        "tags": [
+            "Espagne",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5225",
+        "title": "Croque-cake",
+        "description": "Un croque-monsieur revisité en format cake, idéal pour toute la famille.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCroque-cake-fondant-au-jambon-768x639-1.jpg&v=1780585982000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7623462598859623703\" data-video-id=\"7623462598859623703\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7623462598859623703\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥖\n Pain de mie 9 tranches"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n Jambon blanc 6 tranches"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Fromage râpé 125gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Lait 40cl"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Beurre 40gr"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n Farine 40gr"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment doux fumé 2gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Tranche de leerdammer 6 tranches"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5274",
         "title": "La tarte aux pommes",
@@ -6797,6 +6962,69 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "5448",
+        "title": "Crème brûlée de clémentine",
+        "description": "Un dessert ultra simple et vraiment délicieux, cette crème brûlée à la clémentine est parfaite pour les fêtes de Noël.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fclementine.jpeg&v=1778609335000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581555299698396438\" data-video-id=\"7581555299698396438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581555299698396438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Une dizaine de clémentines"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 60 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Zestes d'une clémentine bio (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Jus de 4/5 clémentines"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 200 g de crème entière"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 25 g de sucre pour la caramélisation"
+            }
+        ],
+        "steps": [
+            "Commencer par enlever l'intérieur des clémentines.",
+            "Dans un saladier, fouetter les jaunes d'œufs avec le sucre.",
+            "Ajouter les zestes, le jus de clémentine, la crème et le lait, puis bien mélanger.",
+            "Verser la crème dans les clémentines évidées et enfourner pour 1 heure à 100°C.",
+            "À la sortie du four, la crème doit être tremblotante au centre. Si elle n'est pas cuite, poursuivre un peu la cuisson.",
+            "Réserver au frais pendant 4 heures minimum.",
+            "Juste avant de servir, saupoudrer les crèmes de sucre puis caraméliser le dessus soit à l'aide d'un chalumeau, soit avec la fonction grill du four (attention dans ce cas quand ça commence à caraméliser ça va très très vite)."
+        ],
+        "tags": [
+            "Desserts",
+            "France",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5451",
         "title": "Mousse au chocolat",
         "description": "Une recette de mousse au chocolat étonnamment simple, ne nécessitant que du chocolat et de l'eau pour un dessert rapide et facile, idéal pour les étudiants ou les envies de dernière minute.",
@@ -6875,39 +7103,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Desserts",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5460",
-        "title": "Crème chocolat",
-        "description": "Le mélange coco chocolat est vraiment très bon ! Ça donne une crème tout en légèreté 🥰 il faut que vous testiez.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1-creme-chocolat-recette-patisserie-empreinte-sucree.jpg&v=1778608099000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7500977126292720898\" data-video-id=\"7500977126292720898\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7500977126292720898\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n 1 conserve de lait de coco bio (400ml)"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n 160g de chocolat noir pâtissier"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Desserts",
-            "Pas cher",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -10484,63 +10679,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5086",
-        "title": "Café batido con Kinder Bueno",
-        "description": "Une boisson rafraîchissante et gourmande à base de café fouetté, de Nutella, de Kinder Bueno fondu et de glaçons, parfaite pour les amateurs de café et de chocolat.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7475804401832086806\" data-video-id=\"7475804401832086806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7475804401832086806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Nutella"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Glaçons"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Kinder Bueno (mélangé avec du lait chaud pour qu'il fonde)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             2 cuillères de café (pour la crème)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère de sucre (pour la crème)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Eau (pour couvrir le café et le sucre)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Un petit morceau de Kinder Bueno (pour décorer)"
-            }
-        ],
-        "steps": [
-            "Faire fondre le Kinder Bueno avec du lait chaud.",
-            "Préparer la crème de café en mélangeant 2 cuillères de café, 1 cuillère de sucre et en couvrant d'eau, puis fouetter jusqu'à obtenir une crème.",
-            "Dans un verre, ajouter du Nutella, des glaçons, le Kinder Bueno fondu.",
-            "Verser la crème de café par-dessus.",
-            "Décorer avec un petit morceau de Kinder Bueno et déguster."
-        ],
-        "tags": [
-            "Espagne",
-            "Rafraîchissements",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "3957",
         "title": "Cookies",
         "description": "Une recette pour des cookies géants et ultra gourmands, inspirés de New York, fourrés à la pâte à tartiner Bueno et agrémentés de morceaux de Kinder Bueno.",
@@ -12041,59 +12179,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "4998",
-        "title": "Cocktail Bora Bora sans alcool",
-        "description": "Un cocktail coloré et sans alcool, facile à réaliser, garni de lamelles de pomme.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7279373915577716000\" data-video-id=\"7279373915577716000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7279373915577716000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Sirop de fraise"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Jus de fruit de la passion"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Jus d'orange"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Glaçons"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Lamelles de pomme"
-            }
-        ],
-        "steps": [
-            "Mettre des glaçons dans un verre.",
-            "Ajouter le jus d'orange.",
-            "Ajouter le jus de citron.",
-            "Ajouter le jus de fruit de la passion.",
-            "Terminer avec le sirop de fraise.",
-            "Garnir le verre de lamelles de pomme.",
-            "Déguster immédiatement."
-        ],
-        "tags": [
-            "Rafraîchissements"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4823",
         "title": "Ramen de poulet",
         "description": "Un ramen de poulet savoureux avec un bouillon parfumé au curry et lait de coco, garni de poulet mariné, pak choi, œuf mollet et mayo kimchi.",
@@ -12284,55 +12369,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Pâques"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4898",
-        "title": "Sundae Maison Caramel Beurre Salé",
-        "description": "Recette facile et rapide pour réaliser un sundae maison au caramel beurre salé, inspiré des célèbres glaces de McDonald's. Une dinguerie à reproduire chez soi !",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7376682408357170464\" data-video-id=\"7376682408357170464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7376682408357170464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             500g de crème liquide entière"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             250g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             60g de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             170g de lait concentré sucré"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             De l'arôme vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Du caramel beurre salé (maison ou du commerce)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Desserts",
-            "Famille",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -14391,69 +14427,6 @@ export const mockRecipes: Recipe[] = [
             "Famille",
             "Healthy",
             "Noël"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3938",
-        "title": "Classic Tomato Basil Bruschetta",
-        "description": "Une recette simple et classique de bruschetta avec une garniture fraîche de tomates, basilic, oignon rouge, assaisonnée d'huile d'olive et de sauce balsamique, servie sur du pain grillé avec de la mozzarella fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827443436.jpg&v=1774526611000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7497665292496014614\" data-video-id=\"7497665292496014614\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7497665292496014614\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             2 tomates, finement coupées en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             ½ oignon rouge, finement coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Une poignée de basilic frais, haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre noir, au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de sauce balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Baguette ou ciabatta, tranchée"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mozzarella fraîche, tranchée"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre ou huile d'olive, pour griller"
-            }
-        ],
-        "steps": [
-            "Dans un bol, mélangez les tomates coupées en dés, l'oignon rouge et le basilic. Assaisonnez avec du sel, du poivre, de l'huile d'olive et un filet de sauce balsamique. Mélangez bien et mettez de côté.",
-            "Faites griller vos tranches de pain dans une poêle avec un peu de beurre ou d'huile d'olive jusqu'à ce qu'elles soient dorées et croustillantes.",
-            "Disposez une tranche de mozzarella fraîche sur chaque tranche de pain grillé et déposez généreusement le mélange de tomates par-dessus.",
-            "Servez immédiatement, éventuellement avec un peu de basilic frais supplémentaire."
-        ],
-        "tags": [
-            "Italie",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -22246,122 +22219,6 @@ export const mockRecipes: Recipe[] = [
             "plat principal",
             "rapide",
             "saumon"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3723",
-        "title": "Alfredo Chicken Pasta",
-        "description": "Une version crémeuse, fondante et ultra protéinée de la pasta Alfredo. Parfaite pour prendre soin de tes apports sans sacrifier le goût.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchicken-alfredo.jpg&v=1773762687000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7525831802825592096\" data-video-id=\"7525831802825592096\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7525831802825592096\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n 1200g de blanc de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 600g de fusilli"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 40g de mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 2 poivrons orange en lanières"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 2 oignons rouges"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 2 càs d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 càs d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 càs d'oignon en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 càs de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 càs d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 càc de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 càc de piment de cayenne"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 360g de cottage cheese"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 100g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 150g de lait écrémé"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 20cl de crème liquide 4%"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            }
-        ],
-        "steps": [
-            "Aplatis les blancs de poulet entre deux feuilles de film alimentaire à l'aide d'une casserole.",
-            "Assaisonne-les avec toutes les épices (ail en poudre, oignon en poudre, paprika, origan, poivre, piment de cayenne).",
-            "Fais-les revenir dans une poêle bien chaude avec un filet d'huile, 3 à 4 minutes de chaque côté, puis retire-les.",
-            "Dans la même poêle, fais suer les oignons et les poivrons pendant 4 minutes.",
-            "Ajoute l'ail et laisse mijoter à feu doux jusqu'à ce que les légumes soient bien fondants.",
-            "Mixe les ingrédients de la sauce : crème liquide, cottage cheese, parmesan, lait, sel et poivre.",
-            "Coupe le poulet en morceaux, remets-le dans la poêle avec la sauce, et mélange bien.",
-            "Fais cuire les pâtes, garde un peu d'eau de cuisson, et ajoute-la dans la préparation pour ajuster la texture.",
-            "Incorpore les pâtes dans la sauce, ajoute la mozzarella râpée et le persil frais, mélange le tout, puis divise en 8 portions égales. C'est prêt !"
-        ],
-        "tags": [
-            "Alfredo",
-            "Healthy",
-            "italien",
-            "pates",
-            "poulet",
-            "protéiné"
         ],
         "isFeatured": false,
         "isFavorite": false,
