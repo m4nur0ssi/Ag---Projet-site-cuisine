@@ -21,6 +21,7 @@ import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
 import StarRating from '@/mobile/components/StarRating/StarRating';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
+import RecipeNote from '@/mobile/components/RecipeNote/RecipeNote';
 import { estimateRecipeCalories } from '@/mobile/lib/calories';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -1360,6 +1361,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 </div>
             )}
 
+            {!focusMode && <RecipeNote recipeId={String(recipe.id)} />}
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
         </div>
         </>

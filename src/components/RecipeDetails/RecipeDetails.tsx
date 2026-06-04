@@ -21,6 +21,7 @@ import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
 import StarRating from '@/components/StarRating/StarRating';
 import CommentSection from '@/components/CommentSection/CommentSection';
+import RecipeNote from '@/components/RecipeNote/RecipeNote';
 import { supabase } from '@/lib/supabase';
 import { estimateRecipeCalories } from '@/lib/calories';
 import { mockRecipes } from '@/data/mockData';
@@ -1179,6 +1180,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 </div>
             )}
 
+            {!focusMode && <RecipeNote recipeId={String(recipe.id)} />}
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
 
             {focusMode && (
