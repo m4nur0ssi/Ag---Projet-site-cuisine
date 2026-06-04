@@ -76,6 +76,11 @@ export default function BottomNav() {
     const dockRef = useRef<HTMLDivElement>(null);
     const autoCloseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+    // Prefetch des routes de la barre → navigation plus rapide (charge les chunks à l'avance)
+    useEffect(() => {
+        ['/favorites', '/shopping-list', '/'].forEach(p => { try { router.prefetch(p); } catch { /* noop */ } });
+    }, [router]);
+
     const navItems = [
         { id: 'favoris', label: 'Favoris', Icon: HeartIcon, path: '/favorites', badge: stats.favorites },
         { id: 'panier', label: 'Liste', Icon: BasketIcon, path: '/shopping-list', badge: stats.shopping },

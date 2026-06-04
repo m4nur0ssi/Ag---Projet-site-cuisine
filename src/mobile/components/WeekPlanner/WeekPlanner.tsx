@@ -5,6 +5,7 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { normalizeIng, parseIngredient } from '@/mobile/lib/ingredients';
 import { supabase } from '@/mobile/lib/supabase';
+import AuthButton from '@/mobile/components/AuthButton/AuthButton';
 import styles from './WeekPlanner.module.css';
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
@@ -341,6 +342,10 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
             {/* Panneau inline semaine */}
             <div className={styles.weekPanel} ref={panelRef}>
                 <div className={styles.weekPanelInner}>
+                    {/* Connexion — même ligne, en haut à gauche */}
+                    <div className={styles.topLeft}>
+                        <AuthButton />
+                    </div>
                     {/* Actions haut-droite : Valider/Modifier + fermer */}
                     <div className={styles.topRight}>
                         <button className={`${styles.actionBtn} ${validated ? styles.actionBtnEdit : styles.actionBtnValidate}`} title={validated ? 'Modifier' : 'Valider'} aria-label={validated ? 'Modifier' : 'Valider'} onClick={() => {
