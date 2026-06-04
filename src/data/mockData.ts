@@ -2,11 +2,206 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/06/2026 12:53:55
+ * Dernière mise à jour: 04/06/2026 13:17:33
  * Total: 338 recettes
  */
-export const exportSyncId = "1780577635489";
+export const exportSyncId = "1780579053998";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5274",
+        "title": "La tarte aux pommes",
+        "description": "Simple, rapide et ça fait toujours plaisir !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ftarte.jpeg&v=1780585895000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7597140608603442454\" data-video-id=\"7597140608603442454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7597140608603442454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n Pâte brisée"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n Farine 250g"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Beurre 125g"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Sucre 15g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fève de tonka"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n Eau 70g"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n 3 pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 40g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50g de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n Farine 30g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Poudre d'amande 40g"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n Compote de pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n Vanille épuisée"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5280",
+        "title": "Rochers Tiramisu",
+        "description": "Une recette gourmande de rochers Tiramisu, composés de boudoirs imbibés de café, d'une crème onctueuse au mascarpone et d'un glaçage croquant au chocolat et aux amandes ou noisettes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frocher-x6.jpg&v=1780584698000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630533247310581014\" data-video-id=\"7630533247310581014\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630533247310581014\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Boudoirs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100 ml de café"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 500 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 60 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 250 g de crème liquide entière (30 % MG, bien froide)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 200 g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 50 g d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n 60 g d'amandes ou noisettes"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, fouettez le mascarpone avec le sucre.",
+            "Dans un autre bol, montez la crème liquide froide en chantilly ferme.",
+            "Incorporez délicatement la chantilly à la préparation au mascarpone à l'aide d'une spatule.",
+            "Montez les tiramisu (en alternant boudoirs imbibés de café et crème au mascarpone), puis congelez-les.",
+            "Faites fondre le chocolat avec l'huile neutre.",
+            "Ajoutez les amandes ou noisettes concassées au chocolat fondu.",
+            "Glacez les tiramisu congelés avec le glaçage, puis laissez-les décongeler au frais avant de servir."
+        ],
+        "tags": [
+            "Italie",
+            "Les Glaces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5283",
+        "title": "Chakchouka végétarienne",
+        "description": "Une chakchouka végétarienne et protéinée, préparée avec des œufs, tomates, haricots rouges et petits pois, assaisonnée à l'ail et aux épices.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fchav.jpg&v=1780584516000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7611505151139908887\" data-video-id=\"7611505151139908887\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7611505151139908887\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n 1 Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive 15ml"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 3 Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n Haricots rouges 200g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Petits pois 75g"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Sauce tomate 150g"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 Œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Ail, sel, poivre, paprika fumé, ciboulette"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Orient",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5787",
         "title": "McFlurry maison au Daim",
@@ -6719,6 +6914,39 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "5460",
+        "title": "Crème chocolat",
+        "description": "Le mélange coco chocolat est vraiment très bon ! Ça donne une crème tout en légèreté 🥰 il faut que vous testiez.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1-creme-chocolat-recette-patisserie-empreinte-sucree.jpg&v=1778608099000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7500977126292720898\" data-video-id=\"7500977126292720898\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7500977126292720898\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 1 conserve de lait de coco bio (400ml)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 160g de chocolat noir pâtissier"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5463",
         "title": "Crème brûlée à la pistache",
         "description": "Pour tous les fans de pistache, cette crème brûlée est un incontournable ! N'hésitez plus, essayez cette recette simple et rapide, vous ne le regretterez pas. Un grand pâtissier l'a dit : l'essayer, c'est l'adopter !",
@@ -6844,72 +7072,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5293",
-        "title": "Rösti au saumon",
-        "description": "Le rösti au saumon pour un brunch ou juste avec une salade c'est toujours un régal !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frosti.jpg&v=1778517128000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7324641790273867041\" data-video-id=\"7324641790273867041\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7324641790273867041\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n 4 pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🐟\n 4 tranches de saumon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 2 gros œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Fromage frais type Philadelphia ou Saint Moret"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n 1 citron bio non traité"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel, poivre"
-            }
-        ],
-        "steps": [
-            "Éplucher et raper les pommes de terre. Dans un torchon propre déposer les pommes de terre et presser pour retirer l'excédent d'eau. Émincer l'oignon et écraser l'ail.",
-            "Mélanger les pommes de terre râpées, l'oignon, l'ail, le sel, le poivre, le paprika et les œufs. Dans une poêle bien chaude et huilée, former une galette. Cuire 7 à 10 minutes par face. Retourner à l'aide d'une assiette.",
-            "Fouetter le fromage frais avec le jus d'un demi citron. Étaler ce mélange sur le rösti, déposer des tranches de saumon, de la ciboulette ciselée, du jus de citron et quelques zestes de citron 🍋 C'est prêt !"
-        ],
-        "tags": [
-            "Healthy",
-            "Simplissime"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -8211,68 +8373,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5280",
-        "title": "Rochers Tiramisu",
-        "description": "Une recette gourmande de rochers Tiramisu, composés de boudoirs imbibés de café, d'une crème onctueuse au mascarpone et d'un glaçage croquant au chocolat et aux amandes ou noisettes.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630533247310581014\" data-video-id=\"7630533247310581014\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630533247310581014\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Boudoirs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 ml de café"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             500 g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             60 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             250 g de crème liquide entière (30 % MG, bien froide)"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200 g de chocolat"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             50 g d'huile neutre"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             60 g d'amandes ou noisettes"
-            }
-        ],
-        "steps": [
-            "Dans un saladier, fouettez le mascarpone avec le sucre.",
-            "Dans un autre bol, montez la crème liquide froide en chantilly ferme.",
-            "Incorporez délicatement la chantilly à la préparation au mascarpone à l'aide d'une spatule.",
-            "Montez les tiramisu (en alternant boudoirs imbibés de café et crème au mascarpone), puis congelez-les.",
-            "Faites fondre le chocolat avec l'huile neutre.",
-            "Ajoutez les amandes ou noisettes concassées au chocolat fondu.",
-            "Glacez les tiramisu congelés avec le glaçage, puis laissez-les décongeler au frais avant de servir."
-        ],
-        "tags": [
-            "Italie",
-            "Les Glaces"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5277",
         "title": "Tarte Normande",
         "description": "Une tarte normande classique et gourmande, composée d'une pâte sablée, de pommes fondantes et d'une garniture crémeuse aux amandes, avec une touche facultative de Calvados.",
@@ -8348,82 +8448,6 @@ export const mockRecipes: Recipe[] = [
             "Glaces",
             "pâtisserie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5274",
-        "title": "La tarte aux pommes de Mamie Nono",
-        "description": "Simple, rapide et ça fait toujours plaisir !",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7597140608603442454\" data-video-id=\"7597140608603442454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7597140608603442454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             Pâte brisée"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine 250g"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre 125g"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre 15g"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fève de tonka"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             Eau 70g"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             3 pommes"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             40g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             50g de sucre roux"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine 30g"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Poudre d'amande 40g"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             Compote de pommes"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             Vanille épuisée"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -9120,61 +9144,6 @@ export const mockRecipes: Recipe[] = [
             "Afrique",
             "Les Glaces",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5225",
-        "title": "Croque-cake",
-        "description": "Un croque-monsieur revisité en format cake, idéal pour toute la famille.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7623462598859623703\" data-video-id=\"7623462598859623703\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7623462598859623703\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥖\n             Pain de mie 9 tranches"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Jambon blanc 6 tranches"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Fromage râpé 125gr"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Lait 40cl"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre 40gr"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine 40gr"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment doux fumé 2gr"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Tranche de leerdammer 6 tranches"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
