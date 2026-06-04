@@ -19,6 +19,7 @@ import SmartText from '@/components/SmartText/SmartText';
 import MagicConverter from '@/components/MagicConverter/MagicConverter';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import CommentSection from '@/components/CommentSection/CommentSection';
+import RecipeNote from '@/components/RecipeNote/RecipeNote';
 import StarRating from '@/components/StarRating/StarRating';
 import { estimateRecipeCalories } from '@/lib/calories';
 import { mockRecipes } from '@/data/mockData';
@@ -1298,6 +1299,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                     </div>
                 )}
 
+                {!focusMode && <RecipeNote recipeId={String(recipe.id)} />}
                 {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
 
                 {/* Focus Mode Overlay */}
