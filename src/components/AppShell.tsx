@@ -1,7 +1,10 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { DeviceContext } from './device';
+
+// useLayoutEffect côté client (bascule avant paint = pas de flash), useEffect en SSR (pas de warning)
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 // ── Chrome desktop (site actuel) ──
 import { TimerProvider } from '@/components/Timer/TimerContext';
@@ -18,19 +21,12 @@ const detect = () =>
     window.matchMedia('(max-width: 1023px)').matches ||
     /iPhone|iPod|Android.*Mobile/i.test(navigator.userAgent);
 
-// Lecture synchrone du flag posé par le script inline du layout (avant React)
-const initialMobile = (): boolean | null => {
-    if (typeof window === 'undefined') return null; // SSR
-    const w = window as unknown as { __isMobile?: boolean };
-    if (typeof w.__isMobile === 'boolean') return w.__isMobile;
-    return detect();
-};
-
 export default function AppShell({ children }: { children: React.ReactNode }) {
-    // 1er rendu client = déjà correct (flag inline) → pas de flash desktop sur iPhone.
-    const [isMobile, setIsMobile] = useState<boolean | null>(initialMobile);
+    // null au SSR ET au 1er rendu client → arbre desktop identique des 2 côtés = pas de
+    // mismatch d'hydratation (React #418/#423). Bascule mobile en useLayoutEffect (avant paint).
+    const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
-    useEffect(() => {
+    useIsoLayoutEffect(() => {
         const calc = () => setIsMobile(detect());
         calc();
         window.addEventListener('resize', calc);
