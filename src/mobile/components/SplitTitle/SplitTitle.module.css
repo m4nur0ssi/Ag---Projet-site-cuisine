@@ -1,0 +1,49 @@
+.titleContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0 0.2em;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+    line-height: 1.1;
+    width: 100%;
+}
+
+.white {
+    background: linear-gradient(90deg, #5856D6, #007AFF, #5AC8FA, #4CD964);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 850;
+    letter-spacing: -0.5px;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    animation: rainbowShine 6s linear infinite;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gradient {
+    background: linear-gradient(90deg, #5856D6, #007AFF, #5AC8FA, #4CD964);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 850;
+    letter-spacing: -0.5px;
+    font-size: clamp(1.2rem, 4vw, 1.6rem); /* Taille compacte pour le mode shrunk */
+    animation: rainbowShine 6s linear infinite;
+    display: inline-block;
+    padding-right: 0.05em;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rainbowShine {
+    from { background-position: 0% center; }
+    to { background-position: -200% center; }
+}
+
+.large .white, .large .gradient {
+    font-size: clamp(2.5rem, 8vw, 4.2rem); /* Réduit pour plus de finesse */
+    letter-spacing: -3px;
+}

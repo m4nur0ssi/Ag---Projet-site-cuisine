@@ -1,0 +1,55 @@
+.voteWrapper {
+    position: relative;
+    width: fit-content;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.splitContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.flameBubble {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+}
+
+.countBubble {
+    height: 36px;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.votesNumber {
+    font-size: 17px;
+    font-weight: 950;
+    color: #FFF; /* Blanc sur transparent */
+    font-family: var(--font-primary);
+    letter-spacing: -0.5px;
+}

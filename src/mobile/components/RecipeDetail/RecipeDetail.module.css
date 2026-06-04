@@ -1,0 +1,417 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1000;
+}
+
+.page {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-bg-primary);
+    border-radius: 38px 38px 0 0;
+    z-index: 1001;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.heroDragArea {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+}
+
+.grabHandle {
+    width: 40px;
+    height: 5px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+}
+
+.headerActions {
+    position: absolute;
+    right: 20px;
+}
+
+.closeBtn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--liquid-bg);
+    color: var(--color-text-primary);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scrollableContent {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.heroWrapper {
+    width: 100%;
+    height: 350px;
+    position: relative;
+}
+
+.recipeImage {
+    object-fit: cover;
+    border-radius: 40px;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.contentHeaderPad {
+    padding: 20px 20px 10px;
+    background: var(--color-bg-primary);
+}
+
+.categoryBadge {
+    padding: 6px 12px;
+    background: var(--color-accent-primary);
+    color: var(--color-text-primary);
+    font-size: 10px;
+    font-weight: 900;
+    border-radius: 100px;
+    width: fit-content;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--color-text-primary);
+    margin-top: 10px;
+    line-height: 1.1;
+}
+
+.metaStrip {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.metaItem {
+    padding: 12px 20px;
+    background: var(--liquid-bg);
+    border: 1px solid var(--liquid-border);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text-primary);
+    font-weight: 700;
+}
+
+.servingsControl {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.servingsControl button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--liquid-bg);
+    color: var(--color-text-primary);
+    border: none;
+}
+
+.tabsBar {
+    display: flex;
+    background: var(--liquid-bg);
+    padding: 4px;
+    border: 1px solid var(--liquid-border);
+    margin: 0 20px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tabIndicator {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    background: var(--liquid-highlight);
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
+}
+
+.tabBtn {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+    font-weight: 800;
+    transition: color 0.3s ease;
+}
+
+.tabActive {
+    color: var(--color-text-primary);
+}
+
+.contentPad {
+    padding: 0 20px 120px;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.panierBtn {
+    padding: 10px 16px;
+    background: var(--liquid-bg);
+    color: var(--color-text-primary);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.ingredientsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.ingredientCard {
+    background: var(--liquid-bg);
+    backdrop-filter: blur(var(--liquid-blur));
+    -webkit-backdrop-filter: blur(var(--liquid-blur));
+    border: 1px solid var(--liquid-border);
+    border-radius: 32px;
+    padding: 24px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.ingredientCard:active {
+    transform: scale(0.96);
+}
+
+.ingredientChecked {
+    background: rgba(16, 185, 129, 0.08);
+    border-color: #10b981;
+}
+
+.ingIcon {
+    width: 70px;
+    height: 70px;
+    background: var(--liquid-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.ingIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.ingImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.checkBadge {
+    position: absolute;
+    inset: 0;
+    background: #28CD41;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-primary);
+    font-size: 20px;
+}
+
+.ingQty {
+    font-size: 1rem;
+    font-weight: 950;
+    color: var(--color-accent-primary);
+    line-height: 1;
+}
+
+.ingName {
+    font-size: 14px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.2;
+}
+
+.lancerBtn {
+    width: 100%;
+    padding: 18px;
+    background: var(--color-accent-primary);
+    color: var(--color-text-primary);
+    border: none;
+    border-radius: 20px;
+    font-weight: 900;
+    font-size: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(127, 13, 242, 0.4);
+}
+
+.stepItem {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: var(--liquid-bg);
+    border-radius: 24px;
+    margin-bottom: 12px;
+    border: 1px solid var(--liquid-border);
+}
+
+.stepChecked {
+    opacity: 0.5;
+    border-color: #10b981;
+}
+
+.stepNum {
+    width: 32px;
+    height: 32px;
+    background: var(--color-accent-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-primary);
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.stepText {
+    color: var(--color-text-primary);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* HUD FOCUS MODE */
+.focusOverlay {
+    position: fixed;
+    inset: 0;
+    background: var(--color-bg-primary);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+}
+
+.focusHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.focusHeader h2 {
+    color: var(--color-text-primary);
+    font-size: 18px;
+    opacity: 0.6;
+}
+
+.focusHeader button {
+    background: var(--liquid-bg);
+    color: var(--color-text-primary);
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: none;
+}
+
+.focusMain {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.focusStepCard {
+    text-align: center;
+}
+
+.focusStepCard h3 {
+    color: var(--color-accent-primary);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.focusStepCard p {
+    color: var(--color-text-primary);
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.listeningIcon {
+    margin-top: 30px;
+    color: #28CD41;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.focusControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.focusControls button {
+    flex: 1;
+    padding: 20px;
+    border-radius: 20px;
+    background: var(--liquid-bg);
+    color: var(--color-text-primary);
+    border: none;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.focusControls button:nth-child(3) {
+    background: var(--color-accent-primary);
+}

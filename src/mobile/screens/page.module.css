@@ -1,0 +1,171 @@
+.main {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding-top: 108px; /* Collé à la barre de filtres */
+    padding-bottom: 120px;
+    will-change: scroll-position; /* GPU acceleration pour le scroll */
+}
+
+/* Conteneur Header + Filtres fixe */
+.stickyHeaderMenu {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.headerSpacer {
+    display: none; /* Remplacé par padding-top sur .main */
+}
+
+/* Feed vertical (TikTok) */
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 16px;
+    align-items: center;
+}
+
+.feedItem {
+    width: 100%;
+    max-width: 500px;
+}
+
+.noRecipes {
+    color: var(--text-tertiary);
+    font-size: 18px;
+    text-align: center;
+    padding: 80px 20px;
+    font-weight: 600;
+}
+
+.loading-ios {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 40px;
+}
+
+/* ── Catégories en Carrousel (iOS 26 Style) ── */
+.categorySection {
+    width: 100%;
+}
+
+.categoryTitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin: 0 0 16px 20px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.seeAll {
+    font-size: 14px;
+    color: var(--glow-color, #7f0df2);
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 20px 20px 20px;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+.carouselItem {
+    flex: 0 0 calc(50% - 16px); /* 2 cartes par vue sur petit mobile */
+    min-width: 160px;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+}
+
+.carouselItem:active {
+    transform: scale(0.96);
+}
+
+@media (min-width: 768px) {
+    .carouselItem {
+        flex: 0 0 220px;
+    }
+}
+
+/* ── Section Featured (TikTok Style) ───────── */
+.featuredFeed {
+    margin-bottom: 50px;
+}
+
+.sectionLabel {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 900;
+    color: var(--text-tertiary);
+    margin: 30px 0 10px 20px;
+}
+.sectionsContainer { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1px; 
+}
+
+/* Filter Results Header */
+.resultsWrapper {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.resultsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0 10px;
+}
+
+.resultsTitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.clearAllBtn {
+    background: rgba(255, 59, 48, 0.1);
+    color: #ff3b30;
+    border: 1px solid rgba(255, 59, 48, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.clearAllBtn:hover {
+    background: #ff3b30;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.3);
+}
+
+.clearAllBtn:active {
+    transform: scale(0.95);
+}
