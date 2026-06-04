@@ -2,11 +2,238 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/06/2026 12:39:45
- * Total: 339 recettes
+ * Dernière mise à jour: 04/06/2026 12:53:55
+ * Total: 338 recettes
  */
-export const exportSyncId = "1780576785131";
+export const exportSyncId = "1780577635489";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5787",
+        "title": "McFlurry maison au Daim",
+        "description": "Une recette facile et rapide pour préparer un McFlurry maison au Daim en seulement 5 minutes grâce au Ninja Creami.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fflurry.jpeg&v=1780584167000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7475297955587706134\" data-video-id=\"7475297955587706134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7475297955587706134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 250 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150 ml de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 30g de lait concentré"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n 1 c-à-soupe de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 50g de Daim"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Glaces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5858",
+        "title": "Gâteau moelleux noisette &#038; chocolat",
+        "description": "Un gâteau sans gluten, moelleux, sans matière grasse ajoutée et sucré naturellement au sirop de Yacon. Léger et délicieux.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcake.jpg&v=1780583991000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549975345097608470\" data-video-id=\"7549975345097608470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549975345097608470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n 3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 150ml lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100g poudre noisette"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 100g farine (avoine ou flocons mixés)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60g de sucrant au choix (sirop de yacon)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 CC sachet levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 80g pépites de chocolat (60g pour la pâte, 20g pour le dessus)"
+            }
+        ],
+        "steps": [
+            "Mélanger les 3 œufs, 150ml de lait, 100g de poudre de noisette, 100g de farine (avoine ou flocons mixés), 60g de sucrant (sirop de yacon) et 1 CC de levure chimique.",
+            "Incorporer 60g de pépites de chocolat à la préparation.",
+            "Verser la pâte dans un moule de 20cm de diamètre.",
+            "Ajouter les 20g restants de pépites de chocolat sur le dessus.",
+            "Cuire au four préchauffé à 180 degrés pendant 30 minutes.",
+            "Laisser tiédir environ 30 minutes avant de démouler et déguster."
+        ],
+        "tags": [
+            "Healthy",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5852",
+        "title": "Tartine méditerranéenne d'olives",
+        "description": "Un dip méditerranéen savoureux et facile à préparer, parfait pour accompagner du pain. Il est composé d'huile d'olive, de vinaigre balsamique, d'olives vertes, de tomates séchées, de parmesan, de persil, d'ail et de flocons de piment.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmediterr.jpg&v=1780583854000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7628705178992020758\" data-video-id=\"7628705178992020758\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7628705178992020758\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Olives vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail (1 gousse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Flocons de piment"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "Grèce",
+            "Healthy",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5854",
+        "title": "Le radis beurre comme une fleur",
+        "description": "Une recette de radis au beurre présentés en forme de fleur, inspirée par le chef Jean-François Piège, idéale pour l'apéritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fradis.jpg&v=1780583751000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7256818242142899483\" data-video-id=\"7256818242142899483\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7256818242142899483\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Radis"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Beurre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs",
+            "France",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5856",
+        "title": "Astuce coque au chocolat",
+        "description": "Une recette facile de dessert au chocolat, adaptée aux régimes végétarien et végétalien.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcoque.jpg&v=1780583653000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7621853365835746581\" data-video-id=\"7621853365835746581\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7621853365835746581\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5937",
         "title": "Courgettes rôties et crème de mozza",
@@ -1352,188 +1579,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5858",
-        "title": "Gâteau moelleux noisette &#038; chocolat",
-        "description": "Un gâteau sans gluten, moelleux, sans matière grasse ajoutée et sucré naturellement au sirop de Yacon. Léger et délicieux.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549975345097608470\" data-video-id=\"7549975345097608470\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549975345097608470\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             3 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             150ml lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g poudre noisette"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             100g farine (avoine ou flocons mixés)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             60g de sucrant au choix (sirop de yacon)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 CC sachet levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             80g pépites de chocolat (60g pour la pâte, 20g pour le dessus)"
-            }
-        ],
-        "steps": [
-            "Mélanger les 3 œufs, 150ml de lait, 100g de poudre de noisette, 100g de farine (avoine ou flocons mixés), 60g de sucrant (sirop de yacon) et 1 CC de levure chimique.",
-            "Incorporer 60g de pépites de chocolat à la préparation.",
-            "Verser la pâte dans un moule de 20cm de diamètre.",
-            "Ajouter les 20g restants de pépites de chocolat sur le dessus.",
-            "Cuire au four préchauffé à 180 degrés pendant 30 minutes.",
-            "Laisser tiédir environ 30 minutes avant de démouler et déguster."
-        ],
-        "tags": [
-            "Healthy",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5856",
-        "title": "Dessert au chocolat",
-        "description": "Une recette facile de dessert au chocolat, adaptée aux régimes végétarien et végétalien.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7621853365835746581\" data-video-id=\"7621853365835746581\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7621853365835746581\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Desserts",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5854",
-        "title": "LE RADIS BEURRE COMME UNE FLEUR FAÇON JEAN-FRANÇOIS PIÈGE",
-        "description": "Une recette de radis au beurre présentés en forme de fleur, inspirée par le chef Jean-François Piège, idéale pour l'apéritif.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7256818242142899483\" data-video-id=\"7256818242142899483\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7256818242142899483\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Radis"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Apéritifs",
-            "France",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5852",
-        "title": "Mediterranean Olive Oil Bread Dip",
-        "description": "Un dip méditerranéen savoureux et facile à préparer, parfait pour accompagner du pain. Il est composé d'huile d'olive, de vinaigre balsamique, d'olives vertes, de tomates séchées, de parmesan, de persil, d'ail et de flocons de piment.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7628705178992020758\" data-video-id=\"7628705178992020758\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7628705178992020758\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Olives vertes"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates séchées"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail (1 gousse)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Flocons de piment"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Apéritifs",
-            "épicé",
-            "Grèce",
-            "Healthy",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5736",
         "title": "Fraisier",
         "description": "Une recette détaillée pour réussir un fraisier classique, avec une génoise moelleuse et une crème mousseline onctueuse, parfait pour les amateurs de fraises. Le guide inclut la préparation de la génoise, de la crème pâtissière et de la crème au be...",
@@ -2351,51 +2396,6 @@ export const mockRecipes: Recipe[] = [
             "Gratins",
             "Healthy",
             "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5787",
-        "title": "McFlurry maison au Daim",
-        "description": "Une recette facile et rapide pour préparer un McFlurry maison au Daim en seulement 5 minutes grâce au Ninja Creami.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fflurry.jpeg&v=1779900297000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7475297955587706134\" data-video-id=\"7475297955587706134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7475297955587706134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n 250 ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 150 ml de crème"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 30g de lait concentré"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n 1 c-à-soupe de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 50g de Daim"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Entrées",
-            "Végé",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -6916,6 +6916,72 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "5293",
+        "title": "Rösti au saumon",
+        "description": "Le rösti au saumon pour un brunch ou juste avec une salade c'est toujours un régal !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frosti.jpg&v=1778517128000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7324641790273867041\" data-video-id=\"7324641790273867041\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7324641790273867041\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 4 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n 4 tranches de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 2 gros œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fromage frais type Philadelphia ou Saint Moret"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 citron bio non traité"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre"
+            }
+        ],
+        "steps": [
+            "Éplucher et raper les pommes de terre. Dans un torchon propre déposer les pommes de terre et presser pour retirer l'excédent d'eau. Émincer l'oignon et écraser l'ail.",
+            "Mélanger les pommes de terre râpées, l'oignon, l'ail, le sel, le poivre, le paprika et les œufs. Dans une poêle bien chaude et huilée, former une galette. Cuire 7 à 10 minutes par face. Retourner à l'aide d'une assiette.",
+            "Fouetter le fromage frais avec le jus d'un demi citron. Étaler ce mélange sur le rösti, déposer des tranches de saumon, de la ciboulette ciselée, du jus de citron et quelques zestes de citron 🍋 C'est prêt !"
+        ],
+        "tags": [
+            "Healthy",
+            "Simplissime"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5299",
         "title": "Spaghettis aux crevettes et tomates cerises",
         "description": "Une recette facile de pâtes aux crevettes, sans crème, avec des tomates cerises, de l'ail et une touche de citron pour un plat savoureux et léger.",
@@ -8138,92 +8204,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Pas cher",
             "pâtisserie",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5287",
-        "title": "High-Protein Chicken Bacon Ranch Pasta",
-        "description": "Une pâte crémeuse et savoureuse, riche en protéines, avec du poulet, du bacon croustillant et une sauce généreuse. Une recette addictive et l'une des meilleures de l'auteur.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7526612302334823713\" data-video-id=\"7526612302334823713\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7526612302334823713\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Simplissime",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5283",
-        "title": "Chakchouka végétarienne",
-        "description": "Une chakchouka végétarienne et protéinée, préparée avec des œufs, tomates, haricots rouges et petits pois, assaisonnée à l'ail et aux épices.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7611505151139908887\" data-video-id=\"7611505151139908887\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7611505151139908887\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n 1 Oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive 15ml"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 3 Tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n Haricots rouges 200g"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Petits pois 75g"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n Sauce tomate 150g"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 4 Œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Ail, sel, poivre, paprika fumé, ciboulette"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Orient",
             "Végé"
         ],
         "isFeatured": false,
