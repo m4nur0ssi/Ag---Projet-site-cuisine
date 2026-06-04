@@ -2,12 +2,12 @@ import styles from './CategoryScroll.module.css';
 import Image from 'next/image';
 
 const categories = [
-    { id: 'aperitifs', name: 'Apéritifs', image: '/images/categories/aperitif.jpg', color: '#10b981' },
-    { id: 'entrees', name: 'Entrées', image: '/images/categories/entree.jpg', color: '#3b82f6' },
-    { id: 'plats', name: 'Plats', image: '/images/categories/plats.jpg', color: '#f43f5e' },
-    { id: 'desserts', name: 'Desserts', image: '/images/categories/desserts.jpg', color: '#d946ef' },
-    { id: 'patisserie', name: 'Pâtisserie', image: '/images/categories/patisserie.jpg', color: '#f59e0b' },
-    { id: 'restaurant', name: 'Restaurant', image: '/images/categories/patisserie.jpg', color: '#8b5cf6' }
+    { id: 'aperitifs', name: 'Apéritifs', image: '/mobile-img/categories/aperitif.jpg', color: '#10b981' },
+    { id: 'entrees', name: 'Entrées', image: '/mobile-img/categories/entree.jpg', color: '#3b82f6' },
+    { id: 'plats', name: 'Plats', image: '/mobile-img/categories/plats.jpg', color: '#f43f5e' },
+    { id: 'desserts', name: 'Desserts', image: '/mobile-img/categories/desserts.jpg', color: '#d946ef' },
+    { id: 'patisserie', name: 'Pâtisserie', image: '/mobile-img/categories/patisserie.jpg', color: '#f59e0b' },
+    { id: 'restaurant', name: 'Restaurant', image: '/mobile-img/categories/patisserie.jpg', color: '#8b5cf6' }
 ];
 
 export default function CategoryScroll() {
