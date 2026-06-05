@@ -123,7 +123,7 @@
     scroll-snap-type: x proximity; /* proximity = laisse le momentum dépasser plusieurs cartes */
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch; /* Momentum scroll iOS natif */
-    overscroll-behavior-x: contain;
+    overscroll-behavior-x: none; /* coupe le rebond élastique aux extrémités du carrousel */
     display: flex;
     align-items: center;
     touch-action: pan-x pan-y;
