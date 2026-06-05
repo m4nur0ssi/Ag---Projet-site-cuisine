@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import { flushSync } from 'react-dom';
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
 import Portal from '@/mobile/components/Portal';
@@ -116,11 +117,12 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
             ease: [0.25, 0.1, 0.25, 1], // Ease standard plus stable
             duration: 0.3,
             onComplete: () => {
-                // CHANGEMENT CRITIQUE : On met à jour l'index ET on reset x simultanément
-                // Pour éviter le rebond, on s'assure que le rendu est atomique
-                setCurrentIdx(newIdx);
-                x.jump(0); // jump est plus immédiat que set dans certains contextes framer
-            } 
+                // Atomique : flushSync force le re-render de la nouvelle carte AVANT le reset
+                // de x. Sinon React batche setCurrentIdx → 1 frame avec l'ancienne carte
+                // recentrée (x déjà à 0) = le rebond/flash en changeant de recette.
+                flushSync(() => setCurrentIdx(newIdx));
+                x.jump(0);
+            }
         });
     }, [currentIdx, x, snapBack]);
 
