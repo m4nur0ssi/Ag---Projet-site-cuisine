@@ -158,6 +158,10 @@ export default function Header({
                         )}
                         <AuthButton />
                     </div>
+                    {/* Connexion visible partout en haut à gauche sur mobile (bloc desktop masqué <768px) */}
+                    <div className={styles.headerAuthMobile}>
+                        <AuthButton />
+                    </div>
 
                     <div className={styles.headerCenter}>
                         <h1 className={`${styles.title} ${isSyncing ? styles.syncing : ''}`}>

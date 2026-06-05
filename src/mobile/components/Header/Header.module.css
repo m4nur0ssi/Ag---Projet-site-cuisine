@@ -237,4 +237,16 @@
     .mobileOnly {
         display: flex;
     }
+    .headerAuthMobile {
+        display: flex;
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 6;
+    }
+}
+/* Masqué sur desktop : le bloc headerLeftDesktop gère la connexion >768px */
+.headerAuthMobile {
+    display: none;
 }
