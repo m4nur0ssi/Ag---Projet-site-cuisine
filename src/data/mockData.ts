@@ -2,62 +2,62 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/06/2026 06:58:33
+ * Dernière mise à jour: 05/06/2026 10:28:57
  * Total: 337 recettes
  */
-export const exportSyncId = "1780642713818";
+export const exportSyncId = "1780655337761";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5987",
         "title": "Pâtes Verte",
         "description": "Une recette de pâtes végétariennes rapides et saines, à base d'épinards, d'amandes et de parmesan.",
-        "image": "/images/recipe-placeholder.jpg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2F36c8feab-63fd-47ea-b7ac-ffc84e4a27a1.jpg&v=1780662021000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7455366486719352086\" data-video-id=\"7455366486719352086\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7455366486719352086\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7455366486719352086\" data-video-id=\"7455366486719352086\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7455366486719352086\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍝\n             250g pâtes"
+                "name": "🍝\n 250g pâtes"
             },
             {
                 "quantity": "",
-                "name": "🥗\n             100g pousse d'épinards"
+                "name": "🥗\n 100g pousse d'épinards"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             20g amandes"
+                "name": "🥣\n 20g amandes"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             10g parmesan"
+                "name": "🧀\n 10g parmesan"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             10ml huile d'olive"
+                "name": "🍾\n 10ml huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel"
+                "name": "🧂\n Sel"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "🌶️\n Poivre"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             Ail"
+                "name": "🧄\n Ail"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Paprika"
+                "name": "🧂\n Paprika"
             },
             {
                 "quantity": "",
-                "name": "💧\n             20ml d'eau"
+                "name": "💧\n 20ml d'eau"
             }
         ],
         "steps": [
