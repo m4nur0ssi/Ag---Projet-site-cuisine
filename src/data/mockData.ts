@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/06/2026 10:43:05
- * Total: 336 recettes
+ * Dernière mise à jour: 05/06/2026 21:05:41
+ * Total: 335 recettes
  */
-export const exportSyncId = "1780656185789";
+export const exportSyncId = "1780693541904";
 export const mockRecipes: Recipe[] = [
     {
         "id": "5984",
@@ -1211,73 +1211,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Gratins",
-            "Healthy"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5943",
-        "title": "Brownie au brocolis",
-        "description": "Un brownie salé sain et délicieux à base de brocolis, idéal pour faire apprécier ce légume aux enfants et aux plus grands.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbrowni.jpeg&v=1780582595000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7479118888622656790\" data-video-id=\"7479118888622656790\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7479118888622656790\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥦\n 1 brocolis (frais ou congelé)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 160g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1/2 fêta"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n Lardons ou allumettes de jambon"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 250ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n Ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n Comté râpé"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
             "Healthy"
         ],
         "isFeatured": false,
