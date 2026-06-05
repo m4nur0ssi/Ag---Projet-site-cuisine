@@ -2,11 +2,768 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/06/2026 21:28:37
- * Total: 346 recettes
+ * Dernière mise à jour: 05/06/2026 21:40:16
+ * Total: 351 recettes
  */
-export const exportSyncId = "1780694917363";
+export const exportSyncId = "1780695616277";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6023",
+        "title": "Loaded Nacho Fries",
+        "description": "Des frites croustillantes garnies de fromage fondu, de bœuf haché assaisonné au taco, de guacamole crémeux, de pico de gallo frais et d'une touche de crème aigre.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613995667966545173\" data-video-id=\"7613995667966545173\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613995667966545173\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400 g de frites surgelées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile pour la friture"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             5-6 tranches de fromage (cheddar)"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             250 g de bœuf haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe d'assaisonnement pour tacos"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             2 cuillères à soupe d'eau (facultatif, si le bœuf est sec)"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             3 avocats mûrs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel d'ail + poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1-2 cuillères à café de jus de citron vert ou de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ tasse de pico de gallo (acheté ou fait maison)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème aigre, pour arroser"
+            }
+        ],
+        "steps": [
+            "Faire cuire les frites : Chauffer l'huile dans une friteuse ou une casserole profonde à environ 175-180°C (350°F). Frire les frites surgelées jusqu'à ce qu'elles soient dorées et très croustillantes, environ 4-6 minutes. Retirer et égoutter sur du papier absorbant.",
+            "Préparer le bœuf haché façon taco : Chauffer une poêle à feu moyen. Ajouter le bœuf haché et cuire jusqu'à ce qu'il soit doré, en le brisant pendant la cuisson. Incorporer l'assaisonnement pour tacos et l'eau. Laisser mijoter 2-3 minutes jusqu'à ce que le bœuf soit bien enrobé et savoureux.",
+            "Préparer le guacamole : Dans un bol, écraser les avocats jusqu'à obtenir une consistance presque lisse. Incorporer le sel d'ail + poivre et le jus de citron vert (ou de citron). Goûter et ajuster l'assaisonnement si nécessaire.",
+            "Faire fondre le fromage : Placer les frites chaudes dans un grand bol ou une assiette. Disposer 5-6 tranches de fromage sur les frites. Passer au micro-ondes pendant 30-45 secondes, ou jusqu'à ce que le fromage soit fondu et coulant.",
+            "Assembler : Garnir les frites au fromage avec : le bœuf haché assaisonné façon taco, le pico de gallo, le guacamole, la crème aigre."
+        ],
+        "tags": [
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6021",
+        "title": "Riz Mexicain Poulet au Miel",
+        "description": "Un plat complet et savoureux de riz mexicain accompagné de poulet au miel, relevé par des épices et des légumes, parfait pour un repas convivial.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636062270534995222\" data-video-id=\"7636062270534995222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636062270534995222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             4/5 hauts de cuisses de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             200 g de riz basmati"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 Poivron coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Une cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 Gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une cuillère à café de curry"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une cuillère à soupe d'épices mexicaines"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Une cuillère à café d'arôme du Sud"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Une grosse tasse d'eau bouillante avec un cube bouillon de volaille diluée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre (pour la décoration)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron (pour la décoration)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6019",
+        "title": "Taco Bowl maison",
+        "description": "Ce Taco Bowl maison est une recette healthy, riche en protéines et pleine de saveurs mexicaines, prête en moins de 15 minutes. Parfait pour un meal prep, un dîner rapide ou un déjeuner stylé pour manger mieux sans se priver.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7504037706775792918\" data-video-id=\"7504037706775792918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7504037706775792918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             Riz complet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Viande hachée 5% MT"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Patate douce"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Haricot rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices mexicaines"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Mexique",
+            "Salades"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6017",
+        "title": "Nachos",
+        "description": "Une recette de nachos avec de la viande hachée, du cheddar, des jalapeños et des haricots rouges, parfaite pour un plat mexicain relevé.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7172597855956290821\" data-video-id=\"7172597855956290821\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7172597855956290821\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de nachos nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             200g de viande haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             150g cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1cas sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 demi oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2/3 petit jalapenos"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             petite conserve de haricot rouge"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6015",
+        "title": "Nachos avec un déluge de sauce cheddar",
+        "description": "Des nachos croustillants généreusement nappés de sauce cheddar maison onctueuse, garnis de viande au choix, guacamole, crème fraîche, oignon cébette, tomate et piment.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7555036611679980822\" data-video-id=\"7555036611679980822\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7555036611679980822\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 paquet de tortillas"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Viande de ton choix"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Guacamole"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             30 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             200 g de cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c. à café de curcuma"
+            }
+        ],
+        "steps": [
+            "Préparation de la sauce cheddar : Dans une casserole à feu doux, fais fondre le beurre. Ajoute la farine et mélange au fouet pour former un roux. Verse ensuite le lait d'un coup en fouettant pour éviter les grumeaux : tu obtiens une béchamel. Ajoute les tranches de cheddar et remue jusqu'à ce qu'il soit totalement fondu. Assaisonne avec le paprika et le curcuma. Garde la sauce au chaud en la remuant de temps en temps pour ne pas qu'elle durcisse.",
+            "L'assemblage : Dans un grand plat, dispose un paquet de tortillas. Nappe généreusement de la sauce cheddar. Parsème l'oignon cébette, ajoute la viande de ton choix puis dépose des cuillères de guacamole et de crème fraîche. Termine avec la tomate et le piment."
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6013",
+        "title": "Pico de Gallo",
+        "description": "Fresh, easy, and full of flavor! This Mexican-style Pico de Gallo recipe is made with simple, fresh ingredients, perfect for dipping with tortilla chips or adding to tacos, quesadillas, and more.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463605331017485599\" data-video-id=\"7463605331017485599\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463605331017485599\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             3 roma tomatoes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 of red onion"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 serrano peppers"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Small bunch of cilantro"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Juice of 2 limes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt to taste"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Mexique",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6011",
+        "title": "Tinga de pollo",
+        "description": "Une recette mexicaine de tinga de poulet, où le poulet effiloché est mijoté dans une sauce relevée aux chipotles, puis servi sur des tostadas avec des garnitures fraîches comme de la crème, de la laitue, du fromage frais et de l'avocat.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639882333163752718\" data-video-id=\"7639882333163752718\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639882333163752718\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pechuga de pollo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cebolla"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 dientes de ajo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 hoja de laurel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sal al gusto"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 jitomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 chiles chipotles enlatados"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 diente de ajo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cucharadita de sazonador Golden Garlic de Spanglish Asadero"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cucharadita de consomé de pollo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 taza de caldo de pollo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Aceite"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cebolla cortada en tiras finas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Tostadas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Crema mexicana"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lechuga"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Queso fresco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Aguacate"
+            }
+        ],
+        "steps": [
+            "En una olla agrega la pechuga de pollo, 1/2 cebolla, 2 dientes de ajo, la hoja de laurel y sal al gusto. Cubre con agua, tapa y cocina por aproximadamente 45 minutos o hasta que el pollo esté bien cocido.",
+            "Retira el pollo de la olla y deshébralo. En el mismo caldo cocina los jitomates hasta que estén suaves.",
+            "Lleva los jitomates cocidos a la licuadora junto con los chipotles, 1 diente de ajo, el sazonador Golden Garlic, el consomé de pollo y 1 taza de caldo de pollo. Licúa hasta obtener una salsa suave.",
+            "En un sartén agrega un poco de aceite y añade la cebolla en tiras. Cocina por aproximadamente 1 minuto.",
+            "Agrega el pollo deshebrado y mezcla por unos segundos. Vierte la salsa de chipotle y mezcla bien. Si es necesario, agrega un poco más de caldo de pollo.",
+            "Cuando comience a hervir ligeramente, retira del fuego.",
+            "Sirve sobre tostadas y agrega crema, lechuga, queso fresco y aguacate. ¡Disfruta!"
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6009",
+        "title": "BOWLS MEXICANOS COMESTIBLES",
+        "description": "Un bowl comestible rempli de saveur, de texture et de couleur, avec des Tostacos WOW Guacamole pour une touche croustillante et fraîche.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7565577514119089416\" data-video-id=\"7565577514119089416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7565577514119089416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Tortilla XL"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Arroz mexicano"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Carne molida"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pulled pork"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Guacamole"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pico de gallo fresco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sour cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Tostacos WOW Guacamole"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cilantro fresco"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6007",
+        "title": "Mexican Street Corn Jalapeño Poppers",
+        "description": "Des jalapeño poppers revisités avec une garniture inspirée du maïs de rue mexicain (Elote), parfaits pour un barbecue estival. Ils sont garnis d'un mélange crémeux de maïs rôti, bacon, fromages, crème aigre et épices, puis cuits au four jusqu'à ce...",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7368844391412288773\" data-video-id=\"7368844391412288773\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7368844391412288773\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             6 jalapeños"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 épis de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 lb (environ 225g) de bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1/4 tasse de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/4 tasse de fromage pepper jack"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             3 cuillères à soupe de crème aigre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de tajin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'assaisonnement à tacos"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 cuillères à soupe d'oignon coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Sauce piquante au citron vert (ou autre sauce piquante de votre choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais (cream cheese) à température ambiante"
+            }
+        ],
+        "steps": [
+            "Faire rôtir le maïs.",
+            "Dans un bol, combiner le maïs rôti, le bacon, le fromage cheddar, le fromage pepper jack, la crème aigre, le tajin, l'assaisonnement à tacos, l'oignon coupé en dés, la sauce piquante et le fromage frais à température ambiante.",
+            "Couper les jalapeños en deux et retirer le cœur.",
+            "Farcir les moitiés de jalapeños avec le mélange.",
+            "Garnir le dessus avec un peu plus de maïs et de Tajin.",
+            "Cuire au four à 350°F (environ 175°C) pendant 15 minutes ou jusqu'à ce que le fromage soit bien fondu.",
+            "Déguster !"
+        ],
+        "tags": [
+            "barbecue",
+            "épicé",
+            "Mexique",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6005",
+        "title": "Enchiladas à la viande hachée",
+        "description": "Des enchiladas mexicaines faciles et rapides à préparer, garnies de viande hachée épicée, d'oignons et de fromage, puis gratinées au four.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7445684885710179606\" data-video-id=\"7445684885710179606\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7445684885710179606\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce faritas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feuille de tacos"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage râpés"
+            }
+        ],
+        "steps": [
+            "Faites revenir la viande hachée avec les oignons, puis ajoutez les épices et la sauce.",
+            "Garnissez vos feuilles de tacos, avec la farce et le fromage.",
+            "Dans un moule, versez la sauce puis les tacos garnis.",
+            "Recouvrir de nouveau de sauce et de fromage.",
+            "Laisser gratiner au four 15 minutes à 240°."
+        ],
+        "tags": [
+            "Gratins",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6003",
         "title": "Carne Asada",
@@ -6871,279 +7628,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Italie",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5606",
-        "title": "Gratin dauphinois",
-        "description": "Un gratin dauphinois revisité, crémeux et fondant, préparé avec des pommes de terre finement tranchées, de l'ail confit, un mélange de crèmes, de la noix de muscade, du thym et du comté, cuit au four jusqu'à être parfaitement gratiné.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin-dauphinois-cremeux-traditionnel.jpeg&v=1779190092000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7558880515923725590\" data-video-id=\"7558880515923725590\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7558880515923725590\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥔\n 1,2 kilos de pomme de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 tête d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 300g de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 2 cas de crème fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 15g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 cac de noix de muscade"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 1 cas de thym"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 80g de comté"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Huile"
-            }
-        ],
-        "steps": [
-            "Couper le chapeau de la tête d'ail, la mettre dans une mini cocotte ou en papillote avec une pincée de sel et un filet d'huile. Cuire 35 min à 200°C.",
-            "Laver et couper les pommes de terre en rondelles assez fines. Les disposer dans un plat les unes collées aux autres.",
-            "Dans une casserole, faire fondre le beurre avec la crème liquide et la crème épaisse. Ajouter la noix de muscade, le thym, la pulpe de la tête d'ail confite, le tiers du comté, un peu de sel et du poivre. Mixer le tout.",
-            "Verser la sauce dans le plat pour recouvrir toutes les pommes de terre. Recouvrir le plat en superposant une feuille de papier cuisson et une feuille d'aluminium. Cuire 1h à 190°C.",
-            "Au bout d'une heure, retirer les feuilles et ajouter le reste du comté pour 15 min supplémentaires en mode grill."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France",
-            "Gratins"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5609",
-        "title": "Gratin de pâtes de l'été",
-        "description": "Un délicieux gratin de pâtes estival, parfait pour l'été et pouvant être préparé au four ou au barbecue. Cette recette met en vedette des pâtes courtes, des légumes frais comme la courgette et les tomates cerises, le tout gratiné à la mozzarella e...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpenne-burrata.jpg&v=1779189848000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7524744036926770464\" data-video-id=\"7524744036926770464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7524744036926770464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n 200g de pâtes courtes"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 150ml de sauce tomate"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 10cl de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 1/2 cube de bouillon de poule"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 200g de tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 courgette"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 1 grosse boule de mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 3 càs de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 1 à 2 càs de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n de belles tranches de coppa"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n poivre"
-            }
-        ],
-        "steps": [
-            "Cuire les pâtes al dente. Pendant ce temps, faire revenir l'oignon rouge émincé grossièrement dans de l'huile d'olive, ajouter les tomates, la courgette coupée en dés.",
-            "Mouiller de vin blanc, ajouter le cube de bouillon émietté et laisser réduire. Ajouter la sauce tomate, le mascarpone, 2 càs de parmesan, bien mélanger et rectifier l'assaisonnement si besoin.",
-            "Ajouter les pâtes, bien mélanger et terminer avec la mozzarella et le reste du parmesan.",
-            "Enfourner pendant 5 à 10min en position grill.",
-            "Servir avec de la coppa, du basilic, un peu de poivre et un filet d'huile d'olive. Déguster immédiatement."
-        ],
-        "tags": [
-            "barbecue",
-            "Gratins",
-            "Italie",
-            "pates",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5612",
-        "title": "Cannellonis poulet et champignons",
-        "description": "Une recette automnale de cannellonis gratinés au poulet, champignons, ricotta et une béchamel onctueuse au comté et moutarde à l'ancienne. Un plat super réconfortant et savoureux, parfait pour la saison des plats gratinés.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcannelloni-aux-champignons-0-16-9.jpg&v=1779189556000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7573723389190343958\" data-video-id=\"7573723389190343958\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7573723389190343958\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n 4 hauts de cuisse de poulet désossés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 250 g de champignons de Paris (ou mix forestier)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 1 petit bouquet de persil plat"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 250 g de ricotta"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 1 c. à s. d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 1 noisette de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Muscade"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 40 g de beurre (pour la béchamel)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 40 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 500 ml de lait entier"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 100 g de comté râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 1 c. à s. bombée de moutarde à l'ancienne"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 10 à 12 cannellonis"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 20 g de comté râpé (pour le montage)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Persil frais"
-            }
-        ],
-        "steps": [
-            "Coupe le poulet en petits morceaux et fais-le bien dorer à la poêle.",
-            "Fais revenir champignons, ail et échalote dans une noisette de beurre sur feu vif.",
-            "Mélange le poulet, les champignons, le persil et la ricotta, puis assaisonne (sel, poivre, muscade).",
-            "Pour la béchamel : Fais fondre le beurre, ajoute la farine et mélange.",
-            "Verse le lait, fouette jusqu'à épaississement, puis ajoute la moutarde et le comté. Assaisonne (sel, poivre blanc, muscade).",
-            "Garnis les cannellonis avec la farce (à l'aide d'une poche ou d'un sac congélation).",
-            "Verse un peu de béchamel au fond d'un plat, dispose les cannellonis, recouvre du reste de béchamel et du comté râpé.",
-            "Enfourne 40 min à 180°C.",
-            "Parsème de persil frais avant de servir et régale-toi !"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Gratins",
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -14400,270 +14884,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4725",
-        "title": "Crispy Beef Tacos",
-        "description": "Une recette de tacos au bœuf croustillants, garnis de fromage mozzarella, accompagnés d'une sauce maison crémeuse et d'une salsa fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FCrispy-Braised-Chipotle-Beef-Tacos-1.jpeg&v=1774887851000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7590791206016257302\" data-video-id=\"7590791206016257302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7590791206016257302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n Tortillas de blé"
-            },
-            {
-                "quantity": "",
-                "name": "🥩\n 250g Bœuf haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 2 petits oignons"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Huile végétale pour la friture"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 1 cuillère à soupe de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Assaisonnement pour tacos (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 cuillère à soupe de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 cuillère à café de poudre d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 cuillère à café de poudre d'oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 cuillère à café d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 cuillère à café de flocons de piment"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 cuillère à café de poivre de Cayenne"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 cuillère à café de fécule de maïs (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 3 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 cuillère à café de pâte de chipotle (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 1/2 tasse d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel et poivre au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n Fromage mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n Mayonnaise (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n Ketchup (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n Moutarde au miel (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Pâte de chipotle (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Sauce BBQ (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n Jus de citron (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n Tomates (pour la salsa)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n Oignon (pour la salsa)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Coriandre (pour la salsa)"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n Vinaigre de riz (pour la salsa)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n Jus de citron vert (pour la salsa)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel et poivre (pour la salsa)"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
-        ],
-        "tags": [
-            "Mexique",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4692",
-        "title": "Couscous Marocain",
-        "description": "Un couscous marocain traditionnel et généreux, composé de légumes variés, de poulet, d'agneau et de merguez, servi avec une semoule parfumée. Une garniture sucrée aux raisins secs est proposée en option pour une touche d'originalité.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecette-couscous-marocain.jpeg&v=1774702154000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7608300243108564247\" data-video-id=\"7608300243108564247\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7608300243108564247\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥕\n 2 carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 2 oignons"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 3 navets"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 branche de céleri"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 1 tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 bâton de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 15 g de gingembre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 càs de ras el hanout"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 2 càs de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 càs de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Les queues d'un bouquet de coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n 250 g de pois chiches"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n 4 cuisses de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 500 g de collier d'agneau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 4 merguez"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon (pour garniture sucrée)"
-            },
-            {
-                "quantity": "",
-                "name": "🍇\n 100 g de raisins secs (réhydratés dans de l'eau chaude)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 càc de curcuma (pour garniture sucrée)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 pincée de sel (pour garniture sucrée)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 400 g de semoule moyenne"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 400 g d'eau bouillante"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 60 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 7 g de sel"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "Orient"
         ],
         "isFeatured": false,
         "isFavorite": false,
