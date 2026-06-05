@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Portal from '@/mobile/components/Portal';
 import styles from './Converter.module.css';
 
 
@@ -44,16 +45,29 @@ export default function MagicConverter() {
                 Convertisseur
             </button>
 
+            <Portal>
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div 
+                    <>
+                    <motion.div
+                        onClick={() => setIsOpen(false)}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 9998 }}
+                    />
+                    <motion.div
                         className={styles.modal}
+                        style={{
+                            position: 'fixed', left: 12, right: 12, bottom: 20, top: 'auto',
+                            width: 'auto', zIndex: 9999, maxHeight: '80vh', overflowY: 'auto',
+                        }}
                         initial={{ y: "100%", opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: "100%", opacity: 0 }}
-                        transition={{ 
-                            type: "spring", 
-                            damping: 25, 
+                        transition={{
+                            type: "spring",
+                            damping: 25,
                             stiffness: 500,
                             mass: 0.8
                         }}
@@ -115,8 +129,10 @@ export default function MagicConverter() {
                         </div>
 
                     </motion.div>
+                    </>
                 )}
             </AnimatePresence>
+            </Portal>
         </div>
     );
 }

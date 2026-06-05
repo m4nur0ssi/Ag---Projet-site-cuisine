@@ -64,9 +64,16 @@ export default function RootLayout({
                     dangerouslySetInnerHTML={{
                         __html: `
                             if ('serviceWorker' in navigator) {
-                                window.addEventListener('load', function() {
-                                    navigator.serviceWorker.register('/sw.js');
-                                });
+                                var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+                                if (isLocal) {
+                                    // Dev : pas de SW (sinon chunks Next stale -> originalFactory undefined).
+                                    navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ r.unregister(); }); });
+                                    if (window.caches) caches.keys().then(function(ks){ ks.forEach(function(k){ caches.delete(k); }); });
+                                } else {
+                                    window.addEventListener('load', function() {
+                                        navigator.serviceWorker.register('/sw.js');
+                                    });
+                                }
                             }
                         `,
                     }}

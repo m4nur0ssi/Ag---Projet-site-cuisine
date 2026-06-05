@@ -19,6 +19,7 @@ import SmartText from '@/mobile/components/SmartText/SmartText';
 import MagicConverter from '@/mobile/components/MagicConverter/MagicConverter';
 import PortionsControl from '@/components/PortionsControl/PortionsControl';
 import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
+import WinePairing from '@/components/WinePairing/WinePairing';
 import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
 import StarRating from '@/mobile/components/StarRating/StarRating';
@@ -1040,6 +1041,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             <div className={styles.converterCentered}>
                                 <PortionsControl value={servings} base={recipe.servings || 4} onChange={setServings} compact />
                                 <MagicConverter />
+                                <WinePairing recipeId={recipe.id} title={recipe.title} category={recipe.category} ingredients={recipe.ingredients} compact />
                             </div>
                         </div>
                     )}

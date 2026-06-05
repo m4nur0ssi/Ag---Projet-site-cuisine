@@ -1,0 +1,158 @@
+/* Pilule cohérente avec le convertisseur */
+.pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 54px;
+    padding: 0 16px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pill:hover {
+    background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+    border-color: transparent;
+    transform: translateY(-2px) scale(1.03);
+}
+.pill:active { transform: scale(0.97); }
+.glass { font-size: 1.05rem; }
+
+/* Compact = aligné sur le convertisseur mobile (36px) */
+.compact {
+    height: 36px;
+    padding: 0 14px;
+    font-size: 0.85rem;
+    gap: 6px;
+}
+
+/* Sheet */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 99998;
+}
+.sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: min(520px, 100vw);
+    max-height: 86vh;
+    overflow-y: auto;
+    background: #141416;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 28px 28px 0 0;
+    padding: 10px 18px calc(env(safe-area-inset-bottom) + 24px);
+    z-index: 99999;
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.6);
+}
+.handle {
+    width: 40px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.25);
+    margin: 4px auto 14px;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.heading { font-size: 1.15rem; font-weight: 900; color: #fff; }
+.close {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: none; background: rgba(255, 255, 255, 0.1);
+    color: #fff; font-size: 0.9rem; cursor: pointer;
+}
+
+.center {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    padding: 40px 20px;
+    text-align: center;
+}
+.muted { color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; }
+.spinner {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    border-top-color: #b91c1c;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.retry {
+    padding: 10px 22px; border-radius: 100px; border: none;
+    background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+    color: #fff; font-weight: 800; cursor: pointer;
+}
+
+.list { display: flex; flex-direction: column; gap: 12px; }
+.card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 14px 16px;
+}
+.cardTop { display: flex; align-items: center; gap: 9px; }
+.colorDot {
+    width: 14px; height: 14px; border-radius: 50%;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+.wineName { flex: 1; font-weight: 800; color: #fff; font-size: 1rem; line-height: 1.2; }
+.flag { font-size: 1.2rem; }
+.meta {
+    margin: 6px 0 10px 21px;
+    font-size: 0.82rem; color: rgba(255, 255, 255, 0.55);
+}
+.row { display: flex; align-items: center; gap: 10px; margin-left: 21px; }
+.price {
+    font-weight: 900; color: #fff; font-size: 0.95rem;
+    background: rgba(185, 28, 28, 0.22); color: #fca5a5;
+    padding: 3px 10px; border-radius: 999px;
+}
+.tier {
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; color: rgba(255, 255, 255, 0.5);
+}
+.why {
+    margin: 10px 0 0 21px;
+    font-size: 0.9rem; line-height: 1.45; color: rgba(255, 255, 255, 0.82);
+}
+.link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 12px 0 0 21px;
+    padding: 7px 14px; border-radius: 100px;
+    background: rgba(185, 28, 28, 0.18);
+    color: #fca5a5; font-size: 0.82rem; font-weight: 800;
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+.link:hover { background: rgba(185, 28, 28, 0.3); color: #fecaca; }
+.link:active { transform: scale(0.97); }
+.disclaimer {
+    text-align: center; margin-top: 6px;
+    font-size: 0.72rem; color: rgba(255, 255, 255, 0.35);
+}
+
+@media (prefers-color-scheme: light) {
+    .pill { background: rgba(255, 255, 255, 0.9); border-color: rgba(0, 0, 0, 0.1); color: #000; }
+    .sheet { background: #fff; border-color: rgba(0, 0, 0, 0.1); }
+    .heading, .wineName, .price { color: #1d1d1f; }
+    .close { background: rgba(0, 0, 0, 0.06); color: #000; }
+    .muted, .why, .meta { color: rgba(0, 0, 0, 0.6); }
+    .card { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.07); }
+}

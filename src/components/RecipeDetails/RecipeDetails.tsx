@@ -19,6 +19,7 @@ import SmartText from '@/components/SmartText/SmartText';
 import MagicConverter from '@/components/MagicConverter/MagicConverter';
 import PortionsControl from '@/components/PortionsControl/PortionsControl';
 import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
+import WinePairing from '@/components/WinePairing/WinePairing';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
 import StarRating from '@/components/StarRating/StarRating';
@@ -970,6 +971,12 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         onChange={setServings}
                                     />
                                     <MagicConverter />
+                                    <WinePairing
+                                        recipeId={recipe.id}
+                                        title={recipe.title}
+                                        category={recipe.category}
+                                        ingredients={recipe.ingredients}
+                                    />
                                 </div>
                             </div>
                         </div>
