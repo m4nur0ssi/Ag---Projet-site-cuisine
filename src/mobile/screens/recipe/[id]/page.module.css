@@ -620,6 +620,9 @@
 .converterCentered {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
     width: 100%;
     padding: 12px 0 20px;
 }

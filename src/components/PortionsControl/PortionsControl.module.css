@@ -1,0 +1,123 @@
+/* Pill cohérente avec le Convertisseur (.toggle) : glass, hauteur 54px */
+.pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 54px;
+    padding: 0 10px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    white-space: nowrap;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Quand on s'écarte des portions d'origine : accent pour signaler le scaling actif */
+.active {
+    border-color: var(--dynamic-accent, var(--color-accent-purple));
+    box-shadow: 0 6px 22px rgba(var(--dynamic-accent-rgb), 0.45);
+}
+
+.icon {
+    font-size: 1.05rem;
+    margin-right: 2px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.step:hover:not(:disabled) {
+    background: var(--dynamic-accent, var(--color-accent-purple));
+    border-color: var(--dynamic-accent, var(--color-accent-purple));
+    transform: scale(1.1);
+}
+
+.step:active:not(:disabled) {
+    transform: scale(0.92);
+}
+
+.step:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.value {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 34px;
+    font-weight: 900;
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.unit {
+    font-size: 0.55rem;
+    font-weight: 700;
+    opacity: 0.55;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+/* Compact : même forme/taille que le convertisseur mobile (hauteur 36px) */
+.compact {
+    height: 36px;
+    padding: 0 12px;
+    gap: 5px;
+    background: var(--liquid-bg);
+    border: 1px solid var(--liquid-border);
+}
+.compact .icon {
+    font-size: 0.9rem;
+    margin-right: 0;
+}
+.compact .step {
+    width: 24px;
+    height: 24px;
+}
+.compact .step svg {
+    width: 15px;
+    height: 15px;
+}
+.compact .value {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 3px;
+    min-width: 0;
+    font-size: 0.95rem;
+}
+.compact .unit {
+    margin-top: 0;
+    font-size: 0.55rem;
+}
+
+@media (prefers-color-scheme: light) {
+    .pill {
+        background: rgba(255, 255, 255, 0.9);
+        border-color: rgba(0, 0, 0, 0.1);
+        color: #000;
+    }
+    .step {
+        background: rgba(0, 0, 0, 0.04);
+        border-color: rgba(0, 0, 0, 0.12);
+        color: #000;
+    }
+}

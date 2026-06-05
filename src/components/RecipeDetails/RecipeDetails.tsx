@@ -17,6 +17,8 @@ import { parseDuration, stripHtml } from '@/lib/timer-utils';
 import { decodeHtml } from '@/lib/utils';
 import SmartText from '@/components/SmartText/SmartText';
 import MagicConverter from '@/components/MagicConverter/MagicConverter';
+import PortionsControl from '@/components/PortionsControl/PortionsControl';
+import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
 import StarRating from '@/components/StarRating/StarRating';
@@ -769,7 +771,14 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         <div className={styles.metaSeparator} />
                         <div className={styles.metaItem}>
                             <div className={styles.metaLabel}>DIFFICULTÉ</div>
-                            <div className={styles.metaValue}>{recipe.difficulty?.toUpperCase() || 'FACILE'}</div>
+                            <div className={styles.metaValue}>
+                                <DifficultyMeter
+                                    prepTime={recipe.prepTime}
+                                    cookTime={recipe.cookTime}
+                                    steps={recipe.steps?.length}
+                                    difficulty={recipe.difficulty}
+                                />
+                            </div>
                         </div>
                         {authUser && (
                         <>
@@ -955,6 +964,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                     </span>
                                 </div>
                                 <div className={styles.tabActionsUnified}>
+                                    <PortionsControl
+                                        value={servings}
+                                        base={recipe.servings || 4}
+                                        onChange={setServings}
+                                    />
                                     <MagicConverter />
                                 </div>
                             </div>

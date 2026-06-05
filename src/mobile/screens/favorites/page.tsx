@@ -9,6 +9,7 @@ import BottomNav from '@/mobile/components/BottomNav/BottomNav';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { Recipe } from '@/mobile/types';
 import { pullFavorites } from '@/mobile/lib/favorites';
+import { precacheFavorites } from '@/lib/pwa';
 import styles from './favorites.module.css';
 
 export default function FavoritesPage() {
@@ -34,6 +35,11 @@ export default function FavoritesPage() {
             window.removeEventListener('magic-favorite-change', renderFromCache);
         };
     }, []);
+
+    // Offline : précache pages + images des favoris.
+    useEffect(() => {
+        if (favoriteRecipes.length) precacheFavorites(favoriteRecipes);
+    }, [favoriteRecipes]);
 
     return (
         <div className={styles.page}>

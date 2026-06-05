@@ -16,6 +16,8 @@ import { useTimer } from '@/mobile/components/Timer/TimerContext';
 import { parseDuration, stripHtml } from '@/mobile/lib/timer-utils';
 import SmartText from '@/mobile/components/SmartText/SmartText';
 import MagicConverter from '@/mobile/components/MagicConverter/MagicConverter';
+import PortionsControl from '@/components/PortionsControl/PortionsControl';
+import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
 import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
 import StarRating from '@/mobile/components/StarRating/StarRating';
@@ -545,7 +547,9 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                         <span>{recipe.category === 'restaurant' ? '💰' : '⭐'}</span>
                         <div>
                             <div className={styles.metaLabel}>{recipe.category === 'restaurant' ? 'Gamme' : 'Difficulté'}</div>
-                            <div className={styles.metaValue}>{recipe.category === 'restaurant' ? 'Restaurant' : recipe.difficulty}</div>
+                            <div className={styles.metaValue}>{recipe.category === 'restaurant' ? 'Restaurant' : (
+                                <DifficultyMeter prepTime={recipe.prepTime} cookTime={recipe.cookTime} steps={recipe.steps?.length} difficulty={recipe.difficulty} showCaption={false} />
+                            )}</div>
                         </div>
                     </div>
                     {recipe.category !== 'restaurant' && recipe.prepTime > 0 && (
@@ -650,7 +654,10 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                                             </div>
                                         );
                                     })}
-                                    <div className={styles.converterCentered}><MagicConverter /></div>
+                                    <div className={styles.converterCentered}>
+                                        <PortionsControl value={servings} base={recipe.servings || 4} onChange={setServings} compact />
+                                        <MagicConverter />
+                                    </div>
                                 </div>
                             )}
                             {activeTab === 'steps' && (

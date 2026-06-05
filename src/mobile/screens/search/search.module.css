@@ -71,10 +71,35 @@
 }
 
 .cardWrapper {
+    position: relative;
     width: 100%;
     max-width: 320px;
     display: flex;
     justify-content: center;
+}
+
+/* Pastille "2/3" : nb d'ingrédients tapés trouvés dans la recette */
+.matchBadge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.45);
+    pointer-events: none;
+}
+
+.matchFull {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    box-shadow: 0 4px 16px rgba(34, 197, 94, 0.55);
 }
 
 @media (max-width: 768px) {

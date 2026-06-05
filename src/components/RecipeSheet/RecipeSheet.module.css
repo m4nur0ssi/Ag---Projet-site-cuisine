@@ -13,7 +13,7 @@
     inset: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.92);
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
     z-index: 5001;
@@ -26,7 +26,7 @@
     height: 92vh;
     max-width: 800px;
     margin: 0 auto;
-    background: var(--ios-26-bg);
+    background: var(--ios-26-bg, #0a0a0c);
     color: var(--ios-26-text-main);
     z-index: 5100;
     border-radius: 44px 44px 0 0;

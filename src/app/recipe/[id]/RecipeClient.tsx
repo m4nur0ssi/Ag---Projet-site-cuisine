@@ -17,6 +17,8 @@ import { useTimer } from '@/components/Timer/TimerContext';
 import { parseDuration, stripHtml } from '@/lib/timer-utils';
 import SmartText from '@/components/SmartText/SmartText';
 import MagicConverter from '@/components/MagicConverter/MagicConverter';
+import PortionsControl from '@/components/PortionsControl/PortionsControl';
+import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import CommentSection from '@/components/CommentSection/CommentSection';
 import RecipeNote from '@/components/RecipeNote/RecipeNote';
@@ -1002,9 +1004,16 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                             </div>
                             <div
                                 className={styles.metaValue}
-                                style={{ color: recipe.category === 'restaurant' ? 'var(--color-accent-gold)' : (difficultyColors as any)[recipe.difficulty] }}
+                                style={{ color: recipe.category === 'restaurant' ? 'var(--color-accent-gold)' : undefined }}
                             >
-                                {recipe.category === 'restaurant' ? 'Restaurant' : recipe.difficulty.charAt(0).toUpperCase() + recipe.difficulty.slice(1)}
+                                {recipe.category === 'restaurant' ? 'Restaurant' : (
+                                    <DifficultyMeter
+                                        prepTime={recipe.prepTime}
+                                        cookTime={recipe.cookTime}
+                                        steps={recipe.steps?.length}
+                                        difficulty={recipe.difficulty}
+                                    />
+                                )}
                             </div>
                         </div>
                     </div>
@@ -1101,7 +1110,13 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                                             {checkedCount} <span className={styles.hideMobileText}>Sélectionné{checkedCount > 1 ? 's' : ''}</span>
                                         </span>
                                     </button>
-                                    
+
+                                    <PortionsControl
+                                        value={servings}
+                                        base={recipe.servings || 4}
+                                        onChange={setServings}
+                                    />
+
                                     <MagicConverter />
                                 </div>
                             </div>

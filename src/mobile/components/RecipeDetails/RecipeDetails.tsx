@@ -17,6 +17,8 @@ import { parseDuration, stripHtml } from '@/mobile/lib/timer-utils';
 import { decodeHtml } from '@/mobile/lib/utils';
 import SmartText from '@/mobile/components/SmartText/SmartText';
 import MagicConverter from '@/mobile/components/MagicConverter/MagicConverter';
+import PortionsControl from '@/components/PortionsControl/PortionsControl';
+import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
 import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
 import StarRating from '@/mobile/components/StarRating/StarRating';
@@ -851,15 +853,13 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             <div className={styles.metaItem} style={{ flex: 1 }}>
                                 <div className={styles.metaLabel}>DIFFICULTÉ</div>
                                 <div className={styles.metaValue}>
-                                    {(() => {
-                                        const steps = recipe.steps?.length || 0;
-                                        const diff = recipe.difficulty?.toLowerCase() || '';
-                                        const isHard = diff.includes('difficile') || steps > 10;
-                                        const isMed = diff.includes('moy') || (steps > 5 && !isHard);
-                                        if (isHard) return <span style={{color:'#ef4444'}}>🌶🌶🌶</span>;
-                                        if (isMed) return <span style={{color:'#f97316'}}>🌶🌶</span>;
-                                        return <span style={{color:'#22c55e'}}>🌶</span>;
-                                    })()}
+                                    <DifficultyMeter
+                                        prepTime={recipe.prepTime}
+                                        cookTime={recipe.cookTime}
+                                        steps={recipe.steps?.length}
+                                        difficulty={recipe.difficulty}
+                                        showCaption={false}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -1038,6 +1038,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     {activeTab === 'ingredients' && (
                         <div className={styles.stickyPanelHeader}>
                             <div className={styles.converterCentered}>
+                                <PortionsControl value={servings} base={recipe.servings || 4} onChange={setServings} compact />
                                 <MagicConverter />
                             </div>
                         </div>

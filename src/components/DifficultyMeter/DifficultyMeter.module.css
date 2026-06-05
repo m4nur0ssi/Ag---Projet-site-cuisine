@@ -1,0 +1,42 @@
+.wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bars {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 20px;
+}
+
+.bar {
+    width: 5px;
+    border-radius: 3px;
+    transform-origin: bottom center;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* Halo qui respire sur la dernière barre allumée */
+.pulse {
+    position: absolute;
+    bottom: 0;
+    width: 5px;
+    border-radius: 3px;
+    pointer-events: none;
+}
+
+.caption {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--ios-26-text-main, #fff);
+    opacity: 0.82;
+    white-space: nowrap;
+}
+
+@media (prefers-color-scheme: light) {
+    .bar { background: rgba(0, 0, 0, 0.12); }
+    .caption { color: #1d1d1f; }
+}

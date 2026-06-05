@@ -7,16 +7,20 @@ import Header from '@/mobile/components/Header/Header';
 import BottomNav from '@/mobile/components/BottomNav/BottomNav';
 import RecipeCardiOS26 from '@/mobile/components/RecipeCard/RecipeCardiOS26';
 import { mockRecipes } from '@/mobile/data/mockData';
+import { rankByIngredients } from '@/lib/search-rank';
 import styles from './search.module.css';
 
 export default function SearchPage() {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
 
-    const filteredRecipes = useMemo(() => {
-        if (!searchQuery.trim()) return [];
+    // Mode multi-ingr\u00e9dient (\u2265 2 mots) : recettes class\u00e9es par nb d'ingr\u00e9dients trouv\u00e9s.
+    const ranked = useMemo(() => rankByIngredients(mockRecipes as any, searchQuery), [searchQuery]);
 
-        const normalizeText = (text: string) => 
+    const filteredRecipes = useMemo(() => {
+        if (!searchQuery.trim() || ranked) return [];
+
+        const normalizeText = (text: string) =>
             text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
         const query = normalizeText(searchQuery.trim());
@@ -25,7 +29,9 @@ export default function SearchPage() {
             normalizeText(recipe.description).includes(query) ||
             recipe.tags?.some((tag: string) => normalizeText(tag).includes(query))
         );
-    }, [searchQuery]);
+    }, [searchQuery, ranked]);
+
+    const hasResults = ranked ? ranked.length > 0 : filteredRecipes.length > 0;
 
     return (
         <div className={styles.page}>
@@ -60,8 +66,8 @@ export default function SearchPage() {
                             <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>🔍</span>
                             <p>Commencez à taper pour chercher une recette magique !</p>
                         </motion.div>
-                    ) : filteredRecipes.length > 0 ? (
-                        <motion.div 
+                    ) : hasResults ? (
+                        <motion.div
                             key="grid"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -69,11 +75,20 @@ export default function SearchPage() {
                             className={styles.grid}
                         >
                             <div className={styles.gridInner}>
-                                {filteredRecipes.map(recipe => (
-                                    <div key={recipe.id} className={styles.cardWrapper}>
-                                        <RecipeCardiOS26 recipe={recipe} />
-                                    </div>
-                                ))}
+                                {ranked
+                                    ? ranked.map(({ recipe, matched, total }) => (
+                                        <div key={recipe.id} className={styles.cardWrapper}>
+                                            <span className={`${styles.matchBadge} ${matched === total ? styles.matchFull : ''}`}>
+                                                {matched}/{total}
+                                            </span>
+                                            <RecipeCardiOS26 recipe={recipe as any} />
+                                        </div>
+                                    ))
+                                    : filteredRecipes.map(recipe => (
+                                        <div key={recipe.id} className={styles.cardWrapper}>
+                                            <RecipeCardiOS26 recipe={recipe} />
+                                        </div>
+                                    ))}
                             </div>
                         </motion.div>
                     ) : (

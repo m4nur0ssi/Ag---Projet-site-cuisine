@@ -10,6 +10,7 @@ import { mockRecipes } from '@/data/mockData';
 import { Recipe } from '@/types';
 import { supabase } from '@/lib/supabase';
 import { pullFavorites } from '@/lib/favorites';
+import { precacheFavorites } from '@/lib/pwa';
 import styles from './favorites.module.css';
 
 export default function FavoritesPage() {
@@ -49,6 +50,11 @@ export default function FavoritesPage() {
             subscription.unsubscribe();
         };
     }, []);
+
+    // Offline : précache les pages + images des favoris dès qu'ils changent.
+    useEffect(() => {
+        if (favoriteRecipes.length) precacheFavorites(favoriteRecipes);
+    }, [favoriteRecipes]);
 
     return (
         <div className={styles.page}>

@@ -5,6 +5,7 @@ import Header from '@/components/Header/Header';
 import WeekMenuCarousel from '@/components/WeekMenuCarousel/WeekMenuCarousel';
 import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone } from '@/lib/ingredients';
 import type { ConsolItem } from '@/lib/ingredients';
+import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
 import styles from './shopping-list.module.css';
 
 interface ListData {
@@ -29,6 +30,10 @@ export default function ShoppingListPage() {
     const [manualQty, setManualQty] = useState('');
     const [includeJourJ, setIncludeJourJ] = useState(true);
     const [done, setDone] = useState<Set<string>>(new Set());
+    // Rayons : overrides manuels + rayons repliés + item dont le sélecteur est ouvert.
+    const [rayonOverrides, setRayonOverrides] = useState<Record<string, string>>({});
+    const [collapsedRayons, setCollapsedRayons] = useState<Set<string>>(new Set());
+    const [rayonPickerKey, setRayonPickerKey] = useState<string | null>(null);
 
     useEffect(() => {
         setMounted(true);
@@ -37,6 +42,8 @@ export default function ShoppingListPage() {
             try { setWeekPlan(JSON.parse(localStorage.getItem('meal-planner-week') || '{}')); } catch { setWeekPlan({}); }
             try { setWeekChecked(new Set(JSON.parse(localStorage.getItem('meal-week-checked') || '[]'))); } catch { setWeekChecked(new Set()); }
             try { setDone(new Set(JSON.parse(localStorage.getItem('shop-done') || '[]'))); } catch { setDone(new Set()); }
+            setRayonOverrides(readRayonOverrides());
+            try { setCollapsedRayons(new Set(JSON.parse(localStorage.getItem('shop-rayons-collapsed') || '[]'))); } catch { setCollapsedRayons(new Set()); }
             setIncludeJourJ(localStorage.getItem('jourj-in-fused') !== 'false');
         };
         read();
@@ -54,6 +61,32 @@ export default function ShoppingListPage() {
         () => buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ),
         [shoppingList, weekPlan, weekChecked, includeJourJ]
     );
+
+    // Groupement par rayon (affichage seulement — l'ordre/état des items reste intact).
+    const groupedRayons = useMemo(() => {
+        const map = new Map<string, ConsolItem[]>();
+        items.forEach(it => {
+            const rid = rayonOf(it.name, rayonOverrides);
+            if (!map.has(rid)) map.set(rid, []);
+            map.get(rid)!.push(it);
+        });
+        return [...map.entries()].sort((a, b) => (RAYON_ORDER[a[0]] ?? 99) - (RAYON_ORDER[b[0]] ?? 99));
+    }, [items, rayonOverrides]);
+
+    const toggleRayonCollapse = (rid: string) => {
+        setCollapsedRayons(prev => {
+            const n = new Set(prev);
+            n.has(rid) ? n.delete(rid) : n.add(rid);
+            localStorage.setItem('shop-rayons-collapsed', JSON.stringify([...n]));
+            return n;
+        });
+    };
+
+    const reassignRayon = (it: ConsolItem, rid: string) => {
+        writeRayonOverride(it.name, rid);
+        setRayonOverrides(readRayonOverrides());
+        setRayonPickerKey(null);
+    };
 
     // Sélection : RIEN coché par défaut. L'utilisateur coche ce qu'il veut acheter ;
     // Partager/Carrefour ciblent les ingrédients cochés (de haut en bas).
@@ -247,29 +280,78 @@ export default function ShoppingListPage() {
                         </div>
 
                         <div className={styles.consolList}>
-                            {items.map(it => {
-                                const sel = selected.has(it.key);
-                                const isDone = isItemDone(it, done);
+                            {groupedRayons.map(([rid, rayonItems]) => {
+                                const rayon = RAYON_BY_ID[rid] || RAYON_BY_ID['autre'];
+                                const collapsed = collapsedRayons.has(rid);
                                 return (
-                                    <div
-                                        key={it.key}
-                                        className={`${styles.consolItem} ${sel ? styles.consolItemSel : ''} ${isDone ? styles.consolItemDone : ''}`}
-                                    >
-                                        {/* Clic sur la photo/nom = rayer (fait) */}
-                                        <span className={styles.consolIcon} onClick={() => toggleDone(it)}>{it.icon}</span>
-                                        <span className={styles.consolName} onClick={() => toggleDone(it)}>{it.display}</span>
-                                        {/* Clic sur le cercle = sélectionner (cible Carrefour/partage) */}
+                                    <div key={rid} className={styles.rayonGroup}>
                                         <button
-                                            className={styles.consolCheck}
-                                            onClick={(e) => { e.stopPropagation(); toggle(it.key); }}
-                                            aria-label="Sélectionner"
+                                            className={styles.rayonHeader}
+                                            onClick={() => toggleRayonCollapse(rid)}
                                         >
-                                            {sel && (
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                                                    <polyline points="20 6 9 17 4 12" />
-                                                </svg>
-                                            )}
+                                            <span className={styles.rayonEmoji}>{rayon.emoji}</span>
+                                            <span className={styles.rayonLabel}>{rayon.label}</span>
+                                            <span className={styles.rayonCount}>{rayonItems.length}</span>
+                                            <svg
+                                                className={`${styles.rayonChevron} ${collapsed ? styles.rayonChevronUp : ''}`}
+                                                width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                                            >
+                                                <polyline points="6 9 12 15 18 9" />
+                                            </svg>
                                         </button>
+
+                                        {!collapsed && rayonItems.map(it => {
+                                            const sel = selected.has(it.key);
+                                            const isDone = isItemDone(it, done);
+                                            const picking = rayonPickerKey === it.key;
+                                            return (
+                                                <div
+                                                    key={it.key}
+                                                    className={`${styles.consolItem} ${sel ? styles.consolItemSel : ''} ${isDone ? styles.consolItemDone : ''}`}
+                                                >
+                                                    {/* Clic sur la photo/nom = rayer (fait) */}
+                                                    <span className={styles.consolIcon} onClick={() => toggleDone(it)}>{it.icon}</span>
+                                                    <span className={styles.consolName} onClick={() => toggleDone(it)}>{it.display}</span>
+
+                                                    {/* Réassignation manuelle de rayon */}
+                                                    <div className={styles.rayonMoveWrap}>
+                                                        <button
+                                                            className={styles.rayonMoveBtn}
+                                                            onClick={(e) => { e.stopPropagation(); setRayonPickerKey(picking ? null : it.key); }}
+                                                            aria-label="Changer de rayon"
+                                                            title="Changer de rayon"
+                                                        >{rayon.emoji}</button>
+                                                        {picking && (
+                                                            <div className={styles.rayonPicker} onClick={e => e.stopPropagation()}>
+                                                                {RAYONS.map(r => (
+                                                                    <button
+                                                                        key={r.id}
+                                                                        className={`${styles.rayonPickerItem} ${r.id === rid ? styles.rayonPickerActive : ''}`}
+                                                                        onClick={() => reassignRayon(it, r.id)}
+                                                                    >
+                                                                        <span>{r.emoji}</span> {r.label}
+                                                                    </button>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </div>
+
+                                                    {/* Clic sur le cercle = sélectionner (cible Carrefour/partage) */}
+                                                    <button
+                                                        className={styles.consolCheck}
+                                                        onClick={(e) => { e.stopPropagation(); toggle(it.key); }}
+                                                        aria-label="Sélectionner"
+                                                    >
+                                                        {sel && (
+                                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                                                <polyline points="20 6 9 17 4 12" />
+                                                            </svg>
+                                                        )}
+                                                    </button>
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 );
                             })}
