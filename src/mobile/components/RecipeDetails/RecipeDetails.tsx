@@ -1189,7 +1189,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         {similarRecipes.map(r => (
                             <button
                                 key={r.id}
-                                onClick={() => router.push(`/recipe/${r.id}`)}
+                                onClick={() => window.dispatchEvent(new CustomEvent('openRecipe', { detail: r }))}
                                 style={{
                                     background: 'rgba(255,255,255,0.06)',
                                     border: '1px solid rgba(255,255,255,0.1)', borderRadius: 14,

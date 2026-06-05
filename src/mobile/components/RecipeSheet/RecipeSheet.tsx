@@ -21,8 +21,11 @@ const SWIPE_THRESHOLD = 0.25;
 const SWIPE_VELOCITY = 400;
 
 export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recipeIndex = 0 }: RecipeSheetProps) {
-    const recipes = useMemo(() => allRecipes && allRecipes.length > 0 ? allRecipes : [recipe], [allRecipes, recipe]);
+    const baseRecipes = useMemo(() => allRecipes && allRecipes.length > 0 ? allRecipes : [recipe], [allRecipes, recipe]);
+    const [recipes, setRecipes] = useState(baseRecipes);
     const [currentIdx, setCurrentIdx] = useState(recipeIndex);
+    // Resync quand on ouvre une nouvelle fiche (props changent).
+    useEffect(() => { setRecipes(baseRecipes); }, [baseRecipes]);
     const [shouldRender, setShouldRender] = useState(isOpen);
 
     const scrollYRef = useRef(0);
@@ -45,6 +48,29 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     useEffect(() => {
         setCurrentIdx(recipeIndex);
     }, [recipeIndex, recipe]);
+
+    // Clic sur une recette similaire → l'ouvrir DANS le sheet (même UX), pas une navigation.
+    useEffect(() => {
+        if (!isOpen) return;
+        const onOpenRecipe = (e: Event) => {
+            const r = (e as CustomEvent).detail;
+            if (!r) return;
+            const idx = recipes.findIndex(x => String(x.id) === String(r.id));
+            if (idx >= 0) {
+                setCurrentIdx(idx);
+            } else {
+                setRecipes(prev => [...prev, r]);
+                setCurrentIdx(recipes.length);
+            }
+            x.jump(0);
+            y.set(0);
+            requestAnimationFrame(() => {
+                Object.values(scrollRefs.current).forEach(el => { if (el) el.scrollTop = 0; });
+            });
+        };
+        window.addEventListener('openRecipe', onOpenRecipe);
+        return () => window.removeEventListener('openRecipe', onOpenRecipe);
+    }, [isOpen, recipes, x, y]);
 
     // Safety cleanup on unmount — ensures body is never left locked
     useEffect(() => {

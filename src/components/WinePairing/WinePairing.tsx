@@ -114,6 +114,13 @@ export default function WinePairing({ recipeId, title, category, ingredients, co
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: '100%', opacity: 0 }}
                                 transition={{ type: 'spring', damping: 28, stiffness: 420, mass: 0.7 }}
+                                drag="y"
+                                dragDirectionLock
+                                dragConstraints={{ top: 0, bottom: 0 }}
+                                dragElastic={{ top: 0, bottom: 0.4 }}
+                                onDragEnd={(_, info) => {
+                                    if (info.offset.y > 90 || info.velocity.y > 500) setOpen(false);
+                                }}
                             >
                                 <div className={styles.handle} />
                                 <div className={styles.header}>
