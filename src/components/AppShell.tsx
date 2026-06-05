@@ -33,7 +33,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         return () => window.removeEventListener('resize', calc);
     }, []);
 
-    if (isMobile === true) {
+    // Tant que l'appareil n'est pas déterminé : on ne rend RIEN (SSR + 1er rendu client
+    // identiques = pas de mismatch d'hydratation #418/#423). La bascule se fait en
+    // useLayoutEffect (avant le paint) → l'arbre correct s'affiche direct, sans flash desktop.
+    if (isMobile === null) return null;
+
+    if (isMobile) {
         return (
             <DeviceContext.Provider value={true}>
                 <MobileTimerProvider>
@@ -46,9 +51,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         );
     }
 
-    // desktop (et état initial null)
+    // desktop
     return (
-        <DeviceContext.Provider value={isMobile === null ? null : false}>
+        <DeviceContext.Provider value={false}>
             <TimerProvider>
                 <SplashScreen />
                 <div className="main-content-wrapper">{children}</div>

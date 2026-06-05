@@ -533,3 +533,8 @@ html.is-mobile[data-theme='light'] {
   --ios-26-text-main: #000000;
   --ios-26-text-muted: rgba(0, 0, 0, 0.5);
 }
+
+/* Mobile : supprime le rubber-band (rebond élastique) page entière (vertical + horizontal) */
+html.is-mobile, html.is-mobile body {
+    overscroll-behavior: none;
+}

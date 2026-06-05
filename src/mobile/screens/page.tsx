@@ -29,8 +29,9 @@ export default function Home() {
             } catch {}
         };
         load();
-        window.addEventListener('recentlyViewedUpdated', load);
-        return () => window.removeEventListener('recentlyViewedUpdated', load);
+        // PAS de re-tri live : ouvrir une carte récemment-vue réordonne la liste, ce qui
+        // remonterait la carte en plein clic (carte qui clignote/tourne). On recharge
+        // seulement au remontage de l'accueil (retour sur la page).
     }, []);
 
     useEffect(() => {
