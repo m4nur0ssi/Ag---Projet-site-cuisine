@@ -2,11 +2,123 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/06/2026 21:05:41
- * Total: 335 recettes
+ * Dernière mise à jour: 05/06/2026 21:16:04
+ * Total: 336 recettes
  */
-export const exportSyncId = "1780693541904";
+export const exportSyncId = "1780694164312";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5993",
+        "title": "Fajitas faciles à l'Air Fryer",
+        "description": "Une recette de fajitas au poulet simple et rapide à réaliser grâce à l'air fryer, garnie de poivrons, oignon et accompagnée d'une sauce fraîche au yaourt et d'une mayonnaise à l'ail.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7579301816052059414\" data-video-id=\"7579301816052059414\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7579301816052059414\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Filets de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment doux"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Skyr ou yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil ou coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Mayonnaise à l'ail (aïoli)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Laitue"
+            }
+        ],
+        "steps": [
+            "1. Couper les poivrons, l'oignon et les filets de poulet en lanières. Les mélanger avec l'huile d'olive, le paprika, les herbes de Provence, le cumin, l'ail en poudre, le piment doux, le sel et le poivre.",
+            "2. Cuire le mélange poulet-légumes dans l'air fryer (type Ninja Crispi) jusqu'à ce que le poulet soit cuit et les légumes tendres et légèrement grillés.",
+            "3. Préparer une sauce fraîche en mélangeant le skyr ou yaourt grec avec le jus de citron, la gousse d'ail hachée, le persil ou la coriandre ciselée, du sel et du poivre.",
+            "4. Servir les fajitas chaudes avec la sauce au yaourt, la mayonnaise à l'ail (aïoli) et des garnitures fraîches comme des tomates cerises, du concombre et de la laitue."
+        ],
+        "tags": [
+            "Healthy",
+            "Mexique",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5984",
         "title": "Risotto pesto d'épinards &#038; burrata",
