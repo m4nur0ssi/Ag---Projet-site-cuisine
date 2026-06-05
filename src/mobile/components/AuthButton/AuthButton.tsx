@@ -8,14 +8,20 @@ export default function AuthButton() {
     const { user, loading, signInWithGoogle, signInWithApple, signOut } = useAuth();
     if (typeof window !== 'undefined') console.log('[AuthButton] user=', user?.email, 'loading=', loading);
     const [open, setOpen] = useState(false);
-    const [pos, setPos] = useState({ top: 0, right: 0 });
+    const [pos, setPos] = useState<{ top: number; left?: number; right?: number }>({ top: 0, right: 16 });
     const btnRef = useRef<HTMLButtonElement>(null);
 
+    // Ancre le panneau côté gauche OU droite selon la position du bouton (sinon hors écran).
+    const computePos = () => {
+        const rect = btnRef.current!.getBoundingClientRect();
+        const anchorLeft = rect.left < window.innerWidth / 2;
+        return anchorLeft
+            ? { top: rect.bottom + 8, left: Math.max(8, rect.left) }
+            : { top: rect.bottom + 8, right: Math.max(8, window.innerWidth - rect.right) };
+    };
+
     const handleOpen = () => {
-        if (btnRef.current) {
-            const rect = btnRef.current.getBoundingClientRect();
-            setPos({ top: rect.bottom + 8, right: window.innerWidth - rect.right });
-        }
+        if (btnRef.current) setPos(computePos());
         setOpen(v => !v);
     };
 
@@ -24,8 +30,7 @@ export default function AuthButton() {
         const openAuth = () => {
             // Ignore si cette instance est masquée (ex: header en mobile) → évite double panneau
             if (!btnRef.current || btnRef.current.offsetParent === null) return;
-            const rect = btnRef.current.getBoundingClientRect();
-            setPos({ top: rect.bottom + 8, right: window.innerWidth - rect.right });
+            setPos(computePos());
             setOpen(true);
         };
         window.addEventListener('magic-open-auth', openAuth);
@@ -49,7 +54,7 @@ export default function AuthButton() {
         <div
             data-auth-dropdown
             className={styles.dropdown}
-            style={{ position: 'fixed', top: pos.top, right: pos.right, zIndex: 99999 }}
+            style={{ position: 'fixed', top: pos.top, left: pos.left, right: pos.right, zIndex: 99999 }}
         >
             {user ? (
                 <>
