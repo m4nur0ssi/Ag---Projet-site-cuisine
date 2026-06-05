@@ -1,7 +1,8 @@
 // Helpers partagés pour parser / illustrer les ingrédients
 
 export const normalizeIng = (s: string) =>
-    (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+    (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/œ/g, 'oe').replace(/æ/g, 'ae').trim();
 
 // Unités de MESURE réelles uniquement. Les contenants (gousse, tranche, sachet, verre…)
 // sont volontairement EXCLUS : ils sont retirés du nom (stripMeasure) pour que
@@ -117,6 +118,43 @@ const ICONS: [string, string][] = [
     ['noisette', '🌰'], ['noix', '🌰'], ['amande', '🥜'], ['cacahuete', '🥜'],
     ['haricot', '🫘'], ['lentille', '🫘'], ['pois chiche', '🫛'], ['petit pois', '🫛'],
     ['gingembre', '🫚'], ['curry', '🍛'], ['epice', '🧂'],
+    // ── Fromages (emoji 🧀 quand pas d'image dédiée) ──
+    ['pecorino', '🧀'], ['scamorza', '🧀'], ['halloumi', '🧀'], ['leerdammer', '🧀'],
+    ['comte', '🧀'], ['gruyere', '🧀'], ['emmental', '🧀'], ['cheddar', '🧀'],
+    ['raclette', '🧀'], ['chevre', '🧀'], ['feta', '🧀'], ['boursin', '🧀'],
+    ['ricotta', '🧀'], ['burrata', '🧀'], ['mascarpone', '🧀'], ['gorgonzola', '🧀'],
+    ['roquefort', '🧀'], ['bleu', '🧀'], ['brie', '🧀'], ['camembert', '🧀'],
+    // ── Épices / condiments ──
+    ['tahini', '🥜'], ['tahin', '🥜'], ['sesame', '🌰'],
+    ['harissa', '🌶'], ['baharat', '🧂'], ['ras el hanout', '🧂'], ['7 epices', '🧂'],
+    ['5 epices', '🧂'], ['epices libanaises', '🧂'], ['paprika', '🌶'], ['cumin', '🧂'],
+    ['cannelle', '🧂'], ['muscade', '🧂'], ['sumac', '🧂'], ['herbes de provence', '🌿'],
+    ['laurier', '🌿'], ['thym', '🌿'], ['romarin', '🌿'], ['aneth', '🌿'], ['ciboulette', '🌿'],
+    ['sauce soja', '🍶'], ['soja', '🍶'], ['worcestershire', '🍶'], ['huitre', '🍶'],
+    ['moutarde', '🟡'], ['ketchup', '🍅'], ['mayonnaise', '🥚'], ['vinaigre', '🧴'],
+    // ── Féculents / divers ──
+    ['semoule', '🌾'], ['boulgour', '🌾'], ['quinoa', '🌾'], ['polenta', '🌽'],
+    ['chapelure', '🍞'], ['panko', '🍞'], ['gnocchi', '🥟'], ['raviolis', '🥟'],
+    ['gelatine', '🍮'], ['agar', '🍮'], ['levure', '🧁'], ['bicarbonate', '🧁'],
+    ['maizena', '🌽'], ['fecule', '🌽'], ['cacao', '🍫'], ['pralin', '🍫'],
+    // ── Sucré / biscuits ──
+    ['speculoos', '🍪'], ['boudoir', '🍪'], ['biscuit', '🍪'], ['tuc', '🍪'],
+    ['nutella', '🍫'], ['pate a tartiner', '🍫'], ['daim', '🍫'], ['kinder', '🍫'],
+    ['guimauve', '🍬'], ['chamallow', '🍬'], ['bonbon', '🍬'], ['caramel', '🍬'],
+    ['confiture', '🍓'], ['cranberries', '🔴'], ['canneberge', '🔴'], ['raisin sec', '🍇'],
+    // ── Légumes / fruits complémentaires ──
+    ['brocoli', '🥦'], ['chou-fleur', '🥦'], ['chou fleur', '🥦'], ['chou', '🥬'],
+    ['fenouil', '🥬'], ['poireau', '🥬'], ['celeri', '🥬'], ['radis', '🥬'],
+    ['betterave', '🥬'], ['navet', '🥬'], ['patate douce', '🍠'], ['potiron', '🎃'],
+    ['courge', '🎃'], ['cebette', '🧅'], ['echalote', '🧅'], ['poireau', '🧅'],
+    ['grenade', '🍎'], ['figue', '🍐'], ['datte', '🌰'], ['abricot', '🍑'],
+    ['peche', '🍑'], ['cerise', '🍒'], ['poire', '🍐'], ['kiwi', '🥝'], ['ananas', '🍍'],
+    ['mangue', '🥭'], ['melon', '🍈'], ['raisin', '🍇'], ['myrtille', '🫐'],
+    ['germes de soja', '🌱'], ['pousse', '🌱'], ['shiitake', '🍄'], ['tofu', '⬜'],
+    // ── Boissons / alcools ──
+    ['rhum', '🥃'], ['whisky', '🥃'], ['cognac', '🥃'], ['brandy', '🥃'],
+    ['liqueur', '🍶'], ['sirop', '🍯'], ['sirop erable', '🍁'], ['erable', '🍁'],
+    ['sirop agave', '🍯'], ['the', '🍵'], ['jus', '🧃'], ['limonade', '🥤'], ['soda', '🥤'],
 ];
 
 export const getIngIcon = (name: string) => {

@@ -68,7 +68,7 @@ export default function SearchPage() {
                     </div>
                 ) : hasResults && ranked ? (
                     <div className={styles.grid}>
-                        {ranked.map(({ recipe, matched, total }) => (
+                        {ranked.map(({ recipe, matched, total, matchedTokens, missingTokens }) => (
                             <div key={recipe.id} className={styles.rankWrapper}>
                                 <span
                                     className={`${styles.matchBadge} ${matched === total ? styles.matchFull : ''}`}
@@ -77,6 +77,12 @@ export default function SearchPage() {
                                     {matched}/{total}
                                 </span>
                                 <RecipeCard recipe={recipe} />
+                                {missingTokens.length > 0 && (
+                                    <div className={styles.matchDetail}>
+                                        <span className={styles.matchOk}>✓ {matchedTokens.join(', ')}</span>
+                                        <span className={styles.matchMissing}>Manque : {missingTokens.join(', ')}</span>
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>

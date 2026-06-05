@@ -123,16 +123,15 @@ export default function ShoppingListPage() {
         if (!name) return;
         const qty = manualQty.trim() || '1';
         const raw = `${qty} ${name}`;
-        setShoppingList(prev => {
-            const next = { ...prev };
-            const entry = next.manuel
-                ? { ...next.manuel, ingredients: [...next.manuel.ingredients] }
-                : { title: 'Ajouts manuels', source: 'manuel' as const, ingredients: [] as { name: string; checked: boolean }[] };
-            entry.ingredients.push({ name: raw, checked: false });
-            next.manuel = entry;
-            localStorage.setItem('magic-shopping-list', JSON.stringify(next));
-            return next;
-        });
+        // localStorage écrit AVANT le dispatch (sinon le handler relit un état vide → l'item disparaît).
+        const next = { ...shoppingList };
+        const entry = next.manuel
+            ? { ...next.manuel, ingredients: [...next.manuel.ingredients] }
+            : { title: 'Ajouts manuels', source: 'manuel' as const, ingredients: [] as { name: string; checked: boolean }[] };
+        entry.ingredients.push({ name: raw, checked: false });
+        next.manuel = entry;
+        localStorage.setItem('magic-shopping-list', JSON.stringify(next));
+        setShoppingList(next);
         window.dispatchEvent(new Event('shoppingListUpdated'));
         setManualName(''); setManualQty('');
     };

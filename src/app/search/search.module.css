@@ -83,6 +83,26 @@
     position: relative;
 }
 
+/* Détail des ingrédients trouvés / manquants (résultat partiel) */
+.matchDetail {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin: 8px 4px 0;
+    font-size: 0.8rem;
+    line-height: 1.35;
+}
+.matchOk {
+    color: #34d399;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.matchMissing {
+    color: #fbbf24;
+    font-weight: 800;
+}
+.matchMissing::first-letter { text-transform: none; }
+
 /* Pastille "2/3" : nb d'ingrédients tapés trouvés dans la recette */
 .matchBadge {
     position: absolute;

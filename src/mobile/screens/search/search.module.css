@@ -75,7 +75,30 @@
     width: 100%;
     max-width: 320px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+}
+
+/* Détail ingrédients trouvés / manquants (résultat partiel) */
+.matchDetail {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 100%;
+    margin-top: 8px;
+    padding: 0 4px;
+    font-size: 0.82rem;
+    line-height: 1.35;
+}
+.matchOk {
+    color: #34d399;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.matchMissing {
+    color: #fbbf24;
+    font-weight: 800;
 }
 
 /* Pastille "2/3" : nb d'ingrédients tapés trouvés dans la recette */

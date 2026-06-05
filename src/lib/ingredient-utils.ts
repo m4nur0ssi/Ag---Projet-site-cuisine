@@ -256,7 +256,25 @@ const FR_TO_EN: Record<string, string> = {
     'red food coloring': 'food-coloring',
     'colorant': 'food-coloring',
     'colorant alimentaire': 'food-coloring',
-    'food coloring': 'food-coloring'
+    'food coloring': 'food-coloring',
+    // ── Ajouts (slugs Spoonacular vérifiés HTTP 200 ; extension .jpg explicite si besoin) ──
+    'sumac': 'sumac',
+    'brocoli': 'broccoli.jpg', 'brocolis': 'broccoli.jpg', 'broccoli': 'broccoli.jpg',
+    'laurier': 'bay-leaves.jpg', 'feuille de laurier': 'bay-leaves.jpg', 'feuilles de laurier': 'bay-leaves.jpg', 'bay leaves': 'bay-leaves.jpg',
+    'chapelure': 'breadcrumbs.jpg', 'panko': 'breadcrumbs.jpg', 'chapelure panko': 'breadcrumbs.jpg', 'breadcrumbs': 'breadcrumbs.jpg',
+    'sesame': 'sesame-seeds', 'graines de sesame': 'sesame-seeds', 'graine de sesame': 'sesame-seeds', 'sesame seeds': 'sesame-seeds',
+    'gelatine': 'gelatin', 'gelatin': 'gelatin',
+    'fenouil': 'fennel', 'fennel': 'fennel',
+    'gorgonzola': 'gorgonzola.jpg',
+    'garam masala': 'garam-masala.jpg',
+    'germes de soja': 'bean-sprouts.jpg', 'pousses de soja': 'bean-sprouts.jpg', 'bean sprouts': 'bean-sprouts.jpg',
+    'cebette': 'green-onion.jpg', 'ciboule': 'green-onion.jpg', 'oignon nouveau': 'green-onion.jpg', 'green onion': 'green-onion.jpg',
+    'shiitake': 'shiitake-mushrooms', 'shiitakes': 'shiitake-mushrooms',
+    'coriandre moulue': 'ground-coriander.jpg', 'coriandre en poudre': 'ground-coriander.jpg',
+    'burrata': 'burrata.png',
+    'boudoirs': 'ladyfingers.jpg', 'boudoir': 'ladyfingers.jpg', 'biscuits a la cuillere': 'ladyfingers.jpg', 'biscuit a la cuillere': 'ladyfingers.jpg', 'ladyfingers': 'ladyfingers.jpg',
+    'guimauve': 'marshmallows.jpg', 'guimauves': 'marshmallows.jpg', 'chamallow': 'marshmallows.jpg', 'chamallows': 'marshmallows.jpg', 'marshmallow': 'marshmallows.jpg',
+    'cranberries': 'cranberries.jpg', 'cranberry': 'cranberries.jpg', 'canneberge': 'cranberries.jpg', 'canneberges': 'cranberries.jpg'
 };
 
 /**
@@ -395,15 +413,20 @@ export function getIngredientVisual(name: string): string | null {
     }
 
     // 3. Essaie aussi avec le nom strippé dans Spoonacular
+    // Certaines images Spoonacular sont en .jpg, d'autres en .png. Si le slug
+    // contient déjà une extension, on l'utilise tel quel ; sinon on ajoute .png.
+    const spoonUrl = (slug: string) =>
+        `https://img.spoonacular.com/ingredients_500x500/${/\.(png|jpe?g)$/i.test(slug) ? slug : slug + '.png'}`;
+
     const searchForSpoonacular = (normName: string): string | null => {
         if (FR_TO_EN[normName]) {
-            return `https://img.spoonacular.com/ingredients_500x500/${FR_TO_EN[normName]}.png`;
+            return spoonUrl(FR_TO_EN[normName]);
         }
         const words = normName.split(/\s+/).filter(w => w.length >= 4);
         const sorted = [...words].sort((a, b) => b.length - a.length);
         for (const word of sorted) {
             if (FR_TO_EN[word]) {
-                return `https://img.spoonacular.com/ingredients_500x500/${FR_TO_EN[word]}.png`;
+                return spoonUrl(FR_TO_EN[word]);
             }
         }
         return null;

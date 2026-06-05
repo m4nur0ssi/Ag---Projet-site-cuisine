@@ -138,16 +138,16 @@ export default function ShoppingListPage() {
         // Pas de quantité saisie → 1 par défaut (validation à la touche Entrée)
         const qty = manualQty.trim() || '1';
         const raw = `${qty} ${name}`;
-        setShoppingList(prev => {
-            const next = { ...prev };
-            const entry = next.manuel
-                ? { ...next.manuel, ingredients: [...next.manuel.ingredients] }
-                : { title: 'Ajouts manuels', source: 'manuel' as const, ingredients: [] as { name: string; checked: boolean }[] };
-            entry.ingredients.push({ name: raw, checked: false });
-            next.manuel = entry;
-            localStorage.setItem('magic-shopping-list', JSON.stringify(next));
-            return next;
-        });
+        // Écrit localStorage AVANT de dispatcher l'event (sinon le handler 'shoppingListUpdated'
+        // relit un localStorage encore vide → reset de la liste = l'item n'apparaît pas).
+        const next = { ...shoppingList };
+        const entry = next.manuel
+            ? { ...next.manuel, ingredients: [...next.manuel.ingredients] }
+            : { title: 'Ajouts manuels', source: 'manuel' as const, ingredients: [] as { name: string; checked: boolean }[] };
+        entry.ingredients.push({ name: raw, checked: false });
+        next.manuel = entry;
+        localStorage.setItem('magic-shopping-list', JSON.stringify(next));
+        setShoppingList(next);
         window.dispatchEvent(new Event('shoppingListUpdated'));
         setManualName('');
         setManualQty('');

@@ -21,8 +21,10 @@ export const queryTokens = (query: string): string[] => {
 
 export interface RankedRecipe {
     recipe: Recipe;
-    matched: number; // nb d'ingrédients tapés trouvés
-    total: number;   // nb d'ingrédients tapés
+    matched: number;          // nb d'ingrédients tapés trouvés
+    total: number;            // nb d'ingrédients tapés
+    matchedTokens: string[];  // ingrédients tapés présents dans la recette
+    missingTokens: string[];  // ingrédients tapés absents
 }
 
 // Construit le "foin" normalisé d'une recette : noms d'ingrédients nettoyés + titre + tags.
@@ -47,8 +49,10 @@ export const rankByIngredients = (recipes: Recipe[], query: string): RankedRecip
     const ranked = recipes
         .map<RankedRecipe>(recipe => {
             const hay = haystackOf(recipe);
-            const matched = tokens.reduce((n, t) => (hay.includes(t) ? n + 1 : n), 0);
-            return { recipe, matched, total: tokens.length };
+            const matchedTokens: string[] = [];
+            const missingTokens: string[] = [];
+            tokens.forEach(t => (hay.includes(t) ? matchedTokens : missingTokens).push(t));
+            return { recipe, matched: matchedTokens.length, total: tokens.length, matchedTokens, missingTokens };
         })
         .filter(r => r.matched >= minMatch)
         .sort((a, b) =>
