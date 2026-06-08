@@ -2,11 +2,60 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/06/2026 09:51:18
- * Total: 356 recettes
+ * Dernière mise à jour: 08/06/2026 15:11:34
+ * Total: 357 recettes
  */
-export const exportSyncId = "1780912278202";
+export const exportSyncId = "1780931494665";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6036",
+        "title": "Flan Pâtissier Sans Pâte",
+        "description": "Une recette de flan pâtissier sans pâte, facile à réaliser avec des ingrédients simples pour un dessert gourmand.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7571877701368302870\" data-video-id=\"7571877701368302870\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7571877701368302870\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 L de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 petits œufs (ou 2 gros)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             130g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             2 gousses de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             90g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             20cl de crème liquide entière"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6034",
         "title": "Salade de pommes de terre au thon et tomates confites",
