@@ -1,24 +1,3 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNRvxYcm4/",
-      "country": "Accompagnements",
-      "timestamp": "2026-06-08T09:25:35.864Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNRv93Yrr/",
-      "country": "Accompagnements",
-      "timestamp": "2026-06-08T09:25:53.147Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNRv9E87e/",
-      "country": "Accompagnements",
-      "timestamp": "2026-06-08T09:26:38.323Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNRv9EK5y/",
-      "country": "Salades",
-      "timestamp": "2026-06-08T09:27:23.148Z"
-    }
-  ]
+  "queue": []
 }
