@@ -2,11 +2,107 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/06/2026 09:34:01
- * Total: 355 recettes
+ * Dernière mise à jour: 08/06/2026 09:51:18
+ * Total: 356 recettes
  */
-export const exportSyncId = "1780911241157";
+export const exportSyncId = "1780912278202";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6034",
+        "title": "Salade de pommes de terre au thon et tomates confites",
+        "description": "Une salade de pommes de terre gourmande et fraîche, agrémentée de thon, de tomates cerises confites, d'ail, de thym et de citron. Facile à préparer, elle peut être dégustée tiède ou froide, garnie de parmesan et de basilic frais.",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647894399292132641\" data-video-id=\"7647894399292132641\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647894399292132641\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             500g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cas de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cas de soja salé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             500g de pommes de terre (coupées en petits cubes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             7g de persil ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de thon"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zeste d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic frais"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four en mode grill à 200 degrés.",
+            "Dans un plat allant au four, mélanger les 500g de tomates cerises, l'oignon émincé, les 2 gousses d'ail, 1 cas de thym, 3 cas de soja salé et 4 cas d'huile d'olive.",
+            "Faire cuire les tomates au four pendant 25 minutes.",
+            "Pendant ce temps, couper les 500g de pommes de terre en petits cubes et les saler.",
+            "Dans une poêle, faire dorer les pommes de terre à feu vif avec de l'huile neutre et 10g de beurre pendant 15-20 minutes, en les remuant de temps en temps pour qu'elles soient bien croustillantes et fondantes à l'intérieur.",
+            "Dans un grand saladier, mélanger les pommes de terre dorées avec les tomates confites.",
+            "Ajouter 7g de persil ciselé, 1 boîte de thon (égoutté), le zeste d'1 citron et 1 cas de miel.",
+            "Bien mélanger l'ensemble.",
+            "Servir la salade avec une tonne de parmesan râpé et du basilic frais. Elle peut se manger froide ou tiède."
+        ],
+        "tags": [
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6032",
         "title": "Salade d'Haricots Verts",
