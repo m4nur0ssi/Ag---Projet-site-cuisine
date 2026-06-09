@@ -16,7 +16,7 @@ export interface StoreDef {
 export const STORES: StoreDef[] = [
     { id: 'carrefour', label: 'Carrefour', color: '#004E9F', logo: '/images/stores/carrefour.svg', search: q => `https://www.carrefour.fr/s?q=${encodeURIComponent(q)}` },
     { id: 'picard',    label: 'Picard',    color: '#0A4A9F', logo: '/images/stores/picard.svg',    search: q => `https://www.picard.fr/recherche?q=${encodeURIComponent(q)}` },
-    { id: 'monoprix',  label: 'Monoprix',  color: '#E6007E', logo: '/images/stores/monoprix.svg',  search: q => `https://www.monoprix.fr/courses/rechercher?q=${encodeURIComponent(q)}` },
+    { id: 'monoprix',  label: 'Monoprix',  color: '#E6007E', logo: '/images/stores/monoprix.svg',  search: q => `https://courses.monoprix.fr/search?q=${encodeURIComponent(q)}` },
     { id: 'franprix',  label: 'Franprix',  color: '#E2001A', logo: '/images/stores/franprix.svg',  search: q => `https://www.franprix.fr/recherche?q=${encodeURIComponent(q)}` },
 ];
 
