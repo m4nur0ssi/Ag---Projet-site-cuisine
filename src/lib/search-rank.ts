@@ -36,30 +36,35 @@ const haystackOf = (r: Recipe): string => {
     return normalizeIng(`${ings} ${r.title || ''} ${tags}`);
 };
 
-// Classe les recettes par nombre d'ingrédients tapés présents (desc).
-// Renvoie null si < 2 tokens (le caller bascule sur la recherche texte classique).
+// Recherche STRICTE par ingrédients (#7).
+// Règle : seules les recettes contenant TOUS les ingrédients tapés sont des
+// résultats (matched === total). En complément, on renvoie les recettes auxquelles
+// il manque exactement 1 ingrédient (matched === total-1) comme SUGGESTIONS, placées
+// après les résultats stricts. Le caller affiche/masque ces suggestions et indique
+// l'ingrédient manquant via `missingTokens`.
+// Renvoie null si 0 token (le caller bascule sur la recherche texte classique).
 export const rankByIngredients = (recipes: Recipe[], query: string): RankedRecipe[] | null => {
     const tokens = queryTokens(query);
-    if (tokens.length < 2) return null;
+    if (tokens.length < 1) return null;
 
-    // 3 ingrédients+ : on exige au moins 2 correspondances pour couper le bruit.
-    // 2 ingrédients : on garde aussi les 1/2 (sous les 2/2).
-    const minMatch = tokens.length >= 3 ? 2 : 1;
+    const ranked = recipes.map<RankedRecipe>(recipe => {
+        const hay = haystackOf(recipe);
+        const matchedTokens: string[] = [];
+        const missingTokens: string[] = [];
+        tokens.forEach(t => (hay.includes(t) ? matchedTokens : missingTokens).push(t));
+        return { recipe, matched: matchedTokens.length, total: tokens.length, matchedTokens, missingTokens };
+    });
 
-    const ranked = recipes
-        .map<RankedRecipe>(recipe => {
-            const hay = haystackOf(recipe);
-            const matchedTokens: string[] = [];
-            const missingTokens: string[] = [];
-            tokens.forEach(t => (hay.includes(t) ? matchedTokens : missingTokens).push(t));
-            return { recipe, matched: matchedTokens.length, total: tokens.length, matchedTokens, missingTokens };
-        })
-        .filter(r => r.matched >= minMatch)
-        .sort((a, b) =>
-            b.matched - a.matched ||
-            (b.recipe.votes || 0) - (a.recipe.votes || 0) ||
-            a.recipe.title.localeCompare(b.recipe.title)
-        );
+    const byScore = (a: RankedRecipe, b: RankedRecipe) =>
+        (b.recipe.votes || 0) - (a.recipe.votes || 0) ||
+        a.recipe.title.localeCompare(b.recipe.title);
 
-    return ranked;
+    // Résultats stricts : tous les ingrédients présents.
+    const full = ranked.filter(r => r.matched === r.total).sort(byScore);
+    // Suggestions : il manque exactement 1 ingrédient (seulement si ≥2 tapés).
+    const partial = tokens.length >= 2
+        ? ranked.filter(r => r.matched === r.total - 1).sort(byScore)
+        : [];
+
+    return [...full, ...partial];
 };

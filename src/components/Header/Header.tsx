@@ -282,18 +282,22 @@ export default function Header({
                                             >
                                                 🔍
                                             </button>
+                                            {authUser && (
                                             <Link href="/favorites" className={`${styles.toolBtn} ${favoriteCount > 0 ? styles.hasFavorite : ''}`}>
                                                 {favoriteCount > 0 ? '❤️' : '🤍'}
                                                 {favoriteCount > 0 && (
                                                     <span className={styles.navFavBadge}>{favoriteCount}</span>
                                                 )}
                                             </Link>
+                                            )}
+                                            {authUser && (
                                             <Link href="/shopping-list" className={styles.toolBtn}>
                                                 🛒
                                                 {shoppingCount > 0 && (
                                                     <span className={styles.navFavBadge}>{shoppingCount > 99 ? '99+' : shoppingCount}</span>
                                                 )}
                                             </Link>
+                                            )}
                                             {authUser && (
                                             <div style={{ position: 'relative' }}
                                                 onMouseEnter={() => { clearTimeout(plannerHideTimer.current); setShowPlannerTooltip(true); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: true } })); }}

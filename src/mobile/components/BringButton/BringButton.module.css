@@ -5,6 +5,7 @@
     padding: 0.8rem 1.6rem;
     background: rgba(230, 0, 5, 0.2);
     color: white;
+    -webkit-backdrop-filter: blur(var(--liquid-blur));
     backdrop-filter: blur(var(--liquid-blur));
     -webkit-backdrop-filter: blur(var(--liquid-blur));
     border: 1px solid rgba(230, 0, 5, 0.3);

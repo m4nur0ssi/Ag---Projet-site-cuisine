@@ -8,6 +8,13 @@ import type { ConsolItem } from '@/lib/ingredients';
 import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
 import styles from './shopping-list.module.css';
 
+type StoreId = 'carrefour' | 'picard' | 'monoprix';
+const STORES: Record<StoreId, { label: string; color: string; logo: string; search: (q: string) => string }> = {
+    carrefour: { label: 'Carrefour', color: '#004E9F', logo: '/images/stores/carrefour.svg', search: q => `https://www.carrefour.fr/s?q=${encodeURIComponent(q)}` },
+    picard:    { label: 'Picard',    color: '#0A4A9F', logo: '/images/stores/picard.svg',    search: q => `https://www.picard.fr/recherche?q=${encodeURIComponent(q)}` },
+    monoprix:  { label: 'Monoprix',  color: '#E6007E', logo: '/images/stores/monoprix.svg',  search: q => `https://www.monoprix.fr/courses/rechercher?q=${encodeURIComponent(q)}` },
+};
+
 interface ListData {
     [key: string]: {
         title: string;
@@ -24,7 +31,8 @@ export default function ShoppingListPage() {
     const [weekChecked, setWeekChecked] = useState<Set<string>>(new Set());
     const [mounted, setMounted] = useState(false);
     const [selected, setSelected] = useState<Set<string>>(new Set());
-    const [weekMode, setWeekMode] = useState<'jour' | 'liste'>('jour');
+    const [weekMode, setWeekMode] = useState<'semaine' | 'jourj' | 'fusion' | 'recettes'>('semaine');
+    const [store, setStore] = useState<'carrefour' | 'picard' | 'monoprix'>('carrefour');
     const [carrefourIdx, setCarrefourIdx] = useState<number | null>(null);
     const [manualName, setManualName] = useState('');
     const [manualQty, setManualQty] = useState('');
@@ -174,6 +182,28 @@ export default function ShoppingListPage() {
         window.dispatchEvent(new Event('shoppingListUpdated'));
     };
 
+    // #6 — onglet "Recettes" : coche/raye un ingrédient d'une recette individuelle
+    const toggleRecipeIngredient = (id: string, idx: number) => {
+        const next = { ...shoppingList };
+        const entry = next[id];
+        if (!entry) return;
+        const ings = entry.ingredients.map((ing, i) => i === idx ? { ...ing, checked: !ing.checked } : ing);
+        next[id] = { ...entry, ingredients: ings };
+        localStorage.setItem('magic-shopping-list', JSON.stringify(next));
+        setShoppingList(next);
+        window.dispatchEvent(new Event('shoppingListUpdated'));
+    };
+
+    // #6 — onglet "Recettes" : retirer une recette individuelle de la liste
+    const removeRecipe = (id: string) => {
+        const next = { ...shoppingList };
+        delete next[id];
+        if (Object.keys(next).length === 0) localStorage.removeItem('magic-shopping-list');
+        else localStorage.setItem('magic-shopping-list', JSON.stringify(next));
+        setShoppingList(next);
+        window.dispatchEvent(new Event('shoppingListUpdated'));
+    };
+
     const lineFor = (it: ConsolItem) =>
         it.qty != null ? `${fmtQty(it.qty)}${it.unit ? ' ' + it.unit : ''} ${it.name}` : it.name;
 
@@ -197,8 +227,10 @@ export default function ShoppingListPage() {
     const openCarrefourFor = (i: number) => {
         const it = selectedItems[i];
         if (!it) return;
-        window.open(`https://www.carrefour.fr/s?q=${encodeURIComponent(carrefourTerm(it.name))}`, 'carrefourCart');
-        markDone(it); // recherché sur Carrefour → rayé automatiquement au retour
+        // #12 : fenêtre nommée 'storeCart' réutilisée → reste sur l'onglet magasin,
+        // le moteur de recherche relance directement le produit suivant.
+        window.open(STORES[store].search(carrefourTerm(it.name)), 'storeCart');
+        markDone(it); // recherché → rayé automatiquement
     };
     const startCarrefour = () => { if (!selectedItems.length) return; setCarrefourIdx(0); openCarrefourFor(0); };
     const carrefourGo = (i: number) => {
@@ -224,23 +256,32 @@ export default function ShoppingListPage() {
                     )}
                 </div>
 
-                {/* Bascule Par jour / Liste fusionnée */}
+                {/* Onglets : Semaine · Jour J · Fusionnée · Recettes */}
                 <div className={styles.modeToggle}>
-                    <button
-                        className={`${styles.modeBtn} ${weekMode === 'jour' ? styles.modeBtnActive : ''}`}
-                        onClick={() => setWeekMode('jour')}
-                        onMouseEnter={() => setWeekMode('jour')}
-                    >Par jour</button>
-                    <button
-                        className={`${styles.modeBtn} ${weekMode === 'liste' ? styles.modeBtnActive : ''}`}
-                        onClick={() => setWeekMode('liste')}
-                        onMouseEnter={() => setWeekMode('liste')}
-                    >Liste fusionnée</button>
+                    {([
+                        ['semaine', 'Semaine'],
+                        ['jourj', 'Jour J'],
+                        ['fusion', 'Fusionnée'],
+                        ['recettes', 'Recettes'],
+                    ] as const).map(([id, label]) => (
+                        <button
+                            key={id}
+                            className={`${styles.modeBtn} ${weekMode === id ? styles.modeBtnActive : ''}`}
+                            onClick={() => setWeekMode(id)}
+                        >{label}</button>
+                    ))}
                 </div>
 
-                {weekMode === 'jour' ? (
-                    <WeekMenuCarousel />
-                ) : (
+                {weekMode === 'semaine' && <WeekMenuCarousel view="week" />}
+                {weekMode === 'jourj' && <WeekMenuCarousel view="jourj" />}
+                {weekMode === 'recettes' && (
+                    <RecipesIndividualView
+                        shoppingList={shoppingList}
+                        onToggle={toggleRecipeIngredient}
+                        onRemove={removeRecipe}
+                    />
+                )}
+                {weekMode === 'fusion' && (
                   <>
                     {/* Ajout manuel d'un article (alimentaire ou ménager) */}
                     <div className={styles.addItemBar}>
@@ -361,8 +402,8 @@ export default function ShoppingListPage() {
                   </>
                 )}
 
-                {/* Barre de partage flottante (mode liste uniquement) */}
-                {weekMode === 'liste' && selected.size > 0 && (
+                {/* Barre de partage flottante (mode fusion uniquement) */}
+                {weekMode === 'fusion' && selected.size > 0 && (
                     <div style={{
                         position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)',
                         display: 'flex', gap: 10, alignItems: 'center', background: 'rgba(20,20,20,0.95)',
@@ -377,12 +418,31 @@ export default function ShoppingListPage() {
                             <ShareIcon /> Partager
                         </button>
                         <button onClick={shareWhatsApp} style={btnStyle('#25D366')} title="WhatsApp"><WhatsAppIcon /></button>
-                        <button onClick={startCarrefour} style={btnStyle('#0066CC')} title="Commander sur Carrefour">🛒 Carrefour</button>
+                        {/* Sélecteur magasin (logos) */}
+                        <div style={{ display: 'flex', gap: 4, alignItems: 'center', padding: '0 4px' }}>
+                            {(Object.keys(STORES) as StoreId[]).map(id => (
+                                <button
+                                    key={id}
+                                    onClick={() => setStore(id)}
+                                    title={STORES[id].label}
+                                    style={{
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        width: 34, height: 34, borderRadius: 10, cursor: 'pointer',
+                                        background: store === id ? 'rgba(255,255,255,0.16)' : 'transparent',
+                                        border: store === id ? `2px solid ${STORES[id].color}` : '2px solid transparent',
+                                        padding: 3,
+                                    }}
+                                >
+                                    <img src={STORES[id].logo} alt={STORES[id].label} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                                </button>
+                            ))}
+                        </div>
+                        <button onClick={startCarrefour} style={btnStyle(STORES[store].color)} title={`Commander sur ${STORES[store].label}`}>🛒 {STORES[store].label}</button>
                     </div>
                 )}
 
-                {/* Stepper Carrefour : ouvre la recherche ingrédient par ingrédient */}
-                {weekMode === 'liste' && carrefourIdx !== null && selectedItems[carrefourIdx] && (
+                {/* Stepper magasin : ouvre la recherche ingrédient par ingrédient */}
+                {weekMode === 'fusion' && carrefourIdx !== null && selectedItems[carrefourIdx] && (
                     <div style={{
                         position: 'fixed', bottom: 88, left: '50%', transform: 'translateX(-50%)',
                         width: 'min(440px, 92vw)',
@@ -392,8 +452,8 @@ export default function ShoppingListPage() {
                         padding: '14px 16px', zIndex: 101, boxShadow: '0 12px 40px rgba(0,0,0,0.6)'
                     }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.05em', color: '#5aa9ff' }}>
-                                🛒 CARREFOUR · {carrefourIdx + 1}/{selectedItems.length}
+                            <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.05em', color: STORES[store].color }}>
+                                🛒 {STORES[store].label.toUpperCase()} · {carrefourIdx + 1}/{selectedItems.length}
                             </span>
                             <button onClick={() => setCarrefourIdx(null)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', fontSize: '0.9rem' }}>✕</button>
                         </div>
@@ -407,8 +467,8 @@ export default function ShoppingListPage() {
                         <div style={{ display: 'flex', gap: 8 }}>
                             <button onClick={() => carrefourGo(carrefourIdx - 1)} disabled={carrefourIdx === 0}
                                 style={{ ...btnStyle('rgba(255,255,255,0.1)'), opacity: carrefourIdx === 0 ? 0.4 : 1 }}>◀</button>
-                            <button onClick={() => openCarrefourFor(carrefourIdx)} style={{ ...btnStyle('#0066CC'), flex: 1, justifyContent: 'center' }}>
-                                Rechercher sur Carrefour
+                            <button onClick={() => openCarrefourFor(carrefourIdx)} style={{ ...btnStyle(STORES[store].color), flex: 1, justifyContent: 'center' }}>
+                                Rechercher sur {STORES[store].label}
                             </button>
                             {carrefourIdx < selectedItems.length - 1 ? (
                                 <button onClick={() => carrefourGo(carrefourIdx + 1)} style={btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)')}>Suivant ▶</button>
@@ -445,5 +505,56 @@ function WhatsAppIcon() {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
         </svg>
+    );
+}
+
+// #6 — Onglet "Recettes individuelles" : une carte par recette (ajoutée via le caddie de la fiche).
+function RecipesIndividualView({ shoppingList, onToggle, onRemove }: {
+    shoppingList: ListData;
+    onToggle: (id: string, idx: number) => void;
+    onRemove: (id: string) => void;
+}) {
+    const entries = Object.entries(shoppingList).filter(([, e]) => e && (e.ingredients?.length || 0) > 0);
+    if (entries.length === 0) {
+        return (
+            <div className={styles.empty}>
+                <div className={styles.emptyIcon}>🧾</div>
+                <h2 className={styles.emptyTitle}>Aucune recette</h2>
+                <p className={styles.emptySubtitle}>
+                    Ouvre une recette, coche des ingrédients puis touche le caddie 🛒 pour l’ajouter ici.
+                </p>
+            </div>
+        );
+    }
+    return (
+        <div className={styles.recipesIndividual}>
+            {entries.map(([id, entry]) => {
+                const title = id === 'manuel' ? 'Ajouts manuels' : entry.title;
+                return (
+                    <div key={id} className={styles.recipeBlock}>
+                        <div className={styles.recipeBlockHeader}>
+                            {entry.image && id !== 'manuel' && (
+                                <img src={entry.image} alt="" className={styles.recipeBlockImg} />
+                            )}
+                            <span className={styles.recipeBlockTitle}>{title}</span>
+                            <button
+                                className={styles.recipeBlockRemove}
+                                onClick={() => onRemove(id)}
+                                aria-label={`Retirer ${title}`}
+                                title="Retirer cette recette"
+                            >✕</button>
+                        </div>
+                        <div className={styles.recipeBlockItems}>
+                            {entry.ingredients.map((ing, idx) => (
+                                <label key={idx} className={`${styles.recipeIng} ${ing.checked ? styles.recipeIngDone : ''}`}>
+                                    <input type="checkbox" checked={!!ing.checked} onChange={() => onToggle(id, idx)} />
+                                    <span>{ing.name}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
     );
 }

@@ -46,6 +46,7 @@
     padding: 14px 16px;
     z-index: 1000;
     box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     animation: stepIn 0.25s cubic-bezier(0.16,1,0.3,1);

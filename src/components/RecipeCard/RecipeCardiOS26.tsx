@@ -194,9 +194,9 @@ export default function RecipeCardiOS26({
                             fill
                             style={{
                                 objectFit: 'cover',
-                                // Cartes thématiques en grille : montrer le haut de l'image
-                                // pour que la barre de titre (baked-in) soit visible et non tronquée
-                                objectPosition: (isThematicCard && isGrid) ? '50% 0%' : 'center',
+                                // Cartes thématiques : montrer le haut de l'image (carousel home ET grille)
+                                // pour que le titre incrusté (Airfryer, Barbecue…) soit visible et non tronqué
+                                objectPosition: isThematicCard ? '50% 0%' : 'center',
                             }}
                             className={styles.image}
                         />
@@ -234,6 +234,13 @@ export default function RecipeCardiOS26({
                             imageUrl={recipe.image}
                             className={styles.minimalistHeart}
                         />
+                    </div>
+                )}
+
+                {/* Drapeau pays — symétrique au cœur, en haut à gauche */}
+                {flag && !isThematicCard && !isIntroMode && (
+                    <div className={styles.topLeftFlag} aria-label={`Origine : ${recipeCountryTag}`}>
+                        {flag}
                     </div>
                 )}
 

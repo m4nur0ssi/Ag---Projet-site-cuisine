@@ -1,5 +1,6 @@
 .actionBtn {
     background: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur);
     backdrop-filter: var(--glass-blur);
     border: var(--glass-border);
     border-radius: 50%;

@@ -2,6 +2,7 @@
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.7);
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     z-index: 1000;
@@ -29,6 +30,7 @@
     justify-content: center;
     position: relative;
     background: rgba(0,0,0,0.5);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
@@ -204,6 +206,7 @@
 
 .ingredientCard {
     background: var(--liquid-bg);
+    -webkit-backdrop-filter: blur(var(--liquid-blur));
     backdrop-filter: blur(var(--liquid-blur));
     -webkit-backdrop-filter: blur(var(--liquid-blur));
     border: 1px solid var(--liquid-border);
