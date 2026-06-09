@@ -125,6 +125,19 @@ jobs:
         continue-on-error: true
 
       # ------------------------------------------------------------------
+      # Traduction FR (anglais/espagnol/autre → français), avec cache persistant
+      # → ne re-traduit que les recettes nouvelles/modifiées (économise Groq).
+      # Nécessite le secret GROQ_API_KEY. Non bloquant si l'IA échoue.
+      # ------------------------------------------------------------------
+      - name: 🌍 Traduction FR (cache)
+        run: node translate-recipes-fr.js
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          TRANSLATE_CONCURRENCY: "1"
+          TRANSLATE_THROTTLE_MS: "1500"
+        continue-on-error: true
+
+      # ------------------------------------------------------------------
       # Mise à jour du fichier de stats
       # ------------------------------------------------------------------
       - name: 📊 Update sync-stats.json
@@ -153,7 +166,7 @@ jobs:
           git config user.name "WP-Sync Bot"
           git config user.email "m4nu.r0ssi@gmail.com"
 
-          git add src/data/mockData.ts src/data/sync-stats.json 2>/dev/null || true
+          git add src/data/mockData.ts src/mobile/data/mockData.ts src/data/sync-stats.json translate-cache.json 2>/dev/null || true
 
           if git diff --staged --quiet; then
             echo "✅ Aucun changement détecté, arrêt."
