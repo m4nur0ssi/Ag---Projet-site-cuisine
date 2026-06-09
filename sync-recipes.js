@@ -29,6 +29,7 @@ const DELETE_ID = process.argv.find(arg => arg.startsWith('--delete-id='))?.spli
 
 // Destins des fichiers générés
 const MOCK_DATA_PATH = path.join(__dirname, 'src/data/mockData.ts');
+const MOBILE_MOCK_DATA_PATH = path.join(__dirname, 'src/mobile/data/mockData.ts');
 const SYNC_STATS_PATH = path.join(__dirname, 'src/data/sync-stats.json');
 
 /**
@@ -263,7 +264,9 @@ export const mockRecipes: Recipe[] = ${JSON.stringify(allPosts, null, 4)};
 `;
 
         fs.writeFileSync(MOCK_DATA_PATH, fileContent);
-        
+        // Parité : la vue mobile du site partage exactement les mêmes recettes.
+        fs.writeFileSync(MOBILE_MOCK_DATA_PATH, fileContent);
+
         fs.writeFileSync(SYNC_STATS_PATH, JSON.stringify({
             lastSync: new Date().toISOString(),
             totalRecipes: allPosts.length,

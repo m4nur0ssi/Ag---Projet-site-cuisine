@@ -27,6 +27,18 @@ const limArg = process.argv.indexOf('--limit');
 const LIMIT = limArg !== -1 ? parseInt(process.argv[limArg + 1]) : Infinity;
 const FILES = ['src/data/mockData.ts', 'src/mobile/data/mockData.ts'];
 
+// Cache persistant des traductions : évite de re-traduire à chaque sync WordPress
+// (clé = id + hash du texte source ; valeur = {title, ingredients, steps} en FR).
+const crypto = require('crypto');
+const CACHE_PATH = path.join(__dirname, 'translate-cache.json');
+let CACHE = {};
+try { CACHE = JSON.parse(fs.readFileSync(CACHE_PATH, 'utf8')); } catch { CACHE = {}; }
+function saveCache() { try { fs.writeFileSync(CACHE_PATH, JSON.stringify(CACHE, null, 0)); } catch { /* noop */ } }
+function cacheKey(r) {
+    const src = JSON.stringify([r.title || '', (r.ingredients || []).map(i => i.name || ''), r.steps || []]);
+    return String(r.id) + ':' + crypto.createHash('sha1').update(src).digest('hex').slice(0, 12);
+}
+
 function bounds(t) { const m = t.indexOf('mockRecipes: Recipe[] ='); const i = t.indexOf('[', t.indexOf('=', m)); const j = t.lastIndexOf(']'); return [i, j]; }
 function loadFile(p) { const t = fs.readFileSync(p, 'utf8'); const [i, j] = bounds(t); return { t, i, j, arr: JSON.parse(t.slice(i, j + 1)) }; }
 function writeFile(p, f, arr) { fs.writeFileSync(p, f.t.slice(0, f.i) + JSON.stringify(arr, null, 4) + f.t.slice(f.j + 1)); }
@@ -137,22 +149,36 @@ async function pool(items, n, worker) {
     }
     candidates = candidates.slice(0, LIMIT);
 
-    const cache = new Map(); // id → {title, ingredients, steps}
-    let okN = 0, errN = 0, done = 0;
+    const cache = new Map(); // id → {title, ingredients, steps} (à appliquer)
+    let okN = 0, errN = 0, hitN = 0, done = 0;
     const CONC = parseInt(process.env.TRANSLATE_CONCURRENCY || '2');
     const THROTTLE = parseInt(process.env.TRANSLATE_THROTTLE_MS || '900'); // anti-429 (free tier)
-    await pool(candidates, CONC, async (r) => {
+
+    // 1) Cache hits d'abord (gratuit, instantané) → ne reste que le vrai nouveau à traduire via Groq.
+    const toTranslate = [];
+    candidates.forEach(r => {
+        const hit = CACHE[cacheKey(r)];
+        if (hit) { cache.set(String(r.id), hit); hitN++; }
+        else toTranslate.push(r);
+    });
+    if (hitN) console.log(`  ⚡ ${hitN} depuis le cache (aucun appel IA).`);
+    console.log(`  🤖 ${toTranslate.length} à traduire via Groq.`);
+
+    await pool(toTranslate, CONC, async (r) => {
         try {
             const tr = await translateRecipe(r);
             cache.set(String(r.id), tr);
+            CACHE[cacheKey(r)] = tr; // mémorise pour les prochaines syncs
+            saveCache();
             okN++;
         } catch (e) {
             console.error(`  ❌ #${r.id} "${r.title}" : ${e.message}`);
             errN++;
         }
         await sleep(THROTTLE);
-        if (++done % 10 === 0) console.log(`  … ${done}/${candidates.length}`);
+        if (++done % 10 === 0) console.log(`  … ${done}/${toTranslate.length}`);
     });
+    saveCache();
 
     // Applique aux deux fichiers (par id).
     const apply = (arr) => {
