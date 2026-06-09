@@ -166,6 +166,11 @@ function extractRecipeData(post) {
             const title = decodeHtmlEntities(post.title.rendered).toLowerCase();
             const tags = (post._embedded?.['wp:term']?.[1]?.map(tag => tag.name.toLowerCase()) || []);
             
+            // 0. SAUCES pures (#8) : tag sauce(s), ou mot-sauce en TÊTE du titre.
+            //    Ne doivent apparaître que dans le thème "sauces", jamais dans "plats".
+            if (tags.includes('sauce') || tags.includes('sauces')) return "sauces";
+            if (/^(?:sauce|pesto|mayonnaise|vinaigrette|tzatziki|guacamole|a[iï]oli|tapenade|coulis|chimichurri|b[ée]arnaise|hollandaise|ketchup|pico de gallo|r[ée]moulade)\b/.test(title)) return "sauces";
+
             // 1. Détection par tags prioritaires (si présents sur WordPress)
             if (tags.includes('glaces') || tags.includes('sorbet')) return "glaces";
             // Rafraîchissements : toutes variantes (rafraichissements / rafraîchissements / smoothie...)
@@ -266,7 +271,23 @@ export const mockRecipes: Recipe[] = ${JSON.stringify(allPosts, null, 4)};
         }, null, 2));
 
         console.log(`\n✅ Synchronisation terminée ! ${allPosts.length} recettes sauvegardées.`);
-        
+
+        // #13 — Traduction FR optionnelle après sync (anglais/espagnol/autre → français).
+        //   node sync-recipes.js --translate    (ou env TRANSLATE_AFTER_SYNC=1)
+        //   Nécessite GROQ_API_KEY. Désactivé par défaut pour ne pas ralentir les syncs auto.
+        if (process.argv.includes('--translate') || process.env.TRANSLATE_AFTER_SYNC === '1') {
+            if (!process.env.GROQ_API_KEY) {
+                console.log('⚠️  --translate ignoré : GROQ_API_KEY absent.');
+            } else {
+                try {
+                    console.log('\n🌍 Traduction FR du contenu non-français…');
+                    require('child_process').execSync('node translate-recipes-fr.js', { cwd: __dirname, stdio: 'inherit' });
+                } catch (e) {
+                    console.error('⚠️  Traduction échouée (non bloquant) :', e.message);
+                }
+            }
+        }
+
     } catch (error) {
         console.error("\n❌ Erreur de synchronisation :", error.message);
         process.exit(1);
