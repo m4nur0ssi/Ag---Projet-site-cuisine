@@ -2,11 +2,223 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/06/2026 12:35:23
+ * Dernière mise à jour: 09/06/2026 12:51:52
  * Total: 356 recettes
  */
-export const exportSyncId = "1781008523636";
+export const exportSyncId = "1781009512613";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6009",
+        "title": "Bowl Mexicanos comestible",
+        "description": "Un bowl comestible rempli de saveur, de texture et de couleur, avec des Tostacos WOW Guacamole pour une touche croustillante et fraîche.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbowl-salade.jpg&v=1781015889000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7565577514119089416\" data-video-id=\"7565577514119089416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7565577514119089416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Tortilla XL"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Arroz mexicano"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Carne molida"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pulled pork"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Guacamole"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pico de gallo fresco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Sour cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Tostacos WOW Guacamole"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Cilantro fresco"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6011",
+        "title": "Tinga de pollo",
+        "description": "Une recette mexicaine de tinga de poulet, où le poulet effiloché est mijoté dans une sauce relevée aux chipotles, puis servi sur des tostadas avec des garnitures fraîches comme de la crème, de la laitue, du fromage frais et de l'avocat.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FChicken-Tinga-Tostadas8-2-683x1024-1.jpg&v=1781015583000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639882333163752718\" data-video-id=\"7639882333163752718\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639882333163752718\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 1 pechuga de pollo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 cebolla"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 dientes de ajo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 hoja de laurel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Sal al gusto"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 2 jitomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 6 chiles chipotles enlatados"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 diente de ajo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cucharadita de sazonador Golden Garlic de Spanglish Asadero"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cucharadita de consomé de pollo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 taza de caldo de pollo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Aceite"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 cebolla cortada en tiras finas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Tostadas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Crema mexicana"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Lechuga"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Queso fresco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Aguacate"
+            }
+        ],
+        "steps": [
+            "En una olla agrega la pechuga de pollo, 1/2 cebolla, 2 dientes de ajo, la hoja de laurel y sal al gusto. Cubre con agua, tapa y cocina por aproximadamente 45 minutos o hasta que el pollo esté bien cocido.",
+            "Retira el pollo de la olla y deshébralo. En el mismo caldo cocina los jitomates hasta que estén suaves.",
+            "Lleva los jitomates cocidos a la licuadora junto con los chipotles, 1 diente de ajo, el sazonador Golden Garlic, el consomé de pollo y 1 taza de caldo de pollo. Licúa hasta obtener una salsa suave.",
+            "En un sartén agrega un poco de aceite y añade la cebolla en tiras. Cocina por aproximadamente 1 minuto.",
+            "Agrega el pollo deshebrado y mezcla por unos segundos. Vierte la salsa de chipotle y mezcla bien. Si es necesario, agrega un poco más de caldo de pollo.",
+            "Cuando comience a hervir ligeramente, retira del fuego.",
+            "Sirve sobre tostadas y agrega crema, lechuga, queso fresco y aguacate. ¡Disfruta!"
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6013",
+        "title": "Pico de Gallo",
+        "description": "Fresh, easy, and full of flavor! This Mexican-style Pico de Gallo recipe is made with simple, fresh ingredients, perfect for dipping with tortilla chips or adding to tacos, quesadillas, and more.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fi140307-sauce-mexicaine-a-la-tomate.jpeg&v=1781015441000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463605331017485599\" data-video-id=\"7463605331017485599\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463605331017485599\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 3 roma tomatoes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 of red onion"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 serrano peppers"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Small bunch of cilantro"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Juice of 2 limes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Salt to taste"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Mexique",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6017",
         "title": "Nachos",
@@ -822,218 +1034,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "épicé",
-            "Mexique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6013",
-        "title": "Pico de Gallo",
-        "description": "Fresh, easy, and full of flavor! This Mexican-style Pico de Gallo recipe is made with simple, fresh ingredients, perfect for dipping with tortilla chips or adding to tacos, quesadillas, and more.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463605331017485599\" data-video-id=\"7463605331017485599\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463605331017485599\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             3 roma tomatoes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 of red onion"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 serrano peppers"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Small bunch of cilantro"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Juice of 2 limes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt to taste"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Healthy",
-            "Mexique",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6011",
-        "title": "Tinga de pollo",
-        "description": "Une recette mexicaine de tinga de poulet, où le poulet effiloché est mijoté dans une sauce relevée aux chipotles, puis servi sur des tostadas avec des garnitures fraîches comme de la crème, de la laitue, du fromage frais et de l'avocat.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639882333163752718\" data-video-id=\"7639882333163752718\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639882333163752718\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 pechuga de pollo"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cebolla"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 dientes de ajo"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 hoja de laurel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sal al gusto"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             2 jitomates"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6 chiles chipotles enlatados"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 diente de ajo"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cucharadita de sazonador Golden Garlic de Spanglish Asadero"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cucharadita de consomé de pollo"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 taza de caldo de pollo"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Aceite"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cebolla cortada en tiras finas"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Tostadas"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Crema mexicana"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Lechuga"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Queso fresco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Aguacate"
-            }
-        ],
-        "steps": [
-            "En una olla agrega la pechuga de pollo, 1/2 cebolla, 2 dientes de ajo, la hoja de laurel y sal al gusto. Cubre con agua, tapa y cocina por aproximadamente 45 minutos o hasta que el pollo esté bien cocido.",
-            "Retira el pollo de la olla y deshébralo. En el mismo caldo cocina los jitomates hasta que estén suaves.",
-            "Lleva los jitomates cocidos a la licuadora junto con los chipotles, 1 diente de ajo, el sazonador Golden Garlic, el consomé de pollo y 1 taza de caldo de pollo. Licúa hasta obtener una salsa suave.",
-            "En un sartén agrega un poco de aceite y añade la cebolla en tiras. Cocina por aproximadamente 1 minuto.",
-            "Agrega el pollo deshebrado y mezcla por unos segundos. Vierte la salsa de chipotle y mezcla bien. Si es necesario, agrega un poco más de caldo de pollo.",
-            "Cuando comience a hervir ligeramente, retira del fuego.",
-            "Sirve sobre tostadas y agrega crema, lechuga, queso fresco y aguacate. ¡Disfruta!"
-        ],
-        "tags": [
-            "épicé",
-            "Mexique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6009",
-        "title": "BOWLS MEXICANOS COMESTIBLES",
-        "description": "Un bowl comestible rempli de saveur, de texture et de couleur, avec des Tostacos WOW Guacamole pour une touche croustillante et fraîche.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7565577514119089416\" data-video-id=\"7565577514119089416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7565577514119089416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Tortilla XL"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Arroz mexicano"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Carne molida"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pulled pork"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Guacamole"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pico de gallo fresco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sour cream"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Tostacos WOW Guacamole"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cilantro fresco"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
             "Mexique"
         ],
         "isFeatured": false,
