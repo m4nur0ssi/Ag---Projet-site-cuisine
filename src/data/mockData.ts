@@ -2,16 +2,104 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/06/2026 11:10:59
+ * Dernière mise à jour: 09/06/2026 11:18:10
  * Total: 357 recettes
  */
-export const exportSyncId = "1781003459333";
+export const exportSyncId = "1781003890620";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6021",
+        "title": "Riz Mexicain Poulet au Miel",
+        "description": "Un plat complet et savoureux de riz mexicain accompagné de poulet au miel, relevé par des épices et des légumes, parfait pour un repas convivial.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FRiz_mexiciane_poulet_onde_pot.jpg&v=1781010667000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636062270534995222\" data-video-id=\"7636062270534995222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636062270534995222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 4/5 hauts de cuisses de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n 200 g de riz basmati"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 Poivron coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Un filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Une cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 Gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Une cuillère à café de curry"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Une cuillère à soupe d'épices mexicaines"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Une cuillère à café d'arôme du Sud"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Une cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Une grosse tasse d'eau bouillante avec un cube bouillon de volaille diluée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Coriandre (pour la décoration)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Citron (pour la décoration)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6023",
         "title": "Loaded Nacho Fries",
         "description": "Des frites croustillantes garnies de fromage fondu, de bœuf haché assaisonné au taco, de guacamole crémeux, de pico de gallo frais et d'une touche de crème aigre.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FLoaded-Nacho-Fries-6.jpg&v=1781010284000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FLoaded-Nacho-Fries-6.jpg&v=1781010426000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -517,94 +605,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Pas cher",
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6021",
-        "title": "Riz Mexicain Poulet au Miel",
-        "description": "Un plat complet et savoureux de riz mexicain accompagné de poulet au miel, relevé par des épices et des légumes, parfait pour un repas convivial.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636062270534995222\" data-video-id=\"7636062270534995222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636062270534995222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             4/5 hauts de cuisses de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             200 g de riz basmati"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 Poivron coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Un filet d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Une cuillère à soupe de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 Gousses d'ail hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une cuillère à café de curry"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une cuillère à soupe d'épices mexicaines"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Une cuillère à café d'arôme du Sud"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une cuillère à café de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Une grosse tasse d'eau bouillante avec un cube bouillon de volaille diluée"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre (pour la décoration)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Citron (pour la décoration)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Mexique"
         ],
         "isFeatured": false,
         "isFavorite": false,
