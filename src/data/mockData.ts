@@ -2,11 +2,79 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/06/2026 11:35:32
- * Total: 357 recettes
+ * Dernière mise à jour: 09/06/2026 12:35:23
+ * Total: 356 recettes
  */
-export const exportSyncId = "1781004932533";
+export const exportSyncId = "1781008523636";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6017",
+        "title": "Nachos",
+        "description": "Une recette de nachos avec de la viande hachée, du cheddar, des jalapeños et des haricots rouges, parfaite pour un plat mexicain relevé.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fnachos.jpg&v=1781011922000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7172597855956290821\" data-video-id=\"7172597855956290821\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7172597855956290821\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 250g de nachos nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n 200g de viande haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 150g cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1cas sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 demi oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2/3 petit jalapenos"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n petite conserve de haricot rouge"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6019",
         "title": "Taco Bowl maison",
@@ -674,102 +742,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Salades",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6038",
-        "title": "Flan 4 ingrédients",
-        "description": "Délicieux flan avec seulement 4 ingrédients",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7597106580735282454\" data-video-id=\"7597106580735282454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7597106580735282454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Pas cher",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6017",
-        "title": "Nachos",
-        "description": "Une recette de nachos avec de la viande hachée, du cheddar, des jalapeños et des haricots rouges, parfaite pour un plat mexicain relevé.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7172597855956290821\" data-video-id=\"7172597855956290821\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7172597855956290821\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             250g de nachos nature"
-            },
-            {
-                "quantity": "",
-                "name": "🥩\n             200g de viande haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             150g cheddar râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1cas sauce Worcestershire"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 demi oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2/3 petit jalapenos"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             petite conserve de haricot rouge"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Mexique"
         ],
         "isFeatured": false,
         "isFavorite": false,
