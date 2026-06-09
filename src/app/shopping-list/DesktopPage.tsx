@@ -6,8 +6,8 @@ import WeekMenuCarousel from '@/components/WeekMenuCarousel/WeekMenuCarousel';
 import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone } from '@/lib/ingredients';
 import type { ConsolItem } from '@/lib/ingredients';
 import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
-import { STORE_BY_ID, usePreferredStore } from '@/lib/stores';
-import StoreSelector from '@/components/StoreSelector/StoreSelector';
+import { STORE_BY_ID, usePreferredStore, storeSearchWithQueue } from '@/lib/stores';
+import StoreButton from '@/components/StoreSelector/StoreButton';
 import styles from './shopping-list.module.css';
 
 interface ListData {
@@ -222,9 +222,10 @@ export default function ShoppingListPage() {
     const openCarrefourFor = (i: number) => {
         const it = selectedItems[i];
         if (!it) return;
-        // #12 : fenêtre nommée 'storeCart' réutilisée → reste sur l'onglet magasin,
-        // le moteur de recherche relance directement le produit suivant.
-        window.open(STORE_BY_ID[store].search(carrefourTerm(it.name)), 'storeCart');
+        // #12 : fenêtre nommée 'storeCart' réutilisée + file complète (#mlist) →
+        // l'extension fait défiler les produits sans changer d'onglet.
+        const queue = selectedItems.map(x => carrefourTerm(x.name));
+        window.open(storeSearchWithQueue(store, queue, i), 'storeCart');
         markDone(it); // recherché → rayé automatiquement
     };
     const startCarrefour = () => { if (!selectedItems.length) return; setCarrefourIdx(0); openCarrefourFor(0); };
@@ -414,8 +415,7 @@ export default function ShoppingListPage() {
                         </button>
                         <button onClick={shareWhatsApp} style={btnStyle('#25D366')} title="WhatsApp"><WhatsAppIcon /></button>
                         {/* Sélecteur magasin (dropdown logos, choix global) */}
-                        <StoreSelector compact />
-                        <button onClick={startCarrefour} style={btnStyle(STORE_BY_ID[store].color)} title={`Commander sur ${STORE_BY_ID[store].label}`}>🛒 {STORE_BY_ID[store].label}</button>
+                        <StoreButton onLaunch={startCarrefour} />
                     </div>
                 )}
 
