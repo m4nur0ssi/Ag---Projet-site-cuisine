@@ -2,11 +2,172 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/06/2026 10:48:39
+ * Dernière mise à jour: 09/06/2026 11:10:59
  * Total: 357 recettes
  */
-export const exportSyncId = "1781002119534";
+export const exportSyncId = "1781003459333";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6023",
+        "title": "Loaded Nacho Fries",
+        "description": "Des frites croustillantes garnies de fromage fondu, de bœuf haché assaisonné au taco, de guacamole crémeux, de pico de gallo frais et d'une touche de crème aigre.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FLoaded-Nacho-Fries-6.jpg&v=1781010284000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613995667966545173\" data-video-id=\"7613995667966545173\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613995667966545173\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 400 g de frites surgelées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Huile pour la friture"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 5-6 tranches de fromage (cheddar)"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n 250 g de bœuf haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cuillères à soupe d'assaisonnement pour tacos"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 2 cuillères à soupe d'eau (facultatif, si le bœuf est sec)"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n 3 avocats mûrs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de sel d'ail + poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1-2 cuillères à café de jus de citron vert ou de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ½ tasse de pico de gallo (acheté ou fait maison)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Crème aigre, pour arroser"
+            }
+        ],
+        "steps": [
+            "Faire cuire les frites : Chauffer l'huile dans une friteuse ou une casserole profonde à environ 175-180°C (350°F). Frire les frites surgelées jusqu'à ce qu'elles soient dorées et très croustillantes, environ 4-6 minutes. Retirer et égoutter sur du papier absorbant.",
+            "Préparer le bœuf haché façon taco : Chauffer une poêle à feu moyen. Ajouter le bœuf haché et cuire jusqu'à ce qu'il soit doré, en le brisant pendant la cuisson. Incorporer l'assaisonnement pour tacos et l'eau. Laisser mijoter 2-3 minutes jusqu'à ce que le bœuf soit bien enrobé et savoureux.",
+            "Préparer le guacamole : Dans un bol, écraser les avocats jusqu'à obtenir une consistance presque lisse. Incorporer le sel d'ail + poivre et le jus de citron vert (ou de citron). Goûter et ajuster l'assaisonnement si nécessaire.",
+            "Faire fondre le fromage : Placer les frites chaudes dans un grand bol ou une assiette. Disposer 5-6 tranches de fromage sur les frites. Passer au micro-ondes pendant 30-45 secondes, ou jusqu'à ce que le fromage soit fondu et coulant.",
+            "Assembler : Garnir les frites au fromage avec : le bœuf haché assaisonné façon taco, le pico de gallo, le guacamole, la crème aigre."
+        ],
+        "tags": [
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6025",
+        "title": "Bola de Berlim",
+        "description": "La Bola de Berlim, une de mes pâtisseries préférées qui a bercé toute mon enfance. Une recette de beignets portugais fourrés à la crème pâtissière.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbola.jpg.jpg&v=1781009209000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7423038042333662496\" data-video-id=\"7423038042333662496\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7423038042333662496\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 500g farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 70g sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cac levure boulangère"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 100g lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 60g beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cac sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100ml eau (ou 80ml pour la version + sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 140g sucre (ou 180g pour la version + sucrée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 20g beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 20ml eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 8 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 2 cas farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 sachet de sucre vanillé"
+            }
+        ],
+        "steps": [
+            "Assembler tous les ingrédients des beignets (sauf le beurre), mélanger et pétrir pendant 10 minutes.",
+            "Ajouter le beurre mou et pétrir à nouveau pendant 10 minutes.",
+            "Laisser la pâte des beignets reposer 1h30 minimum.",
+            "Former des pâtons, les placer sur des morceaux de papier cuisson, recouvrir et laisser reposer 1h minimum.",
+            "Dans une casserole, mélanger le sucre et l'eau (pour le sirop de la crème), ajouter le beurre, porter à ébullition et éteindre le feu. Laisser le sirop refroidir 5 minutes.",
+            "Dans un bol, mélanger la farine, les jaunes d'œufs, le sucre vanillé et l'eau (20ml). Ajouter petit à petit le sirop légèrement chaud tout en remuant.",
+            "Verser le mélange dans une casserole, chauffer à feu doux et mélanger avec un fouet jusqu'à ce que ça s'épaississe.",
+            "Verser la crème dans un bol, filmer au contact et placer au frigo pendant 2h minimum.",
+            "Chauffer une casserole avec de l'huile sur feu doux (environ 160 degrés).",
+            "Faire frire les beignets de chaque côté pendant quelques minutes puis les recouvrir de sucre.",
+            "Mettre la crème dans une poche à douille et fourrer les beignets."
+        ],
+        "tags": [
+            "Espagne",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6027",
         "title": "Beignets aux pommes",
@@ -356,167 +517,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Pas cher",
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6025",
-        "title": "Bola de Berlim",
-        "description": "La Bola de Berlim, une de mes pâtisseries préférées qui a bercé toute mon enfance. Une recette de beignets portugais fourrés à la crème pâtissière.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7423038042333662496\" data-video-id=\"7423038042333662496\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7423038042333662496\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             500g farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             70g sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cac levure boulangère"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 oeufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100g lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             60g beurre mou"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cac sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100ml eau (ou 80ml pour la version + sucrée)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             140g sucre (ou 180g pour la version + sucrée)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             20g beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             20ml eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             8 jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             2 cas farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé"
-            }
-        ],
-        "steps": [
-            "Assembler tous les ingrédients des beignets (sauf le beurre), mélanger et pétrir pendant 10 minutes.",
-            "Ajouter le beurre mou et pétrir à nouveau pendant 10 minutes.",
-            "Laisser la pâte des beignets reposer 1h30 minimum.",
-            "Former des pâtons, les placer sur des morceaux de papier cuisson, recouvrir et laisser reposer 1h minimum.",
-            "Dans une casserole, mélanger le sucre et l'eau (pour le sirop de la crème), ajouter le beurre, porter à ébullition et éteindre le feu. Laisser le sirop refroidir 5 minutes.",
-            "Dans un bol, mélanger la farine, les jaunes d'œufs, le sucre vanillé et l'eau (20ml). Ajouter petit à petit le sirop légèrement chaud tout en remuant.",
-            "Verser le mélange dans une casserole, chauffer à feu doux et mélanger avec un fouet jusqu'à ce que ça s'épaississe.",
-            "Verser la crème dans un bol, filmer au contact et placer au frigo pendant 2h minimum.",
-            "Chauffer une casserole avec de l'huile sur feu doux (environ 160 degrés).",
-            "Faire frire les beignets de chaque côté pendant quelques minutes puis les recouvrir de sucre.",
-            "Mettre la crème dans une poche à douille et fourrer les beignets."
-        ],
-        "tags": [
-            "Espagne",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6023",
-        "title": "Loaded Nacho Fries",
-        "description": "Des frites croustillantes garnies de fromage fondu, de bœuf haché assaisonné au taco, de guacamole crémeux, de pico de gallo frais et d'une touche de crème aigre.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613995667966545173\" data-video-id=\"7613995667966545173\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613995667966545173\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             400 g de frites surgelées"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile pour la friture"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             5-6 tranches de fromage (cheddar)"
-            },
-            {
-                "quantity": "",
-                "name": "🥩\n             250 g de bœuf haché"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à soupe d'assaisonnement pour tacos"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             2 cuillères à soupe d'eau (facultatif, si le bœuf est sec)"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             3 avocats mûrs"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de sel d'ail + poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1-2 cuillères à café de jus de citron vert ou de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ½ tasse de pico de gallo (acheté ou fait maison)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème aigre, pour arroser"
-            }
-        ],
-        "steps": [
-            "Faire cuire les frites : Chauffer l'huile dans une friteuse ou une casserole profonde à environ 175-180°C (350°F). Frire les frites surgelées jusqu'à ce qu'elles soient dorées et très croustillantes, environ 4-6 minutes. Retirer et égoutter sur du papier absorbant.",
-            "Préparer le bœuf haché façon taco : Chauffer une poêle à feu moyen. Ajouter le bœuf haché et cuire jusqu'à ce qu'il soit doré, en le brisant pendant la cuisson. Incorporer l'assaisonnement pour tacos et l'eau. Laisser mijoter 2-3 minutes jusqu'à ce que le bœuf soit bien enrobé et savoureux.",
-            "Préparer le guacamole : Dans un bol, écraser les avocats jusqu'à obtenir une consistance presque lisse. Incorporer le sel d'ail + poivre et le jus de citron vert (ou de citron). Goûter et ajuster l'assaisonnement si nécessaire.",
-            "Faire fondre le fromage : Placer les frites chaudes dans un grand bol ou une assiette. Disposer 5-6 tranches de fromage sur les frites. Passer au micro-ondes pendant 30-45 secondes, ou jusqu'à ce que le fromage soit fondu et coulant.",
-            "Assembler : Garnir les frites au fromage avec : le bœuf haché assaisonné façon taco, le pico de gallo, le guacamole, la crème aigre."
-        ],
-        "tags": [
-            "Mexique"
         ],
         "isFeatured": false,
         "isFavorite": false,
