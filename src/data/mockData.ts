@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6082",
         "title": "SALMOREJO",
         "description": "Une soupe froide espagnole rafraîchissante à base de tomates et de pain, traditionnellement garnie d'œufs durs et de jambon ibérique, parfaite pour l'été.",
-        "image": "/images/recipe-placeholder.jpg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6082_1781033557925.jpg&v=1781033633000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
