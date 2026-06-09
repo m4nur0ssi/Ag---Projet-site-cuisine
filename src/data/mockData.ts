@@ -2,86 +2,86 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/06/2026 10:12:36
+ * Dernière mise à jour: 09/06/2026 10:31:27
  * Total: 357 recettes
  */
-export const exportSyncId = "1780999956320";
+export const exportSyncId = "1781001087696";
 export const mockRecipes: Recipe[] = [
     {
         "id": "6034",
         "title": "Salade de pommes de terre au thon et tomates confites",
         "description": "Une salade de pommes de terre gourmande et fraîche, agrémentée de thon, de tomates cerises confites, d'ail, de thym et de citron. Facile à préparer, elle peut être dégustée tiède ou froide, garnie de parmesan et de basilic frais.",
-        "image": "/images/recipe-placeholder.jpg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FHF_Y24_R226_W24_FR_QFR15705-2_Main_high-d8cb6774.jpg.jpg&v=1781007655000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647894399292132641\" data-video-id=\"7647894399292132641\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647894399292132641\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647894399292132641\" data-video-id=\"7647894399292132641\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647894399292132641\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍅\n             500g de tomates cerises"
+                "name": "🍅\n 500g de tomates cerises"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 oignon émincé"
+                "name": "🧅\n 1 oignon émincé"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
+                "name": "🧄\n 2 gousses d'ail"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             1 cas de thym"
+                "name": "🌿\n 1 cas de thym"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             3 cas de soja salé"
+                "name": "🥣\n 3 cas de soja salé"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             4 cas d'huile d'olive"
+                "name": "🍾\n 4 cas d'huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🍎\n             500g de pommes de terre (coupées en petits cubes)"
+                "name": "🍎\n 500g de pommes de terre (coupées en petits cubes)"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel"
+                "name": "🧂\n Sel"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile neutre"
+                "name": "🍾\n Huile neutre"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             10g de beurre"
+                "name": "🧈\n 10g de beurre"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             7g de persil ciselé"
+                "name": "🧂\n 7g de persil ciselé"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 boîte de thon"
+                "name": "🥣\n 1 boîte de thon"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Le zeste d'1 citron"
+                "name": "🍋\n Le zeste d'1 citron"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             1 cas de miel"
+                "name": "🍯\n 1 cas de miel"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             Parmesan râpé"
+                "name": "🧀\n Parmesan râpé"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Basilic frais"
+                "name": "🌿\n Basilic frais"
             }
         ],
         "steps": [
@@ -98,6 +98,34 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Salades",
             "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6038",
+        "title": "Flan 4 ingrédients",
+        "description": "Délicieux flan avec seulement 4 ingrédients",
+        "image": "/images/recipe-placeholder.jpg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7597106580735282454\" data-video-id=\"7597106580735282454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7597106580735282454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Pas cher",
+            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -6907,80 +6935,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Pâques",
             "Soupes"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5570",
-        "title": "Pasta alla Montecarlo",
-        "description": "Une recette de pâtes crémeuses à la Montecarlo avec du bœuf haché, du pesto et une touche de peperoncini, pour un goût de vacances 5 étoiles.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fdirection-l-italie-avec-la-recette-des-pasta-alla-montecarlo.jpg&v=1779208095000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7531348013638225174\" data-video-id=\"7531348013638225174\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7531348013638225174\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n 300g Penne"
-            },
-            {
-                "quantity": "",
-                "name": "🥩\n 250g bœuf haché frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 2 Zwiebeln (oignons)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 Peperoncini"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 30g Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 1 EL Tomatenmark (1 cuillère à soupe de concentré de tomate)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 2 EL selbst gemachtes Pesto (2 cuillères à soupe de pesto maison)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 200ml Sahne (crème)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 100ml Weißwein (vin blanc)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Olivenöl (huile d'olive)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Salz & Pfeffer (sel et poivre)"
-            }
-        ],
-        "steps": [
-            "Préparation : Couper l'oignon en dés et hacher finement le peperoncini.",
-            "Préparer la sauce : Mettre les oignons et le peperoncini dans une poêle et faire revenir brièvement pendant 1-2 minutes. Ajouter ensuite le bœuf haché et le faire dorer.",
-            "Cuire les pâtes : Mettre les pâtes dans une casserole d'eau salée et les cuire al dente.",
-            "Cuire la sauce : Ajouter 1 cuillère à soupe de concentré de tomate dans la poêle et bien mélanger. Déglacer ensuite le tout avec un bon filet de vin blanc. Ajouter maintenant la crème dans la poêle. Incorporer 2 cuillères à soupe de pesto frais maison dans la sauce et bien mélanger. Assaisonner avec du sel et du poivre pour donner du goût à la sauce. Pour ceux qui aiment plus crémeux, ajouter une louche d'eau de cuisson des pâtes dans la poêle.",
-            "Ajouter les pâtes à la sauce : Mettre les pâtes directement dans la poêle. Retirer ensuite la poêle du feu, ajouter le Parmesan et bien mélanger le tout.",
-            "Dressage : Répartir les pâtes dans l'assiette et garnir de Parmesan."
-        ],
-        "tags": [
-            "épicé",
-            "Italie",
-            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
