@@ -30,7 +30,7 @@
         if (host.includes('carrefour')) return `https://www.carrefour.fr/s?q=${q}`;
         if (host.includes('picard'))    return `https://www.picard.fr/recherche?q=${q}`;
         if (host.includes('monoprix'))  return `https://courses.monoprix.fr/search?q=${q}`;
-        if (host.includes('franprix'))  return `https://www.franprix.fr/recherche?q=${q}`;
+        if (host.includes('franprix'))  return `https://www.franprix.fr/search/${q}`;
         return `https://www.google.com/search?q=${q}`;
     }
 
