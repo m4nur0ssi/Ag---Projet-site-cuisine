@@ -11,6 +11,7 @@
     right: 0;
     z-index: 1000;
     background: var(--color-bg-secondary);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     width: 100%;
@@ -46,6 +47,7 @@
     font-weight: 600;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     transition: var(--transition-smooth);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
 }
 

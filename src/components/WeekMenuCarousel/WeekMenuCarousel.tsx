@@ -162,7 +162,7 @@ function DayCard({ day, plan, index, scrollX, step, selected, onSelect, done, in
     );
 }
 
-export default function WeekMenuCarousel() {
+export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'jourj' } = {}) {
     const [plan, setPlan] = useState<Plan>({});
     const [active, setActive] = useState(0);
     const [step, setStep] = useState(0);
@@ -263,8 +263,8 @@ export default function WeekMenuCarousel() {
     // Colonnes affichées : la semaine + éventuellement une section Jour J (si l'utilisateur
     // a choisi de NE PAS la fusionner) après Dimanche.
     const colHasRecipe = (c: string) => { const p = plan[c]; return !!p && Object.keys(p).length > 0; };
-    const showJourJ = !jourjFused && colHasRecipe('JourJ');
-    const COLS = showJourJ ? [...DAYS, 'JourJ'] : DAYS;
+    // Onglet "Jour J" dédié → seule la colonne JourJ ; sinon les 7 jours de la semaine.
+    const COLS = view === 'jourj' ? ['JourJ'] : DAYS;
     const segLabel = (c: string) => (c === 'JourJ' ? 'JJ' : c);
     const colFull = (c: string) => (c === 'JourJ' ? 'Jour J' : FULL[c]);
 
@@ -316,7 +316,7 @@ export default function WeekMenuCarousel() {
 
             <div ref={trackRef} className={styles.track} onScroll={onScroll}>
                 {COLS.map((d, i) => (
-                    <div key={d} ref={(el) => { cardEls.current[i] = el; }} className={styles.snap}>
+                    <div key={d} ref={(el) => { cardEls.current[i] = el; }} className={styles.snap} onMouseEnter={() => goTo(i)}>
                         <DayCard day={d} plan={plan} index={i} scrollX={scrollX} step={step} selected={selected} onSelect={toggleSelect} done={done} ingSel={ingSel} onToggleDone={toggleDone} onToggleIngSel={toggleIngSel} onShopped={onShopped} />
                     </div>
                 ))}

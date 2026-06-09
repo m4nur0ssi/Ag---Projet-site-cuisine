@@ -107,6 +107,7 @@
     padding: 0 14px;
     height: 44px; /* Matches headerActions padding + size */
     background: rgba(220, 225, 220, 0.5);
+    -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border-radius: 100px;
@@ -155,6 +156,7 @@
     padding: 0 16px;
     height: 36px;
     background: rgba(220, 225, 220, 0.3);
+    -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border-radius: 100px;
@@ -185,6 +187,7 @@
     align-items: center;
     justify-content: center;
     background: rgba(var(--badge-color-rgb, 127, 13, 242), 0.15);
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 100px;
@@ -216,6 +219,7 @@
     gap: 8px;
     padding: 6px 12px;
     background: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border-radius: 100px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -281,6 +285,7 @@
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     background: var(--glass-bg-dark);
+    -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border-bottom: 1px solid var(--glass-border);
@@ -317,6 +322,7 @@
     gap: 12px;
     padding: 6px 14px;
     background: rgba(220, 225, 220, 0.5); /* Slightly greyish clear translucent pill */
+    -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border-radius: 100px;
@@ -404,6 +410,7 @@
     gap: 4px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     color: white;
 }

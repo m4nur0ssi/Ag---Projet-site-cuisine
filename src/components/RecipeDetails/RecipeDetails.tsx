@@ -394,6 +394,35 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         }
     };
 
+    // #6 — Ajoute les ingrédients cochés à la liste "recettes individuelles"
+    // (clé = recipe.id dans magic-shopping-list). Retourne le nb d'articles ajoutés.
+    const addCheckedToCart = (): number => {
+        if (typeof window === 'undefined') return 0;
+        const selectedIngredients = recipe.ingredients
+            .filter((_, idx) => checkedIngredients[idx])
+            .map(ing => {
+                const cleanName = ing.name.replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF]+\s*/, '');
+                return ing.quantity
+                    ? `${scaleQuantity(ing.quantity, ratio)} ${cleanName}`
+                    : `${scaleQuantity(cleanName, ratio)}`;
+            });
+        if (selectedIngredients.length === 0) return 0;
+        try {
+            const existingData = JSON.parse(window.localStorage.getItem('magic-shopping-list') || '{}');
+            existingData[recipe.id] = {
+                title: recipe.title,
+                image: recipe.image,
+                ingredients: selectedIngredients.map(name => ({ name, checked: false })),
+            };
+            window.localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
+            window.dispatchEvent(new Event('shoppingListUpdated'));
+            triggerHaptic();
+        } catch (e) {
+            console.error('addCheckedToCart', e);
+        }
+        return selectedIngredients.length;
+    };
+
     const difficultyColors = {
         facile: '#10b981',
         moyen: '#f59e0b',
@@ -960,9 +989,18 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         <div className={styles.stickyPanelHeader}>
                             <div className={styles.ingredientsActionBlock}>
                                 <div className={styles.ingredientProgress}>
-                                    <span className={styles.ingredientProgressText}>
-                                        {checkedCount} sélectionné{checkedCount > 1 ? 's' : ''}
-                                    </span>
+                                    <button
+                                        type="button"
+                                        onClick={() => { addCheckedToCart(); router.push('/shopping-list'); }}
+                                        aria-label={checkedCount > 0 ? `Ajouter ${checkedCount} article(s) et voir la liste de courses` : 'Voir la liste de courses'}
+                                        title={checkedCount > 0 ? `${checkedCount} article(s) — ajouter et voir la liste` : 'Voir la liste de courses'}
+                                        style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.55rem', lineHeight: 1, padding: '2px 4px' }}
+                                    >
+                                        🛒
+                                        {checkedCount > 0 && (
+                                            <span style={{ position: 'absolute', top: -6, right: -8, minWidth: 18, height: 18, padding: '0 4px', borderRadius: 9, background: '#ff3b30', color: '#fff', fontSize: '0.7rem', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1, boxSizing: 'border-box' }}>{checkedCount}</span>
+                                        )}
+                                    </button>
                                 </div>
                                 <div className={styles.tabActionsUnified}>
                                     <PortionsControl
