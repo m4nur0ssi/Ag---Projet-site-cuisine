@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { carrefourTerm } from '@/lib/ingredients';
 import type { ConsolItem } from '@/lib/ingredients';
 import { usePreferredStore, STORE_BY_ID } from '@/lib/stores';
-import StoreSelector from '@/components/StoreSelector/StoreSelector';
+import StoreButton from '@/components/StoreSelector/StoreButton';
 import styles from './ShopActions.module.css';
 
 interface ShopActionsProps {
@@ -51,8 +51,7 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
         <>
             <div className={`${styles.bar} ${size === 'md' ? styles.barMd : ''}`}>
                 <button className={styles.shareBtn} onClick={(e) => { e.stopPropagation(); share(); }}>↗ Partager</button>
-                <StoreSelector compact />
-                <button className={styles.carreBtn} style={{ background: shop.color }} onClick={(e) => { e.stopPropagation(); setIdx(0); openStore(0); }}>🛒 {shop.label}</button>
+                <StoreButton onLaunch={() => { setIdx(0); openStore(0); }} />
             </div>
 
             {idx !== null && list[idx] && (

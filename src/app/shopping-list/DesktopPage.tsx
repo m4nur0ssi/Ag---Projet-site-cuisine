@@ -7,7 +7,7 @@ import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, d
 import type { ConsolItem } from '@/lib/ingredients';
 import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
 import { STORE_BY_ID, usePreferredStore } from '@/lib/stores';
-import StoreSelector from '@/components/StoreSelector/StoreSelector';
+import StoreButton from '@/components/StoreSelector/StoreButton';
 import styles from './shopping-list.module.css';
 
 interface ListData {
@@ -414,8 +414,7 @@ export default function ShoppingListPage() {
                         </button>
                         <button onClick={shareWhatsApp} style={btnStyle('#25D366')} title="WhatsApp"><WhatsAppIcon /></button>
                         {/* Sélecteur magasin (dropdown logos, choix global) */}
-                        <StoreSelector compact />
-                        <button onClick={startCarrefour} style={btnStyle(STORE_BY_ID[store].color)} title={`Commander sur ${STORE_BY_ID[store].label}`}>🛒 {STORE_BY_ID[store].label}</button>
+                        <StoreButton onLaunch={startCarrefour} />
                     </div>
                 )}
 
