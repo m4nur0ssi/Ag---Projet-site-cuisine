@@ -2,11 +2,348 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/06/2026 12:51:52
- * Total: 356 recettes
+ * Dernière mise à jour: 09/06/2026 13:05:55
+ * Total: 355 recettes
  */
-export const exportSyncId = "1781009512613";
+export const exportSyncId = "1781010355833";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6001",
+        "title": "Burrito Mexicain",
+        "description": "Un burrito mexicain complet avec du riz épicé, du guacamole frais et de la viande de bœuf hachée, le tout enveloppé dans une tortilla.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fburrito.jpg&v=1781017145000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7379599553026198817\" data-video-id=\"7379599553026198817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7379599553026198817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n 1/2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n 100g de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 300 ml de bouillon"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 2 c. à café de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment (chilli)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Miel ou sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n 1/2 boîte de haricots rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n 1 avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 400g de viande de bœuf hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika doux"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Tortillas"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Jalapeño"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Crème fraîche"
+            }
+        ],
+        "steps": [
+            "**Pour le riz mexicain :** Faire revenir la moitié d'un oignon et 2 gousses d'ail hachées. Ajouter 100g de riz et faire dorer. Incorporer 2 cuillères à café de concentré de tomate, du piment, du sel, du poivre et du miel ou du sucre. Verser progressivement environ 300 ml de bouillon, en ajoutant au fur et à mesure que le liquide est absorbé. Cuire à couvert jusqu'à ce que le riz soit tendre. Ajouter la moitié d'une boîte de haricots rouges.",
+            "**Pour le guacamole :** Écraser l'avocat. Ajouter le jus d'un citron vert, la tomate coupée en dés, l'oignon rouge haché et du piment.",
+            "**Pour la viande :** Faire revenir 400g de viande de bœuf hachée avec du piment, du sel, du poivre, du paprika doux et 2 gousses d'ail hachées.",
+            "**Assemblage :** Garnir les tortillas avec le riz mexicain, le guacamole, la viande, du cheddar râpé, des jalapeños, de la crème fraîche et un quartier de citron vert."
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6003",
+        "title": "Carne Asada",
+        "description": "Une recette mexicaine classique de Carne Asada, composée de steak de flanc ou de jupe mariné, grillé à la perfection et servi avec du riz mexicain, un guacamole frais et une salsa maison relevée.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FCarne-Asada-35.jpg&v=1781017019000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7499817617310453000\" data-video-id=\"7499817617310453000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7499817617310453000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n flank or skirt steak"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ⅓ cup of fresh lime juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ⅓ cup fresh lemon juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ⅓ cup of fresh orange juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 tsp oregano"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 2 tsp cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 red onion, sliced"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 8 clove garlic, minced"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 cup soy sauce"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cups long-grain white rice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 white onion, chopped"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 tbsp garlic, minced"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cups of chicken stock"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cup tomato sauce"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 tsp cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3 avocados"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 4 tomatoes, sliced"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 jalapenos"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 red onion, diced"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Cilantro, chopped"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 lime, juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n cherry tomatoes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Juice of 1 lime"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 chicken cube"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Ancho chillies"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Guajillo chillies"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 red onion, roughly chopped"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 5 pcs of jalapenos, sliced"
+            }
+        ],
+        "steps": [
+            "Marinate steak in carne asada marinade 30 mins to overnight.",
+            "Sauté onions garlic. Add washed rice and toast. Add crushed tomatoes, chicken broth, cumin and let cook for 15mins on low.",
+            "Add all ingredients under guacamole into a bowl and mash.",
+            "Grill the steak over charcoal until desired doneness.",
+            "In a pan, roast everything under salsa. Add into a blender w/ cilantro, chicken cube.",
+            "Serve the steak over rice along with the sides and enjoy!"
+        ],
+        "tags": [
+            "barbecue",
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6007",
+        "title": "Mexican Street Corn Jalapeño",
+        "description": "Des jalapeño poppers revisités avec une garniture inspirée du maïs de rue mexicain (Elote), parfaits pour un barbecue estival. Ils sont garnis d'un mélange crémeux de maïs rôti, bacon, fromages, crème aigre et épices, puis cuits au four jusqu'à ce...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fstreet.jpg&v=1781016304000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7368844391412288773\" data-video-id=\"7368844391412288773\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7368844391412288773\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 6 jalapeños"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 épis de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 lb (environ 225g) de bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 1/4 tasse de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/4 tasse de fromage pepper jack"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 3 cuillères à soupe de crème aigre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à soupe de tajin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à soupe d'assaisonnement à tacos"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 cuillères à soupe d'oignon coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Sauce piquante au citron vert (ou autre sauce piquante de votre choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fromage frais (cream cheese) à température ambiante"
+            }
+        ],
+        "steps": [
+            "Faire rôtir le maïs.",
+            "Dans un bol, combiner le maïs rôti, le bacon, le fromage cheddar, le fromage pepper jack, la crème aigre, le tajin, l'assaisonnement à tacos, l'oignon coupé en dés, la sauce piquante et le fromage frais à température ambiante.",
+            "Couper les jalapeños en deux et retirer le cœur.",
+            "Farcir les moitiés de jalapeños avec le mélange.",
+            "Garnir le dessus avec un peu plus de maïs et de Tajin.",
+            "Cuire au four à 350°F (environ 175°C) pendant 15 minutes ou jusqu'à ce que le fromage soit bien fondu.",
+            "Déguster !"
+        ],
+        "tags": [
+            "barbecue",
+            "épicé",
+            "Mexique",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6009",
         "title": "Bowl Mexicanos comestible",
@@ -1041,82 +1378,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6007",
-        "title": "Mexican Street Corn Jalapeño Poppers",
-        "description": "Des jalapeño poppers revisités avec une garniture inspirée du maïs de rue mexicain (Elote), parfaits pour un barbecue estival. Ils sont garnis d'un mélange crémeux de maïs rôti, bacon, fromages, crème aigre et épices, puis cuits au four jusqu'à ce...",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7368844391412288773\" data-video-id=\"7368844391412288773\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7368844391412288773\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             6 jalapeños"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 épis de maïs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 lb (environ 225g) de bacon"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1/4 tasse de fromage cheddar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/4 tasse de fromage pepper jack"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             3 cuillères à soupe de crème aigre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de tajin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe d'assaisonnement à tacos"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 cuillères à soupe d'oignon coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Sauce piquante au citron vert (ou autre sauce piquante de votre choix)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fromage frais (cream cheese) à température ambiante"
-            }
-        ],
-        "steps": [
-            "Faire rôtir le maïs.",
-            "Dans un bol, combiner le maïs rôti, le bacon, le fromage cheddar, le fromage pepper jack, la crème aigre, le tajin, l'assaisonnement à tacos, l'oignon coupé en dés, la sauce piquante et le fromage frais à température ambiante.",
-            "Couper les jalapeños en deux et retirer le cœur.",
-            "Farcir les moitiés de jalapeños avec le mélange.",
-            "Garnir le dessus avec un peu plus de maïs et de Tajin.",
-            "Cuire au four à 350°F (environ 175°C) pendant 15 minutes ou jusqu'à ce que le fromage soit bien fondu.",
-            "Déguster !"
-        ],
-        "tags": [
-            "barbecue",
-            "épicé",
-            "Mexique",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6005",
         "title": "Enchiladas à la viande hachée",
         "description": "Des enchiladas mexicaines faciles et rapides à préparer, garnies de viande hachée épicée, d'oignons et de fromage, puis gratinées au four.",
@@ -1175,329 +1436,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Gratins",
             "Mexique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6003",
-        "title": "Carne Asada",
-        "description": "Une recette mexicaine classique de Carne Asada, composée de steak de flanc ou de jupe mariné, grillé à la perfection et servi avec du riz mexicain, un guacamole frais et une salsa maison relevée.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7499817617310453000\" data-video-id=\"7499817617310453000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7499817617310453000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             flank or skirt steak"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ⅓ cup of fresh lime juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ⅓ cup fresh lemon juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ⅓ cup of fresh orange juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             olive oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tsp oregano"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             2 tsp cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 red onion, sliced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             pepper"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             8 clove garlic, minced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cup soy sauce"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cups long-grain white rice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 white onion, chopped"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tbsp garlic, minced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cups of chicken stock"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cup tomato sauce"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 tsp cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 avocados"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tomatoes, sliced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 jalapenos"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 red onion, diced"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cilantro, chopped"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 lime, juice"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             cherry tomatoes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Juice of 1 lime"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 chicken cube"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Ancho chillies"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Guajillo chillies"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 red onion, roughly chopped"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5 pcs of jalapenos, sliced"
-            }
-        ],
-        "steps": [
-            "Marinate steak in carne asada marinade 30 mins to overnight.",
-            "Sauté onions garlic. Add washed rice and toast. Add crushed tomatoes, chicken broth, cumin and let cook for 15mins on low.",
-            "Add all ingredients under guacamole into a bowl and mash.",
-            "Grill the steak over charcoal until desired doneness.",
-            "In a pan, roast everything under salsa. Add into a blender w/ cilantro, chicken cube.",
-            "Serve the steak over rice along with the sides and enjoy!"
-        ],
-        "tags": [
-            "barbecue",
-            "épicé",
-            "Mexique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6001",
-        "title": "Burrito Mexicain",
-        "description": "Un burrito mexicain complet avec du riz épicé, du guacamole frais et de la viande de bœuf hachée, le tout enveloppé dans une tortilla.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7379599553026198817\" data-video-id=\"7379599553026198817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7379599553026198817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             100g de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300 ml de bouillon"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             2 c. à café de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment (chilli)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Miel ou sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             1/2 boîte de haricots rouges"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             1 avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             400g de viande de bœuf hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika doux"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Tortillas"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Cheddar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Jalapeño"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème fraîche"
-            }
-        ],
-        "steps": [
-            "**Pour le riz mexicain :** Faire revenir la moitié d'un oignon et 2 gousses d'ail hachées. Ajouter 100g de riz et faire dorer. Incorporer 2 cuillères à café de concentré de tomate, du piment, du sel, du poivre et du miel ou du sucre. Verser progressivement environ 300 ml de bouillon, en ajoutant au fur et à mesure que le liquide est absorbé. Cuire à couvert jusqu'à ce que le riz soit tendre. Ajouter la moitié d'une boîte de haricots rouges.",
-            "**Pour le guacamole :** Écraser l'avocat. Ajouter le jus d'un citron vert, la tomate coupée en dés, l'oignon rouge haché et du piment.",
-            "**Pour la viande :** Faire revenir 400g de viande de bœuf hachée avec du piment, du sel, du poivre, du paprika doux et 2 gousses d'ail hachées.",
-            "**Assemblage :** Garnir les tortillas avec le riz mexicain, le guacamole, la viande, du cheddar râpé, des jalapeños, de la crème fraîche et un quartier de citron vert."
-        ],
-        "tags": [
-            "épicé",
-            "Mexique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5999",
-        "title": "Pico de Gallo",
-        "description": "Le Pico de Gallo est une salsa fraîche et relevée, typique du Mexique, servie à l'apéritif, avec du guacamole ou en accompagnement de plats pour apporter goût, fraîcheur et piment.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7486376961338576150\" data-video-id=\"7486376961338576150\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7486376961338576150\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             2 tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1/2 piment vert"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre ciselée"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus d'1/2 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Couper deux tomates en dés.",
-            "Couper 1/2 oignon rouge en dés.",
-            "Mélanger les tomates et l'oignon.",
-            "Couper en morceaux 1/2 piment vert après avoir retiré l'intérieur.",
-            "Ajouter un maximum de coriandre ciselée, le jus d'1/2 citron vert, du sel et du poivre.",
-            "Laisser mariner le plus longtemps possible.",
-            "Servir avec des nachos à tremper ou en condiment avec des fajitas, du guacamole, des burritos."
-        ],
-        "tags": [
-            "épicé",
-            "Healthy",
-            "Mexique",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
