@@ -2,11 +2,241 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/06/2026 10:31:27
+ * Dernière mise à jour: 09/06/2026 10:48:39
  * Total: 357 recettes
  */
-export const exportSyncId = "1781001087696";
+export const exportSyncId = "1781002119534";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6027",
+        "title": "Beignets aux pommes",
+        "description": "Recette facile et rapide de beignets aux pommes, c'est un délice !!",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbeignet.jpg.jpg&v=1781008748000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7153690156581522693\" data-video-id=\"7153690156581522693\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7153690156581522693\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 4 Pommes Golden"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 200g Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 25cl Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 50g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Demi cuillère à soupe de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 2 cuillères a soupe d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile neutre pour la cuisson"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6030",
+        "title": "Falafels de haricots verts &#038; pois chiches",
+        "description": "Une recette veggie, originale et ultra savoureuse à tester absolument",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fimages.jpeg&v=1781008407000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7523991857676700950\" data-video-id=\"7523991857676700950\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7523991857676700950\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🫘\n 200g pois chiches cuits"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n 150g haricots verts cuits"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1/2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 bouquet de persil ou coriandre (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 c. à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1/2 c. à café coriandre moulue (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 2-3 c. à soupe de farine ou chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Huile de sésame pour la cuisson"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 4 c. à soupe de tahini"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Jus d'1/2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousse d'ail râpée"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 4 à 6 c. à soupe d'eau froide"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Healthy",
+            "Liban",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6032",
+        "title": "Salade d'Haricots Verts",
+        "description": "Une salade fraîche et savoureuse d'haricots verts, agrémentée de poitrine fumée croustillante, de croûtons de baguette et de parmesan, le tout relevé par une vinaigrette à l'ail et au piment d'Espelette.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fharicot.jpg&v=1781008268000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7470205978101681430\" data-video-id=\"7470205978101681430\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7470205978101681430\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🫘\n 500g d'haricots verts"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Quelques tranches de poitrine fumée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 baguette"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 càc de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 3 càs de vinaigre de vin rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 6 càs d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment d'espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6034",
         "title": "Salade de pommes de terre au thon et tomates confites",
@@ -126,236 +356,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Pas cher",
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6032",
-        "title": "Salade d'Haricots Verts",
-        "description": "Une salade fraîche et savoureuse d'haricots verts, agrémentée de poitrine fumée croustillante, de croûtons de baguette et de parmesan, le tout relevé par une vinaigrette à l'ail et au piment d'Espelette.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7470205978101681430\" data-video-id=\"7470205978101681430\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7470205978101681430\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🫘\n             500g d'haricots verts"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques tranches de poitrine fumée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 baguette"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 càc de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 càs de vinaigre de vin rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             6 càs d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment d'espelette"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cébette"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6030",
-        "title": "Falafels de haricots verts &#038; pois chiches + sauce tahini citron",
-        "description": "Une recette veggie, originale et ultra savoureuse à tester absolument",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7523991857676700950\" data-video-id=\"7523991857676700950\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7523991857676700950\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🫘\n             200g pois chiches cuits"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             150g haricots verts cuits"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 bouquet de persil ou coriandre (optionnel)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c. à café de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1/2 c. à café coriandre moulue (optionnel)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             2-3 c. à soupe de farine ou chapelure"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile de sésame pour la cuisson"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 c. à soupe de tahini"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus d'1/2 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousse d'ail râpée"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             4 à 6 c. à soupe d'eau froide"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Accompagnements",
-            "Healthy",
-            "Liban",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6027",
-        "title": "Beignets aux pommes",
-        "description": "Recette facile et rapide de beignets aux pommes, c'est un délice !!",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7153690156581522693\" data-video-id=\"7153690156581522693\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7153690156581522693\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             4 Pommes Golden"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             200g Farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             25cl Lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 sachet de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             50g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Demi cuillère à soupe de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères a soupe d'huile neutre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile neutre pour la cuisson"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "pâtisserie",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
