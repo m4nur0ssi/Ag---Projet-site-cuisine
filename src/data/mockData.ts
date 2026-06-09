@@ -2,11 +2,108 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/06/2026 11:18:10
+ * Dernière mise à jour: 09/06/2026 11:35:32
  * Total: 357 recettes
  */
-export const exportSyncId = "1781003890620";
+export const exportSyncId = "1781004932533";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6019",
+        "title": "Taco Bowl maison",
+        "description": "Ce Taco Bowl maison est une recette healthy, riche en protéines et pleine de saveurs mexicaines, prête en moins de 15 minutes. Parfait pour un meal prep, un dîner rapide ou un déjeuner stylé pour manger mieux sans se priver.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FTaco-Bowl-Recipe-1.jpg&v=1781011690000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7504037706775792918\" data-video-id=\"7504037706775792918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7504037706775792918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n Riz complet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Viande hachée 5% MT"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Patate douce"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Haricot rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n Avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Jus de citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n Œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Épices mexicaines"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Mexique",
+            "Salades"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6021",
         "title": "Riz Mexicain Poulet au Miel",
@@ -605,103 +702,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Pas cher",
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6019",
-        "title": "Taco Bowl maison",
-        "description": "Ce Taco Bowl maison est une recette healthy, riche en protéines et pleine de saveurs mexicaines, prête en moins de 15 minutes. Parfait pour un meal prep, un dîner rapide ou un déjeuner stylé pour manger mieux sans se priver.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7504037706775792918\" data-video-id=\"7504037706775792918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7504037706775792918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍚\n             Riz complet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Viande hachée 5% MT"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivron rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Patate douce"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Haricot rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             Avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Épices mexicaines"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Mexique",
-            "Salades"
         ],
         "isFeatured": false,
         "isFavorite": false,
