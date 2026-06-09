@@ -2,11 +2,108 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/06/2026 13:05:55
- * Total: 355 recettes
+ * Dernière mise à jour: 09/06/2026 13:21:31
+ * Total: 354 recettes
  */
-export const exportSyncId = "1781010355833";
+export const exportSyncId = "1781011291182";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5996",
+        "title": "Quesadilla de Carne Molida",
+        "description": "Une recette rapide et facile de quesadillas à la viande hachée, garnies de légumes, d'épices et d'un mélange de quatre fromages mexicains, servies avec du guacamole, de la crème et du pico de gallo.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fquesadillas.jpg&v=1781017527000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7187873900028529963\" data-video-id=\"7187873900028529963\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7187873900028529963\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Carne molida (viande hachée)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Aji rojo (piment rouge)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Aji verde (piment vert)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n Cebolla roja (oignon rouge)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Sofrito"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ajo en polvo (ail en poudre)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Pimienta negra (poivre noir)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Orégano"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n Caldo de pollo en polvo (bouillon de poulet en poudre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 4 quesos mexicanos (4 fromages mexicains)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n Tortillas grandes de harina (grandes tortillas de farine)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Mantequilla (beurre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Aceite (huile)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Guacamole (pour accompagner)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n Crema (crème, pour accompagner)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pico de gallo (pour accompagner)"
+            }
+        ],
+        "steps": [
+            "Faire chauffer l'huile dans une poêle.",
+            "Faire revenir les légumes (aji rojo, aji verde, oignon rouge) pendant environ 2 minutes.",
+            "Ajouter la viande hachée, l'émietter et l'assaisonner avec l'ail en poudre, le poivre noir, l'origan et le bouillon de poulet en poudre.",
+            "Incorporer le sofrito (sauce) à la viande et aux légumes.",
+            "Dans une autre poêle, faire chauffer du beurre.",
+            "Placer une tortilla dans la poêle chaude.",
+            "Répartir généreusement le mélange de fromages mexicains sur toute la tortilla.",
+            "Ajouter la préparation de viande hachée sur une moitié de la tortilla.",
+            "Replier la tortilla en deux pour former la quesadilla et la faire dorer des deux côtés jusqu'à ce que le fromage soit fondu et la tortilla croustillante.",
+            "Servir immédiatement, accompagnée de guacamole, de crème et de pico de gallo."
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6001",
         "title": "Burrito Mexicain",
@@ -1435,198 +1532,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Gratins",
-            "Mexique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5996",
-        "title": "Quesadilla de Carne Molida",
-        "description": "Une recette rapide et facile de quesadillas à la viande hachée, garnies de légumes, d'épices et d'un mélange de quatre fromages mexicains, servies avec du guacamole, de la crème et du pico de gallo.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7187873900028529963\" data-video-id=\"7187873900028529963\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7187873900028529963\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Carne molida (viande hachée)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Aji rojo (piment rouge)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Aji verde (piment vert)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Cebolla roja (oignon rouge)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sofrito"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ajo en polvo (ail en poudre)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Pimienta negra (poivre noir)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Orégano"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             Caldo de pollo en polvo (bouillon de poulet en poudre)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 quesos mexicanos (4 fromages mexicains)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Tortillas grandes de harina (grandes tortillas de farine)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Mantequilla (beurre)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Aceite (huile)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Guacamole (pour accompagner)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crema (crème, pour accompagner)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pico de gallo (pour accompagner)"
-            }
-        ],
-        "steps": [
-            "Faire chauffer l'huile dans une poêle.",
-            "Faire revenir les légumes (aji rojo, aji verde, oignon rouge) pendant environ 2 minutes.",
-            "Ajouter la viande hachée, l'émietter et l'assaisonner avec l'ail en poudre, le poivre noir, l'origan et le bouillon de poulet en poudre.",
-            "Incorporer le sofrito (sauce) à la viande et aux légumes.",
-            "Dans une autre poêle, faire chauffer du beurre.",
-            "Placer une tortilla dans la poêle chaude.",
-            "Répartir généreusement le mélange de fromages mexicains sur toute la tortilla.",
-            "Ajouter la préparation de viande hachée sur une moitié de la tortilla.",
-            "Replier la tortilla en deux pour former la quesadilla et la faire dorer des deux côtés jusqu'à ce que le fromage soit fondu et la tortilla croustillante.",
-            "Servir immédiatement, accompagnée de guacamole, de crème et de pico de gallo."
-        ],
-        "tags": [
-            "épicé",
-            "Mexique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5995",
-        "title": "Quesadilla de Carne Molida",
-        "description": "Une recette facile et rapide de quesadillas à la viande hachée, garnies de légumes, d'un mélange de 4 fromages mexicains et servies avec du guacamole, de la crème et du pico de gallo.",
-        "image": "/images/recipe-placeholder.jpg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7187873900028529963\" data-video-id=\"7187873900028529963\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7187873900028529963\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Carne molida (viande hachée)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Ají rojo (poivron rouge)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Ají verde (poivron vert)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Cebolla roja (oignon rouge)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sofrito"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ajo en polvo (ail en poudre)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Pimienta negra (poivre noir)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Orégano"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             Caldo de pollo en polvo (bouillon de poulet en poudre)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 quesos mexicanos (mélange de 4 fromages mexicains)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Tortillas grandes de harina (grandes tortillas de farine)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Mantequilla (beurre)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Aceite (huile)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Guacamole (pour accompagner)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crema (crème fraîche ou aigre, pour accompagner)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pico de gallo (pour accompagner)"
-            }
-        ],
-        "steps": [
-            "Faire chauffer l'huile. Faire revenir les légumes (poivron rouge, poivron vert, oignon rouge) pendant environ 2 minutes.",
-            "Ajouter la viande hachée, l'émietter et commencer à l'assaisonner avec l'ail en poudre, le poivre noir, l'origan et le bouillon de poulet en poudre.",
-            "Ajouter le sofrito et laisser cuire jusqu'à ce que la viande soit prête.",
-            "Chauffer une poêle avec du beurre et y déposer une tortilla.",
-            "Étaler le fromage sur toute la tortilla.",
-            "Ajouter la garniture de viande hachée.",
-            "Fermer la quesadilla (en pliant la tortilla ou en ajoutant une deuxième tortilla par-dessus).",
-            "Laisser dorer des deux côtés jusqu'à ce que le fromage soit fondu.",
-            "Servir accompagné de guacamole, de crème et de pico de gallo. Déguster !"
-        ],
-        "tags": [
             "Mexique"
         ],
         "isFeatured": false,
