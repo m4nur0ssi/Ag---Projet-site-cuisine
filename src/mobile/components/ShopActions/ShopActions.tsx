@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { carrefourTerm } from '@/mobile/lib/ingredients';
 import type { ConsolItem } from '@/mobile/lib/ingredients';
-import { usePreferredStore, STORE_BY_ID } from '@/lib/stores';
+import { usePreferredStore, STORE_BY_ID, storeSearchWithQueue } from '@/lib/stores';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import styles from './ShopActions.module.css';
 
@@ -41,7 +41,8 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
     const openStore = (i: number) => {
         const it = list[i];
         if (!it) return;
-        window.open(shop.search(carrefourTerm(it.name)), 'storeCart');
+        const queue = list.map(x => carrefourTerm(x.name));
+        window.open(storeSearchWithQueue(store, queue, i), 'storeCart');
         onShopped?.(it);
     };
     const go = (i: number) => { const n = Math.max(0, Math.min(i, list.length - 1)); setIdx(n); openStore(n); };
