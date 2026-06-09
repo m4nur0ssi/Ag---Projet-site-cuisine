@@ -264,7 +264,7 @@ export default function Header({
                                                 <PlannerTooltip visible={showPlannerTooltip} midi={todayMeals.midi} soir={todayMeals.soir} anchorRef={pillRef as any} />
                                             </div>
                                         )}
-                                        {shoppingCount > 0 && (
+                                        {authUser && shoppingCount > 0 && (
                                             <Link href="/shopping-list" className={styles.plannerIconBtn} style={{ position: 'relative', fontSize: '1.6rem', lineHeight: 1, textDecoration: 'none', overflow: 'visible' }} title="Liste de courses">
                                                 🛒
                                                 <span className={styles.navFavBadge} style={{ top: '-5px', right: '-7px' }}>{shoppingCount > 99 ? '99+' : shoppingCount}</span>

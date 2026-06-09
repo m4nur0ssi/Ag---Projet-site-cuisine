@@ -161,7 +161,7 @@ function extractRecipeData(post) {
         description: description,
         image: post._embedded?.['wp:featuredmedia']?.[0]?.source_url 
             ? `/api/image-proxy?url=${encodeURIComponent(post._embedded['wp:featuredmedia'][0].source_url.replace(WORDPRESS_LOCAL_IP, WORDPRESS_PUBLIC_IP))}&v=${new Date(post.modified).getTime()}`
-            : "/images/recipe-placeholder.jpg",
+            : "/images/recipe-placeholder.svg",
         category: (() => {
             const title = decodeHtmlEntities(post.title.rendered).toLowerCase();
             const tags = (post._embedded?.['wp:term']?.[1]?.map(tag => tag.name.toLowerCase()) || []);

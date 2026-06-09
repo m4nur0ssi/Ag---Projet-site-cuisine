@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a2233"/>
+      <stop offset="1" stop-color="#1a1620"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="55%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect width="800" height="1000" fill="url(#glow)"/>
+  <g transform="translate(400 430)" fill="none" stroke="#8b7da3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <circle cx="0" cy="0" r="120"/>
+    <circle cx="0" cy="0" r="78"/>
+    <g transform="translate(-205 -40)">
+      <line x1="0" y1="0" x2="0" y2="150"/>
+      <path d="M-14 0 v44 a14 14 0 0 0 28 0 V0"/>
+    </g>
+    <g transform="translate(205 -40)">
+      <path d="M0 0 q26 26 0 70 l0 80"/>
+    </g>
+  </g>
+  <text x="400" y="640" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" fill="#b9aecd">Photo à venir</text>
+  <text x="400" y="690" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#7d7193">Les Recettes Magiques</text>
+</svg>
