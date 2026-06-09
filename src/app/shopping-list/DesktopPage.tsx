@@ -6,14 +6,9 @@ import WeekMenuCarousel from '@/components/WeekMenuCarousel/WeekMenuCarousel';
 import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone } from '@/lib/ingredients';
 import type { ConsolItem } from '@/lib/ingredients';
 import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
+import { STORE_BY_ID, usePreferredStore } from '@/lib/stores';
+import StoreSelector from '@/components/StoreSelector/StoreSelector';
 import styles from './shopping-list.module.css';
-
-type StoreId = 'carrefour' | 'picard' | 'monoprix';
-const STORES: Record<StoreId, { label: string; color: string; logo: string; search: (q: string) => string }> = {
-    carrefour: { label: 'Carrefour', color: '#004E9F', logo: '/images/stores/carrefour.svg', search: q => `https://www.carrefour.fr/s?q=${encodeURIComponent(q)}` },
-    picard:    { label: 'Picard',    color: '#0A4A9F', logo: '/images/stores/picard.svg',    search: q => `https://www.picard.fr/recherche?q=${encodeURIComponent(q)}` },
-    monoprix:  { label: 'Monoprix',  color: '#E6007E', logo: '/images/stores/monoprix.svg',  search: q => `https://www.monoprix.fr/courses/rechercher?q=${encodeURIComponent(q)}` },
-};
 
 interface ListData {
     [key: string]: {
@@ -32,7 +27,7 @@ export default function ShoppingListPage() {
     const [mounted, setMounted] = useState(false);
     const [selected, setSelected] = useState<Set<string>>(new Set());
     const [weekMode, setWeekMode] = useState<'semaine' | 'jourj' | 'fusion' | 'recettes'>('semaine');
-    const [store, setStore] = useState<'carrefour' | 'picard' | 'monoprix'>('carrefour');
+    const [store] = usePreferredStore();
     const [carrefourIdx, setCarrefourIdx] = useState<number | null>(null);
     const [manualName, setManualName] = useState('');
     const [manualQty, setManualQty] = useState('');
@@ -229,7 +224,7 @@ export default function ShoppingListPage() {
         if (!it) return;
         // #12 : fenêtre nommée 'storeCart' réutilisée → reste sur l'onglet magasin,
         // le moteur de recherche relance directement le produit suivant.
-        window.open(STORES[store].search(carrefourTerm(it.name)), 'storeCart');
+        window.open(STORE_BY_ID[store].search(carrefourTerm(it.name)), 'storeCart');
         markDone(it); // recherché → rayé automatiquement
     };
     const startCarrefour = () => { if (!selectedItems.length) return; setCarrefourIdx(0); openCarrefourFor(0); };
@@ -418,26 +413,9 @@ export default function ShoppingListPage() {
                             <ShareIcon /> Partager
                         </button>
                         <button onClick={shareWhatsApp} style={btnStyle('#25D366')} title="WhatsApp"><WhatsAppIcon /></button>
-                        {/* Sélecteur magasin (logos) */}
-                        <div style={{ display: 'flex', gap: 4, alignItems: 'center', padding: '0 4px' }}>
-                            {(Object.keys(STORES) as StoreId[]).map(id => (
-                                <button
-                                    key={id}
-                                    onClick={() => setStore(id)}
-                                    title={STORES[id].label}
-                                    style={{
-                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                        width: 34, height: 34, borderRadius: 10, cursor: 'pointer',
-                                        background: store === id ? 'rgba(255,255,255,0.16)' : 'transparent',
-                                        border: store === id ? `2px solid ${STORES[id].color}` : '2px solid transparent',
-                                        padding: 3,
-                                    }}
-                                >
-                                    <img src={STORES[id].logo} alt={STORES[id].label} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
-                                </button>
-                            ))}
-                        </div>
-                        <button onClick={startCarrefour} style={btnStyle(STORES[store].color)} title={`Commander sur ${STORES[store].label}`}>🛒 {STORES[store].label}</button>
+                        {/* Sélecteur magasin (dropdown logos, choix global) */}
+                        <StoreSelector compact />
+                        <button onClick={startCarrefour} style={btnStyle(STORE_BY_ID[store].color)} title={`Commander sur ${STORE_BY_ID[store].label}`}>🛒 {STORE_BY_ID[store].label}</button>
                     </div>
                 )}
 
@@ -452,8 +430,8 @@ export default function ShoppingListPage() {
                         padding: '14px 16px', zIndex: 101, boxShadow: '0 12px 40px rgba(0,0,0,0.6)'
                     }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.05em', color: STORES[store].color }}>
-                                🛒 {STORES[store].label.toUpperCase()} · {carrefourIdx + 1}/{selectedItems.length}
+                            <span style={{ fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.05em', color: STORE_BY_ID[store].color }}>
+                                🛒 {STORE_BY_ID[store].label.toUpperCase()} · {carrefourIdx + 1}/{selectedItems.length}
                             </span>
                             <button onClick={() => setCarrefourIdx(null)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', fontSize: '0.9rem' }}>✕</button>
                         </div>
@@ -467,8 +445,8 @@ export default function ShoppingListPage() {
                         <div style={{ display: 'flex', gap: 8 }}>
                             <button onClick={() => carrefourGo(carrefourIdx - 1)} disabled={carrefourIdx === 0}
                                 style={{ ...btnStyle('rgba(255,255,255,0.1)'), opacity: carrefourIdx === 0 ? 0.4 : 1 }}>◀</button>
-                            <button onClick={() => openCarrefourFor(carrefourIdx)} style={{ ...btnStyle(STORES[store].color), flex: 1, justifyContent: 'center' }}>
-                                Rechercher sur {STORES[store].label}
+                            <button onClick={() => openCarrefourFor(carrefourIdx)} style={{ ...btnStyle(STORE_BY_ID[store].color), flex: 1, justifyContent: 'center' }}>
+                                Rechercher sur {STORE_BY_ID[store].label}
                             </button>
                             {carrefourIdx < selectedItems.length - 1 ? (
                                 <button onClick={() => carrefourGo(carrefourIdx + 1)} style={btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)')}>Suivant ▶</button>
