@@ -42,6 +42,47 @@
 
     const atLast = state.idx >= state.list.length - 1;
 
+    // --- Force l'exécution de la recherche pour le terme courant ----------
+    // Certains magasins (Monoprix…) remplissent le champ mais NE lancent PAS la
+    // recherche via l'URL : il faut cliquer le bouton. L'extension le fait.
+    function setNativeValue(input, value) {
+        const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+        setter.call(input, value);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    function ensureSearch(term) {
+        let tries = 0;
+        const t = setInterval(() => {
+            tries++;
+            const input = document.querySelector(
+                'input[type="search"], input[name="q"], input[name="search"], input[id*="search" i], input[placeholder*="recherch" i], input[aria-label*="recherch" i]'
+            );
+            if (input) {
+                const cur = (input.value || '').trim().toLowerCase();
+                if (!cur.includes(term.toLowerCase())) {
+                    input.focus();
+                    setNativeValue(input, term);
+                    // 1) clic sur le bouton recherche à côté du champ
+                    const form = input.closest('form');
+                    const scope = form || document;
+                    const btn = scope.querySelector(
+                        'button[type="submit"], button[aria-label*="recherch" i], button[title*="recherch" i], [class*="search" i] button, button[class*="search" i]'
+                    );
+                    if (btn) { btn.click(); }
+                    // 2) fallback : touche Entrée + submit du formulaire
+                    ['keydown', 'keyup'].forEach(type =>
+                        input.dispatchEvent(new KeyboardEvent(type, { key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true }))
+                    );
+                    if (form) { try { form.requestSubmit ? form.requestSubmit() : form.submit(); } catch (_) {} }
+                }
+                clearInterval(t);
+            }
+            if (tries > 24) clearInterval(t); // ~6 s max
+        }, 250);
+    }
+    ensureSearch(state.list[state.idx]);
+
     // --- Widget flottant ---------------------------------------------------
     const box = document.createElement('div');
     box.id = 'magic-courses-widget';
