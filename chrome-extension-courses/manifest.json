@@ -8,8 +8,7 @@
       "matches": [
         "*://*.carrefour.fr/*",
         "*://*.picard.fr/*",
-        "*://*.monoprix.fr/*",
-        "*://*.franprix.fr/*"
+        "*://*.monoprix.fr/*"
       ],
       "js": ["content.js"],
       "css": ["content.css"],
