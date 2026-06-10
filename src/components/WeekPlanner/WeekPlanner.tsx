@@ -252,6 +252,47 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     const fill = (theme?: string) => view === 'semaine' ? fillWeek(theme) : fillJourJ(theme);
 
+    // #2 — Menu IA : Groq compose une semaine équilibrée/variée. Fallback random si échec.
+    const [iaBusy, setIaBusy] = useState(false);
+    const fillIA = async (theme?: string) => {
+        if (view !== 'semaine') { fillJourJ(theme); return; }
+        setIaBusy(true);
+        try {
+            let plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r) && matchesTheme(r, theme));
+            if (plats.length < 14) plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r));
+            const compact = shuffle(plats).slice(0, 120).map(r => ({
+                id: String(r.id), t: r.title,
+                tags: (r.tags || []).slice(0, 4),
+                min: (r.prepTime || 0) + (r.cookTime || 0),
+            }));
+            const slots: { day: string; meal: string }[] = [];
+            DAYS.forEach(d => MEALS.forEach(m => slots.push({ day: d, meal: m })));
+            const res = await fetch('/api/menu-ia', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ recipes: compact, slots, constraints: theme ? `thème : ${theme}` : '' }),
+            });
+            if (!res.ok) throw new Error('api ' + res.status);
+            const data = await res.json();
+            const assignments: any[] = data?.assignments || [];
+            if (!assignments.length) throw new Error('vide');
+            const byId = new Map(mockRecipes.map(r => [String(r.id), r]));
+            const np: Plan = { ...plan };
+            assignments.forEach(a => {
+                const rec = byId.get(String(a.id));
+                if (rec) { np[a.day] = { ...(np[a.day] || {}) }; np[a.day][a.meal] = rec; }
+            });
+            clearSlotChecks(k => !k.startsWith(`${JOUR_J_KEY}|`));
+            save(np);
+            setValidated(false);
+        } catch (e) {
+            // Dégradation douce : on retombe sur l'aléatoire.
+            fillWeek(theme);
+        } finally {
+            setIaBusy(false);
+        }
+    };
+
     // ── Mise à jour de la liste de courses au moment du "Valider" ──
     const collectViewRecipes = () => {
         const map = new Map<string, { recipe: any; count: number }>();
@@ -376,7 +417,10 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
                         {!validated && (
                             <div className={styles.toolbar}>
-                                <button className={styles.randomBtn} onClick={() => fill()}>
+                                <button className={styles.randomBtn} onClick={() => fillIA()} disabled={iaBusy} title="Menu équilibré composé par l'IA">
+                                    {iaBusy ? '✨ Composition…' : '✨ Menu IA'}
+                                </button>
+                                <button className={styles.randomBtn} onClick={() => fill()} disabled={iaBusy}>
                                     🎲 Aléatoire
                                 </button>
                                 {SIDE_GROUPS.map(g => (

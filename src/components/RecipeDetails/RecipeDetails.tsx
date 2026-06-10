@@ -22,6 +22,7 @@ import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
 import WinePairing from '@/components/WinePairing/WinePairing';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
+import CookingJournal from '@/components/CookingJournal/CookingJournal';
 import StarRating from '@/components/StarRating/StarRating';
 import CommentSection from '@/components/CommentSection/CommentSection';
 import RecipeNote from '@/components/RecipeNote/RecipeNote';
@@ -831,6 +832,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     </div>
                 </div>
             )}
+
+            {/* #11 — Carnet de cuisine perso (connectés) */}
+            {recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} />}
 
             {/* Enhanced UI pour restaurants: Badges, Adresse, Boutons Maps et Avis */}
             {recipe.category === 'restaurant' && (
