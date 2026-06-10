@@ -1452,7 +1452,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6030",
-        "title": "Falafels de haricots verts &#038; pois chiches",
+        "title": "Falafels de haricots verts & pois chiches",
         "description": "Une recette veggie, originale et ultra savoureuse à tester absolument",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fimages.jpeg&v=1781008407000",
         "category": "plats",
@@ -1713,7 +1713,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5984",
-        "title": "Risotto pesto d'épinards &#038; burrata",
+        "title": "Risotto pesto d'épinards & burrata",
         "description": "Un risotto crémeux et savoureux au pesto d'épinards maison, agrémenté de burrata fondante pour une touche gourmande.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FHF_Y23_R224_W47_FR_RFR16571-1_Main_2high-42afd8bd.jpg&v=1780662359000",
         "category": "plats",
@@ -2493,7 +2493,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5858",
-        "title": "Gâteau moelleux noisette &#038; chocolat",
+        "title": "Gâteau moelleux noisette & chocolat",
         "description": "Un gâteau sans gluten, moelleux, sans matière grasse ajoutée et sucré naturellement au sirop de Yacon. Léger et délicieux.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcake.jpg&v=1780583991000",
         "category": "patisserie",
@@ -7786,7 +7786,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5615",
-        "title": "Poireaux confits &#038; gratinés",
+        "title": "Poireaux confits & gratinés",
         "description": "Une recette de poireaux confits et gratinés, incroyablement fondants et tendres, nappés d'une sauce crémeuse au comté et citron. Un plat végétarien réconfortant, parfait pour l'hiver.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fm1532-hd-gratin-poireaux-1.jpg&v=1779190566000",
         "category": "plats",
@@ -12362,7 +12362,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5098",
-        "title": "Pomme duchesse ail &#038; beurre truffé",
+        "title": "Pomme duchesse ail & beurre truffé",
         "description": "Des pommes duchesse classiques revisitées avec de l'ail et du beurre truffé, parfaites pour accompagner vos repas de fêtes de fin d'année.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpomme-duchesse-1.jpg&v=1776164166000",
         "category": "plats",
@@ -19911,7 +19911,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             salt &#038; pepper"
+                "name": "🥣\n             salt & pepper"
             },
             {
                 "quantity": "",
@@ -22672,7 +22672,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3884",
-        "title": "Wrap sain &#038; gourmand au thon",
+        "title": "Wrap sain & gourmand au thon",
         "description": "Une recette de wrap rapide, équilibrée et riche en protéines, idéale pour un déjeuner sur le pouce ou un rééquilibrage alimentaire.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fburrito-poulet.jpeg&v=1774448734000",
         "category": "plats",
@@ -24661,7 +24661,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "3667",
-        "title": "Poulet Bang Bang &#038; Patates Douces Rôties",
+        "title": "Poulet Bang Bang & Patates Douces Rôties",
         "description": "Une recette saine, croustillante et rapide à réaliser au airfryer, avec seulement 460 kcal par portion et un équilibre parfait entre protéines et glucides.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FBang-Bang-Chicken-Skewers-Recipe.jpg&v=1773744757000",
         "category": "plats",
@@ -25188,7 +25188,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@damlasdesserts/video/7355199709373353248?_r=1&#038;_t=ZN-94gQ0gChaUQ\" data-video-id=\"7355199709373353248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7355199709373353248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@damlasdesserts/video/7355199709373353248?_r=1&_t=ZN-94gQ0gChaUQ\" data-video-id=\"7355199709373353248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7355199709373353248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25296,7 +25296,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&#038;_t=ZN-94co0Qv2KIg\" data-video-id=\"7600454701309791490\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&#038;_t=ZN-94co0Qv2KIg\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&_t=ZN-94co0Qv2KIg\" data-video-id=\"7600454701309791490\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&_t=ZN-94co0Qv2KIg\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25350,7 +25350,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" data-video-id=\"7603070096159886614\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&_t=ZN-94cc5N4JRZe\" data-video-id=\"7603070096159886614\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&_t=ZN-94cc5N4JRZe\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25462,7 +25462,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@on_todays_bake/video/7615229073194765590?_r=1&#038;_t=ZN-94a6eN8CfHK\" data-video-id=\"7615229073194765590\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@on_todays_bake/video/7615229073194765590?_r=1&#038;_t=ZN-94a6eN8CfHK\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@on_todays_bake/video/7615229073194765590?_r=1&_t=ZN-94a6eN8CfHK\" data-video-id=\"7615229073194765590\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@on_todays_bake/video/7615229073194765590?_r=1&_t=ZN-94a6eN8CfHK\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25950,7 +25950,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🧂 Poivre &#038; sel"
+                "name": "🧂 Poivre & sel"
             },
             {
                 "quantity": "",

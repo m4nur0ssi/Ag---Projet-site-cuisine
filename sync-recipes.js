@@ -38,6 +38,7 @@ const SYNC_STATS_PATH = path.join(__dirname, 'src/data/sync-stats.json');
 function decodeHtmlEntities(text) {
     if (!text) return "";
     return text
+        .replace(/&#0?38;/g, '&')
         .replace(/&amp;/g, '&')
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
