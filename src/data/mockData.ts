@@ -2,11 +2,59 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/06/2026 06:58:09
- * Total: 355 recettes
+ * Dernière mise à jour: 10/06/2026 12:31:31
+ * Total: 356 recettes
  */
-export const exportSyncId = "1781074689368";
+export const exportSyncId = "1781094691181";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6085",
+        "title": "Pan con tomate et Jamón Ibérico",
+        "description": "Un petit-déjeuner ou une tapa typique espagnole composée de pain grillé, de tomate fraîche frottée, d'huile d'olive, d'ail (facultatif) et de jambon ibérique.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638022932530302222\" data-video-id=\"7638022932530302222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638022932530302222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain grillé"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon ibérique"
+            }
+        ],
+        "steps": [
+            "Faire griller une tranche de pain.",
+            "Frotter une gousse d'ail sur le pain grillé (facultatif).",
+            "Couper une tomate fraîche en deux et la frotter généreusement sur le pain grillé.",
+            "Arroser le pain d'un filet d'huile d'olive.",
+            "Disposer quelques tranches de jambon ibérique sur le dessus."
+        ],
+        "tags": [
+            "Espagne",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6082",
         "title": "SALMOREJO",
@@ -20918,7 +20966,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@foodwithstyle_official/video/7250763178865413403?_r=1&_t=ZN-94ZorQ6Tua6\" data-video-id=\"7250763178865413403\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@foodwithstyle_official/video/7250763178865413403?_r=1&_t=ZN-94ZorQ6Tua6\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@foodwithstyle_official/video/7250763178865413403?_r=1&amp;_t=ZN-94ZorQ6Tua6\" data-video-id=\"7250763178865413403\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@foodwithstyle_official/video/7250763178865413403?_r=1&amp;_t=ZN-94ZorQ6Tua6\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21012,7 +21060,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@feenixchef/video/7611935893129088278?_r=1&_t=ZN-94ZpBzz98qs\" data-video-id=\"7611935893129088278\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@feenixchef/video/7611935893129088278?_r=1&_t=ZN-94ZpBzz98qs\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@feenixchef/video/7611935893129088278?_r=1&amp;_t=ZN-94ZpBzz98qs\" data-video-id=\"7611935893129088278\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@feenixchef/video/7611935893129088278?_r=1&amp;_t=ZN-94ZpBzz98qs\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21091,7 +21139,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&_t=ZN-94a75OnTQuZ\" data-video-id=\"7535717785570135318\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&_t=ZN-94a75OnTQuZ\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&amp;_t=ZN-94a75OnTQuZ\" data-video-id=\"7535717785570135318\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&amp;_t=ZN-94a75OnTQuZ\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21214,7 +21262,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@mesdelicieusescreations/video/7615294388188548385?_r=1&_t=ZN-94a7b10AFV8\" data-video-id=\"7615294388188548385\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@mesdelicieusescreations/video/7615294388188548385?_r=1&_t=ZN-94a7b10AFV8\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@mesdelicieusescreations/video/7615294388188548385?_r=1&amp;_t=ZN-94a7b10AFV8\" data-video-id=\"7615294388188548385\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@mesdelicieusescreations/video/7615294388188548385?_r=1&amp;_t=ZN-94a7b10AFV8\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21313,7 +21361,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@chefdwightsmith/video/7614630007901670676?_r=1&_t=ZN-94a7q0jFkpi\" data-video-id=\"7614630007901670676\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@chefdwightsmith/video/7614630007901670676?_r=1&_t=ZN-94a7q0jFkpi\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@chefdwightsmith/video/7614630007901670676?_r=1&amp;_t=ZN-94a7q0jFkpi\" data-video-id=\"7614630007901670676\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@chefdwightsmith/video/7614630007901670676?_r=1&amp;_t=ZN-94a7q0jFkpi\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21376,7 +21424,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@d.rolle.jackson/video/7615309493575896342?_r=1&_t=ZN-94b826PjhQZ\" data-video-id=\"7615309493575896342\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@d.rolle.jackson/video/7615309493575896342?_r=1&_t=ZN-94b826PjhQZ\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@d.rolle.jackson/video/7615309493575896342?_r=1&amp;_t=ZN-94b826PjhQZ\" data-video-id=\"7615309493575896342\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@d.rolle.jackson/video/7615309493575896342?_r=1&amp;_t=ZN-94b826PjhQZ\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21428,7 +21476,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@crok_choc_/video/7609733740683676960?_r=1&_t=ZN-94bH449ZtqM\" data-video-id=\"7609733740683676960\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@crok_choc_/video/7609733740683676960?_r=1&_t=ZN-94bH449ZtqM\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@crok_choc_/video/7609733740683676960?_r=1&amp;_t=ZN-94bH449ZtqM\" data-video-id=\"7609733740683676960\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@crok_choc_/video/7609733740683676960?_r=1&amp;_t=ZN-94bH449ZtqM\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21563,7 +21611,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@sofeskitchen/video/7614920819331910934?_r=1&_t=ZN-94bI94O9d26\" data-video-id=\"7614920819331910934\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@sofeskitchen/video/7614920819331910934?_r=1&_t=ZN-94bI94O9d26\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@sofeskitchen/video/7614920819331910934?_r=1&amp;_t=ZN-94bI94O9d26\" data-video-id=\"7614920819331910934\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@sofeskitchen/video/7614920819331910934?_r=1&amp;_t=ZN-94bI94O9d26\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21653,7 +21701,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@crok_choc_/video/7603465842587733270?_r=1&_t=ZN-94boACMmYZq\" data-video-id=\"7603465842587733270\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@crok_choc_/video/7603465842587733270?_r=1&_t=ZN-94boACMmYZq\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@crok_choc_/video/7603465842587733270?_r=1&amp;_t=ZN-94boACMmYZq\" data-video-id=\"7603465842587733270\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@crok_choc_/video/7603465842587733270?_r=1&amp;_t=ZN-94boACMmYZq\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21794,7 +21842,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@cookwithbash/video/7345520458726427937?_r=1&_t=ZN-94dF9kbQjKA\" data-video-id=\"7345520458726427937\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@cookwithbash/video/7345520458726427937?_r=1&_t=ZN-94dF9kbQjKA\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@cookwithbash/video/7345520458726427937?_r=1&amp;_t=ZN-94dF9kbQjKA\" data-video-id=\"7345520458726427937\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@cookwithbash/video/7345520458726427937?_r=1&amp;_t=ZN-94dF9kbQjKA\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21870,7 +21918,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@papa.onmangequoi/video/7354807836536343841?_r=1&_t=ZN-94dFKsvM4MI\" data-video-id=\"7354807836536343841\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@papa.onmangequoi/video/7354807836536343841?_r=1&_t=ZN-94dFKsvM4MI\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@papa.onmangequoi/video/7354807836536343841?_r=1&amp;_t=ZN-94dFKsvM4MI\" data-video-id=\"7354807836536343841\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@papa.onmangequoi/video/7354807836536343841?_r=1&amp;_t=ZN-94dFKsvM4MI\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -21930,7 +21978,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@nq.vibes/video/7615385554091347207?_r=1&_t=ZN-94eR3tLSR7f\" data-video-id=\"7615385554091347207\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@nq.vibes/video/7615385554091347207?_r=1&_t=ZN-94eR3tLSR7f\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@nq.vibes/video/7615385554091347207?_r=1&amp;_t=ZN-94eR3tLSR7f\" data-video-id=\"7615385554091347207\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@nq.vibes/video/7615385554091347207?_r=1&amp;_t=ZN-94eR3tLSR7f\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -22005,7 +22053,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@foodwithstyle_official/video/7616073996647337248?_r=1&_t=ZN-94eR5snoajW\" data-video-id=\"7616073996647337248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@foodwithstyle_official/video/7616073996647337248?_r=1&_t=ZN-94eR5snoajW\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@foodwithstyle_official/video/7616073996647337248?_r=1&amp;_t=ZN-94eR5snoajW\" data-video-id=\"7616073996647337248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@foodwithstyle_official/video/7616073996647337248?_r=1&amp;_t=ZN-94eR5snoajW\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -22115,7 +22163,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@comment_cuisiner/video/7561473427467406614?_r=1&_t=ZN-94ecXdK3YT0\" data-video-id=\"7561473427467406614\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@comment_cuisiner/video/7561473427467406614?_r=1&_t=ZN-94ecXdK3YT0\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@comment_cuisiner/video/7561473427467406614?_r=1&amp;_t=ZN-94ecXdK3YT0\" data-video-id=\"7561473427467406614\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@comment_cuisiner/video/7561473427467406614?_r=1&amp;_t=ZN-94ecXdK3YT0\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -24669,7 +24717,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@swiss_fit.cook/video/7500972156248001815?_r=1&_t=ZN-94eZ45ZgSvO\" data-video-id=\"7500972156248001815\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@swiss_fit.cook/video/7500972156248001815?_r=1&_t=ZN-94eZ45ZgSvO\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@swiss_fit.cook/video/7500972156248001815?_r=1&amp;_t=ZN-94eZ45ZgSvO\" data-video-id=\"7500972156248001815\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@swiss_fit.cook/video/7500972156248001815?_r=1&amp;_t=ZN-94eZ45ZgSvO\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -24763,7 +24811,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@miamzozo/video/7603799617611844886?_r=1&_t=ZN-94gJ1ESageU\" data-video-id=\"7603799617611844886\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7603799617611844886\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@miamzozo/video/7603799617611844886?_r=1&amp;_t=ZN-94gJ1ESageU\" data-video-id=\"7603799617611844886\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7603799617611844886\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25013,7 +25061,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@cookwithbash/video/7614507917307366678?_r=1&_t=ZN-94dFJWTPPYk\" data-video-id=\"7614507917307366678\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@cookwithbash/video/7614507917307366678?_r=1&_t=ZN-94dFJWTPPYk\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@cookwithbash/video/7614507917307366678?_r=1&amp;_t=ZN-94dFJWTPPYk\" data-video-id=\"7614507917307366678\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@cookwithbash/video/7614507917307366678?_r=1&amp;_t=ZN-94dFJWTPPYk\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25188,7 +25236,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@damlasdesserts/video/7355199709373353248?_r=1&_t=ZN-94gQ0gChaUQ\" data-video-id=\"7355199709373353248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7355199709373353248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@damlasdesserts/video/7355199709373353248?_r=1&#038;_t=ZN-94gQ0gChaUQ\" data-video-id=\"7355199709373353248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7355199709373353248\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25296,7 +25344,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&_t=ZN-94co0Qv2KIg\" data-video-id=\"7600454701309791490\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&_t=ZN-94co0Qv2KIg\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&#038;_t=ZN-94co0Qv2KIg\" data-video-id=\"7600454701309791490\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@lessecretsdegeoffrey/video/7600454701309791490?_r=1&#038;_t=ZN-94co0Qv2KIg\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25350,7 +25398,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&_t=ZN-94cc5N4JRZe\" data-video-id=\"7603070096159886614\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&_t=ZN-94cc5N4JRZe\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" data-video-id=\"7603070096159886614\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25462,7 +25510,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@on_todays_bake/video/7615229073194765590?_r=1&_t=ZN-94a6eN8CfHK\" data-video-id=\"7615229073194765590\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@on_todays_bake/video/7615229073194765590?_r=1&_t=ZN-94a6eN8CfHK\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@on_todays_bake/video/7615229073194765590?_r=1&#038;_t=ZN-94a6eN8CfHK\" data-video-id=\"7615229073194765590\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@on_todays_bake/video/7615229073194765590?_r=1&#038;_t=ZN-94a6eN8CfHK\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
