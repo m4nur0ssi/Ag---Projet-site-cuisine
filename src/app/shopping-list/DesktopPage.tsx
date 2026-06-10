@@ -40,6 +40,11 @@ export default function ShoppingListPage() {
 
     useEffect(() => {
         setMounted(true);
+        // Onglet initial depuis l'URL (?tab=recettes) — le caddie d'une fiche y renvoie.
+        try {
+            const tab = new URLSearchParams(window.location.search).get('tab');
+            if (tab && ['semaine', 'jourj', 'fusion', 'recettes'].includes(tab)) setWeekMode(tab as any);
+        } catch {}
         const read = () => {
             try { setShoppingList(JSON.parse(localStorage.getItem('magic-shopping-list') || '{}')); } catch { setShoppingList({}); }
             try { setWeekPlan(JSON.parse(localStorage.getItem('meal-planner-week') || '{}')); } catch { setWeekPlan({}); }

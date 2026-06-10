@@ -39,6 +39,9 @@ function decodeHtmlEntities(text) {
     if (!text) return "";
     return text
         .replace(/&amp;/g, '&')
+        .replace(/&amp;/g, '&')
+        .replace(/&#0*38;/g, '&')
+        .replace(/&#0*215;|&#215;/g, '×')
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
         .replace(/&quot;/g, '"')
