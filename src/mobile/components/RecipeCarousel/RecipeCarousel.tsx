@@ -192,6 +192,7 @@ function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle,
     if (compact) {
         // En mode compact, on utilise l'image fournie par la recette (illustration thématique)
         const displayImage = recipe.image || getCategoryData(recipe.title).image;
+        const isThemeTile = displayImage.includes('/themes/') || (recipe.id || '').startsWith('theme-');
 
         return (
             <div ref={itemRef} className={styles.compactItem}>
@@ -200,8 +201,9 @@ function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle,
                         src={`${displayImage}${displayImage.includes('?') ? '&' : '?'}v=6`}
                         alt={recipe.title}
                         className={styles.compactImage}
-                        style={displayImage.includes('/themes/') ? { objectPosition: '50% 0%' } : undefined}
+                        style={isThemeTile ? { objectPosition: '50% 60%' } : undefined}
                     />
+                    {isThemeTile && <span className={styles.compactThemeTitle}>{recipe.title}</span>}
                 </div>
             </div>
         );

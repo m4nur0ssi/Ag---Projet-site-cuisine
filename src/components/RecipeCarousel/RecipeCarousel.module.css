@@ -297,7 +297,7 @@
 .compactItem {
     flex: 0 0 220px;
     width: 220px;
-    height: 200px;
+    height: 150px;
     margin-right: 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
@@ -346,6 +346,28 @@
     object-position: center 65%;
     z-index: 1;
     display: block;
+}
+
+/* Titre HTML propre des tuiles thème (remplace le titre incrusté de l'image) */
+.compactThemeTitle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 10px 8px 16px;
+    text-align: center;
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .compactTitle {
