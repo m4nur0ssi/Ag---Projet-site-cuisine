@@ -297,7 +297,7 @@
 .compactItem {
     flex: 0 0 220px;
     width: 220px;
-    height: 130px;
+    height: 200px;
     margin-right: 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
