@@ -191,3 +191,23 @@
 
 .segJourJ { color: #f0abfc; font-weight: 800; }
 .segActive.segJourJ { color: #111; }
+
+/* #1 — Mode Jour J : tout tient à l'écran (page non scrollée), seules les listes
+   d'ingrédients de chaque colonne scrollent en interne si elles sont longues.
+   Peu de colonnes => colonnes larges => photos plus grandes (via aspect-ratio). */
+.jourjMode .track { overflow-x: hidden; }
+.jourjMode .card {
+    max-height: calc(100vh - 210px);
+    display: flex;
+    flex-direction: column;
+}
+.jourjMode .meals { flex: 1 1 auto; min-height: 0; align-items: stretch; }
+.jourjMode .meal { display: flex; flex-direction: column; min-height: 0; }
+.jourjMode .mealBody { flex: 1 1 auto; min-height: 0; }
+.jourjMode .ingList {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: thin;
+}

@@ -58,15 +58,6 @@ function MealBlock({ day, label, recipe, slotKey, isSelected, onSelect, done, in
         <div className={styles.meal}>
             <div className={styles.mealHead}>
                 <span className={styles.mealTag}>{label}</span>
-                {recipe && (
-                    <button
-                        className={`${styles.selectBtn} ${isSelected ? styles.selectBtnOn : ''}`}
-                        onClick={(e) => { e.stopPropagation(); onSelect(slotKey); }}
-                        title="Sélectionner la recette pour faire les courses ensemble"
-                    >
-                        {isSelected ? '✓ Recette' : '+ Recette'}
-                    </button>
-                )}
             </div>
             {recipe ? (
                 <div className={styles.mealBody}>
@@ -301,7 +292,7 @@ export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'j
     }
 
     return (
-        <div className={styles.wrap}>
+        <div className={`${styles.wrap} ${view === 'jourj' ? styles.jourjMode : ''}`}>
             {/* Segmented jours */}
             <div className={styles.segmented}>
                 {COLS.map((d, i) => (
