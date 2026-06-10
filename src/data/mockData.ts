@@ -2,11 +2,59 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/06/2026 12:47:46
+ * Dernière mise à jour: 10/06/2026 13:42:19
  * Total: 357 recettes
  */
-export const exportSyncId = "1781095666843";
+export const exportSyncId = "1781098940010";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6085",
+        "title": "Tartine espagnole tomates et jambon",
+        "description": "Un petit-déjeuner ou une tapa typique espagnole composée de pain grillé, de tomate fraîche frottée, d'huile d'olive, d'ail (facultatif) et de jambon ibérique.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638022932530302222\" data-video-id=\"7638022932530302222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638022932530302222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Pain grillé"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Tomate fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n Jambon ibérique"
+            }
+        ],
+        "steps": [
+            "Faire griller une tranche de pain.",
+            "Frotter une gousse d'ail sur le pain grillé (facultatif).",
+            "Couper une tomate fraîche en deux et la frotter généreusement sur le pain grillé.",
+            "Arroser le pain d'un filet d'huile d'olive.",
+            "Disposer quelques tranches de jambon ibérique sur le dessus."
+        ],
+        "tags": [
+            "Espagne",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6087",
         "title": "Glace Tarte Citron Meringuée",
@@ -54,54 +102,6 @@ export const mockRecipes: Recipe[] = [
             "Glaces",
             "Les Glaces",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6085",
-        "title": "Pan con tomate et Jamón Ibérico",
-        "description": "Un petit-déjeuner ou une tapa typique espagnole composée de pain grillé, de tomate fraîche frottée, d'huile d'olive, d'ail (facultatif) et de jambon ibérique.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638022932530302222\" data-video-id=\"7638022932530302222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638022932530302222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Pain grillé"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomate fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Jambon ibérique"
-            }
-        ],
-        "steps": [
-            "Faire griller une tranche de pain.",
-            "Frotter une gousse d'ail sur le pain grillé (facultatif).",
-            "Couper une tomate fraîche en deux et la frotter généreusement sur le pain grillé.",
-            "Arroser le pain d'un filet d'huile d'olive.",
-            "Disposer quelques tranches de jambon ibérique sur le dessus."
-        ],
-        "tags": [
-            "Espagne",
-            "Healthy"
         ],
         "isFeatured": false,
         "isFavorite": false,
