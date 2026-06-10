@@ -85,29 +85,9 @@ export default function AuthButton() {
                 title={user ? (user.user_metadata?.full_name ?? user.email ?? '') : 'Se connecter'}
             >
                 {user ? (
-                    <>
-                        {user.user_metadata?.avatar_url
-                            ? <img
-                                src={user.user_metadata.avatar_url}
-                                alt=""
-                                className={styles.avatarImg}
-                                onError={e => {
-                                    (e.target as HTMLImageElement).style.display = 'none';
-                                    (e.target as HTMLImageElement).nextElementSibling?.removeAttribute('style');
-                                }}
-                              />
-                            : null
-                        }
-                        <span
-                            className={styles.avatarInitial}
-                            style={user.user_metadata?.avatar_url ? { display: 'none' } : undefined}
-                        >
-                            {(user.user_metadata?.full_name ?? user.email ?? '?')[0].toUpperCase()}
-                        </span>
-                        <span className={styles.avatarName}>
-                            {user.user_metadata?.given_name ?? user.user_metadata?.full_name?.split(' ')[0] ?? user.email?.split('@')[0]}
-                        </span>
-                    </>
+                    <span className={styles.avatarName}>
+                        {user.user_metadata?.given_name ?? user.user_metadata?.full_name?.split(' ')[0] ?? user.email?.split('@')[0]}
+                    </span>
                 ) : '👤'}
             </button>
             {dropdown}

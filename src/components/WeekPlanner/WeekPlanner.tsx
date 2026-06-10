@@ -418,10 +418,10 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         {!validated && (
                             <div className={styles.toolbar}>
                                 <button className={styles.randomBtn} onClick={() => fillIA()} disabled={iaBusy} title="Menu équilibré composé par l'IA">
-                                    {iaBusy ? '✨ Composition…' : '✨ Menu IA'}
+                                    {iaBusy ? 'Composition…' : 'Menu IA'}
                                 </button>
                                 <button className={styles.randomBtn} onClick={() => fill()} disabled={iaBusy}>
-                                    🎲 Aléatoire
+                                    Aléatoire
                                 </button>
                                 {SIDE_GROUPS.map(g => (
                                     <button
