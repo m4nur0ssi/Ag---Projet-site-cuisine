@@ -292,7 +292,7 @@ export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'j
     }
 
     return (
-        <div className={styles.wrap}>
+        <div className={`${styles.wrap} ${view === 'jourj' ? styles.jourjMode : ''}`}>
             {/* Segmented jours */}
             <div className={styles.segmented}>
                 {COLS.map((d, i) => (
