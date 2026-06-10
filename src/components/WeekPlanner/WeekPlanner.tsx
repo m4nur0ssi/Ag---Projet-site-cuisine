@@ -252,42 +252,68 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     const fill = (theme?: string) => view === 'semaine' ? fillWeek(theme) : fillJourJ(theme);
 
-    // #2 — Menu IA : Groq compose une semaine équilibrée/variée. Fallback random si échec.
+    // #2 — Menu IA : composition ÉQUILIBRÉE déterministe (fiable, instantanée).
+    // Détecte la protéine de chaque plat, alterne d'un repas à l'autre, évite la
+    // même protéine 2 fois le même jour ou 2 repas de suite, et favorise la variété
+    // (végé / poisson inclus en priorité).
     const [iaBusy, setIaBusy] = useState(false);
-    const fillIA = async (theme?: string) => {
+
+    const proteinOf = (r: any): string => {
+        const t = `${r.title || ''} ${(r.tags || []).join(' ')} ${(r.ingredients || []).map((i: any) => i.name).join(' ')}`.toLowerCase();
+        if (/poisson|saumon|thon|cabillaud|crevette|colin|merlu|sardine|maquereau|gambas|lieu|truite|dorade|crustac/.test(t)) return 'poisson';
+        if (/agneau|mouton/.test(t)) return 'agneau';
+        if (/b[oœ]uf|steak|bavette|kefta|carne|bourguignon|paleron/.test(t)) return 'boeuf';
+        if (/\bporc\b|lardon|jambon|bacon|saucisse|chorizo|p[âa]t[ée]/.test(t)) return 'porc';
+        if (/poulet|volaille|dinde|chicken|pollo|escalope/.test(t)) return 'poulet';
+        if (/v[ée]g[ée]tarien|tofu|pois chiche|lentille|aubergine|courgette|champignon|brocoli|[ée]pinard|l[ée]gume|halloumi|f[ée]ta/.test(t)) return 'vege';
+        return 'autre';
+    };
+
+    const fillIA = (theme?: string) => {
         if (view !== 'semaine') { fillJourJ(theme); return; }
         setIaBusy(true);
         try {
             let plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r) && matchesTheme(r, theme));
             if (plats.length < 14) plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r));
-            const compact = shuffle(plats).slice(0, 120).map(r => ({
-                id: String(r.id), t: r.title,
-                tags: (r.tags || []).slice(0, 4),
-                min: (r.prepTime || 0) + (r.cookTime || 0),
-            }));
-            const slots: { day: string; meal: string }[] = [];
-            DAYS.forEach(d => MEALS.forEach(m => slots.push({ day: d, meal: m })));
-            const res = await fetch('/api/menu-ia', {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ recipes: compact, slots, constraints: theme ? `thème : ${theme}` : '' }),
-            });
-            if (!res.ok) throw new Error('api ' + res.status);
-            const data = await res.json();
-            const assignments: any[] = data?.assignments || [];
-            if (!assignments.length) throw new Error('vide');
-            const byId = new Map(mockRecipes.map(r => [String(r.id), r]));
+
+            // Regroupe par protéine (mélangé pour varier à chaque clic).
+            const groups: Record<string, any[]> = {};
+            shuffle(plats).forEach(r => { const p = proteinOf(r); (groups[p] = groups[p] || []).push(r); });
+            // Ordre de priorité : végé/poisson d'abord pour garantir leur présence + variété.
+            const order = ['vege', 'poisson', 'boeuf', 'agneau', 'porc', 'poulet', 'autre'].filter(g => groups[g]?.length);
+
+            const used = new Set<string>();
+            const popFrom = (g: string): any | null => {
+                const arr = groups[g];
+                while (arr && arr.length) { const r = arr.shift(); if (r && !used.has(r.id)) { used.add(r.id); return r; } }
+                return null;
+            };
+
+            const slots: [string, string][] = [];
+            DAYS.forEach(d => MEALS.forEach(m => slots.push([d, m])));
+
             const np: Plan = { ...plan };
-            assignments.forEach(a => {
-                const rec = byId.get(String(a.id));
-                if (rec) { np[a.day] = { ...(np[a.day] || {}) }; np[a.day][a.meal] = rec; }
+            let gi = 0, lastProtein: string | null = null;
+            const dayProtein: Record<string, string> = {};
+
+            slots.forEach(([day, meal]) => {
+                np[day] = { ...(np[day] || {}) };
+                let chosen: any = null, chosenP: string | null = null;
+                // 1) groupe différent du repas précédent ET de l'autre repas du jour
+                for (let k = 0; k < order.length; k++) {
+                    const g = order[(gi + k) % order.length];
+                    if (!groups[g]?.length || g === lastProtein || dayProtein[day] === g) continue;
+                    const r = popFrom(g);
+                    if (r) { chosen = r; chosenP = g; gi = (gi + k + 1) % order.length; break; }
+                }
+                // 2) sinon n'importe quel groupe avec du stock
+                if (!chosen) for (const g of order) { const r = popFrom(g); if (r) { chosen = r; chosenP = g; break; } }
+                if (chosen) { np[day][meal] = chosen; lastProtein = chosenP; dayProtein[day] = chosenP as string; }
             });
+
             clearSlotChecks(k => !k.startsWith(`${JOUR_J_KEY}|`));
             save(np);
             setValidated(false);
-        } catch (e) {
-            // Dégradation douce : on retombe sur l'aléatoire.
-            fillWeek(theme);
         } finally {
             setIaBusy(false);
         }
