@@ -83,7 +83,6 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
         <div className={styles.overlay} onClick={onClose}>
             <div className={styles.modal} onClick={e => e.stopPropagation()}>
                 <div className={styles.searchContainer}>
-                    <span className={styles.searchIcon}>🔍</span>
                     {mode === 'recipe' ? (
                         <input
                             ref={inputRef}
@@ -112,11 +111,11 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
                     <button
                         className={`${styles.modeBtn} ${mode === 'recipe' ? styles.modeBtnActive : ''}`}
                         onClick={() => setMode('recipe')}
-                    >🔍 Par recette</button>
+                    >Par recette</button>
                     <button
                         className={`${styles.modeBtn} ${mode === 'ingredients' ? styles.modeBtnActive : ''}`}
                         onClick={() => { setMode('ingredients'); setTimeout(() => inputRef.current?.focus(), 50); }}
-                    >🥕 Par ingrédients</button>
+                    >Par ingrédients</button>
                 </div>
 
                 {mode === 'ingredients' && ingTags.length > 0 && (

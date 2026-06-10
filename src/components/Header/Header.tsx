@@ -253,6 +253,13 @@ export default function Header({
                                         <button className={styles.pillBtnSearch} onClick={() => setIsSearchOpen(true)}>
                                             Recherche
                                         </button>
+                                        {/* Raccourci panier — à GAUCHE du planificateur, visible seulement si la liste a des ingrédients */}
+                                        {authUser && shoppingCount > 0 && (
+                                            <Link href="/shopping-list" className={styles.plannerIconBtn} style={{ position: 'relative', fontSize: '1.6rem', lineHeight: 1, textDecoration: 'none', overflow: 'visible' }} title="Liste de courses">
+                                                🛒
+                                                <span className={styles.navFavBadge} style={{ top: '-5px', right: '-7px' }}>{shoppingCount > 99 ? '99+' : shoppingCount}</span>
+                                            </Link>
+                                        )}
                                         {authUser && (
                                             <div style={{ position: 'relative' }}
                                                 onMouseEnter={() => { clearTimeout(plannerHideTimer.current); setShowPlannerTooltip(true); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: true } })); }}
@@ -263,12 +270,6 @@ export default function Header({
                                                 </button>
                                                 <PlannerTooltip visible={showPlannerTooltip} midi={todayMeals.midi} soir={todayMeals.soir} anchorRef={pillRef as any} />
                                             </div>
-                                        )}
-                                        {authUser && shoppingCount > 0 && (
-                                            <Link href="/shopping-list" className={styles.plannerIconBtn} style={{ position: 'relative', fontSize: '1.6rem', lineHeight: 1, textDecoration: 'none', overflow: 'visible' }} title="Liste de courses">
-                                                🛒
-                                                <span className={styles.navFavBadge} style={{ top: '-5px', right: '-7px' }}>{shoppingCount > 99 ? '99+' : shoppingCount}</span>
-                                            </Link>
                                         )}
                                         <AuthButton />
                                     </div>

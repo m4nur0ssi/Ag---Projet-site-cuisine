@@ -265,7 +265,10 @@ export default function WeekMenuCarousel() {
     // a choisi de NE PAS la fusionner) après Dimanche.
     const colHasRecipe = (c: string) => { const p = plan[c]; return !!p && Object.keys(p).length > 0; };
     const showJourJ = !jourjFused && colHasRecipe('JourJ');
-    const COLS = showJourJ ? [...DAYS, 'JourJ'] : DAYS;
+    // Seuls les jours qui ont au moins une recette sont affichés (un jour supprimé
+    // dans le planificateur n'a plus de recette → il disparaît de la semaine).
+    const weekCols = DAYS.filter(colHasRecipe);
+    const COLS = showJourJ ? [...weekCols, 'JourJ'] : weekCols;
     const segLabel = (c: string) => (c === 'JourJ' ? 'JJ' : c);
     const colFull = (c: string) => (c === 'JourJ' ? 'Jour J' : FULL[c]);
 

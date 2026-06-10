@@ -24,6 +24,36 @@
 }
 
 /* Carrousel */
+.trackWrap { position: relative; }
+
+/* Bords sensibles : survol = défilement continu (desktop). Inactifs si rien à défiler.
+   pointer-events none par défaut pour ne pas bloquer les clics sur les cartes. */
+.edgeZone {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 7%;
+    max-width: 80px;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.edgeOn { pointer-events: auto; }
+.edgeLeft {
+    left: 0;
+    background: linear-gradient(to right, rgba(10,10,12,0.55), transparent);
+}
+.edgeRight {
+    right: 0;
+    background: linear-gradient(to left, rgba(10,10,12,0.55), transparent);
+}
+.trackWrap:hover .edgeOn { opacity: 1; }
+/* Pas de zones de survol sur écran tactile (le swipe natif suffit). */
+@media (hover: none) {
+    .edgeZone { display: none; }
+}
+
 .track {
     display: flex; gap: 16px;
     overflow-x: auto;

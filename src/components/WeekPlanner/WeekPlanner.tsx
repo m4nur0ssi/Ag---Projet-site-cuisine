@@ -3,7 +3,9 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { mockRecipes } from '@/data/mockData';
 import { decodeHtml } from '@/lib/utils';
+import Link from 'next/link';
 import { normalizeIng, parseIngredient } from '@/lib/ingredients';
+import { rayonOf, RAYON_BY_ID } from '@/lib/rayons';
 import { supabase } from '@/lib/supabase';
 import styles from './WeekPlanner.module.css';
 
@@ -50,6 +52,8 @@ const COURSES = [
 ] as const;
 const JOUR_J_KEY = 'JourJ';
 const HIDDEN_KEY = 'meal-planner-jourj-hidden';
+const HIDDEN_DAYS_KEY = 'meal-planner-hidden-days';
+const DAY_FULL: Record<string, string> = { Lun: 'Lundi', Mar: 'Mardi', Mer: 'Mercredi', Jeu: 'Jeudi', Ven: 'Vendredi', Sam: 'Samedi', Dim: 'Dimanche' };
 const SIDE_GROUPS: { key: FilterGroup; label: string }[] = [
     { key: 'tendances', label: 'Tendance' },
     { key: 'pays', label: 'Pays' },
@@ -66,6 +70,9 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const [validated, setValidated] = useState(false);
     const [sideGroup, setSideGroup] = useState<FilterGroup | null>(null);
     const [hiddenCourses, setHiddenCourses] = useState<string[]>([]);
+    const [hiddenDays, setHiddenDays] = useState<string[]>([]);
+    // Mini-résumé de la liste affiché sous le panneau juste après "Valider".
+    const [recap, setRecap] = useState<{ total: number; rayons: { id: string; n: number }[] } | null>(null);
     const [picker, setPicker] = useState<{ day: string; meal: string } | null>(null);
     const [query, setQuery] = useState('');
     const [activeFilter, setActiveFilter] = useState('');
@@ -78,7 +85,9 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     useEffect(() => {
         if (!isOpen) return;
+        setRecap(null); // le mini-résumé n'apparaît qu'APRÈS un Valider de la session courante
         try { setHiddenCourses(JSON.parse(localStorage.getItem(HIDDEN_KEY) || '[]')); } catch {}
+        try { setHiddenDays(JSON.parse(localStorage.getItem(HIDDEN_DAYS_KEY) || '[]')); } catch {}
         const apply = (p: Plan) => { setPlan(p); setValidated(Object.keys(p).length > 0); };
         const load = async () => {
             const { data: { session } } = await supabase.auth.getSession();
@@ -190,6 +199,26 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     const visibleCourses = COURSES.filter(c => !hiddenCourses.includes(c.label));
 
+    // Jours visibles de la semaine. Supprimer un jour vide sa colonne du plan
+    // (donc il disparaît aussi des ingrédients de la semaine) ; le rajouter le
+    // ré-affiche vide. Même logique que les cartes Jour J.
+    const visibleDays = DAYS.filter(d => !hiddenDays.includes(d));
+    const toggleDay = (day: string) => {
+        setHiddenDays(prev => {
+            const hiding = !prev.includes(day);
+            const next = hiding ? [...prev, day] : prev.filter(d => d !== day);
+            localStorage.setItem(HIDDEN_DAYS_KEY, JSON.stringify(next));
+            if (hiding) {
+                // Vide les recettes du jour supprimé → absentes des ingrédients de la semaine.
+                const np = { ...plan };
+                delete np[day];
+                clearSlotChecks(k => k.startsWith(`${day}|`));
+                save(np);
+            }
+            return next;
+        });
+    };
+
     const normalize = (s: string) =>
         s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
@@ -222,7 +251,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         if (!plats.length) plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r));
         const shuffled = shuffle(plats);
         const slots: [string, string][] = [];
-        DAYS.forEach(d => MEALS.forEach(m => slots.push([d, m])));
+        visibleDays.forEach(d => MEALS.forEach(m => slots.push([d, m])));
         const np: Plan = { ...plan };
         slots.forEach(([day, meal], i) => {
             np[day] = { ...(np[day] || {}) };
@@ -290,7 +319,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
             };
 
             const slots: [string, string][] = [];
-            DAYS.forEach(d => MEALS.forEach(m => slots.push([d, m])));
+            visibleDays.forEach(d => MEALS.forEach(m => slots.push([d, m])));
 
             const np: Plan = { ...plan };
             let gi = 0, lastProtein: string | null = null;
@@ -323,7 +352,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const collectViewRecipes = () => {
         const map = new Map<string, { recipe: any; count: number }>();
         const add = (r: any) => { if (!r?.id) return; const e = map.get(r.id); map.set(r.id, { recipe: r, count: (e?.count || 0) + 1 }); };
-        if (view === 'semaine') DAYS.forEach(d => MEALS.forEach(m => add(plan[d]?.[m])));
+        if (view === 'semaine') visibleDays.forEach(d => MEALS.forEach(m => add(plan[d]?.[m])));
         else visibleCourses.forEach(c => add(plan[JOUR_J_KEY]?.[c.label]));
         return Array.from(map.values());
     };
@@ -340,16 +369,24 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         Object.keys(data).forEach(k => {
             if (data[k]?.source === 'planner' || data[k]?.count != null) delete data[k];
         });
-        // Compte le nombre de LIGNES distinctes du plan courant (pour le toast)
+        // Compte le nombre de LIGNES distinctes du plan courant (toast + mini-résumé par rayon)
         const lineKeys = new Set<string>();
+        const rayonCount = new Map<string, number>();
         recipes.forEach(({ recipe }) => {
             (recipe.ingredients || []).forEach((i: any) => {
                 if (!i?.name) return;
                 const p = parseIngredient(`${i.quantity || ''} ${i.name || ''}`.trim());
-                if (p.name) lineKeys.add(`${normalizeIng(p.name)}|${p.unit}`);
+                if (!p.name) return;
+                const k = `${normalizeIng(p.name)}|${p.unit}`;
+                if (lineKeys.has(k)) return;
+                lineKeys.add(k);
+                const rid = rayonOf(p.name, {});
+                rayonCount.set(rid, (rayonCount.get(rid) || 0) + 1);
             });
         });
         const total = lineKeys.size;
+        const rayons = [...rayonCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([id, n]) => ({ id, n }));
+        setRecap({ total, rayons });
         localStorage.setItem('magic-shopping-list', JSON.stringify(data));
         window.dispatchEvent(new Event('shoppingListUpdated'));
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
@@ -413,6 +450,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         <button className={styles.actionBtn} onClick={() => {
                             const next = !validated;
                             setValidated(next);
+                            if (!next) setRecap(null);
                             if (next) {
                                 // En vue Jour J : demande si on fusionne ces courses ou si on garde
                                 // une section Jour J séparée (après Dimanche) dans la liste de courses.
@@ -478,10 +516,16 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         {/* Zone principale : calendrier ou jour J */}
                         <div className={styles.mainArea}>
                             {view === 'semaine' ? (
+                                <>
                                 <div className={styles.daysRow}>
-                                    {DAYS.map(day => (
+                                    {visibleDays.map(day => (
                                         <div key={day} className={styles.dayCard}>
-                                            <div className={styles.dayName}>{day}</div>
+                                            <div className={styles.dayName}>
+                                                {day}
+                                                {!validated && (
+                                                    <button className={styles.deleteDay} title="Supprimer ce jour" onClick={() => toggleDay(day)}>✕</button>
+                                                )}
+                                            </div>
                                             {MEALS.map(meal => {
                                                 const recipe = plan[day]?.[meal];
                                                 return (
@@ -512,6 +556,15 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                         </div>
                                     ))}
                                 </div>
+                                {!validated && hiddenDays.length > 0 && (
+                                    <div className={styles.addCourses}>
+                                        <span className={styles.addLabel}>Ajouter un jour :</span>
+                                        {DAYS.filter(d => hiddenDays.includes(d)).map(d => (
+                                            <button key={d} className={styles.addCourseBtn} onClick={() => toggleDay(d)}>+ {DAY_FULL[d]}</button>
+                                        ))}
+                                    </div>
+                                )}
+                                </>
                             ) : (
                                 <>
                                     <div className={styles.daysRow}>
@@ -561,6 +614,21 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                             )}
                         </div>
                     </div>
+                    {/* Mini-résumé de la liste, visible juste après "Valider" */}
+                    {recap && validated && recap.total > 0 && (
+                        <div className={styles.recap}>
+                            <div className={styles.recapInfo}>
+                                <span className={styles.recapTotal}>🛒 {recap.total} ingrédient{recap.total > 1 ? 's' : ''} dans ta liste</span>
+                                <div className={styles.recapRayons}>
+                                    {recap.rayons.map(r => {
+                                        const ra = RAYON_BY_ID[r.id] || RAYON_BY_ID['autre'];
+                                        return <span key={r.id} className={styles.recapChip}>{ra.emoji} {ra.label} · {r.n}</span>;
+                                    })}
+                                </div>
+                            </div>
+                            <Link href="/shopping-list" className={styles.recapLink} onClick={onClose}>Voir la liste →</Link>
+                        </div>
+                    )}
                 </div>
             </div>
 

@@ -874,7 +874,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <>
                                     <div className={styles.metaSeparator} />
                                     <div className={styles.metaItem} style={{ flex: 1 }}>
-                                        <div className={styles.metaLabel}>~CALORIES</div>
+                                        <div className={styles.metaLabel}>CALORIES</div>
                                         <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
                                     </div>
                                 </>
