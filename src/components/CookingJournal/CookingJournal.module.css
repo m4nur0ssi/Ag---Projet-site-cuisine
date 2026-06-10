@@ -1,0 +1,56 @@
+.wrap {
+    margin: 18px 0;
+    padding: 14px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.title { font-weight: 800; font-size: 0.95rem; color: #fff; }
+.summary { font-size: 0.82rem; color: rgba(255, 255, 255, 0.55); }
+
+.cta {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.form { display: flex; flex-direction: column; gap: 8px; }
+.note {
+    width: 100%;
+    resize: vertical;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+.formRow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.file { flex: 1; min-width: 140px; color: rgba(255, 255, 255, 0.7); font-size: 0.8rem; }
+.save { background: #10b981; border: none; color: #fff; border-radius: 10px; padding: 8px 14px; font-weight: 700; cursor: pointer; }
+.save:disabled { opacity: 0.6; }
+.cancel { background: rgba(255, 255, 255, 0.1); border: none; color: rgba(255,255,255,0.8); border-radius: 10px; padding: 8px 12px; cursor: pointer; }
+
+.list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.entry {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+}
+.thumb { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.entryBody { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.entryDate { font-size: 0.78rem; font-weight: 700; color: #c4b5fd; }
+.entryNote { font-size: 0.85rem; color: rgba(255, 255, 255, 0.85); }
+.del { background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; font-size: 0.85rem; flex-shrink: 0; }
+.del:hover { color: #ef4444; }
