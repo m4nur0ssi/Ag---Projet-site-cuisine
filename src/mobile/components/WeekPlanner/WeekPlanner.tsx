@@ -51,6 +51,8 @@ const COURSES = [
 ] as const;
 const JOUR_J_KEY = 'JourJ';
 const HIDDEN_KEY = 'meal-planner-jourj-hidden';
+const HIDDEN_DAYS_KEY = 'meal-planner-hidden-days';
+const DAY_FULL: Record<string, string> = { Lun: 'Lundi', Mar: 'Mardi', Mer: 'Mercredi', Jeu: 'Jeudi', Ven: 'Vendredi', Sam: 'Samedi', Dim: 'Dimanche' };
 const SIDE_GROUPS: { key: FilterGroup; label: string }[] = [
     { key: 'tendances', label: 'Tendance' },
     { key: 'pays', label: 'Pays' },
@@ -67,6 +69,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const [validated, setValidated] = useState(false);
     const [sideGroup, setSideGroup] = useState<FilterGroup | null>(null);
     const [hiddenCourses, setHiddenCourses] = useState<string[]>([]);
+    const [hiddenDays, setHiddenDays] = useState<string[]>([]);
     const [picker, setPicker] = useState<{ day: string; meal: string } | null>(null);
     const [query, setQuery] = useState('');
     const [activeFilter, setActiveFilter] = useState('');
@@ -80,6 +83,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     useEffect(() => {
         if (!isOpen) return;
         try { setHiddenCourses(JSON.parse(localStorage.getItem(HIDDEN_KEY) || '[]')); } catch {}
+        try { setHiddenDays(JSON.parse(localStorage.getItem(HIDDEN_DAYS_KEY) || '[]')); } catch {}
         const apply = (p: Plan) => { setPlan(p); setValidated(Object.keys(p).length > 0); };
         const load = async () => {
             const { data: { session } } = await supabase.auth.getSession();
@@ -109,6 +113,10 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         if (!isOpen || !validated) return;
         const onDown = (e: MouseEvent) => {
             if (picker) return; // ne pas fermer si le picker est ouvert
+            // Une fiche recette (RecipeSheet) ouverte par-dessus verrouille le body :
+            // dans ce cas on NE ferme PAS le planificateur (sinon on retombe sur l'accueil
+            // à la fermeture de la fiche au lieu de revenir sur le planificateur).
+            if (document.body.style.position === 'fixed') return;
             if (panelRef.current && !panelRef.current.contains(e.target as Node)) onClose();
         };
         const id = setTimeout(() => document.addEventListener('mousedown', onDown), 0);
@@ -184,10 +192,9 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     const openRecipe = (recipe: any) => {
         if (!recipe?.id) return;
-        // Même logique que l'accueil : ouvre la recette flottante (RecipeSheet),
-        // pas de navigation vers /recipe/:id (qui garde la barre catégorie/pays).
-        onClose();
-        setTimeout(() => window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: recipe })), 50);
+        // Ouvre la recette flottante (RecipeSheet) PAR-DESSUS le planificateur, sans le
+        // fermer : à la fermeture de la fiche on retombe sur le planificateur tel quel.
+        window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: recipe }));
     };
 
     const toggleCourse = (label: string) => {
@@ -201,6 +208,25 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     };
 
     const visibleCourses = COURSES.filter(c => !hiddenCourses.includes(c.label));
+
+    // Jours visibles de la semaine. Supprimer un jour vide sa colonne du plan
+    // (donc il disparaît aussi des ingrédients de la semaine) ; le rajouter le
+    // ré-affiche vide. Même logique que les cartes Jour J.
+    const visibleDays = DAYS.filter(d => !hiddenDays.includes(d));
+    const toggleDay = (day: string) => {
+        setHiddenDays(prev => {
+            const hiding = !prev.includes(day);
+            const next = hiding ? [...prev, day] : prev.filter(d => d !== day);
+            localStorage.setItem(HIDDEN_DAYS_KEY, JSON.stringify(next));
+            if (hiding) {
+                const np = { ...plan };
+                delete np[day];
+                clearSlotChecks(k => k.startsWith(`${day}|`));
+                save(np);
+            }
+            return next;
+        });
+    };
 
     const normalize = (s: string) =>
         s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -234,7 +260,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         if (!plats.length) plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r));
         const shuffled = shuffle(plats);
         const slots: [string, string][] = [];
-        DAYS.forEach(d => MEALS.forEach(m => slots.push([d, m])));
+        visibleDays.forEach(d => MEALS.forEach(m => slots.push([d, m])));
         const np: Plan = { ...plan };
         slots.forEach(([day, meal], i) => {
             np[day] = { ...(np[day] || {}) };
@@ -268,7 +294,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const collectViewRecipes = () => {
         const map = new Map<string, { recipe: any; count: number }>();
         const add = (r: any) => { if (!r?.id) return; const e = map.get(r.id); map.set(r.id, { recipe: r, count: (e?.count || 0) + 1 }); };
-        if (view === 'semaine') DAYS.forEach(d => MEALS.forEach(m => add(plan[d]?.[m])));
+        if (view === 'semaine') visibleDays.forEach(d => MEALS.forEach(m => add(plan[d]?.[m])));
         else visibleCourses.forEach(c => add(plan[JOUR_J_KEY]?.[c.label]));
         return Array.from(map.values());
     };
@@ -431,10 +457,16 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         {/* Zone principale : calendrier ou jour J */}
                         <div className={styles.mainArea}>
                             {view === 'semaine' ? (
+                                <>
                                 <div className={styles.daysRow}>
-                                    {DAYS.map(day => (
+                                    {visibleDays.map(day => (
                                         <div key={day} className={styles.dayCard}>
-                                            <div className={styles.dayName}>{day}</div>
+                                            <div className={styles.dayName}>
+                                                {day}
+                                                {!validated && (
+                                                    <button className={styles.deleteDay} title="Supprimer ce jour" onClick={() => toggleDay(day)}>✕</button>
+                                                )}
+                                            </div>
                                             {MEALS.map(meal => {
                                                 const recipe = plan[day]?.[meal];
                                                 return (
@@ -465,6 +497,15 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                         </div>
                                     ))}
                                 </div>
+                                {!validated && hiddenDays.length > 0 && (
+                                    <div className={styles.addCourses}>
+                                        <span className={styles.addLabel}>Ajouter un jour :</span>
+                                        {DAYS.filter(d => hiddenDays.includes(d)).map(d => (
+                                            <button key={d} className={styles.addCourseBtn} onClick={() => toggleDay(d)}>+ {DAY_FULL[d]}</button>
+                                        ))}
+                                    </div>
+                                )}
+                                </>
                             ) : (
                                 <>
                                     <div className={styles.daysRow}>

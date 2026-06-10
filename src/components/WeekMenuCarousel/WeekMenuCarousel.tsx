@@ -255,7 +255,9 @@ export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'j
     // a choisi de NE PAS la fusionner) après Dimanche.
     const colHasRecipe = (c: string) => { const p = plan[c]; return !!p && Object.keys(p).length > 0; };
     // Onglet "Jour J" dédié → seule la colonne JourJ ; sinon les 7 jours de la semaine.
-    const COLS = view === 'jourj' ? ['JourJ'] : DAYS;
+    // Seuls les jours qui ont au moins une recette sont affichés (un jour supprimé
+    // dans le planificateur n'a plus de recette → il disparaît de la semaine).
+    const COLS = view === 'jourj' ? ['JourJ'] : DAYS.filter(colHasRecipe);
     const segLabel = (c: string) => (c === 'JourJ' ? 'JJ' : c);
     const colFull = (c: string) => (c === 'JourJ' ? 'Jour J' : FULL[c]);
 
@@ -307,7 +309,7 @@ export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'j
 
             <div ref={trackRef} className={styles.track} onScroll={onScroll}>
                 {COLS.map((d, i) => (
-                    <div key={d} ref={(el) => { cardEls.current[i] = el; }} className={styles.snap} onMouseEnter={() => goTo(i)}>
+                    <div key={d} ref={(el) => { cardEls.current[i] = el; }} className={styles.snap}>
                         <DayCard day={d} plan={plan} index={i} scrollX={scrollX} step={step} selected={selected} onSelect={toggleSelect} done={done} ingSel={ingSel} onToggleDone={toggleDone} onToggleIngSel={toggleIngSel} onShopped={onShopped} />
                     </div>
                 ))}
