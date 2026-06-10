@@ -995,7 +995,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <div className={styles.ingredientProgress}>
                                     <button
                                         type="button"
-                                        onClick={() => { addCheckedToCart(); router.push('/shopping-list'); }}
+                                        onClick={() => { addCheckedToCart(); router.push('/shopping-list?tab=recettes'); }}
                                         aria-label={checkedCount > 0 ? `Ajouter ${checkedCount} article(s) et voir la liste de courses` : 'Voir la liste de courses'}
                                         title={checkedCount > 0 ? `${checkedCount} article(s) — ajouter et voir la liste` : 'Voir la liste de courses'}
                                         style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.55rem', lineHeight: 1, padding: '2px 4px' }}
