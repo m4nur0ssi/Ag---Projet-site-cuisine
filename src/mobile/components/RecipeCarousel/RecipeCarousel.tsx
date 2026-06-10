@@ -200,6 +200,7 @@ function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle,
                         src={`${displayImage}${displayImage.includes('?') ? '&' : '?'}v=6`}
                         alt={recipe.title}
                         className={styles.compactImage}
+                        style={displayImage.includes('/themes/') ? { objectPosition: '50% 0%' } : undefined}
                     />
                 </div>
             </div>
