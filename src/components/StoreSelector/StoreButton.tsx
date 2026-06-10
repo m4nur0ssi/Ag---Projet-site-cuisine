@@ -6,7 +6,7 @@ import styles from './StoreButton.module.css';
 
 // Bouton magasin fusionné : [logo + nom] lance les courses, [▾] ouvre le menu
 // pour changer d'enseigne (Carrefour / Picard / Monoprix / Franprix).
-export default function StoreButton({ onLaunch }: { onLaunch: () => void }) {
+export default function StoreButton({ onLaunch, compact = false }: { onLaunch: () => void; compact?: boolean }) {
     const [store, setStore] = usePreferredStore();
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -22,9 +22,9 @@ export default function StoreButton({ onLaunch }: { onLaunch: () => void }) {
     return (
         <div ref={ref} className={styles.wrap} onClick={(e) => e.stopPropagation()}>
             <div className={styles.split} style={{ background: cur.color }}>
-                <button type="button" className={styles.main} onClick={onLaunch} title={`Commander sur ${cur.label}`}>
-                    <img src={cur.logo} alt="" className={styles.logo} />
-                    <span className={styles.label}>{cur.label}</span>
+                <button type="button" className={styles.main} onClick={onLaunch} title={`Commander sur ${cur.label}`} aria-label={`Commander sur ${cur.label}`}>
+                    <img src={cur.logo} alt={cur.label} className={styles.logo} />
+                    {!compact && <span className={styles.label}>{cur.label}</span>}
                 </button>
                 <button
                     type="button"

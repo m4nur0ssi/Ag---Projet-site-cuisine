@@ -52,8 +52,12 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
     return (
         <>
             <div className={`${styles.bar} ${size === 'md' ? styles.barMd : ''}`}>
-                <button className={styles.shareBtn} onClick={(e) => { e.stopPropagation(); share(); }}>↗ Partager</button>
-                <StoreButton onLaunch={() => { setIdx(0); openStore(0); }} />
+                <button className={styles.shareBtn} onClick={(e) => { e.stopPropagation(); share(); }} aria-label="Partager" title="Partager">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 15V3" /><path d="m8 7 4-4 4 4" /><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" />
+                    </svg>
+                </button>
+                <StoreButton onLaunch={() => { setIdx(0); openStore(0); }} compact />
             </div>
 
             {idx !== null && list[idx] && (
