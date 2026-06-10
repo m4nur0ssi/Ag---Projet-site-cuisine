@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { getCookEntries, addCookEntry, deleteCookEntry, type CookEntry } from '@/lib/cookingLog';
 import styles from './CookingJournal.module.css';
@@ -11,9 +11,7 @@ export default function CookingJournal({ recipeId }: { recipeId: string }) {
     const [entries, setEntries] = useState<CookEntry[]>([]);
     const [open, setOpen] = useState(false);
     const [note, setNote] = useState('');
-    const [file, setFile] = useState<File | null>(null);
     const [busy, setBusy] = useState(false);
-    const fileRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         let alive = true;
@@ -33,10 +31,10 @@ export default function CookingJournal({ recipeId }: { recipeId: string }) {
 
     const submit = async () => {
         setBusy(true);
-        const created = await addCookEntry(recipeId, note, file);
+        const created = await addCookEntry(recipeId, note);
         if (created) {
             setEntries(prev => [created, ...prev]);
-            setNote(''); setFile(null); if (fileRef.current) fileRef.current.value = '';
+            setNote('');
             setOpen(false);
         }
         setBusy(false);
@@ -50,7 +48,7 @@ export default function CookingJournal({ recipeId }: { recipeId: string }) {
     return (
         <div className={styles.wrap}>
             <div className={styles.head}>
-                <span className={styles.title}>📔 Mon carnet</span>
+                <span className={styles.title}>Mon carnet</span>
                 <span className={styles.summary}>
                     {count === 0 ? 'Jamais cuisiné' : `Cuisiné ${count}×${last ? ` · dernière le ${fmt(last)}` : ''}`}
                 </span>
@@ -68,9 +66,8 @@ export default function CookingJournal({ recipeId }: { recipeId: string }) {
                         rows={2}
                     />
                     <div className={styles.formRow}>
-                        <input ref={fileRef} type="file" accept="image/*" onChange={e => setFile(e.target.files?.[0] || null)} className={styles.file} />
                         <button className={styles.save} onClick={submit} disabled={busy}>{busy ? 'Enregistrement…' : 'Enregistrer'}</button>
-                        <button className={styles.cancel} onClick={() => { setOpen(false); setNote(''); setFile(null); }}>Annuler</button>
+                        <button className={styles.cancel} onClick={() => { setOpen(false); setNote(''); }}>Annuler</button>
                     </div>
                 </div>
             )}
@@ -79,7 +76,6 @@ export default function CookingJournal({ recipeId }: { recipeId: string }) {
                 <ul className={styles.list}>
                     {entries.map(e => (
                         <li key={e.id} className={styles.entry}>
-                            {e.photo_url && <img src={e.photo_url} alt="" className={styles.thumb} />}
                             <div className={styles.entryBody}>
                                 <span className={styles.entryDate}>{fmt(e.cooked_at)}</span>
                                 {e.note && <span className={styles.entryNote}>{e.note}</span>}
