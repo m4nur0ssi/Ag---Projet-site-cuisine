@@ -3,7 +3,9 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { mockRecipes } from '@/data/mockData';
 import { decodeHtml } from '@/lib/utils';
+import Link from 'next/link';
 import { normalizeIng, parseIngredient } from '@/lib/ingredients';
+import { rayonOf, RAYON_BY_ID } from '@/lib/rayons';
 import { supabase } from '@/lib/supabase';
 import styles from './WeekPlanner.module.css';
 
@@ -69,6 +71,8 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const [sideGroup, setSideGroup] = useState<FilterGroup | null>(null);
     const [hiddenCourses, setHiddenCourses] = useState<string[]>([]);
     const [hiddenDays, setHiddenDays] = useState<string[]>([]);
+    // Mini-résumé de la liste affiché sous le panneau juste après "Valider".
+    const [recap, setRecap] = useState<{ total: number; rayons: { id: string; n: number }[] } | null>(null);
     const [picker, setPicker] = useState<{ day: string; meal: string } | null>(null);
     const [query, setQuery] = useState('');
     const [activeFilter, setActiveFilter] = useState('');
@@ -81,6 +85,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     useEffect(() => {
         if (!isOpen) return;
+        setRecap(null); // le mini-résumé n'apparaît qu'APRÈS un Valider de la session courante
         try { setHiddenCourses(JSON.parse(localStorage.getItem(HIDDEN_KEY) || '[]')); } catch {}
         try { setHiddenDays(JSON.parse(localStorage.getItem(HIDDEN_DAYS_KEY) || '[]')); } catch {}
         const apply = (p: Plan) => { setPlan(p); setValidated(Object.keys(p).length > 0); };
@@ -364,16 +369,24 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         Object.keys(data).forEach(k => {
             if (data[k]?.source === 'planner' || data[k]?.count != null) delete data[k];
         });
-        // Compte le nombre de LIGNES distinctes du plan courant (pour le toast)
+        // Compte le nombre de LIGNES distinctes du plan courant (toast + mini-résumé par rayon)
         const lineKeys = new Set<string>();
+        const rayonCount = new Map<string, number>();
         recipes.forEach(({ recipe }) => {
             (recipe.ingredients || []).forEach((i: any) => {
                 if (!i?.name) return;
                 const p = parseIngredient(`${i.quantity || ''} ${i.name || ''}`.trim());
-                if (p.name) lineKeys.add(`${normalizeIng(p.name)}|${p.unit}`);
+                if (!p.name) return;
+                const k = `${normalizeIng(p.name)}|${p.unit}`;
+                if (lineKeys.has(k)) return;
+                lineKeys.add(k);
+                const rid = rayonOf(p.name, {});
+                rayonCount.set(rid, (rayonCount.get(rid) || 0) + 1);
             });
         });
         const total = lineKeys.size;
+        const rayons = [...rayonCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([id, n]) => ({ id, n }));
+        setRecap({ total, rayons });
         localStorage.setItem('magic-shopping-list', JSON.stringify(data));
         window.dispatchEvent(new Event('shoppingListUpdated'));
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
@@ -437,6 +450,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         <button className={styles.actionBtn} onClick={() => {
                             const next = !validated;
                             setValidated(next);
+                            if (!next) setRecap(null);
                             if (next) {
                                 // En vue Jour J : demande si on fusionne ces courses ou si on garde
                                 // une section Jour J séparée (après Dimanche) dans la liste de courses.
@@ -600,6 +614,21 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                             )}
                         </div>
                     </div>
+                    {/* Mini-résumé de la liste, visible juste après "Valider" */}
+                    {recap && validated && recap.total > 0 && (
+                        <div className={styles.recap}>
+                            <div className={styles.recapInfo}>
+                                <span className={styles.recapTotal}>🛒 {recap.total} ingrédient{recap.total > 1 ? 's' : ''} dans ta liste</span>
+                                <div className={styles.recapRayons}>
+                                    {recap.rayons.map(r => {
+                                        const ra = RAYON_BY_ID[r.id] || RAYON_BY_ID['autre'];
+                                        return <span key={r.id} className={styles.recapChip}>{ra.emoji} {ra.label} · {r.n}</span>;
+                                    })}
+                                </div>
+                            </div>
+                            <Link href="/shopping-list" className={styles.recapLink} onClick={onClose}>Voir la liste →</Link>
+                        </div>
+                    )}
                 </div>
             </div>
 

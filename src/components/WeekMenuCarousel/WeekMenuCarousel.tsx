@@ -165,6 +165,19 @@ export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'j
     const cardEls = useRef<(HTMLDivElement | null)[]>([]);
     const didFocus = useRef(false);
     const scrollX = useMotionValue(0);
+    // T5 : survol des bords gauche/droite = défilement continu du carousel (desktop).
+    const [scrollable, setScrollable] = useState(false);
+    const edgeTimer = useRef<ReturnType<typeof setInterval> | null>(null);
+    const stopEdgeScroll = () => { if (edgeTimer.current) { clearInterval(edgeTimer.current); edgeTimer.current = null; } };
+    const startEdgeScroll = (dir: number) => {
+        stopEdgeScroll();
+        edgeTimer.current = setInterval(() => {
+            const el = trackRef.current;
+            if (!el) return;
+            el.scrollLeft += dir * 14;
+        }, 16);
+    };
+    useEffect(() => stopEdgeScroll, []);
 
     useEffect(() => {
         const read = () => {
@@ -218,7 +231,11 @@ export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'j
 
     // mesure du pas (largeur carte + gap)
     useEffect(() => {
-        const measure = () => { if (cardEls.current[0]) setStep(cardEls.current[0]!.offsetWidth + GAP); };
+        const measure = () => {
+            if (cardEls.current[0]) setStep(cardEls.current[0]!.offsetWidth + GAP);
+            const el = trackRef.current;
+            if (el) setScrollable(el.scrollWidth > el.clientWidth + 4);
+        };
         measure();
         window.addEventListener('resize', measure);
         return () => window.removeEventListener('resize', measure);
@@ -228,6 +245,7 @@ export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'j
         const el = trackRef.current;
         if (!el) return;
         scrollX.set(el.scrollLeft);
+        setScrollable(el.scrollWidth > el.clientWidth + 4);
         // carte dont le centre est le plus proche du centre du viewport
         const center = el.scrollLeft + el.clientWidth / 2;
         let best = 0, bestDist = Infinity;
@@ -307,12 +325,29 @@ export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'j
                 ))}
             </div>
 
-            <div ref={trackRef} className={styles.track} onScroll={onScroll}>
-                {COLS.map((d, i) => (
-                    <div key={d} ref={(el) => { cardEls.current[i] = el; }} className={styles.snap}>
-                        <DayCard day={d} plan={plan} index={i} scrollX={scrollX} step={step} selected={selected} onSelect={toggleSelect} done={done} ingSel={ingSel} onToggleDone={toggleDone} onToggleIngSel={toggleIngSel} onShopped={onShopped} />
-                    </div>
-                ))}
+            <div className={styles.trackWrap}>
+                {/* Bords sensibles au survol : défilent le carousel tant que la souris reste (desktop). */}
+                <div
+                    className={`${styles.edgeZone} ${styles.edgeLeft} ${scrollable ? styles.edgeOn : ''}`}
+                    onMouseEnter={() => startEdgeScroll(-1)}
+                    onMouseLeave={stopEdgeScroll}
+                    onMouseDown={stopEdgeScroll}
+                    aria-hidden
+                />
+                <div ref={trackRef} className={styles.track} onScroll={onScroll}>
+                    {COLS.map((d, i) => (
+                        <div key={d} ref={(el) => { cardEls.current[i] = el; }} className={styles.snap}>
+                            <DayCard day={d} plan={plan} index={i} scrollX={scrollX} step={step} selected={selected} onSelect={toggleSelect} done={done} ingSel={ingSel} onToggleDone={toggleDone} onToggleIngSel={toggleIngSel} onShopped={onShopped} />
+                        </div>
+                    ))}
+                </div>
+                <div
+                    className={`${styles.edgeZone} ${styles.edgeRight} ${scrollable ? styles.edgeOn : ''}`}
+                    onMouseEnter={() => startEdgeScroll(1)}
+                    onMouseLeave={stopEdgeScroll}
+                    onMouseDown={stopEdgeScroll}
+                    aria-hidden
+                />
             </div>
 
             {/* Points de pagination */}

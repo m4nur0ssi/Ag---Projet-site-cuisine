@@ -154,7 +154,7 @@ export default function ShoppingListPage() {
 
     // ── partage / Carrefour ──
     const lineFor = (it: ConsolItem) => it.qty != null ? `${fmtQty(it.qty)}${it.unit ? ' ' + it.unit : ''} ${it.name}` : it.name;
-    const buildShareText = () => '🛒 Ma liste de courses\n\n' + items.filter(i => selected.has(i.key)).map(i => `• ${lineFor(i)}`).join('\n');
+    const buildShareText = () => '🛒 Ma liste de courses\n\n' + (selected.size ? items.filter(i => selected.has(i.key)) : items).map(i => `• ${lineFor(i)}`).join('\n');
     const shareNative = async () => {
         const text = buildShareText();
         if (typeof navigator !== 'undefined' && (navigator as Navigator & { share?: (d: unknown) => Promise<void> }).share) {
@@ -186,7 +186,8 @@ export default function ShoppingListPage() {
         window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     };
 
-    const selectedItems = items.filter(i => selected.has(i.key));
+    // Rien coché → cible toute la liste (le bouton magasin doit toujours avoir une cible).
+    const selectedItems = selected.size ? items.filter(i => selected.has(i.key)) : items;
     const openCarrefourFor = (i: number) => {
         const it = selectedItems[i];
         if (!it) return;
@@ -303,10 +304,10 @@ export default function ShoppingListPage() {
                             </>
                         )}
 
-                        {/* Barre de partage flottante */}
-                        {selected.size > 0 && (
+                        {/* Barre de partage flottante — visible dès qu'il y a des items (rien coché = toute la liste) */}
+                        {items.length > 0 && (
                             <div style={{ position: 'fixed', bottom: 90, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 10, alignItems: 'center', background: 'rgba(20,20,20,0.95)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 40, padding: '10px 16px', zIndex: 100, boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}>
-                                <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginRight: 4 }}>{selected.size} à partager</span>
+                                <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginRight: 4 }}>{selected.size ? `${selected.size} à partager` : `${items.length} ingr.`}</span>
                                 <button onClick={shareNative} style={btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)')}><ShareIcon /> Partager</button>
                                 <button onClick={shareWhatsApp} style={btnStyle('#25D366')} title="WhatsApp"><WhatsAppIcon /></button>
                                 <button onClick={startCarrefour} style={btnStyle('#0066CC')} title="Carrefour">🛒</button>

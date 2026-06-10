@@ -208,7 +208,9 @@ export default function ShoppingListPage() {
         it.qty != null ? `${fmtQty(it.qty)}${it.unit ? ' ' + it.unit : ''} ${it.name}` : it.name;
 
     const buildShareText = () => {
-        const lines = items.filter(i => selected.has(i.key)).map(i => `• ${lineFor(i)}`);
+        // Rien coché → on partage toute la liste.
+        const src = selected.size ? items.filter(i => selected.has(i.key)) : items;
+        const lines = src.map(i => `• ${lineFor(i)}`);
         return '🛒 Ma liste de courses\n\n' + lines.join('\n');
     };
 
@@ -223,7 +225,8 @@ export default function ShoppingListPage() {
     const shareWhatsApp = () => window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText())}`, '_blank');
 
     // ── Commander sur Carrefour : recherche pas-à-pas (1 ingrédient à la fois) ──
-    const selectedItems = items.filter(i => selected.has(i.key));
+    // Rien coché → cible TOUTE la liste (sinon le bouton magasin n'aurait aucune cible).
+    const selectedItems = selected.size ? items.filter(i => selected.has(i.key)) : items;
     const openCarrefourFor = (i: number) => {
         const it = selectedItems[i];
         if (!it) return;
@@ -403,8 +406,9 @@ export default function ShoppingListPage() {
                   </>
                 )}
 
-                {/* Barre de partage flottante (mode fusion uniquement) */}
-                {weekMode === 'fusion' && selected.size > 0 && (
+                {/* Barre de partage flottante (mode fusion uniquement) — visible dès qu'il y a
+                    des ingrédients ; rien coché = cible toute la liste. */}
+                {weekMode === 'fusion' && items.length > 0 && (
                     <div style={{
                         position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)',
                         display: 'flex', gap: 10, alignItems: 'center', background: 'rgba(20,20,20,0.95)',
@@ -413,7 +417,7 @@ export default function ShoppingListPage() {
                         boxShadow: '0 8px 32px rgba(0,0,0,0.5)'
                     }}>
                         <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginRight: 4 }}>
-                            {selected.size} à partager
+                            {selected.size ? `${selected.size} à partager` : `${items.length} ingrédient${items.length > 1 ? 's' : ''}`}
                         </span>
                         <button onClick={shareNative} style={btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)')}>
                             <ShareIcon /> Partager

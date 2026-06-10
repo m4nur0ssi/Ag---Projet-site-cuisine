@@ -146,8 +146,10 @@
 .daysRow::-webkit-scrollbar { display: none; }
 
 .dayCard {
-    flex-shrink: 0;
-    width: 150px;
+    /* Cartes élastiques : moins de jours affichés = chaque carte plus large.
+       min-width garde des cartes utilisables à 7 jours (sinon scroll horizontal). */
+    flex: 1 1 0;
+    min-width: 132px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -753,6 +755,45 @@
 .themeBubble:active { transform: scale(0.95); }
 
 /* ── Réafficher une carte supprimée (Jour J) ── */
+/* Mini-résumé liste de courses sous le panneau (après Valider) */
+.recap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.recapInfo { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.recapTotal { font-size: 0.9rem; font-weight: 800; color: #fff; }
+.recapRayons { display: flex; flex-wrap: wrap; gap: 6px; }
+.recapChip {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    background: rgba(255,255,255,0.07);
+    border-radius: 999px;
+    padding: 3px 9px;
+    white-space: nowrap;
+}
+.recapLink {
+    flex-shrink: 0;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    border-radius: 999px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 14px rgba(139,92,246,0.35);
+    transition: transform 0.15s, filter 0.2s;
+}
+.recapLink:hover { transform: translateY(-1px); filter: brightness(1.08); }
+
 .addCourses {
     display: flex;
     flex-wrap: wrap;
