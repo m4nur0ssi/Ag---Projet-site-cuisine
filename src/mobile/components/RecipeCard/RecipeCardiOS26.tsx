@@ -200,7 +200,12 @@ export default function RecipeCardiOS26({
                             src={recipe.image}
                             alt={recipe.title}
                             fill
-                            style={{ objectFit: 'cover' }}
+                            style={{
+                                objectFit: 'cover',
+                                // Cartes thèmes : le titre est incrusté en haut de l'image →
+                                // on montre le haut pour qu'il reste visible même en petit.
+                                objectPosition: isThematicCard ? '50% 0%' : 'center',
+                            }}
                             className={styles.image}
                         />
                     )}
