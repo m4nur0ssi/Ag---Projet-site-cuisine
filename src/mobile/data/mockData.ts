@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/06/2026 17:43:34
+ * Dernière mise à jour: 11/06/2026 07:22:05
  * Total: 357 recettes
  */
-export const exportSyncId = "1781113414889";
+export const exportSyncId = "1781162525867";
 export const mockRecipes: Recipe[] = [
     {
         "id": "6082",
@@ -647,79 +647,79 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n ⅓ tasse de jus de citron frais"
+                "name": "🥣\n ⅓ cup of fresh lime juice"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ⅓ tasse de jus de citron frais"
+                "name": "🥣\n ⅓ cup fresh lemon juice"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ⅓ tasse de jus d'orange frais"
+                "name": "🥣\n ⅓ cup of fresh orange juice"
             },
             {
                 "quantity": "",
-                "name": "🥣\n huile d'olive"
+                "name": "🥣\n olive oil"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 cuillères à café d'origan"
+                "name": "🥣\n 2 tsp oregano"
             },
             {
                 "quantity": "",
-                "name": "🧂\n 2 cuillères à café de cumin"
+                "name": "🧂\n 2 tsp cumin"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 oignon rouge, tranché"
+                "name": "🥣\n 1 red onion, sliced"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sel"
+                "name": "🥣\n Salt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n poivre"
+                "name": "🥣\n pepper"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 8 gousses d'ail, hachées"
+                "name": "🥣\n 8 clove garlic, minced"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1/2 tasse de sauce soja"
+                "name": "🥣\n 1/2 cup soy sauce"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 tasses de riz blanc à grain long"
+                "name": "🥣\n 2 cups long-grain white rice"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 oignon blanc, haché"
+                "name": "🥣\n 1 white onion, chopped"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 cuillères à soupe d'ail, hachées"
+                "name": "🥣\n 2 tbsp garlic, minced"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 tasses de bouillon de poulet"
+                "name": "🥣\n 2 cups of chicken stock"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 tasse de sauce tomate"
+                "name": "🥣\n 1 cup tomato sauce"
             },
             {
                 "quantity": "",
-                "name": "🧂\n 1 cuillère à café de cumin"
+                "name": "🧂\n 1 tsp cumin"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 3 avocats"
+                "name": "🥣\n 3 avocados"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 4 tomates, tranchées"
+                "name": "🥣\n 4 tomatoes, sliced"
             },
             {
                 "quantity": "",
@@ -727,52 +727,52 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 oignon rouge, coupé en dés"
+                "name": "🥣\n 1 red onion, diced"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Coriandre, hachée"
+                "name": "🥣\n Cilantro, chopped"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 citron, jus"
+                "name": "🥣\n 1 lime, juice"
             },
             {
                 "quantity": "",
-                "name": "🥣\n tomates cerises"
+                "name": "🥣\n cherry tomatoes"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Jus d'1 citron"
+                "name": "🥣\n Juice of 1 lime"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cube de poulet"
+                "name": "🥣\n 1 chicken cube"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Piments Ancho"
+                "name": "🥣\n Ancho chillies"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Piments Guajillo"
+                "name": "🥣\n Guajillo chillies"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 oignon rouge, grossièrement haché"
+                "name": "🥣\n 1 red onion, roughly chopped"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 5 tranches de jalapenos"
+                "name": "🥣\n 5 pcs of jalapenos, sliced"
             }
         ],
         "steps": [
-            "Mariner le steak dans la marinade de carne asada pendant 30 minutes à overnight.",
-            "Faire sauter les oignons et l'ail. Ajouter le riz lavé et faire torréfier. Ajouter les tomates concassées, le bouillon de poulet, le cumin et laisser cuire pendant 15 minutes à feu doux.",
-            "Mettre tous les ingrédients sous guacamole dans un bol et écraser.",
-            "Faire griller le steak sur du charbon jusqu'à la cuisson désirée.",
-            "Dans une poêle, faire rôtir tout ce qui est sous salsa. Ajouter dans un blender avec de la coriandre, un cube de poulet.",
-            "Servir le steak sur le riz avec les accompagnements et profiter !"
+            "Marinate steak in carne asada marinade 30 mins to overnight.",
+            "Sauté onions garlic. Add washed rice and toast. Add crushed tomatoes, chicken broth, cumin and let cook for 15mins on low.",
+            "Add all ingredients under guacamole into a bowl and mash.",
+            "Grill the steak over charcoal until desired doneness.",
+            "In a pan, roast everything under salsa. Add into a blender w/ cilantro, chicken cube.",
+            "Serve the steak over rice along with the sides and enjoy!"
         ],
         "tags": [
             "barbecue",
@@ -846,7 +846,7 @@ export const mockRecipes: Recipe[] = [
             "Couper les jalapeños en deux et retirer le cœur.",
             "Farcir les moitiés de jalapeños avec le mélange.",
             "Garnir le dessus avec un peu plus de maïs et de Tajin.",
-            "Cuire au four à 350 degrés Fahrenheit (environ 175 degrés Celsius) pendant 15 minutes ou jusqu'à ce que le fromage soit bien fondu.",
+            "Cuire au four à 350°F (environ 175°C) pendant 15 minutes ou jusqu'à ce que le fromage soit bien fondu.",
             "Déguster !"
         ],
         "tags": [
@@ -861,7 +861,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6009",
-        "title": "Bol Mexicain comestible",
+        "title": "Bowl Mexicanos comestible",
         "description": "Un bowl comestible rempli de saveur, de texture et de couleur, avec des Tostacos WOW Guacamole pour une touche croustillante et fraîche.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbowl-salade.jpg&v=1781015889000",
         "category": "plats",
@@ -877,11 +877,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n Riz mexicain"
+                "name": "🥣\n Arroz mexicano"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Viande hachée"
+                "name": "🥣\n Carne molida"
             },
             {
                 "quantity": "",
@@ -893,11 +893,11 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n Pico de gallo frais"
+                "name": "🥣\n Pico de gallo fresco"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Crème aigre"
+                "name": "🥣\n Sour cream"
             },
             {
                 "quantity": "",
@@ -905,7 +905,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n Coriandre fraîche"
+                "name": "🥣\n Cilantro fresco"
             }
         ],
         "steps": [
@@ -920,7 +920,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6011",
-        "title": "Tinga de poulet",
+        "title": "Tinga de pollo",
         "description": "Une recette mexicaine de tinga de poulet, où le poulet effiloché est mijoté dans une sauce relevée aux chipotles, puis servi sur des tostadas avec des garnitures fraîches comme de la crème, de la laitue, du fromage frais et de l'avocat.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FChicken-Tinga-Tostadas8-2-683x1024-1.jpg&v=1781015583000",
         "category": "plats",
@@ -932,55 +932,55 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 1 poitrine de poulet"
+                "name": "🥣\n 1 pechuga de pollo"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1/2 oignon"
+                "name": "🥣\n 1/2 cebolla"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 gousses d'ail"
+                "name": "🥣\n 2 dientes de ajo"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 feuille de laurier"
+                "name": "🥣\n 1 hoja de laurel"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sel au goût"
+                "name": "🥣\n Sal al gusto"
             },
             {
                 "quantity": "",
-                "name": "🍅\n 2 tomates"
+                "name": "🍅\n 2 jitomates"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 6 piments chipotles en conserve"
+                "name": "🥣\n 6 chiles chipotles enlatados"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 gousse d'ail"
+                "name": "🥣\n 1 diente de ajo"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à café de sazonador Golden Garlic de Spanglish Asadero"
+                "name": "🥣\n 1 cucharadita de sazonador Golden Garlic de Spanglish Asadero"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à café de bouillon de poulet"
+                "name": "🥣\n 1 cucharadita de consomé de pollo"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 tasse de bouillon de poulet"
+                "name": "🥣\n 1 taza de caldo de pollo"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Huile"
+                "name": "🥣\n Aceite"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1/2 oignon coupé en fines lamelles"
+                "name": "🥣\n 1/2 cebolla cortada en tiras finas"
             },
             {
                 "quantity": "",
@@ -988,29 +988,29 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n Crème mexicaine"
+                "name": "🥣\n Crema mexicana"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Laitue"
+                "name": "🥣\n Lechuga"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Fromage frais"
+                "name": "🥣\n Queso fresco"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Avocat"
+                "name": "🥣\n Aguacate"
             }
         ],
         "steps": [
-            "Dans une casserole, ajoutez la poitrine de poulet, 1/2 oignon, 2 gousses d'ail, la feuille de laurier et du sel au goût. Couvrez d'eau, fermez et faites cuire pendant environ 45 minutes ou jusqu'à ce que le poulet soit bien cuit.",
-            "Retirez le poulet de la casserole et déchiquetez-le. Dans le même bouillon, faites cuire les tomates jusqu'à ce qu'elles soient tendres.",
-            "Faites passer les tomates cuites au mélangeur avec les chipotles, 1 gousse d'ail, le sazonador Golden Garlic, le bouillon de poulet et 1 tasse de bouillon de poulet. Mélangez jusqu'à obtenir une sauce lisse.",
-            "Dans une poêle, ajoutez un peu d'huile et ajoutez l'oignon en lamelles. Faites cuire pendant environ 1 minute.",
-            "Ajoutez le poulet déchiqueté et mélangez pendant quelques secondes. Versez la sauce de chipotle et mélangez bien. Si nécessaire, ajoutez un peu plus de bouillon de poulet.",
-            "Lorsqu'elle commence à bouillir légèrement, retirez du feu.",
-            "Servez sur des tostadas et ajoutez de la crème, de la laitue, du fromage frais et de l'avocat. Profitez !"
+            "En una olla agrega la pechuga de pollo, 1/2 cebolla, 2 dientes de ajo, la hoja de laurel y sal al gusto. Cubre con agua, tapa y cocina por aproximadamente 45 minutos o hasta que el pollo esté bien cocido.",
+            "Retira el pollo de la olla y deshébralo. En el mismo caldo cocina los jitomates hasta que estén suaves.",
+            "Lleva los jitomates cocidos a la licuadora junto con los chipotles, 1 diente de ajo, el sazonador Golden Garlic, el consomé de pollo y 1 taza de caldo de pollo. Licúa hasta obtener una salsa suave.",
+            "En un sartén agrega un poco de aceite y añade la cebolla en tiras. Cocina por aproximadamente 1 minuto.",
+            "Agrega el pollo deshebrado y mezcla por unos segundos. Vierte la salsa de chipotle y mezcla bien. Si es necesario, agrega un poco más de caldo de pollo.",
+            "Cuando comience a hervir ligeramente, retira del fuego.",
+            "Sirve sobre tostadas y agrega crema, lechuga, queso fresco y aguacate. ¡Disfruta!"
         ],
         "tags": [
             "épicé",
@@ -1034,27 +1034,27 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 3 tomates roma"
+                "name": "🥣\n 3 roma tomatoes"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1/2 d'oignon rouge"
+                "name": "🥣\n 1/2 of red onion"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 poivrons serrano"
+                "name": "🥣\n 2 serrano peppers"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Petit bouquet de coriandre"
+                "name": "🥣\n Small bunch of cilantro"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Jus de 2 citrons verts"
+                "name": "🥣\n Juice of 2 limes"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sel à goût"
+                "name": "🥣\n Salt to taste"
             }
         ],
         "steps": [
@@ -2241,7 +2241,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5086",
-        "title": "Café battido con Kinder Bueno",
+        "title": "Café batido con Kinder Bueno",
         "description": "Une boisson rafraîchissante et gourmande à base de café fouetté, de Nutella, de Kinder Bueno fondu et de glaçons, parfaite pour les amateurs de café et de chocolat.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcaf%C3%A9.jpeg&v=1780586322000",
         "category": "rafraichissements",
@@ -2847,10 +2847,10 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparer la marinade en mélangeant 2 cas d'huile d'olive, 1 cas de sauce soja salée, 1 cas de miel, 1 cac d'origan et du paprika fumé.",
+            "Préparer la marinade en mélangeant 2 cas d'huile d'olive, 1 cas de soja salé, 1 cas de miel, 1 cac d'origan et du paprika fumé.",
             "Couper les courgettes et les saisir à la poêle avec un peu de beurre pendant 10 minutes.",
             "Transférer les courgettes dans un plat allant au four, les napper de marinade et cuire au four pendant 20 minutes à 200 degrés.",
-            "Pendant ce temps, préparer la sauce : mixer 1 boule de mozzarella, 3 cas de yaourt, une poignée d'herbes (menthe, basilic...), 1/2 gousse d'ail, 2 cas d'huile d'olive, 1 cas de miel, du sel et le zeste d'un citron.",
+            "Pendant ce temps, préparer la sauce : mixer 1 boule de mozzarella, 3 cas de yaourt, une poignée d'herbes (menthe, basilic...), 1/2 gousse d'ail, 2 cas d'huile d'olive, 1 cas de miel, du sel et le zest d'un citron.",
             "Servir les courgettes rôties avec la crème de mozza et garnir de grenade, de morceaux de mozzarella fraîche et de pignons de pin grillés."
         ],
         "tags": [
@@ -4825,7 +4825,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n 200 g de fromage cottage"
+                "name": "🥣\n 200 g de cottage cheese"
             },
             {
                 "quantity": "",
@@ -4861,7 +4861,7 @@ export const mockRecipes: Recipe[] = [
             "Fais cuire la viande hachée à sec.",
             "Ajoute le fromage râpé et enfourne 2 min.",
             "Hors du four, ajoute l'oignon rouge finement émincé avec les tomates coupées en petits dés.",
-            "Ajoute le guacamole 100 % avocat et le fromage cottage (au-dessus ou à côté)."
+            "Ajoute le guacamole 100 % avocat et le cottage cheese (au-dessus ou à côté)."
         ],
         "tags": [
             "épicé",
@@ -4936,7 +4936,7 @@ export const mockRecipes: Recipe[] = [
             "Les pommes de terre sont cuites : coupe-les au premier tiers et récupère la pulpe avec une cuillère. Si certaines parties sont un peu dures, utilise la pointe d'un couteau pour décoller la pulpe sans abîmer la peau de la pomme de terre.",
             "Ajoute cette pulpe dans la poêle avec la préparation viande et un peu de mozzarella, puis mélange bien.",
             "Garnis les pommes de terre avec ce mélange, ajoute encore un peu de mozzarella par-dessus.",
-            "Remets 5 minutes au four en mode grill à environ 220°C pour bien gratiner. Et voilà . Tu peux servir ça avec une petite salade si tu veux te donner bonne conscience."
+            "Remets 5 minutes au four en mode grill à environ 220°C pour bien gratiner. Et voilà 🔥 Tu peux servir ça avec une petite salade si tu veux te donner bonne conscience."
         ],
         "tags": [
             "C'est l'hiver",
@@ -5525,43 +5525,43 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 4 œufs"
+                "name": "🥣\n 4 eggs"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 tasse de sucre"
+                "name": "🥣\n 1 cup sugar"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 tasse de lait"
+                "name": "🥣\n 1 cup milk"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 tasse d'huile"
+                "name": "🥣\n 1 cup oil"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 1/2 tasses de farine (500ml)"
+                "name": "🥣\n 2 1/2 cups flour (500ml)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 5g de poudre de vanille ou un filet d'extrait de vanille"
+                "name": "🥣\n 5g vanilla powder or a dash of vanilla extract"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 10g de poudre à pâte"
+                "name": "🥣\n 10g baking powder"
             },
             {
                 "quantity": "",
-                "name": "🥣\n baies mélangées surgelées"
+                "name": "🥣\n frozen mixed berries"
             },
             {
                 "quantity": "",
-                "name": "🥣\n zeste de citron"
+                "name": "🥣\n lemon zest"
             },
             {
                 "quantity": "",
-                "name": "🥣\n demi citron pressé"
+                "name": "🥣\n half a lemon juiced"
             }
         ],
         "steps": [
@@ -5680,7 +5680,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5505",
-        "title": "Rouleaux à la crème de vanille",
+        "title": "Vanilla Cream Rolls",
         "description": "This recipe combines the delicacy of puff pastry with the richness of Diplomat cream. A dreamy dessert that strikes the perfect balance between crispy, creamy, and sweet.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frolls.jpg&v=1779389655000",
         "category": "patisserie",
@@ -5692,46 +5692,46 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 1 rouleau de pâte feuilletée (240 g)"
+                "name": "🥣\n 1 roll puff pastry (240 g)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 250 ml lait"
+                "name": "🥣\n 250 ml milk"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 jaunes d'œuf"
+                "name": "🥣\n 2 egg yolks"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à café d'extrait de vanille"
+                "name": "🥣\n 1 teaspoon vanilla extract"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 50 g sucre"
+                "name": "🥣\n 50 g sugar"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 20 g amidon de maïs"
+                "name": "🥣\n 20 g cornstarch"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 120 ml crème fouettée"
+                "name": "🥣\n 120 ml whipped cream"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 jaune d'œuf + 1 cuillère à soupe de crème, battus (pour badigeonner)"
+                "name": "🥣\n 1 egg yolk + 1 tablespoon cream, beaten (for brushing)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sucre glace (pour saupoudrer)"
+                "name": "🥣\n Powdered sugar (for dusting)"
             }
         ],
         "steps": [
-            "Dans une casserole, mélangez le lait, les jaunes d'œuf, l'extrait de vanille, le sucre et l'amidon de maïs. Chauffez le mélange en remuant jusqu'à ce qu'il épaississe en crème pâtissière. Laissez la crème pâtissière refroidir complètement. Incorporez la crème fouettée dans la crème pâtissière refroidie et réfrigérez pendant une heure.",
-            "Étalez la pâte feuilletée et coupez-la en 20 bandes de taille égale. Graissez des moules à cannoli et enroulez-les de bandes de pâte feuilletée, en reliant deux bandes pour chaque moule.",
-            "Badigeonnez les rouleaux préparés avec un mélange de jaune d'œuf battu et de crème. Faites cuire dans un four préchauffé à 180°C (ventilateur) pendant 15-17 minutes jusqu'à ce qu'ils soient dorés. Une fois cuits, retirez-les du four, déposez-les et laissez-les refroidir complètement.",
-            "Récupérez la crème refroidie du réfrigérateur, remplissez un sac à pâtisserie et garnissez les morceaux de pâte refroidis de crème. Saupoudrez de sucre glace et servez frais."
+            "In a saucepan, mix milk, egg yolks, vanilla extract, sugar, and cornstarch. Heat the mixture, stirring until it thickens into a custard. Let the custard cool completely. Fold whipped cream into the cooled custard and refrigerate for an hour.",
+            "Roll out puff pastry and cut it into 20 evenly sized strips. Grease cannoli forms and wrap them with puff pastry strips, connecting two strips for each form.",
+            "Brush the prepared rolls with a mixture of beaten egg yolk and cream. Bake in a preheated oven at 180°C (fan) for 15-17 minutes until golden brown. Once baked, remove from the oven, release from the forms, and let them cool completely.",
+            "Retrieve the chilled cream from the refrigerator, fill a pastry bag, and pipe the cream into the cooled pastry pieces. Sprinkle with powdered sugar and serve chilled."
         ],
         "tags": [
             "pâtisserie"
@@ -5754,93 +5754,93 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 240 g (2 cups) farine tout usage, tamisée"
+                "name": "🥣\n 240 g (2 cups) all-purpose flour, sifted"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à soupe de poudre à pâte"
+                "name": "🥣\n 1 tbsp baking powder"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ½ cuillère à café de sel"
+                "name": "🥣\n ½ tsp salt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 cuillères à soupe de cannelle moulue"
+                "name": "🥣\n 2 tbsp ground cinnamon"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à café de fécule de maïs"
+                "name": "🥣\n 1 tsp cornstarch"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 110 g (environ ½ tasse) sucre granulé"
+                "name": "🥣\n 110 g (about ½ cup) granulated sugar"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 80 g (environ ½ tasse compacte) sucre roux"
+                "name": "🥣\n 80 g (about ½ cup packed) brown sugar"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ½ tasse (115 g) beurre non salé, fondu ou à température ambiante"
+                "name": "🥣\n ½ cup (115 g) unsalted butter, melted or at room temperature"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ⅓ tasse (80 ml) d'huile végétale"
+                "name": "🥣\n ⅓ cup (80 ml) vegetable oil"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 œufs + 1 blanc d'œuf"
+                "name": "🥣\n 2 eggs + 1 egg white"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1½ cuillères à soupe d'extrait de vanille"
+                "name": "🥣\n 1½ tbsp vanilla extract"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ⅓ tasse (80 ml) de lait"
+                "name": "🥣\n ⅓ cup (80 ml) milk"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ¼ tasse (60 g) yaourt grec nature"
+                "name": "🥣\n ¼ cup (60 g) plain Greek yogurt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 60 g de beurre non salé, fondu (pour le tourbillon)"
+                "name": "🥣\n 60 g unsalted butter, melted (for swirl)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 60 g de sucre roux (pour le tourbillon)"
+                "name": "🥣\n 60 g brown sugar (for swirl)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1½ cuillères à café de cannelle moulue (pour le tourbillon)"
+                "name": "🥣\n 1½ tsp ground cinnamon (for swirl)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 6 oz (170 g) de fromage à la crème Philadelphia, ramolli"
+                "name": "🥣\n 6 oz (170 g) Philadelphia cream cheese, softened"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 7 cuillères à soupe (100 g) de beurre non salé, ramolli (pour la garniture)"
+                "name": "🥣\n 7 tbsp (100 g) unsalted butter, softened (for filling)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 tasse (120 g) de sucre glace, tamisé"
+                "name": "🥣\n 1 cup (120 g) powdered sugar, sifted"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à café d'extrait de vanille (pour la garniture)"
+                "name": "🥣\n 1 tsp vanilla extract (for filling)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 cuillères à soupe de crème liquide"
+                "name": "🥣\n 2 tbsp heavy cream"
             }
         ],
         "steps": [
-            "Pour la garniture tourbillon \"Cinnamon Roll\" : Mélangez le beurre fondu, le sucre roux et la cannelle jusqu'à obtenir une pâte épaisse. Transférez dans une poche à douille ou un petit sac en plastique dont vous aurez coupé un coin.",
+            "Pour la garniture tourbillon \" Cinnamon Roll \" : Mélangez le beurre fondu, le sucre roux et la cannelle jusqu'à obtenir une pâte épaisse. Transférez dans une poche à douille ou un petit sac en plastique dont vous aurez coupé un coin.",
             "Pour la préparation des muffins : Préchauffez le four à 180 °C (350 °F) et préparez un moule à muffins avec de grandes caissettes ou graissez-le.",
-            "Dans un bol, mélangez les ingrédients secs (farine, poudre à pâte, sel, cannelle, fécule de maïs) et mettez de côté.",
+            "Dans un bol, mélangez les ingrédients secs (farine, levure chimique, sel, cannelle, fécule de maïs) et mettez de côté.",
             "Dans un autre bol, battez le beurre avec les sucres (si vous utilisez du beurre fondu, mélangez simplement jusqu'à incorporation).",
             "Ajoutez l'huile, les œufs, la vanille, le yaourt et le lait. Mélangez jusqu'à incorporation.",
             "Incorporez délicatement les ingrédients secs avec une spatule ; ne mélangez pas trop.",
@@ -5848,12 +5848,12 @@ export const mockRecipes: Recipe[] = [
             "Ajoutez un peu du mélange tourbillon à la cannelle sur le dessus en spirale, puis utilisez un cure-dent pour faire un léger mouvement circulaire afin de créer l'effet de tourbillon.",
             "Faites cuire pendant 22 à 25 minutes, jusqu'à ce qu'un cure-dent inséré en ressorte propre (un peu d'humidité est acceptable, mais pas de pâte crue).",
             "Laissez refroidir dans le moule pendant 5 minutes, puis transférez sur une grille.",
-            "Pour la garniture crémeuse (après cuisson) : Battez le beurre et le fromage à la crème jusqu'à obtenir une consistance crémeuse (2-3 min).",
+            "Pour la garniture crémeuse (après cuisson) : Battez le beurre et le cream cheese jusqu'à obtenir une consistance crémeuse (2-3 min).",
             "Ajoutez la vanille.",
             "Incorporez progressivement le sucre glace jusqu'à ce que le mélange soit léger et mousseux.",
             "Réfrigérez 15 à 20 minutes avant utilisation.",
             "Pour garnir les muffins : Une fois refroidis, faites un petit trou au centre de chaque muffin (avec une douille ou un petit couteau).",
-            "Placez la garniture au fromage à la crème dans une poche à douille munie d'une douille ronde.",
+            "Placez la garniture au cream cheese dans une poche à douille munie d'une douille ronde.",
             "Remplissez le centre jusqu'à ce qu'un peu de garniture dépasse du muffin.",
             "Vous pouvez laisser la surface lisse ou créer une petite \" montagne \" visible sur le dessus, comme un glaçage."
         ],
@@ -7311,7 +7311,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5588",
-        "title": "Soupe de pommes de terre chargée",
+        "title": "Loaded Potato Soup",
         "description": "Une soupe de pommes de terre crémeuse et réconfortante, garnie de tofu fumé croustillant et de fromage végétalien, parfaite pour les journées froides.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FLoaded-Baked-Potato-Soup-063.jpg&v=1779205585000",
         "category": "plats",
@@ -8475,27 +8475,27 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 500g farine de pain"
+                "name": "🥣\n 500g bread flour"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 7g levure sèche à action rapide"
+                "name": "🥣\n 7g dried fast action yeast"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 cuillères à café de sel de mer fin"
+                "name": "🥣\n 2 tsp fine sea salt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 5 cuillères à soupe d'huile d'olive"
+                "name": "🥣\n 5 tbsp olive oil"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à café de sel de mer en flocons"
+                "name": "🥣\n 1 tsp flaky sea salt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Une poignée de romarin"
+                "name": "🥣\n Handful of rosemary"
             },
             {
                 "quantity": "",
@@ -8503,8 +8503,8 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préparez la focaccia comme d'habitude.",
-            "Avant de faire cuire, ajoutez 2 ramequins huilés au milieu et donnez une forme à la focaccia autour d'eux."
+            "Make the focaccia as normal.",
+            "Before baking, add 2 oiled ramekins in the middle and shape the focaccia around them."
         ],
         "tags": [
             "Italie",
@@ -8528,39 +8528,39 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 2 œufs"
+                "name": "🥣\n 2 eggs"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 35g (environ 3 cuillères à soupe) sucre"
+                "name": "🥣\n 35g (about 3 tablespoons) sugar"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 12g (environ 1 cuillère à soupe) d'huile végétale"
+                "name": "🥣\n 12g (about 1 tablespoon) vegetable oil"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 190g (environ ¾ tasse) lait"
+                "name": "🥣\n 190g (about ¾ cup) milk"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 60g (environ ½ tasse) farine pour gâteau"
+                "name": "🥣\n 60g (about ½ cup) cake flour"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Colorant alimentaire rouge"
+                "name": "🥣\n Red food coloring"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à café d'extrait de vanille"
+                "name": "🥣\n 1 teaspoon vanilla extract"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 180g (environ ¾ tasse) crème fouettée"
+                "name": "🥣\n 180g (about ¾ cup) whipped cream"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 20g (environ 2 cuillères à soupe) sucre"
+                "name": "🥣\n 20g (about 2 tablespoons) sugar"
             },
             {
                 "quantity": "",
@@ -8568,31 +8568,31 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n Dés de fraises"
+                "name": "🥣\n Strawberry cubes"
             },
             {
                 "quantity": "",
-                "name": "🥣\n morceaux de gâteau"
+                "name": "🥣\n cake pieces"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Fraises fraîches"
+                "name": "🥣\n Fresh strawberries"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Myrtilles"
+                "name": "🥣\n Blueberries"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sucre glace"
+                "name": "🥣\n Powdered sugar"
             }
         ],
         "steps": [
-            "Mélangez les œufs, le sucre, l'huile, le lait, la farine, le colorant alimentaire rouge et la vanille dans un bol jusqu'à obtenir une pâte lisse. Tamisez deux fois.",
-            "Chauffez une poêle antiadhésive à feu doux. Versez un peu de pâte, inclinez la poêle pour répartir uniformément. Enlevez l'excès de pâte. Faites cuire pendant environ 1 minute ou jusqu'à ce que la crêpe se décolle facilement des bords. Répétez avec le reste de la pâte. Laissez les crêpes refroidir sur une grille.",
-            "Dans un bol propre, fouettez la crème avec le sucre et le mascarpone jusqu'à obtenir une consistance ferme. Gardez-la dans une poche à douille au réfrigérateur.",
-            "Étalez une crêpe, étalez un peu de crème fouettée, ajoutez un morceau de gaufre ou de gâteau, plus de crème fouettée, des dés de fraise fraîche, et une autre couche de crème fouettée.",
-            "Enroulez et attachez avec de la ficelle de cuisine. Décorez avec des fraises, des myrtilles et saupoudrez de sucre glace."
+            "Mix eggs, sugar, oil, milk, flour, red food coloring, and vanilla in a bowl until smooth. Sift twice.",
+            "Heat a non-stick pan over low heat. Pour in some batter, tilting the pan to spread evenly. Remove excess batter. Cook for about 1 minute or until the crepe loosens easily from the edges. Repeat with the remaining batter. Let crepes cool on a wire rack.",
+            "In a clean bowl, whip the cream with sugar and mascarpone until firm. Keep it in a piping bag in the fridge.",
+            "Lay out a crepe, spread some whipped cream, add a piece of waffle or cake, more whipped cream, fresh strawberry cubes, and another layer of whipped cream.",
+            "Wrap and tie with kitchen twine. Decorate with strawberries, blueberries, and dust with powdered sugar."
         ],
         "tags": [
             "Desserts",
@@ -8795,45 +8795,45 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n Crème : 2 tasses"
+                "name": "🥣\n Cream: 2 cups"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sucre : 1/3 tasse"
+                "name": "🥣\n Sugar: 1/3 cup"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Gélatine : 2 feuilles (ou 8g)"
+                "name": "🥣\n Gelatin: 2 sheets (or 8g)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Vanille : 1 cuillère à table"
+                "name": "🥣\n Vanilla: 1 tablespoon"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Fraises : 1 tasse, coupées"
+                "name": "🥣\n Strawberries: 1 cup, chopped"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Eau : 1/2 tasse"
+                "name": "🥣\n Water: 1/2 cup"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Gélatine : 1 feuille"
+                "name": "🥣\n Gelatin: 1 sheet"
             }
         ],
         "steps": [
-            "Ramollir 2 feuilles de gélatine dans de l'eau froide.",
-            "Chauffer la crème, le sucre et la vanille jusqu'à ce que cela soit chaud mais pas bouillant.",
-            "Retirer du feu, ajouter la gélatine ramollie, et remuer jusqu'à ce que cela soit fondu.",
-            "Verser le mélange dans des verres et laisser refroidir.",
-            "Réfrigérer jusqu'à ce que cela soit ferme.",
-            "Ramollir 1 feuille de gélatine dans de l'eau froide.",
-            "Chauffer les fraises coupées et l'eau sans faire bouillir.",
-            "Ajouter la gélatine ramollie et remuer jusqu'à ce que cela soit fondu.",
-            "Laisser la garniture aux fraises refroidir.",
-            "Verser la garniture aux fraises refroidie sur la panna cotta ferme.",
-            "Réfrigérer jusqu'à ce que cela soit pris."
+            "Soften 2 sheets of gelatin in cold water.",
+            "Heat cream, sugar, and vanilla until hot but not boiling.",
+            "Remove from heat, add the softened gelatin, and stir until melted.",
+            "Pour the mixture into glasses and let it cool.",
+            "Refrigerate until firm.",
+            "Soften 1 sheet of gelatin in cold water.",
+            "Heat chopped strawberries and water without boiling.",
+            "Add the softened gelatin and stir until melted.",
+            "Let the strawberry topping cool.",
+            "Pour the cooled strawberry topping over the firm panna cotta.",
+            "Refrigerate until set."
         ],
         "tags": [
             "Desserts",
@@ -9320,27 +9320,27 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 4 cuillères à soupe d'huile d'olive"
+                "name": "🥣\n 4 tbsp olive oil"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 350g de crevettes"
+                "name": "🥣\n 350g shrimp"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 gousses d'ail"
+                "name": "🥣\n 2 cloves of garlic"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1/2 poivron (rouge)"
+                "name": "🥣\n 1/2 pepper (red)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 100g de tomates cerises"
+                "name": "🥣\n 100g cherry tomatoes"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 15g de beurre"
+                "name": "🥣\n 15g butter"
             },
             {
                 "quantity": "",
@@ -9348,31 +9348,31 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n Jus de 1/2 citron"
+                "name": "🥣\n Juice 1/2 lemon"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 250g de pâtes"
+                "name": "🥣\n 250g pasta"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 louches d'eau de pâtes"
+                "name": "🥣\n 2 ladles of pasta water"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sel"
+                "name": "🥣\n Salt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Poivre"
+                "name": "🥣\n Pepper"
             },
             {
                 "quantity": "",
-                "name": "🧂\n Paprika doux"
+                "name": "🧂\n Sweet paprika"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Piment"
+                "name": "🥣\n Chili"
             },
             {
                 "quantity": "",
@@ -9557,7 +9557,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🍎\n Pommes de terre (Yukon Gold ou Russet) - 700 g (1,5 lb)"
+                "name": "🍎\n Pommes de terre (Yukon Gold ou Russet) - 700 g (1.5 lb)"
             },
             {
                 "quantity": "",
@@ -11002,65 +11002,65 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 115g beurre froid haché non salé"
+                "name": "🥣\n 115g cold chopped unsalted butter"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 80g sucre fin"
+                "name": "🥣\n 80g caster sugar"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 80g sucre brun clair"
+                "name": "🥣\n 80g light brown sugar"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 238g farine"
+                "name": "🥣\n 238g plain flour"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ½ cuillère à café de sel"
+                "name": "🥣\n ½ tsp salt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 & ½ cuillère à café de poudre à pâte"
+                "name": "🥣\n 1 & ½ tsp baking powder"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ¼ cuillère à café de bicarbonate de soude"
+                "name": "🥣\n ¼ tsp baking soda"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 œuf entier + jaune d'œuf"
+                "name": "🥣\n 1 whole egg + egg yolk"
             },
             {
                 "quantity": "",
-                "name": "🥣\n ½ cuillère à café de vanille"
+                "name": "🥣\n ½ tsp vanilla"
             },
             {
                 "quantity": "",
-                "name": "🍫\n 250g Chocolat à cuire ou au lait"
+                "name": "🍫\n 250g Cooking or Milk chocolate"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1/2 tasse de noisettes hachées et rôties"
+                "name": "🥣\n 1/2 cup Chopped and roasted hazelnuts"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Nutella et pâte à tartiner aux noisettes"
+                "name": "🥣\n Nutella and hazelnut spread"
             }
         ],
         "steps": [
-            "Coupez du film plastique en petits carrés. Mettez ½ cuillère à café de Nutella et ½ cuillère à café de pâte à tartiner aux noisettes sur des carrés de film plastique individuels. Pliez pour sceller et mettez au congélateur jusqu'à ce que cela soit solide. (Répétez pour autant de cookies fourrés que vous prévoyez de faire.)",
-            "Dans un grand bol de mélange, ajoutez le beurre en dés et fouettez jusqu'à ce que cela soit légèrement crémeux. Ajoutez le sucre blanc et le sucre brun clair, puis fouettez ensemble jusqu'à ce que cela soit bien combiné et léger.",
-            "Ajoutez les œufs, l'extrait de vanille. Fouettez jusqu'à ce que cela soit pleinement incorporé.",
-            "Ajoutez la farine, la poudre à pâte, le bicarbonate de soude et le sel. Mélangez délicatement jusqu'à ce que cela soit juste combiné, ne pas trop mélanger.",
-            "Divisez la pâte en boules de 65g-70g. Appuyez sur une pièce de Nutella et de noisette congelée au centre de chaque boule de pâte, scellez bien et roulez en une boule lisse.",
-            "Placez les boules de pâte à cookies sur un plateau et mettez au congélateur pendant au moins 1 heure (ou toute la nuit pour les meilleurs résultats).",
-            "Préchauffez le four à 175-180C (350°F). Faites cuire pendant 10-15 minutes ou jusqu'à ce que les dessus soient légèrement dorés tandis que les centres restent tendres.",
-            "Retirez du four et laissez refroidir.",
-            "Faites fondre le chocolat à cuire ou au lait en utilisant la méthode du bain-marie et ajoutez des noisettes hachées et rôties dedans.",
-            "Étalez une couche de mélange de chocolat et de noisettes fondu sur du papier de cuisson, juste assez pour recouvrir la base du cookie. Placez délicatement le cookie refroidi au-dessus, puis versez plus de mélange au-dessus, en vous assurant que le cookie est entièrement recouvert et uniformément enrobé.",
-            "Laissez le mélange de chocolat se solidifier complètement avant de servir, Bon appétit !"
+            "Cut cling wrap into small squares. Scoop ½ teaspoon Nutella and Scoop ½ teaspoon of Hazelnut spread onto individual cling-wrap squares. Fold to seal and freeze until solid. (Repeat for however many stuffed cookies you plan to make.)",
+            "In a large mixing bowl, add the cubed butter and whisk until slightly creamy. Add the white sugar and light brown sugar, then whisk together until well combined and fluffy.",
+            "Add the eggs, vanilla extract. Whisk until fully incorporated.",
+            "Add the flour, baking powder, baking soda, and salt. Gently mix until just combined, do not overmix.",
+            "Portion the dough into 65g-70g balls. Press a frozen Nutella hazelnut piece into the centre of each dough ball, seal well, and roll into a smooth ball.",
+            "Place the cookie dough balls onto a tray and freeze for at least 1 hour (or overnight for best results).",
+            "Preheat oven to 175-180C (350°F). Bake for 10-15 minutes or until the tops are lightly golden while the centres remain soft.",
+            "Remove from the oven and let cool.",
+            "Melt the cooking or milk chocolate using double broiler method and add chopped & roasted hazelnuts in it.",
+            "Spread a layer of melted chocolate-hazelnut mixture onto baking paper, just enough to coat the base of the cookie. Gently place the cooled cookie on top, then spoon more of the mixture over it, making sure the cookie is fully covered and evenly coated.",
+            "Let the chocolate mixture set completely before serving, Enjoy!"
         ],
         "tags": [
             "pâtisserie",
@@ -11506,11 +11506,11 @@ export const mockRecipes: Recipe[] = [
             "Réduire le feu à moyen, couvrir et laisser mijoter la sauce pendant environ 25 minutes. Retirer la feuille de laurier et le bâton de cannelle avant d'assembler le plat.",
             "Dans une casserole séparée, faire chauffer le lait à feu moyen. Incorporer progressivement 6 cuillères à soupe de fécule de maïs, puis ajouter le beurre. Continuer de remuer jusqu'à ce que la sauce commence à épaissir, en veillant à remuer le fond pour éviter qu'elle ne colle.",
             "Ajouter la noix de muscade, le sel et le poivre au goût, et continuer de remuer. Incorporer la moitié du fromage râpé jusqu'à ce qu'il soit fondu. Retirer du feu et laisser la sauce refroidir légèrement avant d'y incorporer les jaunes d'œufs en fouettant.",
-            "Préchauffer votre four à 175°C.",
+            "Préchauffer votre four à 350°F (175°C).",
             "Graisser un plat de cuisson de 33 pouces (environ 33×22 cm). Étaler la moitié des pâtes cuites uniformément au fond du plat.",
             "Verser la sauce à la viande hachée sur les pâtes, en l'étalant uniformément. Ajouter le reste des pâtes sur la sauce.",
             "Verser la sauce béchamel sur les pâtes, en l'étalant uniformément pour couvrir le dessus. Saupoudrer le reste du fromage râpé sur la sauce béchamel.",
-            "Faire cuire le Pastitsio dans le four préchauffé pendant environ 1 heure, ou jusqu'à ce que le dessus soit doré et que la béchamel soit prise. Laisser le plat refroidir légèrement avant de servir. Dégustez votre pastitsio maison !"
+            "Faire cuire le Pastitsio dans le four préchauffé pendant environ 1 heure, ou jusqu'à ce que le dessus soit doré et que la béchamel soit prise. Laisser le plat refroidir légèrement avant de servir. Dégustez votre pastitsio maison!"
         ],
         "tags": [
             "Grèce"
@@ -12056,7 +12056,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "5141",
-        "title": "Steak au poivre sur riz blanc",
+        "title": "Pepper Steak over White Rice",
         "description": "Une recette de Pepper Steak servi sur du riz blanc, avec une marinade savoureuse et une sauce riche, facile à préparer à la maison.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpepper-steak-gravy-rice-bowl-1.jpg&v=1776347679000",
         "category": "plats",
@@ -12735,119 +12735,119 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 400g Viande hachée"
+                "name": "🥣\n 400g Hackfleisch"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1/2 pain"
+                "name": "🥣\n 1/2 Brötchen"
             },
             {
                 "quantity": "",
-                "name": "🥣\n éventuellement un peu de chapelure, si la pâte est encore trop molle !"
+                "name": "🥣\n evtl. etwas Paniermehl, wenn der Teig noch zu weich ist!"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 oignon (pour Bifteki)"
+                "name": "🥣\n 1 Zwiebel (pour Bifteki)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 3 gousses d'ail (pour Bifteki)"
+                "name": "🥣\n 3 Knoblauchzehen (pour Bifteki)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Bouquet de persil frais (pour Bifteki)"
+                "name": "🥣\n Bund frische Petersilie (pour Bifteki)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 œuf, taille S"
+                "name": "🥣\n 1 Ei, Größe S"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sel (pour Bifteki)"
+                "name": "🥣\n Salz (pour Bifteki)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Poivre (pour Bifteki)"
+                "name": "🥣\n Pfeffer (pour Bifteki)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Origan"
+                "name": "🥣\n Oregano"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Cumin"
+                "name": "🥣\n Kreuzkümmel"
             },
             {
                 "quantity": "",
-                "name": "🧂\n Paprika douce"
+                "name": "🧂\n Paprika Edelsüß"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Vegeta, facultatif"
+                "name": "🥣\n Vegeta, optional"
             },
             {
                 "quantity": "",
-                "name": "🥣\n environ 100g Feta"
+                "name": "🥣\n ca. 100g Feta"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 300g Yaourt grec"
+                "name": "🥣\n 300g Griechischer Joghurt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 concombre"
+                "name": "🥣\n 1 Salatgurke"
             },
             {
                 "quantity": "",
-                "name": "🥣\n au moins 3 gousses d'ail (pour Tzatziki)"
+                "name": "🥣\n mind. 3 Knoblauchzehen (pour Tzatziki)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Aneth frais"
+                "name": "🥣\n Frischer Dill"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Huile d'olive"
+                "name": "🥣\n Olivenöl"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sel (pour Tzatziki)"
+                "name": "🥣\n Salz (pour Tzatziki)"
             },
             {
                 "quantity": "",
-                "name": "🍅\n 1 oignon (pour Riz aux tomates)"
+                "name": "🍅\n 1 Zwiebel (pour Tomatenreis)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 125g Riz long"
+                "name": "🥣\n 125g Langkornreis"
             },
             {
                 "quantity": "",
-                "name": "🍅\n 1 cuillère à soupe de concentré de tomate"
+                "name": "🍅\n 1 EL Tomatenmark"
             },
             {
                 "quantity": "",
-                "name": "🍅\n environ 100ml de tomates passées"
+                "name": "🍅\n ca. 100ml Passierte Tomaten"
             },
             {
                 "quantity": "",
-                "name": "🥣\n environ 250ml de bouillon de légumes"
+                "name": "🥣\n ca. 250ml Gemüsebrühe"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Mélange d'épices grecques, facultatif"
+                "name": "🥣\n Griechische Gewürzmischung, optional"
             },
             {
                 "quantity": "",
-                "name": "🍅\n Sel (pour Riz aux tomates)"
+                "name": "🍅\n Salz (pour Tomatenreis)"
             },
             {
                 "quantity": "",
-                "name": "🍅\n Persil (pour Riz aux tomates)"
+                "name": "🍅\n Petersilie (pour Tomatenreis)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n oignon rouge, facultatif"
+                "name": "🥣\n rote Zwiebel, optional"
             }
         ],
         "steps": [
@@ -13026,73 +13026,73 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n240g pois chiches (1 can, égouttés et rincés)"
+                "name": "🥣\n240g chickpeas (1 can, drained and rinsed)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n1 aubergine moyenne"
+                "name": "🥣\n1 medium eggplant"
             },
             {
                 "quantity": "",
-                "name": "🥣\n400g yaourt de soja non sucré"
+                "name": "🥣\n400g unsweetened soy yogurt"
             },
             {
                 "quantity": "",
-                "name": "🥣\n½ cc de sel (ajuster au goût)"
+                "name": "🥣\n½ tsp salt (adjust to taste)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n1 gousse d'ail (hachée)"
+                "name": "🥣\n1 garlic clove (minced)"
             },
             {
                 "quantity": "",
-                "name": "🥣\nJus de ½ citron"
+                "name": "🥣\nJuice of ½ a lemon"
             },
             {
                 "quantity": "",
-                "name": "🥣\n2 cuillères à soupe de tahini"
+                "name": "🥣\n2 tbsp tahini"
             },
             {
                 "quantity": "",
-                "name": "🥣\n6 cuillères à soupe d'eau"
+                "name": "🥣\n6 tbsp water"
             },
             {
                 "quantity": "",
-                "name": "🥣\n20g de persil frisé (haché)"
+                "name": "🥣\n20g curly parsley (chopped)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n30g de pignons de pin"
+                "name": "🥣\n30g pine nuts"
             },
             {
                 "quantity": "",
-                "name": "🥣\n75g de beurre végétal"
+                "name": "🥣\n75g vegan butter"
             },
             {
                 "quantity": "",
-                "name": "🥣\n2 pains pita arabes"
+                "name": "🥣\n2 Arabic pita breads"
             },
             {
                 "quantity": "",
-                "name": "🥣\nHuile de colza (pour la friture)"
+                "name": "🥣\nRapeseed oil (for frying)"
             },
             {
                 "quantity": "",
-                "name": "🥣\nSumac, pour la garniture"
+                "name": "🥣\nSumac, to garnish"
             },
             {
                 "quantity": "",
-                "name": "🥣\nGraines de grenade, pour la garniture"
+                "name": "🥣\nPomegranate seeds, to garnish"
             }
         ],
         "steps": [
-            "Coupez l'aubergine en dés. Saupoudrez de sel et laissez reposer pendant 20MIN pour en extraire l'amertume. Rincez brièvement les dés, essuyez-les avec un linge de cuisine propre et mettez-les de côté.",
-            "Faites cuire les pois chiches dans de l'eau bouillante pendant 5-10 minutes jusqu'à ce qu'ils soient chauds. Égouttez et mettez-les de côté.",
-            "Dans un bol, mélangez le yaourt de soja non sucré, le sel, l'ail haché, le jus de citron, le tahini et l'eau. Mélangez jusqu'à obtenir une texture lisse et crémeuse. Ajoutez des assaisonnements si nécessaire.",
-            "Chauffez de l'huile dans une grande poêle à feu moyen-élevé. Faites frire les dés d'aubergine jusqu'à ce qu'ils soient dorés et tendres, environ 8-10 minutes. Retirez-les et égouttez-les sur du papier absorbant pour absorber l'excès d'huile.",
-            "Coupez le pain pita en morceaux de taille de bouchée. Chauffez un peu d'huile dans une poêle et faites frire les morceaux de pain pita jusqu'à ce qu'ils soient croustillants et dorés. Mettez-les de côté.",
-            "Dans une petite poêle, faites fondre le beurre végétal à feu moyen. Ajoutez les pignons de pin et remuez fréquemment jusqu'à ce qu'ils soient dorés, environ 2-3 minutes.",
-            "Commencez par une couche de pain pita croustillant sur une assiette de service. Ajoutez les dés d'aubergine frits et les pois chiches par-dessus. Arrosez généreusement la sauce yaourt-tahini sur l'ensemble du plat. Terminez avec des pignons de pin, du beurre fondu, du persil, une pincée de sumac et des graines de grenade pour la couleur et la fraîcheur."
+            "Cut the eggplant into cubes. Sprinkle with salt and let sit for 20MIN to draw out bitterness. Rinse the cubes briefly, pat dry with a clean kitchen towel, and set aside.",
+            "Cook the chickpeas in boiled water for 5-10 minutes until warmed through. Drain and set aside.",
+            "In a bowl, combine the unsweetened soy yogurt, salt, minced garlic, lemon juice, tahini, and water. Mix until smooth and creamy. Adjust seasoning if needed.",
+            "Heat oil in a large pan over medium-high heat. Fry the eggplant cubes until golden brown and tender, about 8-10 minutes. Remove and drain on a paper towel to absorb excess oil.",
+            "Cut the pita bread into bite-sized pieces. Heat a little oil in a pan and fry the pita pieces until crispy and golden. Set aside.",
+            "In a small pan, melt the vegan butter over medium heat. Add the pine nuts and stir frequently until golden brown, about 2-3 minutes.",
+            "Start with a layer of crispy pita bread on a serving plate. Add the fried eggplant and chickpeas on top. Generously drizzle the yogurt-tahini sauce over the entire dish. Finish with pine nuts, melted butter, parsley, a sprinkle of sumac, and pomegranate seeds for color and freshness."
         ],
         "tags": [
             "Orient",
@@ -13385,63 +13385,63 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n 300g riz long grain"
+                "name": "🥣\n 300g long grain rice"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 cuillères à soupe d'amandes rôties hachées"
+                "name": "🥣\n 2 tablespoons chopped roasted almonds"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 2 cuillères à soupe de raisins trempés"
+                "name": "🥣\n 2 tablespoons soaked raisins"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 petite racine de céleri"
+                "name": "🥣\n 1 small celery root"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 oignon blanc"
+                "name": "🥣\n 1 white onion"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 carotte"
+                "name": "🥣\n 1 carrot"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1 cuillère à soupe de persil haché"
+                "name": "🥣\n 1 tablespoon chopped parsley"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 1/2 cuillère à café de curcuma"
+                "name": "🥣\n 1/2 teaspoon turmeric"
             },
             {
                 "quantity": "",
-                "name": "🌿\n 2 brins de thym"
+                "name": "🌿\n 2 thyme sprigs"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 450 ml d'eau"
+                "name": "🥣\n 450 ml water"
             },
             {
                 "quantity": "",
-                "name": "🥣\n 5 cuillères à soupe d'huile d'olive"
+                "name": "🥣\n 5 tablespoons olive oil"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Sel (à goût)"
+                "name": "🥣\n Salt (to taste)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Poivre (à goût)"
+                "name": "🥣\n Pepper (to taste)"
             }
         ],
         "steps": [
-            "1. Faites sauter l'oignon haché dans l'huile d'olive jusqu'à ce qu'il soit translucide. Ensuite, mettez le riz et faites cuire jusqu'à ce qu'il soit également transparent.",
-            "2. Pendant ce temps, portez l'eau à ébullition avec le curcuma, la carotte et le céleri coupés en petits cubes, le sel, le poivre et le thym.",
-            "3. Lorsque l'eau commence à bouillir, versez le mélange sur le riz, incorporez, couvrez d'un linge, mettez le couvercle et relevez les bords du linge sur le couvercle. SOYEZ TRÈS PRUDENT avec le linge pour qu'il ne prenne pas feu.",
-            "4. Faites bouillir à feu vif pendant 1 minute, puis faites cuire à feu doux pendant 22 minutes.",
-            "5. Saupoudrez d'amandes, de persil et de raisins, mélangez bien et servez. Bon appétit !"
+            "1. Sauté the chopped onion in the olive oil until it is translucent. Then put the rice and cook until it is also transparent.",
+            "2. In the meantime, bring the water to a boil together with the turmeric, carrot and celery chopped into small cubes, salt, pepper and thyme.",
+            "3. When the water starts boiling, pour the mixture over the rice, incorporate, cover with a towel, put the lid on and lift the edges of the towel over the lid. BE VERY CAREFUL with the towel so it doesn't catch fire.",
+            "4. Boil on high heat for 1 minute, then cook on low heat for 22 minutes.",
+            "5. Sprinkle with almonds, parsley and raisins, mix well and serve. Good appetite!"
         ],
         "tags": [
             "Healthy",
@@ -13834,7 +13834,7 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Cuire les pâtes al dente 8-10 min dans l'eau salée. Égoutter et laisser sécher.",
             "Mélanger les pâtes avec l'huile d'olive, le paprika, le parmesan, le sel et le poivre.",
-            "Cuire les pâtes assaisonnées au air fryer à 200 °C pendant 15-18 min en secouant à mi-cuisson.",
+            "Cuire les pâtes assaisonnées au air fryer à 390 °F pendant 15-18 min en secouant à mi-cuisson.",
             "Préparer la sauce en mélangeant le yogourt nature, la crème sure, la moutarde, le jus de cornichon, la poudre d'ail, le sel et le poivre.",
             "Dans un grand bol, assembler la laitue, les tomates cerises, l'oignon rouge, le persil, l'aneth et les pâtes croustillantes. Ajouter la sauce et mélanger."
         ],
@@ -14448,7 +14448,7 @@ export const mockRecipes: Recipe[] = [
             "Hacher l'oignon, l'ail, le persil et le poivron rouge.",
             "Ajouter le mélange haché (oignon, ail, persil, poivron) au poulet haché et mélanger avec le sumac, les flocons de chili, le paprika fumé, le paprika, le cumin, le curcuma, la pâte de tomate et le sel.",
             "Étaler la préparation sur une plaque de cuisson et arroser d'huile d'olive.",
-            "Cuire au four à 200°C pendant 25 minutes.",
+            "Cuire au four à 200°C (400°F) pendant 25 minutes.",
             "Pour la sauce : Mélanger 100g de yaourt, 1 gousse d'ail hachée, du jus de citron, du paprika, du sel, de l'huile d'olive, des flocons de chili et des herbes.",
             "Servir le kebab avec la sauce au yaourt, un accompagnement et une salade fraîche."
         ],
@@ -14525,7 +14525,7 @@ export const mockRecipes: Recipe[] = [
             "**Préparation de la garniture aux pommes :** Dans un grand bol, mélangez les pommes pelées et coupées en dés, la cassonade, la cannelle, le quatre-épices, le sel, la farine tout usage et le jus de citron. Laissez reposer à température ambiante pendant 15 minutes.",
             "**Préparation du crumble :** Dans un autre grand bol, mélangez les flocons d'avoine rapides, la cassonade, la farine et le sel. Une fois bien combiné, ajoutez lentement le beurre fondu en mélangeant bien pour qu'il soit uniformément réparti dans le crumble.",
             "**Assemblage :** Remplissez vos ramequins aux trois quarts avec la garniture aux pommes. Déposez 2 à 3 cuillères à soupe de crumble sur le dessus et pressez légèrement.",
-            "**Cuisson :** Préchauffez le four à 175°C. Enfournez les ramequins sur la grille du milieu pendant 25 à 30 minutes.",
+            "**Cuisson :** Préchauffez le four à 175°C (350°F). Enfournez les ramequins sur la grille du milieu pendant 25 à 30 minutes.",
             "**Service :** Une fois cuit, laissez refroidir pendant 5 minutes avant de servir. Terminez avec une boule de glace à la vanille et un filet de caramel."
         ],
         "tags": [
@@ -14704,7 +14704,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4702",
-        "title": "Burgers de poulet au chili chaud",
+        "title": "Hot Chili Chicken Burgers",
         "description": "Préparez des burgers de poulet épicés avec des pains maison infusés aux chips de nacho, du poulet mariné et pané aux nacho, le tout frit et cuit au four pour un repas savoureux et croustillant, parfait pour l'iftar.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHot-chilibroodjes-eindresultaat-Kookmutsjes-copyright-867x1300-1.jpeg&v=1774955536000",
         "category": "plats",
@@ -14899,7 +14899,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4722",
-        "title": "Pommes de terre écrasées croustillantes",
+        "title": "Crispy Smashed Potatoes",
         "description": "Des pommes de terre écrasées ultra croustillantes à l'extérieur et moelleuses à l'intérieur, incroyablement addictives.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fair-fryer-smashed-potatoes-4-683x1024-1.jpeg&v=1774888757000",
         "category": "plats",
@@ -14911,35 +14911,35 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n Pommes de terre de petite taille"
+                "name": "🥣\n Baby potatoes"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Beurre végétal"
+                "name": "🥣\n Vegan butter"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Ail"
+                "name": "🥣\n Garlic"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Flocons de piment"
+                "name": "🥣\n Chili flakes"
             },
             {
                 "quantity": "",
-                "name": "🧀\n Parmesan végétal"
+                "name": "🧀\n Vegan parmesan"
             },
             {
                 "quantity": "",
-                "name": "🥣\n Persil"
+                "name": "🥣\n Parsley"
             }
         ],
         "steps": [
-            "Faites bouillir les pommes de terre de petite taille.",
-            "Écrasez les pommes de terre bouillies.",
-            "Faites cuire au four jusqu'à ce qu'elles soient dorées et croustillantes.",
-            "Mélangez-les avec le beurre à l'ail et au piment.",
-            "Terminez avec du parmesan végétal et du persil."
+            "Boil the baby potatoes.",
+            "Smash the boiled potatoes.",
+            "Bake until golden and crisp.",
+            "Toss with garlic-chili butter.",
+            "Finish with vegan parmesan and parsley."
         ],
         "tags": [
             "Végé"
@@ -15144,7 +15144,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4716",
-        "title": "Poche croquante au fromage et au boeuf",
+        "title": "Cheesy Beef Crunch Pockets",
         "description": "Des poches croustillantes et savoureuses garnies de bœuf haché, de poivrons, de maïs et de mozzarella fondante, le tout enveloppé dans des galettes de pain plat et cuit au four jusqu'à obtenir une texture dorée et croustillante.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcheesy.jpeg&v=1774888057000",
         "category": "plats",
@@ -15156,59 +15156,59 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n grandes galettes plates fines - 4 feuilles"
+                "name": "🥣\n large thin flatbreads - 4 sheets"
             },
             {
                 "quantity": "",
-                "name": "🥣\n boeuf haché - 9 oz (250 g)"
+                "name": "🥣\n ground beef - 9 oz (250 g)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n beurre - 1 tsp"
+                "name": "🥣\n butter - 1 tsp"
             },
             {
                 "quantity": "",
-                "name": "🥣\n oignon - 1 moyen, finement haché"
+                "name": "🥣\n onion - 1 medium, finely chopped"
             },
             {
                 "quantity": "",
-                "name": "🥣\n poivron vert - 1, finement haché"
+                "name": "🥣\n green bell pepper - 1, finely chopped"
             },
             {
                 "quantity": "",
-                "name": "🥣\n poivron rouge - 1, finement haché"
+                "name": "🥣\n red bell pepper - 1, finely chopped"
             },
             {
                 "quantity": "",
-                "name": "🥣\n maïs (en boîte ou surgelé, décongelé) - ½ tasse (80 g)"
+                "name": "🥣\n corn (canned or frozen, thawed) - ½ cup (80 g)"
             },
             {
                 "quantity": "",
-                "name": "🧀\n mozzarella râpée - 7 oz (200 g)"
+                "name": "🧀\n shredded mozzarella - 7 oz (200 g)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n sel - à goût"
+                "name": "🥣\n salt - to taste"
             },
             {
                 "quantity": "",
-                "name": "🥣\n poivre noir - ½ tsp"
+                "name": "🥣\n black pepper - ½ tsp"
             },
             {
                 "quantity": "",
-                "name": "🧂\n paprika ou flocons de piment - ½ tsp"
+                "name": "🧂\n paprika or chili flakes - ½ tsp"
             },
             {
                 "quantity": "",
-                "name": "🥣\n persil frais - une petite poignée, haché (optionnel)"
+                "name": "🥣\n fresh parsley - a small handful, chopped (optional)"
             }
         ],
         "steps": [
-            "Chauffez une poêle à feu moyen. Ajoutez le beurre et le boeuf haché, faites cuire jusqu'à ce que le boeuf soit doré. Ajoutez l'oignon (essorez l'excès de jus si très juteux) et faites sauter 2-3 min. Ajoutez les poivrons, le maïs, le sel, le poivre, la paprika. Faites cuire jusqu'à ce que les légumes soient tendres et parfumés. Mélangez le persil si vous l'utilisez. Laissez la farce refroidir légèrement.",
-            "Saupoudrez légèrement la galette d'eau pour la rendre flexible. Coupez chaque feuille en deux.",
-            "Placez la farce de viande d'un côté, ajoutez le fromage râpé par-dessus. Pliez en triangles.",
-            "Disposez les triangles sur une plaque de cuisson recouverte de papier. Saupoudrez un peu de fromage supplémentaire par-dessus. Faites cuire à 180°C (350°F) pendant 20-25 minutes, jusqu'à ce que les poches soient dorées et croustillantes.",
-            "Laissez reposer 5 minutes - puis savourez cette croquant."
+            "Heat a pan over medium heat. Add butter and ground beef, cook until browned. Add onion (squeeze excess juice out if very juicy) and sauté 2-3 min. Add bell peppers, corn, salt, pepper, paprika. Cook until soft and fragrant. Stir in parsley if using. Let the filling cool slightly.",
+            "Lightly sprinkle wrap with water so it becomes flexible. Cut each sheet in half.",
+            "Place meat filling on one side, add shredded cheese on top. Fold into triangles.",
+            "Arrange triangles on a lined baking tray. Sprinkle a little extra cheese on top. Bake at 350°F (180°C) for 20-25 minutes, until deeply golden and crispy.",
+            "Let rest 5 minutes - then enjoy that crunch."
         ],
         "tags": [
             "Pas cher",
@@ -15311,7 +15311,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "4725",
-        "title": "Tacos de bœuf croustillants",
+        "title": "Crispy Beef Tacos",
         "description": "Une recette de tacos au bœuf croustillants, garnis de fromage mozzarella, accompagnés d'une sauce maison crémeuse et d'une salsa fraîche.",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FCrispy-Braised-Chipotle-Beef-Tacos-1.jpeg&v=1774887851000",
         "category": "plats",
