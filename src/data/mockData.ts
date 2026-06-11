@@ -2,11 +2,111 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/06/2026 07:22:05
+ * Dernière mise à jour: 11/06/2026 09:06:16
  * Total: 357 recettes
  */
-export const exportSyncId = "1781162525867";
+export const exportSyncId = "1781168776786";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6085",
+        "title": "Tartine espagnole tomates et jambon",
+        "description": "Un petit-déjeuner ou une tapa typique espagnole composée de pain grillé, de tomate fraîche frottée, d'huile d'olive, d'ail (facultatif) et de jambon ibérique.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6085_1781168396978.jpg&v=1781175607000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638022932530302222\" data-video-id=\"7638022932530302222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638022932530302222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Pain grillé"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n Tomate fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n Jambon ibérique"
+            }
+        ],
+        "steps": [
+            "Faire griller une tranche de pain.",
+            "Frotter une gousse d'ail sur le pain grillé (facultatif).",
+            "Couper une tomate fraîche en deux et la frotter généreusement sur le pain grillé.",
+            "Arroser le pain d'un filet d'huile d'olive.",
+            "Disposer quelques tranches de jambon ibérique sur le dessus."
+        ],
+        "tags": [
+            "Espagne",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6087",
+        "title": "Glace Tarte Citron Meringuée",
+        "description": "Le goût rappelle vraiment une tarte citron meringuée glacée. Ultra crémeuse, bien fraîche, avec l'équilibre parfait entre l'acidité du citron et le côté doux et gourmand de la crème.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6087_1781168386223.jpg&v=1781175594000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641274642266737953\" data-video-id=\"7641274642266737953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641274642266737953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             130 g de Lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             115 g de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             zeste de 2/3 de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             130 g de crème entière liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             130 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1g de gomme de xanthane (optionnel)"
+            }
+        ],
+        "steps": [
+            "Mélanger tous les ingrédients",
+            "Congeler 24h",
+            "Passer au programme \"Ice Cream\" du Ninja Creami",
+            "Effectuer un \"Re-Spin\""
+        ],
+        "tags": [
+            "Glaces",
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6082",
         "title": "Salmojero",
@@ -62,106 +162,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Espagne",
             "Soupes",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6085",
-        "title": "Tartine espagnole tomates et jambon",
-        "description": "Un petit-déjeuner ou une tapa typique espagnole composée de pain grillé, de tomate fraîche frottée, d'huile d'olive, d'ail (facultatif) et de jambon ibérique.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638022932530302222\" data-video-id=\"7638022932530302222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638022932530302222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n Pain grillé"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n Tomate fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n Ail (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n Jambon ibérique"
-            }
-        ],
-        "steps": [
-            "Faire griller une tranche de pain.",
-            "Frotter une gousse d'ail sur le pain grillé (facultatif).",
-            "Couper une tomate fraîche en deux et la frotter généreusement sur le pain grillé.",
-            "Arroser le pain d'un filet d'huile d'olive.",
-            "Disposer quelques tranches de jambon ibérique sur le dessus."
-        ],
-        "tags": [
-            "Espagne",
-            "Healthy"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6087",
-        "title": "Glace Tarte Citron Meringuée",
-        "description": "Le goût rappelle vraiment une tarte citron meringuée glacée. Ultra crémeuse, bien fraîche, avec l'équilibre parfait entre l'acidité du citron et le côté doux et gourmand de la crème.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641274642266737953\" data-video-id=\"7641274642266737953\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641274642266737953\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             130 g de Lait concentré sucré"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             115 g de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             zeste de 2/3 de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             130 g de crème entière liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             130 g de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1g de gomme de xanthane (optionnel)"
-            }
-        ],
-        "steps": [
-            "Mélanger tous les ingrédients",
-            "Congeler 24h",
-            "Passer au programme \"Ice Cream\" du Ninja Creami",
-            "Effectuer un \"Re-Spin\""
-        ],
-        "tags": [
-            "Glaces",
-            "Les Glaces",
             "Voilà l'été"
         ],
         "isFeatured": false,
