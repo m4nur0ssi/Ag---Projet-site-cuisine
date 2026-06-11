@@ -2,11 +2,64 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/06/2026 09:06:16
- * Total: 357 recettes
+ * Dernière mise à jour: 11/06/2026 09:18:13
+ * Total: 358 recettes
  */
-export const exportSyncId = "1781168776786";
+export const exportSyncId = "1781169493328";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6093",
+        "title": "Natillas espagnoles",
+        "description": "Les Natillas espagnoles sont une crème douce à la vanille et à la cannelle, évoquant les souvenirs d'enfance et les étés en famille. Une recette simple, gourmande et réconfortante, traditionnellement servie avec un biscuit María sur le dessus.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7537733929143454998\" data-video-id=\"7537733929143454998\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7537733929143454998\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             600 g de lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15 g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 c. à c. de vanille liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 c. à c. de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Biscuit María sans sucre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Espagne",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6085",
         "title": "Tartine espagnole tomates et jambon",
