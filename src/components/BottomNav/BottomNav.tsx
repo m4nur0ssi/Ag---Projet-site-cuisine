@@ -49,6 +49,7 @@ export default function BottomNav() {
     const pathname = usePathname();
     const router = useRouter();
     const [stats, setStats] = useState({ shopping: 0, favorites: 0 });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -62,9 +63,12 @@ export default function BottomNav() {
     const dockRef = useRef<HTMLDivElement>(null);
     const autoCloseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+    // Favoris + Liste réservés aux connectés : on ne montre ces onglets que si session.
     const navItems = [
-        { id: 'favoris', label: 'Favoris', Icon: HeartIcon, path: '/favorites', badge: stats.favorites },
-        { id: 'panier', label: 'Liste', Icon: BasketIcon, path: '/shopping-list', badge: stats.shopping },
+        ...(isLoggedIn ? [
+            { id: 'favoris', label: 'Favoris', Icon: HeartIcon, path: '/favorites', badge: stats.favorites },
+            { id: 'panier', label: 'Liste', Icon: BasketIcon, path: '/shopping-list', badge: stats.shopping },
+        ] : []),
         { id: 'decouvrir', label: 'Accueil', Icon: StorefrontIcon, path: '/' },
         { id: 'mode', label: 'Mode', isComponent: true, component: <ThemeToggle /> },
     ];
@@ -164,6 +168,7 @@ export default function BottomNav() {
 
             // Favorites — réservés aux connectés
             const { data: { session } } = await supabase.auth.getSession();
+            setIsLoggedIn(!!session);
             const totalFavorites = session
                 ? (JSON.parse(localStorage.getItem('favorites') || '[]') as any[]).length
                 : 0;

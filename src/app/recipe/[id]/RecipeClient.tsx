@@ -22,7 +22,6 @@ import PortionsControl from '@/components/PortionsControl/PortionsControl';
 import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import CommentSection from '@/components/CommentSection/CommentSection';
-import RecipeNote from '@/components/RecipeNote/RecipeNote';
 import StarRating from '@/components/StarRating/StarRating';
 import { estimateRecipeCalories } from '@/lib/calories';
 import { mockRecipes } from '@/data/mockData';
@@ -1324,7 +1323,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                     </div>
                 )}
 
-                {!focusMode && <RecipeNote recipeId={String(recipe.id)} />}
+                {/* Commentaires : toujours visibles (connecté ou non). */}
                 {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
 
                 {/* Focus Mode Overlay */}

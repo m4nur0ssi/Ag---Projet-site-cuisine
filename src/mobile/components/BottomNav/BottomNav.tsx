@@ -12,6 +12,7 @@ import SpotlightSearch from '../SpotlightSearch/SpotlightSearch';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { useTimer } from '@/mobile/components/Timer/TimerContext';
 import { decodeHtml } from '@/mobile/lib/utils';
+import { supabase } from '@/mobile/lib/supabase';
 
 const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
 
@@ -58,6 +59,7 @@ export default function BottomNav() {
     const router = useRouter();
     const [showPlanner, setShowPlanner] = useState(false);
     const [stats, setStats] = useState({ shopping: 0, favorites: 0 });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -81,9 +83,12 @@ export default function BottomNav() {
         ['/favorites', '/shopping-list', '/'].forEach(p => { try { router.prefetch(p); } catch { /* noop */ } });
     }, [router]);
 
+    // Favoris + Liste réservés aux connectés : onglets masqués si pas de session.
     const navItems = [
-        { id: 'favoris', label: 'Favoris', Icon: HeartIcon, path: '/favorites', badge: stats.favorites },
-        { id: 'panier', label: 'Liste', Icon: BasketIcon, path: '/shopping-list', badge: stats.shopping },
+        ...(isLoggedIn ? [
+            { id: 'favoris', label: 'Favoris', Icon: HeartIcon, path: '/favorites', badge: stats.favorites },
+            { id: 'panier', label: 'Liste', Icon: BasketIcon, path: '/shopping-list', badge: stats.shopping },
+        ] : []),
         { id: 'decouvrir', label: 'Accueil', Icon: StorefrontIcon, path: '/' },
         { id: 'planner', label: 'Menu', Icon: CalendarIcon },
     ];
@@ -222,7 +227,11 @@ export default function BottomNav() {
         window.addEventListener('storage', updateStats);
         window.addEventListener('shoppingListUpdated', updateStats);
         window.addEventListener('magic-favorite-change', updateStats);
-        
+
+        // Session : pilote l'affichage des onglets Favoris/Liste
+        supabase.auth.getSession().then(({ data: { session } }) => setIsLoggedIn(!!session));
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => setIsLoggedIn(!!session));
+
         // Match active index on load
         const idx = navItems.findIndex(item => 
             item.path === '/' ? pathname === '/' : item.path && pathname.startsWith(item.path)
@@ -230,6 +239,7 @@ export default function BottomNav() {
         if (idx !== -1) setActiveIndex(idx);
 
         return () => {
+            subscription.unsubscribe();
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('recipeViewed', updateLastViewed);
             window.removeEventListener('storage', updateStats);
