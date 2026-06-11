@@ -207,6 +207,7 @@ button {
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  -webkit-backdrop-filter: blur(var(--liquid-blur));
   backdrop-filter: blur(var(--liquid-blur));
   -webkit-backdrop-filter: blur(var(--liquid-blur));
   border: 1px solid var(--liquid-border);

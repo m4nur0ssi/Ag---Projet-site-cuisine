@@ -46,8 +46,11 @@ function MealBlock({ day, label, recipe, slotKey, isSelected, onSelect, done, in
     const prodNameRaw = (s: string) => parseIngredient(s).name || s;
     // Découpe les blocs groupés en ingrédients individuels (clés `day|label|origIdx|sub`
     // = exactement celles de la consolidation/courses), puis tri alphabétique par nom.
-    const rows = (recipe?.ingredients || [])
-        .map((ing: any, origIdx: number) => ({ ing, origIdx }))
+    // L'accompagnement (recipe.side, Menu IA) ajoute ses ingrédients avec clés `s`-préfixées.
+    const rows = [
+        ...(recipe?.ingredients || []).map((ing: any, origIdx: number) => ({ ing, origIdx: `${origIdx}` })),
+        ...((recipe?.side?.ingredients || []).map((ing: any, origIdx: number) => ({ ing, origIdx: `s${origIdx}` }))),
+    ]
         .filter((x: any) => x.ing?.name)
         .flatMap(({ ing, origIdx }: any) =>
             expandIngredientLines(`${ing.quantity || ''} ${ing.name || ''}`.trim())
@@ -77,6 +80,18 @@ function MealBlock({ day, label, recipe, slotKey, isSelected, onSelect, done, in
                             : <div className={styles.vignetteFallback}>🍽</div>}
                         <span className={styles.vignetteTitle}>{decodeHtml(recipe.title)}</span>
                     </button>
+                    {/* Accompagnement suggéré (Menu IA) — cliquable vers sa fiche */}
+                    {recipe.side && (
+                        <button className={styles.sideRow} onClick={() => openRecipe(recipe.side)}>
+                            {recipe.side.image
+                                ? <img src={recipe.side.image} alt={recipe.side.title} className={styles.sideRowThumb} />
+                                : <span className={styles.sideRowFallback}>🥗</span>}
+                            <span className={styles.sideRowMeta}>
+                                <span className={styles.sideRowBadge}>Accompagnement</span>
+                                <span className={styles.sideRowName}>{decodeHtml(recipe.side.title)}</span>
+                            </span>
+                        </button>
+                    )}
                     <motion.ul
                         className={styles.ingList}
                         initial="hidden"
@@ -265,7 +280,10 @@ export default function WeekMenuCarousel() {
     // a choisi de NE PAS la fusionner) après Dimanche.
     const colHasRecipe = (c: string) => { const p = plan[c]; return !!p && Object.keys(p).length > 0; };
     const showJourJ = !jourjFused && colHasRecipe('JourJ');
-    const COLS = showJourJ ? [...DAYS, 'JourJ'] : DAYS;
+    // Seuls les jours qui ont au moins une recette sont affichés (un jour supprimé
+    // dans le planificateur n'a plus de recette → il disparaît de la semaine).
+    const weekCols = DAYS.filter(colHasRecipe);
+    const COLS = showJourJ ? [...weekCols, 'JourJ'] : weekCols;
     const segLabel = (c: string) => (c === 'JourJ' ? 'JJ' : c);
     const colFull = (c: string) => (c === 'JourJ' ? 'Jour J' : FULL[c]);
 
@@ -310,7 +328,6 @@ export default function WeekMenuCarousel() {
                         key={d}
                         className={`${styles.segBtn} ${active === i ? styles.segActive : ''} ${d === 'JourJ' ? styles.segJourJ : ''}`}
                         onClick={() => goTo(i)}
-                        onMouseEnter={() => goTo(i)}
                     >{segLabel(d)}</button>
                 ))}
             </div>

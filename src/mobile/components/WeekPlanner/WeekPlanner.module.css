@@ -45,6 +45,7 @@
     justify-content: center;
     border: 1px solid rgba(255,255,255,0.14);
     background: rgba(255,255,255,0.08);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
     color: #fff;
@@ -123,6 +124,7 @@
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 16px;
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
@@ -170,8 +172,9 @@
 .daysRow::-webkit-scrollbar { display: none; }
 
 .dayCard {
-    flex-shrink: 0;
-    width: 150px;
+    /* Cartes élastiques : moins de jours = cartes plus larges (min-width garde 7 jours utilisables). */
+    flex: 1 1 0;
+    min-width: 132px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -185,6 +188,26 @@
     color: rgba(255,255,255,0.4);
     text-align: center;
     padding: 2px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.deleteDay {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: rgba(220,38,38,0.85);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    font-size: 0.55rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .mealSlot {
@@ -308,6 +331,7 @@
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.65);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 9000;
@@ -577,6 +601,7 @@
     background: radial-gradient(120% 120% at 100% 0%, rgba(139,92,246,0.10), rgba(0,0,0,0) 60%),
                 rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.07);
+    -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 }
@@ -753,6 +778,43 @@
 .themeBubble:active { transform: scale(0.95); }
 
 /* ── Réafficher une carte supprimée (Jour J) ── */
+/* Mini-résumé liste de courses sous le panneau (après Valider) */
+.recap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.recapInfo { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.recapTotal { font-size: 0.88rem; font-weight: 800; color: #fff; }
+.recapRayons { display: flex; flex-wrap: wrap; gap: 6px; }
+.recapChip {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    background: rgba(255,255,255,0.07);
+    border-radius: 999px;
+    padding: 3px 9px;
+    white-space: nowrap;
+}
+.recapLink {
+    flex-shrink: 0;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    border-radius: 999px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 14px rgba(139,92,246,0.35);
+}
+
 .addCourses {
     display: flex;
     flex-wrap: wrap;

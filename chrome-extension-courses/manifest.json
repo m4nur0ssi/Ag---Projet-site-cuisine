@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Courses Magiques — assistant magasin",
+  "version": "1.0.0",
+  "description": "Parcourt ta liste de courses ingrédient par ingrédient directement sur Carrefour / Picard / Monoprix / Franprix, sans changer d'onglet.",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.carrefour.fr/*",
+        "*://*.picard.fr/*",
+        "*://*.monoprix.fr/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

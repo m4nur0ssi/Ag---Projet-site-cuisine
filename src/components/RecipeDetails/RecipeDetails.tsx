@@ -22,6 +22,7 @@ import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
 import WinePairing from '@/components/WinePairing/WinePairing';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
+import CookingJournal from '@/components/CookingJournal/CookingJournal';
 import StarRating from '@/components/StarRating/StarRating';
 import CommentSection from '@/components/CommentSection/CommentSection';
 import RecipeNote from '@/components/RecipeNote/RecipeNote';
@@ -336,6 +337,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     };
 
     const copyIngredients = async () => {
+        // Liste de courses réservée aux connectés.
+        if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return; }
         try {
             const selectedIngredients = recipe.ingredients
                 .filter((_, idx) => checkedIngredients[idx]) // On ne prend que les COCHÉS (demande client)
@@ -392,6 +395,36 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             console.error('Erreur lors de la copie/ajout à la liste:', err);
             alert('Impossible de copier la liste automatiquement.');
         }
+    };
+
+    // #6 — Ajoute les ingrédients cochés à la liste "recettes individuelles"
+    // (clé = recipe.id dans magic-shopping-list). Retourne le nb d'articles ajoutés.
+    const addCheckedToCart = (): number => {
+        if (typeof window === 'undefined') return 0;
+        if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return 0; }
+        const selectedIngredients = recipe.ingredients
+            .filter((_, idx) => checkedIngredients[idx])
+            .map(ing => {
+                const cleanName = ing.name.replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF]+\s*/, '');
+                return ing.quantity
+                    ? `${scaleQuantity(ing.quantity, ratio)} ${cleanName}`
+                    : `${scaleQuantity(cleanName, ratio)}`;
+            });
+        if (selectedIngredients.length === 0) return 0;
+        try {
+            const existingData = JSON.parse(window.localStorage.getItem('magic-shopping-list') || '{}');
+            existingData[recipe.id] = {
+                title: recipe.title,
+                image: recipe.image,
+                ingredients: selectedIngredients.map(name => ({ name, checked: false })),
+            };
+            window.localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
+            window.dispatchEvent(new Event('shoppingListUpdated'));
+            triggerHaptic();
+        } catch (e) {
+            console.error('addCheckedToCart', e);
+        }
+        return selectedIngredients.length;
     };
 
     const difficultyColors = {
@@ -794,7 +827,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             <>
                                 <div className={styles.metaSeparator} />
                                 <div className={styles.metaItem}>
-                                    <div className={styles.metaLabel}>~CALORIES</div>
+                                    <div className={styles.metaLabel}>CALORIES</div>
                                     <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
                                 </div>
                             </>
@@ -802,6 +835,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     </div>
                 </div>
             )}
+
+            {/* #11 — Carnet de cuisine perso (connectés) */}
+            {recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} />}
 
             {/* Enhanced UI pour restaurants: Badges, Adresse, Boutons Maps et Avis */}
             {recipe.category === 'restaurant' && (
@@ -959,11 +995,23 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     {activeTab === 'ingredients' && (
                         <div className={styles.stickyPanelHeader}>
                             <div className={styles.ingredientsActionBlock}>
+                                {/* Panier / liste de courses : réservé aux connectés */}
+                                {authUser && (
                                 <div className={styles.ingredientProgress}>
-                                    <span className={styles.ingredientProgressText}>
-                                        {checkedCount} sélectionné{checkedCount > 1 ? 's' : ''}
-                                    </span>
+                                    <button
+                                        type="button"
+                                        onClick={() => { addCheckedToCart(); router.push('/shopping-list?tab=recettes'); }}
+                                        aria-label={checkedCount > 0 ? `Ajouter ${checkedCount} article(s) et voir la liste de courses` : 'Voir la liste de courses'}
+                                        title={checkedCount > 0 ? `${checkedCount} article(s) — ajouter et voir la liste` : 'Voir la liste de courses'}
+                                        style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.55rem', lineHeight: 1, padding: '2px 4px' }}
+                                    >
+                                        🛒
+                                        {checkedCount > 0 && (
+                                            <span style={{ position: 'absolute', top: -6, right: -8, minWidth: 18, height: 18, padding: '0 4px', borderRadius: 9, background: '#ff3b30', color: '#fff', fontSize: '0.7rem', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1, boxSizing: 'border-box' }}>{checkedCount}</span>
+                                        )}
+                                    </button>
                                 </div>
+                                )}
                                 <div className={styles.tabActionsUnified}>
                                     <PortionsControl
                                         value={servings}

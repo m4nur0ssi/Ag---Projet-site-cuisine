@@ -24,6 +24,36 @@
 }
 
 /* Carrousel */
+.trackWrap { position: relative; }
+
+/* Bords sensibles : survol = défilement continu (desktop). Inactifs si rien à défiler.
+   pointer-events none par défaut pour ne pas bloquer les clics sur les cartes. */
+.edgeZone {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 7%;
+    max-width: 80px;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.edgeOn { pointer-events: auto; }
+.edgeLeft {
+    left: 0;
+    background: linear-gradient(to right, rgba(10,10,12,0.55), transparent);
+}
+.edgeRight {
+    right: 0;
+    background: linear-gradient(to left, rgba(10,10,12,0.55), transparent);
+}
+.trackWrap:hover .edgeOn { opacity: 1; }
+/* Pas de zones de survol sur écran tactile (le swipe natif suffit). */
+@media (hover: none) {
+    .edgeZone { display: none; }
+}
+
 .track {
     display: flex; gap: 16px;
     overflow-x: auto;
@@ -65,11 +95,11 @@
 }
 .mealHead { margin-bottom: 10px; }
 .mealTag {
-    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    font-size: 0.74rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
 }
 .mealEmpty {
-    color: rgba(255,255,255,0.3); font-size: 0.85rem; font-style: italic;
+    color: rgba(255,255,255,0.5); font-size: 0.85rem; font-style: italic;
     padding: 16px 4px;
 }
 
@@ -88,24 +118,46 @@
 .vignetteFallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
 .vignetteTitle {
     position: absolute; left: 0; right: 0; bottom: 0;
-    padding: 18px 10px 8px; text-align: left;
-    font-size: 0.82rem; font-weight: 700; color: #fff; line-height: 1.2;
-    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    padding: 22px 10px 9px; text-align: left;
+    font-size: 0.9rem; font-weight: 800; color: #fff; line-height: 1.22;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+    background: linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.35) 60%, transparent);
 }
+
+/* Accompagnement suggéré (Menu IA) sous la vignette du plat */
+.sideRow {
+    display: flex; align-items: center; gap: 8px;
+    width: 100%;
+    padding: 6px 8px; border-radius: 12px;
+    border: 1px solid rgba(34,197,94,0.3);
+    background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(16,185,129,0.05));
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.23,1,0.32,1), border-color 0.18s;
+}
+.sideRow:hover { transform: translateY(-1px) scale(1.01); border-color: rgba(34,197,94,0.6); }
+.sideRowThumb { width: 34px; height: 34px; border-radius: 9px; object-fit: cover; flex-shrink: 0; }
+.sideRowFallback {
+    width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.05rem;
+    background: rgba(255,255,255,0.07);
+}
+.sideRowMeta { display: flex; flex-direction: column; gap: 1px; min-width: 0; text-align: left; }
+.sideRowBadge { font-size: 0.52rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #4ade80; line-height: 1; }
+.sideRowName { font-size: 0.74rem; font-weight: 700; color: #fff; line-height: 1.15; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
 .ingList { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .ingItem {
     display: flex; align-items: center; gap: 10px;
-    padding: 7px 10px; border-radius: 12px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.06);
+    padding: 8px 11px; border-radius: 12px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
     cursor: pointer;
     transition: background 0.15s, opacity 0.2s;
 }
-.ingItem:hover { background: rgba(255,255,255,0.09); }
-.ingIcon { font-size: 1.05rem; width: 22px; text-align: center; flex-shrink: 0; cursor: pointer; }
-.ingName { flex: 1; font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.2; cursor: pointer; }
-.ingQty { font-size: 0.78rem; font-weight: 800; color: #c4b5fd; white-space: nowrap; }
+.ingItem:hover { background: rgba(255,255,255,0.12); }
+.ingIcon { font-size: 1.1rem; width: 22px; text-align: center; flex-shrink: 0; cursor: pointer; }
+.ingName { flex: 1; font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.98); line-height: 1.25; cursor: pointer; }
+.ingQty { font-size: 0.82rem; font-weight: 800; color: #c4b5fd; white-space: nowrap; }
 .ingCheck {
     width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
     border: 2px solid rgba(255,255,255,0.25); background: none; padding: 0;
@@ -161,11 +213,11 @@
     border-top: 1px solid rgba(255,255,255,0.08);
 }
 .dayShopLabel {
-    font-size: 0.62rem;
+    font-size: 0.68rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.62);
 }
 
 /* Barre flottante sélection multi-recettes */
@@ -181,6 +233,7 @@
     padding: 12px 16px 14px;
     z-index: 200;
     box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
@@ -190,3 +243,23 @@
 
 .segJourJ { color: #f0abfc; font-weight: 800; }
 .segActive.segJourJ { color: #111; }
+
+/* #1 — Mode Jour J : tout tient à l'écran (page non scrollée), seules les listes
+   d'ingrédients de chaque colonne scrollent en interne si elles sont longues.
+   Peu de colonnes => colonnes larges => photos plus grandes (via aspect-ratio). */
+.jourjMode .track { overflow-x: hidden; }
+.jourjMode .card {
+    max-height: calc(100vh - 210px);
+    display: flex;
+    flex-direction: column;
+}
+.jourjMode .meals { flex: 1 1 auto; min-height: 0; align-items: stretch; }
+.jourjMode .meal { display: flex; flex-direction: column; min-height: 0; }
+.jourjMode .mealBody { flex: 1 1 auto; min-height: 0; }
+.jourjMode .ingList {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: thin;
+}

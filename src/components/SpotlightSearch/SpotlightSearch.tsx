@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { mockRecipes } from '@/data/mockData';
 import { decodeHtml } from '@/lib/utils';
+import { rankByIngredients } from '@/lib/search-rank';
 import styles from './SpotlightSearch.module.css';
 
 export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -44,21 +45,15 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
         );
     }, [query, mode]);
 
-    // Mode ingrédients
+    // Mode ingrédients — recherche STRICTE (#7) : full d'abord, suggestions (manque 1) ensuite.
     const ingredientResults = useMemo(() => {
         if (mode !== 'ingredients' || ingTags.length === 0) return [];
-        const tags = ingTags.map(t => t.toLowerCase());
-        return mockRecipes
-            .filter(r => r.category !== 'restaurant')
-            .map(r => {
-                const ingNames = r.ingredients.map(i => i.name.toLowerCase());
-                const matched = tags.filter(tag => ingNames.some(n => n.includes(tag)));
-                return { recipe: r, matched: matched.length };
-            })
-            .filter(({ matched }) => matched > 0)
-            .sort((a, b) => b.matched - a.matched)
-            .slice(0, 12);
+        const pool = mockRecipes.filter(r => r.category !== 'restaurant');
+        return rankByIngredients(pool, ingTags.join(' ')) || [];
     }, [ingTags, mode]);
+    const ingFull = useMemo(() => ingredientResults.filter(r => r.matched === r.total), [ingredientResults]);
+    const ingPartial = useMemo(() => ingredientResults.filter(r => r.matched < r.total), [ingredientResults]);
+    const ingShowSuggestions = ingPartial.length > 0 && ingFull.length < 6;
 
     const addIngTag = () => {
         const val = ingInput.trim().toLowerCase();
@@ -102,7 +97,6 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
         <div className={styles.overlay} onClick={onClose}>
             <div className={styles.modal} onClick={e => e.stopPropagation()}>
                 <div className={styles.searchContainer}>
-                    <span className={styles.searchIcon}>🔍</span>
                     {mode === 'recipe' ? (
                         <input
                             ref={inputRef}
@@ -131,11 +125,11 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                     <button
                         className={`${styles.modeBtn} ${mode === 'recipe' ? styles.modeBtnActive : ''}`}
                         onClick={() => setMode('recipe')}
-                    >🔍 Par recette</button>
+                    >Par recette</button>
                     <button
                         className={`${styles.modeBtn} ${mode === 'ingredients' ? styles.modeBtnActive : ''}`}
                         onClick={() => { setMode('ingredients'); setTimeout(() => inputRef.current?.focus(), 50); }}
-                    >🥕 Par ingrédients</button>
+                    >Par ingrédients</button>
                 </div>
 
                 {mode === 'ingredients' && ingTags.length > 0 && (
@@ -180,24 +174,45 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                         <>
                             {ingTags.length === 0 ? (
                                 <div className={styles.noResult}>Tapez un ingrédient et appuyez sur Entrée 🥕</div>
-                            ) : ingredientResults.length > 0 ? ingredientResults.map(({ recipe, matched }) => {
-                                const countryTag = recipe.tags?.find((t: string) => countryFlags[t.toLowerCase()]);
-                                const flag = countryTag ? countryFlags[countryTag.toLowerCase()] : '🪄';
+                            ) : (() => {
+                                const Row = ({ recipe, matched, total, missingTokens }: typeof ingredientResults[number]) => {
+                                    const countryTag = recipe.tags?.find((t: string) => countryFlags[t.toLowerCase()]);
+                                    const flag = countryTag ? countryFlags[countryTag.toLowerCase()] : '🪄';
+                                    return (
+                                        <button type="button" key={recipe.id} className={styles.resultItem} onClick={() => openRecipe(recipe)} style={{ textAlign: 'left', background: 'none', border: 'none', width: '100%', cursor: 'pointer' }}>
+                                            <div className={styles.thumbWrapper}>
+                                                <span className={styles.miniFlag}>{flag}</span>
+                                                <img src={recipe.image} alt="" className={styles.thumb} />
+                                            </div>
+                                            <div className={styles.resultInfo}>
+                                                <div className={styles.resultTitle}>{decodeHtml(recipe.title)}</div>
+                                                <div className={styles.resultMeta}>
+                                                    {recipe.category} • {matched}/{total} ingrédient{total > 1 ? 's' : ''}
+                                                    {missingTokens.length > 0 && <span style={{ color: '#f59e0b' }}> · manque : {missingTokens.join(', ')}</span>}
+                                                </div>
+                                            </div>
+                                        </button>
+                                    );
+                                };
+                                if (ingFull.length === 0 && ingPartial.length === 0) {
+                                    return <div className={styles.noResult}>Aucune recette avec ces ingrédients</div>;
+                                }
                                 return (
-                                    <button type="button" key={recipe.id} className={styles.resultItem} onClick={() => openRecipe(recipe)} style={{ textAlign: 'left', background: 'none', border: 'none', width: '100%', cursor: 'pointer' }}>
-                                        <div className={styles.thumbWrapper}>
-                                            <span className={styles.miniFlag}>{flag}</span>
-                                            <img src={recipe.image} alt="" className={styles.thumb} />
-                                        </div>
-                                        <div className={styles.resultInfo}>
-                                            <div className={styles.resultTitle}>{decodeHtml(recipe.title)}</div>
-                                            <div className={styles.resultMeta}>{recipe.category} • {matched}/{ingTags.length} ingrédient{ingTags.length > 1 ? 's' : ''}</div>
-                                        </div>
-                                    </button>
+                                    <>
+                                        {ingFull.length > 0
+                                            ? ingFull.map(r => <Row key={r.recipe.id} {...r} />)
+                                            : <div className={styles.noResult}>Aucune recette avec <b>tous</b> ces ingrédients</div>}
+                                        {ingShowSuggestions && (
+                                            <>
+                                                <div className={styles.noResult} style={{ opacity: 0.7, fontSize: '0.8rem', padding: '10px 0 4px' }}>
+                                                    Suggestions — il manque 1 ingrédient
+                                                </div>
+                                                {ingPartial.map(r => <Row key={r.recipe.id} {...r} />)}
+                                            </>
+                                        )}
+                                    </>
                                 );
-                            }) : (
-                                <div className={styles.noResult}>Aucune recette avec ces ingrédients</div>
-                            )}
+                            })()}
                         </>
                     )}
                 </div>

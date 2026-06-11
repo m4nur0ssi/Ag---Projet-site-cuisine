@@ -12,6 +12,7 @@
 .wellDock {
     display: flex;
     background: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -161,6 +162,7 @@
 .wellDockSecondary {
     display: flex;
     background: rgba(40, 40, 40, 0.4);
+    -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -189,6 +191,7 @@
 }
 
 .subItem {
+    position: relative; /* contient .auraGlow à ce bouton (sinon il s'étale sur toute la rangée) */
     flex: 0 0 auto;
     height: 38px;
     padding: 0 16px;
@@ -281,6 +284,7 @@
 /* Light mode overrides for pure white look */
 :root[data-theme='light'] .wellDockSecondary {
     background: rgba(255, 255, 255, 0.4) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     border-color: rgba(0, 0, 0, 0.06);

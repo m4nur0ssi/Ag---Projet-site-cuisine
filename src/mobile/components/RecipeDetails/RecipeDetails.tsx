@@ -2,6 +2,7 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 import Image from 'next/image';
 import Header from '@/mobile/components/Header/Header';
 import MagicFilterBar from '@/mobile/components/MagicFilterBar/MagicFilterBar';
@@ -49,6 +50,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
     // Swipe navigation state
     const router = useRouter();
+    const { user: authUser } = useAuth();
     const touchStart = useRef<{ x: number, y: number } | null>(null);
     const touchEnd = useRef<{ x: number, y: number } | null>(null);
     const [isNavigating, setIsNavigating] = useState(false);
@@ -362,6 +364,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             if (dx > 10 || dy > 10) return;
         }
 
+        // Liste de courses réservée aux connectés → propose la connexion, n'ajoute rien.
+        if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return; }
+
         const ing = recipe.ingredients[index];
         const newChecked = [...checkedIngredients];
         const isNowChecked = !newChecked[index];
@@ -400,6 +405,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     };
 
     const copyIngredients = async () => {
+        // Liste de courses réservée aux connectés.
+        if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return; }
         try {
             const selectedIngredients = recipe.ingredients
                 .filter((_, idx) => checkedIngredients[idx]) // On ne prend que les COCHÉS (demande client)
@@ -874,7 +881,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <>
                                     <div className={styles.metaSeparator} />
                                     <div className={styles.metaItem} style={{ flex: 1 }}>
-                                        <div className={styles.metaLabel}>~CALORIES</div>
+                                        <div className={styles.metaLabel}>CALORIES</div>
                                         <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
                                     </div>
                                 </>

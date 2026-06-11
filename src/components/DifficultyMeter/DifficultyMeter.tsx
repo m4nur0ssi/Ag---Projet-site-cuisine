@@ -35,7 +35,6 @@ export default function DifficultyMeter({ prepTime, cookTime, steps, difficulty,
         [prepTime, cookTime, steps, difficulty]
     );
     const color = LEVELS[level - 1];
-    const nbSteps = steps || 0;
 
     return (
         <div className={styles.wrap}>
@@ -73,9 +72,6 @@ export default function DifficultyMeter({ prepTime, cookTime, steps, difficulty,
                     transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut' }}
                 />
             </div>
-            {showCaption && nbSteps > 0 && (
-                <span className={styles.caption}>{nbSteps} étape{nbSteps > 1 ? 's' : ''}</span>
-            )}
         </div>
     );
 }

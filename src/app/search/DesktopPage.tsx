@@ -29,7 +29,31 @@ export default function SearchPage() {
         );
     }, [searchQuery, ranked]);
 
+    // #7 — résultats stricts (tous les ingrédients) vs suggestions (il manque 1).
+    const fullResults = useMemo(() => (ranked || []).filter(r => r.matched === r.total), [ranked]);
+    const partialResults = useMemo(() => (ranked || []).filter(r => r.matched < r.total), [ranked]);
+    // Suggestions affichées seulement s'il y a peu de résultats stricts.
+    const showSuggestions = partialResults.length > 0 && fullResults.length < 6;
+
     const hasResults = ranked ? ranked.length > 0 : filteredRecipes.length > 0;
+
+    const renderRanked = ({ recipe, matched, total, matchedTokens, missingTokens }: NonNullable<typeof ranked>[number]) => (
+        <div key={recipe.id} className={styles.rankWrapper}>
+            <span
+                className={`${styles.matchBadge} ${matched === total ? styles.matchFull : ''}`}
+                title={`${matched} ingrédient(s) sur ${total} trouvés`}
+            >
+                {matched}/{total}
+            </span>
+            <RecipeCard recipe={recipe} />
+            {missingTokens.length > 0 && (
+                <div className={styles.matchDetail}>
+                    <span className={styles.matchOk}>✓ {matchedTokens.join(', ')}</span>
+                    <span className={styles.matchMissing}>Manque : {missingTokens.join(', ')}</span>
+                </div>
+            )}
+        </div>
+    );
 
     return (
         <div className={styles.page}>
@@ -66,26 +90,33 @@ export default function SearchPage() {
                             Astuce : tape plusieurs ingrédients (ex. « oeuf farine chocolat ») pour voir les recettes qui collent le mieux.
                         </p>
                     </div>
-                ) : hasResults && ranked ? (
-                    <div className={styles.grid}>
-                        {ranked.map(({ recipe, matched, total, matchedTokens, missingTokens }) => (
-                            <div key={recipe.id} className={styles.rankWrapper}>
-                                <span
-                                    className={`${styles.matchBadge} ${matched === total ? styles.matchFull : ''}`}
-                                    title={`${matched} ingrédient(s) sur ${total} trouvés`}
-                                >
-                                    {matched}/{total}
-                                </span>
-                                <RecipeCard recipe={recipe} />
-                                {missingTokens.length > 0 && (
-                                    <div className={styles.matchDetail}>
-                                        <span className={styles.matchOk}>✓ {matchedTokens.join(', ')}</span>
-                                        <span className={styles.matchMissing}>Manque : {missingTokens.join(', ')}</span>
-                                    </div>
+                ) : ranked ? (
+                    <>
+                        {fullResults.length > 0 ? (
+                            <div className={styles.grid}>
+                                {fullResults.map(renderRanked)}
+                            </div>
+                        ) : (
+                            <div className={styles.empty}>
+                                <p>Aucune recette avec <strong>tous</strong> ces ingrédients.</p>
+                                {partialResults.length > 0 && (
+                                    <p style={{ fontSize: '0.9rem', marginTop: '0.5rem', opacity: 0.7 }}>
+                                        Voici des recettes auxquelles il manque 1 ingrédient :
+                                    </p>
                                 )}
                             </div>
-                        ))}
-                    </div>
+                        )}
+                        {showSuggestions && (
+                            <>
+                                <div className={styles.suggestDivider}>
+                                    Suggestions — il manque 1 ingrédient
+                                </div>
+                                <div className={styles.grid}>
+                                    {partialResults.map(renderRanked)}
+                                </div>
+                            </>
+                        )}
+                    </>
                 ) : hasResults ? (
                     <div className={styles.grid}>
                         {filteredRecipes.map(recipe => (

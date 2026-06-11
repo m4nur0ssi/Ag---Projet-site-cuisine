@@ -2,6 +2,7 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 import Image from 'next/image';
 import Header from '@/components/Header/Header';
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
@@ -37,6 +38,7 @@ interface RecipeClientProps {
 type TabId = 'ingredients' | 'steps' | 'video';
 
 export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientProps) {
+    const { user: authUser } = useAuth();
     const { startTimer, stopTimer } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
@@ -390,6 +392,9 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
             if (dx > 10 || dy > 10) return;
         }
 
+        // Liste de courses réservée aux connectés : rien n'est coché, on propose la connexion.
+        if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return; }
+
         const newChecked = [...checkedIngredients];
         const isDeselecting = newChecked[index]; // C'était coché, on va décocher
         newChecked[index] = !newChecked[index];
@@ -431,6 +436,8 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
     };
 
     const copyIngredients = async () => {
+        // Liste de courses réservée aux connectés.
+        if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return; }
         try {
             const selectedIngredients = recipe.ingredients
                 .filter((_, idx) => checkedIngredients[idx]) // On ne prend que les COCHÉS (demande client)
@@ -1098,7 +1105,9 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                         {activeTab === 'ingredients' && (
                             <div className={styles.stickyPanelHeader}>
                                 <div className={styles.ingredientsActionGrid}>
-                                    <button 
+                                    {/* Panier / sélection : réservé aux connectés */}
+                                    {authUser && (
+                                    <button
                                         className={`${styles.ingredientProgress} ${checkedCount > 0 ? styles.activeSelection : ''}`}
                                         onClick={() => {
                                             const ingredientsSection = document.getElementById('ingredients-grid');
@@ -1110,6 +1119,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                                             {checkedCount} <span className={styles.hideMobileText}>Sélectionné{checkedCount > 1 ? 's' : ''}</span>
                                         </span>
                                     </button>
+                                    )}
 
                                     <PortionsControl
                                         value={servings}

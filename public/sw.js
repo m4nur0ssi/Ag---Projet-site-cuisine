@@ -1,7 +1,7 @@
 // Service worker — offline pour favoris + liste de courses.
 // Stratégies : navigations network-first (fallback cache → page offline),
 // statiques cache-first, images stale-while-revalidate.
-const CACHE = 'recettes-magiques-v3';
+const CACHE = 'recettes-magiques-v4';
 const OFFLINE_URL = new URL('offline.html', self.location).toString();
 
 self.addEventListener('install', (event) => {

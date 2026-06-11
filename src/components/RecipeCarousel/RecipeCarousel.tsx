@@ -242,6 +242,9 @@ function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle,
 
     if (compact) {
         const displayImage = recipe.image || getCategoryData(recipe.title).image;
+        // Tuile thème : on masque le titre incrusté (souvent doublé dans l'asset) en
+        // cadrant sur l'illustration, et on affiche un titre HTML propre par-dessus.
+        const isThemeTile = displayImage.includes('/themes/') || (recipe.id || '').startsWith('theme-');
         return (
             <div ref={itemRef} className={styles.compactItem}>
                 <div className={styles.compactCard} onClick={() => onCardClick?.(recipe)}>
@@ -249,7 +252,9 @@ function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle,
                         src={displayImage}
                         alt={recipe.title}
                         className={styles.compactImage}
+                        style={isThemeTile ? { objectPosition: '50% 60%' } : undefined}
                     />
+                    {isThemeTile && <span className={styles.compactThemeTitle}>{recipe.title}</span>}
                 </div>
             </div>
         );

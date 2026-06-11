@@ -388,8 +388,11 @@ export default function DesktopHome() {
                     return latestIds.includes(recipe.id);
                 }
 
-                return recipeCat === tagLower || 
-                       recipeTags.some(t => t.includes(tagLower));
+                // Fallback générique, insensible aux accents (sinon « Grèce » ≠ tag « grece » → 0 recette)
+                const norm = (s: string) => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+                const normTag = norm(tagLower);
+                return recipeCat === tagLower || norm(recipeCat) === normTag ||
+                       recipeTags.some(t => t.includes(tagLower) || norm(t).includes(normTag));
             });
         });
     }, [activeTags]);
@@ -500,10 +503,16 @@ export default function DesktopHome() {
                              : foundThemeRaw === 'paques' ? 'pâques'
                              : foundThemeRaw;
 
+            // #8 — Pure sauce/condiment (le mot-sauce est en TÊTE du titre, ou tag 'sauces').
+            // Ne doit apparaître QUE dans le thème "sauces", jamais dans "plats".
+            const isSauce = /^(?:sauce|pesto|mayonnaise|vinaigrette|tzatziki|guacamole|a[iï]oli|tapenade|coulis|chimichurri|b[ée]arnaise|hollandaise|ketchup|pico de gallo)\b/.test(title)
+                || tags.includes('sauce') || tags.includes('sauces');
+
             let finalCat = (recipe.category || 'Autres').toLowerCase();
 
             // Détection automatique classique (catégorie principale)
-            if (isIceCream) finalCat = 'glaces';
+            if (isSauce) finalCat = 'sauces';
+            else if (isIceCream) finalCat = 'glaces';
             else if (isBeverage) finalCat = 'boissons';
             else if (isPatisserie) finalCat = 'patisseries';
             else if (isDessert) finalCat = 'desserts';

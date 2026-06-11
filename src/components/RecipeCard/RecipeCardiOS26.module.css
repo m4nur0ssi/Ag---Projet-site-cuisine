@@ -4,6 +4,7 @@
 
 [data-theme='light'] .recipeContainer {
     background: transparent;
+    -webkit-backdrop-filter: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
@@ -33,6 +34,7 @@
     justify-content: center;
     padding: 0 16px;
     background: rgba(255, 255, 255, 0.05); /* Look bouton */
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -55,6 +57,7 @@
 [data-theme='light'] .titlePill {
     background: rgba(0, 0, 0, 0.05) !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -151,6 +154,7 @@
     justify-content: center;
     padding: 0 16px;
     background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -253,6 +257,7 @@
     height: 32px;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -302,6 +307,7 @@
     height: 80px;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 2px solid rgba(255, 255, 255, 0.3);
@@ -387,6 +393,7 @@
     gap: 22px; /* Premium spacing between floating icons */
     padding: 8px 24px;
     background: rgba(255, 255, 255, 0.08); /* Minimalist glass pill */
+    -webkit-backdrop-filter: blur(25px) saturate(1.8);
     backdrop-filter: blur(25px) saturate(1.8);
     -webkit-backdrop-filter: blur(25px) saturate(1.8);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -411,6 +418,7 @@
     color: white !important;
     background: transparent !important; /* Force transparent as requested */
     border: none !important;
+    -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     box-shadow: none !important;
@@ -482,6 +490,7 @@
     align-items: center;
     justify-content: center;
     background: transparent;
+    -webkit-backdrop-filter: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     border: none;
@@ -500,6 +509,7 @@
 .transparentWell {
     background: transparent !important;
     border: none !important;
+    -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     box-shadow: none !important;
@@ -539,6 +549,7 @@
     height: 44px;
     border-radius: 22px;
     background: transparent;
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1.5px solid rgba(255, 255, 255, 0.25);
