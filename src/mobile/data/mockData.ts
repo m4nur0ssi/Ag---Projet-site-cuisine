@@ -2,11 +2,110 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/06/2026 09:25:16
+ * Dernière mise à jour: 11/06/2026 13:20:56
  * Total: 358 recettes
  */
-export const exportSyncId = "1781169916281";
+export const exportSyncId = "1781184056745";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5268",
+        "title": "Frites de courgettes",
+        "description": "Une recette simple et rapide de frites de courgettes croustillantes, idéales pour l'apéritif, préparées à l'air fryer et accompagnées d'une sauce fraîche au yaourt grec et aux herbes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5268_1781183599307.jpg&v=1781190822000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626078785212845334\" data-video-id=\"7626078785212845334\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626078785212845334\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 grosse courgette bien épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             25g de chapelure panko"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             piment en flocon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3/4 grosses cuillères de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 c.à soupe de fromage frais type philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel d'abeille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices de ton choix"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             menthe"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6093",
         "title": "Natillas espagnoles",
@@ -10724,105 +10823,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5268",
-        "title": "Frites de courgettes",
-        "description": "Une recette simple et rapide de frites de courgettes croustillantes, idéales pour l'apéritif, préparées à l'air fryer et accompagnées d'une sauce fraîche au yaourt grec et aux herbes.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626078785212845334\" data-video-id=\"7626078785212845334\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626078785212845334\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 grosse courgette bien épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             50g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             25g de chapelure panko"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Herbes de Provence"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             piment en flocon"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3/4 grosses cuillères de yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 c.à soupe de fromage frais type philadelphia"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Miel d'abeille"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Épices de ton choix"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             menthe"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Italie",
-            "Végé",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
