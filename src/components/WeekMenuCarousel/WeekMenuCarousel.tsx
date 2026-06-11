@@ -45,12 +45,18 @@ function MealBlock({ day, label, recipe, slotKey, isSelected, onSelect, done, in
     const prodNameRaw = (s: string) => parseIngredient(s).name || s;
     // Blocs groupés découpés en ingrédients individuels (clés `day|label|origIdx|sub`
     // = celles de la consolidation), puis tri alphabétique par nom.
-    const rows = (recipe?.ingredients || [])
-        .map((ing: any, origIdx: number) => ({ ing, origIdx }))
+    // L'accompagnement (recipe.side, Menu IA) ajoute ses ingrédients avec clés `s`-préfixées.
+    const rows = [
+        ...(recipe?.ingredients || [])
+            .map((ing: any, origIdx: number) => ({ ing, keyBase: `${day}|${label}|` , origIdx: `${origIdx}` }))
+        ,
+        ...((recipe?.side?.ingredients || [])
+            .map((ing: any, origIdx: number) => ({ ing, keyBase: `${day}|${label}|`, origIdx: `s${origIdx}` })))
+    ]
         .filter((x: any) => x.ing?.name)
-        .flatMap(({ ing, origIdx }: any) =>
+        .flatMap(({ ing, keyBase, origIdx }: any) =>
             expandIngredientLines(`${ing.quantity || ''} ${ing.name || ''}`.trim())
-                .map((piece: string, sub: number) => ({ piece, key: `${day}|${label}|${origIdx}|${sub}` }))
+                .map((piece: string, sub: number) => ({ piece, key: `${keyBase}${origIdx}|${sub}` }))
         )
         .sort((a: { piece: string }, b: { piece: string }) =>
             prodNameRaw(a.piece).localeCompare(prodNameRaw(b.piece), 'fr', { sensitivity: 'base' }));
@@ -67,6 +73,18 @@ function MealBlock({ day, label, recipe, slotKey, isSelected, onSelect, done, in
                             : <div className={styles.vignetteFallback}>🍽</div>}
                         <span className={styles.vignetteTitle}>{decodeHtml(recipe.title)}</span>
                     </button>
+                    {/* Accompagnement suggéré (Menu IA) — cliquable vers sa fiche */}
+                    {recipe.side && (
+                        <button className={styles.sideRow} onClick={() => openRecipe(recipe.side)}>
+                            {recipe.side.image
+                                ? <img src={recipe.side.image} alt={recipe.side.title} className={styles.sideRowThumb} />
+                                : <span className={styles.sideRowFallback}>🥗</span>}
+                            <span className={styles.sideRowMeta}>
+                                <span className={styles.sideRowBadge}>Accompagnement</span>
+                                <span className={styles.sideRowName}>{decodeHtml(recipe.side.title)}</span>
+                            </span>
+                        </button>
+                    )}
                     <motion.ul
                         className={styles.ingList}
                         initial="hidden"

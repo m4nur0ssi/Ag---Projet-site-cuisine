@@ -124,6 +124,27 @@
     background: linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.35) 60%, transparent);
 }
 
+/* Accompagnement suggéré (Menu IA) sous la vignette du plat */
+.sideRow {
+    display: flex; align-items: center; gap: 8px;
+    width: 100%;
+    padding: 6px 8px; border-radius: 12px;
+    border: 1px solid rgba(34,197,94,0.3);
+    background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(16,185,129,0.05));
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.23,1,0.32,1), border-color 0.18s;
+}
+.sideRow:hover { transform: translateY(-1px) scale(1.01); border-color: rgba(34,197,94,0.6); }
+.sideRowThumb { width: 34px; height: 34px; border-radius: 9px; object-fit: cover; flex-shrink: 0; }
+.sideRowFallback {
+    width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.05rem;
+    background: rgba(255,255,255,0.07);
+}
+.sideRowMeta { display: flex; flex-direction: column; gap: 1px; min-width: 0; text-align: left; }
+.sideRowBadge { font-size: 0.52rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #4ade80; line-height: 1; }
+.sideRowName { font-size: 0.74rem; font-weight: 700; color: #fff; line-height: 1.15; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
 .ingList { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .ingItem {
     display: flex; align-items: center; gap: 10px;

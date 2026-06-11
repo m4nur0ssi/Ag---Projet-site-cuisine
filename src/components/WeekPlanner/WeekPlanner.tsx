@@ -298,6 +298,19 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         return 'autre';
     };
 
+    // Un plat est "complet" s'il embarque déjà un accompagnement (féculent ou légume).
+    // Sinon le Menu IA lui adjoint une recette d'accompagnement (recipe.side).
+    const SIDE_RX = /\briz\b|p[âa]tes|pasta|spaghetti|tagliatelle|nouille|pur[ée]e|pomme de terre|patate|frite|semoule|couscous|boulgour|quinoa|polenta|gnocchi|lentille|haricot|brocoli|[ée]pinard|courgette|aubergine|carotte|poireau|chou|champignon|petits pois|ratatouille|l[ée]gume|salade|gratin|po[êe]l[ée]e/i;
+    const hasSideIncluded = (r: any): boolean =>
+        SIDE_RX.test(r.title || '') || (r.ingredients || []).some((i: any) => SIDE_RX.test(i?.name || ''));
+    // Pool d'accompagnements : recettes taggées "Accompagnements" + plats végé de type side
+    // (légumes/féculents sans protéine animale).
+    const isSideDish = (r: any): boolean => {
+        if (!isCookable(r)) return false;
+        if ((r.tags || []).some((t: string) => /accompagnement/i.test(t))) return true;
+        return r.category === 'plats' && proteinOf(r) === 'vege' && SIDE_RX.test(r.title || '');
+    };
+
     const fillIA = (theme?: string) => {
         if (view !== 'semaine') { fillJourJ(theme); return; }
         setIaBusy(true);
@@ -321,6 +334,13 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
             const slots: [string, string][] = [];
             visibleDays.forEach(d => MEALS.forEach(m => slots.push([d, m])));
 
+            // File d'accompagnements (mélangée, sans doublon sur la semaine).
+            const sideQueue = shuffle(mockRecipes.filter(isSideDish));
+            const popSide = (): any | null => {
+                while (sideQueue.length) { const s = sideQueue.shift(); if (s && !used.has(s.id)) { used.add(s.id); return s; } }
+                return null;
+            };
+
             const np: Plan = { ...plan };
             let gi = 0, lastProtein: string | null = null;
             const dayProtein: Record<string, string> = {};
@@ -337,7 +357,14 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                 }
                 // 2) sinon n'importe quel groupe avec du stock
                 if (!chosen) for (const g of order) { const r = popFrom(g); if (r) { chosen = r; chosenP = g; break; } }
-                if (chosen) { np[day][meal] = chosen; lastProtein = chosenP; dayProtein[day] = chosenP as string; }
+                if (chosen) {
+                    // Plat sans féculent/légume intégré → on lui adjoint un accompagnement.
+                    if (!hasSideIncluded(chosen)) {
+                        const side = popSide();
+                        if (side) chosen = { ...chosen, side };
+                    }
+                    np[day][meal] = chosen; lastProtein = chosenP; dayProtein[day] = chosenP as string;
+                }
             });
 
             clearSlotChecks(k => !k.startsWith(`${JOUR_J_KEY}|`));
@@ -532,6 +559,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                                     <div key={meal} className={styles.mealSlot}>
                                                         <div className={styles.mealTag}>{meal}</div>
                                                         {recipe ? (
+                                                            <>
                                                             <div
                                                                 className={`${styles.recipeVignette} ${validated ? styles.clickable : ''}`}
                                                                 onClick={() => validated ? openRecipe(recipe) : setPicker({ day, meal })}
@@ -542,6 +570,23 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                                                     <button className={styles.removeVignette} onClick={e => { e.stopPropagation(); removeSlot(day, meal); }}>✕</button>
                                                                 )}
                                                             </div>
+                                                            {/* Accompagnement suggéré par le Menu IA — cliquable vers sa fiche */}
+                                                            {recipe.side && (
+                                                                <div
+                                                                    className={styles.sideVignette}
+                                                                    onClick={(e) => { e.stopPropagation(); openRecipe(recipe.side); }}
+                                                                    title={`Accompagnement : ${decodeHtml(recipe.side.title)}`}
+                                                                >
+                                                                    {recipe.side.image
+                                                                        ? <img src={recipe.side.image} alt={recipe.side.title} className={styles.sideThumb} />
+                                                                        : <span className={styles.sideThumbFallback}>🥗</span>}
+                                                                    <div className={styles.sideMeta}>
+                                                                        <span className={styles.sideBadge}>Accompagnement</span>
+                                                                        <span className={styles.sideName}>{decodeHtml(recipe.side.title)}</span>
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                            </>
                                                         ) : validated ? (
                                                             <div className={styles.emptySlotMuted}><span className={styles.emptyText}>—</span></div>
                                                         ) : (

@@ -259,6 +259,15 @@ export const buildConsolidatedItems = (
                     add(piece, { slotKey: `${dayKey}|${mealKey}|${idx}|${sub}` });
                 });
             });
+            // Accompagnement suggéré par le Menu IA (recipe.side) : ses ingrédients
+            // comptent aussi (clés préfixées `s` → pas de collision avec celles du plat).
+            (recipe?.side?.ingredients || []).forEach((ing: any, idx: number) => {
+                const raw = `${ing?.quantity || ''} ${ing?.name || ''}`.trim();
+                if (!raw) return;
+                expandIngredientLines(raw).forEach((piece, sub) => {
+                    add(piece, { slotKey: `${dayKey}|${mealKey}|s${idx}|${sub}` });
+                });
+            });
         });
     });
     Object.values(shoppingList || {}).forEach((r: any) => {
