@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, useAnimation, PanInfo } from 'framer-motion';
 import Link from 'next/link';
+import { useAuth } from '@/hooks/useAuth';
 import Header from '@/mobile/components/Header/Header';
 import WeekMenuCarousel from '@/mobile/components/WeekMenuCarousel/WeekMenuCarousel';
 import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone, parseIngredient, cleanIngredientText } from '@/mobile/lib/ingredients';
@@ -25,6 +26,7 @@ export default function ShoppingListPage() {
     const [weekPlan, setWeekPlan] = useState<Record<string, Record<string, unknown>>>({});
     const [weekChecked, setWeekChecked] = useState<Set<string>>(new Set());
     const [mounted, setMounted] = useState(false);
+    const { user, loading: authLoading } = useAuth();
     const [mode, setMode] = useState<'jour' | 'recette' | 'fusionnee'>('fusionnee');
     const [selected, setSelected] = useState<Set<string>>(new Set());
     const [recipeSel, setRecipeSel] = useState<Set<string>>(new Set()); // coché en mode "Par recette" (clé `id|idx`)
@@ -193,7 +195,28 @@ export default function ShoppingListPage() {
     const startCarrefour = () => { if (!selectedItems.length) return; setCarrefourIdx(0); openCarrefourFor(0); };
     const carrefourGo = (i: number) => { const n = Math.max(0, Math.min(i, selectedItems.length - 1)); setCarrefourIdx(n); openCarrefourFor(n); };
 
-    if (!mounted) return null;
+    if (!mounted || authLoading) return null;
+
+    // Liste de courses réservée aux connectés — accès impossible sinon.
+    if (!user) return (
+        <div className={styles.page}>
+            <Header title="Ma liste" showBack={true} />
+            <main className={styles.main}>
+                <div className={styles.empty}>
+                    <div className={styles.emptyIcon}>🔒</div>
+                    <h2 className={styles.emptyTitle}>Connecte-toi</h2>
+                    <p className={styles.emptySubtitle}>
+                        Ta liste de courses est réservée aux membres connectés.
+                    </p>
+                    <button
+                        className={styles.clearBtn}
+                        style={{ marginTop: 18 }}
+                        onClick={() => window.dispatchEvent(new Event('magic-open-auth'))}
+                    >Se connecter</button>
+                </div>
+            </main>
+        </div>
+    );
 
     const recipesCount = Object.keys(shoppingList).length;
 

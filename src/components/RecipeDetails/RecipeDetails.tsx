@@ -337,6 +337,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     };
 
     const copyIngredients = async () => {
+        // Liste de courses réservée aux connectés.
+        if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return; }
         try {
             const selectedIngredients = recipe.ingredients
                 .filter((_, idx) => checkedIngredients[idx]) // On ne prend que les COCHÉS (demande client)
@@ -399,6 +401,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     // (clé = recipe.id dans magic-shopping-list). Retourne le nb d'articles ajoutés.
     const addCheckedToCart = (): number => {
         if (typeof window === 'undefined') return 0;
+        if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return 0; }
         const selectedIngredients = recipe.ingredients
             .filter((_, idx) => checkedIngredients[idx])
             .map(ing => {
@@ -992,6 +995,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     {activeTab === 'ingredients' && (
                         <div className={styles.stickyPanelHeader}>
                             <div className={styles.ingredientsActionBlock}>
+                                {/* Panier / liste de courses : réservé aux connectés */}
+                                {authUser && (
                                 <div className={styles.ingredientProgress}>
                                     <button
                                         type="button"
@@ -1006,6 +1011,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         )}
                                     </button>
                                 </div>
+                                )}
                                 <div className={styles.tabActionsUnified}>
                                     <PortionsControl
                                         value={servings}

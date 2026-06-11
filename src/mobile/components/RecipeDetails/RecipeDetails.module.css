@@ -509,11 +509,19 @@
     padding: 4px;
     border-radius: 14px;
     position: relative;
-    margin-bottom: 30px; /* Unifié à 30px */
+    /* Marge horizontale = inset des cartes meta (.metaStrip) → pilule alignée, jamais coupée */
+    margin: 0 40px 30px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .tabsBar {
+        margin-left: 20px;   /* aligné sur l'inset .metaStrip @768 */
+        margin-right: 20px;
+    }
 }
 
 .addressDisplayLarge {
@@ -787,7 +795,7 @@
     align-items: center;
     gap: 8px;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap; /* Prevent horizontal scroll */
 }
 

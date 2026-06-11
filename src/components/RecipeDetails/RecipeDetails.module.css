@@ -520,7 +520,8 @@
     padding: 4px;
     border-radius: 14px;
     position: relative;
-    margin-bottom: 30px; /* Unifié à 30px */
+    /* Marge horizontale = inset des cartes meta (.metaStrip) → pilule alignée, jamais coupée */
+    margin: 0 20px 30px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
@@ -794,7 +795,7 @@
     align-items: center;
     gap: 8px;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap; /* Prevent horizontal scroll */
 }
 
@@ -1685,6 +1686,11 @@
     .metaStrip {
         padding: 0 12px;
         margin-bottom: 25px;
+    }
+
+    .tabsBar {
+        margin-left: 12px;   /* aligné sur l'inset .metaStrip @768 */
+        margin-right: 12px;
     }
 
     .metaContent {

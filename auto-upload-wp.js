@@ -52,7 +52,44 @@ function norm(s) {
         .trim();
 }
 
-// --- Charge les recettes depuis mockData (titre → id WordPress) ---
+// Base de l'API REST WordPress, déduite de l'URL XML-RPC
+// (http://HOST/wordpress/xmlrpc.php → http://HOST/wordpress/wp-json/wp/v2).
+const WP_API_URL = process.env.WP_API_URL || WP_URL.replace(/xmlrpc\.php.*$/, 'wp-json/wp/v2');
+
+// --- Source PRIMAIRE : titres lus EN DIRECT depuis WordPress (REST API) ---
+// Ainsi un titre renommé dans WordPress est pris en compte immédiatement, sans
+// avoir à régénérer mockData.ts (`npm run sync-recipes`).
+async function loadRecipesFromWP() {
+    const out = [];
+    for (let page = 1; page <= 30; page++) {
+        const url = `${WP_API_URL}/posts?per_page=100&page=${page}&status=publish&_fields=id,title,featured_media&nocache=${Date.now()}`;
+        const res = await fetch(url);
+        if (res.status === 400) break;               // page au-delà de la dernière
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const posts = await res.json();
+        if (!Array.isArray(posts) || posts.length === 0) break;
+        posts.forEach(p => out.push({
+            id: String(p.id),
+            title: (p.title && p.title.rendered) || '',
+            featured_media: p.featured_media ? String(p.featured_media) : '',
+        }));
+        if (posts.length < 100) break;
+    }
+    return out;
+}
+
+// source_url (URL publique du fichier) du média à la une actuel d'une recette.
+// Sert à réuploader SOUS LE MÊME NOM → même URL → le site se met à jour sans sync-recipes.
+async function getMediaSourceUrl(mediaId) {
+    try {
+        const res = await fetch(`${WP_API_URL}/media/${mediaId}?_fields=source_url&nocache=${Date.now()}`);
+        if (!res.ok) return null;
+        const m = await res.json();
+        return (m && m.source_url) || null;
+    } catch { return null; }
+}
+
+// --- Repli HORS LIGNE : recettes depuis mockData.ts (titre → id WordPress) ---
 function loadRecipes() {
     const p = path.join(__dirname, 'src', 'data', 'mockData.ts');
     const t = fs.readFileSync(p, 'utf8');
@@ -104,7 +141,8 @@ async function uploadImage(imagePath, fileName, mimeType) {
     const text = await res.text();
     const match = text.match(/<member><name>id<\/name><value><(?:string|int)>(\d+)<\/(?:string|int)><\/value><\/member>/);
     if (!match) throw new Error('upload sans ID (réponse: ' + text.slice(0, 200) + ')');
-    return match[1];
+    const urlMatch = text.match(/<member><name>url<\/name><value><string>([^<]+)<\/string><\/value><\/member>/);
+    return { id: match[1], url: urlMatch ? urlMatch[1] : null };
 }
 
 async function setThumbnail(postId, mediaId) {
@@ -142,10 +180,33 @@ async function processFile(file, index, recipes) {
     }
     try {
         console.log(`📸 "${base}" → recette #${recipe.id} (${decodeEntities(recipe.title)})`);
-        const fileName = `recipe_${recipe.id}_${Date.now()}${ext}`;
-        const mediaId = await uploadImage(file, fileName, mime);
+
+        // Réécrasement "en place" : si la recette a déjà une image à la une, on réuploade
+        // SOUS LE MÊME NOM DE FICHIER (overwrite) → même URL publique → le site (qui lit
+        // cette URL via image-proxy) se met à jour direct, SANS sync-recipes ni redéploiement.
+        let existingUrl = null;
+        if (recipe.featured_media) existingUrl = await getMediaSourceUrl(recipe.featured_media);
+        let fileName;
+        if (existingUrl) {
+            const existingName = decodeURIComponent(path.basename(new URL(existingUrl).pathname));
+            // L'écrasement n'est fiable que si l'extension correspond (même type de fichier).
+            if (path.extname(existingName).toLowerCase() === ext) {
+                fileName = existingName;            // → même URL, mise à jour directe
+            } else {
+                console.log(`   ⚠️ image actuelle = ${path.extname(existingName)} mais fichier = ${ext}.`
+                    + ` Nouvelle URL créée → lance "npm run sync-recipes" pour propager au site.`);
+            }
+        }
+        if (!fileName) fileName = `recipe_${recipe.id}_${Date.now()}${ext}`;
+
+        const { id: mediaId, url: newUrl } = await uploadImage(file, fileName, mime);
         const ok = await setThumbnail(recipe.id, mediaId);
         console.log(`   ${ok ? '✅ image à la une définie' : '⚠️ uploadée mais thumbnail non confirmé'} (média ${mediaId})`);
+        if (existingUrl && newUrl && path.basename(new URL(newUrl).pathname) === path.basename(new URL(existingUrl).pathname)) {
+            console.log('   ♻️  URL inchangée → site (desktop + mobile) à jour directement.');
+        } else if (existingUrl) {
+            console.log('   ⚠️ URL différente de l’ancienne → lance "npm run sync-recipes" pour propager au site.');
+        }
         moveTo(path.join(FOLDER, 'done'), file);
     } catch (e) {
         console.error(`   ❌ ${e.message}`);
@@ -163,7 +224,16 @@ async function scanOnce(index, recipes) {
 }
 
 (async () => {
-    const recipes = loadRecipes();
+    // Titres à jour depuis WordPress en priorité ; repli mockData.ts si WP injoignable.
+    let recipes;
+    try {
+        recipes = await loadRecipesFromWP();
+        if (!recipes.length) throw new Error('0 recette renvoyée par l’API');
+        console.log(`🌐 ${recipes.length} recettes lues depuis WordPress (titres à jour).`);
+    } catch (e) {
+        console.log(`⚠️  Lecture WordPress échouée (${e.message}) → repli sur mockData.ts local.`);
+        recipes = loadRecipes();
+    }
     const index = buildIndex(recipes);
     console.log(`🗂️  ${recipes.length} recettes indexées. Dossier : ${FOLDER}\n   WordPress : ${WP_URL} (user ${USER})`);
     await scanOnce(index, recipes);
