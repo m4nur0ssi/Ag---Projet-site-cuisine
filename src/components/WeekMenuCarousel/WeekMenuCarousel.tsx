@@ -320,7 +320,6 @@ export default function WeekMenuCarousel({ view = 'week' }: { view?: 'week' | 'j
                         key={d}
                         className={`${styles.segBtn} ${active === i ? styles.segActive : ''} ${d === 'JourJ' ? styles.segJourJ : ''}`}
                         onClick={() => goTo(i)}
-                        onMouseEnter={() => goTo(i)}
                     >{segLabel(d)}</button>
                 ))}
             </div>

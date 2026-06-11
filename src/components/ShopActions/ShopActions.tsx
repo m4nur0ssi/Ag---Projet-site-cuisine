@@ -15,18 +15,18 @@ interface ShopActionsProps {
     onShopped?: (item: ConsolItem) => void; // recherché sur Carrefour → rayer au retour
 }
 
-// Boutons Partager + Carrefour. Si des ingrédients sont cochés, ils sont la cible
-// (du haut vers le bas) ; sinon on prend toute la liste.
+// Boutons Partager + Carrefour. Visibles UNIQUEMENT si au moins un ingrédient est
+// coché ; la cible (et donc la recherche magasin) = exactement les ingrédients cochés.
+// Barrer un ingrédient ne le sélectionne pas → ne fait pas apparaître ces boutons.
 export default function ShopActions({ items, title = 'Ma liste de courses', size = 'sm', checkedKeys, onShopped }: ShopActionsProps) {
     const [idx, setIdx] = useState<number | null>(null);
     const [store] = usePreferredStore();
     const shop = STORE_BY_ID[store];
 
-    // Cible = items cochés (dans l'ordre d'affichage), sinon tout.
-    const targeted = checkedKeys && checkedKeys.size
+    // Cible = uniquement les items cochés (dans l'ordre d'affichage). Aucun coché → rien.
+    const list = checkedKeys
         ? items.filter(it => it.keys.some(k => checkedKeys.has(k)))
         : items;
-    const list = targeted.length ? targeted : items;
     if (!list.length) return null;
 
     const text = `🛒 ${title}\n\n` + list.map(i => `• ${i.display}`).join('\n');

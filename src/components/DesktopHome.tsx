@@ -388,8 +388,11 @@ export default function DesktopHome() {
                     return latestIds.includes(recipe.id);
                 }
 
-                return recipeCat === tagLower || 
-                       recipeTags.some(t => t.includes(tagLower));
+                // Fallback générique, insensible aux accents (sinon « Grèce » ≠ tag « grece » → 0 recette)
+                const norm = (s: string) => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+                const normTag = norm(tagLower);
+                return recipeCat === tagLower || norm(recipeCat) === normTag ||
+                       recipeTags.some(t => t.includes(tagLower) || norm(t).includes(normTag));
             });
         });
     }, [activeTags]);

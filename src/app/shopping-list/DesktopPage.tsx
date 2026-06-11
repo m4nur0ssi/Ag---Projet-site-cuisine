@@ -3,11 +3,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import Header from '@/components/Header/Header';
 import WeekMenuCarousel from '@/components/WeekMenuCarousel/WeekMenuCarousel';
-import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone } from '@/lib/ingredients';
+import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone, parseIngredient, cleanIngredientText } from '@/lib/ingredients';
 import type { ConsolItem } from '@/lib/ingredients';
 import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
 import { STORE_BY_ID, usePreferredStore, storeSearchWithQueue } from '@/lib/stores';
 import StoreButton from '@/components/StoreSelector/StoreButton';
+import ShopActions from '@/components/ShopActions/ShopActions';
 import styles from './shopping-list.module.css';
 
 interface ListData {
@@ -208,8 +209,8 @@ export default function ShoppingListPage() {
         it.qty != null ? `${fmtQty(it.qty)}${it.unit ? ' ' + it.unit : ''} ${it.name}` : it.name;
 
     const buildShareText = () => {
-        // Rien coché → on partage toute la liste.
-        const src = selected.size ? items.filter(i => selected.has(i.key)) : items;
+        // On partage uniquement les ingrédients cochés (la barre n'apparaît que s'il y en a).
+        const src = items.filter(i => selected.has(i.key));
         const lines = src.map(i => `• ${lineFor(i)}`);
         return '🛒 Ma liste de courses\n\n' + lines.join('\n');
     };
@@ -225,8 +226,8 @@ export default function ShoppingListPage() {
     const shareWhatsApp = () => window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText())}`, '_blank');
 
     // ── Commander sur Carrefour : recherche pas-à-pas (1 ingrédient à la fois) ──
-    // Rien coché → cible TOUTE la liste (sinon le bouton magasin n'aurait aucune cible).
-    const selectedItems = selected.size ? items.filter(i => selected.has(i.key)) : items;
+    // Cible = uniquement les ingrédients cochés (la barre magasin n'apparaît que s'il y en a).
+    const selectedItems = items.filter(i => selected.has(i.key));
     const openCarrefourFor = (i: number) => {
         const it = selectedItems[i];
         if (!it) return;
@@ -406,9 +407,9 @@ export default function ShoppingListPage() {
                   </>
                 )}
 
-                {/* Barre de partage flottante (mode fusion uniquement) — visible dès qu'il y a
-                    des ingrédients ; rien coché = cible toute la liste. */}
-                {weekMode === 'fusion' && items.length > 0 && (
+                {/* Barre de partage flottante (mode fusion) — visible UNIQUEMENT quand au moins
+                    un ingrédient est coché ; cible = exactement les ingrédients cochés. */}
+                {weekMode === 'fusion' && selected.size > 0 && (
                     <div style={{
                         position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)',
                         display: 'flex', gap: 10, alignItems: 'center', background: 'rgba(20,20,20,0.95)',
@@ -502,6 +503,23 @@ function RecipesIndividualView({ shoppingList, onToggle, onRemove }: {
     onRemove: (id: string) => void;
 }) {
     const entries = Object.entries(shoppingList).filter(([, e]) => e && (e.ingredients?.length || 0) > 0);
+    // Coché (sélection magasin) — clé `id|idx`. Indépendant du barré (ing.checked).
+    const [selected, setSelected] = useState<Set<string>>(new Set());
+    const toggleSel = (k: string) => setSelected(prev => {
+        const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n;
+    });
+
+    // Tous les ingrédients (toutes recettes confondues) en ConsolItem : cible commune
+    // de la barre Partager/Magasin, filtrée par les seuls cochés dans ShopActions.
+    const allItems: ConsolItem[] = entries.flatMap(([id, entry]) =>
+        entry.ingredients.map((ing, idx) => {
+            const raw = (ing.name || '').replace(/^[-•\s]+/, '');
+            const p = parseIngredient(raw);
+            const key = `${id}|${idx}`;
+            return { key, keys: [key], icon: getIcon(p.name || raw), name: p.name || raw, unit: '', qty: null, display: cleanIngredientText(raw) || raw, count: 1 };
+        })
+    );
+
     if (entries.length === 0) {
         return (
             <div className={styles.empty}>
@@ -532,16 +550,30 @@ function RecipesIndividualView({ shoppingList, onToggle, onRemove }: {
                             >✕</button>
                         </div>
                         <div className={styles.recipeBlockItems}>
-                            {entry.ingredients.map((ing, idx) => (
-                                <label key={idx} className={`${styles.recipeIng} ${ing.checked ? styles.recipeIngDone : ''}`}>
-                                    <input type="checkbox" checked={!!ing.checked} onChange={() => onToggle(id, idx)} />
-                                    <span>{ing.name}</span>
-                                </label>
-                            ))}
+                            {entry.ingredients.map((ing, idx) => {
+                                const k = `${id}|${idx}`;
+                                const sel = selected.has(k);
+                                return (
+                                    <div key={idx} className={`${styles.recipeIng} ${ing.checked ? styles.recipeIngDone : ''} ${sel ? styles.consolItemSel : ''}`}>
+                                        {/* Clic nom = barrer (je n'en ai pas besoin) */}
+                                        <span style={{ flex: 1 }} onClick={() => onToggle(id, idx)}>{ing.name}</span>
+                                        {/* Cercle = cocher (sélection magasin/partage) */}
+                                        <button className={styles.consolCheck} onClick={(e) => { e.stopPropagation(); toggleSel(k); }} aria-label="Sélectionner">
+                                            {sel && (
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                                    <polyline points="20 6 9 17 4 12" />
+                                                </svg>
+                                            )}
+                                        </button>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                 );
             })}
+            {/* Partager + Magasin : visibles seulement si ≥1 ingrédient coché, cible = cochés */}
+            <ShopActions items={allItems} checkedKeys={selected} title="Ma sélection" size="md" />
         </div>
     );
 }

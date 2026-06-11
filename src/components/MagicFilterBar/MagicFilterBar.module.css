@@ -191,6 +191,7 @@
 }
 
 .subItem {
+    position: relative; /* contient .auraGlow à ce bouton (sinon il s'étale sur toute la rangée) */
     flex: 0 0 auto;
     height: 38px;
     padding: 0 16px;

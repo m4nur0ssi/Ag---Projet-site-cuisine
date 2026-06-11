@@ -5,8 +5,9 @@ import { motion, useAnimation, PanInfo } from 'framer-motion';
 import Link from 'next/link';
 import Header from '@/mobile/components/Header/Header';
 import WeekMenuCarousel from '@/mobile/components/WeekMenuCarousel/WeekMenuCarousel';
-import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone } from '@/mobile/lib/ingredients';
+import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone, parseIngredient, cleanIngredientText } from '@/mobile/lib/ingredients';
 import type { ConsolItem } from '@/mobile/lib/ingredients';
+import ShopActions from '@/mobile/components/ShopActions/ShopActions';
 import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
 import styles from './shopping-list.module.css';
 
@@ -26,6 +27,7 @@ export default function ShoppingListPage() {
     const [mounted, setMounted] = useState(false);
     const [mode, setMode] = useState<'jour' | 'recette' | 'fusionnee'>('fusionnee');
     const [selected, setSelected] = useState<Set<string>>(new Set());
+    const [recipeSel, setRecipeSel] = useState<Set<string>>(new Set()); // coché en mode "Par recette" (clé `id|idx`)
     const [done, setDone] = useState<Set<string>>(new Set());
     const [carrefourIdx, setCarrefourIdx] = useState<number | null>(null);
     const [manualName, setManualName] = useState('');
@@ -154,7 +156,7 @@ export default function ShoppingListPage() {
 
     // ── partage / Carrefour ──
     const lineFor = (it: ConsolItem) => it.qty != null ? `${fmtQty(it.qty)}${it.unit ? ' ' + it.unit : ''} ${it.name}` : it.name;
-    const buildShareText = () => '🛒 Ma liste de courses\n\n' + (selected.size ? items.filter(i => selected.has(i.key)) : items).map(i => `• ${lineFor(i)}`).join('\n');
+    const buildShareText = () => '🛒 Ma liste de courses\n\n' + items.filter(i => selected.has(i.key)).map(i => `• ${lineFor(i)}`).join('\n');
     const shareNative = async () => {
         const text = buildShareText();
         if (typeof navigator !== 'undefined' && (navigator as Navigator & { share?: (d: unknown) => Promise<void> }).share) {
@@ -165,29 +167,23 @@ export default function ShoppingListPage() {
     };
     const shareWhatsApp = () => window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText())}`, '_blank');
 
-    // Partage du mode "Par recette" : toutes les recettes + leurs ingrédients (sans Carrefour)
-    const buildRecetteShareText = () => {
-        const blocks: string[] = [];
-        Object.values(shoppingList).forEach((r) => {
-            const lines = (r.ingredients || []).map((ing: { name: string } | string) => {
-                const n = typeof ing === 'string' ? ing : ing.name;
-                return `• ${n.replace('- ', '')}`;
-            });
-            blocks.push(`📖 ${r.title}\n${lines.join('\n')}`);
-        });
-        return '🛒 Ma liste de courses\n\n' + blocks.join('\n\n');
-    };
-    const shareRecette = async () => {
-        const text = buildRecetteShareText();
-        if (typeof navigator !== 'undefined' && (navigator as Navigator & { share?: (d: unknown) => Promise<void> }).share) {
-            try { await (navigator as Navigator & { share: (d: unknown) => Promise<void> }).share({ title: 'Ma liste de courses', text }); } catch { /* annulé */ }
-            return; // ne PAS retomber sur WhatsApp si annulé
-        }
-        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-    };
+    // ── Mode "Par recette" : coché (sélection magasin) indépendant du barré ──
+    const toggleRecipeSel = (id: string, idx: number) => setRecipeSel(prev => {
+        const k = `${id}|${idx}`; const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n;
+    });
+    // Tous les ingrédients (toutes recettes) en ConsolItem → cible filtrée par les cochés.
+    const recipeItems: ConsolItem[] = Object.entries(shoppingList).flatMap(([id, entry]) =>
+        (entry.ingredients || []).map((ing: { name: string } | string, idx: number) => {
+            const raw = (typeof ing === 'string' ? ing : ing.name || '').replace(/^[-•\s]+/, '');
+            const p = parseIngredient(raw);
+            const key = `${id}|${idx}`;
+            return { key, keys: [key], icon: getIcon(p.name || raw), name: p.name || raw, unit: '', qty: null, display: cleanIngredientText(raw) || raw, count: 1 };
+        })
+    );
 
-    // Rien coché → cible toute la liste (le bouton magasin doit toujours avoir une cible).
-    const selectedItems = selected.size ? items.filter(i => selected.has(i.key)) : items;
+
+    // Cible = uniquement les ingrédients cochés (la barre magasin n'apparaît que s'il y en a).
+    const selectedItems = items.filter(i => selected.has(i.key));
     const openCarrefourFor = (i: number) => {
         const it = selectedItems[i];
         if (!it) return;
@@ -304,8 +300,9 @@ export default function ShoppingListPage() {
                             </>
                         )}
 
-                        {/* Barre de partage flottante — visible dès qu'il y a des items (rien coché = toute la liste) */}
-                        {items.length > 0 && (
+                        {/* Barre de partage flottante — visible UNIQUEMENT quand au moins un ingrédient
+                            est coché ; cible = exactement les ingrédients cochés. */}
+                        {selected.size > 0 && (
                             <div style={{ position: 'fixed', bottom: 90, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 10, alignItems: 'center', background: 'rgba(20,20,20,0.95)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 40, padding: '10px 16px', zIndex: 100, boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}>
                                 <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginRight: 4 }}>{selected.size ? `${selected.size} à partager` : `${items.length} ingr.`}</span>
                                 <button onClick={shareNative} style={btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)')}><ShareIcon /> Partager</button>
@@ -351,14 +348,11 @@ export default function ShoppingListPage() {
                         <>
                             <div className={styles.list}>
                                 {Object.entries(shoppingList).map(([id, data]) => (
-                                    <SwipeableRecipe key={id} id={id} data={data} removeRecipe={removeRecipe} toggleCheck={toggleCheck} />
+                                    <SwipeableRecipe key={id} id={id} data={data} removeRecipe={removeRecipe} toggleCheck={toggleCheck} selected={recipeSel} onToggleSel={toggleRecipeSel} />
                                 ))}
                             </div>
-                            {/* Partage (mode recette) — sans Carrefour */}
-                            <div style={{ position: 'fixed', bottom: 90, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 10, alignItems: 'center', background: 'rgba(20,20,20,0.95)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 40, padding: '10px 16px', zIndex: 100, boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}>
-                                <button onClick={shareRecette} style={btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)')}><ShareIcon /> Partager</button>
-                                <button onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(buildRecetteShareText())}`, '_blank')} style={btnStyle('#25D366')} title="WhatsApp"><WhatsAppIcon /></button>
-                            </div>
+                            {/* Partager + Magasin : visibles seulement si ≥1 ingrédient coché, cible = cochés */}
+                            <ShopActions items={recipeItems} checkedKeys={recipeSel} title="Ma sélection" size="md" />
                         </>
                     )
                 )}
@@ -379,7 +373,7 @@ function WhatsAppIcon() {
     return (<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>);
 }
 
-function SwipeableRecipe({ id, data, removeRecipe, toggleCheck }: { id: string, data: ListData[string], removeRecipe: (id: string) => void, toggleCheck: (id: string, idx: number) => void }) {
+function SwipeableRecipe({ id, data, removeRecipe, toggleCheck, selected, onToggleSel }: { id: string, data: ListData[string], removeRecipe: (id: string) => void, toggleCheck: (id: string, idx: number) => void, selected: Set<string>, onToggleSel: (id: string, idx: number) => void }) {
     const controls = useAnimation();
     const handleDragEnd = async (_event: unknown, info: PanInfo) => {
         if (info.offset.x < -100 || info.velocity.x < -500) {
@@ -415,14 +409,34 @@ function SwipeableRecipe({ id, data, removeRecipe, toggleCheck }: { id: string, 
                         const isObject = typeof ing === 'object' && ing !== null;
                         const name = isObject ? ing.name : (ing as string);
                         const checked = isObject ? ing.checked : false;
+                        const sel = selected.has(`${id}|${idx}`);
                         return (
-                            <div key={idx} className={`${styles.ingItem} ${checked ? styles.checked : ''}`} onClick={() => toggleCheck(id, idx)}>
-                                <div className={styles.checkboxContainer}>
+                            <div key={idx} className={`${styles.ingItem} ${checked ? styles.checked : ''}`}>
+                                {/* Clic nom = barrer (je n'en ai pas besoin) */}
+                                <div className={styles.checkboxContainer} onClick={() => toggleCheck(id, idx)}>
                                     <svg className={styles.checkIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                                         <polyline points="20 6 9 17 4 12" />
                                     </svg>
                                 </div>
-                                <label className={styles.label}>{name.replace('- ', '')}</label>
+                                <label className={styles.label} onClick={() => toggleCheck(id, idx)}>{name.replace('- ', '')}</label>
+                                {/* Cercle = cocher (sélection magasin/partage) */}
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); onToggleSel(id, idx); }}
+                                    aria-label="Sélectionner"
+                                    style={{
+                                        width: 24, height: 24, borderRadius: '50%', flexShrink: 0, padding: 0,
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+                                        border: sel ? '2px solid transparent' : '2px solid rgba(255,255,255,0.3)',
+                                        background: sel ? 'linear-gradient(135deg,#8b5cf6,#6366f1)' : 'none',
+                                        color: '#fff',
+                                    }}
+                                >
+                                    {sel && (
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="20 6 9 17 4 12" />
+                                        </svg>
+                                    )}
+                                </button>
                             </div>
                         );
                     })}
