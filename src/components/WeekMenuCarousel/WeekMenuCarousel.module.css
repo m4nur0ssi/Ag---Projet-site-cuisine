@@ -246,16 +246,31 @@
 
 /* #1 — Mode Jour J : tout tient à l'écran (page non scrollée), seules les listes
    d'ingrédients de chaque colonne scrollent en interne si elles sont longues.
-   Peu de colonnes => colonnes larges => photos plus grandes (via aspect-ratio). */
-.jourjMode .track { overflow-x: hidden; }
+   La carte occupe TOUTE la largeur du contenu (bords alignés sur "Courses" à gauche
+   et "Tout vider" à droite). Les colonnes sont centrées et symétriques quel que soit
+   le nombre de catégories ; photo au format vertical (comme les cartes de l'accueil). */
+.jourjMode .track { overflow-x: hidden; padding: 8px 0; }
+.jourjMode .snap { flex: 0 0 100%; max-width: none; }
 .jourjMode .card {
     max-height: calc(100vh - 210px);
     display: flex;
     flex-direction: column;
 }
-.jourjMode .meals { flex: 1 1 auto; min-height: 0; align-items: stretch; }
+.jourjMode .meals { flex: 1 1 auto; min-height: 0; align-items: stretch; justify-content: center; }
 .jourjMode .meal { display: flex; flex-direction: column; min-height: 0; }
+@media (min-width: 560px) {
+    /* Cap de largeur : 1-2 catégories restent centrées au lieu de s'étirer sur 1200px */
+    .jourjMode .meal { flex: 1 1 0; max-width: 460px; }
+}
 .jourjMode .mealBody { flex: 1 1 auto; min-height: 0; }
+.jourjMode .vignette {
+    flex-shrink: 0;
+    width: min(100%, 320px);
+    margin: 0 auto;
+    aspect-ratio: 0.85; /* même format vertical que RecipeCard (accueil) */
+    border-radius: 18px;
+}
+.jourjMode .vignetteTitle { font-size: 1rem; padding: 28px 12px 11px; }
 .jourjMode .ingList {
     flex: 1 1 auto;
     min-height: 0;

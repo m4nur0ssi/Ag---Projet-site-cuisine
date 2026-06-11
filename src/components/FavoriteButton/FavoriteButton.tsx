@@ -14,10 +14,13 @@ interface FavoriteButtonProps {
 
 export default function FavoriteButton({ recipeId, initialFavorite = false, imageUrl, className, showLabel = false }: FavoriteButtonProps) {
     const [isFavorite, setIsFavorite] = useState(initialFavorite);
+    // Favoris réservés aux connectés → le cœur n'apparaît QUE si une session existe.
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         const load = async () => {
             const { data: { session } } = await supabase.auth.getSession();
+            setIsLoggedIn(!!session);
             if (session) {
                 const { data } = await supabase
                     .from('favorites')
@@ -36,17 +39,27 @@ export default function FavoriteButton({ recipeId, initialFavorite = false, imag
 
         const handleChange = () => {
             supabase.auth.getSession().then(({ data: { session } }) => {
+                setIsLoggedIn(!!session);
                 if (!session) setIsFavorite(false);
             });
         };
 
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+            setIsLoggedIn(!!session);
+            if (!session) setIsFavorite(false);
+        });
+
         window.addEventListener('storage', handleChange);
         window.addEventListener('magic-favorite-change', handleChange);
         return () => {
+            subscription.unsubscribe();
             window.removeEventListener('storage', handleChange);
             window.removeEventListener('magic-favorite-change', handleChange);
         };
     }, [recipeId]);
+
+    // Déconnecté → rien (aucun cœur : cartes, fiche, partout)
+    if (!isLoggedIn) return null;
 
     const toggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();

@@ -20,11 +20,14 @@ const HeartIcon = ({ filled }: { filled: boolean }) => (
 
 export default function FavoriteButton({ recipeId, initialFavorite = false, imageUrl, className }: FavoriteButtonProps) {
     const [isFavorite, setIsFavorite] = useState(initialFavorite);
+    // Favoris réservés aux connectés → le cœur n'apparaît QUE si une session existe.
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        // Source de vérité = Supabase (suit le compte). Fallback cache localStorage.
+        // Source de vérité = Supabase (suit le compte).
         const load = async () => {
             const { data: { session } } = await supabase.auth.getSession();
+            setIsLoggedIn(!!session);
             if (session) {
                 const { data } = await supabase
                     .from('favorites')
@@ -35,18 +38,26 @@ export default function FavoriteButton({ recipeId, initialFavorite = false, imag
                 setIsFavorite(!!data);
                 return;
             }
-            const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
-            setIsFavorite(favs.includes(recipeId));
+            // Déconnecté : aucun favori
+            setIsFavorite(false);
         };
         load();
         const onChange = () => load();
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+            setIsLoggedIn(!!session);
+            if (!session) setIsFavorite(false);
+        });
         window.addEventListener('storage', onChange);
         window.addEventListener('magic-favorite-change', onChange);
         return () => {
+            subscription.unsubscribe();
             window.removeEventListener('storage', onChange);
             window.removeEventListener('magic-favorite-change', onChange);
         };
     }, [recipeId]);
+
+    // Déconnecté → rien (aucun cœur : cartes, fiche, partout)
+    if (!isLoggedIn) return null;
 
     const toggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();

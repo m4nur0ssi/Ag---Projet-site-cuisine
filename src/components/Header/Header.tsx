@@ -255,7 +255,7 @@ export default function Header({
                                         </button>
                                         {/* Raccourci panier — à GAUCHE du planificateur, visible seulement si la liste a des ingrédients */}
                                         {authUser && shoppingCount > 0 && (
-                                            <Link href="/shopping-list" className={styles.plannerIconBtn} style={{ position: 'relative', fontSize: '1.6rem', lineHeight: 1, textDecoration: 'none', overflow: 'visible' }} title="Liste de courses">
+                                            <Link href="/shopping-list" className={styles.plannerIconBtn} style={{ position: 'relative', fontSize: '1.45rem', lineHeight: 1, textDecoration: 'none', overflow: 'visible', marginRight: '6px' }} title="Liste de courses">
                                                 🛒
                                                 <span className={styles.navFavBadge} style={{ top: '-5px', right: '-7px' }}>{shoppingCount > 99 ? '99+' : shoppingCount}</span>
                                             </Link>

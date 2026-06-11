@@ -135,7 +135,7 @@ function DayCard({ day, plan, index, scrollX, step, selected, onSelect, done, in
     const isJourJ = day === 'JourJ';
     // Jour J : les "créneaux" sont les catégories (Apéritif, Entrée, Plat…) ; sinon Midi/Soir.
     const mealLabels: string[] = isJourJ ? Object.keys(dayPlan) : (MEALS as readonly string[]).slice();
-    const title = isJourJ ? 'Jour J 🎉' : FULL[day];
+    const title = isJourJ ? 'Jour J' : FULL[day];
     const daySlots = mealLabels.map(m => ({ day, meal: m, recipe: dayPlan[m] })).filter(s => s.recipe);
     return (
         <motion.div className={styles.card} style={{ scale, opacity }}>
