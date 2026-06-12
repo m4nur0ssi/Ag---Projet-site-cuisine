@@ -2,11 +2,90 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/06/2026 07:12:40
- * Total: 358 recettes
+ * Dernière mise à jour: 12/06/2026 14:41:54
+ * Total: 363 recettes
  */
-export const exportSyncId = "1781248360680";
+export const exportSyncId = "1781275314185";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6098",
+        "title": "Creamy Chicken and Potato Skillet with Bacon",
+        "description": "Un plat réconfortant et savoureux à base de poulet crémeux, de pommes de terre assaisonnées et de bacon croustillant, le tout gratiné au fromage dans une poêle.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7367398634431745312\" data-video-id=\"7367398634431745312\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7367398634431745312\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             6 petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             2 poitrines de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 tranches de bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café d'assaisonnement piri piri"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cuillères à café d'assaisonnement cajun"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             2 cuillères à soupe d'huile (pour le poulet)"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             2 cuillères à café d'huile (pour les pommes de terre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200ml de crème double"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Fromage râpé (cheddar ou mozzarella)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais (pour la garniture)"
+            }
+        ],
+        "steps": [
+            "Coupez les 6 petites pommes de terre en petits morceaux. Assaisonnez les pommes de terre avec 1 cuillère à café d'assaisonnement piri piri, 2 cuillères à café d'assaisonnement cajun et 1/2 cuillère à café de curcuma. Mélangez bien.",
+            "Coupez les 2 poitrines de poulet en petits morceaux. Assaisonnez le poulet avec 1 cuillère à café d'assaisonnement piri piri, 2 cuillères à café d'assaisonnement cajun, 2 cuillères à soupe d'huile et 1/2 cuillère à café de curcuma. Mélangez bien.",
+            "Faites frire les 6 tranches de bacon jusqu'à ce qu'elles soient dorées et croustillantes. Retirez le bacon de la poêle et coupez-le en petits morceaux.",
+            "Dans la même poêle utilisée pour le bacon, ajoutez 2 cuillères à café d'huile. Ajoutez les pommes de terre assaisonnées et faites-les frire à feu doux pendant environ 15 minutes, en couvrant avec un couvercle pour aider à cuire plus rapidement.",
+            "Dans une autre poêle, faites frire le poulet assaisonné pendant environ 7 minutes à feu moyen-doux.",
+            "Une fois le poulet cuit, ajoutez 200ml de crème double à la poêle et faites cuire pendant 2-3 minutes, permettant aux saveurs de se mélanger.",
+            "Ajoutez le bacon cuit au mélange de poulet et de crème. Mélangez bien.",
+            "Placez les pommes de terre frites sur le mélange de poulet.",
+            "Couvrez de fromage râpé (cheddar ou mozzarella). Couvrez la poêle avec un couvercle et laissez le fromage fondre.",
+            "Saupoudrez de persil frais et de bacon croustillant sur le dessus pour la garniture. Servez chaud et dégustez."
+        ],
+        "tags": [
+            "Afrique",
+            "C'est l'hiver",
+            "épicé",
+            "Gratins"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5984",
         "title": "Risotto pesto d'épinards & burrata",
@@ -6729,6 +6808,72 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "épicé",
             "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5558",
+        "title": "Pâtes à l'ail",
+        "description": "Une recette simple et rapide de pâtes à l'ail, agrémentée de parmesan, piment et herbes aromatiques pour un plat savoureux.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fshutterstock-1212205699.jpeg&v=1779213911000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7487321864449133826\" data-video-id=\"7487321864449133826\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7487321864449133826\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n Pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Thym"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description."
+        ],
+        "tags": [
+            "épicé",
+            "Italie",
+            "Pas cher",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -14034,6 +14179,108 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "France",
             "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5028",
+        "title": "Salade de pommes de terre rôties à la burrata",
+        "description": "Une salade originale et gourmande composée de pommes de terre grenailles rôties, de courgettes caramélisées au soja, d'olives, de parmesan et d'une burrata crémeuse, le tout relevé par une sauce fraîche aux tomates cerises, citron et herbes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade.jpeg&v=1775819251000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618991785041349910\" data-video-id=\"7618991785041349910\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618991785041349910\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n 500g de pommes de terre grenailles"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 20g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cas de soja salé"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n Une poignée de salade (ou herbes)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60g d'olives noires"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 50g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 150g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 6g de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Le zeste + le jus d'1 citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 3 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 2 cas d'huile tournesol"
+            }
+        ],
+        "steps": [
+            "Laver les pommes de terre, les couper en deux et les faire rôtir au four avec le beurre coupé en morceaux et du sel, pendant 30 minutes à 200 degrés.",
+            "Couper les courgettes et les faire revenir 10 minutes dans une poêle avec un filet d'huile et du thym. Ajouter le soja et les faire caraméliser à feu fort pendant 5 minutes.",
+            "Pour la sauce, mélanger dans un bol tous les ingrédients : tomates cerises, persil, échalote, ail émincé, sel, zeste et jus de citron, miel, huile d'olive et huile de tournesol.",
+            "Dans un saladier, mélanger les pommes de terre juste tièdes, la salade (ou herbes), les courgettes caramélisées, la sauce, les olives coupées en petits morceaux et le parmesan râpé.",
+            "Servir la salade avec la burrata."
+        ],
+        "tags": [
+            "Entrées",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -22068,6 +22315,191 @@ export const mockRecipes: Recipe[] = [
             "recette facile",
             "recette rapide",
             "Toum"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3655",
+        "title": "Tarte aux dattes (Date Tart)",
+        "description": "Une tarte gourmande et onctueuse alliant une base de biscuits à la cannelle et une crème fondante aux dattes et au fromage à la crème.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftartedattes_lowres.jpg&v=1774451679000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@nq.vibes/video/7615385554091347207?_r=1&amp;_t=ZN-94eR3tLSR7f\" data-video-id=\"7615385554091347207\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@nq.vibes/video/7615385554091347207?_r=1&amp;_t=ZN-94eR3tLSR7f\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣 150g de biscuits digestifs moulus"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 50g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 10g de sucre brun foncé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 2g de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 200g de dattes dénoyautées (environ 20-25 dattes)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 250g de fromage à la crème (type Philadelphia)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 250g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 1 boîte de crème (environ 155g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 1 cuillère à café de café soluble (Nescafe)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 Fleur de sel (pour la finition)"
+            }
+        ],
+        "steps": [
+            "Mélanger les biscuits digestifs moulus avec le beurre fondu, le sucre brun et la cannelle.",
+            "Tasser le mélange au fond d'un moule à tarte de 20 cm de diamètre.",
+            "Cuire la base au four à 160°C pendant 7 minutes, puis laisser refroidir de côté.",
+            "Dans un robot culinaire, mixer tous les ingrédients de la garniture (dattes, fromage, lait concentré, crème, café) jusqu'à obtenir une texture lisse.",
+            "Optionnel : filtrer le mélange à l'aide d'une passoire pour retirer les éventuels petits morceaux de dattes.",
+            "Verser la crème sur la base de biscuit et enfourner à nouveau à 150°C pendant 20 à 25 minutes.",
+            "Laisser refroidir au réfrigérateur pendant au moins 3 heures.",
+            "Saupoudrer d'une pincée de fleur de sel avant de servir, accompagné d'un peu de crème."
+        ],
+        "tags": [
+            "Cuisine orientale",
+            "dattes",
+            "dessert",
+            "Map",
+            "sucré",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3657",
+        "title": "Tartelettes au Citron",
+        "description": "Une pâtisserie française classique et élégante composée d'une pâte sucrée croustillante, d'une crème pâtissière au citron soyeuse et d'un lemon curd brillant.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte-citron.jpeg&v=1774451280000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@foodwithstyle_official/video/7616073996647337248?_r=1&amp;_t=ZN-94eR5snoajW\" data-video-id=\"7616073996647337248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@foodwithstyle_official/video/7616073996647337248?_r=1&amp;_t=ZN-94eR5snoajW\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾 150 g de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 50 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 75 g de beurre froid"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "💧 1-2 cuillères à café d'eau froide"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 250 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 2 jaunes d'œufs (pour la crème)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 60 g de sucre (pour la crème)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 25 g de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 40 ml de jus de citron (pour la crème)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 1 cuillère à café de zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 20 g de beurre (pour la crème)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 1 œuf + 1 jaune d'œuf (pour le curd)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 40 g de sucre (pour le curd)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 40 ml de jus de citron (pour le curd)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 25 g de beurre (pour le curd)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 ½ cuillère à café de zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Menthe fraîche pour la décoration"
+            }
+        ],
+        "steps": [
+            "Préparer la crème pâtissière : Faire chauffer le lait. Fouetter les jaunes d'œufs, le sucre et la fécule. Verser lentement le lait chaud sur le mélange, remettre dans la casserole et cuire jusqu'à épaississement. Incorporer le jus de citron, le zeste et le beurre. Laisser refroidir.",
+            "Préparer le lemon curd : Cuire l'œuf, le jaune d'œuf, le sucre et le jus de citron à feu moyen en remuant jusqu'à épaississement. Retirer du feu, incorporer le beurre et le zeste. Laisser refroidir.",
+            "Préparer la pâte : Mélanger la farine, le sucre et le sel. Sabler avec le beurre. Ajouter le jaune d'œuf et pétrir brièvement. Ajouter de l'eau froide si nécessaire. Réfrigérer 30 minutes.",
+            "Former les fonds de tarte : Étaler la pâte sur 3 mm d'épaisseur, découper 6 cercles et les placer dans les moules. Utiliser les chutes pour les bords. Piquer le fond avec une fourchette.",
+            "Cuisson : Cuire à blanc avec du papier sulfurisé et des poids pendant 15 minutes. Retirer les poids et cuire 10 à 15 minutes de plus jusqu'à ce que la pâte soit dorée. Laisser refroidir complètement.",
+            "Assemblage : Étaler une fine couche de lemon curd au fond, ajouter la crème pâtissière au citron, puis terminer par une couche lisse de lemon curd sur le dessus. Décorer avec de la menthe fraîche."
+        ],
+        "tags": [
+            "citron",
+            "dessert",
+            "français",
+            "lemon curd",
+            "Map",
+            "pâte sucrée",
+            "tartelette"
         ],
         "isFeatured": false,
         "isFavorite": false,
