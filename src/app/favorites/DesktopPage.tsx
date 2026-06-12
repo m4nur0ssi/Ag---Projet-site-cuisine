@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header/Header';
 import MagicFilterBar from '@/components/MagicFilterBar/MagicFilterBar';
-import RecipeCard from '@/components/RecipeCard/RecipeCardV2';
+import RecipeGrid from '@/components/RecipeGrid/RecipeGrid';
 import BottomNav from '@/components/BottomNav/BottomNav';
 import { mockRecipes } from '@/data/mockData';
 import { Recipe } from '@/types';
@@ -89,11 +89,7 @@ export default function FavoritesPage() {
                         >Se connecter</button>
                     </div>
                 ) : favoriteRecipes.length > 0 ? (
-                    <div className={styles.grid}>
-                        {favoriteRecipes.map((recipe: Recipe) => (
-                            <RecipeCard key={recipe.id} recipe={recipe} />
-                        ))}
-                    </div>
+                    <RecipeGrid recipes={favoriteRecipes} />
                 ) : (
                     <div className={styles.empty}>
                         <span style={{ fontSize: '4rem', display: 'block', marginBottom: '1.5rem' }}>❤️</span>
