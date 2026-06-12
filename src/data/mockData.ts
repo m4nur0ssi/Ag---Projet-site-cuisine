@@ -2,11 +2,726 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/06/2026 14:41:54
- * Total: 363 recettes
+ * Dernière mise à jour: 12/06/2026 14:57:52
+ * Total: 371 recettes
  */
-export const exportSyncId = "1781275314185";
+export const exportSyncId = "1781276272294";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6118",
+        "title": "Porc caramélisé à la sauce soja",
+        "description": "Un plat savoureux de porc caramélisé avec une sauce soja, parfumé à l'ail, au gingembre et aux épices.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619640981041859862\" data-video-id=\"7619640981041859862\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619640981041859862\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400g de porc"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             6 tranches de gingembre frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             3 oignons jeunes"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cas de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             5 cas de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             anis étoilé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cardamome"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asia",
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6116",
+        "title": "Bol asperges vertes, soja & jaune d'oeuf",
+        "description": "Un bol frais et savoureux à base d'asperges vertes, assaisonné de sauce soja, huile de sésame et mirin, garni de nori, sésame et d'un jaune d'œuf pour une touche onctueuse.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634567643676249346\" data-video-id=\"7634567643676249346\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634567643676249346\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g d'asperges vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 càs d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 càs de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 càs de mirin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de nori"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càs de sésame (ou furikake)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie",
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6114",
+        "title": "Eau de tomate",
+        "description": "Une boisson rafraîchissante et savoureuse à base de tomates, assaisonnée d'huile d'olive, de vinaigre et de sel.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650510198229962017\" data-video-id=\"7650510198229962017\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650510198229962017\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cas de vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            }
+        ],
+        "steps": [
+            "Mixer les tomates pour obtenir une purée.",
+            "Filtrer la purée à travers une passoire fine ou un linge propre pour en extraire le jus clair (l'eau de tomate).",
+            "Assaisonner l'eau de tomate obtenue avec l'huile d'olive, le vinaigre et le sel. Servir frais."
+        ],
+        "tags": [
+            "Astuces",
+            "Healthy",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6112",
+        "title": "Boeuf Crousti",
+        "description": "Une recette de boeuf croustillant d'inspiration chinoise, relevée par le piment d'Espelette et une sauce aigre-douce.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7186686955411836166\" data-video-id=\"7186686955411836166\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7186686955411836166\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             800g de boeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 oeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3càc de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             4 càs de vinaigre de riz noir (ou blanc)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 càs de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 grosse càs de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 càs de concentré de tomates (ou ketchup)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 càc d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile neutre pour la cuisson"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "asiatique",
+            "Asie",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6110",
+        "title": "Poulet croustillant avec sauce aigre-douce et riz blanc",
+        "description": "Une recette de poulet croustillant et incroyablement savoureux, accompagné d'une sauce aigre-douce et de riz blanc.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7457221019762216225\" data-video-id=\"7457221019762216225\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7457221019762216225\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             poitrine de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍄\n             champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             ketchup"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             fécule de maïs"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6108",
+        "title": "DIBI",
+        "description": "Le DIBI classique de la streetfood de l'Afrique de l'Ouest. Aujourd'hui, méthode au four ! Tellement bon 🥹🔥",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7214156492935597317\" data-video-id=\"7214156492935597317\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7214156492935597317\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g Viande d'agneau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cas moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cebette"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cas moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             5-6 cas mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "épicé",
+            "Pâques"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6106",
+        "title": "Mafé au Poulet",
+        "description": "Un plat traditionnel d'Afrique de l'Ouest, le Mafé au poulet est un ragoût riche et savoureux à base de pâte d'arachide, de poulet et de légumes comme les pommes de terre, le manioc et la patate douce, relevé par une marinade épicée.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7352928486832573729\" data-video-id=\"7352928486832573729\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7352928486832573729\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 poulet entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             180g de concentré de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             2 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 maniocs"
+            },
+            {
+                "quantity": "",
+                "name": "🥔\n             2 patates douces"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             300 g de pâte d'arachides ou de beurre de cacahuètes"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1,5L d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment antillais entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             20 cl d'huile de tournesol"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             5 gousses d'ail (pour la marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment végétarien (pour la marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1⁄2 poivron vert (pour la marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon (pour la marinade)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6104",
+        "title": "Poulet Yassa",
+        "description": "Découvrez la recette traditionnelle sénégalaise du Poulet Yassa, un plat savoureux à base de poulet mariné au citron, oignons et moutarde, accompagné de perles.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7533268279947791638\" data-video-id=\"7533268279947791638\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7533268279947791638\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             2 morceaux de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             3 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de lauriers"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 botte de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Du piment (à votre goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 Cas de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 Cas de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 Cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de perles (pour l'accompagnement)"
+            }
+        ],
+        "steps": [
+            "Pour la préparation de la recette, suivre la vidéo."
+        ],
+        "tags": [
+            "Afrique",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6102",
+        "title": "Poulet, Attieke, Alloco",
+        "description": "Un plat complet d'inspiration ouest-africaine, combinant du poulet mariné et frit, des bananes plantains frites (alloco) et de l'attiéké (semoule de manioc fermentée) servi avec une sauce fraîche à base de concombre et tomate.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7230125717621673222\" data-video-id=\"7230125717621673222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7230125717621673222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde de Dijon"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Purée d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cube Maggi"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Épices à poulet Montréal"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Huile d'arachides ou canola (pour la friture du poulet)"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             Bananes plantain"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour alloco)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la friture des alloco)"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombres"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates (pulpe enlevée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile de canola (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Attieke"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6100",
+        "title": "Corn Dog",
+        "description": "Une recette de Corn Dog maison, avec saucisses et mozzarella, enrobés d'une pâte croustillante et frits, inspirée de la street food coréenne.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7205199789535939845\" data-video-id=\"7205199789535939845\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7205199789535939845\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             350g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 càs de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 oeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             mozzarella spéciale cuisine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             saucisses"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             chapelure panko ou normal"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile de tournesol pour la cuisson"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "asiatique",
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6098",
         "title": "Creamy Chicken and Potato Skillet with Bacon",
@@ -6170,6 +6885,204 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "5508",
+        "title": "Cinnamon Roll Muffins",
+        "description": "Super fluffy, filled with that delicious Philadelphia cream cheese, and topped with a buttery, cinnamon-sugar swirl that gives the perfect crunchy touch.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmuffin-3-scaled-1.jpg&v=1779380796000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7574486276993322270\" data-video-id=\"7574486276993322270\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7574486276993322270\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 240 g (2 cups) all-purpose flour, sifted"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 tbsp baking powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ½ tsp salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 tbsp ground cinnamon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 tsp cornstarch"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 110 g (about ½ cup) granulated sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 80 g (about ½ cup packed) brown sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ½ cup (115 g) unsalted butter, melted or at room temperature"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ⅓ cup (80 ml) vegetable oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 eggs + 1 egg white"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1½ tbsp vanilla extract"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ⅓ cup (80 ml) milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n ¼ cup (60 g) plain Greek yogurt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60 g unsalted butter, melted (for swirl)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 60 g brown sugar (for swirl)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1½ tsp ground cinnamon (for swirl)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 6 oz (170 g) Philadelphia cream cheese, softened"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 7 tbsp (100 g) unsalted butter, softened (for filling)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cup (120 g) powdered sugar, sifted"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 tsp vanilla extract (for filling)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 tbsp heavy cream"
+            }
+        ],
+        "steps": [
+            "Pour la garniture tourbillon \" Cinnamon Roll \" : Mélangez le beurre fondu, le sucre roux et la cannelle jusqu'à obtenir une pâte épaisse. Transférez dans une poche à douille ou un petit sac en plastique dont vous aurez coupé un coin.",
+            "Pour la préparation des muffins : Préchauffez le four à 180 °C (350 °F) et préparez un moule à muffins avec de grandes caissettes ou graissez-le.",
+            "Dans un bol, mélangez les ingrédients secs (farine, levure chimique, sel, cannelle, fécule de maïs) et mettez de côté.",
+            "Dans un autre bol, battez le beurre avec les sucres (si vous utilisez du beurre fondu, mélangez simplement jusqu'à incorporation).",
+            "Ajoutez l'huile, les œufs, la vanille, le yaourt et le lait. Mélangez jusqu'à incorporation.",
+            "Incorporez délicatement les ingrédients secs avec une spatule ; ne mélangez pas trop.",
+            "Remplissez chaque caissette à muffins aux 2/3 avec la pâte.",
+            "Ajoutez un peu du mélange tourbillon à la cannelle sur le dessus en spirale, puis utilisez un cure-dent pour faire un léger mouvement circulaire afin de créer l'effet de tourbillon.",
+            "Faites cuire pendant 22 à 25 minutes, jusqu'à ce qu'un cure-dent inséré en ressorte propre (un peu d'humidité est acceptable, mais pas de pâte crue).",
+            "Laissez refroidir dans le moule pendant 5 minutes, puis transférez sur une grille.",
+            "Pour la garniture crémeuse (après cuisson) : Battez le beurre et le cream cheese jusqu'à obtenir une consistance crémeuse (2-3 min).",
+            "Ajoutez la vanille.",
+            "Incorporez progressivement le sucre glace jusqu'à ce que le mélange soit léger et mousseux.",
+            "Réfrigérez 15 à 20 minutes avant utilisation.",
+            "Pour garnir les muffins : Une fois refroidis, faites un petit trou au centre de chaque muffin (avec une douille ou un petit couteau).",
+            "Placez la garniture au cream cheese dans une poche à douille munie d'une douille ronde.",
+            "Remplissez le centre jusqu'à ce qu'un peu de garniture dépasse du muffin.",
+            "Vous pouvez laisser la surface lisse ou créer une petite \" montagne \" visible sur le dessus, comme un glaçage."
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5511",
+        "title": "Riz Jollof",
+        "description": "Découvrez la recette du Riz Jollof, un plat africain savoureux et parfumé, mijoté lentement pour une texture parfaite.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FRiz-Jollof.jpg&v=1779379827000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639031335524273440\" data-video-id=\"7639031335524273440\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639031335524273440\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n 1 kg de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 3 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 2 Tomates fraîches (tomates en fruits)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 3 cuillères à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fond de veau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Cube d'assaisonnement"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Huile"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 40-50 cl d'eau"
+            }
+        ],
+        "steps": [
+            "Laisser mijoter à feu doux.",
+            "Couvrir avec du papier film.",
+            "Fermer la marmite pour une cuisson bien lente et un riz bien parfumé."
+        ],
+        "tags": [
+            "Afrique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5514",
         "title": "Tiramisu",
         "description": "Recette de tiramisu maison avec un biscuit fait maison.",
@@ -6808,72 +7721,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "épicé",
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5558",
-        "title": "Pâtes à l'ail",
-        "description": "Une recette simple et rapide de pâtes à l'ail, agrémentée de parmesan, piment et herbes aromatiques pour un plat savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fshutterstock-1212205699.jpeg&v=1779213911000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7487321864449133826\" data-video-id=\"7487321864449133826\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7487321864449133826\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n Pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n Gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Piment"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Thym"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description."
-        ],
-        "tags": [
-            "épicé",
-            "Italie",
-            "Pas cher",
-            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -14179,108 +15026,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "France",
             "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5028",
-        "title": "Salade de pommes de terre rôties à la burrata",
-        "description": "Une salade originale et gourmande composée de pommes de terre grenailles rôties, de courgettes caramélisées au soja, d'olives, de parmesan et d'une burrata crémeuse, le tout relevé par une sauce fraîche aux tomates cerises, citron et herbes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade.jpeg&v=1775819251000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618991785041349910\" data-video-id=\"7618991785041349910\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618991785041349910\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n 500g de pommes de terre grenailles"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 20g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 cas de soja salé"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n Une poignée de salade (ou herbes)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 60g d'olives noires"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 50g de parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 burrata"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 150g de tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 6g de persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 gousse d'ail émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n Le zeste + le jus d'1 citron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 1 cas de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 3 cas d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 2 cas d'huile tournesol"
-            }
-        ],
-        "steps": [
-            "Laver les pommes de terre, les couper en deux et les faire rôtir au four avec le beurre coupé en morceaux et du sel, pendant 30 minutes à 200 degrés.",
-            "Couper les courgettes et les faire revenir 10 minutes dans une poêle avec un filet d'huile et du thym. Ajouter le soja et les faire caraméliser à feu fort pendant 5 minutes.",
-            "Pour la sauce, mélanger dans un bol tous les ingrédients : tomates cerises, persil, échalote, ail émincé, sel, zeste et jus de citron, miel, huile d'olive et huile de tournesol.",
-            "Dans un saladier, mélanger les pommes de terre juste tièdes, la salade (ou herbes), les courgettes caramélisées, la sauce, les olives coupées en petits morceaux et le parmesan râpé.",
-            "Servir la salade avec la burrata."
-        ],
-        "tags": [
-            "Entrées",
-            "Italie",
-            "Végé",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -22315,191 +23060,6 @@ export const mockRecipes: Recipe[] = [
             "recette facile",
             "recette rapide",
             "Toum"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3655",
-        "title": "Tarte aux dattes (Date Tart)",
-        "description": "Une tarte gourmande et onctueuse alliant une base de biscuits à la cannelle et une crème fondante aux dattes et au fromage à la crème.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftartedattes_lowres.jpg&v=1774451679000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@nq.vibes/video/7615385554091347207?_r=1&amp;_t=ZN-94eR3tLSR7f\" data-video-id=\"7615385554091347207\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@nq.vibes/video/7615385554091347207?_r=1&amp;_t=ZN-94eR3tLSR7f\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣 150g de biscuits digestifs moulus"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 50g de beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 10g de sucre brun foncé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 2g de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 200g de dattes dénoyautées (environ 20-25 dattes)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 250g de fromage à la crème (type Philadelphia)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 250g de lait concentré sucré"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 1 boîte de crème (environ 155g)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 1 cuillère à café de café soluble (Nescafe)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 Fleur de sel (pour la finition)"
-            }
-        ],
-        "steps": [
-            "Mélanger les biscuits digestifs moulus avec le beurre fondu, le sucre brun et la cannelle.",
-            "Tasser le mélange au fond d'un moule à tarte de 20 cm de diamètre.",
-            "Cuire la base au four à 160°C pendant 7 minutes, puis laisser refroidir de côté.",
-            "Dans un robot culinaire, mixer tous les ingrédients de la garniture (dattes, fromage, lait concentré, crème, café) jusqu'à obtenir une texture lisse.",
-            "Optionnel : filtrer le mélange à l'aide d'une passoire pour retirer les éventuels petits morceaux de dattes.",
-            "Verser la crème sur la base de biscuit et enfourner à nouveau à 150°C pendant 20 à 25 minutes.",
-            "Laisser refroidir au réfrigérateur pendant au moins 3 heures.",
-            "Saupoudrer d'une pincée de fleur de sel avant de servir, accompagné d'un peu de crème."
-        ],
-        "tags": [
-            "Cuisine orientale",
-            "dattes",
-            "dessert",
-            "Map",
-            "sucré",
-            "tarte"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3657",
-        "title": "Tartelettes au Citron",
-        "description": "Une pâtisserie française classique et élégante composée d'une pâte sucrée croustillante, d'une crème pâtissière au citron soyeuse et d'un lemon curd brillant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte-citron.jpeg&v=1774451280000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@foodwithstyle_official/video/7616073996647337248?_r=1&amp;_t=ZN-94eR5snoajW\" data-video-id=\"7616073996647337248\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@foodwithstyle_official/video/7616073996647337248?_r=1&amp;_t=ZN-94eR5snoajW\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾 150 g de farine tout usage"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 50 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 75 g de beurre froid"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 1 jaune d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "💧 1-2 cuillères à café d'eau froide"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 250 ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 2 jaunes d'œufs (pour la crème)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 60 g de sucre (pour la crème)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 25 g de fécule de maïs"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 40 ml de jus de citron (pour la crème)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 1 cuillère à café de zeste de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 20 g de beurre (pour la crème)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 1 œuf + 1 jaune d'œuf (pour le curd)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 40 g de sucre (pour le curd)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 40 ml de jus de citron (pour le curd)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 25 g de beurre (pour le curd)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 ½ cuillère à café de zeste de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 Menthe fraîche pour la décoration"
-            }
-        ],
-        "steps": [
-            "Préparer la crème pâtissière : Faire chauffer le lait. Fouetter les jaunes d'œufs, le sucre et la fécule. Verser lentement le lait chaud sur le mélange, remettre dans la casserole et cuire jusqu'à épaississement. Incorporer le jus de citron, le zeste et le beurre. Laisser refroidir.",
-            "Préparer le lemon curd : Cuire l'œuf, le jaune d'œuf, le sucre et le jus de citron à feu moyen en remuant jusqu'à épaississement. Retirer du feu, incorporer le beurre et le zeste. Laisser refroidir.",
-            "Préparer la pâte : Mélanger la farine, le sucre et le sel. Sabler avec le beurre. Ajouter le jaune d'œuf et pétrir brièvement. Ajouter de l'eau froide si nécessaire. Réfrigérer 30 minutes.",
-            "Former les fonds de tarte : Étaler la pâte sur 3 mm d'épaisseur, découper 6 cercles et les placer dans les moules. Utiliser les chutes pour les bords. Piquer le fond avec une fourchette.",
-            "Cuisson : Cuire à blanc avec du papier sulfurisé et des poids pendant 15 minutes. Retirer les poids et cuire 10 à 15 minutes de plus jusqu'à ce que la pâte soit dorée. Laisser refroidir complètement.",
-            "Assemblage : Étaler une fine couche de lemon curd au fond, ajouter la crème pâtissière au citron, puis terminer par une couche lisse de lemon curd sur le dessus. Décorer avec de la menthe fraîche."
-        ],
-        "tags": [
-            "citron",
-            "dessert",
-            "français",
-            "lemon curd",
-            "Map",
-            "pâte sucrée",
-            "tartelette"
         ],
         "isFeatured": false,
         "isFavorite": false,
