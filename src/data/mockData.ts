@@ -2,11 +2,181 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/06/2026 09:25:16
+ * Dernière mise à jour: 11/06/2026 14:12:24
  * Total: 358 recettes
  */
-export const exportSyncId = "1781169916281";
+export const exportSyncId = "1781187144582";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "5984",
+        "title": "Risotto pesto d'épinards & burrata",
+        "description": "Un risotto crémeux et savoureux au pesto d'épinards maison, agrémenté de burrata fondante pour une touche gourmande.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FHF_Y23_R224_W47_FR_RFR16571-1_Main_2high-42afd8bd-1.jpg&v=1781193995000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7457968003745942806\" data-video-id=\"7457968003745942806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7457968003745942806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n 80g d'épinards"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 30g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n 35g d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 8cl d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 cube de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 1,2L d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n 320g de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 25g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Burrata"
+            }
+        ],
+        "steps": [
+            "Couper et faire revenir l'oignon",
+            "Réaliser le pesto : dans un blender, mettre les épinards, l'huile d'olive, le parmesan et les amandes puis mixer",
+            "Mettre le bouillon dans l'eau qui bout",
+            "Ajouter le riz dans la poêle et mélanger jusqu'à ce que le riz soit nacré",
+            "Verser deux louches de bouillon dans la poêle et remuer jusqu'à ce qu'il soit absorbé. Répéter l'opération en ajoutant deux louches de bouillon à la fois, jusqu'à ce que le riz soit cuit",
+            "Ajouter le parmesan et le beurre, assaisonner",
+            "Verser le pesto et mélanger",
+            "Dresser votre assiette avec la burrata"
+        ],
+        "tags": [
+            "Accompagnements",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5268",
+        "title": "Frites de courgettes",
+        "description": "Une recette simple et rapide de frites de courgettes croustillantes, idéales pour l'apéritif, préparées à l'air fryer et accompagnées d'une sauce fraîche au yaourt grec et aux herbes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5268_1781183599307.jpg&v=1781190822000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626078785212845334\" data-video-id=\"7626078785212845334\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626078785212845334\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 grosse courgette bien épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             25g de chapelure panko"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             piment en flocon"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3/4 grosses cuillères de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 c.à soupe de fromage frais type philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel d'abeille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices de ton choix"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             menthe"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6093",
         "title": "Natillas espagnoles",
@@ -1859,77 +2029,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Salades",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5984",
-        "title": "Risotto pesto d'épinards & burrata",
-        "description": "Un risotto crémeux et savoureux au pesto d'épinards maison, agrémenté de burrata fondante pour une touche gourmande.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FHF_Y23_R224_W47_FR_RFR16571-1_Main_2high-42afd8bd.jpg&v=1780662359000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7457968003745942806\" data-video-id=\"7457968003745942806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7457968003745942806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n 80g d'épinards"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 30g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n 35g d'amandes"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 8cl d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 cube de bouillon de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 1,2L d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n 320g de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 25g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Burrata"
-            }
-        ],
-        "steps": [
-            "Couper et faire revenir l'oignon",
-            "Réaliser le pesto : dans un blender, mettre les épinards, l'huile d'olive, le parmesan et les amandes puis mixer",
-            "Mettre le bouillon dans l'eau qui bout",
-            "Ajouter le riz dans la poêle et mélanger jusqu'à ce que le riz soit nacré",
-            "Verser deux louches de bouillon dans la poêle et remuer jusqu'à ce qu'il soit absorbé. Répéter l'opération en ajoutant deux louches de bouillon à la fois, jusqu'à ce que le riz soit cuit",
-            "Ajouter le parmesan et le beurre, assaisonner",
-            "Verser le pesto et mélanger",
-            "Dresser votre assiette avec la burrata"
-        ],
-        "tags": [
-            "Accompagnements",
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -10724,105 +10823,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5268",
-        "title": "Frites de courgettes",
-        "description": "Une recette simple et rapide de frites de courgettes croustillantes, idéales pour l'apéritif, préparées à l'air fryer et accompagnées d'une sauce fraîche au yaourt grec et aux herbes.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7626078785212845334\" data-video-id=\"7626078785212845334\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7626078785212845334\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 grosse courgette bien épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             50g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             25g de chapelure panko"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Herbes de Provence"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             piment en flocon"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3/4 grosses cuillères de yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 c.à soupe de fromage frais type philadelphia"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Miel d'abeille"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Épices de ton choix"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             menthe"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Italie",
-            "Végé",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
