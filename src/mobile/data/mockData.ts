@@ -2,11 +2,140 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/06/2026 14:57:52
+ * Dernière mise à jour: 13/06/2026 06:47:04
  * Total: 371 recettes
  */
-export const exportSyncId = "1781276272294";
+export const exportSyncId = "1781333224924";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6122",
+        "title": "Nouilles chinoises sautées au poulet",
+        "description": "Une recette super simple de nouilles chinoises sautées au poulet.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617156275821907222\" data-video-id=\"7617156275821907222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617156275821907222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de nouilles chinoises déshydratées"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             250 g de hauts de cuisse de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             40 g de carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon botte ou 1 cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             70 g de germes de haricots mungo"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             4 cas de sauce soja claire"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càs de sauce soja noire"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             5 càs d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 càs d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6120",
+        "title": "Les pommes boulangères",
+        "description": "Une recette de pommes boulangères beaucoup trop sous-côté.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617570310862245142\" data-video-id=\"7617570310862245142\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617570310862245142\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1,5 kg pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             10 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50g beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             30cl bouillon de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "C'est l'hiver",
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6118",
         "title": "Porc caramélisé à la sauce soja",
@@ -6681,204 +6810,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5508",
-        "title": "Cinnamon Roll Muffins",
-        "description": "Super fluffy, filled with that delicious Philadelphia cream cheese, and topped with a buttery, cinnamon-sugar swirl that gives the perfect crunchy touch.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmuffin-3-scaled-1.jpg&v=1779380796000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7574486276993322270\" data-video-id=\"7574486276993322270\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7574486276993322270\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 240 g (2 cups) all-purpose flour, sifted"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 tbsp baking powder"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n ½ tsp salt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 tbsp ground cinnamon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 tsp cornstarch"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 110 g (about ½ cup) granulated sugar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 80 g (about ½ cup packed) brown sugar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n ½ cup (115 g) unsalted butter, melted or at room temperature"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n ⅓ cup (80 ml) vegetable oil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 eggs + 1 egg white"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1½ tbsp vanilla extract"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n ⅓ cup (80 ml) milk"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n ¼ cup (60 g) plain Greek yogurt"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 60 g unsalted butter, melted (for swirl)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 60 g brown sugar (for swirl)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1½ tsp ground cinnamon (for swirl)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 6 oz (170 g) Philadelphia cream cheese, softened"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 7 tbsp (100 g) unsalted butter, softened (for filling)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 cup (120 g) powdered sugar, sifted"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 tsp vanilla extract (for filling)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 tbsp heavy cream"
-            }
-        ],
-        "steps": [
-            "Pour la garniture tourbillon \" Cinnamon Roll \" : Mélangez le beurre fondu, le sucre roux et la cannelle jusqu'à obtenir une pâte épaisse. Transférez dans une poche à douille ou un petit sac en plastique dont vous aurez coupé un coin.",
-            "Pour la préparation des muffins : Préchauffez le four à 180 °C (350 °F) et préparez un moule à muffins avec de grandes caissettes ou graissez-le.",
-            "Dans un bol, mélangez les ingrédients secs (farine, levure chimique, sel, cannelle, fécule de maïs) et mettez de côté.",
-            "Dans un autre bol, battez le beurre avec les sucres (si vous utilisez du beurre fondu, mélangez simplement jusqu'à incorporation).",
-            "Ajoutez l'huile, les œufs, la vanille, le yaourt et le lait. Mélangez jusqu'à incorporation.",
-            "Incorporez délicatement les ingrédients secs avec une spatule ; ne mélangez pas trop.",
-            "Remplissez chaque caissette à muffins aux 2/3 avec la pâte.",
-            "Ajoutez un peu du mélange tourbillon à la cannelle sur le dessus en spirale, puis utilisez un cure-dent pour faire un léger mouvement circulaire afin de créer l'effet de tourbillon.",
-            "Faites cuire pendant 22 à 25 minutes, jusqu'à ce qu'un cure-dent inséré en ressorte propre (un peu d'humidité est acceptable, mais pas de pâte crue).",
-            "Laissez refroidir dans le moule pendant 5 minutes, puis transférez sur une grille.",
-            "Pour la garniture crémeuse (après cuisson) : Battez le beurre et le cream cheese jusqu'à obtenir une consistance crémeuse (2-3 min).",
-            "Ajoutez la vanille.",
-            "Incorporez progressivement le sucre glace jusqu'à ce que le mélange soit léger et mousseux.",
-            "Réfrigérez 15 à 20 minutes avant utilisation.",
-            "Pour garnir les muffins : Une fois refroidis, faites un petit trou au centre de chaque muffin (avec une douille ou un petit couteau).",
-            "Placez la garniture au cream cheese dans une poche à douille munie d'une douille ronde.",
-            "Remplissez le centre jusqu'à ce qu'un peu de garniture dépasse du muffin.",
-            "Vous pouvez laisser la surface lisse ou créer une petite \" montagne \" visible sur le dessus, comme un glaçage."
-        ],
-        "tags": [
-            "pâtisserie",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5511",
-        "title": "Riz Jollof",
-        "description": "Découvrez la recette du Riz Jollof, un plat africain savoureux et parfumé, mijoté lentement pour une texture parfaite.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FRiz-Jollof.jpg&v=1779379827000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639031335524273440\" data-video-id=\"7639031335524273440\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639031335524273440\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍚\n 1 kg de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 3 poivrons"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 2 Tomates fraîches (tomates en fruits)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 3 cuillères à soupe de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 2 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Fond de veau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Cube d'assaisonnement"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Huile"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 40-50 cl d'eau"
-            }
-        ],
-        "steps": [
-            "Laisser mijoter à feu doux.",
-            "Couvrir avec du papier film.",
-            "Fermer la marmite pour une cuisson bien lente et un riz bien parfumé."
-        ],
-        "tags": [
-            "Afrique"
         ],
         "isFeatured": false,
         "isFavorite": false,
