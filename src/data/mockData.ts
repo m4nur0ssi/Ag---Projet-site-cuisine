@@ -2,11 +2,75 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/06/2026 07:16:37
- * Total: 371 recettes
+ * Dernière mise à jour: 14/06/2026 08:02:03
+ * Total: 373 recettes
  */
-export const exportSyncId = "1781421397537";
+export const exportSyncId = "1781424123838";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6124",
+        "title": "Gâteau au yaourt de Cyril Lignac",
+        "description": "C'est l'incontournable de la pâtisserie !!",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7543267094150778134\" data-video-id=\"7543267094150778134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7543267094150778134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt nature"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 pot de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             3 pots de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pot d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron"
+            }
+        ],
+        "steps": [
+            "Fouetter le yaourt avec les œufs.",
+            "Ajouter le sucre.",
+            "Incorporer la farine avec la levure et le sucre vanillé.",
+            "Zester le citron jaune.",
+            "Terminer par le pot d'huile.",
+            "Préchauffer le four à 180 degrés.",
+            "Verser la pâte dans un moule chemisé de beurre et farine.",
+            "Enfourner 25 minutes."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6122",
         "title": "Nouilles chinoises sautées au poulet",
@@ -6702,6 +6766,52 @@ export const mockRecipes: Recipe[] = [
             "Desserts",
             "France",
             "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5499",
+        "title": "Crèmes dessert vanille",
+        "description": "Des crèmes dessert vanille maison, faciles et gourmandes, inspirées d'une version au cacao. Idéales pour 4 pots, elles sont rapides à préparer et parfaites pour un dessert sain.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-vanille-thermomix-800x600-1.jpg&v=1779458039000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554802244063923478\" data-video-id=\"7554802244063923478\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554802244063923478\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 500 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 4 sachets de sucre vanillé (ou 30 g de sucre + 1 gousse de vanille ou extrait de vanille)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 30 g de maïzena (25 g si vous voulez plus liquide façon Danette)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Une noix de beurre ou une cuillère de crème entière (facultatif, pour le crémeux et la brillance)"
+            }
+        ],
+        "steps": [
+            "Dans un bol, diluer la maïzena dans un peu de lait (froid ou à température ambiante) en fouettant sans cesse pour éviter les grumeaux.",
+            "Dans une casserole, faire chauffer le restant de lait avec le sucre et la vanille (ou sucre vanillé) jusqu'à ébullition.",
+            "Une fois à ébullition, ajouter la maïzena diluée dans le lait sans cesser de fouetter jusqu'à reprise de l'ébullition et que la crème épaississe.",
+            "Lorsque la crème nappe votre cuillère ou que le fouet laisse des traces, retirer du feu.",
+            "Pour apporter du crémeux et de la brillance, ajouter une noix de beurre ou une cuillère de crème entière en fin de cuisson (facultatif).",
+            "Répartir la préparation dans des pots ou ramequins et laisser refroidir à température ambiante.",
+            "Mettre au frais minimum 2 heures avant dégustation."
+        ],
+        "tags": [
+            "Desserts",
+            "Healthy"
         ],
         "isFeatured": false,
         "isFavorite": false,
