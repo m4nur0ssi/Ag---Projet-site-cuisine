@@ -2,11 +2,172 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/06/2026 08:02:03
+ * Dernière mise à jour: 14/06/2026 15:32:12
  * Total: 373 recettes
  */
-export const exportSyncId = "1781424123838";
+export const exportSyncId = "1781451132516";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6112",
+        "title": "Boeuf Crousti",
+        "description": "Une recette de boeuf croustillant d'inspiration chinoise, relevée par le piment d'Espelette et une sauce aigre-douce.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6112_1781450504331.jpg&v=1781457796000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7186686955411836166\" data-video-id=\"7186686955411836166\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7186686955411836166\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             800g de boeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 oeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3càc de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             4 càs de vinaigre de riz noir (ou blanc)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 càs de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 grosse càs de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 càs de concentré de tomates (ou ketchup)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 càc d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile neutre pour la cuisson"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "asiatique",
+            "Asie",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6126",
+        "title": "Oignons farcis",
+        "description": "Une recette réconfortante d'oignons farcis à la viande hachée et aux épices, cuits au four dans une sauce tomate.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7564066582020836630\" data-video-id=\"7564066582020836630\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7564066582020836630\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             2 gros oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1/3 botte d'herbe (persil ou coriandre)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cac de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Fromage râpé en option (ici scarmoza)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250ml de sauce tomate"
+            }
+        ],
+        "steps": [
+            "Faire bouillir les oignons tranchés juste sur un côté jusqu'au milieu. Les déposer dans l'eau froide et compter 20min quand ça commence à bouillir.",
+            "Faire revenir la viande avec les poivrons, les épices (cumin, gingembre, coriandre, paprika) et assaisonner (sel, poivre).",
+            "Terminer la cuisson de la viande en ajoutant les herbes (persil ou coriandre) et 125ml de sauce tomate.",
+            "Tremper les oignons dans de l'eau glacée et enlever une à une les feuilles d'oignon sans les casser.",
+            "Garnir chaque feuille avec une cuillère à soupe de viande et rouler la feuille d'oignon sur elle-même.",
+            "Disposer les oignons farcis sur un lit de sauce tomate (les 125ml restants) dans un plat, arroser avec un peu d'huile d'olive.",
+            "Cuire au four 25min à 190°C.",
+            "Saupoudrer de coriandre (et de fromage râpé si désiré)."
+        ],
+        "tags": [
+            "Gratins",
+            "Orient",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6124",
         "title": "Gâteau au yaourt de Cyril Lignac",
@@ -361,83 +522,6 @@ export const mockRecipes: Recipe[] = [
             "Astuces",
             "Healthy",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6112",
-        "title": "Boeuf Crousti",
-        "description": "Une recette de boeuf croustillant d'inspiration chinoise, relevée par le piment d'Espelette et une sauce aigre-douce.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7186686955411836166\" data-video-id=\"7186686955411836166\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7186686955411836166\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             800g de boeuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 oeuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3càc de fécule de maïs"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             4 càs de vinaigre de riz noir (ou blanc)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             3 càs de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 grosse càs de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 càs de concentré de tomates (ou ketchup)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment d'Espelette"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 càc d'huile de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile neutre pour la cuisson"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "asiatique",
-            "Asie",
-            "épicé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -6766,52 +6850,6 @@ export const mockRecipes: Recipe[] = [
             "Desserts",
             "France",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5499",
-        "title": "Crèmes dessert vanille",
-        "description": "Des crèmes dessert vanille maison, faciles et gourmandes, inspirées d'une version au cacao. Idéales pour 4 pots, elles sont rapides à préparer et parfaites pour un dessert sain.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-vanille-thermomix-800x600-1.jpg&v=1779458039000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554802244063923478\" data-video-id=\"7554802244063923478\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554802244063923478\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n 500 ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 4 sachets de sucre vanillé (ou 30 g de sucre + 1 gousse de vanille ou extrait de vanille)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 30 g de maïzena (25 g si vous voulez plus liquide façon Danette)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n Une noix de beurre ou une cuillère de crème entière (facultatif, pour le crémeux et la brillance)"
-            }
-        ],
-        "steps": [
-            "Dans un bol, diluer la maïzena dans un peu de lait (froid ou à température ambiante) en fouettant sans cesse pour éviter les grumeaux.",
-            "Dans une casserole, faire chauffer le restant de lait avec le sucre et la vanille (ou sucre vanillé) jusqu'à ébullition.",
-            "Une fois à ébullition, ajouter la maïzena diluée dans le lait sans cesser de fouetter jusqu'à reprise de l'ébullition et que la crème épaississe.",
-            "Lorsque la crème nappe votre cuillère ou que le fouet laisse des traces, retirer du feu.",
-            "Pour apporter du crémeux et de la brillance, ajouter une noix de beurre ou une cuillère de crème entière en fin de cuisson (facultatif).",
-            "Répartir la préparation dans des pots ou ramequins et laisser refroidir à température ambiante.",
-            "Mettre au frais minimum 2 heures avant dégustation."
-        ],
-        "tags": [
-            "Desserts",
-            "Healthy"
         ],
         "isFeatured": false,
         "isFavorite": false,
