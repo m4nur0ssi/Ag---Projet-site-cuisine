@@ -2,11 +2,595 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/06/2026 15:50:16
+ * Dernière mise à jour: 14/06/2026 16:03:52
  * Total: 373 recettes
  */
-export const exportSyncId = "1781452216104";
+export const exportSyncId = "1781453032160";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6118",
+        "title": "Porc caramélisé à la sauce soja",
+        "description": "Un plat savoureux de porc caramélisé avec une sauce soja, parfumé à l'ail, au gingembre et aux épices.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6118_1781452459108.jpg&v=1781459692000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619640981041859862\" data-video-id=\"7619640981041859862\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619640981041859862\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400g de porc"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             6 tranches de gingembre frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             3 oignons jeunes"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cas de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             5 cas de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             anis étoilé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cardamome"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asia",
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6126",
+        "title": "Oignons farcis",
+        "description": "Une recette réconfortante d'oignons farcis à la viande hachée et aux épices, cuits au four dans une sauce tomate.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6126_1781452288718.jpg&v=1781459654000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7564066582020836630\" data-video-id=\"7564066582020836630\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7564066582020836630\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             2 gros oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1/3 botte d'herbe (persil ou coriandre)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cac de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Fromage râpé en option (ici scarmoza)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250ml de sauce tomate"
+            }
+        ],
+        "steps": [
+            "Faire bouillir les oignons tranchés juste sur un côté jusqu'au milieu. Les déposer dans l'eau froide et compter 20min quand ça commence à bouillir.",
+            "Faire revenir la viande avec les poivrons, les épices (cumin, gingembre, coriandre, paprika) et assaisonner (sel, poivre).",
+            "Terminer la cuisson de la viande en ajoutant les herbes (persil ou coriandre) et 125ml de sauce tomate.",
+            "Tremper les oignons dans de l'eau glacée et enlever une à une les feuilles d'oignon sans les casser.",
+            "Garnir chaque feuille avec une cuillère à soupe de viande et rouler la feuille d'oignon sur elle-même.",
+            "Disposer les oignons farcis sur un lit de sauce tomate (les 125ml restants) dans un plat, arroser avec un peu d'huile d'olive.",
+            "Cuire au four 25min à 190°C.",
+            "Saupoudrer de coriandre (et de fromage râpé si désiré)."
+        ],
+        "tags": [
+            "Gratins",
+            "Orient",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6122",
+        "title": "Nouilles chinoises sautées au poulet",
+        "description": "Une recette super simple de nouilles chinoises sautées au poulet.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6122_1781452261225.jpg&v=1781459485000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617156275821907222\" data-video-id=\"7617156275821907222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617156275821907222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de nouilles chinoises déshydratées"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             250 g de hauts de cuisse de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             40 g de carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon botte ou 1 cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             70 g de germes de haricots mungo"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             4 cas de sauce soja claire"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càs de sauce soja noire"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             5 càs d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 càs d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6120",
+        "title": "Les pommes boulangères",
+        "description": "Une recette de pommes boulangères beaucoup trop sous-côté.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6120_1781452224217.jpg&v=1781459458000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617570310862245142\" data-video-id=\"7617570310862245142\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617570310862245142\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1,5 kg pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             10 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50g beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             30cl bouillon de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Accompagnements",
+            "C'est l'hiver",
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6124",
+        "title": "Gâteau au yaourt de Cyril Lignac",
+        "description": "C'est l'incontournable de la pâtisserie !!",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6124_1781452034848.jpg&v=1781459422000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7543267094150778134\" data-video-id=\"7543267094150778134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7543267094150778134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt nature"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 pot de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             3 pots de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pot d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron"
+            }
+        ],
+        "steps": [
+            "Fouetter le yaourt avec les œufs.",
+            "Ajouter le sucre.",
+            "Incorporer la farine avec la levure et le sucre vanillé.",
+            "Zester le citron jaune.",
+            "Terminer par le pot d'huile.",
+            "Préchauffer le four à 180 degrés.",
+            "Verser la pâte dans un moule chemisé de beurre et farine.",
+            "Enfourner 25 minutes."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6102",
+        "title": "Poulet, Attieke, Alloco",
+        "description": "Un plat complet d'inspiration ouest-africaine, combinant du poulet mariné et frit, des bananes plantains frites (alloco) et de l'attiéké (semoule de manioc fermentée) servi avec une sauce fraîche à base de concombre et tomate.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6102_1781451861923.jpg&v=1781459231000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7230125717621673222\" data-video-id=\"7230125717621673222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7230125717621673222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde de Dijon"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Purée d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cube Maggi"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Épices à poulet Montréal"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Huile d'arachides ou canola (pour la friture du poulet)"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             Bananes plantain"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour alloco)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la friture des alloco)"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombres"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates (pulpe enlevée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile de canola (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Attieke"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6110",
+        "title": "Poulet croustillant avec sauce aigre-douce et riz blanc",
+        "description": "Une recette de poulet croustillant et incroyablement savoureux, accompagné d'une sauce aigre-douce et de riz blanc.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6110_1781451722969.jpg&v=1781459058000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7457221019762216225\" data-video-id=\"7457221019762216225\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7457221019762216225\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             poitrine de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍄\n             champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             ketchup"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             fécule de maïs"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6104",
+        "title": "Poulet Yassa",
+        "description": "Découvrez la recette traditionnelle sénégalaise du Poulet Yassa, un plat savoureux à base de poulet mariné au citron, oignons et moutarde, accompagné de perles.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6104_1781451624211.jpg&v=1781458919000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7533268279947791638\" data-video-id=\"7533268279947791638\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7533268279947791638\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             2 morceaux de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             3 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de lauriers"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 botte de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Du piment (à votre goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 Cas de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 Cas de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 Cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de perles (pour l'accompagnement)"
+            }
+        ],
+        "steps": [
+            "Pour la préparation de la recette, suivre la vidéo."
+        ],
+        "tags": [
+            "Afrique",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6106",
         "title": "Mafé au Poulet",
@@ -436,347 +1020,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6126",
-        "title": "Oignons farcis",
-        "description": "Une recette réconfortante d'oignons farcis à la viande hachée et aux épices, cuits au four dans une sauce tomate.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7564066582020836630\" data-video-id=\"7564066582020836630\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7564066582020836630\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n             2 gros oignons"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             500g de viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1/3 botte d'herbe (persil ou coriandre)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 poivrons"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cac de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             gingembre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Fromage râpé en option (ici scarmoza)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             250ml de sauce tomate"
-            }
-        ],
-        "steps": [
-            "Faire bouillir les oignons tranchés juste sur un côté jusqu'au milieu. Les déposer dans l'eau froide et compter 20min quand ça commence à bouillir.",
-            "Faire revenir la viande avec les poivrons, les épices (cumin, gingembre, coriandre, paprika) et assaisonner (sel, poivre).",
-            "Terminer la cuisson de la viande en ajoutant les herbes (persil ou coriandre) et 125ml de sauce tomate.",
-            "Tremper les oignons dans de l'eau glacée et enlever une à une les feuilles d'oignon sans les casser.",
-            "Garnir chaque feuille avec une cuillère à soupe de viande et rouler la feuille d'oignon sur elle-même.",
-            "Disposer les oignons farcis sur un lit de sauce tomate (les 125ml restants) dans un plat, arroser avec un peu d'huile d'olive.",
-            "Cuire au four 25min à 190°C.",
-            "Saupoudrer de coriandre (et de fromage râpé si désiré)."
-        ],
-        "tags": [
-            "Gratins",
-            "Orient",
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6124",
-        "title": "Gâteau au yaourt de Cyril Lignac",
-        "description": "C'est l'incontournable de la pâtisserie !!",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7543267094150778134\" data-video-id=\"7543267094150778134\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7543267094150778134\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 yaourt nature"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 pot de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             3 pots de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 pot d'huile"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             3 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 sachet de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron"
-            }
-        ],
-        "steps": [
-            "Fouetter le yaourt avec les œufs.",
-            "Ajouter le sucre.",
-            "Incorporer la farine avec la levure et le sucre vanillé.",
-            "Zester le citron jaune.",
-            "Terminer par le pot d'huile.",
-            "Préchauffer le four à 180 degrés.",
-            "Verser la pâte dans un moule chemisé de beurre et farine.",
-            "Enfourner 25 minutes."
-        ],
-        "tags": [
-            "France",
-            "Pas cher",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6122",
-        "title": "Nouilles chinoises sautées au poulet",
-        "description": "Une recette super simple de nouilles chinoises sautées au poulet.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617156275821907222\" data-video-id=\"7617156275821907222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617156275821907222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             100 g de nouilles chinoises déshydratées"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             250 g de hauts de cuisse de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             40 g de carotte"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon botte ou 1 cébette"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             70 g de germes de haricots mungo"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             4 cas de sauce soja claire"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 càs de sauce soja noire"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             5 càs d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 càs d'huile de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6120",
-        "title": "Les pommes boulangères",
-        "description": "Une recette de pommes boulangères beaucoup trop sous-côté.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7617570310862245142\" data-video-id=\"7617570310862245142\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7617570310862245142\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             1,5 kg pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             10 oignons"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             50g beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥩\n             30cl bouillon de bœuf"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre noir"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Accompagnements",
-            "C'est l'hiver",
-            "France",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6118",
-        "title": "Porc caramélisé à la sauce soja",
-        "description": "Un plat savoureux de porc caramélisé avec une sauce soja, parfumé à l'ail, au gingembre et aux épices.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619640981041859862\" data-video-id=\"7619640981041859862\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619640981041859862\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             400g de porc"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             6 tranches de gingembre frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             3 oignons jeunes"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 cas de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             5 cas de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             anis étoilé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cardamome"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asia",
-            "Asie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6116",
         "title": "Bol asperges vertes, soja & jaune d'oeuf",
         "description": "Un bol frais et savoureux à base d'asperges vertes, assaisonné de sauce soja, huile de sésame et mirin, garni de nori, sésame et d'un jaune d'œuf pour une touche onctueuse.",
@@ -830,249 +1073,6 @@ export const mockRecipes: Recipe[] = [
             "Salades",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6110",
-        "title": "Poulet croustillant avec sauce aigre-douce et riz blanc",
-        "description": "Une recette de poulet croustillant et incroyablement savoureux, accompagné d'une sauce aigre-douce et de riz blanc.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7457221019762216225\" data-video-id=\"7457221019762216225\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7457221019762216225\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             poitrine de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🍄\n             champignons"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             ketchup"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             vinaigre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             fécule de maïs"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6104",
-        "title": "Poulet Yassa",
-        "description": "Découvrez la recette traditionnelle sénégalaise du Poulet Yassa, un plat savoureux à base de poulet mariné au citron, oignons et moutarde, accompagné de perles.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7533268279947791638\" data-video-id=\"7533268279947791638\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7533268279947791638\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             2 morceaux de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             3 oignons"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 feuilles de lauriers"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             2 citrons"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 botte de persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Du piment (à votre goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 Cas de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 Cas de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 Cas d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150g de perles (pour l'accompagnement)"
-            }
-        ],
-        "steps": [
-            "Pour la préparation de la recette, suivre la vidéo."
-        ],
-        "tags": [
-            "Afrique",
-            "épicé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6102",
-        "title": "Poulet, Attieke, Alloco",
-        "description": "Un plat complet d'inspiration ouest-africaine, combinant du poulet mariné et frit, des bananes plantains frites (alloco) et de l'attiéké (semoule de manioc fermentée) servi avec une sauce fraîche à base de concombre et tomate.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7230125717621673222\" data-video-id=\"7230125717621673222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7230125717621673222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             Poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Moutarde de Dijon"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Mayonnaise"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Purée d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             Bouillon de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cube Maggi"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             Épices à poulet Montréal"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             Huile d'arachides ou canola (pour la friture du poulet)"
-            },
-            {
-                "quantity": "",
-                "name": "🍌\n             Bananes plantain"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour alloco)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile (pour la friture des alloco)"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombres"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates (pulpe enlevée)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile de canola (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Vinaigre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Attieke"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "épicé"
         ],
         "isFeatured": false,
         "isFavorite": false,
