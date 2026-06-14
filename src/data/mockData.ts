@@ -2,11 +2,362 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/06/2026 15:32:12
+ * Dernière mise à jour: 14/06/2026 15:50:16
  * Total: 373 recettes
  */
-export const exportSyncId = "1781451132516";
+export const exportSyncId = "1781452216104";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6106",
+        "title": "Mafé au Poulet",
+        "description": "Un plat traditionnel d'Afrique de l'Ouest, le Mafé au poulet est un ragoût riche et savoureux à base de pâte d'arachide, de poulet et de légumes comme les pommes de terre, le manioc et la patate douce, relevé par une marinade épicée.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6106_1781451486138.jpg&v=1781458819000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7352928486832573729\" data-video-id=\"7352928486832573729\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7352928486832573729\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 poulet entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             180g de concentré de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             2 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 maniocs"
+            },
+            {
+                "quantity": "",
+                "name": "🥔\n             2 patates douces"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             300 g de pâte d'arachides ou de beurre de cacahuètes"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1,5L d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment antillais entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             20 cl d'huile de tournesol"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             5 gousses d'ail (pour la marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment végétarien (pour la marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1⁄2 poivron vert (pour la marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon (pour la marinade)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6114",
+        "title": "Eau de tomate",
+        "description": "Une boisson rafraîchissante et savoureuse à base de tomates, assaisonnée d'huile d'olive, de vinaigre et de sel.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6114_1781451439754.jpg&v=1781458682000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650510198229962017\" data-video-id=\"7650510198229962017\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650510198229962017\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cas de vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            }
+        ],
+        "steps": [
+            "Mixer les tomates pour obtenir une purée.",
+            "Filtrer la purée à travers une passoire fine ou un linge propre pour en extraire le jus clair (l'eau de tomate).",
+            "Assaisonner l'eau de tomate obtenue avec l'huile d'olive, le vinaigre et le sel. Servir frais."
+        ],
+        "tags": [
+            "Astuces",
+            "Healthy",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6108",
+        "title": "DIBI",
+        "description": "Le DIBI classique de la streetfood de l'Afrique de l'Ouest. Aujourd'hui, méthode au four ! Tellement bon 🥹🔥",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6108_1781451252869.jpg&v=1781458635000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7214156492935597317\" data-video-id=\"7214156492935597317\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7214156492935597317\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g Viande d'agneau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cas moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cebette"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cas moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             5-6 cas mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "épicé",
+            "Pâques"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6098",
+        "title": "Creamy Chicken and Potato Skillet with Bacon",
+        "description": "Un plat réconfortant et savoureux à base de poulet crémeux, de pommes de terre assaisonnées et de bacon croustillant, le tout gratiné au fromage dans une poêle.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6098_1781451047512.jpg&v=1781458449000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7367398634431745312\" data-video-id=\"7367398634431745312\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7367398634431745312\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             6 petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             2 poitrines de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 tranches de bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café d'assaisonnement piri piri"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cuillères à café d'assaisonnement cajun"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             2 cuillères à soupe d'huile (pour le poulet)"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             2 cuillères à café d'huile (pour les pommes de terre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200ml de crème double"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Fromage râpé (cheddar ou mozzarella)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais (pour la garniture)"
+            }
+        ],
+        "steps": [
+            "Coupez les 6 petites pommes de terre en petits morceaux. Assaisonnez les pommes de terre avec 1 cuillère à café d'assaisonnement piri piri, 2 cuillères à café d'assaisonnement cajun et 1/2 cuillère à café de curcuma. Mélangez bien.",
+            "Coupez les 2 poitrines de poulet en petits morceaux. Assaisonnez le poulet avec 1 cuillère à café d'assaisonnement piri piri, 2 cuillères à café d'assaisonnement cajun, 2 cuillères à soupe d'huile et 1/2 cuillère à café de curcuma. Mélangez bien.",
+            "Faites frire les 6 tranches de bacon jusqu'à ce qu'elles soient dorées et croustillantes. Retirez le bacon de la poêle et coupez-le en petits morceaux.",
+            "Dans la même poêle utilisée pour le bacon, ajoutez 2 cuillères à café d'huile. Ajoutez les pommes de terre assaisonnées et faites-les frire à feu doux pendant environ 15 minutes, en couvrant avec un couvercle pour aider à cuire plus rapidement.",
+            "Dans une autre poêle, faites frire le poulet assaisonné pendant environ 7 minutes à feu moyen-doux.",
+            "Une fois le poulet cuit, ajoutez 200ml de crème double à la poêle et faites cuire pendant 2-3 minutes, permettant aux saveurs de se mélanger.",
+            "Ajoutez le bacon cuit au mélange de poulet et de crème. Mélangez bien.",
+            "Placez les pommes de terre frites sur le mélange de poulet.",
+            "Couvrez de fromage râpé (cheddar ou mozzarella). Couvrez la poêle avec un couvercle et laissez le fromage fondre.",
+            "Saupoudrez de persil frais et de bacon croustillant sur le dessus pour la garniture. Servez chaud et dégustez."
+        ],
+        "tags": [
+            "Afrique",
+            "C'est l'hiver",
+            "épicé",
+            "Gratins"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6100",
+        "title": "Corn Dog",
+        "description": "Une recette de Corn Dog maison, avec saucisses et mozzarella, enrobés d'une pâte croustillante et frits, inspirée de la street food coréenne.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6100_1781450601347.jpeg&v=1781458242000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7205199789535939845\" data-video-id=\"7205199789535939845\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7205199789535939845\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             350g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 càs de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 oeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             mozzarella spéciale cuisine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             saucisses"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             chapelure panko ou normal"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile de tournesol pour la cuisson"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "asiatique",
+            "Asie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6112",
         "title": "Boeuf Crousti",
@@ -485,49 +836,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6114",
-        "title": "Eau de tomate",
-        "description": "Une boisson rafraîchissante et savoureuse à base de tomates, assaisonnée d'huile d'olive, de vinaigre et de sel.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650510198229962017\" data-video-id=\"7650510198229962017\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650510198229962017\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cas de vinaigre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            }
-        ],
-        "steps": [
-            "Mixer les tomates pour obtenir une purée.",
-            "Filtrer la purée à travers une passoire fine ou un linge propre pour en extraire le jus clair (l'eau de tomate).",
-            "Assaisonner l'eau de tomate obtenue avec l'huile d'olive, le vinaigre et le sel. Servir frais."
-        ],
-        "tags": [
-            "Astuces",
-            "Healthy",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6110",
         "title": "Poulet croustillant avec sauce aigre-douce et riz blanc",
         "description": "Une recette de poulet croustillant et incroyablement savoureux, accompagné d'une sauce aigre-douce et de riz blanc.",
@@ -585,171 +893,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Asie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6108",
-        "title": "DIBI",
-        "description": "Le DIBI classique de la streetfood de l'Afrique de l'Ouest. Aujourd'hui, méthode au four ! Tellement bon 🥹🔥",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7214156492935597317\" data-video-id=\"7214156492935597317\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7214156492935597317\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g Viande d'agneau"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 cas moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Cebette"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cas moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             5-6 cas mayonnaise"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Citron"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "épicé",
-            "Pâques"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6106",
-        "title": "Mafé au Poulet",
-        "description": "Un plat traditionnel d'Afrique de l'Ouest, le Mafé au poulet est un ragoût riche et savoureux à base de pâte d'arachide, de poulet et de légumes comme les pommes de terre, le manioc et la patate douce, relevé par une marinade épicée.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7352928486832573729\" data-video-id=\"7352928486832573729\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7352928486832573729\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             1 poulet entier"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             180g de concentré de tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             2 pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 maniocs"
-            },
-            {
-                "quantity": "",
-                "name": "🥔\n             2 patates douces"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             300 g de pâte d'arachides ou de beurre de cacahuètes"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             1,5L d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 piment antillais entier"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             20 cl d'huile de tournesol"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             5 gousses d'ail (pour la marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 piment végétarien (pour la marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1⁄2 poivron vert (pour la marinade)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon (pour la marinade)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "épicé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -930,149 +1073,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Afrique",
             "épicé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6100",
-        "title": "Corn Dog",
-        "description": "Une recette de Corn Dog maison, avec saucisses et mozzarella, enrobés d'une pâte croustillante et frits, inspirée de la street food coréenne.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7205199789535939845\" data-video-id=\"7205199789535939845\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7205199789535939845\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             350g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 sachet de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 càs de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 càc de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             250ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 oeuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             mozzarella spéciale cuisine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             saucisses"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             chapelure panko ou normal"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile de tournesol pour la cuisson"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "asiatique",
-            "Asie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6098",
-        "title": "Creamy Chicken and Potato Skillet with Bacon",
-        "description": "Un plat réconfortant et savoureux à base de poulet crémeux, de pommes de terre assaisonnées et de bacon croustillant, le tout gratiné au fromage dans une poêle.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7367398634431745312\" data-video-id=\"7367398634431745312\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7367398634431745312\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             6 petites pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             2 poitrines de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6 tranches de bacon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à café d'assaisonnement piri piri"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 cuillères à café d'assaisonnement cajun"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             2 cuillères à soupe d'huile (pour le poulet)"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             2 cuillères à café d'huile (pour les pommes de terre)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             200ml de crème double"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Fromage râpé (cheddar ou mozzarella)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais (pour la garniture)"
-            }
-        ],
-        "steps": [
-            "Coupez les 6 petites pommes de terre en petits morceaux. Assaisonnez les pommes de terre avec 1 cuillère à café d'assaisonnement piri piri, 2 cuillères à café d'assaisonnement cajun et 1/2 cuillère à café de curcuma. Mélangez bien.",
-            "Coupez les 2 poitrines de poulet en petits morceaux. Assaisonnez le poulet avec 1 cuillère à café d'assaisonnement piri piri, 2 cuillères à café d'assaisonnement cajun, 2 cuillères à soupe d'huile et 1/2 cuillère à café de curcuma. Mélangez bien.",
-            "Faites frire les 6 tranches de bacon jusqu'à ce qu'elles soient dorées et croustillantes. Retirez le bacon de la poêle et coupez-le en petits morceaux.",
-            "Dans la même poêle utilisée pour le bacon, ajoutez 2 cuillères à café d'huile. Ajoutez les pommes de terre assaisonnées et faites-les frire à feu doux pendant environ 15 minutes, en couvrant avec un couvercle pour aider à cuire plus rapidement.",
-            "Dans une autre poêle, faites frire le poulet assaisonné pendant environ 7 minutes à feu moyen-doux.",
-            "Une fois le poulet cuit, ajoutez 200ml de crème double à la poêle et faites cuire pendant 2-3 minutes, permettant aux saveurs de se mélanger.",
-            "Ajoutez le bacon cuit au mélange de poulet et de crème. Mélangez bien.",
-            "Placez les pommes de terre frites sur le mélange de poulet.",
-            "Couvrez de fromage râpé (cheddar ou mozzarella). Couvrez la poêle avec un couvercle et laissez le fromage fondre.",
-            "Saupoudrez de persil frais et de bacon croustillant sur le dessus pour la garniture. Servez chaud et dégustez."
-        ],
-        "tags": [
-            "Afrique",
-            "C'est l'hiver",
-            "épicé",
-            "Gratins"
         ],
         "isFeatured": false,
         "isFavorite": false,
