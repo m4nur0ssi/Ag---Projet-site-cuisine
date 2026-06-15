@@ -13,30 +13,47 @@ import styles from './WeekPlanner.module.css';
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 const MEALS = ['Midi', 'Soir'] as const;
 
+// Listes complètes — identiques à la barre de filtres de l'accueil (MagicFilterBar).
 const FILTER_GROUPS = {
     categorie: [
+        { label: '🥘 Accompagnements', tag: 'accompagnements' },
         { label: '🍹 Apéritifs', tag: 'aperitifs' },
-        { label: '🥗 Entrées', tag: 'entrees' },
-        { label: '🍽 Plats', tag: 'plats' },
         { label: '🍰 Desserts', tag: 'desserts' },
+        { label: '🥗 Entrées', tag: 'entrees' },
+        { label: '🍝 Pâtes', tag: 'pates' },
         { label: '🥐 Pâtisserie', tag: 'patisserie' },
+        { label: '🍽 Plats', tag: 'plats' },
     ],
     pays: [
-        { label: '🇫🇷 France', tag: 'france' },
-        { label: '🇮🇹 Italie', tag: 'italie' },
-        { label: '🇬🇷 Grèce', tag: 'grece' },
-        { label: '🇱🇧 Liban', tag: 'liban' },
-        { label: '🥢 Asie', tag: 'asie' },
-        { label: '🇪🇸 Espagne', tag: 'espagne' },
-        { label: '🇲🇽 Mexique', tag: 'mexique' },
+        { label: '🌍 Afrique', tag: 'Afrique' },
+        { label: '🥢 Asie', tag: 'Asie' },
+        { label: '🇪🇸 Espagne', tag: 'Espagne' },
+        { label: '🇫🇷 France', tag: 'France' },
+        { label: '🇬🇷 Grèce', tag: 'Grece' },
+        { label: '🇮🇹 Italie', tag: 'Italie' },
+        { label: '🇱🇧 Liban', tag: 'Liban' },
+        { label: '🇲🇽 Mexique', tag: 'Mexique' },
+        { label: '🕌 Orient', tag: 'Orient' },
+        { label: '🇺🇸 USA', tag: 'USA' },
     ],
     tendances: [
-        { label: '⚡ Express', tag: 'express' },
-        { label: '🌿 Healthy', tag: 'healthy' },
+        { label: '🔥 Airfryer', tag: 'Airfryer' },
+        { label: '💡 Astuces', tag: 'Astuces' },
+        { label: '🥩 Barbecue', tag: 'Barbecue' },
+        { label: '🥤 Rafraîchissements', tag: 'boissons' },
+        { label: '🍝 Dolce Vita', tag: 'dolce-vita' },
+        { label: '⚡ Express', tag: 'Express' },
         { label: '👨‍👩‍👧 Famille', tag: 'famille' },
-        { label: '💰 Pas cher', tag: 'pas cher' },
-        { label: '🔥 Airfryer', tag: 'airfryer' },
-        { label: '🥩 Barbecue', tag: 'barbecue' },
+        { label: '🍦 Les Glaces', tag: 'glaces' },
+        { label: '🌿 Healthy', tag: 'Healthy' },
+        { label: '🎄 Noël', tag: 'Noël' },
+        { label: '🐰 Pâques', tag: 'pâques' },
+        { label: '💰 Pas Cher', tag: 'Pas cher' },
+        { label: '🥫 Sauces', tag: 'sauces' },
+        { label: '✨ Simplissime', tag: 'simplissime' },
+        { label: '☀️ Voilà l\'été', tag: 'voila-lete' },
+        { label: '🥬 Végé', tag: 'vegetarien' },
+        { label: '❄️ C\'est l\'hiver', tag: 'cest-lhiver' },
     ],
 } as const;
 type FilterGroup = keyof typeof FILTER_GROUPS;
@@ -74,7 +91,8 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const [hiddenDays, setHiddenDays] = useState<string[]>([]);
     // Mini-résumé de la liste affiché sous le panneau juste après "Valider".
     const [recap, setRecap] = useState<{ total: number; rayons: { id: string; n: number }[] } | null>(null);
-    const [picker, setPicker] = useState<{ day: string; meal: string } | null>(null);
+    // side: true → le picker cible l'accompagnement du plat de ce créneau (recipe.side)
+    const [picker, setPicker] = useState<{ day: string; meal: string; side?: boolean } | null>(null);
     const [query, setQuery] = useState('');
     const [activeFilter, setActiveFilter] = useState('');
     const [activeGroup, setActiveGroup] = useState<FilterGroup | null>(null);
@@ -183,10 +201,23 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         if (!picker) return;
         const np = { ...plan };
         if (!np[picker.day]) np[picker.day] = {};
-        np[picker.day][picker.meal] = recipe;
-        clearSlotChecks(k => k.startsWith(`${picker.day}|${picker.meal}|`));
+        if (picker.side) {
+            // Accompagnement : on l'attache au plat existant (recipe.side), comme le Menu IA.
+            const main = np[picker.day][picker.meal];
+            if (main) np[picker.day][picker.meal] = { ...main, side: recipe };
+        } else {
+            np[picker.day][picker.meal] = recipe;
+            clearSlotChecks(k => k.startsWith(`${picker.day}|${picker.meal}|`));
+        }
         save(np);
         closePicker();
+    };
+
+    // Retire l'accompagnement attaché à un plat
+    const removeSide = (day: string, meal: string) => {
+        const np = { ...plan };
+        const main = np[day]?.[meal];
+        if (main?.side) { const { side, ...rest } = main; np[day][meal] = rest; save(np); }
     };
 
     const closePicker = () => {
@@ -295,6 +326,90 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     const fill = (theme?: string) => view === 'semaine' ? fillWeek(theme) : fillJourJ(theme);
 
+    // #2 — Menu IA : composition ÉQUILIBRÉE déterministe (fiable, instantanée).
+    // Détecte la protéine de chaque plat, alterne d'un repas à l'autre, évite la
+    // même protéine 2 fois le même jour ou 2 repas de suite, et favorise la variété.
+    const [iaBusy, setIaBusy] = useState(false);
+
+    const proteinOf = (r: any): string => {
+        const t = `${r.title || ''} ${(r.tags || []).join(' ')} ${(r.ingredients || []).map((i: any) => i.name).join(' ')}`.toLowerCase();
+        if (/poisson|saumon|thon|cabillaud|crevette|colin|merlu|sardine|maquereau|gambas|lieu|truite|dorade|crustac/.test(t)) return 'poisson';
+        if (/agneau|mouton/.test(t)) return 'agneau';
+        if (/b[oœ]uf|steak|bavette|kefta|carne|bourguignon|paleron/.test(t)) return 'boeuf';
+        if (/\bporc\b|lardon|jambon|bacon|saucisse|chorizo|p[âa]t[ée]/.test(t)) return 'porc';
+        if (/poulet|volaille|dinde|chicken|pollo|escalope/.test(t)) return 'poulet';
+        if (/v[ée]g[ée]tarien|tofu|pois chiche|lentille|aubergine|courgette|champignon|brocoli|[ée]pinard|l[ée]gume|halloumi|f[ée]ta/.test(t)) return 'vege';
+        return 'autre';
+    };
+
+    // Un plat est "complet" s'il embarque déjà un accompagnement (féculent ou légume).
+    const SIDE_RX = /\briz\b|p[âa]tes|pasta|spaghetti|tagliatelle|nouille|pur[ée]e|pomme de terre|patate|frite|semoule|couscous|boulgour|quinoa|polenta|gnocchi|lentille|haricot|brocoli|[ée]pinard|courgette|aubergine|carotte|poireau|chou|champignon|petits pois|ratatouille|l[ée]gume|salade|gratin|po[êe]l[ée]e/i;
+    const hasSideIncluded = (r: any): boolean =>
+        SIDE_RX.test(r.title || '') || (r.ingredients || []).some((i: any) => SIDE_RX.test(i?.name || ''));
+    const isSideDish = (r: any): boolean => {
+        if (!isCookable(r)) return false;
+        if ((r.tags || []).some((t: string) => /accompagnement/i.test(t))) return true;
+        return r.category === 'plats' && proteinOf(r) === 'vege' && SIDE_RX.test(r.title || '');
+    };
+
+    const fillIA = (theme?: string) => {
+        if (view !== 'semaine') { fillJourJ(theme); return; }
+        setIaBusy(true);
+        try {
+            let plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r) && matchesTheme(r, theme));
+            if (plats.length < 14) plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r));
+
+            const groups: Record<string, any[]> = {};
+            shuffle(plats).forEach(r => { const p = proteinOf(r); (groups[p] = groups[p] || []).push(r); });
+            const order = ['vege', 'poisson', 'boeuf', 'agneau', 'porc', 'poulet', 'autre'].filter(g => groups[g]?.length);
+
+            const used = new Set<string>();
+            const popFrom = (g: string): any | null => {
+                const arr = groups[g];
+                while (arr && arr.length) { const r = arr.shift(); if (r && !used.has(r.id)) { used.add(r.id); return r; } }
+                return null;
+            };
+
+            const slots: [string, string][] = [];
+            visibleDays.forEach(d => MEALS.forEach(m => slots.push([d, m])));
+
+            const sideQueue = shuffle(mockRecipes.filter(isSideDish));
+            const popSide = (): any | null => {
+                while (sideQueue.length) { const s = sideQueue.shift(); if (s && !used.has(s.id)) { used.add(s.id); return s; } }
+                return null;
+            };
+
+            const np: Plan = { ...plan };
+            let gi = 0, lastProtein: string | null = null;
+            const dayProtein: Record<string, string> = {};
+
+            slots.forEach(([day, meal]) => {
+                np[day] = { ...(np[day] || {}) };
+                let chosen: any = null, chosenP: string | null = null;
+                for (let k = 0; k < order.length; k++) {
+                    const g = order[(gi + k) % order.length];
+                    if (!groups[g]?.length || g === lastProtein || dayProtein[day] === g) continue;
+                    const r = popFrom(g);
+                    if (r) { chosen = r; chosenP = g; gi = (gi + k + 1) % order.length; break; }
+                }
+                if (!chosen) for (const g of order) { const r = popFrom(g); if (r) { chosen = r; chosenP = g; break; } }
+                if (chosen) {
+                    if (!hasSideIncluded(chosen)) {
+                        const side = popSide();
+                        if (side) chosen = { ...chosen, side };
+                    }
+                    np[day][meal] = chosen; lastProtein = chosenP; dayProtein[day] = chosenP as string;
+                }
+            });
+
+            clearSlotChecks(k => !k.startsWith(`${JOUR_J_KEY}|`));
+            save(np);
+            setValidated(false);
+        } finally {
+            setIaBusy(false);
+        }
+    };
+
     // ── Mise à jour de la liste de courses au moment du "Valider" ──
     const collectViewRecipes = () => {
         const map = new Map<string, { recipe: any; count: number }>();
@@ -341,10 +456,13 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         }));
     };
 
-    // Verrou de catégorie quand le picker est ouvert depuis une carte Jour J
-    const courseLock = picker?.day === JOUR_J_KEY
-        ? COURSES.find(c => c.label === picker.meal) || null
-        : null;
+    // Verrou de catégorie : carte Jour J → la catégorie de la carte ; picker.side →
+    // uniquement des accompagnements.
+    const courseLock = picker?.side
+        ? COURSES.find(c => c.label === 'Accompagnement') || null
+        : picker?.day === JOUR_J_KEY
+            ? COURSES.find(c => c.label === picker.meal) || null
+            : null;
 
     const searchResults = useMemo(() => {
         let base = mockRecipes.filter(r => r.category !== 'restaurant');
@@ -361,7 +479,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                 const names = r.ingredients.map(i => normalize(i.name));
                 const matched = tags.filter(t => names.some(n => n.includes(t))).length;
                 return { r, score: matched };
-            }).filter(x => x.score > 0).sort((a, b) => b.score - a.score).map(x => x.r).slice(0, 15);
+            }).filter(x => x.score > 0).sort((a, b) => b.score - a.score).map(x => x.r);
         }
         let pool = base;
         if (activeFilter) {
@@ -380,9 +498,11 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
             );
         }
         if (!activeFilter && query.trim().length <= 1 && !ingMode) {
-            return [...base].sort((a, b) => parseInt(b.id) - parseInt(a.id)).slice(0, 20);
+            // Pas de filtre : on montre tout (catégorie verrouillée incluse), trié récent.
+            return [...base].sort((a, b) => parseInt(b.id) - parseInt(a.id));
         }
-        return pool.slice(0, 20);
+        // Filtre/catégorie/pays/tendance actif : TOUTES les recettes correspondantes (scroll).
+        return pool;
     }, [query, activeFilter, ingMode, ingTags, picker]);
 
     if (!isOpen) return null;
@@ -439,8 +559,8 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
                         {!validated && (
                             <div className={styles.toolbar}>
-                                <button className={styles.randomBtn} onClick={() => fill()}>
-                                    Aléatoire
+                                <button className={styles.randomBtn} onClick={() => fillIA()} disabled={iaBusy} title="Menu équilibré composé par l'IA">
+                                    {iaBusy ? 'Composition…' : 'Menu IA'}
                                 </button>
                                 {SIDE_GROUPS.map(g => (
                                     <button
@@ -487,6 +607,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                                     <div key={meal} className={styles.mealSlot}>
                                                         <div className={styles.mealTag}>{meal}</div>
                                                         {recipe ? (
+                                                            <>
                                                             <div
                                                                 className={`${styles.recipeVignette} ${validated ? styles.clickable : ''}`}
                                                                 onClick={() => validated ? openRecipe(recipe) : setPicker({ day, meal })}
@@ -497,6 +618,30 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                                                     <button className={styles.removeVignette} onClick={e => { e.stopPropagation(); removeSlot(day, meal); }}>✕</button>
                                                                 )}
                                                             </div>
+                                                            {/* Accompagnement (Menu IA ou ajouté à la main) — cliquable vers sa fiche */}
+                                                            {recipe.side ? (
+                                                                <div
+                                                                    className={styles.sideVignette}
+                                                                    onClick={(e) => { e.stopPropagation(); validated ? openRecipe(recipe.side) : setPicker({ day, meal, side: true }); }}
+                                                                    title={`Accompagnement : ${decodeHtml(recipe.side.title)}`}
+                                                                >
+                                                                    {recipe.side.image
+                                                                        ? <img src={recipe.side.image} alt={recipe.side.title} className={styles.sideThumb} />
+                                                                        : <span className={styles.sideThumbFallback}>🥗</span>}
+                                                                    <div className={styles.sideMeta}>
+                                                                        <span className={styles.sideBadge}>Accompagnement</span>
+                                                                        <span className={styles.sideName}>{decodeHtml(recipe.side.title)}</span>
+                                                                    </div>
+                                                                    {!validated && (
+                                                                        <button className={styles.removeSide} onClick={e => { e.stopPropagation(); removeSide(day, meal); }} title="Retirer l'accompagnement">✕</button>
+                                                                    )}
+                                                                </div>
+                                                            ) : !validated ? (
+                                                                <button className={styles.addSideBtn} onClick={(e) => { e.stopPropagation(); setPicker({ day, meal, side: true }); }}>
+                                                                    + Accompagnement
+                                                                </button>
+                                                            ) : null}
+                                                            </>
                                                         ) : validated ? (
                                                             <div className={styles.emptySlotMuted}><span className={styles.emptyText}>—</span></div>
                                                         ) : (

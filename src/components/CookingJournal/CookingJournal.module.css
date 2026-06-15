@@ -54,3 +54,4 @@
 .entryNote { font-size: 0.85rem; color: rgba(255, 255, 255, 0.85); }
 .del { background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; font-size: 0.85rem; flex-shrink: 0; }
 .del:hover { color: #ef4444; }
+.err { margin-top: 8px; font-size: 0.8rem; font-weight: 600; color: #fca5a5; }

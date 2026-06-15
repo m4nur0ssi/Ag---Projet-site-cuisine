@@ -182,6 +182,13 @@
 .modeToggle { display: flex; gap: 8px; padding: 0 16px 12px; }
 .modeBtn { flex: 1; padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
 .modeBtnActive { background: rgba(124,58,237,0.3); border-color: rgba(124,58,237,0.5); color: #c4b5fd; }
+/* Groupes Catégorie / Pays / Tendances + chips */
+.groupBtns { display: flex; gap: 8px; padding: 0 16px 10px; }
+.groupBtn { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.55); border-radius: 20px; padding: 6px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
+.groupBtnActive { background: rgba(124,58,237,0.25); border-color: rgba(124,58,237,0.5); color: #c4b5fd; }
+.filterChips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 12px; max-height: 160px; overflow-y: auto; }
+.chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 5px 12px; color: rgba(255,255,255,0.7); font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: all 0.12s; }
+.chipActive { background: rgba(255,255,255,0.18); color: #fff; border-color: rgba(255,255,255,0.3); }
 .ingTags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 12px; }
 .ingTag { display: flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 100px; background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4); color: #c4b5fd; font-size: 0.8rem; font-weight: 600; }
 .ingTagRemove { background: none; border: none; color: rgba(196,181,253,0.6); cursor: pointer; font-size: 0.7rem; padding: 0; line-height: 1; }

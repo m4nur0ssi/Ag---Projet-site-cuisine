@@ -6,11 +6,58 @@ import { decodeHtml } from '@/lib/utils';
 import { rankByIngredients } from '@/lib/search-rank';
 import styles from './SpotlightSearch.module.css';
 
+// Groupes de filtres — listes complètes, identiques à la barre d'accueil (MagicFilterBar).
+const FILTER_GROUPS = {
+    categorie: [
+        { label: '🥘 Accompagnements', tag: 'accompagnements' },
+        { label: '🍹 Apéritifs', tag: 'aperitifs' },
+        { label: '🍰 Desserts', tag: 'desserts' },
+        { label: '🥗 Entrées', tag: 'entrees' },
+        { label: '🍝 Pâtes', tag: 'pates' },
+        { label: '🥐 Pâtisserie', tag: 'patisserie' },
+        { label: '🍽 Plats', tag: 'plats' },
+    ],
+    pays: [
+        { label: '🌍 Afrique', tag: 'Afrique' },
+        { label: '🥢 Asie', tag: 'Asie' },
+        { label: '🇪🇸 Espagne', tag: 'Espagne' },
+        { label: '🇫🇷 France', tag: 'France' },
+        { label: '🇬🇷 Grèce', tag: 'Grece' },
+        { label: '🇮🇹 Italie', tag: 'Italie' },
+        { label: '🇱🇧 Liban', tag: 'Liban' },
+        { label: '🇲🇽 Mexique', tag: 'Mexique' },
+        { label: '🕌 Orient', tag: 'Orient' },
+        { label: '🇺🇸 USA', tag: 'USA' },
+    ],
+    tendances: [
+        { label: '🔥 Airfryer', tag: 'Airfryer' },
+        { label: '💡 Astuces', tag: 'Astuces' },
+        { label: '🥩 Barbecue', tag: 'Barbecue' },
+        { label: '🥤 Rafraîchissements', tag: 'boissons' },
+        { label: '🍝 Dolce Vita', tag: 'dolce-vita' },
+        { label: '⚡ Express', tag: 'Express' },
+        { label: '👨‍👩‍👧 Famille', tag: 'famille' },
+        { label: '🍦 Les Glaces', tag: 'glaces' },
+        { label: '🌿 Healthy', tag: 'Healthy' },
+        { label: '🎄 Noël', tag: 'Noël' },
+        { label: '🐰 Pâques', tag: 'pâques' },
+        { label: '💰 Pas Cher', tag: 'Pas cher' },
+        { label: '🥫 Sauces', tag: 'sauces' },
+        { label: '✨ Simplissime', tag: 'simplissime' },
+        { label: '☀️ Voilà l\'été', tag: 'voila-lete' },
+        { label: '🥬 Végé', tag: 'vegetarien' },
+        { label: '❄️ C\'est l\'hiver', tag: 'cest-lhiver' },
+    ],
+} as const;
+type FilterGroup = keyof typeof FILTER_GROUPS;
+
 export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<'recipe' | 'ingredients'>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
     const [ingInput, setIngInput] = useState('');
+    const [activeGroup, setActiveGroup] = useState<FilterGroup | null>(null);
+    const [activeFilter, setActiveFilter] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
     const countryFlags: Record<string, string> = {
@@ -31,19 +78,26 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
 
     const filteredRecipes = useMemo(() => {
         if (mode !== 'recipe') return [];
-        if (query.trim().length <= 1) {
-            return [...mockRecipes]
-                .filter(r => r.category !== 'restaurant')
-                .sort((a, b) => parseInt(b.id) - parseInt(a.id))
-                .slice(0, 10);
+        let pool = mockRecipes.filter(r => r.category !== 'restaurant');
+        if (activeFilter) {
+            const af = normalize(activeFilter);
+            pool = pool.filter(r =>
+                normalize(r.category || '') === af ||
+                (r.tags || []).some((t: string) => normalize(t).includes(af)));
         }
-        const q = normalize(query.trim());
-        return mockRecipes.filter(r =>
-            r.category !== 'restaurant' &&
-            (normalize(r.title).includes(q) ||
-             r.tags?.some((t: string) => normalize(t).includes(q)))
-        );
-    }, [query, mode]);
+        if (query.trim().length > 1) {
+            const q = normalize(query.trim());
+            pool = pool.filter(r =>
+                normalize(r.title).includes(q) ||
+                (r.tags || []).some((t: string) => normalize(t).includes(q)));
+        }
+        // Aucun filtre ni recherche : on montre les dernières publiées.
+        if (!activeFilter && query.trim().length <= 1) {
+            return [...pool].sort((a, b) => parseInt(b.id) - parseInt(a.id)).slice(0, 10);
+        }
+        // Catégorie/pays/tendance ou recherche actifs → TOUTES les recettes (scroll).
+        return pool;
+    }, [query, mode, activeFilter]);
 
     // Mode ingrédients — recherche STRICTE (#7) : full d'abord, suggestions (manque 1) ensuite.
     const ingredientResults = useMemo(() => {
@@ -71,25 +125,10 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
             setIngTags([]);
             setIngInput('');
             setMode('recipe');
+            setActiveGroup(null);
+            setActiveFilter('');
         }
     }, [isOpen]);
-
-    const quickFilters = [
-        { label: '🍹 Apéritifs', tag: 'aperitifs' },
-        { label: '🥗 Entrées', tag: 'entrees' },
-        { label: '🍽 Plats', tag: 'plats' },
-        { label: '🍰 Desserts', tag: 'desserts' },
-        { label: '🥐 Pâtisserie', tag: 'patisserie' },
-        { label: '🇫🇷 France', tag: 'france' },
-        { label: '🇮🇹 Italie', tag: 'italie' },
-        { label: '🇬🇷 Grèce', tag: 'grece' },
-        { label: '🇱🇧 Liban', tag: 'liban' },
-        { label: '🥢 Asie', tag: 'asie' },
-        { label: '⚡ Express', tag: 'express' },
-        { label: '🌿 Healthy', tag: 'healthy' },
-        { label: '👨‍👩‍👧 Famille', tag: 'famille' },
-        { label: '💰 Pas cher', tag: 'pas cher' },
-    ];
 
     if (!isOpen) return null;
 
@@ -128,9 +167,40 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                     >Par recette</button>
                     <button
                         className={`${styles.modeBtn} ${mode === 'ingredients' ? styles.modeBtnActive : ''}`}
-                        onClick={() => { setMode('ingredients'); setTimeout(() => inputRef.current?.focus(), 50); }}
+                        onClick={() => { setMode('ingredients'); setActiveGroup(null); setActiveFilter(''); setTimeout(() => inputRef.current?.focus(), 50); }}
                     >Par ingrédients</button>
                 </div>
+
+                {/* Groupes Catégorie / Pays / Tendances (mode recette) */}
+                {mode === 'recipe' && (
+                    <div className={styles.groupBtns}>
+                        {(['categorie', 'pays', 'tendances'] as FilterGroup[]).map(g => (
+                            <button
+                                key={g}
+                                className={`${styles.groupBtn} ${activeGroup === g ? styles.groupBtnActive : ''}`}
+                                onClick={() => {
+                                    if (activeGroup === g) { setActiveGroup(null); setActiveFilter(''); }
+                                    else { setActiveGroup(g); setActiveFilter(''); setQuery(''); }
+                                }}
+                            >
+                                {g === 'categorie' ? '🍽 Catégorie' : g === 'pays' ? '🌍 Pays' : '✨ Tendances'}
+                            </button>
+                        ))}
+                    </div>
+                )}
+
+                {/* Chips du groupe sélectionné */}
+                {mode === 'recipe' && activeGroup && (
+                    <div className={styles.filterChips}>
+                        {FILTER_GROUPS[activeGroup].map(f => (
+                            <button
+                                key={f.tag}
+                                className={`${styles.chip} ${activeFilter === f.tag ? styles.chipActive : ''}`}
+                                onClick={() => setActiveFilter(activeFilter === f.tag ? '' : f.tag)}
+                            >{f.label}</button>
+                        ))}
+                    </div>
+                )}
 
                 {mode === 'ingredients' && ingTags.length > 0 && (
                     <div className={styles.ingTags}>
@@ -146,7 +216,7 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                 <div className={styles.results}>
                     {mode === 'recipe' && (
                         <>
-                            {query.trim().length <= 1 && (
+                            {query.trim().length <= 1 && !activeFilter && (
                                 <div className={styles.recentTitle}>✨ Dernières Recettes Publiées</div>
                             )}
                             {filteredRecipes.length > 0 ? filteredRecipes.map(recipe => {

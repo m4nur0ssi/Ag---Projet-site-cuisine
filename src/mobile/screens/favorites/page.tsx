@@ -8,7 +8,7 @@ import RecipeCard from '@/mobile/components/RecipeCard/RecipeCardiOS26';
 import BottomNav from '@/mobile/components/BottomNav/BottomNav';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { Recipe } from '@/mobile/types';
-import { pullFavorites } from '@/mobile/lib/favorites';
+import { pullFavorites, pruneOrphanFavorites } from '@/mobile/lib/favorites';
 import { precacheFavorites } from '@/lib/pwa';
 import styles from './favorites.module.css';
 
@@ -24,8 +24,15 @@ export default function FavoritesPage() {
             setFavoriteRecipes(mockRecipes.filter(r => storedIds.includes(r.id)));
             setLoading(false);
         };
-        // Au montage : tire la vérité depuis Supabase (suit le compte), puis rend.
-        const init = async () => { await pullFavorites(); renderFromCache(); };
+        // Au montage : tire la vérité depuis Supabase (suit le compte), purge les
+        // favoris orphelins (recettes disparues) pour que le badge colle aux fiches, puis rend.
+        const init = async () => {
+            await pullFavorites();
+            const ids = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const resolved = mockRecipes.filter(r => ids.includes(r.id)).map(r => r.id);
+            await pruneOrphanFavorites(resolved);
+            renderFromCache();
+        };
 
         init();
         window.addEventListener('storage', renderFromCache);
@@ -65,10 +72,11 @@ export default function FavoritesPage() {
                 ) : favoriteRecipes.length > 0 ? (
                     <div className={styles.grid}>
                         {favoriteRecipes.map((recipe: Recipe) => (
-                            <RecipeCard 
-                                key={recipe.id} 
-                                recipe={recipe} 
+                            <RecipeCard
+                                key={recipe.id}
+                                recipe={recipe}
                                 size="small"
+                                isGrid={true}
                                 isFavoritesPage={true}
                             />
                         ))}

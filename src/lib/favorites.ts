@@ -36,3 +36,23 @@ export async function pullFavorites(): Promise<string[]> {
     }
     return ids;
 }
+
+/**
+ * Supprime les favoris ORPHELINS : ids enregistrés (cache + cloud) qui ne
+ * correspondent à aucune recette connue (recette retirée du catalogue après un
+ * sync WP). Sans ça, le compteur (badge) affiche plus de favoris que de fiches
+ * réellement affichées. validIds = ids des recettes effectivement résolues.
+ */
+export async function pruneOrphanFavorites(validIds: string[]): Promise<void> {
+    let stored: string[] = [];
+    try { stored = JSON.parse(localStorage.getItem('favorites') || '[]'); } catch {}
+    const valid = new Set(validIds.map(String));
+    const orphans = stored.filter(id => !valid.has(String(id)));
+    if (!orphans.length) return;
+    localStorage.setItem('favorites', JSON.stringify(stored.filter(id => valid.has(String(id)))));
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+        await supabase.from('favorites').delete().eq('user_id', session.user.id).in('recipe_id', orphans);
+    }
+    window.dispatchEvent(new Event('magic-favorite-change'));
+}
