@@ -9,7 +9,7 @@ import BottomNav from '@/components/BottomNav/BottomNav';
 import { mockRecipes } from '@/data/mockData';
 import { Recipe } from '@/types';
 import { supabase } from '@/lib/supabase';
-import { pullFavorites } from '@/lib/favorites';
+import { pullFavorites, pruneOrphanFavorites } from '@/lib/favorites';
 import { precacheFavorites } from '@/lib/pwa';
 import styles from './favorites.module.css';
 
@@ -34,6 +34,10 @@ export default function FavoritesPage() {
             setAuthed(!!session);
             if (!session) { setFavoriteRecipes([]); setLoading(false); return; }
             await pullFavorites();      // hydrate localStorage depuis le cloud
+            // Purge les favoris orphelins (recettes disparues) → badge == fiches affichées.
+            const ids = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const resolved = mockRecipes.filter(r => ids.includes(r.id)).map(r => r.id);
+            await pruneOrphanFavorites(resolved);
             renderFromCache();
             setLoading(false);
         };

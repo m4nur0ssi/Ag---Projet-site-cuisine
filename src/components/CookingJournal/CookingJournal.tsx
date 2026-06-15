@@ -12,6 +12,7 @@ export default function CookingJournal({ recipeId }: { recipeId: string }) {
     const [open, setOpen] = useState(false);
     const [note, setNote] = useState('');
     const [busy, setBusy] = useState(false);
+    const [err, setErr] = useState<string | null>(null);
 
     useEffect(() => {
         let alive = true;
@@ -31,11 +32,18 @@ export default function CookingJournal({ recipeId }: { recipeId: string }) {
 
     const submit = async () => {
         setBusy(true);
-        const created = await addCookEntry(recipeId, note);
-        if (created) {
-            setEntries(prev => [created, ...prev]);
+        setErr(null);
+        const { entry, error } = await addCookEntry(recipeId, note);
+        if (entry) {
+            setEntries(prev => [entry, ...prev]);
             setNote('');
             setOpen(false);
+        } else if (error === 'auth') {
+            // Session expirée : on propose la reconnexion (sinon l'insert reste bloqué en 401).
+            setErr('Ta session a expiré. Reconnecte-toi pour enregistrer.');
+            window.dispatchEvent(new CustomEvent('magic-open-auth'));
+        } else {
+            setErr("Échec de l'enregistrement. Réessaie.");
         }
         setBusy(false);
     };
@@ -67,8 +75,9 @@ export default function CookingJournal({ recipeId }: { recipeId: string }) {
                     />
                     <div className={styles.formRow}>
                         <button className={styles.save} onClick={submit} disabled={busy}>{busy ? 'Enregistrement…' : 'Enregistrer'}</button>
-                        <button className={styles.cancel} onClick={() => { setOpen(false); setNote(''); }}>Annuler</button>
+                        <button className={styles.cancel} onClick={() => { setOpen(false); setNote(''); setErr(null); }}>Annuler</button>
                     </div>
+                    {err && <div className={styles.err}>{err}</div>}
                 </div>
             )}
 

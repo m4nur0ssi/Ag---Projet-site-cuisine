@@ -24,9 +24,13 @@ export async function getCookEntries(recipeId: string): Promise<CookEntry[]> {
     return (data || []) as CookEntry[];
 }
 
-export async function addCookEntry(recipeId: string, note?: string, file?: File | null): Promise<CookEntry | null> {
+// Résultat d'ajout : on remonte l'erreur (au lieu d'avaler) pour donner un feedback.
+// error === 'auth' → pas de session valide (token expiré) → proposer la reconnexion.
+export interface AddCookResult { entry: CookEntry | null; error: string | null }
+
+export async function addCookEntry(recipeId: string, note?: string, file?: File | null): Promise<AddCookResult> {
     const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return null;
+    if (!session) return { entry: null, error: 'auth' };
     let photo_url: string | null = null;
     if (file) {
         const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
@@ -41,8 +45,12 @@ export async function addCookEntry(recipeId: string, note?: string, file?: File 
         .insert({ user_id: session.user.id, recipe_id: String(recipeId), note: note?.trim() || null, photo_url })
         .select('id,recipe_id,cooked_at,note,photo_url')
         .single();
-    if (error) return null;
-    return data as CookEntry;
+    // 401 / token invalide → PostgREST renvoie un code auth → on demande la reconnexion.
+    if (error) {
+        const isAuth = (error as any)?.code === 'PGRST301' || (error as any)?.code === '401' || /jwt|token|expired/i.test(error.message || '');
+        return { entry: null, error: isAuth ? 'auth' : (error.message || 'Erreur') };
+    }
+    return { entry: data as CookEntry, error: null };
 }
 
 export async function deleteCookEntry(id: string): Promise<void> {
