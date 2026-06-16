@@ -3,7 +3,7 @@
 // et partagé partout via l'event 'store-changed'.
 import { useEffect, useState } from 'react';
 
-export type StoreId = 'carrefour' | 'picard' | 'monoprix';
+export type StoreId = 'carrefour' | 'picard' | 'monoprix' | 'leclerc';
 
 export interface StoreDef {
     id: StoreId;
@@ -17,6 +17,7 @@ export const STORES: StoreDef[] = [
     { id: 'carrefour', label: 'Carrefour', color: '#004E9F', logo: '/images/stores/carrefour.svg', search: q => `https://www.carrefour.fr/s?q=${encodeURIComponent(q)}` },
     { id: 'picard',    label: 'Picard',    color: '#0A4A9F', logo: '/images/stores/picard.svg',    search: q => `https://www.picard.fr/recherche?q=${encodeURIComponent(q)}` },
     { id: 'monoprix',  label: 'Monoprix',  color: '#E6007E', logo: '/images/stores/monoprix.svg',  search: q => `https://courses.monoprix.fr/search?q=${encodeURIComponent(q)}` },
+    { id: 'leclerc',   label: 'E.Leclerc', color: '#0066B3', logo: '/images/stores/leclerc.svg',   search: q => `https://www.e.leclerc/recherche?q=${encodeURIComponent(q)}` },
 ];
 
 export const STORE_BY_ID: Record<StoreId, StoreDef> =
