@@ -2,11 +2,307 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/06/2026 22:25:45
- * Total: 377 recettes
+ * Dernière mise à jour: 16/06/2026 22:38:12
+ * Total: 380 recettes
  */
-export const exportSyncId = "1781648745888";
+export const exportSyncId = "1781649492796";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6154",
+        "title": "Brochettes de poulet à l'ail et au parmesan",
+        "description": "Des brochettes de poulet tendres et savoureuses, marinées à l'ail et au parmesan, puis cuites à l'air fryer. Elles sont ensuite badigeonnées d'une sauce crémeuse à l'ail, au parmesan et au persil pour un plat principal ou une préparation de repas ...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638032841099595021\" data-video-id=\"7638032841099595021\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638032841099595021\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             900g (2 lb) de blancs de poulet coupés en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Chili powder"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Assaisonnement Kinder's garlic and herb"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1/4 tasse de parmesan râpé (pour la marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de mayonnaise légère (pour la marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 bâton de beurre fondu (pour le beurre à l'ail)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 cuillères à soupe d'ail haché (pour le beurre à l'ail)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Thym frais (pour le beurre à l'ail)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1/2 tasse de persil haché (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1/3 tasse de parmesan râpé (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1-2 cuillères à soupe de mayonnaise légère (pour la sauce)"
+            }
+        ],
+        "steps": [
+            "Dans un grand bol, mélanger les dés de poulet avec l'huile d'olive, le chili powder, le paprika, la poudre d'oignon, le poivre noir, l'assaisonnement Kinder's garlic and herb, 1/4 tasse de parmesan râpé et 2 cuillères à soupe de mayonnaise légère. Bien mélanger.",
+            "Enfiler le poulet mariné sur des brochettes.",
+            "Faire cuire les brochettes à l'air fryer à 400F (environ 200°C) pendant 12 minutes.",
+            "Retourner les brochettes et les faire cuire à l'air fryer à 400F (environ 200°C) pendant 10 minutes supplémentaires.",
+            "Pendant ce temps, préparer le beurre à l'ail : faire fondre 1 bâton de beurre, puis ajouter 2 cuillères à soupe d'ail haché et du thym frais.",
+            "Préparer la sauce parmesan à l'ail : dans un bol, mélanger 1/2 tasse de persil haché, 1/3 tasse de parmesan râpé, 1-2 cuillères à soupe de mayonnaise légère et le beurre à l'ail préparé.",
+            "Badigeonner généreusement les brochettes de poulet chaudes avec la sauce parmesan à l'ail avant de servir."
+        ],
+        "tags": [
+            "barbecue",
+            "Healthy",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6152",
+        "title": "Poulet au pesto de basilic",
+        "description": "Un plat réconfortant de poulet mijoté au pesto de basilic et tomates cerises, servi avec une purée de pommes de terre crémeuse.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639819621243309344\" data-video-id=\"7639819621243309344\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639819621243309344\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             2 blancs de poulet coupés en morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             20g de beurre (pour le mijoté)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             100g de pesto de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             40cl de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             40cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre du moulin"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             400g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             20g de beurre (pour la purée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             20ml d'eau de cuisson des pommes de terre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6150",
+        "title": "Tuscan Chicken Meatballs",
+        "description": "Une sauce riche et savoureuse de style toscan, combinant tomates séchées, épinards, tomates et épices, servie avec de tendres boulettes de poulet (ou du poulet en dés) sur du riz blanc. La base crémeuse peut être réalisée avec de la crème épaisse ...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648315935304060191\" data-video-id=\"7648315935304060191\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648315935304060191\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Boulettes de poulet (ou poulet en dés)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Épinards"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Épices"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème épaisse (ou lait de coco)"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             Riz blanc"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6148",
+        "title": "CRÈME POULET MIEL MOUTARDE",
+        "description": "Une recette facile et rapide de poulet en sauce crémeuse au miel et à la moutarde, agrémentée de tomates et d'épices, servie avec du riz basmati.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634585156807871766\" data-video-id=\"7634585156807871766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634585156807871766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 filet d'escalope de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate ou quelques tomates cerise"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cac paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             3 cas de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cas de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 bon gros filet de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             persil séché ou coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             riz basmati"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             un filet d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             un peu de jus de citron (optionnel)"
+            }
+        ],
+        "steps": [
+            "Faire revenir l'oignon émincé dans un filet d'huile pendant 2 minutes.",
+            "Ajouter par la suite le poulet, la tomate, l'ail et les épices, puis mélanger et laisser cuire 5 à 6 minutes.",
+            "Ajouter ensuite la crème fraîche, le miel, la moutarde et le persil, puis mélanger.",
+            "Laisser cuire 2 minutes et c'est prêt."
+        ],
+        "tags": [
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6146",
         "title": "Saumon à la Toscane crémeux",
@@ -13983,81 +14279,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "raffraichissements",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3957",
-        "title": "Cookies",
-        "description": "Une recette pour des cookies géants et ultra gourmands, inspirés de New York, fourrés à la pâte à tartiner Bueno et agrémentés de morceaux de Kinder Bueno.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcookies_sans_beurre_homemade_1775840598269.jpg&v=1775848114000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7538140427933781270\" data-video-id=\"7538140427933781270\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7538140427933781270\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n 200 g beurre froid (salé ou non)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 100 g vergeoise brune"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 50 g sucre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n 1 càs extrait de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 440 g farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 sachet levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 grosse pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n 200 g chocolat haché"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 4 barres Kinder Bueno en morceaux"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Pâte à tartiner Bueno"
-            }
-        ],
-        "steps": [
-            "Déposez au congélateur 11 cuillères à café de pâte à tartiner.",
-            "À la main ou dans votre robot, fouettez le beurre et les sucres jusqu'à ce qu'ils soient homogènes. Ajoutez l'œuf et la vanille, puis fouettez de nouveau.",
-            "Incorporez la farine, la levure et le sel, puis mélangez juste assez pour que la pâte soit homogène.",
-            "Ajoutez les chocolats et mélangez à nouveau.",
-            "Formez des boules de 100 g chacune, aplatissez-les légèrement avec la paume de la main, déposez au centre la pâte à tartiner congelée, puis refermez.",
-            "Placez les boules au congélateur pendant au moins 1 h.",
-            "Après ce temps, enfournez pendant 12 à 15 minutes dans un four préchauffé à 180 °C (chaleur tournante). Si vous réalisez des cookies de 50gr, enfournez 10/11mn.",
-            "Laissez refroidir avant de les déplacer."
-        ],
-        "tags": [
-            "Famille",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
