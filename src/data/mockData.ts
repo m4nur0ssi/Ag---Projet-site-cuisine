@@ -2,11 +2,301 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/06/2026 10:14:50
+ * Dernière mise à jour: 17/06/2026 10:30:35
  * Total: 380 recettes
  */
-export const exportSyncId = "1781691290742";
+export const exportSyncId = "1781692235379";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6146",
+        "title": "Saumon à la Toscane crémeux",
+        "description": "Une recette de pavés de saumon saisis puis mijotés dans une sauce crémeuse à la Toscane avec des tomates séchées, des tomates cerises, des épinards et du basilic frais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6146_1781691328894.jpg&v=1781698676000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650809562030738721\" data-video-id=\"7650809562030738721\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650809562030738721\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             Pavés de saumon"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Épinards"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème liquide"
+            }
+        ],
+        "steps": [
+            "Fais chauffer un filet d'huile d'olive dans une grande poêle.",
+            "Saisis les pavés de saumon 2 à 3 minutes de chaque côté, juste pour les colorer, sans les cuire complètement à cœur. Réserve-les dans une assiette.",
+            "Dans la même poêle, fais revenir l'oignon rouge émincé et l'ail haché pendant quelques minutes. Sale et poivre.",
+            "Ajoute une belle cuillère de concentré de tomate et laisse cuire 1 minute en remuant pour développer les saveurs.",
+            "Verse la crème liquide et mélange.",
+            "Ajoute les tomates séchées coupées en morceaux et les tomates cerises.",
+            "Incorpore les épinards et laisse-les tomber dans la sauce.",
+            "Remets les pavés de saumon dans la poêle et laisse mijoter environ 5 minutes, jusqu'à ce qu'ils soient cuits à ton goût.",
+            "Termine avec du basilic frais avant de servir."
+        ],
+        "tags": [
+            "Italie",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6144",
+        "title": "Salade fraîche de truite fumée",
+        "description": "Une salade fraîche et équilibrée à base de truite fumée, avocat, concombre et tomate, idéale pour un rééquilibrage alimentaire et les menus d'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6144_1781691147601.jpeg&v=1781698526000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7381902744644291873\" data-video-id=\"7381902744644291873\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7381902744644291873\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1/2 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Du persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de truite fumée"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cuillères à soupe de vinaigre de cidre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tranches de pain"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6152",
+        "title": "Poulet au pesto de basilic",
+        "description": "Un plat réconfortant de poulet mijoté au pesto de basilic et tomates cerises, servi avec une purée de pommes de terre crémeuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6152_1781690807643.jpeg&v=1781698343000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639819621243309344\" data-video-id=\"7639819621243309344\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639819621243309344\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             2 blancs de poulet coupés en morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             20g de beurre (pour le mijoté)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             100g de pesto de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             40cl de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             40cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre du moulin"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             400g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             20g de beurre (pour la purée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             20ml d'eau de cuisson des pommes de terre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6142",
+        "title": "PAVÉS DE SAUMON",
+        "description": "Une recette simple et savoureuse de pavés de saumon accompagnés d'une sauce crémeuse à l'oignon rouge, ail, citron vert et piment d'Espelette.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6142_1781690792585.jpeg&v=1781698004000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635695324870249750\" data-video-id=\"7635695324870249750\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635695324870249750\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             2 pavés de saumon"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 c. à c. de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à s. d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 pincée de piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à s. de câpres"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             15 cl de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6148",
         "title": "CRÈME POULET MIEL MOUTARDE",
@@ -181,78 +471,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6152",
-        "title": "Poulet au pesto de basilic",
-        "description": "Un plat réconfortant de poulet mijoté au pesto de basilic et tomates cerises, servi avec une purée de pommes de terre crémeuse.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639819621243309344\" data-video-id=\"7639819621243309344\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639819621243309344\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             2 blancs de poulet coupés en morceaux"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 échalotes"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             250g de tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             20g de beurre (pour le mijoté)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             100g de pesto de basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             40cl de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             40cl d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre du moulin"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             400g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             20g de beurre (pour la purée)"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             20ml d'eau de cuisson des pommes de terre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6150",
         "title": "Tuscan Chicken Meatballs",
         "description": "Une sauce riche et savoureuse de style toscan, combinant tomates séchées, épinards, tomates et épices, servie avec de tendres boulettes de poulet (ou du poulet en dés) sur du riz blanc. La base crémeuse peut être réalisée avec de la crème épaisse ...",
@@ -298,224 +516,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6146",
-        "title": "Saumon à la Toscane crémeux",
-        "description": "Une recette de pavés de saumon saisis puis mijotés dans une sauce crémeuse à la Toscane avec des tomates séchées, des tomates cerises, des épinards et du basilic frais.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650809562030738721\" data-video-id=\"7650809562030738721\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650809562030738721\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🐟\n             Pavés de saumon"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates séchées"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Épinards"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Crème liquide"
-            }
-        ],
-        "steps": [
-            "Fais chauffer un filet d'huile d'olive dans une grande poêle.",
-            "Saisis les pavés de saumon 2 à 3 minutes de chaque côté, juste pour les colorer, sans les cuire complètement à cœur. Réserve-les dans une assiette.",
-            "Dans la même poêle, fais revenir l'oignon rouge émincé et l'ail haché pendant quelques minutes. Sale et poivre.",
-            "Ajoute une belle cuillère de concentré de tomate et laisse cuire 1 minute en remuant pour développer les saveurs.",
-            "Verse la crème liquide et mélange.",
-            "Ajoute les tomates séchées coupées en morceaux et les tomates cerises.",
-            "Incorpore les épinards et laisse-les tomber dans la sauce.",
-            "Remets les pavés de saumon dans la poêle et laisse mijoter environ 5 minutes, jusqu'à ce qu'ils soient cuits à ton goût.",
-            "Termine avec du basilic frais avant de servir."
-        ],
-        "tags": [
-            "Italie",
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6144",
-        "title": "Salade fraîche de truite fumée",
-        "description": "Une salade fraîche et équilibrée à base de truite fumée, avocat, concombre et tomate, idéale pour un rééquilibrage alimentaire et les menus d'été.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7381902744644291873\" data-video-id=\"7381902744644291873\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7381902744644291873\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥑\n             1 avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1/2 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Du persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150g de truite fumée"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             4 cuillères à soupe de vinaigre de cidre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tranches de pain"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6142",
-        "title": "PAVÉS DE SAUMON",
-        "description": "Une recette simple et savoureuse de pavés de saumon accompagnés d'une sauce crémeuse à l'oignon rouge, ail, citron vert et piment d'Espelette.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635695324870249750\" data-video-id=\"7635695324870249750\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635695324870249750\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🐟\n             2 pavés de saumon"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 c. à c. de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 c. à s. d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 pincée de piment d'Espelette"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à s. de câpres"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             15 cl de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Plats"
         ],
         "isFeatured": false,
         "isFavorite": false,
