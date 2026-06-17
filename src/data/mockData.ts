@@ -2,16 +2,98 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/06/2026 08:21:31
+ * Dernière mise à jour: 17/06/2026 10:14:50
  * Total: 380 recettes
  */
-export const exportSyncId = "1781684491692";
+export const exportSyncId = "1781691290742";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6148",
+        "title": "CRÈME POULET MIEL MOUTARDE",
+        "description": "Une recette facile et rapide de poulet en sauce crémeuse au miel et à la moutarde, agrémentée de tomates et d'épices, servie avec du riz basmati.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6148_1781690764144.jpg&v=1781697990000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634585156807871766\" data-video-id=\"7634585156807871766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634585156807871766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 filet d'escalope de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate ou quelques tomates cerise"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cac paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             3 cas de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cas de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 bon gros filet de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             persil séché ou coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             riz basmati"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             un filet d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             un peu de jus de citron (optionnel)"
+            }
+        ],
+        "steps": [
+            "Faire revenir l'oignon émincé dans un filet d'huile pendant 2 minutes.",
+            "Ajouter par la suite le poulet, la tomate, l'ail et les épices, puis mélanger et laisser cuire 5 à 6 minutes.",
+            "Ajouter ensuite la crème fraîche, le miel, la moutarde et le persil, puis mélanger.",
+            "Laisser cuire 2 minutes et c'est prêt."
+        ],
+        "tags": [
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6154",
         "title": "Brochettes de poulet à l'ail et au parmesan",
         "description": "Des brochettes de poulet tendres et savoureuses, marinées à l'ail et au parmesan, puis cuites à l'air fryer. Elles sont ensuite badigeonnées d'une sauce crémeuse à l'ail, au parmesan et au persil pour un plat principal ou une préparation de repas ...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6154_1781690755381.jpeg&v=1781697960000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -216,88 +298,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6148",
-        "title": "CRÈME POULET MIEL MOUTARDE",
-        "description": "Une recette facile et rapide de poulet en sauce crémeuse au miel et à la moutarde, agrémentée de tomates et d'épices, servie avec du riz basmati.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634585156807871766\" data-video-id=\"7634585156807871766\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634585156807871766\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             1 filet d'escalope de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate ou quelques tomates cerise"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cac paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             3 cas de crème fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cas de moutarde à l'ancienne"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 bon gros filet de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             persil séché ou coriandre fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             riz basmati"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             un filet d'huile"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             un peu de jus de citron (optionnel)"
-            }
-        ],
-        "steps": [
-            "Faire revenir l'oignon émincé dans un filet d'huile pendant 2 minutes.",
-            "Ajouter par la suite le poulet, la tomate, l'ail et les épices, puis mélanger et laisser cuire 5 à 6 minutes.",
-            "Ajouter ensuite la crème fraîche, le miel, la moutarde et le persil, puis mélanger.",
-            "Laisser cuire 2 minutes et c'est prêt."
-        ],
-        "tags": [
-            "Plats"
         ],
         "isFeatured": false,
         "isFavorite": false,
