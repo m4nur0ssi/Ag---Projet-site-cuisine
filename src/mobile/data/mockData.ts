@@ -2,11 +2,152 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/06/2026 20:30:09
- * Total: 383 recettes
+ * Dernière mise à jour: 17/06/2026 20:44:17
+ * Total: 384 recettes
  */
-export const exportSyncId = "1781728209720";
+export const exportSyncId = "1781729057153";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6169",
+        "title": "Chocolate Strawberry Mini Cakes",
+        "description": "Ces mini gâteaux au chocolat et aux fraises sont composés d'un gâteau au chocolat moelleux, d'une compote de fraises maison, d'une ganache au chocolat riche et d'un glaçage crémeux au mascarpone et au cacao. Parfaits pour une touche gourmande.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638696854355578144\" data-video-id=\"7638696854355578144\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638696854355578144\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             300g strawberries, washed and chopped up (2 cups)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g granulated sugar (1/2 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Juice of one lemon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 teaspoon vanilla extract"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             80g milk chocolate, chopped up (1/2 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80g heavy cream (1/3 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 large eggs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300g dark brown sugar (1 cup + 1/3 cup + 1 teaspoon)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g granulated sugar (1/4 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g neutral oil, like avocado, sunflower or canola (3/4 cup + 2 tablespoons)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g full fat plain yogurt (2/3 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g milk (1/4 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tablespoon vanilla extract"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 teaspoon salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             215g all purpose flour (1 cup + 3/4 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             70g unsweetened cocoa powder (3/4 cup + 2 tablespoons)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 teaspoons baking powder + 1/2 teaspoon baking soda"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g boiling hot coffee (1/3 cup + 1 tablespoon)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             300g Mascarpone (1 cup + 1/4 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             120g granulated sugar (1/2 cup + 1 tablespoon)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g unsweetened cocoa powder (2/3 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300g whipping cream (1 cup + 1/4 cup)"
+            }
+        ],
+        "steps": [
+            "First, prepare the compote.",
+            "To a saucepan, add the diced strawberries, vanilla extract, lemon juice and sugar.",
+            "Mix everything together, place it on the stovetop and let it come to a simmer over high heat.",
+            "As soon as it comes to a simmer, reduce the heat to medium and let it cook for 15-20 minutes, until most of the liquid has evaporated but the compote still remains slightly juicy.",
+            "Once ready, transfer it to a jar and refrigerate until completely cooled and thickened.",
+            "Next, prepare the ganache.",
+            "Pour the heavy cream into a saucepan and let it come to a simmer.",
+            "Once simmering, pour it over the chocolate and let it sit for about 5 minutes before mixing until smooth.",
+            "Once ready, set it aside and let it cool completely until it thickens.",
+            "Next, prepare the mini cakes.",
+            "Preheat the oven to 180°C.",
+            "In a bowl, whisk together the flour, cocoa powder, baking soda, baking powder and salt, then set aside.",
+            "In a large bowl, add the eggs along with the brown sugar and granulated sugar.",
+            "Using an electric hand mixer, mix until the color turns slightly pale and the mixture becomes very fluffy. This should take about 3 minutes.",
+            "Once fluffy, add the oil, yogurt, vanilla extract and milk, mixing until fully incorporated.",
+            "Next, add the dry ingredients and mix until just combined, being careful not to overmix.",
+            "Lastly, fold in the hot coffee.",
+            "Now evenly divide the batter between 12 3-inch mini cake pans.",
+            "Bake in the preheated oven for 20-22 minutes. Check for doneness with a toothpick!",
+            "Once ready, remove them from the oven. Let the cakes cool in the pans for 5 minutes, then transfer them to a wire rack to cool completely before frosting.",
+            "Once the cakes have completely cooled, quickly prepare the frosting.",
+            "Add the mascarpone and sugar to a large bowl, then sift in the cocoa powder and mix until thick and combined.",
+            "Add the heavy whipping cream and using an electric hand mixer or stand mixer, whip until the mixture becomes smooth, fluffy and pipeable.",
+            "Now it's time to assemble.",
+            "Cut each mini cake in half and brush each half with milk.",
+            "Pipe a thin layer of chocolate frosting onto the bottom half of each mini cake.",
+            "Then create a small well in the frosting and pipe in a little of the chocolate ganache.",
+            "Place the top halves back onto the cakes.",
+            "Pipe another layer of chocolate frosting on top of the cakes.",
+            "You can either create a small well in the frosting or leave the center slightly open so you can spoon some of the strawberry compote into the middle.",
+            "Top with a strawberry and enjoy."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6167",
         "title": "Tiramisu aux Fraises",
