@@ -2,11 +2,97 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/06/2026 20:44:17
- * Total: 384 recettes
+ * Dernière mise à jour: 17/06/2026 23:39:06
+ * Total: 385 recettes
  */
-export const exportSyncId = "1781729057153";
+export const exportSyncId = "1781739546713";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6171",
+        "title": "Chocolate Chip Banana Bread Muffins",
+        "description": "Une recette facile pour préparer de délicieux muffins moelleux au pain de banane et aux pépites de chocolat.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7627199246860684558\" data-video-id=\"7627199246860684558\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7627199246860684558\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 ripe bananas, mashed (220g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ⅓ cup melted butter (75g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cup granulated sugar (100g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ¼ cup brown sugar (50g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 large eggs, room temp"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cup buttermilk (120g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1½ tsp vanilla (7g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1½ cups all-purpose flour (180g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp baking soda (5g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tsp baking powder (4g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ tsp salt (3g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ tsp cinnamon"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             mini chocolate chips (measure with your heart)"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 425°F (218°C) et tapisser un moule à muffins.",
+            "Dans un bol, fouetter ensemble la farine, le bicarbonate de soude, la levure chimique, le sel et la cannelle jusqu'à ce que le tout soit bien combiné.",
+            "Dans un bol séparé, fouetter les bananes écrasées et le beurre jusqu'à obtenir une consistance lisse.",
+            "Ajouter le sucre granulé et le sucre brun et mélanger jusqu'à ce que le mélange soit brillant.",
+            "Incorporer les œufs, le babeurre et la vanille jusqu'à ce que le tout soit bien combiné.",
+            "Ajouter les ingrédients secs aux ingrédients humides et incorporer délicatement jusqu'à ce que le mélange soit presque homogène, avec quelques traces de farine restantes.",
+            "Incorporer les mini pépites de chocolat juste assez pour qu'elles soient réparties. Éviter de trop mélanger pour que les muffins restent doux et moelleux.",
+            "Laisser reposer la pâte pendant environ 15 minutes. Cela aide à hydrater la farine et donne aux muffins des sommets plus hauts.",
+            "Remplir les moules à muffins presque jusqu'au bord et saupoudrer le dessus de mini pépites de chocolat.",
+            "Cuire au four pendant 5 minutes à 425°F, puis réduire la température du four à 350°F (175°C) et cuire encore 13 à 15 minutes, jusqu'à ce qu'un cure-dent inséré au centre en ressorte avec seulement quelques miettes humides.",
+            "Laisser refroidir légèrement et déguster."
+        ],
+        "tags": [
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6169",
         "title": "Chocolate Strawberry Mini Cakes",
