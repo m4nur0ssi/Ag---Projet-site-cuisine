@@ -92,6 +92,11 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const [recap, setRecap] = useState<{ total: number; rayons: { id: string; n: number }[] } | null>(null);
     // side: true → le picker cible l'accompagnement du plat de ce créneau (recipe.side)
     const [picker, setPicker] = useState<{ day: string; meal: string; side?: boolean } | null>(null);
+    // Cadenas de catégorie déverrouillé → l'utilisateur voit TOUTES les recettes.
+    const [lockOpen, setLockOpen] = useState(false);
+    // Slot en cours de glisser-déposer (vue semaine).
+    const [drag, setDrag] = useState<{ day: string; meal: string } | null>(null);
+    const [dragOver, setDragOver] = useState<string | null>(null);
     const [query, setQuery] = useState('');
     const [activeFilter, setActiveFilter] = useState('');
     const [activeGroup, setActiveGroup] = useState<FilterGroup | null>(null);
@@ -127,7 +132,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     }, [isOpen]);
 
     useEffect(() => {
-        if (picker) setTimeout(() => inputRef.current?.focus(), 100);
+        if (picker) { setLockOpen(false); setTimeout(() => inputRef.current?.focus(), 100); }
     }, [picker]);
 
     // Une fois validé, un clic hors du planificateur le replie
@@ -181,6 +186,22 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         save(np);
     };
 
+    // Glisser-déposer : déplace la recette d'un créneau vers un autre (midi↔soir, autre jour).
+    // La recette présente sur la cible est REMPLACÉE (annulée) par celle qu'on dépose.
+    const moveSlot = (from: { day: string; meal: string }, to: { day: string; meal: string }) => {
+        if (from.day === to.day && from.meal === to.meal) return;
+        const r = plan[from.day]?.[from.meal];
+        if (!r) return;
+        const np = { ...plan };
+        np[from.day] = { ...np[from.day] };
+        delete np[from.day][from.meal];
+        if (!Object.keys(np[from.day]).length) delete np[from.day];
+        np[to.day] = { ...(np[to.day] || {}) };
+        np[to.day][to.meal] = r;
+        clearSlotChecks(k => k.startsWith(`${from.day}|${from.meal}|`) || k.startsWith(`${to.day}|${to.meal}|`));
+        save(np);
+    };
+
     const assignRecipe = (recipe: any) => {
         if (!picker) return;
         const np = { ...plan };
@@ -206,6 +227,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     const closePicker = () => {
         setPicker(null);
+        setLockOpen(false);
         setQuery(''); setActiveFilter(''); setActiveGroup(null);
         setIngTags([]); setIngInput(''); setIngMode(false);
     };
@@ -278,8 +300,8 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     // Remplit toute la semaine (midi + soir) avec des PLATS aléatoires, SANS doublon
     const fillWeek = (theme?: string) => {
-        let plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r) && matchesTheme(r, theme));
-        if (!plats.length) plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r));
+        let plats = mockRecipes.filter(r => isMainDish(r) && matchesTheme(r, theme));
+        if (!plats.length) plats = mockRecipes.filter(isMainDish);
         const shuffled = shuffle(plats);
         const slots: [string, string][] = [];
         visibleDays.forEach(d => MEALS.forEach(m => slots.push([d, m])));
@@ -299,7 +321,10 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         np[JOUR_J_KEY] = { ...(np[JOUR_J_KEY] || {}) };
         const used = new Set<string>();
         visibleCourses.forEach(c => {
-            const inCourse = (r: any) => 'cat' in c ? r.category === c.cat : (r.tags || []).some((x: string) => normalize(x).includes(c.tag));
+            const inCourse = (r: any) =>
+                c.label === 'Plat' ? isMainDish(r)
+                : !('cat' in c) ? isSideDish(r) // carte Accompagnement
+                : r.category === c.cat;
             let pool = mockRecipes.filter(r => inCourse(r) && isCookable(r) && matchesTheme(r, theme) && !used.has(r.id));
             if (!pool.length) pool = mockRecipes.filter(r => inCourse(r) && isCookable(r) && !used.has(r.id));
             if (!pool.length) pool = mockRecipes.filter(r => inCourse(r) && isCookable(r));
@@ -329,25 +354,35 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         return 'autre';
     };
 
+    // Reclassement automatique des recettes (règle utilisateur) :
+    //  • pas de viande/poisson  → accompagnement (jamais en plat principal)
+    //  • c'est une sauce        → sauce (exclue des plats principaux ET des accompagnements)
+    const MEAT_FISH = new Set(['poisson', 'boeuf', 'agneau', 'porc', 'poulet']);
+    const isSauce = (r: any): boolean =>
+        (r.tags || []).some((t: string) => /sauce/i.test(t)) || /\bsauces?\b/i.test(r.title || '');
+    // Vrai PLAT = catégorie plats, cuisinable, non-sauce, avec une protéine viande/poisson.
+    const isMainDish = (r: any): boolean =>
+        r.category === 'plats' && isCookable(r) && !isSauce(r) && MEAT_FISH.has(proteinOf(r));
+
     // Un plat est "complet" s'il embarque déjà un accompagnement (féculent ou légume).
     // Sinon le Menu IA lui adjoint une recette d'accompagnement (recipe.side).
     const SIDE_RX = /\briz\b|p[âa]tes|pasta|spaghetti|tagliatelle|nouille|pur[ée]e|pomme de terre|patate|frite|semoule|couscous|boulgour|quinoa|polenta|gnocchi|lentille|haricot|brocoli|[ée]pinard|courgette|aubergine|carotte|poireau|chou|champignon|petits pois|ratatouille|l[ée]gume|salade|gratin|po[êe]l[ée]e/i;
     const hasSideIncluded = (r: any): boolean =>
         SIDE_RX.test(r.title || '') || (r.ingredients || []).some((i: any) => SIDE_RX.test(i?.name || ''));
-    // Pool d'accompagnements : recettes taggées "Accompagnements" + plats végé de type side
-    // (légumes/féculents sans protéine animale).
+    // Pool d'accompagnements : recettes taggées "Accompagnements" + tout plat SANS viande/poisson
+    // (légumes/féculents), hors sauces.
     const isSideDish = (r: any): boolean => {
-        if (!isCookable(r)) return false;
+        if (!isCookable(r) || isSauce(r)) return false;
         if ((r.tags || []).some((t: string) => /accompagnement/i.test(t))) return true;
-        return r.category === 'plats' && proteinOf(r) === 'vege' && SIDE_RX.test(r.title || '');
+        return r.category === 'plats' && !MEAT_FISH.has(proteinOf(r));
     };
 
     const fillIA = (theme?: string) => {
         if (view !== 'semaine') { fillJourJ(theme); return; }
         setIaBusy(true);
         try {
-            let plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r) && matchesTheme(r, theme));
-            if (plats.length < 14) plats = mockRecipes.filter(r => r.category === 'plats' && isCookable(r));
+            let plats = mockRecipes.filter(r => isMainDish(r) && matchesTheme(r, theme));
+            if (plats.length < 14) plats = mockRecipes.filter(isMainDish);
 
             // Regroupe par protéine (mélangé pour varier à chaque clic).
             const groups: Record<string, any[]> = {};
@@ -459,15 +494,17 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         : picker?.day === JOUR_J_KEY
             ? COURSES.find(c => c.label === picker.meal) || null
             : null;
+    // Cadenas ouvert → on ignore le verrou et on montre toutes les recettes.
+    const effectiveLock = lockOpen ? null : courseLock;
 
     const searchResults = useMemo(() => {
         let base = mockRecipes.filter(r => r.category !== 'restaurant');
-        if (courseLock) {
-            base = base.filter(r => isCookable(r) && (
-                'cat' in courseLock
-                    ? r.category === courseLock.cat
-                    : (r.tags || []).some((x: string) => normalize(x).includes(courseLock.tag))
-            ));
+        if (effectiveLock) {
+            base = base.filter(r =>
+                effectiveLock.label === 'Plat' ? isMainDish(r)
+                : effectiveLock.label === 'Accompagnement' ? isSideDish(r)
+                : isCookable(r) && 'cat' in effectiveLock && r.category === effectiveLock.cat
+            );
         }
         if (ingMode && ingTags.length > 0) {
             const tags = ingTags.map(t => normalize(t));
@@ -499,7 +536,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         }
         // Filtre/catégorie/pays/tendance actif : TOUTES les recettes correspondantes (scroll).
         return pool;
-    }, [query, activeFilter, ingMode, ingTags, picker]);
+    }, [query, activeFilter, ingMode, ingTags, picker, lockOpen]);
 
     if (!isOpen) return null;
 
@@ -588,13 +625,23 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                             </div>
                                             {MEALS.map(meal => {
                                                 const recipe = plan[day]?.[meal];
+                                                const slotKey = `${day}|${meal}`;
                                                 return (
-                                                    <div key={meal} className={styles.mealSlot}>
+                                                    <div
+                                                        key={meal}
+                                                        className={`${styles.mealSlot} ${dragOver === slotKey ? styles.dropTarget : ''}`}
+                                                        onDragOver={!validated ? (e) => { if (!drag) return; e.preventDefault(); setDragOver(slotKey); } : undefined}
+                                                        onDragLeave={() => setDragOver(prev => prev === slotKey ? null : prev)}
+                                                        onDrop={!validated ? (e) => { if (!drag) return; e.preventDefault(); moveSlot(drag, { day, meal }); setDrag(null); setDragOver(null); } : undefined}
+                                                    >
                                                         <div className={styles.mealTag}>{meal}</div>
                                                         {recipe ? (
                                                             <>
                                                             <div
-                                                                className={`${styles.recipeVignette} ${validated ? styles.clickable : ''}`}
+                                                                className={`${styles.recipeVignette} ${validated ? styles.clickable : ''} ${drag?.day === day && drag?.meal === meal ? styles.dragging : ''}`}
+                                                                draggable={!validated}
+                                                                onDragStart={!validated ? () => setDrag({ day, meal }) : undefined}
+                                                                onDragEnd={() => { setDrag(null); setDragOver(null); }}
                                                                 onClick={() => validated ? openRecipe(recipe) : setPicker({ day, meal })}
                                                             >
                                                                 <img src={recipe.image} alt={recipe.title} className={styles.vignetteImg} />
@@ -764,15 +811,23 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                             >🥕 Par ingrédients</button>
                         </div>
 
-                        {/* Catégorie verrouillée (ouverture depuis une carte Jour J) */}
+                        {/* Catégorie verrouillée (ouverture depuis une carte Jour J / accompagnement).
+                            Clic sur le cadenas → déverrouille et affiche toutes les recettes. */}
                         {courseLock && (
-                            <div className={styles.lockBanner}>
-                                🔒 Recettes : <strong>{courseLock.label}</strong> uniquement
-                            </div>
+                            <button
+                                type="button"
+                                className={styles.lockBanner}
+                                onClick={() => setLockOpen(o => !o)}
+                                title={lockOpen ? 'Reverrouiller sur cette catégorie' : 'Voir toutes les recettes'}
+                            >
+                                {lockOpen
+                                    ? <>🔓 Toutes les recettes — <strong>cliquer pour reverrouiller sur {courseLock.label}</strong></>
+                                    : <>🔒 Recettes : <strong>{courseLock.label}</strong> uniquement — cliquer pour tout voir</>}
+                            </button>
                         )}
 
                         {/* Groupes Catégorie / Pays / Tendances */}
-                        {!ingMode && !courseLock && (
+                        {!ingMode && !effectiveLock && (
                             <div className={styles.groupBtns}>
                                 {(['categorie', 'pays', 'tendances'] as FilterGroup[]).map(g => (
                                     <button
@@ -790,7 +845,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         )}
 
                         {/* Filtres du groupe */}
-                        {activeGroup && !ingMode && !courseLock && (
+                        {activeGroup && !ingMode && !effectiveLock && (
                             <div className={styles.filterChips}>
                                 {FILTER_GROUPS[activeGroup].map(f => (
                                     <button

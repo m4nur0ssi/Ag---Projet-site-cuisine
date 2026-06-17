@@ -38,7 +38,13 @@ export function useAuth() {
     const signInWithGoogle = () =>
         supabase.auth.signInWithOAuth({
             provider: 'google',
-            options: { redirectTo: window.location.origin },
+            options: {
+                redirectTo: window.location.origin,
+                // Force Google à afficher le sélecteur de compte à chaque fois.
+                // Sinon, après un signOut (qui n'efface QUE la session Supabase, pas le
+                // cookie SSO Google), Google ré-authentifie silencieusement le compte actif.
+                queryParams: { prompt: 'select_account' },
+            },
         });
 
     const signInWithApple = () =>

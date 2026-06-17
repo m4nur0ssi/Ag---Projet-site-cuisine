@@ -468,13 +468,29 @@
 }
 
 .lockBanner {
+    display: block;
+    width: 100%;
+    text-align: left;
     padding: 8px 16px;
     font-size: 0.78rem;
     color: #c4b5fd;
     background: rgba(139,92,246,0.12);
+    border: none;
     border-bottom: 1px solid rgba(139,92,246,0.25);
+    cursor: pointer;
+    transition: background 0.15s;
 }
+.lockBanner:hover { background: rgba(139,92,246,0.22); }
 .lockBanner strong { color: white; font-weight: 700; }
+
+/* Glisser-déposer d'un créneau de la semaine */
+.dragging { opacity: 0.4; }
+.dropTarget {
+    outline: 2px dashed rgba(139,92,246,0.7);
+    outline-offset: 2px;
+    border-radius: 10px;
+    background: rgba(139,92,246,0.08);
+}
 
 .modeBtn {
     flex: 1;
