@@ -2,16 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 18/06/2026 15:48:28
+ * Dernière mise à jour: 18/06/2026 16:06:55
  * Total: 385 recettes
  */
-export const exportSyncId = "1781797708259";
+export const exportSyncId = "1781798815430";
 export const mockRecipes: Recipe[] = [
     {
         "id": "6171",
         "title": "Chocolate Chip Banana Bread Muffins",
         "description": "Une recette facile pour préparer de délicieux muffins moelleux au pain de banane et aux pépites de chocolat.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6171_1781797710615.jpg&v=1781805098000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
