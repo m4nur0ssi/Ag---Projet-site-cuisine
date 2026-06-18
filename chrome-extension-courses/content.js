@@ -29,7 +29,15 @@
         const q = encodeURIComponent(term);
         if (host.includes('carrefour')) return `https://www.carrefour.fr/s?q=${q}`;
         if (host.includes('picard'))    return `https://www.picard.fr/recherche?q=${q}`;
-        if (host.includes('monoprix'))  return `https://courses.monoprix.fr/search?q=${q}`;        return `https://www.google.com/search?q=${q}`;
+        if (host.includes('monoprix'))  return `https://courses.monoprix.fr/search?q=${q}`;
+        // Leclerc Drive : le chemin magasin est dynamique (/magasin-159301-…) →
+        // on le récupère depuis la page courante au lieu de le coder en dur.
+        if (host.includes('leclercdrive')) {
+            const m = location.pathname.match(/\/magasin-[^/]+/);
+            const base = m ? `${location.origin}${m[0]}` : location.origin;
+            return `${base}/recherche.aspx?TexteRecherche=${q}`;
+        }
+        return `https://www.google.com/search?q=${q}`;
     }
 
     function goTo(i) {

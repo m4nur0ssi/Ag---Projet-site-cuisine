@@ -300,6 +300,8 @@ export default function ShoppingListPage() {
                     ))}
                 </div>
 
+                <ExtensionBubble />
+
                 {weekMode === 'semaine' && <WeekMenuCarousel view="week" />}
                 {weekMode === 'jourj' && <WeekMenuCarousel view="jourj" />}
                 {weekMode === 'recettes' && (
@@ -493,6 +495,77 @@ export default function ShoppingListPage() {
         </div>
     );
 }
+
+// Bulle explicative : installe l'extension Chrome "Courses Magiques" qui fait
+// défiler la liste produit par produit directement sur le site du magasin.
+// Téléchargeable en .zip → installation "non empaquetée" (mode développeur Chrome).
+const EXT_BUBBLE_KEY = 'ext-bubble-dismissed-v1';
+function ExtensionBubble() {
+    const [dismissed, setDismissed] = useState(true); // true par défaut → pas de flash avant lecture localStorage
+    const [open, setOpen] = useState(false);
+    useEffect(() => {
+        try { setDismissed(localStorage.getItem(EXT_BUBBLE_KEY) === '1'); } catch { setDismissed(false); }
+    }, []);
+    const close = () => { setDismissed(true); try { localStorage.setItem(EXT_BUBBLE_KEY, '1'); } catch {} };
+    if (dismissed) return null;
+
+    return (
+        <div style={{
+            margin: '0 0 16px', borderRadius: 18,
+            border: '1px solid rgba(139,92,246,0.35)',
+            background: 'linear-gradient(135deg, rgba(139,92,246,0.14), rgba(99,102,241,0.10))',
+            padding: '14px 16px', position: 'relative',
+        }}>
+            <button onClick={close} title="Masquer" style={{
+                position: 'absolute', top: 10, right: 12, background: 'none', border: 'none',
+                color: 'rgba(255,255,255,0.45)', cursor: 'pointer', fontSize: '0.95rem',
+            }}>✕</button>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={{ fontSize: '1.5rem' }}>🧩</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 800, color: '#fff', fontSize: '0.95rem' }}>
+                        Coche tes courses sans changer d&apos;onglet
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', marginTop: 2 }}>
+                        L&apos;extension Chrome <strong style={{ color: '#c4b5fd' }}>Courses Magiques</strong> affiche
+                        ta liste directement sur Carrefour, Monoprix, Picard ou Leclerc Drive et te fait passer
+                        au produit suivant automatiquement.
+                    </div>
+                </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+                <a
+                    href="/courses-magiques-extension.zip"
+                    download
+                    style={{ ...btnStyle('linear-gradient(135deg,#8b5cf6,#6366f1)'), textDecoration: 'none' }}
+                >⬇ Télécharger l&apos;extension</a>
+                <button onClick={() => setOpen(o => !o)} style={btnStyle('rgba(255,255,255,0.1)')}>
+                    {open ? 'Masquer les étapes' : "Comment l'installer ?"}
+                </button>
+            </div>
+
+            {open && (
+                <ol style={{
+                    margin: '12px 0 0', padding: '0 0 0 20px',
+                    fontSize: '0.82rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.7,
+                }}>
+                    <li>Télécharge le fichier <strong>.zip</strong> ci-dessus puis <strong>décompresse-le</strong>.</li>
+                    <li>Ouvre <code style={codeStyle}>chrome://extensions</code> dans Chrome.</li>
+                    <li>Active le <strong>Mode développeur</strong> (en haut à droite).</li>
+                    <li>Clique <strong>« Charger l&apos;extension non empaquetée »</strong> et sélectionne le dossier décompressé.</li>
+                    <li>Reviens ici, sélectionne tes ingrédients et clique <strong>sur ton magasin</strong> 🛒.</li>
+                </ol>
+            )}
+        </div>
+    );
+}
+
+const codeStyle: React.CSSProperties = {
+    background: 'rgba(255,255,255,0.1)', padding: '1px 6px', borderRadius: 6,
+    fontFamily: 'monospace', fontSize: '0.78rem', color: '#e9d5ff',
+};
 
 const btnStyle = (color: string): React.CSSProperties => ({
     display: 'flex', alignItems: 'center', gap: 6,

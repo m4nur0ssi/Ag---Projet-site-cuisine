@@ -8,6 +8,8 @@
     "bot": "node tiktok-bot/server.js",
     "clean-build": "npm run clean && next build",
     "clean": "rd /s /q .next out 2>nul || (exit 0)",
+    "build:ext": "cd chrome-extension-courses && zip -r -X ../public/courses-magiques-extension.zip manifest.json content.js content.css",
+    "prebuild": "npm run build:ext || exit 0",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
