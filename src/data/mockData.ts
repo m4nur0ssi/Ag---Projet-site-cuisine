@@ -2,11 +2,83 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/06/2026 08:26:05
- * Total: 385 recettes
+ * Dernière mise à jour: 19/06/2026 12:26:47
+ * Total: 386 recettes
  */
-export const exportSyncId = "1781857565072";
+export const exportSyncId = "1781872007726";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6181",
+        "title": "Insalata pantesca",
+        "description": "Une salade de pommes de terre fraîche et savoureuse, typique de Pantelleria, avec des tomates, des olives et des câpres, parfaite pour l'été.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7517999285233913110\" data-video-id=\"7517999285233913110\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7517999285233913110\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             700/800 g patates"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cipolla rossa grande"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cucchiai aceto"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             500 g pomodorini"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cucchiai capperi (meglio se di Pantelleria)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origano"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilico"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sale"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Olio evo"
+            }
+        ],
+        "steps": [
+            "Cuocete le patate: potete lessarle in acqua salata oppure avvolgerle in un foglio di alluminio e cuocerle in forno o in friggitrice ad aria a 200 °C per circa 30 minuti, fino a quando saranno morbide.",
+            "Affettate finemente la cipolla rossa e mettetela in una ciotola con l'aceto. Lasciatela marinare per circa 10 minuti, in modo che perda il gusto troppo pungente.",
+            "Tagliate le patate a tocchetti regolari e aggiungetele alla ciotola con la cipolla marinata.",
+            "Unite i pomodorini tagliati a metà, le olive denocciolate, i capperi ben dissalati, un pizzico abbondante di origano e qualche foglia di basilico spezzettata a mano.",
+            "Regolate di sale e condite con un filo generoso di olio extravergine d'oliva.",
+            "Mescolate bene tutti gli ingredienti.",
+            "Lasciate riposare qualche minuto prima di servire, per permettere ai sapori di amalgamarsi al meglio."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6167",
         "title": "Tiramisu aux Fraises",
