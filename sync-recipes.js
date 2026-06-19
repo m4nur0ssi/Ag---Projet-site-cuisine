@@ -2,6 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const { exec, execSync } = require('child_process');
 
+// Charge les variables d'env (.env / .env.local) pour que GROQ_API_KEY soit
+// visible côté sync (gate de la traduction auto) et hérité par le process enfant.
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+require('dotenv').config({ path: path.join(__dirname, '.env.local') });
+
 // On utilise node-fetch (v2) pour plus de stabilité dans GitHub Actions (Node 18+)
 const fetch = require('node-fetch');
 
@@ -278,15 +283,17 @@ export const mockRecipes: Recipe[] = ${JSON.stringify(allPosts, null, 4)};
 
         console.log(`\n✅ Synchronisation terminée ! ${allPosts.length} recettes sauvegardées.`);
 
-        // #13 — Traduction FR optionnelle après sync (anglais/espagnol/autre → français).
-        //   node sync-recipes.js --translate    (ou env TRANSLATE_AFTER_SYNC=1)
-        //   Nécessite GROQ_API_KEY. Désactivé par défaut pour ne pas ralentir les syncs auto.
-        if (process.argv.includes('--translate') || process.env.TRANSLATE_AFTER_SYNC === '1') {
+        // #13 — Traduction FR AUTOMATIQUE après chaque sync (anglais/espagnol/autre → français).
+        //   Traduit ingrédients + étapes uniquement (le titre est conservé tel quel).
+        //   Activée par défaut. Pour désactiver : --no-translate ou TRANSLATE_AFTER_SYNC=0.
+        //   Nécessite GROQ_API_KEY ; sans clé, l'étape est sautée sans bloquer le sync.
+        const translateDisabled = process.argv.includes('--no-translate') || process.env.TRANSLATE_AFTER_SYNC === '0';
+        if (!translateDisabled) {
             if (!process.env.GROQ_API_KEY) {
-                console.log('⚠️  --translate ignoré : GROQ_API_KEY absent.');
+                console.log('ℹ️  Traduction auto sautée : GROQ_API_KEY absent.');
             } else {
                 try {
-                    console.log('\n🌍 Traduction FR du contenu non-français…');
+                    console.log('\n🌍 Traduction FR auto du contenu non-français (ingrédients + étapes)…');
                     require('child_process').execSync('node translate-recipes-fr.js', { cwd: __dirname, stdio: 'inherit' });
                 } catch (e) {
                     console.error('⚠️  Traduction échouée (non bloquant) :', e.message);

@@ -1,6 +1,7 @@
 /**
  * #13 — Traduit en FRANÇAIS tout contenu de recette qui n'est pas en français
- * (anglais, espagnol, ou autre langue) : titre + ingrédients + étapes.
+ * (anglais, espagnol, ou autre langue) : ingrédients + étapes UNIQUEMENT.
+ * Le TITRE est toujours conservé tel quel (jamais traduit).
  * Le texte déjà en français est conservé tel quel.
  *
  * Moteur : Groq (GROQ_API_KEY dans .env), modèle llama-3.3-70b-versatile.
@@ -35,7 +36,8 @@ let CACHE = {};
 try { CACHE = JSON.parse(fs.readFileSync(CACHE_PATH, 'utf8')); } catch { CACHE = {}; }
 function saveCache() { try { fs.writeFileSync(CACHE_PATH, JSON.stringify(CACHE, null, 0)); } catch { /* noop */ } }
 function cacheKey(r) {
-    const src = JSON.stringify([r.title || '', (r.ingredients || []).map(i => i.name || ''), r.steps || []]);
+    // Le titre n'est jamais traduit → exclu de la clé de cache.
+    const src = JSON.stringify([(r.ingredients || []).map(i => i.name || ''), r.steps || []]);
     return String(r.id) + ':' + crypto.createHash('sha1').update(src).digest('hex').slice(0, 12);
 }
 
@@ -48,7 +50,8 @@ const FR = /[àâäéèêëîïôöùûüç]|\b(et|de|des|du|la|le|les|une|un|av
 // NB : pas de "pour" (collision avec le français), pas de "cook/heat" seuls.
 const EN = /\b(the|with|and|of|for|your|you|add|stir|bake|until|then|into|cups?|tbsp|tsp|teaspoons?|tablespoons?|ounces?|chicken|beef|pork|cheese|eggs|flour|dough|chopped|sliced|whisk|salt|pepper|fresh|garlic|onion|over|white rice|chili|crispy|crunchy|grilled|wrap|bowl|spicy|sweet|sauce pan)\b/i;
 const ES = /\b(con|los|las|para|una|el|del|pollo|queso|huevos?|harina|az[úu]car|mantequilla|sal|pimienta|cebolla|ajo|cucharad(?:a|ita)s?|tazas?|mezclar|a[ñn]adir|hornear|hasta|sart[ée]n|picad[oa]s?|rebanad[oa]s?|carne|arroz|frijoles)\b/i;
-const allText = r => [r.title || '', ...(r.ingredients || []).map(i => i.name || ''), ...(r.steps || [])].join('\n');
+// Détection basée UNIQUEMENT sur ingrédients + étapes (le titre n'est jamais traduit).
+const allText = r => [...(r.ingredients || []).map(i => i.name || ''), ...(r.steps || [])].join('\n');
 function needsTranslation(r) {
     if (ALL) return true;
     const txt = allText(r);
@@ -74,16 +77,15 @@ async function translateRecipe(r, attempt = 0) {
     const ingParts = (r.ingredients || []).map(i => splitPrefix(i.name || ''));
     const stepParts = (r.steps || []).map(s => splitPrefix(s));
     const payload = {
-        title: r.title || '',
         ingredients: ingParts.map(p => p[1]),
         steps: stepParts.map(p => p[1]),
     };
-    const sys = "Tu es traducteur culinaire FR. On te donne un JSON {title, ingredients[], steps[]}. "
+    const sys = "Tu es traducteur culinaire FR. On te donne un JSON {ingredients[], steps[]}. "
         + "Traduis en FRANÇAIS naturel TOUT ce qui n'est pas déjà en français (anglais, espagnol ou autre langue). "
         + "Ce qui est DÉJÀ en français : recopie-le À L'IDENTIQUE, ne le reformule pas. "
         + "Conserve EXACTEMENT le même nombre d'éléments dans ingredients et steps, et le même ordre. "
         + "Garde les quantités/nombres/unités. Ne traduis pas les noms propres de marques. "
-        + "Réponds UNIQUEMENT par un JSON valide de la même forme {title, ingredients, steps}, sans texte autour.";
+        + "Réponds UNIQUEMENT par un JSON valide de la même forme {ingredients, steps}, sans texte autour.";
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { 'content-type': 'application/json', authorization: `Bearer ${GROQ_KEY}` },
@@ -102,14 +104,13 @@ async function translateRecipe(r, attempt = 0) {
     const data = await res.json();
     const out = JSON.parse(data.choices[0].message.content);
     // Validation stricte : mêmes longueurs, sinon on garde l'original.
-    if (!out || typeof out.title !== 'string'
+    if (!out
         || !Array.isArray(out.ingredients) || out.ingredients.length !== payload.ingredients.length
         || !Array.isArray(out.steps) || out.steps.length !== payload.steps.length) {
         throw new Error('réponse de forme invalide');
     }
-    // Réattache les préfixes (emoji + espaces) d'origine.
+    // Réattache les préfixes (emoji + espaces) d'origine. Le titre n'est jamais touché.
     return {
-        title: out.title,
         ingredients: out.ingredients.map((v, k) => ingParts[k][0] + String(v)),
         steps: out.steps.map((v, k) => stepParts[k][0] + String(v)),
     };
@@ -185,7 +186,7 @@ async function pool(items, n, worker) {
         arr.forEach(r => {
             const tr = cache.get(String(r.id));
             if (!tr) return;
-            r.title = tr.title;
+            // Le titre est volontairement laissé intact.
             (r.ingredients || []).forEach((ing, k) => { if (tr.ingredients[k] != null) ing.name = tr.ingredients[k]; });
             if (Array.isArray(r.steps)) r.steps = r.steps.map((s, k) => (tr.steps[k] != null ? tr.steps[k] : s));
         });

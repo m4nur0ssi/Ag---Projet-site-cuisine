@@ -476,12 +476,29 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
     const isSpeakingRef = useRef(false);
 
+    // iOS/Chrome : précharge la liste des voix (getVoices() est vide au 1er accès
+    // tant que 'voiceschanged' n'a pas été émis) → 1er speak() a une voix FR dispo.
+    useEffect(() => {
+        if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+        try {
+            window.speechSynthesis.getVoices();
+            window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+        } catch (e) { /* noop */ }
+    }, []);
+
     const speak = (text: string) => {
         if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
             window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(stripHtml(text));
             utterance.lang = 'fr-FR';
             utterance.rate = 1.0;
+            // iOS : forcer une voix française si dispo (sinon l'utterance peut rester muet
+            // tant que les voix ne sont pas chargées).
+            try {
+                const voices = window.speechSynthesis.getVoices();
+                const frVoice = voices.find(v => (v.lang || '').toLowerCase().startsWith('fr'));
+                if (frVoice) utterance.voice = frVoice;
+            } catch (e) { /* noop */ }
             
             utterance.onstart = () => {
                 isSpeakingRef.current = true;
@@ -779,11 +796,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 triggerHaptic();
                                 // Scroll auto vers le focus card (HUD)
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                                
-                                // On attend un peu que le mode focus s'active
-                                setTimeout(() => {
-                                    speak(recipe.steps[0]);
-                                }, 500);
+
+                                // IMPORTANT iOS : speechSynthesis.speak() doit être appelé
+                                // SYNCHRONEMENT dans le geste utilisateur pour débloquer le TTS.
+                                // Un setTimeout casse la chaîne du geste → aucune voix.
+                                speak(recipe.steps[0]);
                             }}>
                                 <span className={styles.focusBtnIcon}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1245,6 +1262,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                                 exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
                                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                                onClick={() => {
+                                    handleNextStep();
+                                    triggerHaptic();
+                                }}
+                                style={{ cursor: 'pointer' }}
                             >
                                 <div className={styles.focusStepHeader}>
                                     <div className={styles.focusStepNumber}>Étape {activeStepIndex + 1} / {recipe.steps.length}</div>
