@@ -78,6 +78,26 @@ function decodeHtmlEntities(text) {
         .replace(/\u00AB/g, '"').replace(/\u00BB/g, '"');
 }
 
+// Marqueurs (dans le titre) de plats portugais souvent mal tagués "Espagne" sur WP.
+// Phrases précises pour éviter les collisions (ex. "Natillas" espagnol ne matche pas "de nata").
+const PORTUGAL_MARKERS = [
+    'bifana', 'piri piri', 'piri-piri', 'bola de berlim', 'jardineira', 'bacalhau',
+    'francesinha', 'caldo verde', 'pastel de nata', 'pastéis de nata', 'pasteis de nata',
+    'de nata', 'portugais', 'portugaise', 'portugal',
+];
+
+/**
+ * Reclasse en "Portugal" les recettes portugaises détectées via le titre,
+ * et retire le tag "Espagne" erroné. Idempotent.
+ */
+function normalizeCountryTags(tags, title) {
+    const t = (title || '').toLowerCase();
+    if (!PORTUGAL_MARKERS.some(m => t.includes(m))) return tags;
+    let out = (tags || []).filter(x => String(x).toLowerCase() !== 'espagne');
+    if (!out.some(x => String(x).toLowerCase() === 'portugal')) out.push('Portugal');
+    return out;
+}
+
 /**
  * Extrait les données structurées du contenu HTML d'un post WordPress
  */
@@ -210,7 +230,7 @@ function extractRecipeData(post) {
         videoHtml: videoHtml,
         ingredients: ingredients.length > 0 ? ingredients : [{ quantity: "", name: "Ingrédients détaillés dans la vidéo" }],
         steps: steps.length > 0 ? steps : ["Suivre les instructions détaillées dans la vidéo"],
-        tags: post._embedded?.['wp:term']?.[1]?.map(tag => tag.name) || [],
+        tags: normalizeCountryTags(post._embedded?.['wp:term']?.[1]?.map(tag => tag.name) || [], title),
         isFeatured: post.sticky || false,
         isFavorite: false,
         address: ""

@@ -108,8 +108,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "épicé",
-            "Espagne",
-            "Plats"
+            "Plats",
+            "Portugal"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -186,8 +186,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "épicé",
-            "Espagne",
-            "Plats"
+            "Plats",
+            "Portugal"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -263,8 +263,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "épicé",
-            "Espagne",
-            "Plats"
+            "Plats",
+            "Portugal"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -4035,8 +4035,8 @@ export const mockRecipes: Recipe[] = [
             "Mettre la crème dans une poche à douille et fourrer les beignets."
         ],
         "tags": [
-            "Espagne",
-            "pâtisserie"
+            "pâtisserie",
+            "Portugal"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -15910,9 +15910,9 @@ export const mockRecipes: Recipe[] = [
             "Couper les Bambas horizontalement, garnir généreusement ou pocher la crème, replacer les dessus et saupoudrer généreusement de sucre glace. Moelleux, aériens et merveilleusement simples - une pâtisserie classique fourrée à la crème qui ne manque jamais de ravir."
         ],
         "tags": [
-            "Espagne",
             "Famille",
-            "Végé"
+            "Végé",
+            "Portugal"
         ],
         "isFeatured": false,
         "isFavorite": false,

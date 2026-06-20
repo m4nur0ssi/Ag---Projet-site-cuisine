@@ -27,6 +27,7 @@ const FILTER_GROUPS = {
         { label: '🇱🇧 Liban', tag: 'Liban' },
         { label: '🇲🇽 Mexique', tag: 'Mexique' },
         { label: '🕌 Orient', tag: 'Orient' },
+        { label: '🇵🇹 Portugal', tag: 'Portugal' },
         { label: '🇺🇸 USA', tag: 'USA' },
     ],
     tendances: [

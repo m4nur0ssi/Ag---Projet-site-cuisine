@@ -43,6 +43,7 @@ const countries: FilterItem[] = [
     { id: 'cnt-france', name: 'France', icon: '🇫🇷', tag: 'France', color: '#0055A4' },
     { id: 'cnt-italie', name: 'Italie', icon: '🇮🇹', tag: 'Italie', color: '#008C45' },
     { id: 'cnt-espagne', name: 'Espagne', icon: '🇪🇸', tag: 'Espagne', color: '#F1BF00' },
+    { id: 'cnt-portugal', name: 'Portugal', icon: '🇵🇹', tag: 'Portugal', color: '#006600' },
     { id: 'cnt-grece', name: 'Grèce', icon: '🇬🇷', tag: 'Grece', color: '#0D5EAF' },
     { id: 'cnt-liban', name: 'Liban', icon: '🇱🇧', tag: 'Liban', color: '#EE161F' },
     { id: 'cnt-usa', name: 'USA', icon: '🇺🇸', tag: 'USA', color: '#B22234' },

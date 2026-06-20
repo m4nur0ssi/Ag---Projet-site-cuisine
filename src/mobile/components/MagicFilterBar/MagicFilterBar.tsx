@@ -49,6 +49,7 @@ const countries: FilterItem[] = [
     { id: 'cnt-liban', name: 'Liban', icon: '🇱🇧', tag: 'Liban', color: '#EE161F' },
     { id: 'cnt-mexique', name: 'Mexique', icon: '🇲🇽', tag: 'Mexique', color: '#006847' },
     { id: 'cnt-orient', name: 'Orient', icon: '🕌', tag: 'Orient', color: '#8B4513' },
+    { id: 'cnt-portugal', name: 'Portugal', icon: '🇵🇹', tag: 'Portugal', color: '#006600' },
     { id: 'cnt-usa', name: 'USA', icon: '🇺🇸', tag: 'USA', color: '#B22234' },
 ].sort((a, b) => a.name.localeCompare(b.name, 'fr'));
 
