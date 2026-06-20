@@ -71,31 +71,31 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             1 cup diced limes"
+                "name": "🥣\n             1 tasse de citrons coupés en dés"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 glass water"
+                "name": "🥣\n             1 verre d'eau"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             3 oz condensed milk"
+                "name": "🥣\n             3 oz de lait condensé"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Ice"
+                "name": "🥣\n             Glace"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Lime wheel & mint for garnish"
+                "name": "🥣\n             Rouelle de citron et menthe pour la garniture"
             }
         ],
         "steps": [
-            "Add diced limes and water to a blender",
-            "Blend until combined",
-            "Sieve the mixture into a glass or pitcher",
-            "Stir in condensed milk until creamy",
-            "Pour over ice and garnish with a lime wheel & mint"
+            "Ajoutez les citrons coupés en dés et l'eau dans un blender",
+            "Mélangez jusqu'à ce que tout soit combiné",
+            "Filtrez le mélange dans un verre ou un pichet",
+            "Remuez le lait condensé jusqu'à ce que cela devienne crémeux",
+            "Versez sur la glace et garnissez d'une rouelle de citron et de menthe"
         ],
         "tags": [
             "Rafraîchissements",
@@ -280,48 +280,48 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             150g sugar"
+                "name": "🥣\n             150g sucre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             120ml water"
+                "name": "🥣\n             120ml eau"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             50ml lemon juice"
+                "name": "🥣\n             50ml jus de citron"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Lemon peel from 1 medium lemon"
+                "name": "🥣\n             Zeste de citron d'un citron moyen"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1kg watermelon, peeled and cut into cubes"
+                "name": "🥣\n             1kg pastèque, pelée et coupée en dés"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             10-15 fresh mint leaves"
+                "name": "🥣\n             10-15 feuilles de menthe fraîches"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Ice cubes"
+                "name": "🥣\n             Glaces"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Lemon slices"
+                "name": "🥣\n             Tranches de citron"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Extra watermelon cubes for topping"
+                "name": "🥣\n             Dés de pastèque supplémentaires pour la décoration"
             }
         ],
         "steps": [
-            "Add the sugar, water, lemon peel and lemon juice to a saucepan place over medium heat.",
-            "Heat gently, stirring until the sugar dissolves and the syrup thickens slightly. Remove from the heat and let the lemon peel infuse for 15 minutes. Strain the syrup and allow it to cool completely.",
-            "Add the watermelon cubes and mint leaves to a blender. Blend until completely smooth.",
-            "Add ice cubes lemon slices, mint and lemon syrup, then stir well.",
-            "Add a little cold water if you prefer a lighter consistency.",
-            "Serve chilled and enjoy 🍉✨🍋"
+            "Ajoutez le sucre, l'eau, le zeste de citron et le jus de citron dans une casserole placée sur feu moyen.",
+            "Chauffez doucement, en remuant jusqu'à ce que le sucre se dissolve et le sirop épaississe légèrement. Retirez du feu et laissez le zeste de citron infuser pendant 15 minutes. Filtrez le sirop et laissez-le refroidir complètement.",
+            "Ajoutez les dés de pastèque et les feuilles de menthe dans un blender. Mixez jusqu'à obtenir une texture complètement lisse.",
+            "Ajoutez des glaces, des tranches de citron, de la menthe et du sirop de citron, puis remuez bien.",
+            "Ajoutez un peu d'eau froide si vous préférez une consistance plus légère.",
+            "Servez frais et savourez 🍉✨🍋"
         ],
         "tags": [
             "Rafraîchissements",

@@ -128,8 +128,17 @@ jobs:
       # Traduction FR (anglais/espagnol/autre → français), avec cache persistant
       # → ne re-traduit que les recettes nouvelles/modifiées (économise Groq).
       # Nécessite le secret GROQ_API_KEY. Non bloquant si l'IA échoue.
+      # 2 passes : la 2e rattrape via le cache ce qui a échoué en 429 à la 1re.
       # ------------------------------------------------------------------
-      - name: 🌍 Traduction FR (cache)
+      - name: 🌍 Traduction FR (passe 1)
+        run: node translate-recipes-fr.js
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          TRANSLATE_CONCURRENCY: "1"
+          TRANSLATE_THROTTLE_MS: "1500"
+        continue-on-error: true
+
+      - name: 🌍 Traduction FR (passe 2 — rattrapage 429)
         run: node translate-recipes-fr.js
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
