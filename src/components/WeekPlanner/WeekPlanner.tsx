@@ -151,6 +151,8 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         localStorage.setItem('meal-planner-week', JSON.stringify(newPlan));
         // Plan modifié → la liste fusionnée + la pastille doivent se rafraîchir.
         window.dispatchEvent(new Event('shoppingListUpdated'));
+        // …et le survol "recettes du jour" de l'icône planificateur (Header).
+        window.dispatchEvent(new Event('meal-plan-updated'));
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
             await supabase.from('meal_plans').upsert({

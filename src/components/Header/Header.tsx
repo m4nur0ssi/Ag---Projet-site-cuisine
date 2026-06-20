@@ -1,6 +1,6 @@
 'use client';
 // Vercel Deployment Sync V18.0 - Sync Button Edition
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import SpotlightSearch from '../SpotlightSearch/SpotlightSearch';
 import SplitTitle from '../SplitTitle/SplitTitle';
@@ -73,22 +73,26 @@ export default function Header({
         return () => { window.removeEventListener('planner-tooltip-keep', keep); window.removeEventListener('planner-tooltip-leave', leave); window.removeEventListener('closePlannerTooltip', forceHide); };
     }, []);
 
-    useEffect(() => {
-        console.log('[Header] auth useEffect running');
-        const loadTodayMeals = async (userId: string) => {
-            const days = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
-            const today = days[new Date().getDay()];
-            const { data, error } = await supabase.from('meal_plans').select('plan').eq('user_id', userId).maybeSingle();
-            console.log('[PlannerTooltip] today=', today, 'supabase data=', data, 'error=', error);
-            const plan = data?.plan || JSON.parse(localStorage.getItem('meal-planner-week') || '{}');
-            console.log('[PlannerTooltip] plan keys=', Object.keys(plan), 'dayPlan=', plan[today]);
-            const dayPlan = plan[today] || {};
-            const midiRecipe = dayPlan['Midi'];
-            const soirRecipe = dayPlan['Soir'];
-            // Store full recipe objects so openRecipe event has all data
-            setTodayMeals({ midi: midiRecipe || undefined, soir: soirRecipe || undefined });
-        };
+    // Calcule les recettes du jour (Midi/Soir) pour le survol de l'icône planificateur.
+    // Source : Supabase (meal_plans) avec repli localStorage. On retombe aussi sur le
+    // localStorage si Supabase renvoie un plan vide (désync entre appareils).
+    const loadTodayMeals = useCallback(async (userId: string) => {
+        const days = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+        const today = days[new Date().getDay()];
+        let plan: any = {};
+        try {
+            const { data } = await supabase.from('meal_plans').select('plan').eq('user_id', userId).maybeSingle();
+            if (data?.plan && Object.keys(data.plan).length) plan = data.plan;
+        } catch { /* repli localStorage ci-dessous */ }
+        if (!plan || !Object.keys(plan).length) {
+            try { plan = JSON.parse(localStorage.getItem('meal-planner-week') || '{}'); } catch { plan = {}; }
+        }
+        const dayPlan = plan[today] || {};
+        // Store full recipe objects so openRecipe event has all data
+        setTodayMeals({ midi: dayPlan['Midi'] || undefined, soir: dayPlan['Soir'] || undefined });
+    }, []);
 
+    useEffect(() => {
         const init = (session: any) => {
             const user = session?.user ?? null;
             setAuthUser(user);
@@ -100,7 +104,20 @@ export default function Header({
         supabase.auth.getSession().then(({ data: { session } }) => init(session));
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => init(session));
         return () => subscription.unsubscribe();
-    }, []);
+    }, [loadTodayMeals]);
+
+    // Rafraîchit les recettes du jour quand le plan change (ajout/suppression dans le
+    // planificateur) ou à sa fermeture — sinon le survol restait figé jusqu'à un reload.
+    useEffect(() => {
+        if (!authUser) return;
+        const refresh = () => loadTodayMeals(authUser.id);
+        window.addEventListener('meal-plan-updated', refresh);
+        window.addEventListener('shoppingListUpdated', refresh);
+        return () => {
+            window.removeEventListener('meal-plan-updated', refresh);
+            window.removeEventListener('shoppingListUpdated', refresh);
+        };
+    }, [authUser, loadTodayMeals]);
 
     useEffect(() => {
         const handleSearchOpen = () => setIsSearchOpen(true);
