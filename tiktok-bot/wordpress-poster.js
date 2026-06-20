@@ -22,8 +22,17 @@ function generateRecipeHtml(recipe) {
 
     const stepsHtml = (recipe.steps || []).map(s => `<li style="margin-bottom: 20px; font-size: 1.1em; padding-bottom: 15px; border-bottom: 1px solid #f1f2f6;">${s}</li>`).join('');
     
+    const youtubeId = extractYouTubeId(recipe.youtubeUrl);
     const tiktokId = extractTikTokId(recipe.tiktokUrl);
-    const tiktokEmbed = tiktokId ? `
+    let tiktokEmbed;
+    if (youtubeId) {
+        // Embed YouTube (iframe responsive 16:9).
+        tiktokEmbed = `
+<div style="position: relative; width: 100%; max-width: 605px; margin: 20px auto; aspect-ratio: 16/9;">
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${youtubeId}" title="Recette en vidéo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 12px;"></iframe>
+</div>`;
+    } else if (tiktokId) {
+        tiktokEmbed = `
 <div style="margin: 20px auto; max-width: 325px; min-width: 325px;">
     <blockquote class="tiktok-embed" cite="https://www.tiktok.com/v/${tiktokId}" data-video-id="${tiktokId}" style="max-width: 605px;min-width: 325px;">
         <section>
@@ -31,7 +40,10 @@ function generateRecipeHtml(recipe) {
         </section>
     </blockquote>
     <script async src="https://www.tiktok.com/embed.js"></script>
-</div>` : `<p style="text-align:center;"><a href="${recipe.tiktokUrl}" target="_blank">🔗 Voir la vidéo sur TikTok</a></p>`;
+</div>`;
+    } else {
+        tiktokEmbed = recipe.tiktokUrl ? `<p style="text-align:center;"><a href="${recipe.tiktokUrl}" target="_blank">🔗 Voir la vidéo</a></p>` : '';
+    }
 
     const jsonLd = {
         "@context": "http://schema.org/",
@@ -97,6 +109,14 @@ function extractTikTokId(url) {
     const idOnly = url.match(/video\/(\d+)/);
     if (idOnly) return idOnly[1];
     return null;
+}
+
+// Extrait l'ID vidéo YouTube (watch?v=, youtu.be/, /shorts/, /embed/).
+function extractYouTubeId(url) {
+    if (!url) return null;
+    if (/^[\w-]{11}$/.test(url)) return url; // déjà un ID
+    const m = url.match(/(?:v=|\/shorts\/|youtu\.be\/|\/embed\/|\/v\/)([\w-]{11})/);
+    return m ? m[1] : null;
 }
 
 async function uploadImageToWP(photoUrl, user, pass, wpUrl, encoding) {
@@ -237,4 +257,4 @@ async function postToWordPressXMLRPC(recipe) {
     } catch (e) { return { success: false, error: e.message }; }
 }
 
-module.exports = { postToWordPress: postToWordPressXMLRPC, postToWordPressXMLRPC, generateRecipeHtml, extractTikTokId };
+module.exports = { postToWordPress: postToWordPressXMLRPC, postToWordPressXMLRPC, generateRecipeHtml, extractTikTokId, extractYouTubeId };

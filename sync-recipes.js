@@ -176,8 +176,12 @@ function extractRecipeData(post) {
     // 6. Extraction de la vidéo TikTok
     let videoHtml = "";
     const tiktokMatch = cleanContent.match(/<blockquote[^>]*tiktok-embed[\s\S]*?<\/blockquote>/i);
+    const youtubeMatch = cleanContent.match(/<iframe[^>]*(?:youtube\.com|youtu\.be)[\s\S]*?<\/iframe>/i);
     if (tiktokMatch) {
         videoHtml = tiktokMatch[0] + '<script async src="https://www.tiktok.com/embed.js"></script>';
+    } else if (youtubeMatch) {
+        // Vidéo YouTube (recette ajoutée manuellement via add-youtube-recipe.js)
+        videoHtml = youtubeMatch[0];
     }
 
     // Description propre (avant le plugin)
