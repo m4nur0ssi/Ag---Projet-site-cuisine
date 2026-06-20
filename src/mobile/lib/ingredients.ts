@@ -7,7 +7,36 @@ export const normalizeIng = (s: string) =>
 // Unités de MESURE réelles uniquement. Les contenants (gousse, tranche, sachet, verre…)
 // sont volontairement EXCLUS : ils sont retirés du nom (stripMeasure) pour que
 // "1 gousse d'ail" fusionne avec "ail" (clé par nom, pas par contenant).
-const KNOWN_UNITS = ['g', 'kg', 'mg', 'ml', 'cl', 'l', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c'];
+const KNOWN_UNITS = ['g', 'kg', 'mg', 'ml', 'cl', 'l', 'dl', 'cas', 'cac', 'cs', 'cc', 'c.à.s', 'c.à.c'];
+
+// Conversion vers une unité de base (g pour le poids, ml pour le volume) afin
+// d'ADDITIONNER des quantités exprimées dans des unités différentes (ex. 1 kg + 200 g,
+// 1 brique + 10 cl). facteur = combien d'unités de base vaut 1 unité.
+const WEIGHT_TO_G: Record<string, number> = { g: 1, gr: 1, gramme: 1, grammes: 1, mg: 0.001, kg: 1000 };
+const VOLUME_TO_ML: Record<string, number> = { ml: 1, cl: 10, dl: 100, l: 1000, litre: 1000, litres: 1000 };
+// Contenants à volume standard connu (en ml). "1 brique de crème" = 20 cl = 200 ml.
+const CONTAINER_TO_ML: Record<string, number> = { brique: 200, briques: 200 };
+
+// Ramène (qty, unit) à l'unité de base (g ou ml). Renvoie l'unité d'origine si inconnue.
+const toBaseUnit = (qty: number | null, unit: string): { qty: number | null; unit: string } => {
+    const u = normalizeIng(unit);
+    if (qty == null) return { qty, unit: u };
+    if (WEIGHT_TO_G[u] != null) return { qty: qty * WEIGHT_TO_G[u], unit: 'g' };
+    if (VOLUME_TO_ML[u] != null) return { qty: qty * VOLUME_TO_ML[u], unit: 'ml' };
+    return { qty, unit: u };
+};
+
+// Affichage lisible d'une quantité en unité de base : g→kg si ≥1000, ml→l/cl.
+export const prettyQtyUnit = (qty: number, unit: string): string => {
+    if (unit === 'g') return qty >= 1000 && qty % 1000 === 0 ? `${qty / 1000} kg`
+        : qty >= 1000 ? `${Math.round(qty / 10) / 100} kg` : `${fmtQty(qty)} g`;
+    if (unit === 'ml') {
+        if (qty >= 1000 && qty % 1000 === 0) return `${qty / 1000} L`;
+        if (qty % 10 === 0) return `${qty / 10} cl`;
+        return `${fmtQty(qty)} ml`;
+    }
+    return `${fmtQty(qty)}${unit ? ' ' + unit : ''}`;
+};
 
 // Mots de mesure/conditionnement à retirer du nom (pour affichage + recherche)
 const MEASURE_WORDS = [
@@ -16,6 +45,7 @@ const MEASURE_WORDS = [
     'tete', 'tetes', 'tête', 'têtes',
     'verre', 'verres', 'tasse', 'tasses', 'boite', 'boites', 'boîte', 'boîtes', 'brin', 'brins',
     'tige', 'tiges', 'bouquet', 'bouquets', 'pot', 'pots', 'barquette', 'barquettes', 'poignee', 'poignée',
+    'brique', 'briques', 'dl',
     'g', 'gr', 'gramme', 'grammes', 'kg', 'mg', 'ml', 'cl', 'l', 'litre', 'litres',
 ];
 
@@ -65,10 +95,15 @@ export const parseIngredient = (raw: string): ParsedIng => {
     }
     const m = s.match(/^(\d+(?:[.,]\d+)?)\s*([^\s\d]+)?\s*(.*)$/);
     if (m) {
-        const qty = parseFloat(m[1].replace(',', '.'));
+        let qty: number | null = parseFloat(m[1].replace(',', '.'));
         let unit = (m[2] || '').toLowerCase().replace(/\.$/, '');
         let name = (m[3] || '').trim();
-        if (unit && !KNOWN_UNITS.includes(unit)) {
+        const unitNorm = normalizeIng(unit);
+        if (unit && CONTAINER_TO_ML[unitNorm] != null) {
+            // Contenant à volume connu (brique = 20 cl) → convertit en ml.
+            qty = qty * CONTAINER_TO_ML[unitNorm];
+            unit = 'ml';
+        } else if (unit && !KNOWN_UNITS.includes(unit)) {
             name = `${m[2]} ${name}`.trim();
             unit = '';
         }
@@ -94,10 +129,19 @@ const SYNONYMS: Record<string, string> = {
     'persil plat': 'persil', 'persil frise': 'persil', 'persil frais': 'persil',
     'coriandre fraiche': 'coriandre', 'basilic frais': 'basilic', 'menthe fraiche': 'menthe',
     'citron vert': 'citron vert', 'jus de citron': 'citron',
+    // Crème liquide : variantes du même produit (≠ crème fraîche / épaisse).
+    'creme': 'creme liquide', 'creme entiere': 'creme liquide', 'creme fleurette': 'creme liquide',
+    'creme liquide entiere': 'creme liquide', 'creme fraiche liquide': 'creme liquide',
+    'creme de soja': 'creme liquide', 'creme liquide 30': 'creme liquide',
 };
 
 // Ingrédients où la forme "en poudre" est un PRODUIT distinct du frais
 // (on garde 2 lignes : "<x>" et "<x> en poudre"). Pour le reste, on fusionne tout.
+// Ré-accentuation pour l'affichage des noms canoniques normalisés (sans accent).
+const DISPLAY_ACCENT: Record<string, string> = {
+    'creme liquide': 'crème liquide', 'creme fraiche': 'crème fraîche', 'creme epaisse': 'crème épaisse',
+};
+
 const POWDER_DISTINCT = ['ail', 'oignon', 'gingembre', 'coriandre'];
 const SPOON_UNITS = ['cac', 'cas', 'cc', 'cs', 'càc', 'càs', 'c.à.c', 'c.à.s'];
 const POWDER_RE = /\s*(en poudre|semoule|moulus?|moulue?s?|deshydrates?)\b.*$/;
@@ -333,21 +377,26 @@ export const buildConsolidatedItems = (
         if (!p.name) return;
         // Canonicalisation : regroupe les variantes du même ingrédient (ex. ail).
         const c = canonicalIng(p.name, p.unit, raw);
-        p.name = c.name; p.unit = c.unit;
-        const key = `${c.name}|${c.unit}`;
+        // Unité ramenée à la base (g / ml) pour additionner cl + ml + brique, kg + g…
+        const b = toBaseUnit(p.qty, c.unit);
+        // Nom AFFICHÉ : on garde l'accentuation d'origine si le canonique = l'original
+        // (juste normalisé) ; sinon on ré-accentue les cas connus, sinon le canonique.
+        const dispName = normalizeIng(p.name) === c.name ? p.name : (DISPLAY_ACCENT[c.name] || c.name);
+        p.name = dispName; p.unit = b.unit;
+        const key = `${c.name}|${b.unit}`;
         const existing = map.get(key);
         if (existing) {
             existing.count++;
-            if (p.qty != null) existing.qty = (existing.qty || 0) + p.qty;
+            if (b.qty != null) existing.qty = (existing.qty || 0) + b.qty;
             if (opts?.slotKey) existing.keys.push(opts.slotKey);
             if (opts?.manual) { existing.manual = true; existing.ord = ++ord; }
-            // Fusionné → on recompose un affichage avec la quantité additionnée.
+            // Fusionné → on recompose un affichage avec la quantité additionnée (unité lisible).
             existing.display = existing.qty != null
-                ? `${fmtQty(existing.qty)}${existing.unit ? ' ' + existing.unit : ''} ${existing.name}`.trim()
+                ? `${prettyQtyUnit(existing.qty, existing.unit)} ${existing.name}`.trim()
                 : existing.name;
         } else {
             map.set(key, {
-                key, icon: getIngIcon(p.name), name: capFirst(p.name), unit: p.unit, qty: p.qty,
+                key, icon: getIngIcon(p.name), name: capFirst(p.name), unit: b.unit, qty: b.qty,
                 keys: opts?.slotKey ? [opts.slotKey] : [],
                 manual: opts?.manual, ord: opts?.manual ? ++ord : undefined,
                 display: clean || capFirst(p.name), count: 1,
