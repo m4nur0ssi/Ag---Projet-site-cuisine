@@ -147,6 +147,19 @@ jobs:
         continue-on-error: true
 
       # ------------------------------------------------------------------
+      # Répercute la traduction (ingrédients + étapes) sur WordPress lui-même,
+      # uniquement pour les recettes traduites ce run (wp-writeback-ids.txt).
+      # Le titre n'est jamais modifié. Non bloquant.
+      # ------------------------------------------------------------------
+      - name: 📝 Traduction FR → WordPress (write-back)
+        run: node translate-wp-content.js --ids-file wp-writeback-ids.txt
+        env:
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
+          WP_URL: http://${{ secrets.WP_PUBLIC_IP }}/wordpress
+        continue-on-error: true
+
+      # ------------------------------------------------------------------
       # Mise à jour du fichier de stats
       # ------------------------------------------------------------------
       - name: 📊 Update sync-stats.json

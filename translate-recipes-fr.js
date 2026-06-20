@@ -165,12 +165,14 @@ async function pool(items, n, worker) {
     if (hitN) console.log(`  ⚡ ${hitN} depuis le cache (aucun appel IA).`);
     console.log(`  🤖 ${toTranslate.length} à traduire via Groq.`);
 
+    const translatedIds = []; // recettes réellement traduites ce run → à pousser sur WordPress
     await pool(toTranslate, CONC, async (r) => {
         try {
             const tr = await translateRecipe(r);
             cache.set(String(r.id), tr);
             CACHE[cacheKey(r)] = tr; // mémorise pour les prochaines syncs
             saveCache();
+            translatedIds.push(String(r.id));
             okN++;
         } catch (e) {
             console.error(`  ❌ #${r.id} "${r.title}" : ${e.message}`);
@@ -194,5 +196,16 @@ async function pool(items, n, worker) {
     apply(desk.arr); apply(mob.arr);
     writeFile(FILES[0], desk, desk.arr);
     writeFile(FILES[1], mob, mob.arr);
+    // Liste des ids traduits ce run → consommée par translate-wp-content.js pour
+    // répercuter la traduction (ingrédients + étapes) sur WordPress lui-même.
+    // Union avec l'éventuel fichier existant (cas des 2 passes successives en CI).
+    try {
+        const wbPath = path.join(__dirname, 'wp-writeback-ids.txt');
+        let prev = [];
+        try { prev = fs.readFileSync(wbPath, 'utf8').split(',').map(s => s.trim()).filter(Boolean); } catch { /* fichier absent */ }
+        const merged = [...new Set([...prev, ...translatedIds])];
+        fs.writeFileSync(wbPath, merged.join(','));
+    } catch { /* noop */ }
     console.log(`\n✅ Traduit : ${okN} | erreurs : ${errN}. Fichiers mockData (desktop+mobile) mis à jour.`);
+    if (translatedIds.length) console.log(`   → ${translatedIds.length} id(s) à répercuter sur WordPress : wp-writeback-ids.txt`);
 })();
