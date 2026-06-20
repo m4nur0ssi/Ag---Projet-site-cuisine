@@ -2,11 +2,193 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/06/2026 11:52:29
- * Total: 394 recettes
+ * Dernière mise à jour: 20/06/2026 12:05:15
+ * Total: 396 recettes
  */
-export const exportSyncId = "1781956349686";
+export const exportSyncId = "1781957115323";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6208",
+        "title": "Peanut Butter Latte",
+        "description": "Ma boisson préférée dès qu'il commence à faire beau !!",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7640409685983595809\" data-video-id=\"7640409685983595809\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7640409685983595809\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 Shots d'expresso"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200ml Lait demi-écrémé (ou végétal)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1càs Beurre de cacahuètes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1càs Sirop d'érable"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 Pincée de Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Glaçons"
+            }
+        ],
+        "steps": [
+            "Dans un blender déposer le lait, le beurre de cacahuètes, le sirop d'érable, des glaçons et une pincée de sel.",
+            "Mixer jusqu'à ce que le mélange soit bien homogène.",
+            "Remplir votre verre avec la préparation lactée puis ajouter les shots d'expresso."
+        ],
+        "tags": [
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6206",
+        "title": "Brazilian Lemonade",
+        "description": "Creamy, citrusy, and ridiculously refreshing. One sip and you'll see why this drink is always a favorite.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7637103921273572621\" data-video-id=\"7637103921273572621\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7637103921273572621\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cup diced limes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 glass water"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 oz condensed milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Ice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lime wheel & mint for garnish"
+            }
+        ],
+        "steps": [
+            "Add diced limes and water to a blender",
+            "Blend until combined",
+            "Sieve the mixture into a glass or pitcher",
+            "Stir in condensed milk until creamy",
+            "Pour over ice and garnish with a lime wheel & mint"
+        ],
+        "tags": [
+            "Rafraîchissements",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6204",
+        "title": "Gâteau aux abricots et aux amandes",
+        "description": "Un gâteau aux amandes doux et délicat, garni d'abricots juteux et d'amandes effilées dorées - élégant, moelleux et magnifiquement équilibré.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652921583715044641\" data-video-id=\"7652921583715044641\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652921583715044641\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             120 g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             90 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             un peu de vanille fraîchement moulue"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             120 g de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g d'amandes blanchies moulues"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             7 g de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             environ 4 à 5 petites abricots"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             beaucoup d'amandes effilées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             sucre glace pour saupoudrer"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 175°C (350°F), chaleur statique. Tapisser le fond du moule à gâteau de papier sulfurisé et graisser légèrement les côtés.",
+            "Battre le beurre, le sucre et la vanille jusqu'à obtenir une consistance légère et crémeuse.",
+            "Ajouter les œufs un par un et bien mélanger après chaque ajout.",
+            "Mélanger la farine tout usage, les amandes moulues, la levure chimique et le sel.",
+            "Incorporer brièvement les ingrédients secs à la pâte avec le lait jusqu'à obtenir une consistance lisse. Ne pas trop mélanger.",
+            "Étaler la pâte uniformément dans le moule préparé.",
+            "Couper les abricots en deux et les disposer sur le dessus, en les pressant légèrement dans la pâte.",
+            "Saupoudrer généreusement d'amandes effilées sur le gâteau.",
+            "Cuire au four à 175°C (350°F), chaleur statique, pendant environ 40 à 50 minutes jusqu'à ce qu'il soit doré. Le temps de cuisson peut varier légèrement selon le four.",
+            "Laisser le gâteau refroidir complètement avant de le démouler.",
+            "Saupoudrer légèrement de sucre glace avant de servir."
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6202",
         "title": "Limonade brésilienne à la cerise",
@@ -21890,86 +22072,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4117",
-        "title": "Poulet rôti à l'espagnol",
-        "description": "Un poulet entier rôti avec des légumes, du chorizo et des épices typiques d'Espagne, parfait pour un repas convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F5867.jpeg&v=1774522625000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618636736079400214\" data-video-id=\"7618636736079400214\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618636736079400214\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             1 poulet entier"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 échalotes"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 poivron rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             100g de chorizo"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 Cas de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Cas d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 Caf de piment"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             3-4 pommes de terre de taille moyenne"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Espagne",
-            "Famille"
         ],
         "isFeatured": false,
         "isFavorite": false,
