@@ -21,71 +21,71 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             500g thinly sliced pork loin or shoulder"
+                "name": "🥣\n             500g de porc finement tranché (longe ou épaule)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ¼ cup olive oil"
+                "name": "🥣\n             ¼ tasse d'huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 tbsp butter"
+                "name": "🥣\n             1 cuillère à soupe de beurre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 onion, finely chopped"
+                "name": "🥣\n             1 oignon, finement haché"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             4 garlic cloves, minced"
+                "name": "🥣\n             4 gousses d'ail, hachées"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             ½ tbsp paprika"
+                "name": "🧂\n             ½ cuillère à soupe de paprika"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             ½ tbsp smoked paprika"
+                "name": "🧂\n             ½ cuillère à soupe de paprika fumé"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 bay leaves"
+                "name": "🥣\n             2 feuilles de laurier"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             2 tbsp pimenta moída (or piri piri sauce)"
+                "name": "🌶️\n             2 cuillères à soupe de pimenta moída (ou sauce piri piri)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ½ cup white wine"
+                "name": "🥣\n             ½ tasse de vin blanc"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 tbsp tomato paste"
+                "name": "🥣\n             1 cuillère à soupe de pâte de tomate"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ¼ cup Port wine"
+                "name": "🥣\n             ¼ tasse de vin de Porto"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ½ cup beer (Super Bock or Sagres)"
+                "name": "🥣\n             ½ tasse de bière (Super Bock ou Sagres)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ½ cup beef or chicken broth"
+                "name": "🥣\n             ½ tasse de bouillon de bœuf ou de poulet"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ½ tbsp lemon juice"
+                "name": "🥣\n             ½ cuillère à soupe de jus de citron"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1½ tsp salt"
+                "name": "🥣\n             1½ cuillères à café de sel"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             ½ tsp white pepper"
+                "name": "🥣\n             ½ cuillère à café de poivre blanc"
             },
             {
                 "quantity": "",
@@ -93,18 +93,18 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Mustard for serving"
+                "name": "🥣\n             Moutarde pour servir"
             }
         ],
         "steps": [
-            "Heat olive oil and butter in a pot. Sauté onion until golden.",
-            "Add garlic, both paprikas, bay leaves, and pimenta moída. Stir 30 seconds.",
-            "Mix in tomato paste and cook 1 minute.",
-            "Pour in wine, Port, beer, and broth. Boil, then simmer 10-15 minutes to burn off the alcohol.",
-            "Blend sauce (optional).",
-            "Add pork, salt, and pepper. Cover and simmer low 20 minutes, then uncover 5-10 minutes to thicken.",
-            "Stir in lemon juice at the end.",
-            "Serve on papo seco with mustard and sauce."
+            "Chauffer l'huile d'olive et le beurre dans une casserole. Faire sauter l'oignon jusqu'à ce qu'il soit doré.",
+            "Ajouter l'ail, les deux paprikas, les feuilles de laurier et la pimenta moída. Remuer pendant 30 secondes.",
+            "Mélanger la pâte de tomate et cuire 1 minute.",
+            "Verser le vin, le Porto, la bière et le bouillon. Faire bouillir, puis laisser mijoter 10-15 minutes pour brûler l'alcool.",
+            "Mixer la sauce (facultatif).",
+            "Ajouter le porc, le sel et le poivre. Couvrir et laisser mijoter à bas 20 minutes, puis découvrir 5-10 minutes pour épaissir.",
+            "Remuer le jus de citron à la fin.",
+            "Servir sur papo seco avec de la moutarde et de la sauce."
         ],
         "tags": [
             "épicé",
@@ -288,49 +288,49 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cipolla rossa grande"
+                "name": "🥣\n             1 oignon rouge grande"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 cucchiai aceto"
+                "name": "🥣\n             2 cuillères à soupe vinaigre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             100 g olive"
+                "name": "🥣\n             100 g olives"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             500 g pomodorini"
+                "name": "🥣\n             500 g tomates cerises"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 cucchiai capperi (meglio se di Pantelleria)"
+                "name": "🥣\n             2 cuillères à soupe câpres (mieux si de Pantelleria)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Origano"
+                "name": "🥣\n             Origan"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Basilico"
+                "name": "🌿\n             Basilic"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Sale"
+                "name": "🥣\n             Sel"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Olio evo"
+                "name": "🥣\n             Huile d'olive extra vierge"
             }
         ],
         "steps": [
-            "Cuocete le patate: potete lessarle in acqua salata oppure avvolgerle in un foglio di alluminio e cuocerle in forno o in friggitrice ad aria a 200 °C per circa 30 minuti, fino a quando saranno morbide.",
-            "Affettate finemente la cipolla rossa e mettetela in una ciotola con l'aceto. Lasciatela marinare per circa 10 minuti, in modo che perda il gusto troppo pungente.",
-            "Tagliate le patate a tocchetti regolari e aggiungetele alla ciotola con la cipolla marinata.",
-            "Unite i pomodorini tagliati a metà, le olive denocciolate, i capperi ben dissalati, un pizzico abbondante di origano e qualche foglia di basilico spezzettata a mano.",
-            "Regolate di sale e condite con un filo generoso di olio extravergine d'oliva.",
-            "Mescolate bene tutti gli ingredienti.",
-            "Lasciate riposare qualche minuto prima di servire, per permettere ai sapori di amalgamarsi al meglio."
+            "Faites cuire les pommes de terre : vous pouvez les faire bouillir dans de l'eau salée ou les envelopper dans une feuille d'aluminium et les faire cuire au four ou dans une friteuse à air à 200 °C pendant environ 30 minutes, jusqu'à ce qu'elles soient tendres.",
+            "Émincez finement l'oignon rouge et mettez-le dans un bol avec le vinaigre. Laissez-le mariner pendant environ 10 minutes, afin qu'il perde son goût trop piquant.",
+            "Coupez les pommes de terre en dés réguliers et ajoutez-les au bol avec l'oignon mariné.",
+            "Ajoutez les tomates cerises coupées en deux, les olives dénoyautées, les câpres bien dessalées, une pincée abondante d'origan et quelques feuilles de basilic déchiquetées à la main.",
+            "Assaisonnez de sel et arrosez d'un filet généreux d'huile d'olive extra vierge.",
+            "Mélangez bien tous les ingrédients.",
+            "Laissez reposer quelques minutes avant de servir, pour permettre aux saveurs de se mélanger au mieux."
         ],
         "tags": [
             "Healthy",

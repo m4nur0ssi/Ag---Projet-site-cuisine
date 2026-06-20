@@ -292,9 +292,23 @@ export const mockRecipes: Recipe[] = ${JSON.stringify(allPosts, null, 4)};
             if (!process.env.GROQ_API_KEY) {
                 console.log('ℹ️  Traduction auto sautée : GROQ_API_KEY absent.');
             } else {
+                // Réglages doux par défaut (free tier Groq) pour limiter les 429 :
+                // concurrence 1 + throttle 1.5 s. Surchargés par l'env si déjà défini.
+                // Deux passes : la 2e rattrape via le cache ce qui a échoué en 429.
+                const childEnv = {
+                    ...process.env,
+                    TRANSLATE_CONCURRENCY: process.env.TRANSLATE_CONCURRENCY || '1',
+                    TRANSLATE_THROTTLE_MS: process.env.TRANSLATE_THROTTLE_MS || '1500',
+                };
+                const runTranslate = (label) => {
+                    console.log(`\n🌍 Traduction FR auto (ingrédients + étapes) ${label}…`);
+                    require('child_process').execSync('node translate-recipes-fr.js', {
+                        cwd: __dirname, stdio: 'inherit', env: childEnv,
+                    });
+                };
                 try {
-                    console.log('\n🌍 Traduction FR auto du contenu non-français (ingrédients + étapes)…');
-                    require('child_process').execSync('node translate-recipes-fr.js', { cwd: __dirname, stdio: 'inherit' });
+                    runTranslate('— passe 1');
+                    runTranslate('— passe 2 (rattrapage 429)');
                 } catch (e) {
                     console.error('⚠️  Traduction échouée (non bloquant) :', e.message);
                 }
