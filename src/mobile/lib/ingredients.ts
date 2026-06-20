@@ -1,7 +1,8 @@
 // Helpers partagés pour parser / illustrer les ingrédients
 
 export const normalizeIng = (s: string) =>
-    (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+    (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/œ/g, 'oe').replace(/æ/g, 'ae').trim();
 
 // Unités de MESURE réelles uniquement. Les contenants (gousse, tranche, sachet, verre…)
 // sont volontairement EXCLUS : ils sont retirés du nom (stripMeasure) pour que
@@ -12,6 +13,7 @@ const KNOWN_UNITS = ['g', 'kg', 'mg', 'ml', 'cl', 'l', 'cas', 'cac', 'cs', 'cc',
 const MEASURE_WORDS = [
     'sachet', 'sachets', 'cuillere', 'cuilleres', 'cuillère', 'cuillères', 'cas', 'cac', 'càs', 'càc',
     'pincee', 'pincees', 'pincée', 'pincées', 'gousse', 'gousses', 'tranche', 'tranches',
+    'tete', 'tetes', 'tête', 'têtes',
     'verre', 'verres', 'tasse', 'tasses', 'boite', 'boites', 'boîte', 'boîtes', 'brin', 'brins',
     'tige', 'tiges', 'bouquet', 'bouquets', 'pot', 'pots', 'barquette', 'barquettes', 'poignee', 'poignée',
     'g', 'gr', 'gramme', 'grammes', 'kg', 'mg', 'ml', 'cl', 'l', 'litre', 'litres',
@@ -76,6 +78,73 @@ export const parseIngredient = (raw: string): ParsedIng => {
     return { qty: null, unit: '', name: stripMeasure(s) || s };
 };
 
+// ── Canonicalisation des noms d'ingrédients (fusion liste de courses) ──────────
+// But : regrouper les variantes du MÊME ingrédient (orthographe, pluriel, forme).
+// Synonymes explicites (normalisés, sans accent) → nom canonique. Extensible.
+const SYNONYMS: Record<string, string> = {
+    // Ail
+    'ail semoule': 'ail en poudre', 'ail moulu': 'ail en poudre', 'poudre d ail': 'ail en poudre',
+    'ail deshydrate': 'ail en poudre', 'ail en poudre': 'ail en poudre',
+    // Oignon
+    'oignon semoule': 'oignon en poudre', 'oignon moulu': 'oignon en poudre', 'poudre d oignon': 'oignon en poudre',
+    // Gingembre
+    'gingembre moulu': 'gingembre en poudre', 'poudre de gingembre': 'gingembre en poudre',
+    'coriandre moulue': 'coriandre en poudre', 'coriandre en poudre': 'coriandre en poudre',
+    // Herbes : fraîche / plat / frisé = même produit
+    'persil plat': 'persil', 'persil frise': 'persil', 'persil frais': 'persil',
+    'coriandre fraiche': 'coriandre', 'basilic frais': 'basilic', 'menthe fraiche': 'menthe',
+    'citron vert': 'citron vert', 'jus de citron': 'citron',
+};
+
+// Ingrédients où la forme "en poudre" est un PRODUIT distinct du frais
+// (on garde 2 lignes : "<x>" et "<x> en poudre"). Pour le reste, on fusionne tout.
+const POWDER_DISTINCT = ['ail', 'oignon', 'gingembre', 'coriandre'];
+const SPOON_UNITS = ['cac', 'cas', 'cc', 'cs', 'càc', 'càs', 'c.à.c', 'c.à.s'];
+const POWDER_RE = /\s*(en poudre|semoule|moulus?|moulue?s?|deshydrates?)\b.*$/;
+
+// Détecte une mesure "cuillère" depuis le texte BRUT (càc, cac, c. à café, c à s,
+// cuillère à soupe…), accents ignorés. Sert à classer "càc d'ail" en "ail en poudre".
+// Abréviations cuillère collées (càc/cac/cs…) en token isolé, OU forme verbeuse
+// "c. à café / c à s" (le 'a' doit être séparé par . ou espace, sinon "concassé"
+// déclencherait un faux positif), OU "cuillère".
+const SPOON_RAW_RE = /(^|[^a-z])(cac|cas|cc|cs)([^a-z]|$)|\bc[.\s]+a[.\s]*(c|caf|s|soup)|cuiller/;
+const isSpoonRaw = (raw: string) => SPOON_RAW_RE.test(normalizeIng(raw));
+
+// Pluriel → singulier (par mot). Exceptions : mots déjà terminés en 's' au singulier.
+const SING_EXCEPT = new Set(['ananas', 'anchois', 'jus', 'riz', 'mais', 'couscous', 'houmous', 'hummus', 'cassis', 'cresson', 'chips', 'pois', 'abats', 'epices', 'des']);
+const depluralize = (n: string) => n.split(' ').map(w => {
+    if (SING_EXCEPT.has(w) || w.length <= 3) return w;
+    if (/eaux$/.test(w)) return w.slice(0, -1);   // gateaux → gateau
+    if (/x$/.test(w)) return w.slice(0, -1);       // choux → chou
+    if (/s$/.test(w)) return w.slice(0, -1);       // oignons → oignon
+    return w;
+}).join(' ');
+
+// Retourne {name, unit} canoniques utilisés comme CLÉ de fusion.
+// ex: "càc d'ail" → {ail en poudre, ''} ; "gousse d'ail" / "tête d'ail" → {ail, ''} ;
+//     "ail semoule" → {ail en poudre, ''}.
+// Adjectifs de préparation retirés pour la fusion (oignon émincé = oignon).
+// NB : on ne retire PAS "frais/fraiche" (crème fraîche ≠ crème) ni les couleurs
+// (oignon rouge ≠ oignon blanc), qui distinguent de vrais produits.
+const PREP_RE = /\s+(haches?|hachees?|eminces?|emincees?|concasses?|concassees?|ciseles?|ciselees?|rapes?|rapees?|coupes?|coupees?|fondus?|fondues?|surgeles?|surgelees?|congeles?|congelees?|grilles?|grillees?|rotis?|roties?|en des|en lamelles|en rondelles|en tranches|en morceaux|en quartiers|en cubes|en julienne)\b/g;
+const stripPrep = (n: string) => n.replace(PREP_RE, '').replace(/\s+/g, ' ').trim();
+
+export const canonicalIng = (name: string, unit: string = '', raw: string = ''): { name: string; unit: string } => {
+    let n = depluralize(stripPrep(normalizeIng(name).replace(/\s+/g, ' ').trim()));
+    if (SYNONYMS[n]) n = SYNONYMS[n];
+    const u = normalizeIng(unit);
+    const isPowder = POWDER_RE.test(n) || /\bsemoule\b/.test(n);
+    const base = n.replace(POWDER_RE, '').trim();
+    if (POWDER_DISTINCT.includes(base)) {
+        // càc/càs d'ail = ail en poudre (convention demandée), unité neutralisée pour fusionner.
+        if (isPowder || SPOON_UNITS.includes(u) || (raw && isSpoonRaw(raw))) {
+            return { name: base + ' en poudre', unit: '' };
+        }
+        return { name: base, unit }; // frais : conserve l'unité (g, etc.) pour additionner
+    }
+    return { name: n, unit };
+};
+
 const ICONS: [string, string][] = [
     // ── Produits non-alimentaires / ménagers (placés en tête : matchs multi-mots
     //    prioritaires avant les aliments, ex. "vaisselle" contient "sel") ──
@@ -117,6 +186,43 @@ const ICONS: [string, string][] = [
     ['noisette', '🌰'], ['noix', '🌰'], ['amande', '🥜'], ['cacahuete', '🥜'],
     ['haricot', '🫘'], ['lentille', '🫘'], ['pois chiche', '🫛'], ['petit pois', '🫛'],
     ['gingembre', '🫚'], ['curry', '🍛'], ['epice', '🧂'],
+    // ── Fromages (emoji 🧀 quand pas d'image dédiée) ──
+    ['pecorino', '🧀'], ['scamorza', '🧀'], ['halloumi', '🧀'], ['leerdammer', '🧀'],
+    ['comte', '🧀'], ['gruyere', '🧀'], ['emmental', '🧀'], ['cheddar', '🧀'],
+    ['raclette', '🧀'], ['chevre', '🧀'], ['feta', '🧀'], ['boursin', '🧀'],
+    ['ricotta', '🧀'], ['burrata', '🧀'], ['mascarpone', '🧀'], ['gorgonzola', '🧀'],
+    ['roquefort', '🧀'], ['bleu', '🧀'], ['brie', '🧀'], ['camembert', '🧀'],
+    // ── Épices / condiments ──
+    ['tahini', '🥜'], ['tahin', '🥜'], ['sesame', '🌰'],
+    ['harissa', '🌶'], ['baharat', '🧂'], ['ras el hanout', '🧂'], ['7 epices', '🧂'],
+    ['5 epices', '🧂'], ['epices libanaises', '🧂'], ['paprika', '🌶'], ['cumin', '🧂'],
+    ['cannelle', '🧂'], ['muscade', '🧂'], ['sumac', '🧂'], ['herbes de provence', '🌿'],
+    ['laurier', '🌿'], ['thym', '🌿'], ['romarin', '🌿'], ['aneth', '🌿'], ['ciboulette', '🌿'],
+    ['sauce soja', '🍶'], ['soja', '🍶'], ['worcestershire', '🍶'], ['huitre', '🍶'],
+    ['moutarde', '🟡'], ['ketchup', '🍅'], ['mayonnaise', '🥚'], ['vinaigre', '🧴'],
+    // ── Féculents / divers ──
+    ['semoule', '🌾'], ['boulgour', '🌾'], ['quinoa', '🌾'], ['polenta', '🌽'],
+    ['chapelure', '🍞'], ['panko', '🍞'], ['gnocchi', '🥟'], ['raviolis', '🥟'],
+    ['gelatine', '🍮'], ['agar', '🍮'], ['levure', '🧁'], ['bicarbonate', '🧁'],
+    ['maizena', '🌽'], ['fecule', '🌽'], ['cacao', '🍫'], ['pralin', '🍫'],
+    // ── Sucré / biscuits ──
+    ['speculoos', '🍪'], ['boudoir', '🍪'], ['biscuit', '🍪'], ['tuc', '🍪'],
+    ['nutella', '🍫'], ['pate a tartiner', '🍫'], ['daim', '🍫'], ['kinder', '🍫'],
+    ['guimauve', '🍬'], ['chamallow', '🍬'], ['bonbon', '🍬'], ['caramel', '🍬'],
+    ['confiture', '🍓'], ['cranberries', '🔴'], ['canneberge', '🔴'], ['raisin sec', '🍇'],
+    // ── Légumes / fruits complémentaires ──
+    ['brocoli', '🥦'], ['chou-fleur', '🥦'], ['chou fleur', '🥦'], ['chou', '🥬'],
+    ['fenouil', '🥬'], ['poireau', '🥬'], ['celeri', '🥬'], ['radis', '🥬'],
+    ['betterave', '🥬'], ['navet', '🥬'], ['patate douce', '🍠'], ['potiron', '🎃'],
+    ['courge', '🎃'], ['cebette', '🧅'], ['echalote', '🧅'], ['poireau', '🧅'],
+    ['grenade', '🍎'], ['figue', '🍐'], ['datte', '🌰'], ['abricot', '🍑'],
+    ['peche', '🍑'], ['cerise', '🍒'], ['poire', '🍐'], ['kiwi', '🥝'], ['ananas', '🍍'],
+    ['mangue', '🥭'], ['melon', '🍈'], ['raisin', '🍇'], ['myrtille', '🫐'],
+    ['germes de soja', '🌱'], ['pousse', '🌱'], ['shiitake', '🍄'], ['tofu', '⬜'],
+    // ── Boissons / alcools ──
+    ['rhum', '🥃'], ['whisky', '🥃'], ['cognac', '🥃'], ['brandy', '🥃'],
+    ['liqueur', '🍶'], ['sirop', '🍯'], ['sirop erable', '🍁'], ['erable', '🍁'],
+    ['sirop agave', '🍯'], ['the', '🍵'], ['jus', '🧃'], ['limonade', '🥤'], ['soda', '🥤'],
 ];
 
 export const getIngIcon = (name: string) => {
@@ -225,7 +331,10 @@ export const buildConsolidatedItems = (
         const clean = cleanIngredientText(raw);
         const p = parseIngredient(raw);
         if (!p.name) return;
-        const key = `${normalizeIng(p.name)}|${p.unit}`;
+        // Canonicalisation : regroupe les variantes du même ingrédient (ex. ail).
+        const c = canonicalIng(p.name, p.unit, raw);
+        p.name = c.name; p.unit = c.unit;
+        const key = `${c.name}|${c.unit}`;
         const existing = map.get(key);
         if (existing) {
             existing.count++;
