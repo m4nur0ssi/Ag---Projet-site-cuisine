@@ -2,11 +2,176 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/06/2026 11:26:56
- * Total: 389 recettes
+ * Dernière mise à jour: 20/06/2026 11:39:50
+ * Total: 392 recettes
  */
-export const exportSyncId = "1781954816635";
+export const exportSyncId = "1781955590963";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6200",
+        "title": "Salade de melon",
+        "description": "Une salade de melon exceptionnelle et facile à réaliser, parfaite pour l'été.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652756567430925601\" data-video-id=\"7652756567430925601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652756567430925601\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 melon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             une poche de mélange quinoa et perles de blé aux épices douces"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             des billes de mozza"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n             framboises surgelées"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             basilic ou menthe fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             vinaigre balsamique"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6198",
+        "title": "Watermelon Mint Lemonade",
+        "description": "Une limonade rafraîchissante à la pastèque et à la menthe, idéale pour les chaudes journées d'été.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643863124499533078\" data-video-id=\"7643863124499533078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643863124499533078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             150g sugar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             120ml water"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50ml lemon juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lemon peel from 1 medium lemon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1kg watermelon, peeled and cut into cubes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10-15 fresh mint leaves"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Ice cubes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lemon slices"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Extra watermelon cubes for topping"
+            }
+        ],
+        "steps": [
+            "Add the sugar, water, lemon peel and lemon juice to a saucepan place over medium heat.",
+            "Heat gently, stirring until the sugar dissolves and the syrup thickens slightly. Remove from the heat and let the lemon peel infuse for 15 minutes. Strain the syrup and allow it to cool completely.",
+            "Add the watermelon cubes and mint leaves to a blender. Blend until completely smooth.",
+            "Add ice cubes lemon slices, mint and lemon syrup, then stir well.",
+            "Add a little cold water if you prefer a lighter consistency.",
+            "Serve chilled and enjoy 🍉✨🍋"
+        ],
+        "tags": [
+            "Rafraîchissements",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6196",
+        "title": "Sorbetto al limone",
+        "description": "Le dessert parfait, ultra facile et super rafraîchissant pour cet été. Direction Amalfi et Positano avec ce sorbet citron servi directement dans son citron.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653124111090076960\" data-video-id=\"7653124111090076960\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653124111090076960\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n             4 gros citrons (1 kg)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             260 g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             90 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic pour la décoration"
+            }
+        ],
+        "steps": [
+            "Coupez les extrémités des citrons.",
+            "Incisez le citron et videz-le complètement à l'aide d'une cuillère.",
+            "Préparez un sirop avec l'eau et le sucre, portez à ébullition et faites bien dissoudre le sucre.",
+            "Ajoutez le sirop au jus de citron et mélangez.",
+            "Versez dans des bacs à glaçons et mettez aussi les citrons évidés au congélateur.",
+            "Congelez pendant environ 10 heures / toute la nuit.",
+            "Avant de mixer : placez la lame et le bol du mixeur au réfrigérateur pendant au moins 30 minutes.",
+            "Mixez les cubes de glace au citron à pleine puissance jusqu'à obtenir un sorbet crémeux.",
+            "Décorez avec du basilic."
+        ],
+        "tags": [
+            "Italie",
+            "Les Glaces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6194",
         "title": "Salade Gourmande au Poulet Croustillant",
