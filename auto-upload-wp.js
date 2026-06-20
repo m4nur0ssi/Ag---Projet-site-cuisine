@@ -23,6 +23,7 @@
 const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
+const { execSync } = require('child_process');
 require('dotenv').config({ path: path.join(__dirname, 'tiktok-bot', '.env') });
 
 const USER = process.env.WP_USERNAME || 'm4nu';
@@ -170,13 +171,13 @@ function moveTo(dir, file) {
 async function processFile(file, index, recipes) {
     const ext = path.extname(file).toLowerCase();
     const mime = EXT_TYPE[ext];
-    if (!mime) return; // pas une image gérée
+    if (!mime) return false; // pas une image gérée
     const base = path.basename(file, ext);
     const recipe = findRecipe(index, recipes, base);
     if (!recipe) {
         console.log(`❓ "${base}" → aucune recette correspondante. (ignoré)`);
         moveTo(path.join(FOLDER, 'erreurs'), file);
-        return;
+        return false;
     }
     try {
         console.log(`📸 "${base}" → recette #${recipe.id} (${decodeEntities(recipe.title)})`);
@@ -202,25 +203,41 @@ async function processFile(file, index, recipes) {
         const { id: mediaId, url: newUrl } = await uploadImage(file, fileName, mime);
         const ok = await setThumbnail(recipe.id, mediaId);
         console.log(`   ${ok ? '✅ image à la une définie' : '⚠️ uploadée mais thumbnail non confirmé'} (média ${mediaId})`);
-        if (existingUrl && newUrl && path.basename(new URL(newUrl).pathname) === path.basename(new URL(existingUrl).pathname)) {
+        const sameUrl = existingUrl && newUrl && path.basename(new URL(newUrl).pathname) === path.basename(new URL(existingUrl).pathname);
+        if (sameUrl) {
             console.log('   ♻️  URL inchangée → site (desktop + mobile) à jour directement.');
-        } else if (existingUrl) {
-            console.log('   ⚠️ URL différente de l’ancienne → lance "npm run sync-recipes" pour propager au site.');
+        } else {
+            console.log('   🔄 Nouvelle URL → sync sera lancé pour propager au site.');
         }
         moveTo(path.join(FOLDER, 'done'), file);
+        return !sameUrl; // true → un sync est nécessaire pour propager la nouvelle URL
     } catch (e) {
         console.error(`   ❌ ${e.message}`);
         moveTo(path.join(FOLDER, 'erreurs'), file);
+        return false;
     }
 }
 
 async function scanOnce(index, recipes) {
-    if (!fs.existsSync(FOLDER)) { ensureDir(FOLDER); console.log(`📁 Dossier créé : ${FOLDER}\nDépose tes images nommées comme les recettes.`); return; }
+    if (!fs.existsSync(FOLDER)) { ensureDir(FOLDER); console.log(`📁 Dossier créé : ${FOLDER}\nDépose tes images nommées comme les recettes.`); return 0; }
     const files = fs.readdirSync(FOLDER)
         .filter(f => EXT_TYPE[path.extname(f).toLowerCase()])
         .map(f => path.join(FOLDER, f));
-    if (files.length === 0) { console.log('Aucune image à traiter.'); return; }
-    for (const f of files) await processFile(f, index, recipes);
+    if (files.length === 0) { console.log('Aucune image à traiter.'); return 0; }
+    let newCount = 0;
+    for (const f of files) { if (await processFile(f, index, recipes)) newCount++; }
+    return newCount;
+}
+
+// Lance la synchronisation WordPress → mockData pour propager les nouvelles
+// images (URL) au site. Non bloquant : un échec n'interrompt pas l'upload.
+function runSync() {
+    try {
+        console.log('\n🔄 Propagation au site : node sync-recipes.js …');
+        execSync('node sync-recipes.js', { cwd: __dirname, stdio: 'inherit' });
+    } catch (e) {
+        console.error('⚠️  Sync échoué (non bloquant) :', e.message);
+    }
 }
 
 (async () => {
@@ -236,10 +253,13 @@ async function scanOnce(index, recipes) {
     }
     const index = buildIndex(recipes);
     console.log(`🗂️  ${recipes.length} recettes indexées. Dossier : ${FOLDER}\n   WordPress : ${WP_URL} (user ${USER})`);
-    await scanOnce(index, recipes);
+    const newCount = await scanOnce(index, recipes);
+    // Au moins un upload a créé une nouvelle URL → on synchronise pour propager au site.
+    if (newCount > 0) runSync();
     if (WATCH) {
         console.log('\n👀 Surveillance active — dépose une image pour l’uploader (Ctrl+C pour arrêter).');
         let busy = false;
+        let syncTimer = null;
         fs.watch(FOLDER, async (_evt, fname) => {
             if (busy || !fname) return;
             const ext = path.extname(fname).toLowerCase();
@@ -249,7 +269,13 @@ async function scanOnce(index, recipes) {
             setTimeout(async () => {
                 if (!fs.existsSync(full)) return;
                 busy = true;
-                try { await processFile(full, index, recipes); } finally { busy = false; }
+                let needSync = false;
+                try { needSync = await processFile(full, index, recipes); } finally { busy = false; }
+                // Sync groupé (débounce) si une nouvelle URL a été créée.
+                if (needSync) {
+                    clearTimeout(syncTimer);
+                    syncTimer = setTimeout(runSync, 4000);
+                }
             }, 1500);
         });
     } else {

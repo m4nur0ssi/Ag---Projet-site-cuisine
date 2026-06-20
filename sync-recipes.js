@@ -230,7 +230,7 @@ function extractRecipeData(post) {
         videoHtml: videoHtml,
         ingredients: ingredients.length > 0 ? ingredients : [{ quantity: "", name: "Ingrédients détaillés dans la vidéo" }],
         steps: steps.length > 0 ? steps : ["Suivre les instructions détaillées dans la vidéo"],
-        tags: normalizeCountryTags(post._embedded?.['wp:term']?.[1]?.map(tag => tag.name) || [], title),
+        tags: normalizeCountryTags(post._embedded?.['wp:term']?.[1]?.map(tag => tag.name) || [], decodeHtmlEntities(post.title.rendered)),
         isFeatured: post.sticky || false,
         isFavorite: false,
         address: ""
