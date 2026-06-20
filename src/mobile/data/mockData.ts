@@ -2,11 +2,274 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/06/2026 06:54:43
- * Total: 386 recettes
+ * Dernière mise à jour: 20/06/2026 08:39:22
+ * Total: 389 recettes
  */
-export const exportSyncId = "1781938483977";
+export const exportSyncId = "1781944762876";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6187",
+        "title": "Porto Bifana",
+        "description": "Looks boozy, right? It's really not - all that wine and beer just cook down into the most flavourful, garlicky sauce ever. Rich, a little spicy, and so good you'll want to dip your bread in it. Porto does it best.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7572283253487357192\" data-video-id=\"7572283253487357192\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7572283253487357192\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g thinly sliced pork loin or shoulder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ¼ cup olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tbsp butter"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 onion, finely chopped"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 garlic cloves, minced"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ tbsp paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ tbsp smoked paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 bay leaves"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 tbsp pimenta moída (or piri piri sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cup white wine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tbsp tomato paste"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ¼ cup Port wine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cup beer (Super Bock or Sagres)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cup beef or chicken broth"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ tbsp lemon juice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1½ tsp salt"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ tsp white pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Papo seco rolls"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Mustard for serving"
+            }
+        ],
+        "steps": [
+            "Heat olive oil and butter in a pot. Sauté onion until golden.",
+            "Add garlic, both paprikas, bay leaves, and pimenta moída. Stir 30 seconds.",
+            "Mix in tomato paste and cook 1 minute.",
+            "Pour in wine, Port, beer, and broth. Boil, then simmer 10-15 minutes to burn off the alcohol.",
+            "Blend sauce (optional).",
+            "Add pork, salt, and pepper. Cover and simmer low 20 minutes, then uncover 5-10 minutes to thicken.",
+            "Stir in lemon juice at the end.",
+            "Serve on papo seco with mustard and sauce."
+        ],
+        "tags": [
+            "épicé",
+            "Espagne",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6185",
+        "title": "Jardineira",
+        "description": "Un plat mijoté portugais à base de bœuf, de pommes de terre, de carottes et de petits pois, relevé d'une sauce tomate et de vin blanc.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7549316384472288534\" data-video-id=\"7549316384472288534\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7549316384472288534\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             500g de boeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             4 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             2 carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Petit pois"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250ml de pulpe de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 carré de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Piri piri"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "épicé",
+            "Espagne",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6183",
+        "title": "Poulet Piri Piri à la Portugaise",
+        "description": "Un poulet rôti à la portugaise, relevé avec une sauce piri piri maison à base de piments, d'ail, de citron et d'épices.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7592657176901078294\" data-video-id=\"7592657176901078294\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7592657176901078294\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 poulet (1,2kg)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 botte de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             4 petits piments (en fonction de votre tolérance)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 Cas de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Cas d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             125ml d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             150ml de vin blanc (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             150ml de bouillon de volaille"
+            }
+        ],
+        "steps": [
+            "Suivre les étapes de préparation détaillées dans la vidéo."
+        ],
+        "tags": [
+            "épicé",
+            "Espagne",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6181",
         "title": "Insalata pantesca",
