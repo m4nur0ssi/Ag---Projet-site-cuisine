@@ -2,11 +2,101 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 21/06/2026 07:25:19
- * Total: 396 recettes
+ * Dernière mise à jour: 21/06/2026 17:06:44
+ * Total: 397 recettes
  */
-export const exportSyncId = "1782026719768";
+export const exportSyncId = "1782061604118";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6308",
+        "title": "Salade de pâtes grecque",
+        "description": "Une salade de pâtes fraîche et savoureuse inspirée de la Grèce, garnie de légumes croquants, d'avocat, d'olives, de feta et assaisonnée d'une sauce au yaourt grec, huile d'olive et citron.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7631607360443698454\" data-video-id=\"7631607360443698454\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7631607360443698454\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             200 g de pâtes de ton choix"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 boîte de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ boîte d'olives noires"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bloc de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, mélanger les pâtes cuites avec le concombre, les tomates cerises coupées en deux, les olives noires dénoyautées et coupées en deux, l'avocat, l'oignon rouge ciselé, le persil, le basilic et la feta coupée en dés.",
+            "Ajouter le yaourt grec.",
+            "Assaisonner avec de l'huile d'olive, du sel, de l'ail en poudre et de l'aneth ciselé.",
+            "Ajouter un filet de jus de citron et mélanger le tout."
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6306",
         "title": "Tiramisu maison avec biscuit fait maison",
