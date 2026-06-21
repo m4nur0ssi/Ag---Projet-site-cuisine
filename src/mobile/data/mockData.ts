@@ -2,11 +2,60 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 21/06/2026 17:53:04
- * Total: 397 recettes
+ * Dernière mise à jour: 21/06/2026 23:10:07
+ * Total: 398 recettes
  */
-export const exportSyncId = "1782064384520";
+export const exportSyncId = "1782083407316";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6310",
+        "title": "Jus délicieux et rafraîchissant",
+        "description": "Un jus frais et désaltérant à base de pastèque, pêche, citron et menthe, parfait pour l'été.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653924796475952416\" data-video-id=\"7653924796475952416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653924796475952416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400g de pastèques"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 à 3 pêches blanches"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 1 ou 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques glaçons"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6308",
         "title": "Salade de pâtes grecque",
