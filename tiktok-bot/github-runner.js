@@ -80,11 +80,12 @@ async function run() {
             while (data.queue.length > 0) {
                 const item = data.queue[0];
                 const videoUrl = item.url || item.videoUrl;
-                
-                // Extraction ID pour vérifier les doublons
-                const { extractTikTokId } = require('./wordpress-poster');
-                const videoId = extractTikTokId(videoUrl);
-                
+
+                // Extraction ID pour vérifier les doublons (TikTok ou YouTube)
+                const { extractTikTokId, extractYouTubeId } = require('./wordpress-poster');
+                const isYouTube = /youtube\.com|youtu\.be/i.test(videoUrl || '');
+                const videoId = isYouTube ? extractYouTubeId(videoUrl) : extractTikTokId(videoUrl);
+
                 if (videoId && isAlreadyProcessed(videoId)) {
                     console.log(`   ⏭️ Déjà traitée (${videoId}), on la retire de la file.`);
                     data.queue.shift();
@@ -95,13 +96,20 @@ async function run() {
                 console.log(`🪄 Traitement de la file en cours : ${videoUrl}`);
                 // ⚠️ Marquer comme traité AVANT publication pour éviter les doublons si le workflow tourne deux fois
                 if (videoId) markAsProcessed(videoId);
-                const recipeName = await processRecipe({ 
-                    videoUrl, 
-                    description: 'Recette iPhone (Cloud)', 
-                    author: 'cloud-shortcut', 
-                    country: item.country 
-                });
-                
+                let recipeName;
+                if (isYouTube) {
+                    // Recette YouTube : même logique que le CLI (extraction + IA + publication).
+                    const { importYouTubeRecipe } = require('./youtube-import');
+                    recipeName = await importYouTubeRecipe({ url: videoUrl, country: item.country, status: 'publish' });
+                } else {
+                    recipeName = await processRecipe({
+                        videoUrl,
+                        description: 'Recette iPhone (Cloud)',
+                        author: 'cloud-shortcut',
+                        country: item.country
+                    });
+                }
+
                 if (typeof recipeName === 'string') {
                     fs.writeFileSync(path.join(__dirname, 'latest-recipe.txt'), recipeName);
                     console.log(`   ✅ Success : "${recipeName}"`);
