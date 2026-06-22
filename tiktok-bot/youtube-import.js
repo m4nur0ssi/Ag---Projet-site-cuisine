@@ -11,7 +11,51 @@
 const fetch = require('node-fetch');
 require('dotenv').config({ path: __dirname + '/.env' });
 const { callClaude } = require('./claude-config');
+const { callGemini } = require('./gemini-config');
 const { postToWordPress, extractYouTubeId } = require('./wordpress-poster');
+
+// Appel Groq (gratuit) en JSON forcé.
+async function callGroqJson(prompt) {
+    const key = process.env.GROQ_API_KEY;
+    if (!key) return null;
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', authorization: `Bearer ${key}` },
+        body: JSON.stringify({
+            model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+            temperature: 0.3,
+            response_format: { type: 'json_object' },
+            messages: [
+                { role: 'system', content: 'Tu es un assistant culinaire qui répond UNIQUEMENT par un JSON valide.' },
+                { role: 'user', content: prompt },
+            ],
+        }),
+        timeout: 45000,
+    });
+    if (!res.ok) throw new Error('Groq ' + res.status + ': ' + (await res.text()).slice(0, 120));
+    const j = await res.json();
+    return JSON.parse(j.choices[0].message.content);
+}
+
+// Génère la recette via IA — Groq (gratuit) en priorité, puis Gemini, puis Claude.
+async function generateRecipe(prompt) {
+    const parse = (r) => {
+        if (!r) return null;
+        if (typeof r === 'object') return r;
+        try { return JSON.parse(String(r).replace(/^```json\s*|\s*```$/g, '').trim()); } catch { return null; }
+    };
+    try { const q = parse(await callGroqJson(prompt)); if (q) return q; }
+    catch (e) { console.warn('   ⚠️ Groq KO, essai suivant :', e.message); }
+    if (process.env.GEMINI_API_KEYS || process.env.GEMINI_API_KEY) {
+        try { const g = parse(await callGemini(prompt, 'gemini-2.0-flash', true)); if (g) return g; }
+        catch (e) { console.warn('   ⚠️ Gemini KO, essai suivant :', e.message); }
+    }
+    if (process.env.ANTHROPIC_API_KEY) {
+        try { const c = parse(await callClaude(prompt)); if (c) return c; }
+        catch (e) { console.warn('   ⚠️ Claude KO :', e.message); }
+    }
+    return null;
+}
 
 async function fetchMeta(cleanUrl) {
     let title = '', author = '', description = '';
@@ -64,10 +108,9 @@ async function importYouTubeRecipe({ url, country = '', status = 'publish' }) {
     if (!meta.title) { console.error('   ❌ Titre vidéo introuvable.'); return null; }
     console.log(`   Titre : ${meta.title} | description : ${meta.description ? meta.description.length + ' car.' : 'aucune'}`);
 
-    let data = await callClaude(buildPrompt(meta));
-    if (typeof data === 'string') { try { data = JSON.parse(data.replace(/^```json\s*|\s*```$/g, '')); } catch { data = null; } }
+    const data = await generateRecipe(buildPrompt(meta));
     if (!data || !data.title || !Array.isArray(data.ingredients) || !Array.isArray(data.steps)) {
-        console.error('   ❌ Réponse IA invalide.'); return null;
+        console.error('   ❌ Réponse IA invalide (Gemini + Claude indisponibles).'); return null;
     }
     console.log(`   ✅ "${data.title}" — ${data.ingredients.length} ingrédients, ${data.steps.length} étapes`);
 
