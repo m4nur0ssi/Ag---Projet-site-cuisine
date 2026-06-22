@@ -67,6 +67,7 @@ jobs:
           TIKTOK_MS_TOKEN: ${{ secrets.TIKTOK_MS_TOKEN }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           cat > tiktok-bot/.env << ENVEOF
           WP_URL=http://${WP_PUBLIC_IP}/wordpress
@@ -78,6 +79,7 @@ jobs:
           TIKTOK_MS_TOKEN=${TIKTOK_MS_TOKEN}
           PIXABAY_API_KEY=${PIXABAY_API_KEY}
           ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+          GROQ_API_KEY=${GROQ_API_KEY}
           PORT=3456
           ENVEOF
 
@@ -94,6 +96,7 @@ jobs:
           TIKTOK_MS_TOKEN: ${{ secrets.TIKTOK_MS_TOKEN }}
           GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS || secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           WP_URL: http://${{ secrets.WP_PUBLIC_IP }}/wordpress
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
           WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
@@ -108,6 +111,7 @@ jobs:
           TIKTOK_MS_TOKEN: ${{ secrets.TIKTOK_MS_TOKEN }}
           GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS || secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           WP_URL: http://${{ secrets.WP_PUBLIC_IP }}/wordpress
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
           WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
