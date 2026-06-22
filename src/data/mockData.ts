@@ -2,11 +2,56 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/06/2026 08:49:24
- * Total: 398 recettes
+ * Dernière mise à jour: 22/06/2026 12:47:44
+ * Total: 399 recettes
  */
-export const exportSyncId = "1782118164830";
+export const exportSyncId = "1782132464624";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6313",
+        "title": "Pâte à pizza Napolitaine",
+        "description": "Découvrez la recette traditionnelle de la pâte à pizza Napolitaine, idéale pour les débutants et sans besoin de matériel spécialisé. Cette recette vous permettra de créer des pizzas authentiques avec une croûte parfaite.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_1782132052582.jpg&v=1782139275000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/9ZTW2ygRqiI\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             614g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             368g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             18g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             0,71g de levure fraiche de boulanger ou 0,40g de levure sèche active"
+            }
+        ],
+        "steps": [
+            "Mélangez les ingrédients pour former une première boule de pâte qui a bien absorbé toute la farine.",
+            "Laissez reposer pendant 20 minutes.",
+            "Effectuez les derniers rabats pour obtenir une pâte lisse.",
+            "Placez la pâte au repos à température ambiante dans un récipient fermé hermétiquement pendant 18 heures.",
+            "4 heures avant la cuisson des pizzas, formez les pâtons.",
+            "Déposez les pâtons à température ambiante dans un récipient fermé pendant 4 heures.",
+            "Préchauffez votre four à la température appropriée et cuisez vos pizzas."
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6310",
         "title": "Jus délicieux et rafraîchissant",
