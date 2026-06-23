@@ -2,100 +2,74 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/06/2026 06:40:05
+ * Dernière mise à jour: 23/06/2026 16:29:05
  * Total: 399 recettes
  */
-export const exportSyncId = "1782196805938";
+export const exportSyncId = "1782232145925";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "6313",
-        "title": "Pâte à pizza Napolitaine",
-        "description": "Découvrez la recette traditionnelle de la pâte à pizza Napolitaine, idéale pour les débutants et sans besoin de matériel spécialisé. Cette recette vous permettra de créer des pizzas authentiques avec une croûte parfaite.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_1782132052582.jpg&v=1782139275000",
-        "category": "plats",
+        "id": "5514",
+        "title": "Tiramisu",
+        "description": "Recette de tiramisu maison avec un biscuit fait maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fi196570-tiramisu-simple.jpg&v=1782238395000",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/9ZTW2ygRqiI\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463909495878569238\" data-video-id=\"7463909495878569238\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463909495878569238\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🌾\n             614g de farine"
+                "name": "🧀\n 500g de Mascarpone"
             },
             {
                 "quantity": "",
-                "name": "💧\n             368g d'eau"
+                "name": "🥚\n 6 œufs"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             18g de sel"
+                "name": "🍯\n 100g de sucre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             0,71g de levure fraiche de boulanger ou 0,40g de levure sèche active"
-            }
-        ],
-        "steps": [
-            "Mélangez les ingrédients pour former une première boule de pâte qui a bien absorbé toute la farine.",
-            "Laissez reposer pendant 20 minutes.",
-            "Effectuez les derniers rabats pour obtenir une pâte lisse.",
-            "Placez la pâte au repos à température ambiante dans un récipient fermé hermétiquement pendant 18 heures.",
-            "4 heures avant la cuisson des pizzas, formez les pâtons.",
-            "Déposez les pâtons à température ambiante dans un récipient fermé pendant 4 heures.",
-            "Préchauffez votre four à la température appropriée et cuisez vos pizzas."
-        ],
-        "tags": [
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6310",
-        "title": "Jus délicieux et rafraîchissant",
-        "description": "Un jus frais et désaltérant à base de pastèque, pêche, citron et menthe, parfait pour l'été.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653924796475952416\" data-video-id=\"7653924796475952416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653924796475952416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             400g de pastèques"
+                "name": "🍫\n 100g de cacao en poudre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 à 3 pêches blanches"
+                "name": "🥣\n 4 tasses à café"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Le jus de 1 ou 2 citrons"
+                "name": "🥣\n 2 cuillères à café d'Amaretto"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Une pincée de sel"
+                "name": "🥚\n 180g de blancs d'œufs"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Quelques feuilles de menthe"
+                "name": "🍯\n 150g de sucre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Quelques glaçons"
+                "name": "🥚\n 120g de jaune d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 150g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 40g de sucre glace"
             }
         ],
         "steps": [
             "Suivre les instructions détaillées dans la vidéo"
         ],
         "tags": [
-            "Healthy",
-            "Rafraîchissements",
-            "Voilà l'été"
+            "Italie",
+            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -105,7 +79,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6308",
         "title": "Salade de pâtes grecque",
         "description": "Une salade de pâtes fraîche et savoureuse inspirée de la Grèce, garnie de légumes croquants, d'avocat, d'olives, de feta et assaisonnée d'une sauce au yaourt grec, huile d'olive et citron.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6308_1782231129528.jpg&v=1782238369000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -185,6 +159,100 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Salades",
             "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6313",
+        "title": "Pâte à pizza Napolitaine",
+        "description": "Découvrez la recette traditionnelle de la pâte à pizza Napolitaine, idéale pour les débutants et sans besoin de matériel spécialisé. Cette recette vous permettra de créer des pizzas authentiques avec une croûte parfaite.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_1782132052582-1.jpg&v=1782238326000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/9ZTW2ygRqiI\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             614g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             368g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             18g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             0,71g de levure fraiche de boulanger ou 0,40g de levure sèche active"
+            }
+        ],
+        "steps": [
+            "Mélangez les ingrédients pour former une première boule de pâte qui a bien absorbé toute la farine.",
+            "Laissez reposer pendant 20 minutes.",
+            "Effectuez les derniers rabats pour obtenir une pâte lisse.",
+            "Placez la pâte au repos à température ambiante dans un récipient fermé hermétiquement pendant 18 heures.",
+            "4 heures avant la cuisson des pizzas, formez les pâtons.",
+            "Déposez les pâtons à température ambiante dans un récipient fermé pendant 4 heures.",
+            "Préchauffez votre four à la température appropriée et cuisez vos pizzas."
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6310",
+        "title": "Jus délicieux et rafraîchissant",
+        "description": "Un jus frais et désaltérant à base de pastèque, pêche, citron et menthe, parfait pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6310_1782231018872.jpg&v=1782238309000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653924796475952416\" data-video-id=\"7653924796475952416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653924796475952416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400g de pastèques"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 à 3 pêches blanches"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 1 ou 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques glaçons"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -14658,74 +14726,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Afrique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5514",
-        "title": "Tiramisu",
-        "description": "Recette de tiramisu maison avec un biscuit fait maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fi196570-tiramisu-simple.jpg&v=1779379298000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463909495878569238\" data-video-id=\"7463909495878569238\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463909495878569238\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n 500g de Mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 6 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n 100g de cacao en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 4 tasses à café"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 cuillères à café d'Amaretto"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 180g de blancs d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 150g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 120g de jaune d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 150g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 40g de sucre glace"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
