@@ -2,11 +2,263 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/06/2026 16:40:15
- * Total: 401 recettes
+ * Dernière mise à jour: 23/06/2026 16:56:12
+ * Total: 413 recettes
  */
-export const exportSyncId = "1782232815228";
+export const exportSyncId = "1782233772355";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6327",
+        "title": "Brochettes de poulet ananas piquantes à l'airfryer",
+        "description": "Des brochettes de poulet et ananas relevées avec une sauce piquante, idéales pour une cuisson rapide à l'airfryer.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649798540742380833\" data-video-id=\"7649798540742380833\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649798540742380833\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 filet de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 ananas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce piquante (aigre douce piquante)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curry"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "airfryer",
+            "asiatique",
+            "épicé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6325",
+        "title": "Salade fraîche d'été aux pois chiches et fêta",
+        "description": "Une salade bien fraîche pour l'été, qui change de la salade verte 👀🤤",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653502841876696353\" data-video-id=\"7653502841876696353\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653502841876696353\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             pois chiche"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             pignons de pain"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6323",
+        "title": "Pink Summer Toast",
+        "description": "Un toast estival et sain avec une crème onctueuse à la betterave, ricotta et fêta, servi sur du pain au levain avec du basilic et des graines de sésame. Idéal pour un brunch ou un repas léger.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653409756329053472\" data-video-id=\"7653409756329053472\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653409756329053472\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 betterave cuite ~250g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de St Moret 8%"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30g de fêta (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             le jus d'1/2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tranche de pain au levain"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             fêta (pour les toppings)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             graines de sésame"
+            }
+        ],
+        "steps": [
+            "Dans un mixeur, combiner la betterave cuite, la ricotta, le St Moret, les 30g de fêta, le jus d'un demi-citron et le sel. Mixer jusqu'à obtenir une crème lisse et homogène.",
+            "Faire griller la tranche de pain au levain avec un filet d'huile d'olive jusqu'à ce qu'elle soit dorée et croustillante.",
+            "Étaler généreusement la crème de betterave rose sur le pain grillé.",
+            "Garnir le toast avec de la fêta émiettée, des feuilles de basilic frais et des graines de sésame. Servir immédiatement."
+        ],
+        "tags": [
+            "Healthy",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6321",
+        "title": "Sorbet pastèque fraise",
+        "description": "Un sorbet hyper rafraîchissant à la pastèque et aux fraises, facile à réaliser sans sorbetière, idéal pour les fortes chaleurs.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653834716830846240\" data-video-id=\"7653834716830846240\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653834716830846240\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pastèque (environ 900g coupée en gros cubes)"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             450g de fraises congelées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 CS de sucre"
+            }
+        ],
+        "steps": [
+            "Vide la pastèque et congèle les morceaux pendant 4h minimum et idéalement la nuit.",
+            "Conserve la coque pour t'en servir de contenant, mets-la au frigo.",
+            "Mixe ensemble la pastèque congelée, les fraises, le yaourt grec et le sucre.",
+            "Place le sorbet dans la coque et c'est déjà prêt. À déguster immédiatement."
+        ],
+        "tags": [
+            "Healthy",
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6319",
         "title": "Citronnade maison prête en 5 minutes",
@@ -8019,6 +8271,381 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "4898",
+        "title": "Sundae Maison Caramel Beurre Salé",
+        "description": "Recette facile et rapide pour réaliser un sundae maison au caramel beurre salé, inspiré des célèbres glaces de McDonald's. Une dinguerie à reproduire chez soi !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FSundae-maison-au-caramel-750x1125-1.jpg&v=1781968203000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7376682408357170464\" data-video-id=\"7376682408357170464\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7376682408357170464\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             500g de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             170g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             De l'arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Du caramel beurre salé (maison ou du commerce)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Famille",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6019",
+        "title": "Taco Bowl maison",
+        "description": "Ce Taco Bowl maison est une recette healthy, riche en protéines et pleine de saveurs mexicaines, prête en moins de 15 minutes. Parfait pour un meal prep, un dîner rapide ou un déjeuner stylé pour manger mieux sans se priver.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FTaco-Bowl-Recipe-1.jpg&v=1781968196000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7504037706775792918\" data-video-id=\"7504037706775792918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7504037706775792918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             Riz complet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Viande hachée 5% MT"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Patate douce"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Haricot rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices mexicaines"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Mexique",
+            "Salades"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6011",
+        "title": "Tinga de pollo",
+        "description": "Une recette mexicaine de tinga de poulet, où le poulet effiloché est mijoté dans une sauce relevée aux chipotles, puis servi sur des tostadas avec des garnitures fraîches comme de la crème, de la laitue, du fromage frais et de l'avocat.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FChicken-Tinga-Tostadas8-2-683x1024-1.jpg&v=1781968190000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639882333163752718\" data-video-id=\"7639882333163752718\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639882333163752718\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 poitrine de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             6 piments chipotles en conserve"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de sazonador Golden Garlic de Spanglish Asadero"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             1 cuillère à café de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             1 tasse de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon coupé en fines lamelles"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Tostadas"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème mexicaine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Laitue"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Avocat"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, ajoutez la poitrine de poulet, 1/2 oignon, 2 gousses d'ail, la feuille de laurier et du sel au goût. Couvrez d'eau, fermez et faites cuire pendant environ 45 minutes ou jusqu'à ce que le poulet soit bien cuit.",
+            "Retirez le poulet de la casserole et déchiquetez-le. Dans le même bouillon, faites cuire les tomates jusqu'à ce qu'elles soient tendres.",
+            "Faites passer les tomates cuites au mélangeur avec les piments chipotles, 1 gousse d'ail, le sazonador Golden Garlic, le bouillon de poulet et 1 tasse de bouillon de poulet. Mélangez jusqu'à obtenir une sauce lisse.",
+            "Dans une poêle, ajoutez un peu d'huile et ajoutez l'oignon en lamelles. Faites cuire pendant environ 1 minute.",
+            "Ajoutez le poulet déchiqueté et mélangez pendant quelques secondes. Versez la sauce de chipotle et mélangez bien. Si nécessaire, ajoutez un peu plus de bouillon de poulet.",
+            "Lorsqu'elle commence à bouillir légèrement, retirez du feu.",
+            "Servez sur des tostadas et ajoutez de la crème, de la laitue, du fromage frais et de l'avocat. Profitez !"
+        ],
+        "tags": [
+            "épicé",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6013",
+        "title": "Pico de Gallo",
+        "description": "Fresh, easy, and full of flavor! This Mexican-style Pico de Gallo recipe is made with simple, fresh ingredients, perfect for dipping with tortilla chips or adding to tacos, quesadillas, and more.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fi140307-sauce-mexicaine-a-la-tomate.jpeg&v=1781968179000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463605331017485599\" data-video-id=\"7463605331017485599\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463605331017485599\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             3 tomates roma"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 d'oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons serrano"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Petit bouquet de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de 2 citrons verts"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel à goût"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Mexique",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6007",
+        "title": "Mexican Street Corn Jalapeño",
+        "description": "Des jalapeño poppers revisités avec une garniture inspirée du maïs de rue mexicain (Elote), parfaits pour un barbecue estival. Ils sont garnis d'un mélange crémeux de maïs rôti, bacon, fromages, crème aigre et épices, puis cuits au four jusqu'à ce...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fstreet.jpg&v=1781968168000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7368844391412288773\" data-video-id=\"7368844391412288773\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7368844391412288773\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             6 jalapeños"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 épis de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 lb (environ 225g) de bacon"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1/4 tasse de fromage cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/4 tasse de fromage pepper jack"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             3 cuillères à soupe de crème aigre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de tajin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'assaisonnement à tacos"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 cuillères à soupe d'oignon coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Sauce piquante au citron vert (ou autre sauce piquante de votre choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais (cream cheese) à température ambiante"
+            }
+        ],
+        "steps": [
+            "Faire rôtir le maïs.",
+            "Dans un bol, combiner le maïs rôti, le bacon, le fromage cheddar, le fromage pepper jack, la crème aigre, le tajin, l'assaisonnement à tacos, l'oignon coupé en dés, la sauce piquante et le fromage frais à température ambiante.",
+            "Couper les jalapeños en deux et retirer le cœur.",
+            "Farcir les moitiés de jalapeños avec le mélange.",
+            "Garnir le dessus avec un peu plus de maïs et de Tajin.",
+            "Cuire au four à 175°C pendant 15 minutes ou jusqu'à ce que le fromage soit bien fondu.",
+            "Déguster !"
+        ],
+        "tags": [
+            "barbecue",
+            "épicé",
+            "Mexique",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "6009",
         "title": "Bowl Mexicanos comestible",
         "description": "Un bowl comestible rempli de saveur, de texture et de couleur, avec des Tostacos WOW Guacamole pour une touche croustillante et fraîche.",
@@ -14252,6 +14879,35 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5799",
+        "title": "Préparer des oeufs coulants",
+        "description": "Découvrez une bonne méthode pour préparer des œufs.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Foeuf.jpg&v=1779895129000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619722793541766422\" data-video-id=\"7619722793541766422\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619722793541766422\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n Œufs"
+            }
+        ],
+        "steps": [
+            "Voir la vidéo pour les étapes détaillées."
+        ],
+        "tags": [
+            "Astuces",
+            "Healthy",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -21212,6 +21868,62 @@ export const mockRecipes: Recipe[] = [
         ],
         "steps": [
             "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4088",
+        "title": "Saint-Félicien fondant aux oignons caramélisés",
+        "description": "Un Saint-Félicien ultra fondant, entouré d'oignons caramélisés, de poivrons et de jambon cru croustillant... le tout à tartiner sur du pain chaud 🤤",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FRecette-Tentation-a-partager-Saint-Valentin.jpg&v=1774534258000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616809876639059222\" data-video-id=\"7616809876639059222\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616809876639059222\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Un peu de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Marjolaine"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n 3 tranches de jambon cru"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Saint-Félicien"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 tranches de pain"
+            }
+        ],
+        "steps": [
+            "Faites revenir un oignon émincé dans une poêle, puis ajoutez un peu de sucre pour le faire caraméliser.",
+            "Dans une autre poêle, faites revenir un poivron rouge avec un peu de marjolaine. Lorsqu'il a une belle coloration, réservez-le.",
+            "Dans un poêlon, disposez un tapis de l'oignon caramélisé, puis ajoutez le Saint-Félicien (sorti du réfrigérateur 1 heure à l'avance).",
+            "Ajoutez les poivrons autour, puis enfournez à 160 °C pendant 10 à 15 minutes.",
+            "Émincez les 3 tranches de jambon cru. Sortez le poêlon du four, ajoutez le jambon par-dessus, puis remettez au four 5 à 10 minutes à 160 °C.",
+            "Faites toaster 2 tranches de pain, puis tartinez-les avec la préparation."
         ],
         "tags": [
             "France"
@@ -28907,6 +29619,197 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "3570",
+        "title": "Poulet Parmigiana",
+        "description": "Découvrez une recette de Poulet Parmigiana irrésistible, un plat réconfortant qui ravira vos papilles. Ce classique italien revisité promet une explosion de saveurs avec son poulet croustillant, sa sauce tomate maison et son fromage fondant.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773301981468.png&v=1773305601000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" data-video-id=\"7603070096159886614\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@_lindoush_/video/7603070096159886614?_r=1&#038;_t=ZN-94cc5N4JRZe\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗 2 escalopes de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 80 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥖 120 g de chapelure panko"
+            },
+            {
+                "quantity": "",
+                "name": "🧀 50 g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾 Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅 1 oignon jaune moyen"
+            },
+            {
+                "quantity": "",
+                "name": "🧄 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾 1 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍅 400 g de tomates concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅 1 c. à café de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 1 c. à café d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 Herbes italiennes"
+            },
+            {
+                "quantity": "",
+                "name": "🧀 200 à 250 g de fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Persil frais (optionnel)"
+            }
+        ],
+        "steps": [
+            "Préchauffe le four à 220°C.",
+            "Sale et poivre les escalopes de poulet.",
+            "Prépare trois assiettes : farine dans la première, œufs battus dans la deuxième, chapelure panko mélangée au parmesan, dans la troisième.",
+            "Passe chaque escalope successivement dans la farine, l'œuf puis la chapelure en appuyant bien.",
+            "Dépose le poulet pané sur une plaque recouverte de papier cuisson.",
+            "Arrose légèrement d'huile d'olive.",
+            "Enfourne 15 minutes en retournant à mi-cuisson, réserve hors du four.",
+            "Pendant ce temps, fais revenir l'oignon finement émincé dans une casserole avec l'huile d'olive à feu doux pendant environ 5 minutes.",
+            "Ajoute l'ail haché et laisse cuire 30 secondes.",
+            "Incorpore la purée de tomates, le concentré de tomate, le sel, le poivre et des épices italiennes.",
+            "Laisse mijoter à couvert 15 à 20 minutes jusqu'à obtenir une sauce épaisse.",
+            "Verse la sauce chaude dans un plat allant au four.",
+            "Ajoute le fromage râpé par-dessus sans mélanger.",
+            "Enfourne à 200°C pendant 10 à 12 minutes, jusqu'à ce que le fromage soit fondu et légèrement gratiné.",
+            "Sors le plat du four et verse immédiatement la sauce tomate-mozzarella bien fondante sur les escalopes de poulet.",
+            "Termine avec un peu d'origan si tu le souhaites et sers sans attendre."
+        ],
+        "tags": [
+            "facile",
+            "fromage",
+            "Italie",
+            "italien",
+            "parmigiana",
+            "poulet",
+            "rapide"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3480",
+        "title": "Piccata de poulet à l'italienne",
+        "description": "Découvrez une délicieuse recette de Piccata de poulet, un classique de la cuisine italienne. Ce plat savoureux met en vedette des blancs de poulet tendres, parfumés au citron et au thym, accompagnés d'une purée de pommes de terre onctueuse. Une re...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3480_1773151081832.png&v=1773154700000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@comment_cuisiner/video/7550349248961711382\" data-video-id=\"7550349248961711382\">\n<section></section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗 2 blancs de poulets"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄 150ml de fond de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍎 2 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 100ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 75g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Ciboulette"
+            }
+        ],
+        "steps": [
+            "Pour la préparation de la recette des piccata de poulet, suivre la vidéo !"
+        ],
+        "tags": [
+            "citron",
+            "dîner",
+            "italien",
+            "piccata",
+            "plat principal",
+            "poulet",
+            "purée",
+            "recette facile",
+            "recette simple"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "3483",
         "title": "CROSTONI SALSICCIA E STRACCHINO",
         "description": "Découvrez les Crostoni Salsiccia e Stracchino, l'antipasto toscan par excellence. Ces délicieuses tranches de pain sont généreusement garnies d'un mélange savoureux de saucisse italienne, de stracchino crémeux et de graines de fenouil toastées. Le...",
@@ -29391,43 +30294,6 @@ export const mockRecipes: Recipe[] = [
             "buns",
             "japonais",
             "ramen"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "115",
-        "title": "Trattoria La Cicciolina",
-        "description": "    Ce nouveau resto italien a décidément beaucoup d'allure. Son patronyme quelque peu coquin : La Cicciolina. Le propriétaire Max, il pizz aiolo Francesco et l'équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies spécial...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2Ffolsom-studio-decoration-restaurant-paris-cicciolina_00028-1376x916.jpg&v=1519243312000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Ce nouveau resto italien a décidément beaucoup d'allure.",
-            "Son patronyme quelque peu coquin : La Cicciolina.",
-            "Le propriétaire Max, il pizz aiolo Francesco et l'équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies spécialités italiennes !",
-            "L'essentiel de l'Italie - Chez La Cicciolina, tous les produits sont frais et fabriqués artisanalement avec des ingrédients sélectionnés pour leurs saveurs. Côté carte, le choix est large : pizzas bien sûr mais aussi de grands classiques parfaitement maîtrisés (melanzane alla parmigiana, gnocchis alla sorrentina...).",
-            "Un lieu à connaître - Depuis le Métro Ménilmontant, vous n'aurez aucun mal à rejoindre cette adresse. Une table ? La table avec l'olivier au milieu.  Ambiance se prêtant aussi bien au rencart qu'à la soirée entre amis.",
-            "Mon plat préféré : la burrata accompagnée des 2 parts de pizza typique",
-            " Les pizzas, l'atmosphère romantique, le foot sur l'écran géant, la terrasse,facile pour se garer.",
-            " Un petit peu   cher et pas trop de choix.",
-            " Celle avec l'olivier !  ",
-            " 11 rue Crespin du Gast 75011 Paris  "
-        ],
-        "tags": [
-            "italien",
-            "trattoria"
         ],
         "isFeatured": false,
         "isFavorite": false,
