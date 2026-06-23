@@ -2,11 +2,66 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/06/2026 16:29:05
- * Total: 399 recettes
+ * Dernière mise à jour: 23/06/2026 16:40:15
+ * Total: 401 recettes
  */
-export const exportSyncId = "1782232145925";
+export const exportSyncId = "1782232815228";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6319",
+        "title": "Citronnade maison prête en 5 minutes",
+        "description": "Une citronnade ultra rafraîchissante, parfaite pour les journées ensoleillées !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654602594802847009\" data-video-id=\"7654602594802847009\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654602594802847009\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n             4 citrons jaunes bio"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1,5 L d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des glaçons à volonté"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             20 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             A à 6 tranches de citron jaune pour le service"
+            }
+        ],
+        "steps": [
+            "Dans un premier temps, lavez soigneusement les citrons jaunes puis coupez-les en quartiers en conservant la peau.",
+            "Placez-les dans un blender avec quelques feuilles de menthe, le sucre et environ 50 cl d'eau.",
+            "Mixez jusqu'à obtenir une préparation homogène.",
+            "Filtrez ensuite le mélange à l'aide d'une passoire fine afin de retirer les morceaux et l'excédent de pulpe.",
+            "Versez la préparation filtrée dans une grande carafe, ajoutez le reste de l'eau (environ 1 litre), les glaçons ainsi que quelques tranches de citron.",
+            "Mélangez bien et servez bien frais."
+        ],
+        "tags": [
+            "Pas cher",
+            "Rafraîchissements",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "5514",
         "title": "Tiramisu",
@@ -29336,6 +29391,43 @@ export const mockRecipes: Recipe[] = [
             "buns",
             "japonais",
             "ramen"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "115",
+        "title": "Trattoria La Cicciolina",
+        "description": "    Ce nouveau resto italien a décidément beaucoup d'allure. Son patronyme quelque peu coquin : La Cicciolina. Le propriétaire Max, il pizz aiolo Francesco et l'équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies spécial...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2Ffolsom-studio-decoration-restaurant-paris-cicciolina_00028-1376x916.jpg&v=1519243312000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Ce nouveau resto italien a décidément beaucoup d'allure.",
+            "Son patronyme quelque peu coquin : La Cicciolina.",
+            "Le propriétaire Max, il pizz aiolo Francesco et l'équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies spécialités italiennes !",
+            "L'essentiel de l'Italie - Chez La Cicciolina, tous les produits sont frais et fabriqués artisanalement avec des ingrédients sélectionnés pour leurs saveurs. Côté carte, le choix est large : pizzas bien sûr mais aussi de grands classiques parfaitement maîtrisés (melanzane alla parmigiana, gnocchis alla sorrentina...).",
+            "Un lieu à connaître - Depuis le Métro Ménilmontant, vous n'aurez aucun mal à rejoindre cette adresse. Une table ? La table avec l'olivier au milieu.  Ambiance se prêtant aussi bien au rencart qu'à la soirée entre amis.",
+            "Mon plat préféré : la burrata accompagnée des 2 parts de pizza typique",
+            " Les pizzas, l'atmosphère romantique, le foot sur l'écran géant, la terrasse,facile pour se garer.",
+            " Un petit peu   cher et pas trop de choix.",
+            " Celle avec l'olivier !  ",
+            " 11 rue Crespin du Gast 75011 Paris  "
+        ],
+        "tags": [
+            "italien",
+            "trattoria"
         ],
         "isFeatured": false,
         "isFavorite": false,
