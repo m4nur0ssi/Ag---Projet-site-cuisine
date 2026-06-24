@@ -2,11 +2,105 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/06/2026 17:11:00
+ * Dernière mise à jour: 24/06/2026 06:37:33
  * Total: 415 recettes
  */
-export const exportSyncId = "1782234660178";
+export const exportSyncId = "1782283053830";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6349",
+        "title": "Salade de Pâtes",
+        "description": "Une salade de pâtes bien colorée, ultra gourmande et pleine de saveurs, parfaite pour l'été, les meal prep ou pour accompagner un bon barbecue.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633844204917050646\" data-video-id=\"7633844204917050646\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633844204917050646\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             400 g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 petites courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques pignons de pin (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons rôtis (pour la pâte de poivron)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la pâte de poivron)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Un filet de citron (pour la pâte de poivron)"
+            }
+        ],
+        "steps": [
+            "Faire cuire les légumes dans un bon filet d'huile d'olive avec le sel, le poivre et les herbes de Provence jusqu'à ce qu'ils soient bien fondants et caramélisés. Les laisser ensuite refroidir.",
+            "Pendant ce temps, faire cuire les pâtes puis les refroidir également. Couper le concombre en petits morceaux.",
+            "Assembler ensuite les pâtes, les légumes, le concombre, le persil, le basilic, les pignons de pain et la pâte de poivron. Ajouter un filet d'huile d'olive.",
+            "Mélanger le tout puis dresser avec quelques légumes sur le dessus, de la burrata, et du persil frais. À servir bien frais!"
+        ],
+        "tags": [
+            "barbecue",
+            "Italie",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6347",
         "title": "PÂTES SAUCE TOMATE SPICY",
@@ -21778,116 +21872,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4695",
-        "title": "KEBBEH BIL SANIYEH",
-        "description": "Un hommage à mon peuple qui vit des heures sombres... Le Kebbeh Bil Saniyeh est un plat libanais traditionnel à base de boulghour et de viande hachée, cuit au four, parfait pour un repas convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimg_6042.jpeg&v=1774702031000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616029188738305302\" data-video-id=\"7616029188738305302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616029188738305302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 300g de viande hachée (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon moyen (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 c.a.c de 7 épices libanaises (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 c.a.c de poivre noir (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 1 c.a.c de menthe séchée (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c.a.c de paprika en poudre (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 3 c.a.s d'huile d'olive (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 poignée de pignon de pin (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel, au goût (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 500g de boulghour fin brun (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 300g de viande hachée (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon râpé (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1/2 c.a.c de 7 épices libanaises (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c.a.c paprika (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c.a.c de paprika doux (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c.a.c de cumin (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Eau froide (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel & Poivre (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n Beurre fondu ou huile d'olive (pour le montage)"
-            }
-        ],
-        "steps": [
-            "Pour la farce : Faire chauffer l'huile d'olive dans une poêle. Ajouter l'oignon et le faire revenir jusqu'à ce qu'il soit translucide.",
-            "Ajouter la viande hachée, saler, poivrer et ajouter les 7 épices libanaises. Faire cuire en émiettant la viande jusqu'à évaporation de l'eau.",
-            "Ajouter les pignons de pin (si utilisés), mélanger et retirer du feu. Laisser refroidir complètement.",
-            "Pour la pâte à kebbeh : Rincer rapidement le boulghour puis le couvrir d'eau froide pendant au moins 15 min. Égoutter le soigneusement (presser à la main).",
-            "Dans un grand bol, mélanger le boulgour, la viande crue, l'oignon râpé et les épices. Pétrir longuement à la main ou au robot jusqu'à obtention d'une pâte homogène et souple.",
-            "Ajouter un peu d'eau froide si la pâte est trop sèche. La texture doit être lisse, malléable et non collante.",
-            "Pour le montage : Préchauffer le four à 180°C. Huiler un plat rond ou rectangulaire.",
-            "Étaler la moitié de la pâte en couche régulière. Répartir la farce refroidie uniformément.",
-            "Couvrir avec l'autre moitié de la pâte (utiliser des mains mouillées pour lisser).",
-            "Tracer ensuite des losanges ou carrés au couteau. Arroser la surface de beurre fondu ou d'huile d'olive.",
-            "Enfourner pendant 35-40 min (le temps dépend de la puissance du four).",
-            "Servir avec du yaourt nature, de la mélasse de grenade, de la salade fattoush ou des quartiers de citron."
-        ],
-        "tags": [
-            "Liban"
         ],
         "isFeatured": false,
         "isFavorite": false,
