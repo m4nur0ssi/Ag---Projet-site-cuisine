@@ -2,11 +2,85 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 24/06/2026 06:37:33
- * Total: 415 recettes
+ * Dernière mise à jour: 24/06/2026 11:45:27
+ * Total: 416 recettes
  */
-export const exportSyncId = "1782283053830";
+export const exportSyncId = "1782301527272";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6351",
+        "title": "Taboulé de chou-fleur",
+        "description": "Une recette légère, fraîche et pleine de saveurs pour les beaux jours ! Un taboulé revisité, sans semoule, simple à préparer et parfait pour un repas d'été frais et gourmand !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654604752155725089\" data-video-id=\"7654604752155725089\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654604752155725089\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥬\n             1 chou-fleur"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1 petite boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             150 g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             4 tranches de jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6349",
         "title": "Salade de Pâtes",
