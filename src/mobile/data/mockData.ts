@@ -2,11 +2,97 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 25/06/2026 06:40:16
- * Total: 417 recettes
+ * Dernière mise à jour: 25/06/2026 08:46:25
+ * Total: 418 recettes
  */
-export const exportSyncId = "1782369616126";
+export const exportSyncId = "1782377185401";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6355",
+        "title": "Salade & Sauce Onctueuse à la Mangue",
+        "description": "Une salade fraîche et colorée à base de roquette, avocat, feta, tomates cerises, crevettes et noix de cajou, accompagnée d'une sauce onctueuse à la mangue, miel, citron vert et gingembre, parfaite pour les journées chaudes.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654320080834137377\" data-video-id=\"7654320080834137377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654320080834137377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 mangue (coupée en deux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat (en dés)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feta"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises (coupées en 2)"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n             Crevettes (10-12, coupées en morceaux si grosses)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             1 poignée de noix de cajou"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron vert (quelques gouttes)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cm de gingembre râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 à 2 glaçons"
+            }
+        ],
+        "steps": [
+            "Couper la mangue en deux. Réserver une moitié pour la salade et l'autre pour la sauce.",
+            "Préparer la salade : Dans un grand bol, mélanger la roquette, l'avocat coupé en dés, la feta, les tomates cerises coupées en deux, les crevettes (coupées en morceaux si grosses), les noix de cajou, le concombre et la coriandre. Ajouter la moitié de mangue coupée pour la salade.",
+            "Préparer la sauce : Dans un mixeur, combiner la demi-mangue restante, 1 cuillère à café de miel, quelques gouttes de jus de citron vert, le piment (si utilisé) et 1 cm de gingembre râpé.",
+            "Mixer tous les ingrédients de la sauce jusqu'à obtenir une consistance onctueuse.",
+            "Ajouter 1 à 2 glaçons à la sauce mixée et bien mélanger.",
+            "Servir la salade accompagnée de la sauce onctueuse à la mangue."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6353",
         "title": "Mojito express",
