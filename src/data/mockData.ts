@@ -2,11 +2,402 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/06/2026 04:29:21
+ * Dernière mise à jour: 26/06/2026 07:56:48
  * Total: 419 recettes
  */
-export const exportSyncId = "1782448161802";
+export const exportSyncId = "1782460608440";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6351",
+        "title": "Taboulé de chou-fleur",
+        "description": "Une recette légère, fraîche et pleine de saveurs pour les beaux jours ! Un taboulé revisité, sans semoule, simple à préparer et parfait pour un repas d'été frais et gourmand !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6351_1782459592790.jpg&v=1782466857000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654604752155725089\" data-video-id=\"7654604752155725089\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654604752155725089\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥬\n             1 chou-fleur"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1 petite boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             150 g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             4 tranches de jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6349",
+        "title": "Salade de Pâtes",
+        "description": "Une salade de pâtes bien colorée, ultra gourmande et pleine de saveurs, parfaite pour l'été, les meal prep ou pour accompagner un bon barbecue.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6349_1782459541835.jpg&v=1782466788000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633844204917050646\" data-video-id=\"7633844204917050646\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633844204917050646\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             400 g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 petites courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques pignons de pin (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons rôtis (pour la pâte de poivron)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la pâte de poivron)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Un filet de citron (pour la pâte de poivron)"
+            }
+        ],
+        "steps": [
+            "Faire cuire les légumes dans un bon filet d'huile d'olive avec le sel, le poivre et les herbes de Provence jusqu'à ce qu'ils soient bien fondants et caramélisés. Les laisser ensuite refroidir.",
+            "Pendant ce temps, faire cuire les pâtes puis les refroidir également. Couper le concombre en petits morceaux.",
+            "Assembler ensuite les pâtes, les légumes, le concombre, le persil, le basilic, les pignons de pain et la pâte de poivron. Ajouter un filet d'huile d'olive.",
+            "Mélanger le tout puis dresser avec quelques légumes sur le dessus, de la burrata, et du persil frais. À servir bien frais!"
+        ],
+        "tags": [
+            "barbecue",
+            "Italie",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6345",
+        "title": "Salade César",
+        "description": "Une salade César classique et rafraîchissante avec du poulet pané, des tomates cerises et du parmesan.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6345_1782459208381.jpg&v=1782466737000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653779236460743968\" data-video-id=\"7653779236460743968\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653779236460743968\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥗\n             salade Batavia"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Poulet pané"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 cas de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             copeaux de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             crème balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             sauce César (vinaigrette)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Salades",
+            "USA",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6347",
+        "title": "PÂTES SAUCE TOMATE SPICY",
+        "description": "Des pâtes relevées à la sauce tomate, agrémentées de breasola et de parmesan, parfaites pour une personne.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6347_1782458952580.jpg&v=1782466403000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7606397282812038422\" data-video-id=\"7606397282812038422\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7606397282812038422\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             80 g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 demi oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un peu de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             4 CAS de sauce tomate ou pulpe de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Un filet de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices : piment d'Espelette, origan, sel poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques tranches de breasola"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Une tranche de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil plat"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6341",
+        "title": "Jerk Chicken",
+        "description": "Un poulet grillé, fumé, sucré et épicé, inspiré des saveurs de la Jamaïque. Cette version recrée le goût authentique du Jerk Chicken, parfait pour des grillades originales et terriblement addictives.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6341_1782458871151.jpg&v=1782466142000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654591588189883670\" data-video-id=\"7654591588189883670\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654591588189883670\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             4 grosses cuisses de poulet (~840 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             8 oignons nouveaux (~80 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon jaune (~80 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             20 g de gingembre frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 piments Scotch Bonnet (ou les piments que tu trouves)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             10 g de thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre brun"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             30 ml de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             30 ml de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             45 ml d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste + jus d'1 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 c.à.c de pimento (piment de la Jamaïque) moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1,5 c.à.c de cannelle moulue"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c.à.c de clou de girofle moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c.à.c de noix de muscade moulue"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c.à.c de sel"
+            }
+        ],
+        "steps": [
+            "Réalise plusieurs entailles dans 4 grosses cuisses de poulet (~840 g) à l'aide d'un couteau. Dépose-les dans un grand saladier.",
+            "Mixe jusqu'à obtenir une marinade homogène : les oignons nouveaux, l'oignon jaune, le gingembre frais, les gousses d'ail, les piments Scotch Bonnet, le thym frais, le sucre brun, la sauce soja, la sauce Worcestershire, l'huile neutre, le zeste et le jus d'un citron vert, le pimento moulu, la cannelle moulue, le clou de girofle moulu, la noix de muscade moulue et le sel.",
+            "Verse la marinade sur les cuisses de poulet et masse soigneusement pour faire pénétrer les saveurs dans les entailles. Laisse mariner 12 à 24h au réfrigérateur. Plus c'est long, meilleur c'est.",
+            "Fais griller le poulet au barbecue en le retournant régulièrement et en le badigeonnant de marinade à mi-cuisson. Poursuis jusqu'à une température interne de 82-85°C. Si tu n'as pas de barbecue, tu peux aussi le cuire au four ou à l'AirFryer. Laisse reposer quelques minutes avant de servir."
+        ],
+        "tags": [
+            "Afrique",
+            "barbecue",
+            "épicé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6357",
         "title": "Tartinade de chorizo",
@@ -211,300 +602,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6351",
-        "title": "Taboulé de chou-fleur",
-        "description": "Une recette légère, fraîche et pleine de saveurs pour les beaux jours ! Un taboulé revisité, sans semoule, simple à préparer et parfait pour un repas d'été frais et gourmand !",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654604752155725089\" data-video-id=\"7654604752155725089\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654604752155725089\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥬\n             1 chou-fleur"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             1 petite boîte de pois chiches"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             150 g de comté"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             4 tranches de jambon blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6349",
-        "title": "Salade de Pâtes",
-        "description": "Une salade de pâtes bien colorée, ultra gourmande et pleine de saveurs, parfaite pour l'été, les meal prep ou pour accompagner un bon barbecue.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633844204917050646\" data-video-id=\"7633844204917050646\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633844204917050646\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             400 g de pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 petites courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 poivrons"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 burrata"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques pignons de pin (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Herbes de Provence"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 poivrons rôtis (pour la pâte de poivron)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail (pour la pâte de poivron)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Un filet de citron (pour la pâte de poivron)"
-            }
-        ],
-        "steps": [
-            "Faire cuire les légumes dans un bon filet d'huile d'olive avec le sel, le poivre et les herbes de Provence jusqu'à ce qu'ils soient bien fondants et caramélisés. Les laisser ensuite refroidir.",
-            "Pendant ce temps, faire cuire les pâtes puis les refroidir également. Couper le concombre en petits morceaux.",
-            "Assembler ensuite les pâtes, les légumes, le concombre, le persil, le basilic, les pignons de pain et la pâte de poivron. Ajouter un filet d'huile d'olive.",
-            "Mélanger le tout puis dresser avec quelques légumes sur le dessus, de la burrata, et du persil frais. À servir bien frais!"
-        ],
-        "tags": [
-            "barbecue",
-            "Italie",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6347",
-        "title": "PÂTES SAUCE TOMATE SPICY",
-        "description": "Des pâtes relevées à la sauce tomate, agrémentées de breasola et de parmesan, parfaites pour une personne.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7606397282812038422\" data-video-id=\"7606397282812038422\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7606397282812038422\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             80 g de pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 demi oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             Un peu de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             4 CAS de sauce tomate ou pulpe de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Un filet de crème"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Épices : piment d'Espelette, origan, sel poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques tranches de breasola"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Une tranche de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil plat"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Italie",
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6345",
-        "title": "Salade César",
-        "description": "Une salade César classique et rafraîchissante avec du poulet pané, des tomates cerises et du parmesan.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653779236460743968\" data-video-id=\"7653779236460743968\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653779236460743968\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥗\n             salade Batavia"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             Poulet pané"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             2 cas de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             copeaux de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             crème balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             sauce César (vinaigrette)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Salades",
-            "USA",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6343",
         "title": "Brochettes de champignons marinés",
         "description": "Des brochettes de champignons marinés, faciles, rapides et incroyablement aromatiques. Croustillants à l'extérieur et tendres à l'intérieur, parfaits pour le barbecue, en accompagnement ou comme plat végétarien.",
@@ -553,103 +650,6 @@ export const mockRecipes: Recipe[] = [
             "Accompagnements",
             "barbecue",
             "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6341",
-        "title": "Jerk Chicken",
-        "description": "Un poulet grillé, fumé, sucré et épicé, inspiré des saveurs de la Jamaïque. Cette version recrée le goût authentique du Jerk Chicken, parfait pour des grillades originales et terriblement addictives.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654591588189883670\" data-video-id=\"7654591588189883670\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654591588189883670\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             4 grosses cuisses de poulet (~840 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             8 oignons nouveaux (~80 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon jaune (~80 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             20 g de gingembre frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 piments Scotch Bonnet (ou les piments que tu trouves)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             10 g de thym frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             40 g de sucre brun"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             30 ml de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             30 ml de sauce Worcestershire"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             45 ml d'huile neutre"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Zeste + jus d'1 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 c.à.c de pimento (piment de la Jamaïque) moulu"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1,5 c.à.c de cannelle moulue"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c.à.c de clou de girofle moulu"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c.à.c de noix de muscade moulue"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 c.à.c de sel"
-            }
-        ],
-        "steps": [
-            "Réalise plusieurs entailles dans 4 grosses cuisses de poulet (~840 g) à l'aide d'un couteau. Dépose-les dans un grand saladier.",
-            "Mixe jusqu'à obtenir une marinade homogène : les oignons nouveaux, l'oignon jaune, le gingembre frais, les gousses d'ail, les piments Scotch Bonnet, le thym frais, le sucre brun, la sauce soja, la sauce Worcestershire, l'huile neutre, le zeste et le jus d'un citron vert, le pimento moulu, la cannelle moulue, le clou de girofle moulu, la noix de muscade moulue et le sel.",
-            "Verse la marinade sur les cuisses de poulet et masse soigneusement pour faire pénétrer les saveurs dans les entailles. Laisse mariner 12 à 24h au réfrigérateur. Plus c'est long, meilleur c'est.",
-            "Fais griller le poulet au barbecue en le retournant régulièrement et en le badigeonnant de marinade à mi-cuisson. Poursuis jusqu'à une température interne de 82-85°C. Si tu n'as pas de barbecue, tu peux aussi le cuire au four ou à l'AirFryer. Laisse reposer quelques minutes avant de servir."
-        ],
-        "tags": [
-            "Afrique",
-            "barbecue",
-            "épicé",
             "Voilà l'été"
         ],
         "isFeatured": false,
