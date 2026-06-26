@@ -2,11 +2,70 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/06/2026 13:09:37
+ * Dernière mise à jour: 26/06/2026 17:54:50
  * Total: 424 recettes
  */
-export const exportSyncId = "1782479377713";
+export const exportSyncId = "1782496490073";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6373",
+        "title": "Sbriciolata aux fraises",
+        "description": "Une pâte croustillante comme un crumble, la sbriciolata est tellement simple à faire que ce serait dommage de s'en passer !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645338614506868000\" data-video-id=\"7645338614506868000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645338614506868000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             250g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5g de levure"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             150g de fraises"
+            }
+        ],
+        "steps": [
+            "Faire revenir les fraises dans une casserole jusqu'à ce qu'elles soient légèrement compotées. Les écraser en gardant quelques morceaux. Laisser refroidir.",
+            "Pendant ce temps, mélanger tous les autres ingrédients ensemble.",
+            "Travailler la préparation avec les mains jusqu'à obtenir une texture sableuse type crumble. Ne pas former une pâte compacte : le mélange doit rester en miettes.",
+            "Verser la moitié de la préparation dans un moule de 20 cm en tassant légèrement.",
+            "Ajouter les fraises, puis recouvrir avec le reste de la pâte.",
+            "Enfourner 35 à 40 minutes à 180°C, jusqu'à obtenir une belle coloration dorée sur le dessus.",
+            "Saupoudrez de sucre glace"
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6371",
         "title": "Iced Latte Caramel Cookie",
@@ -7806,100 +7865,6 @@ export const mockRecipes: Recipe[] = [
             "Apéritifs",
             "Healthy",
             "Italie",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5615",
-        "title": "Poireaux confits & gratinés",
-        "description": "Une recette de poireaux confits et gratinés, incroyablement fondants et tendres, nappés d'une sauce crémeuse au comté et citron. Un plat végétarien réconfortant, parfait pour l'hiver.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fm1532-hd-gratin-poireaux-1.jpg&v=1781968353000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619730383227112726\" data-video-id=\"7619730383227112726\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619730383227112726\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍐\n             8-10 poireaux"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             4 cas d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 cas de soja salé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cas d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cac de sirop d'érable"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             15g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             25cl de crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             2 cas de crème épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 cas de thym"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 bouillon émietté"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le zeste d'1 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             70g de comté"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             15cl d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil (pour le service)"
-            }
-        ],
-        "steps": [
-            "Couper les poireaux en tronçons (4cm), les rincer et les disposer au fond d'un plat.",
-            "Mélanger l'huile d'olive, le soja salé, l'ail et le sirop d'érable pour la marinade. La verser sur les poireaux, puis ajouter les 15cl d'eau.",
-            "Recouvrir le plat avec une feuille de papier cuisson humidifiée et froissée, puis ajouter une feuille d'aluminium.",
-            "Cuire au four 30-35 min à 200 degrés.",
-            "Pendant ce temps, faire fondre le beurre dans une casserole.",
-            "Ajouter la crème épaisse, la crème liquide, le thym, le comté, le zeste de citron, le bouillon émietté et le poivre. Mixer la sauce.",
-            "Verser la sauce dans le plat pour recouvrir tous les poireaux.",
-            "Ajouter encore un peu de comté sur le dessus.",
-            "Faire gratiner au four 20-25 min à 200 degrés (sous surveillance).",
-            "Servir bien chaud avec un peu de persil."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Gratins",
             "Végé"
         ],
         "isFeatured": false,
