@@ -2,11 +2,82 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/06/2026 07:56:48
+ * Dernière mise à jour: 26/06/2026 09:59:15
  * Total: 419 recettes
  */
-export const exportSyncId = "1782460608440";
+export const exportSyncId = "1782467956001";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6357",
+        "title": "Tartinade de chorizo",
+        "description": "Une tartinade savoureuse et facile à préparer à base de chorizo, fromage frais, tomates séchées, parmesan, basilic et pignons de pin torréfiés, parfaite pour l'apéritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6357_1782466789218.jpg&v=1782473995000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643491060076793121\" data-video-id=\"7643491060076793121\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643491060076793121\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥓\n             120 g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             90 g de fromage frais (Philadelphia)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             40 g de tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             10 g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/3 cuillère à café de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/4 cuillère à café de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à café d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             zest de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             13 feuilles de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15 g de pignons de pin torréfiés"
+            }
+        ],
+        "steps": [
+            "Faire cuire le chorizo.",
+            "Dans un mixeur, ajouter le chorizo cuit, le fromage frais, les tomates séchées, le parmesan, le poivre, le piment, l'huile d'olive, le zeste de citron, le jus de citron, le basilic et les pignons de pin torréfiés.",
+            "Mixer le tout jusqu'à obtenir une tartinade homogène."
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "Espagne"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6351",
         "title": "Taboulé de chou-fleur",
@@ -393,77 +464,6 @@ export const mockRecipes: Recipe[] = [
             "barbecue",
             "épicé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6357",
-        "title": "Tartinade de chorizo",
-        "description": "Une tartinade savoureuse et facile à préparer à base de chorizo, fromage frais, tomates séchées, parmesan, basilic et pignons de pin torréfiés, parfaite pour l'apéritif.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643491060076793121\" data-video-id=\"7643491060076793121\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643491060076793121\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥓\n             120 g de chorizo"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             90 g de fromage frais (Philadelphia)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             40 g de tomates séchées"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             10 g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1/3 cuillère à café de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1/4 cuillère à café de piment"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à café d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             zest de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 cuillère à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             13 feuilles de basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             15 g de pignons de pin torréfiés"
-            }
-        ],
-        "steps": [
-            "Faire cuire le chorizo.",
-            "Dans un mixeur, ajouter le chorizo cuit, le fromage frais, les tomates séchées, le parmesan, le poivre, le piment, l'huile d'olive, le zeste de citron, le jus de citron, le basilic et les pignons de pin torréfiés.",
-            "Mixer le tout jusqu'à obtenir une tartinade homogène."
-        ],
-        "tags": [
-            "Apéritifs",
-            "épicé",
-            "Espagne"
         ],
         "isFeatured": false,
         "isFavorite": false,
