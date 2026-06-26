@@ -2,11 +2,144 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/06/2026 12:54:45
- * Total: 422 recettes
+ * Dernière mise à jour: 26/06/2026 13:09:37
+ * Total: 424 recettes
  */
-export const exportSyncId = "1782478485851";
+export const exportSyncId = "1782479377713";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6371",
+        "title": "Iced Latte Caramel Cookie",
+        "description": "Combiner les saveurs MONIN inspirées de la boulangerie avec le café est toujours une réussite et cette recette de latte glacé a le goût d'un dessert dans un verre...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7640061952395365635\" data-video-id=\"7640061952395365635\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7640061952395365635\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             15ml MONIN Caramel sauce"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             15ml MONIN Chocolate Cookie syrup"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150ml milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Double espresso"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Ice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Whipped cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cookie crumb"
+            }
+        ],
+        "steps": [
+            "Dans un verre, mélanger la sauce MONIN Caramel, le sirop MONIN Chocolate Cookie, le lait et le double espresso.",
+            "Ajouter des glaçons.",
+            "Garnir de crème fouettée et de miettes de biscuits."
+        ],
+        "tags": [
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6369",
+        "title": "Nutella Dalgona Iced Coffee",
+        "description": "Une boisson rafraîchissante et gourmande, combinant un café glacé crémeux de style dalgona avec une touche de Nutella et du lait.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635208483490647318\" data-video-id=\"7635208483490647318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635208483490647318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de café instantané"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             50 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nutella"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Poudre de cacao"
+            }
+        ],
+        "steps": [
+            "Mélanger le café instantané, le sucre blanc et l'eau jusqu'à obtenir une consistance crémeuse.",
+            "Étaler du Nutella sur les parois intérieures d'un verre à l'aide d'une cuillère.",
+            "Remplir le verre aux deux tiers avec du lait.",
+            "Ajouter délicatement le café dalgona crémeux par-dessus le lait.",
+            "Saupoudrer de poudre de cacao pour la garniture."
+        ],
+        "tags": [
+            "Rafraîchissements"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6367",
+        "title": "Glace Maison sans matériel",
+        "description": "Une recette facile pour préparer de la glace maison sans avoir besoin de sorbetière.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655396135166594337\" data-video-id=\"7655396135166594337\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655396135166594337\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6365",
         "title": "Giant Summer Rolls avec sauce cacahuète",
@@ -7774,6 +7907,100 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "5615",
+        "title": "Poireaux confits & gratinés",
+        "description": "Une recette de poireaux confits et gratinés, incroyablement fondants et tendres, nappés d'une sauce crémeuse au comté et citron. Un plat végétarien réconfortant, parfait pour l'hiver.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fm1532-hd-gratin-poireaux-1.jpg&v=1781968353000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619730383227112726\" data-video-id=\"7619730383227112726\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619730383227112726\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍐\n             8-10 poireaux"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cas de soja salé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cas d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cac de sirop d'érable"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             15g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             25cl de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cas de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cas de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 bouillon émietté"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zeste d'1 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             70g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             15cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil (pour le service)"
+            }
+        ],
+        "steps": [
+            "Couper les poireaux en tronçons (4cm), les rincer et les disposer au fond d'un plat.",
+            "Mélanger l'huile d'olive, le soja salé, l'ail et le sirop d'érable pour la marinade. La verser sur les poireaux, puis ajouter les 15cl d'eau.",
+            "Recouvrir le plat avec une feuille de papier cuisson humidifiée et froissée, puis ajouter une feuille d'aluminium.",
+            "Cuire au four 30-35 min à 200 degrés.",
+            "Pendant ce temps, faire fondre le beurre dans une casserole.",
+            "Ajouter la crème épaisse, la crème liquide, le thym, le comté, le zeste de citron, le bouillon émietté et le poivre. Mixer la sauce.",
+            "Verser la sauce dans le plat pour recouvrir tous les poireaux.",
+            "Ajouter encore un peu de comté sur le dessus.",
+            "Faire gratiner au four 20-25 min à 200 degrés (sous surveillance).",
+            "Servir bien chaud avec un peu de persil."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Gratins",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5600",
         "title": "Soupe aux oignons",
         "description": "Une soupe réconfortante et végétarienne à base d'oignons caramélisés, de pommes de terre, de fromage frais et de bouillon de légumes, assaisonnée de thym et de moutarde, parfaite pour les jours froids.",
@@ -7953,131 +8180,6 @@ export const mockRecipes: Recipe[] = [
             "Soupes",
             "USA",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5508",
-        "title": "Cinnamon Roll Muffins",
-        "description": "Super fluffy, filled with that delicious Philadelphia cream cheese, and topped with a buttery, cinnamon-sugar swirl that gives the perfect crunchy touch.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmuffin-3-scaled-1.jpg&v=1781968320000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7574486276993322270\" data-video-id=\"7574486276993322270\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7574486276993322270\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             240 g (2 cups) farine tout usage, tamisée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de poudre à pâte"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à soupe de cannelle moulue"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de fécule de maïs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             110 g (environ ½ tasse) de sucre granulé"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             80 g (environ ½ tasse tassée) de sucre roux"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             ½ tasse (115 g) de beurre non salé, fondu ou à température ambiante"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             ⅓ tasse (80 ml) d'huile végétale"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs + 1 blanc d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1½ cuillères à soupe d'extrait de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             ⅓ tasse (80 ml) de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             ¼ tasse (60 g) de yaourt grec nature"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             60 g de beurre non salé, fondu (pour le tourbillon)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             60 g de sucre roux (pour le tourbillon)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1½ cuillères à café de cannelle moulue (pour le tourbillon)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6 oz (170 g) de Philadelphia cream cheese, ramolli"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             7 cuillères à soupe (100 g) de beurre non salé, ramolli (pour la garniture)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 tasse (120 g) de sucre glace, tamisé"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 cuillère à café d'extrait de vanille (pour la garniture)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             2 cuillères à soupe de crème liquide"
-            }
-        ],
-        "steps": [
-            "Pour la garniture tourbillon  \" Cinnamon Roll  \" : Mélangez le beurre fondu, le sucre roux et la cannelle jusqu'à obtenir une pâte épaisse. Transférez dans une poche à douille ou un petit sac en plastique dont vous aurez coupé un coin.",
-            "Pour la préparation des muffins : Préchauffez le four à 180 °C (350 °F) et préparez un moule à muffins avec de grandes caissettes ou graissez-le.",
-            "Dans un bol, mélangez les ingrédients secs (farine, poudre à pâte, sel, cannelle, fécule de maïs) et mettez de côté.",
-            "Dans un autre bol, battez le beurre avec les sucres (si vous utilisez du beurre fondu, mélangez simplement jusqu'à incorporation).",
-            "Ajoutez l'huile, les œufs, la vanille, le yaourt et le lait. Mélangez jusqu'à incorporation.",
-            "Incorporez délicatement les ingrédients secs avec une spatule ; ne mélangez pas trop.",
-            "Remplissez chaque caissette à muffins aux 2/3 avec la pâte.",
-            "Ajoutez un peu du mélange tourbillon à la cannelle sur le dessus en spirale, puis utilisez un cure-dent pour faire un léger mouvement circulaire afin de créer l'effet de tourbillon.",
-            "Faites cuire pendant 22 à 25 minutes, jusqu'à ce qu'un cure-dent inséré en ressorte propre (un peu d'humidité est acceptable, mais pas de pâte crue).",
-            "Laissez refroidir dans le moule pendant 5 minutes, puis transférez sur une grille.",
-            "Pour la garniture crémeuse (après cuisson) : Battez le beurre et le cream cheese jusqu'à obtenir une consistance crémeuse (2-3 min).",
-            "Ajoutez la vanille.",
-            "Incorporez progressivement le sucre glace jusqu'à ce que le mélange soit léger et mousseux.",
-            "Réfrigérez 15 à 20 minutes avant utilisation.",
-            "Pour garnir les muffins : Une fois refroidis, faites un petit trou au centre de chaque muffin (avec une douille ou un petit couteau).",
-            "Placez la garniture au cream cheese dans une poche à douille munie d'une douille ronde.",
-            "Remplissez le centre jusqu'à ce qu'un peu de garniture dépasse du muffin.",
-            "Vous pouvez laisser la surface lisse ou créer une petite  \" montagne  \" visible sur le dessus, comme un glaçage."
-        ],
-        "tags": [
-            "pâtisserie",
-            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -29462,93 +29564,6 @@ export const mockRecipes: Recipe[] = [
             "Italie",
             "mediterraneen",
             "oeufs",
-            "tomate",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3744",
-        "title": "Salade de Pommes de Terre Rôties, Tomates, Pois Chiches et Ricotta",
-        "description": "Une recette végétarienne facile et rapide aux saveurs italiennes, combinant des pommes de terre, tomates cerises et pois chiches rôtis, servis sur un lit de ricotta fraîche avec du parmesan et des herbes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F500964372_122173640036343633_5202015027513151850_n.jpeg&v=1773762617000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7489093004754423062\" data-video-id=\"7489093004754423062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7489093004754423062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n 450g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 300g de tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 180g de pois chiche"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 1 cas de thym"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 1 cas de persillade"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 cac d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 4 cas d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 1 cas de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 2 cas de vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 ricotta (250g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Herbes fraîches (basilic...)"
-            }
-        ],
-        "steps": [
-            "Mélanger dans un plat des petites pommes de terre coupées en 2 (ou des grosses en petits morceaux) avec les tomates et les pois chiche.",
-            "Ajouter la persillade, le thym, l'ail, le miel, l'huile d'olive et le vinaigre balsamique.",
-            "Cuire les légumes 30-35 min à 200 degrés (bien mélanger à mi-cuisson).",
-            "Étaler une bonne ricotta au fond de l'assiette (avec une burrata ou de la mozzarella c'est trop bon aussi), ajouter les légumes bien rôtis, du parmesan râpé et des herbes fraîches (basilic...)."
-        ],
-        "tags": [
-            "Healthy",
-            "italien",
-            "Pois chiche",
-            "pomme de terre",
-            "rapide",
-            "ricotta",
-            "roti",
-            "salade",
             "tomate",
             "Végé"
         ],
