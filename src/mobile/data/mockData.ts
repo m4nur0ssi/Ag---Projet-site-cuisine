@@ -2,11 +2,320 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/06/2026 11:33:09
- * Total: 426 recettes
+ * Dernière mise à jour: 27/06/2026 11:48:11
+ * Total: 429 recettes
  */
-export const exportSyncId = "1782559989955";
+export const exportSyncId = "1782560891185";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6383",
+        "title": "Creamy Zucchini Dip",
+        "description": "Un dip crémeux et facile à préparer à base de courgettes rôties, d'ail et de tahini, parfait pour les journées chaudes d'été et les barbecues.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655739415490268449\" data-video-id=\"7655739415490268449\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655739415490268449\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Tahini"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "Healthy",
+            "Pas cher",
+            "Végé",
+            "Végétarien"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6381",
+        "title": "Cheesecake salé sans cuisson",
+        "description": "Une recette ultra fraîche, parfaite pour les journées d'été ! Facile à préparer, sans cuisson et idéale en entrée ou à partager à l'apéro.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656024768084331808\" data-video-id=\"7656024768084331808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656024768084331808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de Tuc"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de yaourt à la grecque nature"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon cru"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 feuilles de gélatine"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6379",
+        "title": "Salade Caprese à l'avocat et mélasse de grenade",
+        "description": "Une salade fraîche et savoureuse à base de mozzarella, tomates, avocat et herbes, relevée par une vinaigrette à l'huile d'olive et à la mélasse de grenade. Parfaite pour l'été.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655346685467495713\" data-video-id=\"7655346685467495713\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655346685467495713\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             2 boules de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             5 brins d'aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             5 brins de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Un demi-avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café de basilic séché"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2-3 brins de thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 brins de romarin frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une demi-cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             7 cuillères à soupe d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 cuillères à soupe de mélasse de grenade"
+            }
+        ],
+        "steps": [
+            "Dans un grand plat de service, mélangez 6 cuillères à soupe d'huile d'olive et 4 cuillères à soupe de mélasse de grenade.",
+            "Ajoutez l'ail écrasé et une demi-cuillère à café de sel, puis mélangez bien.",
+            "Coupez les tomates en tranches et enrobez-les des deux côtés avec la sauce préparée.",
+            "Disposez les tranches de tomates sur les bords du plat de service.",
+            "Coupez la mozzarella en tranches, enrobez-la de sauce de la même manière et placez-la entre les tomates.",
+            "Disposez les tranches d'avocat sur la mozzarella.",
+            "Saupoudrez d'oignon rouge finement haché, d'aneth, de persil, de thym frais et de romarin frais.",
+            "Enfin, arrosez le tout d'1 cuillère à soupe d'huile d'olive et d'1 cuillère à soupe de mélasse de grenade."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6377",
+        "title": "Sommerlasagne",
+        "description": "Une lasagne d'été fraîche et légère, préparée avec un pesto maison, une crème de ricotta citronnée, des légumes de saison (courgettes, tomates) et garnie de prosciutto et pistaches.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655739126653717792\" data-video-id=\"7655739126653717792\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655739126653717792\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌿\n             30 g Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             30 g Pistaches"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             15 g Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             35 ml Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Courgette"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250 g Tomates rouges et jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g Ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste et jus de 1 Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices selon goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 feuilles de Lasagne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Prosciutto pour décorer"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Pistaches pour décorer"
+            }
+        ],
+        "steps": [
+            "Pour le pesto, mixer finement tous les ingrédients. Si c'est trop épais, ajouter un peu d'eau chaude.",
+            "Mélanger la ricotta avec le zeste de citron, le jus de citron et les épices.",
+            "Couper la courgette en demi-rondelles et la faire revenir dans l'huile d'olive pendant environ 3 minutes. Ajouter les tomates coupées en deux, faire revenir brièvement et assaisonner avec du sel.",
+            "Cuire les feuilles de lasagne dans de l'eau salée bouillante. Remuer régulièrement pour éviter qu'elles ne collent. Ensuite, les retirer, les laisser refroidir et les étaler séparément.",
+            "Monter la lasagne selon les envies avec la crème de ricotta, les légumes et le pesto. Garnir de prosciutto et de pistaches."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6375",
         "title": "Tiramisu au citron sans gluten",
@@ -14882,63 +15191,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5872",
-        "title": "Sauce Ta Diète",
-        "description": "Une sauce crémeuse miel-moutarde, légèrement fumée avec une touche steakhouse grâce au Worcestershire, parfaite pour transformer les plats de régime en un vrai régal.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce-big-mac-maison-ce-melange-precis-de-3-ingredients-la-rend-meilleure-que-chez-mcdo-en-5-minutes.jpeg&v=1780139641000",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613808499729927446\" data-video-id=\"7613808499729927446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613808499729927446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 210 g de Skyr ou fromage blanc 0 %"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 90 g de moutarde à l'ancienne"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 30 g de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 petite gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 1 càc de sauce Worcestershire ou soja"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n ½ càc de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 1 càc de vinaigre de cidre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel, poivre au goût"
-            }
-        ],
-        "steps": [
-            "Mélanger tous les ingrédients dans un blender.",
-            "Goûter et ajuster l'assaisonnement."
-        ],
-        "tags": [
-            "Healthy",
-            "Sauces"
         ],
         "isFeatured": false,
         "isFavorite": false,
