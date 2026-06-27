@@ -2,217 +2,222 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/06/2026 11:48:11
+ * Dernière mise à jour: 27/06/2026 14:56:05
  * Total: 429 recettes
  */
-export const exportSyncId = "1782560891185";
+export const exportSyncId = "1782572165991";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "6383",
-        "title": "Creamy Zucchini Dip",
-        "description": "Un dip crémeux et facile à préparer à base de courgettes rôties, d'ail et de tahini, parfait pour les journées chaudes d'été et les barbecues.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655739415490268449\" data-video-id=\"7655739415490268449\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655739415490268449\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Tahini"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "barbecue",
-            "Healthy",
-            "Pas cher",
-            "Végé",
-            "Végétarien"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6381",
-        "title": "Cheesecake salé sans cuisson",
-        "description": "Une recette ultra fraîche, parfaite pour les journées d'été ! Facile à préparer, sans cuisson et idéale en entrée ou à partager à l'apéro.",
-        "image": "/images/recipe-placeholder.svg",
+        "id": "6306",
+        "title": "Tiramisu maison avec biscuit fait maison",
+        "description": "Le grand classique italien revisité par Norbert Tarayre, avec un biscuit cuillère maison pour un résultat encore plus gourmand et authentique !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6306_1782571158232.jpeg&v=1782578382000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656024768084331808\" data-video-id=\"7656024768084331808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656024768084331808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/31kVcFuLujg\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             200 g de Tuc"
+                "name": "🧀\n             500 g de mascarpone"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             100 g de beurre fondu"
+                "name": "🥚\n             6 œufs entiers"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             300 g de fromage frais"
+                "name": "🍯\n             100 g de sucre"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             300 g de yaourt à la grecque nature"
+                "name": "🍫\n             100 g de cacao en poudre non sucré"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Ciboulette"
+                "name": "🥣\n             4 tasses de café fort refroidi"
             },
             {
                 "quantity": "",
-                "name": "🥓\n             Jambon cru"
+                "name": "🥣\n             2 cuillères à café d'Amaretto"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Jus de citron jaune"
+                "name": "🥚\n             180 g de blancs d'œufs (pour le biscuit)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             4 feuilles de gélatine"
+                "name": "🍯\n             150 g de sucre (pour le biscuit)"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "🥚\n             120 g de jaunes d'œufs (pour le biscuit)"
             },
             {
                 "quantity": "",
-                "name": "🥒\n             Concombre"
+                "name": "🌾\n             150 g de farine (pour le biscuit)"
             },
             {
                 "quantity": "",
-                "name": "🍅\n             Tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
+                "name": "🍯\n             40 g de sucre glace (pour le biscuit)"
             }
         ],
         "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
+            "Préparer le biscuit cuillère maison : préchauffer le four à 180°C. Monter les 180 g de blancs d'œufs en neige ferme en ajoutant progressivement les 150 g de sucre pour obtenir une meringue brillante.",
+            "Incorporer délicatement les 120 g de jaunes d'œufs à la meringue à l'aide d'une maryse, en soulevant la masse pour ne pas faire retomber les blancs.",
+            "Ajouter les 150 g de farine tamisée en pluie et mélanger délicatement jusqu'à obtenir un appareil homogène.",
+            "Dresser le biscuit sur une plaque recouverte de papier cuisson à l'aide d'une poche à douille (en boudoirs ou en couche uniforme). Saupoudrer de sucre glace, laisser croûter 5 minutes, puis enfourner 10 à 12 minutes à 180°C. Laisser refroidir.",
+            "Préparer la crème au mascarpone : séparer les 6 œufs. Fouetter les jaunes avec les 100 g de sucre jusqu'à ce que le mélange blanchisse et soit bien mousseux.",
+            "Ajouter les 500 g de mascarpone au mélange jaunes-sucre et fouetter pour obtenir une crème lisse et homogène.",
+            "Monter les 6 blancs en neige ferme, puis les incorporer délicatement à la crème mascarpone en plusieurs fois pour garder une texture aérienne.",
+            "Préparer le café : mélanger les 4 tasses de café fort refroidi avec les 2 cuillères à café d'Amaretto dans un bol creux.",
+            "Montage du tiramisu : tremper rapidement les biscuits maison dans le mélange café-Amaretto et en tapisser le fond d'un plat.",
+            "Étaler une généreuse couche de crème mascarpone sur les biscuits imbibés. Répéter l'opération avec une deuxième couche de biscuits imbibés puis terminer par une couche de crème.",
+            "Lisser la surface et réserver au réfrigérateur minimum 4 heures (idéalement une nuit) pour que le tiramisu prenne bien.",
+            "Au moment de servir, saupoudrer généreusement de cacao en poudre à l'aide d'un tamis pour une belle finition. Déguster bien frais !"
         ],
         "tags": [
-            "Voilà l'été"
+            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
     {
-        "id": "6379",
-        "title": "Salade Caprese à l'avocat et mélasse de grenade",
-        "description": "Une salade fraîche et savoureuse à base de mozzarella, tomates, avocat et herbes, relevée par une vinaigrette à l'huile d'olive et à la mélasse de grenade. Parfaite pour l'été.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
+        "id": "5514",
+        "title": "Tiramisu",
+        "description": "Recette de tiramisu maison avec un biscuit fait maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fi196570-tiramisu-simple-1.jpg&v=1782578351000",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655346685467495713\" data-video-id=\"7655346685467495713\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655346685467495713\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463909495878569238\" data-video-id=\"7463909495878569238\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463909495878569238\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🧀\n             2 boules de mozzarella"
+                "name": "🧀\n 500g de Mascarpone"
             },
             {
                 "quantity": "",
-                "name": "🍅\n             3 tomates"
+                "name": "🥚\n 6 œufs"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
+                "name": "🍯\n 100g de sucre"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             5 brins d'aneth"
+                "name": "🍫\n 100g de cacao en poudre"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             5 brins de persil"
+                "name": "🥣\n 4 tasses à café"
             },
             {
                 "quantity": "",
-                "name": "🥑\n             Un demi-avocat"
+                "name": "🥣\n 2 cuillères à café d'Amaretto"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             1 cuillère à café de basilic séché"
+                "name": "🥚\n 180g de blancs d'œufs"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 petit oignon rouge"
+                "name": "🍯\n 150g de sucre"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             2-3 brins de thym frais"
+                "name": "🥚\n 120g de jaune d'œufs"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             2 brins de romarin frais"
+                "name": "🌾\n 150g de farine"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Une demi-cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             7 cuillères à soupe d'huile d'olive extra vierge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5 cuillères à soupe de mélasse de grenade"
+                "name": "🍯\n 40g de sucre glace"
             }
         ],
         "steps": [
-            "Dans un grand plat de service, mélangez 6 cuillères à soupe d'huile d'olive et 4 cuillères à soupe de mélasse de grenade.",
-            "Ajoutez l'ail écrasé et une demi-cuillère à café de sel, puis mélangez bien.",
-            "Coupez les tomates en tranches et enrobez-les des deux côtés avec la sauce préparée.",
-            "Disposez les tranches de tomates sur les bords du plat de service.",
-            "Coupez la mozzarella en tranches, enrobez-la de sauce de la même manière et placez-la entre les tomates.",
-            "Disposez les tranches d'avocat sur la mozzarella.",
-            "Saupoudrez d'oignon rouge finement haché, d'aneth, de persil, de thym frais et de romarin frais.",
-            "Enfin, arrosez le tout d'1 cuillère à soupe d'huile d'olive et d'1 cuillère à soupe de mélasse de grenade."
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6335",
+        "title": "Tartinable à l'ail confit",
+        "description": "Un tartinable savoureux et intense à base d'ail confit, parfait pour l'apéritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6335_1782570909973.jpg&v=1782578227000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630432257085410582\" data-video-id=\"7630432257085410582\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630432257085410582\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             ail confit"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6321",
+        "title": "Sorbet pastèque fraise",
+        "description": "Un sorbet hyper rafraîchissant à la pastèque et aux fraises, facile à réaliser sans sorbetière, idéal pour les fortes chaleurs.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6321_1782570889962.jpeg&v=1782578106000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653834716830846240\" data-video-id=\"7653834716830846240\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653834716830846240\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pastèque (environ 900g coupée en gros cubes)"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             450g de fraises congelées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 CS de sucre"
+            }
+        ],
+        "steps": [
+            "Vide la pastèque et congèle les morceaux pendant 4h minimum et idéalement la nuit.",
+            "Conserve la coque pour t'en servir de contenant, mets-la au frigo.",
+            "Mixe ensemble la pastèque congelée, les fraises, le yaourt grec et le sucre.",
+            "Place le sorbet dans la coque et c'est déjà prêt. À déguster immédiatement."
         ],
         "tags": [
             "Healthy",
-            "Italie",
-            "Salades",
-            "Végé",
+            "Les Glaces",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -223,7 +228,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6377",
         "title": "Sommerlasagne",
         "description": "Une lasagne d'été fraîche et légère, préparée avec un pesto maison, une crème de ricotta citronnée, des légumes de saison (courgettes, tomates) et garnie de prosciutto et pistaches.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6377_1782570575205.jpg&v=1782578085000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -317,89 +322,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6375",
-        "title": "Tiramisu au citron sans gluten",
-        "description": "Un tiramisu frais et gourmand au citron, sans gluten, avec une crème au citron maison, une crème mascarpone onctueuse et des boudoirs imbibés de sirop de citron.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655984186184011040\" data-video-id=\"7655984186184011040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655984186184011040\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             4 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus de 5 citrons"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             200 g de sucre de canne non raffiné"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             230 g de beurre de baratte"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             500 g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             150 ml de crème liquide entière bien froide"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 belles c. à soupe de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             Un peu de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             200 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 c. à soupe de sucre de canne"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             2 c. à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Un peu de zeste de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Boudoirs"
-            }
-        ],
-        "steps": [
-            "Préparer le lemon curd : Mettre tous les ingrédients dans un saladier résistant à la chaleur et fouetter au bain-marie jusqu'à obtenir une crème bien épaisse, comme dans la vidéo. Laisser refroidir.",
-            "Préparer le sirop : Porter tous les ingrédients à ébullition, puis laisser refroidir. Il servira à imbiber les boudoirs.",
-            "Préparer la crème mascarpone : Fouetter le mascarpone, la crème liquide, le sucre glace et la vanille jusqu'à obtenir une crème ferme et aérienne.",
-            "Montage : Tremper rapidement les boudoirs dans le sirop de citron. Alterner une couche de boudoirs, une couche de crème mascarpone, puis une couche de lemon curd. Répéter jusqu'à épuisement des ingrédients. Terminer par une fine couche de lemon curd, puis laisser reposer au réfrigérateur plusieurs heures, idéalement toute une nuit."
-        ],
-        "tags": [
-            "Italie",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6373",
         "title": "Sbriciolata aux fraises",
         "description": "Une pâte croustillante comme un crumble, la sbriciolata est tellement simple à faire que ce serait dommage de s'en passer !",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6373_1782570059776.jpg&v=1782577770000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -455,10 +381,431 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "6331",
+        "title": "Salade fraîche pastèque et pêche",
+        "description": "La salade la plus fraîche de l'été☀️✨ La pastèque dans la salade tu valides ?👀",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6331_1782569897954.jpg&v=1782577256000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645618857603763488\" data-video-id=\"7645618857603763488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645618857603763488\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pêche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre balsamique"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6325",
+        "title": "Salade fraîche d'été aux pois chiches et fêta",
+        "description": "Une salade bien fraîche pour l'été, qui change de la salade verte 👀🤤",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6325_1782569887029.jpg&v=1782577096000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653502841876696353\" data-video-id=\"7653502841876696353\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653502841876696353\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             pois chiche"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             pignons de pain"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6379",
+        "title": "Salade Caprese à l'avocat et mélasse de grenade",
+        "description": "Une salade fraîche et savoureuse à base de mozzarella, tomates, avocat et herbes, relevée par une vinaigrette à l'huile d'olive et à la mélasse de grenade. Parfaite pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6379_1782569824541.jpg&v=1782577085000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655346685467495713\" data-video-id=\"7655346685467495713\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655346685467495713\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             2 boules de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             5 brins d'aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             5 brins de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Un demi-avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café de basilic séché"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2-3 brins de thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 brins de romarin frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une demi-cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             7 cuillères à soupe d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 cuillères à soupe de mélasse de grenade"
+            }
+        ],
+        "steps": [
+            "Dans un grand plat de service, mélangez 6 cuillères à soupe d'huile d'olive et 4 cuillères à soupe de mélasse de grenade.",
+            "Ajoutez l'ail écrasé et une demi-cuillère à café de sel, puis mélangez bien.",
+            "Coupez les tomates en tranches et enrobez-les des deux côtés avec la sauce préparée.",
+            "Disposez les tranches de tomates sur les bords du plat de service.",
+            "Coupez la mozzarella en tranches, enrobez-la de sauce de la même manière et placez-la entre les tomates.",
+            "Disposez les tranches d'avocat sur la mozzarella.",
+            "Saupoudrez d'oignon rouge finement haché, d'aneth, de persil, de thym frais et de romarin frais.",
+            "Enfin, arrosez le tout d'1 cuillère à soupe d'huile d'olive et d'1 cuillère à soupe de mélasse de grenade."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6355",
+        "title": "Salade & Sauce Onctueuse à la Mangue",
+        "description": "Une salade fraîche et colorée à base de roquette, avocat, feta, tomates cerises, crevettes et noix de cajou, accompagnée d'une sauce onctueuse à la mangue, miel, citron vert et gingembre, parfaite pour les journées chaudes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6355_1782569741574.jpg&v=1782577020000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654320080834137377\" data-video-id=\"7654320080834137377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654320080834137377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 mangue (coupée en deux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat (en dés)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feta"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises (coupées en 2)"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n             Crevettes (10-12, coupées en morceaux si grosses)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             1 poignée de noix de cajou"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron vert (quelques gouttes)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cm de gingembre râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 à 2 glaçons"
+            }
+        ],
+        "steps": [
+            "Couper la mangue en deux. Réserver une moitié pour la salade et l'autre pour la sauce.",
+            "Préparer la salade : Dans un grand bol, mélanger la roquette, l'avocat coupé en dés, la feta, les tomates cerises coupées en deux, les crevettes (coupées en morceaux si grosses), les noix de cajou, le concombre et la coriandre. Ajouter la moitié de mangue coupée pour la salade.",
+            "Préparer la sauce : Dans un mixeur, combiner la demi-mangue restante, 1 cuillère à café de miel, quelques gouttes de jus de citron vert, le piment (si utilisé) et 1 cm de gingembre râpé.",
+            "Mixer tous les ingrédients de la sauce jusqu'à obtenir une consistance onctueuse.",
+            "Ajouter 1 à 2 glaçons à la sauce mixée et bien mélanger.",
+            "Servir la salade accompagnée de la sauce onctueuse à la mangue."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6369",
+        "title": "Nutella Dalgona Iced Coffee",
+        "description": "Une boisson rafraîchissante et gourmande, combinant un café glacé crémeux de style dalgona avec une touche de Nutella et du lait.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6369_1782569622576.jpg&v=1782576937000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635208483490647318\" data-video-id=\"7635208483490647318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635208483490647318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de café instantané"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             50 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nutella"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Poudre de cacao"
+            }
+        ],
+        "steps": [
+            "Mélanger le café instantané, le sucre blanc et l'eau jusqu'à obtenir une consistance crémeuse.",
+            "Étaler du Nutella sur les parois intérieures d'un verre à l'aide d'une cuillère.",
+            "Remplir le verre aux deux tiers avec du lait.",
+            "Ajouter délicatement le café dalgona crémeux par-dessus le lait.",
+            "Saupoudrer de poudre de cacao pour la garniture."
+        ],
+        "tags": [
+            "Rafraîchissements"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6353",
+        "title": "Mojito express",
+        "description": "Un mojito express, prêt en seulement 2 minutes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6353_1782569582238.jpg&v=1782576818000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7252370449462562074\" data-video-id=\"7252370449462562074\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7252370449462562074\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             10 feuilles menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Glaçon"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sprite ou eau gazeuse + sucre roux"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Pas cher",
+            "Rafraîchissements",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6333",
+        "title": "Kinder Country Airfryer",
+        "description": "Une recette facile et rapide pour préparer des Kinder Country maison au Airfryer en seulement 3 minutes et à moindre coût.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6333_1782569523265.jpg&v=1782576778000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641271173887692064\" data-video-id=\"7641271173887692064\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641271173887692064\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "6371",
         "title": "Iced Latte Caramel Cookie",
         "description": "Combiner les saveurs MONIN inspirées de la boulangerie avec le café est toujours une réussite et cette recette de latte glacé a le goût d'un dessert dans un verre...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6371_1782569286723.jpg&v=1782576708000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -509,61 +856,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6369",
-        "title": "Nutella Dalgona Iced Coffee",
-        "description": "Une boisson rafraîchissante et gourmande, combinant un café glacé crémeux de style dalgona avec une touche de Nutella et du lait.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635208483490647318\" data-video-id=\"7635208483490647318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635208483490647318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à soupe de café instantané"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de sucre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             50 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Nutella"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Lait"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             Poudre de cacao"
-            }
-        ],
-        "steps": [
-            "Mélanger le café instantané, le sucre blanc et l'eau jusqu'à obtenir une consistance crémeuse.",
-            "Étaler du Nutella sur les parois intérieures d'un verre à l'aide d'une cuillère.",
-            "Remplir le verre aux deux tiers avec du lait.",
-            "Ajouter délicatement le café dalgona crémeux par-dessus le lait.",
-            "Saupoudrer de poudre de cacao pour la garniture."
-        ],
-        "tags": [
-            "Rafraîchissements"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6367",
         "title": "Glace Maison sans matériel",
         "description": "Une recette facile pour préparer de la glace maison sans avoir besoin de sorbetière.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6367_1782569274165.jpg&v=1782576483000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -591,7 +887,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6365",
         "title": "Giant Summer Rolls avec sauce cacahuète",
         "description": "Des rouleaux de printemps géants frais, croquants et colorés, parfaits pour un repas d'été léger et savoureux, accompagnés d'une sauce crémeuse aux cacahuètes. Une version améliorée d'un classique estival.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6365_1782568755980.jpg&v=1782576469000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -680,6 +976,442 @@ export const mockRecipes: Recipe[] = [
             "Salades",
             "Végé",
             "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6329",
+        "title": "Cœurs d'artichaut rôti au parmesan à l'Airfryer",
+        "description": "Des cœurs d'artichaut rôtis au parmesan, parfaits pour l'apéro et prêts en seulement 10 minutes à l'Airfryer.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6329_1782568699800.jpg&v=1782575953000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648578267405913377\" data-video-id=\"7648578267405913377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648578267405913377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Cœurs d'artichaut"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            }
+        ],
+        "steps": [
+            "Assaisonner les cœurs d'artichaut avec le sel, le poivre, l'ail en poudre, le paprika et le piment d'Espelette.",
+            "Ajouter le parmesan râpé sur les cœurs d'artichaut.",
+            "Faire rôtir les cœurs d'artichaut assaisonnés dans un Airfryer pendant environ 10 minutes, jusqu'à ce qu'ils soient dorés et croustillants."
+        ],
+        "tags": [
+            "airfryer",
+            "épicé",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6383",
+        "title": "Creamy Zucchini Dip",
+        "description": "Un dip crémeux et facile à préparer à base de courgettes rôties, d'ail et de tahini, parfait pour les journées chaudes d'été et les barbecues.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6383_1782568530217.jpg&v=1782575895000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655739415490268449\" data-video-id=\"7655739415490268449\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655739415490268449\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Tahini"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "Healthy",
+            "Pas cher",
+            "Végé",
+            "Végétarien"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6319",
+        "title": "Citronnade maison prête en 5 minutes",
+        "description": "Une citronnade ultra rafraîchissante, parfaite pour les journées ensoleillées !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6319_1782568029760.jpg&v=1782575725000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654602594802847009\" data-video-id=\"7654602594802847009\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654602594802847009\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n             4 citrons jaunes bio"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1,5 L d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des glaçons à volonté"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             20 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             A à 6 tranches de citron jaune pour le service"
+            }
+        ],
+        "steps": [
+            "Dans un premier temps, lavez soigneusement les citrons jaunes puis coupez-les en quartiers en conservant la peau.",
+            "Placez-les dans un blender avec quelques feuilles de menthe, le sucre et environ 50 cl d'eau.",
+            "Mixez jusqu'à obtenir une préparation homogène.",
+            "Filtrez ensuite le mélange à l'aide d'une passoire fine afin de retirer les morceaux et l'excédent de pulpe.",
+            "Versez la préparation filtrée dans une grande carafe, ajoutez le reste de l'eau (environ 1 litre), les glaçons ainsi que quelques tranches de citron.",
+            "Mélangez bien et servez bien frais."
+        ],
+        "tags": [
+            "Pas cher",
+            "Rafraîchissements",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6327",
+        "title": "Brochettes de poulet ananas piquantes à l'airfryer",
+        "description": "Des brochettes de poulet et ananas relevées avec une sauce piquante, idéales pour une cuisson rapide à l'airfryer.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6327_1782568013463.jpg&v=1782575228000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649798540742380833\" data-video-id=\"7649798540742380833\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649798540742380833\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 filet de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 ananas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce piquante (aigre douce piquante)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curry"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "airfryer",
+            "asiatique",
+            "épicé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6343",
+        "title": "Brochettes de champignons marinés",
+        "description": "Des brochettes de champignons marinés, faciles, rapides et incroyablement aromatiques. Croustillants à l'extérieur et tendres à l'intérieur, parfaits pour le barbecue, en accompagnement ou comme plat végétarien.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6343_1782568002651.jpeg&v=1782575209000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647209242784451873\" data-video-id=\"7647209242784451873\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647209242784451873\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍄\n             400 g Champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à soupe d'ail haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à soupe de persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            }
+        ],
+        "steps": [
+            "Bien nettoyer les champignons et les mélanger avec la marinade composée d'huile d'olive, de sauce soja, d'ail et d'épices.",
+            "Laisser mariner brièvement, puis les enfiler sur des brochettes et les griller ou les faire dorer à la poêle."
+        ],
+        "tags": [
+            "Accompagnements",
+            "barbecue",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6381",
+        "title": "Cheesecake salé sans cuisson",
+        "description": "Une recette ultra fraîche, parfaite pour les journées d'été ! Facile à préparer, sans cuisson et idéale en entrée ou à partager à l'apéro.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656024768084331808\" data-video-id=\"7656024768084331808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656024768084331808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de Tuc"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de yaourt à la grecque nature"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon cru"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 feuilles de gélatine"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6375",
+        "title": "Tiramisu au citron sans gluten",
+        "description": "Un tiramisu frais et gourmand au citron, sans gluten, avec une crème au citron maison, une crème mascarpone onctueuse et des boudoirs imbibés de sirop de citron.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655984186184011040\" data-video-id=\"7655984186184011040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655984186184011040\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 5 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200 g de sucre de canne non raffiné"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             230 g de beurre de baratte"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             500 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 ml de crème liquide entière bien froide"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 belles c. à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Un peu de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 c. à soupe de sucre de canne"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 c. à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Un peu de zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Boudoirs"
+            }
+        ],
+        "steps": [
+            "Préparer le lemon curd : Mettre tous les ingrédients dans un saladier résistant à la chaleur et fouetter au bain-marie jusqu'à obtenir une crème bien épaisse, comme dans la vidéo. Laisser refroidir.",
+            "Préparer le sirop : Porter tous les ingrédients à ébullition, puis laisser refroidir. Il servira à imbiber les boudoirs.",
+            "Préparer la crème mascarpone : Fouetter le mascarpone, la crème liquide, le sucre glace et la vanille jusqu'à obtenir une crème ferme et aérienne.",
+            "Montage : Tremper rapidement les boudoirs dans le sirop de citron. Alterner une couche de boudoirs, une couche de crème mascarpone, puis une couche de lemon curd. Répéter jusqu'à épuisement des ingrédients. Terminer par une fine couche de lemon curd, puis laisser reposer au réfrigérateur plusieurs heures, idéalement toute une nuit."
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -1148,193 +1880,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6355",
-        "title": "Salade & Sauce Onctueuse à la Mangue",
-        "description": "Une salade fraîche et colorée à base de roquette, avocat, feta, tomates cerises, crevettes et noix de cajou, accompagnée d'une sauce onctueuse à la mangue, miel, citron vert et gingembre, parfaite pour les journées chaudes.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654320080834137377\" data-video-id=\"7654320080834137377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654320080834137377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 mangue (coupée en deux)"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Roquette"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             1 avocat (en dés)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Feta"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates cerises (coupées en 2)"
-            },
-            {
-                "quantity": "",
-                "name": "🦐\n             Crevettes (10-12, coupées en morceaux si grosses)"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             1 poignée de noix de cajou"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à café de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron vert (quelques gouttes)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment (optionnel)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cm de gingembre râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 à 2 glaçons"
-            }
-        ],
-        "steps": [
-            "Couper la mangue en deux. Réserver une moitié pour la salade et l'autre pour la sauce.",
-            "Préparer la salade : Dans un grand bol, mélanger la roquette, l'avocat coupé en dés, la feta, les tomates cerises coupées en deux, les crevettes (coupées en morceaux si grosses), les noix de cajou, le concombre et la coriandre. Ajouter la moitié de mangue coupée pour la salade.",
-            "Préparer la sauce : Dans un mixeur, combiner la demi-mangue restante, 1 cuillère à café de miel, quelques gouttes de jus de citron vert, le piment (si utilisé) et 1 cm de gingembre râpé.",
-            "Mixer tous les ingrédients de la sauce jusqu'à obtenir une consistance onctueuse.",
-            "Ajouter 1 à 2 glaçons à la sauce mixée et bien mélanger.",
-            "Servir la salade accompagnée de la sauce onctueuse à la mangue."
-        ],
-        "tags": [
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6353",
-        "title": "Mojito express",
-        "description": "Un mojito express, prêt en seulement 2 minutes.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7252370449462562074\" data-video-id=\"7252370449462562074\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7252370449462562074\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             10 feuilles menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 jus de citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Glaçon"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sprite ou eau gazeuse + sucre roux"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Pas cher",
-            "Rafraîchissements",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6343",
-        "title": "Brochettes de champignons marinés",
-        "description": "Des brochettes de champignons marinés, faciles, rapides et incroyablement aromatiques. Croustillants à l'extérieur et tendres à l'intérieur, parfaits pour le barbecue, en accompagnement ou comme plat végétarien.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647209242784451873\" data-video-id=\"7647209242784451873\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647209242784451873\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍄\n             400 g Champignons"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             4 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 cuillères à soupe de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cuillère à soupe d'ail haché"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 cuillère à café de thym"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 cuillère à soupe de persil haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre"
-            }
-        ],
-        "steps": [
-            "Bien nettoyer les champignons et les mélanger avec la marinade composée d'huile d'olive, de sauce soja, d'ail et d'épices.",
-            "Laisser mariner brièvement, puis les enfiler sur des brochettes et les griller ou les faire dorer à la poêle."
-        ],
-        "tags": [
-            "Accompagnements",
-            "barbecue",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6339",
         "title": "Salade de gnocchis croustillants pour l'été",
         "description": "Une salade fraîche et gourmande, idéale pour l'été, composée de gnocchis croustillants, de lard, de salade verte, d'œuf et de parmesan, le tout relevé par une sauce crémeuse au yaourt grec.",
@@ -1472,306 +2017,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6335",
-        "title": "Tartinable à l'ail confit",
-        "description": "Un tartinable savoureux et intense à base d'ail confit, parfait pour l'apéritif.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630432257085410582\" data-video-id=\"7630432257085410582\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630432257085410582\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧄\n             ail confit"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Apéritifs"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6333",
-        "title": "Kinder Country Airfryer",
-        "description": "Une recette facile et rapide pour préparer des Kinder Country maison au Airfryer en seulement 3 minutes et à moindre coût.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641271173887692064\" data-video-id=\"7641271173887692064\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641271173887692064\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Desserts",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6331",
-        "title": "Salade fraîche pastèque et pêche",
-        "description": "La salade la plus fraîche de l'été☀️✨ La pastèque dans la salade tu valides ?👀",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645618857603763488\" data-video-id=\"7645618857603763488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645618857603763488\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Pastèque"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pêche"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fêta"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Vinaigre balsamique"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6329",
-        "title": "Cœurs d'artichaut rôti au parmesan à l'Airfryer",
-        "description": "Des cœurs d'artichaut rôtis au parmesan, parfaits pour l'apéro et prêts en seulement 10 minutes à l'Airfryer.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648578267405913377\" data-video-id=\"7648578267405913377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648578267405913377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Cœurs d'artichaut"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment d'Espelette"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            }
-        ],
-        "steps": [
-            "Assaisonner les cœurs d'artichaut avec le sel, le poivre, l'ail en poudre, le paprika et le piment d'Espelette.",
-            "Ajouter le parmesan râpé sur les cœurs d'artichaut.",
-            "Faire rôtir les cœurs d'artichaut assaisonnés dans un Airfryer pendant environ 10 minutes, jusqu'à ce qu'ils soient dorés et croustillants."
-        ],
-        "tags": [
-            "airfryer",
-            "épicé",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6327",
-        "title": "Brochettes de poulet ananas piquantes à l'airfryer",
-        "description": "Des brochettes de poulet et ananas relevées avec une sauce piquante, idéales pour une cuisson rapide à l'airfryer.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649798540742380833\" data-video-id=\"7649798540742380833\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649798540742380833\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             1 filet de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 ananas"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sauce piquante (aigre douce piquante)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sauce huître"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Curry"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment d'Espelette"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "airfryer",
-            "asiatique",
-            "épicé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6325",
-        "title": "Salade fraîche d'été aux pois chiches et fêta",
-        "description": "Une salade bien fraîche pour l'été, qui change de la salade verte 👀🤤",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653502841876696353\" data-video-id=\"7653502841876696353\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653502841876696353\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             pois chiche"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             pignons de pain"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             fêta"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Grèce",
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6323",
         "title": "Pink Summer Toast",
         "description": "Un toast estival et sain avec une crème onctueuse à la betterave, ricotta et fêta, servi sur du pain au levain avec du basilic et des graines de sésame. Idéal pour un brunch ou un repas léger.",
@@ -1838,173 +2083,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6321",
-        "title": "Sorbet pastèque fraise",
-        "description": "Un sorbet hyper rafraîchissant à la pastèque et aux fraises, facile à réaliser sans sorbetière, idéal pour les fortes chaleurs.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653834716830846240\" data-video-id=\"7653834716830846240\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653834716830846240\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 pastèque (environ 900g coupée en gros cubes)"
-            },
-            {
-                "quantity": "",
-                "name": "🍓\n             450g de fraises congelées"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 CS de sucre"
-            }
-        ],
-        "steps": [
-            "Vide la pastèque et congèle les morceaux pendant 4h minimum et idéalement la nuit.",
-            "Conserve la coque pour t'en servir de contenant, mets-la au frigo.",
-            "Mixe ensemble la pastèque congelée, les fraises, le yaourt grec et le sucre.",
-            "Place le sorbet dans la coque et c'est déjà prêt. À déguster immédiatement."
-        ],
-        "tags": [
-            "Healthy",
-            "Les Glaces",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6319",
-        "title": "Citronnade maison prête en 5 minutes",
-        "description": "Une citronnade ultra rafraîchissante, parfaite pour les journées ensoleillées !",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654602594802847009\" data-video-id=\"7654602594802847009\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654602594802847009\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍋\n             4 citrons jaunes bio"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques feuilles de menthe fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             1,5 L d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Des glaçons à volonté"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             20 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             A à 6 tranches de citron jaune pour le service"
-            }
-        ],
-        "steps": [
-            "Dans un premier temps, lavez soigneusement les citrons jaunes puis coupez-les en quartiers en conservant la peau.",
-            "Placez-les dans un blender avec quelques feuilles de menthe, le sucre et environ 50 cl d'eau.",
-            "Mixez jusqu'à obtenir une préparation homogène.",
-            "Filtrez ensuite le mélange à l'aide d'une passoire fine afin de retirer les morceaux et l'excédent de pulpe.",
-            "Versez la préparation filtrée dans une grande carafe, ajoutez le reste de l'eau (environ 1 litre), les glaçons ainsi que quelques tranches de citron.",
-            "Mélangez bien et servez bien frais."
-        ],
-        "tags": [
-            "Pas cher",
-            "Rafraîchissements",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5514",
-        "title": "Tiramisu",
-        "description": "Recette de tiramisu maison avec un biscuit fait maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fi196570-tiramisu-simple.jpg&v=1782238395000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463909495878569238\" data-video-id=\"7463909495878569238\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463909495878569238\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n 500g de Mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 6 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n 100g de cacao en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 4 tasses à café"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 cuillères à café d'Amaretto"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 180g de blancs d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 150g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 120g de jaune d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 150g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 40g de sucre glace"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -2189,84 +2267,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Rafraîchissements",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6306",
-        "title": "Tiramisu maison avec biscuit fait maison",
-        "description": "Le grand classique italien revisité par Norbert Tarayre, avec un biscuit cuillère maison pour un résultat encore plus gourmand et authentique !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_1781985462305.jpg&v=1781992693000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/31kVcFuLujg\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n             500 g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             6 œufs entiers"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100 g de cacao en poudre non sucré"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tasses de café fort refroidi"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à café d'Amaretto"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             180 g de blancs d'œufs (pour le biscuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             150 g de sucre (pour le biscuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             120 g de jaunes d'œufs (pour le biscuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             150 g de farine (pour le biscuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             40 g de sucre glace (pour le biscuit)"
-            }
-        ],
-        "steps": [
-            "Préparer le biscuit cuillère maison : préchauffer le four à 180°C. Monter les 180 g de blancs d'œufs en neige ferme en ajoutant progressivement les 150 g de sucre pour obtenir une meringue brillante.",
-            "Incorporer délicatement les 120 g de jaunes d'œufs à la meringue à l'aide d'une maryse, en soulevant la masse pour ne pas faire retomber les blancs.",
-            "Ajouter les 150 g de farine tamisée en pluie et mélanger délicatement jusqu'à obtenir un appareil homogène.",
-            "Dresser le biscuit sur une plaque recouverte de papier cuisson à l'aide d'une poche à douille (en boudoirs ou en couche uniforme). Saupoudrer de sucre glace, laisser croûter 5 minutes, puis enfourner 10 à 12 minutes à 180°C. Laisser refroidir.",
-            "Préparer la crème au mascarpone : séparer les 6 œufs. Fouetter les jaunes avec les 100 g de sucre jusqu'à ce que le mélange blanchisse et soit bien mousseux.",
-            "Ajouter les 500 g de mascarpone au mélange jaunes-sucre et fouetter pour obtenir une crème lisse et homogène.",
-            "Monter les 6 blancs en neige ferme, puis les incorporer délicatement à la crème mascarpone en plusieurs fois pour garder une texture aérienne.",
-            "Préparer le café : mélanger les 4 tasses de café fort refroidi avec les 2 cuillères à café d'Amaretto dans un bol creux.",
-            "Montage du tiramisu : tremper rapidement les biscuits maison dans le mélange café-Amaretto et en tapisser le fond d'un plat.",
-            "Étaler une généreuse couche de crème mascarpone sur les biscuits imbibés. Répéter l'opération avec une deuxième couche de biscuits imbibés puis terminer par une couche de crème.",
-            "Lisser la surface et réserver au réfrigérateur minimum 4 heures (idéalement une nuit) pour que le tiramisu prenne bien.",
-            "Au moment de servir, saupoudrer généreusement de cacao en poudre à l'aide d'un tamis pour une belle finition. Déguster bien frais !"
-        ],
-        "tags": [
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
