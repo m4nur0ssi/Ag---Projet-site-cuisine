@@ -2,11 +2,90 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/06/2026 04:22:53
- * Total: 424 recettes
+ * Dernière mise à jour: 27/06/2026 11:33:09
+ * Total: 426 recettes
  */
-export const exportSyncId = "1782534173931";
+export const exportSyncId = "1782559989955";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6375",
+        "title": "Tiramisu au citron sans gluten",
+        "description": "Un tiramisu frais et gourmand au citron, sans gluten, avec une crème au citron maison, une crème mascarpone onctueuse et des boudoirs imbibés de sirop de citron.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655984186184011040\" data-video-id=\"7655984186184011040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655984186184011040\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 5 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200 g de sucre de canne non raffiné"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             230 g de beurre de baratte"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             500 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 ml de crème liquide entière bien froide"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 belles c. à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Un peu de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 c. à soupe de sucre de canne"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 c. à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Un peu de zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Boudoirs"
+            }
+        ],
+        "steps": [
+            "Préparer le lemon curd : Mettre tous les ingrédients dans un saladier résistant à la chaleur et fouetter au bain-marie jusqu'à obtenir une crème bien épaisse, comme dans la vidéo. Laisser refroidir.",
+            "Préparer le sirop : Porter tous les ingrédients à ébullition, puis laisser refroidir. Il servira à imbiber les boudoirs.",
+            "Préparer la crème mascarpone : Fouetter le mascarpone, la crème liquide, le sucre glace et la vanille jusqu'à obtenir une crème ferme et aérienne.",
+            "Montage : Tremper rapidement les boudoirs dans le sirop de citron. Alterner une couche de boudoirs, une couche de crème mascarpone, puis une couche de lemon curd. Répéter jusqu'à épuisement des ingrédients. Terminer par une fine couche de lemon curd, puis laisser reposer au réfrigérateur plusieurs heures, idéalement toute une nuit."
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6373",
         "title": "Sbriciolata aux fraises",
@@ -14803,6 +14882,63 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5872",
+        "title": "Sauce Ta Diète",
+        "description": "Une sauce crémeuse miel-moutarde, légèrement fumée avec une touche steakhouse grâce au Worcestershire, parfaite pour transformer les plats de régime en un vrai régal.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce-big-mac-maison-ce-melange-precis-de-3-ingredients-la-rend-meilleure-que-chez-mcdo-en-5-minutes.jpeg&v=1780139641000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613808499729927446\" data-video-id=\"7613808499729927446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613808499729927446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 210 g de Skyr ou fromage blanc 0 %"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 90 g de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 30 g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 petite gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 càc de sauce Worcestershire ou soja"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n ½ càc de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 càc de vinaigre de cidre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre au goût"
+            }
+        ],
+        "steps": [
+            "Mélanger tous les ingrédients dans un blender.",
+            "Goûter et ajuster l'assaisonnement."
+        ],
+        "tags": [
+            "Healthy",
+            "Sauces"
         ],
         "isFeatured": false,
         "isFavorite": false,
