@@ -2,11 +2,100 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 27/06/2026 14:56:05
- * Total: 429 recettes
+ * Dernière mise à jour: 27/06/2026 22:11:01
+ * Total: 438 recettes
  */
-export const exportSyncId = "1782572165991";
+export const exportSyncId = "1782598261136";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6406",
+        "title": "Sauce Cowboy et Côte de Bœuf",
+        "description": "Une recette rapide et savoureuse de côte de bœuf accompagnée d'une sauce cowboy maison relevée.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7561102485838925078\" data-video-id=\"7561102485838925078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7561102485838925078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             200g beurre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 càc sel (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment en flocon (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc paprika (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càc moutarde (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 côte de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25g beurre (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Romarin (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la cuisson)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Sauces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6306",
         "title": "Tiramisu maison avec biscuit fait maison",
@@ -21582,6 +21671,360 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "5095",
+        "title": "Poire farcie au camembert, lard caramélisé",
+        "description": "La recette aux plus de 6M de vues, qui m'a fait connaître sur les réseaux l'année dernière et que tu peux retrouver dans le Cheese Book de @lecheesegeek 🔥 Pour 2 pers.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecette-poire-chevre-lard.jpg&v=1776163574000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7564068619785686294\" data-video-id=\"7564068619785686294\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7564068619785686294\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍐\n 2 poires bio"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 camembert"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n 10 tranches de lard (ici nature)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n Quelques noix"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Eplucher les poires en gardant la queue.",
+            "Les creuses par le dessous en essayant de faire la plus petite ouverture mais en les creusant le plus possible à l'intérieur, sans percer leur chair.",
+            "Découper le camembert en petites cubes et concasser des cerneaux de noix.",
+            "Remplir les poires avec le camembert et les noix en tassant bien pour en mettre la maximum.",
+            "Disposer 2 tranches de lard sur une plaque de cuisson en croix et disposer les poires par dessus.",
+            "Rabattre les tranches vers le haut puis enrober le tout avec 3 tranches supplémentaires pour bien recouvrir toute la poire.",
+            "Badigeonner délicatement le lard de miel.",
+            "Enfourner à 180°C pendant 20min.",
+            "Poivrer."
+        ],
+        "tags": [
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3892",
+        "title": "Gazpacho maison",
+        "description": "Une recette de gazpacho que l'auteur prépare chaque semaine, découverte à Barcelone. L'importance est mise sur les ingrédients de saison, notamment les tomates. Idéal pour ceux qui aiment les salades et cherchent une soupe froide rafraîchissante.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825538731.jpg&v=1776162856000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7516215618408811798\" data-video-id=\"7516215618408811798\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7516215618408811798\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n 4 tomates bien mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n 2 petits concombres"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1/4 de poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1/4 d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1/2 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1/2 piment (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 morceau de pain imbibé dans l'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 2 cas de vinaigre de vin rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n feuilles de basilic frais"
+            }
+        ],
+        "steps": [
+            "Dans un blender, rassembler tous les ingrédients et mixez finement le tout.",
+            "Gardez au frais pendant quelques heures et servez froid."
+        ],
+        "tags": [
+            "Espagne",
+            "Healthy",
+            "raffraichissements",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4058",
+        "title": "Spanakopita",
+        "description": "Une spécialité grecque traditionnelle, la Spanakopita est un feuilleté savoureux à base de feuilles de bricks croustillantes, garni d'un mélange d'épinards, de fromage, d'œufs et de yaourt, puis cuit au four.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fspanakopita_homemade_mom_1775839779733.jpg&v=1775847469000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7356319561278393632\" data-video-id=\"7356319561278393632\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7356319561278393632\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Feuilles de bricks"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fromage de vache"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n Epinards"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 5 oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 yaourts nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pincée de levure boulangère"
+            }
+        ],
+        "steps": [
+            "Dans un bol, cassez 2 œufs, ajoutez les 2 yaourts nature et une pincée de levure boulangère, puis mélangez bien pour obtenir une sauce.",
+            "Dans un autre bol, mélangez le fromage de vache, les épinards et les 3 œufs restants pour former la garniture.",
+            "Prenez 3 feuilles de bricks, appliquez la sauce (mélange œuf/yaourt) sur les feuilles, puis disposez la garniture aux épinards et fromage. Pliez les feuilles pour former des feuilletés.",
+            "Faites cuire au four à 200°C pendant 30 minutes."
+        ],
+        "tags": [
+            "Famille",
+            "Grèce",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4013",
+        "title": "Mahmoos Gutaifi",
+        "description": "Un plat de poulet et riz originaire d'Arabie Saoudite, parfumé aux épices et servi avec une sauce au yaourt.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmahmoos_gutaifi_chef_plating_1775839187356.jpg&v=1775846620000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7563328855201713410\" data-video-id=\"7563328855201713410\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7563328855201713410\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n 400g de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignons rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 2 oignons jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 tête d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 piment vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 bâton de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 3 feuilles de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 Cas de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 Caf de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 Caf de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 Caf de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 Caf d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 Cas de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 Caf de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n 1 verre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 3 Cas de lait fermenté (ou yaourt grec)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 gousse d'ail confit"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions de la vidéo pour la préparation."
+        ],
+        "tags": [
+            "Orient"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4002",
+        "title": "Lahsa Yéménite",
+        "description": "Un plat yéménite traditionnel à base d'oignons, de tomates et d'œufs, mijoté avec des épices et du fromage liquide, puis servi avec du pain. Idéal pour le petit-déjeuner.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Flahsa_yemenite_magazine_1775837034057.jpg&v=1775845558000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7379597152055561473\" data-video-id=\"7379597152055561473\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7379597152055561473\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n 1 grand oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 2 grandes tomates mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 4 à 5 piments forts (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Fromage liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de poudre de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 cuillère à café de poudre de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 cuillère à soupe de purée de tomates"
+            }
+        ],
+        "steps": [
+            "Hacher les légumes.",
+            "Faire revenir l'oignon dans un filet d'huile d'olive.",
+            "Une fois l'oignon doré, ajouter les tomates. Assaisonner avec du sel, du poivre, du cumin, de la coriandre, du paprika et de la purée de tomates (et toute autre épice préférée).",
+            "Laisser cuire les tomates à feu moyen-doux jusqu'à ce qu'elles soient dissoutes.",
+            "Éteindre le feu, puis casser les œufs dans le mélange. Mélanger soigneusement et ajouter un peu d'eau.",
+            "Rallumer le feu à doux et étaler le fromage sur le dessus.",
+            "Couvrir et laisser cuire pendant 3 à 5 minutes.",
+            "Garnir, servir avec du pain et déguster."
+        ],
+        "tags": [
+            "Famille",
+            "Orient",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "3997",
         "title": "Kesra farcie à la viande hachée",
         "description": "Une délicieuse Kesra farcie à la viande hachée, prête en seulement 30 minutes. Cette recette permet de réaliser deux galettes de taille moyenne.",
@@ -28729,6 +29172,189 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3907",
+        "title": "Carottes croustillantes au parmesan",
+        "description": "Une recette facile et rapide de carottes rôties et croustillantes au parmesan, parfaite pour un apéritif gourmand.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F94244799368527b208c894_carottes-croustillantes-parmesan.jpeg&v=1774447847000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7520178157798853910\" data-video-id=\"7520178157798853910\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7520178157798853910\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n 1 botte de carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 C A S d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 C A S de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 C A C de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 pincée de piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1/2 bouquet de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 100 g de parmesan"
+            }
+        ],
+        "steps": [
+            "Préparer les carottes (laver, éplucher si nécessaire, couper en bâtonnets ou rondelles).",
+            "Dans un grand bol, mélanger les carottes avec l'huile d'olive, l'ail en poudre, le paprika, le cumin et le piment d'Espelette.",
+            "Ajouter le parmesan râpé et bien mélanger pour enrober les carottes.",
+            "Étaler les carottes sur une plaque de cuisson recouverte de papier sulfurisé.",
+            "Cuire au four préchauffé à 180°C pendant 30 minutes, ou jusqu'à ce que les carottes soient tendres et légèrement croustillantes.",
+            "Parsemer de persil frais haché avant de servir."
+        ],
+        "tags": [
+            "Italie",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3910",
+        "title": "Hauts de cuisse de poulet marinés BBQ",
+        "description": "Une marinade express et savoureuse pour vos hauts de cuisse de poulet, parfaite pour changer des classiques du barbecue. Facile et rapide à préparer, cette recette plaira à coup sûr !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fhaut-de-cuisse-recipe%402x.jpeg&v=1774447552000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7489484337860087062\" data-video-id=\"7489484337860087062\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7489484337860087062\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n Haut de cuisse de poulet (désossé)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Épice cajun"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n Oignon en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            }
+        ],
+        "steps": [
+            "Commencez par allumer votre barbecue. Pour la marinade, ajoutez toutes les épices sur votre poulet et mélangez bien pour enrober.",
+            "Pour la cuisson, commencez par faire griller les deux faces du poulet (2-3 minutes de chaque côté). Si vous avez un couvercle sur votre barbecue, vous pouvez les mettre en dehors de la braise avec le couvercle pour finir la cuisson et les garder au chaud. Sinon, tournez-les fréquemment pour éviter qu'ils ne brûlent.",
+            "Servez chaud et bon appétit !"
+        ],
+        "tags": [
+            "barbecue",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3913",
+        "title": "Brochette Bœuf Fromage BBQ",
+        "description": "Des brochettes de bœuf et de comté marinées, parfaites pour le barbecue.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fs70-yakitori-boeuf-fromage.jpeg&v=1774447314000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7530301951716773142\" data-video-id=\"7530301951716773142\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7530301951716773142\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n 400 à 500 g de bavette de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Environ 100 g de comté coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 2 c. à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 c. à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 c. à soupe de moutarde (à l'ancienne ou douce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 à 2 gousses d'ail hachées ou pressées"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1/2 c. à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Un peu de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Quelques brins de coriandre fraîche"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
