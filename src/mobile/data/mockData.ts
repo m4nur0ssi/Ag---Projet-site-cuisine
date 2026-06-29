@@ -2,11 +2,83 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 29/06/2026 04:31:53
+ * Dernière mise à jour: 29/06/2026 18:04:57
  * Total: 438 recettes
  */
-export const exportSyncId = "1782707513043";
+export const exportSyncId = "1782756297447";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6323",
+        "title": "Pink Summer Toast",
+        "description": "Un toast estival et sain avec une crème onctueuse à la betterave, ricotta et fêta, servi sur du pain au levain avec du basilic et des graines de sésame. Idéal pour un brunch ou un repas léger.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6323_1782735624537.jpg&v=1782742877000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653409756329053472\" data-video-id=\"7653409756329053472\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653409756329053472\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 betterave cuite ~250g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de St Moret 8%"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30g de fêta (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             le jus d'1/2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tranche de pain au levain"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             fêta (pour les toppings)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             graines de sésame"
+            }
+        ],
+        "steps": [
+            "Dans un mixeur, combiner la betterave cuite, la ricotta, le St Moret, les 30g de fêta, le jus d'un demi-citron et le sel. Mixer jusqu'à obtenir une crème lisse et homogène.",
+            "Faire griller la tranche de pain au levain avec un filet d'huile d'olive jusqu'à ce qu'elle soit dorée et croustillante.",
+            "Étaler généreusement la crème de betterave rose sur le pain grillé.",
+            "Garnir le toast avec de la fêta émiettée, des feuilles de basilic frais et des graines de sésame. Servir immédiatement."
+        ],
+        "tags": [
+            "Healthy",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6422",
         "title": "SAUCE SWEET CHILI",
@@ -2619,78 +2691,6 @@ export const mockRecipes: Recipe[] = [
             "Orient",
             "Pas cher",
             "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6323",
-        "title": "Pink Summer Toast",
-        "description": "Un toast estival et sain avec une crème onctueuse à la betterave, ricotta et fêta, servi sur du pain au levain avec du basilic et des graines de sésame. Idéal pour un brunch ou un repas léger.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653409756329053472\" data-video-id=\"7653409756329053472\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653409756329053472\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 betterave cuite ~250g"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 ricotta"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g de St Moret 8%"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             30g de fêta (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             le jus d'1/2 citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 tranche de pain au levain"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             fêta (pour les toppings)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             basilic frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             graines de sésame"
-            }
-        ],
-        "steps": [
-            "Dans un mixeur, combiner la betterave cuite, la ricotta, le St Moret, les 30g de fêta, le jus d'un demi-citron et le sel. Mixer jusqu'à obtenir une crème lisse et homogène.",
-            "Faire griller la tranche de pain au levain avec un filet d'huile d'olive jusqu'à ce qu'elle soit dorée et croustillante.",
-            "Étaler généreusement la crème de betterave rose sur le pain grillé.",
-            "Garnir le toast avec de la fêta émiettée, des feuilles de basilic frais et des graines de sésame. Servir immédiatement."
-        ],
-        "tags": [
-            "Healthy",
             "Végé",
             "Voilà l'été"
         ],
