@@ -2,11 +2,807 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/06/2026 15:25:13
- * Total: 445 recettes
+ * Dernière mise à jour: 30/06/2026 19:02:05
+ * Total: 457 recettes
  */
-export const exportSyncId = "1782833113125";
+export const exportSyncId = "1782846125057";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6480",
+        "title": "Tarte fraîcheur protéinée & bien croustillante",
+        "description": "Une tarte fraîche, protéinée et croustillante, facile à réaliser avec du thon, des œufs mollets, du concombre et des radis. Parfaite pour un repas léger et savoureux.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7612325289435122977\" data-video-id=\"7612325289435122977\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7612325289435122977\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte brisée"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             5g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20g de graines de sésames"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             240g de thon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cas de St Moret"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs mollets"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de radis"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             6g de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             6g de ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g de cornichons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cas de moutarde au miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            }
+        ],
+        "steps": [
+            "Recouvrir un plat à tarte retourné avec une pâte brisée. Rabattre les bords et piquer la pâte à l'aide d'une fourchette.",
+            "Recouvrir la pâte avec le beurre fondu et les graines de sésame. Cuire au four pendant 20 minutes à 200 degrés.",
+            "Pendant ce temps, faire cuire les œufs mollets 7 minutes à l'eau bouillante. Couper les légumes (concombre, radis, cornichons) en petits morceaux.",
+            "Mélanger le thon, le St Moret, les œufs mollets coupés, le persil, la ciboulette, les cornichons, la moutarde au miel, l'huile d'olive et le sel pour obtenir la farce.",
+            "Une fois le fond de tarte bien refroidi, étaler délicatement la farce dessus.",
+            "Ajouter sur le dessus des rondelles de concombres et de radis, quelques herbes et un filet d'huile pour la finition."
+        ],
+        "tags": [
+            "Healthy",
+            "tarte",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6478",
+        "title": "Tarte à la tomate",
+        "description": "Je vous refait cette année la tarte qui m'a fait connaître sur les reseaux et qui est juste exceptionnellement délicieuse❤️",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7499771120531344662\" data-video-id=\"7499771120531344662\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7499771120531344662\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200g /250g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grecque (125g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques graines de sésames ou de nigelle"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 tomates (une jaune, noire, rouge)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cas de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 stracciatella ou buratta"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de basilic (optionnel)"
+            }
+        ],
+        "steps": [
+            "Dans un bol tu viens mélangez la farine l'huile d'olive le yaourt et le sésame et tu formes une boule de pâte que tu viens réserver au frais pendant 2 h.",
+            "Ensuite tu étales ta pâte sur du papier cuisson et tu viens disposez la moutarde, la chapelure pour pas que ta tomate rende de l'eau et tes rondelles de tomates.",
+            "Ensuite tu mélanges les oignons émincés dans un bol avec du miel et tu les disposes sur le dessus de ta tarte avec une gousse d'ail.",
+            "Tu rabats les bords de ta tarte et tu enfournes 35 min a 200.",
+            "Tu attends qu'elle refroidisse un peu et tu disposes quelques feuilles de basilic (optionnel) et ta stracciatella au milieu ❤️"
+        ],
+        "tags": [
+            "Italie",
+            "tarte",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6476",
+        "title": "Tarte tatin oignons, chèvre, miel & chorizo",
+        "description": "Une tarte tatin salée facile et rapide, avec des oignons caramélisés, du chèvre fondant et du chorizo... une recette parfaite pour un repas simple et gourmand.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7621890673213443350\" data-video-id=\"7621890673213443350\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7621890673213443350\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 bûche de chèvre"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Environ 20 tranches de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 càs de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Crème de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail semoule"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            }
+        ],
+        "steps": [
+            "Dans un moule à tarte, dépose un papier cuisson.",
+            "Ajoute le miel et un peu de crème de vinaigre balsamique.",
+            "Saupoudre d'ail semoule, de paprika et de thym.",
+            "Dispose ensuite les oignons rouges coupés en rondelles, puis les rondelles de chèvre et enfin les tranches de chorizo.",
+            "Recouvre avec la pâte feuilletée, rabats les bords et pique avec une fourchette.",
+            "Enfourne 30 minutes à 180°C.",
+            "Laisse reposer 10 minutes, puis retourne la tarte."
+        ],
+        "tags": [
+            "France",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6474",
+        "title": "Tarte Cheesy Crust",
+        "description": "Une tarte estivale végétarienne avec une croûte au fromage, garnie de tomates cerises, de féta et d'une touche de citron.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7392608306071686432\" data-video-id=\"7392608306071686432\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7392608306071686432\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80g de mozza râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'oeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cas de soja sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             120g de féta"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cas de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste d'1/2 citron"
+            }
+        ],
+        "steps": [
+            "Préparer le fond de tarte en étalant la pâte feuilletée, puis en la garnissant de 80g de mozza râpée, d'un jaune d'œuf et de graines de sésame.",
+            "Cuire ce fond de tarte pendant 15 minutes à 200 degrés.",
+            "Préparer la garniture en mélangeant 250g de tomates cerises, 2 cas de soja sucré, 3 cas d'huile d'olive, 120g de féta, 1 cas de miel, du sel, du poivre, 2 cas de crème liquide et le zeste d'1/2 citron."
+        ],
+        "tags": [
+            "Grèce",
+            "tarte",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6472",
+        "title": "Tarte au thon",
+        "description": "Une tarte salée rapide et facile à préparer, à base de thon, fromage frais aux herbes, ail, persil, et recouverte de fromages, le tout cuit au four ou à l'air fryer.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7609017286825037059\" data-video-id=\"7609017286825037059\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7609017286825037059\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 boîtes de thon au naturel ou à l'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 c.à soupe de fromage frais ail et fines herbes"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée ou brisée"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             4 tranches de fromage (plastique ou cheddar)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella râpée"
+            }
+        ],
+        "steps": [
+            "Égoutter le thon si nécessaire.",
+            "Dans un bol, mélanger le thon avec le fromage frais ail et fines herbes, le persil haché, la gousse d'ail hachée, le sel et le poivre.",
+            "Dérouler la pâte feuilletée ou brisée sur une plaque de cuisson.",
+            "Étaler la préparation au thon sur la pâte.",
+            "Disposer les tranches de fromage (plastique ou cheddar) par-dessus.",
+            "Saupoudrer de mozzarella râpée.",
+            "Cuire au four préchauffé à 180°C ou dans un air fryer pendant 15 à 20 minutes."
+        ],
+        "tags": [
+            "Pas cher",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6470",
+        "title": "Crispy Chicken Burger Bowl",
+        "description": "Un bowl gourmand et rapide à préparer, composé de frites, de poulet croustillant, de fromage fondu, de légumes frais et de sauces savoureuses.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645002670415170819\" data-video-id=\"7645002670415170819\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645002670415170819\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Fries"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cheese slices"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4-5 chicken tenders"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             A handful of lettuce"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Tomatoes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Burger sauce"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Garlic mayo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Dried onions"
+            }
+        ],
+        "steps": [
+            "Place the fries in a bowl.",
+            "Add the cheese slices and microwave for 1 minute until melted.",
+            "Top with the chicken tenders, lettuce, and tomatoes.",
+            "Drizzle over the burger sauce and garlic mayo.",
+            "Sprinkle dried onions on top and serve."
+        ],
+        "tags": [
+            "Plats",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6468",
+        "title": "Achard de mangue - version salade",
+        "description": "Une recette estivale d'achard de mangue en version salade, avec des crevettes pour les protéines.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656385835629022497\" data-video-id=\"7656385835629022497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656385835629022497\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Mangue"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n             Crevettes"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "épicé",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6466",
+        "title": "Oeufs",
+        "description": "Une recette simple pour préparer des œufs, qu'ils soient brouillés, au plat ou autrement.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657060735725456673\" data-video-id=\"7657060735725456673\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657060735725456673\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Oeufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Huile ou beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Casser les œufs dans un bol.",
+            "Assaisonner avec du sel et du poivre.",
+            "Faire chauffer l'huile ou le beurre dans une poêle à feu moyen.",
+            "Cuire les œufs selon la méthode désirée (brouillés, au plat, etc.) jusqu'à la cuisson souhaitée."
+        ],
+        "tags": [
+            "Astuces",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6464",
+        "title": "Camembert rôti façon Crème brûlée & abricots",
+        "description": "Un camembert rôti au four, au Air-fryer ou au barbecue, caramélisé façon crème brûlée et servi avec des abricots frais et des croûtons de pain assaisonnés. Idéal pour un apéritif estival.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657233293703712032\" data-video-id=\"7657233293703712032\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657233293703712032\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 camembert au lait cru de 250 g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 à 2 CAS de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 à 8 abricots bien mûrs mais fermes"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             1/2 baguette ou 1 petit pain de campagne (pour les croûtons)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 c. à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 petite branche de romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            }
+        ],
+        "steps": [
+            "Retire le papier du camembert et enlève la croûte d'un côté, replace le dans sa boite, ajoute une cuillère de miel, du poivre et un brin de romarin. Enfourne le au Air-Fryer 10 min à 180 degrés.",
+            "Pendant ce temps, coupe les abricots en deux et enlève le noyau et découpe des beaux croûtons de pains que tu assaisonnes avec de l'huile d'olive, du sel et du romarin frais hâché. Tu peux également assaisonner les abricots avec du miel, du sel et un peu d'huile.",
+            "Enfourne les abricots et les croûtons avec le camembert pour 10 minutes supplémentaires.",
+            "Sors le camembert, parsème de la cassonade dessus pour qu'il soit recouvert et je te conseille de ne pas trop rôtir le camembert avant (pas comme moi du coup...🤣) pour une jolie coloration avec le sucre. Brûle le sucre en surface pour former la coque craquante façon crème brûlée et tu n'as plus qu'à déguster !"
+        ],
+        "tags": [
+            "barbecue",
+            "France",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6462",
+        "title": "Zucchini Wrap",
+        "description": "Si vous recherchez une recette à la fois légère et nourrissante, ce wrap de courgette est fait pour vous !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654617047866821920\" data-video-id=\"7654617047866821920\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654617047866821920\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             3 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             200 g de mozzarella râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Flocons de piment rouge (ou paprika)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de fromage frais (type Philadelphia)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Une poignée de roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             100 g de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon finement tranché"
+            }
+        ],
+        "steps": [
+            "Coupez les courgettes en très fines tranches.",
+            "Mélangez les tranches de courgettes avec le sel, le poivre noir, la poudre d'ail et les flocons de piment rouge (ajustez les épices selon votre goût).",
+            "Disposez le mélange de courgettes en forme rectangulaire sur une plaque de cuisson recouverte de papier sulfurisé.",
+            "Ajoutez la mozzarella râpée sur le dessus.",
+            "Faites cuire dans un four préchauffé à 200°C (chaleur haut et bas) pendant environ 20 à 25 minutes, jusqu'à ce que le dessus soit bien doré.",
+            "Après avoir retiré du four, laissez reposer quelques minutes.",
+            "Étalez le fromage frais sur la base de courgette.",
+            "Disposez la roquette, le saumon fumé et l'oignon finement tranché sur le fromage frais.",
+            "Pliez le wrap en deux et servez."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "Orient",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6460",
+        "title": "Wrap d'aubergine",
+        "description": "Des wraps d'aubergine grillées au four, garnis d'une sauce fraîche au yaourt et à l'ail, de noix croquantes, de tomates juteuses et de roquette.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655688111019658518\" data-video-id=\"7655688111019658518\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655688111019658518\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n             2 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             100-150 g de fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour la garniture :"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Yaourt (grec)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            }
+        ],
+        "steps": [
+            "Couper les aubergines en fines tranches (au couteau ou à la mandoline).",
+            "Les disposer sur une plaque de cuisson recouverte de papier sulfurisé, saler légèrement, saupoudrer de fromage râpé et cuire au four préchauffé à 200°C pendant 20 minutes.",
+            "Retourner les aubergines cuites et les laisser refroidir un peu.",
+            "Mélanger le yaourt avec l'ail, le sel et le poivre.",
+            "Étaler le mélange sur les aubergines et ajouter les noix hachées, les tomates et la roquette.",
+            "Rouler les aubergines garnies.",
+            "Idéalement, placer au réfrigérateur un court instant avant de servir, mais peut être servi immédiatement."
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6458",
+        "title": "Bœuf au Chorizo",
+        "description": "Un plat savoureux à base de filet de bœuf et de chorizo à griller, relevé par la ciboulette.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657231223806315809\" data-video-id=\"7657231223806315809\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657231223806315809\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             500g Filet de bœuf (rumsteck ou bavette)"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             200g chorizo à griller"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Entrées",
+            "épicé",
+            "Espagne"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6456",
         "title": "CHUROFFLE",
