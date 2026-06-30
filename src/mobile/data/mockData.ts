@@ -2,11 +2,520 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/06/2026 13:21:18
+ * Dernière mise à jour: 30/06/2026 13:56:34
  * Total: 438 recettes
  */
-export const exportSyncId = "1782825678354";
+export const exportSyncId = "1782827794804";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6375",
+        "title": "Tiramisu au citron sans gluten",
+        "description": "Un tiramisu frais et gourmand au citron, sans gluten, avec une crème au citron maison, une crème mascarpone onctueuse et des boudoirs imbibés de sirop de citron.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6375_1782827066065.jpg&v=1782834295000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655984186184011040\" data-video-id=\"7655984186184011040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655984186184011040\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 5 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200 g de sucre de canne non raffiné"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             230 g de beurre de baratte"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             500 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 ml de crème liquide entière bien froide"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 belles c. à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Un peu de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 c. à soupe de sucre de canne"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 c. à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Un peu de zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Boudoirs"
+            }
+        ],
+        "steps": [
+            "Préparer le lemon curd : Mettre tous les ingrédients dans un saladier résistant à la chaleur et fouetter au bain-marie jusqu'à obtenir une crème bien épaisse, comme dans la vidéo. Laisser refroidir.",
+            "Préparer le sirop : Porter tous les ingrédients à ébullition, puis laisser refroidir. Il servira à imbiber les boudoirs.",
+            "Préparer la crème mascarpone : Fouetter le mascarpone, la crème liquide, le sucre glace et la vanille jusqu'à obtenir une crème ferme et aérienne.",
+            "Montage : Tremper rapidement les boudoirs dans le sirop de citron. Alterner une couche de boudoirs, une couche de crème mascarpone, puis une couche de lemon curd. Répéter jusqu'à épuisement des ingrédients. Terminer par une fine couche de lemon curd, puis laisser reposer au réfrigérateur plusieurs heures, idéalement toute une nuit."
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5277",
+        "title": "Tarte Normande",
+        "description": "Une tarte normande classique et gourmande, composée d'une pâte sablée, de pommes fondantes et d'une garniture crémeuse aux amandes, avec une touche facultative de Calvados.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5277_1782827038095.jpg&v=1782834262000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604576197472816406\" data-video-id=\"7604576197472816406\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604576197472816406\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre froid"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             3 à 4 pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 ml de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé (ou 1 c. à café d'extrait de vanille)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à soupe de calvados (facultatif)"
+            }
+        ],
+        "steps": [
+            "Prépare la pâte : sable la farine, le sucre glace et le beurre du bout des doigts.",
+            "Ajoute l'œuf, forme une boule et laisse reposer 30 min au frais.",
+            "Étale la pâte, fonce ton moule et pique le fond.",
+            "Coupe les pommes en lamelles et dispose-les joliment sur la pâte.",
+            "Mélange les œufs, le sucre, la vanille, la crème et la poudre d'amande (+ calvados).",
+            "Verse ce mélange sur les pommes.",
+            "Enfourne à 180°C (chaleur tournante) pendant 35 à 40 minutes, jusqu'à ce que le dessus soit doré."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Glaces",
+            "pâtisserie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6337",
+        "title": "Salade marocaine",
+        "description": "Une salade toute simple, rapide à faire et parfaite pour accompagner vos barbeuc cet été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6337_1782826835923.jpg&v=1782834234000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630014915067120918\" data-video-id=\"7630014915067120918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630014915067120918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "Healthy",
+            "Orient",
+            "Pas cher",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5265",
+        "title": "Salade de pommes de terre protéinée",
+        "description": "Un plat frais, gourmand et ultra complet pour tenir sa diète.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5265_1782826749827.jpeg&v=1782834032000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630509941375159574\" data-video-id=\"7630509941375159574\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630509941375159574\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1000 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             150 g d'avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250 g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             300 g de blanc de poulet cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de petit fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de bacon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             50 g d'oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             15 g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à café d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            }
+        ],
+        "steps": [
+            "Cuire les pommes de terre: Coupez les pommes de terre en morceaux. Assaisonnez avec sel, poivre, ail, paprika fumé et un peu de cassonade. Faites-les revenir dans une poêle avec un filet d'huile d'olive. Ajoutez un petit filet d'eau si besoin pour éviter que ça accroche. Faites cuire jusqu'à ce qu'elles soient fondantes et légèrement dorées. Laissez-les refroidir complètement avant l'assemblage.",
+            "Préparer les légumes: Émincez finement l'oignon rouge. Coupez l'avocat en cubes. Coupez les tomates cerises en deux ou en quartiers.",
+            "Préparer la sauce: Dans un bol, mélangez le petit fromage frais. Ajoutez sel, poivre, ail, paprika fumé et l'huile d'olive. Ajoutez le miel puis mélangez jusqu'à obtenir une sauce homogène.",
+            "Préparer la garniture: Coupez le poulet en morceaux. Assurez-vous que le poulet est froid avant l'assemblage. Faites griller le bacon dans une poêle jusqu'à ce qu'il soit croustillant.",
+            "Assemblage: Dans un grand saladier, mélangez les pommes de terre froides, l'oignon, l'avocat et les tomates. Ajoutez le poulet froid. Versez la sauce et mélangez pour bien enrober.",
+            "Finition: Ajoutez le bacon grillé chaud et croustillant sur le dessus."
+        ],
+        "tags": [
+            "Entrées",
+            "Healthy",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5271",
+        "title": "Crinkles au chocolat",
+        "description": "Découvrez la recette des crinkles au chocolat, des biscuits moelleux et craquelés, généreusement enrobés de sucre glace. Parfaits pour une pause gourmande ou à partager.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5271_1782826655231.jpg&v=1782833946000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636734150220860675\" data-video-id=\"7636734150220860675\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636734150220860675\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat fondu (chocolat pâtissier à 52% de cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             165g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 bol de sucre glace"
+            }
+        ],
+        "steps": [
+            "Dans un grand récipient, mélange les œufs avec le sucre et le sucre vanillé.",
+            "Ajoute le beurre mou et le chocolat fondu, mélange bien.",
+            "Ajoute enfin la farine et la levure chimique, mélange jusqu'à obtenir une pâte homogène.",
+            "La pâte est collante, c'est normal: place-la au frigo, filmée au contact (recouverte d'un film plastique) toute la nuit.",
+            "Le lendemain, laisse-la tiédir quelques minutes puis formes-en des petites boules. La pâte est un peu compliquée à travailler, fais de ton mieux: je te conseille de t'aider d'une cuillère à glace.",
+            "Roule chaque crinkle très généreusement dans le sucre glace, sur toute la surface, puis mets-les au four environ 10mn à 180°."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6381",
+        "title": "Cheesecake salé sans cuisson",
+        "description": "Une recette ultra fraîche, parfaite pour les journées d'été ! Facile à préparer, sans cuisson et idéale en entrée ou à partager à l'apéro.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6381_1782826575891.jpg&v=1782833851000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656024768084331808\" data-video-id=\"7656024768084331808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656024768084331808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de Tuc"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de yaourt à la grecque nature"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon cru"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 feuilles de gélatine"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6116",
+        "title": "Bol asperges vertes, soja & jaune d'oeuf",
+        "description": "Un bol frais et savoureux à base d'asperges vertes, assaisonné de sauce soja, huile de sésame et mirin, garni de nori, sésame et d'un jaune d'œuf pour une touche onctueuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6116_1782826568152.jpeg&v=1782833772000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634567643676249346\" data-video-id=\"7634567643676249346\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634567643676249346\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g d'asperges vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 càs d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 càs de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 càs de mirin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de nori"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càs de sésame (ou furikake)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie",
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6416",
         "title": "Sauce pimentée de Chine",
@@ -2014,172 +2523,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6381",
-        "title": "Cheesecake salé sans cuisson",
-        "description": "Une recette ultra fraîche, parfaite pour les journées d'été ! Facile à préparer, sans cuisson et idéale en entrée ou à partager à l'apéro.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656024768084331808\" data-video-id=\"7656024768084331808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656024768084331808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             200 g de Tuc"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             100 g de beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300 g de fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300 g de yaourt à la grecque nature"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Jambon cru"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 feuilles de gélatine"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6375",
-        "title": "Tiramisu au citron sans gluten",
-        "description": "Un tiramisu frais et gourmand au citron, sans gluten, avec une crème au citron maison, une crème mascarpone onctueuse et des boudoirs imbibés de sirop de citron.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655984186184011040\" data-video-id=\"7655984186184011040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655984186184011040\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             4 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus de 5 citrons"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             200 g de sucre de canne non raffiné"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             230 g de beurre de baratte"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             500 g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             150 ml de crème liquide entière bien froide"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 belles c. à soupe de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             Un peu de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             200 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 c. à soupe de sucre de canne"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             2 c. à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Un peu de zeste de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Boudoirs"
-            }
-        ],
-        "steps": [
-            "Préparer le lemon curd : Mettre tous les ingrédients dans un saladier résistant à la chaleur et fouetter au bain-marie jusqu'à obtenir une crème bien épaisse, comme dans la vidéo. Laisser refroidir.",
-            "Préparer le sirop : Porter tous les ingrédients à ébullition, puis laisser refroidir. Il servira à imbiber les boudoirs.",
-            "Préparer la crème mascarpone : Fouetter le mascarpone, la crème liquide, le sucre glace et la vanille jusqu'à obtenir une crème ferme et aérienne.",
-            "Montage : Tremper rapidement les boudoirs dans le sirop de citron. Alterner une couche de boudoirs, une couche de crème mascarpone, puis une couche de lemon curd. Répéter jusqu'à épuisement des ingrédients. Terminer par une fine couche de lemon curd, puis laisser reposer au réfrigérateur plusieurs heures, idéalement toute une nuit."
-        ],
-        "tags": [
-            "Italie",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6357",
         "title": "Tartinade de chorizo",
         "description": "Une tartinade savoureuse et facile à préparer à base de chorizo, fromage frais, tomates séchées, parmesan, basilic et pignons de pin torréfiés, parfaite pour l'apéritif.",
@@ -2635,63 +2978,6 @@ export const mockRecipes: Recipe[] = [
             "Afrique",
             "barbecue",
             "épicé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6337",
-        "title": "Salade marocaine",
-        "description": "Une salade toute simple, rapide à faire et parfaite pour accompagner vos barbeuc cet été.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630014915067120918\" data-video-id=\"7630014915067120918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630014915067120918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "barbecue",
-            "Healthy",
-            "Orient",
-            "Pas cher",
-            "Salades",
-            "Végé",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -12722,65 +13008,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6116",
-        "title": "Bol asperges vertes, soja & jaune d'oeuf",
-        "description": "Un bol frais et savoureux à base d'asperges vertes, assaisonné de sauce soja, huile de sésame et mirin, garni de nori, sésame et d'un jaune d'œuf pour une touche onctueuse.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634567643676249346\" data-video-id=\"7634567643676249346\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634567643676249346\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g d'asperges vertes"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 càs d'huile de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 càs de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 càs de mirin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 feuille de nori"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 càs de sésame (ou furikake)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie",
-            "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5984",
         "title": "Risotto pesto d'épinards & burrata",
         "description": "Un risotto crémeux et savoureux au pesto d'épinards maison, agrémenté de burrata fondante pour une touche gourmande.",
@@ -20595,147 +20822,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5277",
-        "title": "Tarte Normande",
-        "description": "Une tarte normande classique et gourmande, composée d'une pâte sablée, de pommes fondantes et d'une garniture crémeuse aux amandes, avec une touche facultative de Calvados.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604576197472816406\" data-video-id=\"7604576197472816406\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604576197472816406\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             200 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             100 g de beurre froid"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             80 g de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             3 à 4 pommes"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100 ml de crème fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             50 g de poudre d'amande"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé (ou 1 c. à café d'extrait de vanille)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à soupe de calvados (facultatif)"
-            }
-        ],
-        "steps": [
-            "Prépare la pâte : sable la farine, le sucre glace et le beurre du bout des doigts.",
-            "Ajoute l'œuf, forme une boule et laisse reposer 30 min au frais.",
-            "Étale la pâte, fonce ton moule et pique le fond.",
-            "Coupe les pommes en lamelles et dispose-les joliment sur la pâte.",
-            "Mélange les œufs, le sucre, la vanille, la crème et la poudre d'amande (+ calvados).",
-            "Verse ce mélange sur les pommes.",
-            "Enfourne à 180°C (chaleur tournante) pendant 35 à 40 minutes, jusqu'à ce que le dessus soit doré."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France",
-            "Glaces",
-            "pâtisserie",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5271",
-        "title": "Crinkles au chocolat",
-        "description": "Découvrez la recette des crinkles au chocolat, des biscuits moelleux et craquelés, généreusement enrobés de sucre glace. Parfaits pour une pause gourmande ou à partager.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636734150220860675\" data-video-id=\"7636734150220860675\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636734150220860675\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             50g de beurre mou"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200g de chocolat fondu (chocolat pâtissier à 52% de cacao)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             165g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 sachet de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 bol de sucre glace"
-            }
-        ],
-        "steps": [
-            "Dans un grand récipient, mélange les œufs avec le sucre et le sucre vanillé.",
-            "Ajoute le beurre mou et le chocolat fondu, mélange bien.",
-            "Ajoute enfin la farine et la levure chimique, mélange jusqu'à obtenir une pâte homogène.",
-            "La pâte est collante, c'est normal: place-la au frigo, filmée au contact (recouverte d'un film plastique) toute la nuit.",
-            "Le lendemain, laisse-la tiédir quelques minutes puis formes-en des petites boules. La pâte est un peu compliquée à travailler, fais de ton mieux: je te conseille de t'aider d'une cuillère à glace.",
-            "Roule chaque crinkle très généreusement dans le sucre glace, sur toute la surface, puis mets-les au four environ 10mn à 180°."
-        ],
-        "tags": [
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5254",
         "title": "Sorbet aux raisins et Sprite",
         "description": "Un sorbet rafraîchissant et facile à réaliser avec seulement deux ingrédients : des raisins et du Sprite, à congeler pendant 24 heures et à passer au Ninja Creami.",
@@ -20765,92 +20851,6 @@ export const mockRecipes: Recipe[] = [
             "Les Glaces",
             "Pas cher",
             "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5265",
-        "title": "Salade de pommes de terre protéinée",
-        "description": "Un plat frais, gourmand et ultra complet pour tenir sa diète.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630509941375159574\" data-video-id=\"7630509941375159574\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630509941375159574\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             1000 g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             150 g d'avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             250 g de tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             300 g de blanc de poulet cuit"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300 g de petit fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80 g de bacon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             50 g d'oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             15 g de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 g de cassonade"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 c. à café d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika fumé"
-            }
-        ],
-        "steps": [
-            "Cuire les pommes de terre: Coupez les pommes de terre en morceaux. Assaisonnez avec sel, poivre, ail, paprika fumé et un peu de cassonade. Faites-les revenir dans une poêle avec un filet d'huile d'olive. Ajoutez un petit filet d'eau si besoin pour éviter que ça accroche. Faites cuire jusqu'à ce qu'elles soient fondantes et légèrement dorées. Laissez-les refroidir complètement avant l'assemblage.",
-            "Préparer les légumes: Émincez finement l'oignon rouge. Coupez l'avocat en cubes. Coupez les tomates cerises en deux ou en quartiers.",
-            "Préparer la sauce: Dans un bol, mélangez le petit fromage frais. Ajoutez sel, poivre, ail, paprika fumé et l'huile d'olive. Ajoutez le miel puis mélangez jusqu'à obtenir une sauce homogène.",
-            "Préparer la garniture: Coupez le poulet en morceaux. Assurez-vous que le poulet est froid avant l'assemblage. Faites griller le bacon dans une poêle jusqu'à ce qu'il soit croustillant.",
-            "Assemblage: Dans un grand saladier, mélangez les pommes de terre froides, l'oignon, l'avocat et les tomates. Ajoutez le poulet froid. Versez la sauce et mélangez pour bien enrober.",
-            "Finition: Ajoutez le bacon grillé chaud et croustillant sur le dessus."
-        ],
-        "tags": [
-            "Entrées",
-            "Healthy",
             "Voilà l'été"
         ],
         "isFeatured": false,
