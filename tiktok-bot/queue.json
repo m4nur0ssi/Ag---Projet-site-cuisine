@@ -1,14 +1,3 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNRwG2wbX/",
-      "country": "Desserts",
-      "timestamp": "2026-06-30T15:01:02.569Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZNRws3WVb/",
-      "country": "Les Glaces",
-      "timestamp": "2026-06-30T15:01:12.308Z"
-    }
-  ]
+  "queue": []
 }
