@@ -2,77 +2,461 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/06/2026 04:26:37
+ * Dernière mise à jour: 30/06/2026 13:21:18
  * Total: 438 recettes
  */
-export const exportSyncId = "1782793597031";
+export const exportSyncId = "1782825678354";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "6323",
-        "title": "Pink Summer Toast",
-        "description": "Un toast estival et sain avec une crème onctueuse à la betterave, ricotta et fêta, servi sur du pain au levain avec du basilic et des graines de sésame. Idéal pour un brunch ou un repas léger.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6323_1782735624537.jpg&v=1782742877000",
-        "category": "plats",
+        "id": "6416",
+        "title": "Sauce pimentée de Chine",
+        "description": "Une sauce pimentée inspirée de la Chine, idéale pour accompagner nouilles, riz, légumes et viandes. Facile à préparer et à conserver.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6416_1782824292035.jpg&v=1782832032000",
+        "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653409756329053472\" data-video-id=\"7653409756329053472\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653409756329053472\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554409254120099094\" data-video-id=\"7554409254120099094\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554409254120099094\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             1 betterave cuite ~250g"
+                "name": "🧄\n             5 gousses d'ail"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 ricotta"
+                "name": "🌶️\n             5 càs de flocons de piment"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             100g de St Moret 8%"
+                "name": "🥣\n             4 tiges de ciboule"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             30g de fêta (pour la sauce)"
+                "name": "🥣\n             1 càs de graines de sésame"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             le jus d'1/2 citron"
+                "name": "🍯\n             1 càs de sucre"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             sel"
+                "name": "🧂\n             ½ càs de sel"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 tranche de pain au levain"
+                "name": "🥫\n             1 càs de sauce soja"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             huile d'olive"
+                "name": "🍚\n             1,5 càs de vinaigre de riz"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             fêta (pour les toppings)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             basilic frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             graines de sésame"
+                "name": "🥣\n             Huile chaude"
             }
         ],
         "steps": [
-            "Dans un mixeur, combiner la betterave cuite, la ricotta, le St Moret, les 30g de fêta, le jus d'un demi-citron et le sel. Mixer jusqu'à obtenir une crème lisse et homogène.",
-            "Faire griller la tranche de pain au levain avec un filet d'huile d'olive jusqu'à ce qu'elle soit dorée et croustillante.",
-            "Étaler généreusement la crème de betterave rose sur le pain grillé.",
-            "Garnir le toast avec de la fêta émiettée, des feuilles de basilic frais et des graines de sésame. Servir immédiatement."
+            "Verser l'huile chaude sur les épices et mélanger.",
+            "Pour la cuisson et la pasteurisation, deux options : soit plonger le bocal dans un grand volume d'eau, soit passer au micro-ondes 2 minutes à 800W.",
+            "Conserver au réfrigérateur après ouverture et consommer dans le mois."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6418",
+        "title": "Sauce Tartare Parfaite",
+        "description": "Une recette simple et rapide pour préparer une sauce tartare maison parfaite, idéale pour accompagner poissons, fruits de mer ou viandes froides.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6418_1782824263304.jpg&v=1782831488000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7430540295617514784\" data-video-id=\"7430540295617514784\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7430540295617514784\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥫\n             200g de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cas de moutarde (sauf si déjà dans la mayonnaise)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 Cl de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cas de câpres hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 ou 3 cornichons hachés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais haché à convenance"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette fraîche hachée à convenance"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf dur haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            }
+        ],
+        "steps": [
+            "Hacher finement l'échalote, les câpres, les cornichons, le persil, la ciboulette et l'œuf dur.",
+            "Dans un bol, mélanger la mayonnaise, la moutarde (si nécessaire) et le jus de citron.",
+            "Ajouter tous les ingrédients hachés au mélange de mayonnaise.",
+            "Assaisonner avec du sel et du poivre selon votre goût.",
+            "Bien mélanger et laisser reposer au frais avant de servir pour que les saveurs se développent."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6412",
+        "title": "Sauce Sriracha Maison",
+        "description": "Recette pour faire votre propre sauce sriracha maison, piquante et savoureuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6412_1782824225626.jpeg&v=1782831456000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7374080251342671137\" data-video-id=\"7374080251342671137\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7374080251342671137\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             500 g de piments rouges marocains"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             100 g d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre blanc (à hauteur)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une cuillère à soupe de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             140 g de sucre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "asiatique",
+            "épicé",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6410",
+        "title": "Sauce Peanut by Mory Sacko",
+        "description": "Une sauce crémeuse, intense et pleine de caractère, ultra simple et rapide à préparer en 5 minutes. Parfaite pour accompagner pâtes, riz, légumes ou protéines grillées, et accessible même aux étudiants.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6410_1782824032683.jpg&v=1782831422000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7585641479037570326\" data-video-id=\"7585641479037570326\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7585641479037570326\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             125 g de pâte d'arachide"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 càs de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             10 cl de sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1½ càs de poudre saté"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             5 à 10 cl d'eau chaude"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélanger la pâte d'arachide, le concentré de tomate, la sauce soja salée et la poudre saté.",
+            "Ajouter progressivement 5 à 10 cl d'eau chaude en mélangeant jusqu'à obtenir la consistance crémeuse souhaitée.",
+            "Servir immédiatement avec des pâtes, du riz, des légumes ou une protéine grillée."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6414",
+        "title": "Sauce Creamy Deluxe",
+        "description": "Une sauce maison crémeuse et sans conservateurs ni additifs, idéale pour accompagner vos frites ou sublimer vos burgers.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6414_1782823995826.jpg&v=1782831227000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7410852353202539808\" data-video-id=\"7410852353202539808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7410852353202539808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 cas de crème fraîche 15%"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cas de Philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 pincée de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail semoule"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 échalote ciselée finement"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             3 cl de citron vert"
+            }
+        ],
+        "steps": [
+            "Mélanger tous les ingrédients (crème fraîche, Philadelphia, sucre, sel, ail semoule, échalote ciselée, ciboulette, citron vert).",
+            "Réserver au frais pendant 1h.",
+            "Le secret de la réussite est détaillé dans la vidéo."
         ],
         "tags": [
             "Healthy",
-            "Végé",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6406",
+        "title": "Sauce Cowboy et Côte de Bœuf",
+        "description": "Une recette rapide et savoureuse de côte de bœuf accompagnée d'une sauce cowboy maison relevée.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6406_1782823617068.jpg&v=1782831190000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7561102485838925078\" data-video-id=\"7561102485838925078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7561102485838925078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             200g beurre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 càc sel (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment en flocon (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc paprika (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càc moutarde (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 côte de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25g beurre (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Romarin (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la cuisson)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Sauces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6339",
+        "title": "Salade de gnocchis croustillants pour l'été",
+        "description": "Une salade fraîche et gourmande, idéale pour l'été, composée de gnocchis croustillants, de lard, de salade verte, d'œuf et de parmesan, le tout relevé par une sauce crémeuse au yaourt grec.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6339_1782823592129.jpg&v=1782830813000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619385199582809366\" data-video-id=\"7619385199582809366\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619385199582809366\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧂\n             Gnocchis (avec ail en poudre et paprika)"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Lard"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Salade"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Oeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Assaisonner les gnocchis avec de l'ail en poudre et du paprika, puis les cuire à 180°C pendant 10 minutes (idéalement à l'Airfryer).",
+            "Cuire le lard à 180°C pendant 10 minutes pour le rendre croustillant (idéalement à l'Airfryer).",
+            "Préparer la sauce en mélangeant le yaourt grec, la moutarde, le jus de citron, le parmesan râpé, l'ail haché, le sel, le poivre et l'huile d'olive.",
+            "Assembler la salade en disposant la salade verte, les gnocchis croustillants, le lard croustillant, l'œuf (cuit selon votre préférence) et le parmesan.",
+            "Napper généreusement de sauce et servir frais."
+        ],
+        "tags": [
+            "Salades",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -83,7 +467,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6422",
         "title": "SAUCE SWEET CHILI",
         "description": "Une sauce sweet chili maison, bien meilleure que celle du commerce, avec plus de goût, moins chère et sans conservateur.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6422_1782823481876.jpg&v=1782830788000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -138,10 +522,135 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "6353",
+        "title": "Mojito express",
+        "description": "Un mojito express, prêt en seulement 2 minutes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6353_1782569582238-1.jpg&v=1782830677000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7252370449462562074\" data-video-id=\"7252370449462562074\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7252370449462562074\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             10 feuilles menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Glaçon"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sprite ou eau gazeuse + sucre roux"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Pas cher",
+            "Rafraîchissements",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6408",
+        "title": "French Onion Dip maison",
+        "description": "Crémeux, fondant, 100% réconfort avec des oignons ultra confits et caramélisés : de quoi rendre fous tes invités !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6408_1782823317099.jpg&v=1782830639000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7514941660917173506\" data-video-id=\"7514941660917173506\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7514941660917173506\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à café de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1/2 c. à café de sucre brun"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 g de yaourt grec (ou skyr pour plus léger)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 g de crème fraîche épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1/2 c. à café de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 c. à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30 g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre, paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette fraîche ciselée"
+            }
+        ],
+        "steps": [
+            "Dans une poêle, fais revenir les oignons dans l'huile + beurre à feu doux pendant 25 à 30 minutes. Ajoute le sucre, le sel et le vinaigre en fin de cuisson pour bien les caraméliser. Réserve une petite cuillère pour le topping et laisse refroidir.",
+            "Dans un bol, mélange le yaourt, la crème fraîche, la moutarde, le citron, le parmesan. Incorpore les oignons confits refroidis. Ajuste le sel, poivre et ajoute une pincée de paprika. Laisse reposer 30 minutes au frigo si possible pour que les saveurs se mêlent.",
+            "Dresse dans un joli bol, ajoute les toppings (oignons réservés, ciboulette, filet d'huile). Sers avec des chips maison, des crackers, ou des légumes rôtis. Bon appétit !"
+        ],
+        "tags": [
+            "France",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "6420",
         "title": "Crème de MOZZA, cerises & tomates",
         "description": "Une recette fraîche et gourmande, sans cuisson, parfaite pour l'été. Une crème de mozzarella onctueuse accompagnée d'un mélange coloré de tomates cerises et de cerises fraîches.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6420_1782823296883.jpeg&v=1782830512000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -235,455 +744,72 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6418",
-        "title": "Sauce Tartare Parfaite",
-        "description": "Une recette simple et rapide pour préparer une sauce tartare maison parfaite, idéale pour accompagner poissons, fruits de mer ou viandes froides.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
+        "id": "6323",
+        "title": "Pink Summer Toast",
+        "description": "Un toast estival et sain avec une crème onctueuse à la betterave, ricotta et fêta, servi sur du pain au levain avec du basilic et des graines de sésame. Idéal pour un brunch ou un repas léger.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6323_1782735624537.jpg&v=1782742877000",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7430540295617514784\" data-video-id=\"7430540295617514784\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7430540295617514784\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653409756329053472\" data-video-id=\"7653409756329053472\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653409756329053472\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥫\n             200g de mayonnaise"
+                "name": "🥣\n             1 betterave cuite ~250g"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             1 cas de moutarde (sauf si déjà dans la mayonnaise)"
+                "name": "🥣\n             1 ricotta"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             2 Cl de jus de citron"
+                "name": "🥣\n             100g de St Moret 8%"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 échalote hachée"
+                "name": "🥣\n             30g de fêta (pour la sauce)"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cas de câpres hachées"
+                "name": "🍋\n             le jus d'1/2 citron"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 ou 3 cornichons hachés"
+                "name": "🧂\n             sel"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Persil frais haché à convenance"
+                "name": "🥣\n             1 tranche de pain au levain"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Ciboulette fraîche hachée à convenance"
+                "name": "🍾\n             huile d'olive"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             1 œuf dur haché"
+                "name": "🥣\n             fêta (pour les toppings)"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Sel et poivre"
+                "name": "🌿\n             basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             graines de sésame"
             }
         ],
         "steps": [
-            "Hacher finement l'échalote, les câpres, les cornichons, le persil, la ciboulette et l'œuf dur.",
-            "Dans un bol, mélanger la mayonnaise, la moutarde (si nécessaire) et le jus de citron.",
-            "Ajouter tous les ingrédients hachés au mélange de mayonnaise.",
-            "Assaisonner avec du sel et du poivre selon votre goût.",
-            "Bien mélanger et laisser reposer au frais avant de servir pour que les saveurs se développent."
-        ],
-        "tags": [
-            "France",
-            "Pas cher",
-            "Sauces"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6416",
-        "title": "Sauce pimentée de Chine",
-        "description": "Une sauce pimentée inspirée de la Chine, idéale pour accompagner nouilles, riz, légumes et viandes. Facile à préparer et à conserver.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554409254120099094\" data-video-id=\"7554409254120099094\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554409254120099094\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧄\n             5 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             5 càs de flocons de piment"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tiges de ciboule"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 càs de graines de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 càs de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ càs de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 càs de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             1,5 càs de vinaigre de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile chaude"
-            }
-        ],
-        "steps": [
-            "Verser l'huile chaude sur les épices et mélanger.",
-            "Pour la cuisson et la pasteurisation, deux options : soit plonger le bocal dans un grand volume d'eau, soit passer au micro-ondes 2 minutes à 800W.",
-            "Conserver au réfrigérateur après ouverture et consommer dans le mois."
-        ],
-        "tags": [
-            "Asie",
-            "épicé",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6414",
-        "title": "Sauce Creamy Deluxe",
-        "description": "Une sauce maison crémeuse et sans conservateurs ni additifs, idéale pour accompagner vos frites ou sublimer vos burgers.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7410852353202539808\" data-video-id=\"7410852353202539808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7410852353202539808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             1 cas de crème fraîche 15%"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cas de Philadelphia"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 pincée de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail semoule"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 échalote ciselée finement"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             3 cl de citron vert"
-            }
-        ],
-        "steps": [
-            "Mélanger tous les ingrédients (crème fraîche, Philadelphia, sucre, sel, ail semoule, échalote ciselée, ciboulette, citron vert).",
-            "Réserver au frais pendant 1h.",
-            "Le secret de la réussite est détaillé dans la vidéo."
+            "Dans un mixeur, combiner la betterave cuite, la ricotta, le St Moret, les 30g de fêta, le jus d'un demi-citron et le sel. Mixer jusqu'à obtenir une crème lisse et homogène.",
+            "Faire griller la tranche de pain au levain avec un filet d'huile d'olive jusqu'à ce qu'elle soit dorée et croustillante.",
+            "Étaler généreusement la crème de betterave rose sur le pain grillé.",
+            "Garnir le toast avec de la fêta émiettée, des feuilles de basilic frais et des graines de sésame. Servir immédiatement."
         ],
         "tags": [
             "Healthy",
-            "Sauces"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6412",
-        "title": "Sauce Sriracha Maison",
-        "description": "Recette pour faire votre propre sauce sriracha maison, piquante et savoureuse.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7374080251342671137\" data-video-id=\"7374080251342671137\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7374080251342671137\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌶️\n             500 g de piments rouges marocains"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             100 g d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Vinaigre blanc (à hauteur)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une cuillère à soupe de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             140 g de sucre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "asiatique",
-            "épicé",
-            "Pas cher",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6410",
-        "title": "Sauce Peanut by Mory Sacko",
-        "description": "Une sauce crémeuse, intense et pleine de caractère, ultra simple et rapide à préparer en 5 minutes. Parfaite pour accompagner pâtes, riz, légumes ou protéines grillées, et accessible même aux étudiants.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7585641479037570326\" data-video-id=\"7585641479037570326\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7585641479037570326\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             125 g de pâte d'arachide"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             2 càs de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             10 cl de sauce soja salée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1½ càs de poudre saté"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             5 à 10 cl d'eau chaude"
-            }
-        ],
-        "steps": [
-            "Dans un bol, mélanger la pâte d'arachide, le concentré de tomate, la sauce soja salée et la poudre saté.",
-            "Ajouter progressivement 5 à 10 cl d'eau chaude en mélangeant jusqu'à obtenir la consistance crémeuse souhaitée.",
-            "Servir immédiatement avec des pâtes, du riz, des légumes ou une protéine grillée."
-        ],
-        "tags": [
-            "Asie",
-            "épicé",
-            "Pas cher",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6408",
-        "title": "French Onion Dip maison",
-        "description": "Crémeux, fondant, 100% réconfort avec des oignons ultra confits et caramélisés : de quoi rendre fous tes invités !",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7514941660917173506\" data-video-id=\"7514941660917173506\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7514941660917173506\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons jaunes"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 c. à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             10 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 c. à café de vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1/2 c. à café de sucre brun"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150 g de yaourt grec (ou skyr pour plus léger)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100 g de crème fraîche épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1/2 c. à café de moutarde à l'ancienne"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 c. à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             30 g de parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre, paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette fraîche ciselée"
-            }
-        ],
-        "steps": [
-            "Dans une poêle, fais revenir les oignons dans l'huile + beurre à feu doux pendant 25 à 30 minutes. Ajoute le sucre, le sel et le vinaigre en fin de cuisson pour bien les caraméliser. Réserve une petite cuillère pour le topping et laisse refroidir.",
-            "Dans un bol, mélange le yaourt, la crème fraîche, la moutarde, le citron, le parmesan. Incorpore les oignons confits refroidis. Ajuste le sel, poivre et ajoute une pincée de paprika. Laisse reposer 30 minutes au frigo si possible pour que les saveurs se mêlent.",
-            "Dresse dans un joli bol, ajoute les toppings (oignons réservés, ciboulette, filet d'huile). Sers avec des chips maison, des crackers, ou des légumes rôtis. Bon appétit !"
-        ],
-        "tags": [
-            "France",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6406",
-        "title": "Sauce Cowboy et Côte de Bœuf",
-        "description": "Une recette rapide et savoureuse de côte de bœuf accompagnée d'une sauce cowboy maison relevée.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7561102485838925078\" data-video-id=\"7561102485838925078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7561102485838925078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n             200g beurre (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 jus de citron (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 càc sel (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment en flocon (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 càc paprika (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 càc moutarde (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 côte de bœuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             25g beurre (pour la cuisson)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Romarin (pour la cuisson)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail (pour la cuisson)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile (pour la cuisson)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Sauces",
-            "USA"
+            "Végé",
+            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -1404,52 +1530,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Rafraîchissements"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6353",
-        "title": "Mojito express",
-        "description": "Un mojito express, prêt en seulement 2 minutes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6353_1782569582238.jpg&v=1782576818000",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7252370449462562074\" data-video-id=\"7252370449462562074\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7252370449462562074\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             10 feuilles menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 jus de citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Glaçon"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sprite ou eau gazeuse + sucre roux"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Pas cher",
-            "Rafraîchissements",
-            "Végé",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -2555,86 +2635,6 @@ export const mockRecipes: Recipe[] = [
             "Afrique",
             "barbecue",
             "épicé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6339",
-        "title": "Salade de gnocchis croustillants pour l'été",
-        "description": "Une salade fraîche et gourmande, idéale pour l'été, composée de gnocchis croustillants, de lard, de salade verte, d'œuf et de parmesan, le tout relevé par une sauce crémeuse au yaourt grec.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619385199582809366\" data-video-id=\"7619385199582809366\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619385199582809366\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧂\n             Gnocchis (avec ail en poudre et paprika)"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Lard"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Salade"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Oeuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Assaisonner les gnocchis avec de l'ail en poudre et du paprika, puis les cuire à 180°C pendant 10 minutes (idéalement à l'Airfryer).",
-            "Cuire le lard à 180°C pendant 10 minutes pour le rendre croustillant (idéalement à l'Airfryer).",
-            "Préparer la sauce en mélangeant le yaourt grec, la moutarde, le jus de citron, le parmesan râpé, l'ail haché, le sel, le poivre et l'huile d'olive.",
-            "Assembler la salade en disposant la salade verte, les gnocchis croustillants, le lard croustillant, l'œuf (cuit selon votre préférence) et le parmesan.",
-            "Napper généreusement de sauce et servir frais."
-        ],
-        "tags": [
-            "Salades",
             "Voilà l'été"
         ],
         "isFeatured": false,
