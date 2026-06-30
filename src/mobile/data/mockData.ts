@@ -2,11 +2,91 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/06/2026 13:56:34
- * Total: 438 recettes
+ * Dernière mise à jour: 30/06/2026 15:07:38
+ * Total: 443 recettes
  */
-export const exportSyncId = "1782827794804";
+export const exportSyncId = "1782832058696";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6444",
+        "title": "Vitello Tonnato Maison",
+        "description": "Une recette maison de Vitello Tonnato, un délicieux mariage terre-mer de veau et de thon, facile à préparer et très savoureuse.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656387003956645153\" data-video-id=\"7656387003956645153\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656387003956645153\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥜\n             300g de noix de veau"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             Carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons nouveaux"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Romarin"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un verre de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des caprons (câpres à queue)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de thon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 filets d'anchois"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de câpres"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf mollet"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Entrées",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6375",
         "title": "Tiramisu au citron sans gluten",
@@ -15060,6 +15140,40 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "5854",
+        "title": "Le radis beurre comme une fleur",
+        "description": "Une recette de radis au beurre présentés en forme de fleur, inspirée par le chef Jean-François Piège, idéale pour l'apéritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fradis.jpg&v=1780583751000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7256818242142899483\" data-video-id=\"7256818242142899483\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7256818242142899483\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n Radis"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n Beurre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs",
+            "France",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "5856",
         "title": "Astuce coque au chocolat",
         "description": "Une recette facile de dessert au chocolat, adaptée aux régimes végétarien et végétalien.",
@@ -29040,6 +29154,157 @@ export const mockRecipes: Recipe[] = [
             "Parsemer de ciboulette ciselée avant de servir."
         ],
         "tags": [],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3869",
+        "title": "Mini Pizza Extra Moelleuse",
+        "description": "Une recette de mini pizzas à la pâte ultra moelleuse, idéale pour un apéritif dînatoire ou pour le mois de Ramadan.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpiza.jpeg&v=1774449336000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7477165467866582294\" data-video-id=\"7477165467866582294\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7477165467866582294\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 100 ml de lait tiède"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à soupe de levure sèche"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 cuillère à café de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 450 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 220 ml d'eau tiède"
+            }
+        ],
+        "steps": [
+            "Mélanger le lait tiède, la levure sèche, le sucre et l'huile d'olive.",
+            "Laisser reposer le mélange pendant 10 minutes pour activer la levure.",
+            "Dans un bol, verser la farine et le sel, puis ajouter le mélange de levure.",
+            "Ajouter l'eau tiède.",
+            "Pétrir la pâte pendant 8 minutes au robot ou à la main.",
+            "Former une boule, couvrir et laisser reposer pendant 1h à 1h30.",
+            "Former les mini pizzas et enfourner pour 12 minutes à 180 degrés."
+        ],
+        "tags": [],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3875",
+        "title": "Mayonnaise maison à la fourchette",
+        "description": "Une mayonnaise onctueuse et inratable réalisée sans robot ni mixeur, bien meilleure et plus économique que les versions industrielles.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmayo.jpeg&v=1774449103000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7599713586289675542\" data-video-id=\"7599713586289675542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7599713586289675542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍾\n 13 cl d'huile neutre (tournesol ou pépin de raisin)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 c.à.c de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 filet de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélangez le jaune d'œuf, la moutarde, le sel et le jus de citron.",
+            "Commencez à fouetter le mélange à l'aide d'une fourchette.",
+            "Versez l'huile en un filet très mince tout en continuant de fouetter énergiquement.",
+            "Poursuivez l'opération jusqu'à ce que la mayonnaise monte et devienne bien ferme et onctueuse."
+        ],
+        "tags": [
+            "France",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3887",
+        "title": "Tempura de légumes",
+        "description": "Une recette croustillante et légère de beignets de légumes, rapide et facile à réaliser pour un apéritif original.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FL%C3%A9gumes-en-tempura-au-curcuma-sauce-yaourt-menthe.jpeg&v=1774448557000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7079074406265310469\" data-video-id=\"7079074406265310469\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7079074406265310469\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n Légumes variés (carottes, courgettes, poivrons, brocolis)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Eau très froide (ou eau gazeuse)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            }
+        ],
+        "steps": [
+            "Laver et découper les légumes en bâtonnets ou en fines tranches.",
+            "Préparer la pâte à tempura en mélangeant la farine avec l'eau très froide jusqu'à obtenir une texture fluide.",
+            "Faire chauffer l'huile de friture.",
+            "Tremper les morceaux de légumes dans la pâte puis les plonger immédiatement dans l'huile chaude.",
+            "Laisser frire quelques minutes jusqu'à ce qu'ils soient dorés et croustillants.",
+            "Égoutter sur du papier absorbant et servir chaud."
+        ],
+        "tags": [
+            "tempura",
+            "Végé"
+        ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
