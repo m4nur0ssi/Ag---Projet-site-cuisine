@@ -2,11 +2,367 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/06/2026 15:07:38
- * Total: 443 recettes
+ * Dernière mise à jour: 30/06/2026 15:25:13
+ * Total: 445 recettes
  */
-export const exportSyncId = "1782832058696";
+export const exportSyncId = "1782833113125";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6456",
+        "title": "CHUROFFLE",
+        "description": "Une recette hybride de gaufres inspirées des churros, facile à réaliser avec des ingrédients de base.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7646000791429467424\" data-video-id=\"7646000791429467424\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7646000791429467424\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             150g de farine T55"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             55 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Espagne",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6454",
+        "title": "Sorbet cacahuète maison",
+        "description": "Une recette de sorbet cacahuète maison ultra onctueux avec une touche des Caraïbes, parfait pour le Ninja Creami.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635712153747524886\" data-video-id=\"7635712153747524886\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635712153747524886\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             300 ml de lait concentré non sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             90 g de beurre de cacahuètes"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             110 g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Cannelle & muscade (selon vos goûts)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 c. à café d'arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à café d'amande amère"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste de citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1/2 bouchon de rhum"
+            }
+        ],
+        "steps": [
+            "Mélanger tous les ingrédients jusqu'à obtenir une préparation bien lisse.",
+            "Passer la préparation au congélateur."
+        ],
+        "tags": [
+            "Healthy",
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6452",
+        "title": "Salade de fruits rafraîchissante",
+        "description": "Une salade de fruits fraîche et colorée, parfaite pour se rafraîchir par temps de forte chaleur.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656439622762827040\" data-video-id=\"7656439622762827040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656439622762827040\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍓\n             Fraises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Myrtilles"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Oranges"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pêches"
+            },
+            {
+                "quantity": "",
+                "name": "🥭\n             Mangues"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Kiwis"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Ananas"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes vertes"
+            }
+        ],
+        "steps": [
+            "Laver et couper tous les fruits en morceaux.",
+            "Mélanger délicatement les fruits coupés dans un grand saladier.",
+            "Servir très frais pour un maximum de rafraîchissement."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6450",
+        "title": "Lotus dessert mit Erdbeere",
+        "description": "Un dessert frais et crémeux, facile à réaliser, à base de biscuits Lotus, de mascarpone, de fromage frais, de crème fraîche et de fraises.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7644908081721249056\" data-video-id=\"7644908081721249056\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7644908081721249056\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 paquet de biscuits Lotus"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de Mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g de fromage frais type Philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50 g de Crème fraîche épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             30 g de Lait concentré sucré (type Milchmädchen)"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             300 g de Fraises"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 g de Crème Lotus (pâte à tartiner Biscoff)"
+            }
+        ],
+        "steps": [
+            "1. Écraser grossièrement les biscuits Lotus.",
+            "2. Dans un bol, mélanger le mascarpone, le fromage frais (Philadelphia), la crème fraîche et le lait concentré sucré jusqu'à obtenir une crème homogène.",
+            "3. Laver et couper les fraises en petits morceaux.",
+            "4. Dans des verrines ou un plat, alterner des couches de biscuits écrasés, de crème, de fraises et de crème Lotus.",
+            "5. Réfrigérer pendant au moins 2 heures avant de servir pour que le dessert soit bien frais et que les saveurs se mélangent."
+        ],
+        "tags": [
+            "Desserts",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6448",
+        "title": "King Fusion Nutella (version diet et protéinée)",
+        "description": "Recette de King Fusion Nutella glacé, version allégée et riche en protéines, préparée avec le Ninja Creami.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656524597109542177\" data-video-id=\"7656524597109542177\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656524597109542177\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             420 ml de lait demi-écrémé"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             35 g de whey vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10 g de stévia"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 c. à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1g de gomme de xanthane"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20 g de Nutella"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             10g de soja crispies protéinées chocolat de Koro"
+            }
+        ],
+        "steps": [
+            "Mixer tous les ingrédients sauf les toppings",
+            "Verser dans le pot Ninja Creami",
+            "Congeler 24h minimum bien à plat",
+            "Passer à l'eau chaude 1 min pour décoller les bords",
+            "Lancer le mode \" Light Ice Cream \"",
+            "Faire 1 à 2 \" Re-Spin \" au besoin et décoller les bords avec un couteau",
+            "Ajouter le Nutella et les soja crispies"
+        ],
+        "tags": [
+            "Healthy",
+            "Les Glaces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6446",
+        "title": "Sundae Maison",
+        "description": "Une recette facile de sundae maison sans sorbetière, préparée avec seulement 3 ingrédients principaux pour la glace, accompagnée d'un délicieux caramel onctueux fait maison.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656138036903726368\" data-video-id=\"7656138036903726368\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656138036903726368\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             300g de crème liquide entière 30 %"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             160g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Arôme vanille (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             260g de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             45g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             35g de miel liquide"
+            }
+        ],
+        "steps": [
+            "Pour la glace : Fouettez ensemble la crème et le mascarpone bien froids jusqu'à obtenir une chantilly.",
+            "Ajoutez le lait concentré puis fouettez à nouveau pendant 1 minute.",
+            "Pochez la glace dans des verrines et réservez au congélateur.",
+            "Sortir 30 minutes avant de déguster.",
+            "Pour le caramel onctueux : Faire un caramel à sec dans une casserole.",
+            "Quand le caramel est liquide et doré, ajoutez le beurre puis la crème et le sel.",
+            "Mélangez jusqu'à obtenir un caramel sans grumeaux puis arrêtez le feu.",
+            "Ajoutez le miel et réservez dans un bocal.",
+            "Utilisez le caramel à température ambiante."
+        ],
+        "tags": [
+            "Desserts",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6444",
         "title": "Vitello Tonnato Maison",
@@ -15140,40 +15496,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5854",
-        "title": "Le radis beurre comme une fleur",
-        "description": "Une recette de radis au beurre présentés en forme de fleur, inspirée par le chef Jean-François Piège, idéale pour l'apéritif.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fradis.jpg&v=1780583751000",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7256818242142899483\" data-video-id=\"7256818242142899483\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7256818242142899483\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n Radis"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n Beurre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Apéritifs",
-            "France",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5856",
         "title": "Astuce coque au chocolat",
         "description": "Une recette facile de dessert au chocolat, adaptée aux régimes végétarien et végétalien.",
@@ -29154,157 +29476,6 @@ export const mockRecipes: Recipe[] = [
             "Parsemer de ciboulette ciselée avant de servir."
         ],
         "tags": [],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3869",
-        "title": "Mini Pizza Extra Moelleuse",
-        "description": "Une recette de mini pizzas à la pâte ultra moelleuse, idéale pour un apéritif dînatoire ou pour le mois de Ramadan.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpiza.jpeg&v=1774449336000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7477165467866582294\" data-video-id=\"7477165467866582294\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7477165467866582294\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n 100 ml de lait tiède"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 cuillère à soupe de levure sèche"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 1 cuillère à café de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 2 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 450 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n 220 ml d'eau tiède"
-            }
-        ],
-        "steps": [
-            "Mélanger le lait tiède, la levure sèche, le sucre et l'huile d'olive.",
-            "Laisser reposer le mélange pendant 10 minutes pour activer la levure.",
-            "Dans un bol, verser la farine et le sel, puis ajouter le mélange de levure.",
-            "Ajouter l'eau tiède.",
-            "Pétrir la pâte pendant 8 minutes au robot ou à la main.",
-            "Former une boule, couvrir et laisser reposer pendant 1h à 1h30.",
-            "Former les mini pizzas et enfourner pour 12 minutes à 180 degrés."
-        ],
-        "tags": [],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3875",
-        "title": "Mayonnaise maison à la fourchette",
-        "description": "Une mayonnaise onctueuse et inratable réalisée sans robot ni mixeur, bien meilleure et plus économique que les versions industrielles.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmayo.jpeg&v=1774449103000",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7599713586289675542\" data-video-id=\"7599713586289675542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7599713586289675542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍾\n 13 cl d'huile neutre (tournesol ou pépin de raisin)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 1 jaune d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 1 c.à.c de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n 1 filet de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 pincée de sel"
-            }
-        ],
-        "steps": [
-            "Dans un bol, mélangez le jaune d'œuf, la moutarde, le sel et le jus de citron.",
-            "Commencez à fouetter le mélange à l'aide d'une fourchette.",
-            "Versez l'huile en un filet très mince tout en continuant de fouetter énergiquement.",
-            "Poursuivez l'opération jusqu'à ce que la mayonnaise monte et devienne bien ferme et onctueuse."
-        ],
-        "tags": [
-            "France",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3887",
-        "title": "Tempura de légumes",
-        "description": "Une recette croustillante et légère de beignets de légumes, rapide et facile à réaliser pour un apéritif original.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FL%C3%A9gumes-en-tempura-au-curcuma-sauce-yaourt-menthe.jpeg&v=1774448557000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7079074406265310469\" data-video-id=\"7079074406265310469\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7079074406265310469\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥕\n Légumes variés (carottes, courgettes, poivrons, brocolis)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n Farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Eau très froide (ou eau gazeuse)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile de friture"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel"
-            }
-        ],
-        "steps": [
-            "Laver et découper les légumes en bâtonnets ou en fines tranches.",
-            "Préparer la pâte à tempura en mélangeant la farine avec l'eau très froide jusqu'à obtenir une texture fluide.",
-            "Faire chauffer l'huile de friture.",
-            "Tremper les morceaux de légumes dans la pâte puis les plonger immédiatement dans l'huile chaude.",
-            "Laisser frire quelques minutes jusqu'à ce qu'ils soient dorés et croustillants.",
-            "Égoutter sur du papier absorbant et servir chaud."
-        ],
-        "tags": [
-            "tempura",
-            "Végé"
-        ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
