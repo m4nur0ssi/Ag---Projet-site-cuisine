@@ -2,11 +2,89 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/06/2026 19:02:05
- * Total: 457 recettes
+ * Dernière mise à jour: 30/06/2026 19:32:10
+ * Total: 459 recettes
  */
-export const exportSyncId = "1782846125057";
+export const exportSyncId = "1782847930521";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6484",
+        "title": "MUFFINS PIZZA",
+        "description": "Délicieux et faciles à préparer, ces muffins pizza sans gluten sont parfaits pour un apéritif, un pique-nique ou accompagnés d'une salade. Avec leurs saveurs d'été, ils raviront petits et grands.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7290581924899245345\" data-video-id=\"7290581924899245345\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7290581924899245345\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Sans Gluten",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6482",
+        "title": "Naan sans gluten",
+        "description": "Une recette facile de naan maison sans gluten et sans lactose, préparé avec des pommes de terre cuites à l'eau.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7504007883512843542\" data-video-id=\"7504007883512843542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7504007883512843542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             120ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             200g de pommes de terre cuite à l'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             250g de farine pour pain sans gluten (ici, Schär)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10g de levure sèche instantanée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive + herbes"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Orient",
+            "Sans Gluten"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6480",
         "title": "Tarte fraîcheur protéinée & bien croustillante",
