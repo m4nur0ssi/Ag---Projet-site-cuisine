@@ -61,7 +61,7 @@ const trends: FilterItem[] = [
     { id: 'trn-dolce-vita', name: 'Dolce Vita', icon: '', tag: 'dolce-vita', color: '#008C45' },
     { id: 'trn-express', name: 'Express', icon: '', tag: 'Express', color: '#FDFC47' },
     { id: 'trn-famille', name: 'Famille', icon: '', tag: 'famille', color: '#FF416C' },
-    { id: 'trn-glaces', name: 'Les Glaces', icon: '', tag: 'glaces', color: '#F472B6' },
+    { id: 'trn-glaces', name: 'Glace', icon: '', tag: 'glaces', color: '#F472B6' },
     { id: 'trn-healthy', name: 'Healthy', icon: '', tag: 'Healthy', color: '#A8E063' },
     { id: 'trn-noel', name: 'Noël', icon: '', tag: 'Noël', color: '#ff3b30' },
     { id: 'trn-paques', name: 'Pâques', icon: '', tag: 'pâques', color: '#ffcc33' },
@@ -71,6 +71,13 @@ const trends: FilterItem[] = [
     { id: 'trn-summer', name: "Voilà l'été", icon: '☀️', tag: 'voila-lete', color: '#FF7E5F' },
     { id: 'trn-vege', name: 'Végé', icon: '', tag: 'vegetarien', color: '#00C853' },
     { id: 'trn-winter', name: "C'est l'hiver", icon: '❄️', tag: 'cest-lhiver', color: '#3B82F6' },
+    { id: 'trn-tarte', name: 'Tarte', icon: '', tag: 'tarte', color: '#C1432B' },
+    // ── Régime ──
+    { id: 'trn-sans-gluten', name: 'Sans gluten', icon: '', tag: 'sans-gluten', color: '#C9A227' },
+    { id: 'trn-sans-lactose', name: 'Sans lactose', icon: '', tag: 'sans-lactose', color: '#4FC3F7' },
+    { id: 'trn-sans-sucre', name: 'Sans sucre', icon: '', tag: 'sans-sucre', color: '#7E57C2' },
+    { id: 'trn-sans-sel', name: 'Sans sel', icon: '', tag: 'sans-sel', color: '#90A4AE' },
+    { id: 'trn-minceur', name: 'Minceur', icon: '', tag: 'minceur', color: '#26C6DA' },
 ].sort((a, b) => a.name.localeCompare(b.name, 'fr'));
 
 export default function MagicFilterBar({ 

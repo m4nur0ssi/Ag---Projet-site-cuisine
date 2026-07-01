@@ -362,6 +362,13 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const MEAT_FISH = new Set(['poisson', 'boeuf', 'agneau', 'porc', 'poulet']);
     const isSauce = (r: any): boolean =>
         (r.tags || []).some((t: string) => /sauce/i.test(t)) || /\bsauces?\b/i.test(r.title || '');
+    // Sucré (dessert / pâtisserie / glace / boisson) : exclu des plats ET des
+    // accompagnements (règle utilisateur : un accompagnement = légume / féculent salé).
+    const SWEET_RX = /glace|sorbet|g[âa]teau|cr[êe]pe|gaufre|tiramisu|mousse au chocolat|panna cotta|\bflan\b|cheesecake|clafoutis|crumble|cookie|brownie|muffin|cupcake|macaron|[ée]clair|beignet|churros|pancake|nougat|pavlova|profiterole|riz au lait|pain perdu|pain d['’][ée]pices|compote|tarte sucr|tarte aux (pomme|fraise|citron|framboise|abricot|poire|myrtille)|cr[èe]me (br[ûu]l[ée]e|p[âa]tissi[èe]re|dessert|anglaise)|fondant au chocolat/i;
+    const isSweet = (r: any): boolean =>
+        ['desserts', 'dessert', 'patisserie', 'patisseries', 'glaces', 'glace', 'boissons'].includes((r.category || '').toLowerCase())
+        || (r.tags || []).some((t: string) => /dessert|p[âa]tisserie|glace|sorbet|sucr/i.test(t))
+        || SWEET_RX.test(r.title || '');
     // Vrai PLAT = catégorie plats, cuisinable, non-sauce, avec une protéine viande/poisson.
     const isMainDish = (r: any): boolean =>
         r.category === 'plats' && isCookable(r) && !isSauce(r) && MEAT_FISH.has(proteinOf(r));
@@ -374,7 +381,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     // Pool d'accompagnements : recettes taggées "Accompagnements" + tout plat SANS viande/poisson
     // (légumes/féculents), hors sauces.
     const isSideDish = (r: any): boolean => {
-        if (!isCookable(r) || isSauce(r)) return false;
+        if (!isCookable(r) || isSauce(r) || isSweet(r)) return false;
         if ((r.tags || []).some((t: string) => /accompagnement/i.test(t))) return true;
         return r.category === 'plats' && !MEAT_FISH.has(proteinOf(r));
     };

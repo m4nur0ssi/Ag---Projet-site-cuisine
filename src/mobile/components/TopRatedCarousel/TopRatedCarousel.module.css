@@ -1,0 +1,43 @@
+.section {
+    margin: 4px 0 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px 10px;
+}
+
+.title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: #fff;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.star {
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+}
+
+.rail {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 20px 6px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+}
+
+.rail::-webkit-scrollbar { display: none; }
+
+.item {
+    flex: 0 0 auto;
+    width: 150px;
+    scroll-snap-align: start;
+}

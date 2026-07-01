@@ -58,7 +58,7 @@ const trends: FilterItem[] = [
     { id: 'trn-noel', name: 'Noël', icon: '', tag: 'noël', color: '#ff3b30' },
     { id: 'trn-summer', name: "Voilà l'été", icon: '☀️', tag: 'voila-lete', color: '#FF7E5F' },
     { id: 'trn-winter', name: "C'est l'hiver", icon: '❄️', tag: 'cest-lhiver', color: '#3B82F6' },
-    { id: 'trn-glaces', name: 'Les Glaces', icon: '', tag: 'glaces', color: '#F472B6' },
+    { id: 'trn-glaces', name: 'Glace', icon: '', tag: 'glaces', color: '#F472B6' },
     { id: 'trn-boissons', name: 'Rafraîchissements', icon: '', tag: 'boissons', color: '#3B82F6' },
     { id: 'trn-simplissime', name: 'Simplissime', icon: '', tag: 'simplissime', color: '#FFD700' },
     { id: 'trn-dolce-vita', name: 'Dolce Vita', icon: '', tag: 'italie', color: '#008C45' },
@@ -70,7 +70,14 @@ const trends: FilterItem[] = [
     { id: 'trn-express', name: 'Express', icon: '', tag: 'express', color: '#FDFC47' },
     { id: 'trn-sauces', name: 'Sauces', icon: '', tag: 'sauces', color: '#FF8C00' },
     { id: 'trn-famille', name: 'Famille', icon: '', tag: 'famille', color: '#FF416C' },
-    { id: 'trn-vege', name: 'Végé', icon: '', tag: 'vegetarien', color: '#00C853' }
+    { id: 'trn-vege', name: 'Végé', icon: '', tag: 'vegetarien', color: '#00C853' },
+    { id: 'trn-tarte', name: 'Tarte', icon: '', tag: 'tarte', color: '#C1432B' },
+    // ── Régime ──
+    { id: 'trn-sans-gluten', name: 'Sans gluten', icon: '', tag: 'sans-gluten', color: '#C9A227' },
+    { id: 'trn-sans-lactose', name: 'Sans lactose', icon: '', tag: 'sans-lactose', color: '#4FC3F7' },
+    { id: 'trn-sans-sucre', name: 'Sans sucre', icon: '', tag: 'sans-sucre', color: '#7E57C2' },
+    { id: 'trn-sans-sel', name: 'Sans sel', icon: '', tag: 'sans-sel', color: '#90A4AE' },
+    { id: 'trn-minceur', name: 'Minceur', icon: '', tag: 'minceur', color: '#26C6DA' },
 ];
 
 export default function MagicFilterBar({
@@ -244,7 +251,13 @@ export default function MagicFilterBar({
                         <div className={styles.wellDockSecondary}>
                             <div className={styles.railScrollArea} ref={railRef}>
                                 <div className={styles.itemsRail}>
-                                    {groups.find(g => g.id === activeGroup)?.items?.map((item) => {
+                                    {(() => {
+                                        const items = groups.find(g => g.id === activeGroup)?.items || [];
+                                        // Tendances affichées par ordre alphabétique
+                                        return activeGroup === 'trends'
+                                            ? [...items].sort((a, b) => a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' }))
+                                            : items;
+                                    })().map((item) => {
                                         const itemTag = item.tag || item.id;
                                         const isSelected = activeTags.includes(itemTag);
                                         return (

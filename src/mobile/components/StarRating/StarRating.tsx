@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/mobile/lib/supabase';
+import { submitRating } from '@/mobile/lib/ratings';
 import styles from './StarRating.module.css';
 
 interface StarRatingProps {
@@ -9,70 +10,80 @@ interface StarRatingProps {
     size?: 'small' | 'large';
 }
 
-export default function StarRating({ recipeId, readonly = false, size = 'large' }: StarRatingProps) {
-    const [rating, setRating] = useState(0);
+export default function StarRating({ recipeId, size = 'large' }: StarRatingProps) {
+    const [avg, setAvg] = useState(0);
+    const [count, setCount] = useState(0);
+    const [mine, setMine] = useState(0);
     const [hover, setHover] = useState(0);
+    const [user, setUser] = useState<any>(null);
 
-    useEffect(() => {
-        const load = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session) {
-                const { data } = await supabase
-                    .from('ratings')
-                    .select('stars')
-                    .eq('user_id', session.user.id)
-                    .eq('recipe_id', recipeId)
-                    .maybeSingle();
-                if (data) setRating(data.stars);
-            } else {
-                const saved = localStorage.getItem(`recipe-rating-${recipeId}`);
-                if (saved) setRating(parseInt(saved));
-            }
-        };
-        load();
-    }, [recipeId]);
-
-    const handleClick = async (val: number) => {
-        if (readonly) return;
-        const newRating = rating === val ? 0 : val; // toggle off si même valeur
-        setRating(newRating);
-        localStorage.setItem(`recipe-rating-${recipeId}`, String(newRating));
-
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session) {
-            if (newRating === 0) {
-                await supabase.from('ratings').delete().eq('user_id', session.user.id).eq('recipe_id', recipeId);
-            } else {
-                await supabase.from('ratings').upsert({
-                    user_id: session.user.id,
-                    recipe_id: recipeId,
-                    stars: newRating,
-                    updated_at: new Date().toISOString(),
-                });
-            }
-        }
-
-        window.dispatchEvent(new CustomEvent('recipeRated', { detail: { recipeId, rating: newRating } }));
-        if (navigator.vibrate) navigator.vibrate(15);
+    const loadAvg = async () => {
+        const { data } = await supabase.from('ratings').select('stars').eq('recipe_id', recipeId);
+        const rows = data || [];
+        setCount(rows.length);
+        setAvg(rows.length ? rows.reduce((s: number, r: any) => s + (Number(r.stars) || 0), 0) / rows.length : 0);
     };
 
-    if (readonly && rating === 0) return null;
+    useEffect(() => {
+        loadAvg();
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setUser(session?.user ?? null);
+            if (session) {
+                supabase.from('ratings').select('stars')
+                    .eq('user_id', session.user.id).eq('recipe_id', recipeId).maybeSingle()
+                    .then(({ data }) => setMine(data?.stars ?? 0));
+            }
+        });
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+            setUser(session?.user ?? null);
+        });
+        return () => subscription.unsubscribe();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [recipeId]);
+
+    const vote = async (val: number) => {
+        if (!user) return;
+        const nv = mine === val ? 0 : val;
+        setMine(nv);
+        await submitRating(recipeId, nv);
+        await loadAvg();
+        window.dispatchEvent(new CustomEvent('recipeRated', { detail: { recipeId, rating: nv } }));
+        if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(15);
+    };
+
+    const pct = avg > 0 ? (avg / 5) * 100 : 0;
 
     return (
-        <div className={`${styles.stars} ${styles[size]}`}>
-            {[1, 2, 3, 4, 5].map(val => (
-                <button
-                    key={val}
-                    className={`${styles.star} ${(hover || rating) >= val ? styles.active : ''}`}
-                    onClick={() => handleClick(val)}
-                    onMouseEnter={() => !readonly && setHover(val)}
-                    onMouseLeave={() => setHover(0)}
-                    disabled={readonly}
-                    aria-label={`${val} étoile${val > 1 ? 's' : ''}`}
-                >
-                    ★
-                </button>
-            ))}
+        <div className={`${styles.wrap} ${styles[size]}`}>
+            <div className={styles.avgRow}>
+                <div className={styles.starsStatic} aria-label={`Note moyenne ${avg.toFixed(1)} sur 5`}>
+                    <span className={styles.starsBase}>★★★★★</span>
+                    <span className={styles.starsFill} style={{ width: `${pct}%` }}>★★★★★</span>
+                </div>
+                <span className={styles.num}>{count > 0 ? avg.toFixed(1) : '–'}</span>
+                <span className={styles.denom}>/5</span>
+                {count > 0 && <span className={styles.count}>({count})</span>}
+            </div>
+
+            {user && (
+                <div className={styles.voteRow}>
+                    <span className={styles.voteLabel}>Votre note</span>
+                    <div className={styles.stars}>
+                        {[1, 2, 3, 4, 5].map(val => (
+                            <button
+                                key={val}
+                                className={`${styles.star} ${(hover || mine) >= val ? styles.active : ''}`}
+                                onClick={() => vote(val)}
+                                onMouseEnter={() => setHover(val)}
+                                onMouseLeave={() => setHover(0)}
+                                aria-label={`${val} étoile${val > 1 ? 's' : ''}`}
+                            >
+                                ★
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -1,0 +1,20 @@
+<svg width="800" height="800" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradTarte" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F2A65A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C1432B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgGradTarte)" rx="40" />
+  <path d="M200 210 L400 400 L200 400 Z" fill="rgba(0,0,0,0.15)" />
+  <g transform="translate(200, 205)">
+    <circle cx="0" cy="0" r="104" fill="#E8B873" />
+    <circle cx="0" cy="0" r="84" fill="#F4D8A6" />
+    <circle cx="0" cy="0" r="64" fill="#E07A3E" />
+    <path d="M0 0 L64 0 M0 0 L32 55 M0 0 L-32 55 M0 0 L-64 0 M0 0 L-32 -55 M0 0 L32 -55" stroke="#B5552A" stroke-width="3" opacity="0.55" />
+    <circle cx="-26" cy="-17" r="11" fill="#D63027" />
+    <circle cx="24" cy="21" r="11" fill="#D63027" />
+    <circle cx="17" cy="-26" r="9" fill="#3E8E41" />
+    <circle cx="-19" cy="26" r="9" fill="#3E8E41" />
+  </g>
+</svg>

@@ -1,3 +1,77 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ── Moyenne publique (lecture seule, remplissage partiel) ── */
+.avgRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.starsStatic {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.starsBase {
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 2px;
+}
+
+.starsFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #FBBF24;
+    letter-spacing: 2px;
+}
+
+.num {
+    font-weight: 800;
+    color: #FBBF24;
+}
+
+.denom {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45);
+    margin-left: -4px;
+}
+
+.count {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Tailles */
+.large .starsBase, .large .starsFill { font-size: 1.8rem; }
+.large .num { font-size: 1.5rem; }
+.large .denom { font-size: 1rem; }
+.small .starsBase, .small .starsFill { font-size: 1rem; }
+.small .num { font-size: 0.95rem; }
+.small .denom { font-size: 0.75rem; }
+.small .count { font-size: 0.75rem; }
+
+/* ── Vote personnel (connectés) ── */
+.voteRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.voteLabel {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .stars {
     display: flex;
     align-items: center;
@@ -12,19 +86,13 @@
     transition: color 0.15s ease, transform 0.15s ease;
     padding: 2px;
     line-height: 1;
-}
-
-.star:disabled {
-    cursor: default;
+    font-size: 1.15rem;
 }
 
 .star.active {
     color: #FBBF24;
 }
 
-.star:not(:disabled):hover {
+.star:hover {
     transform: scale(1.2);
 }
-
-.large .star { font-size: 1.8rem; }
-.small .star { font-size: 1rem; }

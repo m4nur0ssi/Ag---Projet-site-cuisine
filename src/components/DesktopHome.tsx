@@ -341,6 +341,43 @@ export default function DesktopHome() {
                     return recipeTags.some(t => /^[ée]pic/.test(t.toLowerCase())) ||
                            /\b([ée]pic[ée]?|piquant|piment|harissa|sambal|sriracha|jalape[ñn]o|habanero|chili)\b/.test(titleLower);
                 }
+                // Tarte : tartes (salées + sucrées), quiches et pizzas
+                if (tagLower === 'tarte' || tagLower === 'tartes') {
+                    return recipeTags.some(t => /\b(tarte|quiche|pizza)/.test(t.toLowerCase())) ||
+                           /\b(tarte(let)?(te)?s?|quiches?|pizz?as?|pissaladi[èe]re|flammenk[uü]che|tourtes?)\b/.test(titleLower);
+                }
+
+                // ── RÉGIMES (détection par ingrédients/texte — heuristique) ──
+                if (tagLower === 'sans-gluten') {
+                    if (recipeTags.some(t => /sans[\s-]?gluten/.test(t.toLowerCase()))) return true;
+                    const gluten = ['blé', 'farine', 'pâtes', 'pates', 'pâte feuilletée', 'pâte brisée', 'pâte sablée', 'pain', 'chapelure', 'panko', 'semoule', 'boulgour', 'couscous', 'biscuit', 'spéculoos', 'speculoos', 'boudoir', 'sauce soja', 'seigle', 'orge', 'épeautre', 'pizza', 'gnocchi', 'lasagne', 'raviolis', 'nouilles', 'vermicelle', 'croûton', 'crouton', 'brioche', 'crêpe', 'crepe', 'gaufre', 'cookie', 'muffin', 'gâteau', 'gateau', 'cake', 'tarte', 'quiche'];
+                    return !gluten.some(k => fullText.includes(k));
+                }
+                if (tagLower === 'sans-lactose') {
+                    if (recipeTags.some(t => /sans[\s-]?lactose/.test(t.toLowerCase()))) return true;
+                    const dairy = ['lait', 'beurre', 'crème', 'creme', 'fromage', 'yaourt', 'yogourt', 'mozzarella', 'parmesan', 'mascarpone', 'ricotta', 'feta', 'comté', 'comte', 'gruyère', 'gruyere', 'emmental', 'cheddar', 'chèvre', 'chevre', 'burrata', 'béchamel', 'bechamel', 'raclette', 'boursin', 'petit-suisse'];
+                    // "lait de coco"/"lait d'amande" sont sans lactose : on les ignore
+                    const txt = fullText.replace(/lait (de |d')(coco|amande|soja|avoine|riz|noisette)/g, '');
+                    return !dairy.some(k => txt.includes(k));
+                }
+                if (tagLower === 'sans-sucre') {
+                    if (recipeTags.some(t => /sans[\s-]?sucre/.test(t.toLowerCase()))) return true;
+                    if (['desserts', 'patisserie', 'glaces', 'boissons'].includes(recipeCat)) return false;
+                    const sugar = ['sucre', 'cassonade', 'miel', 'sirop', 'confiture', 'chocolat', 'nutella', 'caramel', 'pâte à tartiner', 'pate a tartiner', 'glucose', 'agave'];
+                    return !sugar.some(k => fullText.includes(k));
+                }
+                if (tagLower === 'sans-sel') {
+                    if (recipeTags.some(t => /sans[\s-]?sel/.test(t.toLowerCase()))) return true;
+                    const salty = ['sel', 'sauce soja', 'bouillon', 'lardon', 'jambon', 'charcuterie', 'chorizo', 'saucisse', 'olive', 'cornichon', 'câpre', 'capre', 'anchois', 'feta', 'parmesan', 'roquefort', 'fumé', 'fume', 'saumure', 'moutarde', 'ketchup'];
+                    return !salty.some(k => fullText.includes(k));
+                }
+                if (tagLower === 'minceur') {
+                    if (recipeTags.some(t => /minceur|l[ée]ger|hypocalorique/.test(t.toLowerCase()))) return true;
+                    if (['desserts', 'patisserie', 'glaces', 'boissons', 'sauces'].includes(recipeCat)) return false;
+                    const light = ['salade', 'légume', 'legume', 'vapeur', 'grillé', 'grille', 'poêlée', 'poelee', 'courgette', 'brocoli', 'haricot vert', 'poisson', 'blanc de poulet', 'crudité', 'crudite', 'bowl', 'soupe', 'velouté', 'veloute'];
+                    const heavy = ['frit', 'friture', 'beurre', 'crème fraîche', 'creme fraiche', 'fromage fondu', 'raclette', 'tartiflette', 'gratin', 'burger', 'pizza', 'mayonnaise', 'lardon', 'pâte feuilletée', 'pate feuilletee', 'crème liquide'];
+                    return light.some(k => fullText.includes(k)) && !heavy.some(k => fullText.includes(k));
+                }
 
                 if (tagLower === 'thématiques' || tagLower === 'thématique') {
                     const themedKeywords = ['glace', 'sorbet', 'boisson', 'cocktail', 'pâques', 'paques', 'noël', 'noel', 'agneau', 'chocolat'];
@@ -879,8 +916,48 @@ export default function DesktopHome() {
             servings: 4,
             ingredients: [],
             steps: []
+        },
+        {
+            id: 'theme-tarte',
+            title: "Tarte",
+            description: 'Tartes, quiches et pizzas dorées au four.',
+            image: '/images/themes/tarte.svg',
+            category: 'plats',
+            tags: ['tarte'],
+            isFavorite: false,
+            difficulty: 'facile',
+            prepTime: 20,
+            cookTime: 30,
+            servings: 6,
+            ingredients: [],
+            steps: []
+        },
+        {
+            id: 'theme-sans-gluten', title: 'Sans gluten', description: 'Des recettes gourmandes sans gluten.',
+            image: '/images/themes/sans-gluten.svg', category: 'plats', tags: ['sans-gluten'],
+            isFavorite: false, difficulty: 'facile', prepTime: 15, cookTime: 20, servings: 4, ingredients: [], steps: []
+        },
+        {
+            id: 'theme-sans-lactose', title: 'Sans lactose', description: 'Cuisiner sans produits laitiers.',
+            image: '/images/themes/sans-lactose.svg', category: 'plats', tags: ['sans-lactose'],
+            isFavorite: false, difficulty: 'facile', prepTime: 15, cookTime: 20, servings: 4, ingredients: [], steps: []
+        },
+        {
+            id: 'theme-sans-sucre', title: 'Sans sucre', description: 'Le plaisir sans sucre ajouté.',
+            image: '/images/themes/sans-sucre.svg', category: 'plats', tags: ['sans-sucre'],
+            isFavorite: false, difficulty: 'facile', prepTime: 15, cookTime: 20, servings: 4, ingredients: [], steps: []
+        },
+        {
+            id: 'theme-sans-sel', title: 'Sans sel', description: 'Savoureux et pauvre en sel.',
+            image: '/images/themes/sans-sel.svg', category: 'plats', tags: ['sans-sel'],
+            isFavorite: false, difficulty: 'facile', prepTime: 15, cookTime: 20, servings: 4, ingredients: [], steps: []
+        },
+        {
+            id: 'theme-minceur', title: 'Minceur', description: 'Léger, frais et équilibré.',
+            image: '/images/themes/minceur.svg', category: 'plats', tags: ['minceur'],
+            isFavorite: false, difficulty: 'facile', prepTime: 15, cookTime: 15, servings: 4, ingredients: [], steps: []
         }
-    ];
+    ].sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }));
 
     const randomBtn = (
         <button

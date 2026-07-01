@@ -6,6 +6,7 @@ import { Recipe } from '@/mobile/types';
 import { decodeHtml } from '@/mobile/lib/utils';
 import dynamic from 'next/dynamic';
 import Portal from '@/mobile/components/Portal';
+import { useRatingStats } from '@/mobile/lib/ratings';
 import styles from './RecipeCardiOS26.module.css';
 
 const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
@@ -29,6 +30,8 @@ interface RecipeCardiOS26Props {
     customOnClick?: () => void;
     allRecipes?: Recipe[];
     recipeIndex?: number;
+    /** Rang (1,2,3…) affiché en pastille — utilisé par le carrousel Top ⭐. */
+    rank?: number;
 }
 
 export default function RecipeCardiOS26({ 
@@ -46,11 +49,14 @@ export default function RecipeCardiOS26({
     customGradient,
     customOnClick,
     allRecipes,
-    recipeIndex
+    recipeIndex,
+    rank
 }: RecipeCardiOS26Props) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
+    const ratingStats = useRatingStats();
+    const stat = ratingStats?.get(String(recipe.id)) || null;
 
     useEffect(() => {
         onPlayToggle?.(isPlaying);
@@ -151,9 +157,9 @@ export default function RecipeCardiOS26({
     return (
         <div className={`${styles.recipeContainer} ${isGrid ? styles.isGrid : ''}`}>
             {/* 1. Floating Title Pill ABOVE the card */}
-            {/* 1. Floating Title Pill ABOVE the card */}
-            {!hideTitle && (
-                <motion.div 
+            {/* Cartes thème : titre déjà incrusté dans l'image → pas de pilule (évite le double titre) */}
+            {!hideTitle && !isThematicCard && (
+                <motion.div
                     className={styles.titlePill}
                     whileHover={{ scale: 1.05 }}
                     onClick={handleOpenDetail}
@@ -202,19 +208,69 @@ export default function RecipeCardiOS26({
                             fill
                             style={{
                                 objectFit: 'cover',
-                                // Cartes thèmes : le titre est incrusté en haut de l'image →
-                                // on montre le haut pour qu'il reste visible même en petit.
-                                objectPosition: isThematicCard ? '50% 0%' : 'center',
+                                objectPosition: isThematicCard ? '50% 62%' : 'center',
                             }}
                             className={styles.image}
                         />
                     )}
                 </div>
 
+                {/* Carte thème : titre HTML propre en haut (recouvre le titre incrusté
+                    doublonné de certaines images → un seul titre net). */}
+                {isThematicCard && (
+                    <div
+                        style={{
+                            position: 'absolute', top: 0, left: 0, right: 0, zIndex: 4,
+                            padding: '9px 10px 20px', textAlign: 'center',
+                            fontWeight: 800, fontSize: '0.92rem', letterSpacing: '0.09em',
+                            textTransform: 'uppercase', color: '#fff',
+                            background: 'linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.32) 55%, rgba(0,0,0,0) 100%)',
+                            textShadow: '0 1px 5px rgba(0,0,0,0.6)', pointerEvents: 'none',
+                            whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                        }}
+                    >
+                        {decodeHtml(recipe.title)}
+                    </div>
+                )}
+
                 {/* Overlays */}
-                
+
+                {/* Rang Top ⭐ (carrousel top des recettes) */}
+                {rank != null && !isThematicCard && (
+                    <div style={{
+                        position: 'absolute', top: 8, left: 8, zIndex: 5,
+                        minWidth: 26, height: 26, padding: '0 7px', borderRadius: 13,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontWeight: 800, fontSize: '0.8rem',
+                        color: rank <= 3 ? '#1a1200' : '#fff',
+                        background: rank === 1 ? 'linear-gradient(135deg,#FFD86B,#F5A623)'
+                            : rank === 2 ? 'linear-gradient(135deg,#E8E8EE,#B8BFCB)'
+                            : rank === 3 ? 'linear-gradient(135deg,#E7A977,#C77B3E)'
+                            : 'rgba(0,0,0,0.62)',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.35)',
+                    }}>
+                        #{rank}
+                    </div>
+                )}
+
+                {/* Badge note moyenne ⭐ (visible par tous, si la recette a des avis) */}
+                {stat && stat.count > 0 && !isThematicCard && !isIntroMode && (
+                    <div style={{
+                        position: 'absolute', bottom: 8, left: 8, zIndex: 5,
+                        display: 'flex', alignItems: 'center', gap: 3,
+                        padding: '3px 8px', borderRadius: 12,
+                        background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(6px)',
+                        WebkitBackdropFilter: 'blur(6px)',
+                        fontWeight: 700, fontSize: '0.78rem', color: '#fff',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+                    }}>
+                        <span style={{ color: '#FBBF24' }}>★</span>
+                        <span>{stat.avg.toFixed(1)}</span>
+                    </div>
+                )}
+
                 {/* Top Left: Country Flag */}
-                {!isIntroMode && !isThematicCard && flag && (
+                {!isIntroMode && !isThematicCard && flag && rank == null && (
                     <div className={styles.topLeftFlag}>{flag}</div>
                 )}
 

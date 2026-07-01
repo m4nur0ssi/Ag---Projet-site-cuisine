@@ -194,14 +194,30 @@ export default function RecipeCardiOS26({
                             fill
                             style={{
                                 objectFit: 'cover',
-                                // Cartes thématiques : montrer le haut de l'image (carousel home ET grille)
-                                // pour que le titre incrusté (Airfryer, Barbecue…) soit visible et non tronqué
-                                objectPosition: isThematicCard ? '50% 0%' : 'center',
+                                objectPosition: isThematicCard ? '50% 62%' : 'center',
                             }}
                             className={styles.image}
                         />
                     )}
                 </div>
+
+                {/* Carte thème : titre HTML propre en haut (recouvre le titre incrusté
+                    doublonné de certaines images → un seul titre net). */}
+                {isThematicCard && (
+                    <div
+                        style={{
+                            position: 'absolute', top: 0, left: 0, right: 0, zIndex: 4,
+                            padding: '10px 12px 22px', textAlign: 'center',
+                            fontWeight: 800, fontSize: '1rem', letterSpacing: '0.1em',
+                            textTransform: 'uppercase', color: '#fff',
+                            background: 'linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.32) 55%, rgba(0,0,0,0) 100%)',
+                            textShadow: '0 1px 5px rgba(0,0,0,0.6)', pointerEvents: 'none',
+                            whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                        }}
+                    >
+                        {truncateTitle(decodeHtml(recipe.title))}
+                    </div>
+                )}
 
                 {/* Titre intégré dans la carte (mode inCardTitle) */}
                 {inCardTitle && !isThematicCard && (
