@@ -2,11 +2,99 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 01/07/2026 17:50:35
- * Total: 459 recettes
+ * Dernière mise à jour: 01/07/2026 22:14:42
+ * Total: 461 recettes
  */
-export const exportSyncId = "1782928235398";
+export const exportSyncId = "1782944082627";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6486",
+        "title": "POULET AUX OLIVES ET POMMES DE TERRE AU FOUR",
+        "description": "Un plat complet, savoureux et facile à préparer au four, combinant poulet, pommes de terre fondantes et olives parfumées, idéal pour un repas sans prise de tête.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657219475690851616\" data-video-id=\"7657219475690851616\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657219475690851616\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             8 pilons de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 botte de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cas paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cas gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cas curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de safran (1/3 d'une cac)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             environ 1/2 verre d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1/2 verre d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             2 à 3 pommes de terre moyennes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             des olives vertes dénoyautées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon émincé en lamelles"
+            }
+        ],
+        "steps": [
+            "Préparer la marinade : mélanger les pilons de poulet avec l'ail râpé, la coriandre, le sel, le poivre, le paprika, le gingembre, le curcuma, le safran, l'huile d'olive et l'eau. Laisser mariner au moins 2h.",
+            "Retirer les pilons de poulet de la marinade et les placer dans un plat allant au four.",
+            "Dans le bol de marinade restant, ajouter les pommes de terre épluchées et coupées en dés, puis mélanger.",
+            "Ajouter les pommes de terre marinées et le reste de la marinade sur le poulet dans le plat. Ajouter l'oignon émincé.",
+            "Si nécessaire, ajouter un petit verre d'eau pour la sauce.",
+            "Couvrir le plat de papier sulfurisé et cuire au four à 200°C pendant 1h.",
+            "Poursuivre la cuisson sans couvrir pendant environ 20 à 30 minutes.",
+            "Ajouter les olives vertes dénoyautées pendant les 10 dernières minutes de cuisson.",
+            "Parsemer de coriandre fraîche à la fin."
+        ],
+        "tags": [
+            "Orient",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6484",
         "title": "MUFFINS PIZZA",
@@ -28862,6 +28950,129 @@ export const mockRecipes: Recipe[] = [
             "sorrentina",
             "tomate",
             "traditionnel"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3537",
+        "title": "Layer Cake aux Fruits Rouges",
+        "description": "Découvrez la recette d'un magnifique layer cake aux fruits rouges, parfait pour célébrer les occasions spéciales. Ce gâteau aérien, composé d'une génoise moelleuse, d'un confit de fraises acidulé et d'une crème onctueuse au mascarpone, est sublimé...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Flayer-cake.jpeg&v=1774454384000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&amp;_t=ZN-94a75OnTQuZ\" data-video-id=\"7535717785570135318\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&amp;_t=ZN-94a75OnTQuZ\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚 6 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 200g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 200g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "💧 100g d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 3 cuillères à soupe de fleur d'oranger"
+            },
+            {
+                "quantity": "",
+                "name": "🍓 250 g de fraises pour le confit"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 30 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 6 g de pectine"
+            },
+            {
+                "quantity": "",
+                "name": "🧀 450 g mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 600 g crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🍯 50 g sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦 1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍓 Fraises pour la déco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 Myrtilles pour la déco"
+            },
+            {
+                "quantity": "",
+                "name": "🍇 Framboises pour la déco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 Groseilles pour la déco"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 Fleurs comestibles pour la déco"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Menthe fraîche pour la déco"
+            }
+        ],
+        "steps": [
+            "Pour le biscuit génoise (la veille) : préchauffez le four à 175°C en chaleur traditionnelle.",
+            "Battez les œufs et le sucre à grande vitesse au robot pendant 10 min environ jusqu'à ce que la préparation triple de volume.",
+            "Ajoutez la farine tamisée en plusieurs fois, et mélangez délicatement à la maryse.",
+            "Chemisez un moule à manqué de 20 cm avec du papier sulfurisé (le fond et les côtés), en faisant dépasser le papier sulfurisé en hauteur de 10 cm si votre moule n'est pas assez haut.",
+            "Versez la pâte puis tapez le moule pour chasser l'air.",
+            "Enfournez 45 min sans ouvrir le four.",
+            "Vérifiez la cuisson avec la lame d'un couteau ou un pic en bois (sans traces).",
+            "Laissez refroidir et démoulez le lendemain.",
+            "Pour le confit de fraises (la veille) : cuire les fraises dans une casserole jusqu'à obtenir une légère compotée.",
+            "Ajouter le mélange sucre pectine, cuire encore 2-3 min.",
+            "Pour le sirop à la fleur d'oranger : faites chauffer 100 g d'eau et 100 g de sucre dans une casserole jusqu'à légère ébullition.",
+            "Réservez et versez 3 cuillères à soupe de fleur d'oranger.",
+            "Pour la crème : fouettez la crème liquide, le mascarpone, le sucre glace et la vanille au robot.",
+            "Pour le montage : découpez le biscuit en 2 puis imbibez les deux parties de sirop.",
+            "Pochez une couche de crème sur le premier biscuit, ajoutez le confit de fraises puis quelques fruits frais.",
+            "Répétez l'opération.",
+            "Terminez par recouvrir le gâteau de crème et lissez-la à la corne.",
+            "Recouvrez de fruits."
+        ],
+        "tags": [
+            "anniversaire",
+            "fleur d'oranger",
+            "fruits rouges",
+            "gâteau",
+            "layer cake",
+            "mariage",
+            "mascarpone",
+            "recette"
         ],
         "isFeatured": false,
         "isFavorite": false,
