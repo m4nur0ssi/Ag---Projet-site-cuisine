@@ -1,0 +1,26 @@
+.section {
+    margin: 0 0 28px;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 14px;
+    padding: 0 20px;
+}
+
+.rail {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 4px 20px 10px;
+    scrollbar-width: none;
+}
+
+.rail::-webkit-scrollbar { display: none; }
+
+.item {
+    flex: 0 0 auto;
+    width: 210px;
+}

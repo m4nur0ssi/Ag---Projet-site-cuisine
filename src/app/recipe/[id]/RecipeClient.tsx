@@ -1042,7 +1042,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                             <div className={styles.metaItem}>
                                 <span className={styles.metaIcon}>⭐</span>
                                 <div>
-                                    <div className={styles.metaLabel}>Ma Note</div>
+                                    <div className={styles.metaLabel}>{authUser ? 'Ma Note' : 'Note'}</div>
                                     <StarRating recipeId={recipe.id} size="small" />
                                 </div>
                             </div>

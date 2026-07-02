@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import Header from '../components/Header/Header';
 import RecipeCarousel from '../components/RecipeCarousel/RecipeCarousel';
 import RecipeGrid from '../components/RecipeGrid/RecipeGrid';
+import TopRatedCarousel from '../components/TopRatedCarousel/TopRatedCarousel';
 import RecipeSheet from '../components/RecipeSheet/RecipeSheet';
 import dynamic from 'next/dynamic';
 const MagicFilterBar = dynamic(() => import('../components/MagicFilterBar/MagicFilterBar'), { ssr: false });
@@ -1035,6 +1036,7 @@ export default function DesktopHome() {
                         )}
                         {activeTags.length === 0 && (
                             <>
+                                <TopRatedCarousel recipes={mockRecipes} limit={10} />
                                 <RecipeCarousel
                                     recipes={[
                                         { id: 't-main', title: 'Thématiques', image: '/images/categories/thematiques.jpg', tags: ['thématiques'] } as any,

@@ -14,7 +14,6 @@ export default function StarRating({ recipeId, size = 'large' }: StarRatingProps
     const [avg, setAvg] = useState(0);
     const [count, setCount] = useState(0);
     const [mine, setMine] = useState(0);
-    const [hover, setHover] = useState(0);
     const [user, setUser] = useState<any>(null);
 
     const loadAvg = async () => {
@@ -51,34 +50,29 @@ export default function StarRating({ recipeId, size = 'large' }: StarRatingProps
         if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(15);
     };
 
-    const pct = avg > 0 ? (avg / 5) * 100 : 0;
-
     return (
         <div className={`${styles.wrap} ${styles[size]}`}>
-            <div className={styles.avgRow}>
-                <div className={styles.starsStatic} aria-label={`Note moyenne ${avg.toFixed(1)} sur 5`}>
-                    <span className={styles.starsBase}>★★★★★</span>
-                    <span className={styles.starsFill} style={{ width: `${pct}%` }}>★★★★★</span>
-                </div>
+            {/* Note moyenne — chiffre lisible (visible par tous) */}
+            <div className={styles.avgRow} aria-label={`Note moyenne ${avg.toFixed(1)} sur 5`}>
+                <span className={styles.avgStar}>★</span>
                 <span className={styles.num}>{count > 0 ? avg.toFixed(1) : '–'}</span>
                 <span className={styles.denom}>/5</span>
                 {count > 0 && <span className={styles.count}>({count})</span>}
             </div>
 
+            {/* Vote personnel — chiffres 1 à 5 (connectés) */}
             {user && (
                 <div className={styles.voteRow}>
                     <span className={styles.voteLabel}>Votre note</span>
-                    <div className={styles.stars}>
+                    <div className={styles.numBtns}>
                         {[1, 2, 3, 4, 5].map(val => (
                             <button
                                 key={val}
-                                className={`${styles.star} ${(hover || mine) >= val ? styles.active : ''}`}
+                                className={`${styles.numBtn} ${mine === val ? styles.numActive : ''}`}
                                 onClick={() => vote(val)}
-                                onMouseEnter={() => setHover(val)}
-                                onMouseLeave={() => setHover(0)}
-                                aria-label={`${val} étoile${val > 1 ? 's' : ''}`}
+                                aria-label={`Noter ${val} sur 5`}
                             >
-                                ★
+                                {val}
                             </button>
                         ))}
                     </div>

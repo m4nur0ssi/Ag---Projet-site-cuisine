@@ -6,6 +6,7 @@ import { Recipe } from '@/types';
 import { decodeHtml } from '@/lib/utils';
 import dynamic from 'next/dynamic';
 import Portal from '@/components/Portal';
+import { useRatingStats } from '@/lib/ratings';
 import styles from './RecipeCardiOS26.module.css';
 
 const RecipeSheet = dynamic(() => import('@/components/RecipeSheet/RecipeSheet'), { ssr: false });
@@ -28,6 +29,8 @@ interface RecipeCardiOS26Props {
     customGradient?: string;
     customOnClick?: () => void;
     inCardTitle?: boolean; // Test : titre intégré dans la photo
+    /** Rang (1,2,3…) affiché en pastille — carrousel Top des recettes. */
+    rank?: number;
 }
 
 export default function RecipeCardiOS26({
@@ -45,10 +48,13 @@ export default function RecipeCardiOS26({
     customGradient,
     customOnClick,
     inCardTitle = false,
+    rank,
 }: RecipeCardiOS26Props) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
+    const ratingStats = useRatingStats();
+    const stat = ratingStats?.get(String(recipe.id)) || null;
 
     useEffect(() => {
         onPlayToggle?.(isPlaying);
@@ -207,11 +213,13 @@ export default function RecipeCardiOS26({
                     <div
                         style={{
                             position: 'absolute', top: 0, left: 0, right: 0, zIndex: 4,
-                            padding: '10px 12px 22px', textAlign: 'center',
+                            padding: '13px 12px 30px', textAlign: 'center',
                             fontWeight: 800, fontSize: '1rem', letterSpacing: '0.1em',
                             textTransform: 'uppercase', color: '#fff',
-                            background: 'linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.32) 55%, rgba(0,0,0,0) 100%)',
-                            textShadow: '0 1px 5px rgba(0,0,0,0.6)', pointerEvents: 'none',
+                            /* Bandeau opaque sur ~50px : recouvre TOTALEMENT le titre incrusté
+                               de l'image (même sur carte quasi carrée non recadrée) → 1 seul titre. */
+                            background: 'linear-gradient(180deg, rgba(8,8,12,0.96) 0%, rgba(8,8,12,0.94) 50px, rgba(8,8,12,0.45) 66px, rgba(8,8,12,0) 100%)',
+                            textShadow: '0 1px 5px rgba(0,0,0,0.7)', pointerEvents: 'none',
                             whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                         }}
                     >
@@ -237,6 +245,40 @@ export default function RecipeCardiOS26({
                 )}
 
                 {/* Overlays */}
+
+                {/* Rang Top des recettes */}
+                {rank != null && !isThematicCard && (
+                    <div style={{
+                        position: 'absolute', top: 10, left: 10, zIndex: 5,
+                        minWidth: 30, height: 30, padding: '0 9px', borderRadius: 15,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontWeight: 800, fontSize: '0.9rem',
+                        color: rank <= 3 ? '#1a1200' : '#fff',
+                        background: rank === 1 ? 'linear-gradient(135deg,#FFD86B,#F5A623)'
+                            : rank === 2 ? 'linear-gradient(135deg,#E8E8EE,#B8BFCB)'
+                            : rank === 3 ? 'linear-gradient(135deg,#E7A977,#C77B3E)'
+                            : 'rgba(0,0,0,0.62)',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.35)',
+                    }}>
+                        #{rank}
+                    </div>
+                )}
+
+                {/* Badge note moyenne (visible par tous, si des avis) */}
+                {stat && stat.count > 0 && !isThematicCard && !isIntroMode && (
+                    <div style={{
+                        position: 'absolute', bottom: 10, left: 10, zIndex: 5,
+                        display: 'flex', alignItems: 'center', gap: 4,
+                        padding: '4px 9px', borderRadius: 13,
+                        background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(6px)',
+                        WebkitBackdropFilter: 'blur(6px)',
+                        fontWeight: 700, fontSize: '0.85rem', color: '#fff',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+                    }}>
+                        <span style={{ color: '#FBBF24' }}>★</span>
+                        <span>{stat.avg.toFixed(1)}</span>
+                    </div>
+                )}
 
                 {/* Cœur — en bas à droite si inCardTitle, sinon en haut à droite */}
                 {!isIntroMode && !isThematicCard && (

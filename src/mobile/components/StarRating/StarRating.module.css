@@ -1,95 +1,87 @@
 .wrap {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
+/* ── Moyenne publique (chiffre lisible) ── */
 .avgRow {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: baseline;
+    gap: 5px;
 }
 
-.starsStatic {
-    position: relative;
-    display: inline-block;
-    line-height: 1;
-    white-space: nowrap;
-}
-
-.starsBase {
-    color: rgba(255, 255, 255, 0.2);
-    letter-spacing: 2px;
-}
-
-.starsFill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    white-space: nowrap;
+.avgStar {
     color: #FBBF24;
-    letter-spacing: 2px;
+    align-self: center;
 }
 
 .num {
     font-weight: 800;
     color: #FBBF24;
+    line-height: 1;
 }
 
 .denom {
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.45);
-    margin-left: -4px;
-}
-
-.count {
-    font-size: 0.85em;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.large .starsBase, .large .starsFill { font-size: 1.8rem; }
-.large .num { font-size: 1.5rem; }
-.large .denom { font-size: 1rem; }
-.small .starsBase, .small .starsFill { font-size: 1rem; }
-.small .num { font-size: 0.95rem; }
-.small .denom { font-size: 0.75rem; }
-.small .count { font-size: 0.75rem; }
-
-.voteRow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.voteLabel {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    font-weight: 700;
     color: rgba(255, 255, 255, 0.5);
 }
 
-.stars {
+.count {
+    color: rgba(255, 255, 255, 0.45);
+    align-self: center;
+}
+
+/* Tailles */
+.large .avgStar { font-size: 1.6rem; }
+.large .num { font-size: 2rem; }
+.large .denom { font-size: 1.1rem; }
+.large .count { font-size: 0.95rem; }
+.small .avgStar { font-size: 1.1rem; }
+.small .num { font-size: 1.4rem; }
+.small .denom { font-size: 0.9rem; }
+.small .count { font-size: 0.8rem; }
+
+/* ── Vote personnel (chiffres 1..5, connectés) ── */
+.voteRow {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.star {
-    background: none;
-    border: none;
+.voteLabel {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.numBtns {
+    display: flex;
+    gap: 6px;
+}
+
+.numBtn {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 800;
+    font-size: 1rem;
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.2);
-    transition: color 0.15s ease, transform 0.15s ease;
-    padding: 2px;
-    line-height: 1;
-    font-size: 1.15rem;
+    transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
-.star.active {
-    color: #FBBF24;
+.numBtn:active {
+    transform: scale(0.9);
 }
 
-.star:hover {
-    transform: scale(1.2);
+.numActive {
+    background: #FBBF24;
+    border-color: #FBBF24;
+    color: #1a1200;
+    box-shadow: 0 3px 10px rgba(251, 191, 36, 0.35);
 }

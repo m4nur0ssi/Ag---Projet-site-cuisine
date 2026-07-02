@@ -1,17 +1,16 @@
 'use client';
 import { useMemo } from 'react';
-import { Recipe } from '@/mobile/types';
-import RecipeCardiOS26 from '@/mobile/components/RecipeCard/RecipeCardiOS26';
-import { useRatingStats } from '@/mobile/lib/ratings';
+import RecipeCardiOS26 from '@/components/RecipeCard/RecipeCardiOS26';
+import { useRatingStats } from '@/lib/ratings';
 import styles from './TopRatedCarousel.module.css';
 
 interface TopRatedCarouselProps {
-    recipes: Recipe[];
+    recipes: any[];
     limit?: number;
 }
 
 /**
- * Carrousel « Top ⭐ » — les recettes les mieux notées (moyenne des notes des membres),
+ * Carrousel « Top des recettes » — les mieux notées (moyenne des membres),
  * toutes catégories confondues. Masqué tant qu'aucune recette n'a d'avis.
  */
 export default function TopRatedCarousel({ recipes, limit = 10 }: TopRatedCarouselProps) {
@@ -31,9 +30,7 @@ export default function TopRatedCarousel({ recipes, limit = 10 }: TopRatedCarous
 
     return (
         <section className={styles.section}>
-            <div className={styles.header}>
-                <h2 className={styles.title}>Top des recettes</h2>
-            </div>
+            <h2 className={styles.title}>Top des recettes</h2>
             <div className={styles.rail}>
                 {top.map((recipe, i) => (
                     <div key={recipe.id} className={styles.item}>

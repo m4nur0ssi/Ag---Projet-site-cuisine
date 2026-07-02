@@ -813,15 +813,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 />
                             </div>
                         </div>
-                        {authUser && (
-                        <>
                         <div className={styles.metaSeparator} />
                         <div className={styles.metaItem}>
-                            <div className={styles.metaLabel}>MA NOTE</div>
+                            <div className={styles.metaLabel}>{authUser ? 'MA NOTE' : 'NOTE'}</div>
                             <StarRating recipeId={recipe.id} size="small" />
                         </div>
-                        </>
-                        )}
                         {calorieEstimate && calorieEstimate.confidence !== 'low' && (
                             <>
                                 <div className={styles.metaSeparator} />

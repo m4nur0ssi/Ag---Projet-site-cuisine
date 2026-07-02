@@ -888,7 +888,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         {/* Ligne 2 */}
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%' }}>
                             <div className={styles.metaItem} style={{ flex: 1 }}>
-                                <div className={styles.metaLabel}>MA NOTE</div>
+                                <div className={styles.metaLabel}>{authUser ? 'MA NOTE' : 'NOTE'}</div>
                                 <StarRating recipeId={recipe.id} size="small" />
                             </div>
                             {calorieEstimate && calorieEstimate.confidence !== 'low' && (

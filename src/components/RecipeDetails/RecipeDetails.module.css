@@ -490,6 +490,15 @@
     text-align: center;
 }
 
+/* Libellé (PRÉPARATION, CUISSON, MA NOTE…) TOUJOURS au-dessus de sa valeur, avec
+   un espace net — évite l'effet « PRÉPARATION15 min » collé quand la carte passe
+   en ligne. Spécificité élevée + !important pour gagner sur toutes les règles
+   responsive et le fallback flex par défaut. */
+.metaStrip .metaContent .metaItem {
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
 .metaDivider {
     display: none; /* Remplacé par le gap et les cartes individuelles */
 }
