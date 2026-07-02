@@ -2,11 +2,119 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/07/2026 14:58:39
- * Total: 465 recettes
+ * Dernière mise à jour: 02/07/2026 15:14:48
+ * Total: 468 recettes
  */
-export const exportSyncId = "1783004319417";
+export const exportSyncId = "1783005288601";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6498",
+        "title": "Tiramisu Cupcakes",
+        "description": "Des cupcakes moelleux inspirés du tiramisu, avec une ganache au café et chocolat blanc, un glaçage crémeux au mascarpone et une touche de cacao en poudre.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643923157023345952\" data-video-id=\"7643923157023345952\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643923157023345952\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             130g de beurre non salé, ramolli"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200g de sucre cristallisé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 gros œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café de pâte de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de yaourt nature"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             8g de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 cuillère à café de sel fin"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             220g de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200g de crème épaisse (32% de matière grasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de poudre d'espresso instantané"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             300g de Mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80g de sucre cristallisé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             180g de crème fouettée"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café de pâte de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Cacao en poudre, pour saupoudrer"
+            }
+        ],
+        "steps": [
+            "Préparez d'abord la ganache.",
+            "Versez la crème épaisse dans une petite casserole et faites-la chauffer jusqu'à ce qu'elle commence à frémir, ne la laissez pas bouillir.",
+            "Ajoutez le chocolat blanc haché et la poudre d'espresso instantané dans un bol, puis versez la crème chaude par-dessus.",
+            "Laissez reposer 5 minutes, puis mélangez jusqu'à obtenir une consistance lisse.",
+            "Placez la ganache au réfrigérateur pour la refroidir et l'épaissir.",
+            "Préchauffez le four à 180°C.",
+            "Maintenant, préparons la pâte à cupcakes.",
+            "Dans un bol, mélangez le beurre et le sucre jusqu'à obtenir une crème.",
+            "Ajoutez les œufs et la vanille, mélangez jusqu'à incorporation.",
+            "Incorporez le yaourt.",
+            "Enfin, ajoutez la farine, la levure chimique, le sel, le lait et mélangez jusqu'à ce que le tout soit combiné.",
+            "Versez la pâte dans un moule à muffins tapissé de caissettes à cupcakes. Faites cuire au four préchauffé pendant 18 minutes.",
+            "Une fois cuits, retirez les cupcakes du four et laissez-les reposer dans le moule à muffins pendant 10 minutes. Transférez-les ensuite sur une grille pour qu'ils refroidissent complètement. Assurez-vous de les couvrir avec un torchon.",
+            "Pour le glaçage, mélangez le mascarpone, la vanille et le sucre, puis ajoutez la crème épaisse et mélangez à haute vitesse jusqu'à obtenir un glaçage moelleux qui tient sa forme.",
+            "Utilisez une grande douille pour découper le centre de chaque cupcake. Remplissez le centre avec la ganache au café et chocolat blanc refroidie, puis replacez le morceau découpé par-dessus.",
+            "Glacez les cupcakes avec le glaçage au mascarpone.",
+            "Saupoudrez les dessus de cacao en poudre et dégustez !"
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6496",
         "title": "Spaghettis froids à la crème de pistache et à la mortadelle",
@@ -6884,6 +6992,78 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "Grèce"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4064",
+        "title": "Salade de carottes croquantes au sésame",
+        "description": "Des carottes fraîches et croquantes mélangées à une vinaigrette légère au sésame et au miel, avec du gingembre, de l'ail et des oignons verts. Simple, saine et pleine de saveur - parfaite comme accompagnement ou salade rapide.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcarottes_sesames_2107523045.jpg&v=1781968876000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7599121508878830878\" data-video-id=\"7599121508878830878\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7599121508878830878\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             3-4 grandes carottes, coupées en julienne"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2-3 oignons verts, finement tranchés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 cuillères à soupe de coriandre, hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de gingembre râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail, râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café de graines de sésame grillées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1-2 cuillères à café de chili crisp (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel casher, au goût"
+            }
+        ],
+        "steps": [
+            "Mélangez les carottes avec une pincée de sel. Laissez reposer 5 à 10 minutes, puis égouttez l'excès de liquide.",
+            "Dans un bol, mélangez l'huile de sésame, le miel, le jus de citron, le gingembre, l'ail, les graines de sésame et le chili crisp.",
+            "Ajoutez les carottes, les oignons verts et la coriandre. Mélangez bien.",
+            "Goûtez, ajustez le sel et servez."
+        ],
+        "tags": [
+            "Asie",
+            "Healthy",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -28644,6 +28824,65 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4318",
+        "title": "Pancakes jambon-fromage au four",
+        "description": "Des pancakes salés cuits au four, garnis de jambon et de fromage, parfaits pour un repas rapide ou un brunch.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpancake.jpeg&v=1774521385000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7607183573933755670\" data-video-id=\"7607183573933755670\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7607183573933755670\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             400ml lait"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             160g farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cuillères à soupe d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             150g jambon"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             150g fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Un peu de ciboulette"
+            }
+        ],
+        "steps": [
+            "Mélanger tous les ingrédients pour la pâte (sauf le jambon et le fromage).",
+            "Verser la pâte dans un plat allant au four et cuire à 200 degrés pendant environ 10 minutes.",
+            "Après environ 10 minutes, garnir le pancake avec le jambon et le fromage.",
+            "Cuire pendant 10 minutes supplémentaires."
+        ],
+        "tags": [
+            "Famille",
+            "Pas cher"
         ],
         "isFeatured": false,
         "isFavorite": false,
