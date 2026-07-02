@@ -2,11 +2,67 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/07/2026 04:25:13
- * Total: 462 recettes
+ * Dernière mise à jour: 02/07/2026 12:03:27
+ * Total: 463 recettes
  */
-export const exportSyncId = "1782966313872";
+export const exportSyncId = "1782993807157";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6492",
+        "title": "Cups glacées au spéculoos",
+        "description": "Des cups glacées gourmandes et rafraîchissantes, préparées avec une base biscuitée aux spéculoos et une crème glacée onctueuse à la pâte de spéculoos.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657595413507083552\" data-video-id=\"7657595413507083552\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657595413507083552\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de spéculoos"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             500 ml de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de pâte de spéculoos"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             60 g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             220 g de pâte de spéculoos (pour la décoration)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 spéculoos (pour la décoration)"
+            }
+        ],
+        "steps": [
+            "Pour la base biscuitée, écraser les spéculoos et les mélanger avec le beurre fondu. Répartir ce mélange au fond de moules à cups.",
+            "Préparer la crème glacée en mélangeant la crème liquide entière, la pâte de spéculoos et le lait concentré sucré.",
+            "Verser la crème glacée sur la base biscuitée dans les moules.",
+            "Placer les cups au congélateur pendant 2 heures.",
+            "Une fois les cups glacées, décorer avec de la pâte de spéculoos et des spéculoos entiers."
+        ],
+        "tags": [
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6490",
         "title": "BBQ Cheddar Glazed Chicken Breasts",
