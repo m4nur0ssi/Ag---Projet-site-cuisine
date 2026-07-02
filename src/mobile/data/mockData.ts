@@ -2,11 +2,118 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/07/2026 16:09:09
- * Total: 472 recettes
+ * Dernière mise à jour: 02/07/2026 16:25:12
+ * Total: 475 recettes
  */
-export const exportSyncId = "1783008549280";
+export const exportSyncId = "1783009512547";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6512",
+        "title": "Tiramisu façon banoffee",
+        "description": "Un dessert gourmand, express et sans cuisson, combinant les saveurs du tiramisu et du banoffee.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652750305926368544\" data-video-id=\"7652750305926368544\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652750305926368544\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             3 yaourts grecs"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             2 bananes"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             120 g de confiture de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de spéculoos"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30 g de beurre fondu"
+            }
+        ],
+        "steps": [
+            "Écraser les spéculoos dans un sachet congélation.",
+            "Les verser dans un bol.",
+            "Faire fondre le beurre dans une casserole et ajouter le beurre fondu aux spéculoos puis mélanger.",
+            "Couper les bananes en rondelles et les mélanger avec un peu de jus de citron.",
+            "Monter les verrines en alternant les couches : spéculoos, yaourt grec, bananes, confiture de lait, yaourt grec, puis recommencer selon la hauteur souhaitée."
+        ],
+        "tags": [
+            "Desserts",
+            "Italie",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6510",
+        "title": "Sablé Breton",
+        "description": "Un basique de la pâtisserie, le sablé breton, à réaliser en 30 secondes. Idéal à déguster tel quel ou à utiliser comme base pour une tarte.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635677249278151958\" data-video-id=\"7635677249278151958\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635677249278151958\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             60g jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120g sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             120g beurre pommade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3g fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             172g farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5,2g levure chimique"
+            }
+        ],
+        "steps": [
+            "À la maryse, mélanger le beurre, le sel et le sucre.",
+            "Ajouter les jaunes d'oeufs et mélanger.",
+            "Terminer par les poudres (farine et levure).",
+            "Étaler sur une épaisseur de 1cm (dans des cercles individuels ou un grand cercle).",
+            "Cuire 15min à 170C à l'obtention d'une belle couleur dorée.",
+            "Décercler à la sortie du four et laisser refroidir."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6508",
         "title": "Mousse au chocolat",
@@ -14870,6 +14977,49 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "6114",
+        "title": "Eau de tomate",
+        "description": "Une boisson rafraîchissante et savoureuse à base de tomates, assaisonnée d'huile d'olive, de vinaigre et de sel.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6114_1781451439754.jpg&v=1781458682000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650510198229962017\" data-video-id=\"7650510198229962017\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650510198229962017\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cas de vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            }
+        ],
+        "steps": [
+            "Mixer les tomates pour obtenir une purée.",
+            "Filtrer la purée à travers une passoire fine ou un linge propre pour en extraire le jus clair (l'eau de tomate).",
+            "Assaisonner l'eau de tomate obtenue avec l'huile d'olive, le vinaigre et le sel. Servir frais."
+        ],
+        "tags": [
+            "Astuces",
+            "Healthy",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "6108",
         "title": "DIBI",
         "description": "Le DIBI classique de la streetfood de l'Afrique de l'Ouest. Aujourd'hui, méthode au four ! Tellement bon 🥹🔥",
@@ -14945,85 +15095,6 @@ export const mockRecipes: Recipe[] = [
             "Afrique",
             "épicé",
             "Pâques"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6098",
-        "title": "Creamy Chicken and Potato Skillet with Bacon",
-        "description": "Un plat réconfortant et savoureux à base de poulet crémeux, de pommes de terre assaisonnées et de bacon croustillant, le tout gratiné au fromage dans une poêle.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6098_1781451047512.jpg&v=1781458449000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7367398634431745312\" data-video-id=\"7367398634431745312\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7367398634431745312\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             6 petites pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             2 poitrines de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6 tranches de bacon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à café d'assaisonnement piri piri"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 cuillères à café d'assaisonnement cajun"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             2 cuillères à soupe d'huile (pour le poulet)"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             2 cuillères à café d'huile (pour les pommes de terre)"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             200ml de crème double"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Fromage râpé (cheddar ou mozzarella)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais (pour la garniture)"
-            }
-        ],
-        "steps": [
-            "Coupez les 6 petites pommes de terre en petits morceaux. Assaisonnez les pommes de terre avec 1 cuillère à café d'assaisonnement piri piri, 2 cuillères à café d'assaisonnement cajun et 1/2 cuillère à café de curcuma. Mélangez bien.",
-            "Coupez les 2 poitrines de poulet en petits morceaux. Assaisonnez le poulet avec 1 cuillère à café d'assaisonnement piri piri, 2 cuillères à café d'assaisonnement cajun, 2 cuillères à soupe d'huile et 1/2 cuillère à café de curcuma. Mélangez bien.",
-            "Faites frire les 6 tranches de bacon jusqu'à ce qu'elles soient dorées et croustillantes. Retirez le bacon de la poêle et coupez-le en petits morceaux.",
-            "Dans la même poêle utilisée pour le bacon, ajoutez 2 cuillères à café d'huile. Ajoutez les pommes de terre assaisonnées et faites-les frire à feu doux pendant environ 15 minutes, en couvrant avec un couvercle pour aider à cuire plus rapidement.",
-            "Dans une autre poêle, faites frire le poulet assaisonné pendant environ 7 minutes à feu moyen-doux.",
-            "Une fois le poulet cuit, ajoutez 200ml de crème double à la poêle et faites cuire pendant 2-3 minutes, permettant aux saveurs de se mélanger.",
-            "Ajoutez le bacon cuit au mélange de poulet et de crème. Mélangez bien.",
-            "Placez les pommes de terre frites sur le mélange de poulet.",
-            "Couvrez de fromage râpé (cheddar ou mozzarella). Couvrez la poêle avec un couvercle et laissez le fromage fondre.",
-            "Saupoudrez de persil frais et de bacon croustillant sur le dessus pour la garniture. Servez chaud et dégustez."
-        ],
-        "tags": [
-            "Afrique",
-            "C'est l'hiver",
-            "épicé",
-            "Gratins"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -21635,6 +21706,55 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "Sauces",
             "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5627",
+        "title": "Porc Char Sui",
+        "description": "Un plat typique cantonais, bien caramélisé, super bon et simple à faire.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F123909681_o.jpg&v=1779187904000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639423315496455457\" data-video-id=\"7639423315496455457\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639423315496455457\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 4 cas de sauce bbq chinoise (hoi sin)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 2 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cas 5 épices"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 2 cas sauce soja black"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cas sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 cas piment"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "airfryer",
+            "asiatique",
+            "épicé"
         ],
         "isFeatured": false,
         "isFavorite": false,
