@@ -2,11 +2,232 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/07/2026 15:14:48
- * Total: 468 recettes
+ * Dernière mise à jour: 02/07/2026 15:34:34
+ * Total: 469 recettes
  */
-export const exportSyncId = "1783005288601";
+export const exportSyncId = "1783006474126";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6504",
+        "title": "Flan pistache",
+        "description": "Une recette de flan à la pistache, avec une crème pâtissière onctueuse et un fond de tarte 100% pistache. L'auteur propose également un ebook de 40 recettes en promotion.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639790798812253472\" data-video-id=\"7639790798812253472\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639790798812253472\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍦\n             1 gousse de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             400 g de Lait entier"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120 g sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             45 g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             120 g d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             70 g de pâte de pistache"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             130 g de crème 35 %"
+            }
+        ],
+        "steps": [
+            "Fendre et gratter la gousse de vanille puis faire chauffer le lait avec la vanille.",
+            "Mélanger le sucre la maïzena ajouter les œufs et bien fouetter.",
+            "Verser progressivement le lait chaud sur le mélange tout en fouettant.",
+            "Remettre le tout dans la casserole puis cuire sans cesser de mélanger jusqu'à épaississement.",
+            "Hors du feu, ajouter la pâte de pistaches puis la crème liquide bien mélangé.",
+            "Verser l'appareil dans un fond de tarte 100 % pistache (la recette du fond de tarte sera postée ultérieurement).",
+            "Cuire environ 45 minutes à 190 °C jusqu'à obtenir un flan bien doré encore légèrement tremblotant au centre.",
+            "Laisser refroidir complètement puis réserver plusieurs heures au réfrigérateur avant dégustation."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6502",
+        "title": "Cookies extra fins au chocolat",
+        "description": "Des cookies ultra fins et croustillants au chocolat, parsemés de fleur de sel, pour une texture craquante irrésistible.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656877670059298080\" data-video-id=\"7656877670059298080\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656877670059298080\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             110g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70g de sucre roux"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             140g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf entier"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Arôme vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180°C.",
+            "Mélanger le beurre avec le sucre roux et le sucre blanc jusqu'à obtenir un mélange homogène.",
+            "Ajouter l'œuf entier, le jaune d'œuf et l'arôme vanille, puis mélanger.",
+            "Incorporer la farine et mélanger jusqu'à obtenir une pâte uniforme.",
+            "Ajouter les morceaux de chocolat et mélanger délicatement.",
+            "Former des boules de pâte d'environ 40 à 45g et les disposer sur une plaque de cuisson en les espaçant bien.",
+            "Aplatir légèrement chaque boule pour obtenir des cookies extra fins.",
+            "Parsemer de fleur de sel.",
+            "Enfourner 15 minutes à 180°C jusqu'à ce que les cookies soient dorés et croustillants.",
+            "Laisser refroidir avant de déguster."
+        ],
+        "tags": [
+            "Pas cher",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6500",
+        "title": "Black Forest Cupcakes, But Better",
+        "description": "Une recette de cupcakes Forêt Noire améliorés, avec des cupcakes au chocolat, une compote de cerises maison et un glaçage au cream cheese et cerises.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7651742967421537549\" data-video-id=\"7651742967421537549\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7651742967421537549\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 large egg - 60 g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Granulated sugar - 200 g (1 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fresh milk - 120 g (½ cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Neutral oil - 120 g (½ cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sour cream- 1 Tbsp"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             All-purpose flour - 135 g (1 cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Unsweetened cocoa powder - 35 g (⅓ cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Baking soda - 5 g (1 tsp)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Salt - 3 g (½ tsp)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fresh cherries, pitted - 200 g (about 1½ cups)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Granulated sugar - 45 g (3½ tbsp)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cold Cream cheese - 200 g (about ¾ cup + 2 tbsp)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cold Heavy whipping cream (35%) - 100 g (about 6½ tbsp)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Powdered sugar - 60 g (½ cup)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cherry compote (room temperature)- 35 g (2 tbsp)"
+            }
+        ],
+        "steps": [
+            "Mix the flour, cocoa powder, baking soda, salt, and sugar until well combined.",
+            "Add the egg, milk, oil and sour cream directly to the dry ingredients and mix until the batter is smooth and no dry streaks remain.",
+            "Divide the batter into cupcake liners and bake at 350°F (175°C) for 18-22 minutes, or until a toothpick inserted into the center comes out clean.",
+            "Let cool completely.",
+            "For the cherry compote, cook the cherries and sugar over medium heat until the cherries soften and the mixture becomes thick and jammy.",
+            "Let cool completely.",
+            "Beat the cold cream cheese roughly.",
+            "Add powdered sugar, and cherry compote and whip until just combined then Fold the cold whipped cream.",
+            "Pipe a thick ring of frosting onto each cupcake.",
+            "Use the back of a round tablespoon to press a shallow well into the center.",
+            "Fill the center with cherry compote and top with a fresh cherry and a mint leaf."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6498",
         "title": "Tiramisu Cupcakes",
@@ -6992,78 +7213,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "Grèce"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4064",
-        "title": "Salade de carottes croquantes au sésame",
-        "description": "Des carottes fraîches et croquantes mélangées à une vinaigrette légère au sésame et au miel, avec du gingembre, de l'ail et des oignons verts. Simple, saine et pleine de saveur - parfaite comme accompagnement ou salade rapide.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcarottes_sesames_2107523045.jpg&v=1781968876000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7599121508878830878\" data-video-id=\"7599121508878830878\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7599121508878830878\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥕\n             3-4 grandes carottes, coupées en julienne"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2-3 oignons verts, finement tranchés"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             2 cuillères à soupe de coriandre, hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d'huile de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à soupe de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 cuillère à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de gingembre râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail, râpée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à café de graines de sésame grillées"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1-2 cuillères à café de chili crisp (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel casher, au goût"
-            }
-        ],
-        "steps": [
-            "Mélangez les carottes avec une pincée de sel. Laissez reposer 5 à 10 minutes, puis égouttez l'excès de liquide.",
-            "Dans un bol, mélangez l'huile de sésame, le miel, le jus de citron, le gingembre, l'ail, les graines de sésame et le chili crisp.",
-            "Ajoutez les carottes, les oignons verts et la coriandre. Mélangez bien.",
-            "Goûtez, ajustez le sel et servez."
-        ],
-        "tags": [
-            "Asie",
-            "Healthy",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -28824,65 +28973,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4318",
-        "title": "Pancakes jambon-fromage au four",
-        "description": "Des pancakes salés cuits au four, garnis de jambon et de fromage, parfaits pour un repas rapide ou un brunch.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpancake.jpeg&v=1774521385000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7607183573933755670\" data-video-id=\"7607183573933755670\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7607183573933755670\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             400ml lait"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             160g farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 cuillères à soupe d'huile"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             150g jambon"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             150g fromage râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Un peu de ciboulette"
-            }
-        ],
-        "steps": [
-            "Mélanger tous les ingrédients pour la pâte (sauf le jambon et le fromage).",
-            "Verser la pâte dans un plat allant au four et cuire à 200 degrés pendant environ 10 minutes.",
-            "Après environ 10 minutes, garnir le pancake avec le jambon et le fromage.",
-            "Cuire pendant 10 minutes supplémentaires."
-        ],
-        "tags": [
-            "Famille",
-            "Pas cher"
         ],
         "isFeatured": false,
         "isFavorite": false,
