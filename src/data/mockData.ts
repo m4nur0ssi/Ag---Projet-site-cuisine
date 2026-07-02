@@ -2,11 +2,152 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 01/07/2026 22:14:42
- * Total: 461 recettes
+ * Dernière mise à jour: 02/07/2026 04:25:13
+ * Total: 462 recettes
  */
-export const exportSyncId = "1782944082627";
+export const exportSyncId = "1782966313872";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6490",
+        "title": "BBQ Cheddar Glazed Chicken Breasts",
+        "description": "Poitrines de poulet juteuses glacées à la sauce barbecue fumée et gratinées au cheddar fondant, une recette rapide et savoureuse.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655931565163220255\" data-video-id=\"7655931565163220255\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655931565163220255\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 large chicken breasts"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tablespoons olive oil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 tablespoon smoked paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 teaspoon garlic powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 teaspoon onion powder"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 teaspoon cayenne pepper"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cup favorite bbq sauce"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 cup sharp cheddar cheese, shredded"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             salt and black pepper to taste"
+            }
+        ],
+        "steps": [
+            "Préparez le poulet : Épongez les poitrines de poulet. Dans un petit bol, mélangez le paprika fumé, la poudre d'ail, la poudre d'oignon, le poivre de Cayenne, le sel et le poivre. Frottez bien ce mélange d'épices sur le poulet.",
+            "Saisissez : Faites chauffer l'huile d'olive dans une poêle lourde à feu moyen-élevé. Saisissez le poulet pendant 5 à 7 minutes de chaque côté jusqu'à ce qu'il soit bien doré et presque cuit.",
+            "Glacez : Badigeonnez généreusement chaque poitrine de poulet avec la sauce barbecue.",
+            "Faites fondre le fromage : Garnissez chaque morceau d'une poignée de cheddar râpé. Couvrez la poêle avec un couvercle pendant 2 à 3 minutes, ou placez sous le gril, jusqu'à ce que le fromage soit fondu et bouillonnant.",
+            "Servez : Retirez de la poêle et laissez reposer pendant 5 minutes avant de servir chaud."
+        ],
+        "tags": [
+            "barbecue",
+            "épicé",
+            "Gratins",
+            "Healthy",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6488",
+        "title": "Salade de Pâtes Crémeuse",
+        "description": "Une salade de pâtes fraîche et crémeuse, idéale pour l'été, combinant pâtes, légumes croquants (tomates cerises, concombre, oignon rouge), gouda au cumin, thon, et une sauce onctueuse à base de yaourt grec, paprika et piment.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657587145925791008\" data-video-id=\"7657587145925791008\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657587145925791008\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             Pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gouda au cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Thon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Yaourts grecs (2)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika (une pincée)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (une pincée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons en flocons"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Sauces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6486",
         "title": "POULET AUX OLIVES ET POMMES DE TERRE AU FOUR",
@@ -28950,129 +29091,6 @@ export const mockRecipes: Recipe[] = [
             "sorrentina",
             "tomate",
             "traditionnel"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3537",
-        "title": "Layer Cake aux Fruits Rouges",
-        "description": "Découvrez la recette d'un magnifique layer cake aux fruits rouges, parfait pour célébrer les occasions spéciales. Ce gâteau aérien, composé d'une génoise moelleuse, d'un confit de fraises acidulé et d'une crème onctueuse au mascarpone, est sublimé...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Flayer-cake.jpeg&v=1774454384000",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&amp;_t=ZN-94a75OnTQuZ\" data-video-id=\"7535717785570135318\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@mamma_pavlova/video/7535717785570135318?_r=1&amp;_t=ZN-94a75OnTQuZ\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚 6 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 200g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 200g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "💧 100g d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 3 cuillères à soupe de fleur d'oranger"
-            },
-            {
-                "quantity": "",
-                "name": "🍓 250 g de fraises pour le confit"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 30 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 6 g de pectine"
-            },
-            {
-                "quantity": "",
-                "name": "🧀 450 g mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 600 g crème liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🍯 50 g sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🍦 1 gousse de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🍓 Fraises pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Myrtilles pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🍇 Framboises pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Groseilles pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Fleurs comestibles pour la déco"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 Menthe fraîche pour la déco"
-            }
-        ],
-        "steps": [
-            "Pour le biscuit génoise (la veille) : préchauffez le four à 175°C en chaleur traditionnelle.",
-            "Battez les œufs et le sucre à grande vitesse au robot pendant 10 min environ jusqu'à ce que la préparation triple de volume.",
-            "Ajoutez la farine tamisée en plusieurs fois, et mélangez délicatement à la maryse.",
-            "Chemisez un moule à manqué de 20 cm avec du papier sulfurisé (le fond et les côtés), en faisant dépasser le papier sulfurisé en hauteur de 10 cm si votre moule n'est pas assez haut.",
-            "Versez la pâte puis tapez le moule pour chasser l'air.",
-            "Enfournez 45 min sans ouvrir le four.",
-            "Vérifiez la cuisson avec la lame d'un couteau ou un pic en bois (sans traces).",
-            "Laissez refroidir et démoulez le lendemain.",
-            "Pour le confit de fraises (la veille) : cuire les fraises dans une casserole jusqu'à obtenir une légère compotée.",
-            "Ajouter le mélange sucre pectine, cuire encore 2-3 min.",
-            "Pour le sirop à la fleur d'oranger : faites chauffer 100 g d'eau et 100 g de sucre dans une casserole jusqu'à légère ébullition.",
-            "Réservez et versez 3 cuillères à soupe de fleur d'oranger.",
-            "Pour la crème : fouettez la crème liquide, le mascarpone, le sucre glace et la vanille au robot.",
-            "Pour le montage : découpez le biscuit en 2 puis imbibez les deux parties de sirop.",
-            "Pochez une couche de crème sur le premier biscuit, ajoutez le confit de fraises puis quelques fruits frais.",
-            "Répétez l'opération.",
-            "Terminez par recouvrir le gâteau de crème et lissez-la à la corne.",
-            "Recouvrez de fruits."
-        ],
-        "tags": [
-            "anniversaire",
-            "fleur d'oranger",
-            "fruits rouges",
-            "gâteau",
-            "layer cake",
-            "mariage",
-            "mascarpone",
-            "recette"
         ],
         "isFeatured": false,
         "isFavorite": false,
