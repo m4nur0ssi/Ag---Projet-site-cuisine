@@ -5,6 +5,7 @@ import Header from '../components/Header/Header';
 import RecipeCarousel from '../components/RecipeCarousel/RecipeCarousel';
 import RecipeGrid from '../components/RecipeGrid/RecipeGrid';
 import TopRatedCarousel from '../components/TopRatedCarousel/TopRatedCarousel';
+import RequestRecipeButton from '../components/RequestRecipeButton/RequestRecipeButton';
 import RecipeSheet from '../components/RecipeSheet/RecipeSheet';
 import dynamic from 'next/dynamic';
 const MagicFilterBar = dynamic(() => import('../components/MagicFilterBar/MagicFilterBar'), { ssr: false });
@@ -993,6 +994,7 @@ export default function DesktopHome() {
                     onClear={activeTags.length > 0 ? clearAllFilters : undefined}
                     isHome={true}
                 />
+                <RequestRecipeButton />
                 </div>
             </div>
 

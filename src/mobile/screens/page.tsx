@@ -5,6 +5,7 @@ import Header from '../components/Header/Header';
 import RecipeCarousel from '../components/RecipeCarousel/RecipeCarousel';
 import RecipeGrid from '../components/RecipeGrid/RecipeGrid';
 import TopRatedCarousel from '../components/TopRatedCarousel/TopRatedCarousel';
+import RequestRecipeButton from '../components/RequestRecipeButton/RequestRecipeButton';
 import dynamic from 'next/dynamic';
 const MagicFilterBar = dynamic(() => import('../components/MagicFilterBar/MagicFilterBar'), { ssr: false });
 import { useRouter } from 'next/navigation';
@@ -753,6 +754,7 @@ export default function Home() {
                     onSelect={handleTagSelect}
                     isHome={true}
                 />
+                <RequestRecipeButton />
             </div>
 
             <main 
