@@ -2,11 +2,80 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/07/2026 12:19:14
- * Total: 464 recettes
+ * Dernière mise à jour: 02/07/2026 14:58:39
+ * Total: 465 recettes
  */
-export const exportSyncId = "1782994754532";
+export const exportSyncId = "1783004319417";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6496",
+        "title": "Spaghettis froids à la crème de pistache et à la mortadelle",
+        "description": "Une recette ultra fraîche, gourmande et prête en quelques minutes. Parfaite pour les journées ensoleillées !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657930088125599008\" data-video-id=\"7657930088125599008\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657930088125599008\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥜\n             120 g de pistaches décortiquées non salées"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 petite gousse d'ail (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zeste et le jus d'un demi-citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             8 à 10 feuilles de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             8 cl d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl d'eau très froide (ajoute-en un peu si besoin pour obtenir une crème bien lisse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Quelques tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tranches de mortadelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Roquefort (facultatif, pour une touche plus corsée)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6494",
         "title": "Carpaccio de Melon",
