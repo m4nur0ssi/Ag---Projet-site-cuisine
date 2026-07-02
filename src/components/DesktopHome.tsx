@@ -1038,7 +1038,6 @@ export default function DesktopHome() {
                         )}
                         {activeTags.length === 0 && (
                             <>
-                                <TopRatedCarousel recipes={mockRecipes} limit={10} />
                                 <RecipeCarousel
                                     recipes={[
                                         { id: 't-main', title: 'Thématiques', image: '/images/categories/thematiques.jpg', tags: ['thématiques'] } as any,
@@ -1049,6 +1048,7 @@ export default function DesktopHome() {
                                     onTitleClick={handleCarouselTitleClick}
                                     onCardClick={(recipe) => handleCarouselTitleClick(recipe.title)}
                                 />
+                                <TopRatedCarousel recipes={mockRecipes} limit={10} />
 
                                 {recentlyViewed.length > 0 && (
                                     <RecipeCarousel

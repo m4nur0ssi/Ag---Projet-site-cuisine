@@ -791,7 +791,6 @@ export default function Home() {
                         )}
                         {activeTags.length === 0 && (
                             <div className={styles.sectionsContainer}>
-                                <TopRatedCarousel recipes={mockRecipes} limit={10} />
                                 {categorizedRecipes['thématiques']?.length > 0 && (
                                     <RecipeCarousel
                                         recipes={[
@@ -808,6 +807,7 @@ export default function Home() {
                                         }}
                                     />
                                 )}
+                                    <TopRatedCarousel recipes={mockRecipes} limit={10} />
                                     {recentlyViewed.length > 0 && (
                                         <RecipeCarousel
                                             recipes={recentlyViewed}

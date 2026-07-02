@@ -296,7 +296,7 @@ export default function RecipeCardiOS26({
                 )}
 
                 {/* Drapeau pays — symétrique au cœur, en haut à gauche */}
-                {flag && !isThematicCard && !isIntroMode && (
+                {flag && !isThematicCard && !isIntroMode && rank == null && (
                     <div className={styles.topLeftFlag} aria-label={`Origine : ${recipeCountryTag}`}>
                         {flag}
                     </div>

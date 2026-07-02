@@ -10,8 +10,8 @@ interface TopRatedCarouselProps {
 }
 
 /**
- * Carrousel « Top des recettes » — les mieux notées (moyenne des membres),
- * toutes catégories confondues. Masqué tant qu'aucune recette n'a d'avis.
+ * Carrousel « Top noté » — les mieux notées, toutes catégories confondues.
+ * Carte-titre en tête (même logique que Nouveautés/Entrées…). Masqué sans avis.
  */
 export default function TopRatedCarousel({ recipes, limit = 10 }: TopRatedCarouselProps) {
     const stats = useRatingStats();
@@ -30,8 +30,13 @@ export default function TopRatedCarousel({ recipes, limit = 10 }: TopRatedCarous
 
     return (
         <section className={styles.section}>
-            <h2 className={styles.title}>Top des recettes</h2>
             <div className={styles.rail}>
+                <div className={styles.titleItem}>
+                    <div className={styles.titleCard}>
+                        <span className={styles.titleStar}>⭐</span>
+                        <span className={styles.titleText}>TOP NOTÉ</span>
+                    </div>
+                </div>
                 {top.map((recipe, i) => (
                     <div key={recipe.id} className={styles.item}>
                         <RecipeCardiOS26 recipe={recipe} size="small" rank={i + 1} />
