@@ -452,8 +452,10 @@
 
 .metaItem {
     display: flex;
+    flex-direction: column !important; /* libellé au-dessus de la valeur, jamais collés */
     align-items: center;
     justify-content: center;
+    gap: 6px !important;
     padding: 12px 6px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);

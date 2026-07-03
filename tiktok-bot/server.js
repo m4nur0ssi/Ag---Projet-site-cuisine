@@ -57,16 +57,21 @@ app.post('/tiktok-recipe', async (req, res) => {
     // RÉPONSE ULTRA-RAPIDE POUR LE RACCOURCI (Liste des pays)
     if (payload.checkOnly) {
         console.log("   ✅ CheckOnly reçu : Envoi de la liste des pays.");
+        // Menu complet (pays + catégories + thématiques), identique au webhook Vercel.
+        // Tri alphabétique français appliqué au runtime (accents ignorés) —
+        // on peut ajouter un item n'importe où, l'ordre reste garanti.
         const countriesList = [
-            // Pays & Régions
-            "🇫🇷 France", "🇮🇹 Italie", "🇪🇸 Espagne", "🇬🇷 Grèce", "🇱🇧 Liban",
-            // Thématiques & Tendances
-            "☀️ Voilà l'été", "❄️ C'est l'hiver", "🥚 Pâques", "🎄 Noël", "💡 Astuces", "⏱️ Simplissime",
-            // Catégories spéciales
-            "🧊 Les Glaces", "🥤 Rafraîchissements"
-        ];
-        return res.json({ 
-            status: 'ok', 
+            "Accompagnements", "Afrique", "Airfryer", "Apéritifs", "Asie", "Astuces",
+            "Barbecue", "C'est l'hiver", "Desserts", "Entrées", "Épicé", "Espagne",
+            "Express", "Famille", "France", "Gratins", "Grèce", "Healthy", "Italie",
+            "Les Glaces", "Liban", "Mexique", "Minceur", "Noël", "Orient", "Pas Cher",
+            "Pâques", "Pâtes", "Pâtisserie", "Plats", "Poissons et crustacés",
+            "Rafraîchissements", "Salades", "Sandwichs",
+            "Sans gluten", "Sans lactose", "Sans sel", "Sans sucre", "Sauces",
+            "Simplissime", "Soupes", "Tarte", "USA", "Végétarien", "Voilà l'été"
+        ].sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+        return res.json({
+            status: 'ok',
             message: 'Quelle est l\'origine de cette recette ?',
             countries: countriesList,
             pays: countriesList

@@ -226,7 +226,10 @@ async function postToWordPressXMLRPC(recipe) {
 
         if (cleanCountry && cleanCountry !== 'Autre') {
             if (!recipe.tags) recipe.tags = [];
-            recipe.tags.push(cleanCountry);
+            // Cumul choix manuel + tags IA, sans doublon (l'IA a pu déjà tagger le même pays/thème)
+            if (!recipe.tags.some(t => t.toLowerCase() === cleanCountry.toLowerCase())) {
+                recipe.tags.push(cleanCountry);
+            }
         }
     }
 

@@ -1,0 +1,19 @@
+<svg width="800" height="800" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgSansSucre" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B7BE0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5E3AA6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgSansSucre)" rx="40" />
+  <path d="M200 210 L400 400 L200 400 Z" fill="rgba(0,0,0,0.13)" />
+  <!-- Morceaux de sucre -->
+  <g transform="translate(200,205)">
+    <rect x="-58" y="-8" width="58" height="58" rx="10" fill="#FFFFFF" opacity="0.96"/>
+    <rect x="6" y="-8" width="58" height="58" rx="10" fill="#EDE6FB"/>
+    <rect x="-26" y="-58" width="58" height="58" rx="10" fill="#FFFFFF"/>
+  </g>
+  <!-- Interdit "sans" -->
+  <circle cx="200" cy="200" r="118" fill="none" stroke="#E53935" stroke-width="14" opacity="0.9"/>
+  <line x1="118" y1="118" x2="282" y2="282" stroke="#E53935" stroke-width="14" stroke-linecap="round" opacity="0.9"/>
+</svg>

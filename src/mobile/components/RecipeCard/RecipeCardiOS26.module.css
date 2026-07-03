@@ -26,6 +26,7 @@
 }
 
 .titlePill {
+    position: relative;
     width: 100%;
     max-width: 240px;
     height: 44px;
@@ -68,6 +69,23 @@
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
+/* Drapeau pays dans la pilule : à gauche, décollé du bord, centré verticalement sur le titre */
+.titlePill.withFlag {
+    padding: 0 40px;
+}
+
+.pillFlag {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    line-height: 1;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+    pointer-events: none;
+    user-select: none;
+}
+
 .titlePill .titleText {
     font-family: 'Outfit', sans-serif;
     font-size: 1.05rem;
@@ -83,6 +101,64 @@
     text-overflow: ellipsis;
     text-transform: capitalize;
     filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* ── Titre incrusté dans la photo (mode inCardTitle) ──────────── */
+/* Pill frosted-glass en haut de la carte, même style que le titlePill flottant */
+.inCardTitleOverlay {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    right: 10px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
+    z-index: 20;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.inCardTitleOverlay.withFlag {
+    padding: 0 40px;
+}
+
+.inCardTitleText {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 950;
+    margin: 0;
+    line-height: 1.1;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    /* Le gradient est injecté via inline style depuis le composant (titleGradient par catégorie) */
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* recipeContainer sans pill flottant : on aligne la carte avec la TitleCard (withOffset: 52px) */
+.recipeContainer.inCardMode {
+    padding-top: 52px;
+}
+
+/* Cœur repositionné en bas à droite quand le titre est dans la carte */
+.bottomRightHeart {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 50;
+    pointer-events: auto;
 }
 
 .card {

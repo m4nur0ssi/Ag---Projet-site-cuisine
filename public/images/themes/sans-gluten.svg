@@ -1,0 +1,25 @@
+<svg width="800" height="800" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgSansGluten" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8C64E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8841C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgSansGluten)" rx="40" />
+  <path d="M200 210 L400 400 L200 400 Z" fill="rgba(0,0,0,0.13)" />
+  <!-- Épi de blé -->
+  <g transform="translate(200,205)" stroke="#FFF7E0" stroke-width="6" stroke-linecap="round" fill="#FFF7E0">
+    <line x1="0" y1="70" x2="0" y2="-70" />
+    <g>
+      <ellipse cx="-20" cy="-46" rx="15" ry="8" transform="rotate(-35 -20 -46)"/>
+      <ellipse cx="20" cy="-46" rx="15" ry="8" transform="rotate(35 20 -46)"/>
+      <ellipse cx="-22" cy="-16" rx="16" ry="8" transform="rotate(-35 -22 -16)"/>
+      <ellipse cx="22" cy="-16" rx="16" ry="8" transform="rotate(35 22 -16)"/>
+      <ellipse cx="-22" cy="16" rx="16" ry="8" transform="rotate(-35 -22 16)"/>
+      <ellipse cx="22" cy="16" rx="16" ry="8" transform="rotate(35 22 16)"/>
+    </g>
+  </g>
+  <!-- Interdit "sans" -->
+  <circle cx="200" cy="200" r="118" fill="none" stroke="#E53935" stroke-width="14" opacity="0.9"/>
+  <line x1="118" y1="118" x2="282" y2="282" stroke="#E53935" stroke-width="14" stroke-linecap="round" opacity="0.9"/>
+</svg>

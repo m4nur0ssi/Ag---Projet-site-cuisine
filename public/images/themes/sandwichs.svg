@@ -1,0 +1,44 @@
+<svg width="800" height="800" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradSandwichs" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2B04C" />
+      <stop offset="100%" stop-color="#C05A1E" />
+    </linearGradient>
+    <linearGradient id="painHaut" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F7D9A0" />
+      <stop offset="100%" stop-color="#E0A85C" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgGradSandwichs)" rx="40" />
+  <path d="M200 210 L400 400 L200 400 Z" fill="rgba(0,0,0,0.15)" />
+
+  <g transform="translate(200, 210)">
+    <!-- Pain du haut (dôme) -->
+    <path d="M-105 -20 Q-105 -78 0 -78 Q105 -78 105 -20 Z" fill="url(#painHaut)" stroke="#A9702F" stroke-width="5" stroke-linejoin="round" />
+    <!-- Graines de sésame -->
+    <g fill="#FDF3DC">
+      <ellipse cx="-52" cy="-48" rx="6" ry="3.5" transform="rotate(-20 -52 -48)" />
+      <ellipse cx="-12" cy="-60" rx="6" ry="3.5" transform="rotate(12 -12 -60)" />
+      <ellipse cx="34" cy="-52" rx="6" ry="3.5" transform="rotate(-10 34 -52)" />
+      <ellipse cx="66" cy="-38" rx="6" ry="3.5" transform="rotate(18 66 -38)" />
+    </g>
+    <!-- Salade -->
+    <path d="M-108 -18 Q-96 -2 -84 -18 Q-72 -2 -60 -18 Q-48 -2 -36 -18 Q-24 -2 -12 -18 Q0 -2 12 -18 Q24 -2 36 -18 Q48 -2 60 -18 Q72 -2 84 -18 Q96 -2 108 -18 L108 -12 L-108 -12 Z"
+          fill="#7CB342" stroke="#4E7C23" stroke-width="4" stroke-linejoin="round" />
+    <!-- Fromage -->
+    <path d="M-98 -8 L98 -8 L70 14 L-78 12 Z" fill="#FFC93E" stroke="#D69B14" stroke-width="4" stroke-linejoin="round" />
+    <!-- Steak / garniture -->
+    <rect x="-100" y="6" width="200" height="22" rx="11" fill="#8C4A2F" stroke="#5E2F1C" stroke-width="4" />
+    <!-- Tomates -->
+    <g fill="#E5533C" stroke="#A93223" stroke-width="4">
+      <circle cx="-58" cy="34" r="10" />
+      <circle cx="0" cy="36" r="10" />
+      <circle cx="58" cy="34" r="10" />
+    </g>
+    <!-- Pain du bas -->
+    <path d="M-102 44 L102 44 Q102 72 74 72 L-74 72 Q-102 72 -102 44 Z" fill="url(#painHaut)" stroke="#A9702F" stroke-width="5" stroke-linejoin="round" />
+    <!-- Pique en bois -->
+    <line x1="0" y1="-78" x2="0" y2="-108" stroke="#8C5A2B" stroke-width="6" stroke-linecap="round" />
+    <circle cx="0" cy="-114" r="8" fill="#E5533C" stroke="#A93223" stroke-width="4" />
+  </g>
+</svg>

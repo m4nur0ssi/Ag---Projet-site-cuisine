@@ -165,6 +165,23 @@
     pointer-events: none;
 }
 
+/* Drapeau pays dans la pilule : à gauche, décollé du bord, centré verticalement sur le titre */
+.inCardTitleOverlay.withFlag {
+    padding: 0 40px;
+}
+
+.pillFlag {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    line-height: 1;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+    pointer-events: none;
+    user-select: none;
+}
+
 .inCardTitleText {
     font-family: 'Outfit', sans-serif;
     font-size: 1.05rem;

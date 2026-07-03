@@ -1,6 +1,34 @@
 import { NextResponse } from 'next/server';
 import { mockRecipes } from '@/data/mockData';
 
+// Menu du raccourci iOS : pays, catégories et thématiques (sans emojis).
+// Le tri alphabétique français (accents ignorés) est appliqué au runtime —
+// on peut ajouter un item n'importe où dans la liste, l'ordre reste garanti.
+const MENU_ITEMS = [
+    "Accompagnements", "Afrique", "Airfryer", "Apéritifs", "Asie", "Astuces",
+    "Barbecue", "C'est l'hiver", "Desserts", "Entrées", "Épicé", "Espagne",
+    "Express", "Famille", "France", "Gratins", "Grèce", "Healthy", "Italie",
+    "Les Glaces", "Liban", "Mexique", "Minceur", "Noël", "Orient", "Pas Cher",
+    "Pâques", "Pâtes", "Pâtisserie", "Plats", "Poissons et crustacés",
+    "Rafraîchissements", "Salades", "Sandwichs",
+    "Sans gluten", "Sans lactose", "Sans sel", "Sans sucre", "Sauces",
+    "Simplissime", "Soupes", "Tarte", "USA", "Végétarien", "Voilà l'été"
+];
+
+function getSortedMenu(): string[] {
+    return [...MENU_ITEMS].sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+}
+
+function buildMenuResponse() {
+    const sortedNames = getSortedMenu();
+    // Array (ordre garanti côté Raccourcis iOS) + dict pour compatibilité anciens raccourcis
+    const paysDict: Record<string, string> = {};
+    sortedNames.forEach(n => { paysDict[n] = n; });
+    const response = NextResponse.json({ status: sortedNames, pays: sortedNames, list: sortedNames, countries: paysDict, v: "00:15-SORTED" });
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    return response;
+}
+
 export async function POST(request: Request) {
     return handleRequest(request);
 }
@@ -123,54 +151,7 @@ async function handleRequest(request: Request) {
         // Le raccourci iOS appelle sans URL pour obtenir la liste des pays
         // Que ce soit avec checkOnly=true ou non
         if (!videoUrl) {
-            // Liste triée A→Z, sans emojis : pays, catégories et thématiques uniquement
-            const sortedNames = [
-                "Accompagnements",
-                "Afrique",
-                "Airfryer",
-                "Apéritifs",
-                "Asie",
-                "Astuces",
-                "Barbecue",
-                "C'est l'hiver",
-                "Desserts",
-                "Entrées",
-                "Épicé",
-                "Espagne",
-                "Express",
-                "Famille",
-                "France",
-                "Gratins",
-                "Grèce",
-                "Healthy",
-                "Italie",
-                "Les Glaces",
-                "Liban",
-                "Mexique",
-                "Noël",
-                "Orient",
-                "Pas Cher",
-                "Pâques",
-                "Pâtes",
-                "Pâtisserie",
-                "Plats",
-                "Rafraîchissements",
-                "Salades",
-                "Sauces",
-                "Simplissime",
-                "Soupes",
-                "USA",
-                "Végétarien",
-                "Voilà l'été"
-            ];
-
-            // Array (ordre garanti JSON) + dict pour compatibilité anciens raccourcis
-            const paysDict: Record<string, string> = {};
-            sortedNames.forEach(n => { paysDict[n] = n; });
-
-            const response = NextResponse.json({ status: sortedNames, pays: sortedNames, list: sortedNames, countries: paysDict, v: "00:14-ALL-IN-ONE" });
-            response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-            return response;
+            return buildMenuResponse();
         }
 
         // --- DETECTION DU PAYS ET DOUBLON ---
@@ -239,7 +220,14 @@ async function handleRequest(request: Request) {
                 "Gratins", "Gratin", "Grece", "Grèce", "Healthy", "Italie", "Liban", "Mexique",
                 "Noel", "Noël", "Orient", "Paques", "Pâques", "Pas Cher", "Pas-Cher",
                 "Pates", "Pâtes", "Patisserie", "Pâtisserie",
-                "Plats", "Plat", "Rafraichissements", "Rafraîchissements",
+                "Plats", "Plat",
+                "Poissons et crustacés", "Poissons et crustaces", "Poissons", "Poisson", "Crustacés", "Crustaces",
+                "Sandwichs", "Sandwich",
+                "Rafraichissements", "Rafraîchissements",
+                "Minceur",
+                "Sans gluten", "Sans-gluten", "Sans lactose", "Sans-lactose",
+                "Sans sucre", "Sans-sucre", "Sans sel", "Sans-sel",
+                "Tarte", "Tartes",
                 "Salades", "Salade", "Sauces", "Sauce", "Simplissime",
                 "Soupes", "Soupe",
                 "USA", "Vegetarien", "Végétarien",
@@ -274,54 +262,10 @@ async function handleRequest(request: Request) {
             }
         }
 
-        // Si toujours pas de pays → on renvoie le menu + debug pour comprendre ce que le raccourci envoie
+        // Si toujours pas de pays → on renvoie le menu (même format trié que le 1er appel)
         if (!selectedCountry) {
-            // Liste triée A→Z, sans emojis : pays, catégories et thématiques uniquement
-            const sortedNames = [
-                "Accompagnements",
-                "Afrique",
-                "Airfryer",
-                "Apéritifs",
-                "Asie",
-                "Astuces",
-                "Barbecue",
-                "C'est l'hiver",
-                "Desserts",
-                "Entrées",
-                "Épicé",
-                "Espagne",
-                "Express",
-                "Famille",
-                "France",
-                "Gratins",
-                "Grèce",
-                "Healthy",
-                "Italie",
-                "Les Glaces",
-                "Liban",
-                "Mexique",
-                "Noël",
-                "Orient",
-                "Pas Cher",
-                "Pâques",
-                "Pâtes",
-                "Pâtisserie",
-                "Plats",
-                "Rafraîchissements",
-                "Salades",
-                "Sauces",
-                "Simplissime",
-                "Soupes",
-                "USA",
-                "Végétarien",
-                "Voilà l'été"
-            ];
-            const paysDict: Record<string, string> = {};
-            sortedNames.forEach(n => { paysDict[n] = n; });
             console.log('🔍 Pays non trouvé — on affiche le menu de sélection');
-            const response = NextResponse.json({ status: paysDict });
-            response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-            return response;
+            return buildMenuResponse();
         }
 
         // Étape 2 : Si on a un pays (ou que c'est un POST forcé), on ENVOIE EN CUISINE !

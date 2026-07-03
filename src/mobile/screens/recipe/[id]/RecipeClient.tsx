@@ -12,6 +12,7 @@ import VideoSection from '@/mobile/components/VideoSection/VideoSection';
 import { Recipe } from '@/mobile/types';
 import { scaleQuantity } from '@/mobile/lib/utils';
 import { useLocalStorage } from '@/mobile/hooks/useLocalStorage';
+import { useAuth } from '@/mobile/hooks/useAuth';
 import { useTimer } from '@/mobile/components/Timer/TimerContext';
 import { parseDuration, stripHtml } from '@/mobile/lib/timer-utils';
 import SmartText from '@/mobile/components/SmartText/SmartText';
@@ -36,6 +37,7 @@ type TabId = 'ingredients' | 'steps' | 'video';
 
 export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientProps) {
     const { startTimer } = useTimer();
+    const { user: authUser } = useAuth();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
     const [activeStepIndex, setActiveStepIndex] = useState(0);
@@ -582,7 +584,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                             <div className={styles.metaItem}>
                                 <span>⭐</span>
                                 <div>
-                                    <div className={styles.metaLabel}>Ma note</div>
+                                    <div className={styles.metaLabel}>{authUser ? 'Ma note' : 'Note'}</div>
                                     <StarRating recipeId={recipe.id} size="small" />
                                 </div>
                             </div>

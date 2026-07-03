@@ -1,0 +1,83 @@
+<svg width="1024" height="1024" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgDernieresVues" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7DE3F4" />
+      <stop offset="55%" stop-color="#38A8E8" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="plateBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E8EEF7" />
+    </linearGradient>
+    <radialGradient id="glowVues" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#BDEBFF" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#BDEBFF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Fond -->
+  <rect width="400" height="400" fill="url(#bgDernieresVues)" />
+  <!-- Bande sombre en haut (cohérente avec les autres cartes catégorie) -->
+  <rect width="400" height="46" fill="#1D4ED8" />
+  <!-- Halo doux -->
+  <circle cx="200" cy="210" r="140" fill="url(#glowVues)" />
+
+  <!-- Ombre portée -->
+  <ellipse cx="200" cy="326" rx="90" ry="14" fill="rgba(10,40,110,0.30)" />
+
+  <!-- Assiette-horloge : le temps qui passe sur les recettes déjà vues -->
+  <circle cx="200" cy="210" r="104" fill="url(#plateBlue)" />
+  <circle cx="200" cy="210" r="104" fill="none" stroke="#C7D5EA" stroke-width="3" />
+  <circle cx="200" cy="210" r="82" fill="#F7FAFF" />
+  <circle cx="200" cy="210" r="82" fill="none" stroke="#DCE6F5" stroke-width="2" />
+
+  <!-- Graduations de l'horloge -->
+  <g stroke="#8FA6C8" stroke-width="4" stroke-linecap="round">
+    <line x1="200" y1="140" x2="200" y2="152" />
+    <line x1="200" y1="268" x2="200" y2="280" />
+    <line x1="130" y1="210" x2="142" y2="210" />
+    <line x1="258" y1="210" x2="270" y2="210" />
+  </g>
+  <g stroke="#B9C8E0" stroke-width="3" stroke-linecap="round">
+    <line x1="235" y1="149.4" x2="229" y2="159.8" />
+    <line x1="260.6" y1="175" x2="250.2" y2="181" />
+    <line x1="165" y1="149.4" x2="171" y2="159.8" />
+    <line x1="139.4" y1="175" x2="149.8" y2="181" />
+    <line x1="139.4" y1="245" x2="149.8" y2="239" />
+    <line x1="165" y1="270.6" x2="171" y2="260.2" />
+    <line x1="235" y1="270.6" x2="229" y2="260.2" />
+    <line x1="260.6" y1="245" x2="250.2" y2="239" />
+  </g>
+
+  <!-- Aiguilles fourchette + cuillère -->
+  <g transform="translate(200,210)">
+    <!-- Cuillère (grande aiguille, pointe vers 1h) -->
+    <g transform="rotate(32)">
+      <rect x="-3.5" y="-58" width="7" height="58" rx="3.5" fill="#3E5C8F" />
+      <ellipse cx="0" cy="-63" rx="11" ry="15" fill="#3E5C8F" />
+      <ellipse cx="0" cy="-63" rx="6" ry="9" fill="#5B7BB0" />
+    </g>
+    <!-- Fourchette (petite aiguille, pointe vers 9h) -->
+    <g transform="rotate(-90)">
+      <rect x="-3.5" y="-40" width="7" height="40" rx="3.5" fill="#3E5C8F" />
+      <path d="M-9 -54 L-9 -40 Q-9 -34 0 -34 Q9 -34 9 -40 L9 -54 M-3 -54 L-3 -42 M3 -54 L3 -42"
+            fill="none" stroke="#3E5C8F" stroke-width="4" stroke-linecap="round" />
+    </g>
+    <circle cx="0" cy="0" r="8" fill="#2C4470" />
+    <circle cx="0" cy="0" r="3.5" fill="#8FA6C8" />
+  </g>
+
+  <!-- Petite part de tarte sur le bord de l'assiette (souvenir gourmand) -->
+  <g transform="translate(258,258)">
+    <path d="M0 0 L34 10 A36 36 0 0 1 8 34 Z" fill="#F2B25C" stroke="#D98B2B" stroke-width="3" stroke-linejoin="round" />
+    <circle cx="14" cy="14" r="4" fill="#D63031" />
+  </g>
+
+  <!-- Bulles / éclats -->
+  <g fill="#EAF7FF" opacity="0.9">
+    <circle cx="104" cy="112" r="4" />
+    <circle cx="304" cy="128" r="5" />
+    <circle cx="92" cy="252" r="3" />
+    <circle cx="316" cy="232" r="3" />
+  </g>
+</svg>

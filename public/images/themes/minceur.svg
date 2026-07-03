@@ -1,0 +1,18 @@
+<svg width="800" height="800" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgMinceur" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CE0D6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1499A8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgMinceur)" rx="40" />
+  <path d="M200 210 L400 400 L200 400 Z" fill="rgba(0,0,0,0.13)" />
+  <!-- Mètre ruban (minceur) + feuille -->
+  <g transform="translate(200,200)">
+    <circle cx="0" cy="0" r="82" fill="none" stroke="#FFFFFF" stroke-width="16" opacity="0.95"/>
+    <circle cx="0" cy="0" r="82" fill="none" stroke="#EAFBF9" stroke-width="4" stroke-dasharray="4 13"/>
+    <!-- feuille au centre -->
+    <path d="M0 34 C-34 18 -34 -26 0 -42 C34 -26 34 18 0 34 Z" fill="#EAFBF9"/>
+    <path d="M0 -38 L0 30" stroke="#1499A8" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

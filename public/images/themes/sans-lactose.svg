@@ -1,0 +1,20 @@
+<svg width="800" height="800" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgSansLactose" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6FD0FA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2A93C9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bgSansLactose)" rx="40" />
+  <path d="M200 210 L400 400 L200 400 Z" fill="rgba(0,0,0,0.13)" />
+  <!-- Verre de lait -->
+  <g transform="translate(200,205)">
+    <path d="M-42 -68 L42 -68 L34 76 L-34 76 Z" fill="#FFFFFF" opacity="0.95"/>
+    <path d="M-40 -40 L40 -40 L34 76 L-34 76 Z" fill="#EAF6FF"/>
+    <ellipse cx="0" cy="-68" rx="42" ry="9" fill="#FFFFFF"/>
+    <ellipse cx="0" cy="-40" rx="40" ry="8" fill="#DCEFFB"/>
+  </g>
+  <!-- Interdit "sans" -->
+  <circle cx="200" cy="200" r="118" fill="none" stroke="#E53935" stroke-width="14" opacity="0.9"/>
+  <line x1="118" y1="118" x2="282" y2="282" stroke="#E53935" stroke-width="14" stroke-linecap="round" opacity="0.9"/>
+</svg>

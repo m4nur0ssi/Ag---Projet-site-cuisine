@@ -14,12 +14,15 @@ interface RecipeCarouselProps {
     compact?: boolean;
     hideTitleCard?: boolean;
     firstCardInCardTitle?: boolean; // Test : titre intégré dans la 1ère carte
+    ranked?: boolean; // Affiche la pastille de rang #1, #2… sur chaque carte
     onTitleClick?: (title: string) => void;
     onCardClick?: (recipe: Recipe) => void;
 }
 
 const getCategoryData = (t: string) => {
     const c = t.toLowerCase();
+    if (c.includes('mieux not') || c.includes('top not')) return { image: '/images/categories/mieux-notees-theme.svg', color: '#F5A623' };
+    if (c.includes('dernières vues') || c.includes('dernieres vues') || c.includes('récemment') || c.includes('recemment')) return { image: '/images/categories/dernieres-vues-theme.svg', color: '#2563EB' };
     if (c.includes('apéritif') || c.includes('aperitif') || c.includes('apéro')) return { image: '/images/categories/aperitif-theme.png', color: '#FF6B35' };
     if (c.includes('entrée') || c.includes('entree')) return { image: '/images/categories/entree-theme.png', color: '#2DD4BF' };
     if (c.includes('plat')) return { image: '/images/categories/plats-theme.png', color: '#6D28D9' };
@@ -40,7 +43,7 @@ const getCategoryData = (t: string) => {
     return { image: '/images/categories/patisserie.jpg', color: '#f59e0b' };
 };
 
-export default function RecipeCarousel({ recipes, title = "Nouvelles Recettes ✨", size = 'large', compact = false, hideTitleCard = false, firstCardInCardTitle = false, onTitleClick, onCardClick }: RecipeCarouselProps) {
+export default function RecipeCarousel({ recipes, title = "Nouvelles Recettes ✨", size = 'large', compact = false, hideTitleCard = false, firstCardInCardTitle = false, ranked = false, onTitleClick, onCardClick }: RecipeCarouselProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const scrollSpeedRef = useRef(0);
     const animFrameRef = useRef<number | null>(null);
@@ -180,6 +183,7 @@ export default function RecipeCarousel({ recipes, title = "Nouvelles Recettes �
                             parentTitle={title}
                             onCardClick={onCardClick}
                             inCardTitle={!compact} // Toutes les cartes non-compact ont le titre intégré
+                            rank={ranked ? index + 1 : undefined}
                         />
                     ))}
 
@@ -236,7 +240,7 @@ function CategoryTitleCard({ title, gradient, size, compact, onClick }: { title:
     );
 }
 
-function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle, onCardClick, inCardTitle }: { recipe: Recipe, index: number, containerRef: React.RefObject<HTMLDivElement>, size: 'large' | 'small', compact?: boolean, parentTitle?: string, onCardClick?: (recipe: Recipe) => void, inCardTitle?: boolean }) {
+function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle, onCardClick, inCardTitle, rank }: { recipe: Recipe, index: number, containerRef: React.RefObject<HTMLDivElement>, size: 'large' | 'small', compact?: boolean, parentTitle?: string, onCardClick?: (recipe: Recipe) => void, inCardTitle?: boolean, rank?: number }) {
     const itemRef = useRef<HTMLDivElement>(null);
     const { scrollXProgress } = useScroll({ target: itemRef, container: containerRef, offset: ["start end", "end start"] });
 
@@ -291,6 +295,7 @@ function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle,
                 customGradient={customGradient}
                 customOnClick={onCardClick ? () => onCardClick(recipe) : undefined}
                 inCardTitle={inCardTitle}
+                rank={rank}
             />
         </motion.div>
     );

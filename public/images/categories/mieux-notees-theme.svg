@@ -1,0 +1,67 @@
+<svg width="1024" height="1024" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgMieuxNotees" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD36B" />
+      <stop offset="55%" stop-color="#F5A623" />
+      <stop offset="100%" stop-color="#E07B12" />
+    </linearGradient>
+    <linearGradient id="starGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3C4" />
+      <stop offset="45%" stop-color="#FFD34D" />
+      <stop offset="100%" stop-color="#F09A10" />
+    </linearGradient>
+    <linearGradient id="clocheGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#F3E7D3" />
+      <stop offset="100%" stop-color="#E2CFAF" />
+    </linearGradient>
+    <radialGradient id="glowMieux" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#FFE9A8" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#FFE9A8" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Fond -->
+  <rect width="400" height="400" fill="url(#bgMieuxNotees)" />
+  <!-- Bande sombre en haut (cohérente avec les autres cartes catégorie) -->
+  <rect width="400" height="46" fill="#C96F08" />
+  <!-- Halo doux derrière l'illustration -->
+  <circle cx="200" cy="215" r="140" fill="url(#glowMieux)" />
+
+  <!-- Ombre portée sous l'assiette -->
+  <ellipse cx="200" cy="322" rx="92" ry="14" fill="rgba(120,60,0,0.28)" />
+
+  <!-- Assiette -->
+  <ellipse cx="200" cy="282" rx="112" ry="30" fill="#FFFFFF" />
+  <ellipse cx="200" cy="277" rx="112" ry="30" fill="#FDF6EA" />
+  <ellipse cx="200" cy="279" rx="84" ry="21" fill="#EFE2CB" />
+
+  <!-- Cloche de service -->
+  <path d="M118 272 A82 74 0 0 1 282 272 Z" fill="url(#clocheGrad)" />
+  <path d="M126 268 A74 66 0 0 1 274 268" fill="none" stroke="#FFFFFF" stroke-width="5" opacity="0.7" />
+  <rect x="112" y="268" width="176" height="10" rx="5" fill="#D9C4A0" />
+  <!-- Poignée -->
+  <circle cx="200" cy="196" r="9" fill="#C9A96A" />
+
+  <!-- Grande étoile posée sur la cloche -->
+  <g transform="translate(200,144)">
+    <path d="M0,-46 L12.8,-14.2 L47,-14.2 L19.5,6.5 L29.5,39 L0,19.5 L-29.5,39 L-19.5,6.5 L-47,-14.2 L-12.8,-14.2 Z"
+          fill="url(#starGold)" stroke="#D97F06" stroke-width="4" stroke-linejoin="round" />
+    <path d="M-8,-24 L2,-24" stroke="#FFFDF2" stroke-width="6" stroke-linecap="round" opacity="0.85" />
+  </g>
+
+  <!-- Petites étoiles satellites -->
+  <g fill="url(#starGold)" stroke="#D97F06" stroke-width="2.4" stroke-linejoin="round">
+    <path transform="translate(96,150) scale(0.34)" d="M0,-46 L12.8,-14.2 L47,-14.2 L19.5,6.5 L29.5,39 L0,19.5 L-29.5,39 L-19.5,6.5 L-47,-14.2 L-12.8,-14.2 Z" />
+    <path transform="translate(306,162) scale(0.30)" d="M0,-46 L12.8,-14.2 L47,-14.2 L19.5,6.5 L29.5,39 L0,19.5 L-29.5,39 L-19.5,6.5 L-47,-14.2 L-12.8,-14.2 Z" />
+    <path transform="translate(286,102) scale(0.22)" d="M0,-46 L12.8,-14.2 L47,-14.2 L19.5,6.5 L29.5,39 L0,19.5 L-29.5,39 L-19.5,6.5 L-47,-14.2 L-12.8,-14.2 Z" />
+  </g>
+
+  <!-- Éclats -->
+  <g fill="#FFF3C4" opacity="0.9">
+    <circle cx="120" cy="110" r="4" />
+    <circle cx="310" cy="220" r="4" />
+    <circle cx="88" cy="220" r="3" />
+    <circle cx="252" cy="88" r="3" />
+  </g>
+</svg>

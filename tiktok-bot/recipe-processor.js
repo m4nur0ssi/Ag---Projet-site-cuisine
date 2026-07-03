@@ -44,17 +44,26 @@ async function isRecipeWithGemini(description, title) {
     - Si soupe d'hiver, raclette, fondue, gratins d'hiver, plat mijoté de saison froide -> catégorie "cest-lhiver"
     
     RÈGLES POUR LES TAGS :
+    IMPORTANT : les tags sont CUMULATIFS. Une recette doit recevoir TOUS les tags qui s'appliquent
+    (pays + régime + saison + type de plat). Exemple : une salade grecque estivale ->
+    ["Grèce", "Voilà l'été", "Salades"]. Une pâtisserie italienne -> ["Italie"].
     1. RÉGIME/TENDANCE : Si sain/équilibré -> "Healthy". Si végétarien -> "Végé". Si grillade/barbecue -> "Barbecue". Si ingrédients basiques/économiques -> "Pas cher".
-    2. PAYS : Choisis UN pays dans cette liste : France, Italie, Espagne, Grèce, Liban, USA, Mexique, Orient, Asie, Afrique.
+       Si clairement sans gluten -> "Sans gluten". Si sans lactose -> "Sans lactose". Si sans sucre -> "Sans sucre". Si léger/minceur -> "Minceur".
+    2. PAYS : Ajoute TOUJOURS un tag pays si l'origine de la recette est identifiable (nom du plat,
+    ingrédients typiques, technique). Choisis UN pays dans cette liste : France, Italie, Espagne, Grèce, Liban, USA, Mexique, Orient, Asie, Afrique.
     Si le pays d'origine est évident mais n'est pas dans la liste, utilise le plus proche ou "Afrique".
-    Si ce n'est pas clair, laisse le champ tags vide.
+    N'omets le pays QUE si l'origine est vraiment indéterminable.
     3. SAISONS/ÉVÉNEMENTS : Si la recette contient de l'agneau ou lamb -> ajoute le tag "Pâques". Si recette typique de Noël -> ajoute "Noël". Si estival -> ajoute "Voilà l'été". Si hivernal -> ajoute "C'est l'hiver".
     4. NE PAS utiliser le tag "Famille" (supprimé).
     5. TYPE DE PLAT (ajoute UN de ces tags si la recette correspond, peu importe la catégorie) :
        - Si c'est une salade (composée, verte, de pâtes, de fruits, de quinoa, bowl froid) -> ajoute "Salades".
        - Si c'est une soupe, velouté, bouillon, gaspacho, potage, minestrone, ramen -> ajoute "Soupes".
        - Si c'est un gratin (dauphinois, parmentier, tian, lasagnes au four, plat au four nappé de fromage/béchamel) -> ajoute "Gratins".
-       - Si la recette est piquante/relevée (piment, harissa, sambal, curry fort, chili, sriracha, paprika fumé en quantité, jalapeño, habanero) -> ajoute "Épicé".`;
+       - Si la recette est piquante/relevée (piment, harissa, sambal, curry fort, chili, sriracha, paprika fumé en quantité, jalapeño, habanero) -> ajoute "Épicé".
+       - Si c'est une tarte (sucrée ou salée, quiche, tourte) -> ajoute "Tarte".
+       - Si c'est un plat de pâtes -> ajoute "Pâtes". Si c'est une sauce -> ajoute "Sauces".
+       - Si l'ingrédient principal est un poisson ou un fruit de mer (saumon, thon, cabillaud, dorade, crevettes, gambas, moules, Saint-Jacques, crabe, homard, calamar, poulpe) -> ajoute "Poissons et crustacés".
+       - Si c'est un sandwich (burger, wrap, panini, croque-monsieur, bagel, hot-dog, kebab, pita, club) -> ajoute "Sandwichs".`;
 
     const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest', 'gemini-2.5-pro', 'gemini-pro-latest'];
 
@@ -394,6 +403,8 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
                 analysis.tags.push('Pâques');
             }
         }
+        // NB : Tarte + régimes (sans gluten/lactose/sucre/sel, minceur) sont ajoutés comme
+        // tag automatiquement par wordpress-poster.js (push générique de manualCountry).
     }
 
     // Supprimer le tag Famille s'il a été ajouté par l'IA (supprimé de la logique)

@@ -6,7 +6,48 @@ import { Recipe } from '@/types';
 import { decodeHtml } from '@/lib/utils';
 import dynamic from 'next/dynamic';
 import Portal from '@/components/Portal';
+import { useRatingStats } from '@/lib/ratings';
 import styles from './RecipeCardiOS26.module.css';
+
+// Cache module-level : dominante (assombrie) par image de thème → "r, g, b"
+const themeBandCache = new Map<string, string>();
+
+/**
+ * Couleur dominante de l'image de thème, assombrie pour le bandeau titre.
+ * Échantillonne la bande horizontale médiane (fond de la carte, sous le titre incrusté).
+ */
+function useThemeBandColor(src: string | undefined, enabled: boolean): string | null {
+    const [rgb, setRgb] = useState<string | null>(() => (src && themeBandCache.get(src)) || null);
+    useEffect(() => {
+        if (!enabled || !src) return;
+        const cached = themeBandCache.get(src);
+        if (cached) { setRgb(cached); return; }
+        const img = new window.Image();
+        img.src = src;
+        img.onload = () => {
+            try {
+                const w = 48, h = 48;
+                const canvas = document.createElement('canvas');
+                canvas.width = w; canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                if (!ctx) return;
+                ctx.drawImage(img, 0, 0, w, h);
+                const data = ctx.getImageData(0, Math.round(h * 0.4), w, Math.round(h * 0.2)).data;
+                let r = 0, g = 0, b = 0, n = 0;
+                for (let i = 0; i < data.length; i += 4) {
+                    if (data[i + 3] < 200) continue; // pixels transparents (SVG)
+                    r += data[i]; g += data[i + 1]; b += data[i + 2]; n++;
+                }
+                if (!n) return;
+                const d = 0.55; // assombrir pour contraster avec le titre blanc
+                const val = `${Math.round((r / n) * d)}, ${Math.round((g / n) * d)}, ${Math.round((b / n) * d)}`;
+                themeBandCache.set(src, val);
+                setRgb(val);
+            } catch { /* image illisible → bandeau sombre par défaut */ }
+        };
+    }, [src, enabled]);
+    return rgb;
+}
 
 const RecipeSheet = dynamic(() => import('@/components/RecipeSheet/RecipeSheet'), { ssr: false });
 const FavoriteButton = dynamic(() => import('@/components/FavoriteButton/FavoriteButton'), { ssr: false });
@@ -28,6 +69,8 @@ interface RecipeCardiOS26Props {
     customGradient?: string;
     customOnClick?: () => void;
     inCardTitle?: boolean; // Test : titre intégré dans la photo
+    /** Rang (1,2,3…) affiché en pastille — carrousel Top des recettes. */
+    rank?: number;
 }
 
 export default function RecipeCardiOS26({
@@ -45,10 +88,14 @@ export default function RecipeCardiOS26({
     customGradient,
     customOnClick,
     inCardTitle = false,
+    rank,
 }: RecipeCardiOS26Props) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
+    const ratingStats = useRatingStats();
+    const stat = ratingStats?.get(String(recipe.id)) || null;
+    const themeBand = useThemeBandColor(recipe.image, !!recipe.id?.startsWith('theme-'));
 
     useEffect(() => {
         onPlayToggle?.(isPlaying);
@@ -194,18 +241,45 @@ export default function RecipeCardiOS26({
                             fill
                             style={{
                                 objectFit: 'cover',
-                                // Cartes thématiques : montrer le haut de l'image (carousel home ET grille)
-                                // pour que le titre incrusté (Airfryer, Barbecue…) soit visible et non tronqué
-                                objectPosition: isThematicCard ? '50% 0%' : 'center',
+                                objectPosition: isThematicCard ? '50% 62%' : 'center',
                             }}
                             className={styles.image}
                         />
                     )}
                 </div>
 
+                {/* Carte thème : titre HTML propre en haut (recouvre le titre incrusté
+                    doublonné de certaines images → un seul titre net).
+                    Bandeau teinté de la couleur dominante de l'image (assombrie), pas noir. */}
+                {isThematicCard && (() => {
+                    const band = themeBand || '8, 8, 12';
+                    return (
+                        <div
+                            style={{
+                                position: 'absolute', top: 0, left: 0, right: 0, zIndex: 4,
+                                padding: '13px 12px 30px', textAlign: 'center',
+                                fontWeight: 800, fontSize: '1rem', letterSpacing: '0.1em',
+                                textTransform: 'uppercase', color: '#fff',
+                                /* Bandeau opaque sur ~50px : recouvre TOTALEMENT le titre incrusté
+                                   de l'image → 1 seul titre, puis fondu vers le fond de la carte. */
+                                background: `linear-gradient(180deg, rgb(${band}) 0%, rgb(${band}) 50px, rgba(${band}, 0.45) 66px, rgba(${band}, 0) 100%)`,
+                                textShadow: '0 1px 5px rgba(0,0,0,0.35)', pointerEvents: 'none',
+                                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                            }}
+                        >
+                            {truncateTitle(decodeHtml(recipe.title))}
+                        </div>
+                    );
+                })()}
+
                 {/* Titre intégré dans la carte (mode inCardTitle) */}
                 {inCardTitle && !isThematicCard && (
-                    <div className={styles.inCardTitleOverlay}>
+                    <div className={`${styles.inCardTitleOverlay} ${flag && !isIntroMode ? styles.withFlag : ''}`}>
+                        {flag && !isIntroMode && (
+                            <span className={styles.pillFlag} aria-label={`Origine : ${recipeCountryTag}`}>
+                                {flag}
+                            </span>
+                        )}
                         <h3
                             className={styles.inCardTitleText}
                             style={{
@@ -222,6 +296,41 @@ export default function RecipeCardiOS26({
 
                 {/* Overlays */}
 
+                {/* Rang Top des recettes */}
+                {rank != null && !isThematicCard && (
+                    <div style={{
+                        // En mode inCardTitle, la pilule titre occupe le haut → pastille juste dessous
+                        position: 'absolute', top: inCardTitle ? 64 : 10, left: 10, zIndex: 5,
+                        minWidth: 30, height: 30, padding: '0 9px', borderRadius: 15,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontWeight: 800, fontSize: '0.9rem',
+                        color: rank <= 3 ? '#1a1200' : '#fff',
+                        background: rank === 1 ? 'linear-gradient(135deg,#FFD86B,#F5A623)'
+                            : rank === 2 ? 'linear-gradient(135deg,#E8E8EE,#B8BFCB)'
+                            : rank === 3 ? 'linear-gradient(135deg,#E7A977,#C77B3E)'
+                            : 'rgba(0,0,0,0.62)',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.35)',
+                    }}>
+                        #{rank}
+                    </div>
+                )}
+
+                {/* Badge note moyenne (visible par tous, si des avis) */}
+                {stat && stat.count > 0 && !isThematicCard && !isIntroMode && (
+                    <div style={{
+                        position: 'absolute', bottom: 10, left: 10, zIndex: 5,
+                        display: 'flex', alignItems: 'center', gap: 4,
+                        padding: '4px 9px', borderRadius: 13,
+                        background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(6px)',
+                        WebkitBackdropFilter: 'blur(6px)',
+                        fontWeight: 700, fontSize: '0.85rem', color: '#fff',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+                    }}>
+                        <span style={{ color: '#FBBF24' }}>★</span>
+                        <span>{stat.avg.toFixed(1)}</span>
+                    </div>
+                )}
+
                 {/* Cœur — en bas à droite si inCardTitle, sinon en haut à droite */}
                 {!isIntroMode && !isThematicCard && (
                     <div
@@ -237,8 +346,8 @@ export default function RecipeCardiOS26({
                     </div>
                 )}
 
-                {/* Drapeau pays — symétrique au cœur, en haut à gauche */}
-                {flag && !isThematicCard && !isIntroMode && (
+                {/* Drapeau pays — dans la pilule en mode inCardTitle, sinon en haut à gauche */}
+                {flag && !isThematicCard && !isIntroMode && rank == null && !inCardTitle && (
                     <div className={styles.topLeftFlag} aria-label={`Origine : ${recipeCountryTag}`}>
                         {flag}
                     </div>

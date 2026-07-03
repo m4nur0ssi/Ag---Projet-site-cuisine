@@ -2,46 +2,1740 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/06/2026 08:49:24
- * Total: 398 recettes
+ * Dernière mise à jour: 30/06/2026 15:54:29
+ * Total: 438 recettes
  */
-export const exportSyncId = "1782118164830";
+export const exportSyncId = "1782827669122";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "6310",
-        "title": "Jus délicieux et rafraîchissant",
-        "description": "Un jus frais et désaltérant à base de pastèque, pêche, citron et menthe, parfait pour l'été.",
-        "image": "/images/recipe-placeholder.svg",
+        "id": "6375",
+        "title": "Tiramisu au citron sans gluten",
+        "description": "Un tiramisu frais et gourmand au citron, sans gluten, avec une crème au citron maison, une crème mascarpone onctueuse et des boudoirs imbibés de sirop de citron.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6375_1782827066065.jpg&v=1782827095000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655984186184011040\" data-video-id=\"7655984186184011040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655984186184011040\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 5 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200 g de sucre de canne non raffiné"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             230 g de beurre de baratte"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             500 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 ml de crème liquide entière bien froide"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 belles c. à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Un peu de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 c. à soupe de sucre de canne"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 c. à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Un peu de zeste de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Boudoirs"
+            }
+        ],
+        "steps": [
+            "Préparer le lemon curd : Mettre tous les ingrédients dans un saladier résistant à la chaleur et fouetter au bain-marie jusqu'à obtenir une crème bien épaisse, comme dans la vidéo. Laisser refroidir.",
+            "Préparer le sirop : Porter tous les ingrédients à ébullition, puis laisser refroidir. Il servira à imbiber les boudoirs.",
+            "Préparer la crème mascarpone : Fouetter le mascarpone, la crème liquide, le sucre glace et la vanille jusqu'à obtenir une crème ferme et aérienne.",
+            "Montage : Tremper rapidement les boudoirs dans le sirop de citron. Alterner une couche de boudoirs, une couche de crème mascarpone, puis une couche de lemon curd. Répéter jusqu'à épuisement des ingrédients. Terminer par une fine couche de lemon curd, puis laisser reposer au réfrigérateur plusieurs heures, idéalement toute une nuit."
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5277",
+        "title": "Tarte Normande",
+        "description": "Une tarte normande classique et gourmande, composée d'une pâte sablée, de pommes fondantes et d'une garniture crémeuse aux amandes, avec une touche facultative de Calvados.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5277_1782827038095.jpg&v=1782827062000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604576197472816406\" data-video-id=\"7604576197472816406\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604576197472816406\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre froid"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             3 à 4 pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 ml de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé (ou 1 c. à café d'extrait de vanille)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à soupe de calvados (facultatif)"
+            }
+        ],
+        "steps": [
+            "Prépare la pâte : sable la farine, le sucre glace et le beurre du bout des doigts.",
+            "Ajoute l'œuf, forme une boule et laisse reposer 30 min au frais.",
+            "Étale la pâte, fonce ton moule et pique le fond.",
+            "Coupe les pommes en lamelles et dispose-les joliment sur la pâte.",
+            "Mélange les œufs, le sucre, la vanille, la crème et la poudre d'amande (+ calvados).",
+            "Verse ce mélange sur les pommes.",
+            "Enfourne à 180°C (chaleur tournante) pendant 35 à 40 minutes, jusqu'à ce que le dessus soit doré."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Glaces",
+            "pâtisserie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6337",
+        "title": "Salade marocaine",
+        "description": "Une salade toute simple, rapide à faire et parfaite pour accompagner vos barbeuc cet été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6337_1782826835923.jpg&v=1782827034000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630014915067120918\" data-video-id=\"7630014915067120918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630014915067120918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "Healthy",
+            "Orient",
+            "Pas cher",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5265",
+        "title": "Salade de pommes de terre protéinée",
+        "description": "Un plat frais, gourmand et ultra complet pour tenir sa diète.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5265_1782826749827.jpeg&v=1782826832000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630509941375159574\" data-video-id=\"7630509941375159574\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630509941375159574\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1000 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             150 g d'avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250 g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             300 g de blanc de poulet cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de petit fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de bacon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             50 g d'oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             15 g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 c. à café d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            }
+        ],
+        "steps": [
+            "Cuire les pommes de terre: Coupez les pommes de terre en morceaux. Assaisonnez avec sel, poivre, ail, paprika fumé et un peu de cassonade. Faites-les revenir dans une poêle avec un filet d'huile d'olive. Ajoutez un petit filet d'eau si besoin pour éviter que ça accroche. Faites cuire jusqu'à ce qu'elles soient fondantes et légèrement dorées. Laissez-les refroidir complètement avant l'assemblage.",
+            "Préparer les légumes: Émincez finement l'oignon rouge. Coupez l'avocat en cubes. Coupez les tomates cerises en deux ou en quartiers.",
+            "Préparer la sauce: Dans un bol, mélangez le petit fromage frais. Ajoutez sel, poivre, ail, paprika fumé et l'huile d'olive. Ajoutez le miel puis mélangez jusqu'à obtenir une sauce homogène.",
+            "Préparer la garniture: Coupez le poulet en morceaux. Assurez-vous que le poulet est froid avant l'assemblage. Faites griller le bacon dans une poêle jusqu'à ce qu'il soit croustillant.",
+            "Assemblage: Dans un grand saladier, mélangez les pommes de terre froides, l'oignon, l'avocat et les tomates. Ajoutez le poulet froid. Versez la sauce et mélangez pour bien enrober.",
+            "Finition: Ajoutez le bacon grillé chaud et croustillant sur le dessus."
+        ],
+        "tags": [
+            "Entrées",
+            "Healthy",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5271",
+        "title": "Crinkles au chocolat",
+        "description": "Découvrez la recette des crinkles au chocolat, des biscuits moelleux et craquelés, généreusement enrobés de sucre glace. Parfaits pour une pause gourmande ou à partager.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5271_1782826655231.jpg&v=1782826746000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636734150220860675\" data-video-id=\"7636734150220860675\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636734150220860675\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat fondu (chocolat pâtissier à 52% de cacao)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             165g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 bol de sucre glace"
+            }
+        ],
+        "steps": [
+            "Dans un grand récipient, mélange les œufs avec le sucre et le sucre vanillé.",
+            "Ajoute le beurre mou et le chocolat fondu, mélange bien.",
+            "Ajoute enfin la farine et la levure chimique, mélange jusqu'à obtenir une pâte homogène.",
+            "La pâte est collante, c'est normal: place-la au frigo, filmée au contact (recouverte d'un film plastique) toute la nuit.",
+            "Le lendemain, laisse-la tiédir quelques minutes puis formes-en des petites boules. La pâte est un peu compliquée à travailler, fais de ton mieux: je te conseille de t'aider d'une cuillère à glace.",
+            "Roule chaque crinkle très généreusement dans le sucre glace, sur toute la surface, puis mets-les au four environ 10mn à 180°."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6381",
+        "title": "Cheesecake salé sans cuisson",
+        "description": "Une recette ultra fraîche, parfaite pour les journées d'été ! Facile à préparer, sans cuisson et idéale en entrée ou à partager à l'apéro.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6381_1782826575891.jpg&v=1782826651000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656024768084331808\" data-video-id=\"7656024768084331808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656024768084331808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de Tuc"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de yaourt à la grecque nature"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon cru"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 feuilles de gélatine"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6116",
+        "title": "Bol asperges vertes, soja & jaune d'oeuf",
+        "description": "Un bol frais et savoureux à base d'asperges vertes, assaisonné de sauce soja, huile de sésame et mirin, garni de nori, sésame et d'un jaune d'œuf pour une touche onctueuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6116_1782826568152.jpeg&v=1782826572000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634567643676249346\" data-video-id=\"7634567643676249346\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634567643676249346\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g d'asperges vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 càs d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 càs de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 càs de mirin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de nori"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càs de sésame (ou furikake)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie",
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6416",
+        "title": "Sauce pimentée de Chine",
+        "description": "Une sauce pimentée inspirée de la Chine, idéale pour accompagner nouilles, riz, légumes et viandes. Facile à préparer et à conserver.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6416_1782824292035.jpg&v=1782824832000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7554409254120099094\" data-video-id=\"7554409254120099094\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7554409254120099094\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             5 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             5 càs de flocons de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tiges de ciboule"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càs de graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 càs de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ càs de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càs de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             1,5 càs de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile chaude"
+            }
+        ],
+        "steps": [
+            "Verser l'huile chaude sur les épices et mélanger.",
+            "Pour la cuisson et la pasteurisation, deux options : soit plonger le bocal dans un grand volume d'eau, soit passer au micro-ondes 2 minutes à 800W.",
+            "Conserver au réfrigérateur après ouverture et consommer dans le mois."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6418",
+        "title": "Sauce Tartare Parfaite",
+        "description": "Une recette simple et rapide pour préparer une sauce tartare maison parfaite, idéale pour accompagner poissons, fruits de mer ou viandes froides.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6418_1782824263304.jpg&v=1782824288000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7430540295617514784\" data-video-id=\"7430540295617514784\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7430540295617514784\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥫\n             200g de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cas de moutarde (sauf si déjà dans la mayonnaise)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 Cl de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cas de câpres hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 ou 3 cornichons hachés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais haché à convenance"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette fraîche hachée à convenance"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf dur haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            }
+        ],
+        "steps": [
+            "Hacher finement l'échalote, les câpres, les cornichons, le persil, la ciboulette et l'œuf dur.",
+            "Dans un bol, mélanger la mayonnaise, la moutarde (si nécessaire) et le jus de citron.",
+            "Ajouter tous les ingrédients hachés au mélange de mayonnaise.",
+            "Assaisonner avec du sel et du poivre selon votre goût.",
+            "Bien mélanger et laisser reposer au frais avant de servir pour que les saveurs se développent."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6412",
+        "title": "Sauce Sriracha Maison",
+        "description": "Recette pour faire votre propre sauce sriracha maison, piquante et savoureuse.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6412_1782824225626.jpeg&v=1782824256000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7374080251342671137\" data-video-id=\"7374080251342671137\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7374080251342671137\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             500 g de piments rouges marocains"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             100 g d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre blanc (à hauteur)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une cuillère à soupe de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             140 g de sucre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "asiatique",
+            "épicé",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6410",
+        "title": "Sauce Peanut by Mory Sacko",
+        "description": "Une sauce crémeuse, intense et pleine de caractère, ultra simple et rapide à préparer en 5 minutes. Parfaite pour accompagner pâtes, riz, légumes ou protéines grillées, et accessible même aux étudiants.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6410_1782824032683.jpg&v=1782824222000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7585641479037570326\" data-video-id=\"7585641479037570326\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7585641479037570326\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             125 g de pâte d'arachide"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 càs de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             10 cl de sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1½ càs de poudre saté"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             5 à 10 cl d'eau chaude"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélanger la pâte d'arachide, le concentré de tomate, la sauce soja salée et la poudre saté.",
+            "Ajouter progressivement 5 à 10 cl d'eau chaude en mélangeant jusqu'à obtenir la consistance crémeuse souhaitée.",
+            "Servir immédiatement avec des pâtes, du riz, des légumes ou une protéine grillée."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6414",
+        "title": "Sauce Creamy Deluxe",
+        "description": "Une sauce maison crémeuse et sans conservateurs ni additifs, idéale pour accompagner vos frites ou sublimer vos burgers.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6414_1782823995826.jpg&v=1782824027000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7410852353202539808\" data-video-id=\"7410852353202539808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7410852353202539808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 cas de crème fraîche 15%"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cas de Philadelphia"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 pincée de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail semoule"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 échalote ciselée finement"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             3 cl de citron vert"
+            }
+        ],
+        "steps": [
+            "Mélanger tous les ingrédients (crème fraîche, Philadelphia, sucre, sel, ail semoule, échalote ciselée, ciboulette, citron vert).",
+            "Réserver au frais pendant 1h.",
+            "Le secret de la réussite est détaillé dans la vidéo."
+        ],
+        "tags": [
+            "Healthy",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6406",
+        "title": "Sauce Cowboy et Côte de Bœuf",
+        "description": "Une recette rapide et savoureuse de côte de bœuf accompagnée d'une sauce cowboy maison relevée.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6406_1782823617068.jpg&v=1782823990000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7561102485838925078\" data-video-id=\"7561102485838925078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7561102485838925078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             200g beurre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 càc sel (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment en flocon (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc paprika (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càc moutarde (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 côte de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25g beurre (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Romarin (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la cuisson)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Sauces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6339",
+        "title": "Salade de gnocchis croustillants pour l'été",
+        "description": "Une salade fraîche et gourmande, idéale pour l'été, composée de gnocchis croustillants, de lard, de salade verte, d'œuf et de parmesan, le tout relevé par une sauce crémeuse au yaourt grec.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6339_1782823592129.jpg&v=1782823613000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7619385199582809366\" data-video-id=\"7619385199582809366\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7619385199582809366\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧂\n             Gnocchis (avec ail en poudre et paprika)"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Lard"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Salade"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Oeuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Assaisonner les gnocchis avec de l'ail en poudre et du paprika, puis les cuire à 180°C pendant 10 minutes (idéalement à l'Airfryer).",
+            "Cuire le lard à 180°C pendant 10 minutes pour le rendre croustillant (idéalement à l'Airfryer).",
+            "Préparer la sauce en mélangeant le yaourt grec, la moutarde, le jus de citron, le parmesan râpé, l'ail haché, le sel, le poivre et l'huile d'olive.",
+            "Assembler la salade en disposant la salade verte, les gnocchis croustillants, le lard croustillant, l'œuf (cuit selon votre préférence) et le parmesan.",
+            "Napper généreusement de sauce et servir frais."
+        ],
+        "tags": [
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6422",
+        "title": "SAUCE SWEET CHILI",
+        "description": "Une sauce sweet chili maison, bien meilleure que celle du commerce, avec plus de goût, moins chère et sans conservateur.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6422_1782823481876.jpg&v=1782823588000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7378175594032303393\" data-video-id=\"7378175594032303393\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7378175594032303393\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             10 piments oiseaux"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             5 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             3/4 bol de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             3/4 du bol de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1/2 bol de sauce poisson"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 bol d'eau (25 cl)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cas de maizena"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asi",
+            "épicé",
+            "Pas cher",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6353",
+        "title": "Mojito express",
+        "description": "Un mojito express, prêt en seulement 2 minutes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6353_1782569582238-1.jpg&v=1782823477000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653924796475952416\" data-video-id=\"7653924796475952416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653924796475952416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7252370449462562074\" data-video-id=\"7252370449462562074\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7252370449462562074\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             400g de pastèques"
+                "name": "🍋\n             1/2 citron vert"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 à 3 pêches blanches"
+                "name": "🌿\n             10 feuilles menthe"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Le jus de 1 ou 2 citrons"
+                "name": "🍋\n             1/2 jus de citron vert"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Une pincée de sel"
+                "name": "🥣\n             Glaçon"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Quelques feuilles de menthe"
+                "name": "🍯\n             Sprite ou eau gazeuse + sucre roux"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Pas cher",
+            "Rafraîchissements",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6408",
+        "title": "French Onion Dip maison",
+        "description": "Crémeux, fondant, 100% réconfort avec des oignons ultra confits et caramélisés : de quoi rendre fous tes invités !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6408_1782823317099.jpg&v=1782823439000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7514941660917173506\" data-video-id=\"7514941660917173506\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7514941660917173506\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons jaunes"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Quelques glaçons"
+                "name": "🍾\n             1 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à café de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1/2 c. à café de sucre brun"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 g de yaourt grec (ou skyr pour plus léger)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 g de crème fraîche épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1/2 c. à café de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 c. à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             30 g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre, paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette fraîche ciselée"
+            }
+        ],
+        "steps": [
+            "Dans une poêle, fais revenir les oignons dans l'huile + beurre à feu doux pendant 25 à 30 minutes. Ajoute le sucre, le sel et le vinaigre en fin de cuisson pour bien les caraméliser. Réserve une petite cuillère pour le topping et laisse refroidir.",
+            "Dans un bol, mélange le yaourt, la crème fraîche, la moutarde, le citron, le parmesan. Incorpore les oignons confits refroidis. Ajuste le sel, poivre et ajoute une pincée de paprika. Laisse reposer 30 minutes au frigo si possible pour que les saveurs se mêlent.",
+            "Dresse dans un joli bol, ajoute les toppings (oignons réservés, ciboulette, filet d'huile). Sers avec des chips maison, des crackers, ou des légumes rôtis. Bon appétit !"
+        ],
+        "tags": [
+            "France",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6420",
+        "title": "Crème de MOZZA, cerises & tomates",
+        "description": "Une recette fraîche et gourmande, sans cuisson, parfaite pour l'été. Une crème de mozzarella onctueuse accompagnée d'un mélange coloré de tomates cerises et de cerises fraîches.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6420_1782823296883.jpeg&v=1782823312000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7519896751000571158\" data-video-id=\"7519896751000571158\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7519896751000571158\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             1 mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cas de yaourt"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une poignée de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cas d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cas de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zest d'un citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             150g de tomates cerises (coupées en quartier)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de cerises fraîches (dénoyautées & coupées en quartier)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge émincé finement"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic (pour le mélange)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cas d'huile d'olive (pour le mélange)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour le mélange)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pignons de pin grillés (pour servir)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Crackers (pour servir)"
+            }
+        ],
+        "steps": [
+            "Pour la crème de mozza : Mixer 1 mozzarella, 3 cuillères à soupe de yaourt, une poignée de basilic, 1 gousse d'ail, 2 cuillères à soupe d'huile d'olive, 1 cuillère à soupe de miel, du sel, du poivre et le zeste d'un citron jusqu'à obtenir une crème homogène.",
+            "Dans un autre récipient, mélanger 150g de tomates cerises coupées en quartier, 150g de cerises fraîches dénoyautées et coupées en quartier, 1/2 oignon rouge émincé finement, du basilic, 2 cuillères à soupe d'huile d'olive et du sel.",
+            "Servir la crème de mozza avec le mélange de tomates et cerises. Ajouter des pignons de pin grillés pour la gourmandise et déguster avec des crackers, à l'apéritif ou en entrée."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6323",
+        "title": "Pink Summer Toast",
+        "description": "Un toast estival et sain avec une crème onctueuse à la betterave, ricotta et fêta, servi sur du pain au levain avec du basilic et des graines de sésame. Idéal pour un brunch ou un repas léger.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6323_1782735624537.jpg&v=1782735677000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653409756329053472\" data-video-id=\"7653409756329053472\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653409756329053472\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 betterave cuite ~250g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de St Moret 8%"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30g de fêta (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             le jus d'1/2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 tranche de pain au levain"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             fêta (pour les toppings)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             graines de sésame"
+            }
+        ],
+        "steps": [
+            "Dans un mixeur, combiner la betterave cuite, la ricotta, le St Moret, les 30g de fêta, le jus d'un demi-citron et le sel. Mixer jusqu'à obtenir une crème lisse et homogène.",
+            "Faire griller la tranche de pain au levain avec un filet d'huile d'olive jusqu'à ce qu'elle soit dorée et croustillante.",
+            "Étaler généreusement la crème de betterave rose sur le pain grillé.",
+            "Garnir le toast avec de la fêta émiettée, des feuilles de basilic frais et des graines de sésame. Servir immédiatement."
+        ],
+        "tags": [
+            "Healthy",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6306",
+        "title": "Tiramisu maison avec biscuit fait maison",
+        "description": "Le grand classique italien revisité par Norbert Tarayre, avec un biscuit cuillère maison pour un résultat encore plus gourmand et authentique !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6306_1782571158232.jpeg&v=1782571182000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/31kVcFuLujg\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             500 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             6 œufs entiers"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de cacao en poudre non sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tasses de café fort refroidi"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café d'Amaretto"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             180 g de blancs d'œufs (pour le biscuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             150 g de sucre (pour le biscuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             120 g de jaunes d'œufs (pour le biscuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             150 g de farine (pour le biscuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre glace (pour le biscuit)"
+            }
+        ],
+        "steps": [
+            "Préparer le biscuit cuillère maison : préchauffer le four à 180°C. Monter les 180 g de blancs d'œufs en neige ferme en ajoutant progressivement les 150 g de sucre pour obtenir une meringue brillante.",
+            "Incorporer délicatement les 120 g de jaunes d'œufs à la meringue à l'aide d'une maryse, en soulevant la masse pour ne pas faire retomber les blancs.",
+            "Ajouter les 150 g de farine tamisée en pluie et mélanger délicatement jusqu'à obtenir un appareil homogène.",
+            "Dresser le biscuit sur une plaque recouverte de papier cuisson à l'aide d'une poche à douille (en boudoirs ou en couche uniforme). Saupoudrer de sucre glace, laisser croûter 5 minutes, puis enfourner 10 à 12 minutes à 180°C. Laisser refroidir.",
+            "Préparer la crème au mascarpone : séparer les 6 œufs. Fouetter les jaunes avec les 100 g de sucre jusqu'à ce que le mélange blanchisse et soit bien mousseux.",
+            "Ajouter les 500 g de mascarpone au mélange jaunes-sucre et fouetter pour obtenir une crème lisse et homogène.",
+            "Monter les 6 blancs en neige ferme, puis les incorporer délicatement à la crème mascarpone en plusieurs fois pour garder une texture aérienne.",
+            "Préparer le café : mélanger les 4 tasses de café fort refroidi avec les 2 cuillères à café d'Amaretto dans un bol creux.",
+            "Montage du tiramisu : tremper rapidement les biscuits maison dans le mélange café-Amaretto et en tapisser le fond d'un plat.",
+            "Étaler une généreuse couche de crème mascarpone sur les biscuits imbibés. Répéter l'opération avec une deuxième couche de biscuits imbibés puis terminer par une couche de crème.",
+            "Lisser la surface et réserver au réfrigérateur minimum 4 heures (idéalement une nuit) pour que le tiramisu prenne bien.",
+            "Au moment de servir, saupoudrer généreusement de cacao en poudre à l'aide d'un tamis pour une belle finition. Déguster bien frais !"
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5514",
+        "title": "Tiramisu",
+        "description": "Recette de tiramisu maison avec un biscuit fait maison.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fi196570-tiramisu-simple-1.jpg&v=1782571151000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463909495878569238\" data-video-id=\"7463909495878569238\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463909495878569238\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n 500g de Mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 6 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 100g de cacao en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 4 tasses à café"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 2 cuillères à café d'Amaretto"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 180g de blancs d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 150g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 120g de jaune d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 150g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 40g de sucre glace"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6335",
+        "title": "Tartinable à l'ail confit",
+        "description": "Un tartinable savoureux et intense à base d'ail confit, parfait pour l'apéritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6335_1782570909973.jpg&v=1782571027000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630432257085410582\" data-video-id=\"7630432257085410582\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630432257085410582\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             ail confit"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Apéritifs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6321",
+        "title": "Sorbet pastèque fraise",
+        "description": "Un sorbet hyper rafraîchissant à la pastèque et aux fraises, facile à réaliser sans sorbetière, idéal pour les fortes chaleurs.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6321_1782570889962.jpeg&v=1782570906000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653834716830846240\" data-video-id=\"7653834716830846240\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653834716830846240\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pastèque (environ 900g coupée en gros cubes)"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             450g de fraises congelées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 CS de sucre"
+            }
+        ],
+        "steps": [
+            "Vide la pastèque et congèle les morceaux pendant 4h minimum et idéalement la nuit.",
+            "Conserve la coque pour t'en servir de contenant, mets-la au frigo.",
+            "Mixe ensemble la pastèque congelée, les fraises, le yaourt grec et le sucre.",
+            "Place le sorbet dans la coque et c'est déjà prêt. À déguster immédiatement."
+        ],
+        "tags": [
+            "Healthy",
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6377",
+        "title": "Sommerlasagne",
+        "description": "Une lasagne d'été fraîche et légère, préparée avec un pesto maison, une crème de ricotta citronnée, des légumes de saison (courgettes, tomates) et garnie de prosciutto et pistaches.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6377_1782570575205.jpg&v=1782570885000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655739126653717792\" data-video-id=\"7655739126653717792\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655739126653717792\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌿\n             30 g Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             30 g Pistaches"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             15 g Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             35 ml Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Courgette"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             250 g Tomates rouges et jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g Ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste et jus de 1 Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices selon goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 feuilles de Lasagne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Prosciutto pour décorer"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Pistaches pour décorer"
+            }
+        ],
+        "steps": [
+            "Pour le pesto, mixer finement tous les ingrédients. Si c'est trop épais, ajouter un peu d'eau chaude.",
+            "Mélanger la ricotta avec le zeste de citron, le jus de citron et les épices.",
+            "Couper la courgette en demi-rondelles et la faire revenir dans l'huile d'olive pendant environ 3 minutes. Ajouter les tomates coupées en deux, faire revenir brièvement et assaisonner avec du sel.",
+            "Cuire les feuilles de lasagne dans de l'eau salée bouillante. Remuer régulièrement pour éviter qu'elles ne collent. Ensuite, les retirer, les laisser refroidir et les étaler séparément.",
+            "Monter la lasagne selon les envies avec la crème de ricotta, les légumes et le pesto. Garnir de prosciutto et de pistaches."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6373",
+        "title": "Sbriciolata aux fraises",
+        "description": "Une pâte croustillante comme un crumble, la sbriciolata est tellement simple à faire que ce serait dommage de s'en passer !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6373_1782570059776.jpg&v=1782570570000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645338614506868000\" data-video-id=\"7645338614506868000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645338614506868000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             250g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5g de levure"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             150g de fraises"
+            }
+        ],
+        "steps": [
+            "Faire revenir les fraises dans une casserole jusqu'à ce qu'elles soient légèrement compotées. Les écraser en gardant quelques morceaux. Laisser refroidir.",
+            "Pendant ce temps, mélanger tous les autres ingrédients ensemble.",
+            "Travailler la préparation avec les mains jusqu'à obtenir une texture sableuse type crumble. Ne pas former une pâte compacte : le mélange doit rester en miettes.",
+            "Verser la moitié de la préparation dans un moule de 20 cm en tassant légèrement.",
+            "Ajouter les fraises, puis recouvrir avec le reste de la pâte.",
+            "Enfourner 35 à 40 minutes à 180°C, jusqu'à obtenir une belle coloration dorée sur le dessus.",
+            "Saupoudrez de sucre glace"
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6331",
+        "title": "Salade fraîche pastèque et pêche",
+        "description": "La salade la plus fraîche de l'été☀️✨ La pastèque dans la salade tu valides ?👀",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6331_1782569897954.jpg&v=1782570056000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645618857603763488\" data-video-id=\"7645618857603763488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645618857603763488\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pêche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre balsamique"
             }
         ],
         "steps": [
@@ -49,7 +1743,1241 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6325",
+        "title": "Salade fraîche d'été aux pois chiches et fêta",
+        "description": "Une salade bien fraîche pour l'été, qui change de la salade verte 👀🤤",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6325_1782569887029.jpg&v=1782569896000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653502841876696353\" data-video-id=\"7653502841876696353\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653502841876696353\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             pois chiche"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             pignons de pain"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6379",
+        "title": "Salade Caprese à l'avocat et mélasse de grenade",
+        "description": "Une salade fraîche et savoureuse à base de mozzarella, tomates, avocat et herbes, relevée par une vinaigrette à l'huile d'olive et à la mélasse de grenade. Parfaite pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6379_1782569824541.jpg&v=1782569885000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655346685467495713\" data-video-id=\"7655346685467495713\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655346685467495713\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             2 boules de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             5 brins d'aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             5 brins de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Un demi-avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café de basilic séché"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2-3 brins de thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 brins de romarin frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une demi-cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             7 cuillères à soupe d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 cuillères à soupe de mélasse de grenade"
+            }
+        ],
+        "steps": [
+            "Dans un grand plat de service, mélangez 6 cuillères à soupe d'huile d'olive et 4 cuillères à soupe de mélasse de grenade.",
+            "Ajoutez l'ail écrasé et une demi-cuillère à café de sel, puis mélangez bien.",
+            "Coupez les tomates en tranches et enrobez-les des deux côtés avec la sauce préparée.",
+            "Disposez les tranches de tomates sur les bords du plat de service.",
+            "Coupez la mozzarella en tranches, enrobez-la de sauce de la même manière et placez-la entre les tomates.",
+            "Disposez les tranches d'avocat sur la mozzarella.",
+            "Saupoudrez d'oignon rouge finement haché, d'aneth, de persil, de thym frais et de romarin frais.",
+            "Enfin, arrosez le tout d'1 cuillère à soupe d'huile d'olive et d'1 cuillère à soupe de mélasse de grenade."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6355",
+        "title": "Salade & Sauce Onctueuse à la Mangue",
+        "description": "Une salade fraîche et colorée à base de roquette, avocat, feta, tomates cerises, crevettes et noix de cajou, accompagnée d'une sauce onctueuse à la mangue, miel, citron vert et gingembre, parfaite pour les journées chaudes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6355_1782569741574.jpg&v=1782569820000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654320080834137377\" data-video-id=\"7654320080834137377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654320080834137377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 mangue (coupée en deux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat (en dés)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feta"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises (coupées en 2)"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n             Crevettes (10-12, coupées en morceaux si grosses)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             1 poignée de noix de cajou"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron vert (quelques gouttes)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cm de gingembre râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 à 2 glaçons"
+            }
+        ],
+        "steps": [
+            "Couper la mangue en deux. Réserver une moitié pour la salade et l'autre pour la sauce.",
+            "Préparer la salade : Dans un grand bol, mélanger la roquette, l'avocat coupé en dés, la feta, les tomates cerises coupées en deux, les crevettes (coupées en morceaux si grosses), les noix de cajou, le concombre et la coriandre. Ajouter la moitié de mangue coupée pour la salade.",
+            "Préparer la sauce : Dans un mixeur, combiner la demi-mangue restante, 1 cuillère à café de miel, quelques gouttes de jus de citron vert, le piment (si utilisé) et 1 cm de gingembre râpé.",
+            "Mixer tous les ingrédients de la sauce jusqu'à obtenir une consistance onctueuse.",
+            "Ajouter 1 à 2 glaçons à la sauce mixée et bien mélanger.",
+            "Servir la salade accompagnée de la sauce onctueuse à la mangue."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6369",
+        "title": "Nutella Dalgona Iced Coffee",
+        "description": "Une boisson rafraîchissante et gourmande, combinant un café glacé crémeux de style dalgona avec une touche de Nutella et du lait.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6369_1782569622576.jpg&v=1782569737000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635208483490647318\" data-video-id=\"7635208483490647318\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635208483490647318\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de café instantané"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             50 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nutella"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Poudre de cacao"
+            }
+        ],
+        "steps": [
+            "Mélanger le café instantané, le sucre blanc et l'eau jusqu'à obtenir une consistance crémeuse.",
+            "Étaler du Nutella sur les parois intérieures d'un verre à l'aide d'une cuillère.",
+            "Remplir le verre aux deux tiers avec du lait.",
+            "Ajouter délicatement le café dalgona crémeux par-dessus le lait.",
+            "Saupoudrer de poudre de cacao pour la garniture."
+        ],
+        "tags": [
+            "Rafraîchissements"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6333",
+        "title": "Kinder Country Airfryer",
+        "description": "Une recette facile et rapide pour préparer des Kinder Country maison au Airfryer en seulement 3 minutes et à moindre coût.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6333_1782569523265.jpg&v=1782569578000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641271173887692064\" data-video-id=\"7641271173887692064\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641271173887692064\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Desserts",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6371",
+        "title": "Iced Latte Caramel Cookie",
+        "description": "Combiner les saveurs MONIN inspirées de la boulangerie avec le café est toujours une réussite et cette recette de latte glacé a le goût d'un dessert dans un verre...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6371_1782569286723.jpg&v=1782569508000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7640061952395365635\" data-video-id=\"7640061952395365635\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7640061952395365635\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             15ml MONIN Caramel sauce"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             15ml MONIN Chocolate Cookie syrup"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150ml milk"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Double espresso"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Ice"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Whipped cream"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cookie crumb"
+            }
+        ],
+        "steps": [
+            "Dans un verre, mélanger la sauce MONIN Caramel, le sirop MONIN Chocolate Cookie, le lait et le double espresso.",
+            "Ajouter des glaçons.",
+            "Garnir de crème fouettée et de miettes de biscuits."
+        ],
+        "tags": [
             "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6367",
+        "title": "Glace Maison sans matériel",
+        "description": "Une recette facile pour préparer de la glace maison sans avoir besoin de sorbetière.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6367_1782569274165.jpg&v=1782569283000",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655396135166594337\" data-video-id=\"7655396135166594337\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655396135166594337\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6365",
+        "title": "Giant Summer Rolls avec sauce cacahuète",
+        "description": "Des rouleaux de printemps géants frais, croquants et colorés, parfaits pour un repas d'été léger et savoureux, accompagnés d'une sauce crémeuse aux cacahuètes. Une version améliorée d'un classique estival.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6365_1782568755980.jpg&v=1782569269000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654280827907640597\" data-video-id=\"7654280827907640597\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654280827907640597\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour 2 rouleaux de printemps géants :"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             6 feuilles de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 grandes feuilles de laitue iceberg ou romaine"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre, coupé en julienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             1 carotte, coupée en julienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ⅛ tête de chou rouge, râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron rouge, coupé en fines tranches"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat, coupé en tranches"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Petit bouquet de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Petit bouquet de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour la sauce cacahuète :"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             ⅓ tasse de beurre de cacahuète"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja (ou tamari pour une option sans gluten)"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             2 cuillères à soupe de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de 1 à 2 citrons verts"
+            }
+        ],
+        "steps": [
+            "Préparez d'abord la sauce pour que les rouleaux de printemps puissent être servis frais. Dans un bol, mélangez le beurre de cacahuète, la sauce soja, le vinaigre de riz, l'huile de sésame et le jus de citron vert. Mélangez bien et mettez de côté.",
+            "Coupez le concombre et la carotte en julienne, râpez le chou et coupez finement le poivron et l'avocat en tranches.",
+            "Trempez 3 feuilles de riz dans de l'eau froide pendant environ 10 secondes et chevauchez-les au centre de votre surface de travail. Travaillez rapidement pour éviter de les déchirer.",
+            "Placez une feuille de laitue au centre et superposez avec les légumes, l'avocat, la coriandre et la menthe.",
+            "Pliez le bord inférieur vers le centre, puis pliez les côtés et roulez fermement comme un burrito. Si nécessaire, enveloppez avec une feuille de riz supplémentaire pour bien sceller.",
+            "Répétez l'opération pour faire le deuxième rouleau de printemps géant.",
+            "Servez immédiatement avec la sauce crémeuse aux cacahuètes et dégustez !"
+        ],
+        "tags": [
+            "Asie",
+            "Healthy",
+            "Pas cher",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6329",
+        "title": "Cœurs d'artichaut rôti au parmesan à l'Airfryer",
+        "description": "Des cœurs d'artichaut rôtis au parmesan, parfaits pour l'apéro et prêts en seulement 10 minutes à l'Airfryer.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6329_1782568699800.jpg&v=1782568753000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648578267405913377\" data-video-id=\"7648578267405913377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648578267405913377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Cœurs d'artichaut"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            }
+        ],
+        "steps": [
+            "Assaisonner les cœurs d'artichaut avec le sel, le poivre, l'ail en poudre, le paprika et le piment d'Espelette.",
+            "Ajouter le parmesan râpé sur les cœurs d'artichaut.",
+            "Faire rôtir les cœurs d'artichaut assaisonnés dans un Airfryer pendant environ 10 minutes, jusqu'à ce qu'ils soient dorés et croustillants."
+        ],
+        "tags": [
+            "airfryer",
+            "épicé",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6383",
+        "title": "Creamy Zucchini Dip",
+        "description": "Un dip crémeux et facile à préparer à base de courgettes rôties, d'ail et de tahini, parfait pour les journées chaudes d'été et les barbecues.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6383_1782568530217.jpg&v=1782568695000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655739415490268449\" data-video-id=\"7655739415490268449\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655739415490268449\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Tahini"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "Healthy",
+            "Pas cher",
+            "Végé",
+            "Végétarien"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6319",
+        "title": "Citronnade maison prête en 5 minutes",
+        "description": "Une citronnade ultra rafraîchissante, parfaite pour les journées ensoleillées !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6319_1782568029760.jpg&v=1782568525000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654602594802847009\" data-video-id=\"7654602594802847009\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654602594802847009\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n             4 citrons jaunes bio"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1,5 L d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des glaçons à volonté"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             20 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             A à 6 tranches de citron jaune pour le service"
+            }
+        ],
+        "steps": [
+            "Dans un premier temps, lavez soigneusement les citrons jaunes puis coupez-les en quartiers en conservant la peau.",
+            "Placez-les dans un blender avec quelques feuilles de menthe, le sucre et environ 50 cl d'eau.",
+            "Mixez jusqu'à obtenir une préparation homogène.",
+            "Filtrez ensuite le mélange à l'aide d'une passoire fine afin de retirer les morceaux et l'excédent de pulpe.",
+            "Versez la préparation filtrée dans une grande carafe, ajoutez le reste de l'eau (environ 1 litre), les glaçons ainsi que quelques tranches de citron.",
+            "Mélangez bien et servez bien frais."
+        ],
+        "tags": [
+            "Pas cher",
+            "Rafraîchissements",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6327",
+        "title": "Brochettes de poulet ananas piquantes à l'airfryer",
+        "description": "Des brochettes de poulet et ananas relevées avec une sauce piquante, idéales pour une cuisson rapide à l'airfryer.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6327_1782568013463.jpg&v=1782568028000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649798540742380833\" data-video-id=\"7649798540742380833\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649798540742380833\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 filet de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 ananas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce piquante (aigre douce piquante)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curry"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "airfryer",
+            "asiatique",
+            "épicé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6343",
+        "title": "Brochettes de champignons marinés",
+        "description": "Des brochettes de champignons marinés, faciles, rapides et incroyablement aromatiques. Croustillants à l'extérieur et tendres à l'intérieur, parfaits pour le barbecue, en accompagnement ou comme plat végétarien.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6343_1782568002651.jpeg&v=1782568009000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647209242784451873\" data-video-id=\"7647209242784451873\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647209242784451873\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍄\n             400 g Champignons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à soupe d'ail haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café de thym"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à soupe de persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            }
+        ],
+        "steps": [
+            "Bien nettoyer les champignons et les mélanger avec la marinade composée d'huile d'olive, de sauce soja, d'ail et d'épices.",
+            "Laisser mariner brièvement, puis les enfiler sur des brochettes et les griller ou les faire dorer à la poêle."
+        ],
+        "tags": [
+            "Accompagnements",
+            "barbecue",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6357",
+        "title": "Tartinade de chorizo",
+        "description": "Une tartinade savoureuse et facile à préparer à base de chorizo, fromage frais, tomates séchées, parmesan, basilic et pignons de pin torréfiés, parfaite pour l'apéritif.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6357_1782466789218.jpg&v=1782466795000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643491060076793121\" data-video-id=\"7643491060076793121\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643491060076793121\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥓\n             120 g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             90 g de fromage frais (Philadelphia)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             40 g de tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             10 g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/3 cuillère à café de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/4 cuillère à café de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à café d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             zest de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             13 feuilles de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15 g de pignons de pin torréfiés"
+            }
+        ],
+        "steps": [
+            "Faire cuire le chorizo.",
+            "Dans un mixeur, ajouter le chorizo cuit, le fromage frais, les tomates séchées, le parmesan, le poivre, le piment, l'huile d'olive, le zeste de citron, le jus de citron, le basilic et les pignons de pin torréfiés.",
+            "Mixer le tout jusqu'à obtenir une tartinade homogène."
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "Espagne"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6351",
+        "title": "Taboulé de chou-fleur",
+        "description": "Une recette légère, fraîche et pleine de saveurs pour les beaux jours ! Un taboulé revisité, sans semoule, simple à préparer et parfait pour un repas d'été frais et gourmand !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6351_1782459592790.jpg&v=1782459657000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654604752155725089\" data-video-id=\"7654604752155725089\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654604752155725089\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥬\n             1 chou-fleur"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1 petite boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             150 g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             4 tranches de jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6349",
+        "title": "Salade de Pâtes",
+        "description": "Une salade de pâtes bien colorée, ultra gourmande et pleine de saveurs, parfaite pour l'été, les meal prep ou pour accompagner un bon barbecue.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6349_1782459541835.jpg&v=1782459588000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633844204917050646\" data-video-id=\"7633844204917050646\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633844204917050646\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             400 g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 petites courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques pignons de pin (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons rôtis (pour la pâte de poivron)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la pâte de poivron)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Un filet de citron (pour la pâte de poivron)"
+            }
+        ],
+        "steps": [
+            "Faire cuire les légumes dans un bon filet d'huile d'olive avec le sel, le poivre et les herbes de Provence jusqu'à ce qu'ils soient bien fondants et caramélisés. Les laisser ensuite refroidir.",
+            "Pendant ce temps, faire cuire les pâtes puis les refroidir également. Couper le concombre en petits morceaux.",
+            "Assembler ensuite les pâtes, les légumes, le concombre, le persil, le basilic, les pignons de pain et la pâte de poivron. Ajouter un filet d'huile d'olive.",
+            "Mélanger le tout puis dresser avec quelques légumes sur le dessus, de la burrata, et du persil frais. À servir bien frais!"
+        ],
+        "tags": [
+            "barbecue",
+            "Italie",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6345",
+        "title": "Salade César",
+        "description": "Une salade César classique et rafraîchissante avec du poulet pané, des tomates cerises et du parmesan.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6345_1782459208381.jpg&v=1782459537000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653779236460743968\" data-video-id=\"7653779236460743968\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653779236460743968\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥗\n             salade Batavia"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Poulet pané"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 cas de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             copeaux de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             crème balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             sauce César (vinaigrette)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Salades",
+            "USA",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6347",
+        "title": "PÂTES SAUCE TOMATE SPICY",
+        "description": "Des pâtes relevées à la sauce tomate, agrémentées de breasola et de parmesan, parfaites pour une personne.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6347_1782458952580.jpg&v=1782459203000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7606397282812038422\" data-video-id=\"7606397282812038422\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7606397282812038422\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             80 g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 demi oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un peu de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             4 CAS de sauce tomate ou pulpe de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Un filet de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices : piment d'Espelette, origan, sel poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques tranches de breasola"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Une tranche de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil plat"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6341",
+        "title": "Jerk Chicken",
+        "description": "Un poulet grillé, fumé, sucré et épicé, inspiré des saveurs de la Jamaïque. Cette version recrée le goût authentique du Jerk Chicken, parfait pour des grillades originales et terriblement addictives.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6341_1782458871151.jpg&v=1782458942000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654591588189883670\" data-video-id=\"7654591588189883670\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654591588189883670\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             4 grosses cuisses de poulet (~840 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             8 oignons nouveaux (~80 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon jaune (~80 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             20 g de gingembre frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 piments Scotch Bonnet (ou les piments que tu trouves)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             10 g de thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40 g de sucre brun"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             30 ml de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             30 ml de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             45 ml d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste + jus d'1 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 c.à.c de pimento (piment de la Jamaïque) moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1,5 c.à.c de cannelle moulue"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c.à.c de clou de girofle moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c.à.c de noix de muscade moulue"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 c.à.c de sel"
+            }
+        ],
+        "steps": [
+            "Réalise plusieurs entailles dans 4 grosses cuisses de poulet (~840 g) à l'aide d'un couteau. Dépose-les dans un grand saladier.",
+            "Mixe jusqu'à obtenir une marinade homogène : les oignons nouveaux, l'oignon jaune, le gingembre frais, les gousses d'ail, les piments Scotch Bonnet, le thym frais, le sucre brun, la sauce soja, la sauce Worcestershire, l'huile neutre, le zeste et le jus d'un citron vert, le pimento moulu, la cannelle moulue, le clou de girofle moulu, la noix de muscade moulue et le sel.",
+            "Verse la marinade sur les cuisses de poulet et masse soigneusement pour faire pénétrer les saveurs dans les entailles. Laisse mariner 12 à 24h au réfrigérateur. Plus c'est long, meilleur c'est.",
+            "Fais griller le poulet au barbecue en le retournant régulièrement et en le badigeonnant de marinade à mi-cuisson. Poursuis jusqu'à une température interne de 82-85°C. Si tu n'as pas de barbecue, tu peux aussi le cuire au four ou à l'AirFryer. Laisse reposer quelques minutes avant de servir."
+        ],
+        "tags": [
+            "Afrique",
+            "barbecue",
+            "épicé",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -60,7 +2988,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6308",
         "title": "Salade de pâtes grecque",
         "description": "Une salade de pâtes fraîche et savoureuse inspirée de la Grèce, garnie de légumes croquants, d'avocat, d'olives, de feta et assaisonnée d'une sauce au yaourt grec, huile d'olive et citron.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6308_1782231129528.jpg&v=1782231169000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -147,75 +3075,42 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6306",
-        "title": "Tiramisu maison avec biscuit fait maison",
-        "description": "Le grand classique italien revisité par Norbert Tarayre, avec un biscuit cuillère maison pour un résultat encore plus gourmand et authentique !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_1781985462305.jpg&v=1781992693000",
-        "category": "desserts",
+        "id": "6313",
+        "title": "Pâte à pizza Napolitaine",
+        "description": "Découvrez la recette traditionnelle de la pâte à pizza Napolitaine, idéale pour les débutants et sans besoin de matériel spécialisé. Cette recette vous permettra de créer des pizzas authentiques avec une croûte parfaite.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_1782132052582-1.jpg&v=1782231126000",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/31kVcFuLujg\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
+        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/9ZTW2ygRqiI\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🧀\n             500 g de mascarpone"
+                "name": "🌾\n             614g de farine"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             6 œufs entiers"
+                "name": "💧\n             368g d'eau"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             100 g de sucre"
+                "name": "🧂\n             18g de sel"
             },
             {
                 "quantity": "",
-                "name": "🍫\n             100 g de cacao en poudre non sucré"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tasses de café fort refroidi"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à café d'Amaretto"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             180 g de blancs d'œufs (pour le biscuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             150 g de sucre (pour le biscuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             120 g de jaunes d'œufs (pour le biscuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             150 g de farine (pour le biscuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             40 g de sucre glace (pour le biscuit)"
+                "name": "🥣\n             0,71g de levure fraiche de boulanger ou 0,40g de levure sèche active"
             }
         ],
         "steps": [
-            "Préparer le biscuit cuillère maison : préchauffer le four à 180°C. Monter les 180 g de blancs d'œufs en neige ferme en ajoutant progressivement les 150 g de sucre pour obtenir une meringue brillante.",
-            "Incorporer délicatement les 120 g de jaunes d'œufs à la meringue à l'aide d'une maryse, en soulevant la masse pour ne pas faire retomber les blancs.",
-            "Ajouter les 150 g de farine tamisée en pluie et mélanger délicatement jusqu'à obtenir un appareil homogène.",
-            "Dresser le biscuit sur une plaque recouverte de papier cuisson à l'aide d'une poche à douille (en boudoirs ou en couche uniforme). Saupoudrer de sucre glace, laisser croûter 5 minutes, puis enfourner 10 à 12 minutes à 180°C. Laisser refroidir.",
-            "Préparer la crème au mascarpone : séparer les 6 œufs. Fouetter les jaunes avec les 100 g de sucre jusqu'à ce que le mélange blanchisse et soit bien mousseux.",
-            "Ajouter les 500 g de mascarpone au mélange jaunes-sucre et fouetter pour obtenir une crème lisse et homogène.",
-            "Monter les 6 blancs en neige ferme, puis les incorporer délicatement à la crème mascarpone en plusieurs fois pour garder une texture aérienne.",
-            "Préparer le café : mélanger les 4 tasses de café fort refroidi avec les 2 cuillères à café d'Amaretto dans un bol creux.",
-            "Montage du tiramisu : tremper rapidement les biscuits maison dans le mélange café-Amaretto et en tapisser le fond d'un plat.",
-            "Étaler une généreuse couche de crème mascarpone sur les biscuits imbibés. Répéter l'opération avec une deuxième couche de biscuits imbibés puis terminer par une couche de crème.",
-            "Lisser la surface et réserver au réfrigérateur minimum 4 heures (idéalement une nuit) pour que le tiramisu prenne bien.",
-            "Au moment de servir, saupoudrer généreusement de cacao en poudre à l'aide d'un tamis pour une belle finition. Déguster bien frais !"
+            "Mélangez les ingrédients pour former une première boule de pâte qui a bien absorbé toute la farine.",
+            "Laissez reposer pendant 20 minutes.",
+            "Effectuez les derniers rabats pour obtenir une pâte lisse.",
+            "Placez la pâte au repos à température ambiante dans un récipient fermé hermétiquement pendant 18 heures.",
+            "4 heures avant la cuisson des pizzas, formez les pâtons.",
+            "Déposez les pâtons à température ambiante dans un récipient fermé pendant 4 heures.",
+            "Préchauffez votre four à la température appropriée et cuisez vos pizzas."
         ],
         "tags": [
             "Italie"
@@ -225,10 +3120,59 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "6310",
+        "title": "Jus délicieux et rafraîchissant",
+        "description": "Un jus frais et désaltérant à base de pastèque, pêche, citron et menthe, parfait pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6310_1782231018872.jpg&v=1782231109000",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653924796475952416\" data-video-id=\"7653924796475952416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653924796475952416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400g de pastèques"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 à 3 pêches blanches"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 1 ou 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques glaçons"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "6198",
         "title": "Watermelon Mint Lemonade",
         "description": "Une limonade rafraîchissante à la pastèque et à la menthe, idéale pour les chaudes journées d'été.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6198_1781960897206.jpeg&v=1781969103000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6198_1781960897206.jpeg&v=1781961903000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -294,7 +3238,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6206",
         "title": "Brazilian Lemonade",
         "description": "Creamy, citrusy, and ridiculously refreshing. One sip and you'll see why this drink is always a favorite.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6206_1781960377139.jpeg&v=1781969095000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6206_1781960377139.jpeg&v=1781961895000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -343,7 +3287,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4076",
         "title": "Chicken Gyros Maison",
         "description": "Préparez de délicieux gyros de poulet maison avec cette recette complète. Elle inclut la marinade pour le poulet, la préparation du pain pita, un tzatziki frais et une sauce russe épicée pour un repas convivial et savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgyros-au-poulet-bbq.jpg&v=1781969087000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgyros-au-poulet-bbq.jpg&v=1781961887000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -529,7 +3473,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6183",
         "title": "Poulet Piri Piri à la Portugaise",
         "description": "Un poulet rôti à la portugaise, relevé avec une sauce piri piri maison à base de piments, d'ail, de citron et d'épices.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6183_1781951605129.jpg&v=1781969079000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6183_1781951605129.jpg&v=1781961879000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -606,7 +3550,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6187",
         "title": "Porto Bifana",
         "description": "Looks boozy, right? It's really not - all that wine and beer just cook down into the most flavourful, garlicky sauce ever. Rich, a little spicy, and so good you'll want to dip your bread in it. Porto does it best.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6187_1781951423536.jpg&v=1781969070000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6187_1781951423536.jpg&v=1781961870000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -714,7 +3658,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6185",
         "title": "Jardineira",
         "description": "Un plat mijoté portugais à base de bœuf, de pommes de terre, de carottes et de petits pois, relevé d'une sauce tomate et de vin blanc.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6185_1781951205782.jpg&v=1781969062000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6185_1781951205782.jpg&v=1781961862000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -792,7 +3736,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5117",
         "title": "Crispy rice",
         "description": "Une salade fraîche et croustillante avec du riz croustillant au four, du poulet, des légumes frais et une vinaigrette crémeuse au piment doux. Décrite comme l'une des meilleures salades jamais réalisées, elle est également riche en protéines.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2F08A6470-scaled-1.jpg&v=1781969053000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2F08A6470-scaled-1.jpg&v=1781961853000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -927,7 +3871,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3486",
         "title": "Cake Caramel Chocolat",
         "description": "Découvrez la recette gourmande d'un cake caramel chocolat, parfait pour les amateurs de douceurs. Ce gâteau combine la richesse du chocolat avec la douceur du caramel beurre salé, le tout enrobé d'un glaçage rocher croustillant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3486_1773151043025.png&v=1781969036000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3486_1773151043025.png&v=1781961836000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1046,7 +3990,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3505",
         "title": "Poulet croustillant sauce aigre-douce",
         "description": "Cette recette propose de préparer un poulet croustillant enrobé d'une sauce savoureuse et équilibrée. Les filets de poulet sont panés avec un mélange de maïzena et de farine, puis frits pour obtenir une texture croustillante. La sauce, à base de s...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3505_1773150978428.png&v=1781969027000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3505_1773150978428.png&v=1781961827000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1127,7 +4071,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3535",
         "title": "Frites Longues Japonaises",
         "description": "Découvrez comment préparer des frites longues et croustillantes d'inspiration japonaise. Cette recette utilise des pommes de terre écrasées, assaisonnées et frites pour un snack original et savoureux. Parfaites pour un apéritif ou un accompagnemen...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffrites_japonaises_clean_1773262998128.png&v=1781969019000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffrites_japonaises_clean_1773262998128.png&v=1781961819000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1204,7 +4148,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3667",
         "title": "Poulet Bang Bang & Patates Douces Rôties",
         "description": "Une recette saine, croustillante et rapide à réaliser au airfryer, avec seulement 460 kcal par portion et un équilibre parfait entre protéines et glucides.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FBang-Bang-Chicken-Skewers-Recipe.jpg&v=1781969009000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FBang-Bang-Chicken-Skewers-Recipe.jpg&v=1781961809000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1298,7 +4242,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3717",
         "title": "Boulettes de poulet en sauce oignon caramélisé",
         "description": "Une recette savoureuse de boulettes de poulet préparées avec des légumes râpés et des épices, puis cuites au four, avant d'être mijotées dans une sauce riche et parfumée à base d'oignons caramélisés, de silan (sirop de dattes) et d'un mélange d'ép...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboulettes-poulet-oignon-63-1500x1001-1.jpeg&v=1781969001000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboulettes-poulet-oignon-63-1500x1001-1.jpeg&v=1781961801000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1433,7 +4377,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3803",
         "title": "Guacamole",
         "description": "Une recette classique et facile pour préparer un délicieux guacamole maison, parfait pour l'apéritif ou accompagner vos plats mexicains.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fguacamole-mexicain-hyper-simple-et-hyper-bon-4254-1200.jpeg&v=1781968993000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fguacamole-mexicain-hyper-simple-et-hyper-bon-4254-1200.jpeg&v=1781961793000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1499,7 +4443,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3723",
         "title": "Alfredo Chicken Pasta",
         "description": "Une version crémeuse, fondante et ultra protéinée de la pasta Alfredo. Parfaite pour prendre soin de tes apports sans sacrifier le goût.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchicken-alfredo.jpg&v=1781968983000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchicken-alfredo.jpg&v=1781961783000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1615,7 +4559,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3915",
         "title": "Poulet mariné au yaourt",
         "description": "Une marinade saine, faible en gras et riche en protéines pour le poulet, parfaite pour les barbecues d'été. Elle est crémeuse, savoureuse et facile à préparer.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fyogurt-marinated-chicken-1.jpeg&v=1781968972000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fyogurt-marinated-chicken-1.jpeg&v=1781961772000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1699,7 +4643,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4327",
         "title": "Gâteau Nutella Cookie Pie",
         "description": "Une tarte aux cookies Nutella irrésistiblement fondante et gourmande, parfaite pour être servie chaude avec de la glace.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F1746188623015-959m45dg.jpeg&v=1781968961000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F1746188623015-959m45dg.jpeg&v=1781961761000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1778,7 +4722,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4156",
         "title": "Popcorn de Poulet croustillant au Airfryer",
         "description": "Découvrez une recette facile et rapide de popcorn de poulet croustillant, préparé au Airfryer pour une version plus saine. Idéal pour un apéritif ou un repas convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpopcorn.jpeg&v=1781968950000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpopcorn.jpeg&v=1781961750000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1863,7 +4807,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4079",
         "title": "Kolokithokeftedes Grecs (Beignets de Courgettes)",
         "description": "Greek Kolokithokeftedes or else zucchini fritters! A delicious mezze (side dish) that you will love!",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774135220657.jpg&v=1781968940000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774135220657.jpg&v=1781961740000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1928,7 +4872,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4105",
         "title": "Salade de rubans de carottes healthy",
         "description": "Cette salade de rubans de carottes virale est fraîche, croquante et pleine de saveur ! Préparée avec de fines lanières de carottes, du sésame, de l'ail, du citron et du chili crisp, c'est une salade rapide et délicieuse prête en quelques minutes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FKJ-Viral-Carrot-Ribbon-Salad-5-1-scaled.jpg&v=1781968929000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FKJ-Viral-Carrot-Ribbon-Salad-5-1-scaled.jpg&v=1781961729000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2006,7 +4950,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4502",
         "title": "Perles de Parmigiano",
         "description": "Des perles de parmesan pour un apéritif parfait.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fperle-di-parmigiano-fritte-3090-1.jpg&v=1781968918000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fperle-di-parmigiano-fritte-3090-1.jpg&v=1781961718000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2057,7 +5001,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4108",
         "title": "Salade de chou épicée au citron",
         "description": "Une salade de chou croquante et râpée, mélangée avec de l'ail, des oignons verts, du piment, des graines de sésame grillées, de l'huile chaude et du jus de citron frais. Légère, acidulée, légèrement épicée et incroyablement rafraîchissante - l'acc...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchouc.jpeg&v=1781968905000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchouc.jpeg&v=1781961705000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2119,7 +5063,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4052",
         "title": "Moussaka Grecque",
         "description": "La moussaka est le plat réconfortant ultime de Grèce, un plat copieux et savoureux qui rassemble des couches de pommes de terre tendres, d'aubergines riches, de sauce à la viande épicée et de béchamel crémeuse. C'est une célébration des saveurs mé...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833018073.jpg&v=1781968891000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833018073.jpg&v=1781961691000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2240,7 +5184,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4064",
         "title": "Salade de carottes croquantes au sésame",
         "description": "Des carottes fraîches et croquantes mélangées à une vinaigrette légère au sésame et au miel, avec du gingembre, de l'ail et des oignons verts. Simple, saine et pleine de saveur - parfaite comme accompagnement ou salade rapide.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcarottes_sesames_2107523045.jpg&v=1781968876000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcarottes_sesames_2107523045.jpg&v=1781961676000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2312,7 +5256,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4061",
         "title": "Beef Koftas with Yogurt Dill Sauce",
         "description": "Une recette grecque de koftas de bœuf, parfaites pour un barbecue d'été en famille, servies avec une sauce au yaourt et à l'aneth et du pain pita.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833349129.jpg&v=1781968861000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833349129.jpg&v=1781961661000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2389,7 +5333,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3967",
         "title": "San Sebastian Cheesecake",
         "description": "Une recette détaillée pour un cheesecake basque brûlé, crémeux à l'intérieur et caramélisé à l'extérieur, parfait pour un dessert gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F20250203203320-San-Sebastian-Cheesecake-Recipe-Cvjeya-ttuS_9339a0de-e42b-4182-94cd-11cb0b296bc2.jpeg&v=1781968846000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F20250203203320-San-Sebastian-Cheesecake-Recipe-Cvjeya-ttuS_9339a0de-e42b-4182-94cd-11cb0b296bc2.jpeg&v=1781961646000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2399,7 +5343,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             1kg Cream Cheese"
+                "name": "🥣\n             1kg Fromage à la crème"
             },
             {
                 "quantity": "",
@@ -2431,7 +5375,7 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Mélanger le cream cheese à température ambiante avec le sucre.",
+            "Mélanger le fromage à la crème à température ambiante avec le sucre.",
             "Après avoir bien mélangé, incorporer les oeufs un par un.",
             "Ajouter le jus de citron, le sel, l'extrait de vanille, la farine et bien mélanger.",
             "Ajouter ensuite la crème et incorporer délicatement à la cuillère ou à la spatule (ne pas utiliser de mixeur).",
@@ -2452,7 +5396,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4028",
         "title": "Lebanese Beef Wrap",
         "description": "A quick, tasty dinner, and perfect for days when you have zero energy. This lazy meal is ready in under 15 minutes!",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774521459452.jpg&v=1781968833000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774521459452.jpg&v=1781961633000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2562,7 +5506,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3983",
         "title": "Shawarma au poulet avec sauce à l'ail et frites",
         "description": "Une recette facile de shawarma au poulet maison, accompagné d'une sauce à l'ail crémeuse, d'oignons au sumac et de frites, le tout enveloppé dans un wrap grillé.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FH%C3%A4hnchen-Schawarma-selber-machen-Rezept.jpg&v=1781968822000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FH%C3%A4hnchen-Schawarma-selber-machen-Rezept.jpg&v=1781961622000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2660,7 +5604,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3978",
         "title": "Msemmen - Crêpe marocaine feuilletée",
         "description": "Le Msemmen est une crêpe marocaine feuilletée traditionnelle, préparée à base de farine et de semoule, puis pliée et cuite à la poêle jusqu'à obtenir une texture dorée et croustillante. Il peut être dégusté chaud, nature, avec du sirop ou en accom...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773829966741.jpg&v=1781968812000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773829966741.jpg&v=1781961612000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2720,7 +5664,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3962",
         "title": "Papas aliñás",
         "description": "Une recette espagnole classique et rafraîchissante, parfaite pour l'été. Cette tapa andalouse se compose de pommes de terre, d'oignon, d'œufs durs et de thon (ou melva), le tout assaisonné généreusement d'huile d'olive vierge extra et de vinaigre ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FPapas-ali%C3%B1%C3%A1s.jpeg&v=1781968800000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FPapas-ali%C3%B1%C3%A1s.jpeg&v=1781961600000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2781,7 +5725,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3960",
         "title": "Torrijas Caramelisées",
         "description": "Une recette de Torrijas traditionnelles espagnoles, tendres à l'intérieur et croustillantes à l'extérieur grâce à un délicieux caramel maison, parfaites pour la Semaine Sainte et à accompagner d'une boule de glace.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773828797191.jpg&v=1781968790000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773828797191.jpg&v=1781961590000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2850,7 +5794,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3932",
         "title": "Grilled Lamb Chops With Vegetables",
         "description": "Grilled Lamb Chops With Vegetables - Perfect Choice For Christmas Dinner 😋",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftravers.jpg&v=1781968780000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftravers.jpg&v=1781961580000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2944,7 +5888,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4692",
         "title": "Couscous Marocain",
         "description": "Un couscous marocain traditionnel et généreux, composé de légumes variés, de poulet, d'agneau et de merguez, servi avec une semoule parfumée. Une garniture sucrée aux raisins secs est proposée en option pour une touche d'originalité.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecette-couscous-marocain.jpeg&v=1781968768000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecette-couscous-marocain.jpeg&v=1781961568000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3064,7 +6008,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5570",
         "title": "Pasta alla Montecarlo",
         "description": "Une recette de pâtes crémeuses à la Montecarlo avec du bœuf haché, du pesto et une touche de peperoncini, pour un goût de vacances 5 étoiles.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fdirection-l-italie-avec-la-recette-des-pasta-alla-montecarlo.jpg&v=1781968756000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fdirection-l-italie-avec-la-recette-des-pasta-alla-montecarlo.jpg&v=1781961556000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3138,7 +6082,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6154",
         "title": "Brochettes de poulet à l'ail et au parmesan",
         "description": "Des brochettes de poulet tendres et savoureuses, marinées à l'ail et au parmesan, puis cuites à l'air fryer. Elles sont ensuite badigeonnées d'une sauce crémeuse à l'ail, au parmesan et au persil pour un plat principal ou une préparation de repas ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6154_1781690755381.jpeg&v=1781968746000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6154_1781690755381.jpeg&v=1781961546000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3229,7 +6173,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6171",
         "title": "Chocolate Chip Banana Bread Muffins",
         "description": "Une recette facile pour préparer de délicieux muffins moelleux au pain de banane et aux pépites de chocolat.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6171_1781797710615.jpg&v=1781968734000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6171_1781797710615.jpg&v=1781961534000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3315,7 +6259,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6181",
         "title": "Insalata pantesca",
         "description": "Une salade de pommes de terre fraîche et savoureuse, typique de Pantelleria, avec des tomates, des olives et des câpres, parfaite pour l'été.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6181_1781951053056.jpg&v=1781968723000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6181_1781951053056.jpg&v=1781961523000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3387,7 +6331,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3576",
         "title": "Ganache montée vanille",
         "description": "Découvrez la ganache montée, une crème aérienne, légère et addictive, parfaite pour sublimer vos pâtisseries. Cette base polyvalente peut être aromatisée selon vos envies, offrant une texture idéale pour entremets, tartes, choux et macarons. Une v...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773311749644.png&v=1781968711000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773311749644.png&v=1781961511000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3441,7 +6385,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3884",
         "title": "Wrap sain & gourmand au thon",
         "description": "Une recette de wrap rapide, équilibrée et riche en protéines, idéale pour un déjeuner sur le pouce ou un rééquilibrage alimentaire.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fburrito-poulet.jpeg&v=1781968700000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fburrito-poulet.jpeg&v=1781961500000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3503,7 +6447,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3927",
         "title": "Arayes Skewers (Rouleaux de viande grillés)",
         "description": "Élevez votre barbecue avec ces amusants rouleaux de viande grillés! C'est un plat qui plaît à coup sûr et très amusant à préparer en famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Farayes-Kafta-.jpg&v=1781968690000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Farayes-Kafta-.jpg&v=1781961490000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3565,7 +6509,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4702",
         "title": "Hot Chili Chicken Burgers",
         "description": "Préparez des burgers de poulet épicés avec des pains maison infusés aux chips de nacho, du poulet mariné et pané aux nacho, le tout frit et cuit au four pour un repas savoureux et croustillant, parfait pour l'iftar.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHot-chilibroodjes-eindresultaat-Kookmutsjes-copyright-867x1300-1.jpeg&v=1781968679000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHot-chilibroodjes-eindresultaat-Kookmutsjes-copyright-867x1300-1.jpeg&v=1781961479000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3667,7 +6611,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4725",
         "title": "Crispy Beef Tacos",
         "description": "Une recette de tacos au bœuf croustillants, garnis de fromage mozzarella, accompagnés d'une sauce maison crémeuse et d'une salsa fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FCrispy-Braised-Chipotle-Beef-Tacos-1.jpeg&v=1781968668000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FCrispy-Braised-Chipotle-Beef-Tacos-1.jpeg&v=1781961468000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3811,7 +6755,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4716",
         "title": "Cheesy Beef Crunch Pockets",
         "description": "Des poches croustillantes et savoureuses garnies de bœuf haché, de poivrons, de maïs et de mozzarella fondante, le tout enveloppé dans des galettes de pain plat et cuit au four jusqu'à obtenir une texture dorée et croustillante.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcheesy.jpeg&v=1781968658000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcheesy.jpeg&v=1781961458000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3887,7 +6831,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4722",
         "title": "Crispy Smashed Potatoes",
         "description": "Des pommes de terre écrasées ultra croustillantes à l'extérieur et moelleuses à l'intérieur, incroyablement addictives.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fair-fryer-smashed-potatoes-4-683x1024-1.jpeg&v=1781968647000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fair-fryer-smashed-potatoes-4-683x1024-1.jpeg&v=1781961447000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3938,7 +6882,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5013",
         "title": "Salade de pâtes croustillantes",
         "description": "Une salade originale à base de pâtes cuites au air fryer pour un effet croustillant, mélangées à de la laitue, des tomates cerises et une sauce crémeuse au yogourt.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade-pates.jpeg&v=1781968635000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade-pates.jpeg&v=1781961435000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4029,7 +6973,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4829",
         "title": "Crumble aux pommes et glace vanille",
         "description": "Un classique indémodable, ce crumble aux pommes et caramel est croustillant sur le dessus et garni d'une compote de pommes juteuse. Servi chaud avec de la glace à la vanille et un filet de caramel.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcrumble.jpeg&v=1781968625000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcrumble.jpeg&v=1781961425000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4106,7 +7050,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4877",
         "title": "Kebab Adana",
         "description": "Un kebab de poulet juteux, savoureux et incroyablement facile à préparer au four. Parfait servi avec une salade, une sauce au yaourt et n'importe quel accompagnement.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fadana.jpeg&v=1781968615000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fadana.jpeg&v=1781961415000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4224,7 +7168,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5028",
         "title": "Salade de pommes de terre rôties à la burrata",
         "description": "Une salade originale et gourmande composée de pommes de terre grenailles rôties, de courgettes caramélisées au soja, d'olives, de parmesan et d'une burrata crémeuse, le tout relevé par une sauce fraîche aux tomates cerises, citron et herbes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade.jpeg&v=1781968603000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade.jpeg&v=1781961403000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4326,7 +7270,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5016",
         "title": "Gratin mexicain protéiné",
         "description": "Un gratin mexicain simple, gourmand, complet et rassasiant, parfait pour le batch cooking et préparer 3-4 repas à l'avance.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FGratin-Mexicain.jpeg&v=1781968592000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FGratin-Mexicain.jpeg&v=1781961392000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4407,7 +7351,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3991",
         "title": "Riz jaune du Moyen-Orient",
         "description": "Un délicieux riz jaune du Moyen-Orient, parfumé au curcuma et au thym, agrémenté de légumes (carotte, céleri, oignon), d'amandes grillées et de raisins secs. Une recette végétarienne et saine, parfaite comme plat principal ou accompagnement.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Friz.jpg&v=1781968582000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Friz.jpg&v=1781961382000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4488,7 +7432,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4005",
         "title": "Kefta au tahini au four",
         "description": "Un plat parfumé, fondant et ultra savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fkefta_tahini_magazine_1775838030073.jpg&v=1781968570000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fkefta_tahini_magazine_1775838030073.jpg&v=1781961370000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4562,7 +7506,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Le jus d'½ citron"
+                "name": "🍋\n             Le jus de ½ citron"
             },
             {
                 "quantity": "",
@@ -4588,7 +7532,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4019",
         "title": "Eggplant Fatteh (Fatteh aux aubergines)",
         "description": "Le Fatteh aux aubergines est un plat moyen-oriental apprécié, facile à préparer et parfait pour impressionner avec un minimum d'effort. Cette version végétalienne utilise du yaourt de soja non sucré.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Feggplant_fatteh_gourmet_1775838652751.jpg&v=1781968559000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Feggplant_fatteh_gourmet_1775838652751.jpg&v=1781961359000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4678,7 +7622,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4040",
         "title": "Bifteki avec Tzatziki et Riz aux Tomates",
         "description": "Un plat grec complet composé de boulettes de viande (Bifteki) farcies à la feta, accompagnées d'une sauce Tzatziki rafraîchissante et d'un riz aux tomates savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbifteki_tzatziki_rice_homemade_1775840116718.jpg&v=1781968549000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbifteki_tzatziki_rice_homemade_1775840116718.jpg&v=1781961349000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4818,7 +7762,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3957",
         "title": "Cookies",
         "description": "Une recette pour des cookies géants et ultra gourmands, inspirés de New York, fourrés à la pâte à tartiner Bueno et agrémentés de morceaux de Kinder Bueno.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcookies_sans_beurre_homemade_1775840598269.jpg&v=1781968537000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcookies_sans_beurre_homemade_1775840598269.jpg&v=1781961337000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -4893,7 +7837,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5141",
         "title": "Pepper Steak over White Rice",
         "description": "Une recette de Pepper Steak servi sur du riz blanc, avec une marinade savoureuse et une sauce riche, facile à préparer à la maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpepper-steak-gravy-rice-bowl-1.jpg&v=1781968526000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpepper-steak-gravy-rice-bowl-1.jpg&v=1781961326000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5009,7 +7953,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5138",
         "title": "Brochettes de bœuf au fromage façon yakitori",
         "description": "Un mélange ultra gourmand entre la cuisine japonaise et nos envies de fromage fondant. Du bœuf tendre, du comté coulant, le tout nappé d'une sauce sucrée-salée irrésistible.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fyakitori-poulet-airfryer.jpeg&v=1781968516000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fyakitori-poulet-airfryer.jpeg&v=1781961316000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5065,7 +8009,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5222",
         "title": "Cookie Ferrero Rocher",
         "description": "Des cookies inspirés des Ferrero Rocher, avec un cœur fondant au Nutella et à la pâte de noisette, enrobés de chocolat et de noisettes croquantes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FIMG_8387-er-720x1049-1.jpg&v=1781968504000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FIMG_8387-er-720x1049-1.jpg&v=1781961304000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5147,7 +8091,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5199",
         "title": "Pastitsio Grec Maison",
         "description": "Un Pastitsio grec maison, composé de couches de bucatini parfaitement cuites, d'une riche sauce à la viande hachée et d'une béchamel crémeuse et onctueuse. Un plat réconfortant qui nourrit le corps et réchauffe l'âme.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2F1776036681-pastitsio-grec-savoureux-gratin-de-pates-a-la-bolognaise-et-bechamel.jpg&v=1781968495000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2F1776036681-pastitsio-grec-savoureux-gratin-de-pates-a-la-bolognaise-et-bechamel.jpg&v=1781961295000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5231,11 +8175,11 @@ export const mockRecipes: Recipe[] = [
             "Réduire le feu à moyen, couvrir et laisser mijoter la sauce pendant environ 25 minutes. Retirer la feuille de laurier et le bâton de cannelle avant d'assembler le plat.",
             "Dans une casserole séparée, faire chauffer le lait à feu moyen. Incorporer progressivement 6 cuillères à soupe de fécule de maïs, puis ajouter le beurre. Continuer de remuer jusqu'à ce que la sauce commence à épaissir, en veillant à remuer le fond pour éviter qu'elle ne colle.",
             "Ajouter la noix de muscade, le sel et le poivre au goût, et continuer de remuer. Incorporer la moitié du fromage râpé jusqu'à ce qu'il soit fondu. Retirer du feu et laisser la sauce refroidir légèrement avant d'y incorporer les jaunes d'œufs en fouettant.",
-            "Préchauffer votre four à 350°F (175°C).",
+            "Préchauffer votre four à 175°C.",
             "Graisser un plat de cuisson de 33 pouces (environ 33×22 cm). Étaler la moitié des pâtes cuites uniformément au fond du plat.",
             "Verser la sauce à la viande hachée sur les pâtes, en l'étalant uniformément. Ajouter le reste des pâtes sur la sauce.",
             "Verser la sauce béchamel sur les pâtes, en l'étalant uniformément pour couvrir le dessus. Saupoudrer le reste du fromage râpé sur la sauce béchamel.",
-            "Faire cuire le Pastitsio dans le four préchauffé pendant environ 1 heure, ou jusqu'à ce que le dessus soit doré et que la béchamel soit prise. Laisser le plat refroidir légèrement avant de servir. Dégustez votre pastitsio maison!"
+            "Faire cuire le Pastitsio dans le four préchauffé pendant environ 1 heure, ou jusqu'à ce que le dessus soit doré et que la béchamel soit prise. Laisser le plat refroidir légèrement avant de servir. Dégustez votre pastitsio maison !"
         ],
         "tags": [
             "Grèce"
@@ -5248,7 +8192,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5228",
         "title": "Chili con carne",
         "description": "Un plat mijoté réconfortant et épicé, originaire du Mexique, à base de viande hachée de bœuf, de haricots rouges, de maïs et de légumes, parfait pour les journées froides.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FChili-con-carne-390x390-1.jpeg&v=1781968484000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FChili-con-carne-390x390-1.jpeg&v=1781961284000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5349,7 +8293,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5335",
         "title": "Pates butternut et lardons grillés",
         "description": "Une recette réconfortante de pâtes aux perles, nappées d'une onctueuse crème de butternut, agrémentées de lardons grillés et d'oignons caramélisés. Parfait pour l'automne ou l'hiver.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FSpaghetti_w2_3-Petite.jpeg&v=1781968474000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FSpaghetti_w2_3-Petite.jpeg&v=1781961274000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5419,7 +8363,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5257",
         "title": "Crispy Veggie Balls",
         "description": "Des boules de légumes croustillantes à base de pommes de terre, carottes et brocoli, assaisonnées et cuites à l'air-fryer ou au four, servies avec une sauce crémeuse au citron et à l'ail.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FART_rev1-4-1.jpg&v=1781968464000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FART_rev1-4-1.jpg&v=1781961264000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5510,7 +8454,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5332",
         "title": "Pommes de terre farcies super cheesy",
         "description": "Des pommes de terre cuites au four ou à l'air fryer, évidées et garnies d'une purée crémeuse mélangée à du beurre, de la crème fraîche, du fromage, des oignons et des lardons de dinde, puis gratinées pour un plat réconfortant et gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpommes-de-terre-farcies.jpg&v=1781968454000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpommes-de-terre-farcies.jpg&v=1781961254000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5585,7 +8529,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5326",
         "title": "Paninis Express à la Viande Hachée",
         "description": "Des paninis ultra fondants, super rapides et trop bons, garnis de viande hachée épicée et de mozzarella, parfaits pour un repas express.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpanini.jpg&v=1781968440000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpanini.jpg&v=1781961240000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5670,7 +8614,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5314",
         "title": "Boulettes de poulet à la crème forestière, purée maison",
         "description": "Découvrez une recette réconfortante de boulettes de poulet moelleuses, mijotées dans une onctueuse sauce forestière aux champignons, accompagnées d'une purée de pommes de terre maison. Un plat idéal pour les repas en famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fboulettes.jpg&v=1781968430000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fboulettes.jpg&v=1781961230000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5784,7 +8728,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5317",
         "title": "Pommes de terre rôties aux herbes",
         "description": "Des pommes de terre croustillantes à l'extérieur et moelleuses à l'intérieur, parfumées au beurre et à l'ail, parfaites comme accompagnement ou apéritif.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FPdt_roties-aux-herbes.jpg&v=1781968419000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FPdt_roties-aux-herbes.jpg&v=1781961219000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5852,7 +8796,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5299",
         "title": "Spaghettis aux crevettes et tomates cerises",
         "description": "Une recette facile de pâtes aux crevettes, sans crème, avec des tomates cerises, de l'ail et une touche de citron pour un plat savoureux et léger.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrevette.jpeg&v=1781968408000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrevette.jpeg&v=1781961208000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5936,7 +8880,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5442",
         "title": "Panna Cotta aux fraises",
         "description": "Une recette classique de Panna Cotta italienne, crémeuse et onctueuse, surmontée d'un coulis frais aux fraises. Un dessert léger et rafraîchissant, parfait pour l'été.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpanna-cotta-vanille-et-coulis-de-fraise-v2.jpeg&v=1781968397000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpanna-cotta-vanille-et-coulis-de-fraise-v2.jpeg&v=1781961197000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -5999,7 +8943,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5457",
         "title": "Crêpes colorées aux fruits et crème fouettée",
         "description": "Un dessert maison délicieux et facile à réaliser : des crêpes colorées garnies de crème fouettée, de mascarpone, de fraises et de morceaux de gâteau, décorées de fruits frais.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrepe-1.jpg&v=1781968386000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrepe-1.jpg&v=1781961186000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6087,7 +9031,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5630",
         "title": "Focaccia charcuterie",
         "description": "Une focaccia garnie de charcuterie, parfaite pour les apéritifs d'été et les réceptions. Une façon amusante de combiner pain et charcuterie en un seul plat.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F2259902_w1200h1200c1cx600cy400cxt0cyt0cxb1200cyb800.jpg&v=1781968374000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F2259902_w1200h1200c1cx600cy400cxt0cyt0cxb1200cyb800.jpg&v=1781961174000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6140,7 +9084,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5621",
         "title": "Poivrons rôtis farcis à la ricotta",
         "description": "Des poivrons longs rôtis et épluchés, farcis d'un mélange crémeux de ricotta, oignon rouge et roquette, puis roulés et assaisonnés d'huile d'olive, de vinaigre balsamique et de basilic frais.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FR698_TRIO_DE_MINI_POIVRONS_FARCIS_RICOTTA_150G.jpg&v=1781968364000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FR698_TRIO_DE_MINI_POIVRONS_FARCIS_RICOTTA_150G.jpg&v=1781961164000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6215,7 +9159,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5615",
         "title": "Poireaux confits & gratinés",
         "description": "Une recette de poireaux confits et gratinés, incroyablement fondants et tendres, nappés d'une sauce crémeuse au comté et citron. Un plat végétarien réconfortant, parfait pour l'hiver.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fm1532-hd-gratin-poireaux-1.jpg&v=1781968353000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fm1532-hd-gratin-poireaux-1.jpg&v=1781961153000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6309,7 +9253,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5600",
         "title": "Soupe aux oignons",
         "description": "Une soupe réconfortante et végétarienne à base d'oignons caramélisés, de pommes de terre, de fromage frais et de bouillon de légumes, assaisonnée de thym et de moutarde, parfaite pour les jours froids.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffrench-onion-soup.png.jpeg&v=1781968342000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffrench-onion-soup.png.jpeg&v=1781961142000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6392,7 +9336,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5588",
         "title": "Loaded Potato Soup",
         "description": "Une soupe de pommes de terre crémeuse et réconfortante, garnie de tofu fumé croustillant et de fromage végétalien, parfaite pour les journées froides.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FLoaded-Baked-Potato-Soup-063.jpg&v=1781968331000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FLoaded-Baked-Potato-Soup-063.jpg&v=1781961131000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6494,7 +9438,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5508",
         "title": "Cinnamon Roll Muffins",
         "description": "Super fluffy, filled with that delicious Philadelphia cream cheese, and topped with a buttery, cinnamon-sugar swirl that gives the perfect crunchy touch.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmuffin-3-scaled-1.jpg&v=1781968320000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmuffin-3-scaled-1.jpg&v=1781961120000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6504,7 +9448,7 @@ export const mockRecipes: Recipe[] = [
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🌾\n             240 g (2 cups) farine tout usage, tamisée"
+                "name": "🌾\n             240 g (2 tasses) de farine tout usage, tamisée"
             },
             {
                 "quantity": "",
@@ -6568,7 +9512,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             6 oz (170 g) de Philadelphia cream cheese, ramolli"
+                "name": "🥣\n             170 g de Philadelphia cream cheese, ramolli"
             },
             {
                 "quantity": "",
@@ -6619,7 +9563,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5528",
         "title": "Patates douces et carottes sauce coco",
         "description": "Une recette végétarienne facile et rapide de légumes rôtis (patates douces et carottes) accompagnés d'une onctueuse sauce crémeuse à la cacahuète et au lait de coco.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F19116_3-2_1440-960.jpg&v=1781968310000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F19116_3-2_1440-960.jpg&v=1781961110000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6702,7 +9646,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5505",
         "title": "Vanilla Cream Rolls",
         "description": "This recipe combines the delicacy of puff pastry with the richness of Diplomat cream. A dreamy dessert that strikes the perfect balance between crispy, creamy, and sweet.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frolls.jpg&v=1781968300000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frolls.jpg&v=1781961100000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6764,7 +9708,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5433",
         "title": "Gâteau aux fruits renversé",
         "description": "Une recette facile de gâteau aux baies mélangées, parfait pour une séance de pâtisserie réconfortante ou pour les fêtes de Noël.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FCorn-_-Berry-Upside-Down-Cake-Lead-0.jpg&v=1781968289000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FCorn-_-Berry-Upside-Down-Cake-Lead-0.jpg&v=1781961089000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6836,7 +9780,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5801",
         "title": "Riz à la viande hachée",
         "description": "Une recette simple et rapide de riz à la viande hachée, assaisonnée avec de la sauce soja, de l'huile de sésame, du gingembre, de l'ail et de l'oignon.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Friz.jpeg&v=1781968278000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Friz.jpeg&v=1781961078000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6897,7 +9841,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5789",
         "title": "Pommes de terre farcies protéinées",
         "description": "Une recette simple et gourmande de pommes de terre farcies, riche en protéines, idéale pour une diète.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpommes-de-terre-farcies-au-poulet-recette-gourmande-et-facile-7622.jpeg&v=1781968267000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpommes-de-terre-farcies-au-poulet-recette-gourmande-et-facile-7622.jpeg&v=1781961067000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -6971,7 +9915,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5783",
         "title": "Gratin de patates douces à la viande hachée",
         "description": "Un gratin équilibré et savoureux à base de patates douces, viande hachée, cottage cheese et avocat, parfait pour un repas nutritif et réconfortant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin-patate-douce-viande-hache-mijoteetpapote.jpg&v=1781968257000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin-patate-douce-viande-hache-mijoteetpapote.jpg&v=1781961057000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7041,7 +9985,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5939",
         "title": "Curry d'aubergine, pois chiches et raïta",
         "description": "Un curry végétarien parfumé aux aubergines fondantes, accompagné de pois chiches rôtis au paprika fumé et d'une sauce raïta fraîche au concombre et à la menthe. Idéal avec du pain ou du riz.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fcurry-aubergine.jpg&v=1781968244000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fcurry-aubergine.jpg&v=1781961044000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7155,7 +10099,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5762",
         "title": "Tiramisu Salé Tomates Olives",
         "description": "Une version salée et rafraîchissante du tiramisu, parfaite pour l'apéritif ou une entrée légère, avec des tomates, du mascarpone, du pesto et de la straciatella.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ftiramisu-sal%C3%A9.jpg&v=1781968233000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ftiramisu-sal%C3%A9.jpg&v=1781961033000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7236,7 +10180,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5937",
         "title": "Courgettes rôties et crème de mozza",
         "description": "Des courgettes rôties et marinées au miel, soja, origan et paprika fumé, servies avec une crème onctueuse à base de mozzarella, yaourt, herbes fraîches, ail et citron, le tout garni de grenade, mozzarella fraîche et pignons de pin grillés.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fcourgettes-mozza.jpeg&v=1781968224000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fcourgettes-mozza.jpeg&v=1781961024000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7326,7 +10270,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5086",
         "title": "Café batido con Kinder Bueno",
         "description": "Une boisson rafraîchissante et gourmande à base de café fouetté, de Nutella, de Kinder Bueno fondu et de glaçons, parfaite pour les amateurs de café et de chocolat.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcaf%C3%A9.jpeg&v=1781968218000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcaf%C3%A9.jpeg&v=1781961018000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7383,7 +10327,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6034",
         "title": "Salade de pommes de terre au thon et tomates confites",
         "description": "Une salade de pommes de terre gourmande et fraîche, agrémentée de thon, de tomates cerises confites, d'ail, de thym et de citron. Facile à préparer, elle peut être dégustée tiède ou froide, garnie de parmesan et de basilic frais.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FHF_Y24_R226_W24_FR_QFR15705-2_Main_high-d8cb6774.jpg.jpg&v=1781968210000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FHF_Y24_R226_W24_FR_QFR15705-2_Main_high-d8cb6774.jpg.jpg&v=1781961010000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7479,7 +10423,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4898",
         "title": "Sundae Maison Caramel Beurre Salé",
         "description": "Recette facile et rapide pour réaliser un sundae maison au caramel beurre salé, inspiré des célèbres glaces de McDonald's. Une dinguerie à reproduire chez soi !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FSundae-maison-au-caramel-750x1125-1.jpg&v=1781968203000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FSundae-maison-au-caramel-750x1125-1.jpg&v=1781961003000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7528,7 +10472,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6019",
         "title": "Taco Bowl maison",
         "description": "Ce Taco Bowl maison est une recette healthy, riche en protéines et pleine de saveurs mexicaines, prête en moins de 15 minutes. Parfait pour un meal prep, un dîner rapide ou un déjeuner stylé pour manger mieux sans se priver.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FTaco-Bowl-Recipe-1.jpg&v=1781968196000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FTaco-Bowl-Recipe-1.jpg&v=1781960996000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7625,7 +10569,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6011",
         "title": "Tinga de pollo",
         "description": "Une recette mexicaine de tinga de poulet, où le poulet effiloché est mijoté dans une sauce relevée aux chipotles, puis servi sur des tostadas avec des garnitures fraîches comme de la crème, de la laitue, du fromage frais et de l'avocat.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FChicken-Tinga-Tostadas8-2-683x1024-1.jpg&v=1781968190000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FChicken-Tinga-Tostadas8-2-683x1024-1.jpg&v=1781960990000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7727,7 +10671,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6013",
         "title": "Pico de Gallo",
         "description": "Fresh, easy, and full of flavor! This Mexican-style Pico de Gallo recipe is made with simple, fresh ingredients, perfect for dipping with tortilla chips or adding to tacos, quesadillas, and more.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fi140307-sauce-mexicaine-a-la-tomate.jpeg&v=1781968179000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fi140307-sauce-mexicaine-a-la-tomate.jpeg&v=1781960979000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7778,7 +10722,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6007",
         "title": "Mexican Street Corn Jalapeño",
         "description": "Des jalapeño poppers revisités avec une garniture inspirée du maïs de rue mexicain (Elote), parfaits pour un barbecue estival. Ils sont garnis d'un mélange crémeux de maïs rôti, bacon, fromages, crème aigre et épices, puis cuits au four jusqu'à ce...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fstreet.jpg&v=1781968168000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fstreet.jpg&v=1781960968000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7854,7 +10798,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6009",
         "title": "Bowl Mexicanos comestible",
         "description": "Un bowl comestible rempli de saveur, de texture et de couleur, avec des Tostacos WOW Guacamole pour une touche croustillante et fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbowl-salade.jpg&v=1781968157000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbowl-salade.jpg&v=1781960957000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -7913,7 +10857,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6003",
         "title": "Carne Asada",
         "description": "Une recette mexicaine classique de Carne Asada, composée de steak de flanc ou de jupe mariné, grillé à la perfection et servi avec du riz mexicain, un guacamole frais et une salsa maison relevée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FCarne-Asada-35.jpg&v=1781968146000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FCarne-Asada-35.jpg&v=1781960946000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8067,7 +11011,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5996",
         "title": "Quesadilla de Carne Molida",
         "description": "Une recette rapide et facile de quesadillas à la viande hachée, garnies de légumes, d'épices et d'un mélange de quatre fromages mexicains, servies avec du guacamole, de la crème et du pico de gallo.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fquesadillas.jpg&v=1781968136000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fquesadillas.jpg&v=1781960936000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8164,7 +11108,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6196",
         "title": "Sorbetto al limone",
         "description": "Le dessert parfait, ultra facile et super rafraîchissant pour cet été. Direction Amalfi et Positano avec ce sorbet citron servi directement dans son citron.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6196_1781960849984.jpg&v=1781968093000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6196_1781960849984.jpg&v=1781960893000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8214,7 +11158,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6200",
         "title": "Salade de melon",
         "description": "Une salade de melon exceptionnelle et facile à réaliser, parfaite pour l'été.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6200_1781960830184.jpeg&v=1781968047000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6200_1781960830184.jpeg&v=1781960847000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8263,7 +11207,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6194",
         "title": "Salade Gourmande au Poulet Croustillant",
         "description": "Une salade fraîche et gourmande composée de poulet croustillant pané au panko, de légumes croquants, d'œufs durs, de copeaux de parmesan et d'une burrata crémeuse.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6194_1781960624578.jpg&v=1781968026000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6194_1781960624578.jpg&v=1781960826000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8367,7 +11311,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6208",
         "title": "Peanut Butter Latte",
         "description": "Ma boisson préférée dès qu'il commence à faire beau !!",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6208_1781960614873.jpg&v=1781967821000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6208_1781960614873.jpg&v=1781960621000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8417,7 +11361,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6202",
         "title": "Limonade brésilienne à la cerise",
         "description": "Une boisson rafraîchissante et fruitée, inspirée de la limonade brésilienne, avec une touche de cerise.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6202_1781960386415.jpg&v=1781967811000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6202_1781960386415.jpg&v=1781960611000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8445,7 +11389,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6148",
         "title": "Crémeux de poulet miel moutarde",
         "description": "Une recette facile et rapide de poulet en sauce crémeuse au miel et à la moutarde, agrémentée de tomates et d'épices, servie avec du riz basmati.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6148_1781690764144.jpg&v=1781958308000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6148_1781690764144.jpg&v=1781951108000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8527,7 +11471,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6167",
         "title": "Tiramisu aux Fraises",
         "description": "Un délicieux tiramisu frais et fruité aux fraises, parfait pour environ 8 parts.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6167_1781798880849.jpg&v=1781806161000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6167_1781798880849.jpg&v=1781798961000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8592,7 +11536,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6163",
         "title": "Pâtes à la merguez",
         "description": "Un vrai bonheur très gourmand !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6163_1781798763759.jpg&v=1781806077000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6163_1781798763759.jpg&v=1781798877000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8652,7 +11596,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6165",
         "title": "Insalata di patate",
         "description": "Également connue sous le nom de salade pantesca, cette salade de pommes de terre est un grand classique de la tradition méditerranéenne. Un plat intemporel qui raconte l'histoire, la culture et les saveurs de l'île de Pantelleria.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6165_1781798598599.jpeg&v=1781805957000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6165_1781798598599.jpeg&v=1781798757000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8714,7 +11658,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6150",
         "title": "Tuscan Chicken Meatballs",
         "description": "Une sauce riche et savoureuse de style toscan, combinant tomates séchées, épinards, tomates et épices, servie avec de tendres boulettes de poulet (ou du poulet en dés) sur du riz blanc. La base crémeuse peut être réalisée avec de la crème épaisse ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6150_1781691480241.jpg&v=1781699154000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6150_1781691480241.jpg&v=1781691954000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8765,7 +11709,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6146",
         "title": "Saumon à la Toscane crémeux",
         "description": "Une recette de pavés de saumon saisis puis mijotés dans une sauce crémeuse à la Toscane avec des tomates séchées, des tomates cerises, des épinards et du basilic frais.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6146_1781691328894.jpg&v=1781698676000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6146_1781691328894.jpg&v=1781691476000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8845,7 +11789,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6144",
         "title": "Salade fraîche de truite fumée",
         "description": "Une salade fraîche et équilibrée à base de truite fumée, avocat, concombre et tomate, idéale pour un rééquilibrage alimentaire et les menus d'été.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6144_1781691147601.jpeg&v=1781698526000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6144_1781691147601.jpeg&v=1781691326000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8910,7 +11854,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6152",
         "title": "Poulet au pesto de basilic",
         "description": "Un plat réconfortant de poulet mijoté au pesto de basilic et tomates cerises, servi avec une purée de pommes de terre crémeuse.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6152_1781690807643.jpeg&v=1781698343000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6152_1781690807643.jpeg&v=1781691143000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -8982,7 +11926,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6142",
         "title": "PAVÉS DE SAUMON",
         "description": "Une recette simple et savoureuse de pavés de saumon accompagnés d'une sauce crémeuse à l'oignon rouge, ail, citron vert et piment d'Espelette.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6142_1781690792585.jpeg&v=1781698004000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6142_1781690792585.jpeg&v=1781690804000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9055,7 +11999,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6118",
         "title": "Porc caramélisé à la sauce soja",
         "description": "Un plat savoureux de porc caramélisé avec une sauce soja, parfumé à l'ail, au gingembre et aux épices.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6118_1781452459108.jpg&v=1781459692000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6118_1781452459108.jpg&v=1781452492000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9119,7 +12063,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6126",
         "title": "Oignons farcis",
         "description": "Une recette réconfortante d'oignons farcis à la viande hachée et aux épices, cuits au four dans une sauce tomate.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6126_1781452288718.jpg&v=1781459654000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6126_1781452288718.jpg&v=1781452454000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9203,7 +12147,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6122",
         "title": "Nouilles chinoises sautées au poulet",
         "description": "Une recette super simple de nouilles chinoises sautées au poulet.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6122_1781452261225.jpg&v=1781459485000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6122_1781452261225.jpg&v=1781452285000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9274,7 +12218,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6120",
         "title": "Les pommes boulangères",
         "description": "Une recette de pommes boulangères beaucoup trop sous-côté.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6120_1781452224217.jpg&v=1781459458000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6120_1781452224217.jpg&v=1781452258000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9332,7 +12276,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6124",
         "title": "Gâteau au yaourt de Cyril Lignac",
         "description": "C'est l'incontournable de la pâtisserie !!",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6124_1781452034848.jpg&v=1781459422000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6124_1781452034848.jpg&v=1781452222000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9396,7 +12340,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6102",
         "title": "Poulet, Attieke, Alloco",
         "description": "Un plat complet d'inspiration ouest-africaine, combinant du poulet mariné et frit, des bananes plantains frites (alloco) et de l'attiéké (semoule de manioc fermentée) servi avec une sauce fraîche à base de concombre et tomate.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6102_1781451861923.jpg&v=1781459231000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6102_1781451861923.jpg&v=1781452031000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9500,7 +12444,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6110",
         "title": "Poulet croustillant avec sauce aigre-douce et riz blanc",
         "description": "Une recette de poulet croustillant et incroyablement savoureux, accompagné d'une sauce aigre-douce et de riz blanc.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6110_1781451722969.jpg&v=1781459058000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6110_1781451722969.jpg&v=1781451858000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9563,7 +12507,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6104",
         "title": "Poulet Yassa",
         "description": "Découvrez la recette traditionnelle sénégalaise du Poulet Yassa, un plat savoureux à base de poulet mariné au citron, oignons et moutarde, accompagné de perles.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6104_1781451624211.jpg&v=1781458919000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6104_1781451624211.jpg&v=1781451719000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9639,7 +12583,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6106",
         "title": "Mafé au Poulet",
         "description": "Un plat traditionnel d'Afrique de l'Ouest, le Mafé au poulet est un ragoût riche et savoureux à base de pâte d'arachide, de poulet et de légumes comme les pommes de terre, le manioc et la patate douce, relevé par une marinade épicée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6106_1781451486138.jpg&v=1781458819000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6106_1781451486138.jpg&v=1781451619000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9723,7 +12667,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6114",
         "title": "Eau de tomate",
         "description": "Une boisson rafraîchissante et savoureuse à base de tomates, assaisonnée d'huile d'olive, de vinaigre et de sel.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6114_1781451439754.jpg&v=1781458682000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6114_1781451439754.jpg&v=1781451482000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9766,7 +12710,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6108",
         "title": "DIBI",
         "description": "Le DIBI classique de la streetfood de l'Afrique de l'Ouest. Aujourd'hui, méthode au four ! Tellement bon 🥹🔥",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6108_1781451252869.jpg&v=1781458635000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6108_1781451252869.jpg&v=1781451435000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9847,7 +12791,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6098",
         "title": "Creamy Chicken and Potato Skillet with Bacon",
         "description": "Un plat réconfortant et savoureux à base de poulet crémeux, de pommes de terre assaisonnées et de bacon croustillant, le tout gratiné au fromage dans une poêle.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6098_1781451047512.jpg&v=1781458449000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6098_1781451047512.jpg&v=1781451249000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9926,7 +12870,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6100",
         "title": "Corn Dog",
         "description": "Une recette de Corn Dog maison, avec saucisses et mozzarella, enrobés d'une pâte croustillante et frits, inspirée de la street food coréenne.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6100_1781450601347.jpeg&v=1781458242000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6100_1781450601347.jpeg&v=1781451042000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -9990,7 +12934,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6112",
         "title": "Boeuf Crousti",
         "description": "Une recette de boeuf croustillant d'inspiration chinoise, relevée par le piment d'Espelette et une sauce aigre-douce.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6112_1781450504331.jpg&v=1781457796000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6112_1781450504331.jpg&v=1781450596000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10064,69 +13008,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6116",
-        "title": "Bol asperges vertes, soja & jaune d'oeuf",
-        "description": "Un bol frais et savoureux à base d'asperges vertes, assaisonné de sauce soja, huile de sésame et mirin, garni de nori, sésame et d'un jaune d'œuf pour une touche onctueuse.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634567643676249346\" data-video-id=\"7634567643676249346\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634567643676249346\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g d'asperges vertes"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 càs d'huile de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 càs de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 càs de mirin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 feuille de nori"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 càs de sésame (ou furikake)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie",
-            "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5984",
         "title": "Risotto pesto d'épinards & burrata",
         "description": "Un risotto crémeux et savoureux au pesto d'épinards maison, agrémenté de burrata fondante pour une touche gourmande.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FHF_Y23_R224_W47_FR_RFR16571-1_Main_2high-42afd8bd-1.jpg&v=1781193995000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FHF_Y23_R224_W47_FR_RFR16571-1_Main_2high-42afd8bd-1.jpg&v=1781186795000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10197,7 +13082,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5268",
         "title": "Frites de courgettes",
         "description": "Une recette simple et rapide de frites de courgettes croustillantes, idéales pour l'apéritif, préparées à l'air fryer et accompagnées d'une sauce fraîche au yaourt grec et aux herbes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5268_1781183599307.jpg&v=1781190822000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_5268_1781183599307.jpg&v=1781183622000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10296,7 +13181,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6093",
         "title": "Natillas espagnoles",
         "description": "Les Natillas espagnoles sont une crème douce à la vanille et à la cannelle, évoquant les souvenirs d'enfance et les étés en famille. Une recette simple, gourmande et réconfortante, traditionnellement servie avec un biscuit María sur le dessus.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6093_1781169585167.jpg&v=1781176801000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6093_1781169585167.jpg&v=1781169601000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10349,7 +13234,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6085",
         "title": "Tartine espagnole tomates et jambon",
         "description": "Un petit-déjeuner ou une tapa typique espagnole composée de pain grillé, de tomate fraîche frottée, d'huile d'olive, d'ail (facultatif) et de jambon ibérique.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6085_1781168396978.jpg&v=1781175607000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6085_1781168396978.jpg&v=1781168407000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10397,7 +13282,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6087",
         "title": "Glace Tarte Citron Meringuée",
         "description": "Le goût rappelle vraiment une tarte citron meringuée glacée. Ultra crémeuse, bien fraîche, avec l'équilibre parfait entre l'acidité du citron et le côté doux et gourmand de la crème.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6087_1781168386223.jpg&v=1781175594000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6087_1781168386223.jpg&v=1781168394000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10449,7 +13334,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6082",
         "title": "Salmojero",
         "description": "Une soupe froide espagnole rafraîchissante à base de tomates et de pain, traditionnellement garnie d'œufs durs et de jambon ibérique, parfaite pour l'été.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6082_1781033557925.jpg&v=1781106134000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6082_1781033557925.jpg&v=1781098934000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10510,7 +13395,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6005",
         "title": "Enchiladas à la viande hachée",
         "description": "Des enchiladas mexicaines faciles et rapides à préparer, garnies de viande hachée épicée, d'oignons et de fromage, puis gratinées au four.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fenchiladas-1.jpg&v=1781019638000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fenchiladas-1.jpg&v=1781012438000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10574,7 +13459,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6015",
         "title": "Nachos avec un déluge de sauce cheddar",
         "description": "Des nachos croustillants généreusement nappés de sauce cheddar maison onctueuse, garnis de viande au choix, guacamole, crème fraîche, oignon cébette, tomate et piment.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fstreet-nachos.jpg&v=1781019287000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fstreet-nachos.jpg&v=1781012087000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10655,7 +13540,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5993",
         "title": "Fajitas faciles à l'Air Fryer",
         "description": "Une recette de fajitas au poulet simple et rapide à réaliser grâce à l'air fryer, garnie de poivrons, oignon et accompagnée d'une sauce fraîche au yaourt et d'une mayonnaise à l'ail.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FFajitas.jpg&v=1781019153000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FFajitas.jpg&v=1781011953000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10767,7 +13652,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6001",
         "title": "Burrito Mexicain",
         "description": "Un burrito mexicain complet avec du riz épicé, du guacamole frais et de la viande de bœuf hachée, le tout enveloppé dans une tortilla.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fburrito.jpg&v=1781017145000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fburrito.jpg&v=1781009945000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10874,7 +13759,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6017",
         "title": "Nachos",
         "description": "Une recette de nachos avec de la viande hachée, du cheddar, des jalapeños et des haricots rouges, parfaite pour un plat mexicain relevé.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fnachos.jpg&v=1781011922000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fnachos.jpg&v=1781004722000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -10942,7 +13827,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6021",
         "title": "Riz Mexicain Poulet au Miel",
         "description": "Un plat complet et savoureux de riz mexicain accompagné de poulet au miel, relevé par des épices et des légumes, parfait pour un repas convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FRiz_mexiciane_poulet_onde_pot.jpg&v=1781010667000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FRiz_mexiciane_poulet_onde_pot.jpg&v=1781003467000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11030,7 +13915,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6023",
         "title": "Loaded Nacho Fries",
         "description": "Des frites croustillantes garnies de fromage fondu, de bœuf haché assaisonné au taco, de guacamole crémeux, de pico de gallo frais et d'une touche de crème aigre.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FLoaded-Nacho-Fries-6.jpg&v=1781010426000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FLoaded-Nacho-Fries-6.jpg&v=1781003226000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11101,7 +13986,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6025",
         "title": "Bola de Berlim",
         "description": "La Bola de Berlim, une de mes pâtisseries préférées qui a bercé toute mon enfance. Une recette de beignets portugais fourrés à la crème pâtissière.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbola.jpg.jpg&v=1781009209000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbola.jpg.jpg&v=1781002009000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11191,7 +14076,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6027",
         "title": "Beignets aux pommes",
         "description": "Recette facile et rapide de beignets aux pommes, c'est un délice !!",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbeignet.jpg.jpg&v=1781008748000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fbeignet.jpg.jpg&v=1781001548000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11256,7 +14141,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6030",
         "title": "Falafels de haricots verts & pois chiches",
         "description": "Une recette veggie, originale et ultra savoureuse à tester absolument",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fimages.jpeg&v=1781008407000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fimages.jpeg&v=1781001207000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11347,7 +14232,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6032",
         "title": "Salade d'Haricots Verts",
         "description": "Une salade fraîche et savoureuse d'haricots verts, agrémentée de poitrine fumée croustillante, de croûtons de baguette et de parmesan, le tout relevé par une vinaigrette à l'ail et au piment d'Espelette.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fharicot.jpg&v=1781008268000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fharicot.jpg&v=1781001068000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11421,7 +14306,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5987",
         "title": "Pâtes Verte",
         "description": "Une recette de pâtes végétariennes rapides et saines, à base d'épinards, d'amandes et de parmesan.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2F36c8feab-63fd-47ea-b7ac-ffc84e4a27a1.jpg&v=1780662021000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2F36c8feab-63fd-47ea-b7ac-ffc84e4a27a1.jpg&v=1780654821000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11487,7 +14372,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5427",
         "title": "Gâteau petit beurre café chocolat",
         "description": "Un gâteau sans cuisson facile à base de biscuits petit beurre trempés dans du café, garnis d'une crème onctueuse au chocolat blanc et vanille, le tout recouvert d'une riche ganache au chocolat.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpetit-beurre.jpg&v=1780595035000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpetit-beurre.jpg&v=1780587835000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11568,7 +14453,7 @@ export const mockRecipes: Recipe[] = [
         "id": "1214",
         "title": "Ble coeur - Le Raincy",
         "description": "      Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2F249d51d6-756e-4834-bd95-e7e15531e425.jpg&v=1780587711000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2F249d51d6-756e-4834-bd95-e7e15531e425.jpg&v=1780580511000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11606,7 +14491,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3848",
         "title": "Boulettes de pommes de terre épinards et mozzarella",
         "description": "De délicieuses boulettes végétariennes et croustillantes à base de pommes de terre, d'épinards et de tofu, avec un cœur fondant à la mozzarella.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboulettes-epinards.jpg&v=1780587624000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboulettes-epinards.jpg&v=1780580424000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11676,7 +14561,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4998",
         "title": "Cocktail Bora Bora sans alcool",
         "description": "Un cocktail coloré et sans alcool, facile à réaliser, garni de lamelles de pomme.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcoktail.jpg&v=1780586514000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcoktail.jpg&v=1780579314000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11729,7 +14614,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5225",
         "title": "Croque-cake",
         "description": "Un croque-monsieur revisité en format cake, idéal pour toute la famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCroque-cake-fondant-au-jambon-768x639-1.jpg&v=1780585982000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCroque-cake-fondant-au-jambon-768x639-1.jpg&v=1780578782000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11784,7 +14669,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5274",
         "title": "La tarte aux pommes",
         "description": "Simple, rapide et ça fait toujours plaisir !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ftarte.jpeg&v=1780585895000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ftarte.jpeg&v=1780578695000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11860,7 +14745,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5280",
         "title": "Rochers Tiramisu",
         "description": "Une recette gourmande de rochers Tiramisu, composés de boudoirs imbibés de café, d'une crème onctueuse au mascarpone et d'un glaçage croquant au chocolat et aux amandes ou noisettes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frocher-x6.jpg&v=1780584698000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frocher-x6.jpg&v=1780577498000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11922,7 +14807,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5283",
         "title": "Chakchouka végétarienne",
         "description": "Une chakchouka végétarienne et protéinée, préparée avec des œufs, tomates, haricots rouges et petits pois, assaisonnée à l'ail et aux épices.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fchav.jpg&v=1780584516000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fchav.jpg&v=1780577316000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -11979,7 +14864,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5787",
         "title": "McFlurry maison au Daim",
         "description": "Une recette facile et rapide pour préparer un McFlurry maison au Daim en seulement 5 minutes grâce au Ninja Creami.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fflurry.jpeg&v=1780584167000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fflurry.jpeg&v=1780576967000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12024,7 +14909,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5858",
         "title": "Gâteau moelleux noisette & chocolat",
         "description": "Un gâteau sans gluten, moelleux, sans matière grasse ajoutée et sucré naturellement au sirop de Yacon. Léger et délicieux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcake.jpg&v=1780583991000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcake.jpg&v=1780576791000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12081,7 +14966,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5852",
         "title": "Tartine méditerranéenne d'olives",
         "description": "Un dip méditerranéen savoureux et facile à préparer, parfait pour accompagner du pain. Il est composé d'huile d'olive, de vinaigre balsamique, d'olives vertes, de tomates séchées, de parmesan, de persil, d'ail et de flocons de piment.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmediterr.jpg&v=1780583854000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmediterr.jpg&v=1780576654000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12144,7 +15029,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5854",
         "title": "Le radis beurre comme une fleur",
         "description": "Une recette de radis au beurre présentés en forme de fleur, inspirée par le chef Jean-François Piège, idéale pour l'apéritif.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fradis.jpg&v=1780583751000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fradis.jpg&v=1780576551000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12178,7 +15063,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5856",
         "title": "Astuce coque au chocolat",
         "description": "Une recette facile de dessert au chocolat, adaptée aux régimes végétarien et végétalien.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcoque.jpg&v=1780583653000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcoque.jpg&v=1780576453000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12206,7 +15091,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5941",
         "title": "Gratin de Courgettes Protéiné",
         "description": "Une super recette pour faire manger des courgettes aux petits comme aux grands récalcitrants. En plus de ça c'est ultra protéiné, tu vas te régaler !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fgratin-de-courgette-scaled-1.jpeg&v=1780583135000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fgratin-de-courgette-scaled-1.jpeg&v=1780575935000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12250,7 +15135,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5902",
         "title": "Smoothie Pastèque Fraise",
         "description": "Un smoothie rafraîchissant et hydratant à base de pastèque, fraise, citron, miel et menthe, parfait pour l'été.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecettes100faim-smoothie-fraise-framboise-pasteque.jpg&v=1780321682000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecettes100faim-smoothie-fraise-framboise-pasteque.jpg&v=1780314482000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12301,7 +15186,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5905",
         "title": "Salade protéinée au poulet et chimichurri",
         "description": "Une salade fraîche et protéinée à base de poulet, légumes et pois chiches, relevée par une sauce chimichurri maison pleine de saveurs.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsalade-de-poulet-a-la-sauce-chimichurri-90121f26.jpg&v=1780319760000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsalade-de-poulet-a-la-sauce-chimichurri-90121f26.jpg&v=1780312560000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12404,7 +15289,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5907",
         "title": "Sauce Poivre Parfaite",
         "description": "Une recette de sauce au poivre parfaite, riche et crémeuse, avec du brandy et du fond de veau, idéale pour accompagner vos viandes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FSauce-au-poivre-5-baies.jpg&v=1780319461000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FSauce-au-poivre-5-baies.jpg&v=1780312261000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12456,7 +15341,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5909",
         "title": "Beurre persillé à l'ail",
         "description": "Une astuce simple pour préparer un beurre aromatisé au persil et à l'ail, idéal pour accompagner viandes, poissons, légumes ou simplement du pain.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fbeurre.jpg&v=1780319201000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fbeurre.jpg&v=1780312001000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12497,7 +15382,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5911",
         "title": "Panuozzo",
         "description": "Recette maison pour préparer des panuozzos, des sandwichs italiens à base de pâte à pizza.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsandw.jpg&v=1780319133000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsandw.jpg&v=1780311933000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12552,7 +15437,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5913",
         "title": "Calamars frits à l'Air Fryer",
         "description": "Une recette simple et rapide de calamars frits à l'Air Fryer, parfaits pour l'apéro avec une sauce bien fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcalamars-frits-avec-friteuse-a-air_1200x800.jpg&v=1780319063000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcalamars-frits-avec-friteuse-a-air_1200x800.jpg&v=1780311863000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12619,7 +15504,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5917",
         "title": "Salade aux pois chiches croustillants",
         "description": "Non mais cette salade là !!! Je vous garantis que je vais la refaire TOUT l'été.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FChickpea_Salad_1.jpg&v=1780318948000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2FChickpea_Salad_1.jpg&v=1780311748000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12726,7 +15611,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5919",
         "title": "Curry de pois chiche",
         "description": "Un curry végétarien et savoureux à base de pois chiches, lait de coco, légumes et épices, parfait pour un repas réconfortant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fcurry.jpeg&v=1780318540000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fcurry.jpeg&v=1780311340000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12797,7 +15682,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5860",
         "title": "Omurice",
         "description": "Recette d'omurice, un plat japonais composé de riz frit et d'une omelette moelleuse.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fomelette.jpg&v=1780141353000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fomelette.jpg&v=1780134153000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12825,7 +15710,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5864",
         "title": "Fenouil grillé, houmous et chorizo",
         "description": "Une recette savoureuse pour 4 personnes combinant du fenouil grillé, un houmous maison au citron confit et du chorizo doux, le tout relevé par des herbes fraîches et du piment d'Espelette.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffenouil.jpg&v=1780140771000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffenouil.jpg&v=1780133571000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -12926,7 +15811,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5876",
         "title": "Sauce california love",
         "description": "Une sauce crémeuse, douce, fumée et légèrement épicée, inspirée de la Californie. Parfaite pour accompagner bowls, wraps ou tenders, elle est saine et à base de carottes (que l'on ne sent pas !). Idéale pour ajouter du soleil à vos assiettes sans ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce.jpg&v=1780140533000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce.jpg&v=1780133333000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13002,7 +15887,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5866",
         "title": "Pâte brisée",
         "description": "Une recette simple pour préparer une pâte brisée maison, idéale pour les tartes salées ou sucrées.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpate.jpg&v=1780140273000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpate.jpg&v=1780133073000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13043,7 +15928,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5868",
         "title": "Pesto alla Genovese",
         "description": "Découvrez comment préparer un authentique pesto alla Genovese et apprenez les meilleures techniques pour le conserver frais au réfrigérateur ou au congélateur pendant plusieurs mois.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpesto.jpg&v=1780140000000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpesto.jpg&v=1780132800000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13101,7 +15986,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5870",
         "title": "Moelleux au chocolat et mascarpone",
         "description": "Une recette facile et gourmande de moelleux au chocolat et mascarpone, parfait pour un dessert rapide. Accompagné d'une sauce chocolat onctueuse.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmoelleux-chocolat-recette.jpg&v=1780139844000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmoelleux-chocolat-recette.jpg&v=1780132644000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13152,7 +16037,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5872",
         "title": "Sauce Ta Diète",
         "description": "Une sauce crémeuse miel-moutarde, légèrement fumée avec une touche steakhouse grâce au Worcestershire, parfaite pour transformer les plats de régime en un vrai régal.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce-big-mac-maison-ce-melange-precis-de-3-ingredients-la-rend-meilleure-que-chez-mcdo-en-5-minutes.jpeg&v=1780139641000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce-big-mac-maison-ce-melange-precis-de-3-ingredients-la-rend-meilleure-que-chez-mcdo-en-5-minutes.jpeg&v=1780132441000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13209,7 +16094,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5878",
         "title": "Maronsui's",
         "description": "2 minutes top chrono pour réaliser ce dessert mythique de notre enfance (enfin pour certains 😅) et c'est tellement facile à faire 😁 Franchement pour ce qu'il y a dans un pot en plus, c'est quand même plus rentable de la faire sois même 😂",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FMaronsuis-fait-maison-12.jpg&v=1780139329000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FMaronsuis-fait-maison-12.jpg&v=1780132129000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13247,7 +16132,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5880",
         "title": "Astuce Fraises et Guimauves",
         "description": "Une astuce simple et gourmande pour combiner fraises et guimauves, idéale pour une petite douceur estivale.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffraise.jpg&v=1780139113000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffraise.jpg&v=1780131913000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13279,7 +16164,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5736",
         "title": "Fraisier",
         "description": "Une recette détaillée pour réussir un fraisier classique, avec une génoise moelleuse et une crème mousseline onctueuse, parfait pour les amateurs de fraises. Le guide inclut la préparation de la génoise, de la crème pâtissière et de la crème au be...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffraisier-lilie-bakery.jpg&v=1779987721000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffraisier-lilie-bakery.jpg&v=1779980521000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13382,7 +16267,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5739",
         "title": "Crème au citron dans des citrons",
         "description": "Un dessert printanier facile à réaliser, servi dans des citrons évidés, à base de crème, sucre et jus de citron, parfait pour les réceptions.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpossets-au-citron.jpg&v=1779986945000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpossets-au-citron.jpg&v=1779979745000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13439,7 +16324,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5742",
         "title": "Bouchées glacées cacahuètes framboises chocolat",
         "description": "Des collations gourmandes et saines, faciles à préparer et à conserver au frais. Idéales pour une pause rafraîchissante.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpims-maison4-833x1250-2.jpg&v=1779986811000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpims-maison4-833x1250-2.jpg&v=1779979611000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13484,7 +16369,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5747",
         "title": "Cuillères en pâte feuilletée saumon et fromage frais",
         "description": "Des cuillères apéritives croustillantes et sans gluten, préparées avec de la pâte feuilletée, garnies de fromage frais ail et fines herbes, de saumon fumé, de zeste de citron et d'aneth frais. Idéales pour un apéritif festif.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcuilleres-aperitives-saumon-et-tartare-1109.640x480.jpg&v=1779986400000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcuilleres-aperitives-saumon-et-tartare-1109.640x480.jpg&v=1779979200000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13543,7 +16428,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5751",
         "title": "Feuilletés apéro façon pizza",
         "description": "Des feuilletés apéro faciles et rapides à préparer, inspirés de la pizza, parfaits pour régaler vos invités en un clin d'œil.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FFeuilletes_aperitif_pesto.jpg&v=1779986260000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FFeuilletes_aperitif_pesto.jpg&v=1779979060000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13598,7 +16483,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5765",
         "title": "Bomboloni",
         "description": "Des beignets italiens moelleux fourrés au chocolat et enrobés de sucre.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FBomboloni_thumbnail392x3922.jpg&v=1779982930000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FBomboloni_thumbnail392x3922.jpg&v=1779975730000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13663,7 +16548,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5774",
         "title": "Prépare tes makis rapidement",
         "description": "L'utilisateur a testé une recette virale et partage son expérience ou les résultats de son essai.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmaki.jpg&v=1779902055000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmaki.jpg&v=1779894855000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13690,7 +16575,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5777",
         "title": "Pâtes aux knackis",
         "description": "Une recette de pâtes simple, rapide et économique, idéale pour les étudiants.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpates.jpeg&v=1779901392000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpates.jpeg&v=1779894192000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13719,7 +16604,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5779",
         "title": "Nouilles chinoises sautées aux légumes",
         "description": "Simple et efficace, voici une recette de nouilles chinoises sautées aux légumes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fnouille.jpg&v=1779901025000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fnouille.jpg&v=1779893825000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13811,7 +16696,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5781",
         "title": "Minis Beignets",
         "description": "Recette facile de petits beignets moelleux et dorés, parfaits pour le goûter.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F280120251738061807.jpeg&v=1779900803000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F280120251738061807.jpeg&v=1779893603000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13877,7 +16762,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5791",
         "title": "Brioche",
         "description": "Découvrez comment préparer une brioche maison ultra moelleuse. Cette recette détaillée vous guide à travers les étapes de pétrissage, de repos, de façonnage en tresse et en boules (avec option pépites de chocolat), et de cuisson pour obtenir une b...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fbrioche.jpg&v=1779900607000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fbrioche.jpg&v=1779893407000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -13951,7 +16836,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5795",
         "title": "Paleron de boeuf confit 7h",
         "description": "Une cuisson lente et douce à 120 degrés, pendant 7h, pour que la viande s'effiloche. Avant ça, il faut juste la masser avec des tomates et des poivrons compotés. C'est dingue.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpaleron-miel-the.jpg&v=1779895910000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpaleron-miel-the.jpg&v=1779888710000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14016,7 +16901,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5797",
         "title": "Gnocchis crémeux au gorgonzola et bacon",
         "description": "Des gnocchis moelleux enrobés d'une sauce onctueuse au gorgonzola, agrémentés de bacon croustillant, d'ail et d'oignon, parfaits pour un repas réconfortant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgnocchis.jpg&v=1779895637000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgnocchis.jpg&v=1779888437000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14093,7 +16978,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5799",
         "title": "Préparer des oeufs coulants",
         "description": "Découvrez une bonne méthode pour préparer des œufs.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Foeuf.jpg&v=1779895129000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Foeuf.jpg&v=1779887929000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14122,7 +17007,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5414",
         "title": "Tiramisu croustillant façon Magnum",
         "description": "Découvrez une recette ultra simple de tiramisu croustillant façon Magnum, inspirée de la pâtisserie. Ce dessert chic combine l'intensité du chocolat avec la douceur fondante du tiramisu, offrant une texture croquante à l'extérieur et fondante à l'...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F40265082-ein-stueck-rocher-tiramisu-liegt-auf-einem-goldenen-teller-mit-einem-goldenen-loeffel-1Sef.jpg&v=1779461661000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F40265082-ein-stueck-rocher-tiramisu-liegt-auf-einem-goldenen-teller-mit-einem-goldenen-loeffel-1Sef.jpg&v=1779454461000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14182,7 +17067,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5421",
         "title": "Cheesecake sans cuisson noisette chocolat",
         "description": "Un cheesecake sans cuisson facile à réaliser, composé d'une base biscuitée au cacao, d'une crème onctueuse au fromage frais et à la vanille, et d'une ganache brillante au chocolat et noisette.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcheesecake-3-chocolats-3-530x700-1.jpeg&v=1779460438000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcheesecake-3-chocolats-3-530x700-1.jpeg&v=1779453238000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14254,7 +17139,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5424",
         "title": "Les beignets de princesse Tiana",
         "description": "Une recette inspirée de la Princesse Tiana pour réaliser des beignets moelleux et dorés. La pâte levée est frite puis garnie de miel et de sucre glace, parfaite pour un goûter gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecette-beignets-Tiana.jpg&v=1779460288000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecette-beignets-Tiana.jpg&v=1779453088000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14326,7 +17211,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5430",
         "title": "Le Paris-Brest",
         "description": "Recette complète du Paris-Brest, un grand classique de la pâtisserie française, avec pâte à choux, craquelin, praliné maison et crème pralinée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fparisbrest1fauchon-scaled.jpg&v=1779459458000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fparisbrest1fauchon-scaled.jpg&v=1779452258000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14454,7 +17339,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5496",
         "title": "Crème brûlée",
         "description": "Le dessert qu'on aime tous mais qu'on oublie parfois...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-brulee-a-la-vanille-0229597343210853160-1.jpeg&v=1779458168000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-brulee-a-la-vanille-0229597343210853160-1.jpeg&v=1779450968000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14503,7 +17388,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5499",
         "title": "Crèmes dessert vanille",
         "description": "Des crèmes dessert vanille maison, faciles et gourmandes, inspirées d'une version au cacao. Idéales pour 4 pots, elles sont rapides à préparer et parfaites pour un dessert sain.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-vanille-thermomix-800x600-1.jpg&v=1779458039000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-vanille-thermomix-800x600-1.jpg&v=1779450839000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14549,7 +17434,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5511",
         "title": "Riz Jollof",
         "description": "Découvrez la recette du Riz Jollof, un plat africain savoureux et parfumé, mijoté lentement pour une texture parfaite.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FRiz-Jollof.jpg&v=1779379827000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FRiz-Jollof.jpg&v=1779372627000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14619,78 +17504,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5514",
-        "title": "Tiramisu",
-        "description": "Recette de tiramisu maison avec un biscuit fait maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fi196570-tiramisu-simple.jpg&v=1779379298000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463909495878569238\" data-video-id=\"7463909495878569238\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463909495878569238\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n 500g de Mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 6 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n 100g de cacao en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 4 tasses à café"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 cuillères à café d'Amaretto"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 180g de blancs d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 150g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 120g de jaune d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 150g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 40g de sucre glace"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5517",
         "title": "Riz à l'ail",
         "description": "La recette qui me sauve au quotidien ! Simple, rapide, efficace... le riz à l'ail s'accompagne avec tout, et quand on aime l'ail, on ne peut plus s'en passer.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Friz.jpg&v=1779379016000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Friz.jpg&v=1779371816000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14738,7 +17555,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5522",
         "title": "Salade de courgettes grillées",
         "description": "Une salade de courgettes grillées servie avec de la stracciatella et une vinaigrette au piment, ail et échalote, parfaite pour la saison des courgettes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsalade-courgettes-feta.jpg&v=1779378680000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsalade-courgettes-feta.jpg&v=1779371480000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14811,7 +17628,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5525",
         "title": "Salade de poivrons à l'orientale",
         "description": "Elle ce consomme tiède ou froide, c'est vraiment un délice! Parfait pour accompagner vos repas. A partager sans modération !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FAvec-deux-ingredients-seulement-cette-salade-marocaine-sent-bon-la-Mediterranee.jpg&v=1779377819000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FAvec-deux-ingredients-seulement-cette-salade-marocaine-sent-bon-la-Mediterranee.jpg&v=1779370619000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14880,7 +17697,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5531",
         "title": "Carottes rôties sauce crémeuse",
         "description": "Une recette de carottes rôties au paprika fumé, accompagnées d'une sauce crémeuse à base d'œufs et de fromage frais. Parfaite en entrée ou en plat principal, elle est facile et rapide à réaliser.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcarotteroties.jpg&v=1779216771000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcarotteroties.jpg&v=1779209571000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -14953,7 +17770,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5535",
         "title": "Boulettes de brocolis",
         "description": "Une façon ludique de cuisiner tes brocolis et surtout de les faire manger aux petits comme aux grands récalcitrants !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fboulettes-de-brocoli-en-friteuse-a-air_1200x800.jpg&v=1779214890000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fboulettes-de-brocoli-en-friteuse-a-air_1200x800.jpg&v=1779207690000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15002,7 +17819,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5549",
         "title": "Pâtes aux oignon et champignon",
         "description": "Une recette simple et rapide de pâtes aux champignons et oignons, agrémentée de crème, de parmesan et d'une touche de vin blanc.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fspaghettichampignons-vd2i-1200.jpeg&v=1779214663000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fspaghettichampignons-vd2i-1200.jpeg&v=1779207463000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15078,7 +17895,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5555",
         "title": "Orzo épicé",
         "description": "C'est gourmand, facile, prêt en 20 min et bien réconfortant !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fspicy-sausage-orzo.jpg&v=1779214266000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fspicy-sausage-orzo.jpg&v=1779207066000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15183,7 +18000,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5558",
         "title": "Pâtes à l'ail",
         "description": "Une recette simple et rapide de pâtes à l'ail, agrémentée de parmesan, piment et herbes aromatiques pour un plat savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fshutterstock-1212205699.jpeg&v=1779213911000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fshutterstock-1212205699.jpeg&v=1779206711000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15249,7 +18066,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5561",
         "title": "Chermoula relevée et parfumée",
         "description": "Une sauce Chermoula relevée et parfumée, traditionnellement préparée au pilon, idéale pour accompagner vos plats de poisson, viandes ou légumes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FChermoula_recette_maison.jpg&v=1779213766000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FChermoula_recette_maison.jpg&v=1779206566000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15314,7 +18131,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5564",
         "title": "Poulet coco épicé à la brésilienne",
         "description": "Un poulet aux cuisses tendres, mijoté dans une sauce crémeuse à la noix de coco, relevé d'une touche de citron vert et de coriandre, inspiré de la cuisine brésilienne. Un plat réconfortant avec une touche tropicale.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fil_1080xN.6804413311_d69b.jpg&v=1779213489000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fil_1080xN.6804413311_d69b.jpg&v=1779206289000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15422,7 +18239,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5567",
         "title": "Harira marocaine",
         "description": "La Harira est une soupe marocaine traditionnelle, riche et savoureuse, souvent préparée et consommée pendant le mois de Ramadan pour rompre le jeûne. Elle est composée d'agneau, de légumes, de légumineuses et d'épices.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F9007-scaled.jpg&v=1779209218000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F9007-scaled.jpg&v=1779202018000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15517,7 +18334,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5576",
         "title": "Pasta al forno bianca",
         "description": "Découvrez le plaisir simple et irrésistible d'un plat qui parle au cœur.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FW720xH450R1.6-c6d9ba0f-8deb-4381-977d-23c81fa5918b-cba1a3fc-bc1a-4e31-954b-5666a3f75da1-1.jpeg&v=1779207796000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FW720xH450R1.6-c6d9ba0f-8deb-4381-977d-23c81fa5918b-cba1a3fc-bc1a-4e31-954b-5666a3f75da1-1.jpeg&v=1779200596000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15586,7 +18403,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5579",
         "title": "Tenders de poulet sauce miel fouettée épicée",
         "description": "Une recette incroyable de tenders de poulet croustillants avec une sauce miel fouettée épicée, parfaite pour les amateurs de sucré/salé. À tester absolument !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F154575_w1024h1024c1cx600cy337cxt0cyt0cxb1200cyb675.jpg&v=1779207703000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F154575_w1024h1024c1cx600cy337cxt0cyt0cxb1200cyb675.jpg&v=1779200503000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15668,7 +18485,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5582",
         "title": "Soupe aux champignons",
         "description": "Une soupe crémeuse et réconfortante aux champignons (bruns et Shiitake), agrémentée de vin blanc, de crème et d'herbes, servie avec des croûtons croustillants au parmesan.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1-LOW-RES-GF-Cream-of-Mushroom-Soup-20.jpg&v=1779207232000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1-LOW-RES-GF-Cream-of-Mushroom-Soup-20.jpg&v=1779200032000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15760,7 +18577,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5585",
         "title": "Gratin de poulet effiloché et pommes de terre",
         "description": "Une recette facile de gratin avec du poulet effiloché, des patates coupées en petits cubes et une sauce crémeuse façon Boursin. Comptez environ 1h de préparation et cuisson.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FW720xH450R1.6-c6d9ba0f-8deb-4381-977d-23c81fa5918b-cba1a3fc-bc1a-4e31-954b-5666a3f75da1.jpeg&v=1779206355000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FW720xH450R1.6-c6d9ba0f-8deb-4381-977d-23c81fa5918b-cba1a3fc-bc1a-4e31-954b-5666a3f75da1.jpeg&v=1779199155000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15836,7 +18653,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5591",
         "title": "Soupe Pékinoise",
         "description": "Découvrez la recette traditionnelle de la soupe aigre et douce, aussi connue sous le nom de soupe pékinoise. Une version savoureuse et réconfortante avec des légumes, du tofu, des champignons et des œufs.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmain-header.jpg&v=1779205070000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmain-header.jpg&v=1779197870000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -15927,7 +18744,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5594",
         "title": "Soupe aux Gnocchi et poulet",
         "description": "Une soupe réconfortante et savoureuse aux gnocchis, poulet rôti, épinards, légumes et fromages, parfaite pour les journées froides.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FMarry-me-chicken-soup-with-gnocchi.jpg&v=1779204905000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FMarry-me-chicken-soup-with-gnocchi.jpg&v=1779197705000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16048,7 +18865,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5597",
         "title": "Soupe au brocoli et cheddar",
         "description": "La saison des soupes approche et la soupe au brocoli et cheddar est l'une des meilleures ! Garnie de morceaux de bacon croustillants et servie avec du pain beurré et croustillant, c'est délicieux ! Le tout préparé dans une seule marmite pour un ne...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecette-veloute-brocoli-cheddar.jpg&v=1779204439000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecette-veloute-brocoli-cheddar.jpg&v=1779197239000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16141,7 +18958,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5603",
         "title": "Soupe crémeuse au poulet et aux nouilles",
         "description": "Une soupe réconfortante et crémeuse au poulet, nouilles et légumes, parfaite pour les journées froides.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsoupe-cremeuse-poulet-et-nouilles.jpg&v=1779204073000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsoupe-cremeuse-poulet-et-nouilles.jpg&v=1779196873000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16226,7 +19043,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5606",
         "title": "Gratin dauphinois",
         "description": "Un gratin dauphinois revisité, crémeux et fondant, préparé avec des pommes de terre finement tranchées, de l'ail confit, un mélange de crèmes, de la noix de muscade, du thym et du comté, cuit au four jusqu'à être parfaitement gratiné.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin-dauphinois-cremeux-traditionnel.jpeg&v=1779190092000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin-dauphinois-cremeux-traditionnel.jpeg&v=1779182892000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16299,7 +19116,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5609",
         "title": "Gratin de pâtes de l'été",
         "description": "Un délicieux gratin de pâtes estival, parfait pour l'été et pouvant être préparé au four ou au barbecue. Cette recette met en vedette des pâtes courtes, des légumes frais comme la courgette et les tomates cerises, le tout gratiné à la mozzarella e...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpenne-burrata.jpg&v=1779189848000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fpenne-burrata.jpg&v=1779182648000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16386,7 +19203,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5612",
         "title": "Cannellonis poulet et champignons",
         "description": "Une recette automnale de cannellonis gratinés au poulet, champignons, ricotta et une béchamel onctueuse au comté et moutarde à l'ancienne. Un plat super réconfortant et savoureux, parfait pour la saison des plats gratinés.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcannelloni-aux-champignons-0-16-9.jpg&v=1779189556000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcannelloni-aux-champignons-0-16-9.jpg&v=1779182356000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16499,7 +19316,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5618",
         "title": "Sushis italiens",
         "description": "Une fusion originale entre le sushi japonais et les saveurs italiennes, pour une recette facile et surprenante.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fhellonelo-sushis-italiens-1.jpg&v=1779189324000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fhellonelo-sushis-italiens-1.jpg&v=1779182124000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16527,7 +19344,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5624",
         "title": "Sauce Verte",
         "description": "Une sauce verte facile à cuisiner, parfaite pour accompagner vos viandes et grillades.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce-verte.jpeg&v=1779188881000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fsauce-verte.jpeg&v=1779181681000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16585,7 +19402,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5627",
         "title": "Porc Char Sui",
         "description": "Un plat typique cantonais, bien caramélisé, super bon et simple à faire.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F123909681_o.jpg&v=1779187904000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F123909681_o.jpg&v=1779180704000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16634,7 +19451,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5436",
         "title": "Flan vanille grillée",
         "description": "Recette de flan vanille grillée pour un cercle de 20cm, avec une pâte sucrée vanille maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fflan-patissier-vanille-bourbon-a-partager.jpg.png&v=1778610820000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fflan-patissier-vanille-bourbon-a-partager.jpg.png&v=1778603620000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16714,7 +19531,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5439",
         "title": "Tarte aux fraises et crème diplomate",
         "description": "Une délicieuse tarte printanière composée d'une pâte sablée croustillante et d'une onctueuse crème diplomate à la vanille, parfaite pour les beaux jours.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ftarte-fraise.jpg&v=1778610425000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ftarte-fraise.jpg&v=1778603225000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16813,7 +19630,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5445",
         "title": "Gâteau mousse au chocolat",
         "description": "Un délicieux gâteau composé d'un biscuit moelleux au cacao et d'une onctueuse mousse au chocolat noir, parfait pour un dessert gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgateau-choco-scaled.jpg&v=1778609600000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgateau-choco-scaled.jpg&v=1778602400000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16898,7 +19715,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5448",
         "title": "Crème brûlée de clémentine",
         "description": "Un dessert ultra simple et vraiment délicieux, cette crème brûlée à la clémentine est parfaite pour les fêtes de Noël.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fclementine.jpeg&v=1778609335000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fclementine.jpeg&v=1778602135000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16961,7 +19778,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5451",
         "title": "Mousse au chocolat",
         "description": "Une recette de mousse au chocolat étonnamment simple, ne nécessitant que du chocolat et de l'eau pour un dessert rapide et facile, idéal pour les étudiants ou les envies de dernière minute.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmousse-chocolat-a-lancienne-recette-lilie-bakery.jpg&v=1778608981000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmousse-chocolat-a-lancienne-recette-lilie-bakery.jpg&v=1778601781000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -16993,7 +19810,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5454",
         "title": "Crème de Fraises",
         "description": "Une recette simple et rapide pour préparer une délicieuse crème de fraises, parfaite pour un dessert ou une pâtisserie.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FCrC3A8me-C3A0-la-vanille-et-aux-fraises.jpeg&v=1778608412000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FCrC3A8me-C3A0-la-vanille-et-aux-fraises.jpeg&v=1778601212000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17045,7 +19862,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5460",
         "title": "Crème chocolat",
         "description": "Le mélange coco chocolat est vraiment très bon ! Ça donne une crème tout en légèreté 🥰 il faut que vous testiez.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1-creme-chocolat-recette-patisserie-empreinte-sucree.jpg&v=1778608099000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1-creme-chocolat-recette-patisserie-empreinte-sucree.jpg&v=1778600899000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17078,7 +19895,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5463",
         "title": "Crème brûlée à la pistache",
         "description": "Pour tous les fans de pistache, cette crème brûlée est un incontournable ! N'hésitez plus, essayez cette recette simple et rapide, vous ne le regretterez pas. Un grand pâtissier l'a dit : l'essayer, c'est l'adopter !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-brulee-pistache-A1.jpg&v=1778607886000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcreme-brulee-pistache-A1.jpg&v=1778600686000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17126,7 +19943,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5290",
         "title": "Melanzane ripiene",
         "description": "Tradition, famille et saveurs d'Italie. Des aubergines farcies à la viande hachée et au fromage, accompagnées d'une sauce tomate.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FRicetta-melanzane-ripiene-al-forno.jpg&v=1778536548000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FRicetta-melanzane-ripiene-al-forno.jpg&v=1778529348000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17209,7 +20026,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5293",
         "title": "Rösti au saumon",
         "description": "Le rösti au saumon pour un brunch ou juste avec une salade c'est toujours un régal !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frosti.jpg&v=1778517128000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frosti.jpg&v=1778509928000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17275,7 +20092,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5305",
         "title": "Frites d'avocat",
         "description": "Une idée parfaite pour un apéro entre amis, tout simple à réaliser, vous allez vous régaler !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1dbd79f0-e1b0-448e-8089-d95d98a55f17_8a8ksWM.jpg&v=1778516464000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F1dbd79f0-e1b0-448e-8089-d95d98a55f17_8a8ksWM.jpg&v=1778509264000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17314,7 +20131,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5320",
         "title": "Gratin de pommes de terre béchamel",
         "description": "Un plat réconfortant de pommes de terre Yukon Gold gratinées, agrémentées d'oignons caramélisés et nappées d'une sauce crémeuse au gruyère, le tout doré au four.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin.jpeg&v=1778514939000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgratin.jpeg&v=1778507739000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17398,7 +20215,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5329",
         "title": "Brick Poulet Curry",
         "description": "Croustillantes à l'extérieur, fondantes à l'intérieur... ces bricks au poulet curry sont un vrai délice à partager. Le mélange de pommes de terre, de poulet épicé et de fromage fondant fait toute la différence. Faciles à préparer et pleines de sav...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fbrickspouletcurry-fsms-1200.jpeg&v=1778514733000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fbrickspouletcurry-fsms-1200.jpeg&v=1778507533000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17469,7 +20286,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5338",
         "title": "Pommes de terre rôties à l'anglaise",
         "description": "Découvrez la recette des pommes de terre rôties à l'anglaise, réputées pour être les plus croustillantes. Facile à réaliser, cette méthode garantit un accompagnement savoureux et irrésistible.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F61267_w1024h576c1cx3072cy2048.jpg&v=1778513201000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F61267_w1024h576c1cx3072cy2048.jpg&v=1778506001000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17521,7 +20338,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5341",
         "title": "Invisible aux pommes",
         "description": "Une recette facile et saine de gâteau invisible aux pommes, parfait pour un dessert léger ou un goûter équilibré. Ce gâteau est préparé avec de l'huile de coco et du lait d'avoine, puis cuit au four jusqu'à ce qu'il soit doré.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgateau-invisible-pommes-13.jpeg&v=1778512881000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fgateau-invisible-pommes-13.jpeg&v=1778505681000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17589,7 +20406,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5344",
         "title": "Cumble aux pommes",
         "description": "Un délicieux gâteau moelleux garni de pommes fondantes à la cannelle et surmonté d'un crumble croustillant. Parfait pour un dessert gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrumble-pomme.png&v=1778512660000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fcrumble-pomme.png&v=1778505460000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17710,7 +20527,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5350",
         "title": "Steack haché garni au fromage",
         "description": "Une recette simple et rapide de viande grillée, parfaite pour le mangal. C'est un plat savoureux et sans complications.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fune-assiette-reconfortante-illustrant-lalliance-gourmande-entre-viande-et-fromage-fondant.jpg&v=1778512237000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fune-assiette-reconfortante-illustrant-lalliance-gourmande-entre-viande-et-fromage-fondant.jpg&v=1778505037000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17738,7 +20555,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5347",
         "title": "Les Nems Vietnamiens",
         "description": "Découvrez comment préparer des nems vietnamiens croustillants, accompagnés de leur sauce traditionnelle.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FNems.jpg&v=1778511665000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FNems.jpg&v=1778504465000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17845,7 +20662,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5353",
         "title": "Khachapuri sur brochettes",
         "description": "Une version originale du Khachapuri géorgien, cuit sur des brochettes au barbecue.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Flong-pain-grill%C3%A9-de-khachapuri-sur-une-brochette-122222613.jpg&v=1778511187000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Flong-pain-grill%C3%A9-de-khachapuri-sur-une-brochette-122222613.jpg&v=1778503987000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17874,7 +20691,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5356",
         "title": "Sticks de pommes de terre",
         "description": "Des bâtonnets de pommes de terre croustillants et savoureux, préparés en tranches fines, pressés, puis frits et assaisonnés à l'ail et au parmesan, servis avec un pesto maison frais.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FSticks-de-pomme-de-terre-au-fromage.jpg&v=1778510952000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2FSticks-de-pomme-de-terre-au-fromage.jpg&v=1778503752000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -17951,7 +20768,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5359",
         "title": "Fondant noix de coco",
         "description": "Un fondant crémeux et rafraîchissant à la noix de coco et au mascarpone, facile à préparer sans cuisson et idéal pour un dessert gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffondant-noix-de-coco.jpg&v=1778510735000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Ffondant-noix-de-coco.jpg&v=1778503535000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18005,151 +20822,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5277",
-        "title": "Tarte Normande",
-        "description": "Une tarte normande classique et gourmande, composée d'une pâte sablée, de pommes fondantes et d'une garniture crémeuse aux amandes, avec une touche facultative de Calvados.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604576197472816406\" data-video-id=\"7604576197472816406\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604576197472816406\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             200 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             100 g de beurre froid"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             80 g de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             3 à 4 pommes"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100 ml de crème fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             50 g de poudre d'amande"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé (ou 1 c. à café d'extrait de vanille)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à soupe de calvados (facultatif)"
-            }
-        ],
-        "steps": [
-            "Prépare la pâte : sable la farine, le sucre glace et le beurre du bout des doigts.",
-            "Ajoute l'œuf, forme une boule et laisse reposer 30 min au frais.",
-            "Étale la pâte, fonce ton moule et pique le fond.",
-            "Coupe les pommes en lamelles et dispose-les joliment sur la pâte.",
-            "Mélange les œufs, le sucre, la vanille, la crème et la poudre d'amande (+ calvados).",
-            "Verse ce mélange sur les pommes.",
-            "Enfourne à 180°C (chaleur tournante) pendant 35 à 40 minutes, jusqu'à ce que le dessus soit doré."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "France",
-            "Glaces",
-            "pâtisserie",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5271",
-        "title": "Crinkles au chocolat",
-        "description": "Découvrez la recette des crinkles au chocolat, des biscuits moelleux et craquelés, généreusement enrobés de sucre glace. Parfaits pour une pause gourmande ou à partager.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7636734150220860675\" data-video-id=\"7636734150220860675\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7636734150220860675\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             50g de beurre mou"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200g de chocolat fondu (chocolat pâtissier à 52% de cacao)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             165g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 sachet de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 bol de sucre glace"
-            }
-        ],
-        "steps": [
-            "Dans un grand récipient, mélange les œufs avec le sucre et le sucre vanillé.",
-            "Ajoute le beurre mou et le chocolat fondu, mélange bien.",
-            "Ajoute enfin la farine et la levure chimique, mélange jusqu'à obtenir une pâte homogène.",
-            "La pâte est collante, c'est normal: place-la au frigo, filmée au contact (recouverte d'un film plastique) toute la nuit.",
-            "Le lendemain, laisse-la tiédir quelques minutes puis formes-en des petites boules. La pâte est un peu compliquée à travailler, fais de ton mieux: je te conseille de t'aider d'une cuillère à glace.",
-            "Roule chaque crinkle très généreusement dans le sucre glace, sur toute la surface, puis mets-les au four environ 10mn à 180°."
-        ],
-        "tags": [
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5254",
         "title": "Sorbet aux raisins et Sprite",
         "description": "Un sorbet rafraîchissant et facile à réaliser avec seulement deux ingrédients : des raisins et du Sprite, à congeler pendant 24 heures et à passer au Ninja Creami.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F627d3957ee14a.jpg&v=1778084190000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F627d3957ee14a.jpg&v=1778076990000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18182,96 +20858,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5265",
-        "title": "Salade de pommes de terre protéinée",
-        "description": "Un plat frais, gourmand et ultra complet pour tenir sa diète.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630509941375159574\" data-video-id=\"7630509941375159574\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630509941375159574\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             1000 g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             150 g d'avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             250 g de tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             300 g de blanc de poulet cuit"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300 g de petit fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80 g de bacon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             50 g d'oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             15 g de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 g de cassonade"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 c. à café d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika fumé"
-            }
-        ],
-        "steps": [
-            "Cuire les pommes de terre: Coupez les pommes de terre en morceaux. Assaisonnez avec sel, poivre, ail, paprika fumé et un peu de cassonade. Faites-les revenir dans une poêle avec un filet d'huile d'olive. Ajoutez un petit filet d'eau si besoin pour éviter que ça accroche. Faites cuire jusqu'à ce qu'elles soient fondantes et légèrement dorées. Laissez-les refroidir complètement avant l'assemblage.",
-            "Préparer les légumes: Émincez finement l'oignon rouge. Coupez l'avocat en cubes. Coupez les tomates cerises en deux ou en quartiers.",
-            "Préparer la sauce: Dans un bol, mélangez le petit fromage frais. Ajoutez sel, poivre, ail, paprika fumé et l'huile d'olive. Ajoutez le miel puis mélangez jusqu'à obtenir une sauce homogène.",
-            "Préparer la garniture: Coupez le poulet en morceaux. Assurez-vous que le poulet est froid avant l'assemblage. Faites griller le bacon dans une poêle jusqu'à ce qu'il soit croustillant.",
-            "Assemblage: Dans un grand saladier, mélangez les pommes de terre froides, l'oignon, l'avocat et les tomates. Ajoutez le poulet froid. Versez la sauce et mélangez pour bien enrober.",
-            "Finition: Ajoutez le bacon grillé chaud et croustillant sur le dessus."
-        ],
-        "tags": [
-            "Entrées",
-            "Healthy",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5231",
         "title": "Poulet Marry me",
         "description": "Une recette de poulet crémeux et savoureux, mijoté dans une sauce au paprika, tomates séchées et parmesan, parfait pour un dîner rapide et facile.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecette-poulet-marry-me.jpg&v=1777907816000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Frecette-poulet-marry-me.jpg&v=1777900616000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18360,7 +20950,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5234",
         "title": "Sorbet coco créole maison",
         "description": "Un sorbet coco créole maison, réalisé pour la première fois avec succès grâce au Ninja Creami. Une texture ultra onctueuse et un goût intense de coco pour un véritable voyage dans les Caraïbes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmaracook-sorbet-coco-antille_197529455.jpg&v=1777907562000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2Fmaracook-sorbet-coco-antille_197529455.jpg&v=1777900362000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18412,7 +21002,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5214",
         "title": "Patates au parmesan et romarin",
         "description": "Une recette simple et savoureuse de pommes de terre rôties avec du parmesan, de l'huile d'olive, de l'ail et du romarin.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FPommes_de_terre_roties_parmesan_recete.jpeg&v=1776371213000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FPommes_de_terre_roties_parmesan_recete.jpeg&v=1776364013000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18467,7 +21057,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5205",
         "title": "Parmigiana di melanzane",
         "description": "Une version revisitée de la Parmigiana di melanzane italienne, promettant de faire tomber amoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FSM2021_DIVE_20_Parmigiana-scaled-1-scaled-1.jpg&v=1776371070000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FSM2021_DIVE_20_Parmigiana-scaled-1-scaled-1.jpg&v=1776363870000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18518,7 +21108,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5193",
         "title": "Scarpaccia courgettes et oignons",
         "description": "Une recette simple et rapide de Scarpaccia, une sorte de galette salée aux courgettes et oignons, parfaite pour un repas léger ou un accompagnement.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fune-specialite-toscane-estivale-sublimee-par-la-touche-d-un-grand-chef.jpg&v=1776368480000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fune-specialite-toscane-estivale-sublimee-par-la-touche-d-un-grand-chef.jpg&v=1776361280000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18589,7 +21179,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5135",
         "title": "Coupelles de banane plantain",
         "description": "Une recette d'entrée pour impressionner vos invités.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCoupelles-de-bananes-plantains1-rotated-1.jpg&v=1776352004000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCoupelles-de-bananes-plantains1-rotated-1.jpg&v=1776344804000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18649,7 +21239,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5123",
         "title": "Cannelés Bordelais",
         "description": "Une recette authentique pour préparer les célèbres cannelés de Bordeaux, avec leur cœur moelleux et leur croûte caramélisée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCanneles-bordelais-recette-Lilie-Bakery.jpg&v=1776351827000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCanneles-bordelais-recette-Lilie-Bakery.jpg&v=1776344627000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18702,7 +21292,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5120",
         "title": "Crêpes bretonnes",
         "description": "Une recette simple et inratable de crêpes sans grumeaux, fondantes en bouche avec un goût de beurre. Les quantités peuvent être divisées par deux pour une dizaine de crêpes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcrepes-bretonnes-a-la-biere-la-recette-traditionnelle-et-savoureuse-1875.jpeg&v=1776350433000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcrepes-bretonnes-a-la-biere-la-recette-traditionnelle-et-savoureuse-1875.jpeg&v=1776343233000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18759,7 +21349,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5126",
         "title": "Astuce pour préparer un poivron",
         "description": "Découvrez une méthode simple et efficace pour couper et nettoyer un poivron rapidement, minimisant le gaspillage et le désordre.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fr-varietes-poivrons-couleurs-139254272as-662fdd6021b08.jpg&v=1776350302000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fr-varietes-poivrons-couleurs-139254272as-662fdd6021b08.jpg&v=1776343102000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18792,7 +21382,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5129",
         "title": "Bouillis de Tapioca",
         "description": "Un classique dessert en Afrique de l'Ouest et Centrale.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCoconut-Tapioca-Pudding.jpg&v=1776349498000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FCoconut-Tapioca-Pudding.jpg&v=1776342298000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18851,7 +21441,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5132",
         "title": "Yovo doko",
         "description": "Découvrez la recette des Yovo doko, des beignets traditionnels du Bénin, simples à réaliser, frits et saupoudrés de sucre glace. Une douceur vegan parfaite pour une pause gourmande.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fi148299-.jpeg&v=1776348198000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fi148299-.jpeg&v=1776340998000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18901,7 +21491,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5144",
         "title": "Batata Harra",
         "description": "Un plat de pommes de terre croustillantes coupées en dés, mélangées à une sauce aillée, tomate et épicée. Servi sur un lit de sauce au yaourt et tahini, et garni de coriandre fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FBatata-Harra-mx-01.jpg&v=1776347432000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FBatata-Harra-mx-01.jpg&v=1776340232000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -18952,7 +21542,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5153",
         "title": "Brochettes de poulet et purée maison",
         "description": "Une recette facile et rapide de brochettes de poulet marinées aux épices, cuites à l'air fryer, accompagnées d'une onctueuse purée de pommes de terre maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcarapelli-brochette-poulet-533x800-1.jpg&v=1776347090000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcarapelli-brochette-poulet-533x800-1.jpg&v=1776339890000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19046,7 +21636,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5083",
         "title": "Coktail fraise menthe",
         "description": "Une boisson rafraîchissante et fruitée, parfaite pour l'été, à base d'eau, de citrons, de fraises et de menthe.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fi72192-cocktail-sans-alcool-aux-fraises-et-a-la-menthe.jpg&v=1776164774000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fi72192-cocktail-sans-alcool-aux-fraises-et-a-la-menthe.jpg&v=1776157574000",
         "category": "rafraichissements",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19097,7 +21687,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5089",
         "title": "Millefeuilles de pomme de terre",
         "description": "Une recette simple et savoureuse de millefeuilles de pommes de terre, assaisonnées d'une marinade à l'huile d'olive, à l'ail et au sel Herbamare, puis cuites au four jusqu'à être dorées et fondantes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FMillefeuilles-pdt.jpg&v=1776164550000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2FMillefeuilles-pdt.jpg&v=1776157350000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19143,7 +21733,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5092",
         "title": "Pâte brisée maison",
         "description": "Une recette familiale de pâte brisée, rapide et facile à réaliser à la main en 2 minutes, sans robot et sans repos, avec des ingrédients du placard. Idéale pour toutes vos tartes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpate-brisee.jpg&v=1776164352000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpate-brisee.jpg&v=1776157152000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19191,7 +21781,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5098",
         "title": "Pomme duchesse ail & beurre truffé",
         "description": "Des pommes duchesse classiques revisitées avec de l'ail et du beurre truffé, parfaites pour accompagner vos repas de fêtes de fin d'année.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpomme-duchesse-1.jpg&v=1776164166000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fpomme-duchesse-1.jpg&v=1776156966000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19251,7 +21841,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5095",
         "title": "Poire farcie au camembert, lard caramélisé",
         "description": "La recette aux plus de 6M de vues, qui m'a fait connaître sur les réseaux l'année dernière et que tu peux retrouver dans le Cheese Book de @lecheesegeek 🔥 Pour 2 pers.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecette-poire-chevre-lard.jpg&v=1776163574000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Frecette-poire-chevre-lard.jpg&v=1776156374000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19306,7 +21896,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3892",
         "title": "Gazpacho maison",
         "description": "Une recette de gazpacho que l'auteur prépare chaque semaine, découverte à Barcelone. L'importance est mise sur les ingrédients de saison, notamment les tomates. Idéal pour ceux qui aiment les salades et cherchent une soupe froide rafraîchissante.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825538731.jpg&v=1776162856000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825538731.jpg&v=1776155656000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19377,7 +21967,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4058",
         "title": "Spanakopita",
         "description": "Une spécialité grecque traditionnelle, la Spanakopita est un feuilleté savoureux à base de feuilles de bricks croustillantes, garni d'un mélange d'épinards, de fromage, d'œufs et de yaourt, puis cuit au four.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fspanakopita_homemade_mom_1775839779733.jpg&v=1775847469000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fspanakopita_homemade_mom_1775839779733.jpg&v=1775840269000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19429,7 +22019,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4013",
         "title": "Mahmoos Gutaifi",
         "description": "Un plat de poulet et riz originaire d'Arabie Saoudite, parfumé aux épices et servi avec une sauce au yaourt.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmahmoos_gutaifi_chef_plating_1775839187356.jpg&v=1775846620000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmahmoos_gutaifi_chef_plating_1775839187356.jpg&v=1775839420000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19528,7 +22118,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4002",
         "title": "Lahsa Yéménite",
         "description": "Un plat yéménite traditionnel à base d'oignons, de tomates et d'œufs, mijoté avec des épices et du fromage liquide, puis servi avec du pain. Idéal pour le petit-déjeuner.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Flahsa_yemenite_magazine_1775837034057.jpg&v=1775845558000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Flahsa_yemenite_magazine_1775837034057.jpg&v=1775838358000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19605,7 +22195,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3997",
         "title": "Kesra farcie à la viande hachée",
         "description": "Une délicieuse Kesra farcie à la viande hachée, prête en seulement 30 minutes. Cette recette permet de réaliser deux galettes de taille moyenne.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fkesra_farci_v2_1775836443310.jpg&v=1775843745000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fkesra_farci_v2_1775836443310.jpg&v=1775836545000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19697,7 +22287,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3975",
         "title": "Bambas de Nata",
         "description": "Une pâtisserie espagnole classique : de moelleux petits pains à la levure garnis de crème fouettée légèrement sucrée. C'est une gourmandise simple et très appréciée, que l'on trouve couramment dans les boulangeries en Espagne.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbombas.jpg&v=1775842988000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbombas.jpg&v=1775835788000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19776,7 +22366,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5007",
         "title": "Gnocchis crémeux au poulet, champignons",
         "description": "Une recette ultra gourmande de gnocchis dans une sauce crémeuse au bouillon de volaille, champignons, brocolis et parmesan, avec des filets de poulet grillés au paprika. Prête en 20 minutes seulement !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fgnocchis.jpeg&v=1775822632000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fgnocchis.jpeg&v=1775815432000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19868,7 +22458,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5022",
         "title": "Sandwich chaud à la viande hachée",
         "description": "Une véritable dinguerie à tester absolument !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsandwi.jpeg&v=1775822594000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsandwi.jpeg&v=1775815394000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -19925,7 +22515,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5002",
         "title": "Salade de Tortellini Croustillants",
         "description": "Une salade estivale et gourmande, composée de tortellini cuits à l'airfryer pour un croustillant irrésistible, mélangés à des légumes frais (concombre, tomates cerise, échalotes, mozza) et une sauce onctueuse au fromage blanc, huile d'olive, vinai...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade-de-tortellinis-b-23-1024x683-1.jpeg&v=1775821882000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fsalade-de-tortellinis-b-23-1024x683-1.jpeg&v=1775814682000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20003,7 +22593,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5025",
         "title": "Top 3 meilleures recettes de knacki",
         "description": "Trois façons délicieuses et simples de préparer les knackis, des saucisses populaires et faciles à cuisiner.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fknacki.jpeg&v=1775819675000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fknacki.jpeg&v=1775812475000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20059,7 +22649,7 @@ export const mockRecipes: Recipe[] = [
         "id": "5031",
         "title": "Citron liégeois",
         "description": "Un dessert frais et onctueux, le Citron Liégeois combine un lemon curd maison acidulé avec une chantilly légère, le tout poché pour une présentation élégante et un mélange de saveurs en bouche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcitron.jpg&v=1775818909000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcitron.jpg&v=1775811709000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20117,7 +22707,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4823",
         "title": "Ramen de poulet",
         "description": "Un ramen de poulet savoureux avec un bouillon parfumé au curry et lait de coco, garni de poulet mariné, pak choi, œuf mollet et mayo kimchi.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Framen-poulet.jpeg&v=1775571751000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Framen-poulet.jpeg&v=1775564551000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20235,7 +22825,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4916",
         "title": "Casatiello stracciato",
         "description": "Une version super simple et traditionnelle du Casatiello stracciato, un plat italien convivial et gourmand, parfait pour les fêtes ou un repas en famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcasatiello-stracciato.jpeg&v=1775571098000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcasatiello-stracciato.jpeg&v=1775563898000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20313,7 +22903,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4794",
         "title": "Légumes rôtis à l'italienne et ricotta",
         "description": "Une recette simple et rapide de légumes rôtis (pommes de terre, tomates cerises, pois chiches) assaisonnés aux herbes, miel et vinaigre balsamique, servis sur un lit de ricotta crémeuse et parsemés de parmesan et d'herbes fraîches. Idéal pour un r...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcarottes-roties.jpg&v=1775229581000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcarottes-roties.jpg&v=1775222381000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20396,7 +22986,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4761",
         "title": "Casatiello napoletano",
         "description": "Le Casatiello napoletano est un pain salé traditionnel de Naples, généralement préparé pour Pâques. Il est richement garni de fromages, de charcuteries comme le saucisson sec et les lardons, et décoré d'œufs entiers sur le dessus avant d'être cuit...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcasatiello-calendario-2024.jpeg&v=1775130907000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F04%2Fcasatiello-calendario-2024.jpeg&v=1775123707000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20478,7 +23068,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4708",
         "title": "Gratin de poulet et pommes de terre à la béchamel",
         "description": "Un gratin savoureux et facile à préparer, combinant des pommes de terre dorées, du poulet tendre et une sauce béchamel onctueuse, le tout gratiné au four.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fob_2685fb_gratin-poulet-pomme-de-terre-creme.jpeg&v=1774955163000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fob_2685fb_gratin-poulet-pomme-de-terre-creme.jpeg&v=1774947963000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20571,7 +23161,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4728",
         "title": "Cheesecake Kinder Bueno",
         "description": "Super crémeux, chocolaté et noisetté, parfait pour tous les amateurs de Kinder Bueno Blanc !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcheesecake-au-kinder-bueno.jpeg&v=1774888464000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcheesecake-au-kinder-bueno.jpeg&v=1774881264000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20655,7 +23245,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4714",
         "title": "Pommes de terre Hasselback, poulet crémeux Cajun et broccolini à l'air fryer",
         "description": "Un repas réconfortant, facile et sain, composé de pommes de terre Hasselback croustillantes, de poulet crémeux à la cajun et de broccolini cuit à l'air fryer.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpatate.jpeg&v=1774888204000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpatate.jpeg&v=1774881004000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20765,7 +23355,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4719",
         "title": "Choux vanille caramel",
         "description": "Une recette classique de choux à la crème, garnis d'une onctueuse crème pâtissière à la vanille et d'une crème montée, le tout dans une pâte à choux légère et dorée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchou.jpeg&v=1774887970000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchou.jpeg&v=1774880770000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20856,7 +23446,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4695",
         "title": "KEBBEH BIL SANIYEH",
         "description": "Un hommage à mon peuple qui vit des heures sombres... Le Kebbeh Bil Saniyeh est un plat libanais traditionnel à base de boulghour et de viande hachée, cuit au four, parfait pour un repas convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimg_6042.jpeg&v=1774702031000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimg_6042.jpeg&v=1774698431000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -20966,7 +23556,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4676",
         "title": "Cheesecake à la vanille",
         "description": "Un cheesecake gourmand à la vanille, composé d'une croûte de biscuits au cacao, d'un croustillant praliné noisette avec des crêpes dentelles, d'une crème onctueuse au fromage frais et mascarpone, et d'une ganache au chocolat blanc.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FCheesecake.jpeg&v=1774617941000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FCheesecake.jpeg&v=1774614341000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21038,7 +23628,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4679",
         "title": "Bao Buns au Magret",
         "description": "Recette pour préparer la pâte de 10 Bao Buns, garnis au magret de canard.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbao.jpeg&v=1774617895000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbao.jpeg&v=1774614295000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21093,7 +23683,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4682",
         "title": "Filet de bœuf façon Rossini",
         "description": "Un plat classique et festif, idéal pour utiliser les restes de foie gras des fêtes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffilet-boeuf-rossini-gastronomique-scaled-1.jpeg&v=1774617848000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffilet-boeuf-rossini-gastronomique-scaled-1.jpeg&v=1774614248000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21124,7 +23714,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4088",
         "title": "Saint-Félicien fondant aux oignons caramélisés",
         "description": "Un Saint-Félicien ultra fondant, entouré d'oignons caramélisés, de poivrons et de jambon cru croustillant... le tout à tartiner sur du pain chaud 🤤",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FRecette-Tentation-a-partager-Saint-Valentin.jpg&v=1774534258000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FRecette-Tentation-a-partager-Saint-Valentin.jpg&v=1774530658000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21180,7 +23770,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3930",
         "title": "Easy Grilled Eggplant Contorno",
         "description": "Une recette simple d'aubergines grillées, assaisonnées d'une vinaigrette méditerranéenne à base d'huile d'olive, de vinaigre de vin blanc, d'ail, de persil frais et de piment.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827201356.jpg&v=1774526704000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827201356.jpg&v=1774523104000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21241,7 +23831,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3938",
         "title": "Classic Tomato Basil Bruschetta",
         "description": "Une recette simple et classique de bruschetta avec une garniture fraîche de tomates, basilic, oignon rouge, assaisonnée d'huile d'olive et de sauce balsamique, servie sur du pain grillé avec de la mozzarella fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827443436.jpg&v=1774526611000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827443436.jpg&v=1774523011000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21304,7 +23894,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3949",
         "title": "Les meilleurs cinnamon rolls",
         "description": "Découvrez la recette des meilleurs cinnamon rolls, avec une pâte moelleuse, une garniture généreuse à la cannelle et un glaçage crémeux au Saint Môret. Parfaits pour un goûter réconfortant ou un brunch gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827996438-scaled.jpg&v=1774526497000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773827996438-scaled.jpg&v=1774522897000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21392,7 +23982,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3955",
         "title": "Fluffy American Pancakes",
         "description": "Une recette simple pour préparer des pancakes américains moelleux, parfaits pour un petit-déjeuner gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773828643418.jpg&v=1774526429000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773828643418.jpg&v=1774522829000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21440,7 +24030,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3965",
         "title": "Patatas Bravas comme à Madrid",
         "description": "Revivez l'ambiance des vacances à Madrid avec ces Patatas Bravas croustillantes et leur sauce épicée, parfaites pour un apéro convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773829018639.jpg&v=1774526253000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773829018639.jpg&v=1774522653000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21508,7 +24098,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3969",
         "title": "Œufs à l'espagnole",
         "description": "Une recette savoureuse d'œufs à l'espagnole, parfaite pour une personne qui mange bien, avec des poivrons, des tomates et des épices.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Foeufs-a-lespagnole-legumes-dete-et-jambon-1-scaled-1.jpeg&v=1774526119000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Foeufs-a-lespagnole-legumes-dete-et-jambon-1-scaled-1.jpeg&v=1774522519000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21584,7 +24174,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3972",
         "title": "Patatas con carne (Ragoût de pommes de terre au bœuf)",
         "description": "Un ragoût de pommes de terre au bœuf, plat emblématique de la cuisine espagnole, simple, savoureux et nourrissant, idéal pour toute la famille. Ses origines rurales en font un plat économique et réconfortant, combinant des ingrédients basiques mai...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774522437973.jpg&v=1774526053000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774522437973.jpg&v=1774522453000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21660,7 +24250,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3986",
         "title": "Pita farci kefta de poulet (Arayes)",
         "description": "Ce plat, aussi appelé Arayes, est une spécialité du Moyen-Orient. Il s'agit de pains pita farcis d'une préparation savoureuse à base de kefta de poulet, d'oignon, d'herbes et d'épices, puis dorés à la poêle et servis avec une sauce au tahini et fr...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773830271409.jpg&v=1774525821000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773830271409.jpg&v=1774522221000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21736,7 +24326,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3989",
         "title": "Falafels libanais maison",
         "description": "Découvrez comment préparer de délicieux falafels libanais maison, inspirés des saveurs authentiques du Liban, avec des options de cuisson à la poêle ou au four pour une version plus légère.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773830414276.jpg&v=1774525761000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773830414276.jpg&v=1774522161000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21821,7 +24411,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4000",
         "title": "Kebbé (Kibbeh)",
         "description": "Recette de la kebbé, une spécialité du Moyen-Orient tellement bonne !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FNOURA_CARTE_2024_%C2%A9MARY_DEVINAT_55-Personnalise.jpeg&v=1774525594000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FNOURA_CARTE_2024_%C2%A9MARY_DEVINAT_55-Personnalise.jpeg&v=1774521994000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -21912,7 +24502,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4008",
         "title": "Koobideh Kebab et Salade Shirazi",
         "description": "Une recette traditionnelle iranienne de Koobideh Kebab, accompagnée d'une rafraîchissante Salade Shirazi et d'un beurre citronné.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831071825.jpg&v=1774525491000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831071825.jpg&v=1774521891000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22007,7 +24597,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4011",
         "title": "Soutzoukakia de Smyrne (Boulettes de viande sauce tomate)",
         "description": "Une recette familiale de boulettes de viande (soutzoukakia) de Smyrne, servies dans une sauce tomate parfumée au cumin et à la cannelle, transmise de génération en génération.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831157362.jpg&v=1774525428000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831157362.jpg&v=1774521828000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22110,7 +24700,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4016",
         "title": "Kessra Farcie Algérienne",
         "description": "Une Kessra Farcie Algérienne, simple à réaliser et délicieuse, parfaite pour un repas convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831361248.jpg&v=1774525341000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831361248.jpg&v=1774521741000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22184,7 +24774,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4022",
         "title": "Shish Taouk Libanais",
         "description": "Recette de brochettes de poulet marinées à la libanaise, servies avec une sauce à l'ail et un mélange d'oignons et persil. Idéal pour un repas convivial au barbecue.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fh%C3%A4hnchen-shish-taouk-web.jpg&v=1774525246000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fh%C3%A4hnchen-shish-taouk-web.jpg&v=1774521646000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22261,7 +24851,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4025",
         "title": "Agneau Madras",
         "description": "Recette d'agneau madras, une spécialité indienne. Viande super tendre avec une sauce bien parfumée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831727015.jpg&v=1774525177000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831727015.jpg&v=1774521577000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22375,7 +24965,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4031",
         "title": "Dolma Algérienne",
         "description": "Recette traditionnelle algérienne de légumes farcis à la viande hachée épicée, cuits dans une sauce savoureuse et mijotés dans un tajine.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831882962.jpg&v=1774525033000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831882962.jpg&v=1774521433000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22474,7 +25064,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4034",
         "title": "Tzatziki Grec Célèbre",
         "description": "Aucune table grecque n'est complète sans cette trempette crémeuse, aillée et rafraîchissante ! Que vous la serviez avec du pain pita chaud, des viandes grillées ou simplement comme collation, le tzatziki apporte une touche méditerranéenne à chaque...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831998424-scaled.jpg&v=1774524941000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831998424-scaled.jpg&v=1774521341000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22532,7 +25122,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4043",
         "title": "Courgettes à la Feta Fouettée",
         "description": "Un plat d'accompagnement estival frais, léger et savoureux. Les courgettes poêlées apportent une touche de chaleur dorée, tandis que la feta fouettée à la menthe et au citron offre un contraste frais et crémeux. Facile à préparer, parfait pour les...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcourgette.jpeg&v=1774524669000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcourgette.jpeg&v=1774521069000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22607,7 +25197,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4046",
         "title": "Pita Souvlaki",
         "description": "Une recette de Pita Souvlaki, un classique de la street food grecque, avec des brochettes de poulet marinées, du tzatziki maison, des légumes frais et des frites.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773832748124.jpg&v=1774524588000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773832748124.jpg&v=1774520988000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22706,7 +25296,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4049",
         "title": "Portokalopita (version citronnée)",
         "description": "Découvrez une version citronnée de la Portokalopita grecque, un gâteau décrit comme le meilleur gâteau au citron, moelleux, parfumé, juteux et acidulé. Il est idéalement dégusté frais le lendemain.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774520873426.jpg&v=1774524498000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774520873426.jpg&v=1774520898000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22774,7 +25364,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4067",
         "title": "Stifado",
         "description": "Un ragoût de bœuf grec traditionnel, mijoté avec du vin rouge, des échalotes et des épices, parfait pour un repas convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fstifado.jpeg&v=1774524046000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fstifado.jpeg&v=1774520446000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22854,7 +25444,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4070",
         "title": "Loukoumades grecs au miel",
         "description": "Découvrez la recette des Loukoumades, de délicieux beignets grecs croustillants et moelleux, nappés de miel, de cannelle et de sésame. Parfaits pour une touche sucrée !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833666641.jpg&v=1774524015000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773833666641.jpg&v=1774520415000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22923,7 +25513,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4094",
         "title": "Mini poivrons farcis à la grecque",
         "description": "Une recette facile de mini poivrons farcis avec une garniture savoureuse à base de feta, yaourt grec, tomate et herbes fraîches, parfaits pour l'apéritif.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Faperol.jpeg&v=1774523887000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Faperol.jpeg&v=1774520287000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -22999,7 +25589,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4096",
         "title": "Salade healthy concombre avocats",
         "description": "Une salade fraîche, vibrante et pleine de saveur à base de concombre, avocat, grenade, noix et sumac. Légère, croquante et naturellement sans produits laitiers, elle est assaisonnée de citron et d'huile d'olive.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FPistachio-Crunch-Cucumber-Avocado-Salad-3.jpeg&v=1774523792000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FPistachio-Crunch-Cucumber-Avocado-Salad-3.jpeg&v=1774520192000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23069,7 +25659,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4147",
         "title": "Gnocchis crousti au air fryer",
         "description": "Une recette super simple et rapide de gnocchis croustillants préparés au air fryer en seulement 15 minutes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FGnocchi-au-Air-Fryer-281-scaled-1.jpeg&v=1774523717000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FGnocchi-au-Air-Fryer-281-scaled-1.jpeg&v=1774520117000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23120,7 +25710,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4159",
         "title": "Brochettes Bœuf Fromage Airfryer",
         "description": "Des brochettes de bavette marinée et de Comté, rapides à préparer et à cuire à l'Airfryer.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbrochette.jpeg&v=1774523641000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbrochette.jpeg&v=1774520041000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23175,7 +25765,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4138",
         "title": "Tenders de poulet croustillants à l'Air Fryer",
         "description": "T'as eu un AirFryer à Noël ? T'es obligé de tester cette recette de tenders de poulet ultra croustillant, prêt en 15 minutes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FPoulet-KFC-facile.jpeg&v=1774523376000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FPoulet-KFC-facile.jpeg&v=1774519776000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23246,7 +25836,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4132",
         "title": "Paccheri aux noix de cajou et tomates cerises",
         "description": "Une recette de pâtes (paccheri) avec une sauce crémeuse à base de tomates cerises confites et de noix de cajou, relevée d'ail et de Grana Padano.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpaytes.jpeg&v=1774523258000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpaytes.jpeg&v=1774519658000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23310,7 +25900,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4176",
         "title": "Souris d'agneau confites",
         "description": "Une recette gourmande de souris d'agneau confites, marinées avec des épices, du miel et de la moutarde, servies avec des pommes de terre grenailles.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fi196620-souris-d-agneau.jpeg&v=1774523137000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fi196620-souris-d-agneau.jpeg&v=1774519537000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23370,7 +25960,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4129",
         "title": "Salade de Gnocchis Croustillants",
         "description": "Des gnocchis croustillants préparés à la friteuse à air, associés à une salade romaine fraîche et une vinaigrette crémeuse à l'aneth. Un mélange de chaud et froid, de crémeux et de croquant, parfait pour un dîner léger ou une salade copieuse.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffilled-600x600-1.jpeg&v=1774523068000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffilled-600x600-1.jpeg&v=1774519468000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23458,7 +26048,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4126",
         "title": "Salade César",
         "description": "Une recette de Salade César complète, avec sa mayonnaise maison aux anchois et son poulet pané croustillant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FSalade-Cesar.jpeg&v=1774522966000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FSalade-Cesar.jpeg&v=1774519366000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23528,7 +26118,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4123",
         "title": "Épaule d'agneau comme un chef",
         "description": "Découvrez comment cuisiner une épaule d'agneau savoureuse et fondante, un plat mijoté qui ne sèche pas, parfait pour un repas de chef à la maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FEpaule-dagneau-rotie-au-miel-et-aux-herbes-1024x687-1.jpeg&v=1774522874000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FEpaule-dagneau-rotie-au-miel-et-aux-herbes-1024x687-1.jpeg&v=1774519274000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23589,7 +26179,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4120",
         "title": "Gâteau roulé Léopard",
         "description": "Un gâteau roulé original et inratable, décoré d'un motif léopard distinctif. Moelleux et facile à rouler, il est parfait pour impressionner et régaler toute la famille. Garnissez-le de pâte à tartiner pour une touche gourmande.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774135864620.jpg&v=1774522737000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774135864620.jpg&v=1774519137000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23663,7 +26253,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4117",
         "title": "Poulet rôti à l'espagnol",
         "description": "Un poulet entier rôti avec des légumes, du chorizo et des épices typiques d'Espagne, parfait pour un repas convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F5867.jpeg&v=1774522625000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F5867.jpeg&v=1774519025000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23743,7 +26333,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4114",
         "title": "Tarte couronne",
         "description": "Tarte couronne pour les beaux jours, parfait pour un apéro !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte-couronne-apero-43598.jpeg&v=1774522573000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte-couronne-apero-43598.jpeg&v=1774518973000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23806,7 +26396,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4102",
         "title": "Salade fraîche mangue avocat et pistaches",
         "description": "Une salade fraîche, colorée et pleine de saveurs, combinant mangue sucrée, avocat crémeux, tomates cerises, olives Kalamata et pistaches croquantes, le tout relevé par une vinaigrette citron-huile d'olive. Idéale comme accompagnement sain ou repas...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimg_2954-scaled.jpg&v=1774522201000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimg_2954-scaled.jpg&v=1774518601000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23885,7 +26475,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4091",
         "title": "Calzone de Poulet",
         "description": "Une calzone de poulet riche en protéines (45g) et faible en calories (255 kcal) pour un repas sain et savoureux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcordon-bleu-maison.jpg&v=1774522108000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcordon-bleu-maison.jpg&v=1774518508000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -23948,7 +26538,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4085",
         "title": "Saint-Jacques sur purée de butternut et chorizo",
         "description": "Une recette de saint Jacques parfaite pour Noël.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fsaint-jacques-beurre-sauge-4.jpg&v=1774521937000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fsaint-jacques-beurre-sauge-4.jpg&v=1774518337000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24005,7 +26595,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4082",
         "title": "Hachis Parmentier maison",
         "description": "Faire son hachis Parmentier maison !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHachis-parmentier-cantal-TIPIAK.jpg&v=1774521832000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHachis-parmentier-cantal-TIPIAK.jpg&v=1774518232000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24085,7 +26675,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4073",
         "title": "Roulés Phyllo aux Épinards",
         "description": "Une délicieuse recette de roulés à base de pâte phyllo, garnis d'épinards et de fromage, puis cuits au four jusqu'à dorer. Parfait pour un apéritif ou une entrée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774517895112.jpg&v=1774521534000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774517895112.jpg&v=1774517934000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24154,7 +26744,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4505",
         "title": "Samboussek Libanais",
         "description": "Découvrez la recette des Samboussek, de délicieux petits chaussons libanais farcis à la viande hachée et aux pignons de pin, parfaits pour un apéritif ou une entrée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fsamboussak-1.jpg&v=1774521505000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fsamboussak-1.jpg&v=1774517905000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24250,7 +26840,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4262",
         "title": "Boulettes de viande ultra gourmandes à la sauce tomate",
         "description": "Mes boulettes de viande ultra gourmandes à la sauce tomate ! Elles sont fondantes et cheesy grâce à la mozzarella et au pecorino !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774263189408-scaled.jpg&v=1774521470000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774263189408-scaled.jpg&v=1774517870000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24354,7 +26944,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4318",
         "title": "Pancakes jambon-fromage au four",
         "description": "Des pancakes salés cuits au four, garnis de jambon et de fromage, parfaits pour un repas rapide ou un brunch.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpancake.jpeg&v=1774521385000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpancake.jpeg&v=1774517785000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24413,7 +27003,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4321",
         "title": "Tajine de poulet aux olives à l'Airfryer",
         "description": "Une recette facile et rapide de tajine de poulet aux olives, préparée à l'Airfryer pour un plat savoureux et pratique.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftajine-poulet.jpeg&v=1774521292000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftajine-poulet.jpeg&v=1774517692000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24504,7 +27094,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4324",
         "title": "Tarte 100% chocolat",
         "description": "Une tarte entièrement au chocolat qui explore différentes textures (croustillant, moelleux, fondant, aérien) pour une expérience gustative riche et mémorable, grâce à une pâte sucrée, un biscuit financier, un crémeux et une ganache montée.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FTarte2-400x500-1.jpg&v=1774521203000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FTarte2-400x500-1.jpg&v=1774517603000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24612,7 +27202,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4347",
         "title": "Toasts patate douce chèvre frais",
         "description": "Mon dieu que c'est bon 🤤 Vous devez testez absolument !! C'est tellement original, ça change des toasts classiques, et le mélange sucré/salé c'est exceptionnel.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774517426210.jpg&v=1774521042000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774517426210.jpg&v=1774517442000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24692,7 +27282,7 @@ export const mockRecipes: Recipe[] = [
         "id": "4350",
         "title": "Arayes libanais et Tzatziki maison",
         "description": "Découvrez la recette des Arayes libanais, des pains pita garnis d'une savoureuse farce à la viande hachée et aux épices, accompagnés d'un Tzatziki maison rafraîchissant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774391892305.jpg&v=1774521000000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774391892305.jpg&v=1774517400000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24798,7 +27388,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3531",
         "title": "Torta della Nonna",
         "description": "Aujourd'hui, nous partageons la recette d'une délicieuse spécialité italienne : la Torta della Nonna. Son nom signifie \" Gâteau de la Grand-mère \", et ce dessert classique vous transportera directement dans la cuisine chaleureuse d'une nonna itali...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftorta.jpeg&v=1774454730000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftorta.jpeg&v=1774451130000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24892,7 +27482,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3533",
         "title": "Gnocchi di ricotta alla sorrentina",
         "description": "Ces gnocchis de ricotta à la sorrentina évoquent les saveurs réconfortantes de la cuisine traditionnelle italienne. Un plat généreux qui promet de remplir votre cuisine d'arômes délicieux et votre cœur de bonheur, comme chez grand-mère. Parfaits p...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FGnocchi-alla-Sorrentina-1200px-Inside-the-rustic-kitchen-1.jpeg&v=1774454638000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FGnocchi-alla-Sorrentina-1200px-Inside-the-rustic-kitchen-1.jpeg&v=1774451038000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -24971,7 +27561,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3537",
         "title": "Layer Cake aux Fruits Rouges",
         "description": "Découvrez la recette d'un magnifique layer cake aux fruits rouges, parfait pour célébrer les occasions spéciales. Ce gâteau aérien, composé d'une génoise moelleuse, d'un confit de fraises acidulé et d'une crème onctueuse au mascarpone, est sublimé...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Flayer-cake.jpeg&v=1774454384000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Flayer-cake.jpeg&v=1774450784000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25094,7 +27684,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3539",
         "title": "Gâteau spéculoos, fruits rouges et mascarpone",
         "description": "Un dessert frais, fondant et gourmand qui a connu un grand succès sur les réseaux sociaux. Ce gâteau combine les saveurs douces des spéculoos avec la fraîcheur acidulée des fruits rouges et la légèreté du mascarpone. Parfait pour régaler 12 person...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgateau-mascarpone-ricotta-fruits-rouges-sans-cuisson.jpeg&v=1774454126000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgateau-mascarpone-ricotta-fruits-rouges-sans-cuisson.jpeg&v=1774450526000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25193,7 +27783,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3541",
         "title": "Flan au Caramel",
         "description": "Ce flan au caramel est un dessert qui prouve que des ingrédients simples peuvent créer quelque chose d'incroyable. Une crème onctueuse et riche, cuite doucement au bain-marie, nappée d'un caramel ambré profond qui fondra dans la sauce une fois dém...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fflan.jpeg&v=1774453830000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fflan.jpeg&v=1774450230000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25256,7 +27846,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3549",
         "title": "Pavlova à la compotée de fraises des bois et chantilly",
         "description": "Découvrez cette pavlova spectaculaire qui a conquis Instagram ! Une meringue française aérienne garnie d'une compotée acidulée de fraises des bois, d'un sorbet rafraîchissant au babeurre et d'un lemon curd onctueux. Un dessert d'été parfait pour i...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpavlova-scaled-1.jpg&v=1774453682000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpavlova-scaled-1.jpg&v=1774450082000",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25308,7 +27898,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3552",
         "title": "Tartelettes Mangue Passion et Ganache Montée Vanille",
         "description": "Découvrez ces délicieuses tartelettes aux saveurs exotiques de mangue et de fruit de la passion, sublimées par une ganache montée à la vanille aérienne. Une recette raffinée pour un dessert fruité et gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmangue.jpeg&v=1774453286000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmangue.jpeg&v=1774449686000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25443,7 +28033,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3555",
         "title": "Cupcakes crème brûlée",
         "description": "Découvrez une recette gourmande de cupcakes inspirés de la célèbre crème brûlée. Ces petits gâteaux moelleux sont garnis d'une onctueuse crème pâtissière à la vanille, puis recouverts d'une fine couche de sucre caramélisé au chalumeau, offrant un ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcupcake.jpeg&v=1774453096000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcupcake.jpeg&v=1774449496000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25533,7 +28123,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3562",
         "title": "Tartelettes aux Fruits Rouges et Vanille",
         "description": "Découvrez ces délicieuses tartelettes composées d'une pâte sucrée croustillante, d'une crème d'amande onctueuse, d'un confit de fruits rouges acidulé et d'une ganache montée à la vanille aérienne. Une explosion de saveurs pour un dessert raffiné.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte.jpeg&v=1774452882000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte.jpeg&v=1774449282000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25674,7 +28264,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3597",
         "title": "Tabouleh à la libanaise",
         "description": "Découvrez la recette authentique du tabouleh à la libanaise, une salade fraîche et parfumée, emblème de la cuisine du Moyen-Orient. Ce plat végétarien met à l'honneur le persil plat, la menthe, les tomates et le boulgour fin, relevés par une vinai...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftaboule-libanais1-875-x-990.jpeg&v=1774452630000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftaboule-libanais1-875-x-990.jpeg&v=1774449030000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25750,7 +28340,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3634",
         "title": "Toum express",
         "description": "Découvrez le Toum, une crème d'ail libanaise express et facile à réaliser. Parfaite pour accompagner vos sandwichs, salades ou à déguster en dip, cette recette rapide et savoureuse est une véritable pépite culinaire. Elle apportera une touche d'au...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftoum-libanesiche-knoblauchcreme-6.jpg&v=1774451977000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftoum-libanesiche-knoblauchcreme-6.jpg&v=1774448377000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25810,7 +28400,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3655",
         "title": "Tarte aux dattes (Date Tart)",
         "description": "Une tarte gourmande et onctueuse alliant une base de biscuits à la cannelle et une crème fondante aux dattes et au fromage à la crème.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftartedattes_lowres.jpg&v=1774451679000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftartedattes_lowres.jpg&v=1774448079000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25885,7 +28475,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3657",
         "title": "Tartelettes au Citron",
         "description": "Une pâtisserie française classique et élégante composée d'une pâte sucrée croustillante, d'une crème pâtissière au citron soyeuse et d'un lemon curd brillant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte-citron.jpeg&v=1774451280000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftarte-citron.jpeg&v=1774447680000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -25995,7 +28585,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3669",
         "title": "Bœuf effiloché et son Gratin Dauphinois",
         "description": "Une recette gourmande combinant un bœuf effiloché aux saveurs Tex-Mex et un gratin dauphinois onctueux.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboeuf.jpeg&v=1774451019000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboeuf.jpeg&v=1774447419000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26102,7 +28692,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3836",
         "title": "Tartine fraîcheur avocat saumon",
         "description": "Une tartine gourmande et croquante alliant la douceur de l'avocat écrasé au saumon fumé, relevée par des oignons frits et une touche de crème balsamique.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftartine.jpg&v=1774450800000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftartine.jpg&v=1774447200000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26175,7 +28765,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3839",
         "title": "Fougasse traditionnelle aux herbes",
         "description": "Un pain traditionnel de Provence en forme de feuille, caractérisé par sa croûte croustillante, sa mie moelleuse et ses arômes d'herbes séchées et d'huile d'olive.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffougasse.jpeg&v=1774450385000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ffougasse.jpeg&v=1774446785000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26251,7 +28841,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3842",
         "title": "Champis de la flemme",
         "description": "Une recette express et gourmande de champignons de Paris farcis au jambon, à la crème et au fromage, idéale pour un dîner léger ou une entrée rapide.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fi200880-champignons-farcis-au-jambon-au-four.jpeg&v=1774450194000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fi200880-champignons-farcis-au-jambon-au-four.jpeg&v=1774446594000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26311,7 +28901,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3851",
         "title": "Chips maison de légumes (Betterave, Carotte, Navet)",
         "description": "Une alternative saine et croustillante aux chips industrielles, réalisée avec des légumes de saison cuits au four.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchips.jpeg&v=1774450085000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchips.jpeg&v=1774446485000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26368,7 +28958,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3857",
         "title": "Feuilleté apéritif au fromage et ail",
         "description": "Un amuse-bouche maison facile et rapide à base de pâte feuilletée, fromage frais, parmesan, ail et persil, idéal pour l'apéritif.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftorsade.jpeg&v=1774449765000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftorsade.jpeg&v=1774446165000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26417,7 +29007,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3863",
         "title": "Feuilletés chèvre miel",
         "description": "Une recette d'apéritif ultra simple et rapide à réaliser avec seulement quelques ingrédients pour un résultat gourmand sucré-salé.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchevre.jpeg&v=1774449463000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fchevre.jpeg&v=1774445863000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26458,7 +29048,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3869",
         "title": "Mini Pizza Extra Moelleuse",
         "description": "Une recette de mini pizzas à la pâte ultra moelleuse, idéale pour un apéritif dînatoire ou pour le mois de Ramadan.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpiza.jpeg&v=1774449336000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpiza.jpeg&v=1774445736000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26513,7 +29103,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3875",
         "title": "Mayonnaise maison à la fourchette",
         "description": "Une mayonnaise onctueuse et inratable réalisée sans robot ni mixeur, bien meilleure et plus économique que les versions industrielles.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmayo.jpeg&v=1774449103000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fmayo.jpeg&v=1774445503000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26560,7 +29150,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3887",
         "title": "Tempura de légumes",
         "description": "Une recette croustillante et légère de beignets de légumes, rapide et facile à réaliser pour un apéritif original.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FL%C3%A9gumes-en-tempura-au-curcuma-sauce-yaourt-menthe.jpeg&v=1774448557000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FL%C3%A9gumes-en-tempura-au-curcuma-sauce-yaourt-menthe.jpeg&v=1774444957000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26609,7 +29199,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3901",
         "title": "Balls de pomme de terre au persil et parmesan",
         "description": "Pour un apéro ou en accompagnement, ces boulettes de pomme de terre seront parfaites ! Parsemées d'un peu de jus de citron, (beaucoup) de parmesan et de persil c'est juste incroyablement bon !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcroquette.jpg&v=1774448293000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fcroquette.jpg&v=1774444693000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26691,7 +29281,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3904",
         "title": "Gnocchis Croustillants",
         "description": "Une recette facile et rapide de gnocchis croustillants préparés au airfryer, parfaits pour l'apéritif, accompagnés d'une sauce fraîche au fromage blanc.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgnocchis-crousti-apero.jpeg&v=1774447996000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgnocchis-crousti-apero.jpeg&v=1774444396000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26758,7 +29348,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3907",
         "title": "Carottes croustillantes au parmesan",
         "description": "Une recette facile et rapide de carottes rôties et croustillantes au parmesan, parfaite pour un apéritif gourmand.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F94244799368527b208c894_carottes-croustillantes-parmesan.jpeg&v=1774447847000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F94244799368527b208c894_carottes-croustillantes-parmesan.jpeg&v=1774444247000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26819,7 +29409,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3910",
         "title": "Hauts de cuisse de poulet marinés BBQ",
         "description": "Une marinade express et savoureuse pour vos hauts de cuisse de poulet, parfaite pour changer des classiques du barbecue. Facile et rapide à préparer, cette recette plaira à coup sûr !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fhaut-de-cuisse-recipe%402x.jpeg&v=1774447552000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fhaut-de-cuisse-recipe%402x.jpeg&v=1774443952000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26877,7 +29467,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3913",
         "title": "Brochette Bœuf Fromage BBQ",
         "description": "Des brochettes de bœuf et de comté marinées, parfaites pour le barbecue.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fs70-yakitori-boeuf-fromage.jpeg&v=1774447314000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fs70-yakitori-boeuf-fromage.jpeg&v=1774443714000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -26941,7 +29531,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3918",
         "title": "Ailes de poulet BBQ croustillantes",
         "description": "Découvrez ces ailes de poulet BBQ irrésistibles, croustillantes à l'extérieur et juteuses à l'intérieur ! Parfaitement marinées avec une sauce BBQ épicée et une touche de miel, elles sont idéales pour les soirées barbecue, les invités ou simplemen...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Failes-poulet-barbecue-1178px-tinyjpg.jpeg&v=1774446860000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Failes-poulet-barbecue-1178px-tinyjpg.jpeg&v=1774443260000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27026,7 +29616,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3921",
         "title": "Pommes de terre grenailles au parmesan et gruyère",
         "description": "Un accompagnement gourmand et facile à réaliser, parfait pour un barbecue, avec des pommes de terre grenailles rôties au four, enrobées d'épices et gratinées au parmesan et gruyère.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpommes-de-terre-parmesan-H.jpeg&v=1774446589000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpommes-de-terre-parmesan-H.jpeg&v=1774442989000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27090,7 +29680,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3924",
         "title": "Steak With Crying Tiger Sauce",
         "description": "Un steak de jupe tendre et juteux avec du feu, de l'acidité et du mordant. Mariné dans de la sauce soja, de la sauce poisson, du citron vert et une touche de piment. Grillé fortement sur une poêle en fonte, marqué en losange, tranché finement et n...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fviande.jpg&v=1774446337000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fviande.jpg&v=1774442737000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27179,7 +29769,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3935",
         "title": "Travers d'agneau collants au Gochujang",
         "description": "Une recette savoureuse de travers d'agneau marinés dans une sauce épicée et sucrée au gochujang, puis rôtis au four jusqu'à obtenir une texture tendre et collante.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftravers-scaled.jpeg&v=1774445406000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftravers-scaled.jpeg&v=1774441806000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27253,7 +29843,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3898",
         "title": "Rillettes de Thon",
         "description": "Une recette facile et rapide pour l'apéro, ces rillettes de thon sont un incontournable, simples, rapides et délicieuses. Idéales à déguster avec des amis.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825781506.jpg&v=1773829409000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825781506.jpg&v=1773825809000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27310,7 +29900,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3895",
         "title": "Toasts patate douce chèvre frais",
         "description": "Une recette originale et savoureuse qui change des toasts classiques, avec un mélange sucré/salé exceptionnel.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825712328.jpg&v=1773829315000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773825712328.jpg&v=1773825715000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27390,7 +29980,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3796",
         "title": "Gaspacho Concombre Menthe Feta",
         "description": "Une recette végétarienne, légère, à IG bas et sans gluten, parfaite pour tes repas d'été. Simple et rapide à réaliser !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgaspacho2.jpg&v=1773763744000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fgaspacho2.jpg&v=1773760144000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27476,7 +30066,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3720",
         "title": "Saumon croustillant et mayonnaise épicée",
         "description": "Une recette facile et rapide de saumon croustillant cuit à l'airfryer, servi avec une mayonnaise épicée maison et du riz.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FSaumon_epice_063.jpg&v=1773762698000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FSaumon_epice_063.jpg&v=1773759098000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27543,7 +30133,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3726",
         "title": "Escalopes de poulet sauce champignons",
         "description": "Un plat principal gourmand et riche en protéines, composé d'escalopes de poulet et de pommes de terre rôties, nappées d'une sauce crémeuse aux champignons, oignon et ail. Idéal pour une perte de poids sans frustration.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773533730690.jpg&v=1773762675000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773533730690.jpg&v=1773759075000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27622,7 +30212,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3729",
         "title": "Curry de pois chiches aux noix de cajou grillées",
         "description": "Une recette végétarienne savoureuse et facile à préparer, à base de pois chiches, de lait de coco et d'un mélange d'épices, garnie de noix de cajou grillées et de coriandre fraîche.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773535664386.jpg&v=1773762663000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773535664386.jpg&v=1773759063000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27713,7 +30303,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3732",
         "title": "Tajine de Kefta Végétarien",
         "description": "Un tajine savoureux et végétarien composé de boulettes de lentilles et champignons épicées, mijotées dans une sauce tomate riche avec des oignons caramélisés, et garni d'œufs. Idéal à déguster avec du pain.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773535963287.jpg&v=1773762652000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773535963287.jpg&v=1773759052000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27815,7 +30405,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3735",
         "title": "Boulettes italiennes (Polpette)",
         "description": "Des boulettes italiennes comme chez la nonna 🇮🇹🍝",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboulettes-italiennes-ba44b4d9-1.jpeg&v=1773762639000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fboulettes-italiennes-ba44b4d9-1.jpeg&v=1773759039000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27888,7 +30478,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3741",
         "title": "Uova in purgatorio",
         "description": "Recette italienne d'origine napolitaine, les \" oeufs au purgatoire \" sont un plat simple et délicieux à base d'œufs pochés dans une sauce tomate mijotée. Ses couleurs rappellent le rouge des flammes et le blanc des âmes en rédemption. Une recette ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fuova-in-purgatorio.jpg&v=1773762627000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fuova-in-purgatorio.jpg&v=1773759027000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -27948,7 +30538,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3744",
         "title": "Salade de Pommes de Terre Rôties, Tomates, Pois Chiches et Ricotta",
         "description": "Une recette végétarienne facile et rapide aux saveurs italiennes, combinant des pommes de terre, tomates cerises et pois chiches rôtis, servis sur un lit de ricotta fraîche avec du parmesan et des herbes.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F500964372_122173640036343633_5202015027513151850_n.jpeg&v=1773762617000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2F500964372_122173640036343633_5202015027513151850_n.jpeg&v=1773759017000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28035,7 +30625,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3811",
         "title": "Flammekueche",
         "description": "Découvrez la recette traditionnelle alsacienne de la Flammekueche, aussi appelée tarte flambée. Une pâte fine et croustillante garnie d'une base crémeuse de fromage blanc et crème fraîche, d'oignons finement émincés et de lardons fumés, cuite à tr...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFlammekuche_1280x720.jpg&v=1773762580000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFlammekuche_1280x720.jpg&v=1773758980000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28108,7 +30698,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3826",
         "title": "Focaccia inratable",
         "description": "Découvrez la recette de cette délicieuse focaccia, très simple à réaliser avec peu d'étapes et sans pétrissage. Un temps de repos d'une nuit au réfrigérateur permet d'obtenir une focaccia bien alvéolée et un goût incroyable, mais une version plus ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFocaccia-surdej.jpg&v=1773762567000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFocaccia-surdej.jpg&v=1773758967000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28169,7 +30759,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3789",
         "title": "Pain spécial pita",
         "description": "Une recette simple et rapide pour préparer du pain pita maison, idéal pour accompagner vos repas ou pour des sandwichs.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpain-pita-scaled.jpg&v=1773757771000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fpain-pita-scaled.jpg&v=1773754171000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28221,7 +30811,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3699",
         "title": "Loaded Fries",
         "description": "Une version maison et giga gourmande de frites croustillantes, garnies de cheddar fondant, bacon crispy, oignons caramélisés, une sauce maison de folie et de ciboulette fraîche. Parfaites pour une soirée série !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FLoaded-Bacon-Cheese-Fries-3.jpg&v=1773681623000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FLoaded-Bacon-Cheese-Fries-3.jpg&v=1773678023000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28287,7 +30877,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3714",
         "title": "Farfalle al salmone",
         "description": "Une recette gourmande, crémeuse et ultra efficace de farfalle au saumon fumé, avec une sauce qui enrobe parfaitement les pâtes. Simple et irrésistible.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFarfalle-al-salmone-Ricetta-Farfalle-al-salmone.jpg&v=1773681494000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FFarfalle-al-salmone-Ricetta-Farfalle-al-salmone.jpg&v=1773677894000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28336,7 +30926,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3626",
         "title": "Houmous bil Lahmé",
         "description": "Découvrez la recette libanaise authentique du Houmous bil Lahmé, un plat savoureux qui combine la douceur du houmous crémeux avec la richesse d'une garniture de viande de bœuf parfumée. Parfait pour un mezzé convivial, ce plat est à la fois facile...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHummus-with-Beef-1.jpg&v=1773679217000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2FHummus-with-Beef-1.jpg&v=1773675617000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28452,7 +31042,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3648",
         "title": "Croquetas à la pancetta et au Manchego",
         "description": "Une recette gourmande de croquettes espagnoles croustillantes à base de pancetta, de jambon et de fromage Manchego fondant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbd-77.jpg&v=1773678891000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbd-77.jpg&v=1773675291000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28511,7 +31101,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3701",
         "title": "Tarte aux framboises et pistache",
         "description": "Une délicieuse tarte estivale composée d'une pâte sablée croustillante, d'une crème d'amande (optionnelle), d'un coulis de fruits rouges, et d'une onctueuse crème pâtissière à la pistache, le tout garni de framboises fraîches.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773497706585.jpg&v=1773501520000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773497706585.jpg&v=1773497920000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28619,7 +31209,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3570",
         "title": "Poulet Parmigiana",
         "description": "Découvrez une recette de Poulet Parmigiana irrésistible, un plat réconfortant qui ravira vos papilles. Ce classique italien revisité promet une explosion de saveurs avec son poulet croustillant, sa sauce tomate maison et son fromage fondant.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773301981468.png&v=1773305601000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773301981468.png&v=1773302001000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28731,7 +31321,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3480",
         "title": "Piccata de poulet à l'italienne",
         "description": "Découvrez une délicieuse recette de Piccata de poulet, un classique de la cuisine italienne. Ce plat savoureux met en vedette des blancs de poulet tendres, parfumés au citron et au thym, accompagnés d'une purée de pommes de terre onctueuse. Une re...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3480_1773151081832.png&v=1773154700000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3480_1773151081832.png&v=1773151100000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28810,7 +31400,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3483",
         "title": "CROSTONI SALSICCIA E STRACCHINO",
         "description": "Découvrez les Crostoni Salsiccia e Stracchino, l'antipasto toscan par excellence. Ces délicieuses tranches de pain sont généreusement garnies d'un mélange savoureux de saucisse italienne, de stracchino crémeux et de graines de fenouil toastées. Le...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3483_1773151063039.png&v=1773154680000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3483_1773151063039.png&v=1773151080000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28868,7 +31458,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3489",
         "title": "Biscuit au Caramel et Chocolat",
         "description": "Découvrez comment réaliser un délicieux biscuit au caramel onctueux et une couverture gourmande de chocolat au lait et noir. Une recette facile à suivre pour un dessert qui plaira à coup sûr.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3489_1773151022921.png&v=1773154641000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3489_1773151022921.png&v=1773151041000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28922,7 +31512,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3493",
         "title": "Galette de pomme de terre",
         "description": "Découvrez comment préparer de délicieuses galettes de pomme de terre croustillantes avec cette recette simple. Parfaites pour un repas rapide ou un accompagnement savoureux, ces galettes sont faciles à réaliser et plairont à toute la famille.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3493_1773151002760.png&v=1773154621000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_ai_3493_1773151002760.png&v=1773151021000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -28999,7 +31589,7 @@ export const mockRecipes: Recipe[] = [
         "id": "3499",
         "title": "Brookie",
         "description": "Découvrez la recette du Brookie, un dessert gourmand qui combine le meilleur du brownie et du cookie en une seule pâtisserie irrésistible. Avec sa base fondante de brownie au chocolat et sa couche supérieure de pâte à cookie moelleuse aux pépites ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbrookie_pro_1773150577937.png&v=1773154194000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fbrookie_pro_1773150577937.png&v=1773150594000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -29128,7 +31718,7 @@ export const mockRecipes: Recipe[] = [
         "id": "1187",
         "title": "Il Venezia - Paris 12",
         "description": "    Au Venezia à Paris, pas un plat typique ne manque à la carte. Vous pouvez alors vous composer un véritable repas italien, comme on en mange à Rome, Naples ou encore Florence : en entrée antipasti, puis penne calabrese, et enfin en dessert le t...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2Fvenezia-restaurant-italien-paris-12-1024x684-2.jpeg&v=1664225429000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2Fvenezia-restaurant-italien-paris-12-1024x684-2.jpeg&v=1664218229000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -29163,7 +31753,7 @@ export const mockRecipes: Recipe[] = [
         "id": "278",
         "title": "L'Odysee",
         "description": "    Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte es...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557022352000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557015152000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -29196,7 +31786,7 @@ export const mockRecipes: Recipe[] = [
         "id": "237",
         "title": "Le club des cinq",
         "description": "    Cinq amis recréent le mythique Club des Cinq grâce à un restaurant à la décoration très revival 80's. Vous pourrez admirer la photo de Mac Gyver ou celle de Goldorak qui ornent les murs de l'endroit, et vous dînerez adossé à une bibliothèque r...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F03%2Fclub.jpg&v=1526258087000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F03%2Fclub.jpg&v=1526250887000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -29228,7 +31818,7 @@ export const mockRecipes: Recipe[] = [
         "id": "260",
         "title": "Bistrot à Burger",
         "description": "                                                                                                                                                                                                                                                       ...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FCapture-d%E2%80%99e%CC%81cran-2018-05-13-a%CC%80-21.32.19.png&v=1526257602000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FCapture-d%E2%80%99e%CC%81cran-2018-05-13-a%CC%80-21.32.19.png&v=1526250402000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -29262,7 +31852,7 @@ export const mockRecipes: Recipe[] = [
         "id": "163",
         "title": "Japonais Ippudo",
         "description": "    Attention ovni ou plutôt Yūfō en nippon.... Connaissez vous les rāmen  ? Mais si vous savez les soupes avec plein de trucs dedans ! A la base, le Ramen est un plat chinois à base de pâtes tirées à la main par le cuisinier appelés la mian. Le p...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2FAka-Vegetarian-Ippudo-London-HR-copy-iloveimg-resized.jpg&v=1519482035000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2FAka-Vegetarian-Ippudo-London-HR-copy-iloveimg-resized.jpg&v=1519478435000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -29300,7 +31890,7 @@ export const mockRecipes: Recipe[] = [
         "id": "115",
         "title": "Trattoria La Cicciolina",
         "description": "    Ce nouveau resto italien a décidément beaucoup d'allure. Son patronyme quelque peu coquin : La Cicciolina. Le propriétaire Max, il pizz aiolo Francesco et l'équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies spécial...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2Ffolsom-studio-decoration-restaurant-paris-cicciolina_00028-1376x916.jpg&v=1519243312000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2Ffolsom-studio-decoration-restaurant-paris-cicciolina_00028-1376x916.jpg&v=1519239712000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,

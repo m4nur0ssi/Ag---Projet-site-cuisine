@@ -170,8 +170,11 @@ const depluralize = (n: string) => n.split(' ').map(w => {
 // Adjectifs de préparation retirés pour la fusion (oignon émincé = oignon).
 // NB : on ne retire PAS "frais/fraiche" (crème fraîche ≠ crème) ni les couleurs
 // (oignon rouge ≠ oignon blanc), qui distinguent de vrais produits.
-const PREP_RE = /\s+(haches?|hachees?|eminces?|emincees?|concasses?|concassees?|ciseles?|ciselees?|rapes?|rapees?|coupes?|coupees?|fondus?|fondues?|surgeles?|surgelees?|congeles?|congelees?|grilles?|grillees?|rotis?|roties?|en des|en lamelles|en rondelles|en tranches|en morceaux|en quartiers|en cubes|en julienne)\b/g;
-const stripPrep = (n: string) => n.replace(PREP_RE, '').replace(/\s+/g, ' ').trim();
+const PREP_RE = /\s+(haches?|hachees?|eminces?|emincees?|concasses?|concassees?|ciseles?|ciselees?|rapes?|rapees?|coupes?|coupees?|fondus?|fondues?|surgeles?|surgelees?|congeles?|congelees?|decongeles?|decongelees?|grilles?|grillees?|rotis?|roties?|cuits?|cuites?|precuits?|precuites?|crus?|crues?|blanchis?|blanchies?|revenus?|revenues?|mixes?|mixees?|moulines?|moulinees?|ecrases?|ecrasees?|presses?|pressees?|bouillis?|bouillies?|natures?|en des|en lamelles|en rondelles|en tranches|en morceaux|en quartiers|en cubes|en julienne)\b/g;
+// Suffixe "section de recette" collé au nom (ex. "ail pour la sauce", "oignon pour la
+// marinade") → on retire pour fusionner avec le même ingrédient sans suffixe.
+const SECTION_SUFFIX_RE = /\s+pour\s+(l[ae]s?|l['’]|du|des|une?|le)\s+.+$/;
+const stripPrep = (n: string) => n.replace(SECTION_SUFFIX_RE, '').replace(PREP_RE, '').replace(/\s+/g, ' ').trim();
 
 export const canonicalIng = (name: string, unit: string = '', raw: string = ''): { name: string; unit: string } => {
     let n = depluralize(stripPrep(normalizeIng(name).replace(/\s+/g, ' ').trim()));
@@ -435,8 +438,39 @@ export const buildConsolidatedItems = (
             if (raw) add(raw, { manual: true });
         });
     });
+    // 2e passe : un MÊME produit exprimé en unités différentes (ex. "brocoli" sans
+    // quantité + "100 g de brocoli précuit") arrive ici en 2 lignes (clés `brocoli|`
+    // et `brocoli|g`). On les regroupe en UNE seule ligne pour ne pas donner l'illusion
+    // de 2 produits distincts. Les vrais produits distincts (ail / ail en poudre /
+    // pâte d'ail) ont un nom canonique différent → restent séparés.
+    const byName = new Map<string, ConsolItem[]>();
+    for (const it of map.values()) {
+        const canon = it.key.split('|')[0];
+        const arr = byName.get(canon);
+        if (arr) arr.push(it); else byName.set(canon, [it]);
+    }
+    const merged: ConsolItem[] = [];
+    for (const group of byName.values()) {
+        if (group.length === 1) { merged.push(group[0]); continue; }
+        const base = group[0];
+        const amounts = group
+            .filter(g => g.qty != null)
+            .map(g => prettyQtyUnit(g.qty as number, g.unit));
+        const display =
+            amounts.length === 0 ? base.name
+            : amounts.length === 1 ? `${amounts[0]} ${base.name}`.trim()
+            : `${base.name} : ${amounts.join(' + ')}`;
+        merged.push({
+            ...base,
+            keys: group.flatMap(g => g.keys),
+            count: group.reduce((s, g) => s + g.count, 0),
+            manual: group.some(g => g.manual),
+            ord: group.reduce<number | undefined>((m, g) => (g.ord != null && (m == null || g.ord > m) ? g.ord : m), base.ord),
+            display,
+        });
+    }
     // Tri : alphabétique par NOM d'ingrédient uniquement (quantités ignorées).
-    return Array.from(map.values()).sort((a, b) =>
+    return merged.sort((a, b) =>
         a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' })
     );
 };
