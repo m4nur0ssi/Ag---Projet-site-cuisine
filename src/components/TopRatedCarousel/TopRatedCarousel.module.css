@@ -1,0 +1,55 @@
+.section {
+    margin: 0 0 28px;
+}
+
+.rail {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 4px 20px 10px;
+    scrollbar-width: none;
+}
+
+.rail::-webkit-scrollbar { display: none; }
+
+.item {
+    flex: 0 0 auto;
+    width: 210px;
+}
+
+/* Carte-titre en tête (même logique que les cartes de section de l'accueil) */
+.titleItem {
+    flex: 0 0 auto;
+    width: 180px;
+}
+
+.titleCard {
+    height: 100%;
+    min-height: 240px;
+    border-radius: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(150deg, #FFD86B 0%, #F5A623 55%, #EA7317 100%);
+    box-shadow: 0 10px 26px rgba(245, 166, 35, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.titleStar {
+    font-size: 3rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+}
+
+.titleText {
+    font-size: 1.7rem;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+    text-align: center;
+    line-height: 1.05;
+    color: #3a2600;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}

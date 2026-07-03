@@ -1,0 +1,59 @@
+.section {
+    margin: 0 0 20px;
+}
+
+.rail {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 20px 6px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+}
+
+.rail::-webkit-scrollbar { display: none; }
+
+.item {
+    flex: 0 0 auto;
+    width: 150px;
+    scroll-snap-align: start;
+}
+
+/* Carte-titre en tête (même logique que les cartes de section de l'accueil) */
+.titleItem {
+    flex: 0 0 auto;
+    width: 128px;
+    scroll-snap-align: start;
+}
+
+.titleCard {
+    height: 100%;
+    min-height: 200px;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(150deg, #FFD86B 0%, #F5A623 55%, #EA7317 100%);
+    box-shadow: 0 8px 22px rgba(245, 166, 35, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.titleStar {
+    font-size: 2.2rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+.titleText {
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1.05;
+    color: #3a2600;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
