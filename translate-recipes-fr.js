@@ -77,15 +77,16 @@ async function translateRecipe(r, attempt = 0) {
     const ingParts = (r.ingredients || []).map(i => splitPrefix(i.name || ''));
     const stepParts = (r.steps || []).map(s => splitPrefix(s));
     const payload = {
+        title: String(r.title || ''),
         ingredients: ingParts.map(p => p[1]),
         steps: stepParts.map(p => p[1]),
     };
-    const sys = "Tu es traducteur culinaire FR. On te donne un JSON {ingredients[], steps[]}. "
-        + "Traduis en FRANÇAIS naturel TOUT ce qui n'est pas déjà en français (anglais, espagnol ou autre langue). "
+    const sys = "Tu es traducteur culinaire FR. On te donne un JSON {title, ingredients[], steps[]}. "
+        + "Traduis en FRANÇAIS naturel TOUT ce qui n'est pas déjà en français (anglais, espagnol ou autre langue), Y COMPRIS le titre. "
         + "Ce qui est DÉJÀ en français : recopie-le À L'IDENTIQUE, ne le reformule pas. "
         + "Conserve EXACTEMENT le même nombre d'éléments dans ingredients et steps, et le même ordre. "
         + "Garde les quantités/nombres/unités. Ne traduis pas les noms propres de marques. "
-        + "Réponds UNIQUEMENT par un JSON valide de la même forme {ingredients, steps}, sans texte autour.";
+        + "Réponds UNIQUEMENT par un JSON valide de la même forme {title, ingredients, steps}, sans texte autour.";
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { 'content-type': 'application/json', authorization: `Bearer ${GROQ_KEY}` },
@@ -109,8 +110,9 @@ async function translateRecipe(r, attempt = 0) {
         || !Array.isArray(out.steps) || out.steps.length !== payload.steps.length) {
         throw new Error('réponse de forme invalide');
     }
-    // Réattache les préfixes (emoji + espaces) d'origine. Le titre n'est jamais touché.
+    // Réattache les préfixes (emoji + espaces) d'origine. Titre traduit (fallback = original).
     return {
+        title: (typeof out.title === 'string' && out.title.trim()) ? out.title.trim() : String(r.title || ''),
         ingredients: out.ingredients.map((v, k) => ingParts[k][0] + String(v)),
         steps: out.steps.map((v, k) => stepParts[k][0] + String(v)),
     };
@@ -188,7 +190,9 @@ async function pool(items, n, worker) {
         arr.forEach(r => {
             const tr = cache.get(String(r.id));
             if (!tr) return;
-            // Le titre est volontairement laissé intact.
+            // Titre traduit en français (nouvelle règle : les recettes non-FR sont
+            // entièrement francisées, titre compris). Fallback = titre d'origine.
+            if (tr.title && tr.title.trim()) r.title = tr.title.trim();
             (r.ingredients || []).forEach((ing, k) => { if (tr.ingredients[k] != null) ing.name = tr.ingredients[k]; });
             if (Array.isArray(r.steps)) r.steps = r.steps.map((s, k) => (tr.steps[k] != null ? tr.steps[k] : s));
         });

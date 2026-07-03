@@ -19,21 +19,29 @@ async function isRecipeWithGemini(description, title) {
         console.log(`   ⚠️ Description très faible (${description}), mais mode manuel/stub détecté. On tente l'analyse Gemini...`);
     }
 
-    const prompt = `Analyse ce contenu TikTok. 
+    const prompt = `Analyse ce contenu TikTok.
     IMPORTANT: Si le contenu ne parle absolument pas de NOURRITURE, de RECETTE ou de CUISINE (ex: c'est juste de la tech, de la danse, de la mode), réponds exactement : {"isRecipe": false}.
-    
+
+    LANGUE — RÈGLE ABSOLUE : la sortie doit être ENTIÈREMENT EN FRANÇAIS, y compris
+    si la source est en anglais ou dans une autre langue. Traduis TOUT en français
+    naturel : le titre (recipeName), le résumé (summary), CHAQUE ingrédient et CHAQUE
+    étape. Aucun mot anglais ne doit rester dans le résultat (ex: "Black Forest
+    Cupcakes" -> "Cupcakes Forêt-Noire" ; "BBQ Cheddar Glazed Chicken Breasts" ->
+    "Blancs de poulet laqués au cheddar et sauce barbecue"). Garde les noms propres
+    de lieux/marques tels quels, mais traduis tout le reste.
+
     Si c'est une recette, extrais les détails au format JSON.
     Titre détecté : "${title || ''}"
     Description : "${description}"
-    
-    Format JSON attendu: { 
-        "isRecipe": true, 
-        "recipeName": "Nom de la recette", 
-        "summary": "Petit résumé", 
-        "ingredients": ["ing1", "ing2"], 
-        "steps": ["étape 1", "étape 2"], 
-        "category": "aperitifs|entrees|plats|desserts|patisserie|vegetarien|glaces|rafraichissements|voila-lete|cest-lhiver", 
-        "tags": ["tag1"], 
+
+    Format JSON attendu: {
+        "isRecipe": true,
+        "recipeName": "Nom de la recette EN FRANÇAIS",
+        "summary": "Petit résumé EN FRANÇAIS",
+        "ingredients": ["ingrédient en français", "..."],
+        "steps": ["étape en français", "..."],
+        "category": "aperitifs|entrees|plats|desserts|patisserie|vegetarien|glaces|rafraichissements|voila-lete|cest-lhiver",
+        "tags": ["tag1"],
     }
     
     RÈGLES POUR LA CATÉGORIE :

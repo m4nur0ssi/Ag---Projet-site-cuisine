@@ -75,7 +75,7 @@ function tiktokUrlFrom(videoHtml) {
         const recipeObj = {
             id: r.id,
             updateOnly: true,
-            title: r.title,                       // conservé (non envoyé pour édition du titre)
+            title: r.title,                       // titre FR (répercuté sur WP plus bas)
             summary: r.description || '',
             ingredients: (r.ingredients || []).map(i => ({ quantity: i.quantity || '', name: stripPrefix(i.name) })),
             steps: r.steps || [],
@@ -87,7 +87,9 @@ function tiktokUrlFrom(videoHtml) {
             continue;
         }
         try {
-            const res = await postToWordPress({ updateOnly: true, id: r.id, content });
+            // On répercute aussi le titre (déjà francisé dans mockData par
+            // translate-recipes-fr.js) → recettes non-FR entièrement traduites sur WP.
+            const res = await postToWordPress({ updateOnly: true, id: r.id, title: r.title, content });
             if (res?.success) { ok++; console.log(`  ✅ #${r.id} ${r.title}`); }
             else { err++; console.log(`  ❌ #${r.id} ${r.title} : ${res?.error || 'échec'}`); }
         } catch (e) { err++; console.log(`  ❌ #${r.id} ${r.title} : ${e.message}`); }

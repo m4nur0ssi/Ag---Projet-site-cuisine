@@ -28,7 +28,8 @@ const VideoSection: React.FC<VideoSectionProps> = ({ videoHtml }) => {
     if (videoId) {
         // Use player/v1 just like in cards for better autoplay support
         // muted=0 allowed because user just interacted by opening the recipe or clicking the tab
-        const embedUrl = `https://www.tiktok.com/player/v1/${videoId}?autoplay=1&muted=0&loop=1`;
+        // controls=1 + progress_bar=1 : barre de contrôle native (lecture/pause, avance/recul)
+        const embedUrl = `https://www.tiktok.com/player/v1/${videoId}?autoplay=1&muted=0&loop=1&controls=1&progress_bar=1`;
         return (
             <div className={styles.videoContainer}>
                 <iframe 

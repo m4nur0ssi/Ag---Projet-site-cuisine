@@ -19,12 +19,30 @@ function getSortedMenu(): string[] {
     return [...MENU_ITEMS].sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
 }
 
+// Dictionnaire { nom: nom } construit dans l'ordre trié (clés insérées triées →
+// JSON préserve l'ordre). C'est la forme que le raccourci iOS lit dans `status`.
+function sortedPaysDict(): Record<string, string> {
+    const paysDict: Record<string, string> = {};
+    getSortedMenu().forEach(n => { paysDict[n] = n; });
+    return paysDict;
+}
+
+// 1ʳᵉ branche (appel sans URL) : forme historique = `status` en TABLEAU
+// + pays/list en tableau + countries en dict. NE PAS changer le type de `status`
+// (le raccourci en dépend). On ajoute juste les nouveaux items + le tri.
 function buildMenuResponse() {
     const sortedNames = getSortedMenu();
-    // Array (ordre garanti côté Raccourcis iOS) + dict pour compatibilité anciens raccourcis
-    const paysDict: Record<string, string> = {};
-    sortedNames.forEach(n => { paysDict[n] = n; });
-    const response = NextResponse.json({ status: sortedNames, pays: sortedNames, list: sortedNames, countries: paysDict, v: "00:15-SORTED" });
+    const response = NextResponse.json({ status: sortedNames, pays: sortedNames, list: sortedNames, countries: sortedPaysDict(), v: "00:16-SORTED" });
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    return response;
+}
+
+// 2ᵉ branche (URL présente mais pas de pays) : forme historique = `status` en
+// DICTIONNAIRE uniquement. C'est CETTE réponse que le raccourci parse pour
+// afficher la liste — la passer en tableau cassait l'affichage (liste vide →
+// le raccourci se lançait direct). On garde le dict, trié, + tableaux en bonus.
+function buildCountryPromptResponse() {
+    const response = NextResponse.json({ status: sortedPaysDict(), pays: getSortedMenu(), list: getSortedMenu() });
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     return response;
 }
@@ -262,10 +280,10 @@ async function handleRequest(request: Request) {
             }
         }
 
-        // Si toujours pas de pays → on renvoie le menu (même format trié que le 1er appel)
+        // Si toujours pas de pays → on renvoie le menu (dict, forme lue par le raccourci)
         if (!selectedCountry) {
             console.log('🔍 Pays non trouvé — on affiche le menu de sélection');
-            return buildMenuResponse();
+            return buildCountryPromptResponse();
         }
 
         // Étape 2 : Si on a un pays (ou que c'est un POST forcé), on ENVOIE EN CUISINE !
