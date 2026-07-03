@@ -2,11 +2,151 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/07/2026 16:25:12
+ * Dernière mise à jour: 03/07/2026 06:22:23
  * Total: 475 recettes
  */
-export const exportSyncId = "1783009512547";
+export const exportSyncId = "1783059743617";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6516",
+        "title": "Tarte aux oignons à l'ancienne",
+        "description": "Une tarte aux oignons réconfortante et économique, à déguster chaude ou froide. Elle est préparée avec une pâte maison simple à effet feuilleté et peut être personnalisée avec du fromage, du thon ou des œufs durs.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643735741750594848\" data-video-id=\"7643735741750594848\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643735741750594848\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             75 ml d'eau froide"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre froid"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 c. à café d'herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             5 à 6 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 c. à soupe de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 ml de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Préparer la pâte : Dans un saladier, mélanger la farine, la fleur de sel et les herbes de Provence. Ajouter le beurre froid coupé en petits dés et sabler du bout des doigts. Incorporer l'eau froide petit à petit jusqu'à obtenir une pâte homogène. Former une boule, filmer et laisser reposer au frais pendant au moins 30 minutes.",
+            "Préparer la garniture : Émincer finement les oignons et les faire revenir dans une poêle avec un peu de matière grasse jusqu'à ce qu'ils soient fondants et légèrement dorés. Laisser tiédir.",
+            "Dans un bol, mélanger la crème, l'œuf, la moutarde à l'ancienne, la fleur de sel et le poivre. Ajouter les oignons cuits à ce mélange et bien mélanger.",
+            "Préchauffer le four à 180°C (350°F). Étaler la pâte sur un plan de travail fariné et la disposer dans un moule à tarte. Piquer le fond de tarte avec une fourchette.",
+            "Verser la garniture aux oignons sur la pâte. Vous pouvez ajouter du fromage râpé, du thon ou des rondelles d'œufs durs si vous le souhaitez.",
+            "Enfourner et cuire pendant 40 minutes à 180°C (350°F), jusqu'à ce que la tarte soit bien dorée."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6514",
+        "title": "Tarte salée aux tomates cerises, chèvre et pesto rosso",
+        "description": "Une tarte salée estivale et gourmande, parfaite pour l'été, avec des tomates cerises, du chèvre, du pesto rosso et des pignons de pin.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657241209701731617\" data-video-id=\"7657241209701731617\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657241209701731617\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte brisée maison ou non (recette sur mon blog)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 càs de pesto rosso (ou fromage frais type st Moret)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             400 g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 buche de chèvre (soit 180g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càs de sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 càs de crème de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 càs de miel liquide (ou sirop d'agave)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 càs d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 poignée de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             du basilic frais"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "tarte",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6512",
         "title": "Tiramisu façon banoffee",
@@ -14977,49 +15117,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6114",
-        "title": "Eau de tomate",
-        "description": "Une boisson rafraîchissante et savoureuse à base de tomates, assaisonnée d'huile d'olive, de vinaigre et de sel.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Frecipe_6114_1781451439754.jpg&v=1781458682000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650510198229962017\" data-video-id=\"7650510198229962017\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650510198229962017\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cas de vinaigre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            }
-        ],
-        "steps": [
-            "Mixer les tomates pour obtenir une purée.",
-            "Filtrer la purée à travers une passoire fine ou un linge propre pour en extraire le jus clair (l'eau de tomate).",
-            "Assaisonner l'eau de tomate obtenue avec l'huile d'olive, le vinaigre et le sel. Servir frais."
-        ],
-        "tags": [
-            "Astuces",
-            "Healthy",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6108",
         "title": "DIBI",
         "description": "Le DIBI classique de la streetfood de l'Afrique de l'Ouest. Aujourd'hui, méthode au four ! Tellement bon 🥹🔥",
@@ -21706,55 +21803,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "Sauces",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5627",
-        "title": "Porc Char Sui",
-        "description": "Un plat typique cantonais, bien caramélisé, super bon et simple à faire.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F05%2F123909681_o.jpg&v=1779187904000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639423315496455457\" data-video-id=\"7639423315496455457\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639423315496455457\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 4 cas de sauce bbq chinoise (hoi sin)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 2 cas de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 cas 5 épices"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 2 cas sauce soja black"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 cas sauce huître"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 cas piment"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "airfryer",
-            "asiatique",
-            "épicé"
         ],
         "isFeatured": false,
         "isFavorite": false,
