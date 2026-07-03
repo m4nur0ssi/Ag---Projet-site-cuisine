@@ -27,12 +27,13 @@ function sortedPaysDict(): Record<string, string> {
     return paysDict;
 }
 
-// 1ʳᵉ branche (appel sans URL) : forme historique = `status` en TABLEAU
-// + pays/list en tableau + countries en dict. NE PAS changer le type de `status`
-// (le raccourci en dépend). On ajoute juste les nouveaux items + le tri.
+// 1ʳᵉ branche (appel sans URL) : c'est CELLE que le raccourci iOS frappe (URL fixe
+// sans `url`). Le raccourci fait « Obtenir le dictionnaire de status » puis « Choisir
+// dans Dictionnaire » → `status` DOIT être un DICTIONNAIRE (un tableau vide la liste).
+// Dict construit trié (ordre alphabétique préservé). Tableaux `pays`/`list` en bonus.
 function buildMenuResponse() {
     const sortedNames = getSortedMenu();
-    const response = NextResponse.json({ status: sortedNames, pays: sortedNames, list: sortedNames, countries: sortedPaysDict(), v: "00:16-SORTED" });
+    const response = NextResponse.json({ status: sortedPaysDict(), pays: sortedNames, list: sortedNames, countries: sortedPaysDict(), v: "00:17-DICT" });
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     return response;
 }
