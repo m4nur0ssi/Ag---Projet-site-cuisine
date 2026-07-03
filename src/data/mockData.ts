@@ -2,11 +2,85 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 03/07/2026 15:24:39
- * Total: 476 recettes
+ * Dernière mise à jour: 03/07/2026 20:39:50
+ * Total: 478 recettes
  */
-export const exportSyncId = "1783092279163";
+export const exportSyncId = "1783111190248";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6556",
+        "title": "Poisson poêlé à la chinoise",
+        "description": "Une recette simple, rapide et tellement bonne de poisson poêlé, typique du quotidien en Chine, parfumée et pleine de goût.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7567804458621799702\" data-video-id=\"7567804458621799702\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7567804458621799702\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Poisson à chair blanche et ferme (dorade, bar, colin)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Vin de Shaoxing"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            }
+        ],
+        "steps": [
+            "Couper le poisson en morceaux, pas trop petits.",
+            "Mariner le poisson pendant 10 à 15 minutes avec du sel, du sucre, du poivre, de la sauce soja, de la maïzena et du vin de Shaoxing.",
+            "Poêler le poisson côté peau jusqu'à ce qu'il soit bien doré.",
+            "Retourner le poisson, ajouter un peu de sauce soja et de vin si nécessaire.",
+            "Retirer le poisson, faire revenir les aromates, puis remettre le poisson quelques secondes.",
+            "Terminer en ajoutant un peu de cébette pour la fraîcheur."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6448",
         "title": "King Fusion Nutella (version diet et protéinée)",
@@ -28659,6 +28733,80 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Préparer l'épaule d'agneau avec les oignons, l'ail, le paprika fumé, le vin rouge (ou bouillon), l'eau, le bouquet garni, le sel et le poivre.",
             "Cuire l'ensemble à couvert, à frémissement, pendant 3 à 4 heures."
+        ],
+        "tags": [
+            "Famille",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4120",
+        "title": "Gâteau roulé Léopard",
+        "description": "Un gâteau roulé original et inratable, décoré d'un motif léopard distinctif. Moelleux et facile à rouler, il est parfait pour impressionner et régaler toute la famille. Garnissez-le de pâte à tartiner pour une touche gourmande.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1774135864620.jpg&v=1774522737000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7608265604939762966\" data-video-id=\"7608265604939762966\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7608265604939762966\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             40 g d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             40 g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             80 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Vanille (ou extrait de vanille)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Cacao en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pâte à tartiner"
+            }
+        ],
+        "steps": [
+            "Tiédir le lait et l'huile pendant 15 secondes au micro-ondes.",
+            "Séparer les blancs des jaunes d'œufs.",
+            "Mélanger les jaunes d'œufs avec le lait et l'huile.",
+            "Incorporer la farine et mélanger jusqu'à obtenir une pâte homogène.",
+            "Monter les blancs d'œufs en neige ferme avec le sucre pour former une meringue.",
+            "Incorporer délicatement la meringue à la préparation aux jaunes.",
+            "Diviser la pâte en trois portions : 80g, 40g et le reste.",
+            "Mélanger 80g de pâte avec 1 cuillère à café de cacao en poudre pour la pâte marron clair.",
+            "Mélanger 40g de pâte avec 2 cuillères à café de cacao en poudre pour la pâte foncée.",
+            "Mélanger la plus grosse portion de pâte avec 1 cuillère à café d'extrait de vanille.",
+            "Sur un tapis génoise (ou toile de cuisson), pocher les motifs clairs.",
+            "Cuire au four préchauffé à 180 °C pendant 2 minutes.",
+            "Pocher les contours foncés autour des motifs clairs.",
+            "Remettre au four à 180 °C pendant 2 minutes.",
+            "Étaler le reste de pâte (blanche) sur toute la surface et lisser avec une spatule.",
+            "Cuire au four à 170 °C pendant 10 à 15 minutes (vérifier la cuisson à partir de 10 minutes).",
+            "À la sortie du four, attendre 5 minutes puis démouler.",
+            "Laisser refroidir complètement.",
+            "Garnir le biscuit roulé de pâte à tartiner et le rouler délicatement."
         ],
         "tags": [
             "Famille",
