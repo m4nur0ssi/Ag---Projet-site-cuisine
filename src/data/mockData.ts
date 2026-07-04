@@ -2,11 +2,95 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/07/2026 17:35:46
- * Total: 495 recettes
+ * Dernière mise à jour: 04/07/2026 19:59:17
+ * Total: 496 recettes
  */
-export const exportSyncId = "1783186546591";
+export const exportSyncId = "1783195157459";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6594",
+        "title": "Pan bagnat",
+        "description": "Un sandwich frais et complet, originaire de Nice, parfait pour l'été. Il est garni de légumes croquants, de thon, d'anchois et d'œufs durs, le tout assaisonné d'huile d'olive et de vinaigre.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7658353029522935073\" data-video-id=\"7658353029522935073\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7658353029522935073\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 pains ronds"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 morceau de cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/4 poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs durs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 radis ronds"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 ou 6 olives noires"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de miettes de thon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 anchois"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             6 à 8 feuilles de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            }
+        ],
+        "steps": [
+            "Préparer tous les ingrédients : couper la tomate, la cébette et le poivron vert en fines tranches ou dés. Couper les œufs durs et les radis en rondelles.",
+            "Ouvrir les pains ronds en deux.",
+            "Garnir chaque pain avec les ingrédients préparés : tomate, cébette, poivron vert, œufs durs, radis, olives noires, miettes de thon et anchois.",
+            "Ajouter les feuilles de basilic frais.",
+            "Arroser généreusement d'huile d'olive et d'un filet de vinaigre balsamique.",
+            "Assaisonner avec une pincée de fleur de sel.",
+            "Refermer les pains et déguster immédiatement ou laisser reposer quelques minutes pour que les saveurs se mélangent."
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Sandwichs",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6592",
         "title": "Crevettes sautées à l'ail et au miel",
