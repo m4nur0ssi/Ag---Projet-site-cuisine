@@ -101,9 +101,14 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                 onClose();
             };
 
+            // Fermeture forcée depuis l'extérieur (ex. clic Accueil dans la barre du bas)
+            const handleForceClose = () => onClose();
+
             window.addEventListener('popstate', handlePopState);
+            window.addEventListener('magic-close-sheet', handleForceClose);
             return () => {
                 window.removeEventListener('popstate', handlePopState);
+                window.removeEventListener('magic-close-sheet', handleForceClose);
                 document.body.style.position = '';
                 document.body.style.top = '';
                 document.body.style.width = '';

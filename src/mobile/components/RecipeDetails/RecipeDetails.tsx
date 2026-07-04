@@ -25,6 +25,7 @@ import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
 import StarRating from '@/mobile/components/StarRating/StarRating';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
+import CookingJournal from '@/components/CookingJournal/CookingJournal';
 import { estimateRecipeCalories } from '@/mobile/lib/calories';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -733,22 +734,26 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             <div className={styles.heroNewLayout}>
                 <div className={styles.heroGrid} style={{ alignItems: 'center', zIndex: 2, gap: '20px' }}>
                     {/* Colonne GAUCHE : Blabla (Infos) */}
-                    <motion.div 
+                    <motion.div
                         className={styles.heroTextColumn}
-                        initial={{ opacity: 0, x: -70 }}
+                        // En sheet (swipe entre recettes) : pas d'anim d'entrée → sinon "rebond" à chaque remontage.
+                        initial={isModal ? false : { opacity: 0, x: -70 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        transition={isModal ? { duration: 0 } : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     >
                         {/* Barre d'action Catégorie Apple Style */}
                         <div className={styles.categoryCommandCenter}>
-                            <FavoriteButton
-                                recipeId={recipe.id}
-                                initialFavorite={recipe.isFavorite}
-                                imageUrl={recipe.image}
-                                className={styles['favorite-btn-action']}
-                            />
+                            <div className={styles.commandSlot}>
+                                <FavoriteButton
+                                    recipeId={recipe.id}
+                                    initialFavorite={recipe.isFavorite}
+                                    imageUrl={recipe.image}
+                                    className={styles['favorite-btn-action']}
+                                    alwaysShow
+                                />
+                            </div>
 
-                            <motion.div 
+                            <motion.div
                                 className={styles.categoryTag} 
                                 style={{ 
                                     background: theme.bg, 
@@ -885,20 +890,17 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 </div>
                             </div>
                         </div>
-                        {/* Ligne 2 */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%' }}>
-                            <div className={styles.metaItem} style={{ flex: 1 }}>
+                        {/* Ligne 2 : Note + Calories réunis dans un seul cadre pleine largeur */}
+                        <div className={styles.metaWideItem}>
+                            <div className={styles.metaWideSection}>
                                 <div className={styles.metaLabel}>{authUser ? 'MA NOTE' : 'NOTE'}</div>
                                 <StarRating recipeId={recipe.id} size="small" />
                             </div>
                             {calorieEstimate && calorieEstimate.confidence !== 'low' && (
-                                <>
-                                    <div className={styles.metaSeparator} />
-                                    <div className={styles.metaItem} style={{ flex: 1 }}>
-                                        <div className={styles.metaLabel}>CALORIES</div>
-                                        <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
-                                    </div>
-                                </>
+                                <div className={styles.metaWideSectionCal}>
+                                    <div className={styles.metaLabel}>CALORIES</div>
+                                    <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -1352,7 +1354,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 </div>
             )}
 
-            {/* Commentaires : toujours visibles (connecté ou non). */}
+            {/* Carnet "J'ai cuisiné" + note perso : connectés uniquement (composant auto-gaté). */}
+            {!focusMode && recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} />}
+
+            {/* Commentaires : lisibles par tous. Publier reste réservé aux connectés (géré dans le composant). */}
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
         </div>
         </>

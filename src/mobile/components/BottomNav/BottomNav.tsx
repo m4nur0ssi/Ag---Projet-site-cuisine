@@ -83,14 +83,14 @@ export default function BottomNav() {
         ['/favorites', '/shopping-list', '/'].forEach(p => { try { router.prefetch(p); } catch { /* noop */ } });
     }, [router]);
 
-    // Favoris + Liste réservés aux connectés : onglets masqués si pas de session.
+    // Favoris + Liste + Menu réservés aux connectés : déconnecté = Accueil + Recherche seulement.
     const navItems = [
         ...(isLoggedIn ? [
             { id: 'favoris', label: 'Favoris', Icon: HeartIcon, path: '/favorites', badge: stats.favorites },
             { id: 'panier', label: 'Liste', Icon: BasketIcon, path: '/shopping-list', badge: stats.shopping },
         ] : []),
         { id: 'decouvrir', label: 'Accueil', Icon: StorefrontIcon, path: '/' },
-        { id: 'planner', label: 'Menu', Icon: CalendarIcon },
+        ...(isLoggedIn ? [{ id: 'planner', label: 'Menu', Icon: CalendarIcon }] : []),
     ];
 
     // Toggle between Search and Timer every 3 seconds if timer is active
@@ -162,6 +162,7 @@ export default function BottomNav() {
     useEffect(() => {
         setIsSearchOpen(false);
         setIsTimerExpanded(false);
+        setShowPlanner(false);
 
         const wasOnRecipe = prevPathnameRef.current.startsWith('/recipe/');
         const isOnRecipe = pathname.startsWith('/recipe/');
@@ -310,12 +311,17 @@ export default function BottomNav() {
 
     const handleItemClick = (index: number) => {
         setActiveIndex(index);
+        // Ferme toute fiche recette flottante ouverte (sinon elle reste par-dessus la page)
+        window.dispatchEvent(new Event('magic-close-sheet'));
+        setIsSheetOpen(false);
         const item = navItems[index];
         if (item.id === 'planner') {
             setShowPlanner(true);
             handleVibrate(10);
             return;
         }
+        // Tout autre onglet ferme le planificateur (sinon son overlay reste par-dessus la page)
+        setShowPlanner(false);
         // Now using union types safely or checking for path
         if ('path' in item && item.path) {
             router.push(item.path);

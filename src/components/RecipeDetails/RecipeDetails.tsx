@@ -1244,7 +1244,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 </div>
             )}
 
-            {/* Commentaires : toujours visibles (connecté ou non). */}
+            {/* Commentaires : lisibles par tous. Publier reste réservé aux connectés (géré dans le composant). */}
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
 
             {focusMode && (

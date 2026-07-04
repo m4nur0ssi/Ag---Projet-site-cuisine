@@ -10,6 +10,8 @@ interface FavoriteButtonProps {
     initialFavorite?: boolean;
     imageUrl?: string;
     className?: string;
+    // Force l'affichage du cœur même déconnecté (fiche recette) → tap ouvre la connexion.
+    alwaysShow?: boolean;
 }
 
 const HeartIcon = ({ filled }: { filled: boolean }) => (
@@ -18,7 +20,7 @@ const HeartIcon = ({ filled }: { filled: boolean }) => (
     </svg>
 );
 
-export default function FavoriteButton({ recipeId, initialFavorite = false, imageUrl, className }: FavoriteButtonProps) {
+export default function FavoriteButton({ recipeId, initialFavorite = false, imageUrl, className, alwaysShow = false }: FavoriteButtonProps) {
     const [isFavorite, setIsFavorite] = useState(initialFavorite);
     // Favoris réservés aux connectés → le cœur n'apparaît QUE si une session existe.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -56,8 +58,8 @@ export default function FavoriteButton({ recipeId, initialFavorite = false, imag
         };
     }, [recipeId]);
 
-    // Déconnecté → rien (aucun cœur : cartes, fiche, partout)
-    if (!isLoggedIn) return null;
+    // Déconnecté → rien (aucun cœur : cartes), sauf alwaysShow (fiche recette : tap ouvre la connexion)
+    if (!isLoggedIn && !alwaysShow) return null;
 
     const toggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
