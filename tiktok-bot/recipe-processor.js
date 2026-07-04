@@ -44,12 +44,15 @@ async function isRecipeWithGemini(description, title) {
         "tags": ["tag1"],
     }
     
-    RÈGLES POUR LA CATÉGORIE :
+    RÈGLES POUR LA CATÉGORIE (la catégorie = le TYPE de plat, PAS la saison ni le régime) :
+    - RÈGLE PRIORITAIRE : si c'est un plat SALÉ dont l'ingrédient principal est de la viande, de la volaille,
+      du poisson ou des fruits de mer -> catégorie "plats" OBLIGATOIRE. La saison (été/hiver), le régime
+      (healthy, végé…) et le pays vont dans les TAGS, JAMAIS dans la catégorie.
     - Si glace, sorbet, gelato, granita -> catégorie "glaces"
     - Si cocktail, smoothie, jus, limonade, citronnade, boisson fraîche, mocktail, milkshake -> catégorie "rafraichissements"
-    - Si gâteau, tarte, viennoiserie, croissant, brioche -> catégorie "patisserie"
-    - Si recette estivale, fruits d'été, barbecue, salade fraîche, plage -> catégorie "voila-lete"
-    - Si soupe d'hiver, raclette, fondue, gratins d'hiver, plat mijoté de saison froide -> catégorie "cest-lhiver"
+    - Si gâteau, tarte sucrée, viennoiserie, croissant, brioche -> catégorie "patisserie"
+    - "voila-lete" / "cest-lhiver" ne sont utilisables comme CATÉGORIE que pour une boisson ou un dessert
+      de saison. Pour un plat salé, la saison est UNIQUEMENT un tag ("Voilà l'été" / "C'est l'hiver").
     
     RÈGLES POUR LES TAGS :
     IMPORTANT : les tags sont CUMULATIFS. Une recette doit recevoir TOUS les tags qui s'appliquent
@@ -413,6 +416,31 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         }
         // NB : Tarte + régimes (sans gluten/lactose/sucre/sel, minceur) sont ajoutés comme
         // tag automatiquement par wordpress-poster.js (push générique de manualCountry).
+    }
+
+    // ================================================================
+    // FILET DE SÉCURITÉ : un plat SALÉ viande/poisson est TOUJOURS "plats".
+    // La saison (été/hiver) devient un tag, jamais la catégorie. Ainsi le
+    // Menu IA (qui filtre category === 'plats') retrouve bien ces recettes,
+    // au lieu de les rater et de laisser fuiter des desserts.
+    // ================================================================
+    const MEAT_FISH_RX = /\b(poulet|volaille|dinde|canard|b(?:oeuf|œuf|ouf)|bourguignon|steak|bavette|paleron|entrec[ôo]te|rumsteck|veau|agneau|mouton|gigot|porc|lardon|jambon|bacon|saucisse|chorizo|merguez|c[ôo]telette|escalope|magret|viande|kefta|k[ée]fta|poisson|saumon|thon|cabillaud|colin|merlu|lieu|dorade|bar|truite|sardine|maquereau|crevette|gambas|moule|saint-jacques|st-jacques|crabe|homard|calamar|calmar|poulpe|seiche|encornet|fruits de mer)\b/i;
+    const SWEET_RX = /\b(dessert|g[âa]teau|tarte sucr|p[âa]tisserie|glace|sorbet|gelato|cr[êe]pe sucr|g[âa]ufre sucr|cookie|muffin|cupcake|brownie|cheesecake|tiramisu|mousse au chocolat|cr[èe]me dessert|panna cotta|clafoutis|flan|pancake)\b/i;
+
+    const isSweetCat = ['desserts', 'patisserie', 'glaces', 'rafraichissements'].includes((analysis.category || '').toLowerCase());
+    const looksSweet = isSweetCat || SWEET_RX.test(allTextLower);
+    const hasMeatFish = MEAT_FISH_RX.test(allTextLower);
+
+    if (hasMeatFish && !looksSweet) {
+        const seasonalTag = { 'voila-lete': "Voilà l'été", 'cest-lhiver': "C'est l'hiver" };
+        const curCat = (analysis.category || '').toLowerCase();
+        if (seasonalTag[curCat] && !analysis.tags.includes(seasonalTag[curCat])) {
+            analysis.tags.push(seasonalTag[curCat]);
+        }
+        if (curCat !== 'plats') {
+            console.log(`   🍽️ Filet de sécurité : plat salé viande/poisson -> catégorie "plats" (était "${analysis.category}").`);
+            analysis.category = 'plats';
+        }
     }
 
     // Supprimer le tag Famille s'il a été ajouté par l'IA (supprimé de la logique)
