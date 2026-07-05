@@ -2,11 +2,67 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/07/2026 19:20:52
- * Total: 497 recettes
+ * Dernière mise à jour: 05/07/2026 19:53:24
+ * Total: 499 recettes
  */
-export const exportSyncId = "1783279252668";
+export const exportSyncId = "1783281204434";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6598",
+        "title": "Thé glacé vanille et nectarine",
+        "description": "Une boisson rafraîchissante et parfumée, parfaite pour l'été, à base de pêches, nectarines, miel, vanille et thé.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7658624308171771168\" data-video-id=\"7658624308171771168\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7658624308171771168\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 pêches jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 nectarines"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             2 gousses de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             2 sachets de thé à la vanille pour 1,5 litre d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Glaçons"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Menthe (pour la garniture)"
+            }
+        ],
+        "steps": [
+            "Mixez les fruits avec le miel, la vanille et un tout petit peu de votre thé infusé.",
+            "Versez la purée de fruits dans la carafe avec des glaçons, de la menthe, et le reste du thé qui a refroidi, mélangez et dégustez."
+        ],
+        "tags": [
+            "Healthy",
+            "Pas cher",
+            "Rafraîchissements",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6596",
         "title": "Brochettes d'aubergines au chorizo",
@@ -28747,6 +28803,109 @@ export const mockRecipes: Recipe[] = [
             "barbecue",
             "Famille",
             "Orient"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4011",
+        "title": "Soutzoukakia de Smyrne (Boulettes de viande sauce tomate)",
+        "description": "Une recette familiale de boulettes de viande (soutzoukakia) de Smyrne, servies dans une sauce tomate parfumée au cumin et à la cannelle, transmise de génération en génération.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831157362.jpg&v=1774525428000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7557761657036934414\" data-video-id=\"7557761657036934414\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7557761657036934414\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour les boulettes :"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             500 g de viande hachée (bœuf ou mélange bœuf/agneau)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             100 g de chapelure ou biscottes moulues"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cumin moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre fraîchement moulu, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             80 ml d'huile d'olive extra vierge (plus pour la friture)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             60 ml de cognac, vin blanc ou vin rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour l'enrobage :"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour la sauce :"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Jus ou pulpe de 4-5 tomates fraîches (râpées ou mixées)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre fraîchement moulu, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de cumin moulu (pour un arôme supplémentaire)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Une pincée de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bâton de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais haché (pour la garniture)"
+            }
+        ],
+        "steps": [
+            "1. Préparer la farce des boulettes : Dans un grand bol, mélanger la viande hachée, l'ail haché, l'œuf, la chapelure, le cumin, le sel, le poivre, l'huile d'olive et le vin. Bien mélanger jusqu'à obtenir une consistance homogène. Couvrir de film plastique et réfrigérer pendant 30 minutes. (Pendant ce temps, couper l'ail pour la sauce et préparer le jus de tomate.)",
+            "2. Façonner et frire : Façonner le mélange en boulettes ovales. Enrober légèrement chaque boulette de farine et les faire frire dans de l'huile d'olive jusqu'à ce qu'elles soient dorées. Réserver.",
+            "3. Préparer la sauce tomate : Dans une casserole, faire chauffer un peu d'huile d'olive. Ajouter le cumin, le poivre, puis immédiatement l'ail coupé. Faire revenir brièvement pendant pas plus d'une minute. Incorporer le jus de tomate, assaisonner de sel, ajouter une pincée de sucre et le bâton de cannelle. Laisser mijoter doucement jusqu'à ce que la sauce épaississe, environ 10 minutes.",
+            "4. Combiner : Ajouter les soutzoukakia frits dans la sauce et laisser mijoter ensemble pendant 6 à 8 minutes pour que les saveurs se mélangent. Retirer du feu, saupoudrer de persil haché et servir immédiatement."
+        ],
+        "tags": [
+            "Famille",
+            "Grèce"
         ],
         "isFeatured": false,
         "isFavorite": false,
