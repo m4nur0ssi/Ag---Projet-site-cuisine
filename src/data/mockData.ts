@@ -2,11 +2,195 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/07/2026 19:53:24
- * Total: 499 recettes
+ * Dernière mise à jour: 05/07/2026 20:10:15
+ * Total: 501 recettes
  */
-export const exportSyncId = "1783281204434";
+export const exportSyncId = "1783282215050";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6604",
+        "title": "Vinaigrette légère à l'avocat",
+        "description": "Une recette simple et rapide de vinaigrette maison à base d'avocat, d'ail, de coriandre fraîche et de yaourt grec, parfaite pour alléger vos salades estivales.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7658689515925540128\" data-video-id=\"7658689515925540128\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7658689515925540128\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥑\n             Un demi avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Une gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une poignée de coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Une cuillère à soupe de vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Deux cuillères à soupe de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Une cuillère à soupe de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Couper l'avocat en deux, retirer le noyau et la peau.",
+            "Dans un mixeur ou un bol, placer la chair de l'avocat, la gousse d'ail pelée, la coriandre, le vinaigre, le yaourt grec et la moutarde à l'ancienne.",
+            "Assaisonner avec du sel et du poivre.",
+            "Mixer le tout jusqu'à obtenir une consistance lisse et homogène.",
+            "Ajouter un filet d'huile d'olive et mélanger. Goûter et ajuster l'assaisonnement si nécessaire."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6602",
+        "title": "Gaspacho vert et pastèque",
+        "description": "Une recette rafraîchissante de gaspacho vert à base de concombre et avocat, agrémenté de menthe, yaourt et citron, servi avec des billes de pastèque, de la feta émiettée et des pignons de pin grillés.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7658696639430937888\" data-video-id=\"7658696639430937888\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7658696639430937888\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n             ½ concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             ½ avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             5 feuilles de menthe fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cuillères à soupe de yaourt"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 cuillères à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Billes de pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feta émiettée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Menthe ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Pour le gaspacho : Dans un mixeur, combiner le demi-concombre, le demi-avocat, les 5 feuilles de menthe fraîche, les 3 cuillères à soupe de yaourt, les 2 cuillères à soupe de jus de citron et la pincée de sel.",
+            "Mixer le tout jusqu'à obtenir une consistance lisse et homogène.",
+            "Pour le dressage : Faire griller les pignons de pin à la poêle jusqu'à ce qu'ils soient légèrement dorés.",
+            "Servir le gaspacho dans des bols ou des verres.",
+            "Garnir chaque portion avec des billes de pastèque, de la feta émiettée, de la menthe ciselée et les pignons de pin grillés.",
+            "Ajouter un filet d'huile d'olive avant de déguster."
+        ],
+        "tags": [
+            "Espagne",
+            "Healthy",
+            "Soupes",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6600",
+        "title": "Glace au chocolat protéinée",
+        "description": "Une recette de glace au chocolat riche en protéines (38g) et faible en calories (moins de 270 kcal par pot), idéale pour un régime alimentaire et pour se faire plaisir.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633015698725326102\" data-video-id=\"7633015698725326102\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633015698725326102\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Isolat de whey : 30g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Poudre aromatisante : 5g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage blanc 0% : 100g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lait : 200ml"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Les Glaces",
+            "minceur"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6598",
         "title": "Thé glacé vanille et nectarine",
@@ -28803,109 +28987,6 @@ export const mockRecipes: Recipe[] = [
             "barbecue",
             "Famille",
             "Orient"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4011",
-        "title": "Soutzoukakia de Smyrne (Boulettes de viande sauce tomate)",
-        "description": "Une recette familiale de boulettes de viande (soutzoukakia) de Smyrne, servies dans une sauce tomate parfumée au cumin et à la cannelle, transmise de génération en génération.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Frecipe_1773831157362.jpg&v=1774525428000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7557761657036934414\" data-video-id=\"7557761657036934414\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7557761657036934414\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Pour les boulettes :"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             500 g de viande hachée (bœuf ou mélange bœuf/agneau)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             100 g de chapelure ou biscottes moulues"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de cumin moulu"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre fraîchement moulu, au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             80 ml d'huile d'olive extra vierge (plus pour la friture)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             60 ml de cognac, vin blanc ou vin rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pour l'enrobage :"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine tout usage"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pour la sauce :"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Jus ou pulpe de 4-5 tomates fraîches (râpées ou mixées)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre fraîchement moulu, au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ cuillère à café de cumin moulu (pour un arôme supplémentaire)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Une pincée de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bâton de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais haché (pour la garniture)"
-            }
-        ],
-        "steps": [
-            "1. Préparer la farce des boulettes : Dans un grand bol, mélanger la viande hachée, l'ail haché, l'œuf, la chapelure, le cumin, le sel, le poivre, l'huile d'olive et le vin. Bien mélanger jusqu'à obtenir une consistance homogène. Couvrir de film plastique et réfrigérer pendant 30 minutes. (Pendant ce temps, couper l'ail pour la sauce et préparer le jus de tomate.)",
-            "2. Façonner et frire : Façonner le mélange en boulettes ovales. Enrober légèrement chaque boulette de farine et les faire frire dans de l'huile d'olive jusqu'à ce qu'elles soient dorées. Réserver.",
-            "3. Préparer la sauce tomate : Dans une casserole, faire chauffer un peu d'huile d'olive. Ajouter le cumin, le poivre, puis immédiatement l'ail coupé. Faire revenir brièvement pendant pas plus d'une minute. Incorporer le jus de tomate, assaisonner de sel, ajouter une pincée de sucre et le bâton de cannelle. Laisser mijoter doucement jusqu'à ce que la sauce épaississe, environ 10 minutes.",
-            "4. Combiner : Ajouter les soutzoukakia frits dans la sauce et laisser mijoter ensemble pendant 6 à 8 minutes pour que les saveurs se mélangent. Retirer du feu, saupoudrer de persil haché et servir immédiatement."
-        ],
-        "tags": [
-            "Famille",
-            "Grèce"
         ],
         "isFeatured": false,
         "isFavorite": false,
