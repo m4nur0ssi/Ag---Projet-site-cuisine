@@ -616,7 +616,10 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                                                 <img src={recipe.image} alt={recipe.title} className={styles.vignetteImg} />
                                                                 <div className={styles.vignetteTitle}>{decodeHtml(recipe.title)}</div>
                                                                 {!validated && (
+                                                                    <>
+                                                                    <button className={styles.previewVignette} onClick={e => { e.stopPropagation(); openRecipe(recipe); }} title="Voir la recette" aria-label="Voir la recette">👁</button>
                                                                     <button className={styles.removeVignette} onClick={e => { e.stopPropagation(); removeSlot(day, meal); }}>✕</button>
+                                                                    </>
                                                                 )}
                                                             </div>
                                                             {/* Accompagnement (Menu IA ou ajouté à la main) — cliquable vers sa fiche */}
@@ -689,6 +692,9 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                                             >
                                                                 <img src={recipe.image} alt={recipe.title} className={`${styles.vignetteImg} ${styles.jourJImg}`} />
                                                                 <div className={styles.vignetteTitle}>{decodeHtml(recipe.title)}</div>
+                                                                {!validated && (
+                                                                    <button className={styles.previewVignette} onClick={e => { e.stopPropagation(); openRecipe(recipe); }} title="Voir la recette" aria-label="Voir la recette">👁</button>
+                                                                )}
                                                             </div>
                                                         ) : validated ? (
                                                             <div className={`${styles.emptySlotMuted} ${styles.jourJEmpty}`}><span className={styles.emptyText}>—</span></div>

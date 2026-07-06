@@ -28,6 +28,7 @@ export const viewport = {
 }
 
 import AppShell from '@/components/AppShell'
+import CookieConsent from '@/components/CookieConsent/CookieConsent'
 
 export default function RootLayout({
     children,
@@ -40,6 +41,24 @@ export default function RootLayout({
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet" />
+                {/* Google Consent Mode v2 — refus par défaut tant que l'utilisateur n'a pas consenti.
+                    Aucun cookie de mesure/pub n'est autorisé avant le clic sur "Accepter". */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            window.gtag = gtag;
+                            gtag('consent', 'default', {
+                                ad_storage: 'denied',
+                                analytics_storage: 'denied',
+                                ad_user_data: 'denied',
+                                ad_personalization: 'denied',
+                                wait_for_update: 500
+                            });
+                        `,
+                    }}
+                />
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
@@ -60,6 +79,7 @@ export default function RootLayout({
                 <AppShell>
                     {children}
                 </AppShell>
+                <CookieConsent />
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `

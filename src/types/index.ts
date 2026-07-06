@@ -10,6 +10,8 @@ export interface Recipe {
     cookTime: number; // minutes
     servings: number;
     videoHtml?: string;
+    tiktokHandle?: string;      // @pseudo du créateur (sans @), clé vers influencers.json
+    tiktokAuthorUrl?: string;   // lien direct vers la page TikTok du créateur
     ingredients: Ingredient[];
     steps: string[];
     tags?: string[]; // Tags/mots-clés WordPress

@@ -10,6 +10,7 @@ import FavoriteButton from '@/mobile/components/FavoriteButton/FavoriteButton';
 import ShareButton from '@/mobile/components/ShareButton/ShareButton';
 import VoteButton from '@/mobile/components/VoteButton/VoteButtonSheet';
 import VideoSection from '@/mobile/components/VideoSection/VideoSection';
+import CreatorCard from '@/components/CreatorCard/CreatorCard';
 import { Recipe } from '@/mobile/types';
 import { scaleQuantity } from '@/mobile/lib/utils';
 import { useLocalStorage } from '@/mobile/hooks/useLocalStorage';
@@ -1197,6 +1198,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         {activeTab === 'video' && (
                             <div className={styles.tabPanel}>
                                 <VideoSection videoHtml={recipe.videoHtml || ''} />
+                                <CreatorCard
+                                    videoHtml={recipe.videoHtml}
+                                    tiktokHandle={recipe.tiktokHandle}
+                                    tiktokAuthorUrl={recipe.tiktokAuthorUrl}
+                                />
                             </div>
                         )}
                     </div>
