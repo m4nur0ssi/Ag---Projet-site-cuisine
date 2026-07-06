@@ -5,53 +5,8 @@ import { mockRecipes } from '@/data/mockData';
 import { decodeHtml } from '@/lib/utils';
 import { rankByIngredients } from '@/lib/search-rank';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
+import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import styles from './SpotlightSearch.module.css';
-
-// Groupes de filtres — listes complètes, identiques à la barre d'accueil (MagicFilterBar).
-const FILTER_GROUPS = {
-    categorie: [
-        { label: '🥘 Accompagnements', tag: 'accompagnements' },
-        { label: '🍹 Apéritifs', tag: 'aperitifs' },
-        { label: '🍰 Desserts', tag: 'desserts' },
-        { label: '🥗 Entrées', tag: 'entrees' },
-        { label: '🍝 Pâtes', tag: 'pates' },
-        { label: '🥐 Pâtisserie', tag: 'patisserie' },
-        { label: '🍽 Plats', tag: 'plats' },
-    ],
-    pays: [
-        { label: '🌍 Afrique', tag: 'Afrique' },
-        { label: '🥢 Asie', tag: 'Asie' },
-        { label: '🇪🇸 Espagne', tag: 'Espagne' },
-        { label: '🇫🇷 France', tag: 'France' },
-        { label: '🇬🇷 Grèce', tag: 'Grece' },
-        { label: '🇮🇹 Italie', tag: 'Italie' },
-        { label: '🇱🇧 Liban', tag: 'Liban' },
-        { label: '🇲🇽 Mexique', tag: 'Mexique' },
-        { label: '🕌 Orient', tag: 'Orient' },
-        { label: '🇵🇹 Portugal', tag: 'Portugal' },
-        { label: '🇺🇸 USA', tag: 'USA' },
-    ],
-    tendances: [
-        { label: '🔥 Airfryer', tag: 'Airfryer' },
-        { label: '💡 Astuces', tag: 'Astuces' },
-        { label: '🥩 Barbecue', tag: 'Barbecue' },
-        { label: '🥤 Rafraîchissements', tag: 'boissons' },
-        { label: '🍝 Dolce Vita', tag: 'dolce-vita' },
-        { label: '⚡ Express', tag: 'Express' },
-        { label: '👨‍👩‍👧 Famille', tag: 'famille' },
-        { label: '🍦 Les Glaces', tag: 'glaces' },
-        { label: '🌿 Healthy', tag: 'Healthy' },
-        { label: '🎄 Noël', tag: 'Noël' },
-        { label: '🐰 Pâques', tag: 'pâques' },
-        { label: '💰 Pas Cher', tag: 'Pas cher' },
-        { label: '🥫 Sauces', tag: 'sauces' },
-        { label: '✨ Simplissime', tag: 'simplissime' },
-        { label: '☀️ Voilà l\'été', tag: 'voila-lete' },
-        { label: '🥬 Végé', tag: 'vegetarien' },
-        { label: '❄️ C\'est l\'hiver', tag: 'cest-lhiver' },
-    ],
-} as const;
-type FilterGroup = keyof typeof FILTER_GROUPS;
 
 export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     const [query, setQuery] = useState('');

@@ -7,55 +7,13 @@ import Link from 'next/link';
 import { normalizeIng, parseIngredient } from '@/lib/ingredients';
 import { rayonOf, RAYON_BY_ID } from '@/lib/rayons';
 import { supabase } from '@/lib/supabase';
+import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
+import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import styles from './WeekPlanner.module.css';
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 const MEALS = ['Midi', 'Soir'] as const;
 
-// Listes complètes — identiques à la barre de filtres de l'accueil (MagicFilterBar).
-const FILTER_GROUPS = {
-    categorie: [
-        { label: '🥘 Accompagnements', tag: 'accompagnements' },
-        { label: '🍹 Apéritifs', tag: 'aperitifs' },
-        { label: '🍰 Desserts', tag: 'desserts' },
-        { label: '🥗 Entrées', tag: 'entrees' },
-        { label: '🍝 Pâtes', tag: 'pates' },
-        { label: '🥐 Pâtisserie', tag: 'patisserie' },
-        { label: '🍽 Plats', tag: 'plats' },
-    ],
-    pays: [
-        { label: '🌍 Afrique', tag: 'Afrique' },
-        { label: '🥢 Asie', tag: 'Asie' },
-        { label: '🇪🇸 Espagne', tag: 'Espagne' },
-        { label: '🇫🇷 France', tag: 'France' },
-        { label: '🇬🇷 Grèce', tag: 'Grece' },
-        { label: '🇮🇹 Italie', tag: 'Italie' },
-        { label: '🇱🇧 Liban', tag: 'Liban' },
-        { label: '🇲🇽 Mexique', tag: 'Mexique' },
-        { label: '🕌 Orient', tag: 'Orient' },
-        { label: '🇺🇸 USA', tag: 'USA' },
-    ],
-    tendances: [
-        { label: '🔥 Airfryer', tag: 'Airfryer' },
-        { label: '💡 Astuces', tag: 'Astuces' },
-        { label: '🥩 Barbecue', tag: 'Barbecue' },
-        { label: '🥤 Rafraîchissements', tag: 'boissons' },
-        { label: '🍝 Dolce Vita', tag: 'dolce-vita' },
-        { label: '⚡ Express', tag: 'Express' },
-        { label: '👨‍👩‍👧 Famille', tag: 'famille' },
-        { label: '🍦 Les Glaces', tag: 'glaces' },
-        { label: '🌿 Healthy', tag: 'Healthy' },
-        { label: '🎄 Noël', tag: 'Noël' },
-        { label: '🐰 Pâques', tag: 'pâques' },
-        { label: '💰 Pas Cher', tag: 'Pas cher' },
-        { label: '🥫 Sauces', tag: 'sauces' },
-        { label: '✨ Simplissime', tag: 'simplissime' },
-        { label: '☀️ Voilà l\'été', tag: 'voila-lete' },
-        { label: '🥬 Végé', tag: 'vegetarien' },
-        { label: '❄️ C\'est l\'hiver', tag: 'cest-lhiver' },
-    ],
-} as const;
-type FilterGroup = keyof typeof FILTER_GROUPS;
 type Plan = Record<string, Record<string, any>>;
 
 // Vue "Jour J" : une carte par catégorie de plat
@@ -103,6 +61,11 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const [ingMode, setIngMode] = useState(false);
     const [ingTags, setIngTags] = useState<string[]>([]);
     const [ingInput, setIngInput] = useState('');
+    // Assistant IA du picker : demande en langage naturel → recettes existantes du site.
+    const [aiMode, setAiMode] = useState(false);
+    const [aiBusy, setAiBusy] = useState(false);
+    const [aiResults, setAiResults] = useState<any[]>([]);
+    const [aiMessage, setAiMessage] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
     const panelRef = useRef<HTMLDivElement>(null);
 
@@ -232,6 +195,36 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         setLockOpen(false);
         setQuery(''); setActiveFilter(''); setActiveGroup(null);
         setIngTags([]); setIngInput(''); setIngMode(false);
+        setAiMode(false); setAiResults([]); setAiMessage('');
+    };
+
+    // Assistant IA du picker : langage naturel → recettes EXISTANTES, sinon fallback local.
+    const askAssistant = async () => {
+        const q = query.trim();
+        if (!q || aiBusy) return;
+        setAiBusy(true); setAiResults([]); setAiMessage('');
+        try {
+            const compact = mockRecipes
+                .filter(r => r.category !== 'restaurant')
+                .map(r => ({ id: String(r.id), t: r.title, cat: r.category, tags: (r.tags || []).slice(0, 6) }));
+            const res = await fetch('/api/recipe-finder', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ query: q, recipes: compact }),
+            });
+            if (!res.ok) throw new Error('api');
+            const data = await res.json();
+            const byId = new Map(mockRecipes.map(r => [String(r.id), r]));
+            const found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean);
+            if (found.length) { setAiResults(found); setAiMessage(data.message || ''); }
+            else throw new Error('empty');
+        } catch {
+            const local = smartLocalSearch(mockRecipes as any, q, 5);
+            if (local.length) { setAiResults(local); setAiMessage('Voici ce que j\'ai trouvé sur le site 👇'); }
+            else setAiMessage('Aucune recette du site ne correspond. Reformule ta demande ✨');
+        } finally {
+            setAiBusy(false);
+        }
     };
 
     const openRecipe = (recipe: any) => {
@@ -656,7 +649,10 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                                                 <img src={recipe.image} alt={recipe.title} className={styles.vignetteImg} />
                                                                 <div className={styles.vignetteTitle}>{decodeHtml(recipe.title)}</div>
                                                                 {!validated && (
+                                                                    <>
+                                                                    <button className={styles.previewVignette} onClick={e => { e.stopPropagation(); openRecipe(recipe); }} title="Voir la recette" aria-label="Voir la recette">👁</button>
                                                                     <button className={styles.removeVignette} onClick={e => { e.stopPropagation(); removeSlot(day, meal); }}>✕</button>
+                                                                    </>
                                                                 )}
                                                             </div>
                                                             {/* Accompagnement (Menu IA ou ajouté à la main) — cliquable vers sa fiche */}
@@ -779,8 +775,17 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                     <div className={styles.pickerModal} onClick={e => e.stopPropagation()}>
                         {/* Barre recherche style SpotlightSearch */}
                         <div className={styles.searchBar}>
-                            <span className={styles.searchIcon}>🔍</span>
-                            {!ingMode ? (
+                            <span className={styles.searchIcon}>{aiMode ? '✨' : '🔍'}</span>
+                            {aiMode ? (
+                                <input
+                                    ref={inputRef}
+                                    className={styles.searchInput}
+                                    placeholder="Décris ton envie (ex : un plat rapide au poulet)..."
+                                    value={query}
+                                    onChange={e => setQuery(e.target.value)}
+                                    onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); askAssistant(); } }}
+                                />
+                            ) : !ingMode ? (
                                 <input
                                     ref={inputRef}
                                     className={styles.searchInput}
@@ -805,19 +810,28 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                     }}
                                 />
                             )}
+                            {aiMode && (
+                                <button className={styles.aiSendBtn} onClick={() => askAssistant()} disabled={aiBusy} aria-label="Demander à l'IA">
+                                    {aiBusy ? '…' : '➤'}
+                                </button>
+                            )}
                             <button className={styles.escBtn} onClick={closePicker}>Esc</button>
                         </div>
 
                         {/* Mode toggle */}
                         <div className={styles.modeToggle}>
                             <button
-                                className={`${styles.modeBtn} ${!ingMode ? styles.modeBtnActive : ''}`}
-                                onClick={() => { setIngMode(false); setTimeout(() => inputRef.current?.focus(), 50); }}
+                                className={`${styles.modeBtn} ${!ingMode && !aiMode ? styles.modeBtnActive : ''}`}
+                                onClick={() => { setIngMode(false); setAiMode(false); setTimeout(() => inputRef.current?.focus(), 50); }}
                             >🔍 Par recette</button>
                             <button
                                 className={`${styles.modeBtn} ${ingMode ? styles.modeBtnActive : ''}`}
-                                onClick={() => { setIngMode(true); setActiveGroup(null); setActiveFilter(''); setTimeout(() => inputRef.current?.focus(), 50); }}
+                                onClick={() => { setIngMode(true); setAiMode(false); setActiveGroup(null); setActiveFilter(''); setTimeout(() => inputRef.current?.focus(), 50); }}
                             >🥕 Par ingrédients</button>
+                            <button
+                                className={`${styles.modeBtn} ${aiMode ? styles.modeBtnActive : ''}`}
+                                onClick={() => { setAiMode(true); setIngMode(false); setActiveGroup(null); setActiveFilter(''); setAiResults([]); setAiMessage(''); setQuery(''); setTimeout(() => inputRef.current?.focus(), 50); }}
+                            >✨ Assistant IA</button>
                         </div>
 
                         {/* Catégorie verrouillée (ouverture depuis une carte Jour J / accompagnement).
@@ -836,7 +850,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         )}
 
                         {/* Groupes Catégorie / Pays / Tendances */}
-                        {!ingMode && !effectiveLock && (
+                        {!ingMode && !aiMode && !effectiveLock && (
                             <div className={styles.groupBtns}>
                                 {(['categorie', 'pays', 'tendances'] as FilterGroup[]).map(g => (
                                     <button
@@ -880,6 +894,24 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
                         {/* Résultats */}
                         <div className={styles.results}>
+                            {aiMode ? (
+                                <>
+                                    {aiBusy && <div className={styles.noResult}>L’assistant cherche… ✨</div>}
+                                    {!aiBusy && aiMessage && <div className={styles.resultsLabel}>{aiMessage}</div>}
+                                    {!aiBusy && aiResults.length === 0 && !aiMessage && (
+                                        <div className={styles.noResult}>Décris ton envie et appuie sur Entrée ✨</div>
+                                    )}
+                                    {aiResults.map(r => (
+                                        <button key={r.id} className={styles.resultRow} onClick={() => assignRecipe(r)}>
+                                            <img src={r.image} alt={r.title} className={styles.resultImg} />
+                                            <div className={styles.resultInfo}>
+                                                <div className={styles.resultTitle}>{decodeHtml(r.title)}</div>
+                                                <div className={styles.resultMeta}>{r.category} • {r.difficulty}</div>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </>
+                            ) : <>
                             {!activeFilter && query.trim().length <= 1 && !ingMode && (
                                 <div className={styles.resultsLabel}>✨ Dernières Recettes Publiées</div>
                             )}
@@ -896,6 +928,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                     </div>
                                 </button>
                             ))}
+                            </>}
                         </div>
                     </div>
                 </div>

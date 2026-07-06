@@ -1,12 +1,5 @@
 {
   "_comment": "Registre créateurs TikTok. 'creators' clé = @pseudo (sans @). 'videoMap' relie un ID vidéo TikTok à un pseudo (rempli par le bot, sert à retrouver le créateur d'une recette sans toucher au pipeline WP). Le bot fait un upsert : réutilise si le pseudo existe, crée un stub sinon, N'ÉCRASE JAMAIS une bio manuelle. Champs à remplir à la main : 'name', 'avatar', 'bio', 'style', 'since', 'website', 'cookbookTitle', 'cookbookUrl'. 'partner:true' = accord explicite obtenu (badge). Si un créateur n'est PAS listé ici, la fiche affiche quand même le nom + la chaîne récupérés automatiquement via /api/tiktok-creator (oEmbed).",
-  "creators": {
-    "comment_cuisiner": {
-      "handle": "comment_cuisiner",
-      "cookbookTitle": "Mon premier livre de recettes",
-      "cookbookUrl": "https://exemple-achat-livre.fr",
-      "partner": true
-    }
-  },
+  "creators": {},
   "videoMap": {}
 }

@@ -331,6 +331,26 @@
     overflow: hidden;
 }
 
+.aiSendBtn {
+    background: rgba(124, 92, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.aiSendBtn:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
 .removeVignette {
     position: absolute;
     top: 3px;
@@ -347,6 +367,25 @@
     align-items: center;
     justify-content: center;
     line-height: 1;
+}
+
+.previewVignette {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    border: none;
+    color: white;
+    font-size: 0.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    z-index: 2;
 }
 
 .emptySlot {
