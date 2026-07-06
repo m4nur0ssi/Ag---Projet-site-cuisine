@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
+import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import styles from './SpotlightSearch.module.css';
 
 // Groupes de filtres — listes complètes, identiques à la barre d'accueil (MagicFilterBar).
@@ -70,12 +71,94 @@ const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-�
 
 export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { isOpen: boolean; onClose: () => void; onRecipeSelect?: (recipe: any) => void }) {
     const [query, setQuery] = useState('');
-    const [mode, setMode] = useState<'recipe' | 'ingredients'>('recipe');
+    const [mode, setMode] = useState<'recipe' | 'ingredients' | 'assistant'>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
     const [ingInput, setIngInput] = useState('');
     const [activeGroup, setActiveGroup] = useState<FilterGroup | null>(null);
     const [activeFilter, setActiveFilter] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
+
+    // Assistant IA : demande en langage naturel (texte/voix) → recettes EXISTANTES du site
+    const [aiQuery, setAiQuery] = useState('');
+    const [aiResults, setAiResults] = useState<any[]>([]);
+    const [aiMessage, setAiMessage] = useState('');
+    const [aiBusy, setAiBusy] = useState(false);
+    const [aiError, setAiError] = useState('');
+    const [isListening, setIsListening] = useState(false);
+    const recognitionRef = useRef<any>(null);
+
+    // Recherche locale intelligente (secours si l'IA échoue / pas de clé) — type de plat, pays, régime
+    const localSearch = (q: string) => smartLocalSearch(mockRecipes as any, q, 5);
+
+    const askAssistant = async (raw?: string) => {
+        const q = (raw ?? aiQuery).trim();
+        if (!q || aiBusy) return;
+        setAiBusy(true);
+        setAiError('');
+        setAiResults([]);
+        setAiMessage('');
+        try {
+            const compact = mockRecipes
+                .filter(r => r.category !== 'restaurant')
+                .map(r => ({ id: String(r.id), t: r.title, cat: r.category, tags: (r.tags || []).slice(0, 6) }));
+            const res = await fetch('/api/recipe-finder', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ query: q, recipes: compact }),
+            });
+            if (!res.ok) throw new Error('api');
+            const data = await res.json();
+            const byId = new Map(mockRecipes.map(r => [String(r.id), r]));
+            const found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean);
+            if (found.length) {
+                setAiResults(found);
+                setAiMessage(data.message || '');
+            } else {
+                throw new Error('empty');
+            }
+        } catch {
+            // Secours : recherche texte locale
+            const local = localSearch(q);
+            if (local.length) {
+                setAiResults(local);
+                setAiMessage('Voici ce que j\'ai trouvé sur le site 👇');
+            } else {
+                setAiError('Aucune recette du site ne correspond. Reformule ta demande ✨');
+            }
+        } finally {
+            setAiBusy(false);
+        }
+    };
+
+    const toggleVoice = () => {
+        if (typeof window === 'undefined') return;
+        const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (!SR) { setAiError('La dictée vocale n\'est pas supportée sur ce navigateur.'); return; }
+        if (isListening) { try { recognitionRef.current?.stop(); } catch {} return; }
+        const rec = new SR();
+        rec.lang = 'fr-FR';
+        rec.interimResults = false;
+        rec.maxAlternatives = 1;
+        rec.onstart = () => setIsListening(true);
+        rec.onend = () => { setIsListening(false); recognitionRef.current = null; };
+        rec.onerror = () => { setIsListening(false); recognitionRef.current = null; };
+        rec.onresult = (e: any) => {
+            const transcript = e.results?.[0]?.[0]?.transcript || '';
+            if (transcript) setAiQuery(transcript); // le débounce (1s) lance la recherche
+        };
+        recognitionRef.current = rec;
+        try { rec.start(); } catch {}
+    };
+
+    // Lancement automatique : 1s d'inactivité après la frappe ou la dictée → recherche.
+    useEffect(() => {
+        if (mode !== 'assistant') return;
+        const q = aiQuery.trim();
+        if (q.length < 3) return;
+        const t = setTimeout(() => askAssistant(q), 1000);
+        return () => clearTimeout(t);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [aiQuery, mode]);
 
     const countryFlags: Record<string, string> = {
         'france': '🇫🇷', 'italie': '🇮🇹', 'espagne': '🇪🇸', 'mexique': '🇲🇽',
@@ -146,6 +229,12 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
             setMode('recipe');
             setActiveGroup(null);
             setActiveFilter('');
+            setAiQuery('');
+            setAiResults([]);
+            setAiMessage('');
+            setAiError('');
+            try { recognitionRef.current?.stop(); } catch {}
+            setIsListening(false);
         }
     }, [isOpen]);
 
@@ -155,7 +244,28 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
         <div className={styles.overlay} onClick={onClose}>
             <div className={styles.modal} onClick={e => e.stopPropagation()}>
                 <div className={styles.searchContainer}>
-                    {mode === 'recipe' ? (
+                    {mode === 'assistant' ? (
+                        <>
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                className={styles.input}
+                                placeholder="Dis-moi ton envie… ex : un plat rapide au poulet"
+                                value={aiQuery}
+                                onChange={e => setAiQuery(e.target.value)}
+                                onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); askAssistant(); } }}
+                            />
+                            <button
+                                className={`${styles.micBtn} ${isListening ? styles.micBtnActive : ''}`}
+                                onClick={toggleVoice}
+                                title="Dicter ma demande"
+                                aria-label="Dicter ma demande"
+                            >{isListening ? '🔴' : '🎤'}</button>
+                            <button className={styles.aiSendBtn} onClick={() => askAssistant()} disabled={aiBusy} aria-label="Demander">
+                                {aiBusy ? '…' : '➜'}
+                            </button>
+                        </>
+                    ) : mode === 'recipe' ? (
                         <input
                             ref={inputRef}
                             type="text"
@@ -188,6 +298,10 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
                         className={`${styles.modeBtn} ${mode === 'ingredients' ? styles.modeBtnActive : ''}`}
                         onClick={() => { setMode('ingredients'); setActiveGroup(null); setActiveFilter(''); setTimeout(() => inputRef.current?.focus(), 50); }}
                     >Par ingrédients</button>
+                    <button
+                        className={`${styles.modeBtn} ${mode === 'assistant' ? styles.modeBtnActive : ''}`}
+                        onClick={() => { setMode('assistant'); setActiveGroup(null); setActiveFilter(''); setTimeout(() => inputRef.current?.focus(), 50); }}
+                    >✨ Assistant IA</button>
                 </div>
 
                 {/* Groupes Catégorie / Pays / Tendances (mode recette) */}
@@ -237,6 +351,42 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
                 )}
 
                 <div className={styles.results}>
+                    {mode === 'assistant' && (
+                        <>
+                            {aiBusy && <div className={styles.recentTitle}>✨ L’assistant cherche…</div>}
+                            {!aiBusy && aiMessage && <div className={styles.aiMessage}>✨ {aiMessage}</div>}
+                            {!aiBusy && aiError && <div className={styles.noResult}>{aiError}</div>}
+                            {!aiBusy && !aiResults.length && !aiError && (
+                                <div className={styles.noResult}>Décris ton envie (ou dicte 🎤) : « un dessert au chocolat sans gluten », « plat italien rapide »…</div>
+                            )}
+                            {aiResults.map(recipe => {
+                                const countryTag = recipe.tags?.find((t: string) => countryFlags[t.toLowerCase()]);
+                                const flag = countryTag ? countryFlags[countryTag.toLowerCase()] : '🪄';
+                                const itemContent = (
+                                    <>
+                                        <div className={styles.thumbWrapper}>
+                                            <span className={styles.miniFlag}>{flag}</span>
+                                            <img src={recipe.image} alt="" className={styles.thumb} />
+                                        </div>
+                                        <div className={styles.resultInfo}>
+                                            <div className={styles.resultTitle}>{decodeHtml(recipe.title)}</div>
+                                            <div className={styles.resultMeta}>{recipe.category} • {recipe.difficulty}</div>
+                                        </div>
+                                    </>
+                                );
+                                return onRecipeSelect ? (
+                                    <button key={recipe.id} className={styles.resultItem} onClick={() => handleRecipeClick(recipe)} style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer' }}>
+                                        {itemContent}
+                                    </button>
+                                ) : (
+                                    <Link key={recipe.id} href={`/recipe/${recipe.id}`} className={styles.resultItem} onClick={onClose}>
+                                        {itemContent}
+                                    </Link>
+                                );
+                            })}
+                        </>
+                    )}
+
                     {mode === 'recipe' && (
                         <>
                             {query.trim().length <= 1 && !activeFilter && (
