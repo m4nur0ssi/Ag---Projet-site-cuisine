@@ -10,7 +10,7 @@ const MENU_ITEMS = [
     "Express", "Famille", "France", "Gratins", "Grèce", "Healthy", "Italie",
     "Les Glaces", "Liban", "Mexique", "Minceur", "Noël", "Orient", "Pas Cher",
     "Pâques", "Pâtes", "Pâtisserie", "Plats", "Poissons et crustacés",
-    "Rafraîchissements", "Salades", "Sandwichs",
+    "Rafraîchissements", "Restaurants", "Salades", "Sandwichs",
     "Sans gluten", "Sans lactose", "Sans sel", "Sans sucre", "Sauces",
     "Simplissime", "Soupes", "Tarte", "USA", "Végétarien", "Voilà l'été"
 ];

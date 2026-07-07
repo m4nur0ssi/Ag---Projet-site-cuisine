@@ -75,8 +75,18 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* Cartes identiques à l'accueil : largeur fixe 240px, wrap centré. */
+    grid-template-columns: repeat(auto-fill, 240px);
+    justify-content: center;
     gap: 32px;
+}
+
+/* Même gabarit que le wrapper de l'accueil (RecipeCarousel .itemWrapper). */
+.gridItem {
+    width: 240px;
+    height: 440px;
+    display: flex;
+    align-items: flex-start;
 }
 
 .empty {
@@ -101,14 +111,15 @@
     }
     
     .grid {
-        grid-template-columns: repeat(1, 1fr);
+        /* Garde des cartes 240px identiques à l'accueil, wrap centré. */
+        grid-template-columns: repeat(auto-fill, 240px);
         gap: 24px;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, 240px);
         gap: 24px;
     }
 }

@@ -82,6 +82,15 @@ const trends: FilterItem[] = [
     { id: 'trn-minceur', name: 'Minceur', icon: '', tag: 'minceur', color: '#26C6DA' },
 ];
 
+// Restaurants : sous-catégories (fiches "Comme au resto"). Le tag sert au filtrage.
+const restaurants: FilterItem[] = [
+    { id: 'resto-brasserie', name: 'Brasserie', icon: '', tag: 'resto-brasserie', color: '#E11D48' },
+    { id: 'resto-italien', name: 'Italien', icon: '', tag: 'resto-italien', color: '#188A42' },
+    { id: 'resto-asiatique', name: 'Asiatique', icon: '', tag: 'resto-asiatique', color: '#E4572E' },
+    { id: 'resto-gastro', name: 'Gastro', icon: '', tag: 'resto-gastro', color: '#7C5CFF' },
+    { id: 'resto-salon-the', name: 'Salon de thé', icon: '', tag: 'resto-salon-de-the', color: '#C99A2E' },
+];
+
 export default function MagicFilterBar({
     activeTags,
     onSelect,
@@ -116,6 +125,7 @@ export default function MagicFilterBar({
         { id: 'categories', label: 'Catégories', items: categories },
         { id: 'countries', label: 'Pays', items: countries },
         { id: 'trends', label: 'Tendance', items: trends },
+        { id: 'restaurant', label: 'Restaurant', items: restaurants },
     ];
 
     const toggleGroup = (id: string) => {

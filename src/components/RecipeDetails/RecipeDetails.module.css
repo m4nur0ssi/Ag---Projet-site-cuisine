@@ -196,7 +196,8 @@
     -webkit-backdrop-filter: blur(20px);
     border: 1.5px solid rgba(255, 255, 255, 0.2);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    margin: 18px 0 0 0;
+    /* Aligné avec les boutons cœur/partage (grid centré) → symétrie. */
+    margin: 0;
 }
 
 [data-theme='light'] .categoryTag {
@@ -2378,3 +2379,88 @@
     color: var(--color-text-primary);
     line-height: 1.4;
 }
+
+/* ── Fiche restaurant : tuiles infos + coordonnées + galerie ── */
+.restoTiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin: 8px 0 18px;
+}
+.restoTile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 10px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    text-decoration: none;
+    color: inherit;
+}
+.restoTileLink { cursor: pointer; transition: transform 0.15s, border-color 0.2s; }
+.restoTileLink:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.3); }
+.restoTileIcon { font-size: 1.4rem; line-height: 1; }
+.restoTileValue { font-size: 1.05rem; font-weight: 900; letter-spacing: 0.5px; }
+.restoTileMuted { opacity: 0.28; }
+.restoTileLabel { font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.04em; text-align: center; }
+
+.restoCoords {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 18px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+.restoCoordRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    text-decoration: none;
+    color: inherit;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.restoCoordRow:last-child { border-bottom: none; }
+a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
+.restoCoordIcon { font-size: 1.1rem; flex-shrink: 0; }
+
+.restoGallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+}
+.restoGalleryImg {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+
+.restoLinks { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; }
+.restoLinkBtn {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+    padding: 13px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    color: inherit;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    transition: background 0.15s, transform 0.15s;
+}
+.restoLinkBtn:hover { background: rgba(255, 255, 255, 0.12); transform: translateY(-1px); }
+
+[data-theme='light'] .restoTile,
+[data-theme='light'] .restoCoordRow,
+[data-theme='light'] .restoLinkBtn { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.1); }

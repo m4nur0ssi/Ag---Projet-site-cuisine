@@ -22,6 +22,23 @@ export interface Recipe {
     address?: string;
     website?: string;
     reviews?: any[];
+    restaurant?: RestaurantInfo;
+}
+
+// Fiche restaurant ("Comme au resto") — infos réelles vérifiées.
+export interface RestaurantInfo {
+    subType?: 'brasserie' | 'italien' | 'asiatique' | 'gastro' | 'salon-de-the';
+    priceLevel?: 1 | 2 | 3;        // € / €€ / €€€ (indice The Fork / usage)
+    parking?: boolean;             // stationnement facile à proximité
+    terrace?: boolean;             // terrasse
+    rating?: number;               // note moyenne (ex : 4.4)
+    reviewsCount?: number;         // nombre d'avis (TripAdvisor)
+    tripAdvisorUrl?: string;       // lien vers la fiche TripAdvisor
+    website?: string;              // site officiel du restaurant
+    hours?: string;                // horaires (texte)
+    address?: string;              // vraie adresse
+    phone?: string;                // numéro de téléphone
+    photos?: string[];             // galerie de photos du restaurant
 }
 
 

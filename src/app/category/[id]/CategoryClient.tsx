@@ -3,7 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header/Header';
-import RecipeCard from '@/components/RecipeCard/RecipeCardV2';
+import RecipeCardiOS26 from '@/components/RecipeCard/RecipeCardiOS26';
 import MagicFilterBar from '@/components/MagicFilterBar/MagicFilterBar';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import styles from './category.module.css';
@@ -49,7 +49,9 @@ export default function CategoryClient({ id, category, recipes, categories }: Ca
             <main className={styles.main}>
                 <div className={styles.grid}>
                     {recipes.map((recipe) => (
-                        <RecipeCard key={recipe.id} recipe={recipe} />
+                        <div key={recipe.id} className={styles.gridItem}>
+                            <RecipeCardiOS26 recipe={recipe} />
+                        </div>
                     ))}
                 </div>
 

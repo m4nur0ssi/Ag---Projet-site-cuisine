@@ -911,8 +911,84 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             {/* Enhanced UI pour restaurants: Badges, Adresse, Boutons Maps et Avis */}
             {recipe.category === 'restaurant' && (
                 <div className={styles.restaurantContent}>
+                    {/* ── Infos réelles vérifiées (fiche restaurant) ── */}
+                    {recipe.restaurant && (() => {
+                        const r = recipe.restaurant!;
+                        return (
+                            <>
+                                <div className={styles.restoTiles}>
+                                    {r.priceLevel && (
+                                        <div className={styles.restoTile}>
+                                            <span className={styles.restoTileIcon}>💶</span>
+                                            <span className={styles.restoTileValue}>
+                                                {'€'.repeat(r.priceLevel)}<span className={styles.restoTileMuted}>{'€'.repeat(3 - r.priceLevel)}</span>
+                                            </span>
+                                            <span className={styles.restoTileLabel}>Prix moyen</span>
+                                        </div>
+                                    )}
+                                    {typeof r.rating === 'number' && (
+                                        <a className={`${styles.restoTile} ${styles.restoTileLink}`} href={r.tripAdvisorUrl || '#'} target="_blank" rel="noopener noreferrer">
+                                            <span className={styles.restoTileIcon}>🦉</span>
+                                            <span className={styles.restoTileValue}>{r.rating.toFixed(1)} ★</span>
+                                            <span className={styles.restoTileLabel}>{r.reviewsCount ? `${r.reviewsCount} avis` : 'Tripadvisor'}</span>
+                                        </a>
+                                    )}
+                                    {r.parking && (
+                                        <div className={styles.restoTile}>
+                                            <span className={styles.restoTileIcon}>🅿️</span>
+                                            <span className={styles.restoTileValue}>Oui</span>
+                                            <span className={styles.restoTileLabel}>Parking facile</span>
+                                        </div>
+                                    )}
+                                    {r.terrace && (
+                                        <div className={styles.restoTile}>
+                                            <span className={styles.restoTileIcon}>☀️</span>
+                                            <span className={styles.restoTileValue}>Oui</span>
+                                            <span className={styles.restoTileLabel}>Terrasse</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className={styles.restoCoords}>
+                                    {r.phone && (
+                                        <a className={styles.restoCoordRow} href={`tel:${r.phone.replace(/\s/g, '')}`}>
+                                            <span className={styles.restoCoordIcon}>📞</span><span>{r.phone}</span>
+                                        </a>
+                                    )}
+                                    {r.hours && (
+                                        <div className={styles.restoCoordRow}>
+                                            <span className={styles.restoCoordIcon}>🕒</span><span>{r.hours}</span>
+                                        </div>
+                                    )}
+                                    {(r.address || recipe.address) && (
+                                        <a className={styles.restoCoordRow} href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.address || recipe.address || recipe.title)}`} target="_blank" rel="noopener noreferrer">
+                                            <span className={styles.restoCoordIcon}>📍</span><span>{r.address || recipe.address}</span>
+                                        </a>
+                                    )}
+                                </div>
+
+                                {!!(r.photos && r.photos.length) && (
+                                    <div className={styles.restoGallery}>
+                                        {r.photos.map((src, i) => (
+                                            <img key={i} src={src} alt={`${recipe.title} — photo ${i + 1}`} className={styles.restoGalleryImg} loading="lazy" />
+                                        ))}
+                                    </div>
+                                )}
+
+                                <div className={styles.restoLinks}>
+                                    {r.website && (
+                                        <a className={styles.restoLinkBtn} href={r.website} target="_blank" rel="noopener noreferrer">🌐 Site officiel</a>
+                                    )}
+                                    {r.tripAdvisorUrl && (
+                                        <a className={styles.restoLinkBtn} href={r.tripAdvisorUrl} target="_blank" rel="noopener noreferrer">🦉 Tripadvisor</a>
+                                    )}
+                                </div>
+                            </>
+                        );
+                    })()}
+
                     {/* Informations Pratiques - Style iOS 26 Pro - Adresse Upsized */}
-                    {recipe.address && (
+                    {!recipe.restaurant && recipe.address && (
                         <div className={styles.addressDisplayLarge}>
                             <span className={styles.addressIconLarge}>📍</span>
                             <div className={styles.addressContent}>
@@ -924,7 +1000,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         </div>
                     )}
 
-                    {/* Badges de services */}
+                    {/* Badges de services (ancien mode — seulement si pas d'infos structurées) */}
+                    {!recipe.restaurant && (
                     <div className={styles.restaurantFeatures}>
                         {(() => {
                             const stepsText = recipe.steps.join(' ').toLowerCase();
@@ -944,6 +1021,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             ));
                         })()}
                     </div>
+                    )}
 
                     {/* Boutons Maps / Plans / Website */}
                     <div className={styles.restaurantActions}>
@@ -986,7 +1064,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     </div>
 
                     {/* Avis Google Section - iOS 26 Design (Fallback sur avis Joji si vide pour garder le design) */}
-                    {(recipe.reviews || recipe.category === 'restaurant') && (
+                    {!recipe.restaurant && (recipe.reviews || recipe.category === 'restaurant') && (
                         <div className={styles.reviewsSection}>
                             <div className={styles.sectionHeader}>
                                 <h3 className={styles.sectionTitle}>Derniers avis Google</h3>

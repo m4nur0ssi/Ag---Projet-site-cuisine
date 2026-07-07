@@ -23,6 +23,23 @@ export interface Recipe {
     address?: string;
     website?: string;
     reviews?: Review[];
+    restaurant?: RestaurantInfo;
+}
+
+// Fiche restaurant ("Comme au resto") — infos réelles vérifiées.
+export interface RestaurantInfo {
+    subType?: 'brasserie' | 'italien' | 'asiatique' | 'gastro' | 'salon-de-the';
+    priceLevel?: 1 | 2 | 3;
+    parking?: boolean;
+    terrace?: boolean;
+    rating?: number;
+    reviewsCount?: number;
+    tripAdvisorUrl?: string;
+    website?: string;
+    hours?: string;
+    address?: string;
+    phone?: string;
+    photos?: string[];
 }
 
 export interface Review {

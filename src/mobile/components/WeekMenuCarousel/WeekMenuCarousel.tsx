@@ -134,7 +134,7 @@ function MealBlock({ day, label, recipe, slotKey, isSelected, onSelect, done, in
     );
 }
 
-function DayCard({ day, plan, index, scrollX, step, selected, onSelect, done, ingSel, onToggleDone, onToggleIngSel, onShopped }: { day: string; plan: Plan; index: number; scrollX: MotionValue<number>; step: number; selected: Set<string>; onSelect: (key: string) => void; done: Set<string>; ingSel: Set<string>; onToggleDone: (key: string) => void; onToggleIngSel: (key: string) => void; onShopped: (item: ConsolItem) => void }) {
+function DayCard({ day, plan, index, scrollX, step, selected, onSelect, done, ingSel, onToggleDone, onToggleIngSel, onShopped, onDayClick }: { day: string; plan: Plan; index: number; scrollX: MotionValue<number>; step: number; selected: Set<string>; onSelect: (key: string) => void; done: Set<string>; ingSel: Set<string>; onToggleDone: (key: string) => void; onToggleIngSel: (key: string) => void; onShopped: (item: ConsolItem) => void; onDayClick?: (i: number) => void }) {
     const s = step || 1;
     const scale = useTransform(scrollX, [(index - 1) * s, index * s, (index + 1) * s], [0.92, 1, 0.92], { clamp: true });
     const opacity = useTransform(scrollX, [(index - 1) * s, index * s, (index + 1) * s], [0.55, 1, 0.55], { clamp: true });
@@ -147,7 +147,12 @@ function DayCard({ day, plan, index, scrollX, step, selected, onSelect, done, in
     return (
         <motion.div className={styles.card} style={{ scale, opacity }}>
             <div className={styles.cardHeader}>
-                <span className={styles.dayFull}>{title}</span>
+                <span
+                    className={styles.dayFull}
+                    onClick={() => onDayClick?.(index)}
+                    style={onDayClick ? { cursor: 'pointer' } : undefined}
+                    title="Aller à ce jour"
+                >{title}</span>
             </div>
             <div className={styles.meals}>
                 {mealLabels.map(m => (
@@ -335,7 +340,7 @@ export default function WeekMenuCarousel() {
             <div ref={trackRef} className={styles.track} onScroll={onScroll}>
                 {COLS.map((d, i) => (
                     <div key={d} ref={(el) => { cardEls.current[i] = el; }} className={styles.snap}>
-                        <DayCard day={d} plan={plan} index={i} scrollX={scrollX} step={step} selected={selected} onSelect={toggleSelect} done={done} ingSel={ingSel} onToggleDone={toggleDone} onToggleIngSel={toggleIngSel} onShopped={onShopped} />
+                        <DayCard day={d} plan={plan} index={i} scrollX={scrollX} step={step} selected={selected} onSelect={toggleSelect} done={done} ingSel={ingSel} onToggleDone={toggleDone} onToggleIngSel={toggleIngSel} onShopped={onShopped} onDayClick={goTo} />
                     </div>
                 ))}
             </div>

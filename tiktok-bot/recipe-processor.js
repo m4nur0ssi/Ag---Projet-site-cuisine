@@ -414,6 +414,18 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
                 analysis.tags.push('Pâques');
             }
         }
+        // Restaurant : fiche "Comme au resto" → catégorie restaurant + sous-type classé
+        // automatiquement (Brasserie / Italien / Asiatique / Gastro / Salon de thé).
+        if (cl.includes('restaurant')) {
+            analysis.category = 'restaurant';
+            const blob = `${title || ''} ${description || ''} ${(analysis.tags || []).join(' ')}`.toLowerCase();
+            let sub = 'resto-brasserie';
+            if (/ital|pizz|pasta|pâtes|trattoria|osteria/.test(blob)) sub = 'resto-italien';
+            else if (/asiat|japon|sushi|tha[iï]|chin|vietnam|cor[ée]|ramen|wok|nem|dim sum|bao/.test(blob)) sub = 'resto-asiatique';
+            else if (/gastro|[ée]toil|michelin|gastronomique|fine dining|d[ée]gustation/.test(blob)) sub = 'resto-gastro';
+            else if (/salon de th|th[ée]|p[âa]tiss|brunch|go[ûu]ter|caf[ée]|cocooning/.test(blob)) sub = 'resto-salon-de-the';
+            if (!analysis.tags.includes(sub)) analysis.tags.push(sub);
+        }
         // NB : Tarte + régimes (sans gluten/lactose/sucre/sel, minceur) sont ajoutés comme
         // tag automatiquement par wordpress-poster.js (push générique de manualCountry).
     }
