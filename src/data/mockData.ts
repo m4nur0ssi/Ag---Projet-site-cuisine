@@ -2,11 +2,666 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/07/2026 17:36:34
- * Total: 501 recettes
+ * Dernière mise à jour: 07/07/2026 06:37:23
+ * Total: 509 recettes
  */
-export const exportSyncId = "1783359394966";
+export const exportSyncId = "1783406243345";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6620",
+        "title": "Brioche perdue salée à l'italienne",
+        "description": "Une idée parfaite pour un brunch gourmand ou un repas facile et rapide à préparer. Cette brioche perdue est sublimée par du Jambon de Parme AOP, des tomates cerises rôties, du pesto et de la burrata, offrant une saveur italienne authentique.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7659370345002061088\" data-video-id=\"7659370345002061088\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7659370345002061088\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tranches épaisses de brioche"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             10 cl de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 poignée de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de pesto"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 cuillère à soupe de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Tranches de Jambon de Parme AOP"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic frais et origan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            }
+        ],
+        "steps": [
+            "Faire rôtir les tomates cerises avec un filet d'huile d'olive, du sel et de l'origan pendant 20 minutes au four ou 10 minutes au Air Fryer à 180°C.",
+            "Mélanger l'œuf, le lait, le parmesan râpé, un peu d'origan et du sel.",
+            "Tremper les tranches de brioche dans le mélange.",
+            "Faire dorer les tranches de brioche à la poêle avec un peu de beurre pendant 2 minutes de chaque côté jusqu'à ce qu'elles soient bien croustillantes.",
+            "Tartiner les tranches de brioche de pesto, ajouter les tomates rôties puis les tranches de Jambon de Parme AOP.",
+            "Déposer de la burrata et ajouter quelques feuilles de basilic."
+        ],
+        "tags": [
+            "Italie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6618",
+        "title": "Poivrons rôtis et pain à l'ail",
+        "description": "Une recette simple et savoureuse d'apéritif, composée de poivrons rôtis au four, accompagnés de féta émiettée, de pignons de pin grillés, de ciboulette fraîche et de pain frotté à l'ail.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7659432477060074785\" data-video-id=\"7659432477060074785\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7659432477060074785\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             pignons de pin grillés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             pain"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Découpez les poivrons en deux, épépinez-les, badigeonnez d'huile d'olive et enfournez-les minimum 30 minutes à 180ºC.",
+            "Tranchez le pain, passez-le au four ou au grille-pain puis frottez-le avec une gousse d'ail.",
+            "À la sortie du four, attendez que les poivrons refroidissent, enlevez la peau puis disposez-les dans l'assiette et découpez-les en fines lamelles.",
+            "Émiettez la féta, ajoutez quelques pignons de pin grillés, la ciboulette, assaisonnez, terminez avec un généreux filet d'huile d'olive et servez avec le pain grillé."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Grèce",
+            "Healthy",
+            "Pas cher",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6616",
+        "title": "Ktipiti pour l'apéritif",
+        "description": "Une recette facile et rapide de Ktipiti, une trempette grecque à base de poivrons rouges rôtis, de feta, de yaourt grec et d'ail, parfaite pour accompagner vos apéritifs.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7659438912581979424\" data-video-id=\"7659438912581979424\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7659438912581979424\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             3 petits poivrons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf dur"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 bloc de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à soupe de ciboulette fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 trait de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel (pour écraser l'ail)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (en option)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (en option)"
+            }
+        ],
+        "steps": [
+            "Préchauffer le Airfryer à 200°C ou le four. Faire rôtir les 3 petits poivrons rouges pendant 20 minutes au Airfryer ou 30 minutes au four.",
+            "À la sortie du four ou du Airfryer, enfermer les poivrons dans un sac de congélation pendant 10 minutes. Retirer ensuite la peau et les pépins.",
+            "Dans un bol, écraser la gousse d'ail avec un peu de fleur de sel.",
+            "Ajouter les poivrons épluchés, l'œuf dur, le yaourt grec, la feta, la ciboulette fraîche, le filet d'huile d'olive et le trait de jus de citron.",
+            "Écraser tous les ingrédients à la fourchette ou mixer jusqu'à obtenir la consistance désirée.",
+            "Assaisonner avec du poivre et du piment en option. Servir frais."
+        ],
+        "tags": [
+            "Grèce",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6614",
+        "title": "Mijoté de bœuf aux pommes de terre, petits pois et carottes",
+        "description": "Un plat réconfortant de bœuf mijoté avec des pommes de terre, des carottes et des petits pois, parfait pour un repas savoureux et chaleureux.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642360728757849377\" data-video-id=\"7642360728757849377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642360728757849377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             600 g de paleron de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cube de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cube Kubor"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             800 ml d'eau chaude"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 branche de romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 grande cuillère de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre (épluchées et coupées en morceaux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             Carottes (épluchées et coupées en morceaux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             350 g de petits pois"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Dans une poêle, faire chauffer un filet d'huile d'olive. Fariner légèrement les morceaux de viande et les faire dorer des deux côtés.",
+            "Ajouter l'oignon haché, la feuille de laurier, la branche de romarin et les gousses d'ail.",
+            "Incorporer le concentré de tomate et bien mélanger, laisser cuire quelques minutes pour que les saveurs se développent.",
+            "Ajouter le bouillon de volaille et le Kubor chaud (dilués dans 800 ml d'eau chaude) jusqu'à couvrir la viande. Mettre le couvercle et laisser mijoter à feu doux pendant environ 1 heure, en remuant de temps en temps.",
+            "Au cours des 15 dernières minutes, ajouter les pommes de terre, les carottes coupées en morceaux et les petits pois. Ajuster l'assaisonnement en sel et en poivre. Remettre le couvercle et laisser cuire jusqu'à ce que le tout soit bien tendre et crémeux."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Famille",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6612",
+        "title": "Mijoté de bœuf aux pommes de terre, petits pois et carottes",
+        "description": "Un plat réconfortant de bœuf mijoté avec des pommes de terre, des carottes et des petits pois, parfait pour un repas savoureux et chaleureux.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642360728757849377\" data-video-id=\"7642360728757849377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642360728757849377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             600 g de paleron de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cube de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Kubor (bouillon cube)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             800 ml d'eau chaude"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 branche de romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 grande cuillère de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre (épluchées et coupées en morceaux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             Carottes (épluchées et coupées en morceaux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             350 g de petits pois"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Dans une poêle, faire chauffer un filet d'huile d'olive. Fariner légèrement les morceaux de viande et les faire dorer des deux côtés.",
+            "Ajouter l'oignon haché, la feuille de laurier, la branche de romarin et les gousses d'ail.",
+            "Incorporer le concentré de tomate et bien mélanger, laisser cuire quelques minutes pour que les saveurs se développent.",
+            "Ajouter le bouillon de volaille et le Kubor chaud (dilués dans l'eau chaude) jusqu'à couvrir la viande. Mettre le couvercle et laisser mijoter à feu doux pendant environ 1 heure, en remuant de temps en temps.",
+            "Au cours des 15 dernières minutes, ajouter les pommes de terre, les carottes en morceaux et les petits pois. Ajuster l'assaisonnement en sel et en poivre. Remettre le couvercle et laisser cuire jusqu'à ce que le tout soit bien tendre et crémeux."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Famille",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6610",
+        "title": "Rouleaux d'aubergines farcis au bœuf et au fromage",
+        "description": "Une recette savoureuse de rouleaux d'aubergines farcis avec un mélange de bœuf haché, de riz, d'oignon et d'herbes, cuits dans une sauce tomate-basilic et gratinés à la mozzarella et aux flocons de piment.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648355109189061911\" data-video-id=\"7648355109189061911\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648355109189061911\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n             2 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             300 g de bœuf haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             40 g de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon, finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Persil frais, finement ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café de poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café de poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/2 cuillère à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             200 ml de sauce tomate-basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             125 g de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Coupez les aubergines en tranches et disposez-les sur une plaque de cuisson. Salez, arrosez d'huile d'olive et faites cuire au four à 200°C pendant 20 minutes.",
+            "Mélangez le bœuf haché, le riz, l'oignon, le persil et les assaisonnements.",
+            "Disposez deux tranches d'aubergine en croix, placez la farce au centre et repliez-les pour former des rouleaux.",
+            "Versez la sauce tomate dans un plat de cuisson et déposez les rouleaux par-dessus. Couvrez et faites cuire au four à 220°C pendant 35 à 40 minutes.",
+            "Garnissez de 125 g de mozzarella et de flocons de piment, puis faites cuire à découvert pendant 8 minutes jusqu'à ce que le fromage soit doré."
+        ],
+        "tags": [
+            "épicé",
+            "Gratins",
+            "Italie",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6608",
+        "title": "Fagots d'aubergines farcis au bœuf et au fromage",
+        "description": "Une recette savoureuse de fagots d'aubergines garnis d'un mélange de bœuf haché, de riz, d'oignon et d'herbes, cuits dans une sauce tomate basilic et gratinés à la mozzarella.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648355109189061911\" data-video-id=\"7648355109189061911\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648355109189061911\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n             2 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             300 g de bœuf haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             40 g de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon, finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais, finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café de poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café de poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/2 cuillère à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             200 ml de sauce tomate basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             125 g de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Coupez les aubergines en tranches et disposez-les sur une plaque de cuisson. Salez, arrosez d'huile d'olive et faites cuire au four à 200°C pendant 20 minutes.",
+            "Mélangez le bœuf haché, le riz, l'oignon, le persil et les assaisonnements.",
+            "Disposez deux tranches d'aubergine en forme de croix, placez la farce au centre et repliez-les pour former des fagots.",
+            "Versez la sauce tomate dans un plat de cuisson et déposez les fagots par-dessus.",
+            "Couvrez et faites cuire au four à 220°C pendant 35 à 40 minutes.",
+            "Garnissez de 125 g de mozzarella et de flocons de piment, puis faites cuire à découvert pendant 8 minutes jusqu'à ce que ce soit doré."
+        ],
+        "tags": [
+            "épicé",
+            "Gratins",
+            "Italie",
+            "Pas cher",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6606",
+        "title": "Sauté de pommes de terre à la viande hachée",
+        "description": "Un plat simple, savoureux et plein de saveurs, parfait pour un repas convivial !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7659430603334438177\" data-video-id=\"7659430603334438177\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7659430603334438177\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment rouge bien haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Sauce soja sucrée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce chili"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil ou ciboulette (pour la finition)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre (si nécessaire)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Un filet d'huile"
+            }
+        ],
+        "steps": [
+            "Faites chauffer un filet d'huile et faites rissoler les pommes de terre jusqu'à ce qu'elles soient bien dorées et fondantes. Retirez-les de la poêle et réservez.",
+            "Dans la même poêle, faites revenir l'oignon, puis ajoutez le poivron vert, le piment rouge et l'ail. Faites cuire quelques minutes.",
+            "Ajoutez la viande hachée et laissez cuire en l'émiettant jusqu'à ce qu'elle soit bien dorée.",
+            "Remettez les pommes de terre dans la poêle et mélangez bien.",
+            "En fin de cuisson, arrosez de sauce soja salée, de sauce soja sucrée et de sauce chili. Mélangez pour bien enrober tous les ingrédients.",
+            "Parsemez de persil ou de ciboulette juste avant de servir.",
+            "Servez bien chaud et régalez-vous !"
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Pas cher",
+            "Plats",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6604",
         "title": "Vinaigrette légère à l'avocat",
