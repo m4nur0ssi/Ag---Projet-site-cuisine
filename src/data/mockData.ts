@@ -2,11 +2,38 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/07/2026 06:34:52
- * Total: 509 recettes
+ * Dernière mise à jour: 09/07/2026 14:22:19
+ * Total: 510 recettes
  */
-export const exportSyncId = "1783578892302";
+export const exportSyncId = "1783606939385";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6692",
+        "title": "Un brunch à absolument tester à Paris 🥞😍 📍 Violetta et Alfredo  #brunch #brunchparis #paris #resto #restoparis #violettaetalfredo #salondetheparis #TikTokFood",
+        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7257560381298691355\" data-video-id=\"7257560381298691355\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7257560381298691355\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Un brunch à absolument tester à Paris 🥞😍 📍 Violetta et Alfredo  #brunch #brunchparis #paris #resto #restoparis #violettaetalfredo #salondetheparis #TikTokFood"
+        ],
+        "tags": [
+            "resto-salon-de-the"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6604",
         "title": "Vinaigrette légère à l'avocat",
@@ -8920,8 +8947,25 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": "",
-        "restaurant": {"subType":"salon-de-the","priceLevel":2,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d6624955-Reviews-Bianca_Trattoria-Paris_Ile_de_France.html","website":"https://bianca-paris.fr/","hours":"Brunch Sam & Dim 10h–16h","address":"2 Rue du Quatre Septembre, 75002 Paris","phone":"09 82 28 53 39","photos":["/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_1_1783591754671.jpg&v=1783591761431","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_2_1783591762032.jpg&v=1783591773453","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_3_1783591774055.jpg&v=1783591818613","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_4_1783591819215.jpeg&v=1783591822627","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_5_1783591823228.jpeg&v=1783591827076","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_6_1783591827677.jpg&v=1783591871364","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_7_1783591871965.jpg&v=1783591875961"]}
+        "address": "2 Rue du Quatre Septembre, 75002 Paris",
+        "restaurant": {
+            "subType": "salon-de-the",
+            "priceLevel": 2,
+            "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g187147-d6624955-Reviews-Bianca_Trattoria-Paris_Ile_de_France.html",
+            "website": "https://bianca-paris.fr/",
+            "hours": "Brunch Sam & Dim 10h–16h",
+            "address": "2 Rue du Quatre Septembre, 75002 Paris",
+            "phone": "09 82 28 53 39",
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_1_1783591754671.jpg&v=1783591761431",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_2_1783591762032.jpg&v=1783591773453",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_3_1783591774055.jpg&v=1783591818613",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_4_1783591819215.jpeg&v=1783591822627",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_5_1783591823228.jpeg&v=1783591827076",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_6_1783591827677.jpg&v=1783591871364",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_7_1783591871965.jpg&v=1783591875961"
+            ]
+        }
     },
     {
         "id": "3486",
@@ -19542,8 +19586,19 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": "",
-        "restaurant": {"subType":"brasserie","priceLevel":2,"terrace":true,"rating":4.6,"reviewsCount":831,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g6908306-d4698116-Reviews-Le_Ble_Coeur-Le_Raincy_Seine_Saint_Denis_Ile_de_France.html","website":"https://leblecoeur.com","hours":"Mar–Sam 12h–14h30 & 19h–22h30 · Dim 12h–16h","address":"82 Allée de Montfermeil, 93340 Le Raincy","phone":"+33 1 43 01 10 11"}
+        "address": "82 Allée de Montfermeil, 93340 Le Raincy",
+        "restaurant": {
+            "subType": "brasserie",
+            "priceLevel": 2,
+            "terrace": true,
+            "rating": 4.6,
+            "reviewsCount": 831,
+            "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g6908306-d4698116-Reviews-Le_Ble_Coeur-Le_Raincy_Seine_Saint_Denis_Ile_de_France.html",
+            "website": "https://leblecoeur.com",
+            "hours": "Mar–Sam 12h–14h30 & 19h–22h30 · Dim 12h–16h",
+            "address": "82 Allée de Montfermeil, 93340 Le Raincy",
+            "phone": "+33 1 43 01 10 11"
+        }
     },
     {
         "id": "3848",
@@ -36772,8 +36827,19 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": "",
-        "restaurant": {"subType":"asiatique","priceLevel":2,"terrace":true,"rating":4.7,"reviewsCount":1321,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d19839585-Reviews-Joji-Paris_Ile_de_France.html","website":"https://jojiparis.fr/fr","hours":"Lun–Sam 12h–15h & 19h–23h · Dim 12h–15h","address":"5 Rue de Turenne, 75004 Paris","phone":"+33 9 51 05 28 04"}
+        "address": "5 Rue de Turenne, 75004 Paris",
+        "restaurant": {
+            "subType": "asiatique",
+            "priceLevel": 2,
+            "terrace": true,
+            "rating": 4.7,
+            "reviewsCount": 1321,
+            "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g187147-d19839585-Reviews-Joji-Paris_Ile_de_France.html",
+            "website": "https://jojiparis.fr/fr",
+            "hours": "Lun–Sam 12h–15h & 19h–23h · Dim 12h–15h",
+            "address": "5 Rue de Turenne, 75004 Paris",
+            "phone": "+33 9 51 05 28 04"
+        }
     },
     {
         "id": "1187",
@@ -36809,8 +36875,21 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": "",
-        "restaurant": {"subType":"italien","priceLevel":2,"rating":4.6,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d3312550-Reviews-Venezia-Paris_Ile_de_France.html","website":"https://ilvenezia.fr/","hours":"Lun–Sam, midi & soir","address":"3 Rue Corbineau, 75012 Paris","photos":["/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_1_1783586090349.jpg&v=1783586095656","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_2_1783586096258.jpg&v=1783586141917","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_3_1783586142517.jpg&v=1783586188790"]}
+        "address": "3 Rue Corbineau, 75012 Paris",
+        "restaurant": {
+            "subType": "italien",
+            "priceLevel": 2,
+            "rating": 4.6,
+            "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g187147-d3312550-Reviews-Venezia-Paris_Ile_de_France.html",
+            "website": "https://ilvenezia.fr/",
+            "hours": "Lun–Sam, midi & soir",
+            "address": "3 Rue Corbineau, 75012 Paris",
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_1_1783586090349.jpg&v=1783586095656",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_2_1783586096258.jpg&v=1783586141917",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_3_1783586142517.jpg&v=1783586188790"
+            ]
+        }
     },
     {
         "id": "278",
@@ -36948,8 +37027,15 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": "",
-        "restaurant": {"subType":"asiatique","priceLevel":2,"website":"https://www.ippudo.fr/","hours":"Tous les jours, midi & soir","address":"14 Rue Grégoire de Tours, 75006 Paris","phone":"+33 1 42 38 21 99"}
+        "address": "14 Rue Grégoire de Tours, 75006 Paris",
+        "restaurant": {
+            "subType": "asiatique",
+            "priceLevel": 2,
+            "website": "https://www.ippudo.fr/",
+            "hours": "Tous les jours, midi & soir",
+            "address": "14 Rue Grégoire de Tours, 75006 Paris",
+            "phone": "+33 1 42 38 21 99"
+        }
     },
     {
         "id": "115",
@@ -36987,7 +37073,21 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": "",
-        "restaurant": {"subType":"italien","priceLevel":2,"terrace":true,"website":"https://www.thefork.fr/restaurant/la-cicciolina/56286","hours":"7j/7 12h30–14h30 & 19h30–23h","address":"11 Rue Crespin du Gast, 75011 Paris","phone":"01 43 55 70 57","photos":["/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_1_1783590751028.jpg&v=1783590812171","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_2_1783590812772.jpg&v=1783590877155","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_3_1783590877756.jpg&v=1783590928747","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_4_1783590929348.jpg&v=1783590996033"]}
+        "address": "11 Rue Crespin du Gast, 75011 Paris",
+        "restaurant": {
+            "subType": "italien",
+            "priceLevel": 2,
+            "terrace": true,
+            "website": "https://www.thefork.fr/restaurant/la-cicciolina/56286",
+            "hours": "7j/7 12h30–14h30 & 19h30–23h",
+            "address": "11 Rue Crespin du Gast, 75011 Paris",
+            "phone": "01 43 55 70 57",
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_1_1783590751028.jpg&v=1783590812171",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_2_1783590812772.jpg&v=1783590877155",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_3_1783590877756.jpg&v=1783590928747",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_4_1783590929348.jpg&v=1783590996033"
+            ]
+        }
     }
 ];
