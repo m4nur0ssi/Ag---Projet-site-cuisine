@@ -8921,7 +8921,7 @@ export const mockRecipes: Recipe[] = [
         "isFeatured": false,
         "isFavorite": false,
         "address": "",
-        "restaurant": {"subType":"salon-de-the","priceLevel":2,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d6624955-Reviews-Bianca_Trattoria-Paris_Ile_de_France.html","website":"https://bianca-paris.fr/","hours":"Brunch Sam & Dim 10h–16h","address":"2 Rue du Quatre Septembre, 75002 Paris","phone":"09 82 28 53 39"}
+        "restaurant": {"subType":"salon-de-the","priceLevel":2,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d6624955-Reviews-Bianca_Trattoria-Paris_Ile_de_France.html","website":"https://bianca-paris.fr/","hours":"Brunch Sam & Dim 10h–16h","address":"2 Rue du Quatre Septembre, 75002 Paris","phone":"09 82 28 53 39","photos":["/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_1_1783591754671.jpg&v=1783591761431","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_2_1783591762032.jpg&v=1783591773453","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_3_1783591774055.jpg&v=1783591818613","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_4_1783591819215.jpeg&v=1783591822627","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_5_1783591823228.jpeg&v=1783591827076","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_6_1783591827677.jpg&v=1783591871364","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_7_1783591871965.jpg&v=1783591875961"]}
     },
     {
         "id": "3486",
@@ -36988,6 +36988,6 @@ export const mockRecipes: Recipe[] = [
         "isFeatured": false,
         "isFavorite": false,
         "address": "",
-        "restaurant": {"subType":"italien","priceLevel":2,"terrace":true,"website":"https://www.thefork.fr/restaurant/la-cicciolina/56286","hours":"7j/7 12h30–14h30 & 19h30–23h","address":"11 Rue Crespin du Gast, 75011 Paris","phone":"01 43 55 70 57"}
+        "restaurant": {"subType":"italien","priceLevel":2,"terrace":true,"website":"https://www.thefork.fr/restaurant/la-cicciolina/56286","hours":"7j/7 12h30–14h30 & 19h30–23h","address":"11 Rue Crespin du Gast, 75011 Paris","phone":"01 43 55 70 57","photos":["/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_1_1783590751028.jpg&v=1783590812171","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_2_1783590812772.jpg&v=1783590877155","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_3_1783590877756.jpg&v=1783590928747","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_4_1783590929348.jpg&v=1783590996033"]}
     }
 ];
