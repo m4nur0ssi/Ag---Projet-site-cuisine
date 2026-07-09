@@ -25,6 +25,7 @@ import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
 import CookingJournal from '@/components/CookingJournal/CookingJournal';
 import StarRating from '@/components/StarRating/StarRating';
+import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import CommentSection from '@/components/CommentSection/CommentSection';
 import { supabase } from '@/lib/supabase';
 import { estimateRecipeCalories } from '@/lib/calories';
@@ -142,6 +143,22 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             : null,
     [recipe, servings]);
     const similarRecipes = useMemo(() => {
+        // Fiche restaurant → « Autres restaurants » (mêmes catégorie, subType/tags priorisés).
+        if (recipe.category === 'restaurant') {
+            return mockRecipes
+                .filter(r => String(r.id) !== String(recipe.id) && r.category === 'restaurant')
+                .map(r => {
+                    let score = 1;
+                    if (r.restaurant?.subType && r.restaurant.subType === recipe.restaurant?.subType) score += 3;
+                    const rTags = (r.tags || []).map(t => t.toLowerCase());
+                    const myTags = (recipe.tags || []).map(t => t.toLowerCase());
+                    score += rTags.filter(t => myTags.includes(t)).length * 2;
+                    return { recipe: r, score };
+                })
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 20)
+                .map(({ recipe: r }) => r);
+        }
         return mockRecipes
             .filter(r => String(r.id) !== String(recipe.id) && r.category !== 'restaurant')
             .map(r => {
@@ -906,13 +923,14 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 </div>
 
                                 {!!(r.photos && r.photos.length) && (
-                                    <div className={styles.restoGallery}>
-                                        {r.photos.map((src, i) => (
-                                            // eslint-disable-next-line @next/next/no-img-element
-                                            <img key={i} src={src} alt={`${recipe.title} — photo ${i + 1}`} className={styles.restoGalleryImg} loading="lazy" />
-                                        ))}
-                                    </div>
+                                    <RestaurantGallery photos={r.photos} alt={recipe.title} />
                                 )}
+
+                                {/* Note perso + globale (comme les recettes) */}
+                                <div className={styles.restoRating}>
+                                    <span className={styles.restoRatingLabel}>{authUser ? 'Ma note' : 'Note'}</span>
+                                    <StarRating recipeId={recipe.id} size="small" />
+                                </div>
 
                                 <div className={styles.restoLinks}>
                                     {r.website && (
@@ -922,6 +940,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         <a className={styles.restoLinkBtn} href={r.tripAdvisorUrl} target="_blank" rel="noopener noreferrer">🦉 Tripadvisor</a>
                                     )}
                                 </div>
+
+                                {/* Pilule « J'ai testé ce restaurant » + commentaire perso */}
+                                <CookingJournal recipeId={recipe.id} variant="restaurant" />
                             </>
                         );
                     })()}
@@ -1281,7 +1302,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 <div style={{ padding: '0 0 8px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px 10px' }}>
                         <span style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', opacity: 0.5, textTransform: 'uppercase' }}>
-                            Recettes similaires
+                            {recipe.category === 'restaurant' ? 'Autres restaurants' : 'Recettes similaires'}
                         </span>
                         {similarRecipes.length > 5 && (
                             <span style={{ fontSize: '0.7rem', opacity: 0.4 }}>

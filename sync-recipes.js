@@ -10,6 +10,11 @@ require('dotenv').config({ path: path.join(__dirname, '.env.local') });
 // On utilise node-fetch (v2) pour plus de stabilité dans GitHub Actions (Node 18+)
 const fetch = require('node-fetch');
 
+// Infos restaurant réelles vérifiées (fusionnées dans les fiches catégorie restaurant).
+const WP_RESTAURANT_CAT = 42; // ID de la catégorie WordPress "Restaurants"
+let RESTAURANTS_INFO = {};
+try { RESTAURANTS_INFO = require('./src/data/restaurants-info.json'); } catch { RESTAURANTS_INFO = {}; }
+
 /**
  * Script de synchronisation des recettes depuis WordPress vers le projet local
  * Ce script interroge l'API REST de WordPress et génère le fichier mockData.ts
@@ -196,9 +201,11 @@ function extractRecipeData(post) {
             ? `/api/image-proxy?url=${encodeURIComponent(post._embedded['wp:featuredmedia'][0].source_url.replace(WORDPRESS_LOCAL_IP, WORDPRESS_PUBLIC_IP))}&v=${new Date(post.modified).getTime()}`
             : "/images/recipe-placeholder.svg",
         category: (() => {
+            // Fiches restaurant (catégorie WordPress "Restaurants") → catégorie restaurant.
+            if (post.categories?.includes(WP_RESTAURANT_CAT)) return "restaurant";
             const title = decodeHtmlEntities(post.title.rendered).toLowerCase();
             const tags = (post._embedded?.['wp:term']?.[1]?.map(tag => tag.name.toLowerCase()) || []);
-            
+
             // 0. SAUCES pures (#8) : tag sauce(s), ou mot-sauce en TÊTE du titre.
             //    Ne doivent apparaître que dans le thème "sauces", jamais dans "plats".
             if (tags.includes('sauce') || tags.includes('sauces')) return "sauces";
@@ -234,10 +241,18 @@ function extractRecipeData(post) {
         videoHtml: videoHtml,
         ingredients: ingredients.length > 0 ? ingredients : [{ quantity: "", name: "Ingrédients détaillés dans la vidéo" }],
         steps: steps.length > 0 ? steps : ["Suivre les instructions détaillées dans la vidéo"],
-        tags: normalizeCountryTags(post._embedded?.['wp:term']?.[1]?.map(tag => tag.name) || [], decodeHtmlEntities(post.title.rendered)),
+        tags: (() => {
+            const base = normalizeCountryTags(post._embedded?.['wp:term']?.[1]?.map(tag => tag.name) || [], decodeHtmlEntities(post.title.rendered));
+            const info = post.categories?.includes(WP_RESTAURANT_CAT) ? RESTAURANTS_INFO[String(post.id)] : null;
+            if (info?.subType) { const t = `resto-${info.subType}`; if (!base.includes(t)) base.push(t); }
+            return base;
+        })(),
         isFeatured: post.sticky || false,
         isFavorite: false,
-        address: ""
+        address: (post.categories?.includes(WP_RESTAURANT_CAT) && RESTAURANTS_INFO[String(post.id)]?.address) || "",
+        ...(post.categories?.includes(WP_RESTAURANT_CAT) && RESTAURANTS_INFO[String(post.id)]
+            ? { restaurant: RESTAURANTS_INFO[String(post.id)] }
+            : {})
     };
 }
 

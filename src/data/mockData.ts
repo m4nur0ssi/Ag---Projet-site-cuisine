@@ -8887,7 +8887,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Bianca - Brunch à Paris (Bourse)",
         "description": "Proche de la Place de la Bourse et de la Bibliothèque Nationale de France Richelieu, le restaurant Bianca présente un brunch qui est présenté sous forme de buffet à volonté installé dans la première salle spacieuse à l'entrée du restaurant. ...",
         "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
+        "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -8919,7 +8919,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": ""
+        "address": "",
+        "restaurant": {"subType":"salon-de-the","priceLevel":2,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d6624955-Reviews-Bianca_Trattoria-Paris_Ile_de_France.html","website":"https://bianca-paris.fr/","hours":"Brunch Sam & Dim 10h–16h","address":"2 Rue du Quatre Septembre, 75002 Paris","phone":"09 82 28 53 39"}
     },
     {
         "id": "3486",
@@ -19508,7 +19509,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Ble coeur - Le Raincy",
         "description": "      Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2F249d51d6-756e-4834-bd95-e7e15531e425.jpg&v=1780587711000",
-        "category": "plats",
+        "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -19539,7 +19540,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": ""
+        "address": "",
+        "restaurant": {"subType":"brasserie","priceLevel":2,"terrace":true,"rating":4.6,"reviewsCount":831,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g6908306-d4698116-Reviews-Le_Ble_Coeur-Le_Raincy_Seine_Saint_Denis_Ile_de_France.html","website":"https://leblecoeur.com","hours":"Mar–Sam 12h–14h30 & 19h–22h30 · Dim 12h–16h","address":"82 Allée de Montfermeil, 93340 Le Raincy","phone":"+33 1 43 01 10 11"}
     },
     {
         "id": "3848",
@@ -36742,7 +36744,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Joji - Paris 4",
         "description": "    Joji est un restaurant asiatique et plus particulièrement japonais. Nous ne sommes pas ici dans un restaurant avec buffet autour duquel vous trouverez des frites et des nuggets. Vous ne trouverez pas non plus de sushi, de maki ou de brochettes...",
         "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
+        "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -36766,14 +36768,15 @@ export const mockRecipes: Recipe[] = [
         "tags": [],
         "isFeatured": false,
         "isFavorite": false,
-        "address": ""
+        "address": "",
+        "restaurant": {"subType":"asiatique","priceLevel":2,"terrace":true,"rating":4.7,"reviewsCount":1321,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d19839585-Reviews-Joji-Paris_Ile_de_France.html","website":"https://jojiparis.fr/fr","hours":"Lun–Sam 12h–15h & 19h–23h · Dim 12h–15h","address":"5 Rue de Turenne, 75004 Paris","phone":"+33 9 51 05 28 04"}
     },
     {
         "id": "1187",
         "title": "Il Venezia - Paris 12",
         "description": "    Au Venezia à Paris, pas un plat typique ne manque à la carte. Vous pouvez alors vous composer un véritable repas italien, comme on en mange à Rome, Naples ou encore Florence : en entrée antipasti, puis penne calabrese, et enfin en dessert le t...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2Fvenezia-restaurant-italien-paris-12-1024x684-2.jpeg&v=1664225429000",
-        "category": "plats",
+        "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -36801,14 +36804,15 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": ""
+        "address": "",
+        "restaurant": {"subType":"italien","priceLevel":2,"rating":4.6,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d3312550-Reviews-Venezia-Paris_Ile_de_France.html","website":"https://ilvenezia.fr/","hours":"Lun–Sam, midi & soir","address":"3 Rue Corbineau, 75012 Paris"}
     },
     {
         "id": "278",
         "title": "L'Odysee",
         "description": "    Un petit restaurant sympa sans plus qui à pour principal attrait sa décoration aux couleurs de l'Empire. Du star Wars sur les murs, sur les écrans, dans les toilettes...bref ils ont tout misé sur la franchise mais pas sur le reste. La carte es...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FIMG_4547-e1526253363947.jpg&v=1557022352000",
-        "category": "plats",
+        "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -36841,7 +36845,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Le club des cinq",
         "description": "    Cinq amis recréent le mythique Club des Cinq grâce à un restaurant à la décoration très revival 80's. Vous pourrez admirer la photo de Mac Gyver ou celle de Goldorak qui ornent les murs de l'endroit, et vous dînerez adossé à une bibliothèque r...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F03%2Fclub.jpg&v=1526258087000",
-        "category": "plats",
+        "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -36873,7 +36877,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Bistrot à Burger",
         "description": "                                                                                                                                                                                                                                                       ...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F05%2FCapture-d%E2%80%99e%CC%81cran-2018-05-13-a%CC%80-21.32.19.png&v=1526257602000",
-        "category": "plats",
+        "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -36907,7 +36911,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Japonais Ippudo",
         "description": "    Attention ovni ou plutôt Yūfō en nippon.... Connaissez vous les rāmen  ? Mais si vous savez les soupes avec plein de trucs dedans ! A la base, le Ramen est un plat chinois à base de pâtes tirées à la main par le cuisinier appelés la mian. Le p...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2FAka-Vegetarian-Ippudo-London-HR-copy-iloveimg-resized.jpg&v=1519482035000",
-        "category": "plats",
+        "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -36938,14 +36942,15 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": ""
+        "address": "",
+        "restaurant": {"subType":"asiatique","priceLevel":2,"website":"https://www.ippudo.fr/","hours":"Tous les jours, midi & soir","address":"14 Rue Grégoire de Tours, 75006 Paris","phone":"+33 1 42 38 21 99"}
     },
     {
         "id": "115",
         "title": "Trattoria La Cicciolina",
         "description": "    Ce nouveau resto italien a décidément beaucoup d'allure. Son patronyme quelque peu coquin : La Cicciolina. Le propriétaire Max, il pizz aiolo Francesco et l'équipe vous accueillent pour vous faire goûter des vraies pizzas et des vraies spécial...",
         "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2Ffolsom-studio-decoration-restaurant-paris-cicciolina_00028-1376x916.jpg&v=1519243312000",
-        "category": "plats",
+        "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -36975,6 +36980,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": ""
+        "address": "",
+        "restaurant": {"subType":"italien","priceLevel":2,"terrace":true,"website":"https://www.thefork.fr/restaurant/la-cicciolina/56286","hours":"7j/7 12h30–14h30 & 19h30–23h","address":"11 Rue Crespin du Gast, 75011 Paris","phone":"01 43 55 70 57"}
     }
 ];

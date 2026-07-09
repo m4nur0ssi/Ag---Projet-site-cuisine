@@ -1,0 +1,36 @@
+{
+  "_comment": "Infos restaurant réelles vérifiées (web, juillet 2026). Clé = id recette WordPress. Fusionné dans mockData au sync (sync-recipes.js) → survit aux régénérations. subType ∈ brasserie|italien|asiatique|gastro|salon-de-the.",
+  "1300": {
+    "subType": "asiatique", "priceLevel": 2, "terrace": true, "rating": 4.7, "reviewsCount": 1321,
+    "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g187147-d19839585-Reviews-Joji-Paris_Ile_de_France.html",
+    "website": "https://jojiparis.fr/fr", "hours": "Lun–Sam 12h–15h & 19h–23h · Dim 12h–15h",
+    "address": "5 Rue de Turenne, 75004 Paris", "phone": "+33 9 51 05 28 04"
+  },
+  "1187": {
+    "subType": "italien", "priceLevel": 2, "rating": 4.6,
+    "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g187147-d3312550-Reviews-Venezia-Paris_Ile_de_France.html",
+    "website": "https://ilvenezia.fr/", "hours": "Lun–Sam, midi & soir", "address": "3 Rue Corbineau, 75012 Paris"
+  },
+  "115": {
+    "subType": "italien", "priceLevel": 2, "terrace": true,
+    "website": "https://www.thefork.fr/restaurant/la-cicciolina/56286", "hours": "7j/7 12h30–14h30 & 19h30–23h",
+    "address": "11 Rue Crespin du Gast, 75011 Paris", "phone": "01 43 55 70 57"
+  },
+  "3108": {
+    "subType": "salon-de-the", "priceLevel": 2,
+    "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g187147-d6624955-Reviews-Bianca_Trattoria-Paris_Ile_de_France.html",
+    "website": "https://bianca-paris.fr/", "hours": "Brunch Sam & Dim 10h–16h",
+    "address": "2 Rue du Quatre Septembre, 75002 Paris", "phone": "09 82 28 53 39"
+  },
+  "1214": {
+    "subType": "brasserie", "priceLevel": 2, "terrace": true, "rating": 4.6, "reviewsCount": 831,
+    "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g6908306-d4698116-Reviews-Le_Ble_Coeur-Le_Raincy_Seine_Saint_Denis_Ile_de_France.html",
+    "website": "https://leblecoeur.com", "hours": "Mar–Sam 12h–14h30 & 19h–22h30 · Dim 12h–16h",
+    "address": "82 Allée de Montfermeil, 93340 Le Raincy", "phone": "+33 1 43 01 10 11"
+  },
+  "163": {
+    "subType": "asiatique", "priceLevel": 2,
+    "website": "https://www.ippudo.fr/", "hours": "Tous les jours, midi & soir",
+    "address": "14 Rue Grégoire de Tours, 75006 Paris", "phone": "+33 1 42 38 21 99"
+  }
+}

@@ -6,7 +6,12 @@ import { getCookEntries, addCookEntry, deleteCookEntry, type CookEntry } from '@
 import styles from './CookingJournal.module.css';
 
 // #11 — Carnet de cuisine perso affiché dans la fiche recette.
-export default function CookingJournal({ recipeId }: { recipeId: string }) {
+// variant 'restaurant' → wording adapté (« j'ai testé ce restaurant »).
+export default function CookingJournal({ recipeId, variant = 'recipe' }: { recipeId: string; variant?: 'recipe' | 'restaurant' }) {
+    const isResto = variant === 'restaurant';
+    const L = isResto
+        ? { title: 'Mon avis', never: 'Jamais testé', verb: 'Testé', cta: "✓ J'ai testé ce restaurant", placeholder: 'Ton commentaire (ambiance, plat préféré, service…)' }
+        : { title: 'Mon carnet', never: 'Jamais cuisiné', verb: 'Cuisiné', cta: "✓ J'ai cuisiné cette recette", placeholder: 'Ta note (ex. moins de sel, four à 180°…)' };
     const [authed, setAuthed] = useState(false);
     const [entries, setEntries] = useState<CookEntry[]>([]);
     const [open, setOpen] = useState(false);
@@ -56,19 +61,19 @@ export default function CookingJournal({ recipeId }: { recipeId: string }) {
     return (
         <div className={styles.wrap}>
             <div className={styles.head}>
-                <span className={styles.title}>Mon carnet</span>
+                <span className={styles.title}>{L.title}</span>
                 <span className={styles.summary}>
-                    {count === 0 ? 'Jamais cuisiné' : `Cuisiné ${count}×${last ? ` · dernière le ${fmt(last)}` : ''}`}
+                    {count === 0 ? L.never : `${L.verb} ${count}×${last ? ` · dernière le ${fmt(last)}` : ''}`}
                 </span>
             </div>
 
             {!open ? (
-                <button className={styles.cta} onClick={() => setOpen(true)}>{"✓ J'ai cuisiné cette recette"}</button>
+                <button className={styles.cta} onClick={() => setOpen(true)}>{L.cta}</button>
             ) : (
                 <div className={styles.form}>
                     <textarea
                         className={styles.note}
-                        placeholder="Ta note (ex. moins de sel, four à 180°…)"
+                        placeholder={L.placeholder}
                         value={note}
                         onChange={e => setNote(e.target.value)}
                         rows={2}

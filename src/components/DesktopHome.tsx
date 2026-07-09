@@ -87,6 +87,16 @@ export default function DesktopHome() {
         });
     };
 
+    // Applique un filtre passé en URL (?tag=...) au chargement (ex. clic depuis une
+    // sous-catégorie Restaurant sur une autre page → /?tag=resto-italien).
+    useEffect(() => {
+        try {
+            const t = new URLSearchParams(window.location.search).get('tag');
+            if (t) handleTagSelect(t);
+        } catch { /* ignore */ }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const handleCarouselTitleClick = (title: string) => {
         const cleanTitle = title.replace(/[^\w\sàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ]/g, '').toLowerCase().trim();
 
