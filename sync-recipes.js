@@ -22,8 +22,11 @@ const _sleep = (ms) => new Promise(r => setTimeout(r, ms));
 // Persiste dans restaurants-info.json → survit aux syncs suivants (pas de re-appel API).
 async function enrichRestaurantsMissingInfo(posts) {
     let changed = false;
+    const startT = Date.now();
+    const BUDGET_MS = 45000; // ne JAMAIS bloquer le sync : au-delà, on arrête l'enrichissement
     for (const post of posts) {
         if (!post.categories?.includes(WP_RESTAURANT_CAT)) continue;
+        if (Date.now() - startT > BUDGET_MS) { console.log('   ⏭️ Budget enrichissement atteint — reste au prochain sync.'); break; }
         const id = String(post.id);
         const existing = RESTAURANTS_INFO[id] || {};
         if (existing.address) continue; // déjà renseigné (auto ou manuel) → on ne retouche pas

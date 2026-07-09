@@ -10,6 +10,17 @@
  */
 const fetch = require('node-fetch');
 
+// fetch avec timeout dur (sinon un Nominatim lent fait HANGER tout le sync).
+async function fetchWithTimeout(url, ms = 6000) {
+    const ctrl = new AbortController();
+    const to = setTimeout(() => ctrl.abort(), ms);
+    try {
+        return await fetch(url, { headers: { 'User-Agent': 'les-recettes-magiques/1.0 (restaurant enrich)' }, signal: ctrl.signal });
+    } finally {
+        clearTimeout(to);
+    }
+}
+
 async function enrichRestaurant(name, cityHint = 'Paris') {
     if (!name) return null;
     try {
@@ -17,7 +28,7 @@ async function enrichRestaurant(name, cityHint = 'Paris') {
         const cleanName = String(name).replace(new RegExp(`[ ,]+${cityHint}\\s*$`, 'i'), '').trim();
         const q = `${cleanName}, ${cityHint}`;
         const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=jsonv2&addressdetails=1&extratags=1&limit=1`;
-        const res = await fetch(url, { headers: { 'User-Agent': 'les-recettes-magiques/1.0 (restaurant enrich)' } });
+        const res = await fetchWithTimeout(url, 6000);
         if (!res.ok) return null;
         const arr = await res.json();
         const p = Array.isArray(arr) && arr[0];
