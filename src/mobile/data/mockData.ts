@@ -8915,7 +8915,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "bianca",
-            "italien"
+            "italien",
+            "resto-salon-de-the"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -19536,7 +19537,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "blé",
-            "coeur"
+            "coeur",
+            "resto-brasserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -36765,7 +36767,9 @@ export const mockRecipes: Recipe[] = [
             "5 Rue de Turenne, 75004 Paris, France",
             "https://www.instagram.com/joji_bistro/"
         ],
-        "tags": [],
+        "tags": [
+            "resto-asiatique"
+        ],
         "isFeatured": false,
         "isFavorite": false,
         "address": "",
@@ -36800,7 +36804,8 @@ export const mockRecipes: Recipe[] = [
             "TheFork, a Trip advisor company"
         ],
         "tags": [
-            "Venezia"
+            "Venezia",
+            "resto-italien"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -36938,7 +36943,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "buns",
             "japonais",
-            "ramen"
+            "ramen",
+            "resto-asiatique"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -36976,7 +36982,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "italien",
-            "trattoria"
+            "trattoria",
+            "resto-italien"
         ],
         "isFeatured": false,
         "isFavorite": false,
