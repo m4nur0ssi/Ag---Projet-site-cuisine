@@ -55,13 +55,11 @@ export default function Home() {
             else groupId = 'trends'; 
         }
 
+        // REMPLACER tous les filtres (ne pas empiler) — comme desktop : une seule
+        // catégorie active à la fois. Re-cliquer le tag actif le désélectionne.
         setActiveFilters(prev => {
-            const existing = prev.find(f => f.tag === tag);
-            if (existing) {
-                return prev.filter(f => f.tag !== tag);
-            }
-            const filtered = prev.filter(f => f.group !== groupId);
-            return [...filtered, { tag, group: groupId }];
+            if (prev.length === 1 && prev[0].tag === tag) return [];
+            return [{ tag, group: groupId }];
         });
     };
 

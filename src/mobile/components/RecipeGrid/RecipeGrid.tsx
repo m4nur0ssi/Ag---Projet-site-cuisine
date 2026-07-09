@@ -19,9 +19,10 @@ export default function RecipeGrid({ recipes, onRecipeClick }: RecipeGridProps) 
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <RecipeCardiOS26 
-                        recipe={recipe} 
-                        isGrid={true} 
+                    <RecipeCardiOS26
+                        recipe={recipe}
+                        isGrid={true}
+                        inCardTitle={true}
                         customOnClick={onRecipeClick ? () => onRecipeClick(recipe) : undefined}
                         allRecipes={recipes}
                         recipeIndex={index}

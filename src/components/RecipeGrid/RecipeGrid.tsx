@@ -19,9 +19,10 @@ export default function RecipeGrid({ recipes, onRecipeClick }: RecipeGridProps) 
                     key={recipe.id} 
                     className={styles.gridItem}
                 >
-                    <RecipeCardiOS26 
-                        recipe={recipe} 
+                    <RecipeCardiOS26
+                        recipe={recipe}
                         isGrid={true}
+                        inCardTitle={true}
                         customOnClick={onRecipeClick ? () => onRecipeClick(recipe) : undefined}
                     />
                 </div>
