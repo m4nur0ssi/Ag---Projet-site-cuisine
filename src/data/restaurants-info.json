@@ -78,5 +78,8 @@
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_7_1783591871965.jpg&v=1783591875961"
     ]
   },
+  "6692": {
+    "subType": "salon-de-the"
+  },
   "_comment": "Infos restaurant réelles vérifiées (web, juillet 2026). Clé = id recette WordPress. Fusionné dans mockData au sync (sync-recipes.js) → survit aux régénérations. subType ∈ brasserie|italien|asiatique|gastro|salon-de-the."
 }
