@@ -46,7 +46,15 @@
     "website": "https://leblecoeur.com",
     "hours": "Mar–Sam 12h–14h30 & 19h–22h30 · Dim 12h–16h",
     "address": "82 Allée de Montfermeil, 93340 Le Raincy",
-    "phone": "+33 1 43 01 10 11"
+    "phone": "+33 1 43 01 10 11",
+    "photos": [
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_1_1783631101315.jpg&v=1783631109619",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_2_1783631110221.jpg&v=1783631115730",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_3_1783631116331.jpg&v=1783631121583",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_4_1783631122184.jpeg&v=1783631127090",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_5_1783631127692.jpg&v=1783631195584",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_6_1783631196185.jpg&v=1783631202495"
+    ]
   },
   "1300": {
     "subType": "asiatique",
