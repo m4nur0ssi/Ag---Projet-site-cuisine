@@ -8,6 +8,30 @@ const { sendNotificationEmail } = require('./email-notifier');
 const { callGemini } = require('./gemini-config');
 const { callClaude } = require('./claude-config');
 
+// Extrait le NOM du restaurant depuis la légende TikTok (pour le titre de la fiche).
+// Priorité au texte après un pin 📍 (les créateurs y mettent le nom du lieu).
+function extractRestaurantName(desc) {
+    if (!desc) return '';
+    const s = String(desc).replace(/https?:\/\/\S+/g, ' ');
+    const clean = (n) => {
+        n = (n || '').split(/[|·\n]/)[0];
+        n = n.replace(/#[^\s#]+/g, ' ');                                  // hashtags
+        n = n.replace(/^[\s\p{Extended_Pictographic}•\-–—:.,]+/u, '');    // emojis/puces/pins en tête
+        n = n.replace(/\s+[-–—]\s+.*$/, '');                              // " - Ville", " – 2e"
+        n = n.replace(/\s+(?:à\s+)?(?:paris|lyon|marseille|bordeaux|lille|toulouse|nantes|nice)\b.*$/i, ''); // ville
+        n = n.replace(/^(le |la |les |un |une |restaurant |resto |brunch |bar |chez )/i, '');
+        n = n.replace(/[«»"“”]/g, '').replace(/\s+/g, ' ').trim();
+        return (n.length >= 2 && n.length <= 60) ? n : '';
+    };
+    // 1) Après un pin de localisation (📍 prioritaire, sinon 🍴/🍽️), avant le 1er hashtag
+    const pin = s.match(/📍\s*([^#\n]{2,60})/) || s.match(/(?:🍴|🍽️)\s*([^#\n]{2,60})/);
+    if (pin) { const n = clean(pin[1]); if (n) return n; }
+    // 2) Motif "chez/au NOM"
+    const chez = s.replace(/#[^\s#]+/g, ' ').match(/\b(?:chez|au|à la|resto)\s+([A-ZÉÈÀ][\w'’&\- ]{2,50})/);
+    if (chez) { const n = clean(chez[1]); if (n) return n; }
+    return '';
+}
+
 async function isRecipeWithGemini(description, title) {
     const desc = (description || '').toLowerCase();
     const isManual = desc.includes('iphone') || desc.includes('remote') || (title && title.toLowerCase().includes('iphone'));
@@ -475,6 +499,15 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
 
     // Supprimer le tag Famille s'il a été ajouté par l'IA (supprimé de la logique)
     analysis.tags = analysis.tags.filter(t => !t.toLowerCase().includes('famille'));
+
+    // Restaurant : le TITRE doit être UNIQUEMENT le nom du resto (pas la légende TikTok).
+    // Heuristique : texte après le 📍 (ou après "à/chez"), avant le 1er hashtag.
+    if (isRestaurant) {
+        const extracted = extractRestaurantName(description || metadata?.title || '');
+        if (extracted) analysis.recipeName = extracted;
+        else if (!analysis.recipeName || analysis.recipeName.length > 60) analysis.recipeName = (metadata?.title || title || 'Restaurant').split(/[#\n]/)[0].trim().slice(0, 60);
+        console.log(`   🍽️ Titre resto : "${analysis.recipeName}"`);
+    }
 
     let photoUrl = '';
 

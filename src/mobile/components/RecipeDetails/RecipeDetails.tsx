@@ -839,9 +839,13 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     <div className={styles.heroImageColumn}>
                         {/* 1. Carte Image avec bouton Flamme superposé */}
                         <div className={styles.imageCardContainer}>
-                            {recipe.image ? (
+                            {(() => {
+                                // Restaurant : 1re photo du carrousel = image principale de la fiche.
+                                const heroImg = (recipe.category === 'restaurant' && recipe.restaurant?.photos?.length)
+                                    ? recipe.restaurant.photos[0] : recipe.image;
+                                return heroImg ? (
                                 <Image
-                                    src={recipe.image}
+                                    src={heroImg}
                                     alt={recipe.title}
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 700px, 800px"
@@ -855,7 +859,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         recipe.category === 'desserts' ? '🍰' :
                                             recipe.category === 'plats' ? '🍲' : '🥗'}
                                 </div>
-                            )}
+                                ); })()}
                             <div className={styles.imageGlassOverlay} />
                             
                             {/* Superposition du bouton flamme (Vote) en haut à droite */}
@@ -1086,7 +1090,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     </div>
 
                     {/* Avis Google Section - iOS 26 Design (Fallback sur avis Joji si vide pour garder le design) */}
-                    {!recipe.restaurant && (recipe.reviews || recipe.category === 'restaurant') && (
+                    {recipe.category !== 'restaurant' && recipe.reviews && (
                         <div className={styles.reviewsSection}>
                             <div className={styles.sectionHeader}>
                                 <h3 className={styles.sectionTitle}>Derniers avis Google</h3>

@@ -18,7 +18,7 @@ export default function RestaurantGallery({ photos, alt }: RestaurantGalleryProp
         <div style={{ margin: '4px 0 16px' }}>
             {/* Photo mise en avant */}
             <div style={{
-                position: 'relative', width: '100%', aspectRatio: '16 / 10',
+                position: 'relative', width: '100%', aspectRatio: '16 / 9', maxHeight: 280,
                 borderRadius: 18, overflow: 'hidden', background: 'rgba(255,255,255,0.05)',
             }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
