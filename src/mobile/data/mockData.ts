@@ -36805,7 +36805,7 @@ export const mockRecipes: Recipe[] = [
         "isFeatured": false,
         "isFavorite": false,
         "address": "",
-        "restaurant": {"subType":"italien","priceLevel":2,"rating":4.6,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d3312550-Reviews-Venezia-Paris_Ile_de_France.html","website":"https://ilvenezia.fr/","hours":"Lun–Sam, midi & soir","address":"3 Rue Corbineau, 75012 Paris"}
+        "restaurant": {"subType":"italien","priceLevel":2,"rating":4.6,"tripAdvisorUrl":"https://www.tripadvisor.com/Restaurant_Review-g187147-d3312550-Reviews-Venezia-Paris_Ile_de_France.html","website":"https://ilvenezia.fr/","hours":"Lun–Sam, midi & soir","address":"3 Rue Corbineau, 75012 Paris","photos":["/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_1_1783586090349.jpg&v=1783586095656","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_2_1783586096258.jpg&v=1783586141917","/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_3_1783586142517.jpg&v=1783586188790"]}
     },
     {
         "id": "278",

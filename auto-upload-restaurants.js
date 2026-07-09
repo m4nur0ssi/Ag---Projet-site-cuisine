@@ -28,7 +28,9 @@
  * Hôte public des images : WP_PUBLIC_HOST (défaut 109.221.250.122, comme les recettes).
  */
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
+const { execFileSync } = require('child_process');
 const fetch = require('node-fetch');
 require('dotenv').config({ path: path.join(__dirname, 'tiktok-bot', '.env') });
 
@@ -121,6 +123,22 @@ function findRestaurant(restaurants, folderName) {
 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
+// Le serveur WP est lent (~30s/upload) et bloque au-delà d'un certain poids.
+// On réduit chaque photo (sips, natif macOS) : plus léger = upload fiable + mieux
+// pour le web. Renvoie {path, tmp} ; tmp=true → fichier temporaire à supprimer.
+const MAX_DIM = Number(process.env.RESTO_MAX_DIM) || 1400;
+const JPG_QUALITY = Number(process.env.RESTO_JPG_QUALITY) || 68;
+const RESIZE_ABOVE = 150 * 1024; // en dessous, on garde l'original
+function resizeForUpload(src) {
+    try {
+        if (fs.statSync(src).size <= RESIZE_ABOVE) return { path: src, tmp: false };
+        const tmp = path.join(os.tmpdir(), `resto_up_${Date.now()}_${path.basename(src)}`);
+        execFileSync('sips', ['-Z', String(MAX_DIM), '-s', 'formatOptions', String(JPG_QUALITY), src, '--out', tmp], { stdio: 'ignore' });
+        if (fs.existsSync(tmp) && fs.statSync(tmp).size > 0) return { path: tmp, tmp: true };
+    } catch { /* sips absent ou échec → upload original */ }
+    return { path: src, tmp: false };
+}
+
 // --- XML-RPC upload (renvoie {id, url}) — timeout + retry (WP hangue parfois) ---
 async function uploadImageOnce(base64, fileName, mimeType, timeoutMs) {
     const xml = `<?xml version="1.0"?>
@@ -138,7 +156,7 @@ async function uploadImageOnce(base64, fileName, mimeType, timeoutMs) {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), timeoutMs);
     try {
-        const res = await fetch(WP_URL, { method: 'POST', headers: { 'Content-Type': 'text/xml', 'Connection': 'close' }, body: xml, signal: ctrl.signal });
+        const res = await fetch(WP_URL, { method: 'POST', headers: { 'Content-Type': 'text/xml' }, body: xml, signal: ctrl.signal });
         const text = await res.text();
         const idM = text.match(/<member><name>id<\/name><value><(?:string|int)>(\d+)<\/(?:string|int)><\/value><\/member>/);
         if (!idM) throw new Error('upload sans ID (réponse: ' + text.slice(0, 200) + ')');
@@ -150,7 +168,7 @@ async function uploadImageOnce(base64, fileName, mimeType, timeoutMs) {
 }
 async function uploadImage(imagePath, fileName, mimeType) {
     const base64 = fs.readFileSync(imagePath).toString('base64');
-    const TIMEOUT = Number(process.env.WP_TIMEOUT_MS) || 45000;
+    const TIMEOUT = Number(process.env.WP_TIMEOUT_MS) || 90000;
     let lastErr;
     for (let attempt = 1; attempt <= 3; attempt++) {
         try {
@@ -232,7 +250,13 @@ async function processDir(dirPath, restaurants) {
             const f = path.join(dirPath, imgs[k]);
             const ext = path.extname(f).toLowerCase();
             const fileName = `resto_${resto.id}_${k + 1}_${Date.now()}${ext}`;
-            const { url } = await uploadImage(f, fileName, EXT_TYPE[ext]);
+            const r = resizeForUpload(f);
+            let url;
+            try {
+                ({ url } = await uploadImage(r.path, fileName, EXT_TYPE[ext]));
+            } finally {
+                if (r.tmp) { try { fs.unlinkSync(r.path); } catch { /* */ } }
+            }
             if (!url) throw new Error('URL manquante après upload');
             photos.push(toProxyUrl(url));
             console.log(`   ✅ ${imgs[k]} → ${url}`);
