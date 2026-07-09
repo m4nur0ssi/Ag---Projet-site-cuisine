@@ -347,13 +347,31 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         return true; // Consider success for queue management
     }
 
+    // Fiche restaurant ("Comme au resto") : ce n'est PAS une recette → il ne faut
+    // pas l'abandonner au test isRecipe ci-dessous. On la publie quand même.
+    const isRestaurant = !!(country && country.toLowerCase().includes('restaurant'));
+
     console.log(`   🧠 Analyse de la recette par l'IA...`);
     let analysis = await isRecipeWithGemini(description, title);
 
     let isStub = false;
     if (!analysis || !analysis.isRecipe) {
-        console.log('   🚫 Ce n\'est pas une recette selon l\'IA (ou erreur Quota).');
-        return false;
+        if (isRestaurant) {
+            // Restaurant reconnu comme "non-recette" par l'IA → on force une fiche minimale
+            // (le titre + la description deviennent le contenu ; catégorie forcée plus bas).
+            analysis = analysis && typeof analysis === 'object' ? analysis : {};
+            analysis.isRecipe = true;
+            analysis.recipeName = analysis.recipeName || metadata?.title || title || 'Restaurant';
+            analysis.category = 'restaurant';
+            analysis.tags = Array.isArray(analysis.tags) ? analysis.tags : [];
+            analysis.ingredients = Array.isArray(analysis.ingredients) ? analysis.ingredients : [];
+            analysis.steps = Array.isArray(analysis.steps) && analysis.steps.length ? analysis.steps : (description ? [description] : []);
+            analysis.description = analysis.description || description || '';
+            console.log('   🍽️ Restaurant : pas une recette pour l\'IA, mais fiche resto forcée.');
+        } else {
+            console.log('   🚫 Ce n\'est pas une recette selon l\'IA (ou erreur Quota).');
+            return false;
+        }
     }
 
     if (analysis.isQuotaExceeded) {
@@ -449,7 +467,7 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         if (seasonalTag[curCat] && !analysis.tags.includes(seasonalTag[curCat])) {
             analysis.tags.push(seasonalTag[curCat]);
         }
-        if (curCat !== 'plats') {
+        if (curCat !== 'plats' && curCat !== 'restaurant') {
             console.log(`   🍽️ Filet de sécurité : plat salé viande/poisson -> catégorie "plats" (était "${analysis.category}").`);
             analysis.category = 'plats';
         }

@@ -198,6 +198,7 @@ async function postToWordPressXMLRPC(recipe) {
     else if (catSearch.includes('patisserie')) categoryName = 'Pâtisserie';
     else if (catSearch.includes('entrée')) categoryName = 'Entrées';
     else if (catSearch.includes('végétarien') || catSearch.includes('vegetarien')) categoryName = 'Végétarien';
+    else if (catSearch.includes('restaurant')) categoryName = 'Restaurants';
 
     let featuredImageId = null;
     if (recipe.photoUrl) {
@@ -223,6 +224,9 @@ async function postToWordPressXMLRPC(recipe) {
         // Thématiques produit → catégorie propre + override
         if (cl.includes('glace'))  { cleanCountry = 'Les Glaces';         categoryName = 'Les Glaces';         recipe.category = 'glaces'; }
         if (cl.includes('rafra')) { cleanCountry = 'Rafraîchissements';  categoryName = 'Rafraîchissements'; recipe.category = 'rafraichissements'; }
+        // Restaurant : fiche "Comme au resto" → catégorie WordPress "Restaurants"
+        // (sync-recipes.js la reconnaît via WP_RESTAURANT_CAT → category=restaurant).
+        if (cl.includes('restaurant')) { cleanCountry = ''; categoryName = 'Restaurants'; recipe.category = 'restaurant'; }
 
         if (cleanCountry && cleanCountry !== 'Autre') {
             if (!recipe.tags) recipe.tags = [];
