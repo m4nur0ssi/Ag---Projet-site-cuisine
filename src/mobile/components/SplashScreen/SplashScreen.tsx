@@ -12,8 +12,8 @@ export default function SplashScreen() {
     const [shouldRender, setShouldRender] = useState(false);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
     
-    // Pour ne pas re-afficher le splash pendant la session (v7 pour forcer la mise à jour)
-    const SESSION_KEY = 'hasSeenMagicSplash-v7';
+    // Pour ne pas re-afficher le splash pendant la session (bump la version pour forcer sa réapparition)
+    const SESSION_KEY = 'hasSeenMagicSplash-v8';
 
     useEffect(() => {
         const hasSeenSplash = sessionStorage.getItem(SESSION_KEY);
