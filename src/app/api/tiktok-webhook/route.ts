@@ -243,6 +243,7 @@ async function handleRequest(request: Request) {
                 "Poissons et crustacés", "Poissons et crustaces", "Poissons", "Poisson", "Crustacés", "Crustaces",
                 "Sandwichs", "Sandwich",
                 "Rafraichissements", "Rafraîchissements",
+                "Restaurants", "Restaurant",
                 "Minceur",
                 "Sans gluten", "Sans-gluten", "Sans lactose", "Sans-lactose",
                 "Sans sucre", "Sans-sucre", "Sans sel", "Sans-sel",
