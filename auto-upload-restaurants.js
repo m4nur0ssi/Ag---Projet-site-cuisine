@@ -270,9 +270,13 @@ async function processDir(dirPath, restaurants) {
         moveTo(path.join(FOLDER, 'erreurs'), dirPath);
         return false;
     }
+    // Ordre = ordre de DÉPÔT dans le dossier (date de création), pas alphabétique.
+    // → tu déposes les photos dans l'ordre voulu, la 1re devient la photo principale.
     const imgs = fs.readdirSync(dirPath)
         .filter(f => EXT_TYPE[path.extname(f).toLowerCase()] && !f.startsWith('.'))
-        .sort(naturalSort);
+        .map(f => { let t = 0; try { const s = fs.statSync(path.join(dirPath, f)); t = s.birthtimeMs || s.mtimeMs || 0; } catch { /* */ } return { f, t }; })
+        .sort((a, b) => (a.t - b.t) || naturalSort(a.f, b.f))
+        .map(x => x.f);
     if (imgs.length === 0) {
         console.log(`⚠️  "${name}" → aucune image dans le dossier. (ignoré)`);
         return false;

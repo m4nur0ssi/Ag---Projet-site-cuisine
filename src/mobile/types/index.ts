@@ -40,6 +40,7 @@ export interface RestaurantInfo {
     address?: string;
     phone?: string;
     photos?: string[];
+    mapsUrl?: string;
 }
 
 export interface Review {

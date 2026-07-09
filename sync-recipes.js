@@ -12,8 +12,40 @@ const fetch = require('node-fetch');
 
 // Infos restaurant réelles vérifiées (fusionnées dans les fiches catégorie restaurant).
 const WP_RESTAURANT_CAT = 42; // ID de la catégorie WordPress "Restaurants"
+const RESTAURANTS_INFO_PATH = path.join(__dirname, 'src', 'data', 'restaurants-info.json');
 let RESTAURANTS_INFO = {};
 try { RESTAURANTS_INFO = require('./src/data/restaurants-info.json'); } catch { RESTAURANTS_INFO = {}; }
+const { enrichRestaurant } = require('./google-places');
+
+// Enrichit via Google Places les restos qui n'ont pas encore d'infos (adresse…).
+// Persiste dans restaurants-info.json → survit aux syncs suivants (pas de re-appel API).
+async function enrichRestaurantsMissingInfo(posts) {
+    let changed = false;
+    for (const post of posts) {
+        if (!post.categories?.includes(WP_RESTAURANT_CAT)) continue;
+        const id = String(post.id);
+        const existing = RESTAURANTS_INFO[id] || {};
+        if (existing.address) continue; // déjà renseigné (auto ou manuel) → on ne retouche pas
+        const title = decodeHtmlEntities(post.title.rendered || '');
+        const tags = (post._embedded?.['wp:term']?.[1]?.map(t => String(t.name).toLowerCase()) || []);
+        const subTag = tags.find(t => t.startsWith('resto-'));
+        const subType = existing.subType || (subTag ? subTag.replace(/^resto-/, '') : undefined);
+        console.log(`   🍽️ Google Places pour "${title}"…`);
+        const places = await enrichRestaurant(title);
+        if (places) {
+            RESTAURANTS_INFO[id] = { ...(subType ? { subType } : {}), ...places, ...existing };
+            changed = true;
+            console.log(`      ✅ ${places.address || '(sans adresse)'}${places.rating ? ` · ${places.rating}★` : ''}`);
+        } else if (subType && !existing.subType) {
+            RESTAURANTS_INFO[id] = { subType, ...existing };
+            changed = true;
+        }
+    }
+    if (changed) {
+        try { fs.writeFileSync(RESTAURANTS_INFO_PATH, JSON.stringify(RESTAURANTS_INFO, null, 2) + '\n'); console.log('   💾 restaurants-info.json mis à jour (Google Places).'); }
+        catch (e) { console.log('   ⚠️ écriture restaurants-info.json :', e.message); }
+    }
+}
 
 /**
  * Script de synchronisation des recettes depuis WordPress vers le projet local
@@ -263,6 +295,7 @@ async function syncRecipes() {
     console.log("🚀 Démarrage de la synchronisation...");
     
     let allPosts = [];
+    let rawPosts = [];
     let page = 1;
     let hasMore = true;
 
@@ -287,9 +320,7 @@ async function syncRecipes() {
             }
 
             console.log(`   📥 Reçu ${posts.length} recettes de la page ${page}...`);
-            for (const post of posts) {
-                allPosts.push(extractRecipeData(post));
-            }
+            rawPosts.push(...posts);
 
             if (posts.length < 100) {
                 hasMore = false;
@@ -297,6 +328,11 @@ async function syncRecipes() {
                 page++;
             }
         }
+
+        // Enrichit les nouveaux restaurants via Google Places AVANT de construire
+        // mockData (extractRecipeData lira les infos fraîchement écrites).
+        await enrichRestaurantsMissingInfo(rawPosts);
+        allPosts = rawPosts.map(extractRecipeData);
 
         // Sauvegarde mockData.ts
         const fileContent = `import { Recipe } from '../types';

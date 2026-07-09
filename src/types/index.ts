@@ -39,6 +39,7 @@ export interface RestaurantInfo {
     address?: string;              // vraie adresse
     phone?: string;                // numéro de téléphone
     photos?: string[];             // galerie de photos du restaurant
+    mapsUrl?: string;              // lien Google Maps du lieu (Google Places)
 }
 
 
