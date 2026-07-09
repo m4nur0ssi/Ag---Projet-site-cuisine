@@ -15,7 +15,8 @@ const WP_RESTAURANT_CAT = 42; // ID de la catégorie WordPress "Restaurants"
 const RESTAURANTS_INFO_PATH = path.join(__dirname, 'src', 'data', 'restaurants-info.json');
 let RESTAURANTS_INFO = {};
 try { RESTAURANTS_INFO = require('./src/data/restaurants-info.json'); } catch { RESTAURANTS_INFO = {}; }
-const { enrichRestaurant } = require('./google-places');
+const { enrichRestaurant } = require('./place-lookup');
+const _sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 // Enrichit via Google Places les restos qui n'ont pas encore d'infos (adresse…).
 // Persiste dans restaurants-info.json → survit aux syncs suivants (pas de re-appel API).
@@ -30,8 +31,9 @@ async function enrichRestaurantsMissingInfo(posts) {
         const tags = (post._embedded?.['wp:term']?.[1]?.map(t => String(t.name).toLowerCase()) || []);
         const subTag = tags.find(t => t.startsWith('resto-'));
         const subType = existing.subType || (subTag ? subTag.replace(/^resto-/, '') : undefined);
-        console.log(`   🍽️ Google Places pour "${title}"…`);
+        console.log(`   🍽️ Recherche infos (OSM) pour "${title}"…`);
         const places = await enrichRestaurant(title);
+        await _sleep(1100); // Nominatim : 1 req/s max
         if (places) {
             RESTAURANTS_INFO[id] = { ...(subType ? { subType } : {}), ...places, ...existing };
             changed = true;
