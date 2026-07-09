@@ -30,7 +30,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { execFileSync } = require('child_process');
+const { execFileSync, execSync } = require('child_process');
 const fetch = require('node-fetch');
 require('dotenv').config({ path: path.join(__dirname, 'tiktok-bot', '.env') });
 
@@ -220,6 +220,40 @@ function patchMockDataById(file, id, photos) {
     return patched;
 }
 
+// Pousse les données mises à jour sur GitHub → déploiement Vercel automatique.
+// Sûr : commit + push ; si rejeté (le bot a poussé), rebase puis retry ; en cas
+// de conflit, abort propre (jamais d'état git cassé) + message.
+const updatedRestos = [];
+function pushToGithub(summary) {
+    const opts = { cwd: __dirname, stdio: 'pipe', encoding: 'utf8' };
+    const run = (c) => execSync(c, opts);
+    console.log('\n🔄 Synchronisation GitHub (déploiement Vercel)…');
+    try {
+        run('git add src/data/mockData.ts src/mobile/data/mockData.ts src/data/restaurants-info.json');
+        try { run('git diff --cached --quiet'); console.log('   (aucun changement à pousser)'); return; } catch { /* il y a des changements */ }
+        run(`git commit -m ${JSON.stringify('📸 Photos resto: ' + summary)}`);
+    } catch (e) {
+        console.log('   ⚠️ commit échoué :', (e.message || '').split('\n')[0]);
+        return;
+    }
+    for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+            run('git push origin main');
+            console.log('   ✅ Poussé sur GitHub → Vercel déploie (~2 min).');
+            return;
+        } catch {
+            try {
+                run('git pull --rebase origin main'); // le bot a poussé entre-temps → rejoue par-dessus
+            } catch {
+                try { run('git rebase --abort'); } catch { /* */ }
+                console.log('   ⚠️ Conflit git : photos enregistrées en local, mais push auto impossible.\n      → fais un "git push" manuel plus tard.');
+                return;
+            }
+        }
+    }
+    console.log('   ⚠️ Push non abouti après 3 essais — pousse manuellement.');
+}
+
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
 function moveTo(dir, src) {
     ensureDir(dir);
@@ -268,6 +302,7 @@ async function processDir(dirPath, restaurants) {
         for (const mf of MOCKDATA_FILES) mockOk = patchMockDataById(mf, resto.id, photos) || mockOk;
         console.log(`   ${mockOk ? '✅ mockData.ts patché' : '⚠️ mockData non patché → lance "node sync-recipes.js"'} · restaurants-info.json à jour (${photos.length} photo(s)).`);
         moveTo(path.join(FOLDER, 'done'), dirPath);
+        updatedRestos.push(decodeEntities(resto.title));
         return true;
     } catch (e) {
         console.error(`   ❌ ${e.message}`);
@@ -300,6 +335,8 @@ async function scanOnce(restaurants) {
     const restaurants = loadRestaurants();
     console.log(`🗂️  ${restaurants.length} restaurants indexés. Dossier : ${FOLDER}\n   WordPress : ${WP_URL} (user ${USER}) · hôte public : ${WP_PUBLIC_HOST}`);
     await scanOnce(restaurants);
+    // Push auto des restos traités → le site se met à jour tout seul.
+    if (updatedRestos.length) pushToGithub(updatedRestos.join(', '));
     if (WATCH) {
         console.log('\n👀 Surveillance active — crée un sous-dossier resto avec des photos (Ctrl+C pour arrêter).');
         let busy = false;
@@ -311,7 +348,9 @@ async function scanOnce(restaurants) {
                     if (!fs.existsSync(full) || !fs.statSync(full).isDirectory()) return;
                     if (['done', 'erreurs'].includes(fname)) return;
                     busy = true;
+                    const before = updatedRestos.length;
                     await processDir(full, restaurants);
+                    if (updatedRestos.length > before) pushToGithub(updatedRestos[updatedRestos.length - 1]);
                 } catch { /* */ } finally { busy = false; }
             }, 2500); // laisse le temps de déposer toutes les photos
         });
