@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/07/2026 06:36:20
- * Total: 511 recettes
+ * Dernière mise à jour: 10/07/2026 13:40:41
+ * Total: 513 recettes
  */
-export const exportSyncId = "1783665380346";
+export const exportSyncId = "1783690841450";
 export const mockRecipes: Recipe[] = [
     {
         "id": "6708",
@@ -17,7 +17,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7438673795382070560\" data-video-id=\"7438673795382070560\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7438673795382070560\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7438673795382070560\" data-video-id=\"7438673795382070560\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7438673795382070560\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
@@ -39,6 +39,95 @@ export const mockRecipes: Recipe[] = [
             "phone": "+33 1 42 65 27 94",
             "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8673150,2.3222252"
         }
+    },
+    {
+        "id": "6712",
+        "title": "Bissap Maison",
+        "description": "Une recette simple et rafraîchissante pour préparer du bissap maison, une boisson traditionnelle à base de fleurs d'hibiscus.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7599704005719117078\" data-video-id=\"7599704005719117078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7599704005719117078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "💧\n             1,5 litres d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g de fleurs d'hibiscus séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             5 branches de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, portez l'eau à ébullition.",
+            "Ajoutez les fleurs d'hibiscus séchées et le sucre. Laissez mijoter à feu doux pendant environ 5 à 10 minutes.",
+            "Retirez du feu, ajoutez les branches de menthe et laissez infuser le mélange jusqu'à ce qu'il refroidisse complètement.",
+            "Filtrez la boisson pour retirer les fleurs d'hibiscus et la menthe.",
+            "Mettez le bissap au frais pendant au moins 2 heures avant de servir."
+        ],
+        "tags": [
+            "Afrique",
+            "Healthy",
+            "Pas cher",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6710",
+        "title": "Glace à l'hibiscus (Bissap)",
+        "description": "Découvrez une recette de glace rafraîchissante et simple, parfaite pour l'été, qui évoque les saveurs de l'enfance. Réalisée à base de fleurs d'hibiscus (bissap), de sucre et de sucre vanillé, elle peut être agrémentée d'un arôme de fraise si dési...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657274204244462880\" data-video-id=\"7657274204244462880\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657274204244462880\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Fleurs d'hibiscus (bissap)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Arôme de fraise (facultatif)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "Les Glaces",
+            "Pas cher",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
     },
     {
         "id": "1214",
