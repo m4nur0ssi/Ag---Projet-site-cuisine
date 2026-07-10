@@ -35,7 +35,7 @@ on:
 
 concurrency:
   group: wp-github-sync
-  cancel-in-progress: false   # Chaque push WP est important, on ne cancelle pas
+  cancel-in-progress: true    # Un nouveau sync annule le précédent (évite qu'un run bloqué gèle la file ; le dernier sync est complet)
 
 jobs:
   sync:
