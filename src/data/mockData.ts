@@ -2,11 +2,153 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/07/2026 13:40:41
- * Total: 513 recettes
+ * Dernière mise à jour: 10/07/2026 19:59:43
+ * Total: 514 recettes
  */
-export const exportSyncId = "1783690841450";
+export const exportSyncId = "1783713583411";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6739",
+        "title": "Tapenade",
+        "description": "Une recette simple et rapide pour préparer une délicieuse tapenade maison, parfaite pour l'apéritif.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660943380599360801\" data-video-id=\"7660943380599360801\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660943380599360801\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             250g d'olives noires dessalées"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 filets d'anchois"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 dizaine de câpres"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             5 cuillères à soupe d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Si nécessaire, dessaler les olives noires en les rinçant abondamment à l'eau froide.",
+            "Dans un mixeur ou un robot culinaire, placer les olives noires dessalées, la gousse d'ail pelée, les filets d'anchois et les câpres.",
+            "Ajouter les 5 cuillères à soupe d'huile d'olive.",
+            "Mixer le tout jusqu'à obtenir une pâte plus ou moins homogène, selon la consistance désirée (plus ou moins fine).",
+            "Servir frais avec du pain grillé ou des légumes croquants."
+        ],
+        "tags": [
+            "Apéritifs",
+            "France",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6692",
+        "title": "Violetta et Alfredo",
+        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_1_1783712373377.jpg&v=1783712388454",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" style=\"max-width: 605px; min-width: 325px;\" cite=\"https://www.tiktok.com/v/7257560381298691355\" data-video-id=\"7257560381298691355\">\n<section><a title=\"@tiktok\" href=\"https://www.tiktok.com/v/7257560381298691355\" target=\"_blank\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a></section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Un brunch à absolument tester à Paris"
+        ],
+        "tags": [
+            "resto-salon-de-the"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "",
+        "restaurant": {
+            "subType": "salon-de-the",
+            "priceLevel": 2,
+            "rating": 4.5,
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_1_1783712373377.jpg&v=1783712388454",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_2_1783712389081.jpg&v=1783712406258",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_3_1783712406894.jpg&v=1783712440557",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_4_1783712441187.jpg&v=1783712459880",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_5_1783712460505.jpeg&v=1783712474988",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_6_1783712475643.jpg&v=1783712527268"
+            ]
+        }
+    },
+    {
+        "id": "1300",
+        "title": "Joji - Paris 4",
+        "description": "    Joji est un restaurant asiatique et plus particulièrement japonais. Nous ne sommes pas ici dans un restaurant avec buffet autour duquel vous trouverez des frites et des nuggets. Vous ne trouverez pas non plus de sushi, de maki ou de brochettes...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_1_1783711966931.jpg&v=1783711988522",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Joji est un restaurant asiatique et plus particulièrement japonais. Nous ne sommes pas ici dans un restaurant avec buffet autour duquel vous trouverez des frites et des nuggets. Vous ne trouverez pas non plus de sushi, de maki ou de brochettes au fromage.",
+            "ici, vous vous trouvez dans un restaurant chaleureusement décoré avec du bois et de la musique. La cuisine y est soignée et typique. L'accueil est très sympa et aux petits soins.",
+            "Mon plat préféré : Croquettes d'effiloché de porc au kimchi, sauce Haixian",
+            "l'accueil, l'ambiance, la musique, le visuel des plats",
+            "Un peu cher, pas le meilleur japonais pour moi",
+            "5 Rue de Turenne, 75004 Paris, France",
+            "https://www.instagram.com/joji_bistro/"
+        ],
+        "tags": [
+            "resto-asiatique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "5 Rue de Turenne, 75004 Paris",
+        "restaurant": {
+            "subType": "asiatique",
+            "priceLevel": 2,
+            "terrace": true,
+            "rating": 4.7,
+            "reviewsCount": 1321,
+            "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g187147-d19839585-Reviews-Joji-Paris_Ile_de_France.html",
+            "website": "https://jojiparis.fr/fr",
+            "hours": "Lun–Sam 12h–15h & 19h–23h · Dim 12h–15h",
+            "address": "5 Rue de Turenne, 75004 Paris",
+            "phone": "+33 9 51 05 28 04",
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_1_1783711966931.jpg&v=1783711988522",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_2_1783711989409.jpg&v=1783712039545",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_3_1783712040475.jpg&v=1783712077044",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_4_1783712077664.jpg&v=1783712083644",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_5_1783712084267.jpg&v=1783712088676",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_6_1783712089421.jpg&v=1783712129315"
+            ]
+        }
+    },
     {
         "id": "6708",
         "title": "Maxim's",
@@ -197,46 +339,6 @@ export const mockRecipes: Recipe[] = [
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_4_1783631122184.jpeg&v=1783631127090",
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_5_1783631127692.jpg&v=1783631195584",
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_6_1783631196185.jpg&v=1783631202495"
-            ]
-        }
-    },
-    {
-        "id": "6692",
-        "title": "Violetta et Alfredo",
-        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_1_1783712373377.jpg&v=1783712388454",
-        "category": "restaurant",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" style=\"max-width: 605px; min-width: 325px;\" cite=\"https://www.tiktok.com/v/7257560381298691355\" data-video-id=\"7257560381298691355\">\n<section><a title=\"@tiktok\" href=\"https://www.tiktok.com/v/7257560381298691355\" target=\"_blank\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a></section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Un brunch à absolument tester à Paris"
-        ],
-        "tags": [
-            "resto-salon-de-the"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": "",
-        "restaurant": {
-            "subType": "salon-de-the",
-            "priceLevel": 2,
-            "rating": 4.5,
-            "photos": [
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_1_1783712373377.jpg&v=1783712388454",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_2_1783712389081.jpg&v=1783712406258",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_3_1783712406894.jpg&v=1783712440557",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_4_1783712441187.jpg&v=1783712459880",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_5_1783712460505.jpeg&v=1783712474988",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_6_1783712475643.jpg&v=1783712527268"
             ]
         }
     },
@@ -36951,59 +37053,6 @@ export const mockRecipes: Recipe[] = [
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
-    },
-    {
-        "id": "1300",
-        "title": "Joji - Paris 4",
-        "description": "    Joji est un restaurant asiatique et plus particulièrement japonais. Nous ne sommes pas ici dans un restaurant avec buffet autour duquel vous trouverez des frites et des nuggets. Vous ne trouverez pas non plus de sushi, de maki ou de brochettes...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_1_1783711966931.jpg&v=1783711988522",
-        "category": "restaurant",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Joji est un restaurant asiatique et plus particulièrement japonais. Nous ne sommes pas ici dans un restaurant avec buffet autour duquel vous trouverez des frites et des nuggets. Vous ne trouverez pas non plus de sushi, de maki ou de brochettes au fromage.",
-            "ici, vous vous trouvez dans un restaurant chaleureusement décoré avec du bois et de la musique. La cuisine y est soignée et typique. L'accueil est très sympa et aux petits soins.",
-            "Mon plat préféré : Croquettes d'effiloché de porc au kimchi, sauce Haixian",
-            "l'accueil, l'ambiance, la musique, le visuel des plats",
-            "Un peu cher, pas le meilleur japonais pour moi",
-            "5 Rue de Turenne, 75004 Paris, France",
-            "https://www.instagram.com/joji_bistro/"
-        ],
-        "tags": [
-            "resto-asiatique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": "5 Rue de Turenne, 75004 Paris",
-        "restaurant": {
-            "subType": "asiatique",
-            "priceLevel": 2,
-            "terrace": true,
-            "rating": 4.7,
-            "reviewsCount": 1321,
-            "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g187147-d19839585-Reviews-Joji-Paris_Ile_de_France.html",
-            "website": "https://jojiparis.fr/fr",
-            "hours": "Lun–Sam 12h–15h & 19h–23h · Dim 12h–15h",
-            "address": "5 Rue de Turenne, 75004 Paris",
-            "phone": "+33 9 51 05 28 04",
-            "photos": [
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_1_1783711966931.jpg&v=1783711988522",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_2_1783711989409.jpg&v=1783712039545",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_3_1783712040475.jpg&v=1783712077044",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_4_1783712077664.jpg&v=1783712083644",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_5_1783712084267.jpg&v=1783712088676",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_6_1783712089421.jpg&v=1783712129315"
-            ]
-        }
     },
     {
         "id": "1187",
