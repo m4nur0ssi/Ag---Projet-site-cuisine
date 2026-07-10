@@ -102,7 +102,7 @@ jobs:
       # ------------------------------------------------------------------
       - name: 🔄 Sync complète (toutes les recettes)
         if: steps.mode.outputs.mode == 'full'
-        run: node sync-recipes.js
+        run: node sync-recipes.js --no-translate
         env:
           WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
           WP_FORCE_PUBLIC: "true"
@@ -119,7 +119,7 @@ jobs:
           if [ -n "${{ steps.mode.outputs.delete_id }}" ]; then
             DELETE_FLAG="--delete-id=${{ steps.mode.outputs.delete_id }}"
           fi
-          node sync-recipes.js --full $DELETE_FLAG
+          node sync-recipes.js --full --no-translate $DELETE_FLAG
         env:
           WP_PUBLIC_IP: ${{ secrets.WP_PUBLIC_IP }}
           WP_FORCE_PUBLIC: "true"
