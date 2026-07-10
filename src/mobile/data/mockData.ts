@@ -2,11 +2,149 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/07/2026 19:59:43
- * Total: 514 recettes
+ * Dernière mise à jour: 10/07/2026 20:19:43
+ * Total: 516 recettes
  */
-export const exportSyncId = "1783713583411";
+export const exportSyncId = "1783714783030";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6743",
+        "title": "Snickers glacés maison",
+        "description": "Une recette maison pour préparer des barres Snickers glacées, composées d'une coque en chocolat, d'une garniture crémeuse au beurre de cacahuète, de cacahuètes et de caramel au beurre salé.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660493542338465057\" data-video-id=\"7660493542338465057\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660493542338465057\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             Une tablette de chocolat au lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             210g de crème à fouetter"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             45g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 grosse cuillère à soupe de beurre de cacahuète"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Cacahuètes"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Caramel au beurre salé"
+            }
+        ],
+        "steps": [
+            "Faire fondre le chocolat au lait au micro-ondes.",
+            "Recouvrir le fond et les parois du moule avec le chocolat fondu à l'aide d'une cuillère ou d'un pinceau.",
+            "Placer le moule au congélateur le temps de préparer la crème.",
+            "Monter la crème à fouetter avec le sucre glace et le beurre de cacahuète jusqu'à obtenir une chantilly ferme.",
+            "Remplir les coques en chocolat avec le caramel au beurre salé, ajouter les cacahuètes et la crème.",
+            "Refermer chaque barre avec une dernière couche de chocolat fondu.",
+            "Placer au congélateur pendant 30 minutes puis démouler délicatement."
+        ],
+        "tags": [
+            "Les Glaces",
+            "USA",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6741",
+        "title": "Brioche effilochée aux myrtilles",
+        "description": "Une recette de brioche maison moelleuse et parfumée aux myrtilles, avec une compotée fruitée et une technique d'effilochage pour un visuel marbré et gourmand.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7651949515078978848\" data-video-id=\"7651949515078978848\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7651949515078978848\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             500g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             20g de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 sachets de levure boulangère sèche (2×5,5g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             80g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de myrtilles"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             8g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à café de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             15g d'eau"
+            }
+        ],
+        "steps": [
+            "Dans le bol d'un robot, pétrir la farine, les sucres (sucre et sucre vanillé), les deux œufs, la levure boulangère et le lait.",
+            "Ajouter le beurre et pétrir de nouveau jusqu'à obtenir une pâte homogène et élastique.",
+            "Laisser reposer la pâte pendant 2 heures à température ambiante.",
+            "Pendant ce temps, préparer la compotée de myrtilles : dans une casserole, mettre les 250g de myrtilles, les 8g de maïzena, les 60g de sucre, la cuillère à café de jus de citron et les 15g d'eau.",
+            "Porter à ébullition en mélangeant constamment jusqu'à ce que la compotée épaississe.",
+            "Une fois la pâte à brioche reposée, l'étaler.",
+            "Déposer la compotée de myrtille sur la pâte étalée.",
+            "Couper la pâte en quadrillage et superposer les couches pour créer une jolie marbrure effilochée.",
+            "Laisser reposer la brioche assemblée pendant 15 minutes.",
+            "Préchauffer le four à 160 degrés Celsius.",
+            "Cuire la brioche pendant 30 minutes à 160 degrés Celsius."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6739",
         "title": "Tapenade",
