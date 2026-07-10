@@ -38,7 +38,10 @@ async function enrichRestaurantsMissingInfo(posts) {
         if (Date.now() - startT > BUDGET_MS) { console.log('   ⏭️ Budget enrichissement atteint — reste au prochain sync.'); break; }
         const id = String(post.id);
         const existing = RESTAURANTS_INFO[id] || {};
-        if (existing.address) continue; // déjà renseigné (auto ou manuel) → on ne retouche pas
+        // "Complet" = a une adresse ET une note → on ne retouche plus (évite re-appels).
+        // Sinon (adresse OU note manquante) on tente de combler les trous. Le manuel
+        // reste prioritaire (merge {...auto, ...existing} → existing gagne).
+        if (existing.address && existing.rating != null) continue;
         const title = decodeHtmlEntities(post.title.rendered || '');
         const tags = (post._embedded?.['wp:term']?.[1]?.map(t => String(t.name).toLowerCase()) || []);
         const subTag = tags.find(t => t.startsWith('resto-'));
