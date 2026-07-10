@@ -41,6 +41,9 @@ export interface RestaurantInfo {
     photos?: string[];             // galerie de photos du restaurant
     mapsUrl?: string;              // lien Google Maps du lieu (Google Places)
     blurb?: string;                // présentation manuelle du resto (prime sur le contenu WP au sync)
+    // Chaîne / plusieurs adresses : chaque branche listée sur la fiche (bouton Maps par adresse).
+    locations?: { name?: string; address: string; phone?: string }[];
+    mapsQuery?: string;            // requête « nom + ville » pour le bouton « toutes les adresses » (choix natif dans Maps)
 }
 
 

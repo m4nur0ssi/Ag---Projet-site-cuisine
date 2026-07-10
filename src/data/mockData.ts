@@ -37183,7 +37183,28 @@ export const mockRecipes: Recipe[] = [
             "hours": "Tous les jours, midi & soir",
             "address": "14 Rue Grégoire de Tours, 75006 Paris",
             "phone": "+33 1 42 38 21 99",
-            "rating": 4.3
+            "rating": 4.3,
+            "mapsQuery": "Ippudo Paris",
+            "locations": [
+                {
+                    "name": "Ippudo Saint-Germain",
+                    "address": "14 Rue Grégoire de Tours, 75006 Paris",
+                    "phone": "+33 1 42 38 21 99"
+                },
+                {
+                    "name": "Ippudo Louvre",
+                    "address": "74-76 Rue Jean-Jacques Rousseau, 75001 Paris"
+                },
+                {
+                    "name": "Ippudo République",
+                    "address": "6 Place Jacques Bonsergent, 75010 Paris",
+                    "phone": "+33 1 40 18 40 81"
+                },
+                {
+                    "name": "Ippudo Bastille",
+                    "address": "41 Rue de la Roquette, 75011 Paris"
+                }
+            ]
         }
     },
     {

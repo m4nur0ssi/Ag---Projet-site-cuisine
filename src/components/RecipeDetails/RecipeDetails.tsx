@@ -928,7 +928,31 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                             <span className={styles.restoCoordIcon}>🕒</span><span>{r.hours}</span>
                                         </div>
                                     )}
-                                    {(r.address || recipe.address) && (
+                                    {r.locations && r.locations.length > 1 ? (
+                                        <>
+                                            <div className={styles.restoCoordRow} style={{ fontWeight: 700, opacity: 0.75 }}>
+                                                <span className={styles.restoCoordIcon}>📍</span><span>{r.locations.length} adresses</span>
+                                            </div>
+                                            {r.locations.map((loc, li) => (
+                                                <a
+                                                    key={li}
+                                                    className={styles.restoCoordRow}
+                                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((loc.name ? loc.name + ' ' : '') + loc.address)}`}
+                                                    target="_blank" rel="noopener noreferrer"
+                                                >
+                                                    <span className={styles.restoCoordIcon}>•</span><span>{loc.name ? `${loc.name} — ${loc.address}` : loc.address}</span>
+                                                </a>
+                                            ))}
+                                            <a
+                                                className={styles.restoCoordRow}
+                                                style={{ fontWeight: 700 }}
+                                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.mapsQuery || recipe.title)}`}
+                                                target="_blank" rel="noopener noreferrer"
+                                            >
+                                                <span className={styles.restoCoordIcon}>🗺️</span><span>Voir toutes les adresses sur la carte</span>
+                                            </a>
+                                        </>
+                                    ) : (r.address || recipe.address) ? (
                                         <a
                                             className={styles.restoCoordRow}
                                             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.address || recipe.address || recipe.title)}`}
@@ -936,7 +960,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         >
                                             <span className={styles.restoCoordIcon}>📍</span><span>{r.address || recipe.address}</span>
                                         </a>
-                                    )}
+                                    ) : null}
                                 </div>
 
                                 {/* La galerie photos est désormais la photo principale (en haut de la fiche). */}
