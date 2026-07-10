@@ -270,9 +270,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             style={{ y }}
                             transition={{ type: 'spring', damping: 35, stiffness: 400, mass: 0.6 }}
                         >
-                            <div className={styles.dragHandleContainer}>
-                                <div className={styles.dragHandle} />
-                            </div>
+                            <div className={styles.dragHandleContainer} />
 
                             {recipes.length > 1 && (
                                 <div className={styles.pagination}>

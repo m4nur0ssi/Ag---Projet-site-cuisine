@@ -1330,7 +1330,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     <div style={{ padding: '0 20px 10px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', opacity: 0.5, textTransform: 'uppercase' }}>
                         {recipe.category === 'restaurant' ? 'Autres restaurants' : 'Recettes similaires'}
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, padding: '0 20px 4px', maxHeight: 360, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, padding: '0 20px 4px' }}>
                         {similarRecipes.map(r => (
                             <button
                                 key={r.id}
