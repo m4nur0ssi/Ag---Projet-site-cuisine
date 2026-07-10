@@ -346,9 +346,14 @@ async function syncRecipes() {
             }
         }
 
-        // Enrichit les nouveaux restaurants via Google Places AVANT de construire
-        // mockData (extractRecipeData lira les infos fraîchement écrites).
-        await enrichRestaurantsMissingInfo(rawPosts);
+        // Enrichit les nouveaux restaurants (Foursquare/OSM) AVANT de construire mockData.
+        // Race de sécurité : quoi qu'il arrive (API lente/bloquée), on continue après 70s max.
+        try {
+            await Promise.race([
+                enrichRestaurantsMissingInfo(rawPosts),
+                new Promise((res) => setTimeout(res, 70000)),
+            ]);
+        } catch (e) { console.log('   ⚠️ Enrichissement ignoré :', e.message); }
         allPosts = rawPosts.map(extractRecipeData);
 
         // Sauvegarde mockData.ts
@@ -413,4 +418,7 @@ export const mockRecipes: Recipe[] = ${JSON.stringify(allPosts, null, 4)};
     }
 }
 
-syncRecipes();
+// Sortie forcée : si un socket réseau (Foursquare/OSM) reste ouvert, node ne
+// sortirait pas tout seul → l'étape GitHub Actions bloquerait. On force la sortie
+// une fois tout écrit (fs sync + traduction execSync = déjà flushés).
+syncRecipes().then(() => process.exit(0)).catch(() => process.exit(1));
