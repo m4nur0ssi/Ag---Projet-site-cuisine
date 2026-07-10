@@ -2,11 +2,44 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/07/2026 20:30:58
- * Total: 517 recettes
+ * Dernière mise à jour: 10/07/2026 20:51:34
+ * Total: 518 recettes
  */
-export const exportSyncId = "1783715458575";
+export const exportSyncId = "1783716694956";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6747",
+        "title": "Technique de cuisson de la côte de bœuf",
+        "description": "Ce contenu présente une technique privilégiée pour la cuisson de la côte de bœuf, un plat emblématique de l'été. L'auteur propose une recette détaillée, mettant l'accent sur l'importance du temps pour une cuisson réussie, en contraste avec les vid...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7395182689839566113\" data-video-id=\"7395182689839566113\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7395182689839566113\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Côte de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Temps"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "barbecue",
+            "France",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6745",
         "title": "Le Balthazar 😍 #pourtoii #fypシ #foryoupage",
