@@ -101,7 +101,15 @@
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8673150,2.3222252",
     "priceLevel": 3,
     "rating": 4.3,
-    "website": "https://www.maxims-de-paris.com"
+    "website": "https://www.maxims-de-paris.com",
+    "photos": [
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6708_1_1783699774000.jpg&v=1783699833561",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6708_2_1783699834162.jpg&v=1783699877446",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6708_3_1783699878048.jpg&v=1783699935066",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6708_4_1783699935667.jpg&v=1783699940873",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6708_5_1783699941475.jpg&v=1783699997472",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6708_6_1783699998073.jpg&v=1783700053630"
+    ]
   },
   "_comment": "Infos restaurant réelles vérifiées (web, juillet 2026). Clé = id recette WordPress. Fusionné dans mockData au sync (sync-recipes.js) → survit aux régénérations. subType ∈ brasserie|italien|asiatique|gastro|salon-de-the."
 }
