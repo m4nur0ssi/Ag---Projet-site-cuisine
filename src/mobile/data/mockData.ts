@@ -36948,7 +36948,7 @@ export const mockRecipes: Recipe[] = [
         "id": "1300",
         "title": "Joji - Paris 4",
         "description": "    Joji est un restaurant asiatique et plus particulièrement japonais. Nous ne sommes pas ici dans un restaurant avec buffet autour duquel vous trouverez des frites et des nuggets. Vous ne trouverez pas non plus de sushi, de maki ou de brochettes...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_1_1783711966931.jpg&v=1783711988522",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -36986,7 +36986,15 @@ export const mockRecipes: Recipe[] = [
             "website": "https://jojiparis.fr/fr",
             "hours": "Lun–Sam 12h–15h & 19h–23h · Dim 12h–15h",
             "address": "5 Rue de Turenne, 75004 Paris",
-            "phone": "+33 9 51 05 28 04"
+            "phone": "+33 9 51 05 28 04",
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_1_1783711966931.jpg&v=1783711988522",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_2_1783711989409.jpg&v=1783712039545",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_3_1783712040475.jpg&v=1783712077044",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_4_1783712077664.jpg&v=1783712083644",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_5_1783712084267.jpg&v=1783712088676",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_6_1783712089421.jpg&v=1783712129315"
+            ]
         }
     },
     {

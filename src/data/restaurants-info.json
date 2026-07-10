@@ -25,10 +25,24 @@
     "rating": 4.3,
     "mapsQuery": "Ippudo Paris",
     "locations": [
-      { "name": "Ippudo Saint-Germain", "address": "14 Rue Grégoire de Tours, 75006 Paris", "phone": "+33 1 42 38 21 99" },
-      { "name": "Ippudo Louvre", "address": "74-76 Rue Jean-Jacques Rousseau, 75001 Paris" },
-      { "name": "Ippudo République", "address": "6 Place Jacques Bonsergent, 75010 Paris", "phone": "+33 1 40 18 40 81" },
-      { "name": "Ippudo Bastille", "address": "41 Rue de la Roquette, 75011 Paris" }
+      {
+        "name": "Ippudo Saint-Germain",
+        "address": "14 Rue Grégoire de Tours, 75006 Paris",
+        "phone": "+33 1 42 38 21 99"
+      },
+      {
+        "name": "Ippudo Louvre",
+        "address": "74-76 Rue Jean-Jacques Rousseau, 75001 Paris"
+      },
+      {
+        "name": "Ippudo République",
+        "address": "6 Place Jacques Bonsergent, 75010 Paris",
+        "phone": "+33 1 40 18 40 81"
+      },
+      {
+        "name": "Ippudo Bastille",
+        "address": "41 Rue de la Roquette, 75011 Paris"
+      }
     ]
   },
   "1187": {
@@ -75,7 +89,15 @@
     "website": "https://jojiparis.fr/fr",
     "hours": "Lun–Sam 12h–15h & 19h–23h · Dim 12h–15h",
     "address": "5 Rue de Turenne, 75004 Paris",
-    "phone": "+33 9 51 05 28 04"
+    "phone": "+33 9 51 05 28 04",
+    "photos": [
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_1_1783711966931.jpg&v=1783711988522",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_2_1783711989409.jpg&v=1783712039545",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_3_1783712040475.jpg&v=1783712077044",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_4_1783712077664.jpg&v=1783712083644",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_5_1783712084267.jpg&v=1783712088676",
+      "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1300_6_1783712089421.jpg&v=1783712129315"
+    ]
   },
   "3108": {
     "subType": "salon-de-the",
