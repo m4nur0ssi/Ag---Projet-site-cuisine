@@ -204,7 +204,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6692",
         "title": "Violetta et Alfredo",
         "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_1_1783712373377.jpg&v=1783712388454",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -229,7 +229,15 @@ export const mockRecipes: Recipe[] = [
         "restaurant": {
             "subType": "salon-de-the",
             "priceLevel": 2,
-            "rating": 4.5
+            "rating": 4.5,
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_1_1783712373377.jpg&v=1783712388454",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_2_1783712389081.jpg&v=1783712406258",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_3_1783712406894.jpg&v=1783712440557",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_4_1783712441187.jpg&v=1783712459880",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_5_1783712460505.jpeg&v=1783712474988",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_6_1783712475643.jpg&v=1783712527268"
+            ]
         }
     },
     {
