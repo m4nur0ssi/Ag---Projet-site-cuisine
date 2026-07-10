@@ -32,7 +32,7 @@ async function enrichRestaurantAny(title) {
 async function enrichRestaurantsMissingInfo(posts) {
     let changed = false;
     const startT = Date.now();
-    const BUDGET_MS = 45000; // ne JAMAIS bloquer le sync : au-delà, on arrête l'enrichissement
+    const BUDGET_MS = 28000; // ne JAMAIS bloquer le sync : au-delà, on arrête l'enrichissement (reste au prochain sync)
     for (const post of posts) {
         if (!post.categories?.includes(WP_RESTAURANT_CAT)) continue;
         if (Date.now() - startT > BUDGET_MS) { console.log('   ⏭️ Budget enrichissement atteint — reste au prochain sync.'); break; }
@@ -351,7 +351,7 @@ async function syncRecipes() {
         try {
             await Promise.race([
                 enrichRestaurantsMissingInfo(rawPosts),
-                new Promise((res) => setTimeout(res, 70000)),
+                new Promise((res) => setTimeout(res, 35000)),
             ]);
         } catch (e) { console.log('   ⚠️ Enrichissement ignoré :', e.message); }
         allPosts = rawPosts.map(extractRecipeData);
