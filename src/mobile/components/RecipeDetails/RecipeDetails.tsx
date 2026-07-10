@@ -180,6 +180,16 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             .map(({ recipe: r }) => r);
     }, [recipe]);
 
+    // Navigation resto suivant/précédent (swipe hors photo).
+    const restoNav = useMemo(() => {
+        if (recipe.category !== 'restaurant') return null;
+        const list = mockRecipes.filter(r => r.category === 'restaurant');
+        const idx = list.findIndex(r => String(r.id) === String(recipe.id));
+        if (idx < 0 || list.length < 2) return null;
+        return { next: list[(idx + 1) % list.length], prev: list[(idx - 1 + list.length) % list.length] };
+    }, [recipe]);
+    const openResto = (r: any) => window.dispatchEvent(new CustomEvent('openRecipe', { detail: r }));
+
     // Sauvegarder dans l'historique
     useEffect(() => {
         try {
@@ -837,15 +847,20 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
                     {/* Colonne DROITE : Photo avec Actions interactives */}
                     <div className={styles.heroImageColumn}>
-                        {/* 1. Carte Image avec bouton Flamme superposé */}
+                        {(recipe.category === 'restaurant' && recipe.restaurant?.photos?.length) ? (
+                            /* Restaurant : galerie swipeable = photo principale + miniatures */
+                            <RestaurantGallery
+                                photos={recipe.restaurant.photos}
+                                alt={recipe.title}
+                                onNextRestaurant={restoNav ? () => openResto(restoNav.next) : undefined}
+                                onPrevRestaurant={restoNav ? () => openResto(restoNav.prev) : undefined}
+                            />
+                        ) : (
+                        /* 1. Carte Image avec bouton Flamme superposé */
                         <div className={styles.imageCardContainer}>
-                            {(() => {
-                                // Restaurant : 1re photo du carrousel = image principale de la fiche.
-                                const heroImg = (recipe.category === 'restaurant' && recipe.restaurant?.photos?.length)
-                                    ? recipe.restaurant.photos[0] : recipe.image;
-                                return heroImg ? (
+                            {recipe.image ? (
                                 <Image
-                                    src={heroImg}
+                                    src={recipe.image}
                                     alt={recipe.title}
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 700px, 800px"
@@ -859,17 +874,18 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         recipe.category === 'desserts' ? '🍰' :
                                             recipe.category === 'plats' ? '🍲' : '🥗'}
                                 </div>
-                                ); })()}
+                                )}
                             <div className={styles.imageGlassOverlay} />
-                            
+
                             {/* Superposition du bouton flamme (Vote) en haut à droite */}
                             <div className={styles.flameOverlay}>
-                                <VoteButton 
+                                <VoteButton
                                     recipeId={recipe.id}
                                     initialVotes={recipe.votes || 0}
                                 />
                             </div>
                         </div>
+                        )}
 
                         {/* 2. Hashtags centrés sous la photo */}
                         <div className={styles.detailsHashtags}>
@@ -988,9 +1004,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                     )}
                                 </div>
 
-                                {!!(r.photos && r.photos.length) && (
-                                    <RestaurantGallery photos={r.photos} alt={recipe.title} />
-                                )}
+                                {/* La galerie photos est désormais la photo principale (en haut de la fiche). */}
 
                                 {/* Note perso + globale (comme les recettes) */}
                                 <div className={styles.restoRating}>

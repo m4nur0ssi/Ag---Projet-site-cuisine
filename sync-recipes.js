@@ -15,8 +15,17 @@ const WP_RESTAURANT_CAT = 42; // ID de la catégorie WordPress "Restaurants"
 const RESTAURANTS_INFO_PATH = path.join(__dirname, 'src', 'data', 'restaurants-info.json');
 let RESTAURANTS_INFO = {};
 try { RESTAURANTS_INFO = require('./src/data/restaurants-info.json'); } catch { RESTAURANTS_INFO = {}; }
-const { enrichRestaurant } = require('./place-lookup');
+const { enrichRestaurant: enrichOSM } = require('./place-lookup');
+const { enrichRestaurant: enrichFSQ } = require('./foursquare');
 const _sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+// Foursquare (note/prix, clé gratuite) d'abord, OSM (adresse/terrasse) en complément/secours.
+async function enrichRestaurantAny(title) {
+    const fsq = await enrichFSQ(title);           // note, prix, horaires, adresse…
+    const osm = await enrichOSM(title);           // adresse, terrasse, mapsUrl
+    if (!fsq && !osm) return null;
+    return { ...(osm || {}), ...(fsq || {}) };    // Foursquare prioritaire sur OSM
+}
 
 // Enrichit via Google Places les restos qui n'ont pas encore d'infos (adresse…).
 // Persiste dans restaurants-info.json → survit aux syncs suivants (pas de re-appel API).
@@ -34,8 +43,8 @@ async function enrichRestaurantsMissingInfo(posts) {
         const tags = (post._embedded?.['wp:term']?.[1]?.map(t => String(t.name).toLowerCase()) || []);
         const subTag = tags.find(t => t.startsWith('resto-'));
         const subType = existing.subType || (subTag ? subTag.replace(/^resto-/, '') : undefined);
-        console.log(`   🍽️ Recherche infos (OSM) pour "${title}"…`);
-        const places = await enrichRestaurant(title);
+        console.log(`   🍽️ Recherche infos (Foursquare + OSM) pour "${title}"…`);
+        const places = await enrichRestaurantAny(title);
         await _sleep(1100); // Nominatim : 1 req/s max
         if (places) {
             RESTAURANTS_INFO[id] = { ...(subType ? { subType } : {}), ...places, ...existing };

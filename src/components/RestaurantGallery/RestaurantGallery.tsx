@@ -1,46 +1,69 @@
 'use client';
-// Carrousel photos restaurant : 1re image mise en avant + flèches + miniatures.
-// Alimenté par restaurant.photos (script import-restaurant-photos.js → /public/restaurants/<id>/).
-import { useState } from 'react';
+// Carrousel photos restaurant : photo principale mise en avant (cadre stylé) +
+// miniatures dessous. Swipe tactile (mobile) : glisser = photo suivante/précédente ;
+// swipe au-delà de la dernière/première photo = restaurant suivant/précédent.
+import { useState, useRef } from 'react';
 
 interface RestaurantGalleryProps {
     photos: string[];
     alt: string;
+    onNextRestaurant?: () => void;
+    onPrevRestaurant?: () => void;
 }
 
-export default function RestaurantGallery({ photos, alt }: RestaurantGalleryProps) {
+export default function RestaurantGallery({ photos, alt, onNextRestaurant, onPrevRestaurant }: RestaurantGalleryProps) {
     const [i, setI] = useState(0);
+    const start = useRef<{ x: number; y: number } | null>(null);
     if (!photos || photos.length === 0) return null;
     const n = photos.length;
     const go = (d: number) => setI(p => (p + d + n) % n);
 
+    const onTouchStart = (e: React.TouchEvent) => {
+        start.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    };
+    const onTouchEnd = (e: React.TouchEvent) => {
+        if (!start.current) return;
+        const dx = e.changedTouches[0].clientX - start.current.x;
+        const dy = e.changedTouches[0].clientY - start.current.y;
+        start.current = null;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return; // pas un swipe horizontal
+        if (dx < 0) {
+            // swipe gauche → photo suivante ; si déjà la dernière → restaurant suivant
+            if (i < n - 1) setI(i + 1);
+            else if (onNextRestaurant) onNextRestaurant();
+        } else {
+            if (i > 0) setI(i - 1);
+            else if (onPrevRestaurant) onPrevRestaurant();
+        }
+    };
+
     return (
-        <div style={{ margin: '4px 0 16px' }}>
-            {/* Photo mise en avant */}
-            <div style={{
-                position: 'relative', width: '100%', aspectRatio: '16 / 9', maxHeight: 280,
-                borderRadius: 18, overflow: 'hidden', background: 'rgba(255,255,255,0.05)',
-            }}>
+        <div style={{ width: '100%' }}>
+            {/* Photo principale — cadre stylé */}
+            <div
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
+                style={{
+                    position: 'relative', width: '100%', aspectRatio: '16 / 10', maxHeight: 340,
+                    borderRadius: 20, overflow: 'hidden', background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid rgba(255,255,255,0.14)',
+                    boxShadow: '0 18px 40px -18px rgba(0,0,0,0.6)',
+                    touchAction: 'pan-y',
+                }}
+            >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src={photos[i]}
                     alt={`${alt} — photo ${i + 1}`}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', userSelect: 'none' }}
                     loading="lazy"
+                    draggable={false}
                 />
 
                 {n > 1 && (
                     <>
-                        <button
-                            aria-label="Photo précédente"
-                            onClick={() => go(-1)}
-                            style={arrowStyle('left')}
-                        >‹</button>
-                        <button
-                            aria-label="Photo suivante"
-                            onClick={() => go(1)}
-                            style={arrowStyle('right')}
-                        >›</button>
+                        <button aria-label="Photo précédente" onClick={() => go(-1)} style={arrowStyle('left')}>‹</button>
+                        <button aria-label="Photo suivante" onClick={() => go(1)} style={arrowStyle('right')}>›</button>
                         <div style={{
                             position: 'absolute', bottom: 10, right: 12,
                             padding: '3px 9px', borderRadius: 12, fontSize: '0.72rem', fontWeight: 700,
@@ -50,23 +73,23 @@ export default function RestaurantGallery({ photos, alt }: RestaurantGalleryProp
                 )}
             </div>
 
-            {/* Miniatures */}
+            {/* Miniatures — plus petites que la photo principale */}
             {n > 1 && (
-                <div style={{ display: 'flex', gap: 8, marginTop: 8, overflowX: 'auto', paddingBottom: 2 }}>
+                <div style={{ display: 'flex', gap: 8, marginTop: 10, overflowX: 'auto', paddingBottom: 2 }}>
                     {photos.map((src, k) => (
                         <button
                             key={k}
                             onClick={() => setI(k)}
                             aria-label={`Voir la photo ${k + 1}`}
                             style={{
-                                flexShrink: 0, width: 62, height: 46, borderRadius: 10, overflow: 'hidden',
+                                flexShrink: 0, width: 64, height: 48, borderRadius: 11, overflow: 'hidden',
                                 padding: 0, cursor: 'pointer', background: 'none',
-                                border: k === i ? '2px solid #3b82f6' : '2px solid transparent',
-                                opacity: k === i ? 1 : 0.6, transition: 'opacity 0.2s, border-color 0.2s',
+                                border: k === i ? '2px solid #3b82f6' : '2px solid rgba(255,255,255,0.15)',
+                                opacity: k === i ? 1 : 0.65, transition: 'opacity 0.2s, border-color 0.2s',
                             }}
                         >
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
+                            <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" draggable={false} />
                         </button>
                     ))}
                 </div>
