@@ -197,27 +197,29 @@ function writeInfo(id, photos) {
     fs.writeFileSync(INFO_PATH, JSON.stringify(data, null, 2) + '\n');
 }
 
-// Patche la clé "restaurant" (JSON sur une ligne) du post <id> dans mockData.ts.
-function patchMockDataById(file, id, photos) {
+// Met à jour l'objet "restaurant" du post <id> dans mockData.ts en re-sérialisant
+// (parse → set restaurant = restaurants-info[id] → JSON.stringify). Robuste quel
+// que soit le formatage (single ou multi-ligne) — l'ancien regex single-line
+// échouait quand un linter dépliait les objets en multi-ligne.
+function patchMockDataById(file, id /*, photos (déjà dans restaurants-info) */) {
     if (!fs.existsSync(file)) return false;
-    const lines = fs.readFileSync(file, 'utf8').split('\n');
-    let inTarget = false, patched = false;
-    for (let i = 0; i < lines.length; i++) {
-        if (new RegExp(`^\\s*"id":\\s*"${id}"\\s*,`).test(lines[i])) { inTarget = true; continue; }
-        if (inTarget && /^\s*"id":\s*"/.test(lines[i])) break; // post suivant sans match
-        if (inTarget) {
-            const m = lines[i].match(/^(\s*)"restaurant":\s*(\{.*\})(,?)\s*$/);
-            if (m) {
-                let obj; try { obj = JSON.parse(m[2]); } catch { continue; }
-                obj.photos = photos;
-                lines[i] = `${m[1]}"restaurant": ${JSON.stringify(obj)}${m[3]}`;
-                patched = true;
-                break;
-            }
-        }
+    try {
+        const info = JSON.parse(fs.readFileSync(INFO_PATH, 'utf8'));
+        const t = fs.readFileSync(file, 'utf8');
+        const mi = t.indexOf('export const mockRecipes: Recipe[] =');
+        const b = t.indexOf('[', t.indexOf('=', mi));
+        const e = t.lastIndexOf(']');
+        const arr = JSON.parse(t.slice(b, e + 1));
+        const r = arr.find(x => String(x.id) === String(id));
+        if (!r) return false;
+        r.restaurant = info[String(id)];
+        if (info[String(id)] && info[String(id)].address) r.address = info[String(id)].address;
+        fs.writeFileSync(file, t.slice(0, b) + JSON.stringify(arr, null, 4) + t.slice(e + 1));
+        return true;
+    } catch (err) {
+        console.log('   ⚠️ patch mockData :', err.message);
+        return false;
     }
-    if (patched) fs.writeFileSync(file, lines.join('\n'));
-    return patched;
 }
 
 // Pousse les données mises à jour sur GitHub → déploiement Vercel automatique.
