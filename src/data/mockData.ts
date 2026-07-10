@@ -2,11 +2,41 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/07/2026 20:19:43
- * Total: 516 recettes
+ * Dernière mise à jour: 10/07/2026 20:30:58
+ * Total: 517 recettes
  */
-export const exportSyncId = "1783714783030";
+export const exportSyncId = "1783715458575";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6745",
+        "title": "Le Balthazar 😍 #pourtoii #fypシ #foryoupage",
+        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7242779213143559451\" data-video-id=\"7242779213143559451\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7242779213143559451\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Le Balthazar 😍 #pourtoii #fypシ #foryoupage"
+        ],
+        "tags": [
+            "resto-brasserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "",
+        "restaurant": {
+            "subType": "brasserie"
+        }
+    },
     {
         "id": "6743",
         "title": "Snickers glacés maison",
