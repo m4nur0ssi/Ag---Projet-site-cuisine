@@ -45,18 +45,14 @@ async function enrichRestaurant(name, cityHint = 'Paris') {
     const key = process.env.FSQ_API_KEY;
     if (!key || !name) return null;
     try {
-        // 1) Recherche → fsq_place_id (catégorie restauration 13000)
-        const searchUrl = `${BASE}/places/search?query=${encodeURIComponent(name)}&near=${encodeURIComponent(cityHint)}&limit=1`;
+        // UN SEUL appel (search avec fields) → 2× moins de requêtes (le plan gratuit
+        // est limité, on évite les 429). rating/price/hours inclus s'ils sont dispo.
+        const fields = 'name,location,tel,website,rating,price,hours';
+        const searchUrl = `${BASE}/places/search?query=${encodeURIComponent(name)}&near=${encodeURIComponent(cityHint)}&limit=1&fields=${fields}`;
         const search = await fetchJson(searchUrl, key);
         const place = search && search.results && search.results[0];
-        const id = place && (place.fsq_place_id || place.fsq_id);
-        if (!id) { console.log(`   🔎 Foursquare : aucun lieu pour "${name}"`); return null; }
-
-        // La recherche renvoie déjà des champs → on les prend, puis on complète via détails.
-        let info = pick(place);
-        const det = await fetchJson(`${BASE}/places/${id}`, key);
-        if (det) info = { ...info, ...pick(det) };
-
+        if (!place) { console.log(`   🔎 Foursquare : aucun lieu pour "${name}"`); return null; }
+        const info = pick(place);
         return Object.keys(info).length ? info : null;
     } catch (e) {
         console.log('   ⚠️ Foursquare échec :', e.message);
