@@ -150,7 +150,10 @@
     ]
   },
   "6745": {
-    "subType": "brasserie"
+    "subType": "brasserie",
+    "address": "Rue Derrière les Murs de Bavay, 59300 Valenciennes",
+    "terrace": true,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=50.3603221,3.5212661"
   },
   "_comment": "Infos restaurant réelles vérifiées (web, juillet 2026). Clé = id recette WordPress. Fusionné dans mockData au sync (sync-recipes.js) → survit aux régénérations. subType ∈ brasserie|italien|asiatique|gastro|salon-de-the."
 }
