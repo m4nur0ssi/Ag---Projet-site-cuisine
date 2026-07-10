@@ -1606,7 +1606,10 @@
     }
 
     .heroGrid {
-        grid-template-columns: 1fr; /* On garde le grid auto-layout 1 col */
+        /* minmax(0,1fr) : la piste peut rétrécir SOUS son min-content.
+           Sans ça, une galerie resto à 6 miniatures (min-content ≈ 424px) gonfle
+           la piste au-delà du viewport → hero décalé à droite, pas centré. */
+        grid-template-columns: minmax(0, 1fr);
         gap: 24px;
         text-align: center;
         width: 100%;

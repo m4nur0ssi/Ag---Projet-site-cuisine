@@ -1570,7 +1570,9 @@
     }
 
     .heroGrid {
-        grid-template-columns: 1fr; /* On garde le grid auto-layout 1 col */
+        /* minmax(0,1fr) : piste rétrécissable sous min-content (galerie resto 6 photos
+           = min-content ≈ 424px sinon → hero décalé, pas centré). */
+        grid-template-columns: minmax(0, 1fr);
         gap: 24px;
         text-align: center;
         width: 100%;

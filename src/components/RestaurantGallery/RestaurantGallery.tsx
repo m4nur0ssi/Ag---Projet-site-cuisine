@@ -38,7 +38,7 @@ export default function RestaurantGallery({ photos, alt, onNextRestaurant, onPre
     };
 
     return (
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '100%', minWidth: 0 }}>
             {/* Photo principale — cadre stylé */}
             <div
                 onTouchStart={onTouchStart}
