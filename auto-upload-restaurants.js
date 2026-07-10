@@ -146,17 +146,22 @@ function renumberFiles(dir, orderedNames) {
     }
 }
 
-// Normalisation photo AVANT upload (sips, natif macOS) — pour un bel affichage :
-//   • grand côté borné dans [MIN_DIM, MAX_DIM] : on RÉDUIT les trop grandes (upload
-//     fiable, WP bloque les gros poids) et on AGRANDIT légèrement les trop petites
-//     (une photo 600px étirée dans le cadre ~544px desktop paraît pixelisée).
-//   • ré-encodage JPEG qualité élevée : supprime les artefacts de compression
-//     (ex. Ble Coeur pixelisé venait d'une qualité 68 trop agressive).
+// Normalisation photo AVANT upload (sips, natif macOS).
+// CONTRAINTE CLÉ : le serveur WP hangue (timeout) au-delà de ~150-200KB par image.
+// → on vise une TAILLE DE FICHIER cible (TARGET_BYTES) en baissant la qualité JPEG par
+//   paliers jusqu'à passer sous le budget. On RÉDUIT les images trop grandes, mais on
+//   n'AGRANDIT JAMAIS (un upscale ne gagne aucun détail et ne fait qu'alourdir le poids
+//   → repassait au-dessus de la limite WP → c'était la cause des timeouts).
+//   Le cadre d'affichage fait ~544px (desktop) / ~340px (mobile) : ~1280px de grand côté
+//   reste net en retina tout en tenant sous le budget.
 // Renvoie {path, tmp, ext, mime} ; tmp=true → fichier temporaire à supprimer.
-const MAX_DIM = Number(process.env.RESTO_MAX_DIM) || 1600;
-const MIN_DIM = Number(process.env.RESTO_MIN_DIM) || 1080; // grand côté minimal visé
-const JPG_QUALITY = Number(process.env.RESTO_JPG_QUALITY) || 85;
-const RESIZE_ABOVE = 150 * 1024; // fichier plus petit ET déjà bien dimensionné → on garde l'original
+const MAX_DIM = Number(process.env.RESTO_MAX_DIM) || 1280;
+const TARGET_BYTES = Number(process.env.RESTO_MAX_BYTES) || 200 * 1024; // plafond upload WP fiable
+// Candidats (grand côté, qualité) du meilleur au plus léger : on prend le PREMIER qui
+// tient sous TARGET_BYTES. sips ré-encode assez lourd → une seule baisse de qualité ne
+// suffit pas pour les grandes photos, il faut aussi réduire la dimension.
+const DIMS = [1280, 1080, 950, 820, 700];
+const QS = [80, 68, 58];
 
 function imgLongSide(src) {
     try {
@@ -168,22 +173,39 @@ function imgLongSide(src) {
     return 0;
 }
 
+function encodeJpeg(src, dim, q) {
+    const tmp = path.join(os.tmpdir(), `resto_up_${Date.now()}_${dim}_${q}.jpg`);
+    const args = ['-s', 'format', 'jpeg', '-s', 'formatOptions', String(q)];
+    if (dim > 0) args.push('-Z', String(dim));
+    args.push(src, '--out', tmp);
+    execFileSync('sips', args, { stdio: 'ignore' });
+    if (fs.existsSync(tmp) && fs.statSync(tmp).size > 0) return { path: tmp, tmp: true, ext: '.jpg', mime: 'image/jpeg', bytes: fs.statSync(tmp).size };
+    return null;
+}
+
 function resizeForUpload(src) {
     try {
         const long = imgLongSide(src);
-        let target = long; // grand côté cible
-        if (long && long > MAX_DIM) target = MAX_DIM;        // trop grande → réduire
-        else if (long && long < MIN_DIM) target = MIN_DIM;   // trop petite → agrandir (net dans le cadre)
-        const needsResize = long > 0 && target !== long;
-        const small = fs.statSync(src).size <= RESIZE_ABOVE;
-        // Déjà bien dimensionnée ET fichier léger → inutile de retoucher.
-        if (!needsResize && small) return { path: src, tmp: false };
-        const tmp = path.join(os.tmpdir(), `resto_up_${Date.now()}_${path.basename(src, path.extname(src))}.jpg`);
-        const args = ['-s', 'format', 'jpeg', '-s', 'formatOptions', String(JPG_QUALITY)];
-        if (target > 0) args.push('-Z', String(target)); // -Z agrandit OU réduit selon la cible
-        args.push(src, '--out', tmp);
-        execFileSync('sips', args, { stdio: 'ignore' });
-        if (fs.existsSync(tmp) && fs.statSync(tmp).size > 0) return { path: tmp, tmp: true, ext: '.jpg', mime: 'image/jpeg' };
+        // Déjà sous le budget ET pas trop grande → garder l'original tel quel.
+        if (fs.statSync(src).size <= TARGET_BYTES && (!long || long <= MAX_DIM)) return { path: src, tmp: false };
+        // Balaye (dimension, qualité) du meilleur au plus léger ; garde le 1er ≤ budget.
+        let best = null; // plus petit obtenu (repli si aucun ne tient le budget)
+        for (const d of DIMS) {
+            if (long && d > long) continue; // jamais d'upscale
+            for (const q of QS) {
+                const cand = encodeJpeg(src, d, q);
+                if (!cand) continue;
+                if (cand.bytes <= TARGET_BYTES) {
+                    if (best && best.tmp) { try { fs.unlinkSync(best.path); } catch { /* */ } }
+                    return cand; // 1er sous le budget = meilleur compromis qualité/poids
+                }
+                if (!best || cand.bytes < best.bytes) {
+                    if (best && best.tmp) { try { fs.unlinkSync(best.path); } catch { /* */ } }
+                    best = cand;
+                } else if (cand.tmp) { try { fs.unlinkSync(cand.path); } catch { /* */ } }
+            }
+        }
+        if (best) return best; // aucun sous budget → le plus léger obtenu
     } catch { /* sips absent ou échec → upload original */ }
     return { path: src, tmp: false };
 }
