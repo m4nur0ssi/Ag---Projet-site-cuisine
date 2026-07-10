@@ -40,6 +40,7 @@ export interface RestaurantInfo {
     phone?: string;                // numéro de téléphone
     photos?: string[];             // galerie de photos du restaurant
     mapsUrl?: string;              // lien Google Maps du lieu (Google Places)
+    blurb?: string;                // présentation manuelle du resto (prime sur le contenu WP au sync)
 }
 
 

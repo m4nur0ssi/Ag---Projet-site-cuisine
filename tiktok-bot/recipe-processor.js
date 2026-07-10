@@ -8,6 +8,35 @@ const { sendNotificationEmail } = require('./email-notifier');
 const { callGemini } = require('./gemini-config');
 const { callClaude } = require('./claude-config');
 
+// Génère un texte de présentation cohérent et accrocheur pour une fiche RESTAURANT.
+// Remplace l'ancien fallback générique ("Découvrez cette pépite... de TikTok !") qui
+// n'avait aucun sens sur une fiche resto (cf. Maxim's). IA : Gemini (gratuit) → Claude.
+// Renvoie 2-3 phrases FR (texte brut) ou '' si les deux échouent (quota, etc.).
+async function generateRestaurantBlurb(name, caption) {
+    const ctx = (caption || '').replace(/#[^\s#]+/g, ' ').replace(/https?:\/\/\S+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 400);
+    const prompt = `Tu écris la présentation d'un restaurant pour une fiche web (rubrique « Comme au resto »).
+Restaurant : « ${name} ».
+Contexte éventuel (légende de la vidéo, peut être vide ou hors-sujet) : "${ctx}"
+
+Écris 2 à 3 phrases en français, chaleureuses et donnant envie d'y aller : ambiance, type de cuisine, spécialités si tu peux les déduire du nom ou du contexte. Reste factuel et crédible ; n'invente PAS d'adresse, de prix ni d'horaires. N'utilise AUCUN emoji, AUCUN hashtag. Ne mentionne JAMAIS TikTok ni la vidéo. Maximum ~320 caractères.
+Réponds UNIQUEMENT par le texte de présentation, sans guillemets ni préambule.`;
+    const clean = (txt) => {
+        if (!txt || typeof txt !== 'string') return '';
+        let t = txt.trim().replace(/^["'«»\s]+|["'«»\s]+$/g, '').replace(/\s+/g, ' ').trim();
+        if (/tiktok|hashtag|#\w/i.test(t)) t = t.replace(/#[^\s#]+/g, '').replace(/\bsur tiktok\b/gi, '').trim();
+        return t.length >= 20 ? t.slice(0, 500) : '';
+    };
+    try {
+        const g = clean(await callGemini(prompt, 'gemini-2.0-flash', false));
+        if (g) return g;
+    } catch (e) { console.log(`   ⚠️ blurb Gemini: ${e.message}`); }
+    try {
+        const c = clean(await callClaude(prompt, 'claude-sonnet-4-6'));
+        if (c) return c;
+    } catch (e) { console.log(`   ⚠️ blurb Claude: ${e.message}`); }
+    return '';
+}
+
 // Extrait le NOM du restaurant depuis la légende TikTok (pour le titre de la fiche).
 // Priorité au texte après un pin 📍 (les créateurs y mettent le nom du lieu).
 function extractRestaurantName(desc) {
@@ -507,6 +536,17 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         if (extracted) analysis.recipeName = extracted;
         else if (!analysis.recipeName || analysis.recipeName.length > 60) analysis.recipeName = (metadata?.title || title || 'Restaurant').split(/[#\n]/)[0].trim().slice(0, 60);
         console.log(`   🍽️ Titre resto : "${analysis.recipeName}"`);
+
+        // Présentation cohérente générée par IA (remplace le fallback générique).
+        console.log(`   ✍️ Génération de la présentation du restaurant par l'IA...`);
+        const blurb = await generateRestaurantBlurb(analysis.recipeName, description || metadata?.title || '');
+        if (blurb) {
+            analysis.summary = blurb;      // → paragraphe d'intro WordPress (wordpress-poster)
+            analysis.description = blurb;  // cohérence interne
+            console.log(`   ✅ Présentation : "${blurb.slice(0, 90)}${blurb.length > 90 ? '…' : ''}"`);
+        } else {
+            console.log(`   ⚠️ Présentation IA indisponible → fallback générique wordpress-poster.`);
+        }
     }
 
     let photoUrl = '';

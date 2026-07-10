@@ -241,14 +241,25 @@ function extractRecipeData(post) {
     // Description propre (avant le plugin)
     let description = decodeHtmlEntities(rawDescription.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim());
     if (description.length > 250) description = description.substring(0, 247) + "...";
+    // Fiche restaurant : un "blurb" manuel dans restaurants-info.json prime (durable au sync).
+    {
+        const rInfo = post.categories?.includes(WP_RESTAURANT_CAT) ? RESTAURANTS_INFO[String(post.id)] : null;
+        if (rInfo?.blurb) description = rInfo.blurb;
+    }
 
     return {
         id: String(post.id),
         title: decodeHtmlEntities(post.title.rendered),
         description: description,
-        image: post._embedded?.['wp:featuredmedia']?.[0]?.source_url 
-            ? `/api/image-proxy?url=${encodeURIComponent(post._embedded['wp:featuredmedia'][0].source_url.replace(WORDPRESS_LOCAL_IP, WORDPRESS_PUBLIC_IP))}&v=${new Date(post.modified).getTime()}`
-            : "/images/recipe-placeholder.svg",
+        image: (() => {
+            // Fiche restaurant avec photos → vignette carte = photo 1 (durable, ne dépend
+            // pas de l'image à la une WP). Sinon : image à la une WP, sinon placeholder.
+            const rInfo = post.categories?.includes(WP_RESTAURANT_CAT) ? RESTAURANTS_INFO[String(post.id)] : null;
+            if (rInfo?.photos?.[0]) return rInfo.photos[0];
+            return post._embedded?.['wp:featuredmedia']?.[0]?.source_url
+                ? `/api/image-proxy?url=${encodeURIComponent(post._embedded['wp:featuredmedia'][0].source_url.replace(WORDPRESS_LOCAL_IP, WORDPRESS_PUBLIC_IP))}&v=${new Date(post.modified).getTime()}`
+                : "/images/recipe-placeholder.svg";
+        })(),
         category: (() => {
             // Fiches restaurant (catégorie WordPress "Restaurants") → catégorie restaurant.
             if (post.categories?.includes(WP_RESTAURANT_CAT)) return "restaurant";

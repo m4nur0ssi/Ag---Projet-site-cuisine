@@ -123,18 +123,67 @@ function findRestaurant(restaurants, folderName) {
 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
-// Le serveur WP est lent (~30s/upload) et bloque au-delà d'un certain poids.
-// On réduit chaque photo (sips, natif macOS) : plus léger = upload fiable + mieux
-// pour le web. Renvoie {path, tmp} ; tmp=true → fichier temporaire à supprimer.
-const MAX_DIM = Number(process.env.RESTO_MAX_DIM) || 1400;
-const JPG_QUALITY = Number(process.env.RESTO_JPG_QUALITY) || 68;
-const RESIZE_ABOVE = 150 * 1024; // en dessous, on garde l'original
+// Renomme les fichiers du dossier en 1,2,3… selon l'ordre voulu (ordre de dépôt).
+// La photo « 1 » devient l'image principale + l'image à la une. Renommage en 2 temps
+// (noms temporaires d'abord) pour éviter d'écraser un fichier déjà nommé "1.jpg".
+// Renvoie la liste des nouveaux noms dans l'ordre ; en cas d'échec, renvoie l'entrée.
+function renumberFiles(dir, orderedNames) {
+    try {
+        const tmps = orderedNames.map((f, k) => {
+            const ext = path.extname(f).toLowerCase();
+            const tmp = `.__reorder_${k}${ext}`;
+            fs.renameSync(path.join(dir, f), path.join(dir, tmp));
+            return { tmp, ext };
+        });
+        return tmps.map((x, k) => {
+            const final = `${k + 1}${x.ext}`;
+            fs.renameSync(path.join(dir, x.tmp), path.join(dir, final));
+            return final;
+        });
+    } catch (e) {
+        console.log('   ⚠️ renommage 1/2/3 impossible :', e.message);
+        return orderedNames;
+    }
+}
+
+// Normalisation photo AVANT upload (sips, natif macOS) — pour un bel affichage :
+//   • grand côté borné dans [MIN_DIM, MAX_DIM] : on RÉDUIT les trop grandes (upload
+//     fiable, WP bloque les gros poids) et on AGRANDIT légèrement les trop petites
+//     (une photo 600px étirée dans le cadre ~544px desktop paraît pixelisée).
+//   • ré-encodage JPEG qualité élevée : supprime les artefacts de compression
+//     (ex. Ble Coeur pixelisé venait d'une qualité 68 trop agressive).
+// Renvoie {path, tmp, ext, mime} ; tmp=true → fichier temporaire à supprimer.
+const MAX_DIM = Number(process.env.RESTO_MAX_DIM) || 1600;
+const MIN_DIM = Number(process.env.RESTO_MIN_DIM) || 1080; // grand côté minimal visé
+const JPG_QUALITY = Number(process.env.RESTO_JPG_QUALITY) || 85;
+const RESIZE_ABOVE = 150 * 1024; // fichier plus petit ET déjà bien dimensionné → on garde l'original
+
+function imgLongSide(src) {
+    try {
+        const out = execFileSync('sips', ['-g', 'pixelWidth', '-g', 'pixelHeight', src], { encoding: 'utf8' });
+        const w = Number((out.match(/pixelWidth:\s*(\d+)/) || [])[1]);
+        const h = Number((out.match(/pixelHeight:\s*(\d+)/) || [])[1]);
+        if (w && h) return Math.max(w, h);
+    } catch { /* sips absent */ }
+    return 0;
+}
+
 function resizeForUpload(src) {
     try {
-        if (fs.statSync(src).size <= RESIZE_ABOVE) return { path: src, tmp: false };
-        const tmp = path.join(os.tmpdir(), `resto_up_${Date.now()}_${path.basename(src)}`);
-        execFileSync('sips', ['-Z', String(MAX_DIM), '-s', 'formatOptions', String(JPG_QUALITY), src, '--out', tmp], { stdio: 'ignore' });
-        if (fs.existsSync(tmp) && fs.statSync(tmp).size > 0) return { path: tmp, tmp: true };
+        const long = imgLongSide(src);
+        let target = long; // grand côté cible
+        if (long && long > MAX_DIM) target = MAX_DIM;        // trop grande → réduire
+        else if (long && long < MIN_DIM) target = MIN_DIM;   // trop petite → agrandir (net dans le cadre)
+        const needsResize = long > 0 && target !== long;
+        const small = fs.statSync(src).size <= RESIZE_ABOVE;
+        // Déjà bien dimensionnée ET fichier léger → inutile de retoucher.
+        if (!needsResize && small) return { path: src, tmp: false };
+        const tmp = path.join(os.tmpdir(), `resto_up_${Date.now()}_${path.basename(src, path.extname(src))}.jpg`);
+        const args = ['-s', 'format', 'jpeg', '-s', 'formatOptions', String(JPG_QUALITY)];
+        if (target > 0) args.push('-Z', String(target)); // -Z agrandit OU réduit selon la cible
+        args.push(src, '--out', tmp);
+        execFileSync('sips', args, { stdio: 'ignore' });
+        if (fs.existsSync(tmp) && fs.statSync(tmp).size > 0) return { path: tmp, tmp: true, ext: '.jpg', mime: 'image/jpeg' };
     } catch { /* sips absent ou échec → upload original */ }
     return { path: src, tmp: false };
 }
@@ -183,6 +232,32 @@ async function uploadImage(imagePath, fileName, mimeType) {
     throw lastErr;
 }
 
+// Définit l'IMAGE À LA UNE du post <postId> = pièce jointe <attachmentId> (photo n°1).
+// → la vignette de la CARTE (recipe.image = featured media WP) affiche la 1re photo,
+//   de façon DURABLE : sync-recipes.js relit le featured media à chaque synchro.
+async function setFeaturedImage(postId, attachmentId) {
+    const xml = `<?xml version="1.0"?>
+<methodCall><methodName>wp.editPost</methodName><params>
+<param><value><int>1</int></value></param>
+<param><value><string>${USER}</string></value></param>
+<param><value><string>${PASS}</string></value></param>
+<param><value><int>${postId}</int></value></param>
+<param><value><struct>
+<member><name>post_thumbnail</name><value><int>${attachmentId}</int></value></member>
+</struct></value></param>
+</params></methodCall>`;
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), Number(process.env.WP_TIMEOUT_MS) || 90000);
+    try {
+        const res = await fetch(WP_URL, { method: 'POST', headers: { 'Content-Type': 'text/xml' }, body: xml, signal: ctrl.signal });
+        const text = await res.text();
+        if (/<fault>/.test(text)) throw new Error('WP fault: ' + (text.match(/<string>([^<]+)<\/string>/) || [])[1]);
+        return true;
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
 // URL WP publique → même format que les recettes : /api/image-proxy?url=...&v=...
 function toProxyUrl(wpUrl) {
     let u = wpUrl.replace('192.168.1.200', WP_PUBLIC_HOST);
@@ -212,8 +287,11 @@ function patchMockDataById(file, id /*, photos (déjà dans restaurants-info) */
         const arr = JSON.parse(t.slice(b, e + 1));
         const r = arr.find(x => String(x.id) === String(id));
         if (!r) return false;
-        r.restaurant = info[String(id)];
-        if (info[String(id)] && info[String(id)].address) r.address = info[String(id)].address;
+        const inf = info[String(id)];
+        r.restaurant = inf;
+        if (inf && inf.address) r.address = inf.address;
+        // Vignette carte immédiate = 1re photo (avant même la prochaine synchro WP).
+        if (inf && Array.isArray(inf.photos) && inf.photos[0]) r.image = inf.photos[0];
         fs.writeFileSync(file, t.slice(0, b) + JSON.stringify(arr, null, 4) + t.slice(e + 1));
         return true;
     } catch (err) {
@@ -274,34 +352,48 @@ async function processDir(dirPath, restaurants) {
     }
     // Ordre = ordre de DÉPÔT dans le dossier (date de création), pas alphabétique.
     // → tu déposes les photos dans l'ordre voulu, la 1re devient la photo principale.
-    const imgs = fs.readdirSync(dirPath)
+    const dropped = fs.readdirSync(dirPath)
         .filter(f => EXT_TYPE[path.extname(f).toLowerCase()] && !f.startsWith('.'))
         .map(f => { let t = 0; try { const s = fs.statSync(path.join(dirPath, f)); t = s.birthtimeMs || s.mtimeMs || 0; } catch { /* */ } return { f, t }; })
         .sort((a, b) => (a.t - b.t) || naturalSort(a.f, b.f))
         .map(x => x.f);
-    if (imgs.length === 0) {
+    if (dropped.length === 0) {
         console.log(`⚠️  "${name}" → aucune image dans le dossier. (ignoré)`);
         return false;
     }
+    // Renomme physiquement en 1,2,3… dans l'ordre de dépôt (photo 1 = à la une).
+    const imgs = renumberFiles(dirPath, dropped);
     try {
         console.log(`📸 "${name}" → restaurant #${resto.id} (${decodeEntities(resto.title)}) — ${imgs.length} photo(s)`);
         const photos = [];
+        let firstMediaId = null;
         for (let k = 0; k < imgs.length; k++) {
             const f = path.join(dirPath, imgs[k]);
-            const ext = path.extname(f).toLowerCase();
-            const fileName = `resto_${resto.id}_${k + 1}_${Date.now()}${ext}`;
             const r = resizeForUpload(f);
-            let url;
+            const upExt = r.ext || path.extname(f).toLowerCase();
+            const upMime = r.mime || EXT_TYPE[upExt] || 'image/jpeg';
+            const fileName = `resto_${resto.id}_${k + 1}_${Date.now()}${upExt}`;
+            let up;
             try {
-                ({ url } = await uploadImage(r.path, fileName, EXT_TYPE[ext]));
+                up = await uploadImage(r.path, fileName, upMime);
             } finally {
                 if (r.tmp) { try { fs.unlinkSync(r.path); } catch { /* */ } }
             }
-            if (!url) throw new Error('URL manquante après upload');
-            photos.push(toProxyUrl(url));
-            console.log(`   ✅ ${imgs[k]} → ${url}`);
+            if (!up || !up.url) throw new Error('URL manquante après upload');
+            if (k === 0) firstMediaId = up.id; // photo 1 → image à la une
+            photos.push(toProxyUrl(up.url));
+            console.log(`   ✅ ${imgs[k]} → ${up.url}`);
             if (k < imgs.length - 1) await sleep(600); // souffle entre 2 uploads WP
 
+        }
+        // Image à la une du post = photo 1 → vignette de la carte (durable au sync).
+        if (firstMediaId) {
+            try {
+                await setFeaturedImage(resto.id, firstMediaId);
+                console.log(`   🖼️ Image à la une définie (photo 1, média #${firstMediaId}) → vignette carte.`);
+            } catch (e) {
+                console.log(`   ⚠️ Image à la une non définie (${e.message}). Vignette locale posée quand même.`);
+            }
         }
         writeInfo(resto.id, photos);
         let mockOk = false;

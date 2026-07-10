@@ -41,6 +41,7 @@ export interface RestaurantInfo {
     phone?: string;
     photos?: string[];
     mapsUrl?: string;
+    blurb?: string;
 }
 
 export interface Review {
