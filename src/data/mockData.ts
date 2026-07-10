@@ -32,12 +32,15 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": "Rue Royale, 75008 Paris",
+        "address": "3 Rue Royale, 75008 Paris",
         "restaurant": {
             "subType": "brasserie",
-            "address": "Rue Royale, 75008 Paris",
+            "address": "3 Rue Royale, 75008 Paris",
             "phone": "+33 1 42 65 27 94",
-            "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8673150,2.3222252"
+            "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8673150,2.3222252",
+            "priceLevel": 3,
+            "rating": 4.3,
+            "website": "https://www.maxims-de-paris.com"
         }
     },
     {
@@ -215,7 +218,9 @@ export const mockRecipes: Recipe[] = [
         "isFavorite": false,
         "address": "",
         "restaurant": {
-            "subType": "salon-de-the"
+            "subType": "salon-de-the",
+            "priceLevel": 2,
+            "rating": 4.5
         }
     },
     {
@@ -9148,7 +9153,8 @@ export const mockRecipes: Recipe[] = [
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_5_1783591823228.jpeg&v=1783591827076",
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_6_1783591827677.jpg&v=1783591871364",
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_3108_7_1783591871965.jpg&v=1783591875961"
-            ]
+            ],
+            "rating": 4.5
         }
     },
     {
@@ -37167,7 +37173,8 @@ export const mockRecipes: Recipe[] = [
             "website": "https://www.ippudo.fr/",
             "hours": "Tous les jours, midi & soir",
             "address": "14 Rue Grégoire de Tours, 75006 Paris",
-            "phone": "+33 1 42 38 21 99"
+            "phone": "+33 1 42 38 21 99",
+            "rating": 4.3
         }
     },
     {
@@ -37220,7 +37227,8 @@ export const mockRecipes: Recipe[] = [
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_2_1783590812772.jpg&v=1783590877155",
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_3_1783590877756.jpg&v=1783590928747",
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_115_4_1783590929348.jpg&v=1783590996033"
-            ]
+            ],
+            "rating": 4.4
         }
     }
 ];
