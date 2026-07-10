@@ -956,7 +956,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <div className={styles.restoTiles}>
                                     {r.priceLevel && (
                                         <div className={styles.restoTile}>
-                                            <span className={styles.restoTileIcon}>💶</span>
                                             <span className={styles.restoTileValue}>
                                                 {'€'.repeat(r.priceLevel)}<span className={styles.restoTileMuted}>{'€'.repeat(3 - r.priceLevel)}</span>
                                             </span>
@@ -965,7 +964,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                     )}
                                     {typeof r.rating === 'number' && (
                                         <a className={`${styles.restoTile} ${styles.restoTileLink}`} href={r.tripAdvisorUrl || '#'} target="_blank" rel="noopener noreferrer">
-                                            <span className={styles.restoTileIcon}>🦉</span>
                                             <span className={styles.restoTileValue}>{r.rating.toFixed(1)} ★</span>
                                             <span className={styles.restoTileLabel}>{r.reviewsCount ? `${r.reviewsCount} avis` : 'Tripadvisor'}</span>
                                         </a>
@@ -1014,10 +1012,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
                                 <div className={styles.restoLinks}>
                                     {r.website && (
-                                        <a className={styles.restoLinkBtn} href={r.website} target="_blank" rel="noopener noreferrer">🌐 Site officiel</a>
+                                        <a className={styles.restoLinkBtn} href={r.website} target="_blank" rel="noopener noreferrer">Site officiel</a>
                                     )}
                                     {r.tripAdvisorUrl && (
-                                        <a className={styles.restoLinkBtn} href={r.tripAdvisorUrl} target="_blank" rel="noopener noreferrer">🦉 Tripadvisor</a>
+                                        <a className={styles.restoLinkBtn} href={r.tripAdvisorUrl} target="_blank" rel="noopener noreferrer">Tripadvisor</a>
                                     )}
                                 </div>
 

@@ -139,14 +139,12 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose }: 
                                 mass: 0.6
                             }}
                         >
-                            {/* Handle visuel de swipe - Uniquement ça permet de dragger physiquement la feuille */}
-                            <div 
+                            {/* Zone de drag (invisible) — permet de glisser la feuille, sans trait visible */}
+                            <div
                                 className={styles.dragHandleContainer}
                                 onPointerDown={(e) => controls.start(e)}
-                                style={{ width: '100%', height: '40px', position: 'absolute', top: 0, zIndex: 100, display: 'flex', justifyContent: 'center', paddingTop: '12px' }}
-                            >
-                                <div className={styles.dragHandle} style={{ position: 'relative', top: 0 }} />
-                            </div>
+                                style={{ width: '100%', height: '40px', position: 'absolute', top: 0, zIndex: 100 }}
+                            />
 
                             {/* Croix fixe — hors du scrollArea pour rester cliquable */}
                             <button className={styles.closeBtn} onClick={onClose}>✕</button>
