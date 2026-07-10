@@ -2,11 +2,103 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/07/2026 20:16:56
- * Total: 510 recettes
+ * Dernière mise à jour: 10/07/2026 06:36:20
+ * Total: 511 recettes
  */
-export const exportSyncId = "1783628216700";
+export const exportSyncId = "1783665380346";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6708",
+        "title": "Maxim's",
+        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7438673795382070560\" data-video-id=\"7438673795382070560\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7438673795382070560\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Un restaurant absolument ICONIQUE à Paris 🤩 📍 Maxim's  #maxims #sortiraparis #Favoriteplace #TikTokFood #bonneadresse #paris"
+        ],
+        "tags": [
+            "resto-brasserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "Rue Royale, 75008 Paris",
+        "restaurant": {
+            "subType": "brasserie",
+            "address": "Rue Royale, 75008 Paris",
+            "phone": "+33 1 42 65 27 94",
+            "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8673150,2.3222252"
+        }
+    },
+    {
+        "id": "1214",
+        "title": "Ble coeur",
+        "description": "      Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2F249d51d6-756e-4834-bd95-e7e15531e425.jpg&v=1783638691000",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous les appétits !",
+            "AU PROGRAMME - Une carte le midi, une le soir, et suggestions qui changent tous les jours. En cuisine, on mise sur le frais et les produits du marché.",
+            "GOURMET - Les plats flirtent avec la gastronomie tout en restant simples et bien exécutés : foie gras poêlé sur pain d'épice maison, risotto aux girolles, souris d'agneau confite ou encore canard à l'orange..",
+            "Mon plat préféré : j'ai bien aimé le carpaccio de tomates avec sa belle burrata",
+            " l'accueil, la simplicité de la décoration soignée, le service, les plats",
+            "  le prix même si c'est logique",
+            "au fond avec vue sur la cuisine😉",
+            "82, allee de Montfermeil, 93340, Le Raincy",
+            "Parking Montfermeil (110m)",
+            "RER E Le Raincy - Villemomble - Montfermeil",
+            "TheFork, a Trip advisor company"
+        ],
+        "tags": [
+            "blé",
+            "coeur",
+            "resto-brasserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "82 Allée de Montfermeil, 93340 Le Raincy",
+        "restaurant": {
+            "subType": "brasserie",
+            "priceLevel": 2,
+            "terrace": true,
+            "rating": 4.6,
+            "reviewsCount": 831,
+            "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g6908306-d4698116-Reviews-Le_Ble_Coeur-Le_Raincy_Seine_Saint_Denis_Ile_de_France.html",
+            "website": "https://leblecoeur.com",
+            "hours": "Mar–Sam 12h–14h30 & 19h–22h30 · Dim 12h–16h",
+            "address": "82 Allée de Montfermeil, 93340 Le Raincy",
+            "phone": "+33 1 43 01 10 11",
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_1_1783631101315.jpg&v=1783631109619",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_2_1783631110221.jpg&v=1783631115730",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_3_1783631116331.jpg&v=1783631121583",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_4_1783631122184.jpeg&v=1783631127090",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_5_1783631127692.jpg&v=1783631195584",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1214_6_1783631196185.jpg&v=1783631202495"
+            ]
+        }
+    },
     {
         "id": "6692",
         "title": "Violetta et Alfredo",
@@ -19551,57 +19643,6 @@ export const mockRecipes: Recipe[] = [
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
-    },
-    {
-        "id": "1214",
-        "title": "Ble coeur - Le Raincy",
-        "description": "      Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F09%2F249d51d6-756e-4834-bd95-e7e15531e425.jpg&v=1780587711000",
-        "category": "restaurant",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Vous cherchez une adresse gourmande au Raincy, à quelques encablures de la capitale ? Poussez la porte de ce restaurant ! Le Blé Cœur vous accueille dans son intérieur contemporain et met les petits plats dans les grands pour satisfaire tous les appétits !",
-            "AU PROGRAMME - Une carte le midi, une le soir, et suggestions qui changent tous les jours. En cuisine, on mise sur le frais et les produits du marché.",
-            "GOURMET - Les plats flirtent avec la gastronomie tout en restant simples et bien exécutés : foie gras poêlé sur pain d'épice maison, risotto aux girolles, souris d'agneau confite ou encore canard à l'orange..",
-            "Mon plat préféré : j'ai bien aimé le carpaccio de tomates avec sa belle burrata",
-            " l'accueil, la simplicité de la décoration soignée, le service, les plats",
-            "  le prix même si c'est logique",
-            "au fond avec vue sur la cuisine😉",
-            "82, allee de Montfermeil, 93340, Le Raincy",
-            "Parking Montfermeil (110m)",
-            "RER E Le Raincy - Villemomble - Montfermeil",
-            "TheFork, a Trip advisor company"
-        ],
-        "tags": [
-            "blé",
-            "coeur",
-            "resto-brasserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": "82 Allée de Montfermeil, 93340 Le Raincy",
-        "restaurant": {
-            "subType": "brasserie",
-            "priceLevel": 2,
-            "terrace": true,
-            "rating": 4.6,
-            "reviewsCount": 831,
-            "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g6908306-d4698116-Reviews-Le_Ble_Coeur-Le_Raincy_Seine_Saint_Denis_Ile_de_France.html",
-            "website": "https://leblecoeur.com",
-            "hours": "Mar–Sam 12h–14h30 & 19h–22h30 · Dim 12h–16h",
-            "address": "82 Allée de Montfermeil, 93340 Le Raincy",
-            "phone": "+33 1 43 01 10 11"
-        }
     },
     {
         "id": "3848",

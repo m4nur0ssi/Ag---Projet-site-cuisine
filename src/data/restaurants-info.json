@@ -89,5 +89,11 @@
   "6692": {
     "subType": "salon-de-the"
   },
+  "6708": {
+    "subType": "brasserie",
+    "address": "Rue Royale, 75008 Paris",
+    "phone": "+33 1 42 65 27 94",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8673150,2.3222252"
+  },
   "_comment": "Infos restaurant réelles vérifiées (web, juillet 2026). Clé = id recette WordPress. Fusionné dans mockData au sync (sync-recipes.js) → survit aux régénérations. subType ∈ brasserie|italien|asiatique|gastro|salon-de-the."
 }
