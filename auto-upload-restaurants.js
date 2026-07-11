@@ -183,11 +183,16 @@ function encodeJpeg(src, dim, q) {
     return null;
 }
 
+// WordPress (XML-RPC) refuse certains formats (webp/avif/gif/heic) → fault 500.
+// On les reconvertit toujours en JPEG, même petits. jpeg/png passent tels quels.
+const CONVERT_EXTS = new Set(['.webp', '.avif', '.gif', '.heic', '.heif']);
+
 function resizeForUpload(src) {
     try {
         const long = imgLongSide(src);
-        // Déjà sous le budget ET pas trop grande → garder l'original tel quel.
-        if (fs.statSync(src).size <= TARGET_BYTES && (!long || long <= MAX_DIM)) return { path: src, tmp: false };
+        const mustConvert = CONVERT_EXTS.has(path.extname(src).toLowerCase());
+        // Déjà sous le budget, pas trop grande ET format accepté → garder l'original.
+        if (!mustConvert && fs.statSync(src).size <= TARGET_BYTES && (!long || long <= MAX_DIM)) return { path: src, tmp: false };
         // Balaye (dimension, qualité) du meilleur au plus léger ; garde le 1er ≤ budget.
         let best = null; // plus petit obtenu (repli si aucun ne tient le budget)
         for (const d of DIMS) {
@@ -393,6 +398,7 @@ async function processDir(dirPath, restaurants) {
         console.log(`📸 "${name}" → restaurant #${resto.id} (${decodeEntities(resto.title)}) — ${imgs.length} photo(s)`);
         const photos = [];
         let firstMediaId = null;
+        let skipped = 0;
         for (let k = 0; k < imgs.length; k++) {
             const f = path.join(dirPath, imgs[k]);
             const r = resizeForUpload(f);
@@ -402,16 +408,24 @@ async function processDir(dirPath, restaurants) {
             let up;
             try {
                 up = await uploadImage(r.path, fileName, upMime);
+                if (!up || !up.url) throw new Error('URL manquante après upload');
+            } catch (e) {
+                // Une photo qui bloque (format refusé, fault WP…) ne doit PAS jeter tout
+                // le resto : on la saute et on continue avec les autres.
+                skipped++;
+                console.log(`   ⏭️  ${imgs[k]} ignorée après échecs (${(e.message || '').split('\n')[0].slice(0, 80)})`);
+                continue;
             } finally {
                 if (r.tmp) { try { fs.unlinkSync(r.path); } catch { /* */ } }
             }
-            if (!up || !up.url) throw new Error('URL manquante après upload');
-            if (k === 0) firstMediaId = up.id; // photo 1 → image à la une
+            if (photos.length === 0) firstMediaId = up.id; // 1re photo réussie → image à la une
             photos.push(toProxyUrl(up.url));
             console.log(`   ✅ ${imgs[k]} → ${up.url}`);
             if (k < imgs.length - 1) await sleep(1500); // souffle entre 2 uploads (WP se surcharge si trop rapide)
 
         }
+        if (photos.length === 0) throw new Error('aucune photo uploadée (toutes en échec)');
+        if (skipped) console.log(`   ⚠️ ${skipped} photo(s) ignorée(s), ${photos.length} OK.`);
         // Image à la une du post = photo 1 → vignette de la carte (durable au sync).
         if (firstMediaId) {
             try {
