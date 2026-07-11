@@ -12,14 +12,18 @@ interface Props {
     showCaption?: boolean; // affiche "X étapes" à côté (desktop). false = barres seules (PWA).
 }
 
-// Niveau 1..3 calculé sur le temps total + le nombre d'étapes.
+// Niveau 1..3 — piloté D'ABORD par le nombre d'étapes (plus d'étapes = plus difficile) ;
+// le temps total et le champ difficulté ne servent que de repli si les étapes manquent.
 const computeLevel = (prep = 0, cook = 0, steps = 0, difficulty = ''): number => {
+    if (steps > 0) {
+        if (steps >= 9) return 3;
+        if (steps >= 5) return 2;
+        return 1;
+    }
     const total = prep + cook;
     const d = difficulty.toLowerCase();
-    // Indices forts du champ difficulté (s'il existe) en complément du calcul.
-    if (d.includes('difficile')) return 3;
-    if (total >= 60 || steps >= 10) return 3;
-    if (total >= 30 || steps >= 6 || d.includes('moy')) return 2;
+    if (d.includes('difficile') || total >= 60) return 3;
+    if (d.includes('moy') || total >= 30) return 2;
     return 1;
 };
 

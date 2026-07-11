@@ -21,6 +21,7 @@ import SmartText from '@/mobile/components/SmartText/SmartText';
 import MagicConverter from '@/mobile/components/MagicConverter/MagicConverter';
 import PortionsControl from '@/components/PortionsControl/PortionsControl';
 import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
+import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import WinePairing from '@/components/WinePairing/WinePairing';
 import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
@@ -137,6 +138,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
 
     const ratio = useMemo(() => servings / (recipe.servings || 4), [servings, recipe.servings]);
+    // Temps prépa/cuisson + difficulté recalculés depuis les étapes (valeurs WP incohérentes).
+    const timing = useMemo(() => estimateRecipeTiming(recipe.steps), [recipe.steps]);
 
     const calorieEstimate = useMemo(() =>
         recipe.category !== 'restaurant' && recipe.ingredients?.length > 0
@@ -908,22 +911,22 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%' }}>
                             <div className={styles.metaItem} style={{ flex: 1 }}>
                                 <div className={styles.metaLabel}>PRÉPARATION</div>
-                                <div className={styles.metaValue}>{recipe.prepTime || 15} min</div>
+                                <div className={styles.metaValue}>{(timing.steps > 0 ? timing.prepTime : (recipe.prepTime || 15))} min</div>
                             </div>
                             <div className={styles.metaSeparator} />
                             <div className={styles.metaItem} style={{ flex: 1 }}>
                                 <div className={styles.metaLabel}>CUISSON</div>
-                                <div className={styles.metaValue}>{recipe.cookTime || 20} min</div>
+                                <div className={styles.metaValue}>{timing.cookTime > 0 ? `${timing.cookTime} min` : '—'}</div>
                             </div>
                             <div className={styles.metaSeparator} />
                             <div className={styles.metaItem} style={{ flex: 1 }}>
                                 <div className={styles.metaLabel}>DIFFICULTÉ</div>
                                 <div className={styles.metaValue}>
                                     <DifficultyMeter
-                                        prepTime={recipe.prepTime}
-                                        cookTime={recipe.cookTime}
-                                        steps={recipe.steps?.length}
-                                        difficulty={recipe.difficulty}
+                                        prepTime={timing.prepTime}
+                                        cookTime={timing.cookTime}
+                                        steps={timing.steps}
+                                        difficulty={timing.difficulty}
                                         showCaption={false}
                                     />
                                 </div>
