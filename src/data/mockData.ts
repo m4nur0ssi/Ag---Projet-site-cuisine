@@ -2,11 +2,477 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/07/2026 05:34:14
- * Total: 518 recettes
+ * Dernière mise à jour: 11/07/2026 11:18:08
+ * Total: 523 recettes
  */
-export const exportSyncId = "1783748054187";
+export const exportSyncId = "1783768688622";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6793",
+        "title": "Brochettes de poulet marinées à la mexicaine",
+        "description": "Une recette facile et rapide de brochettes de poulet marinées avec des épices mexicaines, parfaites pour l'été. Elles peuvent être cuites au barbecue, à la plancha ou à l'Air Fryer et sont accompagnées d'une sauce crémeuse.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660914350630210848\" data-video-id=\"7660914350630210848\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660914350630210848\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Blancs de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Mélange d'épices à la mexicaine"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Purée de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de ketchup allégé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de skyr ou de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 grosse cuillère à soupe de concentré de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de sirop d'agave"
+            }
+        ],
+        "steps": [
+            "Commencez par couper les blancs de poulet en gros cubes.",
+            "Dans un saladier, ajoutez le poulet, l'huile d'olive, le sel, le mélange d'épices, la purée de tomates et le ketchup allégé. Mélangez bien afin que la marinade enrobe parfaitement le poulet, puis réservez au réfrigérateur pendant au moins 15 minutes.",
+            "Pendant ce temps, préparez la sauce en mélangeant le skyr ou le yaourt grec, le concentré de tomates, le mélange d'épices à la mexicaine, le sirop d'agave et le sel. N'hésitez pas à ajuster les épices selon vos goûts.",
+            "Sortez le poulet du réfrigérateur et enfilez les cubes sur des piques à brochettes. Faites-les cuire avec le mode de cuisson de votre choix (barbecue, plancha ou Air Fryer).",
+            "Conseil : Vous pouvez aussi les cuire à l'Air Fryer pendant 15 minutes à 175 °C, en les retournant à mi-cuisson."
+        ],
+        "tags": [
+            "airfryer",
+            "barbecue",
+            "épicé",
+            "Healthy",
+            "Mexique",
+            "Sauces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6791",
+        "title": "Mini Citrons Kawaii Trompe-l'œil Glacés",
+        "description": "Il fait super chaud alors profitez de ces citrons givrés pour vous rafraîchir ! Ultra crémeux, fondants avec un cœur bien acidulé, c'est le dessert parfait pour bluffer tout le monde. Pensez à enregistrer la publication !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661194608705162528\" data-video-id=\"7661194608705162528\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661194608705162528\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             20 cl de crème liquide entière (30% MG)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             190 g de lait concentré sucré froid"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à café d'arôme citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50 g de lait concentré sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             25 g de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste d'un demi citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 goutte d'arôme citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 goutte de colorant orange (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             130 g de chocolat blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             130 g de beurre de cacao"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Colorant jaune liposoluble (Option : bombe velours jaune)"
+            }
+        ],
+        "steps": [
+            "Pour le cœur : Mélanger tous les ingrédients et réserver.",
+            "Pour la crème : Fouetter tous les ingrédients au batteur jusqu'à obtenir une mousse ferme.",
+            "Pour le montage : Dans un moule citron en silicone, pocher de la crème, creuser le centre, ajouter 1 cuillère à café de cœur acidulé, puis refermer avec de la crème. Lisser et placer au congélateur toute la nuit.",
+            "Pour le glaçage : Fondre le chocolat blanc et le beurre de cacao avec le colorant (utiliser entre 34°C et 38°C). Démouler les citrons congelés et les plonger directement dedans. Astuce chef : Pour l'effet peau de citron, donner un coup de bombe de flocage jaune, puis un passage très rapide de chalumeau pour le relief."
+        ],
+        "tags": [
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6789",
+        "title": "Liégeois vanille",
+        "description": "La preuve qu'un dessert n'a pas besoin d'en faire trop pour être inoubliable. Ce Liégeois vanille se compose d'une crème vanille onctueuse et d'une chantilly vanille mascarpone légère, parfait pour une touche de gourmandise.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660935748312501537\" data-video-id=\"7660935748312501537\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660935748312501537\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             500 ml de lait demi-écrémé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 ml de crème liquide entière (30 % MG)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             2 gousses de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             70 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             35 g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 ml de crème liquide entière bien froide"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             35 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Vanille en poudre ou pâte de vanille"
+            }
+        ],
+        "steps": [
+            "Fendez les gousses de vanille en deux et grattez les graines.",
+            "Dans une casserole, faites chauffer le lait, la crème liquide, les graines et les gousses de vanille avec la pincée de sel jusqu'à frémissement.",
+            "Coupez le feu et laissez infuser 10 à 15 minutes.",
+            "Pendant ce temps, fouettez les jaunes d'œufs avec le sucre.",
+            "Ajoutez la maïzena et mélangez jusqu'à obtenir une préparation lisse.",
+            "Retirez les gousses de vanille puis versez progressivement le mélange chaud sur les œufs tout en fouettant.",
+            "Reversez le tout dans la casserole et faites cuire à feu moyen sans cesser de mélanger jusqu'à épaississement.",
+            "Répartissez la crème dans les pots, filmez au contact puis laissez refroidir avant de placer au réfrigérateur pendant au moins 4 heures.",
+            "Une fois bien froide, fouettez légèrement la crème quelques secondes afin de lui redonner une texture encore plus onctueuse.",
+            "Montez la crème liquide bien froide avec le mascarpone, le sucre glace et la vanille jusqu'à obtenir une chantilly ferme et aérienne.",
+            "Pochez généreusement la chantilly sur les liégeois bien froids.",
+            "Terminez avec quelques graines de vanille pour encore plus de gourmandise."
+        ],
+        "tags": [
+            "Desserts",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6787",
+        "title": "Tomates farcies d'été",
+        "description": "Une recette rafraîchissante et facile de tomates farcies au thon et fromage frais, idéale pour les chaudes journées d'été et la canicule.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661195255097707809\" data-video-id=\"7661195255097707809\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661195255097707809\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             2 grosses tomates côtelées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petite échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 petite boîte de thon (93g égoutté)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de fromage blanc 0%"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zestes de citron jaune bio"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus d'1/2 citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Velours de balsamique"
+            }
+        ],
+        "steps": [
+            "Lavez les tomates. Coupez un chapeau et videz-les délicatement à l'aide d'une petite cuillère. Salez l'intérieur et retournez-les sur du papier absorbant pour qu'elles dégorgent.",
+            "Dans un bol, mélangez le fromage frais, l'échalote finement ciselée, le thon égoutté et émietté, le fromage blanc 0%, les zestes et le jus de citron.",
+            "Ajoutez la ciboulette fraîche ciselée, salez et poivrez. Mélangez bien l'ensemble.",
+            "Farcissez généreusement les tomates avec la préparation.",
+            "Arrosez d'un filet d'huile d'olive et d'un trait de velours de balsamique avant de servir. Dégustez frais."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "Poissons et crustacés",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6785",
+        "title": "felicità 🇮🇹 c'est vraiment à faire si vous êtes sur par",
+        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7118750545715809542\" data-video-id=\"7118750545715809542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7118750545715809542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "📍La felicità 🇮🇹 c'est vraiment à faire si vous êtes sur paris ❤️ #adresseparis #sortiraparis #pourtoi #foodtiktok #paris #restaurantparis #italianfood"
+        ],
+        "tags": [
+            "resto-italien"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "",
+        "restaurant": {
+            "subType": "italien"
+        }
+    },
+    {
+        "id": "163",
+        "title": "Japonais Ippudo",
+        "description": "    Attention ovni ou plutôt Yūfō en nippon.... Connaissez vous les rāmen  ? Mais si vous savez les soupes avec plein de trucs dedans ! A la base, le Ramen est un plat chinois à base de pâtes tirées à la main par le cuisinier appelés la mian. Le p...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_1_1783764630542.jpg&v=1783764650029",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Attention ovni ou plutôt Yūfō en nippon....",
+            "Connaissez vous les rāmen  ? Mais si vous savez les soupes avec plein de trucs dedans !",
+            "A la base, le Ramen est un plat chinois à base de pâtes tirées à la main par le cuisinier appelés la mian. Le premier Japonais à avoir goûté aux  rāmen  serait  Tokugawa Mitsukuni  (1628-1701), seigneur du  clan Mito , à l' époque d'Edo , . Un lettré chinois en exil au Japon,  Zhu Zhiyu   (en)  (1600-1682), lui aurait présenté des nouilles composées de farine de blé tendre et de poudre de racine de lotus, une soupe de nouilles proche des  udon . Cette variété de  rāmen  est encore commercialisée de nos jours sous l'appellation  Mito-han rāmen  ( rāmen  du clan Mito), dans la ville de  Mito .",
+            "Le restaurant de République est tout petit et les serveurs criant les ordres en japonais assez speed et pour la moitié de type européen jeunes et disponibles. Assez surprenant quand tu vois une grande blonde crier kashitsuke ! Les tables collées contre les murs sont assez petites et le confort est assez minimaliste mais malgré tout on s'y sent bien. Si vous pouvez vous percher sur les tabourets du bar devant la cuisine au fond du restau, allez-y ! Vous pourrez découvrir le sérieux et le professionnalisme des cuisiniers qui posent délicatement les ingrédients dans les  rāmen  ou qui préparent amoureusement les buns.",
+            "Mon plat préféré : les buns évidemment.",
+            "  Le service, les buns au porc, l'ambiance nippone, le prix.",
+            "  Peu de tables et les places de stationnement sont rares.",
+            " Le comptoir devant la cuisine !",
+            "  6 place Jacques Bonsergent 75010 Paris  ",
+            " M5 - Jacques Bonsergent"
+        ],
+        "tags": [
+            "buns",
+            "japonais",
+            "ramen",
+            "resto-asiatique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "14 Rue Grégoire de Tours, 75006 Paris",
+        "restaurant": {
+            "subType": "asiatique",
+            "priceLevel": 2,
+            "website": "https://www.ippudo.fr/",
+            "hours": "Tous les jours, midi & soir",
+            "address": "14 Rue Grégoire de Tours, 75006 Paris",
+            "phone": "+33 1 42 38 21 99",
+            "rating": 4.3,
+            "mapsQuery": "Ippudo Paris",
+            "locations": [
+                {
+                    "name": "Ippudo Saint-Germain",
+                    "address": "14 Rue Grégoire de Tours, 75006 Paris",
+                    "phone": "+33 1 42 38 21 99"
+                },
+                {
+                    "name": "Ippudo Louvre",
+                    "address": "74-76 Rue Jean-Jacques Rousseau, 75001 Paris"
+                },
+                {
+                    "name": "Ippudo République",
+                    "address": "6 Place Jacques Bonsergent, 75010 Paris",
+                    "phone": "+33 1 40 18 40 81"
+                },
+                {
+                    "name": "Ippudo Bastille",
+                    "address": "41 Rue de la Roquette, 75011 Paris"
+                }
+            ],
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_1_1783764630542.jpg&v=1783764650029",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_2_1783764651556.jpg&v=1783764657716",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_3_1783764659245.jpg&v=1783764693051",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_4_1783764694665.jpg&v=1783764710215",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_5_1783764711809.jpg&v=1783764765034",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_6_1783764766553.jpg&v=1783764769982",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_7_1783764771871.jpg&v=1783764797873",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_8_1783764799436.jpg&v=1783764817655"
+            ]
+        }
+    },
+    {
+        "id": "6745",
+        "title": "Le Balthazar",
+        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_1_1783760962280.jpg&v=1783760965132",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" style=\"max-width: 605px; min-width: 325px;\" cite=\"https://www.tiktok.com/v/7242779213143559451\" data-video-id=\"7242779213143559451\">\n<section><a title=\"@tiktok\" href=\"https://www.tiktok.com/v/7242779213143559451\" target=\"_blank\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a></section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Le Balthazar"
+        ],
+        "tags": [
+            "resto-brasserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "134 Avenue de la Plaine de France, 95500 Gonesse",
+        "restaurant": {
+            "subType": "brasserie",
+            "address": "134 Avenue de la Plaine de France, 95500 Gonesse",
+            "terrace": true,
+            "mapsUrl": "https://www.google.com/maps/search/?api=1&query=50.3603221,3.5212661",
+            "mapsQuery": "Le Balthazar Gonesse Le Blanc-Mesnil",
+            "locations": [
+                {
+                    "name": "Le Balthazar Gonesse",
+                    "address": "134 Avenue de la Plaine de France, C.C. Usine Center, 95500 Gonesse"
+                },
+                {
+                    "name": "Le Balthazar Le Blanc-Mesnil",
+                    "address": "192 Avenue Charles Floquet, C.C. Plein Air, 93150 Le Blanc-Mesnil"
+                }
+            ],
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_1_1783760962280.jpg&v=1783760965132",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_2_1783760965754.jpg&v=1783761001201",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_3_1783761001833.jpg&v=1783761006159",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_4_1783761006784.jpg&v=1783761016488",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_5_1783761017113.jpg&v=1783761021254"
+            ]
+        }
+    },
     {
         "id": "6747",
         "title": "Technique de cuisson de la côte de bœuf",
@@ -315,56 +781,6 @@ export const mockRecipes: Recipe[] = [
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
-    },
-    {
-        "id": "6745",
-        "title": "Le Balthazar",
-        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_1_1783760962280.jpg&v=1783760965132",
-        "category": "restaurant",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" style=\"max-width: 605px; min-width: 325px;\" cite=\"https://www.tiktok.com/v/7242779213143559451\" data-video-id=\"7242779213143559451\">\n<section><a title=\"@tiktok\" href=\"https://www.tiktok.com/v/7242779213143559451\" target=\"_blank\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a></section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Le Balthazar"
-        ],
-        "tags": [
-            "resto-brasserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": "134 Avenue de la Plaine de France, 95500 Gonesse",
-        "restaurant": {
-            "subType": "brasserie",
-            "terrace": true,
-            "address": "134 Avenue de la Plaine de France, 95500 Gonesse",
-            "mapsQuery": "Le Balthazar Gonesse Le Blanc-Mesnil",
-            "locations": [
-                {
-                    "name": "Le Balthazar Gonesse",
-                    "address": "134 Avenue de la Plaine de France, C.C. Usine Center, 95500 Gonesse"
-                },
-                {
-                    "name": "Le Balthazar Le Blanc-Mesnil",
-                    "address": "192 Avenue Charles Floquet, C.C. Plein Air, 93150 Le Blanc-Mesnil"
-                }
-            ],
-            "photos": [
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_1_1783760962280.jpg&v=1783760965132",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_2_1783760965754.jpg&v=1783761001201",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_3_1783761001833.jpg&v=1783761006159",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_4_1783761006784.jpg&v=1783761016488",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_5_1783761017113.jpg&v=1783761021254"
-            ]
-        }
     },
     {
         "id": "6692",
@@ -37423,85 +37839,6 @@ export const mockRecipes: Recipe[] = [
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
-    },
-    {
-        "id": "163",
-        "title": "Japonais Ippudo",
-        "description": "    Attention ovni ou plutôt Yūfō en nippon.... Connaissez vous les rāmen  ? Mais si vous savez les soupes avec plein de trucs dedans ! A la base, le Ramen est un plat chinois à base de pâtes tirées à la main par le cuisinier appelés la mian. Le p...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_1_1783764630542.jpg&v=1783764650029",
-        "category": "restaurant",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Attention ovni ou plutôt Yūfō en nippon....",
-            "Connaissez vous les rāmen  ? Mais si vous savez les soupes avec plein de trucs dedans !",
-            "A la base, le Ramen est un plat chinois à base de pâtes tirées à la main par le cuisinier appelés la mian. Le premier Japonais à avoir goûté aux  rāmen  serait  Tokugawa Mitsukuni  (1628-1701), seigneur du  clan Mito , à l' époque d'Edo , . Un lettré chinois en exil au Japon,  Zhu Zhiyu   (en)  (1600-1682), lui aurait présenté des nouilles composées de farine de blé tendre et de poudre de racine de lotus, une soupe de nouilles proche des  udon . Cette variété de  rāmen  est encore commercialisée de nos jours sous l'appellation  Mito-han rāmen  ( rāmen  du clan Mito), dans la ville de  Mito .",
-            "Le restaurant de République est tout petit et les serveurs criant les ordres en japonais assez speed et pour la moitié de type européen jeunes et disponibles. Assez surprenant quand tu vois une grande blonde crier kashitsuke ! Les tables collées contre les murs sont assez petites et le confort est assez minimaliste mais malgré tout on s'y sent bien. Si vous pouvez vous percher sur les tabourets du bar devant la cuisine au fond du restau, allez-y ! Vous pourrez découvrir le sérieux et le professionnalisme des cuisiniers qui posent délicatement les ingrédients dans les  rāmen  ou qui préparent amoureusement les buns.",
-            "Mon plat préféré : les buns évidemment.",
-            "  Le service, les buns au porc, l'ambiance nippone, le prix.",
-            "  Peu de tables et les places de stationnement sont rares.",
-            " Le comptoir devant la cuisine !",
-            "  6 place Jacques Bonsergent 75010 Paris  ",
-            " M5 - Jacques Bonsergent"
-        ],
-        "tags": [
-            "buns",
-            "japonais",
-            "ramen",
-            "resto-asiatique"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": "14 Rue Grégoire de Tours, 75006 Paris",
-        "restaurant": {
-            "subType": "asiatique",
-            "priceLevel": 2,
-            "website": "https://www.ippudo.fr/",
-            "hours": "Tous les jours, midi & soir",
-            "address": "14 Rue Grégoire de Tours, 75006 Paris",
-            "phone": "+33 1 42 38 21 99",
-            "rating": 4.3,
-            "mapsQuery": "Ippudo Paris",
-            "locations": [
-                {
-                    "name": "Ippudo Saint-Germain",
-                    "address": "14 Rue Grégoire de Tours, 75006 Paris",
-                    "phone": "+33 1 42 38 21 99"
-                },
-                {
-                    "name": "Ippudo Louvre",
-                    "address": "74-76 Rue Jean-Jacques Rousseau, 75001 Paris"
-                },
-                {
-                    "name": "Ippudo République",
-                    "address": "6 Place Jacques Bonsergent, 75010 Paris",
-                    "phone": "+33 1 40 18 40 81"
-                },
-                {
-                    "name": "Ippudo Bastille",
-                    "address": "41 Rue de la Roquette, 75011 Paris"
-                }
-            ],
-            "photos": [
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_1_1783764630542.jpg&v=1783764650029",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_2_1783764651556.jpg&v=1783764657716",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_3_1783764659245.jpg&v=1783764693051",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_4_1783764694665.jpg&v=1783764710215",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_5_1783764711809.jpg&v=1783764765034",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_6_1783764766553.jpg&v=1783764769982",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_7_1783764771871.jpg&v=1783764797873",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_8_1783764799436.jpg&v=1783764817655"
-            ]
-        }
     },
     {
         "id": "115",
