@@ -478,7 +478,15 @@ async function scanOnce(restaurants) {
                 } catch { /* */ } finally { busy = false; }
             }, 2500); // laisse le temps de déposer toutes les photos
         });
-    } else {
+    } else if (updatedRestos.length) {
         console.log('\n🎉 Terminé.');
+    } else {
+        // Rien n'a été uploadé : soit aucun sous-dossier, soit tout a échoué.
+        // On sort en code 3 → le .command GARDE la fenêtre ouverte (au lieu de la
+        // fermer automatiquement) pour que tu puisses lire ce qui s'est passé.
+        console.log('\n⚠️  Rien à uploader.');
+        console.log(`   → Vérifie qu'un sous-dossier resto (avec ses photos) est bien dans :\n     ${FOLDER}`);
+        console.log('   (les dossiers déjà traités sont dans "done", les échecs dans "erreurs")');
+        process.exitCode = 3;
     }
 })();
