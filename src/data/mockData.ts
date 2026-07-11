@@ -341,12 +341,22 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": "Rue Derrière les Murs de Bavay, 59300 Valenciennes",
+        "address": "134 Avenue de la Plaine de France, 95500 Gonesse",
         "restaurant": {
             "subType": "brasserie",
-            "address": "Rue Derrière les Murs de Bavay, 59300 Valenciennes",
             "terrace": true,
-            "mapsUrl": "https://www.google.com/maps/search/?api=1&query=50.3603221,3.5212661"
+            "address": "134 Avenue de la Plaine de France, 95500 Gonesse",
+            "mapsQuery": "Le Balthazar Gonesse Le Blanc-Mesnil",
+            "locations": [
+                {
+                    "name": "Le Balthazar Gonesse",
+                    "address": "134 Avenue de la Plaine de France, C.C. Usine Center, 95500 Gonesse"
+                },
+                {
+                    "name": "Le Balthazar Le Blanc-Mesnil",
+                    "address": "192 Avenue Charles Floquet, C.C. Plein Air, 93150 Le Blanc-Mesnil"
+                }
+            ]
         }
     },
     {
