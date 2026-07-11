@@ -239,16 +239,17 @@ async function uploadImageOnce(base64, fileName, mimeType, timeoutMs) {
 }
 async function uploadImage(imagePath, fileName, mimeType) {
     const base64 = fs.readFileSync(imagePath).toString('base64');
-    const TIMEOUT = Number(process.env.WP_TIMEOUT_MS) || 90000;
+    const TIMEOUT = Number(process.env.WP_TIMEOUT_MS) || 120000; // WP lent/instable → 120s
+    const MAX_TRIES = Number(process.env.WP_MAX_TRIES) || 5;     // hangs aléatoires → plus de tentatives
     let lastErr;
-    for (let attempt = 1; attempt <= 3; attempt++) {
+    for (let attempt = 1; attempt <= MAX_TRIES; attempt++) {
         try {
             return await uploadImageOnce(base64, fileName, mimeType, TIMEOUT);
         } catch (e) {
             lastErr = e;
             const why = e.name === 'AbortError' ? `timeout ${TIMEOUT}ms` : e.message;
-            console.log(`   ⏳ tentative ${attempt}/3 échouée (${why})${attempt < 3 ? ' — nouvel essai…' : ''}`);
-            if (attempt < 3) await sleep(2000 * attempt);
+            console.log(`   ⏳ tentative ${attempt}/${MAX_TRIES} échouée (${why})${attempt < MAX_TRIES ? ' — nouvel essai…' : ''}`);
+            if (attempt < MAX_TRIES) await sleep(3000 * attempt); // backoff croissant : laisse WP respirer
         }
     }
     throw lastErr;
@@ -408,7 +409,7 @@ async function processDir(dirPath, restaurants) {
             if (k === 0) firstMediaId = up.id; // photo 1 → image à la une
             photos.push(toProxyUrl(up.url));
             console.log(`   ✅ ${imgs[k]} → ${up.url}`);
-            if (k < imgs.length - 1) await sleep(600); // souffle entre 2 uploads WP
+            if (k < imgs.length - 1) await sleep(1500); // souffle entre 2 uploads (WP se surcharge si trop rapide)
 
         }
         // Image à la une du post = photo 1 → vignette de la carte (durable au sync).
