@@ -2,11 +2,104 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/07/2026 11:44:49
- * Total: 524 recettes
+ * Dernière mise à jour: 11/07/2026 13:24:54
+ * Total: 526 recettes
  */
-export const exportSyncId = "1783770289514";
+export const exportSyncId = "1783776294582";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6799",
+        "title": "Madeleines fourrées au chocolat",
+        "description": "Une recette simple pour préparer de délicieuses madeleines moelleuses, fourrées au chocolat ou au Nutella.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660925640845036832\" data-video-id=\"7660925640845036832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660925640845036832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             150g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique (8g)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nutella (pour le fourrage)"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans le contenu fourni."
+        ],
+        "tags": [
+            "France",
+            "Les Glaces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6797",
+        "title": "Glace express au melon",
+        "description": "Cette tendance virale propose une glace express ultra onctueuse à base de melon congelé et de crème froide, sans sorbetière. Une recette rapide, gourmande et rafraîchissante, parfaite pour l'été et personnalisable avec du miel, de la vanille, de l...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661189653373996321\" data-video-id=\"7661189653373996321\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661189653373996321\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Melon (bien congelé)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème liquide (bien froide)"
+            }
+        ],
+        "steps": [
+            "Congeler un melon entier ou en morceaux jusqu'à ce qu'il soit bien dur.",
+            "Une fois le melon congelé, le placer dans un récipient adapté.",
+            "Ajouter un peu de crème liquide bien froide sur le melon congelé.",
+            "À l'aide d'une fourchette, gratter et mélanger le melon et la crème jusqu'à obtenir une texture de glace onctueuse et homogène.",
+            "Servir immédiatement et personnaliser si désiré avec du miel, de la vanille, de la menthe ou des éclats de pistaches."
+        ],
+        "tags": [
+            "Healthy",
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6795",
         "title": "Cappuccino gourmand en tasse comestible",
