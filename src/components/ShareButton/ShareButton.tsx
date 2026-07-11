@@ -32,11 +32,11 @@ export default function ShareButton({ url, title, className }: ShareButtonProps)
             // Fallback : copier le lien avec la méthode robuste
             try {
                 if (navigator.clipboard && window.isSecureContext) {
-                    await navigator.clipboard.writeText(window.location.href);
+                    await navigator.clipboard.writeText(finalUrl);
                     alert('Lien de la recette copié ! 📋');
                 } else {
                     const textArea = document.createElement("textarea");
-                    textArea.value = window.location.href;
+                    textArea.value = finalUrl;
                     document.body.appendChild(textArea);
                     textArea.select();
                     document.execCommand('copy');

@@ -802,7 +802,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             </motion.div>
 
                             <ShareButton 
-                                url={`${typeof window !== 'undefined' ? window.location.origin : ''}/recipe/${recipe.id}`} 
+                                url={`${typeof window !== 'undefined' ? window.location.origin : ''}/?fiche=${recipe.id}`} 
                                 title={recipe.title} 
                                 className={styles['share-btn-action']}
                             />

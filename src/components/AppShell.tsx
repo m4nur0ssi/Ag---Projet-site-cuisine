@@ -10,6 +10,7 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 import { TimerProvider } from '@/components/Timer/TimerContext';
 import SplashScreen from '@/components/SplashScreen/SplashScreen';
 import GlobalRecipeSheet from '@/components/GlobalRecipeSheet/GlobalRecipeSheet';
+import DeepLinkOpener from '@/components/DeepLinkOpener/DeepLinkOpener';
 
 // ── Chrome mobile (app embarquée) ──
 import { TimerProvider as MobileTimerProvider } from '@/mobile/components/Timer/TimerContext';
@@ -48,6 +49,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     <MobileBottomNav />
                     <MobileAccountSync />
                     <MobileGlobalRecipeSheet />
+                    <DeepLinkOpener />
                 </MobileTimerProvider>
             </DeviceContext.Provider>
         );
@@ -60,6 +62,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 <SplashScreen />
                 <div className="main-content-wrapper">{children}</div>
                 <GlobalRecipeSheet />
+                <DeepLinkOpener />
             </TimerProvider>
         </DeviceContext.Provider>
     );
