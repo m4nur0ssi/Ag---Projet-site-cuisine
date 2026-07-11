@@ -2,11 +2,65 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/07/2026 11:18:08
- * Total: 523 recettes
+ * Dernière mise à jour: 11/07/2026 11:44:49
+ * Total: 524 recettes
  */
-export const exportSyncId = "1783768688622";
+export const exportSyncId = "1783770289514";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6795",
+        "title": "Cappuccino gourmand en tasse comestible",
+        "description": "Un délicieux cappuccino gourmand, servi de manière originale dans une tasse entièrement comestible, pour une expérience à la fois savoureuse et ludique.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7073893847197060358\" data-video-id=\"7073893847197060358\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7073893847197060358\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Café expresso"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fouettée"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Poudre de cacao"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             Tasse comestible (par exemple, en biscuit ou en chocolat)"
+            }
+        ],
+        "steps": [
+            "Préparer la tasse comestible (si elle n'est pas déjà prête).",
+            "Préparer un café expresso.",
+            "Faire chauffer et mousser le lait.",
+            "Verser le café expresso dans la tasse comestible.",
+            "Ajouter le lait moussé sur le café.",
+            "Garnir généreusement de crème fouettée.",
+            "Saupoudrer de poudre de cacao pour la décoration."
+        ],
+        "tags": [
+            "Astuces",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6793",
         "title": "Brochettes de poulet marinées à la mexicaine",
