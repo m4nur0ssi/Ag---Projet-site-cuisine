@@ -312,8 +312,11 @@ function patchMockDataById(file, id /*, photos (déjà dans restaurants-info) */
         const inf = info[String(id)];
         r.restaurant = inf;
         if (inf && inf.address) r.address = inf.address;
-        // Vignette carte immédiate = 1re photo (avant même la prochaine synchro WP).
-        if (inf && Array.isArray(inf.photos) && inf.photos[0]) r.image = inf.photos[0];
+        // Vignette carte immédiate = photo mise en avant (champ `cover`, défaut 1).
+        if (inf && Array.isArray(inf.photos) && inf.photos.length) {
+            const idx = Math.min(Math.max(1, inf.cover || 1), inf.photos.length) - 1;
+            r.image = inf.photos[idx];
+        }
         fs.writeFileSync(file, t.slice(0, b) + JSON.stringify(arr, null, 4) + t.slice(e + 1));
         return true;
     } catch (err) {

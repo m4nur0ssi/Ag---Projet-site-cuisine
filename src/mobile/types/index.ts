@@ -42,6 +42,7 @@ export interface RestaurantInfo {
     photos?: string[];
     mapsUrl?: string;
     blurb?: string;
+    cover?: number;
     locations?: { name?: string; address: string; phone?: string }[];
     mapsQuery?: string;
 }

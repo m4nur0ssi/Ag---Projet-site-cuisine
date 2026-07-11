@@ -7,12 +7,14 @@ import { useState, useRef } from 'react';
 interface RestaurantGalleryProps {
     photos: string[];
     alt: string;
+    initialIndex?: number; // photo affichée en 1er (mise en avant) — défaut 0
     onNextRestaurant?: () => void;
     onPrevRestaurant?: () => void;
 }
 
-export default function RestaurantGallery({ photos, alt, onNextRestaurant, onPrevRestaurant }: RestaurantGalleryProps) {
-    const [i, setI] = useState(0);
+export default function RestaurantGallery({ photos, alt, initialIndex = 0, onNextRestaurant, onPrevRestaurant }: RestaurantGalleryProps) {
+    const startIndex = Math.min(Math.max(0, initialIndex), Math.max(0, (photos?.length || 1) - 1));
+    const [i, setI] = useState(startIndex);
     const start = useRef<{ x: number; y: number } | null>(null);
     if (!photos || photos.length === 0) return null;
     const n = photos.length;

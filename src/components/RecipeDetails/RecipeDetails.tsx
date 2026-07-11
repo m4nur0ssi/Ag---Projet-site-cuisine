@@ -779,6 +779,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             <RestaurantGallery
                                 photos={recipe.restaurant.photos}
                                 alt={recipe.title}
+                                initialIndex={(recipe.restaurant.cover || 1) - 1}
                                 onNextRestaurant={restoNav ? () => openResto(restoNav.next) : undefined}
                                 onPrevRestaurant={restoNav ? () => openResto(restoNav.prev) : undefined}
                             />
