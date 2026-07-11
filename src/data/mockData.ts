@@ -320,7 +320,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6745",
         "title": "Le Balthazar",
         "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_1_1783760962280.jpg&v=1783760965132",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -356,6 +356,13 @@ export const mockRecipes: Recipe[] = [
                     "name": "Le Balthazar Le Blanc-Mesnil",
                     "address": "192 Avenue Charles Floquet, C.C. Plein Air, 93150 Le Blanc-Mesnil"
                 }
+            ],
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_1_1783760962280.jpg&v=1783760965132",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_2_1783760965754.jpg&v=1783761001201",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_3_1783761001833.jpg&v=1783761006159",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_4_1783761006784.jpg&v=1783761016488",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_5_1783761017113.jpg&v=1783761021254"
             ]
         }
     },
