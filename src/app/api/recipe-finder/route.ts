@@ -14,6 +14,29 @@ const GROQ_MODEL = process.env.MENU_GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 interface CompactRecipe { id: string; t: string; cat?: string; tags?: string[] }
 
+// Le catalogue complet (~500 recettes) dépasse la limite de tokens de Groq (erreur 413).
+// On pré-filtre par pertinence vs la demande (les recettes qui partagent des mots
+// remontent — ex. "sauce" fait remonter la catégorie sauces) puis on plafonne, en
+// réduisant aussi les tags. Groq n'a plus qu'à CLASSER une liste courte et ciblée.
+const MAX_TO_LLM = 200;
+function norm(s: string): string {
+    return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+function shortlistForLLM(query: string, recipes: CompactRecipe[]): CompactRecipe[] {
+    const qWords = norm(query).split(/[^a-z0-9]+/).filter(w => w.length >= 3);
+    const scored = recipes.map(r => {
+        const hay = norm(`${r.t} ${r.cat || ''} ${(r.tags || []).join(' ')}`);
+        let s = 0;
+        for (const w of qWords) if (hay.includes(w)) s++;
+        return { r, s };
+    });
+    // Tri stable par score décroissant : les recettes pertinentes d'abord, puis le reste.
+    scored.sort((a, b) => b.s - a.s);
+    return scored.slice(0, MAX_TO_LLM).map(({ r }) => ({
+        id: String(r.id), t: r.t, cat: r.cat, tags: (r.tags || []).slice(0, 3),
+    }));
+}
+
 const SYSTEM = `Tu es l'assistant culinaire d'un site de recettes.
 On te donne la demande d'un utilisateur (en langage naturel) et la LISTE des recettes disponibles sur le site (id, titre, catégorie, tags).
 Ta mission : proposer les recettes EXISTANTES de la liste qui répondent le mieux à la demande.
@@ -57,7 +80,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'query et recipes requis' }, { status: 400 });
         }
 
-        const userMsg = JSON.stringify({ demande: query, recettes: recipes.slice(0, 400) });
+        const userMsg = JSON.stringify({ demande: query, recettes: shortlistForLLM(query, recipes) });
 
         const raw = await callGroq(userMsg);
         let parsed: any;

@@ -18,6 +18,7 @@ const STOP = new Set([
 
 // Type de plat → catégories cibles + tags cibles. Radicaux (préfixes).
 const TYPE_LEX: { cats: string[]; tags: string[]; rx: RegExp }[] = [
+    { cats: ['sauces'], tags: ['sauces'], rx: /\b(sauce|condiment|marinade|vinaigrette|pesto|mayonnaise|aioli|tapenade|chutney|coulis|\bdip\b|guacamole|houmous|hummus|tzatziki|bearnaise|hollandaise|bechamel|chimichurri)/ },
     { cats: ['glaces'], tags: ['glaces'], rx: /\b(glace|sorbet|gelato|granita)/ },
     { cats: ['rafraichissements'], tags: ['boissons'], rx: /\b(boisson|cocktail|smoothie|limonade|citronnade|milkshake|mojito|mocktail)|\bjus\b/ },
     { cats: ['aperitifs'], tags: [], rx: /\b(aperiti|apero|amuse|gougere|feuillet|dip|toast|verrine|tapas)/ },
