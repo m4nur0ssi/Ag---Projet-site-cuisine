@@ -37428,7 +37428,7 @@ export const mockRecipes: Recipe[] = [
         "id": "163",
         "title": "Japonais Ippudo",
         "description": "    Attention ovni ou plutôt Yūfō en nippon.... Connaissez vous les rāmen  ? Mais si vous savez les soupes avec plein de trucs dedans ! A la base, le Ramen est un plat chinois à base de pâtes tirées à la main par le cuisinier appelés la mian. Le p...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2018%2F02%2FAka-Vegetarian-Ippudo-London-HR-copy-iloveimg-resized.jpg&v=1519482035000",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_1_1783764630542.jpg&v=1783764650029",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -37490,6 +37490,16 @@ export const mockRecipes: Recipe[] = [
                     "name": "Ippudo Bastille",
                     "address": "41 Rue de la Roquette, 75011 Paris"
                 }
+            ],
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_1_1783764630542.jpg&v=1783764650029",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_2_1783764651556.jpg&v=1783764657716",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_3_1783764659245.jpg&v=1783764693051",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_4_1783764694665.jpg&v=1783764710215",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_5_1783764711809.jpg&v=1783764765034",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_6_1783764766553.jpg&v=1783764769982",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_7_1783764771871.jpg&v=1783764797873",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_8_1783764799436.jpg&v=1783764817655"
             ]
         }
     },
