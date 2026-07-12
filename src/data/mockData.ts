@@ -2,11 +2,162 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/07/2026 00:38:34
- * Total: 527 recettes
+ * Dernière mise à jour: 12/07/2026 00:59:30
+ * Total: 529 recettes
  */
-export const exportSyncId = "1783816714281";
+export const exportSyncId = "1783817970654";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6805",
+        "title": "Poulet avec Riz Épicé",
+        "description": "Une recette simple et rapide de poulet mariné et doré à la poêle, servi avec un riz savoureux et épicé, préparé avec des poivrons colorés, de l'oignon, de l'ail et un mélange d'épices comme le paprika, le cumin et le curcuma.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661285514686876961\" data-video-id=\"7661285514686876961\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661285514686876961\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             escalopes de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             assaisonnement poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ¼ de poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ¼ de poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ¼ de poivron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 cuillère à café de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             1 tasse de riz (rincé et trempé)"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             800 ml de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais haché"
+            }
+        ],
+        "steps": [
+            "Mélanger l'huile d'olive, l'assaisonnement pour poulet, le paprika et le sel. Enrober le poulet de cette marinade.",
+            "Faire chauffer une poêle à feu moyen-vif. Cuire le poulet 4 à 6 minutes de chaque côté jusqu'à ce qu'il soit bien doré et cuit à cœur. Réserver.",
+            "Faire revenir l'oignon, l'ail et les poivrons pendant 4 à 5 minutes.",
+            "Ajouter le concentré de tomate et cuire 1 minute.",
+            "Incorporer l'origan, le paprika, le cumin et le curcuma.",
+            "Ajouter le riz et mélanger 1 minute.",
+            "Verser le bouillon, porter à ébullition, puis couvrir.",
+            "Laisser cuire selon le temps de cuisson du riz.",
+            "Laisser reposer 5 minutes, puis égrainer le riz à la fourchette."
+        ],
+        "tags": [
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6803",
+        "title": "Tarte au chocolat sans cuisson",
+        "description": "Une tarte au chocolat sans cuisson, délicieuse et rafraîchissante, rapide et simple à préparer.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654630870699052320\" data-video-id=\"7654630870699052320\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654630870699052320\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             240g de biscuits"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             95g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             200g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100g de chocolat au lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             330ml de crème liquide"
+            }
+        ],
+        "steps": [
+            "Pour le fond de tarte : Écraser les biscuits et les mélanger avec le beurre fondu. Presser ce mélange au fond d'un moule à tarte.",
+            "Pour la ganache au chocolat : Faire chauffer la crème liquide. Verser la crème chaude sur le chocolat noir et le chocolat au lait hachés. Mélanger jusqu'à obtenir une ganache lisse et homogène.",
+            "Verser la ganache sur le fond de tarte.",
+            "Laisser reposer la tarte toute une nuit au réfrigérateur."
+        ],
+        "tags": [
+            "pâtisserie",
+            "tarte",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6801",
         "title": "Gâteau moelleux aux pêches, romarin et citron vert",
