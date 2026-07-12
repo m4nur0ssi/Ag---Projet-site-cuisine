@@ -2,11 +2,87 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/07/2026 19:34:28
- * Total: 546 recettes
+ * Dernière mise à jour: 12/07/2026 21:39:56
+ * Total: 547 recettes
  */
-export const exportSyncId = "1783884868822";
+export const exportSyncId = "1783892396992";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6841",
+        "title": "Gâteau Mathilda",
+        "description": "Un gâteau au chocolat moelleux et gourmand, garni d'une riche ganache au chocolat noir, parfait pour les amateurs de douceurs chocolatées.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7639021766517509408\" data-video-id=\"7639021766517509408\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7639021766517509408\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             300g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             40g de cacao en poudre non sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             180g de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             150g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             120g de crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             90g d'huile de tournesol"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Arôme de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 sachet de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             400g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             400g de crème liquide à 30% de matière grasse"
+            }
+        ],
+        "steps": [
+            "Préparez la pâte à gâteau en mélangeant tous les ingrédients du cake (œufs, farine, cacao, sucre, beurre fondu, crème fraîche, huile de tournesol, arôme de vanille, levure chimique et sel).",
+            "Enfournez votre cake à 180 degrés Celsius pendant 50 minutes.",
+            "Pour la ganache, faites fondre à moitié le chocolat noir au bain-marie.",
+            "Ajoutez la crème bouillante en 3 fois au chocolat fondu, en émulsionnant avec une maryse après chaque ajout jusqu'à obtenir une ganache lisse.",
+            "Une fois le gâteau refroidi, coupez-le en 3 disques égaux.",
+            "Alternez les couches de gâteau avec la ganache au chocolat."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6839",
         "title": "Tarte Pêche Panna Cotta",
