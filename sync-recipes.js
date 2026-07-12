@@ -296,6 +296,11 @@ function extractRecipeData(post) {
             if (/\b(tarte|quiche|cake)\b/.test(title) && SAVORY.test(title)) return "plats";
             if (['gâteau', 'cake', 'tarte', 'cookie', 'muffins', 'pâtisserie'].some(k => title.includes(k))) return "desserts";
             if (['chocolat', 'sucre', 'fruit', 'tiramisu', 'mousse', 'dessert'].some(k => title.includes(k))) return "desserts";
+            // Filet : nom étranger sans mot-clé FR (ex. "Portokalopita") mais dont le titre OU
+            // la description dit clairement gâteau/pâtisserie → pâtisserie, jamais plat.
+            const sweetTxt = `${title} ${description}`.toLowerCase();
+            if (/(g[âa]teau|moelleux|g[ée]noise|p[âa]tisserie|portokalopita|baklava|loukoum|halva|makroud|cheesecake|financier|madeleine|quatre-quarts|revani|basbousa|namoura|semoule sucr|namandier)/.test(sweetTxt)
+                && !/(sal[ée]e?\b|tomate|fromage|ch[èe]vre|poulet|b[oœ]uf|\bviande\b|poisson|thon|l[ée]gume|oignon|courgette|[ée]pinard|riz\b|p[âa]tes)/.test(sweetTxt)) return "patisserie";
 
             // 3. Fallback sur la catégorie WordPress ou "plats" par défaut
             if (post.categories?.includes(14)) return "plats"; // ID WordPress pour Plats
