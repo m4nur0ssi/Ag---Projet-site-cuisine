@@ -2,11 +2,84 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/07/2026 13:24:54
- * Total: 526 recettes
+ * Dernière mise à jour: 12/07/2026 00:38:34
+ * Total: 527 recettes
  */
-export const exportSyncId = "1783776294582";
+export const exportSyncId = "1783816714281";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6801",
+        "title": "Gâteau moelleux aux pêches, romarin et citron vert",
+        "description": "Un gâteau estival et parfumé, parfait pour 6 personnes, combinant la douceur des pêches caramélisées avec la fraîcheur du romarin et du citron vert.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7658238513447570710\" data-video-id=\"7658238513447570710\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7658238513447570710\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             3 à 4 pêches pas trop mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             15 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 branche de romarin frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             150 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt nature"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure"
+            }
+        ],
+        "steps": [
+            "Laver et découper les pêches en quartiers. Faire caraméliser la moitié des pêches dans une poêle avec du beurre, du sucre vanillé et du romarin.",
+            "Pendant ce temps, mélanger la farine, les œufs, le yaourt, le sucre, le beurre fondu et la levure dans un saladier jusqu'à l'obtention d'une pâte lisse et homogène. Ajouter un peu de zeste de citron vert dans la pâte.",
+            "Quand les pêches sont bien rôties, retirer la branche de romarin et les verser dans la pâte. Mélanger délicatement pour ne pas écraser les fruits.",
+            "Verser la préparation dans un moule beurré (ou recouvert de papier cuisson).",
+            "Disposer l'autre moitié (crue) des quartiers de pêches en formant une belle rosace. Enfourner 30 à 35 minutes à 170°C.",
+            "Laisser le gâteau refroidir avant de le démouler et de zester le citron vert par-dessus."
+        ],
+        "tags": [
+            "pâtisserie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6799",
         "title": "Madeleines fourrées au chocolat",
