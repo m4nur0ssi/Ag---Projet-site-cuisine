@@ -2,11 +2,700 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/07/2026 11:16:11
- * Total: 535 recettes
+ * Dernière mise à jour: 12/07/2026 17:20:54
+ * Total: 544 recettes
  */
-export const exportSyncId = "1783854971299";
+export const exportSyncId = "1783876854203";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6835",
+        "title": "Chili Cheese Maison",
+        "description": "Une version maison des célèbres Chili Cheese de Burger King, réputée encore meilleure et plus économique. Ces bouchées croustillantes au cœur fondant et épicé sont parfaites pour l'apéritif.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650545690245893409\" data-video-id=\"7650545690245893409\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650545690245893409\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             150 g de cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de fromage frais à tartiner"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 petit piment jalapeño"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Chapelure panko"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de tournesol ou de colza"
+            }
+        ],
+        "steps": [
+            "Coupez le jalapeño en tout petits dés puis mélangez-le avec le cheddar râpé et le fromage frais à tartiner.",
+            "Assaisonnez légèrement puis formez des petites boules avec le mélange.",
+            "Placez les boules au réfrigérateur pendant au moins 30 minutes pour qu'elles se raffermissent.",
+            "Passez chaque boule dans la farine, puis dans l'œuf battu et enfin dans la chapelure panko.",
+            "Faites chauffer l'huile (de tournesol ou de colza) puis plongez les chili cheese quelques minutes jusqu'à ce qu'ils soient bien dorés.",
+            "Égouttez-les sur du papier absorbant et servez-les immédiatement."
+        ],
+        "tags": [
+            "Accompagnements",
+            "épicé",
+            "Pas cher",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6833",
+        "title": "Salade de tomates sauce crémeuse pistou (inspirée de la Panzanella)",
+        "description": "Une salade de tomates fraîches et variées, agrémentée de croûtons croustillants à l'ail et au thym, le tout nappé d'une sauce crémeuse au basilic, pignons de pin et yaourt grec, inspirée de la Panzanella italienne.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7651611234588052769\" data-video-id=\"7651611234588052769\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7651611234588052769\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates anciennes (cœur de bœuf, verte, ananas noire de Crimée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             3 tranches de pain de campagne"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 bouquet de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de yaourt grec"
+            }
+        ],
+        "steps": [
+            "Couper les tomates anciennes en quartiers.",
+            "Dans un saladier, mélanger les tomates avec l'échalote ciselée et l'origan.",
+            "Faire torréfier les pignons de pin dans une poêle sèche pendant 2 minutes. Réserver.",
+            "Couper le pain de campagne en petits croûtons.",
+            "Dans une poêle, faire revenir les croûtons dans de l'huile d'olive avec une gousse d'ail écrasée et du thym jusqu'à ce qu'ils soient dorés et croustillants.",
+            "Préparer la sauce : dans un mixeur, combiner 1 bouquet de basilic, 4-5 cuillères à soupe d'huile d'olive, du sel, 1 gousse d'ail, une partie des pignons de pin torréfiés et 1 cuillère à soupe de yaourt grec. Mixer jusqu'à obtenir une sauce crémeuse.",
+            "Verser la sauce sur la salade de tomates et mélanger délicatement.",
+            "Ajouter les croûtons et le reste des pignons de pin torréfiés juste avant de servir."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Salades",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6831",
+        "title": "Salade d'orzo, halloumi et sauce crémeuse à l'avocat",
+        "description": "Une salade fraîche et légère, idéale pour les journées chaudes. Elle combine de l'orzo, du halloumi grillé, des légumes croquants et une sauce onctueuse à l'avocat, parfaite pour une recette anti-canicule.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655435290026282273\" data-video-id=\"7655435290026282273\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655435290026282273\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g d'orzo"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Halloumi coupé en cubes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             10 tomates séchées en morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge émincé finement"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 courgette taillée en tagliatelles"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (pointe)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 à 2 cuillères de yaourt"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            }
+        ],
+        "steps": [
+            "Taillez la courgette en tagliatelles et faites-la revenir quelques minutes dans de l'huile d'olive avec du sel, du poivre, de l'origan, du basilic et une pointe de piment.",
+            "Cuisez l'orzo. Faites revenir le halloumi avec un peu de miel et une pointe de piment si vous aimez. Mélangez le tout.",
+            "Pour la sauce : mixez un avocat avec 1 à 2 cuillères de yaourt, du sel, du jus de citron et un peu d'huile d'olive. À défaut de mixeur, écrasez bien à la fourchette."
+        ],
+        "tags": [
+            "épicé",
+            "Grèce",
+            "Healthy",
+            "pates",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6829",
+        "title": "Salade de pommes de terre, haricots verts et thon",
+        "description": "Une salade fraîche et savoureuse à base de pommes de terre, haricots verts, thon et œufs durs, relevée par une sauce onctueuse au yaourt grec et cornichons, idéale pour l'été.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656931243350625569\" data-video-id=\"7656931243350625569\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656931243350625569\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             700 g de pommes de terre à chair ferme"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             250 g de haricots verts frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de thon au naturel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs durs"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             8 tiges de ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Olives noires à la grecque dénoyautées coupées en rondelles"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde fine"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cornichons hachés en petits morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Faire cuire les pommes de terre avec leur peau dans de l'eau salée pendant 30 à 35 minutes, jusqu'à ce qu'elles soient tendres.",
+            "Retirer la peau des pommes de terre et les couper en quartiers.",
+            "Équeuter les haricots verts et les cuire 5 à 7 minutes dans l'eau bouillante.",
+            "Plonger immédiatement les haricots verts dans l'eau glacée pour fixer leur couleur.",
+            "Émincer l'oignon rouge et la ciboulette.",
+            "Préparer la sauce : dans un bol, mélanger 2 cuillères à soupe de yaourt grec, 1 cuillère à café de moutarde fine, 1 cuillère à café de mayonnaise, la ciboulette ciselée, le jus de citron, les 2 cornichons hachés en petits morceaux et 1 œuf dur coupé en petits morceaux.",
+            "Dans un grand saladier, mélanger les pommes de terre coupées, les haricots verts, l'oignon rouge émincé, le thon égoutté et les olives noires en rondelles.",
+            "Assaisonner la salade avec la sauce préparée et bien mélanger.",
+            "Ajouter les 2 œufs durs restants coupés en deux à la fin, et arroser d'un filet d'huile d'olive."
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Pas cher",
+            "Poissons et crustacés",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6827",
+        "title": "Sandwich grillé aux pêches et cheddar blanc",
+        "description": "Un sandwich grillé original et gourmand, associant la douceur des pêches caramélisées au miel, le fondant du cheddar blanc et la fraîcheur de la roquette, le tout entre deux tranches de pain croustillant. Parfait pour un repas léger et savoureux.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7659069255278759200\" data-video-id=\"7659069255278759200\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7659069255278759200\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2-3 pêches jaunes coupées en quartiers"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 bonnes tranches de cheddar blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tranches d'un bon pain (idéalement rond et au levain)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre demi-sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Un peu de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            }
+        ],
+        "steps": [
+            "Faire revenir les pêches 2-3 minutes par face avec le miel et une pointe de poivre.",
+            "Beurrer l'extérieur des tranches de pain.",
+            "Sur l'intérieur d'une tranche de pain, déposer un peu de roquette, le cheddar et les pêches, puis refermer avec l'autre tranche.",
+            "Bien griller le sandwich sur les deux faces et déguster, par exemple avec une bonne salade."
+        ],
+        "tags": [
+            "Sandwichs",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6825",
+        "title": "Salade croquante d'été",
+        "description": "Si simple... si bon. Préparation/Actif : 10 min.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7640320176222670093\" data-video-id=\"7640320176222670093\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7640320176222670093\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             Laitue iceberg"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             2 concombres"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             10-15 tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème aigre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            }
+        ],
+        "steps": [
+            "Laver et couper la laitue iceberg.",
+            "Couper les concombres, les tomates cerises et le demi-oignon rouge.",
+            "Hacher le persil.",
+            "Égoutter la boîte de maïs.",
+            "Dans un grand saladier, mélanger la laitue, les concombres, les tomates, l'oignon, le persil et le maïs.",
+            "Assaisonner la salade avec de l'huile d'olive, du sel et du paprika.",
+            "Pour la vinaigrette, mélanger la crème aigre, le sel, le poivre noir, l'ail en poudre, le jus de citron et le parmesan dans un petit bol.",
+            "Verser la vinaigrette sur la salade et bien mélanger avant de servir."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6823",
+        "title": "Potatoes croustillantes au miel et parmesan",
+        "description": "Découvrez une recette facile et rapide de potatoes maison, croustillantes et savoureuses, assaisonnées de paprika, ail, piment, miel et parmesan. Parfaites pour accompagner vos plats ou à déguster en apéritif avec une sauce au fromage blanc et her...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661676127219502369\" data-video-id=\"7661676127219502369\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661676127219502369\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             800 g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1,5 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1/2 cuillère à café de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1,5 cuillère à soupe de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 cuillères à soupe de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage blanc (pour le service)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence (pour le service)"
+            }
+        ],
+        "steps": [
+            "Lavez et coupez les pommes de terre en quartiers ou en frites épaisses.",
+            "Dans un grand saladier, mélangez les pommes de terre avec l'huile d'olive, le paprika, l'ail en poudre, le piment, la maïzena, le miel, le parmesan et le sel. Assurez-vous que toutes les pommes de terre soient bien enrobées.",
+            "Étalez les pommes de terre assaisonnées sur une plaque de cuisson recouverte de papier sulfurisé, en une seule couche.",
+            "Faites cuire au four préchauffé à 200°C pendant 40 minutes, ou jusqu'à ce qu'elles soient dorées et croustillantes.",
+            "Servez chaud, éventuellement accompagné de fromage blanc et d'herbes de Provence."
+        ],
+        "tags": [
+            "Accompagnements",
+            "épicé",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6821",
+        "title": "Sandwich aux œufs et crudités",
+        "description": "Découvrez comment préparer un délicieux sandwich aux œufs et crudités, agrémenté d'une mayonnaise maison onctueuse au yaourt grec. Une recette simple et rapide, parfaite pour un repas équilibré et savoureux, servie dans du pain de mie grillé.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7490625111716826390\" data-video-id=\"7490625111716826390\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7490625111716826390\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             6 œufs durs"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs (crus, pour la mayonnaise)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe de vinaigre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Céleri finement coupé"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons verts émincés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             4 tranches de pain de mie American Sandwich Rustique d'Harrys"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Quelques feuilles de salade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika (optionnel)"
+            }
+        ],
+        "steps": [
+            "Préparez la mayonnaise maison : Mixez 2 œufs crus, 2 cuillères à soupe d'huile d'olive, 1 cuillère à soupe de moutarde, 2 cuillères à soupe de yaourt grec et 2 cuillères à soupe de vinaigre blanc jusqu'à obtenir une mayonnaise onctueuse.",
+            "Dans un bol, mélangez les 6 œufs durs écrasés, la mayonnaise préparée, le reste du yaourt grec, la moutarde restante et le jus de citron.",
+            "Incorporez le céleri finement coupé, les oignons verts émincés et la ciboulette hachée.",
+            "Assaisonnez avec du sel et du poivre.",
+            "Dans un autre bol, mélangez l'huile d'olive avec la gousse d'ail hachée et le persil frais haché. Salez et poivrez.",
+            "Badigeonnez une face des 4 tranches de pain de mie avec ce mélange, puis faites dorer chaque face à la poêle pendant 3 à 4 minutes.",
+            "Hors du feu, déposez le mélange aux œufs sur une tranche de pain de mie grillé Harrys.",
+            "Ajoutez quelques feuilles de salade et refermez avec une autre tranche de pain.",
+            "Optionnel : Ajoutez une pincée de paprika avant de refermer votre sandwich."
+        ],
+        "tags": [
+            "Healthy",
+            "Sandwichs",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6819",
+        "title": "Glaçons de citron ou de citron vert",
+        "description": "Découvrez une astuce simple pour éviter que vos boissons, comme le cola, ne soient diluées par la glace. Il suffit de congeler des tranches de citron ou de citron vert et de les utiliser comme glaçons pour rafraîchir vos boissons sans en altérer l...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661252383795612960\" data-video-id=\"7661252383795612960\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661252383795612960\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍋\n             Citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citrons verts"
+            }
+        ],
+        "steps": [
+            "Couper des citrons ou des citrons verts en tranches.",
+            "Placer les tranches d'agrumes dans un congélateur jusqu'à ce qu'elles soient complètement congelées.",
+            "Utiliser les tranches d'agrumes congelées comme glaçons dans des boissons (comme le cola) pour les rafraîchir sans les diluer."
+        ],
+        "tags": [
+            "Astuces",
+            "Healthy",
+            "Pas cher",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6817",
         "title": "Salade de lentilles fraîches, mozza et lardons grillés",
