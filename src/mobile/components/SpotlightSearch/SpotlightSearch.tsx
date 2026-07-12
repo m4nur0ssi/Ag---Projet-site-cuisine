@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
+import { buildFinderCatalog } from '@/lib/recipe-search-payload';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import styles from './SpotlightSearch.module.css';
 
@@ -39,9 +40,7 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
         setAiResults([]);
         setAiMessage('');
         try {
-            const compact = mockRecipes
-                .filter(r => r.category !== 'restaurant')
-                .map(r => ({ id: String(r.id), t: r.title, cat: r.category, tags: (r.tags || []).slice(0, 6) }));
+            const compact = buildFinderCatalog(mockRecipes as any);
             const res = await fetch('/api/recipe-finder', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
@@ -311,7 +310,7 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
                                         </div>
                                         <div className={styles.resultInfo}>
                                             <div className={styles.resultTitle}>{decodeHtml(recipe.title)}</div>
-                                            <div className={styles.resultMeta}>{recipe.category} • {recipe.difficulty}</div>
+                                            <div className={styles.resultMeta}>{recipe.category === 'restaurant' ? (recipe.restaurant?.subType ? `restaurant • ${recipe.restaurant.subType}` : 'restaurant') : `${recipe.category} • ${recipe.difficulty}`}</div>
                                         </div>
                                     </>
                                 );
@@ -344,7 +343,7 @@ export default function SpotlightSearch({ isOpen, onClose, onRecipeSelect }: { i
                                         </div>
                                         <div className={styles.resultInfo}>
                                             <div className={styles.resultTitle}>{decodeHtml(recipe.title)}</div>
-                                            <div className={styles.resultMeta}>{recipe.category} • {recipe.difficulty}</div>
+                                            <div className={styles.resultMeta}>{recipe.category === 'restaurant' ? (recipe.restaurant?.subType ? `restaurant • ${recipe.restaurant.subType}` : 'restaurant') : `${recipe.category} • ${recipe.difficulty}`}</div>
                                         </div>
                                     </>
                                 );

@@ -39,11 +39,14 @@ function shortlistForLLM(query: string, recipes: CompactRecipe[]): CompactRecipe
 
 const SYSTEM = `Tu es l'assistant culinaire d'un site de recettes.
 On te donne la demande d'un utilisateur (en langage naturel) et la LISTE des recettes disponibles sur le site (id, titre, catégorie, tags).
-Ta mission : proposer les recettes EXISTANTES de la liste qui répondent le mieux à la demande.
+Ta mission : proposer les entrées EXISTANTES de la liste qui répondent le mieux à la demande.
+La liste contient des RECETTES et aussi des RESTAURANTS (catégorie "restaurant" ; leurs tags incluent le type de cuisine — italien, brasserie, asiatique… —, la/les ville(s) et "terrasse" s'il y a une terrasse).
 Règles STRICTES :
-- Choisis UNIQUEMENT des id présents dans la liste fournie. N'invente JAMAIS de recette ni d'id.
-- Renvoie de 1 à 5 recettes, la plus pertinente en premier.
-- Tiens compte de la catégorie, des ingrédients/protéines évoqués, du régime (healthy, végé…), du pays et du temps si mentionnés.
+- Choisis UNIQUEMENT des id présents dans la liste fournie. N'invente JAMAIS d'entrée ni d'id.
+- Renvoie de 1 à 5 entrées, la plus pertinente en premier.
+- Si la demande porte sur un RESTAURANT / un lieu où sortir manger / par ville / type de cuisine / terrasse → propose des RESTAURANTS (catégorie "restaurant").
+- Si la demande porte sur un plat à cuisiner → propose des RECETTES. Ne mélange pas recettes et restaurants dans une même réponse.
+- Tiens compte de la catégorie, des ingrédients/protéines, du régime (healthy, végé…), du pays/ville, de la terrasse et du temps si mentionnés.
 - Si rien ne correspond vraiment, renvoie les plus proches et dis-le dans "message".
 - "message" : une phrase courte et chaleureuse en français qui présente la sélection.
 Réponds STRICTEMENT en JSON : {"ids":["12","7"],"message":"..."} sans texte autour.`;
