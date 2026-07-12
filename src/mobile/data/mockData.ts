@@ -2,11 +2,192 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/07/2026 17:20:54
- * Total: 544 recettes
+ * Dernière mise à jour: 12/07/2026 19:34:28
+ * Total: 546 recettes
  */
-export const exportSyncId = "1783876854203";
+export const exportSyncId = "1783884868822";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6839",
+        "title": "Tarte Pêche Panna Cotta",
+        "description": "Cette recette détaillée vous guide pas à pas pour réaliser une tarte élégante et gourmande. Elle se compose d'une pâte sucrée croustillante, d'une onctueuse panna cotta (avec une option thé vert), d'une marmelade de pêches parfumée et d'une crème ...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656536838475238689\" data-video-id=\"7656536838475238689\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656536838475238689\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             140g de beurre (pommade)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             200g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             60g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             50g d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Jaune d'œuf (pour la dorure)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème (pour la dorure)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200g de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6g de gélatine (hydratée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             30g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10g de thé vert (facultatif, pour infusion)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 pêches jaunes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pêche blanche (en brunoise)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5g de gélatine (hydratée, pour 400g de confit)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             40g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             10g d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2.3g de gélatine (hydratée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de crème (légèrement montée en chantilly souple)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             30g de sucre"
+            }
+        ],
+        "steps": [
+            "**Préparation de la pâte sucrée :** Mélangez le beurre pommade, le sucre, la poudre d'amande et la farine.",
+            "Ajoutez l'œuf et mélangez jusqu'à obtenir une pâte homogène.",
+            "Étalez la pâte, puis foncez-la dans un cercle à tarte.",
+            "Faites cuire la pâte pendant 15 minutes à 160°C.",
+            "Dorez la pâte avec un mélange de jaune d'œuf et un peu de crème, puis recuisez-la pendant 15 minutes à 160°C.",
+            "**Préparation de la panna cotta :** Chauffez le mélange lait, crème et sucre. Si désiré, faites infuser 10g de thé vert dans ce mélange à 70°C pendant 10 minutes, puis retirez le thé.",
+            "Ajoutez la gélatine hydratée au mélange chaud. Laissez tiédir.",
+            "Versez la panna cotta sur la pâte sucrée cuite et laissez prendre au réfrigérateur.",
+            "**Préparation de la marmelade de pêches :** Faites revenir les pêches jaunes avec le miel et l'huile d'olive pendant quelques minutes, jusqu'à ce qu'elles rendent de l'eau.",
+            "Ajoutez la gélatine hydratée (5g pour 400g de compotée). Ajustez la quantité de miel selon le goût des fruits.",
+            "Incorporez la pêche blanche coupée en brunoise.",
+            "**Préparation de la crème diplomate :** Portez à ébullition le lait, la maïzena, le sucre et les jaunes d'œuf.",
+            "Laissez bouillir 30 secondes jusqu'à épaississement, puis ajoutez la gélatine hydratée.",
+            "Laissez refroidir la crème pâtissière.",
+            "Incorporez délicatement la crème légèrement montée en chantilly souple à la crème pâtissière refroidie.",
+            "**Montage de la tarte :** Pour la décoration, congelez quelques billes de marmelade et quelques billes de panna cotta. Assemblez la tarte avec les différentes préparations."
+        ],
+        "tags": [
+            "Italie",
+            "pâtisserie",
+            "tarte",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6837",
+        "title": "Aïoli",
+        "description": "Une recette simple et rapide pour préparer un aïoli maison, une mayonnaise à l'ail typique de la Provence, parfaite pour accompagner poissons, légumes ou viandes.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661710175581064480\" data-video-id=\"7661710175581064480\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661710175581064480\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧂\n             2 à 3 gousses d'ail (selon l'intensité désirée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             100 ml d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 ml d'huile de pépins de raisin, de tournesol ou de colza"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6835",
         "title": "Chili Cheese Maison",
