@@ -2,11 +2,135 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/07/2026 06:00:55
- * Total: 547 recettes
+ * Dernière mise à jour: 13/07/2026 11:51:52
+ * Total: 549 recettes
  */
-export const exportSyncId = "1783922455296";
+export const exportSyncId = "1783943512443";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6845",
+        "title": "Mini cheesecakes Oreo-myrtille",
+        "description": "Ces mini cheesecakes individuels sont composés d'une coque en chocolat, d'une garniture crémeuse au fromage frais, d'un coulis de myrtilles et sont surmontés d'un demi-Oreo. Parfaits pour une touche gourmande et rafraîchissante.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650167716740861216\" data-video-id=\"7650167716740861216\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650167716740861216\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de myrtilles surgelées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             18 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             20 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             8 g de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 ml d'eau pour délayer la fécule"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2-3 gouttes de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 g de fromage frais (type Philadelphia)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60 ml de crème liquide entière (pour chantilly)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 biscuits Oreo (12 moitiés)"
+            }
+        ],
+        "steps": [
+            "Faire fondre le chocolat et en tapisser 12 cavités d'un moule en silicone. Placer au réfrigérateur jusqu'à ce que le chocolat soit complètement durci.",
+            "Pour la sauce aux myrtilles, faire cuire les myrtilles, le sucre et 20 ml d'eau pendant quelques minutes. Délayer la fécule de maïs dans 10 ml d'eau, l'ajouter à la sauce et cuire jusqu'à épaississement. Enfin, ajouter quelques gouttes de jus de citron et laisser refroidir.",
+            "Fouetter le fromage frais, la crème liquide entière et le sucre glace jusqu'à obtenir une crème lisse.",
+            "Dans chaque coque en chocolat, déposer d'abord une couche de crème blanche.",
+            "Ajouter un peu de sauce aux myrtilles au centre.",
+            "Presser une moitié de biscuit Oreo sur le dessus pour recouvrir la crème.",
+            "Placer au réfrigérateur pendant au moins 1 heure, puis démouler délicatement du moule en silicone et servir."
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6843",
+        "title": "Cigarettes russes",
+        "description": "Une recette classique de cigarettes russes, idéale pour les révisions du CAP pâtissier. Le secret de leur croustillant réside dans le roulage immédiat après la sortie du four, lorsqu'elles sont encore souples.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661670440917536032\" data-video-id=\"7661670440917536032\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661670440917536032\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             125 g de beurre mou"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             125 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             125 g de blancs d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             125 g de poudre d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             125 g de farine"
+            }
+        ],
+        "steps": [
+            "Mélange le beurre mou et le sucre glace.",
+            "Incorpore les blancs d'œufs progressivement.",
+            "Ajoute la poudre d'amandes et la farine, puis mélange jusqu'à obtenir une pâte lisse.",
+            "Étaler la pâte dans des chablons.",
+            "Enfourner à 200°C pendant 4 minutes.",
+            "Dès la sortie du four, rouler immédiatement les biscuits autour d'une baguette avant qu'ils ne refroidissent."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6841",
         "title": "Gâteau Mathilda",
