@@ -2,11 +2,187 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 13/07/2026 11:51:52
- * Total: 549 recettes
+ * Dernière mise à jour: 13/07/2026 19:30:36
+ * Total: 551 recettes
  */
-export const exportSyncId = "1783943512443";
+export const exportSyncId = "1783971036553";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6857",
+        "title": "Liégeois praliné ultra crémeux",
+        "description": "Une recette de Liégeois praliné maison, avec une crème onctueuse au praliné noisette-amande et une chantilly vanille-mascarpone légère, parfaite pour un dessert gourmand.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645342786807418144\" data-video-id=\"7645342786807418144\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645342786807418144\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             500 ml de lait demi-écrémé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 ml de crème liquide entière 30%"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             120 g de praliné noisette-amande"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             55 à 65 g de sucre (selon le praliné utilisé)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             35 g de maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 ml de crème liquide entière bien froide"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             35 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Vanille en poudre"
+            }
+        ],
+        "steps": [
+            "Préparer la crème praliné : Dans un saladier, fouettez les jaunes d'œufs avec le sucre.",
+            "Ajoutez la maïzena et mélangez jusqu'à obtenir une préparation lisse.",
+            "Dans une casserole, faites chauffer le lait, la crème liquide et le praliné jusqu'à ce que le mélange soit bien homogène.",
+            "Versez progressivement le liquide chaud sur le mélange œufs/sucre/maïzena tout en fouettant.",
+            "Remettez le tout dans la casserole puis faites cuire à feu moyen sans cesser de mélanger jusqu'à épaississement.",
+            "Versez dans un plat ou directement dans les pots, filmez au contact puis laissez refroidir avant de placer au frais minimum 4 heures.",
+            "Une fois bien frais, vous pouvez repasser un petit coup de fouet dans la crème pour la rendre encore plus onctueuse.",
+            "Préparer la chantilly : Montez la crème liquide bien froide avec le mascarpone, le sucre glace et la vanille jusqu'à obtenir une chantilly ferme et aérienne.",
+            "Pochez ou déposez généreusement la chantilly sur les liégeois bien froids."
+        ],
+        "tags": [
+            "Desserts",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6785",
+        "title": "felicità 🇮🇹 c'est vraiment à faire si vous êtes sur par",
+        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_1_1783964201643.jpg&v=1783964227321",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7118750545715809542\" data-video-id=\"7118750545715809542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7118750545715809542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "📍La felicità 🇮🇹 c'est vraiment à faire si vous êtes sur paris ❤️ #adresseparis #sortiraparis #pourtoi #foodtiktok #paris #restaurantparis #italianfood"
+        ],
+        "tags": [
+            "resto-italien"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "",
+        "restaurant": {
+            "subType": "italien",
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_1_1783964201643.jpg&v=1783964227321",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_2_1783964229401.jpg&v=1783964239994",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_3_1783964242007.jpg&v=1783964254109",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_4_1783964256134.jpg&v=1783964267360",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_5_1783964269484.jpg&v=1783964289021",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_6_1783964290666.jpg&v=1783964328613",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_7_1783964330258.jpg&v=1783964372351",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_8_1783964373995.jpg&v=1783964409956"
+            ]
+        }
+    },
+    {
+        "id": "6847",
+        "title": "Vinaigrette express en 2 minutes",
+        "description": "Une recette rapide et facile pour préparer une vinaigrette maison en seulement 2 minutes, idéale pour accompagner vos salades et autres plats.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649136928536775968\" data-video-id=\"7649136928536775968\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649136928536775968\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile neutre (tournesol ou autre)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Crème ou velours de vinaigre balsamique (facultatif)"
+            }
+        ],
+        "steps": [
+            "Mixez l'ensemble des ingrédients jusqu'à obtenir une vinaigrette homogène.",
+            "Ajustez les quantités selon vos goûts.",
+            "Conservez la vinaigrette environ 5 à 7 jours au réfrigérateur dans un bocal hermétique."
+        ],
+        "tags": [
+            "Healthy",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6845",
         "title": "Mini cheesecakes Oreo-myrtille",
@@ -2226,46 +2402,6 @@ export const mockRecipes: Recipe[] = [
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
-    },
-    {
-        "id": "6785",
-        "title": "felicità 🇮🇹 c'est vraiment à faire si vous êtes sur par",
-        "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_1_1783964201643.jpg&v=1783964227321",
-        "category": "restaurant",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7118750545715809542\" data-video-id=\"7118750545715809542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7118750545715809542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "📍La felicità 🇮🇹 c'est vraiment à faire si vous êtes sur paris ❤️ #adresseparis #sortiraparis #pourtoi #foodtiktok #paris #restaurantparis #italianfood"
-        ],
-        "tags": [
-            "resto-italien"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": "",
-        "restaurant": {
-            "subType": "italien",
-            "photos": [
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_1_1783964201643.jpg&v=1783964227321",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_2_1783964229401.jpg&v=1783964239994",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_3_1783964242007.jpg&v=1783964254109",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_4_1783964256134.jpg&v=1783964267360",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_5_1783964269484.jpg&v=1783964289021",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_6_1783964290666.jpg&v=1783964328613",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_7_1783964330258.jpg&v=1783964372351",
-                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_8_1783964373995.jpg&v=1783964409956"
-            ]
-        }
     },
     {
         "id": "163",
