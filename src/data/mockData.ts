@@ -2231,7 +2231,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6785",
         "title": "felicità 🇮🇹 c'est vraiment à faire si vous êtes sur par",
         "description": "Découvrez cette pépite culinaire venue tout droit de TikTok !",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_1_1783964201643.jpg&v=1783964227321",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -2254,7 +2254,17 @@ export const mockRecipes: Recipe[] = [
         "isFavorite": false,
         "address": "",
         "restaurant": {
-            "subType": "italien"
+            "subType": "italien",
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_1_1783964201643.jpg&v=1783964227321",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_2_1783964229401.jpg&v=1783964239994",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_3_1783964242007.jpg&v=1783964254109",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_4_1783964256134.jpg&v=1783964267360",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_5_1783964269484.jpg&v=1783964289021",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_6_1783964290666.jpg&v=1783964328613",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_7_1783964330258.jpg&v=1783964372351",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_8_1783964373995.jpg&v=1783964409956"
+            ]
         }
     },
     {
