@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6859",
         "title": "Santa Carne",
         "description": "",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_1_1784045595472.jpeg&v=1784045601436",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -36,7 +36,15 @@ export const mockRecipes: Recipe[] = [
         "restaurant": {
             "subType": "brasserie",
             "address": "Boulevard Richard-Lenoir, 75011 Paris",
-            "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8547710,2.3693864"
+            "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8547710,2.3693864",
+            "photos": [
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_1_1784045595472.jpeg&v=1784045601436",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_2_1784045602959.jpg&v=1784045606239",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_3_1784045607782.jpg&v=1784045617690",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_4_1784045619216.jpg&v=1784045624759",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_5_1784045626289.jpg&v=1784045629145",
+                "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_6_1784045631035.jpg&v=1784045650615"
+            ]
         }
     },
     {
