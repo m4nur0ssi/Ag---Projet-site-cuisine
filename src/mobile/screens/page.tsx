@@ -782,6 +782,11 @@ export default function Home() {
             image: '/images/themes/minceur.svg?v=1', category: 'plats', tags: ['minceur'],
             isFavorite: false, difficulty: 'facile', prepTime: 15, cookTime: 15, servings: 4, ingredients: [], steps: []
         },
+        {
+            id: 'theme-pates', title: 'Pâtes', description: 'Spaghetti, lasagnes, gnocchi & compagnie.',
+            image: '/images/themes/pates.jpg?v=1', category: 'plats', tags: ['pates'],
+            isFavorite: false, difficulty: 'facile', prepTime: 10, cookTime: 15, servings: 4, ingredients: [], steps: []
+        },
     ].sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }));
 
     return (

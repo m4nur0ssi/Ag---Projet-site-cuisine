@@ -6820,7 +6820,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Salades",
-            "Voilà l'été"
+            "Voilà l'été",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -7011,7 +7012,8 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Salades",
             "Sauces",
-            "Voilà l'été"
+            "Voilà l'été",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -9106,7 +9108,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Salades",
-            "Voilà l'été"
+            "Voilà l'été",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -9772,7 +9775,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Healthy",
             "Italie",
-            "Voilà l'été"
+            "Voilà l'été",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -10895,7 +10899,8 @@ export const mockRecipes: Recipe[] = [
             "Italie",
             "Salades",
             "Végé",
-            "Voilà l'été"
+            "Voilà l'été",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -11208,7 +11213,8 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Salades",
             "Végé",
-            "Voilà l'été"
+            "Voilà l'été",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -15123,7 +15129,8 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Italie",
             "Végé",
-            "Voilà l'été"
+            "Voilà l'été",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -16342,7 +16349,8 @@ export const mockRecipes: Recipe[] = [
             "Faire cuire le Pastitsio dans le four préchauffé pendant environ 1 heure, ou jusqu'à ce que le dessus soit doré et que la béchamel soit prise. Laisser le plat refroidir légèrement avant de servir. Dégustez votre pastitsio maison!"
         ],
         "tags": [
-            "Grèce"
+            "Grèce",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -16513,7 +16521,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Italie",
-            "Plats"
+            "Plats",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -17030,7 +17039,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Healthy",
-            "Italie"
+            "Italie",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -25090,7 +25100,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "C'est l'hiver",
-            "Italie"
+            "Italie",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -26112,7 +26123,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "épicé",
-            "Italie"
+            "Italie",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -26515,7 +26527,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Gratins",
-            "Italie"
+            "Italie",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -26977,7 +26990,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Italie",
-            "Soupes"
+            "Soupes",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -27428,7 +27442,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "C'est l'hiver",
             "Gratins",
-            "Italie"
+            "Italie",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -30570,7 +30585,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Healthy",
             "Italie",
-            "Pas cher"
+            "Pas cher",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -30705,7 +30721,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Entrées",
             "Italie",
-            "Voilà l'été"
+            "Voilà l'été",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -33822,7 +33839,8 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "Italie",
-            "Pas cher"
+            "Pas cher",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -34012,7 +34030,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Famille",
-            "Italie"
+            "Italie",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -34160,7 +34179,8 @@ export const mockRecipes: Recipe[] = [
             "facile",
             "Healthy",
             "Italie",
-            "rapide"
+            "rapide",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -35673,7 +35693,8 @@ export const mockRecipes: Recipe[] = [
             "ricotta",
             "sorrentina",
             "tomate",
-            "traditionnel"
+            "traditionnel",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -37460,7 +37481,8 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie",
-            "Pas cher"
+            "Pas cher",
+            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -39039,7 +39061,9 @@ export const mockRecipes: Recipe[] = [
         "steps": [
             "Suivre les instructions détaillées dans la vidéo"
         ],
-        "tags": [],
+        "tags": [
+            "pates"
+        ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""

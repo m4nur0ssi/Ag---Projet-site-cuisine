@@ -16,6 +16,21 @@ const WP_RESTAURANT_CAT = 42; // ID de la catégorie WordPress "Restaurants"
 // afficher : ce n'est pas une description, ça n'apprend rien sur le lieu.
 const PLACEHOLDER_DESCRIPTION = /pépite culinaire venue tout droit de TikTok/i;
 
+// ── Thème "Pâtes" ────────────────────────────────────────────────────────────
+// Une recette de pâtes doit apparaître dans le thème "Pâtes" MÊME si elle est rangée
+// ailleurs (entrée, plat, Italie…). On lui ajoute donc le tag `pates` au sync.
+// Pièges : "pâte" au SINGULIER = pâte à tarte/crêpes (pas des pâtes) ; "pâtes de fruits"
+// = confiserie. On exige donc le pluriel / une forme de pâtes explicite.
+const PASTA_RX = /\b(p[âa]tes|pasta|spaghettis?|tagliatelles?|penne|fusillis?|farfalle|rigatonis?|macaronis?|linguines?|lasagnes?|raviolis?|tortellinis?|gnocchis?|orecchiette|conchiglie|cannellonis?|pappardelle|orzo|carbonara|bolognaise|bolognese|amatriciana|cacio e pepe)\b/i;
+const NOT_PASTA_RX = /p[âa]tes de fruits|p[âa]tes? d[eu] (dattes?|amande|coing)/i;
+function isPastaRecipe(title, ingredients) {
+    const t = String(title || '');
+    const ing = (ingredients || []).map(i => i?.name || '').join(' ');
+    if (NOT_PASTA_RX.test(t)) return false;
+    // Le titre prime ; sinon un ingrédient « pâtes/spaghetti… » suffit (ex. "Carbonara").
+    return PASTA_RX.test(t) || (!NOT_PASTA_RX.test(ing) && PASTA_RX.test(ing));
+}
+
 const RESTAURANTS_INFO_PATH = path.join(__dirname, 'src', 'data', 'restaurants-info.json');
 let RESTAURANTS_INFO = {};
 try { RESTAURANTS_INFO = require('./src/data/restaurants-info.json'); } catch { RESTAURANTS_INFO = {}; }
@@ -328,6 +343,12 @@ function extractRecipeData(post) {
             const base = normalizeCountryTags(post._embedded?.['wp:term']?.[1]?.map(tag => tag.name) || [], decodeHtmlEntities(post.title.rendered));
             const info = post.categories?.includes(WP_RESTAURANT_CAT) ? RESTAURANTS_INFO[String(post.id)] : null;
             if (info?.subType) { const t = `resto-${info.subType}`; if (!base.includes(t)) base.push(t); }
+            // Recette de pâtes → toujours aussi dans le thème "Pâtes" (en plus de sa
+            // catégorie/pays : une entrée italienne aux tagliatelles y figure aussi).
+            if (!info && isPastaRecipe(decodeHtmlEntities(post.title.rendered), ingredients)
+                && !base.some(t => String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '') === 'pates')) {
+                base.push('pates');
+            }
             return base;
         })(),
         isFeatured: post.sticky || false,
