@@ -1,0 +1,101 @@
+<svg width="800" height="800" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradPates" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F7D98B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D2652A;stop-opacity:1" />
+    </linearGradient>
+    <clipPath id="platePates">
+      <circle cx="190" cy="218" r="104" />
+    </clipPath>
+    <linearGradient id="forkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF" />
+      <stop offset="45%" style="stop-color:#E6EBEF" />
+      <stop offset="100%" style="stop-color:#B9C3CB" />
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#bgGradPates)" rx="40" />
+
+  <!-- Assiette -->
+  <ellipse cx="190" cy="336" rx="132" ry="15" fill="rgba(0,0,0,0.18)" />
+  <circle cx="190" cy="218" r="128" fill="#FFFDF8" />
+  <circle cx="190" cy="218" r="114" fill="#F1E5CE" />
+  <circle cx="190" cy="218" r="104" fill="#FCF7EC" />
+
+  <!-- Nid de spaghetti : brins serrés (ombre + brin clair) -->
+  <g clip-path="url(#platePates)" fill="none" stroke-linecap="round">
+    <g stroke="#C6892C" stroke-width="8" opacity="0.5">
+      <path d="M70 128 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 150 q24 13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 172 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 194 q24 13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 216 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 238 q24 13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 260 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 282 q24 13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 304 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+    </g>
+    <g stroke="#F0BE45" stroke-width="7">
+      <path d="M70 124 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 146 q24 13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 168 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 190 q24 13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 212 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 234 q24 13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 256 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 278 q24 13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 300 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+    </g>
+    <g stroke="#FBDD86" stroke-width="4" opacity="0.9">
+      <path d="M70 135 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 179 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 223 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+      <path d="M70 267 q24 -13 48 0 t48 0 t48 0 t48 0 t48 0" />
+    </g>
+  </g>
+
+  <!-- Sauce tomate : nappage ÉTALÉ sur les pâtes (large et plat, pas une tomate) -->
+  <g clip-path="url(#platePates)">
+    <path d="M126 214 q-6 -20 18 -26 q16 -22 44 -16 q26 -18 50 -2 q26 -2 24 20 q16 14 -4 28 q-8 20 -36 16 q-28 12 -52 0 q-30 4 -40 -12 q-8 -4 -4 -8 z" fill="#C0301F" />
+    <path d="M134 212 q-4 -15 16 -20 q14 -18 38 -13 q23 -14 43 -1 q22 -1 20 16 q13 11 -4 22 q-7 16 -31 13 q-24 10 -45 0 q-26 3 -34 -10 q-6 -3 -3 -7 z" fill="#DE4633" />
+    <path d="M152 200 q10 -12 30 -10 q-12 12 -30 10 z" fill="#F58269" opacity="0.6" />
+    <circle cx="243" cy="248" r="5" fill="#C0301F" />
+    <circle cx="132" cy="243" r="4" fill="#C0301F" />
+    <circle cx="207" cy="262" r="3" fill="#C0301F" />
+  </g>
+
+  <!-- Basilic posé sur le nappage -->
+  <g>
+    <path d="M206 200 q19 -18 38 -8 q-9 21 -32 20 z" fill="#3E8E41" />
+    <path d="M180 196 q-19 -17 -38 -6 q10 21 33 19 z" fill="#48A04C" />
+    <path d="M232 197 q-14 2 -24 6" stroke="#2C6B31" stroke-width="2" fill="none" stroke-linecap="round" />
+    <path d="M152 195 q13 3 22 8" stroke="#2C6B31" stroke-width="2" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Fourchette : dents PLONGÉES dans les pâtes, manche vers le coin haut-droit -->
+  <g transform="rotate(18 300 250)">
+    <!-- manche -->
+    <rect x="292" y="82" width="16" height="132" rx="8" fill="url(#forkGrad)" />
+    <path d="M292 88 h5 v120 h-5 z" fill="#FFFFFF" opacity="0.55" />
+    <!-- collerette -->
+    <path d="M288 210 q12 14 24 0 v8 q-12 14 -24 0 z" fill="#D5DDE3" />
+    <!-- tête + dents (vers le bas) -->
+    <path d="M286 216 q14 -12 28 0 v16 q-14 12 -28 0 z" fill="url(#forkGrad)" />
+    <g fill="url(#forkGrad)">
+      <rect x="284" y="230" width="7" height="46" rx="3.5" />
+      <rect x="294" y="230" width="7" height="52" rx="3.5" />
+      <rect x="304" y="230" width="7" height="52" rx="3.5" />
+      <rect x="314" y="230" width="7" height="46" rx="3.5" />
+    </g>
+    <!-- spaghetti enroulés autour des dents -->
+    <g fill="none" stroke="#C6892C" stroke-width="8" stroke-linecap="round" opacity="0.5">
+      <path d="M278 250 q28 -22 50 4" />
+      <path d="M280 268 q26 -20 46 2" />
+    </g>
+    <g fill="none" stroke="#F0BE45" stroke-width="7" stroke-linecap="round">
+      <path d="M278 246 q28 -22 50 4" />
+      <path d="M280 264 q26 -20 46 2" />
+      <path d="M284 282 q24 -18 42 0" />
+    </g>
+  </g>
+</svg>
