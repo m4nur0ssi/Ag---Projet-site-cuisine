@@ -2,11 +2,43 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/07/2026 05:23:16
- * Total: 551 recettes
+ * Dernière mise à jour: 14/07/2026 15:45:41
+ * Total: 552 recettes
  */
-export const exportSyncId = "1784006596999";
+export const exportSyncId = "1784043941805";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6859",
+        "title": "Santa Carne",
+        "description": "",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "restaurant",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7288755601222552865\" data-video-id=\"7288755601222552865\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7288755601222552865\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "📍Santa Carne - Paris 🇫🇷 •Martini framboise 🍸- 13€ • Strawberry chili margarita 🍓- 13€ • Empenadas bœuf & provolone, oignons, tomates, origan 🥟 - 10€ • Crevettes à l'ail 🦐 - 12€ • Ceviche de la casa - 18€ • Noix d'entrecôte 🥩 - 36€ • L'assiette du chef 👨🏼‍🍳 - 42€ • Crème brûlée au maté🧉- 9€ • Pampita 🍫 - 11€ • Tiramisu au whisky 🍮 - 9€ #santacarne #paris #france #restaurant #restaurantparis #restaurantargentin #argentinrestaurant #argentine #specialite #viande #viandeargentine #meat #boeuf #beef #empenadas #crevette #ceviche #moelleuxauchocolat #chocolat #tiramisu #whisky #cremebrulee #maté #dessert #birthday #food #foodie #foodtiktok #bonneadresse #bonneadresseparis #discover #explore #fyp #pourtoi #viral #laufood"
+        ],
+        "tags": [
+            "resto-brasserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": "Boulevard Richard-Lenoir, 75011 Paris",
+        "restaurant": {
+            "subType": "brasserie",
+            "address": "Boulevard Richard-Lenoir, 75011 Paris",
+            "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8547710,2.3693864"
+        }
+    },
     {
         "id": "6857",
         "title": "Liégeois praliné ultra crémeux",

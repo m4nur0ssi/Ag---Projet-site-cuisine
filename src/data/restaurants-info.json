@@ -171,7 +171,7 @@
     "address": "134 Avenue de la Plaine de France, 95500 Gonesse",
     "phone": "01 75 94 04 78",
     "priceLevel": 2,
-    "rating": 4.0,
+    "rating": 4,
     "reviewsCount": 150,
     "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g196568-d16696296-Reviews-Le_Balthazar-Gonesse_Val_d_Oise_Ile_de_France.html",
     "hours": "Lun 7h45–19h30 · Mar–Ven 7h45–22h · Sam 10h–22h · Dim 10h–20h30",
@@ -218,6 +218,11 @@
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_7_1783964330258.jpg&v=1783964372351",
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_8_1783964373995.jpg&v=1783964409956"
     ]
+  },
+  "6859": {
+    "subType": "brasserie",
+    "address": "Boulevard Richard-Lenoir, 75011 Paris",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8547710,2.3693864"
   },
   "_comment": "Infos restaurant réelles vérifiées (web, juillet 2026). Clé = id recette WordPress. Fusionné dans mockData au sync (sync-recipes.js) → survit aux régénérations. subType ∈ brasserie|italien|asiatique|gastro|salon-de-the."
 }
