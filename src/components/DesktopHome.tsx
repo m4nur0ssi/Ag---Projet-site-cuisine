@@ -25,6 +25,15 @@ export default function DesktopHome() {
     const [randomRecipe, setRandomRecipe] = useState<any>(null);
     const [recentlyViewed, setRecentlyViewed] = useState<typeof mockRecipes>([]);
     const [plannerTooltipVisible, setPlannerTooltipVisible] = useState(false);
+    // Sections calculées (Mieux Notées, Dernières Vues, Nouveautés) : leur contenu ne
+    // découle pas d'un tag, on affiche donc la liste exacte du carrousel.
+    const [collection, setCollection] = useState<{ title: string; recipes: any[] } | null>(null);
+
+    const openCollection = useCallback((title: string, recipes: any[]) => {
+        setActiveFilters([]);
+        setCollection({ title, recipes });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
 
     useEffect(() => {
         const handler = (e: any) => setPlannerTooltipVisible(e.detail?.visible ?? false);
@@ -60,6 +69,7 @@ export default function DesktopHome() {
     useEffect(() => {
         const handleReset = () => {
             setActiveFilters([]);
+            setCollection(null);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
         window.addEventListener('magic-reset-filters', handleReset);
@@ -67,6 +77,7 @@ export default function DesktopHome() {
     }, []);
 
     const handleTagSelect = (tag: string, groupId?: string) => {
+        setCollection(null);
         if (!groupId) {
             const lowerTag = tag.toLowerCase();
             const categoriesIds = ['aperitifs', 'entrees', 'plats', 'vegetarien', 'desserts', 'patisserie', 'restaurant', 'apéro', 'entrée'];
@@ -175,12 +186,14 @@ export default function DesktopHome() {
         else if (countriesIds.some(c => lowerTag.includes(c))) groupId = 'countries';
 
         // REMPLACER tous les filtres (ne pas empiler)
+        setCollection(null);
         setActiveFilters([{ tag, group: groupId }]);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const clearAllFilters = useCallback(() => {
         setActiveFilters([]);
+        setCollection(null);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, []);
 
@@ -461,6 +474,7 @@ export default function DesktopHome() {
     }, [activeTags]);
 
     const activeFiltersLabel = useMemo(() => {
+        if (collection) return collection.title;
         if (activeTags.length === 0) return "Les Recettes Magiques";
         return activeTags.map(t => {
             const low = t.toLowerCase();
@@ -469,7 +483,7 @@ export default function DesktopHome() {
             if (low === 'simplissime') return 'SIMPLISSIME';
             return t.charAt(0).toUpperCase() + t.slice(1).replace('pâques', 'Pâques').replace('paques', 'Paques');
         }).join(" + ");
-    }, [activeTags]);
+    }, [activeTags, collection]);
 
     const categorizedRecipes = useMemo(() => {
         const groups: Record<string, typeof mockRecipes> = {};
@@ -1025,7 +1039,7 @@ export default function DesktopHome() {
                 <MagicFilterBar
                     activeTags={activeTags}
                     onSelect={handleTagSelect}
-                    onClear={activeTags.length > 0 ? clearAllFilters : undefined}
+                    onClear={activeTags.length > 0 || collection ? clearAllFilters : undefined}
                     isHome={true}
                 />
                 <RequestRecipeButton />
@@ -1050,13 +1064,18 @@ export default function DesktopHome() {
             >
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={activeTags.join('-')}
+                        key={collection ? `collection-${collection.title}` : activeTags.join('-')}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.4 }}
                     >
-                        {activeTags.length > 0 && (
+                        {collection && (
+                            <div className={styles.resultsWrapper}>
+                                <RecipeGrid recipes={collection.recipes} />
+                            </div>
+                        )}
+                        {!collection && activeTags.length > 0 && (
                             <div className={styles.resultsWrapper}>
                                 {activeTags.includes('thématiques') ? (
                                     <RecipeGrid
@@ -1070,7 +1089,7 @@ export default function DesktopHome() {
                                 )}
                             </div>
                         )}
-                        {activeTags.length === 0 && (
+                        {!collection && activeTags.length === 0 && (
                             <>
                                 <RecipeCarousel
                                     recipes={[
@@ -1082,14 +1101,18 @@ export default function DesktopHome() {
                                     onTitleClick={handleCarouselTitleClick}
                                     onCardClick={(recipe) => handleCarouselTitleClick(recipe.title)}
                                 />
-                                <TopRatedCarousel recipes={mockRecipes} limit={10} />
+                                <TopRatedCarousel
+                                    recipes={mockRecipes}
+                                    limit={10}
+                                    onTitleClick={openCollection}
+                                />
 
                                 {recentlyViewed.length > 0 && (
                                     <RecipeCarousel
                                         recipes={recentlyViewed}
                                         title="Les Dernières Vues"
                                         size="small"
-                                        onTitleClick={handleCarouselTitleClick}
+                                        onTitleClick={(title) => openCollection(title, recentlyViewed)}
                                     />
                                 )}
 
@@ -1097,7 +1120,7 @@ export default function DesktopHome() {
                                     recipes={newRecipes}
                                     title="Les Nouveautés"
                                     size="small"
-                                    onTitleClick={handleCarouselTitleClick}
+                                    onTitleClick={(title) => openCollection(title, newRecipes)}
                                 />
 
                                 {categorizedRecipes['aperitifs']?.length > 0 && (
@@ -1151,7 +1174,7 @@ export default function DesktopHome() {
                             </>
                         )}
 
-                        {filteredRecipes.length === 0 && (
+                        {!collection && filteredRecipes.length === 0 && (
                             <div className={styles.noRecipes}>Aucune recette correspondante 🥣</div>
                         )}
                     </motion.div>

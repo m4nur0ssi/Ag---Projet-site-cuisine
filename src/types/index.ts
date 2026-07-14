@@ -27,6 +27,8 @@ export interface Recipe {
 
 // Fiche restaurant ("Comme au resto") — infos réelles vérifiées.
 export interface RestaurantInfo {
+    name?: string;                 // vrai nom du lieu — prime sur le titre WordPress,
+                                   // qui reprend la légende TikTok tronquée
     subType?: 'brasserie' | 'italien' | 'asiatique' | 'gastro' | 'salon-de-the';
     priceLevel?: 1 | 2 | 3;        // € / €€ / €€€ (indice The Fork / usage)
     parking?: boolean;             // stationnement facile à proximité

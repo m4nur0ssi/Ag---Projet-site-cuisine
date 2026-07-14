@@ -54,11 +54,18 @@ function generateRecipeHtml(recipe) {
         "description": recipe.summary || ""
     };
 
-    return `
-<div class="mpp-recipe-wrapper" style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #2d3436; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+    // Pas de texte bouche-trou : sans résumé réel, on n'affiche pas de chapô du tout.
+    // Une phrase générique ("Découvrez cette pépite…") n'apprend rien sur le lieu et
+    // remonte ensuite telle quelle sur le site via sync-recipes.js.
+    const intro = recipe.summary
+        ? `
     <p style="font-size: 1.15em; font-style: italic; color: #636e72; margin-bottom: 40px; border-left: 4px solid #ffde59; padding-left: 20px;">
-        ${recipe.summary || 'Découvrez cette pépite culinaire venue tout droit de TikTok !'}
-    </p>
+        ${recipe.summary}
+    </p>`
+        : '';
+
+    return `
+<div class="mpp-recipe-wrapper" style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #2d3436; max-width: 700px; margin: 0 auto; line-height: 1.6;">${intro}
     <div id="mpprecipe-container" style="background: #ffffff; padding: 35px; border-radius: 16px; border: 1px solid #dfe6e9; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 40px;">
         <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
         <h3 style="margin: 0 0 25px 0; font-size: 1.5em; color: #2d3436; border-bottom: 2px solid #ffde59; padding-bottom: 10px; display: inline-block;">🛒 Ingrédients</h3>

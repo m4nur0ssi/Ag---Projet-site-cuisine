@@ -887,6 +887,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <div className={styles.restoTiles}>
                                     {r.priceLevel && (
                                         <div className={styles.restoTile}>
+                                            <span className={styles.restoTileIcon}>💶</span>
                                             <span className={styles.restoTileValue}>
                                                 {'€'.repeat(r.priceLevel)}<span className={styles.restoTileMuted}>{'€'.repeat(3 - r.priceLevel)}</span>
                                             </span>
@@ -900,7 +901,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            <span className={styles.restoTileValue}>{r.rating.toFixed(1)} ★</span>
+                                            <span className={styles.restoTileIcon}>⭐</span>
+                                            <span className={styles.restoTileValue}>{r.rating.toFixed(1)}</span>
                                             <span className={styles.restoTileLabel}>
                                                 {r.reviewsCount ? `${r.reviewsCount} avis` : 'Tripadvisor'}
                                             </span>

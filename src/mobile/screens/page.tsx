@@ -21,6 +21,15 @@ export default function Home() {
     const touchStartRef = useRef<number>(0);
     const touchEndRef = useRef<number>(0);
     const [recentlyViewed, setRecentlyViewed] = useState<typeof mockRecipes>([]);
+    // Sections calculées (Mieux Notées, Dernières Vues, Nouveautés) : leur contenu ne
+    // découle pas d'un tag, on affiche donc la liste exacte du carrousel.
+    const [collection, setCollection] = useState<{ title: string; recipes: any[] } | null>(null);
+
+    const openCollection = (title: string, recipes: any[]) => {
+        setActiveFilters([]);
+        setCollection({ title, recipes });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     useEffect(() => {
         const load = () => {
@@ -45,6 +54,7 @@ export default function Home() {
     }, []);
 
     const handleTagSelect = (tag: string, groupId?: string) => {
+        setCollection(null);
         if (!groupId) {
             const lowerTag = tag.toLowerCase();
             const categoriesIds = ['aperitifs', 'entrees', 'plats', 'vegetarien', 'desserts', 'patisserie', 'restaurant', 'apéro', 'entrée'];
@@ -139,6 +149,7 @@ export default function Home() {
 
     const clearAllFilters = () => {
         setActiveFilters([]);
+        setCollection(null);
     };
 
     const handleTouchStart = (e: React.TouchEvent) => {
@@ -336,9 +347,10 @@ export default function Home() {
     }, [activeTags]);
 
     const activeFiltersLabel = useMemo(() => {
+        if (collection) return collection.title;
         if (activeTags.length === 0) return 'Tous nos secrets';
         return activeTags.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(' + ');
-    }, [activeTags]);
+    }, [activeTags, collection]);
 
     const categorizedRecipes = useMemo(() => {
         const groups: Record<string, any[]> = {};
@@ -779,7 +791,7 @@ export default function Home() {
                     title={activeFiltersLabel}
                     large={!scrolled}
                     onClear={clearAllFilters}
-                    showClear={activeTags.length > 0}
+                    showClear={activeTags.length > 0 || !!collection}
                 />
                 <MagicFilterBar
                     activeTags={activeTags}
@@ -797,13 +809,18 @@ export default function Home() {
             >
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={activeTags.join('-')}
+                        key={collection ? `collection-${collection.title}` : activeTags.join('-')}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.4 }}
                     >
-                        {activeTags.length > 0 && (
+                        {collection && (
+                            <div className={styles.resultsWrapper}>
+                                <RecipeGrid recipes={collection.recipes} />
+                            </div>
+                        )}
+                        {!collection && activeTags.length > 0 && (
                             <div className={styles.resultsWrapper}>
                                 {activeTags.includes('thématiques') ? (
                                     <RecipeGrid
@@ -821,7 +838,7 @@ export default function Home() {
                                 )}
                             </div>
                         )}
-                        {activeTags.length === 0 && (
+                        {!collection && activeTags.length === 0 && (
                             <div className={styles.sectionsContainer}>
                                 {categorizedRecipes['thématiques']?.length > 0 && (
                                     <RecipeCarousel
@@ -839,13 +856,17 @@ export default function Home() {
                                         }}
                                     />
                                 )}
-                                    <TopRatedCarousel recipes={mockRecipes} limit={10} />
+                                    <TopRatedCarousel
+                                        recipes={mockRecipes}
+                                        limit={10}
+                                        onTitleClick={openCollection}
+                                    />
                                     {recentlyViewed.length > 0 && (
                                         <RecipeCarousel
                                             recipes={recentlyViewed}
                                             title="Les Dernières Vues"
                                             size="small"
-                                            onTitleClick={handleCarouselTitleClick}
+                                            onTitleClick={(title) => openCollection(title, recentlyViewed)}
                                         />
                                     )}
                                     {newRecipes.length > 0 && (
@@ -853,7 +874,7 @@ export default function Home() {
                                             recipes={newRecipes}
                                             title="Nouveautés"
                                             size="small"
-                                            onTitleClick={handleCarouselTitleClick}
+                                            onTitleClick={(title) => openCollection(title, newRecipes)}
                                         />
                                     )}
                                     {categorizedRecipes['aperitifs']?.length > 0 && (

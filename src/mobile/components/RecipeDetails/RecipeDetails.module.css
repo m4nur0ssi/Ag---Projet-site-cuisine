@@ -2447,7 +2447,9 @@
 
 /* ── Fiche restaurant : tuiles infos + coordonnées + galerie ── */
 .restoTiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin: 8px 0 16px; }
-.restoTile { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 13px 8px; border-radius: 16px; background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.12); text-decoration: none; color: inherit; }
+/* Structure identique sur toutes les tuiles (icône / valeur / label) → même hauteur
+   quel que soit le nombre d'infos disponibles sur la fiche. */
+.restoTile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 96px; padding: 13px 8px; border-radius: 16px; background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.12); text-decoration: none; color: inherit; }
 .restoTileLink { cursor: pointer; }
 .restoTileIcon { font-size: 1.35rem; line-height: 1; }
 .restoTileValue { font-size: 1rem; font-weight: 900; letter-spacing: 0.5px; }

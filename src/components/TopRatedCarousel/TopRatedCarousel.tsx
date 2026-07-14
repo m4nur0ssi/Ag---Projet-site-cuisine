@@ -6,6 +6,8 @@ import { useRatingStats } from '@/lib/ratings';
 interface TopRatedCarouselProps {
     recipes: any[];
     limit?: number;
+    /** Clic sur la carte-titre : reçoit le titre et le classement calculé. */
+    onTitleClick?: (title: string, recipes: any[]) => void;
 }
 
 /**
@@ -13,7 +15,7 @@ interface TopRatedCarouselProps {
  * Réutilise RecipeCarousel : carte-titre et cartes identiques aux autres sections,
  * avec la pastille de rang (#1, #2…) en plus. Masqué sans avis.
  */
-export default function TopRatedCarousel({ recipes, limit = 10 }: TopRatedCarouselProps) {
+export default function TopRatedCarousel({ recipes, limit = 10, onTitleClick }: TopRatedCarouselProps) {
     const stats = useRatingStats();
 
     const top = useMemo(() => {
@@ -34,6 +36,7 @@ export default function TopRatedCarousel({ recipes, limit = 10 }: TopRatedCarous
             title="Les Mieux Notées"
             size="small"
             ranked
+            onTitleClick={onTitleClick ? (title) => onTitleClick(title, top) : undefined}
         />
     );
 }

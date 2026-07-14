@@ -12,6 +12,10 @@ const fetch = require('node-fetch');
 
 // Infos restaurant réelles vérifiées (fusionnées dans les fiches catégorie restaurant).
 const WP_RESTAURANT_CAT = 42; // ID de la catégorie WordPress "Restaurants"
+// Texte bouche-trou posé par le bot TikTok quand un post n'a pas de résumé. À ne jamais
+// afficher : ce n'est pas une description, ça n'apprend rien sur le lieu.
+const PLACEHOLDER_DESCRIPTION = /pépite culinaire venue tout droit de TikTok/i;
+
 const RESTAURANTS_INFO_PATH = path.join(__dirname, 'src', 'data', 'restaurants-info.json');
 let RESTAURANTS_INFO = {};
 try { RESTAURANTS_INFO = require('./src/data/restaurants-info.json'); } catch { RESTAURANTS_INFO = {}; }
@@ -241,6 +245,10 @@ function extractRecipeData(post) {
     // Description propre (avant le plugin)
     let description = decodeHtmlEntities(rawDescription.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim());
     if (description.length > 250) description = description.substring(0, 247) + "...";
+    // Le bot TikTok écrit un texte bouche-trou dans le corps WordPress quand le post n'a
+    // pas de résumé (voir tiktok-bot/wordpress-poster.js). Ce n'est pas une description :
+    // on la jette ici pour qu'elle ne remonte jamais sur le site.
+    if (PLACEHOLDER_DESCRIPTION.test(description)) description = '';
     // Fiche restaurant : un "blurb" manuel dans restaurants-info.json prime (durable au sync).
     {
         const rInfo = post.categories?.includes(WP_RESTAURANT_CAT) ? RESTAURANTS_INFO[String(post.id)] : null;
@@ -249,7 +257,10 @@ function extractRecipeData(post) {
 
     return {
         id: String(post.id),
-        title: decodeHtmlEntities(post.title.rendered),
+        // Fiche restaurant : `name` dans restaurants-info.json prime sur le titre WordPress,
+        // qui reprend la légende TikTok tronquée ("felicità 🇮🇹 c'est vraiment à faire si…").
+        title: (post.categories?.includes(WP_RESTAURANT_CAT) && RESTAURANTS_INFO[String(post.id)]?.name)
+            || decodeHtmlEntities(post.title.rendered),
         description: description,
         image: (() => {
             // Fiche restaurant avec photos → vignette carte = photo 1 (durable, ne dépend

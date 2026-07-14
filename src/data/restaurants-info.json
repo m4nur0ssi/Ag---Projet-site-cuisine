@@ -61,8 +61,9 @@
     "rating": 4.6,
     "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g187147-d3312550-Reviews-Venezia-Paris_Ile_de_France.html",
     "website": "https://ilvenezia.fr/",
-    "hours": "Lun–Sam, midi & soir",
+    "hours": "Lun–Sam 12h–14h30 & 19h–22h30 · Dim fermé",
     "address": "3 Rue Corbineau, 75012 Paris",
+    "phone": "01 43 07 03 00",
     "photos": [
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_1_1783586090349.jpg&v=1783586095656",
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_1187_2_1783586096258.jpg&v=1783586141917",
@@ -70,6 +71,7 @@
     ]
   },
   "1214": {
+    "name": "Le Blé Cœur",
     "subType": "brasserie",
     "priceLevel": 2,
     "terrace": true,
@@ -130,8 +132,12 @@
   },
   "6692": {
     "subType": "salon-de-the",
+    "blurb": "Salon de thé et brunch du 9e arrondissement, rue de Trévise. Ici le brunch se sert tous les jours, pas seulement le dimanche, et le tea time prend le relais l'après-midi. Pas de réservation : on se présente directement.",
     "priceLevel": 2,
     "rating": 4.5,
+    "website": "https://violettaetalfredo.fr/",
+    "hours": "Lun–Dim 10h–19h · Cuisine jusqu'à 17h30",
+    "address": "30 Rue de Trévise, 75009 Paris",
     "photos": [
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_1_1783712373377.jpg&v=1783712388454",
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6692_2_1783712389081.jpg&v=1783712406258",
@@ -161,7 +167,14 @@
   },
   "6745": {
     "subType": "brasserie",
+    "blurb": "Brasserie installée dans le centre commercial Usine Center de Gonesse. Pizzas au feu de bois, burgers, salades, grillades et desserts maison, servis midi et soir sous une terrasse chauffée. Une seconde adresse au Blanc-Mesnil.",
     "address": "134 Avenue de la Plaine de France, 95500 Gonesse",
+    "phone": "01 75 94 04 78",
+    "priceLevel": 2,
+    "rating": 4.0,
+    "reviewsCount": 150,
+    "tripAdvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g196568-d16696296-Reviews-Le_Balthazar-Gonesse_Val_d_Oise_Ile_de_France.html",
+    "hours": "Lun 7h45–19h30 · Mar–Ven 7h45–22h · Sam 10h–22h · Dim 10h–20h30",
     "terrace": true,
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=50.3603221,3.5212661",
     "mapsQuery": "Le Balthazar Gonesse Le Blanc-Mesnil",
@@ -184,7 +197,17 @@
     ]
   },
   "6785": {
+    "name": "La Felicità",
     "subType": "italien",
+    "blurb": "Le food court italien de Big Mamma installé sous la halle Freyssinet de Station F : 4 500 m², cinq cuisines, trois bars et une immense terrasse. Pizzas au feu de bois, pâtes fraîches et antipasti à partager, sans réservation, dans un décor XXL.",
+    "priceLevel": 2,
+    "terrace": true,
+    "rating": 3.7,
+    "reviewsCount": 1773,
+    "tripAdvisorUrl": "https://www.tripadvisor.fr/Restaurant_Review-g187147-d14156541-Reviews-La_Felicita-Paris_Ile_de_France.html",
+    "website": "https://www.lafelicita.fr/",
+    "hours": "Lun 8h30–23h30 · Mar–Mer 8h30–00h · Jeu–Ven 8h30–1h30 · Sam 12h–1h30 · Dim 12h–23h30",
+    "address": "5 Parvis Alan Turing, intérieur du passage Anatole, 75013 Paris",
     "photos": [
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_1_1783964201643.jpg&v=1783964227321",
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6785_2_1783964229401.jpg&v=1783964239994",
