@@ -6,6 +6,7 @@ import RecipeCarousel from '../components/RecipeCarousel/RecipeCarousel';
 import RecipeGrid from '../components/RecipeGrid/RecipeGrid';
 import TopRatedCarousel from '../components/TopRatedCarousel/TopRatedCarousel';
 import RequestRecipeButton from '../components/RequestRecipeButton/RequestRecipeButton';
+import TutorialButton from '../components/Tutorial/TutorialButton';
 import RecipeSheet from '../components/RecipeSheet/RecipeSheet';
 import dynamic from 'next/dynamic';
 const MagicFilterBar = dynamic(() => import('../components/MagicFilterBar/MagicFilterBar'), { ssr: false });
@@ -1047,7 +1048,11 @@ export default function DesktopHome() {
                     onClear={activeTags.length > 0 || collection ? clearAllFilters : undefined}
                     isHome={true}
                 />
-                <RequestRecipeButton />
+                {/* Groupe de pilules centré sous la barre de menu (symétrique avec elle). */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginTop: 12 }}>
+                    <RequestRecipeButton />
+                    <TutorialButton />
+                </div>
                 </div>
             </div>
 

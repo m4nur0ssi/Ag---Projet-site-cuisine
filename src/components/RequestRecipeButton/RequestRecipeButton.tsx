@@ -39,7 +39,6 @@ Merci beaucoup pour ta participation à l'élaboration du site.
 
     return (
         <a className={styles.btn} href={href} aria-label="Proposer une nouvelle recette">
-            <span className={styles.icon}>✨</span>
             <span className={styles.label}>Proposer une recette</span>
         </a>
     );

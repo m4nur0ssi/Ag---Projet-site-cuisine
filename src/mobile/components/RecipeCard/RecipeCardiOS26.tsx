@@ -230,6 +230,7 @@ export default function RecipeCardiOS26({
             {/* 2. Main Visual Card */}
             <motion.div
                 ref={cardRef}
+                data-tour="card"
                 className={`${styles.card} ${size === 'small' ? styles.small : ''}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -365,7 +366,8 @@ export default function RecipeCardiOS26({
 
                 {/* Central Play Button (if has video) */}
                 {embedUrl && !isPlaying && !hideVideo && !isIntroMode && (
-                    <button 
+                    <button
+                        data-tour="play"
                         className={styles.playCenter}
                         onClick={(e) => {
                             e.stopPropagation();

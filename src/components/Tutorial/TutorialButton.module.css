@@ -1,0 +1,56 @@
+/* Jumelle EXACTE de RequestRecipeButton (mêmes tailles desktop ET mobile) pour que les
+   deux pilules soient parfaitement symétriques côte à côte. Seul le dégradé change.
+   ⚠️ AppShell bascule sur l'arbre mobile sous 1023px, et le RequestRecipeButton mobile
+   a ses propres tailles : on réplique donc le même point de rupture ici. */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    margin: 0;
+    width: fit-content;
+    padding: 11px 24px;
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: #fff;
+    text-decoration: none;
+    /* Dégradé INVERSE de RequestRecipeButton (violet→vert) : vert à gauche, violet à
+       droite. Les deux pilules se rejoignent donc en vert = continuité de couleur. */
+    background: linear-gradient(90deg, #10b981, #7f0df2);
+    box-shadow: 0 8px 22px rgba(127, 13, 242, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(127, 13, 242, 0.45);
+    filter: brightness(1.05);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.label {
+    line-height: 1;
+}
+
+/* Tailles mobiles — calquées sur src/mobile/components/RequestRecipeButton. */
+@media (max-width: 1023px) {
+    .btn {
+        max-width: 92%;
+        padding: 9px 18px;
+        font-size: 0.9rem;
+        box-shadow: 0 6px 18px rgba(127, 13, 242, 0.35);
+    }
+
+    .btn:active {
+        transform: scale(0.96);
+        filter: brightness(1.05);
+    }
+}

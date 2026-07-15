@@ -523,7 +523,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                 <div className={styles.weekPanelInner}>
                     {/* Actions haut-droite : Valider/Modifier + fermer */}
                     <div className={styles.topRight}>
-                        <button className={styles.actionBtn} onClick={() => {
+                        <button data-tour="planner-validate" className={styles.actionBtn} onClick={() => {
                             const next = !validated;
                             setValidated(next);
                             if (!next) setRecap(null);
@@ -552,12 +552,13 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                             <button
                                 className={`${styles.viewBtn} ${view === 'jourj' ? styles.viewBtnActive : ''}`}
                                 onClick={() => setView('jourj')}
+                                data-tour="planner-jourj"
                             >Jour J</button>
                         </div>
 
                         {!validated && (
                             <div className={styles.toolbar}>
-                                <button className={styles.randomBtn} onClick={() => fillIA()} disabled={iaBusy} title="Menu équilibré composé par l'IA">
+                                <button data-tour="planner-ia" className={styles.randomBtn} onClick={() => fillIA()} disabled={iaBusy} title="Menu équilibré composé par l'IA">
                                     {iaBusy ? 'Composition…' : 'Menu IA'}
                                 </button>
                                 {SIDE_GROUPS.map(g => (
@@ -571,6 +572,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                     </button>
                                 ))}
                                 <button
+                                    data-tour="planner-clear"
                                     className={styles.clearBtn}
                                     onClick={clearMenus}
                                     title={view === 'jourj' ? 'Effacer le menu Jour J' : 'Effacer tous les menus de la semaine'}
@@ -601,15 +603,17 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                             <div className={styles.dayName}>
                                                 {day}
                                                 {!validated && (
-                                                    <button className={styles.deleteDay} title="Supprimer ce jour" onClick={() => toggleDay(day)}>✕</button>
+                                                    <button data-tour="planner-delete-day" className={styles.deleteDay} title="Supprimer ce jour" onClick={() => toggleDay(day)}>✕</button>
                                                 )}
                                             </div>
-                                            {MEALS.map(meal => {
+                                            {MEALS.map((meal, mealIdx) => {
                                                 const recipe = plan[day]?.[meal];
                                                 const slotKey = `${day}|${meal}`;
                                                 return (
                                                     <div
                                                         key={meal}
+                                                        /* 1re case de la 1re journée = cible du tutoriel */
+                                                        data-tour={day === visibleDays[0] && mealIdx === 0 ? 'planner-slot' : undefined}
                                                         className={`${styles.mealSlot} ${dragOver === slotKey ? styles.dropTarget : ''}`}
                                                         onDragOver={!validated ? (e) => { if (!drag) return; e.preventDefault(); setDragOver(slotKey); } : undefined}
                                                         onDragLeave={() => setDragOver(prev => prev === slotKey ? null : prev)}
@@ -635,7 +639,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                                                 )}
                                                             </div>
                                                             {/* Accompagnement — emplacement à hauteur fixe (toujours présent) */}
-                                                            <div className={styles.sideSlot}>
+                                                            <div data-tour={day === visibleDays[0] && mealIdx === 0 ? 'planner-side' : undefined} className={styles.sideSlot}>
                                                             {recipe.side ? (
                                                                 <div
                                                                     className={styles.sideVignette}

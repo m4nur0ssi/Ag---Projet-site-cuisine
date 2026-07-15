@@ -267,12 +267,12 @@ export default function Header({
                                 {!scrolled ? (
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', paddingLeft: '6px', paddingRight: '6px' }}>
                                         {rightAction}
-                                        <button className={styles.pillBtnSearch} onClick={() => setIsSearchOpen(true)}>
+                                        <button data-tour="search" className={styles.pillBtnSearch} onClick={() => setIsSearchOpen(true)}>
                                             Recherche
                                         </button>
                                         {/* Raccourci panier — à GAUCHE du planificateur, visible seulement si la liste a des ingrédients */}
                                         {authUser && shoppingCount > 0 && (
-                                            <Link href="/shopping-list" className={styles.plannerIconBtn} style={{ position: 'relative', fontSize: '1.45rem', lineHeight: 1, textDecoration: 'none', overflow: 'visible', marginRight: '6px' }} title="Liste de courses">
+                                            <Link data-tour="shopping" href="/shopping-list" className={styles.plannerIconBtn} style={{ position: 'relative', fontSize: '1.45rem', lineHeight: 1, textDecoration: 'none', overflow: 'visible', marginRight: '6px' }} title="Liste de courses">
                                                 🛒
                                                 <span className={styles.navFavBadge} style={{ top: '-5px', right: '-7px' }}>{shoppingCount > 99 ? '99+' : shoppingCount}</span>
                                             </Link>
@@ -282,7 +282,7 @@ export default function Header({
                                                 onMouseEnter={() => { clearTimeout(plannerHideTimer.current); setShowPlannerTooltip(true); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: true } })); }}
                                                 onMouseLeave={() => { plannerHideTimer.current = setTimeout(() => { setShowPlannerTooltip(false); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: false } })); }, 450); }}
                                             >
-                                                <button ref={plannerBtnRef} className={styles.plannerIconBtn} onClick={() => { clearTimeout(plannerHideTimer.current); setShowPlannerTooltip(false); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: false } })); if (scrolled) window.scrollTo({ top: 0, behavior: 'smooth' }); setIsPlannerOpen(v => !v); }}>
+                                                <button data-tour="planner" ref={plannerBtnRef} className={styles.plannerIconBtn} onClick={() => { clearTimeout(plannerHideTimer.current); setShowPlannerTooltip(false); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: false } })); if (scrolled) window.scrollTo({ top: 0, behavior: 'smooth' }); setIsPlannerOpen(v => !v); }}>
                                                     <PlannerIcon size={32} />
                                                 </button>
                                                 <PlannerTooltip visible={showPlannerTooltip} midi={todayMeals.midi} soir={todayMeals.soir} anchorRef={pillRef as any} />
@@ -295,13 +295,14 @@ export default function Header({
                                         <div className={styles.toolsGroup}>
                                             {rightAction}
                                             <button
+                                                data-tour="search"
                                                 className={styles.toolBtn}
                                                 onClick={() => setIsSearchOpen(true)}
                                             >
                                                 🔍
                                             </button>
                                             {authUser && (
-                                            <Link href="/favorites" className={`${styles.toolBtn} ${favoriteCount > 0 ? styles.hasFavorite : ''}`}>
+                                            <Link data-tour="favorites" href="/favorites" className={`${styles.toolBtn} ${favoriteCount > 0 ? styles.hasFavorite : ''}`}>
                                                 {favoriteCount > 0 ? '❤️' : '🤍'}
                                                 {favoriteCount > 0 && (
                                                     <span className={styles.navFavBadge}>{favoriteCount}</span>
@@ -309,7 +310,7 @@ export default function Header({
                                             </Link>
                                             )}
                                             {authUser && (
-                                            <Link href="/shopping-list" className={styles.toolBtn}>
+                                            <Link data-tour="shopping" href="/shopping-list" className={styles.toolBtn}>
                                                 🛒
                                                 {shoppingCount > 0 && (
                                                     <span className={styles.navFavBadge}>{shoppingCount > 99 ? '99+' : shoppingCount}</span>
@@ -321,7 +322,7 @@ export default function Header({
                                                 onMouseEnter={() => { clearTimeout(plannerHideTimer.current); setShowPlannerTooltip(true); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: true } })); }}
                                                 onMouseLeave={() => { plannerHideTimer.current = setTimeout(() => { setShowPlannerTooltip(false); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: false } })); }, 450); }}
                                             >
-                                                <button ref={plannerBtnRef} className={styles.plannerIconBtn} onClick={() => { clearTimeout(plannerHideTimer.current); setShowPlannerTooltip(false); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: false } })); setIsPlannerOpen(v => !v); }}>
+                                                <button data-tour="planner" ref={plannerBtnRef} className={styles.plannerIconBtn} onClick={() => { clearTimeout(plannerHideTimer.current); setShowPlannerTooltip(false); window.dispatchEvent(new CustomEvent('planner-tooltip', { detail: { visible: false } })); setIsPlannerOpen(v => !v); }}>
                                                     <PlannerIcon size={32} />
                                                 </button>
                                                 <PlannerTooltip visible={showPlannerTooltip} midi={todayMeals.midi} soir={todayMeals.soir} anchorRef={pillRef as any} />

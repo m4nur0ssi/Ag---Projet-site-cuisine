@@ -383,8 +383,9 @@ export default function BottomNav() {
                                     )}
                                 </div>
 
-                                <motion.div 
-                                    className={styles.miniRight} 
+                                <motion.div
+                                    data-tour="search"
+                                    className={styles.miniRight}
                                     onClick={handleSearchOrTimerClick}
                                 >
                                     {renderSearchOrTimer(true)}
@@ -422,8 +423,9 @@ export default function BottomNav() {
                                         const isActive = activeIndex === index;
 
                                         return (
-                                            <div 
-                                                key={item.id} 
+                                            <div
+                                                key={item.id}
+                                                data-tour={item.id === 'favoris' ? 'favorites' : item.id === 'panier' ? 'shopping' : item.id === 'planner' ? 'planner' : undefined}
                                                 className={`${styles.navItem} ${isActive ? styles.active : ''}`}
                                                 onClick={() => handleItemClick(index)}
                                             >
@@ -451,6 +453,7 @@ export default function BottomNav() {
                                 </div>
 
                                 <motion.div
+                                    data-tour="search"
                                     className={styles.isolatedSearchBtn}
                                     whileTap={{ scale: 0.85 }}
                                     onClick={handleSearchOrTimerClick}

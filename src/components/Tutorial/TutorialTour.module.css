@@ -1,0 +1,134 @@
+.root {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+}
+
+/* Voile intégral quand l'étape n'a pas de cible */
+.dimAll {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 8, 20, 0.86);
+    animation: fade 0.25s ease;
+}
+
+/* Projecteur : l'ombre de 9999px assombrit TOUT sauf le rectangle de la cible. */
+.spot {
+    position: fixed;
+    box-shadow:
+        0 0 0 9999px rgba(4, 5, 14, 0.9),
+        0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 0 7px rgba(236, 72, 153, 0.55),
+        0 0 34px 10px rgba(245, 158, 11, 0.7),
+        0 0 90px 30px rgba(236, 72, 153, 0.35);
+    pointer-events: none;
+    /* PAS de transition sur top/left : le halo est re-mesuré à chaque scroll, une
+       transition repartirait de zéro à chaque fois et traînerait derrière la cible. */
+    animation: halo 2.2s ease-in-out infinite;
+}
+
+@keyframes halo {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.25); }
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.bubble {
+    position: fixed;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    padding: 20px 22px;
+    border-radius: 20px;
+    background: rgba(20, 22, 38, 0.97);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    color: #fff;
+    animation: pop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pop {
+    from { opacity: 0; transform: translateY(8px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.count {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #a78bfa;
+    margin-bottom: 8px;
+}
+
+.title {
+    margin: 0 0 8px;
+    font-size: 1.18rem;
+    font-weight: 900;
+    line-height: 1.25;
+}
+
+.text {
+    margin: 0 0 18px;
+    font-size: 0.94rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skip,
+.prev {
+    background: none;
+    border: none;
+    padding: 9px 6px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.skip:hover,
+.prev:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.next {
+    padding: 10px 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(90deg, #7f0df2, #10b981);
+    color: #fff;
+    font-size: 0.92rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(127, 13, 242, 0.35);
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.next:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+}
+
+.next:active {
+    transform: scale(0.97);
+}

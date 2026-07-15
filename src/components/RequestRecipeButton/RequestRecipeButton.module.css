@@ -2,8 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 9px;
-    margin: 12px auto 0;
+    font-family: inherit;
+    /* Marges gérées par le groupe de pilules (voir DesktopHome / mobile page) : un
+       `margin: auto` ici écarterait les pilules aux deux bouts du flex. */
+    margin: 0;
     width: fit-content;
     padding: 11px 24px;
     border-radius: 100px;
@@ -27,12 +29,6 @@
 
 .btn:active {
     transform: scale(0.97);
-}
-
-.icon {
-    font-size: 1.1rem;
-    line-height: 1;
-    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
 }
 
 .label {
