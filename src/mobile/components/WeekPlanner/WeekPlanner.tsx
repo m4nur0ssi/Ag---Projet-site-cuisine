@@ -492,7 +492,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                     </div>
                     {/* Actions haut-droite : Valider/Modifier + fermer */}
                     <div className={styles.topRight}>
-                        <button className={`${styles.actionBtn} ${validated ? styles.actionBtnEdit : styles.actionBtnValidate}`} title={validated ? 'Modifier' : 'Valider'} aria-label={validated ? 'Modifier' : 'Valider'} onClick={() => {
+                        <button data-tour="planner-validate" className={`${styles.actionBtn} ${validated ? styles.actionBtnEdit : styles.actionBtnValidate}`} title={validated ? 'Modifier' : 'Valider'} aria-label={validated ? 'Modifier' : 'Valider'} onClick={() => {
                             const next = !validated;
                             setValidated(next);
                             if (!next) setRecap(null);
@@ -508,7 +508,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         }}>
                             {validated ? '✎' : '✓'}
                         </button>
-                        <button className={styles.weekCloseBtn} onClick={clearMenus} title={view === 'jourj' ? 'Effacer le Jour J' : 'Effacer les menus'} aria-label="Effacer les menus">
+                        <button data-tour="planner-clear" className={styles.weekCloseBtn} onClick={clearMenus} title={view === 'jourj' ? 'Effacer le Jour J' : 'Effacer les menus'} aria-label="Effacer les menus">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <polyline points="3 6 5 6 21 6" />
                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
@@ -528,12 +528,13 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                             <button
                                 className={`${styles.viewBtn} ${view === 'jourj' ? styles.viewBtnActive : ''}`}
                                 onClick={() => setView('jourj')}
+                                data-tour="planner-jourj"
                             >Jour J</button>
                         </div>
 
                         {!validated && (
                             <div className={styles.toolbar}>
-                                <button className={styles.randomBtn} onClick={() => fillIA()} disabled={iaBusy} title="Menu équilibré composé par l'IA">
+                                <button data-tour="planner-ia" className={styles.randomBtn} onClick={() => fillIA()} disabled={iaBusy} title="Menu équilibré composé par l'IA">
                                     {iaBusy ? 'Composition…' : 'Menu IA'}
                                 </button>
                                 {SIDE_GROUPS.map(g => (
@@ -566,19 +567,25 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         <div className={styles.mainArea}>
                             {view === 'semaine' ? (
                                 <>
-                                <div className={styles.daysRow}>
+                                <div data-tour="planner-grid" className={styles.daysRow}>
                                     {visibleDays.map(day => (
-                                        <div key={day} className={styles.dayCard}>
+                                        /* 1re journée = cible du tutoriel (exemple des accompagnements) */
+                                        <div key={day} data-tour={day === visibleDays[0] ? 'planner-day' : undefined} className={styles.dayCard}>
                                             <div className={styles.dayName}>
                                                 {day}
                                                 {!validated && (
-                                                    <button className={styles.deleteDay} title="Supprimer ce jour" onClick={() => toggleDay(day)}>✕</button>
+                                                    <button data-tour={day === visibleDays[0] ? 'planner-delete-day' : undefined} className={styles.deleteDay} title="Supprimer ce jour" onClick={() => toggleDay(day)}>✕</button>
                                                 )}
                                             </div>
-                                            {MEALS.map(meal => {
+                                            {MEALS.map((meal, mealIdx) => {
                                                 const recipe = plan[day]?.[meal];
                                                 return (
-                                                    <div key={meal} className={styles.mealSlot}>
+                                                    <div
+                                                        key={meal}
+                                                        /* 1re case de la 1re journée = cible du tutoriel */
+                                                        data-tour={day === visibleDays[0] && mealIdx === 0 ? 'planner-slot' : undefined}
+                                                        className={styles.mealSlot}
+                                                    >
                                                         <div className={styles.mealTag}>{meal}</div>
                                                         {recipe ? (
                                                             <>
@@ -596,7 +603,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                                                 )}
                                                             </div>
                                                             {/* Accompagnement — emplacement à hauteur fixe (toujours présent) */}
-                                                            <div className={styles.sideSlot}>
+                                                            <div data-tour={day === visibleDays[0] && mealIdx === 0 ? 'planner-side' : undefined} className={styles.sideSlot}>
                                                             {recipe.side ? (
                                                                 <div
                                                                     className={styles.sideVignette}

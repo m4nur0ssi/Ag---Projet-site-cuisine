@@ -500,12 +500,15 @@ export default function ShoppingListPage() {
 // défiler la liste produit par produit directement sur le site du magasin.
 // Téléchargeable en .zip → installation "non empaquetée" (mode développeur Chrome).
 const EXT_BUBBLE_KEY = 'ext-bubble-dismissed-v1';
-function ExtensionBubble() {
+/** `demo` : le tutoriel la montre TOUJOURS (même déjà masquée) et sans ✕ — le fermer
+ *  viderait la tuile, et la masquerait pour de bon sur la vraie page. */
+export function ExtensionBubble({ demo = false }: { demo?: boolean } = {}) {
     const [dismissed, setDismissed] = useState(true); // true par défaut → pas de flash avant lecture localStorage
     const [open, setOpen] = useState(false);
     useEffect(() => {
+        if (demo) { setDismissed(false); return; }
         try { setDismissed(localStorage.getItem(EXT_BUBBLE_KEY) === '1'); } catch { setDismissed(false); }
-    }, []);
+    }, [demo]);
     const close = () => { setDismissed(true); try { localStorage.setItem(EXT_BUBBLE_KEY, '1'); } catch {} };
     if (dismissed) return null;
 
@@ -516,10 +519,12 @@ function ExtensionBubble() {
             background: 'linear-gradient(135deg, rgba(139,92,246,0.14), rgba(99,102,241,0.10))',
             padding: '14px 16px', position: 'relative',
         }}>
-            <button onClick={close} title="Masquer" style={{
-                position: 'absolute', top: 10, right: 12, background: 'none', border: 'none',
-                color: 'rgba(255,255,255,0.45)', cursor: 'pointer', fontSize: '0.95rem',
-            }}>✕</button>
+            {!demo && (
+                <button onClick={close} title="Masquer" style={{
+                    position: 'absolute', top: 10, right: 12, background: 'none', border: 'none',
+                    color: 'rgba(255,255,255,0.45)', cursor: 'pointer', fontSize: '0.95rem',
+                }}>✕</button>
+            )}
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <span style={{ fontSize: '1.5rem' }}>🧩</span>

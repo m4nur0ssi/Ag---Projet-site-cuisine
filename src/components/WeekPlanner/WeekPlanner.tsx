@@ -38,9 +38,14 @@ const SIDE_GROUPS: { key: FilterGroup; label: string }[] = [
 interface WeekPlannerProps {
     isOpen: boolean;
     onClose: () => void;
+    /** Bac à sable du tutoriel : planificateur JOUABLE mais isolé — il ne lit pas le
+     *  menu réel, n'écrit ni en local ni en base, et reste toujours en édition. */
+    demo?: boolean;
+    /** Menus de départ du bac à sable (ex. l'exemple couscous / paleron). */
+    demoPlan?: Plan;
 }
 
-export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
+export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }: WeekPlannerProps) {
     const [plan, setPlan] = useState<Plan>({});
     const [view, setView] = useState<'semaine' | 'jourj'>('semaine');
     const [validated, setValidated] = useState(false);
@@ -73,6 +78,9 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     useEffect(() => {
         if (!isOpen) return;
         setRecap(null); // le mini-résumé n'apparaît qu'APRÈS un Valider de la session courante
+        // Bac à sable : menus d'exemple, jamais ceux de l'utilisateur, et tous les jours
+        // affichés (ses jours masqués ne doivent pas trouer la démonstration).
+        if (demo) { setPlan(demoPlan || {}); setValidated(false); setHiddenCourses([]); setHiddenDays([]); return; }
         try { setHiddenCourses(JSON.parse(localStorage.getItem(HIDDEN_KEY) || '[]')); } catch {}
         try { setHiddenDays(JSON.parse(localStorage.getItem(HIDDEN_DAYS_KEY) || '[]')); } catch {}
         const apply = (p: Plan) => { setPlan(p); setValidated(Object.keys(p).length > 0); };
@@ -93,7 +101,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
             try { apply(JSON.parse(localStorage.getItem('meal-planner-week') || '{}')); } catch {}
         };
         load();
-    }, [isOpen]);
+    }, [isOpen, demo, demoPlan]);
 
     useEffect(() => {
         if (picker) { setLockOpen(false); setTimeout(() => inputRef.current?.focus(), 100); }
@@ -101,17 +109,20 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     // Une fois validé, un clic hors du planificateur le replie
     useEffect(() => {
-        if (!isOpen || !validated) return;
+        if (!isOpen || !validated || demo) return;
         const onDown = (e: MouseEvent) => {
             if (picker) return; // ne pas fermer si le picker est ouvert
             if (panelRef.current && !panelRef.current.contains(e.target as Node)) onClose();
         };
         const id = setTimeout(() => document.addEventListener('mousedown', onDown), 0);
         return () => { clearTimeout(id); document.removeEventListener('mousedown', onDown); };
-    }, [isOpen, validated, picker, onClose]);
+    }, [isOpen, validated, picker, onClose, demo]);
 
     const save = async (newPlan: Plan) => {
         setPlan(newPlan);
+        // Tutoriel : les menus qu'il compose (démo du Menu IA) sont une illustration.
+        // On les affiche sans jamais écraser le vrai planning de l'utilisateur.
+        if (demo) return;
         localStorage.setItem('meal-planner-week', JSON.stringify(newPlan));
         // Plan modifié → la liste fusionnée + la pastille doivent se rafraîchir.
         window.dispatchEvent(new Event('shoppingListUpdated'));
@@ -131,6 +142,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     // (clés `day|meal|idx`) : une recette qu'on (re)joue ne doit JAMAIS arriver
     // cochée/barrée. Vaut pour 'meal-week-checked' (Tout vider) et 'shop-done' (rayé).
     const clearSlotChecks = (predicate: (key: string) => boolean) => {
+        if (demo) return; // démo du tuto : ne touche pas aux cases cochées réelles
         let changed = false;
         ['meal-week-checked', 'shop-done'].forEach(storeKey => {
             try {
@@ -252,7 +264,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const toggleCourse = (label: string) => {
         setHiddenCourses(prev => {
             const next = prev.includes(label) ? prev.filter(l => l !== label) : [...prev, label];
-            localStorage.setItem(HIDDEN_KEY, JSON.stringify(next));
+            if (!demo) localStorage.setItem(HIDDEN_KEY, JSON.stringify(next));
             return next;
         });
         // si on supprime la carte, on vide aussi la recette du plan
@@ -269,7 +281,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         setHiddenDays(prev => {
             const hiding = !prev.includes(day);
             const next = hiding ? [...prev, day] : prev.filter(d => d !== day);
-            localStorage.setItem(HIDDEN_DAYS_KEY, JSON.stringify(next));
+            if (!demo) localStorage.setItem(HIDDEN_DAYS_KEY, JSON.stringify(next));
             if (hiding) {
                 // Vide les recettes du jour supprimé → absentes des ingrédients de la semaine.
                 const np = { ...plan };
@@ -597,9 +609,10 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                         <div className={styles.mainArea}>
                             {view === 'semaine' ? (
                                 <>
-                                <div className={styles.daysRow}>
+                                <div data-tour="planner-grid" className={styles.daysRow}>
                                     {visibleDays.map(day => (
-                                        <div key={day} className={styles.dayCard}>
+                                        /* 1re journée = cible du tutoriel (exemple des accompagnements) */
+                                        <div key={day} data-tour={day === visibleDays[0] ? 'planner-day' : undefined} className={styles.dayCard}>
                                             <div className={styles.dayName}>
                                                 {day}
                                                 {!validated && (

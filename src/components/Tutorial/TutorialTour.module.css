@@ -2,34 +2,22 @@
     position: fixed;
     inset: 0;
     z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: opacity 0.2s ease;
 }
 
-/* Voile intégral quand l'étape n'a pas de cible */
-.dimAll {
+/* Voile VOLONTAIREMENT léger : la page derrière n'est qu'un décor, elle doit rester
+   lisible. C'est la tuile de démo qui porte l'explication, pas l'obscurité. */
+.dim {
     position: absolute;
     inset: 0;
-    background: rgba(6, 8, 20, 0.86);
+    background: rgba(6, 8, 20, 0.25);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
     animation: fade 0.25s ease;
-}
-
-/* Projecteur : l'ombre de 9999px assombrit TOUT sauf le rectangle de la cible. */
-.spot {
-    position: fixed;
-    box-shadow:
-        0 0 0 9999px rgba(4, 5, 14, 0.9),
-        0 0 0 3px rgba(255, 255, 255, 0.95),
-        0 0 0 7px rgba(236, 72, 153, 0.55),
-        0 0 34px 10px rgba(245, 158, 11, 0.7),
-        0 0 90px 30px rgba(236, 72, 153, 0.35);
-    pointer-events: none;
-    /* PAS de transition sur top/left : le halo est re-mesuré à chaque scroll, une
-       transition repartirait de zéro à chaque fois et traînerait derrière la cible. */
-    animation: halo 2.2s ease-in-out infinite;
-}
-
-@keyframes halo {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.25); }
 }
 
 @keyframes fade {
@@ -37,11 +25,24 @@
     to { opacity: 1; }
 }
 
-.bubble {
-    position: fixed;
-    width: 380px;
-    max-width: calc(100vw - 32px);
-    padding: 20px 22px;
+/* Les deux tuiles, côte à côte */
+.stage {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: 18px;
+    max-width: 1240px;
+    width: 100%;
+    animation: pop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pop {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.stepTile,
+.demoTile {
     border-radius: 20px;
     background: rgba(20, 22, 38, 0.97);
     -webkit-backdrop-filter: blur(20px);
@@ -49,12 +50,60 @@
     border: 1px solid rgba(255, 255, 255, 0.14);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
     color: #fff;
-    animation: pop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes pop {
-    from { opacity: 0; transform: translateY(8px) scale(0.97); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+.stepTile {
+    flex: 0 0 380px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tuile jouable : taille fixe, c'est la fenêtre de recadrage des démos. */
+.demoTile {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* `transform` : crée un BLOC CONTENEUR. Les overlays du site (fiche recette, recherche,
+   sélecteur de recettes) sont en `position: fixed` — sans ça ils se calent sur la fenêtre
+   et recouvrent tout l'écran au lieu de rester dans la tuile. */
+.demoStage {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    overflow: hidden;
+    transform: translateZ(0);
+}
+
+/* Les panneaux du site se dimensionnent en `vh` (ils sont faits pour le plein écran) :
+   dans la tuile, 100vh déborde et emporte le ✕ hors du cadre. On les ramène à la
+   hauteur de la tuile. Sélecteurs par préfixe : les classes des modules CSS sont
+   hachées, mais le préfixe du composant, lui, est stable. */
+.demoStage :global([class*="RecipeSheet_container"]),
+.demoStage :global([class*="RecipeSheet_sheet"]),
+.demoStage :global([class*="SpotlightSearch_overlay"]),
+.demoStage :global([class*="WeekPlanner_pickerOverlay"]) {
+    height: 100% !important;
+    max-height: 100% !important;
+}
+
+.hint {
+    padding: 9px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .count {
@@ -67,8 +116,8 @@
 }
 
 .title {
-    margin: 0 0 8px;
-    font-size: 1.18rem;
+    margin: 0 0 10px;
+    font-size: 1.22rem;
     font-weight: 900;
     line-height: 1.25;
 }
@@ -81,6 +130,7 @@
 }
 
 .actions {
+    margin-top: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -131,4 +181,27 @@
 
 .next:active {
     transform: scale(0.97);
+}
+
+/* Mobile / petites fenêtres : les tuiles s'empilent, la démo passe au-dessus. */
+@media (max-width: 900px) {
+    .root {
+        padding: 10px;
+    }
+
+    .stage {
+        flex-direction: column-reverse;
+        gap: 10px;
+        max-height: 100%;
+        overflow: auto;
+    }
+
+    .stepTile {
+        flex: 0 0 auto;
+        padding: 16px;
+    }
+
+    .demoStage {
+        min-height: 300px;
+    }
 }
