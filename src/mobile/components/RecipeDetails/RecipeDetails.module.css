@@ -1933,7 +1933,10 @@
 .focusOverlay {
     position: fixed;
     inset: 0;
-    z-index: 10000;
+    /* Portalé dans <body> (le sheet a un transform qui capturerait le position:fixed) →
+       il doit passer AU-DESSUS du RecipeSheet_container (20000), sinon le sheet le
+       recouvre. Reste sous la BottomNav (25000). */
+    z-index: 24000;
     background: var(--color-bg-primary);
     display: flex;
     flex-direction: column;
@@ -2075,7 +2078,10 @@
 
 .focusHudWrapper {
     width: 100%;
-    padding: 20px 24px 60px;
+    /* Boutons Précédent / Répéter / Suivant remontés : à 60px du bas, la BottomNav
+       (fixed, z 25000, haut ≈ 710px) passait par-dessus et les masquait. On dégage
+       au-dessus d'elle, + la safe-area de la barre d'accueil iPhone. */
+    padding: 20px 24px calc(150px + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2086,8 +2092,11 @@
 .focusHud {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 14px;
+    /* Le HUD débordait l'écran (≈468px de large sur 375) : Précédent était coupé à
+       gauche et Suivant à droite. Gap/padding resserrés + boutons compressibles. */
+    gap: 10px;
+    max-width: 100%;
+    padding: 10px;
     background: var(--color-bg-secondary);
     -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
@@ -2110,8 +2119,9 @@
 }
 
 .hudBtnRepeat {
-    width: 64px;
-    height: 64px;
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid var(--glass-border);
     border-radius: 100px;
@@ -2124,10 +2134,15 @@
 }
 
 .hudBtnPrev, .hudBtnNext {
-    padding: 0 40px;
-    height: 64px;
-    font-size: 1.1rem;
+    /* flex + min-width:0 : les libellés se partagent la largeur restante au lieu de
+       pousser le HUD hors de l'écran. */
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0 14px;
+    height: 58px;
+    font-size: 1rem;
     font-weight: 950;
+    white-space: nowrap;
     border: none !important;
 }
 

@@ -21,6 +21,7 @@ import SmartText from '@/mobile/components/SmartText/SmartText';
 import MagicConverter from '@/mobile/components/MagicConverter/MagicConverter';
 import PortionsControl from '@/components/PortionsControl/PortionsControl';
 import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
+import Portal from '../Portal';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import WinePairing from '@/components/WinePairing/WinePairing';
 import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
@@ -686,12 +687,14 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         };
     }, [focusMode, startRecognition]);
 
-    // Speak when changing step in focus mode
+    // Lecture à voix haute de l'étape courante.
+    // `focusMode` DOIT être dans les deps : à l'entrée en mode préparation,
+    // activeStepIndex vaut déjà 0 et ne change pas → sans lui, l'effet ne se rejoue
+    // jamais et la 1re étape n'est jamais lue (ça ne parlait qu'à partir de « Suivant »).
     useEffect(() => {
-        if (focusMode) {
-            speak(recipe.steps[activeStepIndex]);
-        }
-    }, [activeStepIndex]);
+        if (focusMode) speak(recipe.steps[activeStepIndex]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeStepIndex, focusMode]);
 
     const checkedCount = checkedIngredients.filter(Boolean).length;
 
@@ -1373,6 +1376,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             )}
 
             {focusMode && (
+                /* Portail vers <body> : le sheet parent a un `transform`, ce qui en fait
+                   le conteneur de référence des position:fixed → l'overlay « plein écran »
+                   héritait du décalage du sheet et tombait sous l'écran (boutons injoignables). */
+                <Portal>
                 <div
                     className={styles.focusOverlay}
                     style={{
@@ -1494,6 +1501,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         </div>
                     </div>
                 </div>
+                </Portal>
             )}
 
             {/* Carnet "J'ai cuisiné" + note perso : connectés uniquement (composant auto-gaté). */}
