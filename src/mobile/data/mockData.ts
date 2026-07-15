@@ -3018,7 +3018,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6745",
         "title": "Le Balthazar",
         "description": "Brasserie installée dans le centre commercial Usine Center de Gonesse. Pizzas au feu de bois, burgers, salades, grillades et desserts maison, servis midi et soir sous une terrasse chauffée. Une seconde adresse au Blanc-Mesnil.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_1_1783760962280.jpg&v=1783760965132",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_5_1783761017113.jpg&v=1783761021254",
         "category": "restaurant",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -3069,7 +3069,8 @@ export const mockRecipes: Recipe[] = [
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_3_1783761001833.jpg&v=1783761006159",
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_4_1783761006784.jpg&v=1783761016488",
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6745_5_1783761017113.jpg&v=1783761021254"
-            ]
+            ],
+            "cover": 5
         }
     },
     {
@@ -3446,13 +3447,13 @@ export const mockRecipes: Recipe[] = [
             "Un restaurant absolument ICONIQUE à Paris 🤩 📍 Maxim's  #maxims #sortiraparis #Favoriteplace #TikTokFood #bonneadresse #paris"
         ],
         "tags": [
-            "resto-brasserie"
+            "resto-gastro"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": "3 Rue Royale, 75008 Paris",
         "restaurant": {
-            "subType": "brasserie",
+            "subType": "gastro",
             "blurb": "Institution parisienne née en 1893, Maxim's est un joyau Art nouveau niché rue Royale, à deux pas de la Madeleine. Sous ses boiseries et vitraux légendaires, la maison perpétue l'art de la gastronomie française et d'un service d'exception. Une adresse mythique pour un dîner hors du temps, dans l'un des décors les plus élégants de la capitale.",
             "address": "3 Rue Royale, 75008 Paris",
             "phone": "+33 1 42 65 27 94",
@@ -3503,14 +3504,14 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "blé",
             "coeur",
-            "resto-brasserie"
+            "resto-gastro"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": "82 Allée de Montfermeil, 93340 Le Raincy",
         "restaurant": {
             "name": "Le Blé Cœur",
-            "subType": "brasserie",
+            "subType": "gastro",
             "priceLevel": 2,
             "terrace": true,
             "rating": 4.6,
