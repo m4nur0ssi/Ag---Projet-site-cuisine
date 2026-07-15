@@ -2,11 +2,325 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/07/2026 13:20:23
- * Total: 557 recettes
+ * Dernière mise à jour: 15/07/2026 14:00:16
+ * Total: 558 recettes
  */
-export const exportSyncId = "1784121623773";
+export const exportSyncId = "1784124016192";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6922",
+        "title": "Smash Burger",
+        "description": "Découvrez comment préparer de délicieux smash burgers maison avec des oignons caramélisés et une sauce spéciale. Une recette simple et rapide pour un repas gourmand.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7599725599007001878\" data-video-id=\"7599725599007001878\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7599725599007001878\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             4 cuillères à soupe d'eau (ou plus)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 steaks"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             4 tranches de cheddar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 pains briochés"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 cuillères à soupe de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de ketchup"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cornichons coupés en petits morceaux"
+            }
+        ],
+        "steps": [
+            "Commencez par préparer les oignons caramélisés : émincez l'oignon et faites-le revenir dans une poêle. Ajoutez le sucre, les 2 cuillères à soupe de sauce Worcestershire et les 4 cuillères à soupe d'eau. Laissez mijoter à feu doux jusqu'à ce que les oignons soient tendres et caramélisés.",
+            "Pendant ce temps, préparez la sauce spéciale : dans un bol, mélangez la mayonnaise, le ketchup, la moutarde, la cuillère à soupe de sauce Worcestershire, le paprika et les cornichons coupés en petits morceaux. Réservez.",
+            "Faites chauffer une poêle ou une plancha à feu vif. Beurrez légèrement les pains briochés et faites-les dorer côté mie. Réservez.",
+            "Placez les steaks dans la poêle très chaude. À l'aide d'une spatule solide, écrasez fermement chaque steak pour former un 'smash burger' fin. Salez et poivrez généreusement.",
+            "Après quelques minutes, retournez les steaks. Déposez une tranche de cheddar sur chaque steak et laissez fondre pendant la cuisson de l'autre côté.",
+            "Assemblez vos burgers : sur la base de chaque pain brioché, étalez une généreuse couche de sauce, déposez un steak avec le cheddar fondu, puis ajoutez les oignons caramélisés. Refermez avec le chapeau du pain brioché et servez immédiatement."
+        ],
+        "tags": [
+            "Sandwichs",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6809",
+        "title": "Fondant au chocolat à la mascarpone",
+        "description": "Une recette de fondant au chocolat à la mascarpone, inspirée de Cyril Lignac, parfaite pour un moule de 20 cm.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6809_1784116693699.jpg&v=1784130389000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660582035660016928\" data-video-id=\"7660582035660016928\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660582035660016928\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n 250 g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 200 g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 60 g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 40 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 100 g de tablette de chocolat noir (pour le glaçage)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 50 g de beurre (pour le glaçage)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6833",
+        "title": "Salade de tomates sauce crémeuse pistou",
+        "description": "Une salade de tomates fraîches et variées, agrémentée de croûtons croustillants à l'ail et au thym, le tout nappé d'une sauce crémeuse au basilic, pignons de pin et yaourt grec, inspirée de la Panzanella italienne.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6833_1784118626380.jpg&v=1784130335000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7651611234588052769\" data-video-id=\"7651611234588052769\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7651611234588052769\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n Tomates anciennes (cœur de bœuf, verte, ananas noire de Crimée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n 3 tranches de pain de campagne"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 échalote ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 1 bouquet de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à soupe de yaourt grec"
+            }
+        ],
+        "steps": [
+            "Couper les tomates anciennes en quartiers.",
+            "Dans un saladier, mélanger les tomates avec l'échalote ciselée et l'origan.",
+            "Faire torréfier les pignons de pin dans une poêle sèche pendant 2 minutes. Réserver.",
+            "Couper le pain de campagne en petits croûtons.",
+            "Dans une poêle, faire revenir les croûtons dans de l'huile d'olive avec une gousse d'ail écrasée et du thym jusqu'à ce qu'ils soient dorés et croustillants.",
+            "Préparer la sauce : dans un mixeur, combiner 1 bouquet de basilic, 4-5 cuillères à soupe d'huile d'olive, du sel, 1 gousse d'ail, une partie des pignons de pin torréfiés et 1 cuillère à soupe de yaourt grec. Mixer jusqu'à obtenir une sauce crémeuse.",
+            "Verser la sauce sur la salade de tomates et mélanger délicatement.",
+            "Ajouter les croûtons et le reste des pignons de pin torréfiés juste avant de servir."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Salades",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6847",
+        "title": "Vinaigrette express",
+        "description": "Une recette rapide et facile pour préparer une vinaigrette maison en seulement 2 minutes, idéale pour accompagner vos salades et autres plats.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6847_1784120237863.jpg&v=1784130298000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649136928536775968\" data-video-id=\"7649136928536775968\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649136928536775968\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍾\n Huile neutre (tournesol ou autre)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n Moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Crème ou velours de vinaigre balsamique (facultatif)"
+            }
+        ],
+        "steps": [
+            "Mixez l'ensemble des ingrédients jusqu'à obtenir une vinaigrette homogène.",
+            "Ajustez les quantités selon vos goûts.",
+            "Conservez la vinaigrette environ 5 à 7 jours au réfrigérateur dans un bocal hermétique."
+        ],
+        "tags": [
+            "Healthy",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6878",
+        "title": "Attacher une poche à douille",
+        "description": "Découvrez une astuce simple et professionnelle pour attacher vos poches à douille, garantissant un meilleur contrôle et évitant les débordements de glaçage lors de la décoration de vos pâtisseries.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6878_1784115499642.jpg&v=1784130264000",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645807145438547231\" data-video-id=\"7645807145438547231\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645807145438547231\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Remplir la poche à douille avec le glaçage ou la préparation souhaitée.",
+            "Torsader ou plier fermement l'extrémité supérieure de la poche, juste au-dessus du contenu.",
+            "S'assurer que cette fermeture est suffisamment serrée pour empêcher le glaçage de remonter et de s'échapper par le haut.",
+            "Utiliser la poche ainsi préparée pour un pochage précis et un contrôle amélioré."
+        ],
+        "tags": [
+            "Astuces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6807",
         "title": "Œufs durs croustillants au fromage et chorizo",
@@ -80,66 +394,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6847",
-        "title": "Vinaigrette express en 2 minutes",
-        "description": "Une recette rapide et facile pour préparer une vinaigrette maison en seulement 2 minutes, idéale pour accompagner vos salades et autres plats.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6847_1784120237863.jpg&v=1784127699000",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649136928536775968\" data-video-id=\"7649136928536775968\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649136928536775968\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile neutre (tournesol ou autre)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Crème ou velours de vinaigre balsamique (facultatif)"
-            }
-        ],
-        "steps": [
-            "Mixez l'ensemble des ingrédients jusqu'à obtenir une vinaigrette homogène.",
-            "Ajustez les quantités selon vos goûts.",
-            "Conservez la vinaigrette environ 5 à 7 jours au réfrigérateur dans un bocal hermétique."
-        ],
-        "tags": [
-            "Healthy",
-            "Pas cher",
-            "Sauces",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -732,85 +986,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "pates",
             "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6833",
-        "title": "Salade de tomates sauce crémeuse pistou (inspirée de la Panzanella)",
-        "description": "Une salade de tomates fraîches et variées, agrémentée de croûtons croustillants à l'ail et au thym, le tout nappé d'une sauce crémeuse au basilic, pignons de pin et yaourt grec, inspirée de la Panzanella italienne.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6833_1784118626380.jpg&v=1784126102000",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7651611234588052769\" data-video-id=\"7651611234588052769\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7651611234588052769\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates anciennes (cœur de bœuf, verte, ananas noire de Crimée)"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             3 tranches de pain de campagne"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote ciselée"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 bouquet de basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Origan"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de yaourt grec"
-            }
-        ],
-        "steps": [
-            "Couper les tomates anciennes en quartiers.",
-            "Dans un saladier, mélanger les tomates avec l'échalote ciselée et l'origan.",
-            "Faire torréfier les pignons de pin dans une poêle sèche pendant 2 minutes. Réserver.",
-            "Couper le pain de campagne en petits croûtons.",
-            "Dans une poêle, faire revenir les croûtons dans de l'huile d'olive avec une gousse d'ail écrasée et du thym jusqu'à ce qu'ils soient dorés et croustillants.",
-            "Préparer la sauce : dans un mixeur, combiner 1 bouquet de basilic, 4-5 cuillères à soupe d'huile d'olive, du sel, 1 gousse d'ail, une partie des pignons de pin torréfiés et 1 cuillère à soupe de yaourt grec. Mixer jusqu'à obtenir une sauce crémeuse.",
-            "Verser la sauce sur la salade de tomates et mélanger délicatement.",
-            "Ajouter les croûtons et le reste des pignons de pin torréfiés juste avant de servir."
-        ],
-        "tags": [
-            "Healthy",
-            "Italie",
-            "Salades",
-            "Sauces",
             "Végé",
             "Voilà l'été"
         ],
@@ -2066,58 +2241,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6809",
-        "title": "Fondant au chocolat à la mascarpone de Cyril Lignac",
-        "description": "Une recette de fondant au chocolat à la mascarpone, inspirée de Cyril Lignac, parfaite pour un moule de 20 cm.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6809_1784116693699.jpg&v=1784123914000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660582035660016928\" data-video-id=\"7660582035660016928\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660582035660016928\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n             250 g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             200 g de chocolat noir"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             60 g de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             40 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             100 g de tablette de chocolat noir (pour le glaçage)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             50 g de beurre (pour le glaçage)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6843",
         "title": "Cigarettes russes",
         "description": "Une recette classique de cigarettes russes, idéale pour les révisions du CAP pâtissier. Le secret de leur croustillant réside dans le roulage immédiat après la sortie du four, lorsqu'elles sont encore souples.",
@@ -2358,36 +2481,6 @@ export const mockRecipes: Recipe[] = [
             "épicé",
             "Espagne",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6878",
-        "title": "Astuce pour attacher une poche à douille",
-        "description": "Découvrez une astuce simple et professionnelle pour attacher vos poches à douille, garantissant un meilleur contrôle et évitant les débordements de glaçage lors de la décoration de vos pâtisseries.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6878_1784115499642.jpg&v=1784122709000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645807145438547231\" data-video-id=\"7645807145438547231\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645807145438547231\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Remplir la poche à douille avec le glaçage ou la préparation souhaitée.",
-            "Torsader ou plier fermement l'extrémité supérieure de la poche, juste au-dessus du contenu.",
-            "S'assurer que cette fermeture est suffisamment serrée pour empêcher le glaçage de remonter et de s'échapper par le haut.",
-            "Utiliser la poche ainsi préparée pour un pochage précis et un contrôle amélioré."
-        ],
-        "tags": [
-            "Astuces"
         ],
         "isFeatured": false,
         "isFavorite": false,
