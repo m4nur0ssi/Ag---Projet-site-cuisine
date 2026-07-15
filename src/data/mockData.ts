@@ -2,11 +2,231 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 15/07/2026 05:24:12
- * Total: 553 recettes
+ * Dernière mise à jour: 15/07/2026 10:11:25
+ * Total: 557 recettes
  */
-export const exportSyncId = "1784093052846";
+export const exportSyncId = "1784110285271";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6880",
+        "title": "Moules Maison",
+        "description": "Une recette pour préparer des moules maison avec une cuisson parfaite.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7659820489828781345\" data-video-id=\"7659820489828781345\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7659820489828781345\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6878",
+        "title": "Astuce pour attacher une poche à douille",
+        "description": "Découvrez une astuce simple et professionnelle pour attacher vos poches à douille, garantissant un meilleur contrôle et évitant les débordements de glaçage lors de la décoration de vos pâtisseries.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645807145438547231\" data-video-id=\"7645807145438547231\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645807145438547231\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Remplir la poche à douille avec le glaçage ou la préparation souhaitée.",
+            "Torsader ou plier fermement l'extrémité supérieure de la poche, juste au-dessus du contenu.",
+            "S'assurer que cette fermeture est suffisamment serrée pour empêcher le glaçage de remonter et de s'échapper par le haut.",
+            "Utiliser la poche ainsi préparée pour un pochage précis et un contrôle amélioré."
+        ],
+        "tags": [
+            "Astuces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6876",
+        "title": "Tarte aux fruits rouges",
+        "description": "Cette vidéo présente une recette de tarte aux fruits rouges, mettant l'accent sur la technique du fonçage de la pâte pour obtenir une base nette et élégante. Elle détaille la préparation d'une pâte sucrée, d'une crème d'amande, d'un confit de frui...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7635706190978305283\" data-video-id=\"7635706190978305283\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7635706190978305283\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             150g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             90g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             30g de poudre d'amandes"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             60g d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             250g de farine T55"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             50g d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de fruits rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             25g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4g de pectine nH"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100g de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             10g de sucre"
+            }
+        ],
+        "steps": [
+            "Pour la pâte sucrée : Crémer le beurre, le sucre glace, le sel et la poudre d'amandes. Incorporer les œufs, puis la farine. Réserver la pâte au frais. Abaisser la pâte à 3mm d'épaisseur et foncer un moule à tarte en veillant à bien marquer les angles pour une finition propre.",
+            "Pour la crème d'amande : Crémer le beurre et le sucre. Ajouter les œufs, puis la poudre d'amande. Bien foisonner le mélange.",
+            "Pour le confit de fruits rouges : Mixer les fruits rouges. Les mettre à cuire. Lorsque la préparation atteint 40°C, ajouter le sucre et la pectine nH. Porter à ébullition pendant 1 minute.",
+            "Pour la chantilly : Faire monter la crème et le sucre jusqu'à obtenir une bonne texture."
+        ],
+        "tags": [
+            "France",
+            "Glaces",
+            "tarte",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6874",
+        "title": "Brochettes de poulet au chorizo et patatas bravas",
+        "description": "Découvrez une recette estivale et savoureuse de brochettes de poulet et de chorizo, accompagnées de patatas bravas maison relevées. Idéal pour un barbecue rapide et plein de saveurs.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7662411435388980513\" data-video-id=\"7662411435388980513\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7662411435388980513\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             2 blancs de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             100g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             12-15 petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             100 ml de bouillon de volaille (à ajuster)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de flocons de piment"
+            }
+        ],
+        "steps": [
+            "Pour la réalisation de la recette de brochettes de poulet au chorizo et des patatas bravas, suivre les instructions détaillées dans la vidéo."
+        ],
+        "tags": [
+            "barbecue",
+            "épicé",
+            "Espagne",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6872",
         "title": "Salade de chèvre chaud",
