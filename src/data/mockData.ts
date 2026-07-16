@@ -2,11 +2,145 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/07/2026 05:33:45
- * Total: 558 recettes
+ * Dernière mise à jour: 16/07/2026 10:18:10
+ * Total: 560 recettes
  */
-export const exportSyncId = "1784180025794";
+export const exportSyncId = "1784197090445";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6927",
+        "title": "Poulet Croustillant à la Coréenne",
+        "description": "Une recette facile et rapide de poulet croustillant pané aux corn-flakes et cuit au Airfryer, puis enrobé d'une sauce sucrée-salée et légèrement épicée à base de gochujang, sauce soja et gingembre. Servi avec de la cébette et des graines de sésame.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660871460394765590\" data-video-id=\"7660871460394765590\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660871460394765590\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             500 g de poulet (filet ou escalope)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Corn-flakes non sucrés"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             4 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 cuillères à soupe de ketchup"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de gochujang"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             3 cuillères à soupe de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de gingembre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre de canne"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Cébette fraîche (ou oignon vert)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame"
+            }
+        ],
+        "steps": [
+            "Couper le poulet en morceaux de taille égale. Les passer dans les œufs battus en omelette puis dans les corn-flakes écrasés pour bien les paner.",
+            "Faire cuire au Airfryer pendant 12 minutes à 180°C en retournant à mi-cuisson.",
+            "Mélanger l'ail haché avec le ketchup, le gochujang, la sauce soja, le vinaigre de riz, le gingembre et le sucre de canne directement dans une poêle. Faire chauffer la sauce jusqu'à ce qu'elle épaississe légèrement.",
+            "Ajouter le poulet croustillant et bien mélanger pour l'enrober entièrement de sauce nappante. Servir avec de la cébette fraîche ciselée et des graines de sésame !"
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Gratins"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6925",
+        "title": "Tartare de thon et tomates",
+        "description": "Découvrez une recette fraîche et facile pour un tartare de thon et tomates, idéal pour les repas légers ou en entrée. Il se compose de rillettes de thon au fromage frais, d'oignon rouge et de persil, alternées avec des dés de tomates cerises, le t...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7662782966619311393\" data-video-id=\"7662782966619311393\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7662782966619311393\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de thon"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             ½ oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 barquette de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais haché"
+            }
+        ],
+        "steps": [
+            "Commencez par couper les tomates cerises en petits dés.",
+            "Préparez ensuite les rillettes de thon en mélangeant le thon avec le fromage frais, une pincée de fleur de sel, l'oignon rouge finement ciselé, le persil haché et un filet d'huile d'olive.",
+            "Déposez une première couche de rillettes de thon au fond d'un emporte-pièce, ajoutez une couche de tomates, puis une nouvelle couche de rillettes avant de terminer par une dernière couche de tomates.",
+            "Placez le tout au réfrigérateur une dizaine de minutes afin que le tartare se tienne bien, puis retirez délicatement l'emporte-pièce.",
+            "Terminez avec un filet d'huile d'olive et servez avec une belle baguette de pain."
+        ],
+        "tags": [
+            "Healthy",
+            "Pas cher",
+            "Poissons et crustacés",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6922",
         "title": "Smash Burger",
