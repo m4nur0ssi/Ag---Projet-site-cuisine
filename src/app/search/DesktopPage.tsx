@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header/Header';
 import BottomNav from '@/components/BottomNav/BottomNav';
@@ -13,6 +13,12 @@ import styles from './search.module.css';
 export default function SearchPage() {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
+
+    // Pré-remplissage depuis l'URL (?q=…) — ex: lien "recette" depuis Pasta Lya.
+    useEffect(() => {
+        const q = new URLSearchParams(window.location.search).get('q');
+        if (q) setSearchQuery(q);
+    }, []);
 
     // Mode multi-ingrédient (≥ 2 mots) : recettes classées par nb d'ingrédients trouvés.
     const ranked = useMemo(() => rankByIngredients(mockRecipes, searchQuery), [searchQuery]);
