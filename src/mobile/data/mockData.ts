@@ -2,11 +2,413 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 16/07/2026 15:36:16
- * Total: 572 recettes
+ * Dernière mise à jour: 16/07/2026 20:11:42
+ * Total: 579 recettes
  */
-export const exportSyncId = "1784216176952";
+export const exportSyncId = "1784232702947";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6969",
+        "title": "Plat de riz et viande hachée aux poivrons à la mexicaine",
+        "description": "Une recette facile et rapide pour un plat équilibré à base de riz, viande hachée, poivrons et saveurs mexicaines, idéale pour 3 repas.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648235839662689568\" data-video-id=\"7648235839662689568\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648235839662689568\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             150 g de riz long grain"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             350 g de viande hachée à 5% de matière grasse"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             4 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 pot de concentré de tomates (70 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cube de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices mexicaines"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Cheddar râpé"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Healthy",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6967",
+        "title": "Riz Pilaf",
+        "description": "Une recette simple et rapide de riz pilaf, un accompagnement savoureux et polyvalent, parfait pour compléter divers plats.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643902063755218208\" data-video-id=\"7643902063755218208\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643902063755218208\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             200g de riz basmati"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             40g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             350ml de bouillon (volaille, légume ou bœuf)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bouquet garni"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de laurier"
+            }
+        ],
+        "steps": [
+            "Faire revenir le demi-oignon jaune haché dans le beurre fondu jusqu'à ce qu'il soit translucide.",
+            "Ajouter le riz basmati et le faire nacrer pendant 1 à 2 minutes, en remuant constamment.",
+            "Verser le bouillon (volaille, légume ou bœuf) et ajouter le bouquet garni et la feuille de laurier.",
+            "Porter à ébullition, puis réduire le feu, couvrir et laisser mijoter jusqu'à ce que tout le liquide soit absorbé et que le riz soit cuit et moelleux (environ 15-20 minutes).",
+            "Retirer le bouquet garni et la feuille de laurier avant de servir."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Orient",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6965",
+        "title": "Tarte aux poivrons, chèvre et miel",
+        "description": "Une délicieuse tarte salée et végétarienne, parfaite pour l'été, combinant la douceur des poivrons confits, le crémeux du fromage de chèvre et une touche sucrée de miel.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647558956855987488\" data-video-id=\"7647558956855987488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647558956855987488\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée ou brisée"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 à 3 poivrons (rouges, jaunes ou verts)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bûche de fromage de chèvre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de miel liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180°C (Thermostat 6).",
+            "Laver, épépiner et couper les poivrons en lanières.",
+            "Dans une poêle, faire revenir les lanières de poivrons avec un filet d'huile d'olive et les Herbes de Provence pendant environ 10 à 15 minutes, jusqu'à ce qu'ils soient tendres. Saler et poivrer.",
+            "Dérouler la pâte dans un moule à tarte, en conservant le papier cuisson. Piquer le fond avec une fourchette.",
+            "Répartir les poivrons cuits sur le fond de tarte.",
+            "Couper la bûche de chèvre en rondelles et les disposer harmonieusement sur les poivrons.",
+            "Arroser généreusement de miel.",
+            "Enfourner pour 25 à 30 minutes, ou jusqu'à ce que la pâte soit dorée et le fromage légèrement gratiné.",
+            "Servir chaud ou tiède, accompagnée d'une salade verte."
+        ],
+        "tags": [
+            "France",
+            "tarte",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6963",
+        "title": "Tartelettes tatin courgettes, champignons, chèvre et miel",
+        "description": "Ces tartelettes tatin salées combinent la douceur des courgettes et du miel avec le caractère du chèvre et des champignons, le tout sur une pâte feuilletée croustillante. Parfaites pour un apéritif ou une entrée légère.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663154006331624736\" data-video-id=\"7663154006331624736\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663154006331624736\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée ou 4 petits carrés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques champignons de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 bûche de chèvre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Du miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "tarte",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6961",
+        "title": "Bagel au saumon",
+        "description": "Une recette simple et fraîche de bagel au saumon, parfaite pour l'été.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7646110679325216022\" data-video-id=\"7646110679325216022\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7646110679325216022\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             Saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "1. Déposez le fromage frais sur une planche à découper, puis ajoutez les tranches de saumon, les rondelles de concombre et d'oignon rouge, la ciboulette, l'aneth, un filet d'huile d'olive et du poivre. Il est inutile de saler, car le saumon et le fromage frais le sont déjà.",
+            "2. Hachez le tout et mélangez bien la préparation afin d'obtenir un résultat homogène.",
+            "3. Coupez votre bagel en deux et tartinez la préparation sur une moitié.",
+            "4. Refermez avec l'autre moitié. C'est prêt, vous pouvez déguster."
+        ],
+        "tags": [
+            "Healthy",
+            "Poissons et crustacés",
+            "Sandwichs",
+            "USA",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6959",
+        "title": "Spaghetti au ragoût de poulpe",
+        "description": "Un grand classique des côtes italiennes. La recette complète, avec toutes les astuces et les bonnes proportions, est disponible dans le livre Abbondante.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663157549797002529\" data-video-id=\"7663157549797002529\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663157549797002529\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "pates",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6957",
+        "title": "Latte de Rêve au Nutella",
+        "description": "Un latte gourmand au Nutella, si délicieux qu'il est impossible de revenir à un latte classique. Une boisson parfaite pour se faire plaisir !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7662116728083647774\" data-video-id=\"7662116728083647774\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7662116728083647774\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 à 2 cuillères à soupe de Nutella, ramolli (pour la garniture du verre)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Glaçons"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             240 ml (1 tasse) de lait froid"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 shots d'espresso"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             120 ml (½ tasse) de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cuillères à soupe de Nutella (pour la crème nuage)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 à 2 cuillères à soupe de lait (pour ajuster la consistance de la crème nuage)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noisettes concassées (pour le topping)"
+            }
+        ],
+        "steps": [
+            "1. Étaler le Nutella à l'intérieur du verre.",
+            "2. Remplir le verre de glaçons.",
+            "3. Verser le lait froid sur les glaçons.",
+            "4. Préparer 2 shots d'espresso et les verser par-dessus.",
+            "5. Fouetter la crème épaisse, le Nutella et un filet de lait jusqu'à obtenir une consistance épaisse et mousseuse.",
+            "6. Garnir le latte de noisettes concassées.",
+            "7. Essayer de ne pas le boire d'une seule traite."
+        ],
+        "tags": [
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6955",
         "title": "Sandwich à la truite fumée et au fromage frais au zaatar",
