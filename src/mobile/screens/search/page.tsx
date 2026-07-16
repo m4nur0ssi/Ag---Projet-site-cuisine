@@ -81,26 +81,11 @@ export default function SearchPage() {
                             className={styles.grid}
                         >
                             <div className={styles.gridInner}>
-                                {ranked
-                                    ? ranked.map(({ recipe, matched, total, matchedTokens, missingTokens }) => (
-                                        <div key={recipe.id} className={styles.cardWrapper}>
-                                            <span className={`${styles.matchBadge} ${matched === total ? styles.matchFull : ''}`}>
-                                                {matched}/{total}
-                                            </span>
-                                            <RecipeCardiOS26 recipe={recipe as any} />
-                                            {missingTokens.length > 0 && (
-                                                <div className={styles.matchDetail}>
-                                                    <span className={styles.matchOk}>✓ {matchedTokens.join(', ')}</span>
-                                                    <span className={styles.matchMissing}>Manque : {missingTokens.join(', ')}</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    ))
-                                    : filteredRecipes.map(recipe => (
-                                        <div key={recipe.id} className={styles.cardWrapper}>
-                                            <RecipeCardiOS26 recipe={recipe} />
-                                        </div>
-                                    ))}
+                                {(ranked ? ranked.map(r => r.recipe) : filteredRecipes).map(recipe => (
+                                    <div key={recipe.id} className={styles.cardWrapper}>
+                                        <RecipeCardiOS26 recipe={recipe as any} />
+                                    </div>
+                                ))}
                             </div>
                         </motion.div>
                     ) : (

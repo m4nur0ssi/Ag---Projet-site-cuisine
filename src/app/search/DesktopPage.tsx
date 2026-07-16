@@ -43,22 +43,9 @@ export default function SearchPage() {
 
     const hasResults = ranked ? ranked.length > 0 : filteredRecipes.length > 0;
 
-    const renderRanked = ({ recipe, matched, total, matchedTokens, missingTokens }: NonNullable<typeof ranked>[number]) => (
-        <div key={recipe.id} className={styles.rankWrapper}>
-            <span
-                className={`${styles.matchBadge} ${matched === total ? styles.matchFull : ''}`}
-                title={`${matched} ingrédient(s) sur ${total} trouvés`}
-            >
-                {matched}/{total}
-            </span>
-            <RecipeCard recipe={recipe} />
-            {missingTokens.length > 0 && (
-                <div className={styles.matchDetail}>
-                    <span className={styles.matchOk}>✓ {matchedTokens.join(', ')}</span>
-                    <span className={styles.matchMissing}>Manque : {missingTokens.join(', ')}</span>
-                </div>
-            )}
-        </div>
+    // Résultats classés par pertinence, mais affichés en cartes propres (comme la grille d'accueil).
+    const renderRanked = ({ recipe }: NonNullable<typeof ranked>[number]) => (
+        <RecipeCard key={recipe.id} recipe={recipe} />
     );
 
     return (
