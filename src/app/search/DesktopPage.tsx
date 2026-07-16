@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Header from '@/components/Header/Header';
 import BottomNav from '@/components/BottomNav/BottomNav';
 import MagicFilterBar from '@/components/MagicFilterBar/MagicFilterBar';
-import RecipeCard from '@/components/RecipeCard/RecipeCardV2';
+import RecipeCardiOS26 from '@/components/RecipeCard/RecipeCardiOS26';
 import { mockRecipes } from '@/data/mockData';
 import { rankByIngredients } from '@/lib/search-rank';
 import styles from './search.module.css';
@@ -45,7 +45,7 @@ export default function SearchPage() {
 
     // Résultats classés par pertinence, mais affichés en cartes propres (comme la grille d'accueil).
     const renderRanked = ({ recipe }: NonNullable<typeof ranked>[number]) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
+        <RecipeCardiOS26 key={recipe.id} recipe={recipe} isGrid inCardTitle />
     );
 
     return (
@@ -113,7 +113,7 @@ export default function SearchPage() {
                 ) : hasResults ? (
                     <div className={styles.grid}>
                         {filteredRecipes.map(recipe => (
-                            <RecipeCard key={recipe.id} recipe={recipe} />
+                            <RecipeCardiOS26 key={recipe.id} recipe={recipe} isGrid inCardTitle />
                         ))}
                     </div>
                 ) : (
