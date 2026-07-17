@@ -2,11 +2,343 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/07/2026 05:35:28
- * Total: 579 recettes
+ * Dernière mise à jour: 17/07/2026 15:30:47
+ * Total: 578 recettes
  */
-export const exportSyncId = "1784266528193";
+export const exportSyncId = "1784302247306";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6947",
+        "title": "Galettes de tomates grecques (Tomatokeftedes)",
+        "description": "Ces tomatokeftedes sont un mezze exceptionnellement bon, originaire de Santorin en Grèce. Ces petites galettes sont parfaites pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6947_1784301126490.jpg&v=1784308344000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7644832682320465185\" data-video-id=\"7644832682320465185\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7644832682320465185\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             550 g de tomates (coupées en petits morceaux)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             140 g de farine (à ajuster si les tomates sont très juteuses)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 oignon rouge (ciselé)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (hachée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             110 g de fêta (émiettée)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour la sauce : Yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour la sauce : Olives noires (hachées)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Pour la sauce : Persil ou menthe"
+            }
+        ],
+        "steps": [
+            "Dans un grand bol, mélanger les tomates coupées en petits morceaux, la farine, la levure chimique, le sel, le basilic, la menthe, le persil, l'oignon rouge ciselé, l'ail haché et la fêta émiettée. Ajuster la quantité de farine si les tomates sont très juteuses.",
+            "Former des petites galettes avec la préparation.",
+            "Faire chauffer de l'huile d'olive dans une poêle bien chaude.",
+            "Cuire les galettes dans la poêle, en les faisant dorer sur les deux faces jusqu'à ce qu'elles soient bien cuites.",
+            "Préparer la sauce en mélangeant du yaourt grec avec des olives noires hachées et du persil ou de la menthe.",
+            "Servir les tomatokeftedes chaudes avec la sauce."
+        ],
+        "tags": [
+            "Grèce",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6949",
+        "title": "Feta grillée au miel et thym",
+        "description": "Découvrez une recette simple et rapide de feta grillée, agrémentée de miel, de thym et d'huile d'olive. Enveloppée dans des feuilles de brick croustillantes et garnie d'amandes torréfiées et de graines de sésame, c'est une entrée savoureuse et fac...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6949_1784301105308.jpg&v=1784308323000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660190249666104609\" data-video-id=\"7660190249666104609\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660190249666104609\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 feta"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 feuilles de brick"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Amandes torréfiées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 200°C.",
+            "Placez la demi-feta sur une feuille de brick.",
+            "Arrosez la feta d'une cuillère à soupe de miel et d'une cuillère à soupe d'huile d'olive, puis parsemez généreusement de thym.",
+            "Enveloppez soigneusement la feta avec les deux feuilles de brick.",
+            "Enfournez pour 11 à 14 minutes à 200°C, jusqu'à ce que les feuilles de brick soient dorées et croustillantes.",
+            "À la sortie du four, garnissez la feta grillée d'amandes torréfiées et de graines de sésame avant de servir."
+        ],
+        "tags": [
+            "Grèce",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6951",
+        "title": "Curry de crevettes",
+        "description": "Une recette rapide et simple de curry de crevettes, qui peut également être réalisée avec du poulet. Ce plat savoureux est relevé par un mélange d'épices cajun, du piment et du paprika fumé, et agrémenté de citron vert et de ciboulette ou coriandre.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6951_1784301094250.jpg&v=1784308303000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642393520979873057\" data-video-id=\"7642393520979873057\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642393520979873057\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🦐\n             10 à 15 crevettes crues"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 cuillères à soupe de sauce tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             20cl de crème demi-épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             20cl de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             20g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café d'oignon en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café d'épices cajun"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette ou coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment en poudre (pour l'assaisonnement des crevettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre (pour l'assaisonnement des crevettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour l'assaisonnement des crevettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour l'assaisonnement des crevettes)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "asiatique",
+            "épicé",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6939",
+        "title": "Croque Mcdo en 5 minutes",
+        "description": "Une recette rapide et facile pour préparer un Croque Mcdo maison en seulement 5 minutes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6939_1784301065846.jpg&v=1784308292000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650569618616044832\" data-video-id=\"7650569618616044832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650569618616044832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "Sandwichs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6961",
+        "title": "Bagel au saumon",
+        "description": "Une recette simple et fraîche de bagel au saumon, parfaite pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6961_1784301013896.jpg&v=1784308263000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7646110679325216022\" data-video-id=\"7646110679325216022\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7646110679325216022\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             Saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "1. Déposez le fromage frais sur une planche à découper, puis ajoutez les tranches de saumon, les rondelles de concombre et d'oignon rouge, la ciboulette, l'aneth, un filet d'huile d'olive et du poivre. Il est inutile de saler, car le saumon et le fromage frais le sont déjà.",
+            "2. Hachez le tout et mélangez bien la préparation afin d'obtenir un résultat homogène.",
+            "3. Coupez votre bagel en deux et tartinez la préparation sur une moitié.",
+            "4. Refermez avec l'autre moitié. C'est prêt, vous pouvez déguster."
+        ],
+        "tags": [
+            "Healthy",
+            "Poissons et crustacés",
+            "Sandwichs",
+            "USA",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6969",
         "title": "Plat de riz et viande hachée aux poivrons à la mexicaine",
@@ -247,72 +579,6 @@ export const mockRecipes: Recipe[] = [
             "France",
             "tarte",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6961",
-        "title": "Bagel au saumon",
-        "description": "Une recette simple et fraîche de bagel au saumon, parfaite pour l'été.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7646110679325216022\" data-video-id=\"7646110679325216022\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7646110679325216022\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🐟\n             Saumon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Aneth"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "1. Déposez le fromage frais sur une planche à découper, puis ajoutez les tranches de saumon, les rondelles de concombre et d'oignon rouge, la ciboulette, l'aneth, un filet d'huile d'olive et du poivre. Il est inutile de saler, car le saumon et le fromage frais le sont déjà.",
-            "2. Hachez le tout et mélangez bien la préparation afin d'obtenir un résultat homogène.",
-            "3. Coupez votre bagel en deux et tartinez la préparation sur une moitié.",
-            "4. Refermez avec l'autre moitié. C'est prêt, vous pouvez déguster."
-        ],
-        "tags": [
-            "Healthy",
-            "Poissons et crustacés",
-            "Sandwichs",
-            "USA",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -565,243 +831,6 @@ export const mockRecipes: Recipe[] = [
             "France",
             "Healthy",
             "minceur",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6951",
-        "title": "Curry de crevettes",
-        "description": "Une recette rapide et simple de curry de crevettes, qui peut également être réalisée avec du poulet. Ce plat savoureux est relevé par un mélange d'épices cajun, du piment et du paprika fumé, et agrémenté de citron vert et de ciboulette ou coriandre.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642393520979873057\" data-video-id=\"7642393520979873057\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642393520979873057\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🦐\n             10 à 15 crevettes crues"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             10g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             3 cuillères à soupe de sauce tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             20cl de crème demi-épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             20cl de bouillon de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             20g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 cuillère à café d'oignon en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à café d'épices cajun"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette ou coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment en poudre (pour l'assaisonnement des crevettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail en poudre (pour l'assaisonnement des crevettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour l'assaisonnement des crevettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (pour l'assaisonnement des crevettes)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "asiatique",
-            "épicé",
-            "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6949",
-        "title": "Feta grillée au miel et thym",
-        "description": "Découvrez une recette simple et rapide de feta grillée, agrémentée de miel, de thym et d'huile d'olive. Enveloppée dans des feuilles de brick croustillantes et garnie d'amandes torréfiées et de graines de sésame, c'est une entrée savoureuse et fac...",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660190249666104609\" data-video-id=\"7660190249666104609\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660190249666104609\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 feta"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à soupe de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 feuilles de brick"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Amandes torréfiées"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Graines de sésame"
-            }
-        ],
-        "steps": [
-            "Préchauffez votre four à 200°C.",
-            "Placez la demi-feta sur une feuille de brick.",
-            "Arrosez la feta d'une cuillère à soupe de miel et d'une cuillère à soupe d'huile d'olive, puis parsemez généreusement de thym.",
-            "Enveloppez soigneusement la feta avec les deux feuilles de brick.",
-            "Enfournez pour 11 à 14 minutes à 200°C, jusqu'à ce que les feuilles de brick soient dorées et croustillantes.",
-            "À la sortie du four, garnissez la feta grillée d'amandes torréfiées et de graines de sésame avant de servir."
-        ],
-        "tags": [
-            "Grèce",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6947",
-        "title": "Galettes de tomates grecques (Tomatokeftedes)",
-        "description": "Ces tomatokeftedes sont un mezze exceptionnellement bon, originaire de Santorin en Grèce. Ces petites galettes sont parfaites pour l'été.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7644832682320465185\" data-video-id=\"7644832682320465185\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7644832682320465185\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             550 g de tomates (coupées en petits morceaux)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             140 g de farine (à ajuster si les tomates sont très juteuses)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 oignon rouge (ciselé)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail (hachée)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             110 g de fêta (émiettée)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive (pour la cuisson)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pour la sauce : Yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pour la sauce : Olives noires (hachées)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Pour la sauce : Persil ou menthe"
-            }
-        ],
-        "steps": [
-            "Dans un grand bol, mélanger les tomates coupées en petits morceaux, la farine, la levure chimique, le sel, le basilic, la menthe, le persil, l'oignon rouge ciselé, l'ail haché et la fêta émiettée. Ajuster la quantité de farine si les tomates sont très juteuses.",
-            "Former des petites galettes avec la préparation.",
-            "Faire chauffer de l'huile d'olive dans une poêle bien chaude.",
-            "Cuire les galettes dans la poêle, en les faisant dorer sur les deux faces jusqu'à ce qu'elles soient bien cuites.",
-            "Préparer la sauce en mélangeant du yaourt grec avec des olives noires hachées et du persil ou de la menthe.",
-            "Servir les tomatokeftedes chaudes avec la sauce."
-        ],
-        "tags": [
-            "Grèce",
-            "Végé",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -1102,35 +1131,6 @@ export const mockRecipes: Recipe[] = [
             "Salades",
             "Sauces",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6939",
-        "title": "Croque Mcdo en 5 minutes",
-        "description": "Une recette rapide et facile pour préparer un Croque Mcdo maison en seulement 5 minutes.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650569618616044832\" data-video-id=\"7650569618616044832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650569618616044832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Pas cher",
-            "Sandwichs"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -11558,74 +11558,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5514",
-        "title": "Tiramisu",
-        "description": "Recette de tiramisu maison avec un biscuit fait maison.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F06%2Fi196570-tiramisu-simple-1.jpg&v=1782578351000",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7463909495878569238\" data-video-id=\"7463909495878569238\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7463909495878569238\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n 500g de Mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 6 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n 100g de cacao en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 4 tasses à café"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 2 cuillères à café d'Amaretto"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 180g de blancs d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 150g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 120g de jaune d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n 150g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 40g de sucre glace"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "pâtisserie"
         ],
         "isFeatured": false,
         "isFavorite": false,
