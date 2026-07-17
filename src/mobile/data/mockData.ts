@@ -2,11 +2,171 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/07/2026 16:11:14
+ * Dernière mise à jour: 17/07/2026 16:32:45
  * Total: 578 recettes
  */
-export const exportSyncId = "1784304674350";
+export const exportSyncId = "1784305965231";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6963",
+        "title": "Tartelettes tatin courgettes, champignons, chèvre et miel",
+        "description": "Ces tartelettes tatin salées combinent la douceur des courgettes et du miel avec le caractère du chèvre et des champignons, le tout sur une pâte feuilletée croustillante. Parfaites pour un apéritif ou une entrée légère.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6963_1784304795264.jpg&v=1784312115000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663154006331624736\" data-video-id=\"7663154006331624736\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663154006331624736\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée ou 4 petits carrés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques champignons de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 bûche de chèvre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Du miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "France",
+            "tarte",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6965",
+        "title": "Tarte aux poivrons, chèvre et miel",
+        "description": "Une délicieuse tarte salée et végétarienne, parfaite pour l'été, combinant la douceur des poivrons confits, le crémeux du fromage de chèvre et une touche sucrée de miel.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6965_1784304732404.jpg&v=1784311991000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647558956855987488\" data-video-id=\"7647558956855987488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647558956855987488\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée ou brisée"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 à 3 poivrons (rouges, jaunes ou verts)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bûche de fromage de chèvre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de miel liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180°C (Thermostat 6).",
+            "Laver, épépiner et couper les poivrons en lanières.",
+            "Dans une poêle, faire revenir les lanières de poivrons avec un filet d'huile d'olive et les Herbes de Provence pendant environ 10 à 15 minutes, jusqu'à ce qu'ils soient tendres. Saler et poivrer.",
+            "Dérouler la pâte dans un moule à tarte, en conservant le papier cuisson. Piquer le fond avec une fourchette.",
+            "Répartir les poivrons cuits sur le fond de tarte.",
+            "Couper la bûche de chèvre en rondelles et les disposer harmonieusement sur les poivrons.",
+            "Arroser généreusement de miel.",
+            "Enfourner pour 25 à 30 minutes, ou jusqu'à ce que la pâte soit dorée et le fromage légèrement gratiné.",
+            "Servir chaud ou tiède, accompagnée d'une salade verte."
+        ],
+        "tags": [
+            "France",
+            "tarte",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6959",
+        "title": "Spaghetti au ragoût de poulpe",
+        "description": "Un grand classique des côtes italiennes. La recette complète, avec toutes les astuces et les bonnes proportions, est disponible dans le livre Abbondante.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6959_1784304499407.jpg&v=1784311928000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663157549797002529\" data-video-id=\"7663157549797002529\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663157549797002529\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "pates",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6945",
         "title": "Sandwich jambon de dinde, burrata et tomates rôties",
@@ -1102,166 +1262,6 @@ export const mockRecipes: Recipe[] = [
             "Sandwichs",
             "USA",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6965",
-        "title": "Tarte aux poivrons, chèvre et miel",
-        "description": "Une délicieuse tarte salée et végétarienne, parfaite pour l'été, combinant la douceur des poivrons confits, le crémeux du fromage de chèvre et une touche sucrée de miel.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647558956855987488\" data-video-id=\"7647558956855987488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647558956855987488\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             1 pâte feuilletée ou brisée"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 à 3 poivrons (rouges, jaunes ou verts)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bûche de fromage de chèvre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de miel liquide"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Herbes de Provence"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Préchauffer le four à 180°C (Thermostat 6).",
-            "Laver, épépiner et couper les poivrons en lanières.",
-            "Dans une poêle, faire revenir les lanières de poivrons avec un filet d'huile d'olive et les Herbes de Provence pendant environ 10 à 15 minutes, jusqu'à ce qu'ils soient tendres. Saler et poivrer.",
-            "Dérouler la pâte dans un moule à tarte, en conservant le papier cuisson. Piquer le fond avec une fourchette.",
-            "Répartir les poivrons cuits sur le fond de tarte.",
-            "Couper la bûche de chèvre en rondelles et les disposer harmonieusement sur les poivrons.",
-            "Arroser généreusement de miel.",
-            "Enfourner pour 25 à 30 minutes, ou jusqu'à ce que la pâte soit dorée et le fromage légèrement gratiné.",
-            "Servir chaud ou tiède, accompagnée d'une salade verte."
-        ],
-        "tags": [
-            "France",
-            "tarte",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6963",
-        "title": "Tartelettes tatin courgettes, champignons, chèvre et miel",
-        "description": "Ces tartelettes tatin salées combinent la douceur des courgettes et du miel avec le caractère du chèvre et des champignons, le tout sur une pâte feuilletée croustillante. Parfaites pour un apéritif ou une entrée légère.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663154006331624736\" data-video-id=\"7663154006331624736\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663154006331624736\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             1 pâte feuilletée ou 4 petits carrés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques champignons de Paris"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 bûche de chèvre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Du miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Des pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "tarte",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6959",
-        "title": "Spaghetti au ragoût de poulpe",
-        "description": "Un grand classique des côtes italiennes. La recette complète, avec toutes les astuces et les bonnes proportions, est disponible dans le livre Abbondante.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663157549797002529\" data-video-id=\"7663157549797002529\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663157549797002529\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "pates",
-            "Poissons et crustacés"
         ],
         "isFeatured": false,
         "isFavorite": false,
