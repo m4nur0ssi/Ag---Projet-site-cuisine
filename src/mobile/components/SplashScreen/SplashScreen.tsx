@@ -16,10 +16,12 @@ export default function SplashScreen() {
     const SESSION_KEY = 'hasSeenMagicSplash-v8';
 
     useEffect(() => {
-        // Lien direct vers une fiche (ex. « recette » depuis Pasta Lya) :
-        // on arrive sur la recette, pas sur l'intro.
+        // Lien entrant profond (ex. depuis Pasta Lya) : `?fiche` ouvre une
+        // recette, `?q` une recherche pré-remplie. Dans les deux cas on arrive
+        // sur le contenu demandé, pas sur l'intro.
         try {
-            if (new URLSearchParams(window.location.search).has('fiche')) {
+            const sp = new URLSearchParams(window.location.search);
+            if (sp.has('fiche') || sp.has('q')) {
                 sessionStorage.setItem(SESSION_KEY, 'true');
                 return;
             }
