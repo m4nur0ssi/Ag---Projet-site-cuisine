@@ -15,9 +15,19 @@ export default function DeepLinkOpener() {
         let id: string | null = null;
         try { id = new URLSearchParams(window.location.search).get('fiche'); } catch { return; }
         if (!id) return;
+
+        // On arrive par un lien recette (ex. Pasta Lya) → pas d'intro d'accueil.
+        // Posé tout de suite : les splash (dont le mobile, en import dynamique)
+        // montent parfois après le nettoyage de l'URL ci-dessous.
+        try {
+            sessionStorage.setItem('hasSeenMagicSplash-v5', 'true');
+            sessionStorage.setItem('hasSeenMagicSplash-v8', 'true');
+        } catch { /* */ }
+
         const recipe = mockRecipes.find(r => String(r.id) === String(id));
         if (!recipe) return;
-        // Laisse la home (et le splash) se monter, puis ouvre la fiche flottante.
+        // Le splash est court-circuité quand `?fiche` est présent : on laisse
+        // juste la home se monter, puis on ouvre la fiche flottante.
         const t = setTimeout(() => {
             window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: recipe }));
             // Nettoie l'URL → un refresh ou un partage de la home ne rouvre pas la fiche.

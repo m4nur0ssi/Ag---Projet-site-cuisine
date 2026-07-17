@@ -12,9 +12,18 @@ export default function SplashScreen() {
     const [shouldRender, setShouldRender] = useState(false);
 
     useEffect(() => {
+        // Lien direct vers une fiche (ex. « recette » depuis Pasta Lya) :
+        // on arrive sur la recette, pas sur l'intro.
+        try {
+            if (new URLSearchParams(window.location.search).has('fiche')) {
+                sessionStorage.setItem('hasSeenMagicSplash-v5', 'true');
+                return;
+            }
+        } catch { /* */ }
+
         // Uniquement si c'est la première fois de la session
         const hasSeenSplash = sessionStorage.getItem('hasSeenMagicSplash-v5');
-        
+
         if (!hasSeenSplash) {
             setShouldRender(true);
             setIsVisible(true);
