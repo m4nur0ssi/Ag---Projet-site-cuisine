@@ -9,10 +9,19 @@ const STOP = new Set([
     'avec', 'ou', 'a', 'à', 'd', 'l', 'en', 'sans',
 ]);
 
+// Replie « huile d'olive » (et variantes) en un mot « huile » AVANT le matching :
+// sinon une recherche du fruit « olive » attrape par sous-chaîne les ~450 recettes
+// qui ne font qu'utiliser de l'huile d'olive. Appliqué des deux côtés (requête ET
+// recette) pour rester symétrique : chercher « huile d'olive » retombe sur « huile »
+// et trouve donc toujours ces recettes, mais « olive » seul ne les capte plus.
+// S'applique sur un texte déjà passé par normalizeIng (minuscules, sans accents).
+const collapseOilPhrase = (s: string): string =>
+    s.replace(/huile\s+d['’]?\s*olive/g, 'huile');
+
 // Découpe la requête en tokens d'ingrédients normalisés (sans accents, sans stopwords).
 export const queryTokens = (query: string): string[] => {
     const seen = new Set<string>();
-    return normalizeIng(query)
+    return collapseOilPhrase(normalizeIng(query))
         .split(/[\s,;+]+/)
         .map(t => t.replace(/[^a-z0-9'-]/g, '').trim())
         .filter(t => t.length >= 2 && !STOP.has(t))
@@ -33,7 +42,7 @@ const haystackOf = (r: Recipe): string => {
         .map(i => cleanIngredientText(i?.name || ''))
         .join(' ');
     const tags = (r.tags || []).join(' ');
-    return normalizeIng(`${ings} ${r.title || ''} ${tags}`);
+    return collapseOilPhrase(normalizeIng(`${ings} ${r.title || ''} ${tags}`));
 };
 
 // Recherche STRICTE par ingrédients (#7).
