@@ -13,27 +13,41 @@ import styles from './search.module.css';
 export default function SearchPage() {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
+    // Mode « italien » (lien depuis Pasta Lya) : on ne montre QUE les recettes
+    // taguées Italie / Dolce Vita — jamais de chorizo espagnol sur une épicerie
+    // italienne.
+    const [italienOnly, setItalienOnly] = useState(false);
 
-    // Pré-remplissage depuis l'URL (?q=…) — ex: lien "recette" depuis Pasta Lya.
+    // Pré-remplissage depuis l'URL (?q=… , &italien=1) — ex: lien "recette" depuis Pasta Lya.
     useEffect(() => {
-        const q = new URLSearchParams(window.location.search).get('q');
+        const sp = new URLSearchParams(window.location.search);
+        const q = sp.get('q');
         if (q) setSearchQuery(q);
+        if (sp.get('italien') === '1') setItalienOnly(true);
     }, []);
 
+    // Pool de départ : tout, ou seulement Italie / Dolce Vita (« dolce vita » = tag Italie).
+    const basePool = useMemo(
+        () => italienOnly
+            ? mockRecipes.filter(r => r.tags?.some((t: string) => /italie|dolce/i.test(t)))
+            : mockRecipes,
+        [italienOnly]
+    );
+
     // Mode multi-ingrédient (≥ 2 mots) : recettes classées par nb d'ingrédients trouvés.
-    const ranked = useMemo(() => rankByIngredients(mockRecipes, searchQuery), [searchQuery]);
+    const ranked = useMemo(() => rankByIngredients(basePool, searchQuery), [basePool, searchQuery]);
 
     // Repli : recherche texte classique (titre / description / tags).
     const filteredRecipes = useMemo(() => {
         if (!searchQuery.trim() || ranked) return [];
 
         const query = searchQuery.toLowerCase().trim();
-        return mockRecipes.filter(recipe =>
+        return basePool.filter(recipe =>
             recipe.title.toLowerCase().includes(query) ||
             recipe.description.toLowerCase().includes(query) ||
             recipe.tags?.some((tag: string) => tag.toLowerCase().includes(query))
         );
-    }, [searchQuery, ranked]);
+    }, [searchQuery, ranked, basePool]);
 
     // #7 — résultats stricts (tous les ingrédients) vs suggestions (il manque 1).
     const fullResults = useMemo(() => (ranked || []).filter(r => r.matched === r.total), [ranked]);
@@ -116,6 +130,17 @@ export default function SearchPage() {
                             <RecipeCardiOS26 key={recipe.id} recipe={recipe} isGrid inCardTitle />
                         ))}
                     </div>
+                ) : italienOnly ? (
+                    // Mode italien : jamais de page vide — on montre toute la
+                    // collection Italie / Dolce Vita.
+                    <>
+                        <div className={styles.suggestDivider}>🇮🇹 Nos recettes italiennes</div>
+                        <div className={styles.grid}>
+                            {basePool.map(recipe => (
+                                <RecipeCardiOS26 key={recipe.id} recipe={recipe} isGrid inCardTitle />
+                            ))}
+                        </div>
+                    </>
                 ) : (
                     <div className={styles.empty}>
                         <p>Aucune recette trouvée pour &quot;{searchQuery}&quot;.</p>

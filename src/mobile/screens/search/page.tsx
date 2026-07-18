@@ -15,13 +15,25 @@ export default function SearchPage() {
     const [searchQuery, setSearchQuery] = useState('');
 
     // Pré-remplissage depuis l'URL (?q=…) — ex: lien "recette" depuis Pasta Lya.
+    const [italienOnly, setItalienOnly] = useState(false);
+
     useEffect(() => {
-        const q = new URLSearchParams(window.location.search).get('q');
+        const sp = new URLSearchParams(window.location.search);
+        const q = sp.get('q');
         if (q) setSearchQuery(q);
+        if (sp.get('italien') === '1') setItalienOnly(true);
     }, []);
 
+    // Pool de départ : tout, ou seulement Italie / Dolce Vita (lien Pasta Lya).
+    const basePool = useMemo(
+        () => italienOnly
+            ? mockRecipes.filter((r: any) => r.tags?.some((t: string) => /italie|dolce/i.test(t)))
+            : mockRecipes,
+        [italienOnly]
+    );
+
     // Mode multi-ingr\u00e9dient (\u2265 2 mots) : recettes class\u00e9es par nb d'ingr\u00e9dients trouv\u00e9s.
-    const ranked = useMemo(() => rankByIngredients(mockRecipes as any, searchQuery), [searchQuery]);
+    const ranked = useMemo(() => rankByIngredients(basePool as any, searchQuery), [basePool, searchQuery]);
 
     const filteredRecipes = useMemo(() => {
         if (!searchQuery.trim() || ranked) return [];
@@ -30,12 +42,12 @@ export default function SearchPage() {
             text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
         const query = normalizeText(searchQuery.trim());
-        return mockRecipes.filter(recipe =>
+        return basePool.filter((recipe: any) =>
             normalizeText(recipe.title).includes(query) ||
             normalizeText(recipe.description).includes(query) ||
             recipe.tags?.some((tag: string) => normalizeText(tag).includes(query))
         );
-    }, [searchQuery, ranked]);
+    }, [searchQuery, ranked, basePool]);
 
     const hasResults = ranked ? ranked.length > 0 : filteredRecipes.length > 0;
 
@@ -88,8 +100,25 @@ export default function SearchPage() {
                                 ))}
                             </div>
                         </motion.div>
+                    ) : italienOnly ? (
+                        // Mode italien : jamais de page vide — toute la collection Italie.
+                        <motion.div
+                            key="italien-pool"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className={styles.grid}
+                        >
+                            <div className={styles.gridInner}>
+                                {basePool.map((recipe: any) => (
+                                    <div key={recipe.id} className={styles.cardWrapper}>
+                                        <RecipeCardiOS26 recipe={recipe as any} />
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
                     ) : (
-                        <motion.div 
+                        <motion.div
                             key="no-result"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
