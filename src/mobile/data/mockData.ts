@@ -2,11 +2,89 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 19/07/2026 05:44:12
- * Total: 579 recettes
+ * Dernière mise à jour: 19/07/2026 22:34:18
+ * Total: 580 recettes
  */
-export const exportSyncId = "1784439852132";
+export const exportSyncId = "1784500458460";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6993",
+        "title": "Tartare de chorizo",
+        "description": "Une recette simple et rapide pour préparer un tartare frais et relevé à base de chorizo, de légumes croquants et d'une sauce savoureuse.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664255303893962016\" data-video-id=\"7664255303893962016\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664255303893962016\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥓\n             150 g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             40 g de poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cornichons"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à soupe de persil"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             4 tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à soupe de ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 gouttes de Tabasco"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron vert"
+            }
+        ],
+        "steps": [
+            "Hacher finement le chorizo, l'échalote, le poivron rouge, les cornichons et les tomates séchées.",
+            "Ciseler le persil et la ciboulette.",
+            "Dans un bol, mélanger le chorizo haché avec l'échalote, le poivron, les cornichons, les tomates séchées, le persil et la ciboulette.",
+            "Dans un autre petit bol, préparer la sauce en mélangeant le jaune d'œuf, la moutarde, le Tabasco, l'huile d'olive et le jus de citron vert.",
+            "Verser la sauce sur le mélange de chorizo et bien mélanger l'ensemble.",
+            "Servir frais, éventuellement avec des toasts ou du pain."
+        ],
+        "tags": [
+            "épicé",
+            "Espagne",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6991",
         "title": "Parmigiana à la poêle",
