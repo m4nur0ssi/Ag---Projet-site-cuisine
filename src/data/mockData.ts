@@ -2,11 +2,87 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 20/07/2026 18:21:12
- * Total: 580 recettes
+ * Dernière mise à jour: 20/07/2026 22:30:37
+ * Total: 581 recettes
  */
-export const exportSyncId = "1784571672549";
+export const exportSyncId = "1784586637395";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6995",
+        "title": "Rouleaux croustillants au reblochon et bœuf",
+        "description": "Une recette ultra gourmande, croustillante à l'extérieur et fondante à l'intérieur, parfaite pour un apéritif, un repas ou à partager !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663856534018903329\" data-video-id=\"7663856534018903329\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663856534018903329\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥩\n             1 kg de bœuf haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 reblochon"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             15 cl de crème"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 c. à soupe de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             15 feuilles de brique"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Émincer les oignons et les faire revenir dans une poêle avec un peu de beurre jusqu'à ce qu'ils soient translucides.",
+            "Ajouter le bœuf haché et le faire dorer en l'émiettant.",
+            "Incorporer le vin blanc, la crème et la moutarde à l'ancienne. Laisser mijoter quelques minutes pour que la sauce épaississe légèrement.",
+            "Assaisonner la farce avec du sel et du poivre. Réserver.",
+            "Couper le reblochon en petits morceaux.",
+            "Préchauffer le four à 200°C.",
+            "Faire fondre un peu de beurre pour badigeonner les feuilles de brique.",
+            "Prendre une feuille de brique, la badigeonner légèrement de beurre fondu. Déposer une portion de farce au bœuf et quelques morceaux de reblochon sur un bord.",
+            "Rouler la feuille de brique pour former un rouleau bien serré. Répéter l'opération pour les 14 autres rouleaux.",
+            "Disposer les rouleaux sur une plaque de cuisson recouverte de papier sulfurisé.",
+            "Enfourner pendant 15 minutes, ou jusqu'à ce que les rouleaux soient bien dorés et croustillants."
+        ],
+        "tags": [
+            "Apéritifs",
+            "C'est l'hiver",
+            "France",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6993",
         "title": "Tartare de chorizo",
