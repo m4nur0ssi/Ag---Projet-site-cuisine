@@ -2,11 +2,101 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/07/2026 10:24:06
- * Total: 582 recettes
+ * Dernière mise à jour: 22/07/2026 10:47:20
+ * Total: 583 recettes
  */
-export const exportSyncId = "1784715846767";
+export const exportSyncId = "1784717240593";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7003",
+        "title": "Gâteau au chocolat parfait avec ganache",
+        "description": "Une recette simple et rapide pour un gâteau au chocolat moelleux, accompagné d'une ganache riche et onctueuse, parfait pour les amateurs de chocolat.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663515780952198432\" data-video-id=\"7663515780952198432\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663515780952198432\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             150 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             45 g de cacao en poudre non sucré"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             7 g de bicarbonate alimentaire"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 g de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 ml de lait fermenté (lait ribot)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             75 ml d'huile"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 petits œufs ou 1 gros et demi"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'arôme de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 ml de café chaud"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             160 g de crème liquide entière bouillante"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200 g de chocolat noir ou au lait pâtissier en morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Un peu de fleur de sel (pour le dessus)"
+            }
+        ],
+        "steps": [
+            "Dans un premier récipient, mélangez au fouet le lait fermenté, l'huile, les œufs et l'arôme de vanille.",
+            "Dans un autre récipient, mélangez la farine, le cacao en poudre, le bicarbonate et la levure chimique.",
+            "Ajoutez le mélange sec à la préparation liquide. Incorporez également le sucre et le sel. Fouettez le tout.",
+            "Terminez en ajoutant le café très chaud et fouettez immédiatement.",
+            "Versez la pâte dans un moule de 25 cm bien beurré et fariné, puis enfournez pour environ 30 minutes.",
+            "Pour vérifier la cuisson, plantez la pointe d'un couteau jusqu'au fond du moule. Si elle ressort sèche, le gâteau est prêt.",
+            "Sortez le gâteau du four et laissez-le refroidir complètement.",
+            "Préparez la ganache : portez la crème liquide entière à ébullition dans une casserole.",
+            "Versez la crème bouillante sur le chocolat noir ou au lait pâtissier en morceaux. Laissez reposer quelques instants, puis mélangez jusqu'à obtenir une ganache lisse et homogène.",
+            "Versez la ganache encore chaude sur le gâteau au chocolat totalement refroidi.",
+            "Saupoudrez d'un peu de fleur de sel si désiré.",
+            "Placez le gâteau au frais pendant au moins deux heures pour que la ganache fige bien."
+        ],
+        "tags": [
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6995",
         "title": "Rouleaux croustillants au reblochon et bœuf",
