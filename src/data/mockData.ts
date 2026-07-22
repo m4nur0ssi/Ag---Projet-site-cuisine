@@ -2,11 +2,74 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/07/2026 10:47:20
- * Total: 583 recettes
+ * Dernière mise à jour: 22/07/2026 11:13:11
+ * Total: 584 recettes
  */
-export const exportSyncId = "1784717240593";
+export const exportSyncId = "1784718791036";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7005",
+        "title": "Cups d'avoine sans cuisson au beurre de cacahuète et chocolat noir",
+        "description": "Découvrez une recette gourmande et saine de cups d'avoine sans cuisson, parfaites pour un goûter équilibré. Cette recette prouve qu'il est possible de se faire plaisir tout en mangeant mieux, sans se priver, et peut accompagner une démarche de per...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649809816306683169\" data-video-id=\"7649809816306683169\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649809816306683169\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             10 cuillères à soupe de flocons d'avoine (150 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             8 cuillères à soupe de beurre de cacahuète 100% (chez KORO)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cuillères à soupe d'huile de coco fondue (chez KORO)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sirop d'agave (ou miel ou sirop d'érable)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             120 g de pépites de chocolat noir minimum 70% (chez KORO)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'huile de coco (chez KORO)"
+            }
+        ],
+        "steps": [
+            "Mélangez tous les ingrédients de la base jusqu'à obtenir une pâte compacte.",
+            "Répartissez la pâte dans 12 moules à muffins en silicone ou individuels et tassez bien.",
+            "Placez au réfrigérateur pendant au moins 30 minutes.",
+            "Faites fondre le chocolat avec l'huile de coco.",
+            "Coulez le chocolat sur chaque cup (sans faire une couche trop épaisse !).",
+            "Laissez durcir le tout au réfrigérateur pendant au moins 2 heures, puis démoulez."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "Sans sucre",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7003",
         "title": "Gâteau au chocolat parfait avec ganache",
