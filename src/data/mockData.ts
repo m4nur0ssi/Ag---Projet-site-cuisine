@@ -2,11 +2,287 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/07/2026 11:13:11
- * Total: 584 recettes
+ * Dernière mise à jour: 22/07/2026 22:41:27
+ * Total: 588 recettes
  */
-export const exportSyncId = "1784718791036";
+export const exportSyncId = "1784760087014";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7013",
+        "title": "Marinade Bbqarré",
+        "description": "Une marinade simple et savoureuse à base de sauce barbecue, de sirop d'érable et de paprika fumé, idéale pour les grillades de poulet et autres viandes au barbecue pendant l'été.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649763533890063638\" data-video-id=\"7649763533890063638\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649763533890063638\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce barbecue"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sirop d'érable"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre frais râpé (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citronnelle finement hachée (optionnel)"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélanger la sauce barbecue, le sirop d'érable et le paprika fumé.",
+            "Pour un meilleur équilibre des saveurs, choisir une sauce barbecue pas trop sucrée afin de laisser le sirop d'érable apporter la douceur nécessaire.",
+            "Pour une saveur plus prononcée, ajouter un peu de gingembre frais râpé et de citronnelle finement hachée au mélange.",
+            "Utiliser cette marinade pour assaisonner le poulet ou d'autres grillades avant la cuisson au barbecue."
+        ],
+        "tags": [
+            "barbecue",
+            "épicé",
+            "Sauces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7011",
+        "title": "Ratatouille d'aubergines et chorizo sur sauce au yaourt",
+        "description": "Une version revisitée de la ratatouille, avec des aubergines et poivrons mijotés, relevée par du chorizo grillé, le tout servi sur une onctueuse sauce au yaourt grec et agrémenté de grenade.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652289262750158112\" data-video-id=\"7652289262750158112\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652289262750158112\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n             2 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             1/2 chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 boîte de tomates pelées"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curcuma (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Grenade (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain pita"
+            }
+        ],
+        "steps": [
+            "Pécho 2 aubergines, découpez-les en rondelles d'environ 1cm et déposez-les sur une plaque de cuisson.",
+            "Badigeonnez les aubergines d'huile d'olive, salez et poivrez, puis enfournez à 190°C jusqu'à ce qu'elles soient grillées et tendres.",
+            "Pendant ce temps, émincez 1 oignon et 1 poivron en fines lamelles, 2 gousses d'ail et découpez 1/2 chorizo en petits dés.",
+            "Faites dorer le chorizo dans une poêle sans matière grasse jusqu'à ce qu'il soit bien doré.",
+            "Réservez le chorizo en laissant le gras dans la poêle, puis faites-y dorer l'oignon jusqu'à ce qu'il soit bien tendre.",
+            "Ajoutez les poivrons et laissez cuire 5 minutes avant d'ajouter l'ail.",
+            "Ajoutez 1 cuillère à café de miel pour bien faire caraméliser le tout.",
+            "Pécho une boîte de tomates pelées, découpez-les grossièrement et ajoutez-les dans la poêle.",
+            "Ajoutez les aubergines cuites et assaisonnez avec du sel, du poivre, du curcuma, du paprika et du piment (selon vos préférences).",
+            "Ajoutez 10 cl d'eau (en rinçant la conserve de tomates pour récupérer le maximum de sauce), couvrez et laissez mijoter 10 minutes pour bien ramollir l'aubergine.",
+            "Laissez bien refroidir avant de servir.",
+            "Pour la sauce : mélangez 1 yaourt grec, 1/2 jus de citron, du persil, de l'aneth, de l'huile d'olive, du sel et du poivre.",
+            "Laissez la sauce reposer au réfrigérateur environ 30 minutes avant de servir pour obtenir une belle consistance.",
+            "Pour le dressage : disposez la sauce au yaourt, puis les légumes, les dés de chorizo, la grenade (facultatif mais très sympa) et quelques herbes fraîches par-dessus.",
+            "Servez avec un bon pain pita."
+        ],
+        "tags": [
+            "Accompagnements",
+            "épicé",
+            "Espagne",
+            "Pas cher",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7009",
+        "title": "Crème épaisse maison express",
+        "description": "Découvrez une astuce simple et rapide pour transformer votre crème liquide (30% de matières grasses) en crème épaisse avec seulement un ingrédient : du jus de citron frais ou du vinaigre. Idéale pour vos sauces, accompagner des légumes rôtis ou ga...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645395249547791649\" data-video-id=\"7645395249547791649\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645395249547791649\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             20 cl de crème liquide (30% de matières grasses)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/4 de jus de citron frais ou 1 cuillère à soupe de vinaigre"
+            }
+        ],
+        "steps": [
+            "Prenez 20 cl de crème liquide à 30% de matières grasses.",
+            "Ajoutez environ 1/4 de jus de citron frais ou 1 cuillère à soupe de vinaigre.",
+            "Mélangez jusqu'à ce que la crème épaississe."
+        ],
+        "tags": [
+            "Astuces",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7007",
+        "title": "Mousse d'avocat polyvalente",
+        "description": "Une recette de mousse d'avocat polyvalente, parfaite pour l'apéritif ou pour accompagner des crudités, du saumon fumé, des œufs durs, des salades ou des tartines.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664166044658928928\" data-video-id=\"7664166044658928928\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664166044658928928\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥑\n             2 avocats"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 grosses cuillères à soupe de yaourt à la grecque"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Environ 150 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             1 grosse poignée de roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une dizaine de feuilles de basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Quelques flocons de piment (facultatif)"
+            }
+        ],
+        "steps": [
+            "Dans un mixeur, combinez les avocats, le yaourt à la grecque, le jus de citron vert, la feta, la roquette, le basilic frais, l'huile d'olive, le sel et le poivre.",
+            "Mixez jusqu'à obtenir une mousse lisse et homogène.",
+            "Goûtez et ajustez l'assaisonnement si nécessaire.",
+            "Ajoutez quelques flocons de piment si désiré.",
+            "Servez frais avec vos accompagnements préférés."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Healthy",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7005",
         "title": "Cups d'avoine sans cuisson au beurre de cacahuète et chocolat noir",
