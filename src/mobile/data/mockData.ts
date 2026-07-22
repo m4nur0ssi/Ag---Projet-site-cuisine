@@ -2,53 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/07/2026 05:42:21
+ * Dernière mise à jour: 22/07/2026 10:24:06
  * Total: 582 recettes
  */
-export const exportSyncId = "1784698941416";
+export const exportSyncId = "1784715846767";
 export const mockRecipes: Recipe[] = [
-    {
-        "id": "6997",
-        "title": "Pommes au four caramélisées et noix",
-        "description": "Une recette rapide et facile de pommes cuites au four, agrémentées de caramel et de noix, parfaite pour un dessert réconfortant.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664636445805579553\" data-video-id=\"7664636445805579553\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664636445805579553\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre (pour le caramel)"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Noix"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Desserts",
-            "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
     {
         "id": "6995",
         "title": "Rouleaux croustillants au reblochon et bœuf",
         "description": "Une recette ultra gourmande, croustillante à l'extérieur et fondante à l'intérieur, parfaite pour un apéritif, un repas ou à partager !",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6995_1784714635073.jpg&v=1784722043000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -124,7 +87,7 @@ export const mockRecipes: Recipe[] = [
         "id": "6993",
         "title": "Tartare de chorizo",
         "description": "Une recette simple et rapide pour préparer un tartare frais et relevé à base de chorizo, de légumes croquants et d'une sauce savoureuse.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6993_1784714511884.jpg&v=1784721829000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -199,10 +162,47 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "6997",
+        "title": "Pommes au four caramélisées et noix",
+        "description": "Une recette rapide et facile de pommes cuites au four, agrémentées de caramel et de noix, parfaite pour un dessert réconfortant.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6997_1784714470510.jpg&v=1784721708000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664636445805579553\" data-video-id=\"7664636445805579553\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664636445805579553\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre (pour le caramel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Desserts",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "6991",
         "title": "Parmigiana à la poêle",
         "description": "Une version simplifiée et rapide de la Parmigiana, préparée directement à la poêle. Ce plat végétarien italien est composé de couches d'aubergines grillées, de passata de tomate, de mozzarella et de parmesan, mijotées à la perfection.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Frecipe_6991_1784714453699.jpg&v=1784721666000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
