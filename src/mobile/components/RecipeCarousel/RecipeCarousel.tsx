@@ -212,7 +212,7 @@ function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle,
                     {/* Bouton Partager : lien direct vers ce thème (/?tag=…) */}
                     {isThemeTile && recipe.tags?.[0] && (
                         <div
-                            style={{ position: 'absolute', top: 6, right: 6, zIndex: 3, color: '#fff', transform: 'scale(0.72)', transformOrigin: 'top right' }}
+                            style={{ position: 'absolute', bottom: 6, right: 6, zIndex: 3, color: '#fff', transform: 'scale(0.5)', transformOrigin: 'bottom right' }}
                             onClick={(e) => e.stopPropagation()}
                         >
                             <ShareButton

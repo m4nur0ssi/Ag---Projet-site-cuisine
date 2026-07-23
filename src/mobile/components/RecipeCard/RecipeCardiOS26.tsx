@@ -291,7 +291,7 @@ export default function RecipeCardiOS26({
                 {/* Carte thème : bouton Partager → lien direct sur le thème filtré (/?tag=…) */}
                 {isThematicCard && (
                     <div
-                        style={{ position: 'absolute', top: 8, right: 8, zIndex: 6, color: '#fff' }}
+                        style={{ position: 'absolute', bottom: 8, right: 8, zIndex: 6, color: '#fff', transform: 'scale(0.6)', transformOrigin: 'bottom right' }}
                         onClick={(e) => e.stopPropagation()}
                     >
                         <ShareButton
