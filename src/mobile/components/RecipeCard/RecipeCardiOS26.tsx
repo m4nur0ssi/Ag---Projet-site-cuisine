@@ -295,6 +295,7 @@ export default function RecipeCardiOS26({
                         onClick={(e) => e.stopPropagation()}
                     >
                         <ShareButton
+                            light
                             url={typeof window !== 'undefined'
                                 ? `${window.location.origin}/?tag=${encodeURIComponent(recipe.tags?.[0] || '')}`
                                 : undefined}

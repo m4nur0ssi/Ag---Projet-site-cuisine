@@ -8,6 +8,8 @@ interface ShareButtonProps {
     url?: string;
     title?: string;
     className?: string;
+    /** Style clair : pastille blanche, icône sombre (sur photo/carte thème). */
+    light?: boolean;
 }
 
 const ShareIcon = () => (
@@ -18,7 +20,7 @@ const ShareIcon = () => (
     </svg>
 );
 
-export default function ShareButton({ url, title, className }: ShareButtonProps) {
+export default function ShareButton({ url, title, className, light }: ShareButtonProps) {
     const handleShare = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -71,12 +73,20 @@ export default function ShareButton({ url, title, className }: ShareButtonProps)
     };
 
     return (
-        <motion.button 
-            className={`${styles.actionBtn} ${className || ''}`} 
-            onClick={handleShare} 
+        <motion.button
+            className={`${styles.actionBtn} ${className || ''}`}
+            onClick={handleShare}
             whileTap={{ scale: 0.8 }}
             whileHover={{ scale: 1.1 }}
-            aria-label="Partager" 
+            aria-label="Partager"
+            style={light ? {
+                background: 'rgba(255,255,255,0.9)',
+                border: '1px solid rgba(255,255,255,0.7)',
+                color: '#1a1a1a',
+                backdropFilter: 'blur(6px)',
+                WebkitBackdropFilter: 'blur(6px)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
+            } : undefined}
         >
             <ShareIcon />
         </motion.button>
