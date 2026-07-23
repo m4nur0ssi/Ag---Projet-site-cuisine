@@ -2,11 +2,58 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 23/07/2026 05:47:34
- * Total: 588 recettes
+ * Dernière mise à jour: 23/07/2026 13:53:21
+ * Total: 589 recettes
  */
-export const exportSyncId = "1784785654244";
+export const exportSyncId = "1784814801929";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7015",
+        "title": "Tiramisu aux spéculoos",
+        "description": "Cette recette détaille la préparation d'une crème onctueuse et ferme à base de mascarpone, de crème fraîche et d'arôme vanille, agrémentée de sucre glace et de pâte de spéculoos, idéale pour un tiramisu aux spéculoos.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665385157502700832\" data-video-id=\"7665385157502700832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665385157502700832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 g de crème 30 à 35 % de matière grasse"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2-3 cuillères à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Pâte de crème spéculoos"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Arôme vanille"
+            }
+        ],
+        "steps": [
+            "Dans un récipient, fouettez la crème, le mascarpone bien froid et l'arôme vanille.",
+            "Fouettez jusqu'à obtenir une crème lisse, onctueuse et ferme.",
+            "Ajoutez le sucre glace et mélangez délicatement à la maryse.",
+            "Mettez la crème dans une poche à douille (ce sera beaucoup plus simple)."
+        ],
+        "tags": [
+            "Desserts",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7013",
         "title": "Marinade Bbqarré",
