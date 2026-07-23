@@ -288,6 +288,21 @@ export default function RecipeCardiOS26({
                     );
                 })()}
 
+                {/* Carte thème : bouton Partager → lien direct sur le thème filtré (/?tag=…) */}
+                {isThematicCard && (
+                    <div
+                        style={{ position: 'absolute', top: 8, right: 8, zIndex: 6, color: '#fff' }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <ShareButton
+                            url={typeof window !== 'undefined'
+                                ? `${window.location.origin}/?tag=${encodeURIComponent(recipe.tags?.[0] || '')}`
+                                : undefined}
+                            title={`Thème : ${decodeHtml(recipe.title)}`}
+                        />
+                    </div>
+                )}
+
                 {/* Titre + drapeau incrustés en haut de la photo (mode inCardTitle) */}
                 {inCardTitle && !isThematicCard && (
                     <div className={`${styles.inCardTitleOverlay} ${flag && !isIntroMode ? styles.withFlag : ''}`}>

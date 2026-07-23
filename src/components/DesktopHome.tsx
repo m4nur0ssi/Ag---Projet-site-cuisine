@@ -104,7 +104,18 @@ export default function DesktopHome() {
     useEffect(() => {
         try {
             const t = new URLSearchParams(window.location.search).get('tag');
-            if (t) handleTagSelect(t);
+            if (t) {
+                // REMPLACER (pas toggle) : un lien partagé doit atterrir sur le thème,
+                // même si l'effet est rejoué (React StrictMode en dev = double invocation).
+                const lowerTag = t.toLowerCase();
+                const categoriesIds = ['aperitifs', 'entrees', 'plats', 'vegetarien', 'desserts', 'patisserie', 'restaurant', 'apéro', 'entrée', 'accompagnements'];
+                const countriesIds = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'asie', 'afrique'];
+                let groupId = 'trends';
+                if (categoriesIds.some(c => lowerTag.includes(c))) groupId = 'categories';
+                else if (countriesIds.some(c => lowerTag.includes(c))) groupId = 'countries';
+                setCollection(null);
+                setActiveFilters([{ tag: t, group: groupId }]);
+            }
         } catch { /* ignore */ }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

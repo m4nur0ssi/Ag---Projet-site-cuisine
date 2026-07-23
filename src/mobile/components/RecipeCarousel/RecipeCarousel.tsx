@@ -5,6 +5,7 @@ import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import { Recipe } from '@/mobile/types';
 import RecipeCardiOS26 from '@/mobile/components/RecipeCard/RecipeCardiOS26';
+import ShareButton from '@/mobile/components/ShareButton/ShareButton';
 import styles from './RecipeCarousel.module.css';
 
 interface RecipeCarouselProps {
@@ -200,7 +201,7 @@ function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle,
 
         return (
             <div ref={itemRef} className={styles.compactItem}>
-                <div className={styles.compactCard} onClick={() => onCardClick?.(recipe)}>
+                <div className={styles.compactCard} onClick={() => onCardClick?.(recipe)} style={{ position: 'relative' }}>
                     <img
                         src={`${displayImage}${displayImage.includes('?') ? '&' : '?'}v=6`}
                         alt={recipe.title}
@@ -208,6 +209,20 @@ function CarouselItem({ recipe, index, containerRef, size, compact, parentTitle,
                         style={isThemeTile ? { objectPosition: '50% 60%' } : undefined}
                     />
                     {isThemeTile && <span className={styles.compactThemeTitle}>{recipe.title}</span>}
+                    {/* Bouton Partager : lien direct vers ce thème (/?tag=…) */}
+                    {isThemeTile && recipe.tags?.[0] && (
+                        <div
+                            style={{ position: 'absolute', top: 6, right: 6, zIndex: 3, color: '#fff', transform: 'scale(0.72)', transformOrigin: 'top right' }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <ShareButton
+                                url={typeof window !== 'undefined'
+                                    ? `${window.location.origin}/?tag=${encodeURIComponent(recipe.tags[0])}`
+                                    : undefined}
+                                title={`Thème : ${recipe.title}`}
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
         );
