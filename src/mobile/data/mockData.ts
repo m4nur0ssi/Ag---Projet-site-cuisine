@@ -2,11 +2,70 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/08/2026 05:49:41
- * Total: 591 recettes
+ * Dernière mise à jour: 02/08/2026 15:02:14
+ * Total: 592 recettes
  */
-export const exportSyncId = "1785649781923";
+export const exportSyncId = "1785682934700";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7021",
+        "title": "Truffade",
+        "description": "Découvrez la recette de la Truffade, un plat traditionnel français réconfortant à base de pommes de terre et de tome fraîche d'Aubrac. Parfait pour les repas d'hiver ou de Noël.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581814792382614807\" data-video-id=\"7581814792382614807\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581814792382614807\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1 kg de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de tome fraîche d'Aubrac"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Famille",
+            "France",
+            "Noël",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7019",
         "title": "Barre énergétique XXL sans cuisson framboise chocolat",
