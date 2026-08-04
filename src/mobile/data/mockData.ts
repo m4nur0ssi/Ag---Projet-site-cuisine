@@ -2,11 +2,59 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 04/08/2026 05:40:45
- * Total: 593 recettes
+ * Dernière mise à jour: 04/08/2026 18:43:44
+ * Total: 594 recettes
  */
-export const exportSyncId = "1785822045812";
+export const exportSyncId = "1785869024714";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7026",
+        "title": "Sauce Roquefort",
+        "description": "Une recette simple et rapide pour préparer une sauce crémeuse au Roquefort, idéale pour accompagner une entrecôte.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7498760909033180438\" data-video-id=\"7498760909033180438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7498760909033180438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de Roquefort"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             50g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150ml de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, faire fondre le beurre avec l'échalote finement émincée.",
+            "Laisser colorer l'échalote jusqu'à obtenir une belle coloration.",
+            "Ajouter le Roquefort et la crème liquide.",
+            "Laisser mijoter jusqu'à ce que la sauce épaississe légèrement.",
+            "Poivrer et servir chaud."
+        ],
+        "tags": [
+            "France",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7024",
         "title": "Cari de Poulet",
