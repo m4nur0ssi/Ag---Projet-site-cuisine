@@ -2,11 +2,248 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/08/2026 05:41:38
- * Total: 594 recettes
+ * Dernière mise à jour: 07/08/2026 00:55:13
+ * Total: 597 recettes
  */
-export const exportSyncId = "1785994898937";
+export const exportSyncId = "1786064113872";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7032",
+        "title": "Sauce libanaise à l'ail (Toum)",
+        "description": "Une sauce libanaise crémeuse et aillée, parfaite pour accompagner divers plats comme les grillades, les falafels ou les chawarmas.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420486244804660513\" data-video-id=\"7420486244804660513\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420486244804660513\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             150 g de gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             600 ml d'huile végétale (tournesol, pépins de raisin ou colza)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Liban",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7030",
+        "title": "Salade exceptionnelle à la sauce coco, citron vert et sésame",
+        "description": "Une salade fraîche et savoureuse avec une sauce exotique à base de lait de coco, citron vert et sésame, accompagnée de saumon (ou crevettes/poulet), de légumes croquants et de fruits.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670946457704205601\" data-video-id=\"7670946457704205601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670946457704205601\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             3 à 4 cuillères à soupe de lait de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zeste et le jus d'un citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pointe de sriracha (ou plus, selon le goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Un filet de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 petite gousse d'ail, râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Un morceau de gingembre frais, râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             Saumon cru (ou cuit), ou crevettes, ou poulet cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons cébettes"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             Carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pêches"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Feuilles de coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sumac"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélangez le lait de coco, la sauce soja, le zeste et le jus de citron vert, la sriracha, le miel, l'ail râpé, le gingembre râpé et les graines de sésame pour préparer la sauce.",
+            "Préparez les ingrédients de la salade : coupez le saumon (ou les crevettes/poulet), les oignons cébettes, la carotte, le concombre, les pêches et l'avocat.",
+            "Dans un grand saladier, combinez tous les ingrédients de la salade.",
+            "Versez la sauce sur la salade et mélangez délicatement.",
+            "Garnissez de feuilles de coriandre fraîche et saupoudrez de sumac avant de servir."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Healthy",
+            "Poissons et crustacés",
+            "Salades",
+            "Sauces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7028",
+        "title": "Salade Fattoush",
+        "description": "Une salade Fattoush fraîche et colorée, parfaite pour l'été. C'est la quatrième recette de la série \" salades fraîches et colorées \".",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7372243220761267489\" data-video-id=\"7372243220761267489\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7372243220761267489\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n             4 mini concombres"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Radis"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/4 de chou rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Partie verte d'un oignon cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             2 petites salades vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 grenade"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Feuilles de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Persil ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 pains pita (à griller avec du sumac et de l'huile d'olive)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus d'un citron (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe de mélasse de grenade (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             5 cuillères à soupe d'huile d'olive (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à café de menthe séchée (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à café de sumac (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour la vinaigrette)"
+            }
+        ],
+        "steps": [
+            "Coupez les mini concombres, les tomates cerises, les radis, le chou rouge, l'oignon cébette et la salade verte, puis égrainez une grenade.",
+            "Coupez le pain pita en morceaux, saupoudrez-le de sumac et d'huile d'olive, puis dorez-le au four pendant 10 minutes à 180°C.",
+            "Préparez la sauce : mélangez le jus de citron, la mélasse de grenade, l'huile d'olive, la menthe séchée, le sumac, le sel et le poivre.",
+            "Mettez une assiette au fond du saladier pour couvrir la sauce avant d'ajouter les légumes, afin d'éviter que la salade ne rende de l'eau.",
+            "Au moment de servir, retirez l'assiette et le papier absorbant, mélangez bien la salade, puis ajoutez la pita grillée et les graines de grenade. Bon appétit !"
+        ],
+        "tags": [
+            "Healthy",
+            "Liban",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7026",
         "title": "Sauce Roquefort",
