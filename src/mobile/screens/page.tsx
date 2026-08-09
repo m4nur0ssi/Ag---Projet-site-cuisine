@@ -21,6 +21,8 @@ export default function Home() {
     const activeTags = useMemo(() => activeFilters.map(f => f.tag), [activeFilters]);
     const touchStartRef = useRef<number>(0);
     const touchEndRef = useRef<number>(0);
+    const touchStartYRef = useRef<number>(0);
+    const touchEndYRef = useRef<number>(0);
     const [recentlyViewed, setRecentlyViewed] = useState<typeof mockRecipes>([]);
     // Sections calculées (Mieux Notées, Dernières Vues, Nouveautés) : leur contenu ne
     // découle pas d'un tag, on affiche donc la liste exacte du carrousel.
@@ -66,11 +68,15 @@ export default function Home() {
             else groupId = 'trends'; 
         }
 
-        // REMPLACER tous les filtres (ne pas empiler) — comme desktop : une seule
-        // catégorie active à la fois. Re-cliquer le tag actif le désélectionne.
+        // MULTI-FILTRES : un filtre actif par groupe, cumulables entre groupes
+        // (ex. Italie + Desserts). Combinaison en ET via filteredRecipes (.every).
+        // Re-cliquer le tag actif le désélectionne ; choisir un autre tag du même
+        // groupe remplace celui du groupe, sans toucher aux autres groupes.
         setActiveFilters(prev => {
-            if (prev.length === 1 && prev[0].tag === tag) return [];
-            return [{ tag, group: groupId }];
+            if (prev.some(f => f.tag === tag)) {
+                return prev.filter(f => f.tag !== tag);
+            }
+            return [...prev.filter(f => f.group !== groupId), { tag, group: groupId }];
         });
     };
 
@@ -165,15 +171,26 @@ export default function Home() {
     };
 
     const handleTouchStart = (e: React.TouchEvent) => {
-        touchStartRef.current = e.targetTouches[0].clientX;
+        const t = e.targetTouches[0];
+        touchStartRef.current = t.clientX;
+        touchStartYRef.current = t.clientY;
+        // Réinitialise la fin sur le début : un tap = delta 0 (évite un reset déclenché
+        // par une valeur périmée d'un geste précédent — carrousel, scroll horizontal).
+        touchEndRef.current = t.clientX;
+        touchEndYRef.current = t.clientY;
     };
 
     const handleTouchMove = (e: React.TouchEvent) => {
         touchEndRef.current = e.targetTouches[0].clientX;
+        touchEndYRef.current = e.targetTouches[0].clientY;
     };
 
     const handleTouchEnd = () => {
-        if (touchStartRef.current < 100 && (touchEndRef.current - touchStartRef.current) > 100) {
+        const dx = touchEndRef.current - touchStartRef.current;
+        const dy = Math.abs(touchEndYRef.current - touchStartYRef.current);
+        // Swipe depuis le bord gauche vers la droite, horizontal dominant uniquement :
+        // ne se déclenche plus sur un tap ni sur un scroll vertical/diagonal.
+        if (touchStartRef.current < 40 && dx > 100 && dx > dy * 1.5) {
             if (activeTags.length > 0) {
                 clearAllFilters();
                 window.scrollTo({ top: 0, behavior: 'smooth' });

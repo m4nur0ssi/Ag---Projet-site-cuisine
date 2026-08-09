@@ -1641,7 +1641,7 @@
     .heroTitleElegant {
         margin-bottom: 20px;
         letter-spacing: -1.2px;
-        font-size: 1.8rem;
+        font-size: clamp(1.25rem, 5vw, 1.6rem);
         text-align: center;
         width: 100%;
         justify-content: center; /* Centrage SVG/Texte */
