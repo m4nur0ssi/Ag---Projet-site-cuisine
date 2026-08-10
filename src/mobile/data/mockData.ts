@@ -2,11 +2,168 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/08/2026 10:00:45
- * Total: 596 recettes
+ * Dernière mise à jour: 10/08/2026 12:40:18
+ * Total: 598 recettes
  */
-export const exportSyncId = "1786356045972";
+export const exportSyncId = "1786365618821";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7057",
+        "title": "Kebbe au plat",
+        "description": "Le Kebbe au plat (Kebbeh bil sayniye) est un plat emblématique de la cuisine libanaise. L'auteur partage comment ses expériences à l'étranger, notamment au Danemark, ont enrichi sa cuisine quotidienne libanaise, intégrant de nouvelles découvertes....",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641344940395482401\" data-video-id=\"7641344940395482401\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641344940395482401\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             350g de boulgour fin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de viande hachée (5% pour la pâte)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             250ml d'eau froide"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon (pour la pâte)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de sel (pour la pâte)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             0.25 cuillère à café de cannelle (pour la pâte)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             0.25 cuillère à café de poivre noir (pour la pâte)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'épices kebbé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon jaune (pour la farce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de viande hachée (pour la farce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             0.5 cuillère à café de sel (pour la farce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             0.25 cuillère à café de poivre noir (pour la farce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             0.25 cuillère à café de cannelle (pour la farce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             0.25 cuillère à café de 7 épices libanaises"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Pignons de pin (selon budget)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Liban"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7055",
+        "title": "Risotto crémeux au fenouil et à la saucisse",
+        "description": "Un risotto crémeux et savoureux, facile et rapide à réaliser, avec du fenouil et de la saucisse de Toulouse. Le mascarpone et la tomme râpée lui confèrent une texture onctueuse à souhait.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7217115437920718086\" data-video-id=\"7217115437920718086\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7217115437920718086\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 fenouil"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             2 saucisses de Toulouse"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cuillère à café de fenouil moulu"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             150g de riz à risotto"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             25g de tomme râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cube de bouillon de légumes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Poivre et sel"
+            }
+        ],
+        "steps": [
+            "Faites revenir l'oignon, l'ail et le fenouil coupé en petits morceaux dans l'huile d'olive.",
+            "Ajoutez ensuite les saucisses coupées en rondelles, le riz et le fenouil moulu.",
+            "Versez progressivement le bouillon de légumes tout en remuant.",
+            "En fin de cuisson, ajoutez le mascarpone et la tomme râpée pour un risotto crémeux à souhait."
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7021",
         "title": "Truffade",
