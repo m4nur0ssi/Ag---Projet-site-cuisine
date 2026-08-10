@@ -2,11 +2,68 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/08/2026 12:40:18
- * Total: 598 recettes
+ * Dernière mise à jour: 10/08/2026 12:52:57
+ * Total: 599 recettes
  */
-export const exportSyncId = "1786365618821";
+export const exportSyncId = "1786366377528";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7059",
+        "title": "Porc au caramel ultra simple",
+        "description": "Une recette de porc au caramel ultra simple, fondante et délicieuse. Nécessite une casserole, quelques ingrédients et un peu de patience pour un plat doux, sucré-salé, à refaire les yeux fermés.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7495457251457649942\" data-video-id=\"7495457251457649942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7495457251457649942\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1,5 kg de travers de porc"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             500 g de riz blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             60 ml de sauce soja (salée ou sucrée, selon le goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Quelques gouttes d'ail ou 2 à 3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un peu d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un peu d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120 g de sucre"
+            }
+        ],
+        "steps": [
+            "1. Découper les travers de porc et les faire mariner dans la sauce soja et l'ail.",
+            "2. Faire chauffer un peu d'huile dans une casserole. Commencer par le côté gras, puis faire dorer toutes les faces de la viande.",
+            "3. Couvrir et laisser cuire à feu doux pendant 45 minutes à 1 heure 30.",
+            "4. À mi-cuisson, récupérer le jus de cuisson et le mettre de côté. Ajouter un peu d'eau et continuer la cuisson.",
+            "5. Quand la viande est bien fondante, remettre le jus de cuisson, ajouter le sucre et laisser réduire jusqu'à obtenir un caramel nappant.",
+            "6. Servir avec du riz blanc."
+        ],
+        "tags": [
+            "Asie",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7057",
         "title": "Kebbe au plat",
