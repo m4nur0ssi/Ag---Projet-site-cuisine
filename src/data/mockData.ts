@@ -2,11 +2,428 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/08/2026 12:52:57
- * Total: 599 recettes
+ * Dernière mise à jour: 10/08/2026 13:22:23
+ * Total: 605 recettes
  */
-export const exportSyncId = "1786366377528";
+export const exportSyncId = "1786368143510";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7071",
+        "title": "Recette pour utiliser les courgettes du jardin",
+        "description": "Une idée simple et savoureuse pour cuisiner les courgettes fraîches de votre jardin.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670566222743883040\" data-video-id=\"7670566222743883040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670566222743883040\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "Ingrédients détaillés dans la vidéo"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Gratins",
+            "Healthy",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7069",
+        "title": "Brochettes de bœuf et pommes de terre croustillantes",
+        "description": "Ces brochettes savoureuses combinent la tendreté du bœuf avec des morceaux de pommes de terre croustillantes, parfaites pour un repas convivial ou un barbecue estival.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671369337906760974\" data-video-id=\"7671369337906760974\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671369337906760974\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             500g de bœuf (type rumsteck ou gîte), coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             400g de petites pommes de terre, coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir fraîchement moulu, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Brochettes en bois ou en métal"
+            }
+        ],
+        "steps": [
+            "Si vous utilisez des brochettes en bois, faites-les tremper dans l'eau pendant au moins 30 minutes pour éviter qu'elles ne brûlent.",
+            "Dans un grand bol, mélangez les dés de bœuf et de pommes de terre avec l'huile d'olive, le sel et le poivre. Assurez-vous que tous les morceaux sont bien enrobés.",
+            "Enfilez alternativement les dés de bœuf et de pommes de terre sur les brochettes.",
+            "Préchauffez votre grill, votre plancha ou votre four à 200°C (400°F).",
+            "Faites cuire les brochettes pendant 15 à 20 minutes, en les retournant régulièrement, jusqu'à ce que le bœuf soit cuit à votre goût et que les pommes de terre soient tendres et croustillantes. Le temps de cuisson peut varier selon l'épaisseur des morceaux et la méthode de cuisson.",
+            "Servez immédiatement et dégustez."
+        ],
+        "tags": [
+            "barbecue",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7067",
+        "title": "Huile pimentée aux cacahuètes, ail et sésame",
+        "description": "Une recette maison pour préparer une huile pimentée aromatique avec des cacahuètes croquantes, de l'ail, du sésame et diverses épices, parfaite pour relever vos plats et ajouter une touche de saveur asiatique.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638227236612705538\" data-video-id=\"7638227236612705538\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638227236612705538\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             5 cuillères à soupe de gochugaru"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 cuillères à soupe de piment en paillettes"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             70 g de cacahuètes concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g de sésame grillé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             10 gousses d'ail finement hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             1 cuillère à soupe de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 à 3 pincées de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cannelle"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices au choix (badiane, poivre, paprika fumé, cinq-épices...)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Environ 40 à 50 cl d'huile neutre"
+            }
+        ],
+        "steps": [
+            "Dans un grand saladier en métal ou un récipient résistant à la chaleur, ajoutez le gochugaru, les piments, le sucre, les cacahuètes, le sésame grillé, le sel, la cannelle et les épices.",
+            "Terminez en ajoutant l'ail haché sur le dessus : ainsi, lorsque l'huile chaude sera versée, l'ail cuira directement sans brûler trop vite.",
+            "Si vous préférez faire frire l'ail au préalable, faites-le doucement à feu moyen-doux jusqu'à ce qu'il soit légèrement doré. L'ail brûle vite et devient amer, le but est donc de le sécher et de le parfumer, pas de le brûler.",
+            "Faites chauffer l'huile jusqu'à ce qu'elle soit bien chaude, presque fumante.",
+            "Versez-la doucement sur les ingrédients : cela doit crépiter et faire de nombreuses bulles.",
+            "Ajoutez ensuite le vinaigre de riz, mélangez bien, puis laissez refroidir avant de mettre en pot.",
+            "Conservez l'huile pimentée au réfrigérateur dans un pot propre et hermétique.",
+            "L'huile chaude cuit l'ail et aide à la conservation, mais comme il s'agit d'une préparation maison, il est préférable de la consommer dans les semaines qui suivent pour préserver le meilleur goût et éviter les risques.",
+            "Utilisez toujours une cuillère propre et sèche."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7065",
+        "title": "Salade thaï au bœuf",
+        "description": "Une salade fraîche et savoureuse d'inspiration thaïlandaise, composée de bœuf tendre, de légumes croquants comme des tomates cerises, concombre, carotte, oignon rouge, et d'herbes aromatiques. Le tout est relevé par une vinaigrette au nuoc-mâm, ci...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7666054050084867361\" data-video-id=\"7666054050084867361\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7666054050084867361\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             1 pièce de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             150 g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             ¾ de concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             1 carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 branche de cive (ciboule)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Quelques feuilles de salade romaine"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment oiseau rouge frais"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de basilic thaï"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques brins de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques cacahuètes concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques graines de sésame (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Les zestes d'un citron bio"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10 gouttes de nuoc-mâm"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 c. à café de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un demi-citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 à 4 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à café d'huile de sésame"
+            }
+        ],
+        "steps": [
+            "Coupez les tomates cerises en deux, le concombre en morceaux et la carotte en bâtonnets. Émincez finement l'oignon rouge et la cive. Hachez très finement l'ail, le piment, le basilic thaï et la coriandre. Déposez le tout dans un grand saladier avec la salade romaine.",
+            "Ajoutez directement sur la salade le nuoc-mâm, le sucre, le jus de citron, l'huile d'olive et l'huile de sésame. Vous pouvez aussi mélanger ces ingrédients dans un petit bol pour préparer une vinaigrette avant de la verser sur la salade.",
+            "Ajoutez les cacahuètes concassées ainsi que les graines de sésame si vous en utilisez, puis mélangez délicatement.",
+            "Assaisonnez la pièce de bœuf avec du sel et du poivre, puis faites-la cuire selon la cuisson souhaitée. Laissez-la reposer 5 minutes avant de la couper en fines tranches.",
+            "Déposez les tranches de bœuf sur la salade. Ajoutez quelques feuilles de basilic thaï, un peu de cacahuètes concassées, quelques graines de sésame et parsemez de quelques zestes de citron bio pour apporter une touche de fraîcheur. Mélangez une dernière fois et dégustez immédiatement."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7063",
+        "title": "Pad Kra Pao",
+        "description": "Découvrez cette recette rapide et facile de Pad Kra Pao, un plat thaïlandais savoureux et fait maison, parfait pour un dîner express en seulement 20 minutes.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7489149648372813078\" data-video-id=\"7489149648372813078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7489149648372813078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🥩\n             300g de steak haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de nuoc mam"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             Haricots verts cuits (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             Riz blanc (pour servir)"
+            }
+        ],
+        "steps": [
+            "Faire revenir l'ail et l'échalote dans un peu d'huile.",
+            "Ajouter le steak haché.",
+            "Verser les sauces et le piment.",
+            "Ajouter une poignée d'haricots verts.",
+            "Terminer avec le basilic.",
+            "Servir sur du riz blanc."
+        ],
+        "tags": [
+            "Asie",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7061",
+        "title": "Rillettes de sardines et avocat",
+        "description": "Une recette ultra simple, fraîche et pleine de goût, parfaite à tartiner sur du bon pain.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7672009250691943712\" data-video-id=\"7672009250691943712\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7672009250691943712\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de sardines"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             ½ oignon rouge, coupé en petits morceaux"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à soupe de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à soupe de ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ½ cuillère à café de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un demi citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Les zestes d'un demi citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Mettre tous les ingrédients dans un bol, puis écraser et mélanger le tout à la fourchette jusqu'à obtenir la texture souhaitée.",
+            "Goûter et ajuster l'assaisonnement si nécessaire.",
+            "Servir avec du bon pain grillé."
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "Poissons et crustacés",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7059",
         "title": "Porc au caramel ultra simple",
