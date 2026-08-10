@@ -2,16 +2,122 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/08/2026 04:25:14
- * Total: 597 recettes
+ * Dernière mise à jour: 10/08/2026 10:00:45
+ * Total: 596 recettes
  */
-export const exportSyncId = "1786335914328";
+export const exportSyncId = "1786356045972";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7021",
+        "title": "Truffade",
+        "description": "Découvrez la recette de la Truffade, un plat traditionnel français réconfortant à base de pommes de terre et de tome fraîche d'Aubrac. Parfait pour les repas d'hiver ou de Noël.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7021_1786354846250.jpg&v=1786362181000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581814792382614807\" data-video-id=\"7581814792382614807\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581814792382614807\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1 kg de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de tome fraîche d'Aubrac"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Famille",
+            "France",
+            "Noël",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7015",
+        "title": "Tiramisu aux spéculoos",
+        "description": "Cette recette détaille la préparation d'une crème onctueuse et ferme à base de mascarpone, de crème fraîche et d'arôme vanille, agrémentée de sucre glace et de pâte de spéculoos, idéale pour un tiramisu aux spéculoos.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7015_1786354800251.jpg&v=1786362043000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665385157502700832\" data-video-id=\"7665385157502700832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665385157502700832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             250g de mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             150 g de crème 30 à 35 % de matière grasse"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2-3 cuillères à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Pâte de crème spéculoos"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Arôme vanille"
+            }
+        ],
+        "steps": [
+            "Dans un récipient, fouettez la crème, le mascarpone bien froid et l'arôme vanille.",
+            "Fouettez jusqu'à obtenir une crème lisse, onctueuse et ferme.",
+            "Ajoutez le sucre glace et mélangez délicatement à la maryse.",
+            "Mettez la crème dans une poche à douille (ce sera beaucoup plus simple)."
+        ],
+        "tags": [
+            "Desserts",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7032",
         "title": "Sauce libanaise à l'ail (Toum)",
         "description": "Une sauce libanaise crémeuse et aillée, parfaite pour accompagner divers plats comme les grillades, les falafels ou les chawarmas.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7032_1786354483764.jpg&v=1786361996000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -49,80 +155,128 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7030",
-        "title": "Salade exceptionnelle à la sauce coco, citron vert et sésame",
-        "description": "Une salade fraîche et savoureuse avec une sauce exotique à base de lait de coco, citron vert et sésame, accompagnée de saumon (ou crevettes/poulet), de légumes croquants et de fruits.",
-        "image": "/images/recipe-placeholder.svg",
+        "id": "7026",
+        "title": "Sauce Roquefort",
+        "description": "Une recette simple et rapide pour préparer une sauce crémeuse au Roquefort, idéale pour accompagner une entrecôte.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7026_1786354431128.jpg&v=1786361680000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670946457704205601\" data-video-id=\"7670946457704205601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670946457704205601\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7498760909033180438\" data-video-id=\"7498760909033180438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7498760909033180438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥛\n             3 à 4 cuillères à soupe de lait de coco"
+                "name": "🥣\n             150g de Roquefort"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             2 cuillères à soupe de sauce soja salée"
+                "name": "🧅\n             1 échalote"
             },
             {
                 "quantity": "",
-                "name": "🍋\n             Le zeste et le jus d'un citron vert"
+                "name": "🧈\n             50g de beurre"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             1 pointe de sriracha (ou plus, selon le goût)"
+                "name": "🥛\n             150ml de crème liquide"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             Un filet de miel"
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, faire fondre le beurre avec l'échalote finement émincée.",
+            "Laisser colorer l'échalote jusqu'à obtenir une belle coloration.",
+            "Ajouter le Roquefort et la crème liquide.",
+            "Laisser mijoter jusqu'à ce que la sauce épaississe légèrement.",
+            "Poivrer et servir chaud."
+        ],
+        "tags": [
+            "France",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7030",
+        "title": "Salade saumon sauce coco et citron vert",
+        "description": "Une salade fraîche et savoureuse avec une sauce exotique à base de lait de coco, citron vert et sésame, accompagnée de saumon (ou crevettes/poulet), de légumes croquants et de fruits.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7030_1786354412498.jpg&v=1786361628000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670946457704205601\" data-video-id=\"7670946457704205601\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670946457704205601\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 3 à 4 cuillères à soupe de lait de coco"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 petite gousse d'ail, râpée"
+                "name": "🥫\n 2 cuillères à soupe de sauce soja salée"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Un morceau de gingembre frais, râpé"
+                "name": "🍋\n Le zeste et le jus d'un citron vert"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Quelques graines de sésame"
+                "name": "🧂\n 1 pointe de sriracha (ou plus, selon le goût)"
             },
             {
                 "quantity": "",
-                "name": "🐟\n             Saumon cru (ou cuit), ou crevettes, ou poulet cuit"
+                "name": "🍯\n Un filet de miel"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             Oignons cébettes"
+                "name": "🧄\n 1 petite gousse d'ail, râpée"
             },
             {
                 "quantity": "",
-                "name": "🥕\n             Carotte"
+                "name": "🧂\n Un morceau de gingembre frais, râpé"
             },
             {
                 "quantity": "",
-                "name": "🥒\n             Concombre"
+                "name": "🥣\n Quelques graines de sésame"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Pêches"
+                "name": "🐟\n Saumon cru (ou cuit), ou crevettes, ou poulet cuit"
             },
             {
                 "quantity": "",
-                "name": "🥑\n             Avocat"
+                "name": "🧅\n Oignons cébettes"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Feuilles de coriandre fraîche"
+                "name": "🥕\n Carotte"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Sumac"
+                "name": "🥒\n Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pêches"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n Avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Feuilles de coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Sumac"
             }
         ],
         "steps": [
@@ -149,7 +303,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7028",
         "title": "Salade Fattoush",
         "description": "Une salade Fattoush fraîche et colorée, parfaite pour l'été. C'est la quatrième recette de la série \" salades fraîches et colorées \".",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7028_1786354261674.jpeg&v=1786361609000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -245,343 +399,191 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7026",
-        "title": "Sauce Roquefort",
-        "description": "Une recette simple et rapide pour préparer une sauce crémeuse au Roquefort, idéale pour accompagner une entrecôte.",
-        "image": "/images/recipe-placeholder.svg",
+        "id": "7011",
+        "title": "Ratatouille d'aubergines et chorizo sauce au yaourt",
+        "description": "Une version revisitée de la ratatouille, avec des aubergines et poivrons mijotés, relevée par du chorizo grillé, le tout servi sur une onctueuse sauce au yaourt grec et agrémenté de grenade.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7011_1786354246399.jpg&v=1786361459000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652289262750158112\" data-video-id=\"7652289262750158112\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652289262750158112\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n 2 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 poivron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n 1/2 chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 cuillère à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 boîte de tomates pelées"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n 10 cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Curcuma (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Paprika (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Piment (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1/2 jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Grenade (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n Pain pita"
+            }
+        ],
+        "steps": [
+            "Pécho 2 aubergines, découpez-les en rondelles d'environ 1cm et déposez-les sur une plaque de cuisson.",
+            "Badigeonnez les aubergines d'huile d'olive, salez et poivrez, puis enfournez à 190°C jusqu'à ce qu'elles soient grillées et tendres.",
+            "Pendant ce temps, émincez 1 oignon et 1 poivron en fines lamelles, 2 gousses d'ail et découpez 1/2 chorizo en petits dés.",
+            "Faites dorer le chorizo dans une poêle sans matière grasse jusqu'à ce qu'il soit bien doré.",
+            "Réservez le chorizo en laissant le gras dans la poêle, puis faites-y dorer l'oignon jusqu'à ce qu'il soit bien tendre.",
+            "Ajoutez les poivrons et laissez cuire 5 minutes avant d'ajouter l'ail.",
+            "Ajoutez 1 cuillère à café de miel pour bien faire caraméliser le tout.",
+            "Pécho une boîte de tomates pelées, découpez-les grossièrement et ajoutez-les dans la poêle.",
+            "Ajoutez les aubergines cuites et assaisonnez avec du sel, du poivre, du curcuma, du paprika et du piment (selon vos préférences).",
+            "Ajoutez 10 cl d'eau (en rinçant la conserve de tomates pour récupérer le maximum de sauce), couvrez et laissez mijoter 10 minutes pour bien ramollir l'aubergine.",
+            "Laissez bien refroidir avant de servir.",
+            "Pour la sauce : mélangez 1 yaourt grec, 1/2 jus de citron, du persil, de l'aneth, de l'huile d'olive, du sel et du poivre.",
+            "Laissez la sauce reposer au réfrigérateur environ 30 minutes avant de servir pour obtenir une belle consistance.",
+            "Pour le dressage : disposez la sauce au yaourt, puis les légumes, les dés de chorizo, la grenade (facultatif mais très sympa) et quelques herbes fraîches par-dessus.",
+            "Servez avec un bon pain pita."
+        ],
+        "tags": [
+            "Accompagnements",
+            "épicé",
+            "Espagne",
+            "Pas cher",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7007",
+        "title": "Mousse d'avocat",
+        "description": "Une recette de mousse d'avocat polyvalente, parfaite pour l'apéritif ou pour accompagner des crudités, du saumon fumé, des œufs durs, des salades ou des tartines.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7007_1786354209058.jpg&v=1786361443000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7498760909033180438\" data-video-id=\"7498760909033180438\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7498760909033180438\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664166044658928928\" data-video-id=\"7664166044658928928\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664166044658928928\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             150g de Roquefort"
+                "name": "🥑\n 2 avocats"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 échalote"
+                "name": "🥣\n 2 grosses cuillères à soupe de yaourt à la grecque"
             },
             {
                 "quantity": "",
-                "name": "🧈\n             50g de beurre"
+                "name": "🍋\n Le jus d'un citron vert"
             },
             {
                 "quantity": "",
-                "name": "🥛\n             150ml de crème liquide"
+                "name": "🥣\n Environ 150 g de feta"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "🥗\n 1 grosse poignée de roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Une dizaine de feuilles de basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Quelques flocons de piment (facultatif)"
             }
         ],
         "steps": [
-            "Dans une casserole, faire fondre le beurre avec l'échalote finement émincée.",
-            "Laisser colorer l'échalote jusqu'à obtenir une belle coloration.",
-            "Ajouter le Roquefort et la crème liquide.",
-            "Laisser mijoter jusqu'à ce que la sauce épaississe légèrement.",
-            "Poivrer et servir chaud."
-        ],
-        "tags": [
-            "France",
-            "Sauces"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7024",
-        "title": "Cari de Poulet",
-        "description": "Une recette savoureuse de cari de poulet, typique de l'île de la Réunion, préparée avec des épices aromatiques et des tomates.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7567792193025412374\" data-video-id=\"7567792193025412374\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7567792193025412374\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             Poulet entier"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gingembre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 cuillère à soupe de poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à soupe de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             4 belles tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons rouges"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "épicé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7021",
-        "title": "Truffade",
-        "description": "Découvrez la recette de la Truffade, un plat traditionnel français réconfortant à base de pommes de terre et de tome fraîche d'Aubrac. Parfait pour les repas d'hiver ou de Noël.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581814792382614807\" data-video-id=\"7581814792382614807\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581814792382614807\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             1 kg de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250 g de tome fraîche d'Aubrac"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             25 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Famille",
-            "France",
-            "Noël",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7019",
-        "title": "Barre énergétique XXL sans cuisson framboise chocolat",
-        "description": "Une recette saine et ultra facile de barre énergétique XXL sans cuisson, à base de framboises et de chocolat. Elle est personnalisable avec différentes poudres et beurres de noix. Se conserve au réfrigérateur ou au congélateur et peut être dégusté...",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657212519999753505\" data-video-id=\"7657212519999753505\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657212519999753505\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍇\n             40 g de framboises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             70 g de poudre d'amande (complète)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             50 g de farine d'avoine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             30 g d'amandes concassées"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de sirop d'érable"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             60 g de beurre d'amande"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             80 g de chocolat noir"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café d'huile de coco"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍇\n             Quelques framboises (pour la décoration)"
-            }
-        ],
-        "steps": [
-            "Dans un saladier, réduire les framboises en purée.",
-            "Ajouter le beurre d'amande bien liquide et le sirop d'érable. Mélanger.",
-            "Ajouter la poudre d'amande, la farine d'avoine et les amandes concassées.",
-            "Déposer la boule de pâte sur une feuille de papier cuisson et former un grand rectangle à l'aide d'un rouleau à pâtisserie, puis avec les mains car la pâte colle moins.",
-            "Verser le chocolat et l'huile fondus sur la base.",
-            "Saupoudrer de fleur de sel.",
-            "Placer au réfrigérateur au moins 1 heure, puis découper."
-        ],
-        "tags": [
-            "Desserts",
-            "Healthy"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7017",
-        "title": "Biscuits apéritifs maison au fromage et aux graines",
-        "description": "Découvrez une recette simple et rapide pour préparer des biscuits salés faits maison, parfaits pour l'apéritif. Ces petits sablés au fromage et aux graines, relevés d'une touche de piment d'Espelette, sont faciles à réaliser et se conservent bien.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642378711655779617\" data-video-id=\"7642378711655779617\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642378711655779617\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n             50 g de beurre à température ambiante"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             100 g de fromage râpé (type Comté ou Beaufort)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             100 g de farine de blé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             20 g de graines de sésame ou de pavot"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Piment d'Espelette, ou poivre et sel"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             2 cuillères à soupe d'eau (30 g)"
-            }
-        ],
-        "steps": [
-            "Dans un saladier, mélangez le fromage râpé, le beurre coupé en morceaux, la farine, le piment d'Espelette (ou poivre et sel) et les graines de sésame.",
-            "Sablez le mélange avec vos doigts jusqu'à obtenir une texture granuleuse, puis ajoutez les 2 cuillères à soupe d'eau.",
-            "Pétrissez la pâte jusqu'à ce qu'elle soit homogène, puis façonnez-la en un boudin d'environ 5 cm de diamètre. Enroulez le boudin dans du papier cuisson (assez grand pour être réutilisé pour la cuisson).",
-            "Placez le boudin au congélateur pendant 25 à 30 minutes. Cela permettra de couper facilement les biscuits sans que la pâte ne s'écrase.",
-            "Préchauffez votre four à 180°C. Coupez le boudin en tranches d'environ 0,5 cm d'épaisseur et disposez-les sur une plaque recouverte du papier cuisson.",
-            "Faites cuire les biscuits pendant 12 à 15 minutes à 180°C, ou jusqu'à ce qu'ils soient bien dorés. Il n'est pas nécessaire de trop les espacer sur la plaque, car ils s'étalent très peu.",
-            "Laissez refroidir les biscuits sur une grille avant de les déguster.",
-            "Conservez les biscuits dans une boîte en fer, ils resteront frais jusqu'à 3 à 5 jours."
+            "Dans un mixeur, combinez les avocats, le yaourt à la grecque, le jus de citron vert, la feta, la roquette, le basilic frais, l'huile d'olive, le sel et le poivre.",
+            "Mixez jusqu'à obtenir une mousse lisse et homogène.",
+            "Goûtez et ajustez l'assaisonnement si nécessaire.",
+            "Ajoutez quelques flocons de piment si désiré.",
+            "Servez frais avec vos accompagnements préférés."
         ],
         "tags": [
             "Apéritifs",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7015",
-        "title": "Tiramisu aux spéculoos",
-        "description": "Cette recette détaille la préparation d'une crème onctueuse et ferme à base de mascarpone, de crème fraîche et d'arôme vanille, agrémentée de sucre glace et de pâte de spéculoos, idéale pour un tiramisu aux spéculoos.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665385157502700832\" data-video-id=\"7665385157502700832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665385157502700832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n             250g de mascarpone"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             150 g de crème 30 à 35 % de matière grasse"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2-3 cuillères à soupe de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Pâte de crème spéculoos"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             Arôme vanille"
-            }
-        ],
-        "steps": [
-            "Dans un récipient, fouettez la crème, le mascarpone bien froid et l'arôme vanille.",
-            "Fouettez jusqu'à obtenir une crème lisse, onctueuse et ferme.",
-            "Ajoutez le sucre glace et mélangez délicatement à la maryse.",
-            "Mettez la crème dans une poche à douille (ce sera beaucoup plus simple)."
-        ],
-        "tags": [
-            "Desserts",
-            "Italie"
+            "Healthy",
+            "Sauces",
+            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -591,7 +593,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7013",
         "title": "Marinade Bbqarré",
         "description": "Une marinade simple et savoureuse à base de sauce barbecue, de sirop d'érable et de paprika fumé, idéale pour les grillades de poulet et autres viandes au barbecue pendant l'été.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7013_1786354096913.jpg&v=1786361406000",
         "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -637,300 +639,10 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7011",
-        "title": "Ratatouille d'aubergines et chorizo sur sauce au yaourt",
-        "description": "Une version revisitée de la ratatouille, avec des aubergines et poivrons mijotés, relevée par du chorizo grillé, le tout servi sur une onctueuse sauce au yaourt grec et agrémenté de grenade.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652289262750158112\" data-video-id=\"7652289262750158112\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652289262750158112\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍆\n             2 aubergines"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 poivron"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             1/2 chorizo"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à café de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 boîte de tomates pelées"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             10 cl d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Curcuma (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Aneth"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Grenade (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pain pita"
-            }
-        ],
-        "steps": [
-            "Pécho 2 aubergines, découpez-les en rondelles d'environ 1cm et déposez-les sur une plaque de cuisson.",
-            "Badigeonnez les aubergines d'huile d'olive, salez et poivrez, puis enfournez à 190°C jusqu'à ce qu'elles soient grillées et tendres.",
-            "Pendant ce temps, émincez 1 oignon et 1 poivron en fines lamelles, 2 gousses d'ail et découpez 1/2 chorizo en petits dés.",
-            "Faites dorer le chorizo dans une poêle sans matière grasse jusqu'à ce qu'il soit bien doré.",
-            "Réservez le chorizo en laissant le gras dans la poêle, puis faites-y dorer l'oignon jusqu'à ce qu'il soit bien tendre.",
-            "Ajoutez les poivrons et laissez cuire 5 minutes avant d'ajouter l'ail.",
-            "Ajoutez 1 cuillère à café de miel pour bien faire caraméliser le tout.",
-            "Pécho une boîte de tomates pelées, découpez-les grossièrement et ajoutez-les dans la poêle.",
-            "Ajoutez les aubergines cuites et assaisonnez avec du sel, du poivre, du curcuma, du paprika et du piment (selon vos préférences).",
-            "Ajoutez 10 cl d'eau (en rinçant la conserve de tomates pour récupérer le maximum de sauce), couvrez et laissez mijoter 10 minutes pour bien ramollir l'aubergine.",
-            "Laissez bien refroidir avant de servir.",
-            "Pour la sauce : mélangez 1 yaourt grec, 1/2 jus de citron, du persil, de l'aneth, de l'huile d'olive, du sel et du poivre.",
-            "Laissez la sauce reposer au réfrigérateur environ 30 minutes avant de servir pour obtenir une belle consistance.",
-            "Pour le dressage : disposez la sauce au yaourt, puis les légumes, les dés de chorizo, la grenade (facultatif mais très sympa) et quelques herbes fraîches par-dessus.",
-            "Servez avec un bon pain pita."
-        ],
-        "tags": [
-            "Accompagnements",
-            "épicé",
-            "Espagne",
-            "Pas cher",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7009",
-        "title": "Crème épaisse maison express",
-        "description": "Découvrez une astuce simple et rapide pour transformer votre crème liquide (30% de matières grasses) en crème épaisse avec seulement un ingrédient : du jus de citron frais ou du vinaigre. Idéale pour vos sauces, accompagner des légumes rôtis ou ga...",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645395249547791649\" data-video-id=\"7645395249547791649\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645395249547791649\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             20 cl de crème liquide (30% de matières grasses)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/4 de jus de citron frais ou 1 cuillère à soupe de vinaigre"
-            }
-        ],
-        "steps": [
-            "Prenez 20 cl de crème liquide à 30% de matières grasses.",
-            "Ajoutez environ 1/4 de jus de citron frais ou 1 cuillère à soupe de vinaigre.",
-            "Mélangez jusqu'à ce que la crème épaississe."
-        ],
-        "tags": [
-            "Astuces",
-            "Pas cher",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7007",
-        "title": "Mousse d'avocat polyvalente",
-        "description": "Une recette de mousse d'avocat polyvalente, parfaite pour l'apéritif ou pour accompagner des crudités, du saumon fumé, des œufs durs, des salades ou des tartines.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664166044658928928\" data-video-id=\"7664166044658928928\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664166044658928928\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥑\n             2 avocats"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 grosses cuillères à soupe de yaourt à la grecque"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus d'un citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Environ 150 g de feta"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             1 grosse poignée de roquette"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Une dizaine de feuilles de basilic frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Quelques flocons de piment (facultatif)"
-            }
-        ],
-        "steps": [
-            "Dans un mixeur, combinez les avocats, le yaourt à la grecque, le jus de citron vert, la feta, la roquette, le basilic frais, l'huile d'olive, le sel et le poivre.",
-            "Mixez jusqu'à obtenir une mousse lisse et homogène.",
-            "Goûtez et ajustez l'assaisonnement si nécessaire.",
-            "Ajoutez quelques flocons de piment si désiré.",
-            "Servez frais avec vos accompagnements préférés."
-        ],
-        "tags": [
-            "Apéritifs",
-            "Healthy",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7005",
-        "title": "Cups d'avoine sans cuisson au beurre de cacahuète et chocolat noir",
-        "description": "Découvrez une recette gourmande et saine de cups d'avoine sans cuisson, parfaites pour un goûter équilibré. Cette recette prouve qu'il est possible de se faire plaisir tout en mangeant mieux, sans se priver, et peut accompagner une démarche de per...",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649809816306683169\" data-video-id=\"7649809816306683169\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649809816306683169\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             10 cuillères à soupe de flocons d'avoine (150 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             8 cuillères à soupe de beurre de cacahuète 100% (chez KORO)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 cuillères à soupe d'huile de coco fondue (chez KORO)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de sirop d'agave (ou miel ou sirop d'érable)"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 cuillère à café d'extrait de vanille (optionnel)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n             120 g de pépites de chocolat noir minimum 70% (chez KORO)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe d'huile de coco (chez KORO)"
-            }
-        ],
-        "steps": [
-            "Mélangez tous les ingrédients de la base jusqu'à obtenir une pâte compacte.",
-            "Répartissez la pâte dans 12 moules à muffins en silicone ou individuels et tassez bien.",
-            "Placez au réfrigérateur pendant au moins 30 minutes.",
-            "Faites fondre le chocolat avec l'huile de coco.",
-            "Coulez le chocolat sur chaque cup (sans faire une couche trop épaisse !).",
-            "Laissez durcir le tout au réfrigérateur pendant au moins 2 heures, puis démoulez."
-        ],
-        "tags": [
-            "Healthy",
-            "minceur",
-            "Sans sucre",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7003",
         "title": "Gâteau au chocolat parfait avec ganache",
         "description": "Une recette simple et rapide pour un gâteau au chocolat moelleux, accompagné d'une ganache riche et onctueuse, parfait pour les amateurs de chocolat.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7003_1786354075886.jpeg&v=1786361293000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -1011,6 +723,294 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7005",
+        "title": "Cups d'avoine sans cuisson au beurre de cacahuète et chocolat noir",
+        "description": "Découvrez une recette gourmande et saine de cups d'avoine sans cuisson, parfaites pour un goûter équilibré. Cette recette prouve qu'il est possible de se faire plaisir tout en mangeant mieux, sans se priver, et peut accompagner une démarche de per...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7005_1786353818894.jpg&v=1786361272000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649809816306683169\" data-video-id=\"7649809816306683169\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649809816306683169\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             10 cuillères à soupe de flocons d'avoine (150 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             8 cuillères à soupe de beurre de cacahuète 100% (chez KORO)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cuillères à soupe d'huile de coco fondue (chez KORO)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sirop d'agave (ou miel ou sirop d'érable)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             120 g de pépites de chocolat noir minimum 70% (chez KORO)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'huile de coco (chez KORO)"
+            }
+        ],
+        "steps": [
+            "Mélangez tous les ingrédients de la base jusqu'à obtenir une pâte compacte.",
+            "Répartissez la pâte dans 12 moules à muffins en silicone ou individuels et tassez bien.",
+            "Placez au réfrigérateur pendant au moins 30 minutes.",
+            "Faites fondre le chocolat avec l'huile de coco.",
+            "Coulez le chocolat sur chaque cup (sans faire une couche trop épaisse !).",
+            "Laissez durcir le tout au réfrigérateur pendant au moins 2 heures, puis démoulez."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "Sans sucre",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7009",
+        "title": "Crème épaisse maison express",
+        "description": "Découvrez une astuce simple et rapide pour transformer votre crème liquide (30% de matières grasses) en crème épaisse avec seulement un ingrédient : du jus de citron frais ou du vinaigre. Idéale pour vos sauces, accompagner des légumes rôtis ou ga...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7009_1786353765308.jpeg&v=1786361015000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645395249547791649\" data-video-id=\"7645395249547791649\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645395249547791649\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             20 cl de crème liquide (30% de matières grasses)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/4 de jus de citron frais ou 1 cuillère à soupe de vinaigre"
+            }
+        ],
+        "steps": [
+            "Prenez 20 cl de crème liquide à 30% de matières grasses.",
+            "Ajoutez environ 1/4 de jus de citron frais ou 1 cuillère à soupe de vinaigre.",
+            "Mélangez jusqu'à ce que la crème épaississe."
+        ],
+        "tags": [
+            "Astuces",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7024",
+        "title": "Cari de Poulet",
+        "description": "Une recette savoureuse de cari de poulet, typique de l'île de la Réunion, préparée avec des épices aromatiques et des tomates.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7024_1786353385330.jpg&v=1786360956000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7567792193025412374\" data-video-id=\"7567792193025412374\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7567792193025412374\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Poulet entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à soupe de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             4 belles tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7017",
+        "title": "Biscuits apéritifs maison au fromage et aux graines",
+        "description": "Découvrez une recette simple et rapide pour préparer des biscuits salés faits maison, parfaits pour l'apéritif. Ces petits sablés au fromage et aux graines, relevés d'une touche de piment d'Espelette, sont faciles à réaliser et se conservent bien.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7017_1786353280215.jpg&v=1786360581000",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642378711655779617\" data-video-id=\"7642378711655779617\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642378711655779617\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             50 g de beurre à température ambiante"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             100 g de fromage râpé (type Comté ou Beaufort)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             100 g de farine de blé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             20 g de graines de sésame ou de pavot"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Piment d'Espelette, ou poivre et sel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             2 cuillères à soupe d'eau (30 g)"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, mélangez le fromage râpé, le beurre coupé en morceaux, la farine, le piment d'Espelette (ou poivre et sel) et les graines de sésame.",
+            "Sablez le mélange avec vos doigts jusqu'à obtenir une texture granuleuse, puis ajoutez les 2 cuillères à soupe d'eau.",
+            "Pétrissez la pâte jusqu'à ce qu'elle soit homogène, puis façonnez-la en un boudin d'environ 5 cm de diamètre. Enroulez le boudin dans du papier cuisson (assez grand pour être réutilisé pour la cuisson).",
+            "Placez le boudin au congélateur pendant 25 à 30 minutes. Cela permettra de couper facilement les biscuits sans que la pâte ne s'écrase.",
+            "Préchauffez votre four à 180°C. Coupez le boudin en tranches d'environ 0,5 cm d'épaisseur et disposez-les sur une plaque recouverte du papier cuisson.",
+            "Faites cuire les biscuits pendant 12 à 15 minutes à 180°C, ou jusqu'à ce qu'ils soient bien dorés. Il n'est pas nécessaire de trop les espacer sur la plaque, car ils s'étalent très peu.",
+            "Laissez refroidir les biscuits sur une grille avant de les déguster.",
+            "Conservez les biscuits dans une boîte en fer, ils resteront frais jusqu'à 3 à 5 jours."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7019",
+        "title": "Barre framboise chocolat sans cuisson",
+        "description": "Une recette saine et ultra facile de barre énergétique XXL sans cuisson, à base de framboises et de chocolat. Elle est personnalisable avec différentes poudres et beurres de noix. Se conserve au réfrigérateur ou au congélateur et peut être dégusté...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7019_1786353201677.jpg&v=1786360476000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657212519999753505\" data-video-id=\"7657212519999753505\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657212519999753505\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍇\n 40 g de framboises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 70 g de poudre d'amande (complète)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n 50 g de farine d'avoine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 30 g d'amandes concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à soupe de sirop d'érable"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 60 g de beurre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 80 g de chocolat noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 cuillère à café d'huile de coco"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n Quelques framboises (pour la décoration)"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, réduire les framboises en purée.",
+            "Ajouter le beurre d'amande bien liquide et le sirop d'érable. Mélanger.",
+            "Ajouter la poudre d'amande, la farine d'avoine et les amandes concassées.",
+            "Déposer la boule de pâte sur une feuille de papier cuisson et former un grand rectangle à l'aide d'un rouleau à pâtisserie, puis avec les mains car la pâte colle moins.",
+            "Verser le chocolat et l'huile fondus sur la base.",
+            "Saupoudrer de fleur de sel.",
+            "Placer au réfrigérateur au moins 1 heure, puis découper."
+        ],
+        "tags": [
+            "Desserts",
+            "Healthy"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -39635,66 +39635,6 @@ export const mockRecipes: Recipe[] = [
             "moyen-orient",
             "ramadan",
             "rapide"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3634",
-        "title": "Toum express",
-        "description": "Découvrez le Toum, une crème d'ail libanaise express et facile à réaliser. Parfaite pour accompagner vos sandwichs, salades ou à déguster en dip, cette recette rapide et savoureuse est une véritable pépite culinaire. Elle apportera une touche d'au...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Ftoum-libanesiche-knoblauchcreme-6.jpg&v=1774451977000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@papa.onmangequoi/video/7354807836536343841?_r=1&amp;_t=ZN-94dFKsvM4MI\" data-video-id=\"7354807836536343841\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@papa.onmangequoi/video/7354807836536343841?_r=1&amp;_t=ZN-94dFKsvM4MI\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧄 Une dizaine de gousses d'ail (une tête d'ail entière)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾 20cl d'huile neutre (huile de pépins de raisin)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 Le jus d'un demi citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 1 petite cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾 Un trait d'huile d'olive (pour le dip)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Un peu de zaatar (pour le dip)"
-            }
-        ],
-        "steps": [
-            "Peler et dégermer les gousses d'ail.",
-            "Placer les gousses d'ail dans un mixeur.",
-            "Ajouter le jus de citron et le sel.",
-            "Mixer jusqu'à obtenir une pâte.",
-            "Pendant que le mixeur tourne, ajouter l'huile neutre en filet très fin, comme pour une mayonnaise, jusqu'à obtenir une émulsion crémeuse et épaisse.",
-            "Pour servir en dip, ajouter un trait d'huile d'olive et un peu de zaatar."
-        ],
-        "tags": [
-            "ail",
-            "Condiment",
-            "cuisine libanaise",
-            "Dip",
-            "fait maison",
-            "Liban",
-            "recette facile",
-            "recette rapide",
-            "Toum"
         ],
         "isFeatured": false,
         "isFavorite": false,
