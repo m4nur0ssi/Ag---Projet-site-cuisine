@@ -2,11 +2,244 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/08/2026 12:42:06
- * Total: 602 recettes
+ * Dernière mise à jour: 11/08/2026 19:01:08
+ * Total: 605 recettes
  */
-export const exportSyncId = "1786452126168";
+export const exportSyncId = "1786474868492";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7084",
+        "title": "Endives au jambon sans amertume",
+        "description": "Découvrez une recette d'endives au jambon garantie sans amertume ! Le secret réside dans la caramélisation des endives à la poêle avec du beurre et du sucre, avant de les napper d'une béchamel onctueuse au comté et à la muscade. Un gratin gourmand...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650424448893324576\" data-video-id=\"7650424448893324576\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650424448893324576\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Endives"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Comté"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Faire caraméliser les endives à la poêle avec du beurre et du sucre pour éliminer toute amertume.",
+            "Préparer une béchamel ultra-gourmande avec du beurre, de la farine, du lait, de la muscade, du sel et du poivre.",
+            "Napper les endives de cette béchamel au comté.",
+            "Enfourner le gratin pendant 25 minutes à 180°C jusqu'à ce qu'il soit doré et bouillonnant."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "France",
+            "Gratins",
+            "Pas cher",
+            "rapide"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7082",
+        "title": "Concombre Éclaté et Œuf Mollet Mariné",
+        "description": "Si vous pensez que le concombre est fade, cette recette est faite pour vous ! Un plat délicieux et plein de saveurs, parfait pour surprendre vos papilles.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664680625286253857\" data-video-id=\"7664680625286253857\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664680625286253857\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n             1 gros concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 cuillère à café de beurre de cacahuète"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Flocons de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail frais haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre frais haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile neutre bouillante"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1 cuillère à café de sauce poisson"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Mirin"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Sauce soja (pour la marinade des œufs)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Eau (pour la marinade des œufs)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche"
+            }
+        ],
+        "steps": [
+            "Faire cuire les œufs pour qu'ils soient mollets. Une fois cuits, les écaler délicatement.",
+            "Préparer la marinade pour les œufs en mélangeant de la sauce soja, de l'eau et du mirin. Faire mariner les œufs mollets dans ce mélange pendant que vous préparez le reste.",
+            "Éclater le concombre (le 'smasher') en le tapant avec le plat d'un couteau ou un rouleau à pâtisserie, puis le couper en morceaux. Saler le concombre et le laisser dégorger quelques minutes.",
+            "Dans un bol, mélanger le beurre de cacahuète, les flocons de piment, les graines de sésame, l'ail frais haché et le gingembre frais haché.",
+            "Faire bouillir l'huile neutre et la verser chaude sur le mélange de sauce cacahuète pour en révéler les arômes.",
+            "Détendre la sauce en ajoutant la sauce soja, la sauce poisson et un trait de mirin. Bien mélanger.",
+            "Égoutter le concombre. Disposer le concombre éclaté dans un plat, ajouter les œufs mollets marinés coupés en deux.",
+            "Napper généreusement le tout de sauce cacahuète épicée.",
+            "Garnir de coriandre fraîche ciselée avant de servir."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7080",
+        "title": "Poivrons à la Sicilienne Pici nichi",
+        "description": "Découvrez une savoureuse recette de poivrons farcis à la sicilienne, préparée avec une farce à base de mie de pain, de fromage (parmesan ou pecorino), d'oignon rouge, de pignons de pin et d'œufs. Ces poivrons sont ensuite cuits au four dans une sa...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657946722114506017\" data-video-id=\"7657946722114506017\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657946722114506017\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             4 à 5 poivrons corne de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             200g de mie de pain de campagne"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             150g de parmesan ou pecorino"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30g de pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Sauce tomate pour le plat à gratin"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 200°C.",
+            "Préparer la farce : dans un grand bol, mélanger la mie de pain, le parmesan (ou pecorino) râpé, l'oignon rouge finement haché, les pignons de pin, les œufs, un filet d'huile d'olive et le sel. Bien mélanger jusqu'à obtenir une farce homogène.",
+            "Laver les poivrons corne de bœuf, les couper en deux dans le sens de la longueur et retirer les graines et les membranes blanches.",
+            "Farcir généreusement chaque moitié de poivron avec la préparation.",
+            "Disposer les poivrons farcis dans un plat à gratin.",
+            "Napper le fond du plat et les poivrons de sauce tomate.",
+            "Enfourner pour 45 minutes de cuisson, ou jusqu'à ce que les poivrons soient tendres et la farce dorée."
+        ],
+        "tags": [
+            "Gratins",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7065",
         "title": "Salade thaï au bœuf",
