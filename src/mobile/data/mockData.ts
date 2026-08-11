@@ -2,177 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/08/2026 04:14:09
- * Total: 605 recettes
+ * Dernière mise à jour: 11/08/2026 12:42:06
+ * Total: 602 recettes
  */
-export const exportSyncId = "1786421649378";
+export const exportSyncId = "1786452126168";
 export const mockRecipes: Recipe[] = [
-    {
-        "id": "7071",
-        "title": "Recette pour utiliser les courgettes du jardin",
-        "description": "Une idée simple et savoureuse pour cuisiner les courgettes fraîches de votre jardin.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670566222743883040\" data-video-id=\"7670566222743883040\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670566222743883040\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Gratins",
-            "Healthy",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7069",
-        "title": "Brochettes de bœuf et pommes de terre croustillantes",
-        "description": "Ces brochettes savoureuses combinent la tendreté du bœuf avec des morceaux de pommes de terre croustillantes, parfaites pour un repas convivial ou un barbecue estival.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671369337906760974\" data-video-id=\"7671369337906760974\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671369337906760974\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             500g de bœuf (type rumsteck ou gîte), coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             400g de petites pommes de terre, coupées en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre noir fraîchement moulu, au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Brochettes en bois ou en métal"
-            }
-        ],
-        "steps": [
-            "Si vous utilisez des brochettes en bois, faites-les tremper dans l'eau pendant au moins 30 minutes pour éviter qu'elles ne brûlent.",
-            "Dans un grand bol, mélangez les dés de bœuf et de pommes de terre avec l'huile d'olive, le sel et le poivre. Assurez-vous que tous les morceaux sont bien enrobés.",
-            "Enfilez alternativement les dés de bœuf et de pommes de terre sur les brochettes.",
-            "Préchauffez votre grill, votre plancha ou votre four à 200°C (400°F).",
-            "Faites cuire les brochettes pendant 15 à 20 minutes, en les retournant régulièrement, jusqu'à ce que le bœuf soit cuit à votre goût et que les pommes de terre soient tendres et croustillantes. Le temps de cuisson peut varier selon l'épaisseur des morceaux et la méthode de cuisson.",
-            "Servez immédiatement et dégustez."
-        ],
-        "tags": [
-            "barbecue",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7067",
-        "title": "Huile pimentée aux cacahuètes, ail et sésame",
-        "description": "Une recette maison pour préparer une huile pimentée aromatique avec des cacahuètes croquantes, de l'ail, du sésame et diverses épices, parfaite pour relever vos plats et ajouter une touche de saveur asiatique.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638227236612705538\" data-video-id=\"7638227236612705538\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638227236612705538\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             5 cuillères à soupe de gochugaru"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 cuillères à soupe de piment en paillettes"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             70 g de cacahuètes concassées"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             50 g de sésame grillé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             10 gousses d'ail finement hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             1 cuillère à soupe de vinaigre de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             2 à 3 pincées de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de cannelle"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Épices au choix (badiane, poivre, paprika fumé, cinq-épices...)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Environ 40 à 50 cl d'huile neutre"
-            }
-        ],
-        "steps": [
-            "Dans un grand saladier en métal ou un récipient résistant à la chaleur, ajoutez le gochugaru, les piments, le sucre, les cacahuètes, le sésame grillé, le sel, la cannelle et les épices.",
-            "Terminez en ajoutant l'ail haché sur le dessus : ainsi, lorsque l'huile chaude sera versée, l'ail cuira directement sans brûler trop vite.",
-            "Si vous préférez faire frire l'ail au préalable, faites-le doucement à feu moyen-doux jusqu'à ce qu'il soit légèrement doré. L'ail brûle vite et devient amer, le but est donc de le sécher et de le parfumer, pas de le brûler.",
-            "Faites chauffer l'huile jusqu'à ce qu'elle soit bien chaude, presque fumante.",
-            "Versez-la doucement sur les ingrédients : cela doit crépiter et faire de nombreuses bulles.",
-            "Ajoutez ensuite le vinaigre de riz, mélangez bien, puis laissez refroidir avant de mettre en pot.",
-            "Conservez l'huile pimentée au réfrigérateur dans un pot propre et hermétique.",
-            "L'huile chaude cuit l'ail et aide à la conservation, mais comme il s'agit d'une préparation maison, il est préférable de la consommer dans les semaines qui suivent pour préserver le meilleur goût et éviter les risques.",
-            "Utilisez toujours une cuillère propre et sèche."
-        ],
-        "tags": [
-            "Asie",
-            "épicé",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
     {
         "id": "7065",
         "title": "Salade thaï au bœuf",
         "description": "Une salade fraîche et savoureuse d'inspiration thaïlandaise, composée de bœuf tendre, de légumes croquants comme des tomates cerises, concombre, carotte, oignon rouge, et d'herbes aromatiques. Le tout est relevé par une vinaigrette au nuoc-mâm, ci...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7065_1786451086336.jpg&v=1786458306000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -284,69 +123,70 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7063",
-        "title": "Pad Kra Pao",
-        "description": "Découvrez cette recette rapide et facile de Pad Kra Pao, un plat thaïlandais savoureux et fait maison, parfait pour un dîner express en seulement 20 minutes.",
-        "image": "/images/recipe-placeholder.svg",
+        "id": "7055",
+        "title": "Risotto crémeux au fenouil et à la saucisse",
+        "description": "Un risotto crémeux et savoureux, facile et rapide à réaliser, avec du fenouil et de la saucisse de Toulouse. Le mascarpone et la tomme râpée lui confèrent une texture onctueuse à souhait.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7055_1786450910847.jpg&v=1786458283000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7489149648372813078\" data-video-id=\"7489149648372813078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7489149648372813078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7217115437920718086\" data-video-id=\"7217115437920718086\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7217115437920718086\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🧄\n             3 gousses d'ail"
+                "name": "🧅\n             1 oignon jaune"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 échalote"
+                "name": "🧄\n             1 gousse d'ail"
             },
             {
                 "quantity": "",
-                "name": "🥩\n             300g de steak haché"
+                "name": "🥣\n             1 fenouil"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             3 cuillères à soupe de sauce soja"
+                "name": "🥓\n             2 saucisses de Toulouse"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de nuoc mam"
+                "name": "🥣\n             1/2 cuillère à café de fenouil moulu"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de sauce huître"
+                "name": "🍚\n             150g de riz à risotto"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             1 cuillère à café de piment"
+                "name": "🧀\n             50g de mascarpone"
             },
             {
                 "quantity": "",
-                "name": "🫘\n             Haricots verts cuits (optionnel)"
+                "name": "🥣\n             25g de tomme râpée"
             },
             {
                 "quantity": "",
-                "name": "🌿\n             Basilic frais"
+                "name": "🥫\n             1 cube de bouillon de légumes"
             },
             {
                 "quantity": "",
-                "name": "🍚\n             Riz blanc (pour servir)"
+                "name": "🍾\n             4 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Poivre et sel"
             }
         ],
         "steps": [
-            "Faire revenir l'ail et l'échalote dans un peu d'huile.",
-            "Ajouter le steak haché.",
-            "Verser les sauces et le piment.",
-            "Ajouter une poignée d'haricots verts.",
-            "Terminer avec le basilic.",
-            "Servir sur du riz blanc."
+            "Faites revenir l'oignon, l'ail et le fenouil coupé en petits morceaux dans l'huile d'olive.",
+            "Ajoutez ensuite les saucisses coupées en rondelles, le riz et le fenouil moulu.",
+            "Versez progressivement le bouillon de légumes tout en remuant.",
+            "En fin de cuisson, ajoutez le mascarpone et la tomme râpée pour un risotto crémeux à souhait."
         ],
         "tags": [
-            "Asie",
-            "épicé"
+            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -356,7 +196,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7061",
         "title": "Rillettes de sardines et avocat",
         "description": "Une recette ultra simple, fraîche et pleine de goût, parfaite à tartiner sur du bon pain.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7061_1786450873560.jpeg&v=1786458107000",
         "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -428,7 +268,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7059",
         "title": "Porc au caramel ultra simple",
         "description": "Une recette de porc au caramel ultra simple, fondante et délicieuse. Nécessite une casserole, quelques ingrédients et un peu de patience pour un plat doux, sucré-salé, à refaire les yeux fermés.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7059_1786450767317.jpg&v=1786458070000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -482,157 +322,200 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7057",
-        "title": "Kebbe au plat",
-        "description": "Le Kebbe au plat (Kebbeh bil sayniye) est un plat emblématique de la cuisine libanaise. L'auteur partage comment ses expériences à l'étranger, notamment au Danemark, ont enrichi sa cuisine quotidienne libanaise, intégrant de nouvelles découvertes....",
-        "image": "/images/recipe-placeholder.svg",
+        "id": "7063",
+        "title": "Pad Kra Pao",
+        "description": "Découvrez cette recette rapide et facile de Pad Kra Pao, un plat thaïlandais savoureux et fait maison, parfait pour un dîner express en seulement 20 minutes.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7063_1786450276587.jpg&v=1786457962000",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641344940395482401\" data-video-id=\"7641344940395482401\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641344940395482401\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7489149648372813078\" data-video-id=\"7489149648372813078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7489149648372813078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             350g de boulgour fin"
+                "name": "🧄\n             3 gousses d'ail"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             250g de viande hachée (5% pour la pâte)"
+                "name": "🧅\n             1 échalote"
             },
             {
                 "quantity": "",
-                "name": "💧\n             250ml d'eau froide"
+                "name": "🥩\n             300g de steak haché"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1/2 oignon (pour la pâte)"
+                "name": "🥫\n             3 cuillères à soupe de sauce soja"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             1 cuillère à soupe de sel (pour la pâte)"
+                "name": "🥣\n             1 cuillère à soupe de nuoc mam"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             0.25 cuillère à café de cannelle (pour la pâte)"
+                "name": "🥣\n             1 cuillère à soupe de sauce huître"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             0.25 cuillère à café de poivre noir (pour la pâte)"
+                "name": "🌶️\n             1 cuillère à café de piment"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe d'épices kebbé"
+                "name": "🫘\n             Haricots verts cuits (optionnel)"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             Huile d'olive"
+                "name": "🌿\n             Basilic frais"
             },
             {
                 "quantity": "",
-                "name": "🧅\n             1 oignon jaune (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250g de viande hachée (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             0.5 cuillère à café de sel (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             0.25 cuillère à café de poivre noir (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             0.25 cuillère à café de cannelle (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             0.25 cuillère à café de 7 épices libanaises"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Pignons de pin (selon budget)"
+                "name": "🍚\n             Riz blanc (pour servir)"
             }
         ],
         "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
+            "Faire revenir l'ail et l'échalote dans un peu d'huile.",
+            "Ajouter le steak haché.",
+            "Verser les sauces et le piment.",
+            "Ajouter une poignée d'haricots verts.",
+            "Terminer avec le basilic.",
+            "Servir sur du riz blanc."
         ],
         "tags": [
-            "Liban"
+            "Asie",
+            "épicé"
         ],
         "isFeatured": false,
         "isFavorite": false,
         "address": ""
     },
     {
-        "id": "7055",
-        "title": "Risotto crémeux au fenouil et à la saucisse",
-        "description": "Un risotto crémeux et savoureux, facile et rapide à réaliser, avec du fenouil et de la saucisse de Toulouse. Le mascarpone et la tomme râpée lui confèrent une texture onctueuse à souhait.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
+        "id": "7067",
+        "title": "Huile pimentée aux cacahuètes, ail et sésame",
+        "description": "Une recette maison pour préparer une huile pimentée aromatique avec des cacahuètes croquantes, de l'ail, du sésame et diverses épices, parfaite pour relever vos plats et ajouter une touche de saveur asiatique.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7067_1786450252373.jpg&v=1786457473000",
+        "category": "sauces",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7217115437920718086\" data-video-id=\"7217115437920718086\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7217115437920718086\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7638227236612705538\" data-video-id=\"7638227236612705538\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7638227236612705538\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🧅\n             1 oignon jaune"
+                "name": "🥣\n             5 cuillères à soupe de gochugaru"
             },
             {
                 "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
+                "name": "🧄\n             3 cuillères à soupe de piment en paillettes"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1 fenouil"
+                "name": "🍯\n             2 cuillères à soupe de sucre"
             },
             {
                 "quantity": "",
-                "name": "🥓\n             2 saucisses de Toulouse"
+                "name": "🥣\n             70 g de cacahuètes concassées"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1/2 cuillère à café de fenouil moulu"
+                "name": "🥣\n             50 g de sésame grillé"
             },
             {
                 "quantity": "",
-                "name": "🍚\n             150g de riz à risotto"
+                "name": "🧄\n             10 gousses d'ail finement hachées"
             },
             {
                 "quantity": "",
-                "name": "🧀\n             50g de mascarpone"
+                "name": "🍚\n             1 cuillère à soupe de vinaigre de riz"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             25g de tomme râpée"
+                "name": "🧂\n             2 à 3 pincées de sel"
             },
             {
                 "quantity": "",
-                "name": "🥫\n             1 cube de bouillon de légumes"
+                "name": "🧂\n             1 cuillère à café de cannelle"
             },
             {
                 "quantity": "",
-                "name": "🍾\n             4 cuillères à soupe d'huile d'olive"
+                "name": "🧂\n             Épices au choix (badiane, poivre, paprika fumé, cinq-épices...)"
             },
             {
                 "quantity": "",
-                "name": "🧂\n             Poivre et sel"
+                "name": "🍾\n             Environ 40 à 50 cl d'huile neutre"
             }
         ],
         "steps": [
-            "Faites revenir l'oignon, l'ail et le fenouil coupé en petits morceaux dans l'huile d'olive.",
-            "Ajoutez ensuite les saucisses coupées en rondelles, le riz et le fenouil moulu.",
-            "Versez progressivement le bouillon de légumes tout en remuant.",
-            "En fin de cuisson, ajoutez le mascarpone et la tomme râpée pour un risotto crémeux à souhait."
+            "Dans un grand saladier en métal ou un récipient résistant à la chaleur, ajoutez le gochugaru, les piments, le sucre, les cacahuètes, le sésame grillé, le sel, la cannelle et les épices.",
+            "Terminez en ajoutant l'ail haché sur le dessus : ainsi, lorsque l'huile chaude sera versée, l'ail cuira directement sans brûler trop vite.",
+            "Si vous préférez faire frire l'ail au préalable, faites-le doucement à feu moyen-doux jusqu'à ce qu'il soit légèrement doré. L'ail brûle vite et devient amer, le but est donc de le sécher et de le parfumer, pas de le brûler.",
+            "Faites chauffer l'huile jusqu'à ce qu'elle soit bien chaude, presque fumante.",
+            "Versez-la doucement sur les ingrédients : cela doit crépiter et faire de nombreuses bulles.",
+            "Ajoutez ensuite le vinaigre de riz, mélangez bien, puis laissez refroidir avant de mettre en pot.",
+            "Conservez l'huile pimentée au réfrigérateur dans un pot propre et hermétique.",
+            "L'huile chaude cuit l'ail et aide à la conservation, mais comme il s'agit d'une préparation maison, il est préférable de la consommer dans les semaines qui suivent pour préserver le meilleur goût et éviter les risques.",
+            "Utilisez toujours une cuillère propre et sèche."
         ],
         "tags": [
-            "Italie"
+            "Asie",
+            "épicé",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7069",
+        "title": "Brochettes de bœuf et pommes de terre croustillantes",
+        "description": "Ces brochettes savoureuses combinent la tendreté du bœuf avec des morceaux de pommes de terre croustillantes, parfaites pour un repas convivial ou un barbecue estival.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7069_1786450150383.jpg&v=1786457449000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671369337906760974\" data-video-id=\"7671369337906760974\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671369337906760974\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             500g de bœuf (type rumsteck ou gîte), coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             400g de petites pommes de terre, coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir fraîchement moulu, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Brochettes en bois ou en métal"
+            }
+        ],
+        "steps": [
+            "Si vous utilisez des brochettes en bois, faites-les tremper dans l'eau pendant au moins 30 minutes pour éviter qu'elles ne brûlent.",
+            "Dans un grand bol, mélangez les dés de bœuf et de pommes de terre avec l'huile d'olive, le sel et le poivre. Assurez-vous que tous les morceaux sont bien enrobés.",
+            "Enfilez alternativement les dés de bœuf et de pommes de terre sur les brochettes.",
+            "Préchauffez votre grill, votre plancha ou votre four à 200°C (400°F).",
+            "Faites cuire les brochettes pendant 15 à 20 minutes, en les retournant régulièrement, jusqu'à ce que le bœuf soit cuit à votre goût et que les pommes de terre soient tendres et croustillantes. Le temps de cuisson peut varier selon l'épaisseur des morceaux et la méthode de cuisson.",
+            "Servez immédiatement et dégustez."
+        ],
+        "tags": [
+            "barbecue",
+            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -35368,116 +35251,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4695",
-        "title": "KEBBEH BIL SANIYEH",
-        "description": "Un hommage à mon peuple qui vit des heures sombres... Le Kebbeh Bil Saniyeh est un plat libanais traditionnel à base de boulghour et de viande hachée, cuit au four, parfait pour un repas convivial.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F03%2Fimg_6042.jpeg&v=1774702031000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7616029188738305302\" data-video-id=\"7616029188738305302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7616029188738305302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 300g de viande hachée (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon moyen (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 c.a.c de 7 épices libanaises (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 c.a.c de poivre noir (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 1 c.a.c de menthe séchée (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c.a.c de paprika en poudre (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 3 c.a.s d'huile d'olive (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1 poignée de pignon de pin (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel, au goût (pour la farce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 500g de boulghour fin brun (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 300g de viande hachée (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n 1 oignon râpé (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 1/2 c.a.c de 7 épices libanaises (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c.a.c paprika (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c.a.c de paprika doux (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1 c.a.c de cumin (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n Eau froide (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel & Poivre (pour la pâte à kebbeh)"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n Beurre fondu ou huile d'olive (pour le montage)"
-            }
-        ],
-        "steps": [
-            "Pour la farce : Faire chauffer l'huile d'olive dans une poêle. Ajouter l'oignon et le faire revenir jusqu'à ce qu'il soit translucide.",
-            "Ajouter la viande hachée, saler, poivrer et ajouter les 7 épices libanaises. Faire cuire en émiettant la viande jusqu'à évaporation de l'eau.",
-            "Ajouter les pignons de pin (si utilisés), mélanger et retirer du feu. Laisser refroidir complètement.",
-            "Pour la pâte à kebbeh : Rincer rapidement le boulghour puis le couvrir d'eau froide pendant au moins 15 min. Égoutter le soigneusement (presser à la main).",
-            "Dans un grand bol, mélanger le boulgour, la viande crue, l'oignon râpé et les épices. Pétrir longuement à la main ou au robot jusqu'à obtention d'une pâte homogène et souple.",
-            "Ajouter un peu d'eau froide si la pâte est trop sèche. La texture doit être lisse, malléable et non collante.",
-            "Pour le montage : Préchauffer le four à 180°C. Huiler un plat rond ou rectangulaire.",
-            "Étaler la moitié de la pâte en couche régulière. Répartir la farce refroidie uniformément.",
-            "Couvrir avec l'autre moitié de la pâte (utiliser des mains mouillées pour lisser).",
-            "Tracer ensuite des losanges ou carrés au couteau. Arroser la surface de beurre fondu ou d'huile d'olive.",
-            "Enfourner pendant 35-40 min (le temps dépend de la puissance du four).",
-            "Servir avec du yaourt nature, de la mélasse de grenade, de la salade fattoush ou des quartiers de citron."
-        ],
-        "tags": [
-            "Liban"
         ],
         "isFeatured": false,
         "isFavorite": false,
