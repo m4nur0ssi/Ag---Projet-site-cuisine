@@ -1,2 +1,15 @@
 User-agent: *
-Disallow: /
+Allow: /
+
+# Pages applicatives privées (aucun intérêt SEO)
+Disallow: /auth/
+Disallow: /profile/
+Disallow: /shopping-list/
+Disallow: /meal-planner/
+Disallow: /favorites/
+
+# API interne bloquée SAUF le proxy d'images (nécessaire aux rich results Recipe)
+Disallow: /api/
+Allow: /api/image-proxy
+
+Sitemap: https://lesrecettesmagiques.fr/sitemap.xml

@@ -2,16 +2,31 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-    title: 'Les Recettes Magiques - Cuisine Enchantée',
+    metadataBase: new URL('https://lesrecettesmagiques.fr'),
+    title: {
+        default: 'Les Recettes Magiques - Cuisine Enchantée',
+        template: '%s | Les Recettes Magiques',
+    },
     description: 'Découvrez des recettes magiques et délicieuses pour enchanter vos papilles',
-    keywords: ['recettes', 'cuisine', 'magie', 'gastronomie'],
+    keywords: ['recettes', 'recettes magiques', 'cuisine', 'magie', 'gastronomie', 'recette facile'],
     manifest: '/manifest.json',
     icons: [
         { rel: 'apple-touch-icon', url: '/icons/icon-192x192.png' },
     ],
+    alternates: {
+        canonical: '/',
+    },
     robots: {
-        index: false,
-        follow: false,
+        index: true,
+        follow: true,
+    },
+    openGraph: {
+        type: 'website',
+        locale: 'fr_FR',
+        url: 'https://lesrecettesmagiques.fr',
+        siteName: 'Les Recettes Magiques',
+        title: 'Les Recettes Magiques - Cuisine Enchantée',
+        description: 'Découvrez des recettes magiques et délicieuses pour enchanter vos papilles',
     },
 }
 
