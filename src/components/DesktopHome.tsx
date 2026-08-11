@@ -324,10 +324,13 @@ export default function DesktopHome() {
                     return fullText.includes('airfryer') || fullText.includes('air fryer');
                 }
 
-                // 11. BARBECUE
+                // 11. BARBECUE — strict : tag/catégorie/titre uniquement. Ne PAS matcher
+                // fullText (étapes/ingrédients) : "griller"/"grillé" apparaît dans des
+                // centaines de recettes non-BBQ → faux positifs aléatoires.
                 if (tagLower === 'barbecue' || tagLower === 'bbq') {
-                    if (recipeTags.some(t => t.toLowerCase() === 'barbecue' || t.toLowerCase() === 'bbq') || titleLower.includes('barbecue') || titleLower.includes('bbq')) return true;
-                    return fullText.includes('barbecue') || fullText.includes('bbq') || fullText.includes('grill') || fullText.includes('plancha');
+                    if (recipeCat === 'barbecue') return true;
+                    if (recipeTags.some(t => t.toLowerCase() === 'barbecue' || t.toLowerCase() === 'bbq')) return true;
+                    return titleLower.includes('barbecue') || titleLower.includes('bbq');
                 }
 
                 // ASTUCES
