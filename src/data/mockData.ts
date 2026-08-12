@@ -2,11 +2,983 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/08/2026 04:35:31
- * Total: 605 recettes
+ * Dernière mise à jour: 12/08/2026 09:19:41
+ * Total: 617 recettes
  */
-export const exportSyncId = "1786509331920";
+export const exportSyncId = "1786526381172";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7108",
+        "title": "Arancinis au safran et cœur mozzarella",
+        "description": "Cette recette propose de délicieux arancinis, des boulettes de riz frites, traditionnellement faites avec des restes de risotto. Ici, le risotto est préparé spécialement au safran, avec un cœur de mozzarella fondante, accompagnés d'une sauce fraîc...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7672012325024484640\" data-video-id=\"7672012325024484640\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7672012325024484640\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             300g de riz à risotto arborio"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 verre de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1L de bouillon de légumes chaud"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques pistils de safran"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             70g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 noix de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauge fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sirop d'érable (ou miel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella cuisine (coupée en cubes)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs battus"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de friture"
+            }
+        ],
+        "steps": [
+            "Pour le risotto safrané : Faire revenir l'échalote, ajouter le riz arborio, déglacer avec le vin blanc. Incorporer progressivement le bouillon de légumes chaud et les pistils de safran jusqu'à cuisson du riz. Hors du feu, ajouter le parmesan râpé et la noix de beurre. Laisser refroidir complètement.",
+            "Pour la sauce fraîcheur : Mélanger le yaourt grec avec le jus de citron, l'huile d'olive, la sauge fraîche hachée, le cumin, le sirop d'érable (ou le miel), le sel et le poivre. Réserver au frais.",
+            "Pour le montage et la panure : Prendre une portion de risotto refroidi, former une boule, y insérer un cube de mozzarella au centre et refermer pour former une boulette. Passer chaque boulette successivement dans la farine, les œufs battus, puis la chapelure.",
+            "Pour la friture : Faire chauffer l'huile de friture. Plonger les arancinis panés dans l'huile chaude et les faire dorer jusqu'à ce qu'ils soient croustillants et que la mozzarella soit fondante. Servir chaud avec la sauce fraîcheur."
+        ],
+        "tags": [
+            "Italie",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7106",
+        "title": "Tarte salée au cheddar, ricotta et courgettes",
+        "description": "Une tarte salée facile et rapide à préparer, parfaite pour impressionner vos invités cet été. Elle se compose d'une pâte feuilletée croustillante au cheddar, garnie d'une crème onctueuse à la ricotta, tomates séchées, noix et zeste de citron, le t...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664632140335713569\" data-video-id=\"7664632140335713569\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664632140335713569\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             70g de cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250g de ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             50g de tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             6g de persil ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             30g de noix grillées et concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Zeste d'un demi-citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques rondelles de courgettes crues"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive (pour la finition)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Un peu de persil (pour la finition)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Un peu de noix (pour la finition)"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 190°C.",
+            "Dérouler la pâte feuilletée. Répartir les 70g de cheddar râpé sur la pâte. Badigeonner les bords avec le jaune d'œuf et saupoudrer de graines de sésame.",
+            "Enfourner le fond de tarte pour 20 minutes à 190°C. Laisser refroidir.",
+            "Pendant ce temps, préparer la crème de ricotta : dans un bol, mélanger la ricotta, les tomates séchées (hachées si besoin), le persil ciselé, les noix grillées et concassées, le zeste d'un demi-citron, la cuillère à soupe de miel, les deux cuillères à soupe d'huile d'olive et le sel.",
+            "Une fois le fond de tarte refroidi, étaler la crème de ricotta uniformément sur la pâte.",
+            "Disposer harmonieusement quelques rondelles de courgettes crues sur le dessus de la tarte.",
+            "Terminer en arrosant d'un filet d'huile d'olive et d'un filet de vinaigre balsamique, puis en saupoudrant d'un peu de persil frais et de noix concassées."
+        ],
+        "tags": [
+            "tarte",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7104",
+        "title": "Pâtes à l'ail confit",
+        "description": "Une recette rapide et facile de pâtes à l'ail confit, agrémentées de lard fumé, de parmesan et de persil, liées avec des jaunes d'œuf et de l'eau de cuisson des pâtes.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671336855354248480\" data-video-id=\"7671336855354248480\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671336855354248480\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             300g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             3 tranches de lard fumé"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 louche d'eau de cuisson des pâtes"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie",
+            "Pas cher",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7102",
+        "title": "Boulettes Kefta, aubergines grillées et yaourt grec au tahini et harissa",
+        "description": "Une recette savoureuse de boulettes de viande hachée (kefta) accompagnées d'aubergines grillées à l'huile d'olive et d'une sauce onctueuse au yaourt grec, tahini et harissa, le tout parsemé de pignons de pin et servi avec du pain libanais.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643507520320834849\" data-video-id=\"7643507520320834849\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643507520320834849\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 oignon rouge ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 bonne cuillère à soupe de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍆\n             2 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bonne cuillère à soupe de zaatar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bonne cuillère à soupe de tahini"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 petite cuillère à café de harissa"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre (et menthe si vous avez)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pignons de pin torréfiés à la poêle"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, mélanger la viande hachée avec l'oignon rouge ciselé, le persil haché, la coriandre hachée, le cumin, le curcuma et le sel.",
+            "Former des boulettes avec la préparation de kefta.",
+            "Faire cuire les boulettes à feu moyen/vif sur chaque face jusqu'à ce qu'elles soient dorées et cuites à cœur.",
+            "Couper finement les aubergines à la mandoline.",
+            "Dans une poêle, faire revenir les aubergines coupées dans de l'huile d'olive avec le zaatar et une gousse d'ail hachée. Bien mélanger et laisser cuire environ vingt minutes jusqu'à ce qu'elles soient tendres.",
+            "Dans un bol, mélanger le yaourt grec, le tahini, le jus de citron, la harissa, la coriandre hachée (et la menthe si vous en avez).",
+            "Étaler la sauce au yaourt dans une assiette de service.",
+            "Disposer harmonieusement les boulettes de kefta, les aubergines grillées et les pignons de pin torréfiés sur la sauce.",
+            "Déguster immédiatement avec un bon pain libanais."
+        ],
+        "tags": [
+            "épicé",
+            "Liban",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7100",
+        "title": "Tataki de saumon et crème d'avocat",
+        "description": "Une recette fraîche et savoureuse de tataki de saumon, accompagné d'une crème d'avocat onctueuse et parfumée, parfaite pour une entrée légère ou un plat estival.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671290114785447200\" data-video-id=\"7671290114785447200\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671290114785447200\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             1 pavé de saumon"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             10 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             2 cuillères à soupe de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame blanches et noires"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Huile pimentée"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             1 avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un demi citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             De la coriandre (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Dans un bol, mélanger la sauce soja, le vinaigre de riz, le jus de citron vert et le miel pour créer la marinade du tataki.",
+            "Faire mariner le pavé de saumon dans cette préparation pendant au moins 15 à 20 minutes.",
+            "Pendant ce temps, préparer la crème d'avocat : dans un mixeur ou un bol, écraser l'avocat. Ajouter le yaourt grec, le jus d'un demi-citron jaune, la coriandre (si désirée), le sel et le poivre. Mixer ou mélanger jusqu'à obtenir une crème lisse et homogène.",
+            "Dans une poêle très chaude avec un filet d'huile d'olive, saisir le pavé de saumon sur toutes ses faces pendant quelques secondes seulement, afin qu'il soit doré à l'extérieur et cru à l'intérieur.",
+            "Couper le tataki de saumon en tranches fines. Disposer les tranches sur une assiette avec la crème d'avocat.",
+            "Saupoudrer de graines de sésame blanches et noires, de ciboulette ciselée et arroser d'un filet d'huile pimentée avant de servir."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Healthy",
+            "Poissons et crustacés",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7098",
+        "title": "Œufs Tamago Mayo et Huile Pimentée aux Cranberries",
+        "description": "Une recette d'œufs Tamago à la mayonnaise et à l'huile pimentée aux cranberries qui est une véritable révélation gustative, inoubliable après la première bouchée.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7668986370915880224\" data-video-id=\"7668986370915880224\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7668986370915880224\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs ultra-frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Mayonnaise japonaise Kewpie"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             10 cl de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Un trait de mirin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de cranberries séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à soupe de flocons de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de harissa"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de sirop d'érable"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de sésame torréfié"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 cuillère à café de beurre de cacahuète"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             20 cl d'huile de tournesol"
+            }
+        ],
+        "steps": [
+            "Faire cuire les œufs pour obtenir des œufs mollets (style Tamago). Une fois cuits, les écaler délicatement.",
+            "Préparer la marinade en mélangeant 10 cl d'eau, 10 cl de sauce soja et un trait de mirin. Plonger les œufs écalés dans cette marinade et laisser reposer pour qu'ils s'imprègnent des saveurs.",
+            "Préparer l'huile pimentée aux cranberries : dans un bol résistant à la chaleur, mélanger les cranberries séchées, les flocons de piment, l'harissa, le sirop d'érable, le sésame torréfié, le beurre de cacahuète, 2 cuillères à soupe de sauce soja, un trait de mirin, du sel et du poivre.",
+            "Faire chauffer 20 cl d'huile de tournesol jusqu'à ce qu'elle soit bouillante. Verser l'huile chaude sur le mélange de l'huile pimentée, en remuant bien.",
+            "Servir les œufs marinés coupés en deux, nappés de mayonnaise japonaise Kewpie, d'huile pimentée aux cranberries et garnis de coriandre fraîche."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7096",
+        "title": "Poulet chorizo",
+        "description": "Un plat rapide et facile à base de poulet et de chorizo, mijoté dans une sauce crémeuse à la tomate et aux épices.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7669877823024254241\" data-video-id=\"7669877823024254241\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7669877823024254241\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             500g de blancs de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             1 chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 cuillère à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             200ml de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             200ml de crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde"
+            }
+        ],
+        "steps": [
+            "Couper les blancs de poulet en morceaux et le chorizo en rondelles.",
+            "Dans une poêle, faire dorer le poulet et le chorizo à feu moyen.",
+            "Ajouter l'échalote et l'ail hachés, puis le paprika, l'ail en poudre, le sel et le poivre. Mélanger et laisser cuire 1 à 2 minutes.",
+            "Incorporer le concentré de tomate, le bouillon de poulet, la crème liquide et la moutarde. Bien mélanger.",
+            "Laisser mijoter quelques minutes jusqu'à ce que la sauce épaississe et que le poulet soit bien cuit. Servir chaud."
+        ],
+        "tags": [
+            "Espagne",
+            "facile",
+            "Plats",
+            "rapide"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7094",
+        "title": "Dip Feta-Pistache",
+        "description": "Le genre de recette qui disparaît toujours en premier à l'apéro !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7669448424542047521\" data-video-id=\"7669448424542047521\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7669448424542047521\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             125 g de pistaches émondées, légèrement torréfiées"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 c. à s. de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 c. à s. d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Une pincée de piment d'Espelette (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (à ajuster si nécessaire)"
+            }
+        ],
+        "steps": [
+            "Ajustez le sel uniquement si nécessaire, selon la feta utilisée."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Grèce",
+            "Healthy",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7092",
+        "title": "Courgettes farcies au poulet et au riz",
+        "description": "Découvrez cette recette simple et savoureuse de courgettes farcies au poulet et au riz, nappées d'une sauce crémeuse à la tomate. Idéale pour un repas équilibré, elle demande seulement 25 minutes de préparation active et 40 minutes de cuisson au f...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7667777361613540622\" data-video-id=\"7667777361613540622\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7667777361613540622\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             1 carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile végétale"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             300 g de poulet haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             3 cuillères à soupe de riz, pré-cuit"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Assaisonnement pour viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cuillères à soupe de crème fraîche épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 cuillères à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             ½ tasse d'eau"
+            }
+        ],
+        "steps": [
+            "Couper les courgettes en deux dans le sens de la longueur et les évider délicatement.",
+            "Hacher finement l'oignon et la carotte.",
+            "Dans une poêle, faire chauffer un filet d'huile végétale. Y faire revenir l'oignon et la carotte hachés jusqu'à ce qu'ils soient tendres.",
+            "Ajouter le poulet haché dans la poêle avec l'assaisonnement pour viande hachée. Cuire en remuant jusqu'à ce que le poulet soit bien doré et cuit.",
+            "Incorporer le riz pré-cuit, le sel et le poivre à la préparation au poulet. Bien mélanger.",
+            "Farcir généreusement les moitiés de courgettes évidées avec la préparation au poulet et au riz.",
+            "Dans un bol, mélanger la crème fraîche épaisse, le concentré de tomate et l'eau pour obtenir une sauce homogène.",
+            "Disposer les courgettes farcies dans un plat allant au four et verser la sauce par-dessus.",
+            "Enfourner à 190°C (375°F) pendant 40 minutes, ou jusqu'à ce que les courgettes soient tendres et le plat bien chaud."
+        ],
+        "tags": [
+            "Gratins",
+            "Healthy",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7090",
+        "title": "Laab Moo (Salade de Porc Thaï)",
+        "description": "Je pensais bien connaître la cuisine thaï jusqu'à ce que je découvre cette merveille. Hmmm olala, c'est trop bon ça !",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661182344098827553\" data-video-id=\"7661182344098827553\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661182344098827553\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             300g de porc haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             2 cuillères à soupe de riz cru (à torréfier)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 branche de cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1/2 botte de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1/2 botte de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             2 cuillères à soupe de sauce poisson"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 2 citrons verts"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail râpées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Flocons de piment (selon les goûts)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Quelques belles feuilles de salade"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Salades"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7088",
+        "title": "Saumon Marry Me",
+        "description": "Une recette rapide et facile de saumon, cuit dans une sauce crémeuse et parfumée au vin blanc, aux tomates séchées, à l'échalote et aux herbes de Provence, idéal pour un dîner savoureux.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665402847013391649\" data-video-id=\"7665402847013391649\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665402847013391649\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             400g de saumon"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 cuillères à soupe de paprika doux"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café d'herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 ou 4 tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail hachée"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             100ml de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de crème liquide à 30% de matière grasse"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7086",
+        "title": "Aubergines rôties laquées",
+        "description": "Une recette simple et savoureuse d'aubergines rôties, enrobées d'une sauce laquée sucrée-salée à base de miel, sauce soja, ail et gingembre. Parfaites en accompagnement ou en entrée.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7668590406061313313\" data-video-id=\"7668590406061313313\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7668590406061313313\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n             2 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 morceau de gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de sucre de canne"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             4 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cuillère à café de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             4 cl d'eau"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 200°C (Thermostat 6-7).",
+            "Lavez les aubergines et coupez-les en deux dans le sens de la longueur, puis incisez la chair en croisillons sans percer la peau.",
+            "Dans un bol, mélangez l'ail haché, le gingembre râpé, le miel, le sucre de canne, la sauce soja, la fécule de maïs et l'eau pour obtenir la sauce laquée.",
+            "Badigeonnez généreusement les aubergines de cette sauce.",
+            "Enfournez les aubergines et faites-les rôtir pendant environ 25-30 minutes, ou jusqu'à ce qu'elles soient tendres et bien dorées. Badigeonnez-les à nouveau de sauce à mi-cuisson si nécessaire.",
+            "Servez chaud, éventuellement parsemé de graines de sésame ou de coriandre fraîche."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Asie",
+            "Healthy",
+            "Pas cher",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7084",
         "title": "Endives au jambon sans amertume",
