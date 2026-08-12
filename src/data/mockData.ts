@@ -2,11 +2,539 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/08/2026 16:00:55
- * Total: 618 recettes
+ * Dernière mise à jour: 12/08/2026 22:27:19
+ * Total: 625 recettes
  */
-export const exportSyncId = "1786550455207";
+export const exportSyncId = "1786573639433";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7139",
+        "title": "Salade de figues, burrata et roquette",
+        "description": "Une recette simple et rapide pour profiter pleinement de la saison des figues. Cette salade fraîche et gourmande associe la douceur des figues à la crémeuse burrata, la vivacité de la roquette, le tout relevé par une crème de vinaigre balsamique e...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670933002607693078\" data-video-id=\"7670933002607693078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670933002607693078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             3-4 Figues"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Crème de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Pistaches"
+            }
+        ],
+        "steps": [
+            "Laver et couper les figues en quartiers ou en rondelles.",
+            "Disposer la burrata au centre d'une assiette ou d'un plat. Répartir la roquette autour de la burrata.",
+            "Ajouter les morceaux de figues sur et autour de la burrata et de la roquette.",
+            "Arroser généreusement d'huile d'olive et de crème de vinaigre balsamique.",
+            "Parsemer de pistaches concassées ou entières juste avant de servir."
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7137",
+        "title": "Salade de poulpe aux oignons confits",
+        "description": "Une salade de poulpe rafraîchissante et savoureuse, agrémentée d'oignons confits, parfaite pour un apéritif d'été. À laisser reposer au frais pour une meilleure dégustation.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657215654210178336\" data-video-id=\"7657215654210178336\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657215654210178336\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Environ 400g de poulpe (précuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             5 cuillères à soupe de vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             12 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de piment de Cayenne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pincée de safran"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 pincée de piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail (en lamelles)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 gros oignons émincés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une poignée de coriandre fraîche"
+            }
+        ],
+        "steps": [
+            "Émincer les oignons et les faire revenir dans un bon fond d'huile d'olive jusqu'à ce qu'ils soient confits et tendres.",
+            "Couper le poulpe précuit en morceaux ou en rondelles, selon votre préférence.",
+            "Émincer l'ail en fines lamelles et ciseler la coriandre fraîche.",
+            "Dans un grand saladier, mélanger le poulpe, les oignons confits, l'ail émincé et la coriandre ciselée.",
+            "Ajouter le vinaigre, l'huile d'olive restante, le sel, le poivre, le paprika, le piment de Cayenne, le safran et le piment d'Espelette. Bien mélanger tous les ingrédients pour qu'ils s'imprègnent des saveurs.",
+            "Laisser reposer la salade au frais pendant au moins 3 à 4 heures, ou idéalement toute une nuit, afin que les arômes se développent pleinement. Déguster frais."
+        ],
+        "tags": [
+            "épicé",
+            "Espagne",
+            "Healthy",
+            "Poissons et crustacés",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7135",
+        "title": "Flan-cheesecake sain aux abricots et pistaches",
+        "description": "Un flan-cheesecake frais, léger et acidulé aux abricots et pistaches, idéal pour l'été. C'est un dessert facile à réaliser et très apprécié.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664631089813523745\" data-video-id=\"7664631089813523745\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664631089813523745\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 à 3 cuillères à soupe de miel (environ 50 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à soupe d'extrait de vanille ou de la poudre de vanille (ou l'intérieur d'une demie gousse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de Maïzena (30 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             500 g de fromage blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 à 8 abricots mûrs"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Pistaches concassées (une petite poignée)"
+            }
+        ],
+        "steps": [
+            "1- Préchauffez le four à 180°C.",
+            "2- Dans un petit bol, délayez la Maïzena dans 2 à 3 cuillères à soupe d'eau froide. L'eau froide permet de bien dissoudre la fécule et d'éviter les grumeaux.",
+            "3- Dans un saladier, battez les œufs avec le miel et la vanille. Ajoutez ensuite la Maïzena délayée, en fouettant bien pour homogénéiser.",
+            "4- Dans un second saladier, versez le fromage blanc. Incorporez-y petit à petit le mélange aux œufs, en remuant doucement pour obtenir une texture lisse et bien liée.",
+            "5- Tapissez un moule de 20 cm de papier cuisson. Versez la préparation dans le moule.",
+            "6- Coupez les abricots en deux, dénoyautez-les et déposez-les délicatement sur le dessus de la pâte, face coupée vers le bas. Parsemez de pistaches concassées.",
+            "7- Enfournez pour 35 à 40 minutes. Le flan doit être pris sur les bords, encore légèrement tremblotant au centre. Laissez tiédir puis réfrigérez au moins 2 heures avant de déguster bien frais. Il est possible de badigeonner les abricots d'un petit peu de confiture (idéalement abricot) avant de servir pour les rendre brillants."
+        ],
+        "tags": [
+            "Healthy",
+            "pâtisserie",
+            "tarte",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7133",
+        "title": "Cheesecake salé méditerranéen au thon",
+        "description": "Un cheesecake salé frais et savoureux inspiré des saveurs méditerranéennes, avec une base de biscuits salés, une crème onctueuse au thon et une garniture colorée de tomates, mozzarelline et basilic frais. Idéal pour un repas léger ou une entrée es...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660316365428985109\" data-video-id=\"7660316365428985109\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660316365428985109\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de biscuits salés"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             80 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             150 g de thon émietté"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             50 g de mayonnaise (ou de fromage frais pour une version plus légère)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             2 grosses tomates, coupées en rondelles"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             400 g de mozzarelline"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Des tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan séché"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de fleur de sel"
+            }
+        ],
+        "steps": [
+            "Mixer les biscuits salés entiers avec le beurre fondu jusqu'à obtenir une préparation homogène et légèrement sableuse.",
+            "Répartir la préparation dans un moule à charnière, puis bien la tasser afin de former une base compacte. Réserver au réfrigérateur pendant 20 à 30 minutes pour qu'elle se raffermisse.",
+            "Préparer la crème de thon en mélangeant le thon émietté avec la mayonnaise (ou le fromage frais).",
+            "Disposer les rondelles de tomate sur toute la base, puis les assaisonner avec une pincée d'origan.",
+            "Étaler uniformément la crème de thon sur les tomates.",
+            "Décorer avec les mozzarelline et les tomates cerises, puis ajouter quelques feuilles de basilic frais.",
+            "Parsemer d'un peu d'origan séché, ajouter une pincée de fleur de sel et terminer avec un généreux filet d'huile d'olive extra vierge.",
+            "Réserver au réfrigérateur pendant au moins 1 heure avant de servir afin que le cheesecake se tienne parfaitement et que les saveurs se développent."
+        ],
+        "tags": [
+            "Italie",
+            "minceur",
+            "Poissons et crustacés",
+            "tarte",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7131",
+        "title": "Crème froide de courgettes, chèvre frais et œuf poché",
+        "description": "Une crème froide de courgettes onctueuse, relevée par du chèvre frais et du basilic, servie avec un œuf poché, des croûtons croustillants et des noisettes concassées. Une entrée légère et rafraîchissante.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7651352599421078817\" data-video-id=\"7651352599421078817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7651352599421078817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes moyennes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de chèvre frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petite échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tranches de pain"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Quelques noisettes concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques herbes fraîches"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            }
+        ],
+        "steps": [
+            "Couper les courgettes en morceaux.",
+            "Faire revenir l'échalote émincée dans l'huile d'olive pendant quelques minutes.",
+            "Ajouter les courgettes et laisser cuire environ 25 minutes jusqu'à ce qu'elles soient bien tendres.",
+            "Laisser refroidir complètement.",
+            "Mixer les courgettes avec le chèvre frais, le basilic, du sel et du poivre jusqu'à obtenir une crème lisse.",
+            "Réserver au réfrigérateur au moins 1 heure.",
+            "Couper le pain en petits cubes et les faire dorer à la poêle avec un filet d'huile d'olive pour obtenir des croûtons croustillants.",
+            "Pocher les œufs dans une eau frémissante vinaigrée pendant environ 2 minutes.",
+            "Répartir la crème froide de courgettes dans des assiettes creuses.",
+            "Déposer délicatement l'œuf poché au centre.",
+            "Ajouter les croûtons et les noisettes concassées.",
+            "Terminer avec quelques herbes fraîches, un filet d'huile d'olive, de la fleur de sel et un peu de poivre.",
+            "Servir immédiatement."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "Soupes",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7129",
+        "title": "Ravioles de courgettes",
+        "description": "Découvrez ces ravioles 100% maison, naturellement sans gluten et super faciles à préparer ! Une alternative originale et délicieuse, inspirée par @cheztiffany_.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7668645293822414113\" data-video-id=\"7668645293822414113\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7668645293822414113\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 courgette plutôt large"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de fromage frais (chèvre Petit Billy ou ricotta)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tranches de truite fumée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Burrata ou stracciatella"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Sauce tomate"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation sont détaillées dans la vidéo."
+        ],
+        "tags": [
+            "Italie",
+            "pates",
+            "Plats",
+            "Poissons et crustacés",
+            "Sans Gluten",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7127",
+        "title": "Galettes de Tomate et Tzatziki",
+        "description": "Ces galettes, inspirées des Tomatokeftedes grecques, sont revisitées avec de l'estragon et des olives noires pour une touche de peps. Elles sont accompagnées d'un tzatziki frais et léger, parfait pour l'été.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647576823332605217\" data-video-id=\"7647576823332605217\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647576823332605217\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             500 g de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             125 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g d'olives noires dénoyautées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 branches d'estragon frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile neutre pour la cuisson"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             ½ concombre (environ 200g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 cuillères à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 petite gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             10 feuilles de menthe fraîche"
+            }
+        ],
+        "steps": [
+            "Pour les galettes : Tailler finement les tomates en dés.",
+            "Hacher finement l'oignon rouge, l'ail, les olives noires dénoyautées et l'estragon frais.",
+            "Rassembler tous les ingrédients dans un saladier et mélanger.",
+            "Faire frire les galettes dans une poêle chaude avec un fond d'huile.",
+            "Pour le tzatziki : Râper le concombre.",
+            "Placer le concombre râpé dans une passoire fine et presser pour retirer le maximum d'humidité.",
+            "Hacher les feuilles de menthe, râper la gousse d'ail et rassembler le tout dans un bol.",
+            "Mélanger et réserver au frais jusqu'au moment de servir.",
+            "Bon appétit !"
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7125",
         "title": "Gâteau Suzy de Pierre Hermé",
