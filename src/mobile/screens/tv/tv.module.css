@@ -1,0 +1,1478 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   Accueil mobile « Apple TV+ » — test de design (route /tv).
+   Fond cinéma noir, héros plein écran, feuille de contenu qui glisse par-dessus.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.page {
+    --tv-bg: #000000;
+    --tv-txt: #ffffff;
+    --tv-dim: rgba(235, 235, 245, 0.62);
+    --tv-dim2: rgba(235, 235, 245, 0.38);
+    --tv-hairline: rgba(255, 255, 255, 0.10);
+    --tv-ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+    position: relative;
+    background: var(--tv-bg);
+    color: var(--tv-txt);
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* Sans ça, un appui long sur une carte ouvre D'ABORD le menu natif d'iOS
+       (Copier / Partager / Ouvrir l'image) par-dessus le nôtre. */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    /* Le scroll vertical doit rester 100 % natif (inertie iOS) : rien d'autre ici. */
+}
+
+/* ── HÉROS ─────────────────────────────────────────────────────────────── */
+
+/* Sticky : le héros reste sous la feuille de contenu qui remonte par-dessus. */
+.heroSticky {
+    position: sticky;
+    top: 0;
+    height: 82svh;
+    min-height: 520px;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heroLayer {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Pager horizontal — scroll natif + snap (inertie iOS, zéro JS pendant le geste) */
+.heroPager {
+    display: flex;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+}
+.heroPager::-webkit-scrollbar { display: none; }
+
+.heroSlide {
+    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+.heroImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Cadrage haut : les plats sont photographiés au centre, on garde la matière. */
+    object-position: 50% 42%;
+}
+
+/* Dégradés : lisibilité du texte + fondu vers le noir de la feuille. */
+.heroScrim {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.08) 20%, rgba(0, 0, 0, 0) 34%),
+        linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.95) 20%, rgba(0, 0, 0, 0.78) 38%, rgba(0, 0, 0, 0.35) 56%, rgba(0, 0, 0, 0) 76%),
+        /* Léger assombrissement global : les photos de plats sont très lumineuses. */
+        linear-gradient(0deg, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.16));
+}
+
+/* Voile qui noircit le héros pendant le scroll (fondu au noir « très Apple »). */
+.heroVeil {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* ── Signature de marque, en tête du héros ─────────────────────────────── */
+
+.brand {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0px) + 16px);
+    left: 0;
+    right: 0;
+    z-index: 3;
+    text-align: center;
+    /* Ne doit jamais capter le geste : le pager du héros passe dessous. */
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.brandKicker {
+    font-family: 'Outfit', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.46em;
+    text-transform: uppercase;
+    /* Compense l'interlettrage final, sinon le mot paraît décalé à gauche. */
+    text-indent: 0.46em;
+    color: rgba(255, 255, 255, 0.78);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+}
+
+.brandWord {
+    display: inline-block;
+    margin-top: 2px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    transform: skewX(-7deg);
+    /* Reflet qui balaie le mot : le « waou » sans surcharger l'écran. */
+    background: linear-gradient(
+        100deg,
+        #ffffff 0%,
+        #ffffff 34%,
+        #ffd6f4 44%,
+        #b8a7ff 52%,
+        #9fe8ff 60%,
+        #ffffff 70%,
+        #ffffff 100%
+    );
+    background-size: 260% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 16px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 22px rgba(160, 130, 255, 0.35));
+    animation: brandSheen 7s ease-in-out infinite;
+}
+
+@keyframes brandSheen {
+    0%, 100% { background-position: 130% 50%; }
+    50% { background-position: -30% 50%; }
+}
+
+/* Trait lumineux sous la signature, qui respire avec le reflet. */
+.brandRule {
+    width: 46px;
+    height: 2px;
+    margin: 7px auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+    opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brandWord { animation: none; background-position: 50% 50%; }
+}
+
+.heroAuth {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0px) + 14px);
+    right: 14px;
+    z-index: 4;
+}
+
+.heroContent {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 0 22px calc(96px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    will-change: transform, opacity;
+    /* Le bloc texte couvre le bas du héros : sans ça il avale le geste horizontal
+       et le pager ne défile plus (on ne peut swiper que sur la photo, en haut).
+       Seuls les boutons réactivent les événements. */
+    pointer-events: none;
+}
+
+.heroKicker {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #fff;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(28, 28, 30, 0.55);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.18);
+}
+
+/* Le titre : le morceau de bravoure. Gras extrême, italique, très serré. */
+.heroTitle {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 13vw, 64px);
+    line-height: 0.88;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+    margin: 0;
+    color: #fff;
+    transform: skewX(-7deg);
+    /* Ombre courte + halo : lisible sur n'importe quelle photo, sans voile gris. */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 6px 34px rgba(0, 0, 0, 0.6);
+    max-width: 100%;
+    overflow-wrap: break-word;
+    /* Jamais plus de 3 lignes : le titre reste un « logo », pas un paragraphe. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Paliers selon la longueur du titre (les recettes WP sont parfois très longues) */
+.heroTitleM { font-size: clamp(32px, 10.2vw, 50px); line-height: 0.92; }
+.heroTitleS { font-size: clamp(26px, 8.2vw, 40px); line-height: 0.96; letter-spacing: -0.03em; }
+
+.heroMeta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+}
+
+.heroDot { color: rgba(255, 255, 255, 0.5); }
+
+.heroBadge {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 0 1.2px rgba(255, 255, 255, 0.45);
+}
+
+.heroActions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 6px;
+    pointer-events: auto; /* seule zone cliquable du bloc texte */
+}
+
+/* Bouton favori (composant partagé) au format rond « Apple TV ». */
+.heroFav {
+    width: 54px !important;
+    height: 54px !important;
+    background: rgba(60, 60, 67, 0.55) !important;
+    border: none !important;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.16) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+}
+
+.heroPlay {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 54px;
+    padding: 0 34px;
+    border: none;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #000;
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    transition: transform 0.28s var(--tv-ease), opacity 0.2s ease;
+}
+.heroPlay:active { transform: scale(0.94); opacity: 0.85; }
+
+/* Points de pagination */
+.dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.32);
+    transition: width 0.4s var(--tv-ease), background 0.4s var(--tv-ease);
+}
+.dotActive { width: 22px; background: rgba(255, 255, 255, 0.95); }
+
+/* ── FEUILLE DE CONTENU (glisse par-dessus le héros) ───────────────────── */
+
+.sheet {
+    position: relative;
+    z-index: 2;
+    background: var(--tv-bg);
+    border-radius: 30px 30px 0 0;
+    margin-top: -30px;
+    padding: 8px 0 calc(130px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.85);
+}
+
+.grabber {
+    width: 38px;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+    margin: 8px auto 4px;
+}
+
+/* ── RANGÉES ───────────────────────────────────────────────────────────── */
+
+.row { margin-top: 26px; }
+
+/* En-tête = simple texte + chevron (plus aucune carte-titre) */
+.rowHead {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 20px 12px;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.2s ease;
+}
+.rowHead:active { opacity: 0.55; }
+
+.rowTitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--tv-txt);
+}
+
+.rowChevron {
+    width: 12px;
+    height: 12px;
+    color: var(--tv-dim2);
+    flex: 0 0 auto;
+    transform: translateY(1px);
+}
+
+.rowScroll {
+    display: flex;
+    gap: 12px;
+    padding: 0 20px 2px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 20px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+}
+.rowScroll::-webkit-scrollbar { display: none; }
+
+/* ── CARTES ────────────────────────────────────────────────────────────── */
+
+.card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.32s var(--tv-ease);
+}
+.card:active { transform: scale(0.955); }
+
+.thumb {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #141416;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5), inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+}
+
+.thumbImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Formats de cartes — volontairement inégaux (plus ou moins grandes) */
+.wide   { width: 272px; }
+.wide   .thumb { aspect-ratio: 16 / 10; }
+.medium { width: 178px; }
+.medium .thumb { aspect-ratio: 4 / 3; }
+.poster { width: 132px; }
+.poster .thumb { aspect-ratio: 2 / 3; }
+.square { width: 148px; }
+.square .thumb { aspect-ratio: 1 / 1; }
+.hugeCard   { width: 300px; }
+.hugeCard   .thumb { aspect-ratio: 3 / 4; }
+
+/* Titres de recettes : même écriture que le héros (Outfit 900, capitales,
+   italique −7°, blanc) — « SAUMON MARRY ME » où qu'il apparaisse. */
+.cardLabel {
+    margin: 8px 2px 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    transform: skewX(-7deg);
+    transform-origin: left bottom;
+    color: #ffffff;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cardSub {
+    margin: 2px 2px 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--tv-dim);
+}
+
+/* Titre incrusté (rangée « grandes cartes ») */
+.overlayLabel {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
+    font-family: 'Outfit', sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1.06;
+    text-transform: uppercase;
+    transform: skewX(-7deg);
+    transform-origin: left bottom;
+    color: #fff;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.thumbScrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.15) 42%, rgba(0, 0, 0, 0) 68%);
+}
+
+/* Barre de progression (rangée « Reprendre ») */
+.progressTrack {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    z-index: 2;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.32);
+}
+.progressFill {
+    height: 100%;
+    border-radius: 999px;
+    background: #fff;
+}
+
+/* Classement Top 10 : gros chiffre à gauche, affiche qui le chevauche */
+.rankedCard {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-end;
+    scroll-snap-align: start;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.32s var(--tv-ease);
+}
+.rankedCard:active { transform: scale(0.955); }
+
+.rankNum {
+    font-family: 'Outfit', sans-serif;
+    font-size: 92px;
+    font-weight: 900;
+    line-height: 0.72;
+    letter-spacing: -0.06em;
+    color: #fff;
+    /* min-width : le « 1 » est étroit, sans ça l'affiche le recouvrirait entièrement. */
+    min-width: 52px;
+    text-align: right;
+    margin-right: -4px;
+    transform: translateY(4px);
+}
+
+.rankedThumb {
+    position: relative;
+    width: 124px;
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #141416;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55), inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+}
+
+.rankedTitle {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 24px;
+    z-index: 2;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.rankedSub {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 8px;
+    z-index: 2;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(235, 235, 245, 0.75);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* ── TOP 10 : une recette par écran, vidéo en lecture auto ─────────────── */
+
+.top10Scroll {
+    /* mandatory : on s'arrête toujours pile sur une recette. */
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    /* (100vw − largeur de carte) / 2 : la carte active tombe pile au centre, y
+       compris la première et la dernière, et les voisines dépassent un peu.
+       Cette gouttière loge aussi le chiffre du classement. */
+    padding-left: 65px;
+    padding-right: 65px;
+}
+
+/* Chiffre à gauche + carte qui le recouvre à moitié. */
+.top10Card {
+    position: relative;
+    flex: 0 0 calc(100vw - 130px);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.32s var(--tv-ease);
+}
+.top10Card:active { transform: scale(0.985); }
+
+.top10Rank {
+    /* Incrusté DANS l'affiche, en haut à gauche — le motif d'Apple TV+. */
+    position: absolute;
+    top: 8px;
+    left: 14px;
+    z-index: 4;
+    font-family: 'Outfit', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: rgba(255, 255, 255, 0.97);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+    pointer-events: none;
+}
+
+.top10Thumb {
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 3 / 4;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #141416;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+/* La vidéo TikTok est en 9/16 : on la déborde en hauteur pour remplir le 3/4
+   (sinon bandes noires sur les côtés). */
+.top10Video {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 177.78%;
+    transform: translateY(-50%);
+    border: 0;
+    z-index: 1;
+}
+
+.top10Scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.35) 26%, rgba(0, 0, 0, 0) 52%),
+        /* Voile haut : le chiffre blanc reste lisible sur une photo claire. */
+        linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 22%);
+}
+
+/* Capte le tap pour afficher NOS commandes. Volontairement limité au bas de la
+   carte : TikTok affiche sa propre bannière cookies au centre de l'iframe, et un
+   calque plein écran empêcherait de la fermer (impossible à piloter, autre domaine). */
+.top10Tap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 42%;
+    z-index: 3;
+}
+
+.top10Overlay {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 14px;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.top10Text {
+    min-width: 0;
+    /* Le titre reste cliquable même vidéo lancée : il mène à la fiche. */
+    pointer-events: auto;
+    cursor: pointer;
+}
+.top10Text:active { opacity: 0.6; }
+
+.top10Title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 21px;
+    font-weight: 900;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    transform: skewX(-7deg);
+    transform-origin: left bottom;
+    color: #fff;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.top10Sub svg {
+    width: 9px;
+    height: 9px;
+    margin-left: 7px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.top10Sub {
+    margin-top: 3px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(235, 235, 245, 0.8);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Bouton son : la lecture auto est forcément muette (politique navigateur). */
+.top10Sound {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    color: #fff;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.2);
+}
+
+/* NOS commandes : aucune interface TikTok n'est affichée (controls=0). */
+.top10Controls {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 74px;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s var(--tv-ease);
+}
+.top10ControlsOn {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.top10Bar {
+    position: relative;
+    flex: 1 1 auto;
+    height: 22px;               /* zone de tap confortable */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.top10BarTrack {
+    width: 100%;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+}
+.top10BarFill {
+    height: 100%;
+    border-radius: 999px;
+    background: #fff;
+}
+.top10Time {
+    flex: 0 0 auto;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* ── VUE « TOUT AFFICHER » ─────────────────────────────────────────────── */
+
+.allSheet {
+    position: fixed;
+    inset: 0;
+    z-index: 4000;
+    background: rgba(10, 10, 12, 0.98);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    backdrop-filter: blur(30px) saturate(180%);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.allHead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: calc(14px + env(safe-area-inset-top, 0px)) 18px 12px;
+    background: linear-gradient(180deg, rgba(10, 10, 12, 0.96) 60%, rgba(10, 10, 12, 0));
+}
+
+.allBack {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(120, 120, 128, 0.28);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.allTitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: #fff;
+}
+
+.allGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+    padding: 6px 18px calc(130px + env(safe-area-inset-bottom, 0px));
+}
+
+.allGrid .card { width: 100%; }
+.allGrid .thumb { aspect-ratio: 4 / 3; }
+
+/* ── Menu d'appui long (langage iOS 26/27) ─────────────────────────────── */
+
+.menuBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 28px;
+    background: rgba(0, 0, 0, 0.28);
+    -webkit-backdrop-filter: blur(28px) saturate(140%);
+    backdrop-filter: blur(28px) saturate(140%);
+}
+
+.menuCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 260px;
+}
+
+/* Aperçu façon iOS : l'élément « décollé » de la page, ombre portée large. */
+.menuPreview {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.menuTitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Le panneau : verre très flouté, filets fins, typographie système. */
+.menuActions {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(40, 40, 42, 0.62);
+    -webkit-backdrop-filter: blur(50px) saturate(180%);
+    backdrop-filter: blur(50px) saturate(180%);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.menuAction {
+    width: 100%;
+    display: block;
+    padding: 13px 16px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-align: left;
+    cursor: pointer;
+}
+/* Filet de 0,33 px : l'épaisseur des séparateurs iOS. */
+.menuAction + .menuAction { box-shadow: inset 0 0.33px 0 rgba(255, 255, 255, 0.14); }
+.menuAction:active { background: rgba(255, 255, 255, 0.14); }
+
+/* Action destructive : rouge système iOS. */
+.menuDanger { color: #ff453a; }
+
+/* ── Volet de navigation (barre latérale façon Apple TV / iOS 26) ───────── */
+
+/* Bouton d'ouverture : pendant du bouton compte, en haut à gauche du héros. */
+.heroMenuBtn {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0px) + 14px);
+    left: 14px;
+    z-index: 4;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(60, 60, 67, 0.5);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.18);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.28s var(--tv-ease);
+}
+.heroMenuBtn:active { transform: scale(0.9); }
+.heroMenuBtn svg { width: 18px; height: 18px; }
+
+.navScrim {
+    position: fixed;
+    inset: 0;
+    z-index: 5500;
+    background: rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+}
+
+.navPanel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5501;
+    width: min(84vw, 330px);
+    display: flex;
+    flex-direction: column;
+    padding: calc(env(safe-area-inset-top, 0px) + 8px) 0 calc(120px + env(safe-area-inset-bottom, 0px));
+    border-radius: 0 26px 26px 0;
+    /* Verre profond : le contenu défile derrière, jamais de fond plat. */
+    background: rgba(28, 28, 30, 0.72);
+    -webkit-backdrop-filter: blur(60px) saturate(180%);
+    backdrop-filter: blur(60px) saturate(180%);
+    box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.1), 24px 0 70px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+/* Poignée : signale qu'on peut tirer le volet pour le refermer. */
+.navGrip {
+    position: absolute;
+    top: 50%;
+    right: 7px;
+    width: 4px;
+    height: 46px;
+    margin-top: -23px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.navHead {
+    padding: 14px 22px 16px;
+}
+
+.navBrandKicker {
+    font-family: 'Outfit', sans-serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    text-transform: uppercase;
+    color: rgba(235, 235, 245, 0.55);
+}
+
+.navBrandWord {
+    margin-top: 1px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    transform: skewX(-7deg);
+    transform-origin: left center;
+    color: #fff;
+}
+
+/* Case de recherche façon champ iOS, alignée sur les groupes en dessous. */
+.navSearch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 2px 24px 2px;
+    padding: 0 11px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(118, 118, 128, 0.24);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+}
+
+.navSearchIcon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    color: rgba(235, 235, 245, 0.6);
+}
+
+.navSearchInput {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    caret-color: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.navSearchInput::placeholder { color: rgba(235, 235, 245, 0.5); }
+.navSearchInput::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+
+.navSearchClear {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 19px;
+    height: 19px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: rgba(235, 235, 245, 0.3);
+    color: #0b0b0d;
+    cursor: pointer;
+}
+.navSearchClear svg { width: 12px; height: 12px; }
+
+.navScroll {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 12px;
+    scrollbar-width: none;
+}
+.navScroll::-webkit-scrollbar { display: none; }
+
+/* Intitulé de section, gris et petit, comme « Bibliothèque » chez Apple. */
+.navLabel {
+    padding: 18px 10px 7px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgba(235, 235, 245, 0.5);
+}
+
+/* Groupe : bloc de verre plus clair, coins arrondis (langage Réglages iOS). */
+.navGroup {
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.navRow {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 14px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 16.5px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-align: left;
+    cursor: pointer;
+}
+.navRow + .navRow { box-shadow: inset 0 0.33px 0 rgba(255, 255, 255, 0.1); }
+.navRow:active { background: rgba(255, 255, 255, 0.12); }
+
+.navIcon {
+    width: 21px;
+    height: 21px;
+    flex: 0 0 auto;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.navRowText { flex: 1 1 auto; min-width: 0; }
+
+/* Ligne cochée : teinte discrète + coche, comme une liste à choix multiple iOS. */
+.navRowOn { background: rgba(255, 255, 255, 0.1); }
+
+.navCheck {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 auto;
+    color: #fff;
+}
+
+/* Barre d'action collée en bas du volet, au-dessus du contenu qui défile. */
+.navFooter {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px calc(14px + env(safe-area-inset-bottom, 0px));
+    background: rgba(20, 20, 22, 0.72);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    backdrop-filter: blur(40px) saturate(180%);
+    box-shadow: inset 0 0.33px 0 rgba(255, 255, 255, 0.14);
+}
+
+.navClear {
+    flex: 0 0 auto;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.navClear:active { background: rgba(255, 255, 255, 0.18); }
+
+.navApply {
+    flex: 1 1 auto;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 12px;
+    background: #fff;
+    color: #000;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.24s var(--tv-ease), opacity 0.2s ease;
+}
+.navApply:active { transform: scale(0.97); }
+.navApply:disabled { background: rgba(255, 255, 255, 0.16); color: rgba(255, 255, 255, 0.5); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   RECHERCHE MODERNISÉE — loupe bas-droite (langage Apple TV+ / iOS 26-27).
+   Reprend les fonctions de SpotlightSearch, plein écran, verre profond.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.spRoot {
+    position: fixed;
+    inset: 0;
+    /* Au-dessus de la barre du bas (BottomNav z=25000) : le panneau la recouvre. */
+    z-index: 26000;
+    display: flex;
+    flex-direction: column;
+    background: rgba(8, 8, 10, 0.97);
+    -webkit-backdrop-filter: blur(44px) saturate(180%);
+    backdrop-filter: blur(44px) saturate(180%);
+}
+
+/* En-tête : champ + Terminé. */
+.spHead {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: calc(env(safe-area-inset-top, 0px) + 14px) 16px 12px;
+}
+
+.spField {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    height: 46px;
+    padding: 0 8px 0 13px;
+    border-radius: 14px;
+    background: rgba(118, 118, 128, 0.24);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+}
+
+.spFieldIcon { flex: 0 0 auto; color: rgba(235, 235, 245, 0.6); }
+
+.spInput {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    caret-color: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.spInput::placeholder { color: rgba(235, 235, 245, 0.5); }
+.spInput::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+
+.spMic {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.2s var(--tv-ease), background 0.2s ease;
+}
+.spMic:active { transform: scale(0.9); }
+.spMicOn { background: rgba(255, 69, 58, 0.28); animation: spPulse 1.3s ease-in-out infinite; }
+@keyframes spPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 69, 58, 0.5); } 50% { box-shadow: 0 0 0 8px rgba(255, 69, 58, 0); } }
+
+.spCancel {
+    flex: 0 0 auto;
+    padding: 4px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.spCancel:active { opacity: 0.5; }
+
+/* Segmented control (Recette / Ingrédients / Assistant). */
+.spSegment {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 3px;
+    margin: 2px 16px 8px;
+    padding: 3px;
+    border-radius: 12px;
+    background: rgba(118, 118, 128, 0.2);
+}
+
+.spSeg {
+    flex: 1 1 0;
+    padding: 8px 6px;
+    border: none;
+    border-radius: 9px;
+    background: transparent;
+    color: rgba(235, 235, 245, 0.75);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.spSegOn {
+    background: rgba(99, 99, 102, 0.9);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
+}
+
+/* Groupes Catégorie / Pays / Tendances. */
+.spGroups {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 8px;
+    padding: 2px 16px 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.spGroups::-webkit-scrollbar { display: none; }
+
+.spGroup {
+    flex: 0 0 auto;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.92);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s var(--tv-ease), background 0.2s ease, color 0.2s ease;
+}
+.spGroup:active { transform: scale(0.94); }
+.spGroupOn { background: #fff; color: #000; font-weight: 600; }
+
+/* Chips (filtres du groupe, ou tags ingrédients). */
+.spChips {
+    flex: 0 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 16px 10px;
+}
+
+.spChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.92);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: transform 0.2s var(--tv-ease), background 0.2s ease, color 0.2s ease;
+}
+.spChip:active { transform: scale(0.94); }
+.spChipOn { background: #fff; color: #000; font-weight: 600; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); }
+
+.spTagX {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.18);
+    color: inherit;
+    font-size: 10px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Liste des résultats. */
+.spResults {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 4px 12px calc(40px + env(safe-area-inset-bottom, 0px));
+    scrollbar-width: none;
+}
+.spResults::-webkit-scrollbar { display: none; }
+
+.spItem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 9px 8px;
+    border: none;
+    border-radius: 14px;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.18s ease, transform 0.2s var(--tv-ease);
+}
+.spItem:active { background: rgba(255, 255, 255, 0.08); transform: scale(0.99); }
+
+.spThumbWrap {
+    position: relative;
+    flex: 0 0 auto;
+    width: 62px;
+    height: 62px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #141416;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+}
+
+.spThumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.spFlag {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 2;
+    font-size: 12px;
+    line-height: 1;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+}
+
+.spInfo { flex: 1 1 auto; min-width: 0; }
+
+.spTitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15.5px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.spMeta {
+    margin-top: 2px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--tv-dim);
+    text-transform: capitalize;
+}
+
+.spHint {
+    padding: 8px 10px 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: rgba(235, 235, 245, 0.5);
+}
+
+.spAiMsg {
+    margin: 4px 4px 10px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(160, 130, 255, 0.14);
+    box-shadow: inset 0 0 0 0.5px rgba(160, 130, 255, 0.3);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #eae4ff;
+}
+
+.spEmpty {
+    padding: 40px 24px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(235, 235, 245, 0.55);
+}
+
