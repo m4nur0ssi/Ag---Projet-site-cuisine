@@ -64,6 +64,30 @@
         max-width: 100%;
         padding-bottom: 26px;
     }
+
+    /* ── Intégré dans le shell desktop (sidebar à gauche) ─────────────────── */
+    /* Le planificateur / la liste occupent TOUTE la place restante à droite,
+       plus de colonne centrée, plus de cadre. */
+    .embedded {
+        max-width: none;
+        margin: 0;
+        padding: 0 28px;
+        box-shadow: none;
+        min-height: auto;
+    }
+    /* Le bandeau du bas ne doit PAS couvrir la sidebar : collé au bas de la zone
+       de contenu (sticky) au lieu d'être fixé au viewport. */
+    .embedded .planFooter {
+        position: sticky;
+        left: 0;
+        right: 0;
+        transform: none;
+        width: 100%;
+        padding-bottom: 22px;
+        background: linear-gradient(0deg, #000 55%, rgba(0, 0, 0, 0) 100%);
+    }
+    /* Marge basse réservée à la barre du bas mobile : inutile ici. */
+    .embedded .planSlide { padding-bottom: 24px; }
 }
 
 /* ── HÉROS ─────────────────────────────────────────────────────────────── */
@@ -2640,15 +2664,23 @@
 /* Vue Jour : le plat au-dessus de ses ingrédients. */
 .courseRecipe {
     display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin: 16px 2px 7px;
+    align-items: center;
+    gap: 11px;
+    margin: 18px 2px 8px;
     font-family: 'Outfit', sans-serif;
     font-size: 15px;
     font-weight: 800;
     letter-spacing: -0.01em;
     color: #fff;
 }
+/* Photo de la recette à gauche du titre (vue « jour par jour »). */
+.courseRecipeThumb {
+    width: 42px; height: 42px; flex: 0 0 auto;
+    border-radius: 11px; object-fit: cover;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.14);
+}
+.courseRecipeTexts { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.courseRecipeName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .courseMeal {
     font-size: 10px;

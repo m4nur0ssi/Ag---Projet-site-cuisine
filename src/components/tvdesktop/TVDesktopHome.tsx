@@ -29,6 +29,10 @@ const AuthButton = dynamic(() => import('@/components/AuthButton/AuthButton'), {
 const TutorialButton = dynamic(() => import('@/components/Tutorial/TutorialButton'), { ssr: false });
 // Partage d'un thème : même bouton que sur l'accueil actuel, même lien /?tag=…
 const ShareButton = dynamic(() => import('@/components/ShareButton/ShareButton'), { ssr: false });
+// Planificateur / Liste de courses : rendus DANS le contenu (la sidebar reste à gauche),
+// au lieu de naviguer vers une page pleine (mode `embedded`).
+const TVPlanner = dynamic(() => import('@/mobile/screens/tv/TVPlanner'), { ssr: false });
+const TVCourses = dynamic(() => import('@/mobile/screens/tv/TVCourses'), { ssr: false });
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -428,6 +432,8 @@ export default function TVDesktopHome() {
     // Multi-filtre : sélection cumulative de catégories / tendances / pays (tokens
     // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
     const [filters, setFilters] = useState<string[]>([]);
+    // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
+    const [panel, setPanel] = useState<'none' | 'planner' | 'courses'>('none');
 
     useEffect(() => {
         const sync = () => setLaterIds(readIds(LATER_KEY));
@@ -577,7 +583,7 @@ export default function TVDesktopHome() {
         setNav(`tag:${tag}`);
         openCollection(lbl, mockRecipes.filter((r) => r.image && r.category !== 'restaurant' && matchesTag(r, tag)));
     };
-    const goHome = () => { setNav('accueil'); setCollection(null); setFilters([]); };
+    const goHome = () => { setNav('accueil'); setCollection(null); setFilters([]); setPanel('none'); };
 
     // ── Multi-filtre ────────────────────────────────────────────────────────
     const toggleFilter = (token: string) => {
@@ -688,8 +694,8 @@ export default function TVDesktopHome() {
 
                 <nav className={styles.navGroup}>
                     <NavItem icon={ICONS.home} active={nav === 'accueil'} onClick={goHome}>Accueil</NavItem>
-                    <NavItem icon={ICONS.planner} tour="planner" onClick={() => router.push('/tv-planner')}>Planificateur</NavItem>
-                    <NavItem icon={ICONS.cart} tour="shopping" onClick={() => router.push('/tv-courses')}>Liste de courses</NavItem>
+                    <NavItem icon={ICONS.planner} tour="planner" active={panel === 'planner'} onClick={() => { setCollection(null); setFilters([]); setPanel('planner'); }}>Planificateur</NavItem>
+                    <NavItem icon={ICONS.cart} tour="shopping" active={panel === 'courses'} onClick={() => { setCollection(null); setFilters([]); setPanel('courses'); }}>Liste de courses</NavItem>
                     <NavItem icon={ICONS.heart} tour="favorites" onClick={() => router.push('/favorites')}>Favoris</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
                         fournit que l'icône et la ligne de menu. */}
@@ -762,7 +768,11 @@ export default function TVDesktopHome() {
 
             {/* ── Contenu ── */}
             <main className={styles.content}>
-                {filters.length > 0 ? (
+                {panel !== 'none' ? (
+                    <div className={styles.panelHost}>
+                        {panel === 'planner' ? <TVPlanner embedded /> : <TVCourses embedded />}
+                    </div>
+                ) : filters.length > 0 ? (
                     <div className={styles.collection}>
                         <div className={styles.collHead}>
                             <button className={styles.collBack} onClick={goHome}>

@@ -65,7 +65,7 @@ type Plan = Record<string, Record<string, Slot>>;
 
 const label = (r: Recipe) => decodeHtml(r.title || '');
 
-export default function TVPlanner() {
+export default function TVPlanner({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
     const params = useSearchParams();
     const [mode, setMode] = useState<'semaine' | 'jourj' | 'panier'>(params.get('mode') === 'jourj' ? 'jourj' : 'semaine');
@@ -398,13 +398,16 @@ export default function TVPlanner() {
     };
 
     return (
-        <div className={styles.page}>
+        <div className={`${styles.page} ${embedded ? styles.embedded : ''}`}>
             <header className={styles.planHead}>
-                <button className={styles.planBack} onClick={() => router.push('/')} aria-label="Retour">
-                    <svg viewBox="0 0 8 14" fill="none" width="13" height="13">
-                        <path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
+                {/* Dans le shell desktop, la sidebar gère le retour : pas de flèche ici. */}
+                {!embedded && (
+                    <button className={styles.planBack} onClick={() => router.push('/')} aria-label="Retour">
+                        <svg viewBox="0 0 8 14" fill="none" width="13" height="13">
+                            <path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                )}
                 <div>
                     <div className={styles.planKicker}>Planificateur</div>
                     <h1 className={styles.planTitle}>{mode === 'jourj' ? 'Jour J' : 'Ma semaine'}</h1>

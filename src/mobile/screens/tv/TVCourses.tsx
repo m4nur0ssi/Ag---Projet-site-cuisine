@@ -47,7 +47,7 @@ type ListData = Record<string, {
     source?: 'planner' | 'manuel';
 }>;
 
-export default function TVCourses() {
+export default function TVCourses({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
     const [mode, setMode] = useState<'semaine' | 'jour' | 'recette' | 'panier'>('semaine');
     // « Mes recettes » : ingrédients choisis à la main dans les fiches.
@@ -224,6 +224,7 @@ export default function TVCourses() {
                         doneKey: rIdx === 0 ? `${day}|${meal}|${idx}` : `${day}|${meal}|side|${idx}`,
                         meal,
                         recipe: decodeHtml(r?.title || ''),
+                        image: r?.image as string | undefined,
                         icon: getIngIcon(p.name || raw),
                         text: cleanIngredientText(raw) || raw,
                     };
@@ -289,13 +290,15 @@ export default function TVCourses() {
     };
 
     return (
-        <div className={styles.page}>
+        <div className={`${styles.page} ${embedded ? styles.embedded : ''}`}>
             <header className={styles.planHead}>
-                <button className={styles.planBack} onClick={() => router.push('/')} aria-label="Retour">
-                    <svg viewBox="0 0 8 14" fill="none" width="13" height="13">
-                        <path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
+                {!embedded && (
+                    <button className={styles.planBack} onClick={() => router.push('/')} aria-label="Retour">
+                        <svg viewBox="0 0 8 14" fill="none" width="13" height="13">
+                            <path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                )}
                 <div>
                     <div className={styles.planKicker}>Courses</div>
                     <h1 className={styles.planTitle}>Ma liste</h1>
@@ -413,13 +416,24 @@ export default function TVCourses() {
                                 <div key={l.key}>
                                     {head && (
                                         <h3 className={styles.courseRecipe}>
-                                            <span className={styles.courseMeal}>{l.meal}</span>{head}
+                                            {l.image && <img src={l.image} alt="" className={styles.courseRecipeThumb} draggable={false} />}
+                                            <span className={styles.courseRecipeTexts}>
+                                                <span className={styles.courseMeal}>{l.meal}</span>
+                                                <span className={styles.courseRecipeName}>{head}</span>
+                                            </span>
                                         </h3>
                                     )}
                                     <button
                                         className={`${styles.courseRow} ${styles.courseRowFlat} ${struck ? styles.courseRowDone : ''}`}
                                         onClick={() => toggleDayLine(l.doneKey)}
                                     >
+                                        <span className={`${styles.courseCheck} ${struck ? styles.courseCheckOn : ''}`}>
+                                            {struck && (
+                                                <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
+                                                    <path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            )}
+                                        </span>
                                         <span className={styles.courseIcon}>{l.icon}</span>
                                         <span className={styles.courseName}>{l.text}</span>
                                     </button>
