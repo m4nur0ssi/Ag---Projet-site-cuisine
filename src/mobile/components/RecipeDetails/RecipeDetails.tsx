@@ -30,7 +30,7 @@ import StarRating from '@/mobile/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
 import CookingJournal from '@/components/CookingJournal/CookingJournal';
-import { estimateRecipeCalories } from '@/mobile/lib/calories';
+import { estimateRecipeCalories, estimateRecipeMacros } from '@/mobile/lib/calories';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './RecipeDetails.module.css';
@@ -147,6 +147,14 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             ? estimateRecipeCalories(recipe.ingredients, servings)
             : null,
     [recipe, servings]);
+
+    // Macros estimées (protéines/glucides/lipides) pour l'anneau, dépliable au clic.
+    const macros = useMemo(() =>
+        recipe.category !== 'restaurant' && recipe.ingredients?.length > 0
+            ? estimateRecipeMacros(recipe.ingredients, servings)
+            : null,
+    [recipe, servings]);
+    const [showMacros, setShowMacros] = useState(false);
 
     const similarRecipes = useMemo(() => {
         // Fiche restaurant → « Autres restaurants ».
@@ -944,12 +952,37 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <StarRating recipeId={recipe.id} size="small" />
                             </div>
                             {calorieEstimate && calorieEstimate.confidence !== 'low' && (
-                                <div className={styles.metaWideSectionCal}>
-                                    <div className={styles.metaLabel}>CALORIES</div>
+                                <div
+                                    className={styles.metaWideSectionCal}
+                                    role={macros ? 'button' : undefined}
+                                    onClick={macros ? () => setShowMacros(v => !v) : undefined}
+                                    style={macros ? { cursor: 'pointer' } : undefined}
+                                >
+                                    <div className={styles.metaLabel}>CALORIES{macros ? ' ›' : ''}</div>
                                     <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
                                 </div>
                             )}
                         </div>
+
+                        {/* Anneau macros — déplié en tapant les calories. */}
+                        {macros && showMacros && (() => {
+                            const tot = macros.protein * 4 + macros.carbs * 4 + macros.fat * 9 || 1;
+                            const p = (macros.protein * 4 / tot) * 100;
+                            const c = (macros.carbs * 4 / tot) * 100;
+                            return (
+                                <div className={styles.macroPanel}>
+                                    <div
+                                        className={styles.macroRing}
+                                        style={{ background: `conic-gradient(#FF6B4A 0 ${p}%, #FFC24B ${p}% ${p + c}%, #57C4E5 ${p + c}% 100%)` }}
+                                    />
+                                    <div className={styles.macroLegend}>
+                                        <div><span className={styles.macroDot} style={{ background: '#FF6B4A' }} /> Protéines <b>{macros.protein} g</b></div>
+                                        <div><span className={styles.macroDot} style={{ background: '#FFC24B' }} /> Glucides <b>{macros.carbs} g</b></div>
+                                        <div><span className={styles.macroDot} style={{ background: '#57C4E5' }} /> Lipides <b>{macros.fat} g</b></div>
+                                    </div>
+                                </div>
+                            );
+                        })()}
                     </div>
                 </div>
             )}

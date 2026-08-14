@@ -105,3 +105,48 @@ export function estimateRecipeCalories(
 
     return { total: Math.round(total), perServing, confidence };
 }
+
+/** Macros estimées (grammes/portion) — approximation par famille d'ingrédient. */
+export interface MacroEstimate { protein: number; carbs: number; fat: number; kcal: number }
+
+// Répartition des kcal d'un ingrédient entre protéines / glucides / lipides.
+function macroSplit(name: string): { p: number; c: number; f: number } {
+    const n = name.toLowerCase();
+    const has = (...k: string[]) => k.some((x) => n.includes(x));
+    if (has('huile', 'oil', 'beurre', 'butter')) return { p: 0, c: 0, f: 1 };
+    if (has('sucre', 'sugar', 'miel', 'honey', 'sirop', 'confiture')) return { p: 0, c: 1, f: 0 };
+    if (has('poulet', 'boeuf', 'bœuf', 'porc', 'veau', 'agneau', 'dinde', 'jambon', 'saumon', 'thon', 'poisson', 'crevette', 'gambas', 'oeuf', 'œuf', 'egg', 'chicken', 'beef', 'pork', 'tofu'))
+        return { p: 0.55, c: 0.05, f: 0.4 };
+    if (has('fromage', 'gruyère', 'emmental', 'parmesan', 'mozzarella', 'crème', 'creme', 'lait', 'milk', 'yaourt', 'ricotta'))
+        return { p: 0.22, c: 0.1, f: 0.68 };
+    if (has('farine', 'flour', 'riz', 'rice', 'pâtes', 'pasta', 'spaghetti', 'pomme de terre', 'patate', 'potato', 'pain', 'bread', 'semoule', 'boulgour', 'quinoa', 'lentille', 'haricot', 'pois chiche'))
+        return { p: 0.13, c: 0.82, f: 0.05 };
+    if (has('chocolat', 'chocolate', 'noix', 'amande', 'noisette', 'cajou', 'avocat'))
+        return { p: 0.1, c: 0.35, f: 0.55 };
+    if (has('tomate', 'oignon', 'ail', 'courgette', 'aubergine', 'carotte', 'poivron', 'épinard', 'champignon', 'salade', 'légume', 'legume', 'fruit', 'pomme', 'banane'))
+        return { p: 0.18, c: 0.75, f: 0.07 };
+    return { p: 0.2, c: 0.55, f: 0.25 }; // défaut mixte
+}
+
+export function estimateRecipeMacros(
+    ingredients: { name: string; quantity: string }[],
+    servings: number
+): MacroEstimate | null {
+    let pKcal = 0, cKcal = 0, fKcal = 0, total = 0, recognized = 0;
+    for (const ing of ingredients) {
+        const cal = estimateIngredientCalories(ing.name, ing.quantity);
+        if (cal <= 0) continue;
+        recognized++;
+        total += cal;
+        const s = macroSplit(ing.name);
+        pKcal += cal * s.p; cKcal += cal * s.c; fKcal += cal * s.f;
+    }
+    if (recognized === 0 || total === 0) return null;
+    const div = servings > 0 ? servings : 1;
+    return {
+        protein: Math.max(0, Math.round(pKcal / 4 / div)),
+        carbs: Math.max(0, Math.round(cKcal / 4 / div)),
+        fat: Math.max(0, Math.round(fKcal / 9 / div)),
+        kcal: Math.round(total / div),
+    };
+}

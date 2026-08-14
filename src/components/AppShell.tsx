@@ -8,7 +8,6 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 
 // ── Chrome desktop (site actuel) ──
 import { TimerProvider } from '@/components/Timer/TimerContext';
-import SplashScreen from '@/components/SplashScreen/SplashScreen';
 import GlobalRecipeSheet from '@/components/GlobalRecipeSheet/GlobalRecipeSheet';
 import DeepLinkOpener from '@/components/DeepLinkOpener/DeepLinkOpener';
 
@@ -59,7 +58,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     return (
         <DeviceContext.Provider value={false}>
             <TimerProvider>
-                <SplashScreen />
+                {/* Splash desktop (animation logo) retiré : inutile sur l'accueil TV+. */}
                 <div className="main-content-wrapper">{children}</div>
                 <GlobalRecipeSheet />
                 <DeepLinkOpener />
