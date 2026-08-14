@@ -19,10 +19,12 @@ import { Recipe } from '@/mobile/types';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
+import { useAuth } from '@/hooks/useAuth';
 import { THEMES, matchesTag } from '@/mobile/screens/tv/themes';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
 
+const TVAuthGate = dynamic(() => import('./TVAuthGate'), { ssr: false });
 const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
 const AuthButton = dynamic(() => import('@/components/AuthButton/AuthButton'), { ssr: false });
 // Visite guidée du site (version desktop) : composant autonome, habillé en ligne de menu.
@@ -418,6 +420,7 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
 export default function TVDesktopHome() {
     const router = useRouter();
     const stats = useRatingStats();
+    const { user } = useAuth();
     const [searchOpen, setSearchOpen] = useState(false);
     const [collection, setCollection] = useState<{ title: string; recipes: Recipe[] } | null>(null);
     const [inProgress, setInProgress] = useState<{ recipe: Recipe; pct: number }[]>([]);
@@ -497,16 +500,36 @@ export default function TVDesktopHome() {
         return !has; // true = vient d'être ajoutée
     };
 
-    // Petit message central « Ajouté » / « Supprimé », façon Apple TV+, 1,5 s.
+    // Petit message central façon Apple TV+, 1,5 s.
     const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const [toast, setToast] = useState<{ added: boolean } | null>(null);
-    const handleToggleLater = useCallback((r: Recipe) => {
-        const added = toggleLater(String(r.id));
-        setToast({ added });
+    const [toast, setToast] = useState<{ text: string; corner?: boolean } | null>(null);
+    const flash = useCallback((text: string, corner = false) => {
+        setToast({ text, corner });
         if (toastTimer.current) clearTimeout(toastTimer.current);
         toastTimer.current = setTimeout(() => setToast(null), 1500);
     }, []);
+    const handleToggleLater = useCallback((r: Recipe) => {
+        flash(toggleLater(String(r.id)) ? 'Ajouté' : 'Supprimé');
+    }, [flash]);
     const isLater = useCallback((id: string) => laterIds.includes(id), [laterIds]);
+
+    // Partage d'un lien (feuille native ou copie). Catégorie ou recette.
+    const shareLink = async (url: string, title: string) => {
+        try {
+            if (navigator.share) await navigator.share({ title, url });
+            else { await navigator.clipboard.writeText(url); flash('Lien copié'); }
+        } catch { /* annulé */ }
+    };
+    // « Marquer comme visionné » : ajoute à l'historique + toast.
+    const markSeen = (r: Recipe) => {
+        try {
+            const raw = JSON.parse(localStorage.getItem('recently-viewed') || '[]');
+            const rest = (Array.isArray(raw) ? raw : []).filter((x: any) => String(x?.id ?? x) !== String(r.id));
+            localStorage.setItem('recently-viewed', JSON.stringify([{ id: r.id }, ...rest].slice(0, 12)));
+            window.dispatchEvent(new Event('tv-seen-change'));
+        } catch { /* noop */ }
+        flash('Marqué comme visionné', true);
+    };
 
     // ── Données des rangées ──
     const heroRecipes = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image).slice(0, 6), []);
@@ -782,7 +805,13 @@ export default function TVDesktopHome() {
             <main className={styles.content}>
                 {panel !== 'none' ? (
                     <div className={styles.panelHost}>
-                        {panel === 'planner' ? <TVPlanner embedded /> : <TVCourses embedded />}
+                        {!user ? (
+                            <TVAuthGate
+                                subtitle={panel === 'planner'
+                                    ? 'Le planificateur de la semaine est réservé aux membres connectés.'
+                                    : 'Ta liste de courses est réservée aux membres connectés.'}
+                            />
+                        ) : panel === 'planner' ? <TVPlanner embedded /> : <TVCourses embedded />}
                     </div>
                 ) : filters.length > 0 ? (
                     <div className={styles.collection}>
@@ -865,7 +894,7 @@ export default function TVDesktopHome() {
                 {menu && (
                     <motion.div
                         className={styles.ctx}
-                        style={{ left: Math.min(menu.x, (typeof window !== 'undefined' ? window.innerWidth : 9999) - 240), top: menu.y }}
+                        style={{ left: Math.min(menu.x, (typeof window !== 'undefined' ? window.innerWidth : 9999) - 282), top: menu.y }}
                         initial={{ opacity: 0, scale: 0.94, y: -6 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.96 }}
@@ -873,15 +902,49 @@ export default function TVDesktopHome() {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className={styles.ctxTitle}>{label(menu.recipe)}</div>
-                        <button className={styles.ctxAction} onClick={() => { const r = menu.recipe; setMenu(null); openRecipe(r); }}>Voir la recette</button>
-                        <button className={styles.ctxAction} onClick={() => { const r = menu.recipe; setMenu(null); toggleLater(String(r.id)); }}>
-                            {laterIds.includes(String(menu.recipe.id)) ? 'Retirer de la liste' : 'À faire plus tard'}
-                        </button>
-                        {resume.some((r) => String(r.id) === String(menu.recipe.id)) && (
-                            <button className={styles.ctxAction} onClick={() => { const r = menu.recipe; setMenu(null); clearProgress(String(r.id)); }}>
-                                Retirer de « Reprendre la cuisine »
-                            </button>
-                        )}
+                        {(() => {
+                            const r = menu.recipe;
+                            const cat = (r.category || '').toLowerCase();
+                            const catName = catLabel(r);
+                            const origin = typeof window !== 'undefined' ? window.location.origin : '';
+                            const inLater = laterIds.includes(String(r.id));
+                            const CtxIc = ({ d }: { d: string }) => (
+                                <svg className={styles.ctxIcon} viewBox="0 0 24 24" fill="none" aria-hidden>
+                                    <path d={d} stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            );
+                            return (
+                                <>
+                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); openRecipe(r); }}>
+                                        <CtxIc d="M8 5v14l11-7z" /><span>Voir la recette</span>
+                                    </button>
+                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); goCategory(cat, catName); }}>
+                                        <CtxIc d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
+                                    </button>
+                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); shareLink(`${origin}/?tag=${encodeURIComponent(cat)}`, catName); }}>
+                                        <CtxIc d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la catégorie</span>
+                                    </button>
+                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); shareLink(`${origin}/?fiche=${r.id}`, label(r)); }}>
+                                        <CtxIc d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
+                                    </button>
+                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); handleToggleLater(r); }}>
+                                        {inLater
+                                            ? <CtxIc d="M5 12h14" />
+                                            : <CtxIc d="M12 5v14M5 12h14" />}
+                                        <span>{inLater ? 'Retirer de la liste' : 'À faire plus tard'}</span>
+                                    </button>
+                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); markSeen(r); }}>
+                                        <CtxIc d="M3.5 7.5h13a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1zM6.5 13l2.5 2.5L14 10M17.5 4.5h3a1 1 0 0 1 1 1v3" />
+                                        <span>Marquer comme visionné</span>
+                                    </button>
+                                    {resume.some((x) => String(x.id) === String(r.id)) && (
+                                        <button className={styles.ctxAction} onClick={() => { setMenu(null); clearProgress(String(r.id)); }}>
+                                            <CtxIc d="M5 12h14" /><span>Retirer de « Reprendre la cuisine »</span>
+                                        </button>
+                                    )}
+                                </>
+                            );
+                        })()}
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -890,7 +953,18 @@ export default function TVDesktopHome() {
 
             {/* Message central « Ajouté » / « Supprimé », façon Apple TV+ (1,5 s). */}
             <AnimatePresence>
-                {toast && (
+                {toast && (toast.corner ? (
+                    <motion.div
+                        className={styles.toastCorner}
+                        initial={{ opacity: 0, y: -12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        <span>{toast.text}</span>
+                    </motion.div>
+                ) : (
                     <motion.div
                         className={styles.toast}
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -899,9 +973,9 @@ export default function TVDesktopHome() {
                         transition={{ duration: 0.18 }}
                     >
                         <svg viewBox="0 0 24 24" width="46" height="46" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                        <span>{toast.added ? 'Ajouté' : 'Supprimé'}</span>
+                        <span>{toast.text}</span>
                     </motion.div>
-                )}
+                ))}
             </AnimatePresence>
         </div>
     );

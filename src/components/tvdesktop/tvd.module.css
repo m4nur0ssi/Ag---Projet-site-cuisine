@@ -566,6 +566,21 @@
 }
 
 /* ── Message « Ajouté » / « Supprimé » (Apple TV+) ──────────────────────── */
+/* Toast discret en haut à droite (ex. « Marqué comme visionné »). */
+.toastCorner {
+    position: fixed; z-index: 9000;
+    top: 22px; right: 22px;
+    display: flex; align-items: center; gap: 9px;
+    padding: 11px 16px;
+    border-radius: 14px;
+    background: rgba(40, 40, 42, 0.82);
+    -webkit-backdrop-filter: blur(40px) saturate(180%); backdrop-filter: blur(40px) saturate(180%);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.5), inset 0 0 0 0.5px rgba(255,255,255,0.14);
+    color: #fff;
+    font-family: 'Outfit', sans-serif; font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em;
+    pointer-events: none;
+}
+
 .toast {
     position: fixed; z-index: 9000;
     top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -665,7 +680,7 @@
 
 .ctx {
     position: fixed; z-index: 7000;
-    width: 220px; padding: 8px;
+    width: 262px; padding: 8px;
     border-radius: 14px;
     background: rgba(40,40,42,0.72);
     -webkit-backdrop-filter: blur(50px) saturate(180%); backdrop-filter: blur(50px) saturate(180%);
@@ -678,12 +693,16 @@
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .ctxAction {
-    display: block; width: 100%; padding: 10px 10px;
+    display: flex; align-items: center; gap: 11px;
+    width: 100%; padding: 10px 11px;
     border: none; border-radius: 8px; background: transparent;
     color: #fff; font-size: 14.5px; font-weight: 400; text-align: left; cursor: pointer;
     transition: background 0.14s ease;
 }
 .ctxAction:hover { background: rgba(255,255,255,0.12); }
+/* Icônes façon Apple TV+ (trait fin) à gauche de chaque option. */
+.ctxIcon { width: 19px; height: 19px; flex: 0 0 auto; color: rgba(255,255,255,0.82); }
+.ctxAction span { flex: 1 1 auto; }
 
 /* ── Responsive : sous 900px, la sidebar se réduit ──────────────────────── */
 
