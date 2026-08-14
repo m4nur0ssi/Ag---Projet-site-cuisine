@@ -2,11 +2,129 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/08/2026 04:45:04
- * Total: 625 recettes
+ * Dernière mise à jour: 14/08/2026 08:48:59
+ * Total: 627 recettes
  */
-export const exportSyncId = "1786682704106";
+export const exportSyncId = "1786697339058";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7143",
+        "title": "Goma-ae de haricots verts",
+        "description": "Une recette japonaise simple et végétale de haricots verts, enrobés d'une sauce sésame-soja sucrée-salée. C'est un accompagnement express, parfumé et plein d'umami, qui offre une alternative aux haricots vapeur.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7512906615859858710\" data-video-id=\"7512906615859858710\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7512906615859858710\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🫘\n             200 g de haricots verts frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de graines de sésame blond"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             1 cuillère à café de mirin (ou vinaigre de riz doux)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Une touche d'huile de sésame"
+            }
+        ],
+        "steps": [
+            "Cuire les haricots verts pendant 6 minutes dans l'eau bouillante salée, puis les plonger dans l'eau froide.",
+            "Égoutter les haricots et les couper en tronçons.",
+            "Broyer les graines de sésame, puis ajouter le sucre, la sauce soja, le mirin et une touche d'huile de sésame.",
+            "Mélanger cette sauce avec les haricots verts.",
+            "Servir frais ou à température ambiante."
+        ],
+        "tags": [
+            "Accompagnements",
+            "asiatique",
+            "Healthy",
+            "Salades",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7141",
+        "title": "Crème ciboulette",
+        "description": "La meilleure crème ciboulette, idéale pour accompagner les pommes de terre ou les grillades, dans le cadre de la série BBQ VG.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663510071220981024\" data-video-id=\"7663510071220981024\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663510071220981024\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 kg de crème fraîche épaisse d'Isigny"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 à 2 échalotes ciselées"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 botte de ciboulette ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Aucune étape de préparation n'est détaillée dans la description fournie."
+        ],
+        "tags": [
+            "Accompagnements",
+            "barbecue",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7139",
         "title": "Salade de figues, burrata et roquette",
