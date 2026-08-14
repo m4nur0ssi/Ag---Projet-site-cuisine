@@ -93,8 +93,7 @@ export default function WinePairing({ recipeId, title, category, ingredients, co
                 className={`${styles.pill} ${compact ? styles.compact : ''}`}
                 onClick={openSheet}
             >
-                <span className={styles.glass}>🍷</span>
-                Quel vin&nbsp;?
+                Accord vin
             </button>
 
             <Portal>

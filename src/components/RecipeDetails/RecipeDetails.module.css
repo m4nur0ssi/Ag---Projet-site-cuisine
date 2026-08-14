@@ -187,9 +187,11 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    /* La pilule épouse son libellé : largeur du contenu, pas de retour à la ligne. */
+    /* La pilule épouse son libellé : largeur du contenu, pas de retour à la ligne,
+       et ne se laisse pas écraser par la colonne de grille (flex/grid-shrink). */
     width: max-content;
-    max-width: 100%;
+    flex-shrink: 0;
+    justify-self: center;
     white-space: nowrap;
     padding: 0 22px;
     height: 44px;
