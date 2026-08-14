@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import Header from '@/components/Header/Header';
+import TVAuthGate from '@/components/tvdesktop/TVAuthGate';
 import WeekMenuCarousel from '@/components/WeekMenuCarousel/WeekMenuCarousel';
 import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, doneKeysOf, isItemDone, parseIngredient, cleanIngredientText } from '@/lib/ingredients';
 import type { ConsolItem } from '@/lib/ingredients';
@@ -250,23 +251,7 @@ export default function ShoppingListPage() {
 
     // Liste de courses réservée aux connectés — accès impossible sinon.
     if (!user) return (
-        <div className={styles.page}>
-            <Header title="Ma liste" showBack={true} />
-            <main className={styles.main}>
-                <div className={styles.empty}>
-                    <div className={styles.emptyIcon}>🔒</div>
-                    <h2 className={styles.emptyTitle}>Connecte-toi</h2>
-                    <p className={styles.emptySubtitle}>
-                        Ta liste de courses (semaine, jour J, fusionnée, recettes) est réservée aux membres connectés.
-                    </p>
-                    <button
-                        className={styles.clearBtn}
-                        style={{ marginTop: 18 }}
-                        onClick={() => window.dispatchEvent(new Event('magic-open-auth'))}
-                    >Se connecter</button>
-                </div>
-            </main>
-        </div>
+        <TVAuthGate subtitle="Ta liste de courses (semaine, jour J, fusionnée, recettes) est réservée aux membres connectés." />
     );
 
     return (

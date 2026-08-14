@@ -18,6 +18,7 @@ import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag } from './themes';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
+import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from './progress';
 import styles from './tv.module.css';
 
 // ── Helpers ────────────────────────────────────────────────────────────────
@@ -101,7 +102,7 @@ type OpenSheet = (list: Recipe[], index: number) => void;
 
 /** Liste locale « à faire plus tard » (test de design : pas de table dédiée). */
 const LATER_KEY = 'tv-later-v1';
-/** Historique de consultation — alimente la rangée « Reprendre la cuisine ». */
+/** Historique de consultation (conservé pour d'autres écrans). */
 const SEEN_KEY = 'recently-viewed';
 
 /** Enregistre une recette ouverte en tête de l'historique (12 max). */
@@ -110,14 +111,6 @@ function pushSeen(id: string) {
     try { list = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); } catch { /* vide */ }
     const rest = list.filter((r) => String((r as any)?.id ?? r) !== id);
     localStorage.setItem(SEEN_KEY, JSON.stringify([{ id }, ...rest].slice(0, 12)));
-    window.dispatchEvent(new Event('tv-seen-change'));
-}
-
-/** Retire une recette de « Reprendre la cuisine ». */
-function removeSeen(id: string) {
-    let list: { id: string }[] = [];
-    try { list = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); } catch { /* vide */ }
-    localStorage.setItem(SEEN_KEY, JSON.stringify(list.filter((r) => String((r as any)?.id ?? r) !== id)));
     window.dispatchEvent(new Event('tv-seen-change'));
 }
 
@@ -317,6 +310,8 @@ function Card({
     overlayTitle = false,
     progress,
     subtitle,
+    later,
+    onToggleLater,
     onOpen,
     onLongPress,
 }: {
@@ -325,6 +320,9 @@ function Card({
     overlayTitle?: boolean;
     progress?: number;
     subtitle?: string;
+    /** Dans « À faire plus tard » (croix → coche). */
+    later?: boolean;
+    onToggleLater?: (r: Recipe) => void;
     onOpen: () => void;
     onLongPress: () => void;
 }) {
@@ -352,6 +350,20 @@ function Card({
                         <div className={styles.progressFill} style={{ width: `${progress}%` }} />
                     </div>
                 )}
+                {/* Croix → coche : ajoute/retire de « À faire plus tard ». */}
+                {onToggleLater && (
+                    <button
+                        className={`${styles.laterBtn} ${later ? styles.laterBtnOn : ''}`}
+                        onClick={(e) => { e.stopPropagation(); haptic(12); onToggleLater(recipe); }}
+                        aria-label={later ? 'Retirer de « À faire plus tard »' : 'Ajouter à « À faire plus tard »'}
+                    >
+                        {later ? (
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        ) : (
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" /></svg>
+                        )}
+                    </button>
+                )}
             </div>
             {!overlayTitle && <div className={styles.cardLabel}>{label(recipe)}</div>}
             {subtitle && <div className={styles.cardSub}>{subtitle}</div>}
@@ -373,12 +385,16 @@ function TopTenRow({
     onSeeAll,
     onOpen,
     onLongPress,
+    isLater,
+    onToggleLater,
 }: {
     recipes: Recipe[];
     title: string;
     onSeeAll: (title: string, recipes: Recipe[]) => void;
     onOpen: OpenSheet;
     onLongPress: (recipe: Recipe) => void;
+    isLater?: (id: string) => boolean;
+    onToggleLater?: (r: Recipe) => void;
 }) {
     const [visibleId, setVisibleId] = useState<string | null>(null);
     const [playingId, setPlayingId] = useState<string | null>(null);
@@ -638,6 +654,20 @@ function TopTenRow({
 
                                 <div className={styles.top10Scrim} />
 
+                                {onToggleLater && (
+                                    <button
+                                        className={`${styles.laterBtn} ${isLater?.(id) ? styles.laterBtnOn : ''}`}
+                                        onClick={(e) => { e.stopPropagation(); haptic(12); onToggleLater(r); }}
+                                        aria-label={isLater?.(id) ? 'Retirer de « À faire plus tard »' : 'Ajouter à « À faire plus tard »'}
+                                    >
+                                        {isLater?.(id) ? (
+                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                        ) : (
+                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" /></svg>
+                                        )}
+                                    </button>
+                                )}
+
                                 {playing && (
                                     <>
                                         {/* L'iframe ne remonte pas les taps : cette zone le fait. */}
@@ -743,7 +773,11 @@ function Row({
     variant = 'medium',
     overlayTitle = false,
     withProgress = false,
+    progressMap,
     subtitleMode,
+    shareTag,
+    isLater,
+    onToggleLater,
     onSeeAll,
     onOpen,
     onLongPress,
@@ -753,7 +787,13 @@ function Row({
     variant?: CardVariant;
     overlayTitle?: boolean;
     withProgress?: boolean;
+    /** Progression réelle par recette (id → %), pour « Reprendre la cuisine ». */
+    progressMap?: Record<string, number>;
     subtitleMode?: 'time' | 'category';
+    /** Thème partageable : ajoute le bouton « Partager » (lien /?tag=…). */
+    shareTag?: string;
+    isLater?: (id: string) => boolean;
+    onToggleLater?: (r: Recipe) => void;
     onSeeAll: (title: string, recipes: Recipe[]) => void;
     onOpen: OpenSheet;
     onLongPress: (recipe: Recipe) => void;
@@ -767,12 +807,34 @@ function Row({
         : subtitleMode === 'category' ? catLabel(r)
         : undefined;
 
+    // Partage d'un thème : lien /?tag=… qui rouvre la collection à l'arrivée.
+    // Sur mobile, la feuille de partage native si elle existe, sinon copie.
+    const share = async () => {
+        if (!shareTag) return;
+        haptic(12);
+        const url = `${window.location.origin}/?tag=${encodeURIComponent(shareTag)}`;
+        try {
+            if (navigator.share) await navigator.share({ title: `Thème : ${title}`, url });
+            else await navigator.clipboard.writeText(url);
+        } catch { /* partage annulé : rien à signaler */ }
+    };
+
     return (
         <section className={styles.row}>
-            <button className={styles.rowHead} onClick={() => { haptic(8); onSeeAll(title, recipes); }}>
-                <h2 className={styles.rowTitle}>{title}</h2>
-                <Chevron />
-            </button>
+            <div className={styles.rowHeadWrap}>
+                <button className={styles.rowHead} onClick={() => { haptic(8); onSeeAll(title, recipes); }}>
+                    <h2 className={styles.rowTitle}>{title}</h2>
+                    <Chevron />
+                </button>
+                {shareTag && (
+                    <button className={styles.rowShare} onClick={share} aria-label={`Partager « ${title} »`}>
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+                            <path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4" />
+                        </svg>
+                    </button>
+                )}
+            </div>
             <div className={styles.rowScroll} ref={scroller}>
                 {recipes.slice(0, 14).map((r, i) => (
                     <Card
@@ -781,7 +843,9 @@ function Row({
                         variant={variant}
                         overlayTitle={overlayTitle}
                         subtitle={sub(r)}
-                        progress={withProgress ? 18 + ((i * 27) % 62) : undefined}
+                        progress={withProgress ? (progressMap?.[String(r.id)] ?? 0) : undefined}
+                        later={isLater?.(String(r.id))}
+                        onToggleLater={onToggleLater}
                         // La liste passée est CELLE DE LA RANGÉE entière (pas les 14
                         // affichées) : dans le sheet, on continue de swiper.
                         onOpen={() => onOpen(recipes, i)}
@@ -802,8 +866,14 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     // La vidéo ne part pas d'emblée : la photo s'installe deux secondes, comme
     // sur la rangée Top 10, puis la vidéo prend sa place dans le même cadre.
     const [playing, setPlaying] = useState(false);
+    // ...et elle ne se montre QUE si elle joue pour de bon. Sans consentement
+    // TikTok dans ce navigateur, le lecteur affiche son bandeau de cookies à la
+    // place de la vidéo : la photo du héros se faisait remplacer par un pavé
+    // bleu « Allow all ». Le lecteur signale sa lecture par postMessage — tant
+    // qu'on n'a rien reçu, l'image reste.
+    const [videoOn, setVideoOn] = useState(false);
     const playingRef = useRef(false);
-    playingRef.current = playing;
+    playingRef.current = playing && videoOn;
     const { scrollY } = useScroll();
 
     // Parallaxe : le héros s'éloigne (zoom + translation) et se fond au noir
@@ -866,6 +936,7 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     const currentVid = current ? tiktokId(current) : null;
     useEffect(() => {
         setPlaying(false);
+        setVideoOn(false);
         if (!currentVid) return;
         // Héros sorti de l'écran ou onglet en arrière-plan : on ne démarre pas,
         // mais on réessaie — sinon une recette lue dans un onglet inactif ne
@@ -878,6 +949,21 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         t = setTimeout(tryPlay, AUTOPLAY_DELAY);
         return () => clearTimeout(t);
     }, [currentVid]);
+
+    // Le lecteur TikTok parle : c'est qu'il joue (et non qu'il réclame un
+    // consentement). On révèle la vidéo à ce moment-là, et seulement là.
+    useEffect(() => {
+        if (!playing) return;
+        const onMessage = (e: MessageEvent) => {
+            const d = e.data;
+            if (d && typeof d === 'object' && d['x-tiktok-player']) setVideoOn(true);
+        };
+        window.addEventListener('message', onMessage);
+        // Silence au bout de 6 s = bandeau de cookies ou lecture refusée :
+        // on retire le lecteur et la photo reprend la main, sans clignotement.
+        const giveUp = setTimeout(() => setPlaying((p) => (videoOn ? p : false)), 6000);
+        return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
+    }, [playing, videoOn]);
 
     /** Chevrons du héros : une recette en avant ou en arrière, en boucle. */
     const step = (dir: 1 | -1) => {
@@ -954,10 +1040,13 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                 </svg>
             </motion.button>
 
-            {/* Compte : ouvre aussi le panneau de connexion demandé par le cœur. */}
-            <motion.div className={styles.heroAuth} style={{ opacity: brandOpacity }}>
+            {/* Le compte visible a rejoint le menu (à droite du titre). On garde ici
+                une instance INVISIBLE mais montée : c'est elle qui porte le panneau
+                de connexion quand un cœur déconnecté émet `magic-open-auth` (le menu
+                est fermé à ce moment-là, donc son AuthButton ne répondrait pas). */}
+            <div className={styles.heroAuthGhost} aria-hidden>
                 <AuthButton />
-            </motion.div>
+            </div>
 
             {/* Le texte est hors du pager : il se substitue en fondu, il ne glisse pas. */}
             <motion.div className={styles.heroContent} style={{ y: contentY, opacity: contentOpacity }}>
@@ -985,7 +1074,7 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                                 />
                                 {playing && currentVid && (
                                     <iframe
-                                        className={styles.heroShotVideo}
+                                        className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
                                         // Interface TikTok coupée : le cadre reste une image
                                         // qui s'anime, pas un lecteur incrusté.
                                         src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
@@ -1066,21 +1155,16 @@ export default function TVHome() {
     const [tutoOpen, setTutoOpen] = useState(false);
     const [laterIds, setLaterIds] = useState<string[]>([]);
     const [favIds, setFavIds] = useState<string[]>([]);
-    const [recentlyViewed, setRecentlyViewed] = useState<Recipe[]>([]);
 
+    // « Reprendre la cuisine » : recettes réellement EN COURS (étapes entamées,
+    // pas terminées). Recalculé quand une étape est cochée et au retour sur l'onglet.
+    const [inProgress, setInProgress] = useState<{ recipe: Recipe; pct: number }[]>([]);
     useEffect(() => {
-        const load = () => {
-            try {
-                const ids: string[] = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]')
-                    .map((r: any) => r.id || r);
-                setRecentlyViewed(
-                    ids.map((id) => mockRecipes.find((r) => String(r.id) === String(id))).filter(Boolean) as Recipe[]
-                );
-            } catch { /* stockage indisponible */ }
-        };
+        const load = () => setInProgress(inProgressRecipes(mockRecipes));
         load();
-        window.addEventListener('tv-seen-change', load);
-        return () => window.removeEventListener('tv-seen-change', load);
+        window.addEventListener(PROGRESS_EVENT, load);
+        window.addEventListener('focus', load);
+        return () => { window.removeEventListener(PROGRESS_EVENT, load); window.removeEventListener('focus', load); };
     }, []);
 
     // Listes locales : « à faire plus tard » et cache des favoris, tenues à jour
@@ -1101,29 +1185,8 @@ export default function TVHome() {
         };
     }, []);
 
-    // Sur /tv, la loupe de la barre du bas (BottomNav prod, data-tour="search")
-    // ouvre NOTRE recherche modernisée au lieu de SpotlightSearch.
-    // On intercepte en phase capture, et pas seulement le clic : sur iPhone, un
-    // appui déclenche pointerdown → touchend → click, et framer-motion peut agir
-    // dès le pointeur. Ne bloquer que le clic laissait donc passer, par moments,
-    // la recherche du site. On coupe la chaîne au premier maillon.
-    useEffect(() => {
-        let handled = 0;
-        const intercept = (e: Event) => {
-            const t = e.target as HTMLElement | null;
-            if (!t?.closest?.('[data-tour="search"]')) return;
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            // Un seul geste = une seule ouverture (pointerdown + touchend + click).
-            const now = Date.now();
-            if (now - handled < 600) return;
-            handled = now;
-            setSearchOpen(true);
-        };
-        const events: (keyof DocumentEventMap)[] = ['pointerdown', 'touchstart', 'touchend', 'click'];
-        events.forEach((ev) => document.addEventListener(ev, intercept, true));
-        return () => events.forEach((ev) => document.removeEventListener(ev, intercept, true));
-    }, []);
+    // La loupe de la barre du bas ouvre désormais directement la recherche
+    // « Apple TV+ » (TVSpotlight branché dans BottomNav) : plus besoin d'intercepter.
 
     // Un calque plein écran est ouvert (recherche, fiche recette, grille « tout
     // afficher », menu d'appui long) → on masque la barre du bas (BottomNav prod).
@@ -1269,12 +1332,30 @@ export default function TVHome() {
         return [...mockRecipes].sort((a, b) => (b.votes || 0) - (a.votes || 0)).slice(0, 10);
     }, [stats]);
 
-    const resume = recentlyViewed.length ? recentlyViewed : newest.slice(0, 8);
+    // Rangée « Reprendre la cuisine » = recettes en cours (source réelle).
+    const resume = useMemo(() => inProgress.map((x) => x.recipe), [inProgress]);
+    const progressMap = useMemo(() => {
+        const m: Record<string, number> = {};
+        inProgress.forEach((x) => { m[String(x.recipe.id)] = x.pct; });
+        return m;
+    }, [inProgress]);
 
     const laterRecipes = useMemo(
         () => laterIds.map((id) => mockRecipes.find((r) => String(r.id) === id)).filter(Boolean) as Recipe[],
         [laterIds]
     );
+
+    // Croix → coche sur les cartes : ajoute/retire de « À faire plus tard »,
+    // avec un petit message central « Ajouté » / « Supprimé » (1,5 s).
+    const isLater = useCallback((id: string) => laterIds.includes(id), [laterIds]);
+    const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const [toast, setToast] = useState<{ added: boolean } | null>(null);
+    const handleToggleLater = useCallback((r: Recipe) => {
+        const added = toggleLater(String(r.id));
+        setToast({ added });
+        if (toastTimer.current) clearTimeout(toastTimer.current);
+        toastTimer.current = setTimeout(() => setToast(null), 1500);
+    }, []);
 
     // Thématiques : plus de tuiles illustrées — chaque thème devient une rangée de
     // vraies recettes. Un seul balayage de mockRecipes par thème, mémorisé.
@@ -1290,6 +1371,7 @@ export default function TVHome() {
         const sorted = [...THEMES].sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }));
         return sorted.map((theme, i) => ({
             title: theme.title,
+            tag: theme.tag,
             // Les restaurants ont leur propre rangée en bas : on les sort des thèmes.
             recipes: mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && matchesTag(r, theme.tag)),
             // Alternance des formats : le feed ne doit jamais devenir monotone.
@@ -1318,17 +1400,22 @@ export default function TVHome() {
             <div className={styles.sheet}>
                 <div className={styles.grabber} />
 
-                <TopTenRow title="Top 10 : les mieux notées" recipes={topTen} onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
-                <Row
-                    title="Reprendre la cuisine"
-                    recipes={resume}
-                    variant="wide"
-                    withProgress
-                    subtitleMode="time"
-                    onSeeAll={openAll}
-                    onOpen={openSheet}
-                    onLongPress={openMenu}
-                />
+                <TopTenRow title="Top 10 : les mieux notées" recipes={topTen} onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                {resume.length > 0 && (
+                    <Row
+                        title="Reprendre la cuisine"
+                        recipes={resume}
+                        variant="wide"
+                        withProgress
+                        progressMap={progressMap}
+                        subtitleMode="time"
+                        onSeeAll={openAll}
+                        onOpen={openSheet}
+                        onLongPress={openMenu}
+                        isLater={isLater}
+                        onToggleLater={handleToggleLater}
+                    />
+                )}
                 {laterRecipes.length > 0 && (
                     <Row
                         title="À faire plus tard"
@@ -1338,15 +1425,17 @@ export default function TVHome() {
                         onSeeAll={openAll}
                         onOpen={openSheet}
                         onLongPress={openMenu}
+                        isLater={isLater}
+                        onToggleLater={handleToggleLater}
                     />
                 )}
-                <Row title="Nouveautés" recipes={newest} variant="medium" subtitleMode="time" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
-                <Row title="Apéritifs" recipes={byCat['aperitifs'] || []} variant="square" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
-                <Row title="Entrées" recipes={byCat['entrees'] || []} variant="poster" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
-                <Row title="Plats" recipes={byCat['plats'] || []} variant="wide" overlayTitle onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
-                <Row title="Accompagnements" recipes={byCat['accompagnements'] || []} variant="square" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
-                <Row title="Desserts" recipes={byCat['desserts'] || []} variant="poster" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
-                <Row title="Pâtisseries" recipes={byCat['patisserie'] || []} variant="medium" subtitleMode="time" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
+                <Row title="Nouveautés" recipes={newest} variant="medium" subtitleMode="time" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                <Row title="Apéritifs" recipes={byCat['aperitifs'] || []} variant="square" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                <Row title="Entrées" recipes={byCat['entrees'] || []} variant="poster" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                <Row title="Plats" recipes={byCat['plats'] || []} variant="wide" overlayTitle onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                <Row title="Accompagnements" recipes={byCat['accompagnements'] || []} variant="square" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                <Row title="Desserts" recipes={byCat['desserts'] || []} variant="poster" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                <Row title="Pâtisseries" recipes={byCat['patisserie'] || []} variant="medium" subtitleMode="time" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
 
                 {/* Thématiques : même langage visuel que le reste, plus de tuiles à part. */}
                 {themeRows.map((row) => (
@@ -1355,10 +1444,13 @@ export default function TVHome() {
                         title={row.title}
                         recipes={row.recipes}
                         variant={row.variant}
+                        shareTag={row.tag}
                         subtitleMode={row.variant === 'wide' || row.variant === 'medium' ? 'time' : undefined}
                         onSeeAll={openAll}
                         onOpen={openSheet}
                         onLongPress={openMenu}
+                        isLater={isLater}
+                        onToggleLater={handleToggleLater}
                     />
                 ))}
 
@@ -1394,11 +1486,29 @@ export default function TVHome() {
                                     recipe={r}
                                     variant="wide"
                                     subtitle={[catLabel(r), timeLabel(r)].filter(Boolean).join(' · ')}
+                                    later={isLater(String(r.id))}
+                                    onToggleLater={handleToggleLater}
                                     onOpen={() => openSheet(all.recipes, i)}
                                     onLongPress={() => openMenu(r)}
                                 />
                             ))}
                         </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Message central « Ajouté » / « Supprimé », façon Apple TV+ (1,5 s). */}
+            <AnimatePresence>
+                {toast && (
+                    <motion.div
+                        className={styles.toast}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.18 }}
+                    >
+                        <svg viewBox="0 0 24 24" width="46" height="46" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        <span>{toast.added ? 'Ajouté' : 'Supprimé'}</span>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -1443,11 +1553,11 @@ export default function TVHome() {
                                 >
                                     Voir la recette
                                 </button>
-                                {/* 4ᵉ action, seulement pour les recettes déjà consultées. */}
-                                {recentlyViewed.some((r) => String(r.id) === String(menu.id)) && (
+                                {/* 4ᵉ action : seulement pour une recette en cours — on efface son avancement. */}
+                                {resume.some((r) => String(r.id) === String(menu.id)) && (
                                     <button
                                         className={`${styles.menuAction} ${styles.menuDanger}`}
-                                        onClick={() => { haptic(8); const r = menu; setMenu(null); removeSeen(String(r.id)); }}
+                                        onClick={() => { haptic(8); const r = menu; setMenu(null); clearProgress(String(r.id)); }}
                                     >
                                         Retirer de « Reprendre la cuisine »
                                     </button>

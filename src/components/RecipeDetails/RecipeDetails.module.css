@@ -137,7 +137,10 @@
 
 .categoryCommandCenter {
     display: grid;
-    grid-template-columns: 44px 1fr 44px;
+    /* Colonne du milieu = `auto` (et non `1fr`) : la pilule prend la largeur de son
+       texte au lieu d'être écrasée par la colonne quand le panneau est étroit. */
+    grid-template-columns: 44px auto 44px;
+    justify-content: center;
     align-items: center;
     gap: 15px;
     width: 100%;
@@ -180,16 +183,22 @@
 }
 
 .categoryTag {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 0 24px;
+    /* La pilule épouse son libellé : largeur du contenu, pas de retour à la ligne. */
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap;
+    padding: 0 22px;
     height: 44px;
     border-radius: 22px;
     font-size: 13px;
     font-weight: 900;
     letter-spacing: 2.5px;
+    /* Compense le vide de fin de letter-spacing → texte centré dans la pilule. */
+    text-indent: 2.5px;
     background: rgba(255, 255, 255, 0.05);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);

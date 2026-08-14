@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Header from '@/components/Header/Header';
 import MagicFilterBar from '@/components/MagicFilterBar/MagicFilterBar';
 import RecipeGrid from '@/components/RecipeGrid/RecipeGrid';
+import TVAuthGate from '@/components/tvdesktop/TVAuthGate';
 import BottomNav from '@/components/BottomNav/BottomNav';
 import { mockRecipes } from '@/data/mockData';
 import { Recipe } from '@/types';
@@ -59,6 +60,11 @@ export default function FavoritesPage() {
     useEffect(() => {
         if (favoriteRecipes.length) precacheFavorites(favoriteRecipes);
     }, [favoriteRecipes]);
+
+    // Favoris réservés aux connectés — écran de connexion façon Apple TV+.
+    if (!loading && !authed) return (
+        <TVAuthGate title="Connecte-toi" subtitle="Tes recettes favorites sont liées à ton compte." />
+    );
 
     return (
         <div className={styles.page}>

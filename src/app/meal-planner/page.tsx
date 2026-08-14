@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import Header from '@/components/Header/Header';
+import TVAuthGate from '@/components/tvdesktop/TVAuthGate';
 import { mockRecipes } from '@/data/mockData';
 import { Recipe } from '@/types';
 import styles from './meal-planner.module.css';
@@ -112,20 +113,7 @@ export default function MealPlannerPage() {
 
     // Planificateur réservé aux connectés — accès impossible sinon.
     if (!authUser) return (
-        <div className={styles.page}>
-            <Header title="Planning repas" showBack={true} />
-            <main className={styles.main}>
-                <div style={{ textAlign: 'center', padding: '80px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-                    <div style={{ fontSize: '3.5rem' }}>🔒</div>
-                    <h2 style={{ margin: 0 }}>Connecte-toi</h2>
-                    <p style={{ opacity: 0.6, maxWidth: 320, margin: 0 }}>Le planificateur de la semaine est réservé aux membres connectés.</p>
-                    <button
-                        style={{ marginTop: 10, padding: '10px 22px', borderRadius: 24, border: 'none', cursor: 'pointer', fontWeight: 700 }}
-                        onClick={() => window.dispatchEvent(new Event('magic-open-auth'))}
-                    >Se connecter</button>
-                </div>
-            </main>
-        </div>
+        <TVAuthGate subtitle="Le planificateur de la semaine est réservé aux membres connectés." />
     );
 
     return (

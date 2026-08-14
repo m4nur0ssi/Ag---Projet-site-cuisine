@@ -9,10 +9,14 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { supabase } from '@/mobile/lib/supabase';
 import { motion, AnimatePresence } from 'framer-motion';
 import { THEMES } from './themes';
 import styles from './tv.module.css';
+
+// Compte : déplacé du héros vers ici, à droite du titre.
+const AuthButton = dynamic(() => import('@/mobile/components/AuthButton/AuthButton'), { ssr: false });
 
 // ── Icônes (trait fin, esprit SF Symbols) ──────────────────────────────────
 
@@ -62,17 +66,18 @@ export const TREND_OPTIONS = [...THEMES]
     .sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }))
     .map((t) => ({ token: `t:${t.tag}`, label: t.title }));
 
+// Ordre alphabétique français (accents/casse ignorés), comme les catégories.
 export const COUNTRY_OPTIONS: { token: string; label: string }[] = [
-    { token: 'p:france', label: 'France' },
-    { token: 'p:italie', label: 'Italie' },
-    { token: 'p:espagne', label: 'Espagne' },
-    { token: 'p:grece', label: 'Grèce' },
-    { token: 'p:orient', label: 'Orient' },
-    { token: 'p:liban', label: 'Liban' },
-    { token: 'p:asie', label: 'Asie' },
-    { token: 'p:mexique', label: 'Mexique' },
-    { token: 'p:usa', label: 'USA' },
     { token: 'p:afrique', label: 'Afrique' },
+    { token: 'p:asie', label: 'Asie' },
+    { token: 'p:espagne', label: 'Espagne' },
+    { token: 'p:france', label: 'France' },
+    { token: 'p:grece', label: 'Grèce' },
+    { token: 'p:italie', label: 'Italie' },
+    { token: 'p:liban', label: 'Liban' },
+    { token: 'p:mexique', label: 'Mexique' },
+    { token: 'p:orient', label: 'Orient' },
+    { token: 'p:usa', label: 'USA' },
 ];
 
 interface NavDrawerProps {
@@ -111,6 +116,22 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
         check();
         const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => setAuthed(!!session));
         return () => { alive = false; sub.subscription.unsubscribe(); };
+    }, [open]);
+
+    // Bibliothèque épinglée sur desktop (glisser-déposer) : mêmes tokens, même clé
+    // de stockage → on l'affiche ici pour que les deux versions restent synchro.
+    const [pinned, setPinned] = useState<{ token: string; label: string }[]>([]);
+    useEffect(() => {
+        const load = () => {
+            try {
+                const raw = JSON.parse(localStorage.getItem('tv-library-v1') || '[]');
+                setPinned(Array.isArray(raw) ? raw.filter((x) => x && typeof x.token === 'string') : []);
+            } catch { setPinned([]); }
+        };
+        load();
+        window.addEventListener('tv-library-change', load);
+        window.addEventListener('storage', load);
+        return () => { window.removeEventListener('tv-library-change', load); window.removeEventListener('storage', load); };
     }, [open]);
 
     // Volet ouvert = page figée derrière (comportement d'une modale iOS).
@@ -186,8 +207,14 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                         <div className={styles.navGrip} />
 
                         <div className={styles.navHead}>
-                            <div className={styles.navBrandKicker}>Les recettes</div>
-                            <div className={styles.navBrandWord}>Magiques</div>
+                            <div>
+                                <div className={styles.navBrandKicker}>Les recettes</div>
+                                <div className={styles.navBrandWord}>Magiques</div>
+                            </div>
+                            {/* Compte connecté, à droite du titre. */}
+                            <div className={styles.navHeadAuth}>
+                                <AuthButton />
+                            </div>
                         </div>
 
                         {/* Case de recherche : se combine avec les filtres cochés. */}
@@ -255,6 +282,42 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                     <Ic d={ICONS.book} /><span className={styles.navRowText}>Visite guidée</span>
                                 </button>
                             </div>
+
+                            {/* Bibliothèque épinglée (synchro depuis le desktop). */}
+                            {pinned.length > 0 && (
+                                <>
+                                    <div className={styles.navLabel}>Bibliothèque</div>
+                                    <div className={styles.navGroup}>
+                                        {pinned.map((o) => {
+                                            const on = selected.includes(o.token);
+                                            return (
+                                                <div key={o.token} className={`${styles.navRow} ${on ? styles.navRowOn : ''} ${styles.navPinned}`}>
+                                                    <button
+                                                        className={styles.navPinnedBtn}
+                                                        onClick={() => { haptic(8); onToggle(o.token); }}
+                                                        aria-pressed={on}
+                                                    >
+                                                        <span className={styles.navRowText}>{o.label}</span>
+                                                    </button>
+                                                    <button
+                                                        className={styles.navPinnedRemove}
+                                                        aria-label={`Retirer ${o.label}`}
+                                                        onClick={() => {
+                                                            haptic(8);
+                                                            const next = pinned.filter((p) => p.token !== o.token);
+                                                            setPinned(next);
+                                                            try { localStorage.setItem('tv-library-v1', JSON.stringify(next)); } catch { /* noop */ }
+                                                            window.dispatchEvent(new Event('tv-library-change'));
+                                                        }}
+                                                    >
+                                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" /></svg>
+                                                    </button>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </>
+                            )}
 
                             <Group title="Catégories" options={CATEGORY_OPTIONS} />
                             <Group title="Tendances" options={TREND_OPTIONS} />

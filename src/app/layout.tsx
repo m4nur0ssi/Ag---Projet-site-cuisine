@@ -11,7 +11,9 @@ export const metadata: Metadata = {
     keywords: ['recettes', 'recettes magiques', 'cuisine', 'magie', 'gastronomie', 'recette facile'],
     manifest: '/manifest.json',
     icons: [
-        { rel: 'apple-touch-icon', url: '/icons/icon-192x192.png' },
+        { rel: 'icon', url: '/icons/icon-192x192.png', type: 'image/png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', url: '/icons/icon-180x180.png' },
+        { rel: 'apple-touch-icon', sizes: '192x192', url: '/icons/icon-192x192.png' },
     ],
     alternates: {
         canonical: '/',

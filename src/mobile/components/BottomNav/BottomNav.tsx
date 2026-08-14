@@ -8,7 +8,9 @@ import styles from './BottomNav.module.css';
 import dynamic from 'next/dynamic';
 import WeekPlanner from '../WeekPlanner/WeekPlanner';
 import Portal from '../Portal';
-import SpotlightSearch from '../SpotlightSearch/SpotlightSearch';
+// Recherche « Apple TV+ » (la même que le menu), en remplacement de l'ancien
+// SpotlightSearch : la loupe de la barre du bas ouvre désormais ce panneau stylé.
+const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
 import { mockRecipes } from '@/mobile/data/mockData';
 import { useTimer } from '@/mobile/components/Timer/TimerContext';
 import { decodeHtml } from '@/mobile/lib/utils';
@@ -338,13 +340,11 @@ export default function BottomNav() {
 
     return (
         <>
-            {isSearchOpen && (
-                <SpotlightSearch
-                    isOpen={isSearchOpen}
-                    onClose={() => setIsSearchOpen(false)}
-                    onRecipeSelect={handleRecipeSelect}
-                />
-            )}
+            <TVSpotlight
+                open={isSearchOpen}
+                onClose={() => setIsSearchOpen(false)}
+                onRecipeSelect={handleRecipeSelect}
+            />
 
             <nav id="bottom-nav" className={styles.navWrapper}>
                 <div className={`${styles.multiPillContainer} ${(isMiniMode || forceMiniMode) ? styles.isMini : ''}`}>

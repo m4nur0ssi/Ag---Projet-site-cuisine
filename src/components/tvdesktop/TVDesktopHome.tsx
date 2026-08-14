@@ -20,6 +20,7 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { THEMES, matchesTag } from '@/mobile/screens/tv/themes';
+import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
 
 const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
@@ -48,6 +49,28 @@ const diffLabel = (r: Recipe) => r.difficulty === 'facile' ? 'Facile' : r.diffic
 const LATER_KEY = 'tv-later-v1';
 const readIds = (key: string): string[] => { try { return JSON.parse(localStorage.getItem(key) || '[]').map(String); } catch { return []; } };
 
+// « Bibliothèque » personnalisée : raccourcis épinglés par glisser-déposer.
+// Chaque entrée est un token au format du volet mobile (`c:`/`t:`/`p:`) + libellé,
+// pour que la liste soit RELUE telle quelle sur mobile (même clé de stockage).
+const LIBRARY_KEY = 'tv-library-v1';
+const LIBRARY_EVENT = 'tv-library-change';
+interface LibraryItem { token: string; label: string }
+function readLibrary(): LibraryItem[] {
+    try {
+        const raw = JSON.parse(localStorage.getItem(LIBRARY_KEY) || '[]');
+        return Array.isArray(raw) ? raw.filter((x) => x && typeof x.token === 'string') : [];
+    } catch { return []; }
+}
+function writeLibrary(items: LibraryItem[]) {
+    try { localStorage.setItem(LIBRARY_KEY, JSON.stringify(items)); } catch { /* noop */ }
+    window.dispatchEvent(new Event(LIBRARY_EVENT));
+}
+
+// Identifiant de la vidéo TikTok d'une recette (même règle que le mobile).
+const tiktokId = (recipe: Recipe) => recipe.videoHtml?.match(/data-video-id="(\d+)"/)?.[1] || null;
+// Deux secondes de photo fixe avant que la vidéo prenne le relais.
+const AUTOPLAY_DELAY = 2000;
+
 /** Ouvre la fiche recette flottante du desktop (RecipeSheet via GlobalRecipeSheet). */
 const openRecipe = (r: Recipe) => window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: r }));
 
@@ -70,29 +93,113 @@ const ICONS = {
     book: 'M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5z',
 };
 
+/** Coche d'un filtre actif (façon liste à choix multiple). */
+const Check = () => (
+    <svg className={styles.navCheck} viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden>
+        <path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
 // ── Carte ──────────────────────────────────────────────────────────────────
 
-type CardShape = 'wide' | 'poster' | 'square';
+// Formats de carte, comme sur mobile : le feed ne doit jamais être monotone.
+// `posterXL` = grande verticale mise en avant ; `wideXL` = large et plus haute.
+type CardShape = 'wide' | 'poster' | 'square' | 'posterXL' | 'wideXL';
 
-function Card({ recipe, shape, onMenu }: { recipe: Recipe; shape: CardShape; onMenu: (r: Recipe, x: number, y: number) => void }) {
+// Motif de la mosaïque « catégorie » : chaque nom pointe une classe CSS qui
+// donne à la cellule sa taille (colonnes × rangées). Le motif se répète, si bien
+// que la grille alterne grandes verticales, larges, standards et petites — jamais
+// une grille uniforme. 12 cases avant de boucler : l'œil ne repère pas la répétition.
+const MOSAIC = [
+    'mTall', 'mStd', 'mWide', 'mStd',
+    'mStd', 'mWide', 'mSmall', 'mTall',
+    'mWide', 'mStd', 'mStd', 'mSmall',
+] as const;
+
+function Card({ recipe, shape, onMenu, later, onToggleLater, rank }: {
+    recipe: Recipe; shape: CardShape;
+    onMenu: (r: Recipe, x: number, y: number) => void;
+    /** Recette déjà dans « À faire plus tard » (croix → coche). */
+    later?: boolean;
+    onToggleLater?: (r: Recipe) => void;
+    /** Rang 1..10 affiché en grand sur le visuel (rangée Top 10). */
+    rank?: number;
+}) {
+    const vid = tiktokId(recipe);
+    // Survol prolongé (1,5 s) → la vidéo se lance dans le visuel. Elle porte SES
+    // contrôles (son + barre de progression) : la souris avance et recule dedans.
+    const [playing, setPlaying] = useState(false);
+    const [ready, setReady] = useState(false);
+    const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const enter = () => {
+        if (!vid) return;
+        timer.current = setTimeout(() => setPlaying(true), 1500);
+    };
+    const leave = () => {
+        if (timer.current) clearTimeout(timer.current);
+        setPlaying(false);
+        setReady(false);
+    };
+    useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
+
+    // Le lecteur ne se montre qu'une fois qu'il joue vraiment (postMessage) — sinon
+    // il afficherait son bandeau de cookies à la place de la recette.
+    useEffect(() => {
+        if (!playing) return;
+        const onMessage = (e: MessageEvent) => {
+            const d = e.data;
+            if (d && typeof d === 'object' && d['x-tiktok-player']) setReady(true);
+        };
+        window.addEventListener('message', onMessage);
+        return () => window.removeEventListener('message', onMessage);
+    }, [playing]);
+
     return (
         <div
-            className={`${styles.card} ${styles[shape]}`}
-            onClick={() => openRecipe(recipe)}
+            className={`${styles.card} ${styles[shape]} ${rank ? styles.cardRanked : ''}`}
             onContextMenu={(e) => { e.preventDefault(); onMenu(recipe, e.clientX, e.clientY); }}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
+            onMouseEnter={enter}
+            onMouseLeave={leave}
         >
+            {rank && <span className={styles.cardRank}>{rank}</span>}
             <div className={styles.thumb}>
                 <img src={recipe.image} alt={label(recipe)} className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
-                <div className={styles.thumbHover}>
-                    <span className={styles.playDot}>
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                    </span>
-                </div>
+                {playing && vid && (
+                    <iframe
+                        className={`${styles.thumbVideo} ${ready ? styles.thumbVideoOn : ''}`}
+                        // Contrôles TikTok gardés : son, barre de progression, avance/recul.
+                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=1&progress_bar=1&play_button=1&volume_control=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        allow="autoplay; encrypted-media"
+                        title={label(recipe)}
+                    />
+                )}
             </div>
-            <div className={styles.cardLabel}>{label(recipe)}</div>
+            {/* Titre + bouton « À faire plus tard » (croix → coche). Le titre ouvre
+                la fiche ; cliquer la vidéo ne fait que la piloter. */}
+            <div className={styles.cardLabelRow}>
+                <div
+                    className={styles.cardLabel}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => openRecipe(recipe)}
+                    onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
+                >{label(recipe)}</div>
+                {onToggleLater && (
+                    <button
+                        className={`${styles.laterBtn} ${later ? styles.laterBtnOn : ''}`}
+                        onClick={(e) => { e.stopPropagation(); onToggleLater(recipe); }}
+                        aria-label={later ? 'Retirer de « À faire plus tard »' : 'Ajouter à « À faire plus tard »'}
+                        title={later ? 'À faire plus tard : ajouté' : 'À faire plus tard'}
+                    >
+                        {later ? (
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        ) : (
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
+                        )}
+                    </button>
+                )}
+            </div>
             <div className={styles.cardSub}>{[catLabel(recipe), timeLabel(recipe)].filter(Boolean).join(' · ')}</div>
         </div>
     );
@@ -100,12 +207,16 @@ function Card({ recipe, shape, onMenu }: { recipe: Recipe; shape: CardShape; onM
 
 // ── Rangée horizontale (flèches au survol) ─────────────────────────────────
 
-function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu }: {
+function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onToggleLater, ranked }: {
     title: string; recipes: Recipe[]; shape: CardShape;
     /** Thème partageable : ajoute le bouton « Partager » (lien /?tag=…). */
     shareTag?: string;
     onSeeAll: (title: string, recipes: Recipe[]) => void;
     onMenu: (r: Recipe, x: number, y: number) => void;
+    isLater?: (id: string) => boolean;
+    onToggleLater?: (r: Recipe) => void;
+    /** Rangée Top 10 : numérote les cartes de 1 à 10. */
+    ranked?: boolean;
 }) {
     const scroller = useRef<HTMLDivElement>(null);
     if (!recipes.length) return null;
@@ -133,8 +244,18 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu }: {
                 <button className={`${styles.rowArrow} ${styles.rowArrowL}`} onClick={() => nudge(-1)} aria-label="Précédent">
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
-                <div className={styles.rowScroll} ref={scroller}>
-                    {recipes.map((r) => <Card key={r.id} recipe={r} shape={shape} onMenu={onMenu} />)}
+                <div className={`${styles.rowScroll} ${ranked ? styles.rowScrollRanked : ''}`} ref={scroller}>
+                    {recipes.map((r, i) => (
+                        <Card
+                            key={r.id}
+                            recipe={r}
+                            shape={shape}
+                            onMenu={onMenu}
+                            later={isLater?.(String(r.id))}
+                            onToggleLater={onToggleLater}
+                            rank={ranked ? i + 1 : undefined}
+                        />
+                    ))}
                 </div>
                 <button className={`${styles.rowArrow} ${styles.rowArrowR}`} onClick={() => nudge(1)} aria-label="Suivant">
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -146,24 +267,81 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu }: {
 
 // ── Héros carrousel ─────────────────────────────────────────────────────────
 
-function Hero({ recipes, onMenu }: { recipes: Recipe[]; onMenu: (r: Recipe, x: number, y: number) => void }) {
+function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; onMenu: (r: Recipe, x: number, y: number) => void }) {
     const [index, setIndex] = useState(0);
     const [paused, setPaused] = useState(false);
-
-    useEffect(() => {
-        if (recipes.length < 2 || paused) return;
-        const id = setInterval(() => setIndex((i) => (i + 1) % recipes.length), 5000);
-        return () => clearInterval(id);
-    }, [recipes.length, paused]);
+    // La vidéo ne part pas d'emblée : deux secondes de photo, puis elle prend la
+    // place du visuel dans le même cadre — et seulement si elle joue vraiment
+    // (sinon le lecteur TikTok afficherait son bandeau de cookies à la place).
+    const [playing, setPlaying] = useState(false);
+    const [videoOn, setVideoOn] = useState(false);
 
     const current = recipes[Math.min(index, recipes.length - 1)];
+    const currentVid = current ? tiktokId(current) : null;
+
+    // Rotation auto : suspendue au survol du héros, et pendant une lecture vidéo.
+    useEffect(() => {
+        if (recipes.length < 2 || paused || (playing && videoOn)) return;
+        const id = setInterval(() => setIndex((i) => (i + 1) % recipes.length), 5000);
+        return () => clearInterval(id);
+    }, [recipes.length, paused, playing, videoOn]);
+
+    // 2 s d'image fixe, puis on tente la vidéo. Changer de recette repart de zéro.
+    useEffect(() => {
+        setPlaying(false);
+        setVideoOn(false);
+        if (!currentVid) return;
+        const t = setTimeout(() => { if (!document.hidden) setPlaying(true); }, AUTOPLAY_DELAY);
+        return () => clearTimeout(t);
+    }, [currentVid]);
+
+    // Le lecteur TikTok parle (postMessage) = il joue pour de bon : on révèle la
+    // vidéo à ce moment-là. Silence après 6 s = cookies/refus, la photo reprend.
+    useEffect(() => {
+        if (!playing) return;
+        const onMessage = (e: MessageEvent) => {
+            const d = e.data;
+            if (d && typeof d === 'object' && d['x-tiktok-player']) setVideoOn(true);
+        };
+        window.addEventListener('message', onMessage);
+        const giveUp = setTimeout(() => setPlaying((p) => (videoOn ? p : false)), 6000);
+        return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
+    }, [playing, videoOn]);
+
     if (!current) return null;
     const go = (d: number) => setIndex((i) => (i + d + recipes.length) % recipes.length);
 
     return (
         <div className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-            {/* Image à gauche (moitié), fondu vers le noir à droite — évite d'étirer
-               les photos larges à basse résolution sur toute la largeur. */}
+            {/* Fond cinéma : la photo courante, très floutée et assombrie, remplit
+               tout le cadre — fini le pavé noir, on baigne dans la recette. */}
+            <div className={styles.heroBackdrop} aria-hidden>
+                <AnimatePresence>
+                    <motion.img
+                        key={current.id}
+                        className={styles.heroBackdropImg}
+                        src={current.image}
+                        alt=""
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1.1, ease: [0.32, 0.72, 0, 1] }}
+                        draggable={false}
+                    />
+                </AnimatePresence>
+                <div className={styles.heroBackdropVeil} />
+            </div>
+
+            {/* Bandeau haut : la signature et le compteur de recettes. */}
+            <div className={styles.heroTopBar}>
+                <div className={styles.heroBrandKicker}>Les recettes</div>
+                <div className={styles.heroBrandRow}>
+                    <span className={styles.heroBrandWord}>Magiques</span>
+                    <span className={styles.heroBrandCount}>{total} recettes</span>
+                </div>
+            </div>
+
+            {/* Carte verticale : la photo, puis la vidéo au bout de 2 s. */}
             <div className={styles.heroLeft} onClick={() => openRecipe(current)}>
                 <AnimatePresence>
                     <motion.img
@@ -178,17 +356,24 @@ function Hero({ recipes, onMenu }: { recipes: Recipe[]; onMenu: (r: Recipe, x: n
                         draggable={false}
                     />
                 </AnimatePresence>
-                <div className={styles.heroFade} />
+                {playing && currentVid && (
+                    <iframe
+                        className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
+                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        allow="autoplay; encrypted-media"
+                        title={label(current)}
+                    />
+                )}
                 <button className={`${styles.heroNav} ${styles.heroNavL}`} onClick={(e) => { e.stopPropagation(); go(-1); }} aria-label="Précédent">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
-            </div>
-
-            {/* Détails à droite (titre, méta, actions) sur fond noir. */}
-            <div className={styles.heroRight}>
-                <button className={`${styles.heroNav} ${styles.heroNavR}`} onClick={() => go(1)} aria-label="Suivant">
+                <button className={`${styles.heroNav} ${styles.heroNavR}`} onClick={(e) => { e.stopPropagation(); go(1); }} aria-label="Suivant">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
+            </div>
+
+            {/* Détails à droite (titre, méta, actions). */}
+            <div className={styles.heroRight}>
                 <motion.div
                     key={current.id}
                     className={styles.heroBody}
@@ -231,21 +416,41 @@ export default function TVDesktopHome() {
     const stats = useRatingStats();
     const [searchOpen, setSearchOpen] = useState(false);
     const [collection, setCollection] = useState<{ title: string; recipes: Recipe[] } | null>(null);
-    const [recentlyViewed, setRecentlyViewed] = useState<Recipe[]>([]);
+    const [inProgress, setInProgress] = useState<{ recipe: Recipe; pct: number }[]>([]);
     const [laterIds, setLaterIds] = useState<string[]>([]);
     const [menu, setMenu] = useState<{ recipe: Recipe; x: number; y: number } | null>(null);
     const [nav, setNav] = useState<'accueil' | string>('accueil');
+    // Barre latérale repliable : on agrandit la page d'un clic.
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+    // Raccourcis épinglés dans « Bibliothèque » (glisser-déposer), + survol du drop.
+    const [library, setLibrary] = useState<LibraryItem[]>([]);
+    const [dragOver, setDragOver] = useState(false);
+    // Multi-filtre : sélection cumulative de catégories / tendances / pays (tokens
+    // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
+    const [filters, setFilters] = useState<string[]>([]);
 
     useEffect(() => {
-        try {
-            const ids: string[] = JSON.parse(localStorage.getItem('recently-viewed') || '[]').map((r: any) => r.id || r);
-            setRecentlyViewed(ids.map((id) => mockRecipes.find((r) => String(r.id) === String(id))).filter(Boolean) as Recipe[]);
-        } catch { /* noop */ }
         const sync = () => setLaterIds(readIds(LATER_KEY));
+        // « Reprendre la cuisine » = recettes en cours (étapes entamées, pas finies).
+        const loadProgress = () => setInProgress(inProgressRecipes(mockRecipes));
+        const loadLibrary = () => setLibrary(readLibrary());
         sync();
+        loadProgress();
+        loadLibrary();
         window.addEventListener('tv-later-change', sync);
         window.addEventListener('storage', sync);
-        return () => { window.removeEventListener('tv-later-change', sync); window.removeEventListener('storage', sync); };
+        window.addEventListener('storage', loadLibrary);
+        window.addEventListener(LIBRARY_EVENT, loadLibrary);
+        window.addEventListener(PROGRESS_EVENT, loadProgress);
+        window.addEventListener('focus', loadProgress);
+        return () => {
+            window.removeEventListener('tv-later-change', sync);
+            window.removeEventListener('storage', sync);
+            window.removeEventListener('storage', loadLibrary);
+            window.removeEventListener(LIBRARY_EVENT, loadLibrary);
+            window.removeEventListener(PROGRESS_EVENT, loadProgress);
+            window.removeEventListener('focus', loadProgress);
+        };
     }, []);
 
     // Ferme le menu contextuel sur clic ailleurs / Échap.
@@ -266,18 +471,30 @@ export default function TVDesktopHome() {
 
     const onMenu = useCallback((recipe: Recipe, x: number, y: number) => setMenu({ recipe, x, y }), []);
 
-    const toggleLater = (id: string) => {
+    const toggleLater = (id: string): boolean => {
         const list = readIds(LATER_KEY);
         const has = list.includes(id);
         const next = has ? list.filter((x) => x !== id) : [...list, id];
         localStorage.setItem(LATER_KEY, JSON.stringify(next));
         window.dispatchEvent(new Event('tv-later-change'));
+        return !has; // true = vient d'être ajoutée
     };
+
+    // Petit message central « Ajouté » / « Supprimé », façon Apple TV+, 1,5 s.
+    const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const [toast, setToast] = useState<{ added: boolean } | null>(null);
+    const handleToggleLater = useCallback((r: Recipe) => {
+        const added = toggleLater(String(r.id));
+        setToast({ added });
+        if (toastTimer.current) clearTimeout(toastTimer.current);
+        toastTimer.current = setTimeout(() => setToast(null), 1500);
+    }, []);
+    const isLater = useCallback((id: string) => laterIds.includes(id), [laterIds]);
 
     // ── Données des rangées ──
     const heroRecipes = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image).slice(0, 6), []);
     const newest = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image).slice(0, 18), []);
-    const resume = recentlyViewed.length ? recentlyViewed : newest.slice(0, 10);
+    const resume = useMemo(() => inProgress.map((x) => x.recipe), [inProgress]);
     const topTen = useMemo(() => {
         const rated = stats
             ? mockRecipes.map((r) => ({ r, s: stats.get(String(r.id)) })).filter((x) => x.s && x.s.count > 0)
@@ -298,7 +515,7 @@ export default function TVDesktopHome() {
         return g;
     }, []);
     const themeRows = useMemo(() => {
-        const SHAPES: CardShape[] = ['poster', 'wide', 'square'];
+        const SHAPES: CardShape[] = ['poster', 'wideXL', 'square', 'posterXL', 'wide'];
         const sorted = [...THEMES].sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }));
         return sorted.map((theme, i) => ({
             title: theme.title,
@@ -335,11 +552,100 @@ export default function TVDesktopHome() {
         { key: 'restaurant', label: 'Comme au resto' },
     ];
 
+    // Tendances (thèmes du feed) et Pays — mêmes listes que le volet mobile, pour
+    // que la barre latérale desktop propose exactement la même navigation.
+    const TRENDS = useMemo(
+        () => [...THEMES].sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' })),
+        []
+    );
+    // Ordre alphabétique français (accents/casse ignorés), comme les catégories.
+    const COUNTRIES: { tag: string; label: string }[] = [
+        { tag: 'afrique', label: 'Afrique' }, { tag: 'asie', label: 'Asie' },
+        { tag: 'espagne', label: 'Espagne' }, { tag: 'france', label: 'France' },
+        { tag: 'grece', label: 'Grèce' }, { tag: 'italie', label: 'Italie' },
+        { tag: 'liban', label: 'Liban' }, { tag: 'mexique', label: 'Mexique' },
+        { tag: 'orient', label: 'Orient' }, { tag: 'usa', label: 'USA' },
+    ];
+
     const goCategory = (key: string, lbl: string) => {
         setNav(key);
         openCollection(lbl, byCat[key] || []);
     };
-    const goHome = () => { setNav('accueil'); setCollection(null); };
+    // Tendance ou pays : on ouvre la collection des recettes correspondantes,
+    // via les mêmes règles de correspondance que le reste du site.
+    const goTag = (tag: string, lbl: string) => {
+        setNav(`tag:${tag}`);
+        openCollection(lbl, mockRecipes.filter((r) => r.image && r.category !== 'restaurant' && matchesTag(r, tag)));
+    };
+    const goHome = () => { setNav('accueil'); setCollection(null); setFilters([]); };
+
+    // ── Multi-filtre ────────────────────────────────────────────────────────
+    const toggleFilter = (token: string) => {
+        setCollection(null); // les résultats combinés priment sur une collection simple
+        setFilters((prev) => prev.includes(token) ? prev.filter((t) => t !== token) : [...prev, token]);
+    };
+    const ALL_OPTIONS = useMemo(
+        () => [
+            ...CATS.filter((c) => c.key !== 'restaurant').map((c) => ({ token: `c:${c.key}`, label: c.label })),
+            ...TRENDS.map((t) => ({ token: `t:${t.tag}`, label: t.title })),
+            ...COUNTRIES.map((c) => ({ token: `p:${c.tag}`, label: c.label })),
+        ],
+        [TRENDS] // CATS/COUNTRIES sont des constantes locales stables
+    );
+    const labelOf = (token: string) => ALL_OPTIONS.find((o) => o.token === token)?.label || token.slice(2);
+    // Recettes correspondant à TOUS les groupes cochés (ET), OU dans un groupe.
+    const filtered = useMemo(() => {
+        if (!filters.length) return [] as Recipe[];
+        const byGroup: Record<string, string[]> = {};
+        filters.forEach((t) => { (byGroup[t.slice(0, 1)] ||= []).push(t.slice(2)); });
+        const hasCategory = !!byGroup['c']?.length;
+        return mockRecipes.filter((r) => {
+            if (!r.image) return false;
+            return Object.entries(byGroup).every(([g, values]) =>
+                values.some((v) => {
+                    if (g !== 'c') return matchesTag(r, v, { ignoreCategoryGuards: hasCategory });
+                    const tags = (r.tags || []).map((t) => t.toLowerCase());
+                    if (v === 'accompagnements') return tags.includes('accompagnement') || tags.includes('accompagnements');
+                    return (r.category || '').toLowerCase() === v;
+                })
+            );
+        });
+    }, [filters]);
+
+    // Ouvre un raccourci épinglé selon son préfixe de token (c: / t: / p:).
+    const openToken = (token: string, label: string) => {
+        const kind = token.slice(0, 1);
+        const id = token.slice(2);
+        if (kind === 'c') goCategory(id, label);
+        else goTag(id, label); // t: (tendance) ou p: (pays) — même résolution
+    };
+    // Dépose un élément glissé dans la bibliothèque (sans doublon).
+    const dropToLibrary = (e: React.DragEvent) => {
+        e.preventDefault();
+        setDragOver(false);
+        let data: LibraryItem | null = null;
+        try { data = JSON.parse(e.dataTransfer.getData('application/x-tv-item') || e.dataTransfer.getData('text/plain')); } catch { return; }
+        if (!data || !data.token) return;
+        setLibrary((prev) => {
+            if (prev.some((x) => x.token === data!.token)) return prev;
+            const next = [...prev, data!];
+            writeLibrary(next);
+            return next;
+        });
+    };
+    const removeFromLibrary = (token: string) => {
+        setLibrary((prev) => { const next = prev.filter((x) => x.token !== token); writeLibrary(next); return next; });
+    };
+    // Rend un bouton de liste (catégorie/tendance/pays) déplaçable vers la bibliothèque.
+    const dragProps = (token: string, label: string) => ({
+        draggable: true,
+        onDragStart: (e: React.DragEvent) => {
+            const payload = JSON.stringify({ token, label });
+            e.dataTransfer.setData('application/x-tv-item', payload);
+            e.dataTransfer.setData('text/plain', payload);
+            e.dataTransfer.effectAllowed = 'copy';
+        },
+    });
 
     // `tour` : repère utilisé par la visite guidée, qui montre ces entrées en
     // exemple (elle cherche `[data-tour="planner"]` et `[data-tour="shopping"]`).
@@ -350,12 +656,30 @@ export default function TVDesktopHome() {
     );
 
     return (
-        <div className={styles.shell}>
+        <div className={`${styles.shell} ${sidebarOpen ? '' : styles.shellClosed}`}>
+            {/* Rouvrir la barre latérale quand elle est repliée. */}
+            {!sidebarOpen && (
+                <button className={styles.sidebarOpenBtn} onClick={() => setSidebarOpen(true)} aria-label="Ouvrir le menu">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h11" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" /></svg>
+                </button>
+            )}
+
+            {/* Connexion : tout en haut à droite, à côté du titre. */}
+            <div className={styles.topAuth}>
+                <AuthButton />
+            </div>
+
             {/* ── Barre latérale ── */}
             <aside className={styles.sidebar}>
-                <div className={styles.brand}>
-                    <div className={styles.brandKicker}>Les recettes</div>
-                    <div className={styles.brandWord}>Magiques</div>
+                <div className={styles.brandBar}>
+                    {/* Le titre ramène à l'accueil, comme sur mobile. */}
+                    <button className={styles.brand} onClick={goHome} aria-label="Retour à l'accueil">
+                        <div className={styles.brandKicker}>Les recettes</div>
+                        <div className={styles.brandWord}>Magiques</div>
+                    </button>
+                    <button className={styles.sidebarToggle} onClick={() => setSidebarOpen(false)} aria-label="Replier le menu">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M15 5l-7 7 7 7M20 5l-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </button>
                 </div>
 
                 <button className={styles.searchBtn} onClick={() => setSearchOpen(true)}>
@@ -375,30 +699,102 @@ export default function TVDesktopHome() {
                     </div>
                 </nav>
 
+                {/* Bibliothèque : zone de dépôt. On y glisse une catégorie / tendance /
+                    pays depuis les listes ci-dessous ; ça s'enregistre tout seul. */}
                 <div className={styles.navLabel}>Bibliothèque</div>
-                <nav className={styles.navGroup}>
+                <nav
+                    className={`${styles.navGroup} ${styles.libraryDrop} ${dragOver ? styles.libraryDropOver : ''}`}
+                    onDragOver={(e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; if (!dragOver) setDragOver(true); }}
+                    onDragLeave={(e) => { if (e.currentTarget === e.target) setDragOver(false); }}
+                    onDrop={dropToLibrary}
+                >
                     <NavItem icon={ICONS.clock} onClick={() => openCollection('Nouveautés', newest)}>Ajouts récents</NavItem>
                     <NavItem icon={ICONS.star} onClick={() => openCollection('Top 10 : les mieux notées', topTen)}>Top 10</NavItem>
                     <NavItem icon={ICONS.resto} onClick={() => goCategory('restaurant', 'Comme au resto')}>Comme au resto</NavItem>
+                    {library.map((it) => (
+                        <div key={it.token} className={`${styles.navRow} ${styles.libraryItem} ${nav === `tag:${it.token.slice(2)}` || nav === it.token.slice(2) ? styles.navRowOn : ''}`}>
+                            <button className={styles.libraryItemBtn} onClick={() => openToken(it.token, it.label)}>
+                                <span className={styles.navBullet} /><span>{it.label}</span>
+                            </button>
+                            <button className={styles.libraryRemove} onClick={(e) => { e.stopPropagation(); removeFromLibrary(it.token); }} aria-label={`Retirer ${it.label}`}>
+                                <svg viewBox="0 0 24 24" width="13" height="13" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" /></svg>
+                            </button>
+                        </div>
+                    ))}
+                    {library.length === 0 && (
+                        <div className={styles.libraryHint}>Glisse une catégorie, une tendance ou un pays ici.</div>
+                    )}
                 </nav>
 
+                {/* Catégories / Tendances / Pays : un clic COCHE le filtre (cumulatif),
+                    et l'élément reste déplaçable vers la Bibliothèque. */}
                 <div className={styles.navLabel}>Catégories</div>
                 <nav className={styles.navGroup}>
                     {CATS.filter((c) => c.key !== 'restaurant').map((c) => (
-                        <button key={c.key} className={`${styles.navRow} ${styles.navRowSmall} ${nav === c.key ? styles.navRowOn : ''}`} onClick={() => goCategory(c.key, c.label)}>
+                        <button key={c.key} {...dragProps(`c:${c.key}`, c.label)} className={`${styles.navRow} ${styles.navRowSmall} ${styles.navDraggable} ${filters.includes(`c:${c.key}`) ? styles.navRowOn : ''}`} onClick={() => toggleFilter(`c:${c.key}`)}>
                             <span className={styles.navBullet} /><span>{c.label}</span>
+                            {filters.includes(`c:${c.key}`) && <Check />}
                         </button>
                     ))}
                 </nav>
 
-                <div className={styles.sidebarFoot}>
-                    <AuthButton />
-                </div>
+                <div className={styles.navLabel}>Tendances</div>
+                <nav className={styles.navGroup}>
+                    {TRENDS.map((t) => (
+                        <button key={t.tag} {...dragProps(`t:${t.tag}`, t.title)} className={`${styles.navRow} ${styles.navRowSmall} ${styles.navDraggable} ${filters.includes(`t:${t.tag}`) ? styles.navRowOn : ''}`} onClick={() => toggleFilter(`t:${t.tag}`)}>
+                            <span className={styles.navBullet} /><span>{t.title}</span>
+                            {filters.includes(`t:${t.tag}`) && <Check />}
+                        </button>
+                    ))}
+                </nav>
+
+                <div className={styles.navLabel}>Pays</div>
+                <nav className={styles.navGroup}>
+                    {COUNTRIES.map((c) => (
+                        <button key={c.tag} {...dragProps(`p:${c.tag}`, c.label)} className={`${styles.navRow} ${styles.navRowSmall} ${styles.navDraggable} ${filters.includes(`p:${c.tag}`) ? styles.navRowOn : ''}`} onClick={() => toggleFilter(`p:${c.tag}`)}>
+                            <span className={styles.navBullet} /><span>{c.label}</span>
+                            {filters.includes(`p:${c.tag}`) && <Check />}
+                        </button>
+                    ))}
+                </nav>
+
             </aside>
 
             {/* ── Contenu ── */}
             <main className={styles.content}>
-                {collection ? (
+                {filters.length > 0 ? (
+                    <div className={styles.collection}>
+                        <div className={styles.collHead}>
+                            <button className={styles.collBack} onClick={goHome}>
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                Accueil
+                            </button>
+                            <h1 className={styles.collTitle}>Filtres</h1>
+                            <span className={styles.collCount}>{filtered.length} recette{filtered.length > 1 ? 's' : ''}</span>
+                        </div>
+                        {/* Barre des filtres actifs : chaque puce se retire d'un clic. */}
+                        <div className={styles.filterBar}>
+                            {filters.map((t) => (
+                                <button key={t} className={styles.filterChip} onClick={() => toggleFilter(t)}>
+                                    <span>{labelOf(t)}</span>
+                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
+                                </button>
+                            ))}
+                            <button className={styles.filterClear} onClick={() => setFilters([])}>Tout effacer</button>
+                        </div>
+                        {filtered.length > 0 ? (
+                            <div className={styles.mosaic}>
+                                {filtered.map((r, i) => (
+                                    <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
+                                        <Card recipe={r} shape="wide" onMenu={onMenu} later={isLater(String(r.id))} onToggleLater={handleToggleLater} />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className={styles.filterEmpty}>Aucune recette ne coche tous ces filtres à la fois.</div>
+                        )}
+                    </div>
+                ) : collection ? (
                     <div className={styles.collection}>
                         <div className={styles.collHead}>
                             <button className={styles.collBack} onClick={goHome}>
@@ -408,28 +804,35 @@ export default function TVDesktopHome() {
                             <h1 className={styles.collTitle}>{collection.title}</h1>
                             <span className={styles.collCount}>{collection.recipes.length} recette{collection.recipes.length > 1 ? 's' : ''}</span>
                         </div>
-                        <div className={styles.grid}>
-                            {collection.recipes.map((r) => <Card key={r.id} recipe={r} shape="wide" onMenu={onMenu} />)}
+                        {/* Mosaïque : les cartes ne sont pas toutes de la même
+                            taille — grande verticale, large, standard, petite —
+                            selon un motif qui se répète, comme sur mobile. */}
+                        <div className={styles.mosaic}>
+                            {collection.recipes.map((r, i) => (
+                                <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
+                                    <Card recipe={r} shape="wide" onMenu={onMenu} />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 ) : (
                     <>
-                        <Hero recipes={heroRecipes} onMenu={onMenu} />
+                        <Hero recipes={heroRecipes} total={mockRecipes.length} onMenu={onMenu} />
                         <div className={styles.rows}>
-                            <Row title="Top 10 : les mieux notées" recipes={topTen} shape="poster" onSeeAll={openCollection} onMenu={onMenu} />
-                            <Row title="Reprendre la cuisine" recipes={resume} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />
-                            {laterRecipes.length > 0 && <Row title="À faire plus tard" recipes={laterRecipes} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />}
-                            <Row title="Nouveautés" recipes={newest} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />
-                            <Row title="Apéritifs" recipes={byCat['aperitifs'] || []} shape="square" onSeeAll={openCollection} onMenu={onMenu} />
-                            <Row title="Entrées" recipes={byCat['entrees'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} />
-                            <Row title="Plats" recipes={byCat['plats'] || []} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />
-                            <Row title="Accompagnements" recipes={byCat['accompagnements'] || []} shape="square" onSeeAll={openCollection} onMenu={onMenu} />
-                            <Row title="Desserts" recipes={byCat['desserts'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} />
-                            <Row title="Pâtisseries" recipes={byCat['patisserie'] || []} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />
+                            <Row title="Top 10 : les mieux notées" recipes={topTen} shape="poster" ranked onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            {resume.length > 0 && <Row title="Reprendre la cuisine" recipes={resume} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
+                            {laterRecipes.length > 0 && <Row title="À faire plus tard" recipes={laterRecipes} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
+                            <Row title="Nouveautés" recipes={newest} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            <Row title="Apéritifs" recipes={byCat['aperitifs'] || []} shape="square" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            <Row title="Entrées" recipes={byCat['entrees'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            <Row title="Plats" recipes={byCat['plats'] || []} shape="wideXL" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            <Row title="Accompagnements" recipes={byCat['accompagnements'] || []} shape="square" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            <Row title="Desserts" recipes={byCat['desserts'] || []} shape="posterXL" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            <Row title="Pâtisseries" recipes={byCat['patisserie'] || []} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             {themeRows.map((row) => (
-                                <Row key={row.title} title={row.title} recipes={row.recipes} shape={row.shape} shareTag={row.tag} onSeeAll={openCollection} onMenu={onMenu} />
+                                <Row key={row.title} title={row.title} recipes={row.recipes} shape={row.shape} shareTag={row.tag} onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             ))}
-                            <Row title="Comme au resto" recipes={byCat['restaurant'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} />
+                            <Row title="Comme au resto" recipes={byCat['restaurant'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                         </div>
                     </>
                 )}
@@ -452,11 +855,32 @@ export default function TVDesktopHome() {
                         <button className={styles.ctxAction} onClick={() => { const r = menu.recipe; setMenu(null); toggleLater(String(r.id)); }}>
                             {laterIds.includes(String(menu.recipe.id)) ? 'Retirer de la liste' : 'À faire plus tard'}
                         </button>
+                        {resume.some((r) => String(r.id) === String(menu.recipe.id)) && (
+                            <button className={styles.ctxAction} onClick={() => { const r = menu.recipe; setMenu(null); clearProgress(String(r.id)); }}>
+                                Retirer de « Reprendre la cuisine »
+                            </button>
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>
 
             <TVSpotlight open={searchOpen} onClose={() => setSearchOpen(false)} onRecipeSelect={(r) => openRecipe(r)} />
+
+            {/* Message central « Ajouté » / « Supprimé », façon Apple TV+ (1,5 s). */}
+            <AnimatePresence>
+                {toast && (
+                    <motion.div
+                        className={styles.toast}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.18 }}
+                    >
+                        <svg viewBox="0 0 24 24" width="46" height="46" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        <span>{toast.added ? 'Ajouté' : 'Supprimé'}</span>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

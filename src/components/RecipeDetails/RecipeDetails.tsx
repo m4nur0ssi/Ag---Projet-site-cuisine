@@ -338,6 +338,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
         if (typeof window !== 'undefined') {
             window.localStorage.setItem('active-recipe-id', recipe.id);
+            // Prévient la home « Reprendre la cuisine » que la progression a changé.
+            window.dispatchEvent(new Event('tv-progress-change'));
         }
 
         if (newChecked[index]) {
