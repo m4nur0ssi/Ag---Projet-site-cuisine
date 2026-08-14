@@ -10,6 +10,7 @@
 import { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { mockRecipes } from '@/mobile/data/mockData';
+import { useAuth } from '@/hooks/useAuth';
 import styles from './tvAuthGate.module.css';
 
 export default function TVAuthGate({
@@ -20,6 +21,9 @@ export default function TVAuthGate({
     subtitle: string;
 }) {
     const router = useRouter();
+    // Connexion DIRECTE : sur ces pages gatées, aucun AuthButton n'est monté pour
+    // capter `magic-open-auth` — le bouton lançait donc la connexion dans le vide.
+    const { signInWithGoogle } = useAuth();
 
     // Quelques photos pour la mosaïque de fond, floutée à l'excès : de la matière,
     // pas une image lisible. Mémorisé pour ne pas rebrasser à chaque rendu.
@@ -57,7 +61,7 @@ export default function TVAuthGate({
                 </div>
                 <h1 className={styles.title}>{title}</h1>
                 <p className={styles.subtitle}>{subtitle}</p>
-                <button className={styles.cta} onClick={() => window.dispatchEvent(new Event('magic-open-auth'))}>
+                <button className={styles.cta} onClick={() => signInWithGoogle()}>
                     Se connecter
                 </button>
                 <button className={styles.back} onClick={() => router.push('/')}>

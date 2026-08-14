@@ -4,6 +4,20 @@ import { supabase, SupabaseUser } from '@/lib/supabase';
 import { pullFavorites } from '@/lib/favorites';
 import { pullShoppingState, startShoppingSync } from '@/lib/shoppingSync';
 
+/**
+ * Où l'OAuth doit revenir. En PROD on force le domaine canonique
+ * lesrecettesmagiques.fr : sinon, parti depuis une adresse *.vercel.app (ou si
+ * Supabase retombe sur son Site URL), la session se pose sur le mauvais domaine
+ * et l'app paraît déconnectée sur .fr. En local on garde l'origine (localhost).
+ * NB : lesrecettesmagiques.fr DOIT figurer dans les « Redirect URLs » Supabase.
+ */
+function authRedirect(): string {
+    if (typeof window === 'undefined') return 'https://lesrecettesmagiques.fr';
+    const h = window.location.hostname;
+    if (h === 'localhost' || h === '127.0.0.1' || h.endsWith('.local')) return window.location.origin;
+    return 'https://lesrecettesmagiques.fr';
+}
+
 export function useAuth() {
     const [user, setUser] = useState<SupabaseUser>(null);
     const [loading, setLoading] = useState(true);
@@ -39,7 +53,7 @@ export function useAuth() {
         supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-                redirectTo: window.location.origin,
+                redirectTo: authRedirect(),
                 // Force Google à afficher le sélecteur de compte à chaque fois.
                 // Sinon, après un signOut (qui n'efface QUE la session Supabase, pas le
                 // cookie SSO Google), Google ré-authentifie silencieusement le compte actif.
@@ -50,7 +64,7 @@ export function useAuth() {
     const signInWithApple = () =>
         supabase.auth.signInWithOAuth({
             provider: 'apple',
-            options: { redirectTo: window.location.origin },
+            options: { redirectTo: authRedirect() },
         });
 
     const signOut = async () => {
