@@ -1166,20 +1166,22 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     {activeTab === 'ingredients' && (
                         <div className={styles.stickyPanelHeader}>
                             <div className={styles.ingredientsActionBlock}>
-                                {/* Panier / liste de courses : réservé aux connectés */}
-                                {authUser && (
+                                {/* Panier : apparaît dès qu'un ingrédient est coché (connecté).
+                                    Un clic ouvre la liste de courses dans le shell TV+. */}
+                                {authUser && checkedCount > 0 && (
                                 <div className={styles.ingredientProgress}>
                                     <button
                                         type="button"
-                                        onClick={() => { addCheckedToCart(); router.push('/shopping-list?tab=recettes'); }}
-                                        aria-label={checkedCount > 0 ? `Ajouter ${checkedCount} article(s) et voir la liste de courses` : 'Voir la liste de courses'}
-                                        title={checkedCount > 0 ? `${checkedCount} article(s) — ajouter et voir la liste` : 'Voir la liste de courses'}
-                                        style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.55rem', lineHeight: 1, padding: '2px 4px' }}
+                                        className={styles.cartPill}
+                                        onClick={() => { addCheckedToCart(); window.dispatchEvent(new Event('magic-open-courses')); }}
+                                        aria-label={`Voir ma liste de courses (${checkedCount})`}
+                                        title={`${checkedCount} ingrédient(s) — voir la liste`}
                                     >
-                                        🛒
-                                        {checkedCount > 0 && (
-                                            <span style={{ position: 'absolute', top: -6, right: -8, minWidth: 18, height: 18, padding: '0 4px', borderRadius: 9, background: '#ff3b30', color: '#fff', fontSize: '0.7rem', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1, boxSizing: 'border-box' }}>{checkedCount}</span>
-                                        )}
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                                            <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg>
+                                        <span className={styles.cartPillCount}>{checkedCount}</span>
                                     </button>
                                 </div>
                                 )}

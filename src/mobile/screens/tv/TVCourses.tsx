@@ -50,8 +50,10 @@ type ListData = Record<string, {
 export default function TVCourses({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
     const [mode, setMode] = useState<'semaine' | 'jour' | 'recette' | 'panier'>('semaine');
-    // « Mes recettes » : ingrédients choisis à la main dans les fiches.
+    // « Par recette » : ingrédients choisis à la main dans les fiches.
     const [cart, setCart] = useState<CartRecipe[]>([]);
+    // Cases cochées de la vue « Par recette » (barrer en faisant les courses).
+    const [cartChecked, setCartChecked] = useState<Set<string>>(new Set());
     useEffect(() => {
         const load = () => setCart(readCart());
         load();
@@ -458,11 +460,26 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                     <div className={styles.cartTitle}>{decodeHtml(r.title)}</div>
                                     <button className={styles.cartRemove} onClick={() => { haptic(8); removeCartRecipe(r.id); }}>Retirer</button>
                                 </div>
-                                <ul className={styles.cartIngs}>
-                                    {r.ingredients.map((ing, i) => (
-                                        <li key={i} className={styles.cartIng}>{ing.replace(/^-\s*/, '')}</li>
-                                    ))}
-                                </ul>
+                                {r.ingredients.map((ing, i) => {
+                                    const k = `${r.id}|${ing}`;
+                                    const struck = cartChecked.has(k);
+                                    return (
+                                        <button
+                                            key={i}
+                                            className={`${styles.courseRow} ${styles.courseRowFlat} ${struck ? styles.courseRowDone : ''}`}
+                                            onClick={() => { haptic(6); setCartChecked((prev) => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }); }}
+                                        >
+                                            <span className={`${styles.courseCheck} ${struck ? styles.courseCheckOn : ''}`}>
+                                                {struck && (
+                                                    <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
+                                                        <path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                )}
+                                            </span>
+                                            <span className={styles.courseName}>{ing.replace(/^-\s*/, '')}</span>
+                                        </button>
+                                    );
+                                })}
                             </div>
                         ))}
                     </div>

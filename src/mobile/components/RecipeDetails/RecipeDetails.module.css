@@ -2460,30 +2460,25 @@
     pointer-events: none;
 }
 
-/* Panier flottant : icône + pastille du nombre d'ingrédients ajoutés. */
-.cartBadge {
-    position: fixed;
-    right: 18px;
-    bottom: calc(90px + env(safe-area-inset-bottom, 0px));
-    z-index: 9999;
-    display: flex; align-items: center; justify-content: center;
-    width: 54px; height: 54px;
+/* Panier : petite pilule à gauche des portions, avec la pastille du nombre. */
+.cartPill {
+    position: relative;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 34px;
     border: none; border-radius: 999px;
-    background: #ff3b30;
-    color: #fff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-    cursor: pointer;
+    background: #ff3b30; color: #fff;
+    cursor: pointer; flex: 0 0 auto;
     -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 4px 14px rgba(255, 59, 48, 0.35);
 }
-.cartBadgeCount {
-    position: absolute;
-    top: -4px; right: -4px;
-    min-width: 22px; height: 22px; padding: 0 5px;
+.cartPillCount {
+    position: absolute; top: -5px; right: -5px;
+    min-width: 19px; height: 19px; padding: 0 4px;
     display: flex; align-items: center; justify-content: center;
     border-radius: 999px;
     background: #fff; color: #ff3b30;
-    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 900;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 900;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* ── Fiche restaurant : tuiles infos + coordonnées + galerie ── */

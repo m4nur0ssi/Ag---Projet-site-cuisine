@@ -751,28 +751,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 )}
             </AnimatePresence>
 
-            {/* Panier : pastille avec le nombre d'ingrédients ajoutés depuis cette
-                recette. Un tap ouvre la liste de courses. */}
-            <AnimatePresence>
-                {checkedIngredients.filter(Boolean).length > 0 && (
-                    <motion.button
-                        className={styles.cartBadge}
-                        onClick={() => router.push('/tv-courses')}
-                        aria-label="Voir ma liste de courses"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 26 }}
-                    >
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                        </svg>
-                        <span className={styles.cartBadgeCount}>{checkedIngredients.filter(Boolean).length}</span>
-                    </motion.button>
-                )}
-            </AnimatePresence>
-
             <div
                 ref={pageRef}
                 className={`${styles.page} ${mounted ? styles.pageVisible : ''} ${isNavigating ? (slideDirection === 'left' ? styles.slideOutLeft : styles.slideOutRight) : ''} ${isModal ? styles.modalMode : ''}`}
@@ -1226,6 +1204,16 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     {activeTab === 'ingredients' && (
                         <div className={styles.stickyPanelHeader}>
                             <div className={styles.converterCentered}>
+                                {/* Panier : apparaît dès qu'un ingrédient est coché, à gauche des portions. */}
+                                {checkedIngredients.filter(Boolean).length > 0 && (
+                                    <button className={styles.cartPill} onClick={() => router.push('/tv-courses')} aria-label="Voir ma liste de courses">
+                                        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                                            <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg>
+                                        <span className={styles.cartPillCount}>{checkedIngredients.filter(Boolean).length}</span>
+                                    </button>
+                                )}
                                 <PortionsControl value={servings} base={recipe.servings || 4} onChange={setServings} compact />
                                 <MagicConverter />
                                 <WinePairing recipeId={recipe.id} title={recipe.title} category={recipe.category} ingredients={recipe.ingredients} compact />
