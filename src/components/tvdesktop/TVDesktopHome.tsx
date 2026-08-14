@@ -486,7 +486,12 @@ export default function TVDesktopHome() {
         setPanel('none');
         setFilters([]);
         setCollection({ title, recipes });
-        document.querySelector(`.${styles.content}`)?.scrollTo({ top: 0, behavior: 'smooth' });
+        // Remonter tout en haut (le titre de la catégorie) APRÈS le rendu de la
+        // collection — un scroll synchrone se ferait avant et resterait sans effet.
+        requestAnimationFrame(() => {
+            const el = document.querySelector(`.${styles.content}`);
+            if (el) el.scrollTo({ top: 0, behavior: 'auto' });
+        });
     }, []);
 
     const onMenu = useCallback((recipe: Recipe, x: number, y: number) => setMenu({ recipe, x, y }), []);

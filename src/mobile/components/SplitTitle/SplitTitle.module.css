@@ -47,3 +47,13 @@
     font-size: clamp(2.5rem, 8vw, 4.2rem); /* Réduit pour plus de finesse */
     letter-spacing: -3px;
 }
+
+/* Titre blanc incliné façon Apple TV+ (au lieu du dégradé arc-en-ciel). */
+.plain {
+    display: inline-block;
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    background: none;
+    transform: skewX(-6deg);
+    text-shadow: 0 2px 22px rgba(0, 0, 0, 0.5);
+}

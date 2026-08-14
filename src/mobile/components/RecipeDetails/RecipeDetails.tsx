@@ -818,7 +818,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
                         <div className={styles.heroMainContent}>
                             <h1 className={styles.heroTitleElegant}>
-                                <SplitTitle text={decodeHtml(recipe.title)} noAnimation={true} />
+                                <SplitTitle text={decodeHtml(recipe.title)} noAnimation={true} plain />
                             </h1>
                             
                             {recipe.description && (
@@ -1236,24 +1236,16 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                             style={{ animationDelay: `${idx * 40}ms` }}
                                             onClick={() => toggleIngredient(idx)}
                                         >
-                                            <div className={styles.hiddenCheck}>
-                                                <input
-                                                    type="checkbox"
-                                                    checked={checkedIngredients[idx]}
-                                                    readOnly
-                                                />
-                                            </div>
+                                            {/* Case ronde à cocher, à gauche (mode liste). */}
+                                            <span className={`${styles.ingCheck} ${checkedIngredients[idx] ? styles.ingCheckOn : ''}`}>
+                                                {checkedIngredients[idx] && (
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                                )}
+                                            </span>
 
-                                            {/* Icône ingrédient */}
+                                            {/* Photo ingrédient */}
                                             <div className={styles.ingIconWrap}>
                                                 <IngredientImage name={ing.name} imageSrc={ing.image || getIngredientVisual(ing.name)} imgClassName={styles.ingImg} emojiClassName={styles.ingEmoji} />
-
-                                                {/* Checkmark overlay */}
-                                                <div className={`${styles.ingCheckOverlay} ${checkedIngredients[idx] ? styles.ingCheckVisible : ''}`}>
-                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                                                        <polyline points="20 6 9 17 4 12" />
-                                                    </svg>
-                                                </div>
                                             </div>
 
                                             <div className={styles.ingInfo}>

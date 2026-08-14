@@ -9,6 +9,8 @@ interface SplitTitleProps {
     delay?: number;
     noAnimation?: boolean;
     showThemeToggle?: boolean;
+    /** Titre blanc incliné (Apple TV+) au lieu du dégradé. */
+    plain?: boolean;
 }
 
 export default function SplitTitle({
@@ -17,7 +19,8 @@ export default function SplitTitle({
     large = false,
     delay = 0,
     noAnimation = false,
-    showThemeToggle = false
+    showThemeToggle = false,
+    plain = false
 }: SplitTitleProps) {
     // Split logic for 2nd line positioning
     const words = text.split(' ');
@@ -28,7 +31,7 @@ export default function SplitTitle({
 
     return (
         <div className={`${styles.titleContainer} ${large ? styles.large : ''} ${className}`}>
-            <span className={styles.gradient} style={{ animation: noAnimation ? 'none' : undefined, animationDelay: `${delay}s` }}>
+            <span className={plain ? styles.plain : styles.gradient} style={{ animation: noAnimation ? 'none' : undefined, animationDelay: `${delay}s` }}>
                 {showThemeToggle && (
                     <ThemeToggle className={styles.inTitleToggle} />
                 )}

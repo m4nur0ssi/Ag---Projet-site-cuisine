@@ -83,3 +83,13 @@
     background: rgba(0, 0, 0, 0.05);
     border-color: rgba(0, 0, 0, 0.1);
 }
+
+/* Titre blanc incliné façon Apple TV+ (au lieu du dégradé arc-en-ciel). */
+.plain {
+    display: inline-block;
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    background: none;
+    transform: skewX(-6deg);
+    text-shadow: 0 2px 22px rgba(0, 0, 0, 0.5);
+}
