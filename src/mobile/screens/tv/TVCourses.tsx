@@ -26,6 +26,7 @@ import {
 import { RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides } from '@/lib/rayons';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { haptic } from './TVHome';
+import { readCart, removeCartRecipe, CART_EVENT, type CartRecipe } from './recipeCart';
 import styles from './tv.module.css';
 
 const ShopActions = dynamic(() => import('@/mobile/components/ShopActions/ShopActions'), { ssr: false });
@@ -48,7 +49,16 @@ type ListData = Record<string, {
 
 export default function TVCourses() {
     const router = useRouter();
-    const [mode, setMode] = useState<'semaine' | 'jour' | 'recette'>('semaine');
+    const [mode, setMode] = useState<'semaine' | 'jour' | 'recette' | 'panier'>('semaine');
+    // « Mes recettes » : ingrédients choisis à la main dans les fiches.
+    const [cart, setCart] = useState<CartRecipe[]>([]);
+    useEffect(() => {
+        const load = () => setCart(readCart());
+        load();
+        window.addEventListener(CART_EVENT, load);
+        window.addEventListener('storage', load);
+        return () => { window.removeEventListener(CART_EVENT, load); window.removeEventListener('storage', load); };
+    }, []);
     const [list, setList] = useState<ListData>({});
     const [plan, setPlan] = useState<Record<string, Record<string, any>>>({});
     const [weekChecked, setWeekChecked] = useState<Set<string>>(new Set());
@@ -296,7 +306,8 @@ export default function TVCourses() {
             </header>
 
             <div className={styles.planModes}>
-                {([['semaine', 'La semaine'], ['jour', 'Jour par jour'], ['recette', 'Par recette']] as const).map(([m, lbl]) => (
+                {([['semaine', 'La semaine'], ['jour', 'Jour par jour'], ['recette', 'Par recette'],
+                   ...(cart.length > 0 ? [['panier', 'Mes recettes'] as const] : [])] as const).map(([m, lbl]) => (
                     <button
                         key={m}
                         className={`${styles.planMode} ${mode === m ? styles.planModeOn : ''}`}
@@ -478,6 +489,30 @@ export default function TVCourses() {
                             </section>
                         );
                     })}
+                </div>
+            )}
+
+            {mode === 'panier' && (
+                <div className={styles.courseBody}>
+                    {!cart.length && (
+                        <p className={styles.courseEmpty}>Ouvre une recette et tape ses ingrédients : ils arrivent ici.</p>
+                    )}
+                    <div className={styles.cartList}>
+                        {cart.map((r) => (
+                            <div key={r.id} className={styles.cartCard}>
+                                <div className={styles.cartCardHead}>
+                                    {r.image && <img src={r.image} alt="" className={styles.cartThumb} draggable={false} />}
+                                    <div className={styles.cartTitle}>{decodeHtml(r.title)}</div>
+                                    <button className={styles.cartRemove} onClick={() => { haptic(8); removeCartRecipe(r.id); }}>Retirer</button>
+                                </div>
+                                <ul className={styles.cartIngs}>
+                                    {r.ingredients.map((ing, i) => (
+                                        <li key={i} className={styles.cartIng}>{ing.replace(/^-\s*/, '')}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
 

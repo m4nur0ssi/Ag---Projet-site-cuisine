@@ -33,6 +33,7 @@ import { isTVSide, isTVMain, sidePool } from './sides';
 import { THEMES, matchesTag } from './themes';
 import { totalMinutes, formatMinutes } from './timing';
 import { haptic } from './TVHome';
+import { readCart, removeCartRecipe, CART_EVENT, type CartRecipe } from './recipeCart';
 import styles from './tv.module.css';
 
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
@@ -67,7 +68,16 @@ const label = (r: Recipe) => decodeHtml(r.title || '');
 export default function TVPlanner() {
     const router = useRouter();
     const params = useSearchParams();
-    const [mode, setMode] = useState<'semaine' | 'jourj'>(params.get('mode') === 'jourj' ? 'jourj' : 'semaine');
+    const [mode, setMode] = useState<'semaine' | 'jourj' | 'panier'>(params.get('mode') === 'jourj' ? 'jourj' : 'semaine');
+    // « Mes recettes » : ingrédients choisis à la main dans les fiches (magic-shopping-list).
+    const [cart, setCart] = useState<CartRecipe[]>([]);
+    useEffect(() => {
+        const load = () => setCart(readCart());
+        load();
+        window.addEventListener(CART_EVENT, load);
+        window.addEventListener('storage', load);
+        return () => { window.removeEventListener(CART_EVENT, load); window.removeEventListener('storage', load); };
+    }, []);
     const [plan, setPlan] = useState<Plan>({});
     const [index, setIndex] = useState(todayIndex);
     // `side` : le choix vise l'accompagnement du plat de ce créneau.
@@ -414,9 +424,38 @@ export default function TVPlanner() {
                         {m === 'semaine' ? 'Semaine' : 'Jour J'}
                     </button>
                 ))}
+                {/* 3ᵉ onglet : n'apparaît que si on a choisi des ingrédients dans une recette. */}
+                {cart.length > 0 && (
+                    <button
+                        className={`${styles.planMode} ${mode === 'panier' ? styles.planModeOn : ''}`}
+                        onClick={() => { haptic(6); setMode('panier'); setRecap(null); }}
+                    >
+                        Mes recettes
+                    </button>
+                )}
             </div>
 
-            {mode === 'semaine' ? (
+            {mode === 'panier' ? (
+                <section className={styles.planSlide}>
+                    <h2 className={styles.planDayTitle}>Mes recettes</h2>
+                    <div className={styles.cartList}>
+                        {cart.map((r) => (
+                            <div key={r.id} className={styles.cartCard}>
+                                <div className={styles.cartCardHead}>
+                                    {r.image && <img src={r.image} alt="" className={styles.cartThumb} draggable={false} />}
+                                    <div className={styles.cartTitle}>{decodeHtml(r.title)}</div>
+                                    <button className={styles.cartRemove} onClick={() => { haptic(8); removeCartRecipe(r.id); }}>Retirer</button>
+                                </div>
+                                <ul className={styles.cartIngs}>
+                                    {r.ingredients.map((ing, i) => (
+                                        <li key={i} className={styles.cartIng}>{ing.replace(/^-\s*/, '')}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            ) : mode === 'semaine' ? (
                 <>
                     {/* Barre des jours : repère fixe pendant qu'on balaie. */}
                     <div className={styles.planDays}>
@@ -458,15 +497,17 @@ export default function TVPlanner() {
                 </section>
             )}
 
-            <div className={styles.planFooter}>
-                <button className={styles.planCompose} onClick={() => { haptic(8); setComposer(true); }}>
-                    Composer
-                </button>
-                <button className={styles.planClear} onClick={clearAll} disabled={!planned}>Effacer</button>
-                <button className={styles.planValidate} onClick={validate} disabled={!planned}>
-                    {planned ? 'Remplir ma liste de courses' : 'Rien de planifié'}
-                </button>
-            </div>
+            {mode !== 'panier' && (
+                <div className={styles.planFooter}>
+                    <button className={styles.planCompose} onClick={() => { haptic(8); setComposer(true); }}>
+                        Composer
+                    </button>
+                    <button className={styles.planClear} onClick={clearAll} disabled={!planned}>Effacer</button>
+                    <button className={styles.planValidate} onClick={validate} disabled={!planned}>
+                        {planned ? 'Remplir ma liste de courses' : 'Rien de planifié'}
+                    </button>
+                </div>
+            )}
 
             <AnimatePresence>
                 {recap && (
