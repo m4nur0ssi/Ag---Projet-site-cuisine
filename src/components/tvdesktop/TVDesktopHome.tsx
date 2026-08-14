@@ -688,8 +688,8 @@ export default function TVDesktopHome() {
 
                 <nav className={styles.navGroup}>
                     <NavItem icon={ICONS.home} active={nav === 'accueil'} onClick={goHome}>Accueil</NavItem>
-                    <NavItem icon={ICONS.planner} tour="planner" onClick={() => router.push('/meal-planner')}>Planificateur</NavItem>
-                    <NavItem icon={ICONS.cart} tour="shopping" onClick={() => router.push('/shopping-list')}>Liste de courses</NavItem>
+                    <NavItem icon={ICONS.planner} tour="planner" onClick={() => router.push('/tv-planner')}>Planificateur</NavItem>
+                    <NavItem icon={ICONS.cart} tour="shopping" onClick={() => router.push('/tv-courses')}>Liste de courses</NavItem>
                     <NavItem icon={ICONS.heart} tour="favorites" onClick={() => router.push('/favorites')}>Favoris</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
                         fournit que l'icône et la ligne de menu. */}

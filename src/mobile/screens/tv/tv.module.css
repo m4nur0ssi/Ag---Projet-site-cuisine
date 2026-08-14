@@ -24,6 +24,18 @@
     /* Le scroll vertical doit rester 100 % natif (inertie iOS) : rien d'autre ici. */
 }
 
+/* Sur desktop (planificateur / courses ouverts depuis le menu TV+), l'écran
+   « téléphone » se recentre en colonne au lieu de s'étirer sur toute la largeur —
+   même parti pris qu'Apple TV+ : contenu centré, cadre sombre autour. N'affecte
+   pas les vrais téléphones (≤ 1023 px). */
+@media (min-width: 1024px) {
+    .page {
+        max-width: 920px;
+        margin: 0 auto;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 40px 120px rgba(0, 0, 0, 0.6);
+    }
+}
+
 /* ── HÉROS ─────────────────────────────────────────────────────────────── */
 
 /* Sticky : le héros reste sous la feuille de contenu qui remonte par-dessus. */
