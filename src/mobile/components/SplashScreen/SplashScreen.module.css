@@ -13,16 +13,19 @@
 
 .iosFrame {
     position: fixed;
-    inset: 12px; /* 3mm environ */
-    background: #000000;
+    inset: 12px;
+    /* Fond cinéma : noir + halo pourpre discret en haut, comme l'accueil TV+. */
+    background:
+        radial-gradient(120% 70% at 50% -8%, #1c1526 0%, rgba(8,8,11,0) 55%),
+        #08080b;
     border-radius: 38px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 60px 20px 40px;
+    padding: 64px 20px 40px;
     z-index: 10;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 .header {
@@ -31,39 +34,41 @@
     flex-shrink: 0;
 }
 
+/* « LES RECETTES » : kicker fin et espacé, comme le héros de l'accueil. */
 .titleMain {
     font-family: var(--font-outfit), sans-serif;
-    color: white;
-    font-weight: 900;
-    font-size: 2.8rem;
-    line-height: 0.9;
-    letter-spacing: -2px;
+    color: rgba(235, 235, 245, 0.6);
+    font-weight: 700;
+    font-size: 0.72rem;
+    line-height: 1;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
     margin: 0;
     text-transform: uppercase;
 }
 
+/* « Magiques » : Outfit 900 incliné, blanc, un souffle rose — pas de cursive arc-en-ciel. */
 .titleMagiques {
-    font-family: var(--font-dancing), cursive;
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-top: -5px;
-    background: linear-gradient(90deg, #F59E0B, #EA580C, #EC4899, #8B5CF6, #3B82F6, #10B981);
-    background-size: 300% auto;
-    -webkit-background-clip: text;
-  background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: rainbowShift 8s linear infinite;
+    font-family: var(--font-outfit), sans-serif;
+    font-size: 3.4rem;
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin-top: 4px;
+    text-transform: uppercase;
+    transform: skewX(-7deg);
+    color: #fff;
+    text-shadow: 0 2px 26px rgba(255, 107, 74, 0.28);
     display: block;
 }
 
 .recipeCount {
     font-family: var(--font-outfit), sans-serif;
-    color: #FFFFFF; /* Pure White as requested */
-    font-weight: 800;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    margin-top: 10px;
+    color: rgba(235, 235, 245, 0.55);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    margin-top: 14px;
     text-transform: uppercase;
 }
 
@@ -140,29 +145,41 @@
     flex-shrink: 0;
 }
 
-.explorerBtn {
-    background: rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1.5px solid rgba(255, 255, 255, 0.25);
-    color: white;
+/* CTA principal « Explorer » : pilule blanche pleine, façon Apple TV+. */
+.explorerBtnPrimary {
+    background: #fff;
+    color: #0a0a0c;
+    border: none;
     font-family: var(--font-outfit), sans-serif;
     font-weight: 800;
     font-size: 1rem;
-    padding: 16px 50px;
-    border-radius: 30px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    padding: 15px 54px;
+    border-radius: 999px;
+    letter-spacing: -0.01em;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
+.explorerBtnPrimary:active { transform: scale(0.96); }
 
-.explorerBtn:active {
-    transform: scale(0.92);
-    background: rgba(255, 255, 255, 0.2);
+/* « Se connecter » : pilule de verre discrète. */
+.explorerBtn {
+    background: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    font-family: var(--font-outfit), sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 14px 40px;
+    border-radius: 999px;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
 }
+.explorerBtn:active { transform: scale(0.94); background: rgba(255, 255, 255, 0.16); }
 
 @keyframes rainbowShift {
     0% { background-position: 0% center; }

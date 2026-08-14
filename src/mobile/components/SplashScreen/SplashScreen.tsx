@@ -148,7 +148,7 @@ export default function SplashScreen() {
                         >
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
                                 <button
-                                    className={styles.explorerBtn}
+                                    className={styles.explorerBtnPrimary}
                                     onClick={closeSplash}
                                     aria-label="Explorer les recettes"
                                 >
