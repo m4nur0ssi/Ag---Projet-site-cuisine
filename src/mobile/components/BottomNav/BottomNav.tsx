@@ -80,17 +80,20 @@ export default function BottomNav() {
 
     // Prefetch des routes de la barre → navigation plus rapide (charge les chunks à l'avance)
     useEffect(() => {
-        ['/favorites', '/shopping-list', '/'].forEach(p => { try { router.prefetch(p); } catch { /* noop */ } });
+        ['/favorites', '/tv-courses', '/tv-planner', '/'].forEach(p => { try { router.prefetch(p); } catch { /* noop */ } });
     }, [router]);
 
     // Favoris + Liste + Menu réservés aux connectés : déconnecté = Accueil + Recherche seulement.
+    // Liste et Menu pointent vers les écrans « Apple TV+ » (/tv-courses, /tv-planner),
+    // comme l'accueil : sans ça la barre du bas ramenait l'ancienne liste de courses
+    // et l'ancien planificateur en calque par-dessus les nouveaux écrans.
     const navItems = [
         ...(isLoggedIn ? [
             { id: 'favoris', label: 'Favoris', Icon: HeartIcon, path: '/favorites', badge: stats.favorites },
-            { id: 'panier', label: 'Liste', Icon: BasketIcon, path: '/shopping-list', badge: stats.shopping },
+            { id: 'panier', label: 'Liste', Icon: BasketIcon, path: '/tv-courses', badge: stats.shopping },
         ] : []),
         { id: 'decouvrir', label: 'Accueil', Icon: StorefrontIcon, path: '/' },
-        ...(isLoggedIn ? [{ id: 'planner', label: 'Menu', Icon: CalendarIcon }] : []),
+        ...(isLoggedIn ? [{ id: 'planner', label: 'Menu', Icon: CalendarIcon, path: '/tv-planner' }] : []),
     ];
 
     // Toggle between Search and Timer every 3 seconds if timer is active
@@ -315,12 +318,8 @@ export default function BottomNav() {
         window.dispatchEvent(new Event('magic-close-sheet'));
         setIsSheetOpen(false);
         const item = navItems[index];
-        if (item.id === 'planner') {
-            setShowPlanner(true);
-            handleVibrate(10);
-            return;
-        }
-        // Tout autre onglet ferme le planificateur (sinon son overlay reste par-dessus la page)
+        // Le planificateur est un ÉCRAN (/tv-planner), plus un calque : on ne rouvre
+        // jamais l'ancien WeekPlanner par-dessus les nouvelles pages.
         setShowPlanner(false);
         // Now using union types safely or checking for path
         if ('path' in item && item.path) {

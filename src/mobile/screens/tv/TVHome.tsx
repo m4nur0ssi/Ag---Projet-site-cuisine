@@ -84,6 +84,8 @@ const NavDrawer = dynamic(() => import('./NavDrawer'), { ssr: false });
 import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './NavDrawer';
 // Loupe modernisée AppleTV+ (mêmes fonctions que SpotlightSearch prod, habillage TV).
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
+// Visite guidée de l'app mobile (remplace celle du site, écrite pour le desktop).
+const TVTutorial = dynamic(() => import('./TVTutorial'), { ssr: false });
 
 /**
  * Nombre de fiches chargées dans le sheet autour de celle qu'on ouvre.
@@ -241,22 +243,39 @@ function useFittedCards() {
  * fermeture par l'interface. Empilement naturel : le dernier ouvert se ferme
  * en premier.
  */
+/**
+ * Retour programmé en attente, PARTAGÉ par tous les calques.
+ *
+ * Un calque qui se ferme rend son entrée d'historique (`history.back()`), mais
+ * `popstate` n'arrive qu'au tour suivant : quand un même geste ferme un calque
+ * et en ouvre un autre (menu → « Rechercher », menu → « Visite guidée »), ce
+ * retour tombait APRÈS le `pushState` du nouveau calque et le refermait
+ * aussitôt — l'écran clignotait et rien ne s'ouvrait. On diffère donc le
+ * retour d'un tour : si un calque s'ouvre entre-temps, il reprend simplement
+ * l'entrée du précédent au lieu d'en empiler une seconde.
+ */
+let pendingBack: ReturnType<typeof setTimeout> | null = null;
+
 function useBackToClose(isOpen: boolean, close: () => void) {
-    const pushed = useRef(false);
+    const holds = useRef(false);
     const closeRef = useRef(close);
     closeRef.current = close;
 
     useEffect(() => {
         if (!isOpen) return;
-        pushed.current = true;
-        window.history.pushState({ tvOverlay: Date.now() }, '');
-        const onPop = () => { pushed.current = false; closeRef.current(); };
+        if (pendingBack !== null) { clearTimeout(pendingBack); pendingBack = null; }
+        else window.history.pushState({ tvOverlay: Date.now() }, '');
+        holds.current = true;
+        const onPop = () => { holds.current = false; closeRef.current(); };
         window.addEventListener('popstate', onPop);
         return () => {
             window.removeEventListener('popstate', onPop);
-            // Fermé par un bouton : on retire l'entrée qu'on avait ajoutée,
-            // sinon il faudrait deux retours pour quitter la page.
-            if (pushed.current) { pushed.current = false; window.history.back(); }
+            // Fermé par le geste « retour » : l'entrée est déjà partie, rien à rendre.
+            if (!holds.current) return;
+            // Fermé par un bouton : on rend l'entrée ajoutée, sinon il faudrait
+            // deux retours pour quitter la page.
+            holds.current = false;
+            pendingBack = setTimeout(() => { pendingBack = null; window.history.back(); }, 0);
         };
     }, [isOpen]);
 }
@@ -954,6 +973,7 @@ export default function TVHome() {
     const [filters, setFilters] = useState<string[]>([]);
     const [navQuery, setNavQuery] = useState('');
     const [searchOpen, setSearchOpen] = useState(false);
+    const [tutoOpen, setTutoOpen] = useState(false);
     const [laterIds, setLaterIds] = useState<string[]>([]);
     const [favIds, setFavIds] = useState<string[]>([]);
     const [recentlyViewed, setRecentlyViewed] = useState<Recipe[]>([]);
@@ -1019,7 +1039,7 @@ export default function TVHome() {
     // afficher », menu d'appui long) → on masque la barre du bas (BottomNav prod).
     // Sinon son dock (Accueil/loupe) reste tappable par-dessus ou à travers le
     // calque selon le contexte d'empilement, et ses boutons se comportent mal.
-    const overlayOpen = searchOpen || !!sheet || !!all || !!menu;
+    const overlayOpen = searchOpen || tutoOpen || !!sheet || !!all || !!menu;
     useEffect(() => {
         const bar = document.getElementById('bottom-nav');
         if (!bar) return;
@@ -1035,6 +1055,7 @@ export default function TVHome() {
     useBackToClose(!!menu, () => setMenu(null));
     useBackToClose(navOpen, () => setNavOpen(false));
     useBackToClose(searchOpen, () => setSearchOpen(false));
+    useBackToClose(tutoOpen, () => setTutoOpen(false));
 
     const toggleFilter = useCallback((token: string) => {
         setFilters((prev) => (prev.includes(token) ? prev.filter((t) => t !== token) : [...prev, token]));
@@ -1177,6 +1198,7 @@ export default function TVHome() {
                 onClear={() => { setFilters([]); setNavQuery(''); }}
                 onApply={() => { setNavOpen(false); openAll(filterTitle, filterResults); }}
                 onSearch={() => setSearchOpen(true)}
+                onTutorial={() => setTutoOpen(true)}
                 resultCount={filterResults.length}
                 query={navQuery}
                 onQuery={setNavQuery}
@@ -1341,6 +1363,8 @@ export default function TVHome() {
                 onClose={() => setSearchOpen(false)}
                 onRecipeSelect={(r) => openSheet([r], 0)}
             />
+
+            {tutoOpen && <TVTutorial onClose={() => setTutoOpen(false)} />}
         </div>
     );
 }
