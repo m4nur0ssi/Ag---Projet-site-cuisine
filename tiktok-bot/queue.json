@@ -1,34 +1,3 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN88aLRXv/",
-      "country": "Sandwichs",
-      "timestamp": "2026-08-14T16:01:36.936Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN885TPy6/",
-      "country": "Minceur",
-      "timestamp": "2026-08-14T16:02:35.903Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN885chb4/",
-      "country": "Plats",
-      "timestamp": "2026-08-14T16:03:25.597Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN88aeR3p/",
-      "country": "Apéritifs",
-      "timestamp": "2026-08-14T16:04:39.155Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN885cyX9/",
-      "country": "Pâtisserie",
-      "timestamp": "2026-08-14T16:06:12.474Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN885cxLJ/",
-      "country": "Sandwichs",
-      "timestamp": "2026-08-14T16:08:22.194Z"
-    }
-  ]
+  "queue": []
 }
