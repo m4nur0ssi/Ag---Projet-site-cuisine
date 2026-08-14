@@ -2486,3 +2486,21 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
     font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 900;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
+
+/* Anneau macros (protéines/glucides/lipides) déplié sous les calories. */
+.macroPanel {
+    display: flex; align-items: center; gap: 18px;
+    padding: 16px; margin: 8px auto 0; max-width: 600px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.05);
+    box-shadow: inset 0 0 0 .5px rgba(255,255,255,0.08);
+}
+.macroRing {
+    width: 92px; height: 92px; flex: 0 0 auto; border-radius: 999px; position: relative;
+    -webkit-mask: radial-gradient(circle 30px at 50% 50%, transparent 98%, #000 100%);
+    mask: radial-gradient(circle 30px at 50% 50%, transparent 98%, #000 100%);
+}
+.macroLegend { display: flex; flex-direction: column; gap: 8px; }
+.macroLegend div { display: flex; align-items: center; gap: 9px; font-size: 14px; color: rgba(235,235,245,0.62); }
+.macroLegend b { color: #fff; font-weight: 700; margin-left: 6px; }
+.macroDot { width: 10px; height: 10px; border-radius: 3px; flex: 0 0 auto; }

@@ -29,7 +29,7 @@ import StarRating from '@/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import CommentSection from '@/components/CommentSection/CommentSection';
 import { supabase } from '@/lib/supabase';
-import { estimateRecipeCalories } from '@/lib/calories';
+import { estimateRecipeCalories, estimateRecipeMacros } from '@/lib/calories';
 import { mockRecipes } from '@/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './RecipeDetails.module.css';
@@ -146,6 +146,12 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             ? estimateRecipeCalories(recipe.ingredients, servings)
             : null,
     [recipe, servings]);
+    const macros = useMemo(() =>
+        recipe.category !== 'restaurant' && recipe.ingredients?.length > 0
+            ? estimateRecipeMacros(recipe.ingredients, servings)
+            : null,
+    [recipe, servings]);
+    const [showMacros, setShowMacros] = useState(false);
     const similarRecipes = useMemo(() => {
         // Fiche restaurant → « Autres restaurants » (mêmes catégorie, subType/tags priorisés).
         if (recipe.category === 'restaurant') {
@@ -881,13 +887,33 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         {calorieEstimate && calorieEstimate.confidence !== 'low' && (
                             <>
                                 <div className={styles.metaSeparator} />
-                                <div className={styles.metaItem}>
-                                    <div className={styles.metaLabel}>CALORIES</div>
+                                <div
+                                    className={styles.metaItem}
+                                    role={macros ? 'button' : undefined}
+                                    onClick={macros ? () => setShowMacros(v => !v) : undefined}
+                                    style={macros ? { cursor: 'pointer' } : undefined}
+                                >
+                                    <div className={styles.metaLabel}>CALORIES{macros ? ' ›' : ''}</div>
                                     <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
                                 </div>
                             </>
                         )}
                     </div>
+                    {macros && showMacros && (() => {
+                        const tot = macros.protein * 4 + macros.carbs * 4 + macros.fat * 9 || 1;
+                        const p = (macros.protein * 4 / tot) * 100;
+                        const c = (macros.carbs * 4 / tot) * 100;
+                        return (
+                            <div className={styles.macroPanel}>
+                                <div className={styles.macroRing} style={{ background: `conic-gradient(#FF6B4A 0 ${p}%, #FFC24B ${p}% ${p + c}%, #57C4E5 ${p + c}% 100%)` }} />
+                                <div className={styles.macroLegend}>
+                                    <div><span className={styles.macroDot} style={{ background: '#FF6B4A' }} /> Protéines <b>{macros.protein} g</b></div>
+                                    <div><span className={styles.macroDot} style={{ background: '#FFC24B' }} /> Glucides <b>{macros.carbs} g</b></div>
+                                    <div><span className={styles.macroDot} style={{ background: '#57C4E5' }} /> Lipides <b>{macros.fat} g</b></div>
+                                </div>
+                            </div>
+                        );
+                    })()}
                 </div>
             )}
 
