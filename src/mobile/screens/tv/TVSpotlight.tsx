@@ -35,9 +35,17 @@ interface TVSpotlightProps {
     open: boolean;
     onClose: () => void;
     onRecipeSelect: (recipe: Recipe) => void;
+    /**
+     * Restreint le vivier de recettes proposées. Le planificateur s'en sert pour
+     * n'offrir que des PLATS dans un créneau, ou que des ACCOMPAGNEMENTS quand on
+     * complète une viande servie nue.
+     */
+    filter?: (recipe: Recipe) => boolean;
+    /** Intitulé affiché à la place de « Terminé » (ex. « Choisir un plat »). */
+    hint?: string;
 }
 
-export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlightProps) {
+export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
@@ -55,14 +63,16 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
     const [isListening, setIsListening] = useState(false);
     const recognitionRef = useRef<any>(null);
 
-    const localSearch = (q: string) => smartLocalSearch(mockRecipes as any, q, 5) as Recipe[];
+    /** Vivier de base : tout le catalogue, ou le sous-ensemble imposé par l'appelant. */
+    const pool = useMemo(() => (filter ? mockRecipes.filter(filter) : mockRecipes), [filter]);
+    const localSearch = (q: string) => smartLocalSearch(pool as any, q, 5) as Recipe[];
 
     const askAssistant = async (raw?: string) => {
         const q = (raw ?? aiQuery).trim();
         if (!q || aiBusy) return;
         setAiBusy(true); setAiError(''); setAiResults([]); setAiMessage('');
         try {
-            const compact = buildFinderCatalog(mockRecipes as any);
+            const compact = buildFinderCatalog(pool as any);
             const res = await fetch('/api/recipe-finder', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
@@ -70,8 +80,9 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
             });
             if (!res.ok) throw new Error('api');
             const data = await res.json();
-            const byId = new Map(mockRecipes.map((r) => [String(r.id), r]));
-            const found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean) as Recipe[];
+            const byId = new Map(pool.map((r) => [String(r.id), r]));
+            let found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean) as Recipe[];
+            if (filter) found = found.filter(filter);
             if (found.length) { setAiResults(found); setAiMessage(data.message || ''); }
             else throw new Error('empty');
         } catch {
@@ -115,30 +126,30 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
     // Mode recette
     const filteredRecipes = useMemo(() => {
         if (mode !== 'recipe') return [];
-        let pool = mockRecipes.filter((r) => r.category !== 'restaurant');
+        let pool2 = pool.filter((r) => r.category !== 'restaurant');
         if (activeFilter) {
             const af = normalize(activeFilter);
-            pool = pool.filter((r) =>
+            pool2 = pool2.filter((r) =>
                 normalize(r.category || '') === af ||
                 (r.tags || []).some((t: string) => normalize(t).includes(af)));
         }
         if (query.trim().length > 1) {
             const q = normalize(query.trim());
-            pool = pool.filter((r) =>
+            pool2 = pool2.filter((r) =>
                 normalize(r.title).includes(q) ||
                 (r.tags || []).some((t: string) => normalize(t).includes(q)));
         }
         if (!activeFilter && query.trim().length <= 1) {
-            return [...pool].sort((a, b) => parseInt(b.id) - parseInt(a.id)).slice(0, 10);
+            return [...pool2].sort((a, b) => parseInt(b.id) - parseInt(a.id)).slice(0, 10);
         }
-        return pool;
-    }, [query, mode, activeFilter]);
+        return pool2;
+    }, [query, mode, activeFilter, pool]);
 
     // Mode ingrédients
     const ingredientResults = useMemo(() => {
         if (mode !== 'ingredients' || ingTags.length === 0) return [];
         const tags = ingTags.map((t) => t.toLowerCase());
-        return mockRecipes
+        return pool
             .filter((r) => r.category !== 'restaurant')
             .map((r) => {
                 const ingNames = r.ingredients.map((i) => i.name.toLowerCase());
@@ -153,7 +164,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
             // Recettes complètes d'abord, puis les plus proches.
             .sort((a, b) => b.matched - a.matched)
             .slice(0, 14);
-    }, [ingTags, mode]);
+    }, [ingTags, mode, pool]);
 
     const addIngTag = () => {
         const val = ingInput.trim().toLowerCase();
@@ -259,7 +270,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
                                 </button>
                             )}
                         </div>
-                        <button className={styles.spCancel} onClick={onClose}>Terminé</button>
+                        <button className={styles.spCancel} onClick={onClose}>{hint || 'Terminé'}</button>
                     </div>
 
                     {/* Segmented control : mode */}

@@ -32,6 +32,7 @@ const ICONS = {
     cart: 'M3 4h2l2.2 10.5a1.5 1.5 0 0 0 1.5 1.2h7.9a1.5 1.5 0 0 0 1.5-1.2L20 7H6M9 20h.01M17 20h.01',
     heart: 'M20.8 6.6a4.6 4.6 0 0 0-6.5 0L12 8.9 9.7 6.6a4.6 4.6 0 1 0-6.5 6.5l1 1L12 21l7.8-6.9 1-1a4.6 4.6 0 0 0 0-6.5z',
     search: 'M21 21l-4.3-4.3M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z',
+    day: 'M12 7v5l3 1.8M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
     book: 'M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5z',
 };
 
@@ -209,15 +210,22 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 <button className={styles.navRow} onClick={onClose}>
                                     <Ic d={ICONS.home} /><span className={styles.navRowText}>Accueil</span>
                                 </button>
+                                {/* Planificateur : deux entrées, comme sur le site. */}
                                 <button
                                     className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
-                                    onClick={() => goAuthed('/meal-planner')}
+                                    onClick={() => goAuthed('/tv-planner')}
                                 >
-                                    <Ic d={ICONS.planner} /><span className={styles.navRowText}>Planificateur</span>
+                                    <Ic d={ICONS.planner} /><span className={styles.navRowText}>Planificateur · Semaine</span>
                                 </button>
                                 <button
                                     className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
-                                    onClick={() => goAuthed('/shopping-list')}
+                                    onClick={() => goAuthed('/tv-planner?mode=jourj')}
+                                >
+                                    <Ic d={ICONS.day} /><span className={styles.navRowText}>Planificateur · Jour J</span>
+                                </button>
+                                <button
+                                    className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
+                                    onClick={() => goAuthed('/tv-courses')}
                                 >
                                     <Ic d={ICONS.cart} /><span className={styles.navRowText}>Liste de courses</span>
                                 </button>
