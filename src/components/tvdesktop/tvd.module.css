@@ -108,15 +108,49 @@
 
 .hero {
     position: relative;
-    height: 64vh;
-    min-height: 460px;
+    display: flex;
+    align-items: center;
+    gap: 46px;
+    /* Le héros occupe le premier écran : seule la rangée Top 10 dépasse en bas. */
+    height: 80vh;
+    min-height: 540px;
+    padding: 0 56px;
     overflow: hidden;
 }
+
+/* Moitié gauche : la photo dans une VRAIE carte, cadrée, jamais rognée par le
+   bord de la fenêtre (les classes existaient dans le JSX sans aucun style). */
+.heroLeft {
+    position: relative;
+    flex: 0 0 44%;
+    max-width: 620px;
+    aspect-ratio: 4 / 3;
+    max-height: 62vh;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #141416;
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(255, 255, 255, 0.16);
+    cursor: pointer;
+}
+
+/* Colonne droite : contenu centré verticalement dans l'espace restant. */
+.heroRight {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Plus de fondu latéral : la carte a des bords nets. */
+.heroFade { display: none; }
 
 .heroImg {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
-    object-fit: cover; object-position: 50% 40%;
+    object-fit: cover; object-position: 50% 45%;
 }
 
 .heroScrim {
@@ -144,7 +178,7 @@
 .heroNavR { right: 18px; }
 
 .heroBody {
-    position: absolute; left: 52px; bottom: 64px; z-index: 2;
+    position: relative; z-index: 2;
     max-width: 560px;
 }
 

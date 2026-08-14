@@ -101,12 +101,13 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
         try { rec.start(); } catch {}
     };
 
-    // Lancement auto : 1s d'inactivité après frappe/dictée → recherche IA.
+    // Lancement auto : 0,7 s d'inactivité après frappe OU dictée → recherche IA,
+    // sans jamais toucher « Entrée ».
     useEffect(() => {
         if (mode !== 'assistant') return;
         const q = aiQuery.trim();
         if (q.length < 3) return;
-        const t = setTimeout(() => askAssistant(q), 1000);
+        const t = setTimeout(() => askAssistant(q), 700);
         return () => clearTimeout(t);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [aiQuery, mode]);
@@ -141,12 +142,17 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
             .filter((r) => r.category !== 'restaurant')
             .map((r) => {
                 const ingNames = r.ingredients.map((i) => i.name.toLowerCase());
-                const matched = tags.filter((tag) => ingNames.some((n) => n.includes(tag)));
-                return { recipe: r, matched: matched.length };
+                const has = (tag: string) => ingNames.some((n) => normalize(n).includes(normalize(tag)));
+                const matched = tags.filter(has);
+                // Ce qui manque, nommément : « il manque le fenouil » vaut mieux
+                // qu'un simple 1/2, on sait quoi acheter.
+                const missing = tags.filter((t) => !has(t));
+                return { recipe: r, matched: matched.length, missing };
             })
             .filter(({ matched }) => matched > 0)
+            // Recettes complètes d'abord, puis les plus proches.
             .sort((a, b) => b.matched - a.matched)
-            .slice(0, 12);
+            .slice(0, 14);
     }, [ingTags, mode]);
 
     const addIngTag = () => {
@@ -173,7 +179,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
     }, [open]);
 
     // Une ligne de résultat (image + drapeau + titre + méta).
-    const ResultItem = ({ recipe, meta }: { recipe: Recipe; meta: string }) => {
+    const ResultItem = ({ recipe, meta, note }: { recipe: Recipe; meta: string; note?: string }) => {
         return (
             <button className={styles.spItem} onClick={() => pick(recipe)}>
                 <div className={styles.spThumbWrap}>
@@ -182,6 +188,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
                 <div className={styles.spInfo}>
                     <div className={styles.spTitle}>{decodeHtml(recipe.title)}</div>
                     <div className={styles.spMeta}>{meta}</div>
+                    {note && <div className={styles.spMissing}>{note}</div>}
                 </div>
             </button>
         );
@@ -226,11 +233,19 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
                             ) : (
                                 <input
                                     ref={inputRef} type="text" className={styles.spInput}
-                                    placeholder="Ajouter un ingrédient (Entrée)"
+                                    placeholder="Riz, fenouil…"
                                     value={ingInput} onChange={(e) => setIngInput(e.target.value)}
                                     onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addIngTag(); } }}
                                     enterKeyHint="done" autoComplete="off" autoCorrect="off" spellCheck={false}
                                 />
+                            )}
+                            {/* Valider sans clavier : les résultats se recalculent aussitôt. */}
+                            {mode === 'ingredients' && ingInput.trim() && (
+                                <button className={styles.spAdd} onClick={() => { haptic(8); addIngTag(); }} aria-label="Ajouter l'ingrédient">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                </button>
                             )}
                             {mode === 'assistant' && (
                                 <button
@@ -310,7 +325,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
                     <div className={styles.spResults}>
                         {mode === 'assistant' && (
                             <>
-                                {aiBusy && <div className={styles.spHint}>L'assistant cherche…</div>}
+                                {aiBusy && <div className={styles.spHint}>L&apos;assistant cherche…</div>}
                                 {!aiBusy && aiMessage && <div className={styles.spAiMsg}>{aiMessage}</div>}
                                 {!aiBusy && aiError && <div className={styles.spEmpty}>{aiError}</div>}
                                 {!aiBusy && !aiResults.length && !aiError && (
@@ -336,8 +351,13 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect }: TVSpotlig
                                 {ingTags.length === 0 ? (
                                     <div className={styles.spEmpty}>Tape un ingrédient et valide (Entrée)</div>
                                 ) : ingredientResults.length > 0
-                                    ? ingredientResults.map(({ recipe, matched }) => (
-                                        <ResultItem key={recipe.id} recipe={recipe} meta={`${recipe.category} • ${matched}/${ingTags.length} ingrédient${ingTags.length > 1 ? 's' : ''}`} />
+                                    ? ingredientResults.map(({ recipe, matched, missing }) => (
+                                        <ResultItem
+                                            key={recipe.id}
+                                            recipe={recipe}
+                                            meta={`${recipe.category} • ${matched}/${ingTags.length} ingrédient${ingTags.length > 1 ? 's' : ''}`}
+                                            note={missing.length ? `Il manque : ${missing.join(', ')}` : undefined}
+                                        />
                                     ))
                                     : <div className={styles.spEmpty}>Aucune recette avec ces ingrédients</div>}
                             </>

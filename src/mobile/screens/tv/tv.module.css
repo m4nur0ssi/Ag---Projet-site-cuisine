@@ -30,8 +30,9 @@
 .heroSticky {
     position: sticky;
     top: 0;
-    height: 82svh;
-    min-height: 520px;
+    /* Hauteur calée sur la rangée Top 10 (≈ 300 px avec son titre) : la carte
+       du Top 10 apparaît ENTIÈRE en bas du premier écran, et rien de plus. */
+    height: clamp(330px, calc(100svh - 290px), 620px);
     z-index: 0;
     overflow: hidden;
 }
@@ -71,8 +72,12 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Cadrage haut : les plats sont photographiés au centre, on garde la matière. */
-    object-position: 50% 42%;
+    object-position: 50% 45%;
+    /* Fond d'ambiance seulement : très flouté et assombri. La photo NETTE est
+       affichée petite dans la carte du héros — une image de 600 px suffit donc,
+       plus besoin de sources haute définition pour remplir l'écran. */
+    filter: blur(40px) saturate(125%) brightness(0.34);
+    transform: scale(1.3);
 }
 
 /* Dégradés : lisibilité du texte + fondu vers le noir de la feuille. */
@@ -104,6 +109,7 @@
     right: 0;
     z-index: 3;
     text-align: center;
+    padding: 0 58px;
     /* Ne doit jamais capter le geste : le pager du héros passe dessous. */
     pointer-events: none;
     will-change: transform, opacity;
@@ -125,7 +131,7 @@
     display: inline-block;
     margin-top: 2px;
     font-family: 'Outfit', sans-serif;
-    font-size: 34px;
+    font-size: 42px;
     font-weight: 900;
     line-height: 1;
     letter-spacing: -0.025em;
@@ -182,11 +188,13 @@
     right: 0;
     bottom: 0;
     z-index: 2;
-    padding: 0 22px calc(96px + env(safe-area-inset-bottom, 0px));
+    top: 0;
+    padding: calc(env(safe-area-inset-top, 0px) + 122px) 18px 30px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    justify-content: flex-start;
+    align-items: stretch;
+    text-align: left;
     gap: 14px;
     will-change: transform, opacity;
     /* Le bloc texte couvre le bas du héros : sans ça il avale le geste horizontal
@@ -304,7 +312,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    bottom: 14px;
     z-index: 2;
     display: flex;
     align-items: center;
@@ -420,6 +428,15 @@
 }
 
 /* Formats de cartes — volontairement inégaux (plus ou moins grandes) */
+/* ÉCHELLE DES CARTES — chaque rangée pioche un format, jamais improvisé :
+     small   124 × 124   (1/1)    thèmes secondaires
+     poster  132 × 198   (2/3)    affiches verticales
+     square  148 × 148   (1/1)    catégories courtes
+     medium  178 × 134   (4/3)    format courant
+     wide    272 × 170   (16/10)  rangées mises en avant
+     huge    300 × 400   (3/4)    pancartes de fin de feed          */
+.small  { width: 124px; }
+.small  .thumb { aspect-ratio: 1 / 1; }
 .wide   { width: 272px; }
 .wide   .thumb { aspect-ratio: 16 / 10; }
 .medium { width: 178px; }
@@ -505,112 +522,50 @@
     background: #fff;
 }
 
-/* Classement Top 10 : gros chiffre à gauche, affiche qui le chevauche */
-.rankedCard {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: flex-end;
+/* ── TOP 10 : cartes affiches + chiffre à cheval sur le bord ────────────── */
+
+.top10Scroll {
+    scroll-snap-type: x proximity;
+    /* Écart calé sur la MOITIÉ du chiffre le plus large (« 4 » ≈ 51 px) : sa
+       partie qui déborde tient donc pile entre deux cartes, sans jamais mordre
+       sur la précédente. */
+    gap: 28px;
+    /* La gouttière gauche loge la moitié du chiffre qui déborde de la carte. */
+    padding-left: 46px;
+    padding-right: 20px;
+    scroll-padding-left: 46px;
+}
+
+.top10Card {
+    position: relative;
+    /* Format affiche, à peine plus grand que les autres rangées : la carte
+       plein écran écrasait le feed. */
+    flex: 0 0 176px;
     scroll-snap-align: start;
-    cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition: transform 0.32s var(--tv-ease);
 }
-.rankedCard:active { transform: scale(0.955); }
+.top10Card:active { transform: scale(0.975); }
 
-.rankNum {
+.top10Rank {
+    /* En bas à gauche, à cheval sur le bord de la carte. `translateX(-50%)`
+       centre le glyphe SUR l'arête : exactement la moitié dedans, la moitié
+       dehors — et ce quelle que soit sa largeur (le « 1 » est deux fois plus
+       étroit qu'un « 4 », un décalage fixe le déséquilibrait). */
+    position: absolute;
+    left: 0;
+    /* Aligné sur le bas de la carte : la rangée masque son débordement vertical. */
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 3;
     font-family: 'Outfit', sans-serif;
     font-size: 92px;
     font-weight: 900;
     line-height: 0.72;
     letter-spacing: -0.06em;
     color: #fff;
-    /* min-width : le « 1 » est étroit, sans ça l'affiche le recouvrirait entièrement. */
-    min-width: 52px;
-    text-align: right;
-    margin-right: -4px;
-    transform: translateY(4px);
-}
-
-.rankedThumb {
-    position: relative;
-    width: 124px;
-    aspect-ratio: 2 / 3;
-    border-radius: 10px;
-    overflow: hidden;
-    background: #141416;
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55), inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
-}
-
-.rankedTitle {
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 24px;
-    z-index: 2;
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.rankedSub {
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 8px;
-    z-index: 2;
-    font-family: 'Outfit', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    color: rgba(235, 235, 245, 0.75);
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
-}
-
-/* ── TOP 10 : une recette par écran, vidéo en lecture auto ─────────────── */
-
-.top10Scroll {
-    /* mandatory : on s'arrête toujours pile sur une recette. */
-    scroll-snap-type: x mandatory;
-    gap: 14px;
-    /* (100vw − largeur de carte) / 2 : la carte active tombe pile au centre, y
-       compris la première et la dernière, et les voisines dépassent un peu.
-       Cette gouttière loge aussi le chiffre du classement. */
-    padding-left: 65px;
-    padding-right: 65px;
-}
-
-/* Chiffre à gauche + carte qui le recouvre à moitié. */
-.top10Card {
-    position: relative;
-    flex: 0 0 calc(100vw - 130px);
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 0.32s var(--tv-ease);
-}
-.top10Card:active { transform: scale(0.985); }
-
-.top10Rank {
-    /* Incrusté DANS l'affiche, en haut à gauche — le motif d'Apple TV+. */
-    position: absolute;
-    top: 8px;
-    left: 14px;
-    z-index: 4;
-    font-family: 'Outfit', sans-serif;
-    font-size: 52px;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: rgba(255, 255, 255, 0.97);
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+    /* Double ombre : lisible sur le noir du fond comme sur la photo. */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55), 0 6px 30px rgba(0, 0, 0, 0.75);
     pointer-events: none;
 }
 
@@ -618,10 +573,10 @@
     position: relative;
     z-index: 1;
     aspect-ratio: 3 / 4;
-    border-radius: 18px;
+    border-radius: 14px;
     overflow: hidden;
     background: #141416;
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.55), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
     cursor: pointer;
 }
 
@@ -645,13 +600,13 @@
     pointer-events: none;
     background:
         linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.35) 26%, rgba(0, 0, 0, 0) 52%),
-        /* Voile haut : le chiffre blanc reste lisible sur une photo claire. */
-        linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 22%);
+        /* Voile haut : le bouton son reste lisible sur une photo claire. */
+        linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 22%);
 }
 
 /* Capte le tap pour afficher NOS commandes. Volontairement limité au bas de la
    carte : TikTok affiche sa propre bannière cookies au centre de l'iframe, et un
-   calque plein écran empêcherait de la fermer (impossible à piloter, autre domaine). */
+   calque plein écran empêcherait de la fermer (autre domaine, hors de portée). */
 .top10Tap {
     position: absolute;
     left: 0;
@@ -663,9 +618,10 @@
 
 .top10Overlay {
     position: absolute;
-    left: 16px;
-    right: 16px;
-    bottom: 14px;
+    /* Dégage la moitié du chiffre qui mord sur la carte. */
+    left: 40px;
+    right: 10px;
+    bottom: 9px;
     z-index: 4;
     pointer-events: none;
 }
@@ -680,52 +636,52 @@
 
 .top10Title {
     font-family: 'Outfit', sans-serif;
-    font-size: 21px;
+    font-size: 14px;
     font-weight: 900;
-    line-height: 1.06;
-    letter-spacing: -0.025em;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
     transform: skewX(-7deg);
     transform-origin: left bottom;
     color: #fff;
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-.top10Sub svg {
-    width: 9px;
-    height: 9px;
-    margin-left: 7px;
-    color: rgba(255, 255, 255, 0.75);
+.top10Sub {
+    margin-top: 2px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(235, 235, 245, 0.82);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.85);
 }
 
-.top10Sub {
-    margin-top: 3px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: rgba(235, 235, 245, 0.8);
-    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+.top10Sub svg {
+    width: 8px;
+    height: 8px;
+    margin-left: 6px;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 /* Bouton son : la lecture auto est forcément muette (politique navigateur). */
 .top10Sound {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 8px;
+    right: 8px;
     z-index: 5;
-    width: 38px;
-    height: 38px;
+    width: 30px;
+    height: 30px;
     border: none;
     border-radius: 999px;
     background: rgba(0, 0, 0, 0.45);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     color: #fff;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1;
     cursor: pointer;
     box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.2);
@@ -734,13 +690,13 @@
 /* NOS commandes : aucune interface TikTok n'est affichée (controls=0). */
 .top10Controls {
     position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 74px;
+    left: 10px;
+    right: 10px;
+    bottom: 54px;
     z-index: 6;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     opacity: 0;
     transform: translateY(6px);
     pointer-events: none;
@@ -762,7 +718,7 @@
 }
 .top10BarTrack {
     width: 100%;
-    height: 4px;
+    height: 3px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.3);
     overflow: hidden;
@@ -775,7 +731,7 @@
 .top10Time {
     flex: 0 0 auto;
     font-family: 'Outfit', sans-serif;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     color: rgba(255, 255, 255, 0.9);
@@ -829,13 +785,37 @@
 
 .allGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px 12px;
-    padding: 6px 18px calc(130px + env(safe-area-inset-bottom, 0px));
+    /* Colonnes fluides : 3 sur téléphone, davantage sur grand écran, mais la
+       carte garde toujours une taille raisonnable au lieu de s'étirer. */
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+    grid-auto-flow: row dense;
+    gap: 18px 10px;
+    padding: 6px 16px calc(130px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Mosaïque : la variété vient de la LARGEUR seule — une carte panoramique
+   toutes les 7. Les hauteurs d'image restent identiques dans une ligne, sinon
+   les titres démarrent à des hauteurs différentes d'une carte à l'autre. */
+.allGrid .card:nth-child(7n + 1) { grid-column: span 2; }
+
+/* Hauteur d'image FIXE : c'est elle qui garantit l'alignement des titres. */
+.allGrid .thumb {
+    aspect-ratio: auto;
+    height: 144px;
+    border-radius: 10px;
+}
+
+/* Carte en colonne + libellé sur deux lignes réservées : la ligne d'infos
+   s'aligne elle aussi, que le titre tienne sur une ou deux lignes. */
+.allGrid .card { display: flex; flex-direction: column; }
+.allGrid .cardLabel {
+    min-height: calc(2 * 1.14em);
+    -webkit-line-clamp: 2;
 }
 
 .allGrid .card { width: 100%; }
-.allGrid .thumb { aspect-ratio: 4 / 3; }
+.allGrid .cardLabel { font-size: 11.5px; line-height: 1.14; margin-top: 6px; }
+.allGrid .cardSub { font-size: 10px; }
 
 /* ── Menu d'appui long (langage iOS 26/27) ─────────────────────────────── */
 
@@ -1476,3 +1456,313 @@
     color: rgba(235, 235, 245, 0.55);
 }
 
+
+/* ── Héros scindé : photo à gauche, informations à droite ──────────────── */
+
+.heroSplit {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Photo nette, en petit format : 150 px de large suffisent à une source légère. */
+.heroShot {
+    position: relative;
+    flex: 0 0 47%;
+    aspect-ratio: 3 / 4;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #141416;
+    /* Filet clair + ombre profonde : sans eux la photo se fondait dans son
+       propre fond flouté, qui a exactement les mêmes couleurs. */
+    box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.22),
+        inset 0 0 0 0.5px rgba(255, 255, 255, 0.28);
+    /* Non cliquable à dessein : le pager doit rester balayable sur toute la zone. */
+    pointer-events: none;
+}
+
+.heroShotImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.06) contrast(1.04);
+}
+
+.heroInfo {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    padding-bottom: 2px;
+}
+
+/* Titre calé sur la colonne : plus petit que le plein écran, toujours incliné. */
+.heroTitleSplit {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: clamp(19px, 5.9vw, 26px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin: 0;
+    color: #fff;
+    transform: skewX(-7deg);
+    transform-origin: left bottom;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 6px 26px rgba(0, 0, 0, 0.55);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.heroMetaSplit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.88);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+}
+
+.heroActionsSplit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 3px;
+    pointer-events: auto;
+}
+
+/* Bouton compact : il partage la colonne avec le cœur. */
+.heroPlaySplit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: transform 0.28s var(--tv-ease);
+}
+.heroPlaySplit:active { transform: scale(0.94); }
+
+.heroFavSplit {
+    width: 42px !important;
+    height: 42px !important;
+    background: rgba(60, 60, 67, 0.55) !important;
+    border: none !important;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.16) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Signature : un cran plus grande, avec le compteur de recettes à côté. */
+.brandRow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.brandCount {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
+}
+
+/* ── Fenêtre large : le héros scindé doit rester composé ────────────────── */
+/* Sur un écran large, `flex: 0 0 47%` donnait une carte photo démesurée et le
+   bloc collait au bord gauche. On borne la composition et on la centre. */
+@media (min-width: 760px) {
+    /* Hauteur calée sur la rangée Top 10 (≈ 330 px avec son titre) : le bas des
+       cartes affleure la fenêtre, jamais plus. */
+    .heroSticky {
+        height: clamp(430px, calc(100vh - 306px), 860px);
+        min-height: 430px;
+    }
+    /* Contenu centré verticalement, sinon tout le haut du héros reste vide. */
+    .heroContent {
+        top: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+    }
+    .heroSplit {
+        width: 100%;
+        max-width: 1040px;
+        margin: 0 auto;
+        align-items: center;
+        gap: 48px;
+        padding: 0 40px;
+    }
+    .heroShot {
+        flex: 0 0 400px;
+        aspect-ratio: 4 / 3;
+    }
+    .heroInfo { gap: 16px; }
+    .heroTitleSplit { font-size: clamp(38px, 3.9vw, 58px); -webkit-line-clamp: 3; }
+    .heroMetaSplit { font-size: 16px; }
+    .heroKicker { align-self: center; }
+    .heroPlaySplit { height: 48px; padding: 0 24px; font-size: 16px; }
+    .heroFavSplit { width: 48px !important; height: 48px !important; }
+}
+
+@media (min-width: 760px) {
+    .allGrid {
+        grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
+        max-width: 1400px;
+        margin: 0 auto;
+        gap: 24px 14px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .allGrid .thumb { height: 230px; }
+    .allGrid .cardLabel { font-size: 13px; }
+    .allGrid .cardSub { font-size: 11.5px; }
+}
+
+/* Sur téléphone, aucune flèche : le doigt fait défiler. Sans cette règle, le
+   bouton s'affichait sans style entre chaque rangée (le CSS n'existait que
+   dans la requête ≥ 760 px). */
+.rowArrow { display: none; }
+
+/* ── Grand écran : cartes calibrées + flèche de défilement ──────────────── */
+@media (min-width: 760px) {
+    .row { position: relative; }
+
+    .rowScroll {
+        padding-left: 40px;
+        padding-right: 40px;
+        gap: 14px;
+        scroll-padding-left: 40px;
+    }
+    .rowHead { padding-left: 40px; }
+
+    /* Largeurs posées par useFittedCards : un nombre entier de cartes tient
+       dans la fenêtre, donc plus jamais de dernière carte tronquée. */
+    .small  { width: var(--card-small, 124px); }
+    .poster { width: var(--card-poster, 132px); }
+    .square { width: var(--card-square, 148px); }
+    .medium { width: var(--card-medium, 178px); }
+    .wide   { width: var(--card-wide, 272px); }
+    .hugeCard { width: var(--card-hugeCard, 300px); }
+    .top10Card { flex: 0 0 var(--card-top10, 176px); }
+
+    /* Le Top 10 garde sa gouttière ET son écart double : la règle générique
+       .rowScroll ci-dessus, plus tardive, ramenait sinon l'écart à 14 px et le
+       chiffre repassait sur la carte précédente. */
+    .top10Scroll { padding-left: 46px; padding-right: 40px; gap: 28px; }
+
+    .rowArrow {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        transform: translateY(-10%);
+        z-index: 5;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.55);
+        -webkit-backdrop-filter: blur(18px) saturate(180%);
+        backdrop-filter: blur(18px) saturate(180%);
+        box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.2);
+        color: #fff;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.22s ease, transform 0.22s var(--tv-ease);
+    }
+    .row:hover .rowArrow { opacity: 1; }
+    .rowArrow:active { transform: translateY(-10%) scale(0.9); }
+    .rowArrow svg { width: 13px; height: 13px; }
+}
+
+/* Écran tactile large (iPad) : la flèche reste visible, faute de survol. */
+@media (min-width: 760px) and (hover: none) {
+    .rowArrow { opacity: 1; }
+}
+
+/* Entrée grisée tant qu'on n'est pas connecté (le tap ouvre la connexion). */
+.navRowLocked { opacity: 0.45; }
+
+/* Le tutoriel est un composant autonome : on rhabille son bouton en ligne de menu. */
+.navTutorial { padding: 0 14px; }
+.navTutorial button {
+    flex: 1 1 auto;
+    padding: 12px 0;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 16.5px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-align: left;
+    cursor: pointer;
+}
+.navTutorial button span { font: inherit; color: inherit; }
+
+/* Ingrédient manquant, sous le résultat : ambre iOS, jamais rouge (ce n'est
+   pas une erreur, juste ce qu'il reste à acheter). */
+.spMissing {
+    margin-top: 3px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffd60a;
+    opacity: 0.92;
+}
+
+/* Bouton « ajouter l'ingrédient » : évite d'aller chercher Entrée au clavier. */
+.spAdd {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    cursor: pointer;
+}
+.spAdd:active { transform: scale(0.9); }
+
+/* iPhone avec la barre Safari (≈ 660 px utiles) : le bloc du héros dépassait de
+   son cadre et poussait la carte du Top 10 hors de l'écran. On resserre. */
+@media (max-height: 730px) {
+    .heroContent { padding-top: calc(env(safe-area-inset-top, 0px) + 104px); }
+    .heroShot { flex: 0 0 40%; }
+    .heroTitleSplit { font-size: clamp(17px, 5.4vw, 23px); }
+    .heroMetaSplit { font-size: 11.5px; }
+    .heroPlaySplit { height: 38px; padding: 0 16px; font-size: 14px; }
+    .heroFavSplit { width: 38px !important; height: 38px !important; }
+}

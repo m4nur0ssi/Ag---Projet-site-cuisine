@@ -145,31 +145,36 @@ function Hero({ recipes, onMenu }: { recipes: Recipe[]; onMenu: (r: Recipe, x: n
 
     return (
         <div className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-            <AnimatePresence>
-                <motion.img
-                    key={current.id}
-                    className={styles.heroImg}
-                    src={current.image}
-                    alt=""
-                    initial={{ opacity: 0, scale: 1.06 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.9, ease: [0.32, 0.72, 0, 1] }}
-                    draggable={false}
-                />
-            </AnimatePresence>
-            <div className={styles.heroScrim} />
+            {/* Image à gauche (moitié), fondu vers le noir à droite — évite d'étirer
+               les photos larges à basse résolution sur toute la largeur. */}
+            <div className={styles.heroLeft} onClick={() => openRecipe(current)}>
+                <AnimatePresence>
+                    <motion.img
+                        key={current.id}
+                        className={styles.heroImg}
+                        src={current.image}
+                        alt=""
+                        initial={{ opacity: 0, scale: 1.05 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.9, ease: [0.32, 0.72, 0, 1] }}
+                        draggable={false}
+                    />
+                </AnimatePresence>
+                <div className={styles.heroFade} />
+                <button className={`${styles.heroNav} ${styles.heroNavL}`} onClick={(e) => { e.stopPropagation(); go(-1); }} aria-label="Précédent">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+            </div>
 
-            <button className={`${styles.heroNav} ${styles.heroNavL}`} onClick={() => go(-1)} aria-label="Précédent">
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
-            <button className={`${styles.heroNav} ${styles.heroNavR}`} onClick={() => go(1)} aria-label="Suivant">
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
-
-            <div className={styles.heroBody}>
+            {/* Détails à droite (titre, méta, actions) sur fond noir. */}
+            <div className={styles.heroRight}>
+                <button className={`${styles.heroNav} ${styles.heroNavR}`} onClick={() => go(1)} aria-label="Suivant">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
                 <motion.div
                     key={current.id}
+                    className={styles.heroBody}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
@@ -191,13 +196,12 @@ function Hero({ recipes, onMenu }: { recipes: Recipe[]; onMenu: (r: Recipe, x: n
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
                         </button>
                     </div>
+                    <div className={styles.heroDots}>
+                        {recipes.map((_, i) => (
+                            <button key={i} className={`${styles.heroDot} ${i === index ? styles.heroDotOn : ''}`} onClick={() => setIndex(i)} aria-label={`Recette ${i + 1}`} />
+                        ))}
+                    </div>
                 </motion.div>
-            </div>
-
-            <div className={styles.heroDots}>
-                {recipes.map((_, i) => (
-                    <button key={i} className={`${styles.heroDot} ${i === index ? styles.heroDotOn : ''}`} onClick={() => setIndex(i)} aria-label={`Recette ${i + 1}`} />
-                ))}
             </div>
         </div>
     );
@@ -366,8 +370,8 @@ export default function TVDesktopHome() {
                     <>
                         <Hero recipes={heroRecipes} onMenu={onMenu} />
                         <div className={styles.rows}>
-                            <Row title="Reprendre la cuisine" recipes={resume} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />
                             <Row title="Top 10 : les mieux notées" recipes={topTen} shape="poster" onSeeAll={openCollection} onMenu={onMenu} />
+                            <Row title="Reprendre la cuisine" recipes={resume} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />
                             {laterRecipes.length > 0 && <Row title="À faire plus tard" recipes={laterRecipes} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />}
                             <Row title="Nouveautés" recipes={newest} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />
                             <Row title="Apéritifs" recipes={byCat['aperitifs'] || []} shape="square" onSeeAll={openCollection} onMenu={onMenu} />

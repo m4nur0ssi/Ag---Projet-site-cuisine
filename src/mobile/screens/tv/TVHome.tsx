@@ -17,6 +17,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag } from './themes';
+import { timingOf, totalMinutes, formatMinutes } from './timing';
 import styles from './tv.module.css';
 
 // ── Helpers ────────────────────────────────────────────────────────────────
@@ -39,14 +40,40 @@ const label = (r: Recipe) => decodeHtml(r.title || '');
 const catLabel = (r: Recipe) => CATEGORY_LABEL[(r.category || '').toLowerCase()] || 'Recette';
 /** Sans accents ni casse : « Grèce » matche « grece ». */
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-/** Retour haptique (ignoré si non supporté). */
-export const haptic = (ms = 8) => { try { navigator.vibrate?.(ms); } catch { /* noop */ } };
-const totalTime = (r: Recipe) => (r.prepTime || 0) + (r.cookTime || 0);
-const timeLabel = (r: Recipe) => {
-    const t = totalTime(r);
-    if (!t) return '';
-    return t >= 60 ? `${Math.floor(t / 60)} h${t % 60 ? ` ${t % 60}` : ''}` : `${t} min`;
+/**
+ * Retour haptique. `navigator.vibrate` n'existe PAS sur iOS — c'est pourquoi
+ * l'appui long n'a jamais vibré sur iPhone. Depuis iOS 17.4, basculer un
+ * `<input type="checkbox" switch>` déclenche en revanche le retour haptique
+ * système : on garde donc un commutateur invisible qu'on actionne au besoin.
+ */
+let hapticSwitch: HTMLLabelElement | null = null;
+function iosHaptic() {
+    if (typeof document === 'undefined') return;
+    if (!hapticSwitch) {
+        const hidden = 'position:fixed;top:-9999px;left:-9999px;width:0;height:0;opacity:0;pointer-events:none';
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.setAttribute('switch', '');
+        input.id = 'tv-haptic-switch';
+        input.style.cssText = hidden;
+        const label = document.createElement('label');
+        label.htmlFor = 'tv-haptic-switch';
+        label.style.cssText = hidden;
+        document.body.append(input, label);
+        hapticSwitch = label;
+    }
+    hapticSwitch.click();
+}
+
+export const haptic = (ms = 8) => {
+    try {
+        // Android / Chrome : API standard. Renvoie false si refusée.
+        if (navigator.vibrate?.(ms)) return;
+    } catch { /* noop */ }
+    iosHaptic();
 };
+// Temps estimés depuis les étapes : les valeurs WordPress valent 45 min partout.
+const timeLabel = (r: Recipe) => formatMinutes(totalMinutes(r));
 
 const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
 const FavoriteButton = dynamic(() => import('@/mobile/components/FavoriteButton/FavoriteButton'), { ssr: false });
@@ -72,6 +99,25 @@ type OpenSheet = (list: Recipe[], index: number) => void;
 
 /** Liste locale « à faire plus tard » (test de design : pas de table dédiée). */
 const LATER_KEY = 'tv-later-v1';
+/** Historique de consultation — alimente la rangée « Reprendre la cuisine ». */
+const SEEN_KEY = 'recently-viewed';
+
+/** Enregistre une recette ouverte en tête de l'historique (12 max). */
+function pushSeen(id: string) {
+    let list: { id: string }[] = [];
+    try { list = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); } catch { /* vide */ }
+    const rest = list.filter((r) => String((r as any)?.id ?? r) !== id);
+    localStorage.setItem(SEEN_KEY, JSON.stringify([{ id }, ...rest].slice(0, 12)));
+    window.dispatchEvent(new Event('tv-seen-change'));
+}
+
+/** Retire une recette de « Reprendre la cuisine ». */
+function removeSeen(id: string) {
+    let list: { id: string }[] = [];
+    try { list = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); } catch { /* vide */ }
+    localStorage.setItem(SEEN_KEY, JSON.stringify(list.filter((r) => String((r as any)?.id ?? r) !== id)));
+    window.dispatchEvent(new Event('tv-seen-change'));
+}
 
 const readIds = (key: string): string[] => {
     try { return JSON.parse(localStorage.getItem(key) || '[]').map(String); } catch { return []; }
@@ -142,6 +188,79 @@ function useLongPress(onLong: () => void) {
     };
 }
 
+/**
+ * Sur grand écran, la dernière carte d'une rangée se retrouvait coupée par le
+ * bord de la fenêtre. On calcule ici, pour chaque format, une largeur telle
+ * qu'un nombre ENTIER de cartes tienne dans la largeur disponible — la dernière
+ * visible est donc toujours entière, quelle que soit la taille de l'écran.
+ * Sous 760 px (téléphone), on ne touche à rien : l'aperçu partiel y est voulu.
+ */
+const CARD_TARGET: Record<string, number> = {
+    small: 150, poster: 190, square: 200, medium: 230, wide: 320, hugeCard: 360, top10: 200,
+};
+const ROW_PAD = 40;
+const ROW_GAP = 14;
+
+function useFittedCards() {
+    useEffect(() => {
+        const root = document.documentElement;
+        const apply = () => {
+            const w = root.clientWidth;
+            Object.entries(CARD_TARGET).forEach(([key, target]) => {
+                if (w < 760) { root.style.removeProperty(`--card-${key}`); return; }
+                // Marge gauche de la rangée (le Top 10 en a une plus large pour
+                // loger le chiffre) et écart entre cartes (double pour le Top 10).
+                const pad = key === 'top10' ? 46 : ROW_PAD;
+                const gap = key === 'top10' ? 28 : ROW_GAP;
+
+                // Chaque carte occupe (largeur + écart). On en fait tenir un
+                // nombre entier dans la place disponible…
+                // Note : dans le Top 10, le chiffre de la carte suivante déborde
+                // 34 px à sa gauche et pointe donc encore un peu. Le corriger
+                // rognerait la dernière carte — priorité à la carte entière.
+                const avail = w - pad;
+                const cols = Math.max(1, Math.round(avail / (target + gap)));
+                // …puis on résout : la carte n+1 doit démarrer AU BORD de la
+                // fenêtre (donc invisible), ce qui pose largeur = avail/n − écart.
+                // Le +1 px absorbe les arrondis de rendu, qui laissaient sinon
+                // repasser un filet de la carte suivante.
+                const width = avail / cols - gap + 1;
+                root.style.setProperty(`--card-${key}`, `${width.toFixed(2)}px`);
+            });
+        };
+        apply();
+        window.addEventListener('resize', apply);
+        return () => window.removeEventListener('resize', apply);
+    }, []);
+}
+
+/**
+ * Le geste « retour » d'iOS (balayage depuis le bord) doit refermer le calque
+ * ouvert — grille de catégorie, fiche, menu… — et non quitter la page. Chaque
+ * calque ajoute donc une entrée d'historique à l'ouverture, retirée à la
+ * fermeture par l'interface. Empilement naturel : le dernier ouvert se ferme
+ * en premier.
+ */
+function useBackToClose(isOpen: boolean, close: () => void) {
+    const pushed = useRef(false);
+    const closeRef = useRef(close);
+    closeRef.current = close;
+
+    useEffect(() => {
+        if (!isOpen) return;
+        pushed.current = true;
+        window.history.pushState({ tvOverlay: Date.now() }, '');
+        const onPop = () => { pushed.current = false; closeRef.current(); };
+        window.addEventListener('popstate', onPop);
+        return () => {
+            window.removeEventListener('popstate', onPop);
+            // Fermé par un bouton : on retire l'entrée qu'on avait ajoutée,
+            // sinon il faudrait deux retours pour quitter la page.
+            if (pushed.current) { pushed.current = false; window.history.back(); }
+        };
+    }, [isOpen]);
+}
+
 /** Chevron SF-Symbols-like (le caractère « › » rend mal selon la police). */
 const Chevron = () => (
     <svg className={styles.rowChevron} viewBox="0 0 8 14" fill="none" aria-hidden>
@@ -151,7 +270,7 @@ const Chevron = () => (
 
 // ── Cartes ─────────────────────────────────────────────────────────────────
 
-type CardVariant = 'wide' | 'medium' | 'poster' | 'square' | 'hugeCard';
+type CardVariant = 'small' | 'wide' | 'medium' | 'poster' | 'square' | 'hugeCard';
 
 function Card({
     recipe,
@@ -224,6 +343,9 @@ function TopTenRow({
 }) {
     const [visibleId, setVisibleId] = useState<string | null>(null);
     const [playingId, setPlayingId] = useState<string | null>(null);
+    // Grand écran : la lecture ne part plus toute seule, elle suit la souris.
+    const [wide, setWide] = useState(false);
+    const hoverTimer = useRef<ReturnType<typeof setTimeout>>();
     const [muted, setMuted] = useState(true);
     const [showControls, setShowControls] = useState(false);
     const [progress, setProgress] = useState({ current: 0, duration: 0 });
@@ -252,32 +374,82 @@ function TopTenRow({
         );
     }, []);
 
-    // Quelle carte est réellement à l'écran ? (rangée ET page verticale)
     useEffect(() => {
+        const mq = window.matchMedia('(min-width: 760px)');
+        const sync = () => setWide(mq.matches);
+        sync();
+        mq.addEventListener('change', sync);
+        return () => mq.removeEventListener('change', sync);
+    }, []);
+
+    /** Survol prolongé (1,5 s) → lecture. Quitter la carte l'arrête. */
+    const hoverStart = (id: string) => {
+        if (!wide) return;
+        clearTimeout(hoverTimer.current);
+        hoverTimer.current = setTimeout(() => setPlayingId(id), 1500);
+    };
+    const hoverEnd = (id: string) => {
+        if (!wide) return;
+        clearTimeout(hoverTimer.current);
+        setPlayingId((prev) => (prev === id ? null : prev));
+    };
+    useEffect(() => () => clearTimeout(hoverTimer.current), []);
+
+    // Quelle carte joue ? Les cartes sont désormais petites : plusieurs tiennent à
+    // l'écran, un simple seuil de visibilité en aurait désigné deux à la fois.
+    // On prend donc la plus proche du CENTRE de la rangée, et seulement si la
+    // rangée elle-même est visible dans la page.
+    const scrollerRef = useRef<HTMLDivElement>(null);
+    const [rowVisible, setRowVisible] = useState(false);
+
+    useEffect(() => {
+        const el = scrollerRef.current;
+        if (!el) return;
         const io = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((e) => {
-                    const id = (e.target as HTMLElement).dataset.recipeId!;
-                    if (e.isIntersecting && e.intersectionRatio >= 0.75) setVisibleId(id);
-                    else setVisibleId((prev) => (prev === id ? null : prev));
-                });
-            },
-            { threshold: [0, 0.75, 1] }
+            ([e]) => setRowVisible(e.isIntersecting && e.intersectionRatio >= 0.6),
+            { threshold: [0, 0.6, 1] }
         );
-        Object.values(cardRefs.current).forEach((el) => el && io.observe(el));
+        io.observe(el);
         return () => io.disconnect();
+    }, []);
+
+    useEffect(() => {
+        const el = scrollerRef.current;
+        if (!el) return;
+        const pickCentered = () => {
+            // Sur téléphone une seule carte tient à l'écran : le centre est le bon
+            // repère. Sur grand écran, six cartes cohabitent et le centre tombait
+            // sur la 3ᵉ ou la 4ᵉ — d'où une vidéo qui démarrait au milieu de la
+            // rangée. On vise alors la première carte de la rangée.
+            const wide = window.innerWidth >= 760;
+            const mid = wide ? el.scrollLeft + 1 : el.scrollLeft + el.clientWidth / 2;
+            let bestId: string | null = null;
+            let bestDist = Infinity;
+            Object.entries(cardRefs.current).forEach(([id, node]) => {
+                if (!node) return;
+                const center = node.offsetLeft + node.offsetWidth / 2;
+                const dist = Math.abs(center - mid);
+                if (dist < bestDist) { bestDist = dist; bestId = id; }
+            });
+            setVisibleId((prev) => (prev === bestId ? prev : bestId));
+        };
+        pickCentered();
+        el.addEventListener('scroll', pickCentered, { passive: true });
+        return () => el.removeEventListener('scroll', pickCentered);
     }, [recipes]);
 
     // 2 s d'affichage continu → on monte l'iframe. Un seul lecteur à la fois :
     // sortir la carte de l'écran démonte l'iframe (la lecture s'arrête).
     useEffect(() => {
-        if (!visibleId) {
+        // Sur grand écran, c'est le survol qui commande : aucune lecture d'office.
+        if (wide) { setPlayingId(null); return; }
+        if (!visibleId || !rowVisible) {
             setPlayingId(null);
             return;
         }
         const t = setTimeout(() => setPlayingId(visibleId), AUTOPLAY_DELAY);
         return () => clearTimeout(t);
-    }, [visibleId]);
+    }, [visibleId, rowVisible, wide]);
 
     // Nouvelle vidéo = état neuf (muette, sans commandes, progression à zéro).
     useEffect(() => {
@@ -371,7 +543,7 @@ function TopTenRow({
                 <h2 className={styles.rowTitle}>{title}</h2>
                 <Chevron />
             </button>
-            <div className={`${styles.rowScroll} ${styles.top10Scroll}`}>
+            <div className={`${styles.rowScroll} ${styles.top10Scroll}`} ref={scrollerRef}>
                 {recipes.map((r, i) => {
                     const id = String(r.id);
                     const vid = tiktokId(r);
@@ -383,8 +555,21 @@ function TopTenRow({
                             ref={(el) => { cardRefs.current[id] = el; }}
                             className={styles.top10Card}
                         >
+                            {/* Frère de la vignette, pas enfant : `overflow: hidden`
+                                rognait la moitié qui doit déborder à gauche.
+                                « 10 » est deux fois plus large → réduit pour que
+                                sa moitié tienne dans le même écart. */}
+                            <span
+                                className={styles.top10Rank}
+                                style={i + 1 >= 10 ? { fontSize: 58 } : undefined}
+                            >
+                                {i + 1}
+                            </span>
+
                             <div
                                 className={styles.top10Thumb}
+                                onMouseEnter={() => hoverStart(id)}
+                                onMouseLeave={() => hoverEnd(id)}
                                 onTouchStart={() => pressStart(r)}
                                 onTouchMove={pressCancel}
                                 onTouchEnd={pressCancel}
@@ -413,9 +598,6 @@ function TopTenRow({
                                 )}
 
                                 <div className={styles.top10Scrim} />
-
-                                {/* Rang incrusté en haut à gauche de l'affiche (Apple TV+). */}
-                                <span className={styles.top10Rank}>{i + 1}</span>
 
                                 {playing && (
                                     <>
@@ -474,7 +656,43 @@ function TopTenRow({
                     );
                 })}
             </div>
+            <RowArrow scroller={scrollerRef} />
         </section>
+    );
+}
+
+/**
+ * Flèche de défilement : n'apparaît que si la rangée déborde réellement, et
+ * disparaît une fois arrivé au bout. Elle signale les cartes hors champ, que
+ * plus aucun rognage ne laisse deviner.
+ */
+function RowArrow({ scroller }: { scroller: React.RefObject<HTMLDivElement> }) {
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        const el = scroller.current;
+        if (!el) return;
+        const update = () => setShow(el.scrollWidth - el.clientWidth - el.scrollLeft > 8);
+        update();
+        el.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        return () => {
+            el.removeEventListener('scroll', update);
+            window.removeEventListener('resize', update);
+        };
+    }, [scroller]);
+
+    if (!show) return null;
+    return (
+        <button
+            className={styles.rowArrow}
+            aria-label="Voir la suite"
+            onClick={() => scroller.current?.scrollBy({ left: scroller.current.clientWidth * 0.82, behavior: 'smooth' })}
+        >
+            <svg viewBox="0 0 8 14" fill="none" aria-hidden>
+                <path d="M1 1l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        </button>
     );
 }
 
@@ -501,6 +719,8 @@ function Row({
     onOpen: OpenSheet;
     onLongPress: (recipe: Recipe) => void;
 }) {
+    const scroller = useRef<HTMLDivElement>(null);
+
     if (!recipes.length) return null;
 
     const sub = (r: Recipe) =>
@@ -514,7 +734,7 @@ function Row({
                 <h2 className={styles.rowTitle}>{title}</h2>
                 <Chevron />
             </button>
-            <div className={styles.rowScroll}>
+            <div className={styles.rowScroll} ref={scroller}>
                 {recipes.slice(0, 14).map((r, i) => (
                     <Card
                         key={r.id}
@@ -530,6 +750,7 @@ function Row({
                     />
                 ))}
             </div>
+            <RowArrow scroller={scroller} />
         </section>
     );
 }
@@ -625,7 +846,10 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
             {/* Signature de marque : disparaît vite au scroll pour laisser la place au feed. */}
             <motion.div className={styles.brand} style={{ opacity: brandOpacity, y: brandY }}>
                 <div className={styles.brandKicker}>Les recettes</div>
-                <div className={styles.brandWord}>Magiques</div>
+                <div className={styles.brandRow}>
+                    <span className={styles.brandWord}>Magiques</span>
+                    <span className={styles.brandCount}>{mockRecipes.length} recettes</span>
+                </div>
                 <div className={styles.brandRule} />
             </motion.div>
 
@@ -655,39 +879,56 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
-                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, width: '100%' }}
+                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12, width: '100%' }}
                     >
                         <span className={styles.heroKicker}>Nº {index + 1} des dernières recettes</span>
 
-                        <h1 className={`${styles.heroTitle} ${titleClass}`}>
-                            {label(current)}
-                        </h1>
+                        {/* Photo à gauche, informations à droite : la photo n'est plus
+                            étirée plein écran, une source légère suffit désormais. */}
+                        <div className={styles.heroSplit}>
+                            <div className={styles.heroShot}>
+                                <img
+                                    src={current.image}
+                                    alt={label(current)}
+                                    className={styles.heroShotImg}
+                                    decoding="async"
+                                    draggable={false}
+                                />
+                            </div>
 
-                        <div className={styles.heroMeta}>
-                            <span>{catLabel(current)}</span>
-                            {timeLabel(current) && (
-                                <>
+                            <div className={styles.heroInfo}>
+                                <h1 className={styles.heroTitleSplit}>{label(current)}</h1>
+
+                                <div className={styles.heroMetaSplit}>
+                                    <span>{catLabel(current)}</span>
+                                    {timeLabel(current) && (
+                                        <>
+                                            <span className={styles.heroDot}>·</span>
+                                            <span>{timeLabel(current)}</span>
+                                        </>
+                                    )}
                                     <span className={styles.heroDot}>·</span>
-                                    <span>{timeLabel(current)}</span>
-                                </>
-                            )}
-                            <span className={styles.heroDot}>·</span>
-                            <span>{current.difficulty === 'facile' ? 'Facile' : current.difficulty === 'moyen' ? 'Moyen' : 'Difficile'}</span>
-                            <span className={styles.heroBadge}>{current.servings || 4} pers.</span>
+                                    <span>{(() => {
+                                        const d = timingOf(current).difficulty;
+                                        return d === 'facile' ? 'Facile' : d === 'moyen' ? 'Moyen' : 'Difficile';
+                                    })()}</span>
+                                    <span className={styles.heroBadge}>{current.servings || 4} pers.</span>
+                                </div>
+
+                                <div className={styles.heroActionsSplit}>
+                                    <button className={styles.heroPlaySplit} onClick={() => { haptic(10); onOpen(recipes, index); }}>
+                                        Voir la recette
+                                    </button>
+                                    <FavoriteButton
+                                        recipeId={String(current.id)}
+                                        imageUrl={current.image}
+                                        alwaysShow
+                                        className={styles.heroFavSplit}
+                                    />
+                                </div>
+                            </div>
                         </div>
 
-                        <div className={styles.heroActions}>
-                            <button className={styles.heroPlay} onClick={() => { haptic(10); onOpen(recipes, index); }}>
-                                Voir la recette
-                            </button>
-                            {/* Vrai bouton favori (Supabase + cache local), au format rond. */}
-                            <FavoriteButton
-                                recipeId={String(current.id)}
-                                imageUrl={current.image}
-                                alwaysShow
-                                className={styles.heroFav}
-                            />
-                        </div>
                     </motion.div>
                 </AnimatePresence>
             </motion.div>
@@ -709,6 +950,7 @@ export default function TVHome() {
     const [sheet, setSheet] = useState<{ recipes: Recipe[]; index: number } | null>(null);
     const [menu, setMenu] = useState<Recipe | null>(null);
     const [navOpen, setNavOpen] = useState(false);
+    useFittedCards();
     const [filters, setFilters] = useState<string[]>([]);
     const [navQuery, setNavQuery] = useState('');
     const [searchOpen, setSearchOpen] = useState(false);
@@ -717,13 +959,18 @@ export default function TVHome() {
     const [recentlyViewed, setRecentlyViewed] = useState<Recipe[]>([]);
 
     useEffect(() => {
-        try {
-            const ids: string[] = JSON.parse(localStorage.getItem('recently-viewed') || '[]')
-                .map((r: any) => r.id || r);
-            setRecentlyViewed(
-                ids.map((id) => mockRecipes.find((r) => String(r.id) === String(id))).filter(Boolean) as Recipe[]
-            );
-        } catch { /* stockage indisponible */ }
+        const load = () => {
+            try {
+                const ids: string[] = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]')
+                    .map((r: any) => r.id || r);
+                setRecentlyViewed(
+                    ids.map((id) => mockRecipes.find((r) => String(r.id) === String(id))).filter(Boolean) as Recipe[]
+                );
+            } catch { /* stockage indisponible */ }
+        };
+        load();
+        window.addEventListener('tv-seen-change', load);
+        return () => window.removeEventListener('tv-seen-change', load);
     }, []);
 
     // Listes locales : « à faire plus tard » et cache des favoris, tenues à jour
@@ -745,20 +992,27 @@ export default function TVHome() {
     }, []);
 
     // Sur /tv, la loupe de la barre du bas (BottomNav prod, data-tour="search")
-    // ouvre NOTRE recherche modernisée au lieu de SpotlightSearch. Intercepté en
-    // phase capture au niveau du document : on court-circuite le handler React de
-    // BottomNav sans toucher au composant prod.
+    // ouvre NOTRE recherche modernisée au lieu de SpotlightSearch.
+    // On intercepte en phase capture, et pas seulement le clic : sur iPhone, un
+    // appui déclenche pointerdown → touchend → click, et framer-motion peut agir
+    // dès le pointeur. Ne bloquer que le clic laissait donc passer, par moments,
+    // la recherche du site. On coupe la chaîne au premier maillon.
     useEffect(() => {
-        const onClick = (e: MouseEvent) => {
+        let handled = 0;
+        const intercept = (e: Event) => {
             const t = e.target as HTMLElement | null;
-            if (t && t.closest('[data-tour="search"]')) {
-                e.preventDefault();
-                e.stopImmediatePropagation();
-                setSearchOpen(true);
-            }
+            if (!t?.closest?.('[data-tour="search"]')) return;
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            // Un seul geste = une seule ouverture (pointerdown + touchend + click).
+            const now = Date.now();
+            if (now - handled < 600) return;
+            handled = now;
+            setSearchOpen(true);
         };
-        document.addEventListener('click', onClick, true);
-        return () => document.removeEventListener('click', onClick, true);
+        const events: (keyof DocumentEventMap)[] = ['pointerdown', 'touchstart', 'touchend', 'click'];
+        events.forEach((ev) => document.addEventListener(ev, intercept, true));
+        return () => events.forEach((ev) => document.removeEventListener(ev, intercept, true));
     }, []);
 
     // Un calque plein écran est ouvert (recherche, fiche recette, grille « tout
@@ -774,6 +1028,13 @@ export default function TVHome() {
     }, [overlayOpen]);
 
     const openMenu = useCallback((recipe: Recipe) => setMenu(recipe), []);
+
+    // Le balayage « retour » ferme le calque du dessus au lieu de quitter /tv.
+    useBackToClose(!!all, () => setAll(null));
+    useBackToClose(!!sheet, () => setSheet(null));
+    useBackToClose(!!menu, () => setMenu(null));
+    useBackToClose(navOpen, () => setNavOpen(false));
+    useBackToClose(searchOpen, () => setSearchOpen(false));
 
     const toggleFilter = useCallback((token: string) => {
         setFilters((prev) => (prev.includes(token) ? prev.filter((t) => t !== token) : [...prev, token]));
@@ -830,6 +1091,9 @@ export default function TVHome() {
     // Ouvre la fiche ET ses voisines de la même rangée : swipe horizontal dans le
     // sheet pour parcourir la catégorie sans revenir à l'accueil.
     const openSheet = useCallback<OpenSheet>((list, index) => {
+        // Toute recette consultée alimente « Reprendre la cuisine ».
+        const opened = list[index];
+        if (opened) pushSeen(String(opened.id));
         const start = Math.max(0, Math.min(index - Math.floor(SHEET_WINDOW / 2), Math.max(0, list.length - SHEET_WINDOW)));
         setSheet({ recipes: list.slice(start, start + SHEET_WINDOW), index: index - start });
     }, []);
@@ -883,7 +1147,13 @@ export default function TVHome() {
     // Thématiques : plus de tuiles illustrées — chaque thème devient une rangée de
     // vraies recettes. Un seul balayage de mockRecipes par thème, mémorisé.
     const themeRows = useMemo(() => {
+        // Format par défaut : alternance, pour que le feed ne devienne pas monotone.
         const VARIANTS: CardVariant[] = ['poster', 'wide', 'square', 'medium'];
+        // Réglages explicites, thème par thème.
+        const FIXED: Record<string, CardVariant> = {
+            astuces: 'small',   // fiches courtes : petites vignettes
+            airfryer: 'wide',   // thème mis en avant
+        };
         // Ordre alphabétique français (accents et casse ignorés) sur le libellé affiché.
         const sorted = [...THEMES].sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }));
         return sorted.map((theme, i) => ({
@@ -891,7 +1161,7 @@ export default function TVHome() {
             // Les restaurants ont leur propre rangée en bas : on les sort des thèmes.
             recipes: mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && matchesTag(r, theme.tag)),
             // Alternance des formats : le feed ne doit jamais devenir monotone.
-            variant: VARIANTS[i % VARIANTS.length],
+            variant: FIXED[theme.tag] ?? VARIANTS[i % VARIANTS.length],
         })).filter((row) => row.recipes.length >= 4);
     }, []);
 
@@ -906,6 +1176,7 @@ export default function TVHome() {
                 onToggle={toggleFilter}
                 onClear={() => { setFilters([]); setNavQuery(''); }}
                 onApply={() => { setNavOpen(false); openAll(filterTitle, filterResults); }}
+                onSearch={() => setSearchOpen(true)}
                 resultCount={filterResults.length}
                 query={navQuery}
                 onQuery={setNavQuery}
@@ -914,6 +1185,7 @@ export default function TVHome() {
             <div className={styles.sheet}>
                 <div className={styles.grabber} />
 
+                <TopTenRow title="Top 10 : les mieux notées" recipes={topTen} onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
                 <Row
                     title="Reprendre la cuisine"
                     recipes={resume}
@@ -924,7 +1196,6 @@ export default function TVHome() {
                     onOpen={openSheet}
                     onLongPress={openMenu}
                 />
-                <TopTenRow title="Top 10 : les mieux notées" recipes={topTen} onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} />
                 {laterRecipes.length > 0 && (
                     <Row
                         title="À faire plus tard"
@@ -1039,6 +1310,15 @@ export default function TVHome() {
                                 >
                                     Voir la recette
                                 </button>
+                                {/* 4ᵉ action, seulement pour les recettes déjà consultées. */}
+                                {recentlyViewed.some((r) => String(r.id) === String(menu.id)) && (
+                                    <button
+                                        className={`${styles.menuAction} ${styles.menuDanger}`}
+                                        onClick={() => { haptic(8); const r = menu; setMenu(null); removeSeen(String(r.id)); }}
+                                    >
+                                        Retirer de « Reprendre la cuisine »
+                                    </button>
+                                )}
                             </div>
                         </motion.div>
                     </motion.div>

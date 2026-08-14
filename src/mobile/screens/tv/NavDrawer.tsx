@@ -7,10 +7,15 @@
  * OU à l'intérieur d'un groupe, ET entre groupes — « un dessert espagnol express ».
  */
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
+import { supabase } from '@/mobile/lib/supabase';
 import { motion, AnimatePresence } from 'framer-motion';
 import { THEMES } from './themes';
+
+// Tutoriel guidé du site : composant autonome, on l'habille en ligne de menu.
+const TutorialButton = dynamic(() => import('@/components/Tutorial/TutorialButton'), { ssr: false });
 import styles from './tv.module.css';
 
 // ── Icônes (trait fin, esprit SF Symbols) ──────────────────────────────────
@@ -27,6 +32,7 @@ const ICONS = {
     cart: 'M3 4h2l2.2 10.5a1.5 1.5 0 0 0 1.5 1.2h7.9a1.5 1.5 0 0 0 1.5-1.2L20 7H6M9 20h.01M17 20h.01',
     heart: 'M20.8 6.6a4.6 4.6 0 0 0-6.5 0L12 8.9 9.7 6.6a4.6 4.6 0 1 0-6.5 6.5l1 1L12 21l7.8-6.9 1-1a4.6 4.6 0 0 0 0-6.5z',
     search: 'M21 21l-4.3-4.3M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z',
+    book: 'M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5z',
 };
 
 /** Retour haptique (ignoré si non supporté). */
@@ -80,15 +86,27 @@ interface NavDrawerProps {
     onClear: () => void;
     /** Ouvre la sélection courante dans la vue « tout afficher ». */
     onApply: () => void;
+    /** Ouvre la recherche « façon Apple TV » (et non la page /search du site). */
+    onSearch: () => void;
     resultCount: number;
     /** Recherche texte : se combine (ET) avec les filtres cochés. */
     query: string;
     onQuery: (v: string) => void;
 }
 
-export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, resultCount, query, onQuery }: NavDrawerProps) {
+export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, onSearch, resultCount, query, onQuery }: NavDrawerProps) {
     const router = useRouter();
     const active = selected.length > 0 || query.trim().length > 0;
+    // Planificateur, courses et favoris n'ont de sens que connecté : hors session
+    // ils restent grisés et le tap ouvre la connexion au lieu de naviguer.
+    const [authed, setAuthed] = useState(false);
+
+    useEffect(() => {
+        let alive = true;
+        supabase.auth.getSession().then(({ data }) => { if (alive) setAuthed(!!data.session); });
+        const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => setAuthed(!!session));
+        return () => { alive = false; sub.subscription.unsubscribe(); };
+    }, []);
 
     // Volet ouvert = page figée derrière (comportement d'une modale iOS).
     useEffect(() => {
@@ -99,6 +117,17 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
     }, [open]);
 
     const go = (path: string) => { onClose(); router.push(path); };
+
+    /** Entrée réservée aux connectés. */
+    const goAuthed = (path: string) => {
+        if (!authed) {
+            window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: 'Connecte-toi pour y accéder' }));
+            window.dispatchEvent(new Event('magic-open-auth'));
+            onClose();
+            return;
+        }
+        go(path);
+    };
 
     const Group = ({ title, options }: { title: string; options: { token: string; label: string }[] }) => (
         <>
@@ -180,18 +209,33 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 <button className={styles.navRow} onClick={onClose}>
                                     <Ic d={ICONS.home} /><span className={styles.navRowText}>Accueil</span>
                                 </button>
-                                <button className={styles.navRow} onClick={() => go('/meal-planner')}>
+                                <button
+                                    className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
+                                    onClick={() => goAuthed('/meal-planner')}
+                                >
                                     <Ic d={ICONS.planner} /><span className={styles.navRowText}>Planificateur</span>
                                 </button>
-                                <button className={styles.navRow} onClick={() => go('/shopping-list')}>
+                                <button
+                                    className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
+                                    onClick={() => goAuthed('/shopping-list')}
+                                >
                                     <Ic d={ICONS.cart} /><span className={styles.navRowText}>Liste de courses</span>
                                 </button>
-                                <button className={styles.navRow} onClick={() => go('/favorites')}>
+                                <button
+                                    className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
+                                    onClick={() => goAuthed('/favorites')}
+                                >
                                     <Ic d={ICONS.heart} /><span className={styles.navRowText}>Favoris</span>
                                 </button>
-                                <button className={styles.navRow} onClick={() => go('/search')}>
+                                {/* La loupe TV (recette / ingrédients / assistant IA),
+                                    surtout pas la page /search du site. */}
+                                <button className={styles.navRow} onClick={() => { onClose(); onSearch(); }}>
                                     <Ic d={ICONS.search} /><span className={styles.navRowText}>Rechercher</span>
                                 </button>
+                                <div className={`${styles.navRow} ${styles.navTutorial}`}>
+                                    <Ic d={ICONS.book} />
+                                    <TutorialButton />
+                                </div>
                             </div>
 
                             <Group title="Catégories" options={CATEGORY_OPTIONS} />

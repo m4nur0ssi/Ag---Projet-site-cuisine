@@ -6,6 +6,7 @@
 // (src/mobile/screens/page.tsx) pour que les résultats restent identiques.
 
 import { Recipe } from '@/mobile/types';
+import { totalMinutes } from './timing';
 
 export interface Theme {
     /** Tag interne (identique à celui de l'accueil actuel). */
@@ -123,7 +124,9 @@ export function matchesTag(
 
     if (tagLower === 'express') {
         if (recipeTags.some((t) => t === 'express' || t === 'rapide') || titleLower.includes('express') || titleLower.includes('rapide')) return true;
-        const total = (recipe.prepTime || 0) + (recipe.cookTime || 0);
+        // Durée ESTIMÉE depuis les étapes (les champs WP valent 45 min partout,
+        // ce qui rendait ce test toujours faux).
+        const total = totalMinutes(recipe);
         if (total <= 0 || total > 30) return false;
         return !guards || !['desserts', 'patisserie', 'glaces', 'boissons', 'sauces'].includes(recipeCat);
     }
