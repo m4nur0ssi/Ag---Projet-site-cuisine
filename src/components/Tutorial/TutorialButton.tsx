@@ -35,7 +35,7 @@ const STEPS: TourStep[] = [
     },
     {
         title: 'Le planificateur',
-        text: 'Le voici en entier : 7 jours, midi et soir. Sur le site, il s’ouvre avec l’icône calendrier en haut de la page. Les étapes suivantes zooment sur chaque commande — et tout reste modifiable dans le cadre.',
+        text: 'Le voici en entier : 7 jours, midi et soir. Sur le site, il s’ouvre par « Planificateur », dans la barre de gauche. Les étapes suivantes zooment sur chaque commande — et tout reste modifiable dans le cadre.',
         hint: 'Vue d’ensemble. À partir d’ici, ce que tu fais dans le cadre ne touche jamais ton vrai menu.',
         requires: PLANNER_REQUIRED,
         demo: { kind: 'planner', focus: 'planner-grid', plan: 'week', scale: 0.5 },
@@ -95,7 +95,7 @@ const STEPS: TourStep[] = [
     {
         title: 'La liste de courses',
         text: 'Les ingrédients de ton planning arrivent ici, regroupés et dédoublonnés. Coche ce que tu as déjà, garde le reste.',
-        hint: 'Voici l’icône, en haut de la page. La liste, elle, est une page entière : elle ne tient pas dans le cadre.',
+        hint: 'Elle s’ouvre par « Liste de courses », dans la barre de gauche : une page entière, qui ne tient pas dans ce cadre.',
         requires: PLANNER_REQUIRED,
         demo: { kind: 'clone', selector: '[data-tour="shopping"]', zoom: 2.6 },
     },
@@ -109,7 +109,7 @@ const STEPS: TourStep[] = [
     },
     {
         title: 'Tes favoris',
-        text: 'Le cœur en haut à droite de chaque carte range la recette dans tes favoris. La page Favoris, accessible par l’icône ❤️ en haut du site, rassemble tout : tes notes perso et les plats que tu as déjà cuisinés.',
+        text: 'Le cœur en haut à droite de chaque carte range la recette dans tes favoris. La page Favoris, dans la barre de gauche, rassemble tout : tes notes perso et les plats que tu as déjà cuisinés.',
         hint: 'Le cœur est en haut à droite de la carte. Attention : celui-ci est réel — un clic ajoute vraiment la recette à tes favoris (re-clique pour l’enlever).',
         requires: PLANNER_REQUIRED,
         demo: { kind: 'card' },

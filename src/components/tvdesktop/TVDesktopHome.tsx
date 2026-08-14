@@ -24,6 +24,10 @@ import styles from './tvd.module.css';
 
 const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
 const AuthButton = dynamic(() => import('@/components/AuthButton/AuthButton'), { ssr: false });
+// Visite guidée du site (version desktop) : composant autonome, habillé en ligne de menu.
+const TutorialButton = dynamic(() => import('@/components/Tutorial/TutorialButton'), { ssr: false });
+// Partage d'un thème : même bouton que sur l'accueil actuel, même lien /?tag=…
+const ShareButton = dynamic(() => import('@/components/ShareButton/ShareButton'), { ssr: false });
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -63,6 +67,7 @@ const ICONS = {
     clock: 'M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
     star: 'M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z',
     resto: 'M4 3v7a3 3 0 0 0 6 0V3M7 10v11M17 3c-1.7 0-3 2-3 5s1.3 4 3 4m0 0v9m0-9c1.7 0 3-1 3-4s-1.3-5-3-5z',
+    book: 'M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5z',
 };
 
 // ── Carte ──────────────────────────────────────────────────────────────────
@@ -95,8 +100,10 @@ function Card({ recipe, shape, onMenu }: { recipe: Recipe; shape: CardShape; onM
 
 // ── Rangée horizontale (flèches au survol) ─────────────────────────────────
 
-function Row({ title, recipes, shape, onSeeAll, onMenu }: {
+function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu }: {
     title: string; recipes: Recipe[]; shape: CardShape;
+    /** Thème partageable : ajoute le bouton « Partager » (lien /?tag=…). */
+    shareTag?: string;
     onSeeAll: (title: string, recipes: Recipe[]) => void;
     onMenu: (r: Recipe, x: number, y: number) => void;
 }) {
@@ -108,10 +115,20 @@ function Row({ title, recipes, shape, onSeeAll, onMenu }: {
     };
     return (
         <section className={styles.row}>
-            <button className={styles.rowHead} onClick={() => onSeeAll(title, recipes)}>
-                <h2 className={styles.rowTitle}>{title}</h2>
-                <svg className={styles.rowChevron} viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
+            <div className={styles.rowHeadWrap}>
+                <button className={styles.rowHead} onClick={() => onSeeAll(title, recipes)}>
+                    <h2 className={styles.rowTitle}>{title}</h2>
+                    <svg className={styles.rowChevron} viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+                {shareTag && (
+                    <span className={styles.rowShare}>
+                        <ShareButton
+                            url={typeof window !== 'undefined' ? `${window.location.origin}/?tag=${encodeURIComponent(shareTag)}` : undefined}
+                            title={`Thème : ${title}`}
+                        />
+                    </span>
+                )}
+            </div>
             <div className={styles.rowWrap}>
                 <button className={`${styles.rowArrow} ${styles.rowArrowL}`} onClick={() => nudge(-1)} aria-label="Précédent">
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -285,10 +302,31 @@ export default function TVDesktopHome() {
         const sorted = [...THEMES].sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }));
         return sorted.map((theme, i) => ({
             title: theme.title,
+            tag: theme.tag,
             recipes: mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && matchesTag(r, theme.tag)),
             shape: SHAPES[i % SHAPES.length],
         })).filter((row) => row.recipes.length >= 4);
     }, []);
+
+    // Lien de thème partagé (/?tag=…) : on ouvre la collection correspondante,
+    // puis on nettoie l'URL — un rafraîchissement ne doit pas la rouvrir. Les
+    // liens déjà envoyés (tag interne « dolce-vita » ou libellé WordPress
+    // « Italie ») doivent continuer de fonctionner : on essaie les deux.
+    useEffect(() => {
+        let raw: string | null = null;
+        try { raw = new URLSearchParams(window.location.search).get('tag'); } catch { return; }
+        if (!raw) return;
+        const low = raw.toLowerCase();
+        const theme = THEMES.find((t) => t.tag.toLowerCase() === low)
+            || THEMES.find((t) => t.title.toLowerCase() === low);
+        const list = mockRecipes.filter((r) => r.image && matchesTag(r, theme?.tag || raw!));
+        if (list.length) openCollection(theme?.title || raw, list);
+        try {
+            const u = new URL(window.location.href);
+            u.searchParams.delete('tag');
+            window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+        } catch { /* noop */ }
+    }, [openCollection]);
 
     const CATS: { key: string; label: string }[] = [
         { key: 'aperitifs', label: 'Apéritifs' }, { key: 'entrees', label: 'Entrées' },
@@ -303,8 +341,10 @@ export default function TVDesktopHome() {
     };
     const goHome = () => { setNav('accueil'); setCollection(null); };
 
-    const NavItem = ({ icon, children, active, onClick }: { icon: string; children: React.ReactNode; active?: boolean; onClick: () => void }) => (
-        <button className={`${styles.navRow} ${active ? styles.navRowOn : ''}`} onClick={onClick}>
+    // `tour` : repère utilisé par la visite guidée, qui montre ces entrées en
+    // exemple (elle cherche `[data-tour="planner"]` et `[data-tour="shopping"]`).
+    const NavItem = ({ icon, children, active, tour, onClick }: { icon: string; children: React.ReactNode; active?: boolean; tour?: string; onClick: () => void }) => (
+        <button className={`${styles.navRow} ${active ? styles.navRowOn : ''}`} data-tour={tour} onClick={onClick}>
             <Ic d={icon} /><span>{children}</span>
         </button>
     );
@@ -324,9 +364,15 @@ export default function TVDesktopHome() {
 
                 <nav className={styles.navGroup}>
                     <NavItem icon={ICONS.home} active={nav === 'accueil'} onClick={goHome}>Accueil</NavItem>
-                    <NavItem icon={ICONS.planner} onClick={() => router.push('/meal-planner')}>Planificateur</NavItem>
-                    <NavItem icon={ICONS.cart} onClick={() => router.push('/shopping-list')}>Liste de courses</NavItem>
-                    <NavItem icon={ICONS.heart} onClick={() => router.push('/favorites')}>Favoris</NavItem>
+                    <NavItem icon={ICONS.planner} tour="planner" onClick={() => router.push('/meal-planner')}>Planificateur</NavItem>
+                    <NavItem icon={ICONS.cart} tour="shopping" onClick={() => router.push('/shopping-list')}>Liste de courses</NavItem>
+                    <NavItem icon={ICONS.heart} tour="favorites" onClick={() => router.push('/favorites')}>Favoris</NavItem>
+                    {/* Visite guidée : le bouton porte son propre libellé, on ne
+                        fournit que l'icône et la ligne de menu. */}
+                    <div className={`${styles.navRow} ${styles.navTutorial}`}>
+                        <Ic d={ICONS.book} />
+                        <TutorialButton />
+                    </div>
                 </nav>
 
                 <div className={styles.navLabel}>Bibliothèque</div>
@@ -381,7 +427,7 @@ export default function TVDesktopHome() {
                             <Row title="Desserts" recipes={byCat['desserts'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} />
                             <Row title="Pâtisseries" recipes={byCat['patisserie'] || []} shape="wide" onSeeAll={openCollection} onMenu={onMenu} />
                             {themeRows.map((row) => (
-                                <Row key={row.title} title={row.title} recipes={row.recipes} shape={row.shape} onSeeAll={openCollection} onMenu={onMenu} />
+                                <Row key={row.title} title={row.title} recipes={row.recipes} shape={row.shape} shareTag={row.tag} onSeeAll={openCollection} onMenu={onMenu} />
                             ))}
                             <Row title="Comme au resto" recipes={byCat['restaurant'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} />
                         </div>

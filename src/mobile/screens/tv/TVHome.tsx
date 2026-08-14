@@ -1199,6 +1199,27 @@ export default function TVHome() {
         setAll({ title, recipes });
     }, []);
 
+    // Lien de thème partagé (/?tag=…) : la grille du thème s'ouvre à l'arrivée,
+    // puis l'URL est nettoyée. Les liens déjà envoyés utilisent tantôt le tag
+    // interne (« dolce-vita »), tantôt le libellé WordPress (« Italie ») : on
+    // accepte les deux, sinon un lien partagé depuis l'ordinateur tombait sur
+    // l'accueil sans explication.
+    useEffect(() => {
+        let raw: string | null = null;
+        try { raw = new URLSearchParams(window.location.search).get('tag'); } catch { return; }
+        if (!raw) return;
+        const low = raw.toLowerCase();
+        const theme = THEMES.find((t) => t.tag.toLowerCase() === low)
+            || THEMES.find((t) => t.title.toLowerCase() === low);
+        const list = mockRecipes.filter((r) => r.image && matchesTag(r, theme?.tag || raw!));
+        if (list.length) openAll(theme?.title || raw, list);
+        try {
+            const u = new URL(window.location.href);
+            u.searchParams.delete('tag');
+            window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+        } catch { /* noop */ }
+    }, [openAll]);
+
     // Ouvre la fiche ET ses voisines de la même rangée : swipe horizontal dans le
     // sheet pour parcourir la catégorie sans revenir à l'accueil.
     const openSheet = useCallback<OpenSheet>((list, index) => {

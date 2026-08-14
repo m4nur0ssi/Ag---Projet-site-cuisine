@@ -74,6 +74,22 @@
 .navRowOn:hover { background: var(--accent); }
 .navRowSmall { padding: 7px 12px; font-size: 14px; font-weight: 400; }
 
+/* Le tutoriel apporte son propre bouton : on l'aplatit pour qu'il se fonde
+   dans la ligne de menu, sans pastille ni couleur à lui. */
+.navTutorial { padding: 0 12px; }
+.navTutorial button {
+    flex: 1 1 auto; width: auto; padding: 9px 0;
+    /* La pilule d'origine est centrée, en dégradé, avec une bordure : on remet
+       tout à plat pour qu'elle s'aligne sur les autres lignes du menu. */
+    justify-content: flex-start;
+    border: none; border-radius: 0; background: none; box-shadow: none;
+    color: var(--txt); font-family: inherit; font-size: 15px; font-weight: 500;
+    letter-spacing: -0.01em; text-align: left; cursor: pointer;
+    transform: none;
+}
+.navTutorial button:hover { transform: none; box-shadow: none; filter: none; }
+.navTutorial button span { font: inherit; color: inherit; }
+
 .navIcon { width: 20px; height: 20px; flex: 0 0 auto; color: currentColor; }
 
 .navBullet {
@@ -253,6 +269,19 @@
 .rows { padding: 12px 0 60px; }
 
 .row { margin-top: 30px; }
+
+/* Titre + bouton Partager sur la même ligne. Le bouton n'apparaît qu'au survol
+   de la rangée : le feed reste net, l'action se découvre quand on s'en approche. */
+.rowHeadWrap {
+    display: flex; align-items: center; gap: 6px;
+}
+.rowShare {
+    display: inline-flex; align-items: center;
+    margin: 0 0 14px;
+    opacity: 0; transform: scale(0.9);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.row:hover .rowShare, .rowShare:focus-within { opacity: 1; transform: scale(1); }
 
 .rowHead {
     display: inline-flex; align-items: center; gap: 5px;
