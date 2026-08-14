@@ -109,7 +109,17 @@ export default function VoteButton({ recipeId, initialVotes = 0, className, hide
                             rotate: hasVoted ? [0, 15, -15, 0] : [0, -15, 15, 0]
                         } : {}}
                     >
-                        🔥
+                        {/* Flamme dégradée (or → corail → rose) façon Apple TV+. */}
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+                            <defs>
+                                <linearGradient id="vbFlame" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stopColor="#FFD24B" />
+                                    <stop offset=".5" stopColor="#FF6B4A" />
+                                    <stop offset="1" stopColor="#FF2E63" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M12 2c1.6 3.2.6 5.2-1 6.9C9.2 10.8 8 12.2 8 14.6A4 4 0 0 0 12 18.6a4 4 0 0 0 4-4c0-1.4-.6-2.4-1.2-3.3 2 .5 2.7 2.4 2.7 4.1A5.5 5.5 0 0 1 12 21a5.5 5.5 0 0 1-5.5-5.5c0-3.3 2.4-5 3.9-7C11.6 5.9 12.3 4.2 12 2z" fill="url(#vbFlame)" />
+                        </svg>
                     </motion.span>
 
                     <AnimatePresence>
