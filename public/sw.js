@@ -1,7 +1,11 @@
 // Service worker — offline pour favoris + liste de courses.
 // Stratégies : navigations network-first (fallback cache → page offline),
 // statiques cache-first, images stale-while-revalidate.
-const CACHE = 'recettes-magiques-v4';
+// v5 : bascule de l'accueil mobile vers TVHome (2026-08-14). Changer ce nom
+// PURGE les anciens caches à l'activation — sans ça, un visiteur déjà venu
+// pouvait continuer à recevoir l'ancienne page (repli hors-ligne des
+// navigations + chunks JS servis cache-first).
+const CACHE = 'recettes-magiques-v5';
 const OFFLINE_URL = new URL('offline.html', self.location).toString();
 
 self.addEventListener('install', (event) => {
