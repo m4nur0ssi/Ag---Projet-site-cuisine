@@ -2,189 +2,16 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 14/08/2026 08:48:59
+ * Dernière mise à jour: 14/08/2026 10:46:08
  * Total: 627 recettes
  */
-export const exportSyncId = "1786697339058";
+export const exportSyncId = "1786704368511";
 export const mockRecipes: Recipe[] = [
-    {
-        "id": "7143",
-        "title": "Goma-ae de haricots verts",
-        "description": "Une recette japonaise simple et végétale de haricots verts, enrobés d'une sauce sésame-soja sucrée-salée. C'est un accompagnement express, parfumé et plein d'umami, qui offre une alternative aux haricots vapeur.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7512906615859858710\" data-video-id=\"7512906615859858710\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7512906615859858710\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🫘\n             200 g de haricots verts frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à soupe de graines de sésame blond"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cuillère à soupe de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à soupe de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             1 cuillère à café de mirin (ou vinaigre de riz doux)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Une touche d'huile de sésame"
-            }
-        ],
-        "steps": [
-            "Cuire les haricots verts pendant 6 minutes dans l'eau bouillante salée, puis les plonger dans l'eau froide.",
-            "Égoutter les haricots et les couper en tronçons.",
-            "Broyer les graines de sésame, puis ajouter le sucre, la sauce soja, le mirin et une touche d'huile de sésame.",
-            "Mélanger cette sauce avec les haricots verts.",
-            "Servir frais ou à température ambiante."
-        ],
-        "tags": [
-            "Accompagnements",
-            "asiatique",
-            "Healthy",
-            "Salades",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7141",
-        "title": "Crème ciboulette",
-        "description": "La meilleure crème ciboulette, idéale pour accompagner les pommes de terre ou les grillades, dans le cadre de la série BBQ VG.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663510071220981024\" data-video-id=\"7663510071220981024\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663510071220981024\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             1 kg de crème fraîche épaisse d'Isigny"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 à 2 échalotes ciselées"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 botte de ciboulette ciselée"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 filet d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus d'un citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Aucune étape de préparation n'est détaillée dans la description fournie."
-        ],
-        "tags": [
-            "Accompagnements",
-            "barbecue",
-            "Sauces",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7139",
-        "title": "Salade de figues, burrata et roquette",
-        "description": "Une recette simple et rapide pour profiter pleinement de la saison des figues. Cette salade fraîche et gourmande associe la douceur des figues à la crémeuse burrata, la vivacité de la roquette, le tout relevé par une crème de vinaigre balsamique e...",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670933002607693078\" data-video-id=\"7670933002607693078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670933002607693078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             3-4 Figues"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Burrata"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Roquette"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Crème de vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Pistaches"
-            }
-        ],
-        "steps": [
-            "Laver et couper les figues en quartiers ou en rondelles.",
-            "Disposer la burrata au centre d'une assiette ou d'un plat. Répartir la roquette autour de la burrata.",
-            "Ajouter les morceaux de figues sur et autour de la burrata et de la roquette.",
-            "Arroser généreusement d'huile d'olive et de crème de vinaigre balsamique.",
-            "Parsemer de pistaches concassées ou entières juste avant de servir."
-        ],
-        "tags": [
-            "Grèce",
-            "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
     {
         "id": "7137",
         "title": "Salade de poulpe aux oignons confits",
         "description": "Une salade de poulpe rafraîchissante et savoureuse, agrémentée d'oignons confits, parfaite pour un apéritif d'été. À laisser reposer au frais pour une meilleure dégustation.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7137_1786703083656.jpeg&v=1786710300000",
         "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -262,10 +89,335 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "7139",
+        "title": "Salade de figues, burrata et roquette",
+        "description": "Une recette simple et rapide pour profiter pleinement de la saison des figues. Cette salade fraîche et gourmande associe la douceur des figues à la crémeuse burrata, la vivacité de la roquette, le tout relevé par une crème de vinaigre balsamique e...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7139_1786702764918.jpg&v=1786710279000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670933002607693078\" data-video-id=\"7670933002607693078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670933002607693078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             3-4 Figues"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Crème de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Pistaches"
+            }
+        ],
+        "steps": [
+            "Laver et couper les figues en quartiers ou en rondelles.",
+            "Disposer la burrata au centre d'une assiette ou d'un plat. Répartir la roquette autour de la burrata.",
+            "Ajouter les morceaux de figues sur et autour de la burrata et de la roquette.",
+            "Arroser généreusement d'huile d'olive et de crème de vinaigre balsamique.",
+            "Parsemer de pistaches concassées ou entières juste avant de servir."
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7129",
+        "title": "Ravioles de courgettes",
+        "description": "Découvrez ces ravioles 100% maison, naturellement sans gluten et super faciles à préparer ! Une alternative originale et délicieuse, inspirée par @cheztiffany_.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7129_1786702695299.jpg&v=1786709960000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7668645293822414113\" data-video-id=\"7668645293822414113\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7668645293822414113\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 courgette plutôt large"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de fromage frais (chèvre Petit Billy ou ricotta)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tranches de truite fumée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Burrata ou stracciatella"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Sauce tomate"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation sont détaillées dans la vidéo."
+        ],
+        "tags": [
+            "Italie",
+            "pates",
+            "Plats",
+            "Poissons et crustacés",
+            "Sans Gluten",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7143",
+        "title": "Goma-ae de haricots verts",
+        "description": "Une recette japonaise simple et végétale de haricots verts, enrobés d'une sauce sésame-soja sucrée-salée. C'est un accompagnement express, parfumé et plein d'umami, qui offre une alternative aux haricots vapeur.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7143_1786702351675.jpg&v=1786709890000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7512906615859858710\" data-video-id=\"7512906615859858710\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7512906615859858710\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🫘\n             200 g de haricots verts frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de graines de sésame blond"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             1 cuillère à café de mirin (ou vinaigre de riz doux)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Une touche d'huile de sésame"
+            }
+        ],
+        "steps": [
+            "Cuire les haricots verts pendant 6 minutes dans l'eau bouillante salée, puis les plonger dans l'eau froide.",
+            "Égoutter les haricots et les couper en tronçons.",
+            "Broyer les graines de sésame, puis ajouter le sucre, la sauce soja, le mirin et une touche d'huile de sésame.",
+            "Mélanger cette sauce avec les haricots verts.",
+            "Servir frais ou à température ambiante."
+        ],
+        "tags": [
+            "Accompagnements",
+            "asiatique",
+            "Healthy",
+            "Salades",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7125",
+        "title": "Gâteau Suzy de Pierre Hermé",
+        "description": "Une recette simple et rapide pour un gâteau au chocolat gourmand, inspirée par le célèbre pâtissier Pierre Hermé.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7125_1786702185465.jpg&v=1786709547000",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7473176298446179606\" data-video-id=\"7473176298446179606\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7473176298446179606\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             250g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             250g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             70g de farine"
+            }
+        ],
+        "steps": [
+            "Faire cuire pendant 25 minutes à 180 degrés Celsius."
+        ],
+        "tags": [
+            "express",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7127",
+        "title": "Galettes de Tomate et Tzatziki",
+        "description": "Ces galettes, inspirées des Tomatokeftedes grecques, sont revisitées avec de l'estragon et des olives noires pour une touche de peps. Elles sont accompagnées d'un tzatziki frais et léger, parfait pour l'été.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7127_1786702164658.jpeg&v=1786709382000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647576823332605217\" data-video-id=\"7647576823332605217\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647576823332605217\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             500 g de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             125 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             50 g d'olives noires dénoyautées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 branches d'estragon frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile neutre pour la cuisson"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             ½ concombre (environ 200g)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2 cuillères à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 petite gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             10 feuilles de menthe fraîche"
+            }
+        ],
+        "steps": [
+            "Pour les galettes : Tailler finement les tomates en dés.",
+            "Hacher finement l'oignon rouge, l'ail, les olives noires dénoyautées et l'estragon frais.",
+            "Rassembler tous les ingrédients dans un saladier et mélanger.",
+            "Faire frire les galettes dans une poêle chaude avec un fond d'huile.",
+            "Pour le tzatziki : Râper le concombre.",
+            "Placer le concombre râpé dans une passoire fine et presser pour retirer le maximum d'humidité.",
+            "Hacher les feuilles de menthe, râper la gousse d'ail et rassembler le tout dans un bol.",
+            "Mélanger et réserver au frais jusqu'au moment de servir.",
+            "Bon appétit !"
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "7135",
         "title": "Flan-cheesecake sain aux abricots et pistaches",
         "description": "Un flan-cheesecake frais, léger et acidulé aux abricots et pistaches, idéal pour l'été. C'est un dessert facile à réaliser et très apprécié.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7135_1786702083270.jpg&v=1786709360000",
         "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -322,10 +474,69 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
+        "id": "7141",
+        "title": "Crème ciboulette",
+        "description": "La meilleure crème ciboulette, idéale pour accompagner les pommes de terre ou les grillades, dans le cadre de la série BBQ VG.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7141_1786701135494.jpg&v=1786708427000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663510071220981024\" data-video-id=\"7663510071220981024\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663510071220981024\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 kg de crème fraîche épaisse d'Isigny"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 à 2 échalotes ciselées"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 botte de ciboulette ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Aucune étape de préparation n'est détaillée dans la description fournie."
+        ],
+        "tags": [
+            "Accompagnements",
+            "barbecue",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
         "id": "7133",
         "title": "Cheesecake salé méditerranéen au thon",
         "description": "Un cheesecake salé frais et savoureux inspiré des saveurs méditerranéennes, avec une base de biscuits salés, une crème onctueuse au thon et une garniture colorée de tomates, mozzarelline et basilic frais. Idéal pour un repas léger ou une entrée es...",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7133_1786701066470.jpg&v=1786708332000",
         "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
@@ -481,217 +692,6 @@ export const mockRecipes: Recipe[] = [
             "Soupes",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7129",
-        "title": "Ravioles de courgettes",
-        "description": "Découvrez ces ravioles 100% maison, naturellement sans gluten et super faciles à préparer ! Une alternative originale et délicieuse, inspirée par @cheztiffany_.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7668645293822414113\" data-video-id=\"7668645293822414113\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7668645293822414113\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 courgette plutôt large"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             200g de fromage frais (chèvre Petit Billy ou ricotta)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tranches de truite fumée"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Burrata ou stracciatella"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Sauce tomate"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation sont détaillées dans la vidéo."
-        ],
-        "tags": [
-            "Italie",
-            "pates",
-            "Plats",
-            "Poissons et crustacés",
-            "Sans Gluten",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7127",
-        "title": "Galettes de Tomate et Tzatziki",
-        "description": "Ces galettes, inspirées des Tomatokeftedes grecques, sont revisitées avec de l'estragon et des olives noires pour une touche de peps. Elles sont accompagnées d'un tzatziki frais et léger, parfait pour l'été.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7647576823332605217\" data-video-id=\"7647576823332605217\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7647576823332605217\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             500 g de tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             125 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 petit oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             50 g d'olives noires dénoyautées"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 g de feta"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 branches d'estragon frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile neutre pour la cuisson"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             ½ concombre (environ 200g)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150g de yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             2 cuillères à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 petite gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             10 feuilles de menthe fraîche"
-            }
-        ],
-        "steps": [
-            "Pour les galettes : Tailler finement les tomates en dés.",
-            "Hacher finement l'oignon rouge, l'ail, les olives noires dénoyautées et l'estragon frais.",
-            "Rassembler tous les ingrédients dans un saladier et mélanger.",
-            "Faire frire les galettes dans une poêle chaude avec un fond d'huile.",
-            "Pour le tzatziki : Râper le concombre.",
-            "Placer le concombre râpé dans une passoire fine et presser pour retirer le maximum d'humidité.",
-            "Hacher les feuilles de menthe, râper la gousse d'ail et rassembler le tout dans un bol.",
-            "Mélanger et réserver au frais jusqu'au moment de servir.",
-            "Bon appétit !"
-        ],
-        "tags": [
-            "Grèce",
-            "Healthy",
-            "Sauces",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7125",
-        "title": "Gâteau Suzy de Pierre Hermé",
-        "description": "Une recette simple et rapide pour un gâteau au chocolat gourmand, inspirée par le célèbre pâtissier Pierre Hermé.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7473176298446179606\" data-video-id=\"7473176298446179606\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7473176298446179606\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍫\n             250g de chocolat"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             250g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             200g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             70g de farine"
-            }
-        ],
-        "steps": [
-            "Faire cuire pendant 25 minutes à 180 degrés Celsius."
-        ],
-        "tags": [
-            "express",
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
