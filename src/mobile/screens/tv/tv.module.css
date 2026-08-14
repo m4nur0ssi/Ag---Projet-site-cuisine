@@ -1017,18 +1017,24 @@
 
 .menuAction {
     width: 100%;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 13px;
     padding: 13px 16px;
     border: none;
     background: transparent;
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-    font-size: 17px;
+    font-size: 16.5px;
     font-weight: 400;
     letter-spacing: -0.01em;
     text-align: left;
     cursor: pointer;
 }
+.menuAction span { flex: 1 1 auto; }
+/* Icônes façon Apple TV+ (trait fin) à gauche de chaque action. */
+.menuIcon { width: 20px; height: 20px; flex: 0 0 auto; color: rgba(255, 255, 255, 0.82); }
+.menuDanger .menuIcon { color: inherit; }
 /* Filet de 0,33 px : l'épaisseur des séparateurs iOS. */
 .menuAction + .menuAction { box-shadow: inset 0 0.33px 0 rgba(255, 255, 255, 0.14); }
 .menuAction:active { background: rgba(255, 255, 255, 0.14); }
@@ -1624,7 +1630,7 @@
 
 .heroSplit {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 16px;
     width: 100%;
 }
@@ -1708,6 +1714,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     gap: 9px;
     padding-bottom: 2px;
 }

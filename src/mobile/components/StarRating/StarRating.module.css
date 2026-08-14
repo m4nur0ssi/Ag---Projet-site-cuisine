@@ -57,31 +57,34 @@
     color: rgba(255, 255, 255, 0.55);
 }
 
-.numBtns {
-    display: flex;
-    gap: 6px;
-}
-
-.numBtn {
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    border: 1.5px solid rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.85);
-    font-weight: 800;
-    font-size: 1rem;
+/* ── Glissière d'étoiles au dixième ── */
+.starSlider {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px 2px;
     cursor: pointer;
-    transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
-
-.numBtn:active {
-    transform: scale(0.9);
+.starSlider:focus-visible {
+    outline: 2px solid rgba(251, 191, 36, 0.7);
+    outline-offset: 3px;
+    border-radius: 8px;
 }
-
-.numActive {
-    background: #FBBF24;
-    border-color: #FBBF24;
-    color: #1a1200;
-    box-shadow: 0 3px 10px rgba(251, 191, 36, 0.35);
+.slStar {
+    position: relative;
+    display: inline-block;
+    font-size: 1.7rem;
+    line-height: 1;
+}
+.slStarBase { color: rgba(255, 255, 255, 0.2); }
+.slStarFill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #FBBF24;
+    text-shadow: 0 2px 8px rgba(251, 191, 36, 0.35);
 }

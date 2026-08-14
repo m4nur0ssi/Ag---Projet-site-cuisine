@@ -1349,13 +1349,23 @@ export default function TVHome() {
     // avec un petit message central « Ajouté » / « Supprimé » (1,5 s).
     const isLater = useCallback((id: string) => laterIds.includes(id), [laterIds]);
     const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const [toast, setToast] = useState<{ added: boolean } | null>(null);
-    const handleToggleLater = useCallback((r: Recipe) => {
-        const added = toggleLater(String(r.id));
-        setToast({ added });
+    const [toast, setToast] = useState<{ text: string } | null>(null);
+    const flash = useCallback((text: string) => {
+        setToast({ text });
         if (toastTimer.current) clearTimeout(toastTimer.current);
         toastTimer.current = setTimeout(() => setToast(null), 1500);
     }, []);
+    const handleToggleLater = useCallback((r: Recipe) => {
+        flash(toggleLater(String(r.id)) ? 'Ajouté' : 'Supprimé');
+    }, [flash]);
+    // Partage (feuille native ou copie) + « marquer comme visionné ».
+    const shareLink = useCallback(async (url: string, title: string) => {
+        try {
+            if (navigator.share) await navigator.share({ title, url });
+            else { await navigator.clipboard.writeText(url); flash('Lien copié'); }
+        } catch { /* annulé */ }
+    }, [flash]);
+    const markSeen = useCallback((r: Recipe) => { pushSeen(String(r.id)); flash('Marqué comme visionné'); }, [flash]);
 
     // Thématiques : plus de tuiles illustrées — chaque thème devient une rangée de
     // vraies recettes. Un seul balayage de mockRecipes par thème, mémorisé.
@@ -1508,7 +1518,7 @@ export default function TVHome() {
                         transition={{ duration: 0.18 }}
                     >
                         <svg viewBox="0 0 24 24" width="46" height="46" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                        <span>{toast.added ? 'Ajouté' : 'Supprimé'}</span>
+                        <span>{toast.text}</span>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -1535,33 +1545,47 @@ export default function TVHome() {
                             <img className={styles.menuPreview} src={menu.image} alt="" draggable={false} />
                             <div className={styles.menuTitle}>{label(menu)}</div>
                             <div className={styles.menuActions}>
-                                <button
-                                    className={`${styles.menuAction} ${favIds.includes(String(menu.id)) ? styles.menuDanger : ''}`}
-                                    onClick={() => { haptic(12); const r = menu; setMenu(null); toggleFavorite(String(r.id)); }}
-                                >
-                                    {favIds.includes(String(menu.id)) ? 'Retirer des favoris' : 'Ajouter aux favoris'}
-                                </button>
-                                <button
-                                    className={`${styles.menuAction} ${laterIds.includes(String(menu.id)) ? styles.menuDanger : ''}`}
-                                    onClick={() => { haptic(12); const r = menu; setMenu(null); toggleLater(String(r.id)); }}
-                                >
-                                    {laterIds.includes(String(menu.id)) ? 'Retirer de la liste' : 'À faire plus tard'}
-                                </button>
-                                <button
-                                    className={styles.menuAction}
-                                    onClick={() => { haptic(8); const r = menu; setMenu(null); openSheet([r], 0); }}
-                                >
-                                    Voir la recette
-                                </button>
-                                {/* 4ᵉ action : seulement pour une recette en cours — on efface son avancement. */}
-                                {resume.some((r) => String(r.id) === String(menu.id)) && (
-                                    <button
-                                        className={`${styles.menuAction} ${styles.menuDanger}`}
-                                        onClick={() => { haptic(8); const r = menu; setMenu(null); clearProgress(String(r.id)); }}
-                                    >
-                                        Retirer de « Reprendre la cuisine »
-                                    </button>
-                                )}
+                                {(() => {
+                                    const r = menu;
+                                    const cat = (r.category || '').toLowerCase();
+                                    const catName = catLabel(r);
+                                    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+                                    const fav = favIds.includes(String(r.id));
+                                    const lat = laterIds.includes(String(r.id));
+                                    const MI = ({ d }: { d: string }) => (
+                                        <svg className={styles.menuIcon} viewBox="0 0 24 24" fill="none" aria-hidden><path d={d} stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    );
+                                    return (
+                                        <>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); openSheet([r], 0); }}>
+                                                <MI d="M8 5v14l11-7z" /><span>Voir la recette</span>
+                                            </button>
+                                            <button className={`${styles.menuAction} ${fav ? styles.menuDanger : ''}`} onClick={() => { haptic(12); setMenu(null); toggleFavorite(String(r.id)); }}>
+                                                <MI d="M20.8 6.6a4.6 4.6 0 0 0-6.5 0L12 8.9 9.7 6.6a4.6 4.6 0 1 0-6.5 6.5l1 1L12 21l7.8-6.9 1-1a4.6 4.6 0 0 0 0-6.5z" /><span>{fav ? 'Retirer des favoris' : 'Ajouter aux favoris'}</span>
+                                            </button>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); openAll(catName, (byCat[cat] || []).length ? byCat[cat] : mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat && x.image)); }}>
+                                                <MI d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
+                                            </button>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); shareLink(`${origin}/?tag=${encodeURIComponent(cat)}`, catName); }}>
+                                                <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la catégorie</span>
+                                            </button>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); shareLink(`${origin}/?fiche=${r.id}`, label(r)); }}>
+                                                <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
+                                            </button>
+                                            <button className={`${styles.menuAction} ${lat ? styles.menuDanger : ''}`} onClick={() => { haptic(12); setMenu(null); handleToggleLater(r); }}>
+                                                {lat ? <MI d="M5 12h14" /> : <MI d="M12 5v14M5 12h14" />}<span>{lat ? 'Retirer de la liste' : 'À faire plus tard'}</span>
+                                            </button>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); markSeen(r); }}>
+                                                <MI d="M3.5 7.5h13a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1zM6.5 13l2.5 2.5L14 10M17.5 4.5h3a1 1 0 0 1 1 1v3" /><span>Marquer comme visionné</span>
+                                            </button>
+                                            {resume.some((x) => String(x.id) === String(r.id)) && (
+                                                <button className={`${styles.menuAction} ${styles.menuDanger}`} onClick={() => { haptic(8); setMenu(null); clearProgress(String(r.id)); }}>
+                                                    <MI d="M5 12h14" /><span>Retirer de « Reprendre la cuisine »</span>
+                                                </button>
+                                            )}
+                                        </>
+                                    );
+                                })()}
                             </div>
                         </motion.div>
                     </motion.div>
