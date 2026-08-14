@@ -59,6 +59,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         window.addEventListener('storage', load);
         return () => { window.removeEventListener(CART_EVENT, load); window.removeEventListener('storage', load); };
     }, []);
+    // L'onglet « Par recette » disparaît quand le panier se vide : on retombe sur la semaine.
+    useEffect(() => { if (mode === 'recette' && cart.length === 0) setMode('semaine'); }, [mode, cart.length]);
     const [list, setList] = useState<ListData>({});
     const [plan, setPlan] = useState<Record<string, Record<string, any>>>({});
     const [weekChecked, setWeekChecked] = useState<Set<string>>(new Set());
@@ -309,8 +311,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             </header>
 
             <div className={styles.planModes}>
-                {([['semaine', 'La semaine'], ['jour', 'Jour par jour'], ['recette', 'Par recette'],
-                   ...(cart.length > 0 ? [['panier', 'Mes recettes'] as const] : [])] as const).map(([m, lbl]) => (
+                {([['semaine', 'La semaine'], ['jour', 'Jour par jour'],
+                   ...(cart.length > 0 ? [['recette', 'Par recette'] as const] : [])] as const).map(([m, lbl]) => (
                     <button
                         key={m}
                         className={`${styles.planMode} ${mode === m ? styles.planModeOn : ''}`}
@@ -444,73 +446,10 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                 </div>
             ) : null}
 
+            {/* « Par recette » : les recettes dont on a tapé des ingrédients depuis la
+                fiche (panier hand-picked, magic-shopping-list). N'apparaît que si non vide. */}
             {mode === 'recette' && (
                 <div className={styles.courseBody}>
-                    {!planRecipes.length && (
-                        <p className={styles.courseEmpty}>Aucune recette planifiée pour l&apos;instant.</p>
-                    )}
-                    {planRecipes.map((r) => {
-                        const picked = r.lines.filter((l) => recipeSel.has(l.key)).length;
-                        return (
-                            <section className={styles.courseCard} key={r.id}>
-                                <header className={styles.courseCardHead}>
-                                    {r.image && <img src={r.image} alt="" className={styles.courseCardImg} draggable={false} />}
-                                    <div className={styles.courseCardTitles}>
-                                        <span className={styles.courseMeal}>{DAY_FULL[r.day] || 'Jour J'} · {r.meal}</span>
-                                        <span className={styles.courseCardTitle}>{r.title}</span>
-                                    </div>
-                                </header>
-
-                                {r.lines.map((l) => (
-                                    <button
-                                        key={l.key}
-                                        className={`${styles.courseRow} ${styles.courseRowFlat}`}
-                                        onClick={() => {
-                                            haptic(6);
-                                            setRecipeSel((prev) => {
-                                                const n = new Set(prev);
-                                                n.has(l.key) ? n.delete(l.key) : n.add(l.key);
-                                                return n;
-                                            });
-                                        }}
-                                    >
-                                        <span className={`${styles.courseCheck} ${recipeSel.has(l.key) ? styles.courseCheckOn : ''}`}>
-                                            {recipeSel.has(l.key) && (
-                                                <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
-                                                    <path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-                                                </svg>
-                                            )}
-                                        </span>
-                                        <span className={styles.courseIcon}>{l.icon}</span>
-                                        <span className={styles.courseName}>{l.text}</span>
-                                    </button>
-                                ))}
-
-                                {/* Le partage n'apparaît que pour la recette dont on a coché des lignes. */}
-                                <AnimatePresence>
-                                    {picked > 0 && (
-                                        <motion.button
-                                            className={styles.courseShareOne}
-                                            onClick={() => shareRecipe(r)}
-                                            initial={{ opacity: 0, y: 8 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 8 }}
-                                        >
-                                            Partager {picked} ingrédient{picked > 1 ? 's' : ''} de cette recette
-                                        </motion.button>
-                                    )}
-                                </AnimatePresence>
-                            </section>
-                        );
-                    })}
-                </div>
-            )}
-
-            {mode === 'panier' && (
-                <div className={styles.courseBody}>
-                    {!cart.length && (
-                        <p className={styles.courseEmpty}>Ouvre une recette et tape ses ingrédients : ils arrivent ici.</p>
-                    )}
                     <div className={styles.cartList}>
                         {cart.map((r) => (
                             <div key={r.id} className={styles.cartCard}>

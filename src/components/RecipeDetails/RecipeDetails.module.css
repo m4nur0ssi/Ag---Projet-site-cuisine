@@ -2497,3 +2497,30 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
 [data-theme='light'] .restoTile,
 [data-theme='light'] .restoCoordRow,
 [data-theme='light'] .restoLinkBtn { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.1); }
+
+/* Panier flottant : icône + pastille du nombre d'ingrédients ajoutés. */
+.cartBadge {
+    position: fixed;
+    right: 26px;
+    bottom: 26px;
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    width: 58px; height: 58px;
+    border: none; border-radius: 999px;
+    background: #ff3b30; color: #fff;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    transition: transform 0.16s ease;
+}
+.cartBadge:hover { transform: scale(1.06); }
+.cartBadge:active { transform: scale(0.92); }
+.cartBadgeCount {
+    position: absolute;
+    top: -5px; right: -5px;
+    min-width: 24px; height: 24px; padding: 0 6px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    background: #fff; color: #ff3b30;
+    font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 900;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}

@@ -459,6 +459,13 @@ export default function TVDesktopHome() {
         };
     }, []);
 
+    // Le badge panier d'une fiche recette ouvre la liste de courses DANS le shell.
+    useEffect(() => {
+        const open = () => { setCollection(null); setFilters([]); setPanel('courses'); };
+        window.addEventListener('magic-open-courses', open);
+        return () => window.removeEventListener('magic-open-courses', open);
+    }, []);
+
     // Ferme le menu contextuel sur clic ailleurs / Échap.
     useEffect(() => {
         if (!menu) return;
@@ -471,6 +478,10 @@ export default function TVDesktopHome() {
     }, [menu]);
 
     const openCollection = useCallback((title: string, recipes: Recipe[]) => {
+        // Ouvrir une collection reprend la main : on quitte le planificateur/courses
+        // et les filtres (un seul lien du menu actif à la fois).
+        setPanel('none');
+        setFilters([]);
         setCollection({ title, recipes });
         document.querySelector(`.${styles.content}`)?.scrollTo({ top: 0, behavior: 'smooth' });
     }, []);
@@ -587,6 +598,7 @@ export default function TVDesktopHome() {
 
     // ── Multi-filtre ────────────────────────────────────────────────────────
     const toggleFilter = (token: string) => {
+        setPanel('none');
         setCollection(null); // les résultats combinés priment sur une collection simple
         setFilters((prev) => prev.includes(token) ? prev.filter((t) => t !== token) : [...prev, token]);
     };

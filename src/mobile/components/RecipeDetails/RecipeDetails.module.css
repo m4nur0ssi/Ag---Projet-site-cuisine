@@ -2460,6 +2460,32 @@
     pointer-events: none;
 }
 
+/* Panier flottant : icône + pastille du nombre d'ingrédients ajoutés. */
+.cartBadge {
+    position: fixed;
+    right: 18px;
+    bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    width: 54px; height: 54px;
+    border: none; border-radius: 999px;
+    background: #ff3b30;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.cartBadgeCount {
+    position: absolute;
+    top: -4px; right: -4px;
+    min-width: 22px; height: 22px; padding: 0 5px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    background: #fff; color: #ff3b30;
+    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 900;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
 /* ── Fiche restaurant : tuiles infos + coordonnées + galerie ── */
 .restoTiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin: 8px 0 16px; }
 /* Structure identique sur toutes les tuiles (icône / valeur / label) → même hauteur
