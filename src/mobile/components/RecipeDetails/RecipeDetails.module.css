@@ -390,53 +390,45 @@
 }
 
 /* ---- Bouton Lancer Magie dans le Hero ---- */
+/* « Lancer la préparation » : pilule pleine dégradée flamme (or → corail → rose),
+   texte sombre, façon Apple TV+. */
 .heroFocusBtn {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 14px 32px 14px 14px;
-    background: rgba(255, 255, 255, 0.05);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 100px;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 26px;
+    height: 54px;
+    background: linear-gradient(120deg, #FFC24B, #FF6B4A 60%, #FF3B6B);
+    border: none;
+    border-radius: 999px;
     width: fit-content;
-    margin-top: 40px; /* Pousse vers le bas */
+    margin-top: 32px;
     margin-bottom: 20px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 12px 34px rgba(255, 90, 60, 0.32);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
 }
 
 .focusBtnIcon {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--accent);
+    width: 22px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    box-shadow: var(--accent-glow);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #180a06;
 }
 
 .focusBtnText {
+    font-family: 'Outfit', sans-serif;
     font-size: 16px;
     font-weight: 800;
-    color: white;
-    letter-spacing: -0.2px;
+    color: #180a06;
+    letter-spacing: -0.01em;
 }
 
-.heroFocusBtn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-4px) scale(1.02);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(var(--dynamic-accent-rgb), 0.2);
-}
-
-.heroFocusBtn:hover .focusBtnIcon {
-    transform: scale(1.1) rotate(5deg);
-}
+.heroFocusBtn:hover { transform: scale(1.03); }
+.heroFocusBtn:active { transform: scale(0.97); }
 
 /* =====================================================
    META STRIP — Floating Info Cards UX 2026
@@ -1871,7 +1863,7 @@
 }
 
 :global([data-theme='light']) .heroFocusBtn .focusBtnText {
-    color: #ffffff !important;
+    color: #180a06 !important;
 }
 
 :global([data-theme='light']) .ingredientProgress,
