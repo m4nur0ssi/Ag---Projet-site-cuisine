@@ -8,7 +8,7 @@
  * - Cartes volontairement de tailles différentes (large / affiche / carré / classement).
  */
 
-import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
@@ -261,8 +261,19 @@ function useBackToClose(isOpen: boolean, close: () => void) {
     const closeRef = useRef(close);
     closeRef.current = close;
 
+    // Marqueur de démontage. DÉFINI AVANT l'effet principal : React exécute les
+    // nettoyages dans l'ordre de déclaration, donc au démontage celui-ci passe
+    // en premier et l'effet principal sait qu'il ne s'agit pas d'une simple
+    // fermeture de calque.
+    const alive = useRef(true);
+    useEffect(() => {
+        alive.current = true;
+        return () => { alive.current = false; };
+    }, []);
+
     useEffect(() => {
         if (!isOpen) return;
+        const from = window.location.pathname;
         if (pendingBack !== null) { clearTimeout(pendingBack); pendingBack = null; }
         else window.history.pushState({ tvOverlay: Date.now() }, '');
         holds.current = true;
@@ -272,10 +283,19 @@ function useBackToClose(isOpen: boolean, close: () => void) {
             window.removeEventListener('popstate', onPop);
             // Fermé par le geste « retour » : l'entrée est déjà partie, rien à rendre.
             if (!holds.current) return;
+            holds.current = false;
+            // Écran démonté = NAVIGATION en cours (menu → planificateur, menu →
+            // liste). Rendre l'entrée annulerait la navigation et ramènerait à
+            // l'accueil — c'est ce qui rendait le menu inopérant. On ne peut pas
+            // se fier à l'URL : le routeur ne l'a pas encore changée à cet instant.
+            if (!alive.current) return;
             // Fermé par un bouton : on rend l'entrée ajoutée, sinon il faudrait
             // deux retours pour quitter la page.
-            holds.current = false;
-            pendingBack = setTimeout(() => { pendingBack = null; window.history.back(); }, 0);
+            pendingBack = setTimeout(() => {
+                pendingBack = null;
+                if (window.location.pathname !== from) return;
+                window.history.back();
+            }, 0);
         };
     }, [isOpen]);
 }
@@ -779,6 +799,11 @@ function Row({
 function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenSheet; onMenu: () => void }) {
     const pagerRef = useRef<HTMLDivElement>(null);
     const [index, setIndex] = useState(0);
+    // La vidéo ne part pas d'emblée : la photo s'installe deux secondes, comme
+    // sur la rangée Top 10, puis la vidéo prend sa place dans le même cadre.
+    const [playing, setPlaying] = useState(false);
+    const playingRef = useRef(false);
+    playingRef.current = playing;
     const { scrollY } = useScroll();
 
     // Parallaxe : le héros s'éloigne (zoom + translation) et se fond au noir
@@ -820,8 +845,9 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         el.addEventListener('touchstart', pause, { passive: true });
 
         const id = setInterval(() => {
-            // Ni quand l'onglet est en arrière-plan, ni quand le héros a quitté l'écran.
-            if (paused || document.hidden || window.scrollY > 240) return;
+            // Ni quand l'onglet est en arrière-plan, ni quand le héros a quitté l'écran,
+            // ni pendant la vidéo : on ne coupe pas une lecture en cours.
+            if (paused || playingRef.current || document.hidden || window.scrollY > 240) return;
             const next = (Math.round(el.scrollLeft / Math.max(1, el.clientWidth)) + 1) % recipes.length;
             el.scrollTo({ left: next * el.clientWidth, behavior: 'smooth' });
         }, 3000);
@@ -835,6 +861,33 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     }, [recipes.length]);
 
     const current = recipes[Math.min(index, recipes.length - 1)];
+
+    // 2 s d'image fixe, puis la vidéo. Changer de recette repart de l'image.
+    const currentVid = current ? tiktokId(current) : null;
+    useEffect(() => {
+        setPlaying(false);
+        if (!currentVid) return;
+        // Héros sorti de l'écran ou onglet en arrière-plan : on ne démarre pas,
+        // mais on réessaie — sinon une recette lue dans un onglet inactif ne
+        // s'animerait plus jamais au retour.
+        let t: ReturnType<typeof setTimeout>;
+        const tryPlay = () => {
+            if (!document.hidden && window.scrollY < 240) setPlaying(true);
+            else t = setTimeout(tryPlay, 800);
+        };
+        t = setTimeout(tryPlay, AUTOPLAY_DELAY);
+        return () => clearTimeout(t);
+    }, [currentVid]);
+
+    /** Chevrons du héros : une recette en avant ou en arrière, en boucle. */
+    const step = (dir: 1 | -1) => {
+        const el = pagerRef.current;
+        if (!el) return;
+        haptic(8);
+        const n = (index + dir + recipes.length) % recipes.length;
+        el.scrollTo({ left: n * el.clientWidth, behavior: 'smooth' });
+    };
+
     if (!current) return null;
 
     // Palier typographique : les titres WP vont de « Tiramisu » à 60 caractères.
@@ -861,6 +914,23 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
             </motion.div>
 
             <motion.div className={styles.heroVeil} style={{ opacity: veil }} />
+
+            {/* Chevrons « Apple TV+ » : discrets, sur les côtés, pour passer aux
+                autres recettes sans attendre la rotation ni balayer. */}
+            {recipes.length > 1 && (
+                <motion.div style={{ opacity: contentOpacity }}>
+                    <button className={`${styles.heroNav} ${styles.heroNavPrev}`} aria-label="Recette précédente" onClick={() => step(-1)}>
+                        <svg viewBox="0 0 8 14" fill="none" aria-hidden>
+                            <path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                    <button className={`${styles.heroNav} ${styles.heroNavNext}`} aria-label="Recette suivante" onClick={() => step(1)}>
+                        <svg viewBox="0 0 8 14" fill="none" aria-hidden>
+                            <path d="M1 1l6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                </motion.div>
+            )}
 
             {/* Signature de marque : disparaît vite au scroll pour laisser la place au feed. */}
             <motion.div className={styles.brand} style={{ opacity: brandOpacity, y: brandY }}>
@@ -913,10 +983,30 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                                     decoding="async"
                                     draggable={false}
                                 />
+                                {playing && currentVid && (
+                                    <iframe
+                                        className={styles.heroShotVideo}
+                                        // Interface TikTok coupée : le cadre reste une image
+                                        // qui s'anime, pas un lecteur incrusté.
+                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                                        allow="autoplay; encrypted-media"
+                                        title={label(current)}
+                                    />
+                                )}
                             </div>
 
                             <div className={styles.heroInfo}>
-                                <h1 className={styles.heroTitleSplit}>{label(current)}</h1>
+                                {/* Mot par mot : l'inclinaison porte sur chaque mot, jamais
+                                    sur le bloc — sinon les lignes s'escaladent vers la
+                                    droite et la première lettre sort de la colonne. */}
+                                <h1 className={styles.heroTitleSplit}>
+                                    {label(current).split(/\s+/).filter(Boolean).map((w, n, all) => (
+                                        <Fragment key={`${w}-${n}`}>
+                                            <span className={styles.heroTitleWord}>{w}</span>
+                                            {n < all.length - 1 ? ' ' : ''}
+                                        </Fragment>
+                                    ))}
+                                </h1>
 
                                 <div className={styles.heroMetaSplit}>
                                     <span>{catLabel(current)}</span>

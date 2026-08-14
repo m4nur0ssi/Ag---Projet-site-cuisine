@@ -121,7 +121,11 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
         return () => { document.body.style.overflow = prev; };
     }, [open]);
 
-    const go = (path: string) => { onClose(); router.push(path); };
+    // On NE ferme PAS le volet avant de naviguer : sa fermeture rend son entrée
+    // d'historique (history.back()), et ce retour annulait la navigation que
+    // Next venait de lancer — l'écran restait sur l'accueil. Le volet disparaît
+    // de lui-même quand l'accueil est démonté par le changement de page.
+    const go = (path: string) => { router.push(path); };
 
     /** Entrée réservée aux connectés. */
     const goAuthed = (path: string) => {
