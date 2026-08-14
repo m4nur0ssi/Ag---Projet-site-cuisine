@@ -2523,3 +2523,30 @@
 .macroLegend div { display: flex; align-items: center; gap: 9px; font-size: 14px; color: rgba(235,235,245,0.62); }
 .macroLegend b { color: #fff; font-weight: 700; margin-left: 6px; }
 .macroDot { width: 10px; height: 10px; border-radius: 3px; flex: 0 0 auto; }
+
+/* ── Substitutions (appui long sur un ingrédient) ── */
+.subsScrim { position: fixed; inset: 0; z-index: 90; }
+.subsPopover {
+    position: fixed;
+    z-index: 91;
+    width: 230px;
+    padding: 8px;
+    border-radius: 16px;
+    background: rgba(40, 40, 44, 0.92);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 0.5px rgba(255, 255, 255, 0.14);
+    animation: subsIn 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+}
+@keyframes subsIn {
+    from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+}
+.subsHead { padding: 8px 10px; font-size: 12px; font-weight: 700; color: rgba(235, 235, 245, 0.38); }
+.subsItem {
+    display: flex; width: 100%; align-items: center; gap: 9px;
+    padding: 10px; border: none; border-radius: 10px; background: transparent;
+    color: #fff; font-size: 14.5px; cursor: pointer; text-align: left;
+}
+.subsItem:active { background: rgba(255, 255, 255, 0.12); }
+.subsEmoji { font-size: 16px; }

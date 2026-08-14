@@ -26,6 +26,7 @@ import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import WinePairing from '@/components/WinePairing/WinePairing';
 import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
+import { getSubstitutions, Substitution } from '@/lib/substitutions';
 import StarRating from '@/mobile/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
@@ -155,6 +156,25 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             : null,
     [recipe, servings]);
     const [showMacros, setShowMacros] = useState(false);
+
+    // Substitutions (appui long sur un ingrédient).
+    const [subs, setSubs] = useState<{ list: Substitution[]; x: number; y: number } | null>(null);
+    const lpTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const suppressClick = useRef(false);
+    const openSubs = (name: string, x: number, y: number) => {
+        const list = getSubstitutions(name);
+        if (!list) return;
+        const w = 230;
+        setSubs({ list, x: Math.min(x, (typeof window !== 'undefined' ? window.innerWidth : 380) - w - 8), y });
+        suppressClick.current = true;
+        if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(12);
+    };
+    useEffect(() => {
+        if (!subs) return;
+        const close = () => setSubs(null);
+        window.addEventListener('scroll', close, true);
+        return () => window.removeEventListener('scroll', close, true);
+    }, [subs]);
 
     const similarRecipes = useMemo(() => {
         // Fiche restaurant → « Autres restaurants ».
@@ -397,6 +417,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     };
 
     const toggleIngredient = (index: number) => {
+        // Un appui long vient d'ouvrir les substitutions : on n'enchaîne pas le toggle.
+        if (suppressClick.current) { suppressClick.current = false; return; }
         // Sécurité mobile : si on a bougé de plus de 10px → scroll, pas un clic
         if (touchStart.current && touchEnd.current) {
             const dx = Math.abs(touchStart.current.x - touchEnd.current.x);
@@ -1268,6 +1290,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                             className={`${styles.ingredientCard} ${checkedIngredients[idx] ? styles.ingredientDone : ''}`}
                                             style={{ animationDelay: `${idx * 40}ms` }}
                                             onClick={() => toggleIngredient(idx)}
+                                            onContextMenu={(e) => { e.preventDefault(); openSubs(ing.name, e.clientX, e.clientY); }}
+                                            onPointerDown={(e) => { const x = e.clientX, y = e.clientY; lpTimer.current = setTimeout(() => openSubs(ing.name, x, y), 450); }}
+                                            onPointerUp={() => { if (lpTimer.current) clearTimeout(lpTimer.current); }}
+                                            onPointerMove={() => { if (lpTimer.current) clearTimeout(lpTimer.current); }}
+                                            onPointerLeave={() => { if (lpTimer.current) clearTimeout(lpTimer.current); }}
                                         >
                                             {/* Case ronde à cocher, à gauche (mode liste). */}
                                             <span className={`${styles.ingCheck} ${checkedIngredients[idx] ? styles.ingCheckOn : ''}`}>
@@ -1547,6 +1574,21 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             {/* Commentaires : lisibles par tous. Publier reste réservé aux connectés (géré dans le composant). */}
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
         </div>
+
+        {/* Popover substitutions (appui long sur un ingrédient) */}
+        {subs && (
+            <>
+                <div className={styles.subsScrim} onClick={() => setSubs(null)} />
+                <div className={styles.subsPopover} style={{ left: subs.x, top: subs.y }}>
+                    <div className={styles.subsHead}>Remplacer par</div>
+                    {subs.list.map((s, i) => (
+                        <button key={i} className={styles.subsItem} onClick={() => setSubs(null)}>
+                            <span className={styles.subsEmoji}>{s.emoji}</span> {s.label}
+                        </button>
+                    ))}
+                </div>
+            </>
+        )}
         </>
     );
 }
