@@ -101,19 +101,46 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     const toggleVoice = () => {
         if (typeof window === 'undefined') return;
         const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-        if (!SR) { setAiError('La dictée vocale n\'est pas supportée sur ce navigateur.'); return; }
+        if (!SR) { setMode('assistant'); setAiError('La dictée vocale n\'est pas supportée sur ce navigateur (OK sur Safari/Chrome iOS).'); return; }
         if (isListening) { try { recognitionRef.current?.stop(); } catch {} return; }
+        // On se met en mode assistant IA pour que la recherche parte sur la dictée.
+        setMode('assistant');
+        setAiError(''); setAiResults([]); setAiMessage('');
         const rec = new SR();
-        rec.lang = 'fr-FR'; rec.interimResults = false; rec.maxAlternatives = 1;
+        rec.lang = 'fr-FR';
+        rec.interimResults = true;   // texte live pendant qu'on parle
+        rec.continuous = false;      // s'arrête à la fin de la phrase
+        rec.maxAlternatives = 1;
+        let finalText = '';
         rec.onstart = () => setIsListening(true);
-        rec.onend = () => { setIsListening(false); recognitionRef.current = null; };
-        rec.onerror = () => { setIsListening(false); recognitionRef.current = null; };
+        rec.onend = () => {
+            setIsListening(false);
+            recognitionRef.current = null;
+            // Lance la recherche dès la fin de la dictée (pas d'attente du debounce).
+            const q = finalText.trim();
+            if (q.length >= 2) { setAiQuery(q); askAssistant(q); }
+        };
+        rec.onerror = (ev: any) => {
+            setIsListening(false);
+            recognitionRef.current = null;
+            if (ev?.error === 'not-allowed' || ev?.error === 'service-not-allowed') {
+                setAiError('Micro refusé. Autorise le micro pour Safari (Réglages) puis réessaie.');
+            } else if (ev?.error === 'no-speech') {
+                setAiError('Je n\'ai rien entendu. Appuie sur le micro et parle.');
+            }
+        };
         rec.onresult = (e: any) => {
-            const transcript = e.results?.[0]?.[0]?.transcript || '';
-            if (transcript) setAiQuery(transcript);
+            // Accumule le texte final + montre l'interim en direct.
+            let interim = '';
+            for (let i = e.resultIndex; i < e.results.length; i++) {
+                const t = e.results[i][0].transcript;
+                if (e.results[i].isFinal) finalText += t;
+                else interim += t;
+            }
+            setAiQuery((finalText + interim).trim());
         };
         recognitionRef.current = rec;
-        try { rec.start(); } catch {}
+        try { rec.start(); } catch { setIsListening(false); }
     };
 
     // Lancement auto : 0,7 s d'inactivité après frappe OU dictée → recherche IA,
