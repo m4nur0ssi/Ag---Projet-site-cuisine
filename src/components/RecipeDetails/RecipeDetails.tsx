@@ -392,10 +392,45 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             if (dx > 10 || dy > 10) return;
         }
 
+        // Liste de courses réservée aux connectés → propose la connexion, ne coche rien.
+        if (!authUser) { window.dispatchEvent(new Event('magic-open-auth')); return; }
+
         const newChecked = [...checkedIngredients];
         newChecked[index] = !newChecked[index];
         setCheckedIngredients(newChecked);
         triggerHaptic();
+        syncCartFromChecked(newChecked);
+    };
+
+    // Écrit (ou retire) l'entrée « par recette » dans la liste de courses à chaque
+    // coche, en direct → la pastille panier et l'onglet « Mes recettes » se
+    // mettent à jour immédiatement, sans passer par un bouton d'ajout.
+    const syncCartFromChecked = (checked: boolean[]) => {
+        if (typeof window === 'undefined') return;
+        try {
+            const selected = recipe.ingredients
+                .filter((_, idx) => checked[idx])
+                .map(ing => {
+                    const cleanName = ing.name.replace(/^[\uD83C-\uDBFF\uDC00-\uDFFF]+\s*/, '');
+                    return ing.quantity
+                        ? `${scaleQuantity(ing.quantity, ratio)} ${cleanName}`
+                        : `${scaleQuantity(cleanName, ratio)}`;
+                });
+            const data = JSON.parse(window.localStorage.getItem('magic-shopping-list') || '{}');
+            if (selected.length === 0) {
+                delete data[recipe.id];
+            } else {
+                data[recipe.id] = {
+                    title: recipe.title,
+                    image: recipe.image,
+                    ingredients: selected.map(name => ({ name, checked: false })),
+                };
+            }
+            window.localStorage.setItem('magic-shopping-list', JSON.stringify(data));
+            window.dispatchEvent(new Event('shoppingListUpdated'));
+        } catch (e) {
+            console.error('syncCartFromChecked', e);
+        }
     };
 
     const copyIngredients = async () => {

@@ -2469,11 +2469,11 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
 .cartPill {
     position: relative;
     display: inline-flex; align-items: center; justify-content: center;
-    width: 42px; height: 36px;
+    width: 46px; height: 38px;
     border: none; border-radius: 999px;
-    background: #ff3b30; color: #fff;
+    background: linear-gradient(120deg, #FFC24B, #FF6B4A 60%, #FF3B6B); color: #fff;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(255, 59, 48, 0.35);
+    box-shadow: 0 6px 20px rgba(255, 90, 60, 0.4);
     transition: transform 0.16s ease;
 }
 .cartPill:hover { transform: scale(1.06); }
@@ -2483,9 +2483,44 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
     min-width: 20px; height: 20px; padding: 0 5px;
     display: flex; align-items: center; justify-content: center;
     border-radius: 999px;
-    background: #fff; color: #ff3b30;
+    background: #fff; color: #FF6B4A;
     font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 900;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Panier flottant Apple TV+ : apparaît en haut à droite dès qu'un ingrédient
+   est coché, avec pastille « notification » du nombre. Clic → liste de courses. */
+.cartBadge {
+    position: fixed;
+    top: 84px; right: 22px;
+    z-index: 70;
+    width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    border: none; border-radius: 999px;
+    color: #fff;
+    background: linear-gradient(120deg, #FFC24B, #FF6B4A 58%, #FF3B6B);
+    box-shadow: 0 12px 34px rgba(255, 90, 60, 0.45), inset 0 0 0 0.5px rgba(255, 200, 150, 0.5);
+    cursor: pointer;
+    animation: cartPop 0.34s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: transform 0.16s ease;
+}
+.cartBadge:hover { transform: scale(1.07); }
+.cartBadge:active { transform: scale(0.92); }
+@keyframes cartPop {
+    from { opacity: 0; transform: translateY(-8px) scale(0.8); }
+    to { opacity: 1; transform: none; }
+}
+.cartBadgeCount {
+    position: absolute; top: -4px; right: -4px;
+    min-width: 24px; height: 24px; padding: 0 6px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    background: #fff; color: #FF3B6B;
+    font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 900;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+@media (max-width: 768px) {
+    .cartBadge { top: auto; bottom: 96px; right: 16px; width: 52px; height: 52px; }
 }
 
 /* Anneau macros (protéines/glucides/lipides) déplié sous les calories. */
