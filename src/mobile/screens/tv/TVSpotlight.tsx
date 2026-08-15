@@ -43,9 +43,13 @@ interface TVSpotlightProps {
     filter?: (recipe: Recipe) => boolean;
     /** Intitulé affiché à la place de « Terminé » (ex. « Choisir un plat »). */
     hint?: string;
+    /** Mode d'ouverture (défaut « recipe »). « assistant » = recherche IA. */
+    initialMode?: Mode;
+    /** Démarre la dictée vocale automatiquement à l'ouverture (raccourci loupe). */
+    autoVoice?: boolean;
 }
 
-export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint }: TVSpotlightProps) {
+export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
@@ -177,10 +181,14 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     // Ouverture : focus + page figée. Fermeture : on réinitialise tout.
     useEffect(() => {
         if (open) {
+            // Raccourci loupe : ouvre direct en mode assistant IA et lance la dictée.
+            if (initialMode) setMode(initialMode);
             const t = setTimeout(() => inputRef.current?.focus(), 320);
+            let tv: ReturnType<typeof setTimeout> | undefined;
+            if (autoVoice) tv = setTimeout(() => toggleVoice(), 420);
             const prev = document.body.style.overflow;
             document.body.style.overflow = 'hidden';
-            return () => { document.body.style.overflow = prev; clearTimeout(t); };
+            return () => { document.body.style.overflow = prev; clearTimeout(t); if (tv) clearTimeout(tv); };
         }
         setQuery(''); setIngTags([]); setIngInput(''); setMode('recipe');
         setActiveGroup(null); setActiveFilter('');

@@ -633,11 +633,15 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         handlersRef.current = { handleNextStep, handlePrevStep, handleRepeatStep };
     }, [handleNextStep, handlePrevStep, handleRepeatStep]);
 
+    // Micro activé par l'utilisateur (tap-to-talk). Un ref pour que les closures
+    // de reconnaissance (onend/speak) voient toujours l'état à jour.
+    const voiceOnRef = useRef(false);
+
     // Voice recognition logic moved to stable scope
     const startRecognition = useCallback(() => {
         if (typeof window !== 'undefined') {
             const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-            if (SpeechRecognition && !recognitionRef.current && focusMode && !isSpeakingRef.current) {
+            if (SpeechRecognition && !recognitionRef.current && focusMode && voiceOnRef.current && !isSpeakingRef.current) {
                 const recognition = new SpeechRecognition();
                 recognition.lang = 'fr-FR';
                 recognition.continuous = true;
@@ -650,7 +654,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 recognition.onend = () => {
                     setIsListening(false);
                     recognitionRef.current = null;
-                    if (focusMode && !isSpeakingRef.current) {
+                    if (focusMode && voiceOnRef.current && !isSpeakingRef.current) {
                         setTimeout(startRecognition, 250);
                     }
                 };
@@ -691,11 +695,25 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         }
     }, [focusMode]);
 
+    // Tap-to-talk : le tap fournit le geste utilisateur exigé par iOS Safari.
+    const toggleMic = useCallback(() => {
+        if (voiceOnRef.current) {
+            voiceOnRef.current = false;
+            setIsListening(false);
+            if (recognitionRef.current) { try { recognitionRef.current.stop(); } catch (e) {} recognitionRef.current = null; }
+            return;
+        }
+        // Coupe une éventuelle synthèse en cours pour ne pas s'auto-écouter.
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+        isSpeakingRef.current = false;
+        voiceOnRef.current = true;
+        startRecognition();
+    }, [startRecognition]);
+
     // Voice recognition & TTS effect
     useEffect(() => {
-        if (focusMode) {
-            startRecognition();
-        } else {
+        if (!focusMode) {
+            voiceOnRef.current = false;
             if (recognitionRef.current) {
                 try {
                     recognitionRef.current.stop();
@@ -1457,10 +1475,29 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         <div className={styles.focusTitle}>
                             <SplitTitle text={recipe.title} noAnimation={true} />
                         </div>
-                        <button className={styles.focusClose} onClick={() => {
-                            setFocusMode(false);
-                            triggerHaptic();
-                        }}>✕ Quitter</button>
+                        <div className={styles.focusHeaderActions}>
+                            {/* Micro « tap-to-talk » : le tap fournit le geste utilisateur
+                                exigé par iOS pour démarrer la reconnaissance vocale. */}
+                            <button
+                                className={`${styles.focusMic} ${isListening ? styles.focusMicOn : ''}`}
+                                aria-label={isListening ? 'Couper le micro' : 'Dicter'}
+                                onClick={() => { triggerHaptic(); toggleMic(); }}
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="9" y="2" width="6" height="12" rx="3" />
+                                    <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+                                </svg>
+                            </button>
+                            <button
+                                className={styles.focusClose}
+                                aria-label="Quitter le mode préparation"
+                                onClick={() => { setFocusMode(false); triggerHaptic(); }}
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M6 6l12 12M18 6L6 18" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     {/* Progress dans focus mode : on utilise le même calcul de progression que la vue habituelle */}

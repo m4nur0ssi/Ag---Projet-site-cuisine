@@ -64,6 +64,9 @@ export default function BottomNav() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [voiceSearch, setVoiceSearch] = useState(false);
+    const searchLpTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const searchLpFired = useRef(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const pointerStartX = useRef<number | null>(null);
@@ -126,17 +129,34 @@ export default function BottomNav() {
     };
 
     const handleSearchOrTimerClick = (e: React.MouseEvent) => {
+        // Un appui long vient d'ouvrir la recherche vocale : on n'enchaîne pas le tap.
+        if (searchLpFired.current) { searchLpFired.current = false; return; }
         handleVibrate(15);
-        
+
         const isCurrentlyChrono = activeTimer && (showTimerMode || isMiniMode);
-        
+
         if (isCurrentlyChrono) {
             setIsTimerExpanded(!isTimerExpanded);
         } else {
+            setVoiceSearch(false);
             setIsSearchOpen(true);
             setIsTimerExpanded(false);
         }
     };
+
+    // Appui long sur la loupe → recherche assistant IA + dictée vocale directe.
+    const startSearchLp = () => {
+        searchLpFired.current = false;
+        if (searchLpTimer.current) clearTimeout(searchLpTimer.current);
+        searchLpTimer.current = setTimeout(() => {
+            searchLpFired.current = true;
+            handleVibrate(22);
+            setVoiceSearch(true);
+            setIsTimerExpanded(false);
+            setIsSearchOpen(true);
+        }, 450);
+    };
+    const endSearchLp = () => { if (searchLpTimer.current) clearTimeout(searchLpTimer.current); };
 
     const renderSearchOrTimer = (forceChronoOnly = false) => {
         if (activeTimer) {
@@ -342,8 +362,10 @@ export default function BottomNav() {
         <>
             <TVSpotlight
                 open={isSearchOpen}
-                onClose={() => setIsSearchOpen(false)}
+                onClose={() => { setIsSearchOpen(false); setVoiceSearch(false); }}
                 onRecipeSelect={handleRecipeSelect}
+                initialMode={voiceSearch ? 'assistant' : undefined}
+                autoVoice={voiceSearch}
             />
 
             <nav id="bottom-nav" className={styles.navWrapper}>
@@ -386,6 +408,9 @@ export default function BottomNav() {
                                     data-tour="search"
                                     className={styles.miniRight}
                                     onClick={handleSearchOrTimerClick}
+                                    onPointerDown={startSearchLp}
+                                    onPointerUp={endSearchLp}
+                                    onPointerLeave={endSearchLp}
                                 >
                                     {renderSearchOrTimer(true)}
                                 </motion.div>
@@ -456,6 +481,9 @@ export default function BottomNav() {
                                     className={styles.isolatedSearchBtn}
                                     whileTap={{ scale: 0.85 }}
                                     onClick={handleSearchOrTimerClick}
+                                    onPointerDown={startSearchLp}
+                                    onPointerUp={endSearchLp}
+                                    onPointerLeave={endSearchLp}
                                 >
                                     {renderSearchOrTimer()}
                                 </motion.div>
