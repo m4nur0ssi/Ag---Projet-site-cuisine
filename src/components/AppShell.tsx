@@ -27,6 +27,17 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     // mismatch d'hydratation (React #418/#423). Bascule mobile en useLayoutEffect (avant paint).
     const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
+    // Domaine canonique : le domaine prod *.vercel.app renvoie vers lesrecettesmagiques.fr.
+    // Sinon on peut naviguer/se connecter en restant sur l'URL vercel, ce qui donne
+    // l'impression « je me connecte et j'arrive sur vercel ». Les preview deploys
+    // (hash aléatoire dans le sous-domaine) ne sont PAS redirigés.
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        if (window.location.hostname === 'lesrecettesmagiques.vercel.app') {
+            window.location.replace('https://lesrecettesmagiques.fr' + window.location.pathname + window.location.search + window.location.hash);
+        }
+    }, []);
+
     useIsoLayoutEffect(() => {
         const calc = () => setIsMobile(detect());
         calc();
