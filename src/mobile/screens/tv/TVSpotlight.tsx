@@ -55,7 +55,10 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     const [ingTags, setIngTags] = useState<string[]>([]);
     const [ingInput, setIngInput] = useState('');
     const [activeGroup, setActiveGroup] = useState<FilterGroup | null>(null);
-    const [activeFilter, setActiveFilter] = useState('');
+    // Multi-filtres cumulatifs (catégorie + pays + tendance combinés en ET).
+    const [activeFilters, setActiveFilters] = useState<string[]>([]);
+    const toggleFilter = (tag: string) =>
+        setActiveFilters((prev) => prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]);
     const inputRef = useRef<HTMLInputElement>(null);
 
     // Assistant IA
@@ -180,8 +183,9 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     const filteredRecipes = useMemo(() => {
         if (mode !== 'recipe') return [];
         let pool2 = pool.filter((r) => r.category !== 'restaurant');
-        if (activeFilter) {
-            const af = normalize(activeFilter);
+        // Chaque filtre coché doit matcher (ET) : « un dessert espagnol express ».
+        for (const f of activeFilters) {
+            const af = normalize(f);
             pool2 = pool2.filter((r) =>
                 normalize(r.category || '') === af ||
                 (r.tags || []).some((t: string) => normalize(t).includes(af)));
@@ -192,11 +196,11 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                 normalize(r.title).includes(q) ||
                 (r.tags || []).some((t: string) => normalize(t).includes(q)));
         }
-        if (!activeFilter && query.trim().length <= 1) {
+        if (activeFilters.length === 0 && query.trim().length <= 1) {
             return [...pool2].sort((a, b) => parseInt(b.id) - parseInt(a.id)).slice(0, 10);
         }
         return pool2;
-    }, [query, mode, activeFilter, pool]);
+    }, [query, mode, activeFilters, pool]);
 
     // Mode ingrédients
     const ingredientResults = useMemo(() => {
@@ -240,7 +244,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             return () => { document.body.style.overflow = prev; clearTimeout(t); if (tv) clearTimeout(tv); };
         }
         setQuery(''); setIngTags([]); setIngInput(''); setMode('recipe');
-        setActiveGroup(null); setActiveFilter('');
+        setActiveGroup(null); setActiveFilters([]);
         setAiQuery(''); setAiResults([]); setAiMessage(''); setAiError('');
         try { recognitionRef.current?.stop(); } catch {}
         setIsListening(false);
@@ -338,7 +342,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                 className={`${styles.spSeg} ${mode === m ? styles.spSegOn : ''}`}
                                 onClick={() => {
                                     haptic(8);
-                                    setMode(m); setActiveGroup(null); setActiveFilter('');
+                                    setMode(m); setActiveGroup(null); setActiveFilters([]);
                                     setTimeout(() => inputRef.current?.focus(), 50);
                                 }}
                             >{lbl}</button>
@@ -354,10 +358,16 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                     className={`${styles.spGroup} ${activeGroup === g ? styles.spGroupOn : ''}`}
                                     onClick={() => {
                                         haptic(8);
-                                        if (activeGroup === g) { setActiveGroup(null); setActiveFilter(''); }
-                                        else { setActiveGroup(g); setActiveFilter(''); setQuery(''); }
+                                        // On ne vide PAS les filtres : ils sont cumulatifs entre groupes.
+                                        if (activeGroup === g) setActiveGroup(null);
+                                        else { setActiveGroup(g); setQuery(''); }
                                     }}
-                                >{g === 'categorie' ? 'Catégorie' : g === 'pays' ? 'Pays' : 'Tendances'}</button>
+                                >{g === 'categorie' ? 'Catégorie' : g === 'pays' ? 'Pays' : 'Tendances'}
+                                    {(() => {
+                                        const n = FILTER_GROUPS[g].filter((f: any) => activeFilters.includes(f.tag)).length;
+                                        return n > 0 ? <span className={styles.spGroupBadge}>{n}</span> : null;
+                                    })()}
+                                </button>
                             ))}
                         </div>
                     )}
@@ -371,8 +381,8 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                             ).map((f) => (
                                 <button
                                     key={f.tag}
-                                    className={`${styles.spChip} ${activeFilter === f.tag ? styles.spChipOn : ''}`}
-                                    onClick={() => { haptic(8); setActiveFilter(activeFilter === f.tag ? '' : f.tag); }}
+                                    className={`${styles.spChip} ${activeFilters.includes(f.tag) ? styles.spChipOn : ''}`}
+                                    onClick={() => { haptic(8); toggleFilter(f.tag); }}
                                 >{stripEmoji(f.label)}</button>
                             ))}
                         </div>
@@ -405,7 +415,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
 
                         {mode === 'recipe' && (
                             <>
-                                {query.trim().length <= 1 && !activeFilter && (
+                                {query.trim().length <= 1 && activeFilters.length === 0 && (
                                     <div className={styles.spHint}>Dernières recettes publiées</div>
                                 )}
                                 {filteredRecipes.length > 0

@@ -56,8 +56,6 @@ export const CATEGORY_OPTIONS: { token: string; label: string }[] = [
     { token: 'c:desserts', label: 'Desserts' },
     { token: 'c:patisserie', label: 'Pâtisseries' },
     { token: 'c:glaces', label: 'Glaces' },
-    { token: 'c:boissons', label: 'Boissons' },
-    { token: 'c:sauces', label: 'Sauces' },
     { token: 'c:restaurant', label: 'Comme au resto' },
 ];
 
@@ -104,6 +102,9 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
     // Planificateur, courses et favoris n'ont de sens que connecté : hors session
     // ils restent grisés et le tap ouvre la connexion au lieu de naviguer.
     const [authed, setAuthed] = useState(false);
+    // Groupes de filtres repliés par défaut (Catégories/Tendances/Pays) : on ne
+    // montre que les sélections tant qu'on ne déplie pas.
+    const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
     // La session est relue À CHAQUE OUVERTURE du volet : au premier montage,
     // `getSession()` peut encore attendre le rafraîchissement du jeton (réseau du
@@ -159,27 +160,45 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
         go(path);
     };
 
-    const Group = ({ title, options }: { title: string; options: { token: string; label: string }[] }) => (
-        <>
-            <div className={styles.navLabel}>{title}</div>
-            <div className={styles.navGroup}>
-                {options.map((o) => {
-                    const on = selected.includes(o.token);
-                    return (
-                        <button
-                            key={o.token}
-                            className={`${styles.navRow} ${on ? styles.navRowOn : ''}`}
-                            onClick={() => { haptic(8); onToggle(o.token); }}
-                            aria-pressed={on}
-                        >
-                            <span className={styles.navRowText}>{o.label}</span>
-                            {on && <Check />}
-                        </button>
-                    );
-                })}
-            </div>
-        </>
-    );
+    const Group = ({ title, options }: { title: string; options: { token: string; label: string }[] }) => {
+        const selCount = options.filter((o) => selected.includes(o.token)).length;
+        const expanded = !!openGroups[title];
+        // Replié : on n'affiche QUE ce qui est coché (rien si aucune sélection).
+        const visible = expanded ? options : options.filter((o) => selected.includes(o.token));
+        return (
+            <>
+                <button
+                    className={styles.navGroupHead}
+                    onClick={() => { haptic(8); setOpenGroups((g) => ({ ...g, [title]: !g[title] })); }}
+                    aria-expanded={expanded}
+                >
+                    <span className={styles.navLabel}>{title}</span>
+                    {selCount > 0 && <span className={styles.navGroupCount}>{selCount}</span>}
+                    <span className={`${styles.navChevron} ${expanded ? styles.navChevronOpen : ''}`}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+                    </span>
+                </button>
+                {visible.length > 0 && (
+                    <div className={styles.navGroup}>
+                        {visible.map((o) => {
+                            const on = selected.includes(o.token);
+                            return (
+                                <button
+                                    key={o.token}
+                                    className={`${styles.navRow} ${on ? styles.navRowOn : ''}`}
+                                    onClick={() => { haptic(8); onToggle(o.token); }}
+                                    aria-pressed={on}
+                                >
+                                    <span className={styles.navRowText}>{o.label}</span>
+                                    {on && <Check />}
+                                </button>
+                            );
+                        })}
+                    </div>
+                )}
+            </>
+        );
+    };
 
     return (
         <AnimatePresence>

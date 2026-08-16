@@ -2586,3 +2586,14 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
 }
 .subsItem:hover { background: rgba(255, 255, 255, 0.1); }
 .subsEmoji { font-size: 16px; }
+
+/* ── Mode clair : lisibilité de la liste d'ingrédients ──
+   La quantité est colorée en accent pays via style inline (jaune, vert clair…) :
+   illisible sur fond blanc. En clair on force des couleurs neutres contrastées.
+   Le !important bat le style inline (qui n'a pas de !important). */
+:global([data-theme='light']) .ingName { color: #1c1c1e !important; }
+:global([data-theme='light']) .ingQty { color: #48484a !important; font-weight: 800 !important; }
+:global([data-theme='light']) .ingredientCard:hover { background: rgba(0, 0, 0, 0.04) !important; }
+:global([data-theme='light']) .ingIconWrap { background: #f2f2f7 !important; box-shadow: inset 0 0 0 .5px rgba(0,0,0,0.1) !important; }
+:global([data-theme='light']) .ingCheck { box-shadow: inset 0 0 0 1.6px rgba(0,0,0,0.3) !important; color: #fff; }
+:global([data-theme='light']) .ingCheckOn { background: #0a0a0c !important; box-shadow: none !important; }

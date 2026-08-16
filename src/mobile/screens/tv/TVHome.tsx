@@ -1148,6 +1148,20 @@ export default function TVHome() {
     const [sheet, setSheet] = useState<{ recipes: Recipe[]; index: number } | null>(null);
     const [menu, setMenu] = useState<Recipe | null>(null);
     const [navOpen, setNavOpen] = useState(false);
+    // Ouverture du menu par swipe gauche→droite depuis une bande à gauche.
+    // On laisse les ~22 premiers px au geste « retour » natif d'iOS.
+    const navTouch = useRef<{ x: number; y: number } | null>(null);
+    const onPageTouchStart = (e: React.TouchEvent) => {
+        const t = e.touches[0];
+        navTouch.current = { x: t.clientX, y: t.clientY };
+    };
+    const onPageTouchEnd = (e: React.TouchEvent) => {
+        const s = navTouch.current; navTouch.current = null;
+        if (!s || navOpen) return;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - s.x, dy = t.clientY - s.y;
+        if (s.x > 22 && s.x < 64 && dx > 55 && Math.abs(dy) < 40) { haptic(10); setNavOpen(true); }
+    };
     useFittedCards();
     const [filters, setFilters] = useState<string[]>([]);
     const [navQuery, setNavQuery] = useState('');
@@ -1390,7 +1404,7 @@ export default function TVHome() {
     }, []);
 
     return (
-        <div className={styles.page}>
+        <div className={styles.page} onTouchStart={onPageTouchStart} onTouchEnd={onPageTouchEnd}>
             <Hero recipes={heroRecipes} onOpen={openSheet} onMenu={() => setNavOpen(true)} />
 
             <NavDrawer

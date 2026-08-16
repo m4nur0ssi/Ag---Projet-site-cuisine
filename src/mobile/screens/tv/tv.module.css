@@ -1216,6 +1216,40 @@
     color: rgba(235, 235, 245, 0.5);
 }
 
+/* En-tête de groupe repliable (Catégories / Tendances / Pays). */
+.navGroupHead {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.navGroupHead .navLabel { flex: 1 1 auto; text-align: left; }
+.navGroupCount {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    margin-bottom: -6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--accent, #FF6B4A);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+}
+.navChevron {
+    margin-bottom: -6px;
+    color: rgba(235, 235, 245, 0.5);
+    display: inline-flex;
+    transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.navChevronOpen { transform: rotate(180deg); }
+
 /* Groupe : bloc de verre plus clair, coins arrondis (langage Réglages iOS). */
 .navGroup {
     border-radius: 14px;
@@ -1474,6 +1508,22 @@
 }
 .spGroup:active { transform: scale(0.94); }
 .spGroupOn { background: #fff; color: #000; font-weight: 600; }
+/* Pastille du nombre de filtres cochés dans ce groupe. */
+.spGroupBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    margin-left: 6px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: var(--accent, #FF6B4A);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    vertical-align: middle;
+}
 
 /* Chips (filtres du groupe, ou tags ingrédients). */
 .spChips {
