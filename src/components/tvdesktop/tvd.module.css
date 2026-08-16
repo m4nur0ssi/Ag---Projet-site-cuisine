@@ -136,9 +136,36 @@
 
 .navLabel {
     padding: 18px 12px 7px;
-    font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em;
-    text-transform: uppercase; color: var(--dim2);
+    font-size: 12.5px; font-weight: 800; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--ink);
 }
+
+/* En-tête de groupe repliable (Catégories / Tendances / Pays) — bien visible TV+. */
+.navGroupHead {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.navGroupHead .navLabel { flex: 1 1 auto; text-align: left; padding-left: 12px; }
+.navGroupHead:hover .navLabel { color: var(--ink); }
+.navGroupCount {
+    min-width: 20px; height: 20px; padding: 0 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    background: var(--accent, #FF6B4A); color: #fff;
+    font-size: 11px; font-weight: 800;
+}
+.navChevron {
+    margin-right: 10px;
+    color: var(--dim2);
+    display: inline-flex;
+    transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.navChevronOpen { transform: rotate(180deg); }
 
 .sidebarFoot {
     margin-top: auto;

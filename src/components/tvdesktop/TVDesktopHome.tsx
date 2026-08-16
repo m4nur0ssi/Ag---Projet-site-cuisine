@@ -429,6 +429,9 @@ export default function TVDesktopHome() {
     const [nav, setNav] = useState<'accueil' | string>('accueil');
     // Barre latérale repliable : on agrandit la page d'un clic.
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    // Groupes de filtres repliables (comme mobile) : Catégories déployé par défaut,
+    // Tendances / Pays repliés → on ne montre que les filtres cochés tant que fermé.
+    const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({ 'Catégories': true });
     // Raccourcis épinglés dans « Bibliothèque » (glisser-déposer), + survol du drop.
     const [library, setLibrary] = useState<LibraryItem[]>([]);
     const [dragOver, setDragOver] = useState(false);
@@ -702,6 +705,44 @@ export default function TVDesktopHome() {
         </button>
     );
 
+    // Groupe de filtres repliable (Catégories / Tendances / Pays) — même logique
+    // que le volet mobile : replié, on ne montre que les filtres cochés.
+    const NavGroup = ({ title, items }: { title: string; items: { token: string; label: string }[] }) => {
+        const selCount = items.filter((it) => filters.includes(it.token)).length;
+        const expanded = !!openGroups[title];
+        const visible = expanded ? items : items.filter((it) => filters.includes(it.token));
+        return (
+            <>
+                <button
+                    className={styles.navGroupHead}
+                    onClick={() => setOpenGroups((g) => ({ ...g, [title]: !g[title] }))}
+                    aria-expanded={expanded}
+                >
+                    <span className={styles.navLabel}>{title}</span>
+                    {selCount > 0 && <span className={styles.navGroupCount}>{selCount}</span>}
+                    <span className={`${styles.navChevron} ${expanded ? styles.navChevronOpen : ''}`}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+                    </span>
+                </button>
+                {visible.length > 0 && (
+                    <nav className={styles.navGroup}>
+                        {visible.map((it) => (
+                            <button
+                                key={it.token}
+                                {...dragProps(it.token, it.label)}
+                                className={`${styles.navRow} ${styles.navRowSmall} ${styles.navDraggable} ${filters.includes(it.token) ? styles.navRowOn : ''}`}
+                                onClick={() => toggleFilter(it.token)}
+                            >
+                                <span className={styles.navBullet} /><span>{it.label}</span>
+                                {filters.includes(it.token) && <Check />}
+                            </button>
+                        ))}
+                    </nav>
+                )}
+            </>
+        );
+    };
+
     return (
         <div className={`${styles.shell} ${sidebarOpen ? '' : styles.shellClosed}`}>
             {/* Rouvrir la barre latérale quand elle est repliée. */}
@@ -775,35 +816,9 @@ export default function TVDesktopHome() {
 
                 {/* Catégories / Tendances / Pays : un clic COCHE le filtre (cumulatif),
                     et l'élément reste déplaçable vers la Bibliothèque. */}
-                <div className={styles.navLabel}>Catégories</div>
-                <nav className={styles.navGroup}>
-                    {CATS.filter((c) => c.key !== 'restaurant').map((c) => (
-                        <button key={c.key} {...dragProps(`c:${c.key}`, c.label)} className={`${styles.navRow} ${styles.navRowSmall} ${styles.navDraggable} ${filters.includes(`c:${c.key}`) ? styles.navRowOn : ''}`} onClick={() => toggleFilter(`c:${c.key}`)}>
-                            <span className={styles.navBullet} /><span>{c.label}</span>
-                            {filters.includes(`c:${c.key}`) && <Check />}
-                        </button>
-                    ))}
-                </nav>
-
-                <div className={styles.navLabel}>Tendances</div>
-                <nav className={styles.navGroup}>
-                    {TRENDS.map((t) => (
-                        <button key={t.tag} {...dragProps(`t:${t.tag}`, t.title)} className={`${styles.navRow} ${styles.navRowSmall} ${styles.navDraggable} ${filters.includes(`t:${t.tag}`) ? styles.navRowOn : ''}`} onClick={() => toggleFilter(`t:${t.tag}`)}>
-                            <span className={styles.navBullet} /><span>{t.title}</span>
-                            {filters.includes(`t:${t.tag}`) && <Check />}
-                        </button>
-                    ))}
-                </nav>
-
-                <div className={styles.navLabel}>Pays</div>
-                <nav className={styles.navGroup}>
-                    {COUNTRIES.map((c) => (
-                        <button key={c.tag} {...dragProps(`p:${c.tag}`, c.label)} className={`${styles.navRow} ${styles.navRowSmall} ${styles.navDraggable} ${filters.includes(`p:${c.tag}`) ? styles.navRowOn : ''}`} onClick={() => toggleFilter(`p:${c.tag}`)}>
-                            <span className={styles.navBullet} /><span>{c.label}</span>
-                            {filters.includes(`p:${c.tag}`) && <Check />}
-                        </button>
-                    ))}
-                </nav>
+                <NavGroup title="Catégories" items={CATS.filter((c) => c.key !== 'restaurant').map((c) => ({ token: `c:${c.key}`, label: c.label }))} />
+                <NavGroup title="Tendances" items={TRENDS.map((t) => ({ token: `t:${t.tag}`, label: t.title }))} />
+                <NavGroup title="Pays" items={COUNTRIES.map((c) => ({ token: `p:${c.tag}`, label: c.label }))} />
 
             </aside>
 
