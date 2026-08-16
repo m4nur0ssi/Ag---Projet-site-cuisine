@@ -327,6 +327,36 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
 
             {mode === 'semaine' ? (
                 <div className={styles.courseBody}>
+                    {/* Ajout rapide « Apple TV+ » : ajoute à la main un article
+                        qu'aucune recette ne prévoit (pain, café, éponges…). */}
+                    <div className={styles.courseAddBar}>
+                        <input
+                            className={styles.courseAddQty}
+                            value={qty}
+                            onChange={(e) => setQty(e.target.value)}
+                            placeholder="Qté"
+                            inputMode="text"
+                            aria-label="Quantité"
+                        />
+                        <input
+                            className={styles.courseAddInput}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            onKeyDown={(e) => { if (e.key === 'Enter') addManual(); }}
+                            placeholder="Ajouter un ingrédient ou autre…"
+                            enterKeyHint="done"
+                            aria-label="Article à ajouter"
+                        />
+                        <button
+                            className={styles.courseAddPlus}
+                            onClick={addManual}
+                            disabled={!name.trim()}
+                            aria-label="Ajouter à la liste"
+                        >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
+                        </button>
+                    </div>
+
                     {hasJourJ && (
                         <button
                             className={`${styles.courseJourJ} ${withJourJ ? styles.courseJourJOn : ''}`}

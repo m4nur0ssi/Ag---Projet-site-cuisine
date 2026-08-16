@@ -2865,3 +2865,65 @@
     cursor: pointer;
 }
 .courseShareOne:active { transform: scale(0.97); }
+
+/* Barre d'ajout rapide en haut de « La semaine » (liste de courses). */
+.courseAddBar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0 14px;
+}
+.courseAddQty {
+    flex: 0 0 58px;
+    width: 58px;
+    height: 44px;
+    text-align: center;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+}
+.courseAddInput {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 15px;
+}
+.courseAddQty::placeholder,
+.courseAddInput::placeholder { color: rgba(235, 235, 245, 0.4); }
+.courseAddQty:focus,
+.courseAddInput:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--accent, #FF6B4A); }
+.courseAddPlus {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    background: linear-gradient(120deg, #FFC24B, #FF6B4A 60%, #FF3B6B);
+    box-shadow: 0 6px 18px rgba(255, 90, 60, 0.4);
+    cursor: pointer;
+    transition: transform 0.16s ease, opacity 0.16s ease;
+}
+.courseAddPlus:active { transform: scale(0.9); }
+.courseAddPlus:disabled { opacity: 0.4; box-shadow: none; cursor: default; }
+:global([data-theme='light']) .courseAddQty,
+:global([data-theme='light']) .courseAddInput {
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+    color: #000;
+}
+:global([data-theme='light']) .courseAddQty::placeholder,
+:global([data-theme='light']) .courseAddInput::placeholder { color: rgba(0, 0, 0, 0.4); }
