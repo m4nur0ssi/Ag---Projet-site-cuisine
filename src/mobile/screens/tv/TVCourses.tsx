@@ -79,6 +79,13 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     useEffect(() => {
         if (typeof window !== 'undefined') localStorage.setItem('jourj-in-fused', withJourJ ? 'true' : 'false');
     }, [withJourJ]);
+    // Ingrédients du planificateur SEMAINE : toggle dédié, symétrique au Jour J.
+    const [withWeek, setWithWeek] = useState(
+        typeof window === 'undefined' ? true : localStorage.getItem('week-in-fused') !== 'false'
+    );
+    useEffect(() => {
+        if (typeof window !== 'undefined') localStorage.setItem('week-in-fused', withWeek ? 'true' : 'false');
+    }, [withWeek]);
     // Mode « Par recette » : cases cochées, clé `day|meal|rIdx|idx`.
     const [recipeSel, setRecipeSel] = useState<Set<string>>(new Set());
     const [adding, setAdding] = useState(false);
@@ -106,11 +113,12 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
 
     /** Liste fusionnée : moteur de la prod, quantités additionnées. */
     const items = useMemo<ConsolItem[]>(
-        () => buildConsolidatedItems(plan, weekChecked, list as any, withJourJ),
-        [plan, weekChecked, list, withJourJ]
+        () => buildConsolidatedItems(plan, weekChecked, list as any, withJourJ, withWeek),
+        [plan, weekChecked, list, withJourJ, withWeek]
     );
 
     const hasJourJ = Object.keys(plan.JourJ || {}).length > 0;
+    const hasWeek = Object.keys(plan).some((d) => d !== 'JourJ' && Object.keys(plan[d] || {}).length > 0);
 
     /** Rangée par rayon de supermarché, dans l'ordre du magasin. */
     const byRayon = useMemo(() => {
@@ -364,6 +372,15 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                         </button>
                     </div>
 
+                    {hasWeek && (
+                        <button
+                            className={`${styles.courseJourJ} ${withWeek ? styles.courseJourJOn : ''}`}
+                            onClick={() => { haptic(8); setWithWeek((v) => !v); }}
+                        >
+                            <span className={styles.courseJourJDot} />
+                            {withWeek ? 'Semaine incluse dans la liste' : 'Ajouter les ingrédients de la semaine'}
+                        </button>
+                    )}
                     {hasJourJ && (
                         <button
                             className={`${styles.courseJourJ} ${withJourJ ? styles.courseJourJOn : ''}`}

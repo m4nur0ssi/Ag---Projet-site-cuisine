@@ -368,6 +368,7 @@ export const buildConsolidatedItems = (
     weekChecked: Set<string>,
     shoppingList: Record<string, any>,
     includeJourJ: boolean = true,
+    includeWeek: boolean = true,
 ): ConsolItem[] => {
     const map = new Map<string, ConsolItem>();
     let ord = 0;
@@ -407,7 +408,8 @@ export const buildConsolidatedItems = (
         }
     };
     Object.keys(weekPlan || {}).forEach(dayKey => {
-        if (dayKey === 'JourJ' && !includeJourJ) return; // Jour J exclu de la liste fusionnée
+        if (dayKey === 'JourJ') { if (!includeJourJ) return; }      // Jour J : toggle dédié
+        else if (!includeWeek) return;                             // jours de semaine : toggle dédié
         const day = weekPlan[dayKey] || {};
         Object.keys(day).forEach(mealKey => {
             const recipe = day[mealKey];
@@ -483,5 +485,6 @@ export const countConsolidatedLines = (): number => {
     const shoppingList = j('magic-shopping-list', '{}');
     const weekChecked = new Set<string>(j('meal-week-checked', '[]'));
     const includeJourJ = localStorage.getItem('jourj-in-fused') !== 'false';
-    return buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ).length;
+    const includeWeek = localStorage.getItem('week-in-fused') !== 'false';
+    return buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ, includeWeek).length;
 };
