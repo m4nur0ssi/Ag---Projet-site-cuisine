@@ -210,6 +210,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
 
         const lines = new Set<string>();
         const rayonCount = new Map<string, number>();
+        const items: { name: string; checked: boolean }[] = [];
         recipes.forEach((recipe) => {
             (recipe.ingredients || []).forEach((i: any) => {
                 if (!i?.name) return;
@@ -220,8 +221,22 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 lines.add(k);
                 const rid = rayonOf(p.name, {});
                 rayonCount.set(rid, (rayonCount.get(rid) || 0) + 1);
+                // Libellé lisible (quantité + nom) réellement stocké dans la liste.
+                const label = `${i.quantity ? i.quantity + ' ' : ''}${i.name}`.trim();
+                items.push({ name: label, checked: false });
             });
         });
+
+        // On écrit RÉELLEMENT le menu dans la liste (bug : seule la purge était sauvée
+        // → liste vide). Une entrée « planner » agrégée, dédoublonnée par rayon.
+        if (items.length) {
+            data['planner-menu'] = {
+                title: 'Mon menu planifié',
+                source: 'planner',
+                count: items.length,
+                ingredients: items,
+            };
+        }
 
         localStorage.setItem('magic-shopping-list', JSON.stringify(data));
         window.dispatchEvent(new Event('shoppingListUpdated'));

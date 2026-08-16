@@ -3,7 +3,25 @@
 // ville(s) et « terrasse » pour que l'IA (et le pré-filtre) répondent aux demandes
 // du type « un restaurant italien avec terrasse » ou « un restaurant à Gonesse ».
 
-export interface FinderRecipe { id: string; t: string; cat?: string; tags?: string[] }
+export interface FinderRecipe { id: string; t: string; cat?: string; tags?: string[]; ing?: string[] }
+
+// Mots d'ingrédient distinctifs (on jette quantités, unités, mots vides) → permet à
+// l'IA de savoir qu'un « Gâteau Suzy » contient du chocolat même si le titre ne le dit pas.
+const ING_STOP = new Set(['de', 'la', 'le', 'les', 'des', 'du', 'un', 'une', 'et', 'a', 'au', 'aux', 'en', 'sel', 'poivre', 'eau', 'g', 'kg', 'ml', 'cl', 'l', 'cas', 'cac', 'pincee', 'sachet', 'sachets', 'cuillere', 'cuilleres', 'cuillere', 'verre', 'gousse', 'gousses', 'tranche', 'tranches', 'boite', 'boites', 'pot', 'pots']);
+function ingredientKeywords(recipe: any): string[] {
+    const out = new Set<string>();
+    for (const i of (recipe.ingredients || [])) {
+        const raw = String(i?.name || '')
+            .toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+            .replace(/[^a-z\s]/g, ' ');
+        for (const w of raw.split(/\s+/)) {
+            if (w.length >= 4 && !ING_STOP.has(w)) out.add(w);
+            if (out.size >= 8) break;
+        }
+        if (out.size >= 8) break;
+    }
+    return [...out];
+}
 
 // Extrait la ville d'une adresse (« 134 Av. …, 95500 Gonesse » → « gonesse »).
 function cityFromAddress(addr?: string): string {
@@ -31,6 +49,6 @@ export function buildFinderCatalog(recipes: any[]): FinderRecipe[] {
             ].filter(Boolean).map((s: any) => String(s).toLowerCase());
             return { id: String(r.id), t: r.title, cat: r.category, tags: [...tags, ...extra].slice(0, 12) };
         }
-        return { id: String(r.id), t: r.title, cat: r.category, tags };
+        return { id: String(r.id), t: r.title, cat: r.category, tags, ing: ingredientKeywords(r) };
     });
 }

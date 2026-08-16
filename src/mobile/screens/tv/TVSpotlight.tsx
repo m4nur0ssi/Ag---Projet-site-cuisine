@@ -98,49 +98,71 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         }
     };
 
+    const watchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const gotResultRef = useRef(false);
+
     const toggleVoice = () => {
         if (typeof window === 'undefined') return;
         const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-        if (!SR) { setMode('assistant'); setAiError('La dictée vocale n\'est pas supportée sur ce navigateur (OK sur Safari/Chrome iOS).'); return; }
-        if (isListening) { try { recognitionRef.current?.stop(); } catch {} return; }
-        // On se met en mode assistant IA pour que la recherche parte sur la dictée.
+        if (!SR) { setMode('assistant'); setAiError('La dictée vocale n\'est pas supportée ici (utilise Safari sur iPhone).'); return; }
+        // Déjà en écoute → on coupe.
+        if (isListening || recognitionRef.current) {
+            try { recognitionRef.current?.stop(); } catch {}
+            try { recognitionRef.current?.abort?.(); } catch {}
+            recognitionRef.current = null;
+            setIsListening(false);
+            if (watchdogRef.current) clearTimeout(watchdogRef.current);
+            return;
+        }
+        // Mode assistant IA + coupe toute synthèse pour ne pas s'auto-écouter.
         setMode('assistant');
         setAiError(''); setAiResults([]); setAiMessage('');
+        if ('speechSynthesis' in window) { try { window.speechSynthesis.cancel(); } catch {} }
+
         const rec = new SR();
         rec.lang = 'fr-FR';
-        rec.interimResults = true;   // texte live pendant qu'on parle
-        rec.continuous = false;      // s'arrête à la fin de la phrase
+        // iOS Safari : interimResults=true renvoie souvent RIEN. On reste en final
+        // seul (bien plus fiable) ; le texte s'écrit à la fin de la phrase.
+        rec.interimResults = false;
+        rec.continuous = false;
         rec.maxAlternatives = 1;
-        let finalText = '';
-        rec.onstart = () => setIsListening(true);
+        gotResultRef.current = false;
+
+        rec.onstart = () => {
+            setIsListening(true);
+            if (watchdogRef.current) clearTimeout(watchdogRef.current);
+            // Rien capté après 9 s → on coupe et on explique.
+            watchdogRef.current = setTimeout(() => {
+                if (!gotResultRef.current) {
+                    try { rec.stop(); } catch {}
+                    try { rec.abort?.(); } catch {}
+                    setAiError('Je n\'ai rien entendu. Réappuie sur le micro et parle près du téléphone.');
+                }
+            }, 9000);
+        };
+        rec.onresult = (e: any) => {
+            gotResultRef.current = true;
+            let text = '';
+            for (let i = 0; i < e.results.length; i++) text += e.results[i][0].transcript;
+            text = text.trim();
+            if (text) { setAiQuery(text); askAssistant(text); }
+        };
+        rec.onerror = (ev: any) => {
+            const err = ev?.error;
+            if (err === 'not-allowed' || err === 'service-not-allowed') {
+                setAiError('Micro refusé. Autorise le micro pour Safari dans Réglages, puis réessaie.');
+            } else if (err === 'no-speech' && !gotResultRef.current) {
+                setAiError('Je n\'ai rien entendu. Réappuie et parle.');
+            }
+        };
         rec.onend = () => {
             setIsListening(false);
             recognitionRef.current = null;
-            // Lance la recherche dès la fin de la dictée (pas d'attente du debounce).
-            const q = finalText.trim();
-            if (q.length >= 2) { setAiQuery(q); askAssistant(q); }
+            if (watchdogRef.current) clearTimeout(watchdogRef.current);
         };
-        rec.onerror = (ev: any) => {
-            setIsListening(false);
-            recognitionRef.current = null;
-            if (ev?.error === 'not-allowed' || ev?.error === 'service-not-allowed') {
-                setAiError('Micro refusé. Autorise le micro pour Safari (Réglages) puis réessaie.');
-            } else if (ev?.error === 'no-speech') {
-                setAiError('Je n\'ai rien entendu. Appuie sur le micro et parle.');
-            }
-        };
-        rec.onresult = (e: any) => {
-            // Accumule le texte final + montre l'interim en direct.
-            let interim = '';
-            for (let i = e.resultIndex; i < e.results.length; i++) {
-                const t = e.results[i][0].transcript;
-                if (e.results[i].isFinal) finalText += t;
-                else interim += t;
-            }
-            setAiQuery((finalText + interim).trim());
-        };
+
         recognitionRef.current = rec;
-        try { rec.start(); } catch { setIsListening(false); }
+        try { rec.start(); } catch { setIsListening(false); recognitionRef.current = null; }
     };
 
     // Lancement auto : 0,7 s d'inactivité après frappe OU dictée → recherche IA,

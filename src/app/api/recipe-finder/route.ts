@@ -12,7 +12,7 @@ import { NextResponse } from 'next/server';
 const GROQ_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = process.env.MENU_GROQ_MODEL || 'llama-3.3-70b-versatile';
 
-interface CompactRecipe { id: string; t: string; cat?: string; tags?: string[] }
+interface CompactRecipe { id: string; t: string; cat?: string; tags?: string[]; ing?: string[] }
 
 // Le catalogue complet (~500 recettes) dépasse la limite de tokens de Groq (erreur 413).
 // On pré-filtre par pertinence vs la demande (les recettes qui partagent des mots
@@ -27,7 +27,7 @@ function norm(s: string): string {
 function scoreByQuery(query: string, recipes: CompactRecipe[]): { r: CompactRecipe; s: number }[] {
     const qWords = norm(query).split(/[^a-z0-9]+/).filter(w => w.length >= 3 && !STOP.has(w));
     const scored = recipes.map(r => {
-        const hay = norm(`${r.t} ${r.cat || ''} ${(r.tags || []).join(' ')}`);
+        const hay = norm(`${r.t} ${r.cat || ''} ${(r.tags || []).join(' ')} ${(r.ing || []).join(' ')}`);
         let s = 0;
         for (const w of qWords) if (hay.includes(w)) s++;
         return { r, s };
@@ -37,7 +37,7 @@ function scoreByQuery(query: string, recipes: CompactRecipe[]): { r: CompactReci
 }
 function shortlistForLLM(query: string, recipes: CompactRecipe[]): CompactRecipe[] {
     return scoreByQuery(query, recipes).slice(0, MAX_TO_LLM).map(({ r }) => ({
-        id: String(r.id), t: r.t, cat: r.cat, tags: (r.tags || []).slice(0, 3),
+        id: String(r.id), t: r.t, cat: r.cat, tags: (r.tags || []).slice(0, 3), ing: (r.ing || []).slice(0, 5),
     }));
 }
 // Repli si l'IA ne renvoie rien : les entrées qui partagent le plus de mots avec la demande.
@@ -46,7 +46,8 @@ function keywordFallback(query: string, recipes: CompactRecipe[]): string[] {
 }
 
 const SYSTEM = `Tu es l'assistant culinaire d'un site de recettes.
-On te donne la demande d'un utilisateur (en langage naturel) et la LISTE des recettes disponibles sur le site (id, titre, catégorie, tags).
+On te donne la demande d'un utilisateur (en langage naturel) et la LISTE des recettes disponibles sur le site (id, titre, catégorie, tags, et "ing" = mots-clés d'ingrédients principaux).
+Sers-toi des ingrédients ("ing") : ex. une demande « gâteau au chocolat » doit matcher une recette dont "ing" contient "chocolat" même si son titre ne le dit pas (ex. "Gâteau Suzy").
 Ta mission : proposer les entrées EXISTANTES de la liste qui répondent le mieux à la demande.
 La liste contient des RECETTES et aussi des RESTAURANTS (catégorie "restaurant" ; leurs tags incluent le type de cuisine — italien, brasserie, asiatique… —, la/les ville(s) et "terrasse" s'il y a une terrasse).
 Règles STRICTES :
