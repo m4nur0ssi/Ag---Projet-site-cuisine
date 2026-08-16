@@ -15,6 +15,7 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { useTimer } from '@/mobile/components/Timer/TimerContext';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { supabase } from '@/mobile/lib/supabase';
+import { countConsolidatedLines } from '@/mobile/lib/ingredients';
 
 const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
 
@@ -232,14 +233,11 @@ export default function BottomNav() {
         window.addEventListener('recipeViewed', updateLastViewed);
         
         const updateStats = () => {
-            // Shopping list
-            const shopData = JSON.parse(localStorage.getItem('magic-shopping-list') || '{}');
-            const totalItems = Object.values(shopData).reduce((acc: number, val: any) => {
-                if (!val.ingredients) return acc;
-                const unCheckedCount = val.ingredients.filter((ing: any) => typeof ing === 'object' ? !ing.checked : true).length;
-                return acc + unCheckedCount;
-            }, 0);
-            
+            // Liste de courses : MÊME décompte que l'écran (liste fusionnée =
+            // semaine + Jour J + par recette + manuel), sinon le badge diverge du
+            // « N articles à prendre » affiché en haut de la liste.
+            const totalItems = countConsolidatedLines();
+
             // Favorites
             const favoriteData = JSON.parse(localStorage.getItem('favorites') || '[]');
             const totalFavorites = favoriteData.length;

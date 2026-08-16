@@ -486,5 +486,8 @@ export const countConsolidatedLines = (): number => {
     const weekChecked = new Set<string>(j('meal-week-checked', '[]'));
     const includeJourJ = localStorage.getItem('jourj-in-fused') !== 'false';
     const includeWeek = localStorage.getItem('week-in-fused') !== 'false';
-    return buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ, includeWeek).length;
+    const done = new Set<string>(j('shop-done', '[]'));
+    // Même décompte que l'en-tête « N articles à prendre » : on retire les rayés.
+    return buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ, includeWeek)
+        .filter((it) => !isItemDone(it, done)).length;
 };

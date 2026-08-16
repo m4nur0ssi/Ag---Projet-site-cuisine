@@ -120,9 +120,21 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         }
     }, []);
 
+    // « Vider » (liste de courses) marque les créneaux comme « déjà pris »
+    // (meal-week-checked, clé `day|meal|idx`). Sans purge, replanifier le même
+    // créneau laissait ses ingrédients invisibles dans « La semaine ». On efface
+    // donc ces marques dès qu'on (re)pose une recette dans le créneau.
+    const clearWeekChecked = (day: string, meal: string) => {
+        try {
+            const arr: string[] = JSON.parse(localStorage.getItem('meal-week-checked') || '[]');
+            const kept = arr.filter((k) => !k.startsWith(`${day}|${meal}|`));
+            if (kept.length !== arr.length) localStorage.setItem('meal-week-checked', JSON.stringify(kept));
+        } catch { /* noop */ }
+    };
+
     const setSlot = (day: string, meal: string, recipe: Recipe | null) => {
         const next: Plan = { ...plan, [day]: { ...(plan[day] || {}) } };
-        if (recipe) next[day][meal] = recipe as Slot;
+        if (recipe) { next[day][meal] = recipe as Slot; clearWeekChecked(day, meal); }
         else delete next[day][meal];
         if (!Object.keys(next[day]).length) delete next[day];
         save(next);
@@ -133,7 +145,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         const main = plan[day]?.[meal];
         if (!main) return;
         const next: Plan = { ...plan, [day]: { ...(plan[day] || {}) } };
-        if (side) next[day][meal] = { ...main, side };
+        if (side) { next[day][meal] = { ...main, side }; clearWeekChecked(day, meal); }
         else { const { side: _drop, ...rest } = main; next[day][meal] = rest as Slot; }
         save(next);
     };
@@ -267,6 +279,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const compose = (tag: string | null) => {
         haptic(12);
         setComposer(false);
+        // Nouveau menu = liste fraîche : on efface les marques « déjà pris » qui
+        // masqueraient les créneaux réécrits dans « La semaine ».
+        try { localStorage.removeItem('meal-week-checked'); } catch { /* noop */ }
         const fits = (r: Recipe) => !tag || matchesTag(r, tag);
 
         const next: Plan = { ...plan };
