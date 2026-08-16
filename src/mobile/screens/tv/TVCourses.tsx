@@ -70,8 +70,15 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const [selected, setSelected] = useState<Set<string>>(new Set());
     const [overrides, setOverrides] = useState<Record<string, string>>({});
     const [dayIdx, setDayIdx] = useState(todayIndex);
-    // Le Jour J n'entre dans les courses que si on le demande explicitement.
-    const [withJourJ, setWithJourJ] = useState(false);
+    // « La semaine » = TOUT le fusionné : semaine + Jour J + ajouts par recette.
+    // Jour J inclus par défaut (pref partagée avec la pastille de nav), le toggle
+    // permet de l'exclure ponctuellement.
+    const [withJourJ, setWithJourJ] = useState(
+        typeof window === 'undefined' ? true : localStorage.getItem('jourj-in-fused') !== 'false'
+    );
+    useEffect(() => {
+        if (typeof window !== 'undefined') localStorage.setItem('jourj-in-fused', withJourJ ? 'true' : 'false');
+    }, [withJourJ]);
     // Mode « Par recette » : cases cochées, clé `day|meal|rIdx|idx`.
     const [recipeSel, setRecipeSel] = useState<Set<string>>(new Set());
     const [adding, setAdding] = useState(false);

@@ -18,10 +18,14 @@ export interface CartRecipe {
 /** Recettes du panier (celles avec au moins un ingrédient choisi). */
 export function readCart(): CartRecipe[] {
     if (typeof window === 'undefined') return [];
-    let raw: Record<string, { title?: string; image?: string; ingredients?: { name: string }[] }>;
+    let raw: Record<string, { title?: string; image?: string; ingredients?: { name: string }[]; source?: string }>;
     try { raw = JSON.parse(localStorage.getItem(CART_KEY) || '{}'); } catch { return []; }
     if (!raw || typeof raw !== 'object') return [];
     return Object.entries(raw)
+        // « Par recette » = UNIQUEMENT les recettes choisies à la main dans une fiche.
+        // On exclut le menu du planificateur (source 'planner') et les ajouts manuels
+        // (source 'manuel') — ceux-là n'appartiennent qu'à « La semaine ».
+        .filter(([, r]) => r?.source !== 'planner' && r?.source !== 'manuel')
         .map(([id, r]) => ({
             id,
             title: r?.title || 'Recette',
