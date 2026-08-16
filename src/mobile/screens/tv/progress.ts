@@ -13,6 +13,20 @@ import { Recipe } from '@/mobile/types';
 export const PROGRESS_EVENT = 'tv-progress-change';
 
 const STEPS_KEY = (id: string | number) => `recipe-steps-${id}`;
+// Drapeau « cuisson réellement démarrée » : posé UNIQUEMENT quand l'utilisateur
+// coche une étape ou lance la préparation. Empêche qu'une simple consultation
+// (qui peut écrire un tableau d'étapes tout à false) fasse apparaître la recette
+// dans « Reprendre la cuisine ».
+const COOK_KEY = (id: string | number) => `recipe-cooking-${id}`;
+
+export function markCooking(id: string | number): void {
+    if (typeof window === 'undefined') return;
+    try { localStorage.setItem(COOK_KEY(id), '1'); } catch { /* noop */ }
+}
+function isCooking(id: string | number): boolean {
+    if (typeof window === 'undefined') return false;
+    try { return localStorage.getItem(COOK_KEY(id)) === '1'; } catch { return false; }
+}
 
 /** Progression d'une recette en % (0 si aucune étape connue). */
 export function recipeProgress(id: string | number): number {
@@ -30,7 +44,7 @@ export function recipeProgress(id: string | number): number {
 /** Retire une recette de « Reprendre la cuisine » : on efface son avancement. */
 export function clearProgress(id: string | number): void {
     if (typeof window === 'undefined') return;
-    try { localStorage.removeItem(STEPS_KEY(id)); } catch { /* noop */ }
+    try { localStorage.removeItem(STEPS_KEY(id)); localStorage.removeItem(COOK_KEY(id)); } catch { /* noop */ }
     window.dispatchEvent(new Event(PROGRESS_EVENT));
 }
 
@@ -42,6 +56,7 @@ export function inProgressRecipes(all: Recipe[]): { recipe: Recipe; pct: number 
     if (typeof window === 'undefined') return [];
     const out: { recipe: Recipe; pct: number }[] = [];
     for (const r of all) {
+        if (!isCooking(r.id)) continue; // consultation seule = pas dans la rangée
         const pct = recipeProgress(r.id);
         if (pct > 0 && pct < 100) out.push({ recipe: r, pct });
     }

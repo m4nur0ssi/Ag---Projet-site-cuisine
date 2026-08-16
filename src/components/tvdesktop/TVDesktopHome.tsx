@@ -20,7 +20,7 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
-import { THEMES, matchesTag } from '@/mobile/screens/tv/themes';
+import { THEMES, matchesTag, isSavoryMiscat } from '@/mobile/screens/tv/themes';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
 
@@ -553,6 +553,7 @@ export default function TVDesktopHome() {
         const g: Record<string, Recipe[]> = {};
         mockRecipes.forEach((r) => {
             if (!r.image) return;
+            if (isSavoryMiscat(r)) return; // salées mal rangées en pâtisserie
             const tags = (r.tags || []).map((t) => t.toLowerCase());
             const cat = tags.some((t) => t === 'accompagnement' || t === 'accompagnements') ? 'accompagnements' : (r.category || 'autres').toLowerCase();
             (g[cat] ||= []).push(r);

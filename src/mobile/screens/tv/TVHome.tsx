@@ -16,7 +16,7 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
-import { THEMES, matchesTag } from './themes';
+import { THEMES, matchesTag, isSavoryMiscat } from './themes';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from './progress';
 import styles from './tv.module.css';
@@ -1310,6 +1310,8 @@ export default function TVHome() {
     const byCat = useMemo(() => {
         const g: Record<string, Recipe[]> = {};
         mockRecipes.forEach((r) => {
+            // Recettes salées mal rangées en pâtisserie → exclues de la vue.
+            if (isSavoryMiscat(r)) return;
             const tags = (r.tags || []).map((t) => t.toLowerCase());
             // Comme sur l'accueil actuel : « accompagnement » prime sur la catégorie
             // WordPress, où ces recettes sont rangées dans « plats ».

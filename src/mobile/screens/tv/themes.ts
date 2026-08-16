@@ -72,6 +72,17 @@ function recipeText(recipe: Recipe) {
  * Une recette appartient-elle au thème `tag` ?
  * Port fidèle des règles de l'accueil mobile (heuristiques titre/tags/ingrédients).
  */
+/**
+ * Recette salée rangée par erreur en pâtisserie/dessert (tiramisu salé,
+ * cheesecake salé, tarte protéinée…). On la reconnaît au titre.
+ */
+export function isSavoryMiscat(recipe: Recipe): boolean {
+    const cat = (recipe.category || '').toLowerCase();
+    if (!['patisserie', 'desserts', 'glaces'].includes(cat)) return false;
+    const t = (recipe.title || '').toLowerCase();
+    return /\bsal[ée]e?\b/.test(t) || /prot[ée]in/.test(t);
+}
+
 export function matchesTag(
     recipe: Recipe,
     tag: string,
@@ -89,6 +100,10 @@ export function matchesTag(
     const recipeCat = (recipe.category || '').toLowerCase();
     const titleLower = (recipe.title || '').toLowerCase();
     const { full: fullText, normFull } = recipeText(recipe);
+
+    // Recettes salées mal rangées en pâtisserie (tiramisu salé, cheesecake salé,
+    // tarte protéinée…) : on les sort des vues sucrées.
+    if ((tagLower === 'patisserie' || tagLower === 'desserts') && isSavoryMiscat(recipe)) return false;
 
     if (tagLower === 'boissons') {
         return (

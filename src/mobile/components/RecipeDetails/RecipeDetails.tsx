@@ -27,6 +27,7 @@ import WinePairing from '@/components/WinePairing/WinePairing';
 import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
 import { getSubstitutions, Substitution } from '@/lib/substitutions';
+import { markCooking } from '@/mobile/screens/tv/progress';
 import StarRating from '@/mobile/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
@@ -399,6 +400,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
         if (typeof window !== 'undefined') {
             window.localStorage.setItem('active-recipe-id', recipe.id);
+            markCooking(recipe.id); // cuisson réellement démarrée → « Reprendre la cuisine »
             // Prévient la home « Reprendre la cuisine » que la progression a changé.
             window.dispatchEvent(new Event('tv-progress-change'));
         }
@@ -882,6 +884,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             <button className={styles.heroFocusBtn} onClick={() => {
                                 setFocusMode(true);
                                 setActiveStepIndex(0);
+                                markCooking(recipe.id);
+                                window.dispatchEvent(new Event('tv-progress-change'));
                                 triggerHaptic();
                                 // Scroll auto vers le focus card (HUD)
                                 window.scrollTo({ top: 0, behavior: 'smooth' });

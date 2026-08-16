@@ -197,10 +197,13 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                 (r.tags || []).some((t: string) => normalize(t).includes(q)));
         }
         if (activeFilters.length === 0 && query.trim().length <= 1) {
-            return [...pool2].sort((a, b) => parseInt(b.id) - parseInt(a.id)).slice(0, 10);
+            const sorted = [...pool2].sort((a, b) => parseInt(b.id) - parseInt(a.id));
+            // Créneau du planificateur (filter imposé) → on montre TOUT le type
+            // demandé (toutes les entrées, tous les plats…), pas seulement 10.
+            return filter ? sorted : sorted.slice(0, 10);
         }
         return pool2;
-    }, [query, mode, activeFilters, pool]);
+    }, [query, mode, activeFilters, pool, filter]);
 
     // Mode ingrédients
     const ingredientResults = useMemo(() => {
