@@ -1,15 +1,17 @@
 'use client';
-
+/**
+ * Favoris — refonte « Apple TV+ » : fond cinématique sombre, en-tête incliné,
+ * grille de posters. Un tap ouvre la fiche via la feuille globale (comme le reste
+ * de l'app TV). Remplace l'ancien écran (Header + MagicFilterBar + grille iOS26).
+ */
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '@/mobile/components/Header/Header';
-import MagicFilterBar from '@/mobile/components/MagicFilterBar/MagicFilterBar';
-import RecipeCard from '@/mobile/components/RecipeCard/RecipeCardiOS26';
 import BottomNav from '@/mobile/components/BottomNav/BottomNav';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { Recipe } from '@/mobile/types';
 import { pullFavorites, pruneOrphanFavorites } from '@/mobile/lib/favorites';
 import { precacheFavorites } from '@/lib/pwa';
+import { decodeHtml } from '@/mobile/lib/utils';
 import styles from './favorites.module.css';
 
 export default function FavoritesPage() {
@@ -18,14 +20,11 @@ export default function FavoritesPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Rendu depuis le cache local (rapide, et pour les events)
         const renderFromCache = () => {
             const storedIds = JSON.parse(localStorage.getItem('favorites') || '[]');
             setFavoriteRecipes(mockRecipes.filter(r => storedIds.includes(r.id)));
             setLoading(false);
         };
-        // Au montage : tire la vérité depuis Supabase (suit le compte), purge les
-        // favoris orphelins (recettes disparues) pour que le badge colle aux fiches, puis rend.
         const init = async () => {
             await pullFavorites();
             const ids = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -33,7 +32,6 @@ export default function FavoritesPage() {
             await pruneOrphanFavorites(resolved);
             renderFromCache();
         };
-
         init();
         window.addEventListener('storage', renderFromCache);
         window.addEventListener('magic-favorite-change', renderFromCache);
@@ -43,53 +41,57 @@ export default function FavoritesPage() {
         };
     }, []);
 
-    // Offline : précache pages + images des favoris.
-    useEffect(() => {
-        if (favoriteRecipes.length) precacheFavorites(favoriteRecipes);
-    }, [favoriteRecipes]);
+    useEffect(() => { if (favoriteRecipes.length) precacheFavorites(favoriteRecipes); }, [favoriteRecipes]);
+
+    const open = (r: Recipe) => window.dispatchEvent(new CustomEvent('openRecipe', { detail: r }));
 
     return (
         <div className={styles.page}>
-            <div className={styles.stickyHeaderMenu}>
-                <Header title="Mes favoris" showBack={false} />
-                <MagicFilterBar 
-                    activeTags={[]} 
-                    showBack={true}
-                    onSelect={(tag) => {
-                        if (tag === '') router.push('/');
-                        else router.push(`/?tag=${tag}`);
-                    }} 
-                />
-            </div>
+            <header className={styles.head}>
+                <button className={styles.back} onClick={() => router.push('/')} aria-label="Retour">
+                    <svg viewBox="0 0 8 14" width="13" height="13" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+                <div>
+                    <div className={styles.kicker}>Ta sélection</div>
+                    <h1 className={styles.title}>Favoris</h1>
+                </div>
+                {!loading && favoriteRecipes.length > 0 && (
+                    <span className={styles.count}>{favoriteRecipes.length}</span>
+                )}
+            </header>
 
             <main className={styles.main}>
-                <h1 className={styles.title}>Mes Recettes Favorites</h1>
-
                 {loading ? (
-                    <div className={styles.empty}>
-                        <p>Chargement...</p>
+                    <div className={styles.skelGrid}>
+                        {Array.from({ length: 6 }).map((_, i) => <div key={i} className={styles.skel} />)}
                     </div>
                 ) : favoriteRecipes.length > 0 ? (
                     <div className={styles.grid}>
-                        {favoriteRecipes.map((recipe: Recipe) => (
-                            <RecipeCard
-                                key={recipe.id}
-                                recipe={recipe}
-                                size="small"
-                                isGrid={true}
-                                isFavoritesPage={true}
-                            />
+                        {favoriteRecipes.map((r) => (
+                            <button key={r.id} className={styles.card} onClick={() => open(r)}>
+                                <div className={styles.poster}>
+                                    <img src={r.image} alt="" loading="lazy" />
+                                    <div className={styles.scrim} />
+                                    <span className={styles.heart}>
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /></svg>
+                                    </span>
+                                    <span className={styles.cardTitle}>{decodeHtml(r.title)}</span>
+                                </div>
+                            </button>
                         ))}
                     </div>
                 ) : (
                     <div className={styles.empty}>
-                        <span style={{ fontSize: '4rem', display: 'block', marginBottom: '1.5rem' }}>❤️</span>
-                        <h2>Votre liste est vide</h2>
-                        <p>Parcourez les recettes et cliquez sur le cœur pour les enregistrer ici.</p>
+                        <div className={styles.emptyIc}>
+                            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /></svg>
+                        </div>
+                        <h2>Aucun favori</h2>
+                        <p>Touche le cœur sur une recette pour la retrouver ici.</p>
+                        <button className={styles.explore} onClick={() => router.push('/')}>Explorer les recettes</button>
                     </div>
                 )}
             </main>
-            
+
             <BottomNav />
         </div>
     );

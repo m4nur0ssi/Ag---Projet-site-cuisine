@@ -291,7 +291,7 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 >
                                     <Ic d={ICONS.heart} /><span className={styles.navRowText}>Favoris</span>
                                 </button>
-                                <button className={styles.navRow} onClick={() => { onClose(); router.push('/tv-profil'); }}>
+                                <button className={styles.navRow} onClick={() => go('/tv-profil')}>
                                     <Ic d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" />
                                     <span className={styles.navRowText}>Palmarès</span>
                                 </button>
