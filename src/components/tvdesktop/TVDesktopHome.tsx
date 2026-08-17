@@ -792,6 +792,7 @@ export default function TVDesktopHome() {
                     <NavItem icon={ICONS.planner} tour="planner" active={panel === 'planner'} onClick={() => { setCollection(null); setFilters([]); setPanel('planner'); }}>Planificateur</NavItem>
                     <NavItem icon={ICONS.cart} tour="shopping" active={panel === 'courses'} onClick={() => { setCollection(null); setFilters([]); setPanel('courses'); }}>Liste de courses</NavItem>
                     <NavItem icon={ICONS.heart} tour="favorites" onClick={() => router.push('/favorites')}>Favoris</NavItem>
+                    <NavItem icon="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" onClick={() => router.push('/tv-profil')}>Palmarès</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
                         fournit que l'icône et la ligne de menu. */}
                     <button className={`${styles.navRow}`} onClick={() => setTuto(true)}>
