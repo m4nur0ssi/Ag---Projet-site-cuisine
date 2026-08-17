@@ -28,7 +28,7 @@ const TVAuthGate = dynamic(() => import('./TVAuthGate'), { ssr: false });
 const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
 const AuthButton = dynamic(() => import('@/components/AuthButton/AuthButton'), { ssr: false });
 // Visite guidée du site (version desktop) : composant autonome, habillé en ligne de menu.
-const TutorialButton = dynamic(() => import('@/components/Tutorial/TutorialButton'), { ssr: false });
+const TVTutorial = dynamic(() => import('@/mobile/screens/tv/TVTutorial'), { ssr: false });
 // Partage d'un thème : même bouton que sur l'accueil actuel, même lien /?tag=…
 const ShareButton = dynamic(() => import('@/components/ShareButton/ShareButton'), { ssr: false });
 // Planificateur / Liste de courses : rendus DANS le contenu (la sidebar reste à gauche),
@@ -432,6 +432,8 @@ export default function TVDesktopHome() {
     // Groupes de filtres repliables (comme mobile) : Catégories déployé par défaut,
     // Tendances / Pays repliés → on ne montre que les filtres cochés tant que fermé.
     const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({ 'Catégories': true });
+    // Visite guidée « Apple TV+ » (même composant que le mobile), en modale.
+    const [tuto, setTuto] = useState(false);
     // Raccourcis épinglés dans « Bibliothèque » (glisser-déposer), + survol du drop.
     const [library, setLibrary] = useState<LibraryItem[]>([]);
     const [dragOver, setDragOver] = useState(false);
@@ -781,10 +783,9 @@ export default function TVDesktopHome() {
                     <NavItem icon={ICONS.heart} tour="favorites" onClick={() => router.push('/favorites')}>Favoris</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
                         fournit que l'icône et la ligne de menu. */}
-                    <div className={`${styles.navRow} ${styles.navTutorial}`}>
-                        <Ic d={ICONS.book} />
-                        <TutorialButton />
-                    </div>
+                    <button className={`${styles.navRow}`} onClick={() => setTuto(true)}>
+                        <Ic d={ICONS.book} /><span>Tutoriel</span>
+                    </button>
                 </nav>
 
                 {/* Bibliothèque : zone de dépôt. On y glisse une catégorie / tendance /
@@ -998,6 +999,8 @@ export default function TVDesktopHome() {
                     </motion.div>
                 ))}
             </AnimatePresence>
+
+            {tuto && <TVTutorial onClose={() => setTuto(false)} />}
         </div>
     );
 }

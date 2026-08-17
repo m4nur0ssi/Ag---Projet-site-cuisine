@@ -1,21 +1,12 @@
 'use client';
 
 /**
- * Visite guidée de l'app mobile « Apple TV+ ».
+ * Visite guidée « Apple TV+ » (mobile ET desktop — le desktop rend le même
+ * composant en modale). Un écran = une idée, balayé horizontalement.
  *
- * SUR LE FOND — l'ancienne visite (src/components/Tutorial) décrivait le site
- * d'avant : grille 7 × 2 du planificateur, icône calendrier du header, bulle
- * d'extension Chrome, « Menu IA ». Plus rien de tout ça n'existe sur mobile
- * depuis l'accueil TV. Les étapes ci-dessous décrivent les écrans RÉELS :
- * héros, rangées, appui long, fiche, volet de filtres, recherche, /tv-planner
- * et /tv-courses.
- *
- * SUR LA FORME — deux tuiles côte à côte avec une démo jouable miniature n'ont
- * pas de sens sur un téléphone. Un écran = une idée, balayé horizontalement
- * comme le héros et le planificateur, en scroll natif + snap.
- *
- * La visite ne simule rien : elle nomme le geste, l'utilisateur le fait ensuite
- * sur le vrai écran. Rien à maquetter, donc rien qui puisse mentir.
+ * Chaque étape porte désormais une VRAIE petite scène illustrée (SVG) qui
+ * dépeint l'écran décrit — héros, rangées, appui long, fiche, filtres,
+ * recherche, planificateur, liste… — au lieu d'une simple icône de trait.
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -23,141 +14,200 @@ import { createPortal } from 'react-dom';
 import { haptic } from './TVHome';
 import styles from './TVTutorial.module.css';
 
+type Art =
+    | 'hero' | 'rows' | 'press' | 'card' | 'filter' | 'search'
+    | 'planner' | 'side' | 'compose' | 'jourj' | 'fill' | 'views' | 'dock' | 'cocktail';
+
 interface Step {
-    /** Petit titre de rubrique, au-dessus du titre. */
     kicker: string;
     title: string;
     text: string;
-    /** Le geste exact, sur l'écran réel. */
     hint: string;
-    /** Teinte du halo derrière le titre. */
     tint: string;
-    /** Tracé SVG (trait fin, esprit SF Symbols). */
-    icon: string;
+    accent: string;
+    art: Art;
 }
 
-const I = {
-    home: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
-    rows: 'M3 5h7v14H3zM14 5h7v6h-7zM14 13h7v6h-7z',
-    // Doigt posé : un point, et deux ondes autour — l'appui maintenu.
-    press: 'M12 9.6a2.4 2.4 0 1 1 0 4.8 2.4 2.4 0 0 1 0-4.8M7.8 7.8a6 6 0 0 0 0 8.4M16.2 16.2a6 6 0 0 0 0-8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 19.1a10 10 0 0 0 0-14.2',
-    card: 'M4 4h16v16H4zM4 9h16M8 13h8M8 16.5h5',
-    filter: 'M3 5h18M6 12h12M10 19h4',
-    search: 'M21 21l-4.3-4.3M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z',
-    planner: 'M7 3v3m10-3v3M3.5 9h17M5 5h14a1.5 1.5 0 0 1 1.5 1.5v13A1.5 1.5 0 0 1 19 21H5a1.5 1.5 0 0 1-1.5-1.5v-13A1.5 1.5 0 0 1 5 5z',
-    wand: 'M4 20 15 9m0 0 3-3-2-2-3 3m2 2-2-2M7 4l.7 2L10 6.7 7.7 7.4 7 9.7 6.3 7.4 4 6.7 6.3 6zM18 14l.5 1.5L20 16l-1.5.5L18 18l-.5-1.5L16 16l1.5-.5z',
-    day: 'M12 7v5l3 1.8M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
-    cart: 'M3 4h2l2.2 10.5a1.5 1.5 0 0 0 1.5 1.2h7.9a1.5 1.5 0 0 0 1.5-1.2L20 7H6M9 20h.01M17 20h.01',
-    store: 'M4 9h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM4 9l1.4-4.3A1 1 0 0 1 6.3 4h11.4a1 1 0 0 1 .95.7L20 9M9 21v-6h6v6',
-    dock: 'M4 15h16a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2zM7 18h.01M12 18h.01M17 18h.01',
-};
-
 const STEPS: Step[] = [
-    {
-        kicker: 'Accueil',
-        title: 'Le grand visuel',
-        text: "L'accueil s'ouvre sur les six dernières recettes publiées, en plein écran. Balaye le visuel horizontalement pour passer à la suivante ; « Explorer » ouvre la fiche.",
-        hint: 'Balaye la grande photo, puis touche « Explorer ».',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,69,58,0.55), transparent 70%)',
-        icon: I.home,
-    },
-    {
-        kicker: 'Accueil',
-        title: 'Les rangées',
-        text: 'Sous le visuel : Top 10, Reprendre la cuisine, Nouveautés, puis les catégories et une rangée par thème — Pâtes, Express, La Dolce Vita, Airfryer… Chaque rangée se balaye du doigt.',
-        hint: 'Touche le titre d’une rangée (le chevron ›) : elle s’ouvre en grille entière.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,159,10,0.5), transparent 70%)',
-        icon: I.rows,
-    },
-    {
-        kicker: 'Accueil',
-        title: 'L’appui long',
-        text: 'Garde le doigt une seconde sur une carte : un menu s’ouvre avec « Ajouter aux favoris », « À faire plus tard » et « Voir la recette ». « À faire plus tard » crée sa propre rangée sur l’accueil.',
-        hint: 'Appui long sur n’importe quelle carte, sans la relâcher tout de suite.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,214,10,0.45), transparent 70%)',
-        icon: I.press,
-    },
-    {
-        kicker: 'Recette',
-        title: 'La fiche',
-        text: 'Ingrédients avec le nombre de personnes ajustable, étapes, minuteur, ta note, l’accord vin et l’ajout à la liste de courses. La fiche est la même partout dans l’app.',
-        hint: 'Fiche ouverte : balaye vers la gauche pour passer à la recette voisine de la rangée.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(48,209,88,0.45), transparent 70%)',
-        icon: I.card,
-    },
-    {
-        kicker: 'Menu',
-        title: 'Filtrer',
-        text: 'Le volet de gauche liste toutes les catégories, tendances et pays, cochables. Les filtres se combinent : OU à l’intérieur d’un groupe, ET entre groupes — « un dessert espagnol express ».',
-        hint: 'Coche Desserts + Espagne, puis touche « Voir N recettes » en bas du volet.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(10,132,255,0.5), transparent 70%)',
-        icon: I.filter,
-    },
-    {
-        kicker: 'Recherche',
-        title: 'Trois façons',
-        text: 'La loupe ouvre trois onglets : Recette (son nom), Ingrédients (ce qu’il te reste au frigo) et Assistant, qui comprend une demande en langage courant — à la voix aussi.',
-        hint: 'Onglet Assistant, puis dis ou tape « une sauce pour une viande rouge ».',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(94,92,230,0.55), transparent 70%)',
-        icon: I.search,
-    },
-    {
-        kicker: 'Planificateur',
-        title: 'Ma semaine',
-        text: 'Un jour par écran, ouvert sur aujourd’hui : Midi et Soir, uniquement des plats. « Choisir un plat » ouvre le sélecteur, « Surprends-moi » en tire un au hasard.',
-        hint: 'Balaye horizontalement pour changer de jour, ou touche Lun… Dim en haut.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(191,90,242,0.5), transparent 70%)',
-        icon: I.planner,
-    },
-    {
-        kicker: 'Planificateur',
-        title: 'L’accompagnement',
-        text: 'Un plat servi nu — une viande ou un poisson sans féculent ni légume — ouvre une ligne « Accompagnement » sous lui. Un couscous, qui a déjà sa semoule et ses légumes, n’en demande pas.',
-        hint: 'Mets une viande à midi : la ligne Accompagnement apparaît juste dessous.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,45,85,0.45), transparent 70%)',
-        icon: I.wand,
-    },
-    {
-        kicker: 'Planificateur',
-        title: 'Composer',
-        text: '« Composer » remplit toute la semaine sur une tendance choisie — Italie, Healthy, Barbecue… — sans jamais répéter un plat ni sortir du thème. « Effacer » vide la vue affichée.',
-        hint: 'Touche Composer en bas, choisis une tendance, et regarde les 14 repas se remplir.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(100,210,255,0.45), transparent 70%)',
-        icon: I.wand,
-    },
-    {
-        kicker: 'Planificateur',
-        title: 'Le Jour J',
-        text: 'Un onglet à part pour un seul repas complet : apéritif, entrée, plat, accompagnement, dessert et pâtisserie. Idéal pour un dîner d’invités, sans toucher à la semaine.',
-        hint: 'En haut de l’écran, bascule « Semaine » → « Jour J ».',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,159,10,0.45), transparent 70%)',
-        icon: I.day,
-    },
-    {
-        kicker: 'Courses',
-        title: 'Remplir la liste',
-        text: '« Remplir ma liste de courses », en bas du planificateur, envoie tous les ingrédients du menu dans la liste, regroupés par rayon et sans doublon. « Ajouter » y met un article à la main.',
-        hint: 'Une fois le menu prêt, touche le bouton blanc en bas du planificateur.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(48,209,88,0.45), transparent 70%)',
-        icon: I.cart,
-    },
-    {
-        kicker: 'Courses',
-        title: 'Trois vues',
-        text: '« La semaine » fusionne tout par rayon, « Jour par jour » sépare les repas, « Par recette » garde chaque plat de son côté. Cocher un article = à acheter ; toucher son texte le barre : tu l’as déjà.',
-        hint: 'Coche deux ou trois articles : les boutons Partager et Magasin apparaissent.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(10,132,255,0.45), transparent 70%)',
-        icon: I.store,
-    },
-    {
-        kicker: 'Partout',
-        title: 'La barre du bas',
-        text: 'Favoris, Liste de courses, Accueil et Menu (le planificateur), plus la loupe à droite. Elle te suit sur tous les écrans et se réduit dès que tu fais défiler la page.',
-        hint: 'Ajoute le site à ton écran d’accueil : il s’ouvre alors en plein écran, comme une app.',
-        tint: 'radial-gradient(60% 100% at 50% 0%, rgba(142,142,147,0.45), transparent 70%)',
-        icon: I.dock,
-    },
+    { kicker: 'Accueil', title: 'Le grand visuel', art: 'hero', accent: '#FF453A',
+      text: "L'accueil s'ouvre sur les six dernières recettes, en plein écran. Balaye la grande photo pour passer à la suivante ; « Explorer » ouvre la fiche.",
+      hint: 'Balaye la grande photo, puis touche « Explorer ».',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,69,58,0.55), transparent 70%)' },
+    { kicker: 'Accueil', title: 'Les rangées', art: 'rows', accent: '#FF9F0A',
+      text: 'Sous le visuel : Top 10, Reprendre la cuisine, Nouveautés, les catégories et une rangée par thème — Pâtes, Express, Cocktails, Airfryer… Chaque rangée se balaye.',
+      hint: 'Touche le titre d’une rangée (le chevron ›) : elle s’ouvre en grille entière.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,159,10,0.5), transparent 70%)' },
+    { kicker: 'Accueil', title: 'L’appui long', art: 'press', accent: '#FFD60A',
+      text: 'Garde le doigt une seconde sur une carte : un menu s’ouvre — Favoris, À faire plus tard, Accéder à la catégorie, Partager, Marquer comme visionné, Voir la recette.',
+      hint: 'Appui long sur n’importe quelle carte, sans la relâcher tout de suite.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,214,10,0.45), transparent 70%)' },
+    { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158',
+      text: 'Ingrédients (nombre de personnes ajustable), étapes, minuteur, ta note au dixième, l’accord vin, les substitutions et l’ajout à la liste. Coche un ingrédient : il file dans « Par recette ».',
+      hint: 'Fiche ouverte : balaye vers la gauche pour la recette voisine ; appui long sur un ingrédient = substitutions.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(48,209,88,0.45), transparent 70%)' },
+    { kicker: 'Menu', title: 'Filtrer', art: 'filter', accent: '#0A84FF',
+      text: 'Catégories, Tendances et Pays, cochables et repliables. Les filtres se combinent : OU dans un groupe, ET entre groupes — « un dessert espagnol express ».',
+      hint: 'Coche Desserts + Espagne, puis touche « Voir N recettes ».',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(10,132,255,0.5), transparent 70%)' },
+    { kicker: 'Recherche', title: 'Trois façons', art: 'search', accent: '#5E5CE6',
+      text: 'La loupe ouvre Recette (son nom), Ingrédients (ce qu’il te reste au frigo) et Assistant IA, qui comprend une demande en langage courant — à la voix aussi.',
+      hint: 'Appui long sur la loupe : la dictée vocale démarre direct sur l’Assistant.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(94,92,230,0.55), transparent 70%)' },
+    { kicker: 'Planificateur', title: 'Ma semaine', art: 'planner', accent: '#BF5AF2',
+      text: 'Un jour par écran, ouvert sur aujourd’hui : Midi et Soir. « Choisir un plat » ouvre le sélecteur, « Surprends-moi » en tire un au hasard.',
+      hint: 'Balaye pour changer de jour, ou touche Lun… Dim en haut.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(191,90,242,0.5), transparent 70%)' },
+    { kicker: 'Planificateur', title: 'L’accompagnement', art: 'side', accent: '#FF2D55',
+      text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — ouvre une ligne « Accompagnement » sous lui. Un couscous, déjà complet, n’en demande pas.',
+      hint: 'Mets une viande à midi : la ligne Accompagnement apparaît juste dessous.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,45,85,0.45), transparent 70%)' },
+    { kicker: 'Planificateur', title: 'Composer', art: 'compose', accent: '#64D2FF',
+      text: '« Composer » remplit toute la semaine sur une tendance — Italie, Healthy, Barbecue… — sans répéter un plat ni sortir du thème.',
+      hint: 'Touche Composer, choisis une tendance, regarde les 14 repas se remplir.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(100,210,255,0.45), transparent 70%)' },
+    { kicker: 'Planificateur', title: 'Le Jour J', art: 'jourj', accent: '#FF9F0A',
+      text: 'Un onglet à part pour un repas complet : apéritif, entrée, plat, accompagnement, dessert et pâtisserie. Idéal pour un dîner d’invités.',
+      hint: 'En haut, bascule « Semaine » → « Jour J ».',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,159,10,0.45), transparent 70%)' },
+    { kicker: 'Courses', title: 'Remplir la liste', art: 'fill', accent: '#30D158',
+      text: '« Remplir ma liste de courses » envoie tous les ingrédients du menu dans la liste, regroupés par rayon et sans doublon.',
+      hint: 'Menu prêt : touche le bouton blanc en bas du planificateur.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(48,209,88,0.45), transparent 70%)' },
+    { kicker: 'Courses', title: 'Trois vues', art: 'views', accent: '#0A84FF',
+      text: '« La semaine » fusionne tout par rayon (avec les toggles Semaine / Jour J), « Jour par jour » sépare les repas, « Par recette » garde les plats cochés en fiche.',
+      hint: 'Coche des articles : les boutons Partager et Magasin apparaissent.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(10,132,255,0.45), transparent 70%)' },
+    { kicker: 'Apéritif', title: 'Les cocktails', art: 'cocktail', accent: '#FF6B4A',
+      text: 'Deux nouvelles rangées : Cocktails et Cocktails sans alcool. Le tri se fait tout seul en lisant les ingrédients — un Mojito part avec l’alcool, sa version virgin sans.',
+      hint: 'Cherche « cocktail » ou ouvre la rangée depuis l’accueil.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,107,74,0.5), transparent 70%)' },
+    { kicker: 'Partout', title: 'La barre du bas', art: 'dock', accent: '#8E8E93',
+      text: 'Favoris, Liste, Accueil et Menu, plus la loupe. Elle te suit partout et se réduit quand tu fais défiler. Ajoute le site à ton écran d’accueil : il s’ouvre en plein écran, comme une app.',
+      hint: 'Partage → « Sur l’écran d’accueil » pour l’installer comme une app.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(142,142,147,0.45), transparent 70%)' },
 ];
+
+/** Mini-scène illustrée d'une étape. Cadre commun + contenu spécifique. */
+function Illus({ kind, accent }: { kind: Art; accent: string }) {
+    const c = accent;
+    const soft = 'rgba(255,255,255,0.10)';
+    const soft2 = 'rgba(255,255,255,0.18)';
+    const frame = (children: React.ReactNode) => (
+        <svg className={styles.art} viewBox="0 0 220 150" fill="none" aria-hidden>
+            <defs>
+                <linearGradient id={`g-${kind}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stopColor={c} stopOpacity="0.9" />
+                    <stop offset="1" stopColor={c} stopOpacity="0.4" />
+                </linearGradient>
+            </defs>
+            {children}
+        </svg>
+    );
+    const r = (x: number, y: number, w: number, h: number, rad = 6, fill = soft, stroke?: string) => (
+        <rect x={x} y={y} width={w} height={h} rx={rad} fill={fill} stroke={stroke} strokeWidth={stroke ? 1 : 0} />
+    );
+
+    switch (kind) {
+        case 'hero': return frame(<>
+            {r(30, 12, 160, 96, 14, `url(#g-${kind})`)}
+            {r(46, 84, 60, 12, 6, 'rgba(0,0,0,0.35)')}
+            <path d="M150 84h26a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-26z" fill="#fff" />
+            <path d="M18 60l-8 0M10 60l4-4M10 60l4 4" stroke={soft2} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M202 60l8 0M210 60l-4-4M210 60l-4 4" stroke={soft2} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+            {r(78, 118, 64, 10, 5)}
+        </>);
+        case 'rows': return frame(<>
+            {r(16, 14, 90, 10, 5, soft2)}
+            {[30, 68, 106].map((y, k) => (
+                <g key={k}>
+                    {[16, 58, 100, 142, 184].map((x) => r(x, y, 34, 26, 6, k === 1 ? `url(#g-${kind})` : soft))}
+                </g>
+            ))}
+        </>);
+        case 'press': return frame(<>
+            {r(28, 22, 96, 106, 12, `url(#g-${kind})`)}
+            <circle cx="76" cy="86" r="10" fill="#fff" />
+            <circle cx="76" cy="86" r="20" stroke="#fff" strokeOpacity="0.6" strokeWidth="2" />
+            <circle cx="76" cy="86" r="30" stroke="#fff" strokeOpacity="0.3" strokeWidth="2" />
+            {r(132, 30, 74, 88, 12, 'rgba(30,30,34,0.95)', soft2)}
+            {[42, 60, 78, 96].map((y) => r(142, y, 54, 8, 4, soft2))}
+        </>);
+        case 'card': return frame(<>
+            {r(44, 10, 132, 44, 12, `url(#g-${kind})`)}
+            {r(44, 62, 132, 78, 12, soft)}
+            {[72, 92, 112].map((y) => (<g key={y}><circle cx="58" cy={y} r="5" stroke={c} strokeWidth="2" />{r(72, y - 4, 74, 8, 4, soft2)}</g>))}
+            {r(150, 66, 22, 12, 6, c)}
+        </>);
+        case 'filter': return frame(<>
+            {r(14, 12, 74, 126, 12, soft)}
+            {r(24, 24, 40, 8, 4, soft2)}
+            {[40, 56, 72, 88, 104].map((y, k) => (<g key={y}>{r(24, y, 54, 10, 5, k < 2 ? c : soft2)}{k < 2 && <path d="M70 72" />}</g>))}
+            {r(100, 12, 106, 126, 12, soft)}
+            {[24, 60, 96].map((y) => (<g key={y}>{r(110, y, 40, 28, 6, `url(#g-${kind})`)}{r(156, y, 40, 28, 6, soft2)}</g>))}
+        </>);
+        case 'search': return frame(<>
+            {r(24, 16, 172, 22, 11, soft)}
+            <circle cx="40" cy="27" r="6" stroke={c} strokeWidth="2.4" /><path d="M45 32l5 5" stroke={c} strokeWidth="2.4" strokeLinecap="round" />
+            {r(24, 48, 172, 22, 8, soft)}
+            {r(28, 51, 55, 16, 6, '#fff')}
+            <text x="55" y="63" textAnchor="middle" fontSize="9" fontWeight="700" fill="#111">Recette</text>
+            <text x="118" y="63" textAnchor="middle" fontSize="9" fill="#bbb">Frigo</text>
+            <text x="170" y="63" textAnchor="middle" fontSize="9" fill="#bbb">Assistant</text>
+            {[82, 102, 122].map((y) => r(24, y, 172, 12, 6, soft2))}
+        </>);
+        case 'planner': return frame(<>
+            {r(20, 12, 180, 16, 8, soft)}
+            {[26, 52, 78, 104, 130, 156, 182].map((x, k) => <circle key={x} cx={x} cy={20} r="7" fill={k === 2 ? c : soft2} />)}
+            {r(20, 40, 180, 44, 10, `url(#g-${kind})`)}<text x="30" y="52" fontSize="8" fill="#fff" fillOpacity="0.85">MIDI</text>
+            {r(20, 92, 180, 44, 10, soft)}<text x="30" y="104" fontSize="8" fill="#fff" fillOpacity="0.6">SOIR</text>
+        </>);
+        case 'side': return frame(<>
+            {r(40, 14, 140, 56, 12, `url(#g-${kind})`)}
+            <text x="52" y="46" fontSize="10" fill="#fff" fillOpacity="0.9">Plat servi nu</text>
+            {r(60, 82, 120, 46, 12, soft, soft2)}
+            <path d="M110 70v10" stroke={soft2} strokeWidth="2" />
+            <text x="74" y="109" fontSize="9" fill={c}>+ Accompagnement</text>
+        </>);
+        case 'compose': return frame(<>
+            {[16, 58, 100, 142, 184].map((x) => [22, 60, 98].map((y, k) => r(x, y, 34, 30, 6, (x + y) % 3 === 0 ? `url(#g-${kind})` : soft)))}
+            <path d="M170 20l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#fff" />
+        </>);
+        case 'jourj': return frame(<>
+            {r(20, 12, 180, 16, 8, soft)}{r(112, 14, 84, 12, 6, '#fff')}
+            <text x="66" y="23" fontSize="8" fill="#bbb" textAnchor="middle">Semaine</text>
+            <text x="154" y="23" fontSize="8" fill="#111" textAnchor="middle" fontWeight="700">Jour J</text>
+            {['Apéritif', 'Entrée', 'Plat', 'Dessert'].map((t, k) => (<g key={t}>{r(20, 38 + k * 26, 180, 20, 6, k === 2 ? `url(#g-${kind})` : soft)}<text x="30" y={52 + k * 26} fontSize="8" fill="#fff" fillOpacity="0.8">{t}</text></g>))}
+        </>);
+        case 'fill': return frame(<>
+            {r(14, 24, 74, 100, 10, soft)}{[36, 54, 72, 90].map((y) => r(24, y, 54, 8, 4, soft2))}
+            <path d="M96 74h28M124 74l-6-5M124 74l-6 5" stroke={c} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+            {r(132, 24, 74, 100, 10, `url(#g-${kind})`)}{[36, 54, 72, 90].map((y) => (<g key={y}><circle cx="144" cy={y + 4} r="4" stroke="#fff" strokeWidth="1.6" />{r(154, y, 44, 8, 4, 'rgba(0,0,0,0.25)')}</g>))}
+        </>);
+        case 'views': return frame(<>
+            {r(20, 14, 180, 20, 9, soft)}
+            {r(24, 17, 54, 14, 6, '#fff')}<text x="51" y="27" fontSize="8" fontWeight="700" fill="#111" textAnchor="middle">Semaine</text>
+            <text x="112" y="27" fontSize="8" fill="#bbb" textAnchor="middle">Jour/jour</text>
+            <text x="172" y="27" fontSize="8" fill="#bbb" textAnchor="middle">Recette</text>
+            {r(20, 42, 90, 8, 4, c)}
+            {[56, 74, 92, 110].map((y) => (<g key={y}><circle cx="30" cy={y + 4} r="4" stroke="#fff" strokeWidth="1.6" />{r(40, y, 160, 8, 4, soft2)}</g>))}
+        </>);
+        case 'cocktail': return frame(<>
+            <path d="M70 44h80l-34 40v26h-12V84z" fill={`url(#g-${kind})`} stroke={soft2} strokeWidth="1.5" />
+            {r(96, 118, 28, 8, 4, soft2)}
+            <circle cx="150" cy="40" r="7" fill="#FFD24B" />
+            <path d="M150 33v-8M150 25l-3 3M150 25l3 3" stroke="#FFD24B" strokeWidth="2" strokeLinecap="round" />
+            <path d="M60 60l-8-4M62 74h-9" stroke={soft2} strokeWidth="2" strokeLinecap="round" />
+        </>);
+        case 'dock': return frame(<>
+            {r(30, 92, 160, 34, 17, 'rgba(30,30,34,0.95)', soft2)}
+            {[54, 88, 122, 156].map((x, k) => <circle key={x} cx={x} cy={109} r="8" fill={k === 2 ? soft2 : soft} />)}
+            <circle cx="176" cy="109" r="12" fill={c} />
+            <circle cx="176" cy="106" r="4" stroke="#fff" strokeWidth="2" /><path d="M179 109l3 3" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+            {r(60, 26, 100, 52, 10, `url(#g-${kind})`)}
+        </>);
+        default: return frame(null);
+    }
+}
 
 export default function TVTutorial({ onClose }: { onClose: () => void }) {
     const [i, setI] = useState(0);
@@ -166,14 +216,12 @@ export default function TVTutorial({ onClose }: { onClose: () => void }) {
 
     useEffect(() => { setMounted(true); }, []);
 
-    // Visite ouverte = page figée derrière (comportement d'une modale iOS).
     useEffect(() => {
         const prev = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
         return () => { document.body.style.overflow = prev; };
     }, []);
 
-    /** L'index vient du scroll : le geste reste natif, on ne fait que l'observer. */
     const onScroll = useCallback(() => {
         const el = pagerRef.current;
         if (!el) return;
@@ -186,10 +234,8 @@ export default function TVTutorial({ onClose }: { onClose: () => void }) {
         if (!el) return;
         const left = n * el.clientWidth;
         const before = el.scrollLeft;
-        setI(n); // points et barre de progression : jamais en retard sur le geste
+        setI(n);
         el.scrollTo({ left, behavior: 'smooth' });
-        // Repli : « Réduire les animations » (iOS) fait ignorer le défilement
-        // fluide — sans ça, le bouton « Suivant » ne bougeait plus rien.
         window.setTimeout(() => { if (el.scrollLeft === before) el.scrollLeft = left; }, 260);
     };
 
@@ -199,7 +245,6 @@ export default function TVTutorial({ onClose }: { onClose: () => void }) {
         else goTo(i + 1);
     };
 
-    // Clavier : pratique en test sur ordinateur, sans effet sur téléphone.
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
             if (e.key === 'Escape') onClose();
@@ -228,9 +273,9 @@ export default function TVTutorial({ onClose }: { onClose: () => void }) {
             <div className={styles.pager} ref={pagerRef} onScroll={onScroll}>
                 {STEPS.map((s, n) => (
                     <section className={styles.slide} key={s.title}>
-                        <svg className={styles.icon} viewBox="0 0 24 24" fill="none" aria-hidden>
-                            <path d={s.icon} stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <div className={styles.artStage} style={{ ['--tuto-accent' as any]: s.accent }}>
+                            <Illus kind={s.art} accent={s.accent} />
+                        </div>
                         <div className={styles.kicker}>{s.kicker} · {n + 1} / {STEPS.length}</div>
                         <h2 className={styles.title}>{s.title}</h2>
                         <p className={styles.text}>{s.text}</p>

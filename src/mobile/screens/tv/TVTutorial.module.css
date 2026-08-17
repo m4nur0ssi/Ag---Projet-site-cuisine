@@ -115,6 +115,29 @@
     opacity: 0.9;
 }
 
+/* Scène illustrée : cadre « écran » verre avec halo de la teinte de l'étape. */
+.artStage {
+    align-self: center;
+    width: min(300px, 82%);
+    aspect-ratio: 220 / 150;
+    margin-bottom: 6px;
+    border-radius: 22px;
+    padding: 10px;
+    background:
+        radial-gradient(120% 100% at 50% 0%, color-mix(in srgb, var(--tuto-accent, #FF6B4A) 22%, transparent), transparent 70%),
+        rgba(255, 255, 255, 0.05);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 0.5px rgba(255, 255, 255, 0.14);
+    color: var(--tuto-accent, #FF6B4A);
+    animation: tutoArtIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.art { width: 100%; height: 100%; display: block; }
+@keyframes tutoArtIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+}
+
 .kicker {
     font-family: 'Outfit', sans-serif;
     font-size: 10px;
