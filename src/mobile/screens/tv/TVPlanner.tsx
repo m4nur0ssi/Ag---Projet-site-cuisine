@@ -481,6 +481,27 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         );
     };
 
+    // Desktop : le déroulé s'ouvre EN PLACE dans le panneau (sidebar conservée à
+    // gauche), pas en modale plein écran. Même composant/interface que le mobile.
+    if (embedded && showTimeline) {
+        return (
+            <div className={`${styles.page} ${styles.embedded}`}>
+                <header className={styles.planHead}>
+                    <button className={styles.planBack} onClick={() => setShowTimeline(false)} aria-label="Retour au planificateur">
+                        <svg viewBox="0 0 8 14" fill="none" width="13" height="13"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </button>
+                    <div>
+                        <div className={styles.planKicker}>Planificateur · Jour J</div>
+                        <h1 className={styles.planTitle}>Déroulé de la soirée</h1>
+                    </div>
+                </header>
+                <div style={{ padding: '4px 4px 40px' }}>
+                    <CookingTimeline items={timelineItems} />
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className={`${styles.page} ${embedded ? styles.embedded : ''}`}>
             <header className={styles.planHead}>
@@ -669,9 +690,10 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 )}
             </AnimatePresence>
 
-            {/* Déroulé de la soirée : plan de préparation « un seul cuisinier ». */}
+            {/* Déroulé de la soirée : sur MOBILE, feuille modale ; sur DESKTOP, vue
+                inline dans le panneau (gérée par le retour anticipé plus haut). */}
             <AnimatePresence>
-                {showTimeline && (
+                {showTimeline && !embedded && (
                     <motion.div
                         className={styles.menuBackdrop}
                         onClick={() => setShowTimeline(false)}
