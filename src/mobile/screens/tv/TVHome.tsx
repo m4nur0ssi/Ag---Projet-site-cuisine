@@ -19,6 +19,7 @@ import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag, isSavoryMiscat } from './themes';
 import { personalizedRecipes } from '@/lib/personalize';
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
+const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from './progress';
 import styles from './tv.module.css';
@@ -1151,6 +1152,7 @@ export default function TVHome() {
     const [menu, setMenu] = useState<Recipe | null>(null);
     const [navOpen, setNavOpen] = useState(false);
     const [tasteOpen, setTasteOpen] = useState(false);
+    const [shareCard, setShareCard] = useState<Recipe | null>(null);
     // Proposition d'onboarding « goûts » UNE fois, et seulement en PWA installée
     // (vrai contexte « app ») — jamais forcé sur une visite web classique.
     useEffect(() => {
@@ -1624,6 +1626,9 @@ export default function TVHome() {
                                             <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); shareLink(`${origin}/?fiche=${r.id}`, label(r)); }}>
                                                 <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
                                             </button>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard(rr); }}>
+                                                <MI d="M3 3h18v18H3zM8.5 9a1.6 1.6 0 1 0 0-.01M21 15l-5-5L5 21" /><span>Partager en image</span>
+                                            </button>
                                             <button className={`${styles.menuAction} ${lat ? styles.menuDanger : ''}`} onClick={() => { haptic(12); setMenu(null); handleToggleLater(r); }}>
                                                 {lat ? <MI d="M5 12h14" /> : <MI d="M12 5v14M5 12h14" />}<span>{lat ? 'Retirer de la liste' : 'À faire plus tard'}</span>
                                             </button>
@@ -1663,6 +1668,7 @@ export default function TVHome() {
 
             {tutoOpen && <TVTutorial onClose={() => setTutoOpen(false)} />}
             {tasteOpen && <TasteOnboarding onClose={() => setTasteOpen(false)} />}
+            {shareCard && <RecipeShareCard recipe={shareCard} onClose={() => setShareCard(null)} />}
         </div>
     );
 }
