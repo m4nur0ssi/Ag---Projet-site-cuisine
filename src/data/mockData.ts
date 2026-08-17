@@ -2,11 +2,101 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/08/2026 21:43:26
- * Total: 660 recettes
+ * Dernière mise à jour: 17/08/2026 22:32:58
+ * Total: 661 recettes
  */
-export const exportSyncId = "1787003006717";
+export const exportSyncId = "1787005978589";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7266",
+        "title": "Cookies Churros au Nutella",
+        "description": "Cette recette permet de réaliser 6 à 7 cookies moelleux fourrés au Nutella, enrobés d'un mélange de sucre et de cannelle, puis trempés dans du chocolat fondu. Parfaits pour une envie gourmande, ils peuvent être préparés à l'avance et congelés.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7659513178199477526\" data-video-id=\"7659513178199477526\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7659513178199477526\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             115g de beurre doux coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80g de sucre semoule"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80g de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             238g de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cannelle en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère et demie à café de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ¼ cuillère à café de bicarbonate de soude"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf + 1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             ½ cuillère à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nutella"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             150g de tablette de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             50g de sucre semoule (pour l'enrobage)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 cuillères à café de cannelle en poudre (pour l'enrobage)"
+            }
+        ],
+        "steps": [
+            "Coupez du film alimentaire en petits carrés. Déposez une cuillère à café de Nutella sur chaque carré de film alimentaire. Pliez pour sceller et congelez jusqu'à ce que ce soit solide. (Répétez l'opération pour le nombre de cookies fourrés que vous prévoyez de faire.)",
+            "Dans un grand saladier, ajoutez le beurre coupé en dés et fouettez jusqu'à ce qu'il soit légèrement crémeux. Ajoutez le sucre blanc et la cassonade, puis fouettez ensemble jusqu'à ce que le mélange soit bien combiné et mousseux.",
+            "Ajoutez les œufs, l'extrait de vanille et fouettez jusqu'à incorporation complète.",
+            "Ajoutez la levure chimique, le bicarbonate de soude et le sel et mélangez le tout. Dans un bol séparé, mélangez la farine et la cannelle en poudre, puis ajoutez-les à la pâte. Mélangez délicatement juste assez pour combiner, ne mélangez pas trop.",
+            "Dans un bol séparé, mélangez la cannelle en poudre et le sucre et réservez.",
+            "Portionnez la pâte en boules de 85-90g. Pressez un morceau de Nutella congelé au centre de chaque boule de pâte, scellez bien et roulez en boule. Enrobez la boule de pâte du mélange sucre-cannelle et placez-la sur une plaque de cuisson.",
+            "Préchauffez un four à chaleur tournante à 175-180°C (350°F). Faites cuire pendant 10-15 minutes ou jusqu'à ce que le dessus soit légèrement doré tandis que le centre reste moelleux.",
+            "Retirez du four et laissez refroidir. À ce stade, vous pouvez enrober à nouveau le cookie du mélange sucre-cannelle.",
+            "Faites maintenant fondre la tablette de chocolat en utilisant la méthode du bain-marie et enrobez le dessous de chaque cookie avec le chocolat fondu et mettez de côté pour qu'il durcisse.",
+            "Dégustez !",
+            "REMARQUE : Conservez les boules de pâte supplémentaires dans un récipient hermétique ou un sac de congélation et congelez-les pour plus tard. Chaque fois qu'une envie de cookie vous prend, faites-les cuire directement surgelés."
+        ],
+        "tags": [
+            "Espagne",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7264",
         "title": "Hugo Tonic Porte-Bonheur",
