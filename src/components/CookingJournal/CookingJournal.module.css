@@ -55,3 +55,10 @@
 .del { background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; font-size: 0.85rem; flex-shrink: 0; }
 .del:hover { color: #ef4444; }
 .err { margin-top: 8px; font-size: 0.8rem; font-weight: 600; color: #fca5a5; }
+
+/* Actions d'une entrée (modifier / supprimer). */
+.entryActions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.editBtn { background: none; border: none; color: rgba(255, 255, 255, 0.45); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px; border-radius: 8px; transition: color 0.15s, background 0.15s; }
+.editBtn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+:global([data-theme='light']) .editBtn { color: rgba(0,0,0,0.4); }
+:global([data-theme='light']) .editBtn:hover { color: #000; background: rgba(0,0,0,0.06); }

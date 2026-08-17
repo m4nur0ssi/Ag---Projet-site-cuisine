@@ -56,3 +56,15 @@ export async function addCookEntry(recipeId: string, note?: string, file?: File 
 export async function deleteCookEntry(id: string): Promise<void> {
     await supabase.from('cooking_log').delete().eq('id', id);
 }
+
+/** Édite la note d'une entrée (RLS : seul l'auteur y a droit). */
+export async function updateCookEntry(id: string, note: string): Promise<CookEntry | null> {
+    const { data, error } = await supabase
+        .from('cooking_log')
+        .update({ note })
+        .eq('id', id)
+        .select()
+        .single();
+    if (error) return null;
+    return data as CookEntry;
+}

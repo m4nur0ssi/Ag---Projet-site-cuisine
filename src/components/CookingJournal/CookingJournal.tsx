@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { getCookEntries, addCookEntry, deleteCookEntry, type CookEntry } from '@/lib/cookingLog';
+import { getCookEntries, addCookEntry, deleteCookEntry, updateCookEntry, type CookEntry } from '@/lib/cookingLog';
 import styles from './CookingJournal.module.css';
 
 // #11 — Carnet de cuisine perso affiché dans la fiche recette.
@@ -18,6 +18,9 @@ export default function CookingJournal({ recipeId, variant = 'recipe' }: { recip
     const [note, setNote] = useState('');
     const [busy, setBusy] = useState(false);
     const [err, setErr] = useState<string | null>(null);
+    const [editId, setEditId] = useState<string | null>(null);
+    const [editNote, setEditNote] = useState('');
+    const [editBusy, setEditBusy] = useState(false);
 
     useEffect(() => {
         let alive = true;
@@ -58,6 +61,16 @@ export default function CookingJournal({ recipeId, variant = 'recipe' }: { recip
         setEntries(prev => prev.filter(e => e.id !== id));
     };
 
+    // Édition d'une note existante (l'auteur connecté ; RLS le garantit côté base).
+    const startEdit = (e: CookEntry) => { setEditId(e.id); setEditNote(e.note || ''); };
+    const saveEdit = async (id: string) => {
+        setEditBusy(true);
+        const updated = await updateCookEntry(id, editNote.trim());
+        if (updated) setEntries(prev => prev.map(e => e.id === id ? { ...e, note: updated.note } : e));
+        setEditBusy(false);
+        setEditId(null);
+    };
+
     return (
         <div className={styles.wrap}>
             <div className={styles.head}>
@@ -90,11 +103,35 @@ export default function CookingJournal({ recipeId, variant = 'recipe' }: { recip
                 <ul className={styles.list}>
                     {entries.map(e => (
                         <li key={e.id} className={styles.entry}>
-                            <div className={styles.entryBody}>
-                                <span className={styles.entryDate}>{fmt(e.cooked_at)}</span>
-                                {e.note && <span className={styles.entryNote}>{e.note}</span>}
-                            </div>
-                            <button className={styles.del} onClick={() => remove(e.id)} title="Supprimer">✕</button>
+                            {editId === e.id ? (
+                                <div className={styles.form} style={{ width: '100%' }}>
+                                    <textarea
+                                        className={styles.note}
+                                        value={editNote}
+                                        onChange={ev => setEditNote(ev.target.value)}
+                                        placeholder={L.placeholder}
+                                        rows={2}
+                                        autoFocus
+                                    />
+                                    <div className={styles.formRow}>
+                                        <button className={styles.save} onClick={() => saveEdit(e.id)} disabled={editBusy}>{editBusy ? 'Enregistrement…' : 'Enregistrer'}</button>
+                                        <button className={styles.cancel} onClick={() => setEditId(null)}>Annuler</button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className={styles.entryBody}>
+                                        <span className={styles.entryDate}>{fmt(e.cooked_at)}</span>
+                                        {e.note && <span className={styles.entryNote}>{e.note}</span>}
+                                    </div>
+                                    <div className={styles.entryActions}>
+                                        <button className={styles.editBtn} onClick={() => startEdit(e)} title="Modifier" aria-label="Modifier">
+                                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" /></svg>
+                                        </button>
+                                        <button className={styles.del} onClick={() => remove(e.id)} title="Supprimer">✕</button>
+                                    </div>
+                                </>
+                            )}
                         </li>
                     ))}
                 </ul>
