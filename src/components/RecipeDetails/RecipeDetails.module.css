@@ -720,7 +720,11 @@
 }
 
 .tabBtnActive {
-    color: #000000 !important; /* Demande client : police en noir sur l'onglet actif */
+    color: #0a0a0c !important; /* Demande client : police en noir sur l'onglet actif */
+    /* Autoportant : fond blanc porté par le bouton actif lui-même → texte noir
+       toujours sur blanc, même si l'indicateur glissant se décale. */
+    background: #ffffff !important;
+    border-radius: 20px;
 }
 
 .tabCount {
