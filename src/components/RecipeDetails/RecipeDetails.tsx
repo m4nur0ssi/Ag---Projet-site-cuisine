@@ -34,6 +34,8 @@ import { supabase } from '@/lib/supabase';
 import { estimateRecipeCalories, estimateRecipeMacros } from '@/lib/calories';
 import { mockRecipes } from '@/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
+import dynamic from 'next/dynamic';
+const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 import styles from './RecipeDetails.module.css';
 
 interface RecipeDetailsProps {
@@ -154,6 +156,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             : null,
     [recipe, servings]);
     const [showMacros, setShowMacros] = useState(false);
+    const [showShareCard, setShowShareCard] = useState(false);
 
     // Substitutions (appui long / clic droit sur un ingrédient).
     const [subs, setSubs] = useState<{ list: Substitution[]; x: number; y: number } | null>(null);
@@ -1286,6 +1289,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         category={recipe.category}
                                         ingredients={recipe.ingredients}
                                     />
+                                    <button className={styles.shareImgTool} onClick={() => setShowShareCard(true)}>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" /><circle cx="8.5" cy="9" r="1.6" /><path d="M21 15l-5-5L5 21" /></svg>
+                                        Image
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1633,6 +1640,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 </div>
             )}
         </div>
+
+        {showShareCard && <RecipeShareCard recipe={recipe} onClose={() => setShowShareCard(false)} />}
 
         {/* Popover substitutions (appui long / clic droit sur un ingrédient) */}
         {subs && (

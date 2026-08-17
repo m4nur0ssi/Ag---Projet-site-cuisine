@@ -2572,3 +2572,24 @@
 }
 .subsItem:active { background: rgba(255, 255, 255, 0.12); }
 .subsEmoji { font-size: 16px; }
+
+/* Bouton « Image » (partage en carte story) dans la rangée d'outils. */
+.shareImgTool {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 38px;
+    padding: 0 13px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+.shareImgTool:active { transform: scale(0.94); }
+:global([data-theme='light']) .shareImgTool { background: rgba(0,0,0,0.05); box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.12); color: #111; }

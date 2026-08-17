@@ -28,6 +28,8 @@ import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
 import { getSubstitutions, Substitution } from '@/lib/substitutions';
 import { markCooking } from '@/mobile/screens/tv/progress';
+import dynamic from 'next/dynamic';
+const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 import StarRating from '@/mobile/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
@@ -157,6 +159,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             : null,
     [recipe, servings]);
     const [showMacros, setShowMacros] = useState(false);
+    const [showShareCard, setShowShareCard] = useState(false);
 
     // Substitutions (appui long sur un ingrédient).
     const [subs, setSubs] = useState<{ list: Substitution[]; x: number; y: number } | null>(null);
@@ -1294,6 +1297,12 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <PortionsControl value={servings} base={recipe.servings || 4} onChange={setServings} compact />
                                 <MagicConverter />
                                 <WinePairing recipeId={recipe.id} title={recipe.title} category={recipe.category} ingredients={recipe.ingredients} compact />
+                                {(recipe.category as string) !== 'restaurant' && (
+                                    <button className={styles.shareImgTool} onClick={() => setShowShareCard(true)}>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" /><circle cx="8.5" cy="9" r="1.6" /><path d="M21 15l-5-5L5 21" /></svg>
+                                        Image
+                                    </button>
+                                )}
                             </div>
                         </div>
                     )}
@@ -1615,6 +1624,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             {/* Commentaires : lisibles par tous. Publier reste réservé aux connectés (géré dans le composant). */}
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
         </div>
+
+        {showShareCard && <RecipeShareCard recipe={recipe} onClose={() => setShowShareCard(false)} />}
 
         {/* Popover substitutions (appui long sur un ingrédient) */}
         {subs && (
