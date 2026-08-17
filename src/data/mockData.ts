@@ -2,11 +2,437 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/08/2026 03:43:50
- * Total: 647 recettes
+ * Dernière mise à jour: 17/08/2026 08:47:22
+ * Total: 652 recettes
  */
-export const exportSyncId = "1786938230824";
+export const exportSyncId = "1786956442608";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7209",
+        "title": "Brie fouetté aux figues, miel et noix",
+        "description": "Une préparation de brie fouetté, agrémentée de figues fraîches, de miel, de romarin et de noix. Idéal pour un brunch ou un apéritif dînatoire, à servir avec du pain frais.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670445171221286177\" data-video-id=\"7670445171221286177\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670445171221286177\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 morceau de brie"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 à 5 figues fraîches"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain frais"
+            }
+        ],
+        "steps": [
+            "Fouettez le brie jusqu'à obtenir une consistance légère et crémeuse.",
+            "Coupez les figues fraîches en quartiers ou en tranches.",
+            "Garnissez le brie fouetté avec les morceaux de figues, un filet de miel, quelques brins de romarin frais et des noix concassées.",
+            "Servez immédiatement avec un bon pain frais, comme du pain du sportif ou une baguette croustillante."
+        ],
+        "tags": [
+            "Apéritifs",
+            "France",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7207",
+        "title": "Saumon croustillant au riz",
+        "description": "Une recette simple et rapide pour préparer du saumon croustillant servi sur du riz à sushi frit, agrémenté de sauces et de garnitures.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7674231777472417057\" data-video-id=\"7674231777472417057\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7674231777472417057\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             1 pavé de saumon"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à café de mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à café de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de sauce sriracha"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             Du riz à sushis (l'équivalent de 2 verres, cuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             De l'huile (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame noires et blanches"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             De la ciboulette ciselée"
+            }
+        ],
+        "steps": [
+            "Faire cuire le riz à sushis. Une fois cuit, le laisser refroidir.",
+            "Placer le riz refroidi dans un plat et le mettre au congélateur pendant 2 heures.",
+            "Pendant ce temps, cuire le pavé de saumon.",
+            "Dans un bol, mélanger la mayonnaise, la sauce soja et la sauce sriracha.",
+            "Une fois le saumon cuit, l'émietter et le mélanger avec la sauce préparée.",
+            "Sortir le riz du congélateur. Le découper en portions ou en galettes.",
+            "Faire cuire le riz (à l'huile, au four ou à l'air fryer) pendant 10 minutes à 190°C jusqu'à ce qu'il soit croustillant.",
+            "Disposer le mélange de saumon sur le riz croustillant.",
+            "Garnir de graines de sésame noires et blanches et de ciboulette ciselée."
+        ],
+        "tags": [
+            "Apéritifs",
+            "asiatique",
+            "épicé",
+            "Healthy",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7205",
+        "title": "Côtes de porc étouffées à l'ail et aux herbes",
+        "description": "Ces côtes de porc étouffées à l'ail et aux herbes sont juteuses, saisies à la poêle et mijotées dans une riche sauce au beurre, à l'ail et aux herbes fraîches jusqu'à ce qu'elles soient parfaitement tendres. Servies avec des pommes de terre nouvel...",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7670195194251250975\" data-video-id=\"7670195194251250975\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7670195194251250975\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             4 côtes de porc avec os (environ 2,5 cm d'épaisseur)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café d'oignon en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             ½ cuillère à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             3 cuillères à soupe de beurre non salé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             6 gousses d'ail, hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon, finement coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde de Dijon"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             1½ tasses de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             ½ tasse de crème épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café de romarin frais, haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café de feuilles de thym frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             ½ cuillère à café d'assaisonnement italien"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 cuillère à soupe de fécule de maïs mélangée à 2 cuillères à soupe d'eau froide"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             450 g de pommes de terre nouvelles, coupées en deux"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais, haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir concassé supplémentaire"
+            }
+        ],
+        "steps": [
+            "Assaisonner les deux côtés des côtes de porc avec le paprika, l'ail en poudre, l'oignon en poudre, le sel et le poivre.",
+            "Faire chauffer l'huile d'olive dans une grande poêle à feu moyen-vif.",
+            "Saisir les côtes de porc 3 à 4 minutes par côté jusqu'à ce qu'elles soient dorées. Retirer et réserver.",
+            "Dans la même poêle, cuire les pommes de terre nouvelles pendant 10 à 12 minutes jusqu'à ce qu'elles soient légèrement dorées.",
+            "Ajouter le beurre, l'oignon et l'ail. Cuire pendant 2 minutes jusqu'à ce que ce soit parfumé.",
+            "Incorporer la moutarde de Dijon, la sauce Worcestershire, le bouillon de poulet, la crème épaisse, le romarin, le thym et l'assaisonnement italien.",
+            "Porter à frémissement doux.",
+            "Incorporer le mélange de fécule de maïs et cuire 2 à 3 minutes jusqu'à ce que la sauce épaississe.",
+            "Remettre les côtes de porc dans la poêle et napper de sauce.",
+            "Couvrir et laisser mijoter à feu doux pendant 15 à 20 minutes jusqu'à ce que le porc atteigne une température interne de **63°C (145°F)** et que les pommes de terre soient tendres.",
+            "Garnir de persil frais et de poivre noir concassé avant de servir."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7203",
+        "title": "Cheesecake au caramel salé",
+        "description": "Découvrez une recette gourmande de cheesecake au caramel salé, avec une base croustillante de biscuits spéculoos Biscoff et une garniture crémeuse et onctueuse. Un dessert irrésistible, parfait pour toutes les occasions.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7667562706727111954\" data-video-id=\"7667562706727111954\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7667562706727111954\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour la croûte :"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g (32 biscuits) de spéculoos Biscoff"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             80g (1/3 tasse) de beurre doux, fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour le cheesecake :"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             400g (14oz) de fromage frais (type Philadelphia), à température ambiante"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g (1/2 tasse) de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100g (6 cuillères à soupe) de crème aigre (ou crème fraîche épaisse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1-2 cuillères à soupe bombées de caramel salé"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 gros œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour le caramel salé :"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             200g (1 tasse) de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             85g (6 cuillères à soupe) de beurre doux, coupé en dés et à température ambiante"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             120ml (1/2 tasse) de crème liquide entière chaude"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de fleur de sel"
+            }
+        ],
+        "steps": [
+            "Préparation du caramel salé :",
+            "1. Dans une casserole à feu moyen, faites fondre le sucre jusqu'à obtenir une couleur ambrée en remuant occasionnellement.",
+            "2. Baissez le feu, puis ajoutez le beurre et fouettez jusqu'à obtenir un mélange lisse.",
+            "3. Ajoutez lentement la crème liquide entière et mélangez jusqu'à incorporation.",
+            "4. Éteignez le feu, ajoutez le sel et mélangez bien. Laissez refroidir.",
+            "Préparation de la croûte :",
+            "1. Écrasez les biscuits Biscoff à l'aide d'un robot culinaire ou d'un sac de congélation.",
+            "2. Transférez dans un bol et ajoutez le beurre fondu.",
+            "3. Mélangez jusqu'à obtenir une consistance de sable mouillé et transférez dans un moule de 7 pouces (environ 18 cm) tapissé de papier sulfurisé.",
+            "4. Pressez progressivement sur le fond et les côtés du moule. Congelez jusqu'à utilisation.",
+            "Préparation du cheesecake :",
+            "1. Dans un autre bol, battez le fromage frais et le sucre jusqu'à obtenir un mélange lisse.",
+            "2. Ajoutez la crème aigre, le caramel salé, la vanille et le sel, puis mélangez jusqu'à incorporation.",
+            "3. Ajoutez les œufs un par un, en mélangeant bien après chaque ajout. Ajoutez la farine et mélangez jusqu'à obtenir un mélange lisse.",
+            "4. Versez la pâte à cheesecake sur la croûte réfrigérée et enveloppez solidement le fond du moule avec du papier aluminium.",
+            "5. Faites cuire au bain-marie à 160°C (320°F) dans un four préchauffé pendant 50-55 minutes.",
+            "6. Éteignez le four et laissez le cheesecake à l'intérieur pendant environ 1 heure avec la porte légèrement ouverte.",
+            "7. Retirez, laissez refroidir complètement, puis réfrigérez toute une nuit.",
+            "8. Nappez de caramel salé, étalez uniformément et terminez par une pincée de fleur de sel. Coupez en tranches et dégustez !"
+        ],
+        "tags": [
+            "pâtisserie",
+            "tarte",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7201",
+        "title": "Burrata personnalisée mangue avocat",
+        "description": "Simple, rapide et parfait pour une entrée ou un apéritif à partager.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7674615375375404321\" data-video-id=\"7674615375375404321\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7674615375375404321\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             une burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 mangue"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 ou 1 avocat (selon la taille)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 fruit de la passion"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             un filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Couper la mangue et l'avocat en dés.",
+            "Émincer finement l'oignon rouge.",
+            "Ouvrir le fruit de la passion et récupérer la pulpe.",
+            "Ciseler la ciboulette.",
+            "Disposer la burrata dans une assiette de service.",
+            "Garnir la burrata avec les dés de mangue, d'avocat, l'oignon rouge émincé et la pulpe de fruit de la passion.",
+            "Parsemer de ciboulette ciselée.",
+            "Arroser d'un filet d'huile d'olive et assaisonner de sel et de poivre selon votre goût."
+        ],
+        "tags": [
+            "Entrées",
+            "Healthy",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7199",
         "title": "Cocktail Joséphine Baker",
