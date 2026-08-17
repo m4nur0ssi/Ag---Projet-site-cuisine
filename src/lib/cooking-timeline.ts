@@ -46,16 +46,17 @@ export function timingFromSteps(steps?: string[]): { active: number; passive: nu
 }
 
 /**
- * Ordre de service par créneau (minutes après le service du plat principal).
- * Apéritif d'abord, plat = ancre à l'heure pile, dessert sorti à la fin.
+ * Décalage du moment « prêt » par rapport à l'heure de SERVICE.
+ * Règle voulue : TOUT est prêt pour l'heure de service (0 = prêt pile à l'heure).
+ * On garde 0 partout — la timeline place les prépas AVANT, jamais après le service.
  */
 export const COURSE_OFFSET: Record<string, number> = {
-    'Apéritif': -5, 'Apéritifs': -5,
-    'Entrée': 5, 'Entrées': 5,
-    'Plat': 20, 'Plats': 20,
-    'Accompagnement': 20,
-    'Dessert': 45, 'Desserts': 45,
-    'Pâtisserie': 50, 'Patisserie': 50,
+    'Apéritif': 0, 'Apéritifs': 0,
+    'Entrée': 0, 'Entrées': 0,
+    'Plat': 0, 'Plats': 0,
+    'Accompagnement': 0,
+    'Dessert': 0, 'Desserts': 0,
+    'Pâtisserie': 0, 'Patisserie': 0,
     'Midi': 0, 'Soir': 0,
 };
 

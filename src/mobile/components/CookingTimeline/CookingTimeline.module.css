@@ -52,3 +52,19 @@
 :global([data-theme='light']) .youBlk { color: #111; }
 :global([data-theme='light']) .gain b,
 :global([data-theme='light']) .stepD b { color: #111; }
+
+/* Mobile : le Gantt (dense) devient illisible sur écran étroit. On le masque et
+   on met en avant le déroulé chronologique, lisible et « Apple TV+ ». */
+@media (max-width: 640px) {
+    .chart, .legend { display: none; }
+    .controls { padding: 16px; }
+    .serveVal { font-size: 26px; }
+    .startPill { height: 44px; font-size: 15px; margin-left: 0; width: 100%; justify-content: center; order: 3; }
+    .controls { flex-wrap: wrap; }
+    .range { flex: 1 1 100%; order: 2; margin-top: 4px; }
+    .steps { gap: 10px; }
+    .step { padding: 14px 15px; border-radius: 14px; }
+    .stepT { font-size: 16px; min-width: 52px; }
+    .stepD { font-size: 14.5px; }
+    .gain { font-size: 13.5px; margin-top: 4px; }
+}
