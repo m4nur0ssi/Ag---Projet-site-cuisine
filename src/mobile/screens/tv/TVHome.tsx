@@ -17,6 +17,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag, isSavoryMiscat } from './themes';
+import { personalizedRecipes } from '@/lib/personalize';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from './progress';
 import styles from './tv.module.css';
@@ -1181,6 +1182,16 @@ export default function TVHome() {
         return () => { window.removeEventListener(PROGRESS_EVENT, load); window.removeEventListener('focus', load); };
     }, []);
 
+    // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
+    const [forYou, setForYou] = useState<Recipe[]>([]);
+    useEffect(() => {
+        const load = () => setForYou(personalizedRecipes(mockRecipes) as Recipe[]);
+        load();
+        const evts = ['tv-seen-change', 'magic-favorite-change', PROGRESS_EVENT, 'focus'];
+        evts.forEach((e) => window.addEventListener(e, load));
+        return () => evts.forEach((e) => window.removeEventListener(e, load));
+    }, []);
+
     // Listes locales : « à faire plus tard » et cache des favoris, tenues à jour
     // par les events déjà émis par l'app (favoris) et par le nôtre.
     useEffect(() => {
@@ -1448,6 +1459,18 @@ export default function TVHome() {
                         recipes={laterRecipes}
                         variant="wide"
                         subtitleMode="time"
+                        onSeeAll={openAll}
+                        onOpen={openSheet}
+                        onLongPress={openMenu}
+                        isLater={isLater}
+                        onToggleLater={handleToggleLater}
+                    />
+                )}
+                {forYou.length >= 4 && (
+                    <Row
+                        title="Pour toi"
+                        recipes={forYou}
+                        variant="poster"
                         onSeeAll={openAll}
                         onOpen={openSheet}
                         onLongPress={openMenu}

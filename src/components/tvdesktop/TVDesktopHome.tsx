@@ -21,6 +21,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
 import { THEMES, matchesTag, isSavoryMiscat } from '@/mobile/screens/tv/themes';
+import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
 
@@ -442,6 +443,16 @@ export default function TVDesktopHome() {
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
     const [panel, setPanel] = useState<'none' | 'planner' | 'courses'>('none');
+
+    // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
+    const [forYou, setForYou] = useState<Recipe[]>([]);
+    useEffect(() => {
+        const load = () => setForYou(personalizedRecipes(mockRecipes) as Recipe[]);
+        load();
+        const evts = ['tv-seen-change', 'magic-favorite-change', PROGRESS_EVENT, 'focus', 'storage'];
+        evts.forEach((e) => window.addEventListener(e, load));
+        return () => evts.forEach((e) => window.removeEventListener(e, load));
+    }, []);
 
     useEffect(() => {
         const sync = () => setLaterIds(readIds(LATER_KEY));
@@ -895,6 +906,7 @@ export default function TVDesktopHome() {
                             <Row title="Top 10 : les mieux notées" recipes={topTen} shape="poster" ranked onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             {resume.length > 0 && <Row title="Reprendre la cuisine" recipes={resume} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
                             {laterRecipes.length > 0 && <Row title="À faire plus tard" recipes={laterRecipes} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
+                            {forYou.length >= 4 && <Row title="Pour toi" recipes={forYou} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
                             <Row title="Nouveautés" recipes={newest} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             <Row title="Apéritifs" recipes={byCat['aperitifs'] || []} shape="square" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             <Row title="Entrées" recipes={byCat['entrees'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
