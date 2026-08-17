@@ -62,10 +62,18 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
             catch { setTainted(true); }
         };
 
-        const img = new Image(); img.crossOrigin = 'anonymous';
-        img.onload = () => paint(img);
-        img.onerror = () => paint(null);
-        if (recipe.image) img.src = recipe.image; else paint(null);
+        if (!recipe.image) { paint(null); return; }
+        // 1re tentative avec CORS (permet l'export). Si l'image refuse le CORS, on
+        // retente SANS crossOrigin pour au moins AFFICHER la photo (l'export sera
+        // alors bloqué → message ; réglé en prod par un proxy image sur le domaine).
+        const tryLoad = (useCors: boolean) => {
+            const img = new Image();
+            if (useCors) img.crossOrigin = 'anonymous';
+            img.onload = () => paint(img);
+            img.onerror = () => (useCors ? tryLoad(false) : paint(null));
+            img.src = recipe.image;
+        };
+        tryLoad(true);
     }, [recipe]);
 
     const share = async () => {
