@@ -91,28 +91,29 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
             c.closePath();
         };
 
-        // 1re tentative avec CORS (permet l'export). Si l'image refuse le CORS, on
-        // retente SANS crossOrigin pour au moins AFFICHER la photo (l'export sera
-        // alors bloqué → message ; réglé en prod par un proxy image sur le domaine).
+        const load = (src: string, next?: () => void) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => paint(img);
+            img.onerror = () => (next ? next() : paint(null));
+            img.src = src;
+        };
         const loadPhoto = () => {
             if (!recipe.image) { paint(null); return; }
-            // 1) proxy même-origine (export propre) → 2) CORS direct → 3) sans CORS
-            //    (au moins la photo s'affiche). Étapes de repli en cascade.
-            const proxied = `/api/img?url=${encodeURIComponent(recipe.image)}`;
-            const load = (src: string, cors: boolean, next?: () => void) => {
-                const img = new Image();
-                if (cors) img.crossOrigin = 'anonymous';
-                img.onload = () => paint(img);
-                img.onerror = () => (next ? next() : paint(null));
-                img.src = src;
-            };
-            load(proxied, true, () => load(recipe.image, true, () => load(recipe.image, false)));
+            // Photos déjà servies même-origine (/api/image-proxy) → export propre.
+            // URL externe absolue → on passe par /api/img. Repli : image brute.
+            const external = /^https?:\/\//i.test(recipe.image);
+            if (external) load(`/api/img?url=${encodeURIComponent(recipe.image)}`, () => load(recipe.image));
+            else load(recipe.image);
         };
 
-        // On génère d'abord le QR (data URL local, sans réseau), puis la photo.
-        QRCode.toDataURL(shareUrl, { margin: 0, width: 220, errorCorrectionLevel: 'M', color: { dark: '#0d0b10', light: '#ffffff' } })
-            .then((durl) => { const q = new Image(); q.onload = () => { qrImg = q; loadPhoto(); }; q.onerror = loadPhoto; q.src = durl; })
-            .catch(loadPhoto);
+        // QR facultatif : s'il échoue (throw OU rejet), on affiche quand même la
+        // carte SANS QR au lieu de laisser un aperçu vide.
+        try {
+            QRCode.toDataURL(shareUrl, { margin: 0, width: 220, errorCorrectionLevel: 'M', color: { dark: '#0d0b10', light: '#ffffff' } })
+                .then((durl) => { const q = new Image(); q.onload = () => { qrImg = q; loadPhoto(); }; q.onerror = loadPhoto; q.src = durl; })
+                .catch(loadPhoto);
+        } catch { loadPhoto(); }
     }, [recipe]);
 
     const share = async () => {

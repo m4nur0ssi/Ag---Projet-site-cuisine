@@ -38,6 +38,7 @@ const TVPlanner = dynamic(() => import('@/mobile/screens/tv/TVPlanner'), { ssr: 
 const TVCourses = dynamic(() => import('@/mobile/screens/tv/TVCourses'), { ssr: false });
 const TVTrophies = dynamic(() => import('@/mobile/screens/tv/TVTrophies'), { ssr: false });
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
+const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -438,6 +439,7 @@ export default function TVDesktopHome() {
     // Visite guidée « Apple TV+ » (même composant que le mobile), en modale.
     const [tuto, setTuto] = useState(false);
     const [taste, setTaste] = useState(false);
+    const [shareCard, setShareCard] = useState<Recipe | null>(null);
     // Raccourcis épinglés dans « Bibliothèque » (glisser-déposer), + survol du drop.
     const [library, setLibrary] = useState<LibraryItem[]>([]);
     const [dragOver, setDragOver] = useState(false);
@@ -970,6 +972,9 @@ export default function TVDesktopHome() {
                                     <button className={styles.ctxAction} onClick={() => { setMenu(null); shareLink(`${origin}/?fiche=${r.id}`, label(r)); }}>
                                         <CtxIc d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
                                     </button>
+                                    <button className={styles.ctxAction} onClick={() => { const rr = r; setMenu(null); setShareCard(rr); }}>
+                                        <CtxIc d="M3 3h18v18H3zM8.5 9a1.6 1.6 0 1 0 0-.01M21 15l-5-5L5 21" /><span>Partager en image</span>
+                                    </button>
                                     <button className={styles.ctxAction} onClick={() => { setMenu(null); handleToggleLater(r); }}>
                                         {inLater
                                             ? <CtxIc d="M5 12h14" />
@@ -1023,6 +1028,7 @@ export default function TVDesktopHome() {
 
             {tuto && <TVTutorial onClose={() => setTuto(false)} />}
             {taste && <TasteOnboarding onClose={() => setTaste(false)} />}
+            {shareCard && <RecipeShareCard recipe={shareCard} onClose={() => setShareCard(null)} />}
         </div>
     );
 }
