@@ -91,29 +91,29 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
             c.closePath();
         };
 
+        // photoImg : undefined = pas encore tenté, null = échec, Image = ok.
+        let photoImg: HTMLImageElement | null | undefined = undefined;
+        const render = () => { if (photoImg !== undefined) paint(photoImg || null); };
+
         const load = (src: string, next?: () => void) => {
             const img = new Image();
             img.crossOrigin = 'anonymous';
-            img.onload = () => paint(img);
-            img.onerror = () => (next ? next() : paint(null));
+            img.onload = () => { photoImg = img; render(); };
+            img.onerror = () => { if (next) next(); else { photoImg = null; render(); } };
             img.src = src;
         };
-        const loadPhoto = () => {
-            if (!recipe.image) { paint(null); return; }
-            // Photos déjà servies même-origine (/api/image-proxy) → export propre.
-            // URL externe absolue → on passe par /api/img. Repli : image brute.
-            const external = /^https?:\/\//i.test(recipe.image);
-            if (external) load(`/api/img?url=${encodeURIComponent(recipe.image)}`, () => load(recipe.image));
-            else load(recipe.image);
-        };
+        // On dessine la carte DÈS que la photo est prête — indépendamment du QR
+        // (si la génération du QR échoue/traîne, l'aperçu ne doit pas rester vide).
+        if (!recipe.image) { photoImg = null; render(); }
+        else if (/^https?:\/\//i.test(recipe.image)) load(`/api/img?url=${encodeURIComponent(recipe.image)}`, () => load(recipe.image));
+        else load(recipe.image);
 
-        // QR facultatif : s'il échoue (throw OU rejet), on affiche quand même la
-        // carte SANS QR au lieu de laisser un aperçu vide.
+        // QR en parallèle : quand il est prêt, on redessine avec le QR.
         try {
             QRCode.toDataURL(shareUrl, { margin: 0, width: 220, errorCorrectionLevel: 'M', color: { dark: '#0d0b10', light: '#ffffff' } })
-                .then((durl) => { const q = new Image(); q.onload = () => { qrImg = q; loadPhoto(); }; q.onerror = loadPhoto; q.src = durl; })
-                .catch(loadPhoto);
-        } catch { loadPhoto(); }
+                .then((durl) => { const q = new Image(); q.onload = () => { qrImg = q; render(); }; q.src = durl; })
+                .catch(() => { /* pas de QR, tant pis */ });
+        } catch { /* pas de QR */ }
     }, [recipe]);
 
     const share = async () => {
