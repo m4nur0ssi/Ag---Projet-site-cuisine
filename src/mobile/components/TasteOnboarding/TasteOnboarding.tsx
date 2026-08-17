@@ -5,7 +5,7 @@
  * `taste-liked-v1`, qui alimente la rangée « Pour toi ». Peut être ouvert depuis
  * le menu, ou proposé une fois en PWA installée.
  */
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
@@ -25,6 +25,8 @@ export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
     }, []);
     const [i, setI] = useState(0);
     const [liked, setLiked] = useState<string[]>([]);
+    const [drag, setDrag] = useState(0);
+    const dragX = useRef<number | null>(null);
     const done = i >= deck.length;
 
     const finish = (likedIds: string[]) => {
@@ -40,9 +42,20 @@ export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
     const swipe = (love: boolean) => {
         const next = love ? [...liked, String(deck[i].id)] : liked;
         setLiked(next);
+        setDrag(0);
         const ni = i + 1;
         setI(ni);
         if (ni >= deck.length) finish(next);
+    };
+
+    // Glisser la carte : droite = j'aime, gauche = je passe.
+    const onDown = (e: React.PointerEvent) => { dragX.current = e.clientX; (e.target as HTMLElement).setPointerCapture?.(e.pointerId); };
+    const onMove = (e: React.PointerEvent) => { if (dragX.current != null) setDrag(e.clientX - dragX.current); };
+    const onUp = () => {
+        if (dragX.current == null) return;
+        dragX.current = null;
+        if (Math.abs(drag) > 90) swipe(drag > 0);
+        else setDrag(0);
     };
 
     if (!mounted) return null;
@@ -58,10 +71,21 @@ export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
                     <div className={styles.stage}>
                         {deck.slice(i, i + 3).reverse().map((r, k, arr) => {
                             const depth = arr.length - 1 - k;
+                            const front = depth === 0;
+                            const style = front
+                                ? { transform: `translateX(${drag}px) rotate(${drag / 22}deg)`, zIndex: k, opacity: 1, transition: dragX.current != null ? 'none' : undefined }
+                                : { transform: `translateY(${depth * 12}px) scale(${1 - depth * 0.05})`, zIndex: k, opacity: 0.55 };
                             return (
                                 <div key={r.id} className={styles.card}
-                                    style={{ transform: `translateY(${depth * 12}px) scale(${1 - depth * 0.05})`, zIndex: k, opacity: depth === 0 ? 1 : 0.55 }}>
-                                    <img src={r.image} alt="" />
+                                    style={style as any}
+                                    onPointerDown={front ? onDown : undefined}
+                                    onPointerMove={front ? onMove : undefined}
+                                    onPointerUp={front ? onUp : undefined}
+                                    onPointerCancel={front ? onUp : undefined}
+                                >
+                                    <img src={r.image} alt="" draggable={false} />
+                                    {front && drag > 40 && <div className={styles.badgeLike}>J&apos;aime</div>}
+                                    {front && drag < -40 && <div className={styles.badgeNope}>Passer</div>}
                                     <div className={styles.scrim} />
                                     <div className={styles.meta}>
                                         <span className={styles.cat}>{r.category}</span>

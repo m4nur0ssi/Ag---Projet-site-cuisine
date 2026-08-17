@@ -1,4 +1,5 @@
-.root { position: fixed; inset: 0; z-index: 4000; display: flex; flex-direction: column; padding: 22px 18px 30px;
+.root { position: fixed; inset: 0; z-index: 26000; display: flex; flex-direction: column;
+    padding: 22px 18px calc(30px + env(safe-area-inset-bottom, 0px));
     background: radial-gradient(120% 70% at 50% -10%, #1c1526 0%, rgba(8,8,11,0) 55%), #08080b; color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
 .bg { display: none; }
@@ -7,7 +8,11 @@
 .skip { border: none; background: rgba(255,255,255,.1); color: #fff; height: 34px; padding: 0 14px; border-radius: 999px; font-weight: 700; font-size: 13px; cursor: pointer; }
 
 .stage { position: relative; flex: 1; max-width: 340px; width: 100%; margin: 0 auto; min-height: 0; }
-.card { position: absolute; inset: 0; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.6), inset 0 0 0 .5px rgba(255,255,255,.14); transition: transform .3s cubic-bezier(.32,.72,0,1), opacity .3s; }
+.card { position: absolute; inset: 0; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.6), inset 0 0 0 .5px rgba(255,255,255,.14); transition: transform .3s cubic-bezier(.32,.72,0,1), opacity .3s; touch-action: pan-y; cursor: grab; -webkit-user-select: none; user-select: none; }
+.card:active { cursor: grabbing; }
+.badgeLike, .badgeNope { position: absolute; top: 22px; z-index: 4; padding: 6px 14px; border-radius: 999px; font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: .04em; }
+.badgeLike { right: 20px; transform: rotate(8deg); color: #fff; background: linear-gradient(120deg, #FF2E63, #FF6B4A); box-shadow: 0 8px 20px rgba(255,90,60,.5); }
+.badgeNope { left: 20px; transform: rotate(-8deg); color: #fff; background: rgba(255,255,255,.18); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.4); }
 .card img { width: 100%; height: 100%; object-fit: cover; }
 .scrim { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,8,11,.92), transparent 55%); }
 .meta { position: absolute; left: 20px; right: 20px; bottom: 20px; }
