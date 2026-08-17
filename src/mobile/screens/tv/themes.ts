@@ -33,6 +33,8 @@ export const THEMES: Theme[] = [
     { tag: 'pas cher', title: 'Pas cher' },
     { tag: 'glaces', title: 'Les glaces' },
     { tag: 'boissons', title: 'Rafraîchissements' },
+    { tag: 'cocktail', title: 'Cocktails' },
+    { tag: 'cocktail-sans-alcool', title: 'Cocktails sans alcool' },
     { tag: 'sauces', title: 'Sauces' },
     { tag: 'dolce-vita', title: 'La Dolce Vita' },
     { tag: 'voila-lete', title: "Voilà l'été" },
@@ -182,6 +184,21 @@ export function matchesTag(
             recipeTags.some((t) => /hiver|hivernal|chaud|r[eé]confort/i.test(t) || t === 'cest-lhiver') ||
             /hiver|hivernal|chaud|r[eé]confort|mijoté|fondue/i.test(titleLower)
         );
+    }
+
+    // Cocktails : on repère un cocktail (titre/tags/mots-clés, ou catégorie
+    // boissons), puis on trie selon la présence d'alcool dans le TEXTE COMPLET
+    // (titre + description + ingrédients + étapes).
+    if (tagLower === 'cocktail' || tagLower === 'cocktail-sans-alcool') {
+        const cocktailWords = /\b(cocktails?|mojitos?|margaritas?|daiquiris?|spritz(er)?|mimosas?|sangrias?|punchs?|cosmopolitans?|colada|caipirinhas?|negronis?|bloody mary|mai[- ]?tai|cuba libre|gin[- ]?tonic|tequila sunrise|sex on the beach|mocktails?|virgin|piscine|americano|bellini|kir|sangria)\b/;
+        const isCocktail =
+            recipeTags.some((t) => /cocktail|mojito|mocktail/.test(norm(t))) ||
+            cocktailWords.test(norm(titleLower)) ||
+            (recipeCat === 'boissons' && cocktailWords.test(normFull));
+        if (!isCocktail) return false;
+        const alcohol = /\b(rhum|vodkas?|gin|t[ée]quilas?|whiskys?|whiskey|cognac|liqueurs?|cura[cç]ao|cointreau|triple[- ]sec|aperol|campari|martini|vermouth|prosecco|champagne|vin[- ](blanc|rouge|ros[ée]|mousseux|p[ée]tillant)|ros[ée]|bi[èe]res?|cidre|kahlua|baileys|amaretto|malibu|limoncello|porto|absinthe|calvados|armagnac|marsala|sak[ée]|pastis|ricard|schnaps|grand marnier|chartreuse|alcool|liquor|spirit)\b/;
+        const hasAlcohol = alcohol.test(normFull);
+        return tagLower === 'cocktail-sans-alcool' ? !hasAlcohol : hasAlcohol;
     }
 
     // Thèmes stricts : tag explicite ou catégorie (barbecue exclut les sauces).
