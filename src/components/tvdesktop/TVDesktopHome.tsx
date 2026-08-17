@@ -36,6 +36,7 @@ const ShareButton = dynamic(() => import('@/components/ShareButton/ShareButton')
 // au lieu de naviguer vers une page pleine (mode `embedded`).
 const TVPlanner = dynamic(() => import('@/mobile/screens/tv/TVPlanner'), { ssr: false });
 const TVCourses = dynamic(() => import('@/mobile/screens/tv/TVCourses'), { ssr: false });
+const TVTrophies = dynamic(() => import('@/mobile/screens/tv/TVTrophies'), { ssr: false });
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -442,7 +443,7 @@ export default function TVDesktopHome() {
     // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
-    const [panel, setPanel] = useState<'none' | 'planner' | 'courses'>('none');
+    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies'>('none');
 
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
     const [forYou, setForYou] = useState<Recipe[]>([]);
@@ -792,7 +793,7 @@ export default function TVDesktopHome() {
                     <NavItem icon={ICONS.planner} tour="planner" active={panel === 'planner'} onClick={() => { setCollection(null); setFilters([]); setPanel('planner'); }}>Planificateur</NavItem>
                     <NavItem icon={ICONS.cart} tour="shopping" active={panel === 'courses'} onClick={() => { setCollection(null); setFilters([]); setPanel('courses'); }}>Liste de courses</NavItem>
                     <NavItem icon={ICONS.heart} tour="favorites" onClick={() => router.push('/favorites')}>Favoris</NavItem>
-                    <NavItem icon="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" onClick={() => router.push('/tv-profil')}>Palmarès</NavItem>
+                    <NavItem icon="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" active={panel === 'trophies'} onClick={() => { setCollection(null); setFilters([]); setPanel('trophies'); }}>Palmarès</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
                         fournit que l'icône et la ligne de menu. */}
                     <button className={`${styles.navRow}`} onClick={() => setTuto(true)}>
@@ -839,13 +840,15 @@ export default function TVDesktopHome() {
             <main className={styles.content}>
                 {panel !== 'none' ? (
                     <div className={styles.panelHost}>
-                        {!user ? (
+                        {!user && panel !== 'trophies' ? (
                             <TVAuthGate
                                 subtitle={panel === 'planner'
                                     ? 'Le planificateur de la semaine est réservé aux membres connectés.'
                                     : 'Ta liste de courses est réservée aux membres connectés.'}
                             />
-                        ) : panel === 'planner' ? <TVPlanner embedded /> : <TVCourses embedded />}
+                        ) : panel === 'planner' ? <TVPlanner embedded />
+                            : panel === 'trophies' ? <TVTrophies embedded />
+                                : <TVCourses embedded />}
                     </div>
                 ) : filters.length > 0 ? (
                     <div className={styles.collection}>

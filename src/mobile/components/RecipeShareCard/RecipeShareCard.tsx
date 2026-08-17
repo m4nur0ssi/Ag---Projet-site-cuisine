@@ -10,6 +10,7 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import QRCode from 'qrcode';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import { decodeHtml } from '@/mobile/lib/utils';
 import styles from './RecipeShareCard.module.css';
@@ -21,6 +22,8 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
     const [mounted, setMounted] = useState(false);
     useEffect(() => { setMounted(true); }, []);
 
+    const shareUrl = `https://lesrecettesmagiques.fr/?fiche=${recipe.id}`;
+
     useEffect(() => {
         const cv = canvasRef.current; if (!cv) return;
         const ctx = cv.getContext('2d'); if (!ctx) return;
@@ -28,6 +31,8 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
         const t = estimateRecipeTiming(recipe.steps);
         const title = decodeHtml(recipe.title || '').toUpperCase();
         const meta = `${(recipe.category || '').toUpperCase()}   ·   ${(t.prepTime + t.cookTime)} MIN`;
+
+        let qrImg: HTMLImageElement | null = null;
 
         const paint = (img: HTMLImageElement | null) => {
             ctx.fillStyle = '#08080b'; ctx.fillRect(0, 0, W, H);
@@ -54,38 +59,78 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
             }
             ctx.fillText(line.trim(), 88, y);
 
+            // QR en bas à droite : le lien de la recette voyage avec l'image,
+            // même là où le texte-lien disparaît (stories Instagram/TikTok).
+            const QR = 220, qx = W - QR - 88, qy = H - QR - 96;
+            if (qrImg) {
+                const pad = 16, r = 24;
+                ctx.fillStyle = '#fff';
+                roundRect(ctx, qx - pad, qy - pad, QR + pad * 2, QR + pad * 2, r); ctx.fill();
+                ctx.drawImage(qrImg, qx, qy, QR, QR);
+            }
+
             ctx.fillStyle = 'rgba(235,235,245,.6)';
             ctx.font = '600 44px -apple-system, system-ui, sans-serif';
-            ctx.fillText('lesrecettesmagiques.fr', 88, H - 110);
+            ctx.textAlign = 'left';
+            ctx.fillText('lesrecettesmagiques.fr', 88, H - 150);
+            ctx.font = '600 34px -apple-system, system-ui, sans-serif';
+            ctx.fillStyle = 'rgba(235,235,245,.4)';
+            ctx.fillText('Scanne pour la recette', 88, H - 100);
 
             try { setUrl(cv.toDataURL('image/png')); setTainted(false); }
             catch { setTainted(true); }
         };
 
-        if (!recipe.image) { paint(null); return; }
+        const roundRect = (c: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, rad: number) => {
+            c.beginPath();
+            c.moveTo(x + rad, y);
+            c.arcTo(x + w, y, x + w, y + h, rad);
+            c.arcTo(x + w, y + h, x, y + h, rad);
+            c.arcTo(x, y + h, x, y, rad);
+            c.arcTo(x, y, x + w, y, rad);
+            c.closePath();
+        };
+
         // 1re tentative avec CORS (permet l'export). Si l'image refuse le CORS, on
         // retente SANS crossOrigin pour au moins AFFICHER la photo (l'export sera
         // alors bloqué → message ; réglé en prod par un proxy image sur le domaine).
-        const tryLoad = (useCors: boolean) => {
-            const img = new Image();
-            if (useCors) img.crossOrigin = 'anonymous';
-            img.onload = () => paint(img);
-            img.onerror = () => (useCors ? tryLoad(false) : paint(null));
-            img.src = recipe.image;
+        const loadPhoto = () => {
+            if (!recipe.image) { paint(null); return; }
+            const tryLoad = (useCors: boolean) => {
+                const img = new Image();
+                if (useCors) img.crossOrigin = 'anonymous';
+                img.onload = () => paint(img);
+                img.onerror = () => (useCors ? tryLoad(false) : paint(null));
+                img.src = recipe.image;
+            };
+            tryLoad(true);
         };
-        tryLoad(true);
+
+        // On génère d'abord le QR (data URL local, sans réseau), puis la photo.
+        QRCode.toDataURL(shareUrl, { margin: 0, width: 220, errorCorrectionLevel: 'M', color: { dark: '#0d0b10', light: '#ffffff' } })
+            .then((durl) => { const q = new Image(); q.onload = () => { qrImg = q; loadPhoto(); }; q.onerror = loadPhoto; q.src = durl; })
+            .catch(loadPhoto);
     }, [recipe]);
 
     const share = async () => {
+        const title = decodeHtml(recipe.title);
+        const text = `${title} — la recette : ${shareUrl}`;
         try {
             const nav = navigator as any;
             if (url && nav.canShare && canvasRef.current) {
                 const blob: Blob | null = await new Promise((res) => canvasRef.current!.toBlob(res as any, 'image/png'));
                 if (blob) {
                     const file = new File([blob], `recette-${recipe.id}.png`, { type: 'image/png' });
-                    if (nav.canShare({ files: [file] })) { await nav.share({ files: [file], title: decodeHtml(recipe.title) }); return; }
+                    // Image + lien + texte : le destinataire reçoit la photo ET le
+                    // lien cliquable (là où l'app le supporte).
+                    if (nav.canShare({ files: [file] })) {
+                        await nav.share({ files: [file], title, text, url: shareUrl });
+                        return;
+                    }
                 }
             }
+            // Pas de partage de fichier possible → au moins le lien.
+            if (nav.share) { await nav.share({ title, text, url: shareUrl }); return; }
         } catch { /* annulé */ }
         if (url) { const a = document.createElement('a'); a.href = url; a.download = `recette-${recipe.id}.png`; a.click(); }
     };

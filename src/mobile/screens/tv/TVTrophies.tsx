@@ -28,7 +28,7 @@ const ICON: Record<string, string> = {
 
 interface Badge { icon: string; name: string; desc: string; val: number; goal: number; tint: string; }
 
-export default function TVTrophies() {
+export default function TVTrophies({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
     const [cooked, setCooked] = useState<string[]>([]);
     const [favs, setFavs] = useState(0);
@@ -79,11 +79,13 @@ export default function TVTrophies() {
     }, [badges]);
 
     return (
-        <div className="tp">
+        <div className={`tp ${embedded ? 'emb' : ''}`}>
             <header className="hd">
-                <button className="back" onClick={() => router.push('/')} aria-label="Retour">
-                    <svg viewBox="0 0 8 14" width="13" height="13" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </button>
+                {!embedded && (
+                    <button className="back" onClick={() => router.push('/')} aria-label="Retour">
+                        <svg viewBox="0 0 8 14" width="13" height="13" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </button>
+                )}
                 <div><div className="kick">Ton profil</div><h1>Palmarès</h1></div>
             </header>
 
@@ -129,6 +131,8 @@ export default function TVTrophies() {
 
             <style jsx>{`
                 .tp { min-height: 100vh; background: radial-gradient(120% 80% at 50% -8%, #1a1420 0%, rgba(8,8,11,0) 55%), #08080b; color: #fff; padding: 28px 18px 90px; max-width: 820px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+                .tp.emb { min-height: 0; background: none; padding: 4px 4px 40px; max-width: none; }
+                .tp.emb .hd { margin-bottom: 18px; }
                 .hd { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
                 .back { width: 40px; height: 40px; border-radius: 999px; border: none; background: rgba(255,255,255,.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; flex: 0 0 auto; }
                 .kick { font-size: 11px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: rgba(235,235,245,.5); }
