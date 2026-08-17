@@ -34,9 +34,11 @@ import { THEMES, matchesTag } from './themes';
 import { totalMinutes, formatMinutes } from './timing';
 import { haptic } from './TVHome';
 import { readCart, removeCartRecipe, CART_EVENT, type CartRecipe } from './recipeCart';
+import { timingFromSteps, passiveLabelFor, COURSE_OFFSET, type TimelineInput } from '@/lib/cooking-timeline';
 import styles from './tv.module.css';
 
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
+const CookingTimeline = dynamic(() => import('@/mobile/components/CookingTimeline/CookingTimeline'), { ssr: false });
 const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as const;
@@ -268,6 +270,29 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         []
     );
     const [composer, setComposer] = useState(false);
+    const [showTimeline, setShowTimeline] = useState(false);
+
+    // Déroulé de la soirée (Jour J) : un item par plat du menu, avec sa part
+    // active (prépa) et passive (four/frigo) devinée depuis les étapes.
+    const timelineItems = useMemo<TimelineInput[]>(() => {
+        if (mode !== 'jourj') return [];
+        const out: TimelineInput[] = [];
+        COURSES.forEach((c) => {
+            const slot = plan[JOUR_J]?.[c.label] as Slot | undefined;
+            if (!slot) return;
+            const push = (r: any, label: string) => {
+                const { active, passive } = timingFromSteps(r.steps);
+                out.push({
+                    key: `${label}-${r.id}`, label, title: decodeHtml(r.title || ''),
+                    active, passive, activeLabel: 'Prépa', passiveLabel: passiveLabelFor(r.steps),
+                    readyOffset: COURSE_OFFSET[label] ?? 20,
+                });
+            };
+            push(slot, c.label);
+            if (slot.side) push(slot.side, 'Accompagnement');
+        });
+        return out;
+    }, [mode, plan]);
 
     const shuffle = <T,>(a: T[]) => [...a].sort(() => Math.random() - 0.5);
 
@@ -527,6 +552,12 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             sideable={c.label === 'Plat'}
                         />
                     ))}
+                    {timelineItems.length > 0 && (
+                        <button className={styles.planTimelineBtn} onClick={() => { haptic(8); setShowTimeline(true); }}>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+                            Déroulé de la soirée
+                        </button>
+                    )}
                 </section>
             )}
 
@@ -586,6 +617,36 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                     </button>
                                 ))}
                             </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Déroulé de la soirée : plan de préparation « un seul cuisinier ». */}
+            <AnimatePresence>
+                {showTimeline && (
+                    <motion.div
+                        className={styles.menuBackdrop}
+                        onClick={() => setShowTimeline(false)}
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <motion.div
+                            className={styles.timelineSheet}
+                            onClick={(e) => e.stopPropagation()}
+                            initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 60, opacity: 0 }}
+                            transition={{ type: 'spring', damping: 32, stiffness: 320 }}
+                        >
+                            <div className={styles.timelineHead}>
+                                <div>
+                                    <div className={styles.composeTitle}>Déroulé de la soirée</div>
+                                    <div className={styles.composeHint}>Quand lancer chaque plat pour tout servir à l’heure.</div>
+                                </div>
+                                <button className={styles.timelineClose} onClick={() => setShowTimeline(false)} aria-label="Fermer">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                                </button>
+                            </div>
+                            <CookingTimeline items={timelineItems} />
                         </motion.div>
                     </motion.div>
                 )}
