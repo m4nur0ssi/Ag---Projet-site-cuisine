@@ -2984,3 +2984,18 @@
 :global([data-theme='light']) .planTimelineBtn { color: #111; background: rgba(0,0,0,0.05); box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.12); }
 :global([data-theme='light']) .timelineSheet { background: #fff; }
 :global([data-theme='light']) .timelineClose { background: rgba(0,0,0,0.08); color: #111; }
+
+/* Options « semaine intelligente » dans le modal Composer. */
+.smartRow { display: flex; flex-direction: column; gap: 8px; margin: 4px 0 14px; }
+.smartToggle {
+    display: inline-flex; align-items: center; gap: 9px;
+    height: 44px; padding: 0 14px; border: none; border-radius: 13px;
+    background: rgba(255, 255, 255, 0.06); box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
+    color: rgba(235, 235, 245, 0.85); font-size: 14px; font-weight: 600; cursor: pointer; text-align: left;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+.smartToggle svg { flex: 0 0 auto; opacity: 0.6; }
+.smartOn { background: linear-gradient(120deg, rgba(255,194,75,.24), rgba(255,107,74,.2)); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,180,120,.45); }
+.smartOn svg { opacity: 1; color: #FFC24B; }
+:global([data-theme='light']) .smartToggle { background: rgba(0,0,0,.05); color: #333; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.12); }
+:global([data-theme='light']) .smartOn { color: #111; }

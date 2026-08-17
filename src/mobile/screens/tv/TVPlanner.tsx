@@ -32,6 +32,7 @@ import { isCookable, hasSideIncluded, isSweet, proteinOf } from '@/lib/mealClass
 import { isTVSide, isTVMain, sidePool } from './sides';
 import { THEMES, matchesTag } from './themes';
 import { totalMinutes, formatMinutes } from './timing';
+import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import { haptic } from './TVHome';
 import { readCart, removeCartRecipe, CART_EVENT, type CartRecipe } from './recipeCart';
 import { timingFromSteps, passiveLabelFor, COURSE_OFFSET, type TimelineInput } from '@/lib/cooking-timeline';
@@ -271,6 +272,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     );
     const [composer, setComposer] = useState(false);
     const [showTimeline, setShowTimeline] = useState(false);
+    // Semaine intelligente : express en semaine, anti-gaspi (réutilise les restes).
+    const [smart, setSmart] = useState({ express: false, gaspi: false });
 
     // Déroulé de la soirée (Jour J) : un item par plat du menu, avec sa part
     // active (prépa) et passive (four/frigo) devinée depuis les étapes.
@@ -315,18 +318,40 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             ? sidePool(mockRecipes).filter(fits)
             : sidePool(mockRecipes));
 
-        const pickFrom = (accepts: (r: Recipe) => boolean, lastProtein?: string): Recipe | null => {
-            // Vivier de la tendance. On ne le quitte JAMAIS tant qu'il n'est pas
-            // vide : un menu « Végétarien » à court de recettes doit se répéter,
-            // surtout pas glisser vers des pâtes à la merguez.
+        // Mots-clés d'ingrédients d'une recette (pour l'anti-gaspi : réutiliser un
+        // ingrédient d'un jour à l'autre).
+        const ingKeys = (r: Recipe): Set<string> => {
+            const s = new Set<string>();
+            (r.ingredients || []).forEach((i: any) => {
+                String(i?.name || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+                    .split(/[^a-z]+/).forEach((w) => { if (w.length >= 4) s.add(w); });
+            });
+            return s;
+        };
+        const totalTime = (r: Recipe) => { const t = estimateRecipeTiming(r.steps); return t.prepTime + t.cookTime; };
+
+        // opts : express (≤30 min), prev (recette de la veille pour l'anti-gaspi).
+        const pickFrom = (accepts: (r: Recipe) => boolean, opts?: { lastProtein?: string; express?: boolean; prev?: Recipe | null }): Recipe | null => {
             const onTrend = mockRecipes.filter((r) => r.image && accepts(r) && fits(r));
             const pool = onTrend.length ? onTrend : mockRecipes.filter((r) => r.image && accepts(r));
             if (!pool.length) return null;
 
-            // Priorité : pas encore servi ET protéine différente de la veille.
             const fresh = pool.filter((r) => !used.has(String(r.id)));
-            const varied = fresh.filter((r) => proteinOf(r) !== lastProtein);
-            const from = varied.length ? varied : fresh.length ? fresh : pool;
+            let from = fresh.length ? fresh : pool;
+
+            // Protéine différente de la veille (préférence, pas obligation).
+            const varied = from.filter((r) => proteinOf(r) !== opts?.lastProtein);
+            if (varied.length) from = varied;
+
+            // Express : privilégie les recettes courtes (repli si aucune).
+            if (opts?.express) { const quick = from.filter((r) => totalTime(r) <= 30); if (quick.length) from = quick; }
+
+            // Anti-gaspi : privilégie une recette partageant un ingrédient avec la veille.
+            if (opts?.prev) {
+                const prevIng = ingKeys(opts.prev);
+                const reuse = from.filter((r) => { const k = ingKeys(r); for (const w of k) if (prevIng.has(w)) return true; return false; });
+                if (reuse.length) from = reuse;
+            }
 
             const pick = from[Math.floor(Math.random() * from.length)];
             used.add(String(pick.id));
@@ -349,12 +374,16 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             });
         } else {
             let last: string | undefined;
-            DAYS.forEach((d) => {
+            let prev: Recipe | null = null;
+            DAYS.forEach((d, di) => {
                 next[d] = {};
+                // Express en SEMAINE (Lun→Ven), plats plus libres le week-end.
+                const express = smart.express && di < 5;
                 MEALS.forEach((m) => {
-                    const pick = pickFrom(isTVMain, last);
+                    const pick = pickFrom(isTVMain, { lastProtein: last, express, prev: smart.gaspi ? prev : null });
                     if (!pick) return;
                     last = proteinOf(pick);
+                    prev = pick;
                     next[d][m] = withSide(pick);
                 });
                 if (!Object.keys(next[d]).length) delete next[d];
@@ -609,6 +638,24 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             <div className={styles.composeHint}>
                                 Une tendance, et {mode === 'jourj' ? 'chaque plat du menu' : 'les quatorze repas'} se remplissent.
                             </div>
+                            {mode === 'semaine' && (
+                                <div className={styles.smartRow}>
+                                    <button
+                                        className={`${styles.smartToggle} ${smart.express ? styles.smartOn : ''}`}
+                                        onClick={() => setSmart((s) => ({ ...s, express: !s.express }))}
+                                    >
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></svg>
+                                        Express en semaine
+                                    </button>
+                                    <button
+                                        className={`${styles.smartToggle} ${smart.gaspi ? styles.smartOn : ''}`}
+                                        onClick={() => setSmart((s) => ({ ...s, gaspi: !s.gaspi }))}
+                                    >
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9M3 12V6m0 6h6" /></svg>
+                                        Anti-gaspi (réutilise les restes)
+                                    </button>
+                                </div>
+                            )}
                             <div className={styles.composeChips}>
                                 <button className={styles.composeChip} onClick={() => compose(null)}>Au hasard</button>
                                 {TRENDS.map((t) => (
