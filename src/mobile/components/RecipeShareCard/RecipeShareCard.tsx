@@ -96,14 +96,17 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
         // alors bloqué → message ; réglé en prod par un proxy image sur le domaine).
         const loadPhoto = () => {
             if (!recipe.image) { paint(null); return; }
-            const tryLoad = (useCors: boolean) => {
+            // 1) proxy même-origine (export propre) → 2) CORS direct → 3) sans CORS
+            //    (au moins la photo s'affiche). Étapes de repli en cascade.
+            const proxied = `/api/img?url=${encodeURIComponent(recipe.image)}`;
+            const load = (src: string, cors: boolean, next?: () => void) => {
                 const img = new Image();
-                if (useCors) img.crossOrigin = 'anonymous';
+                if (cors) img.crossOrigin = 'anonymous';
                 img.onload = () => paint(img);
-                img.onerror = () => (useCors ? tryLoad(false) : paint(null));
-                img.src = recipe.image;
+                img.onerror = () => (next ? next() : paint(null));
+                img.src = src;
             };
-            tryLoad(true);
+            load(proxied, true, () => load(recipe.image, true, () => load(recipe.image, false)));
         };
 
         // On génère d'abord le QR (data URL local, sans réseau), puis la photo.

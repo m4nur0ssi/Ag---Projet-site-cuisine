@@ -17,6 +17,7 @@ const MobileSplash = dynamic(() => import('@/mobile/components/SplashScreen/Spla
 const MobileBottomNav = dynamic(() => import('@/mobile/components/BottomNav/BottomNav'), { ssr: false });
 const MobileAccountSync = dynamic(() => import('@/mobile/components/AccountSync/AccountSync'), { ssr: false });
 const MobileGlobalRecipeSheet = dynamic(() => import('@/mobile/components/GlobalRecipeSheet/GlobalRecipeSheet'), { ssr: false });
+const TrophyWatcher = dynamic(() => import('@/components/TrophyWatcher/TrophyWatcher'), { ssr: false });
 
 const detect = () =>
     window.matchMedia('(max-width: 1023px)').matches ||
@@ -59,6 +60,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     <MobileBottomNav />
                     <MobileAccountSync />
                     <MobileGlobalRecipeSheet />
+                    <TrophyWatcher />
                     <DeepLinkOpener />
                 </MobileTimerProvider>
             </DeviceContext.Provider>
@@ -72,6 +74,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 {/* Splash desktop (animation logo) retiré : inutile sur l'accueil TV+. */}
                 <div className="main-content-wrapper">{children}</div>
                 <GlobalRecipeSheet />
+                <TrophyWatcher />
                 <DeepLinkOpener />
             </TimerProvider>
         </DeviceContext.Provider>
