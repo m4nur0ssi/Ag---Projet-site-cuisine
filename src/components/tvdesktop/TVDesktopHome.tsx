@@ -37,6 +37,7 @@ const ShareButton = dynamic(() => import('@/components/ShareButton/ShareButton')
 const TVPlanner = dynamic(() => import('@/mobile/screens/tv/TVPlanner'), { ssr: false });
 const TVCourses = dynamic(() => import('@/mobile/screens/tv/TVCourses'), { ssr: false });
 const TVTrophies = dynamic(() => import('@/mobile/screens/tv/TVTrophies'), { ssr: false });
+const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -436,6 +437,7 @@ export default function TVDesktopHome() {
     const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({ 'Catégories': true });
     // Visite guidée « Apple TV+ » (même composant que le mobile), en modale.
     const [tuto, setTuto] = useState(false);
+    const [taste, setTaste] = useState(false);
     // Raccourcis épinglés dans « Bibliothèque » (glisser-déposer), + survol du drop.
     const [library, setLibrary] = useState<LibraryItem[]>([]);
     const [dragOver, setDragOver] = useState(false);
@@ -585,7 +587,7 @@ export default function TVDesktopHome() {
             tag: theme.tag,
             recipes: mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && matchesTag(r, theme.tag)),
             shape: SHAPES[i % SHAPES.length],
-        })).filter((row) => row.recipes.length >= 4);
+        })).filter((row) => row.recipes.length >= (row.tag.startsWith('cocktail') ? 2 : 4));
     }, []);
 
     // Lien de thème partagé (/?tag=…) : on ouvre la collection correspondante,
@@ -798,6 +800,9 @@ export default function TVDesktopHome() {
                         fournit que l'icône et la ligne de menu. */}
                     <button className={`${styles.navRow}`} onClick={() => setTuto(true)}>
                         <Ic d={ICONS.book} /><span>Tutoriel</span>
+                    </button>
+                    <button className={`${styles.navRow}`} onClick={() => setTaste(true)}>
+                        <Ic d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /><span>Affine mes goûts</span>
                     </button>
                 </nav>
 
@@ -1017,6 +1022,7 @@ export default function TVDesktopHome() {
             </AnimatePresence>
 
             {tuto && <TVTutorial onClose={() => setTuto(false)} />}
+            {taste && <TasteOnboarding onClose={() => setTaste(false)} />}
         </div>
     );
 }

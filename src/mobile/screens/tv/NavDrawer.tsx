@@ -90,13 +90,15 @@ interface NavDrawerProps {
     onSearch: () => void;
     /** Ouvre la visite guidée de l'app mobile (et non celle du site desktop). */
     onTutorial: () => void;
+    /** Ouvre l'onboarding « Affine mes goûts » (optionnel). */
+    onTaste?: () => void;
     resultCount: number;
     /** Recherche texte : se combine (ET) avec les filtres cochés. */
     query: string;
     onQuery: (v: string) => void;
 }
 
-export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, onSearch, onTutorial, resultCount, query, onQuery }: NavDrawerProps) {
+export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, onSearch, onTutorial, onTaste, resultCount, query, onQuery }: NavDrawerProps) {
     const router = useRouter();
     const active = selected.length > 0 || query.trim().length > 0;
     // Planificateur, courses et favoris n'ont de sens que connecté : hors session
@@ -304,6 +306,12 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 <button className={styles.navRow} onClick={() => { onClose(); onTutorial(); }}>
                                     <Ic d={ICONS.book} /><span className={styles.navRowText}>Visite guidée</span>
                                 </button>
+                                {onTaste && (
+                                    <button className={styles.navRow} onClick={() => { onClose(); onTaste(); }}>
+                                        <Ic d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" />
+                                        <span className={styles.navRowText}>Affine mes goûts</span>
+                                    </button>
+                                )}
                             </div>
 
                             {/* Bibliothèque épinglée (synchro depuis le desktop). */}

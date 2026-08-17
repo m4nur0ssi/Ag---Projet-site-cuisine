@@ -190,15 +190,20 @@ export function matchesTag(
     // boissons), puis on trie selon la présence d'alcool dans le TEXTE COMPLET
     // (titre + description + ingrédients + étapes).
     if (tagLower === 'cocktail' || tagLower === 'cocktail-sans-alcool') {
+        // Vrais cocktails (avec ou sans alcool selon la préparation).
         const cocktailWords = /\b(cocktails?|mojitos?|margaritas?|daiquiris?|spritz(er)?|mimosas?|sangrias?|punchs?|cosmopolitans?|colada|caipirinhas?|negronis?|bloody mary|mai[- ]?tai|cuba libre|gin[- ]?tonic|tequila sunrise|sex on the beach|mocktails?|virgin|piscine|americano|bellini|kir|sangria)\b/;
+        // Boissons fraîches non alcoolisées → rangée « sans alcool » (pour la garnir).
+        const softWords = /\b(smoothies?|milkshakes?|frapp[ée]s?|limonades?|jus\b|nectar|the glac[ée]|th[ée] glac[ée]|iced tea|granit[ée]s?|slush|infusion glac[ée]e|eau infus[ée]e|lassi)\b/;
+        const alcohol = /\b(rhum|vodkas?|gin|t[ée]quilas?|whiskys?|whiskey|cognac|liqueurs?|cura[cç]ao|cointreau|triple[- ]sec|aperol|campari|martini|vermouth|prosecco|champagne|vin[- ](blanc|rouge|ros[ée]|mousseux|p[ée]tillant)|ros[ée]|bi[èe]res?|cidre|kahlua|baileys|amaretto|malibu|limoncello|porto|absinthe|calvados|armagnac|marsala|sak[ée]|pastis|ricard|schnaps|grand marnier|chartreuse|alcool|liquor|spirit)\b/;
+        const hasAlcohol = alcohol.test(normFull);
         const isCocktail =
             recipeTags.some((t) => /cocktail|mojito|mocktail/.test(norm(t))) ||
             cocktailWords.test(norm(titleLower)) ||
             (recipeCat === 'boissons' && cocktailWords.test(normFull));
-        if (!isCocktail) return false;
-        const alcohol = /\b(rhum|vodkas?|gin|t[ée]quilas?|whiskys?|whiskey|cognac|liqueurs?|cura[cç]ao|cointreau|triple[- ]sec|aperol|campari|martini|vermouth|prosecco|champagne|vin[- ](blanc|rouge|ros[ée]|mousseux|p[ée]tillant)|ros[ée]|bi[èe]res?|cidre|kahlua|baileys|amaretto|malibu|limoncello|porto|absinthe|calvados|armagnac|marsala|sak[ée]|pastis|ricard|schnaps|grand marnier|chartreuse|alcool|liquor|spirit)\b/;
-        const hasAlcohol = alcohol.test(normFull);
-        return tagLower === 'cocktail-sans-alcool' ? !hasAlcohol : hasAlcohol;
+        const isSoft = softWords.test(norm(titleLower)) || (recipeCat === 'boissons' && softWords.test(normFull));
+        if (tagLower === 'cocktail') return isCocktail && hasAlcohol;
+        // Sans alcool : cocktail non alcoolisé OU boisson fraîche non alcoolisée.
+        return !hasAlcohol && (isCocktail || isSoft);
     }
 
     // Thèmes stricts : tag explicite ou catégorie (barbecue exclut les sauces).

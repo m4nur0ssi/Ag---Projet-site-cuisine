@@ -25,9 +25,11 @@ function cookedIds(): string[] {
     return out;
 }
 
+function likedIds(): string[] { return readIds('taste-liked-v1'); }
+
 /** Nombre de signaux de goût disponibles (0 = on n'affiche pas « Pour toi »). */
 export function tasteSignalCount(): number {
-    return new Set([...readIds('favorites'), ...readIds('recently-viewed'), ...cookedIds()]).size;
+    return new Set([...readIds('favorites'), ...readIds('recently-viewed'), ...cookedIds(), ...likedIds()]).size;
 }
 
 /**
@@ -39,6 +41,7 @@ export function personalizedRecipes<T extends R>(all: T[], limit = 14): T[] {
     const weightOf = (id: string) =>
         (readIds('favorites').includes(id) ? 3 : 0) +
         (cookedIds().includes(id) ? 3 : 0) +
+        (likedIds().includes(id) ? 2 : 0) +
         (readIds('recently-viewed').includes(id) ? 1 : 0);
 
     const byId = new Map(all.map((r) => [String(r.id), r]));
@@ -46,7 +49,7 @@ export function personalizedRecipes<T extends R>(all: T[], limit = 14): T[] {
     const tagW = new Map<string, number>();
     const seed = new Set<string>();
 
-    [...readIds('favorites'), ...cookedIds(), ...readIds('recently-viewed')].forEach((id) => {
+    [...readIds('favorites'), ...cookedIds(), ...likedIds(), ...readIds('recently-viewed')].forEach((id) => {
         const r = byId.get(id); if (!r) return;
         seed.add(id);
         const w = weightOf(id) || 1;

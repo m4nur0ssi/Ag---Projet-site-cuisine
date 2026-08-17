@@ -18,6 +18,7 @@ import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag, isSavoryMiscat } from './themes';
 import { personalizedRecipes } from '@/lib/personalize';
+const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from './progress';
 import styles from './tv.module.css';
@@ -1149,6 +1150,17 @@ export default function TVHome() {
     const [sheet, setSheet] = useState<{ recipes: Recipe[]; index: number } | null>(null);
     const [menu, setMenu] = useState<Recipe | null>(null);
     const [navOpen, setNavOpen] = useState(false);
+    const [tasteOpen, setTasteOpen] = useState(false);
+    // Proposition d'onboarding « goûts » UNE fois, et seulement en PWA installée
+    // (vrai contexte « app ») — jamais forcé sur une visite web classique.
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const standalone = window.matchMedia?.('(display-mode: standalone)').matches || (navigator as any).standalone;
+        if (standalone && !localStorage.getItem('taste-onboarded')) {
+            const t = setTimeout(() => setTasteOpen(true), 1200);
+            return () => clearTimeout(t);
+        }
+    }, []);
     // Ouverture du menu par swipe gauche→droite depuis une bande à gauche.
     // On laisse les ~22 premiers px au geste « retour » natif d'iOS.
     const navTouch = useRef<{ x: number; y: number } | null>(null);
@@ -1413,7 +1425,7 @@ export default function TVHome() {
             recipes: mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && matchesTag(r, theme.tag)),
             // Alternance des formats : le feed ne doit jamais devenir monotone.
             variant: FIXED[theme.tag] ?? VARIANTS[i % VARIANTS.length],
-        })).filter((row) => row.recipes.length >= 4);
+        })).filter((row) => row.recipes.length >= (row.tag.startsWith('cocktail') ? 2 : 4));
     }, []);
 
     return (
@@ -1429,6 +1441,7 @@ export default function TVHome() {
                 onApply={() => { setNavOpen(false); openAll(filterTitle, filterResults); }}
                 onSearch={() => setSearchOpen(true)}
                 onTutorial={() => setTutoOpen(true)}
+                onTaste={() => setTasteOpen(true)}
                 resultCount={filterResults.length}
                 query={navQuery}
                 onQuery={setNavQuery}
@@ -1649,6 +1662,7 @@ export default function TVHome() {
             />
 
             {tutoOpen && <TVTutorial onClose={() => setTutoOpen(false)} />}
+            {tasteOpen && <TasteOnboarding onClose={() => setTasteOpen(false)} />}
         </div>
     );
 }
