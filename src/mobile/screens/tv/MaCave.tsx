@@ -14,6 +14,7 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import {
     readCave, addWine, removeWine, seedCaveIfEmpty, recipesForWine,
+    openBottle, setQty, drinkWindow,
     CAVE_EVENT, type CaveWine, type WineColor,
 } from '@/lib/cave';
 import styles from './MaCave.module.css';
@@ -48,6 +49,8 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     const [filter, setFilter] = useState<'tous' | WineColor>('tous');
     const [adding, setAdding] = useState(false);
     const [pairing, setPairing] = useState<CaveWine | null>(null);
+    const [q, setQ] = useState('');
+    const [sort, setSort] = useState<'recent' | 'annee' | 'region'>('recent');
 
     useEffect(() => {
         seedCaveIfEmpty();
@@ -58,7 +61,16 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         return () => { window.removeEventListener(CAVE_EVENT, load); window.removeEventListener('storage', load); };
     }, []);
 
-    const shown = useMemo(() => (filter === 'tous' ? wines : wines.filter((w) => w.color === filter)), [wines, filter]);
+    const shown = useMemo(() => {
+        let list = filter === 'tous' ? wines : wines.filter((w) => w.color === filter);
+        const query = q.trim().toLowerCase();
+        if (query) list = list.filter((w) => `${w.name} ${w.region} ${w.grape} ${w.year}`.toLowerCase().includes(query));
+        const s = [...list];
+        if (sort === 'annee') s.sort((a, b) => (parseInt(b.year, 10) || 0) - (parseInt(a.year, 10) || 0));
+        else if (sort === 'region') s.sort((a, b) => (a.region || '').localeCompare(b.region || '', 'fr'));
+        else s.sort((a, b) => b.addedAt - a.addedAt);
+        return s;
+    }, [wines, filter, q, sort]);
     const counts = useMemo(() => ({
         rouge: wines.filter((w) => w.color === 'rouge').length,
         blanc: wines.filter((w) => w.color === 'blanc').length,
@@ -87,6 +99,18 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                 {([['tous', `Tous ${wines.length}`], ['rouge', `Rouges ${counts.rouge}`], ['blanc', `Blancs ${counts.blanc}`], ['liqueur', `Liqueurs ${counts.liqueur}`]] as const).map(([k, lbl]) => (
                     <button key={k} className={`${styles.tab} ${filter === k ? styles.tabOn : ''}`} onClick={() => setFilter(k as any)}>{lbl}</button>
                 ))}
+            </div>
+
+            <div className={styles.toolbar}>
+                <div className={styles.searchWrap}>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4" /></svg>
+                    <input className={styles.search} value={q} onChange={(e) => setQ(e.target.value)} placeholder="Chercher (nom, région, cépage…)" />
+                </div>
+                <div className={styles.sortWrap}>
+                    {([['recent', 'Récent'], ['annee', 'Année'], ['region', 'Région']] as const).map(([k, lbl]) => (
+                        <button key={k} className={`${styles.sortBtn} ${sort === k ? styles.sortOn : ''}`} onClick={() => setSort(k)}>{lbl}</button>
+                    ))}
+                </div>
             </div>
 
             {shown.length === 0 ? (
@@ -136,6 +160,20 @@ function WineCard({ wine, onPair, onRemove }: { wine: CaveWine; onPair: () => vo
             <div className={styles.info}>
                 <div className={styles.wName}>{wine.name}{wine.year ? <span className={styles.wYear}> · {wine.year}</span> : null}</div>
                 <div className={styles.wMeta}>{[wine.grape, wine.region].filter(Boolean).join(' · ')}</div>
+                {(() => {
+                    const w = drinkWindow(wine);
+                    if (!w) return null;
+                    const cls = w.status === 'À boire vite' ? styles.apoLate : w.status === 'À garder' ? styles.apoWait : styles.apoNow;
+                    return <div className={`${styles.apogee} ${cls}`}>{w.status} · {w.from}–{w.to}</div>;
+                })()}
+                <div className={styles.stockRow}>
+                    <div className={styles.stepper}>
+                        <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) - 1); }} aria-label="Moins">−</button>
+                        <span>{wine.qty ?? 1} <small>bt</small></span>
+                        <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) + 1); }} aria-label="Plus">+</button>
+                    </div>
+                    <button className={styles.openBtn} disabled={(wine.qty ?? 1) <= 0} onClick={(e) => { e.stopPropagation(); openBottle(wine.id); }}>Ouvrir</button>
+                </div>
                 <button className={styles.pairBtn} onClick={onPair}>
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16M7 4v6a5 5 0 0 0 10 0V4M12 15v5M9 20h6" /></svg>
                     Quelle recette ?

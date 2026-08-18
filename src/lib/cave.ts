@@ -14,7 +14,23 @@ export interface CaveWine {
     region: string;
     note?: string;
     photo?: string;     // data URL de la bouteille scannée (optionnel)
+    qty?: number;       // nombre de bouteilles en cave
     addedAt: number;
+}
+
+/** Fenêtre d'apogée (« prêt à boire ») estimée depuis la couleur + le millésime. */
+export function drinkWindow(wine: CaveWine): { from: number; to: number; status: string } | null {
+    const y = parseInt(wine.year, 10);
+    if (!y || y < 1900) return null;
+    const span = wine.color === 'rouge' ? [3, 15] : wine.color === 'blanc' ? [1, 6] : [5, 30];
+    const from = y + span[0], to = y + span[1];
+    const now = new Date().getFullYear();
+    let status: string;
+    if (now < from) status = 'À garder';
+    else if (now > to) status = 'À boire vite';
+    else if (now <= from + (to - from) * 0.5) status = 'Prêt à boire';
+    else status = 'À son apogée';
+    return { from, to, status };
 }
 
 export const CAVE_KEY = 'ma-cave-v1';
@@ -34,13 +50,24 @@ function write(list: CaveWine[]) {
 }
 
 export function addWine(w: Omit<CaveWine, 'id' | 'addedAt'>): CaveWine {
-    const wine: CaveWine = { ...w, id: `w${Date.now()}${Math.floor(Math.random() * 999)}`, addedAt: Date.now() };
+    const wine: CaveWine = { qty: 1, ...w, id: `w${Date.now()}${Math.floor(Math.random() * 999)}`, addedAt: Date.now() };
     write([wine, ...readCave()]);
     return wine;
 }
 
 export function updateWine(id: string, patch: Partial<CaveWine>) {
     write(readCave().map((w) => (w.id === id ? { ...w, ...patch } : w)));
+}
+
+/** Change le stock (min 0). */
+export function setQty(id: string, qty: number) {
+    updateWine(id, { qty: Math.max(0, Math.round(qty)) });
+}
+
+/** « Ouvrir une bouteille » → décrémente le stock. */
+export function openBottle(id: string) {
+    const w = readCave().find((x) => x.id === id);
+    if (w) setQty(id, (w.qty ?? 1) - 1);
 }
 
 export function removeWine(id: string) {
@@ -52,10 +79,10 @@ export function seedCaveIfEmpty() {
     if (typeof window === 'undefined') return;
     if (localStorage.getItem(CAVE_KEY)) return;
     const seed: CaveWine[] = [
-        { id: 's1', name: 'Château Margaux', grape: 'Cabernet Sauvignon', year: '2016', color: 'rouge', region: 'Margaux, Bordeaux', note: 'Grand cru, tanins soyeux.', addedAt: Date.now() - 5000 },
-        { id: 's2', name: 'Chablis Premier Cru', grape: 'Chardonnay', year: '2021', color: 'blanc', region: 'Chablis, Bourgogne', note: 'Minéral, vif, notes d’agrumes.', addedAt: Date.now() - 4000 },
-        { id: 's3', name: 'Sauternes Château Rieussec', grape: 'Sémillon', year: '2015', color: 'liqueur', region: 'Sauternes, Bordeaux', note: 'Liquoreux, miel et abricot.', addedAt: Date.now() - 3000 },
-        { id: 's4', name: 'Châteauneuf-du-Pape', grape: 'Grenache', year: '2019', color: 'rouge', region: 'Vallée du Rhône', note: 'Puissant, épicé, fruits noirs.', addedAt: Date.now() - 2000 },
+        { id: 's1', name: 'Château Margaux', grape: 'Cabernet Sauvignon', year: '2016', color: 'rouge', region: 'Margaux, Bordeaux', note: 'Grand cru, tanins soyeux.', qty: 2, addedAt: Date.now() - 5000 },
+        { id: 's2', name: 'Chablis Premier Cru', grape: 'Chardonnay', year: '2021', color: 'blanc', region: 'Chablis, Bourgogne', note: 'Minéral, vif, notes d’agrumes.', qty: 4, addedAt: Date.now() - 4000 },
+        { id: 's3', name: 'Sauternes Château Rieussec', grape: 'Sémillon', year: '2015', color: 'liqueur', region: 'Sauternes, Bordeaux', note: 'Liquoreux, miel et abricot.', qty: 1, addedAt: Date.now() - 3000 },
+        { id: 's4', name: 'Châteauneuf-du-Pape', grape: 'Grenache', year: '2019', color: 'rouge', region: 'Vallée du Rhône', note: 'Puissant, épicé, fruits noirs.', qty: 3, addedAt: Date.now() - 2000 },
     ];
     write(seed);
 }
