@@ -668,9 +668,12 @@
        sur la précédente. */
     gap: 28px;
     /* La gouttière gauche loge la moitié du chiffre qui déborde de la carte. */
-    padding-left: 46px;
+    --top10-pad: 46px;
+    /* Marge des titres de rangée, sur laquelle le chiffre de tête s'aligne. */
+    --row-text-pad: 20px;
+    padding-left: var(--top10-pad);
     padding-right: 20px;
-    scroll-padding-left: 46px;
+    scroll-padding-left: var(--top10-pad);
 }
 
 .top10Card {
@@ -704,6 +707,15 @@
     /* Double ombre : lisible sur le noir du fond comme sur la photo. */
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55), 0 6px 30px rgba(0, 0, 0, 0.75);
     pointer-events: none;
+}
+
+/* Le « 1 » est le premier repère de la page : il tombe sur la MÊME verticale
+   que les titres de rangée (« Reprendre la cuisine » juste dessous) au lieu
+   d'être à cheval sur l'arête de sa carte. Les chiffres suivants gardent le
+   débordement à moitié, qui n'a de sens qu'entre deux cartes. */
+.top10Card:first-child .top10Rank {
+    left: calc(var(--row-text-pad) - var(--top10-pad));
+    transform: none;
 }
 
 .top10Thumb {
@@ -1942,6 +1954,8 @@
         scroll-padding-left: 40px;
     }
     .rowHead { padding-left: 40px; }
+    /* Les titres passent à 40 px : le chiffre de tête suit. */
+    .top10Scroll { --row-text-pad: 40px; }
 
     /* Largeurs posées par useFittedCards : un nombre entier de cartes tient
        dans la fenêtre, donc plus jamais de dernière carte tronquée. */
@@ -2999,3 +3013,68 @@
 .smartOn svg { opacity: 1; color: #FFC24B; }
 :global([data-theme='light']) .smartToggle { background: rgba(0,0,0,.05); color: #333; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.12); }
 :global([data-theme='light']) .smartOn { color: #111; }
+
+/* ── Poignée du volet : petite flèche toujours visible au bord gauche ───────
+   Position fixe et centrée : elle ne bouge pas d'un pixel quand on défile.
+   Décollée du bord (10 px) pour laisser la bande du geste « retour » d'iOS. */
+.edgeHandle {
+    position: fixed;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    width: 26px;
+    height: 76px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.18), 0 6px 22px rgba(0, 0, 0, 0.45);
+    color: rgba(255, 255, 255, 0.82);
+    cursor: pointer;
+    /* Le geste horizontal nous appartient ; le défilement vertical reste natif
+       partout ailleurs (la poignée est étroite). */
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.28s var(--tv-ease, cubic-bezier(0.32, 0.72, 0, 1)),
+                background 0.2s ease, opacity 0.25s ease;
+    /* Respiration lente : attire l'œil sans clignoter. */
+    animation: edgePulse 3.6s ease-in-out infinite;
+}
+.edgeHandle:active,
+.edgeHandleOn {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.08);
+    animation: none;
+}
+/* Masquée dès que le volet est là : elle ferait doublon avec le volet lui-même. */
+.edgeHandleHidden { opacity: 0; pointer-events: none; transform: translateY(-50%) translateX(-14px); }
+
+/* Le petit trait vertical qui évoque la tranche d'un volet. */
+.edgeHandleGrip {
+    width: 2px;
+    height: 26px;
+    border-radius: 2px;
+    background: currentColor;
+    opacity: 0.5;
+}
+
+@keyframes edgePulse {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50%      { transform: translateY(-50%) translateX(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .edgeHandle { animation: none; }
+}
+
+/* Sur grand écran le volet n'est pas le mode de navigation : pas de poignée. */
+@media (min-width: 760px) {
+    .edgeHandle { display: none; }
+}

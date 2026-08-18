@@ -682,10 +682,26 @@ export default function TVDesktopHome() {
     }, [filters]);
 
     // Ouvre un raccourci épinglé selon son préfixe de token (c: / t: / p:).
+    /**
+     * Raccourcis épinglables : mêmes entrées que le haut du menu, mais qu'on
+     * peut ranger dans la bibliothèque pour se composer sa propre barre.
+     * Jeton « s: » (raccourci), aux côtés de c: / t: / p:.
+     */
+    const SHORTCUTS: Record<string, () => void> = {
+        planner: () => { setCollection(null); setFilters([]); setPanel('planner'); },
+        courses: () => { setCollection(null); setFilters([]); setPanel('courses'); },
+        trophies: () => { setCollection(null); setFilters([]); setPanel('trophies'); },
+        cave: () => { setCollection(null); setFilters([]); setPanel('cave'); },
+        favoris: () => router.push('/favorites'),
+        tutoriel: () => setTuto(true),
+        gouts: () => setTaste(true),
+    };
+
     const openToken = (token: string, label: string) => {
         const kind = token.slice(0, 1);
         const id = token.slice(2);
-        if (kind === 'c') goCategory(id, label);
+        if (kind === 's') SHORTCUTS[id]?.();
+        else if (kind === 'c') goCategory(id, label);
         else goTag(id, label); // t: (tendance) ou p: (pays) — même résolution
     };
     // Dépose un élément glissé dans la bibliothèque (sans doublon).
@@ -718,8 +734,15 @@ export default function TVDesktopHome() {
 
     // `tour` : repère utilisé par la visite guidée, qui montre ces entrées en
     // exemple (elle cherche `[data-tour="planner"]` et `[data-tour="shopping"]`).
-    const NavItem = ({ icon, children, active, tour, onClick }: { icon: string; children: React.ReactNode; active?: boolean; tour?: string; onClick: () => void }) => (
-        <button className={`${styles.navRow} ${active ? styles.navRowOn : ''}`} data-tour={tour} onClick={onClick}>
+    // `token` rend l'entrée déplaçable vers la bibliothèque, exactement comme
+    // une catégorie : on se compose ainsi sa propre barre de raccourcis.
+    const NavItem = ({ icon, children, active, tour, token, onClick }: { icon: string; children: React.ReactNode; active?: boolean; tour?: string; token?: string; onClick: () => void }) => (
+        <button
+            className={`${styles.navRow} ${active ? styles.navRowOn : ''} ${token ? styles.navDraggable : ''}`}
+            data-tour={tour}
+            onClick={onClick}
+            {...(token ? dragProps(token, String(children)) : {})}
+        >
             <Ic d={icon} /><span>{children}</span>
         </button>
     );
@@ -795,19 +818,15 @@ export default function TVDesktopHome() {
 
                 <nav className={styles.navGroup}>
                     <NavItem icon={ICONS.home} active={nav === 'accueil'} onClick={goHome}>Accueil</NavItem>
-                    <NavItem icon={ICONS.planner} tour="planner" active={panel === 'planner'} onClick={() => { setCollection(null); setFilters([]); setPanel('planner'); }}>Planificateur</NavItem>
-                    <NavItem icon={ICONS.cart} tour="shopping" active={panel === 'courses'} onClick={() => { setCollection(null); setFilters([]); setPanel('courses'); }}>Liste de courses</NavItem>
-                    <NavItem icon={ICONS.heart} tour="favorites" onClick={() => router.push('/favorites')}>Favoris</NavItem>
-                    <NavItem icon="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" active={panel === 'trophies'} onClick={() => { setCollection(null); setFilters([]); setPanel('trophies'); }}>Palmarès</NavItem>
-                    <NavItem icon="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" active={panel === 'cave'} onClick={() => { setCollection(null); setFilters([]); setPanel('cave'); }}>Ma cave</NavItem>
+                    <NavItem icon={ICONS.planner} tour="planner" token="s:planner" active={panel === 'planner'} onClick={SHORTCUTS.planner}>Planificateur</NavItem>
+                    <NavItem icon={ICONS.cart} tour="shopping" token="s:courses" active={panel === 'courses'} onClick={SHORTCUTS.courses}>Liste de courses</NavItem>
+                    <NavItem icon={ICONS.heart} tour="favorites" token="s:favoris" onClick={SHORTCUTS.favoris}>Favoris</NavItem>
+                    <NavItem icon="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" token="s:trophies" active={panel === 'trophies'} onClick={SHORTCUTS.trophies}>Palmarès</NavItem>
+                    <NavItem icon="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" token="s:cave" active={panel === 'cave'} onClick={SHORTCUTS.cave}>Ma cave</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
                         fournit que l'icône et la ligne de menu. */}
-                    <button className={`${styles.navRow}`} onClick={() => setTuto(true)}>
-                        <Ic d={ICONS.book} /><span>Tutoriel</span>
-                    </button>
-                    <button className={`${styles.navRow}`} onClick={() => setTaste(true)}>
-                        <Ic d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /><span>Affine mes goûts</span>
-                    </button>
+                    <NavItem icon={ICONS.book} token="s:tutoriel" onClick={SHORTCUTS.tutoriel}>Tutoriel</NavItem>
+                    <NavItem icon="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" token="s:gouts" onClick={SHORTCUTS.gouts}>Affine mes goûts</NavItem>
                 </nav>
 
                 {/* Bibliothèque : zone de dépôt. On y glisse une catégorie / tendance /
@@ -833,7 +852,7 @@ export default function TVDesktopHome() {
                         </div>
                     ))}
                     {library.length === 0 && (
-                        <div className={styles.libraryHint}>Glisse une catégorie, une tendance ou un pays ici.</div>
+                        <div className={styles.libraryHint}>Glisse ici une catégorie, une tendance, un pays — ou un raccourci du menu (Palmarès, Ma cave, Tutoriel…).</div>
                     )}
                 </nav>
 

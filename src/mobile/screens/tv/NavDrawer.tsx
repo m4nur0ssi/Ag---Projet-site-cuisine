@@ -96,9 +96,16 @@ interface NavDrawerProps {
     /** Recherche texte : se combine (ET) avec les filtres cochés. */
     query: string;
     onQuery: (v: string) => void;
+    /**
+     * Avancement du tirage depuis la poignée de bord, de 0 (fermé) à 1 (ouvert).
+     * Tant qu'on tire, le volet SUIT le doigt : il se dévoile progressivement au
+     * lieu d'apparaître d'un coup. Au relâcher, `open` prend le relais et le
+     * ressort termine le geste dans un sens ou dans l'autre.
+     */
+    peek?: number;
 }
 
-export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, onSearch, onTutorial, onTaste, resultCount, query, onQuery }: NavDrawerProps) {
+export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, onSearch, onTutorial, onTaste, resultCount, query, onQuery, peek = 0 }: NavDrawerProps) {
     const router = useRouter();
     const active = selected.length > 0 || query.trim().length > 0;
     // Planificateur, courses et favoris n'ont de sens que connecté : hors session
@@ -151,7 +158,17 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
     // de lui-même quand l'accueil est démonté par le changement de page.
     const go = (path: string) => { router.push(path); };
 
-    /** Entrée réservée aux connectés. */
+    /** Invite à se connecter, sans quitter la page. */
+    const lockedHint = () => {
+        window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: 'Connecte-toi pour y accéder' }));
+        window.dispatchEvent(new Event('magic-open-auth'));
+        onClose();
+    };
+
+    /**
+     * Entrée réservée aux connectés. Hors session, seuls Accueil, Rechercher et
+     * Visite guidée restent actifs : tout le reste s'appuie sur un compte.
+     */
     const goAuthed = (path: string) => {
         if (!authed) {
             window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: 'Connecte-toi pour y accéder' }));
@@ -160,6 +177,24 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
             return;
         }
         go(path);
+    };
+
+    /**
+     * Un jeton épinglé « s: » est un RACCOURCI (Palmarès, Ma cave, Tutoriel…)
+     * et non un filtre : il navigue au lieu de cocher. Même bibliothèque que le
+     * desktop, donc les deux versions restent interchangeables.
+     */
+    const SHORTCUT_ROUTES: Record<string, string> = {
+        planner: '/tv-planner', courses: '/tv-courses', favoris: '/favorites',
+        trophies: '/tv-profil', cave: '/ma-cave',
+    };
+    const isShortcut = (token: string) => token.startsWith('s:');
+    const runShortcut = (token: string) => {
+        const id = token.slice(2);
+        if (id === 'tutoriel') { onClose(); onTutorial(); return; }
+        if (id === 'gouts') { if (!authed) return lockedHint(); onClose(); onTaste?.(); return; }
+        const route = SHORTCUT_ROUTES[id];
+        if (route) goAuthed(route);
     };
 
     const Group = ({ title, options }: { title: string; options: { token: string; label: string }[] }) => {
@@ -202,24 +237,30 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
         );
     };
 
+    const dragging = !open && peek > 0;
+    // Pendant le tirage on colle au doigt (aucune animation) ; au relâcher, un
+    // ressort légèrement rebondissant finit la course.
+    const spring = { type: 'spring' as const, damping: 26, stiffness: 320, mass: 0.7 };
+
     return (
         <AnimatePresence>
-            {open && (
+            {(open || dragging) && (
                 <>
                     <motion.div
                         className={styles.navScrim}
                         onClick={onClose}
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        animate={{ opacity: open ? 1 : peek }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.25 }}
+                        transition={dragging ? { duration: 0 } : { duration: 0.25 }}
+                        style={{ pointerEvents: open ? 'auto' : 'none' }}
                     />
                     <motion.aside
                         className={styles.navPanel}
                         initial={{ x: '-100%' }}
-                        animate={{ x: 0 }}
+                        animate={{ x: open ? 0 : `${(peek - 1) * 100}%` }}
                         exit={{ x: '-100%' }}
-                        transition={{ type: 'spring', damping: 32, stiffness: 320, mass: 0.7 }}
+                        transition={dragging ? { duration: 0 } : spring}
                         drag="x"
                         dragConstraints={{ left: 0, right: 0 }}
                         dragElastic={{ left: 0.6, right: 0 }}
@@ -291,11 +332,17 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 >
                                     <Ic d={ICONS.heart} /><span className={styles.navRowText}>Favoris</span>
                                 </button>
-                                <button className={styles.navRow} onClick={() => go('/tv-profil')}>
+                                <button
+                                    className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
+                                    onClick={() => goAuthed('/tv-profil')}
+                                >
                                     <Ic d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" />
                                     <span className={styles.navRowText}>Palmarès</span>
                                 </button>
-                                <button className={styles.navRow} onClick={() => go('/ma-cave')}>
+                                <button
+                                    className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
+                                    onClick={() => goAuthed('/ma-cave')}
+                                >
                                     <Ic d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" />
                                     <span className={styles.navRowText}>Ma cave</span>
                                 </button>
@@ -311,7 +358,10 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                     <Ic d={ICONS.book} /><span className={styles.navRowText}>Visite guidée</span>
                                 </button>
                                 {onTaste && (
-                                    <button className={styles.navRow} onClick={() => { onClose(); onTaste(); }}>
+                                    <button
+                                        className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
+                                        onClick={() => { if (!authed) return lockedHint(); onClose(); onTaste(); }}
+                                    >
                                         <Ic d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" />
                                         <span className={styles.navRowText}>Affine mes goûts</span>
                                     </button>
@@ -324,13 +374,15 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                     <div className={styles.navLabel}>Bibliothèque</div>
                                     <div className={styles.navGroup}>
                                         {pinned.map((o) => {
-                                            const on = selected.includes(o.token);
+                                            const shortcut = isShortcut(o.token);
+                                            const on = !shortcut && selected.includes(o.token);
+                                            const locked = shortcut && !authed && o.token.slice(2) !== 'tutoriel';
                                             return (
-                                                <div key={o.token} className={`${styles.navRow} ${on ? styles.navRowOn : ''} ${styles.navPinned}`}>
+                                                <div key={o.token} className={`${styles.navRow} ${on ? styles.navRowOn : ''} ${locked ? styles.navRowLocked : ''} ${styles.navPinned}`}>
                                                     <button
                                                         className={styles.navPinnedBtn}
-                                                        onClick={() => { haptic(8); onToggle(o.token); }}
-                                                        aria-pressed={on}
+                                                        onClick={() => { haptic(8); shortcut ? runShortcut(o.token) : onToggle(o.token); }}
+                                                        aria-pressed={shortcut ? undefined : on}
                                                     >
                                                         <span className={styles.navRowText}>{o.label}</span>
                                                     </button>

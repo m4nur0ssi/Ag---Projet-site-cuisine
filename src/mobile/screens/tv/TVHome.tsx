@@ -85,6 +85,7 @@ const FavoriteButton = dynamic(() => import('@/mobile/components/FavoriteButton/
 // émet `magic-open-auth` dans le vide (AuthButton ignore l'event s'il est masqué).
 const AuthButton = dynamic(() => import('@/mobile/components/AuthButton/AuthButton'), { ssr: false });
 const NavDrawer = dynamic(() => import('./NavDrawer'), { ssr: false });
+const EdgeHandle = dynamic(() => import('./EdgeHandle'), { ssr: false });
 import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './NavDrawer';
 // Loupe modernisée AppleTV+ (mêmes fonctions que SpotlightSearch prod, habillage TV).
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
@@ -1163,19 +1164,44 @@ export default function TVHome() {
             return () => clearTimeout(t);
         }
     }, []);
-    // Ouverture du menu par swipe gauche→droite depuis une bande à gauche.
+    // Ouverture du menu par glissement gauche→droite depuis une bande à gauche.
     // On laisse les ~22 premiers px au geste « retour » natif d'iOS.
+    // Le volet SUIT le doigt pendant le geste (`navPeek`) : on voit ce qu'on tire.
+    const [navPeek, setNavPeek] = useState(0);
     const navTouch = useRef<{ x: number; y: number } | null>(null);
+    const navPulling = useRef(false);
+    const panelW = () => Math.min(window.innerWidth * 0.84, 330);
+
     const onPageTouchStart = (e: React.TouchEvent) => {
         const t = e.touches[0];
         navTouch.current = { x: t.clientX, y: t.clientY };
+        navPulling.current = false;
+    };
+    const onPageTouchMove = (e: React.TouchEvent) => {
+        const s = navTouch.current;
+        if (!s || navOpen) return;
+        const t = e.touches[0];
+        const dx = t.clientX - s.x, dy = t.clientY - s.y;
+        // Le geste ne devient « ouverture du volet » que s'il part de la bande
+        // de gauche ET s'il est franchement horizontal : sinon c'est un
+        // défilement vertical, qu'on laisse tranquille.
+        if (!navPulling.current) {
+            if (s.x <= 22 || s.x >= 64) return;
+            if (dx < 12 || Math.abs(dy) > Math.abs(dx)) return;
+            navPulling.current = true;
+        }
+        setNavPeek(Math.max(0, Math.min(1, dx / panelW())));
     };
     const onPageTouchEnd = (e: React.TouchEvent) => {
         const s = navTouch.current; navTouch.current = null;
+        const pulling = navPulling.current; navPulling.current = false;
         if (!s || navOpen) return;
         const t = e.changedTouches[0];
         const dx = t.clientX - s.x, dy = t.clientY - s.y;
-        if (s.x > 22 && s.x < 64 && dx > 55 && Math.abs(dy) < 40) { haptic(10); setNavOpen(true); }
+        setNavPeek(0);
+        if (pulling ? dx > panelW() * 0.32 : (s.x > 22 && s.x < 64 && dx > 55 && Math.abs(dy) < 40)) {
+            haptic(10); setNavOpen(true);
+        }
     };
     useFittedCards();
     const [filters, setFilters] = useState<string[]>([]);
@@ -1431,11 +1457,18 @@ export default function TVHome() {
     }, []);
 
     return (
-        <div className={styles.page} onTouchStart={onPageTouchStart} onTouchEnd={onPageTouchEnd}>
+        <div className={styles.page} onTouchStart={onPageTouchStart} onTouchMove={onPageTouchMove} onTouchEnd={onPageTouchEnd}>
             <Hero recipes={heroRecipes} onOpen={openSheet} onMenu={() => setNavOpen(true)} />
+
+            <EdgeHandle
+                hidden={navOpen}
+                onOpen={() => setNavOpen(true)}
+                onPeek={setNavPeek}
+            />
 
             <NavDrawer
                 open={navOpen}
+                peek={navPeek}
                 onClose={() => setNavOpen(false)}
                 selected={filters}
                 onToggle={toggleFilter}
