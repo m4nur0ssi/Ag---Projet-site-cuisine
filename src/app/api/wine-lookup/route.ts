@@ -117,6 +117,18 @@ function query(w: Wine) {
     return w.year && !name.includes(w.year) ? `${name} ${w.year}` : name;
 }
 
+/**
+ * Cherche la bouteille, et retente avec l'appellation si la première passe ne
+ * tombe pas sur le bon domaine : « Bocas Lágrima » seul ne suffit pas, « Bocas
+ * Lágrima Porto Portugal » retrouve le producteur.
+ */
+async function locate(read: Wine) {
+    const first = await findOnVivino(query(read), read.year);
+    if (first?.confident || !read.region) return first;
+    const second = await findOnVivino(`${read.name} ${read.region}`.trim(), read.year);
+    return second?.confident ? second : first;
+}
+
 export async function POST(request: Request) {
     let label = ''; let image = '';
     try { const b = await request.json(); label = String(b?.label || '').trim(); image = String(b?.image || ''); } catch { /* noop */ }
@@ -138,9 +150,12 @@ export async function POST(request: Request) {
     }
 
     // ── 2. Retrouver la bouteille chez Vivino (photo officielle + fiche). ────
+    // On ne se sert de la fiche que si le DOMAINE correspond : un résultat de la
+    // bonne appellation mais du mauvais producteur collerait une étiquette qui
+    // n'est pas la sienne. Dans le doute, la photo prise par l'utilisateur gagne.
     if (read) {
-        const found = await findOnVivino(query(read), read.year);
-        if (found) return NextResponse.json({ wine: merge(read, found), source: 'vivino' });
+        const found = await locate(read);
+        if (found?.confident) return NextResponse.json({ wine: merge(read, found), source: 'vivino' });
         return NextResponse.json({ wine: read, source: image ? 'vision' : 'text', quota });
     }
 

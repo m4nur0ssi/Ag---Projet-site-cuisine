@@ -290,22 +290,19 @@ function AddWine({ onClose }: { onClose: () => void }) {
             const data = await res.json();
             const w = data?.wine;
             if (w?.name) {
-                if (data.source === 'vivino') {
-                    // Bouteille retrouvée : belle photo d'étiquette + fiche → en cave.
-                    addWine({
-                        name: w.name, grape: w.grape || '', year: w.year || '',
-                        color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
-                        photo: w.photo || dataUrl, rating: w.rating, vivinoUrl: w.vivinoUrl,
-                    });
-                    onClose();
-                    return;
-                }
-                // Étiquette lue mais bouteille introuvable → on laisse vérifier.
-                setForm((f) => ({ ...f, ...w }));
-                setOfficial({});
-                setScanMsg('Étiquette lue, bouteille introuvable chez le marchand — vérifie puis ajoute.');
-            } else if (data?.quota) setScanMsg('Trop de scans d’affilée (quota IA) — réessaie dans une minute.');
-            else setScanMsg('Non reconnu — complète à la main.');
+                // L'étiquette est lue : le vin entre en cave, point. Quand le
+                // marchand a confirmé la bouteille on prend SA photo, sinon on
+                // garde celle qui vient d'être prise — jamais celle d'un voisin.
+                addWine({
+                    name: w.name, grape: w.grape || '', year: w.year || '',
+                    color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
+                    photo: w.photo || dataUrl, rating: w.rating, vivinoUrl: w.vivinoUrl,
+                });
+                onClose();
+                return;
+            }
+            if (data?.quota) setScanMsg('Trop de scans d’affilée (quota IA) — réessaie dans une minute.');
+            else setScanMsg('Étiquette illisible — reprends la photo ou complète à la main.');
         } catch { setScanMsg('Reconnaissance impossible — saisie manuelle.'); }
         clearTimeout(step2);
         setBusy(false);

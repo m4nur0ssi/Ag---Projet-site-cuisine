@@ -21,6 +21,12 @@ export interface VivinoWine {
     rating: number;      // note Vivino /5 (0 si aucune)
     ratingsCount: number;
     url: string;         // fiche Vivino
+    /**
+     * Vrai quand le domaine de la fiche correspond vraiment à l'étiquette lue.
+     * Sans ça on garde la photo prise par l'utilisateur : mieux vaut sa propre
+     * bouteille qu'une étiquette voisine mais fausse.
+     */
+    confident: boolean;
 }
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
@@ -41,14 +47,48 @@ function tokens(s: string): string[] {
     return flat.split(/[^a-z0-9]+/).filter((t) => t.length > 1);
 }
 
-/** Similarité F1 entre deux sacs de mots (équilibre couverture / bruit). */
+/** Distance d'édition, plafonnée : on s'arrête dès qu'on dépasse `max`. */
+function editDistance(a: string, b: string, max: number) {
+    if (Math.abs(a.length - b.length) > max) return max + 1;
+    let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+    for (let i = 1; i <= a.length; i++) {
+        const row = [i];
+        let best = i;
+        for (let j = 1; j <= b.length; j++) {
+            const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+            row[j] = Math.min(prev[j] + 1, row[j - 1] + 1, prev[j - 1] + cost);
+            best = Math.min(best, row[j]);
+        }
+        if (best > max) return max + 1;
+        prev = row;
+    }
+    return prev[b.length];
+}
+
+/**
+ * Deux mots désignent-ils la même chose ? Une étiquette lue par l'IA arrive
+ * souvent à une lettre près (« Poças » lu « Bocas », « Rieussec » lu « Riessec ») :
+ * on tolère d'autant plus de fautes que le mot est long.
+ */
+function sameWord(a: string, b: string) {
+    if (a === b) return true;
+    const len = Math.min(a.length, b.length);
+    if (len < 4) return false;
+    return editDistance(a, b, len >= 7 ? 2 : 1) <= (len >= 7 ? 2 : 1);
+}
+
+/** Similarité F1 entre deux sacs de mots, à l'orthographe près. */
 function f1(a: string[], b: string[]) {
-    const A = new Set(a), B = new Set(b);
-    if (!A.size || !B.size) return 0;
+    const A = [...new Set(a)], B = [...new Set(b)];
+    if (!A.length || !B.length) return 0;
+    const taken = new Set<number>();
     let inter = 0;
-    A.forEach((t) => { if (B.has(t)) inter++; });
+    for (const t of A) {
+        const hit = B.findIndex((u, i) => !taken.has(i) && sameWord(t, u));
+        if (hit !== -1) { taken.add(hit); inter++; }
+    }
     if (!inter) return 0;
-    const p = inter / B.size, r = inter / A.size;
+    const p = inter / B.length, r = inter / A.length;
     return (2 * p * r) / (p + r);
 }
 
@@ -71,26 +111,44 @@ function extractMatches(html: string): any[] {
     return [];
 }
 
+/**
+ * La photo d'un résultat, par ordre de beauté : bouteille détourée (`_pb_`),
+ * puis à défaut la photo d'étiquette. Beaucoup de vins de petits producteurs
+ * n'ont que la seconde — c'est déjà bien mieux qu'une bouteille dessinée.
+ */
+function pickPhoto(v: any): { url: string; bottle: boolean } {
+    const va = v?.image?.variations || {};
+    const bottle = va.bottle_large || va.bottle_medium || '';
+    if (bottle) return { url: abs(bottle), bottle: true };
+    return { url: abs(va.large || va.medium || ''), bottle: false };
+}
+
 /** Le meilleur résultat : même domaine, même millésime, photo disponible. */
 function bestMatch(matches: any[], query: string, hintYear?: string) {
     const qt = tokens(query);
-    let best: any = null, bestScore = -1;
+    let best: any = null, bestScore = -1, bestWinery = 0;
     for (const m of matches.slice(0, 24)) {
         const v = m?.vintage;
         if (!v?.wine) continue;
-        const photo = v.image?.variations?.bottle_large || v.image?.variations?.bottle_medium || '';
+        const photo = pickPhoto(v);
         const count = v.statistics?.ratings_count || 0;
-        let s = 6 * f1(qt, tokens(v.wine.winery?.name || '')) + 4 * f1(qt, tokens(v.name || ''));
-        if (photo) s += 3;
+        const winery = f1(qt, tokens(v.wine.winery?.name || ''));
+        let s = 6 * winery + 4 * f1(qt, tokens(v.name || ''));
+        if (photo.url) s += photo.bottle ? 3 : 1.5;
         if (hintYear && String(v.year) === String(hintYear)) s += 2.5;
+        // Sans millésime lu, un même vin sort en 20 exemplaires : on préfère le
+        // plus récent et le plus commenté plutôt que le premier de la liste.
+        else s += Math.min(1, Math.max(0, (Number(v.year) - 1980) / 45));
         s += Math.min(1.2, Math.log10(1 + count) / 3); // notoriété, en départage
-        if (s > bestScore) { bestScore = s; best = v; }
+        if (s > bestScore) { bestScore = s; best = v; bestWinery = winery; }
     }
     // En dessous de ce seuil, le résultat n'a plus rien à voir avec l'étiquette.
-    return bestScore >= 3 ? best : null;
+    if (bestScore < 3) return null;
+    // « Confiant » = c'est bien ce domaine-là, pas juste la même appellation.
+    return { vintage: best, confident: bestWinery >= 0.6 };
 }
 
-function toWine(v: any): VivinoWine {
+function toWine(v: any, confident: boolean): VivinoWine {
     const w = v.wine || {};
     const style = w.style || {};
     const grapes: any[] = v.grapes || style.grapes || [];
@@ -108,10 +166,11 @@ function toWine(v: any): VivinoWine {
         region,
         color: TYPE_COLOR[w.type_id] || 'rouge',
         note,
-        photo: abs(v.image?.variations?.bottle_large || v.image?.variations?.bottle_medium || ''),
+        photo: pickPhoto(v).url,
         rating: v.statistics?.ratings_average || 0,
         ratingsCount: v.statistics?.ratings_count || 0,
         url: v.seo_name ? `https://www.vivino.com/FR/fr/${v.seo_name}` : 'https://www.vivino.com',
+        confident,
     };
 }
 
@@ -133,7 +192,7 @@ export async function findOnVivino(query: string, hintYear?: string, timeoutMs =
         });
         if (!res.ok) return null;
         const best = bestMatch(extractMatches(await res.text()), q, hintYear);
-        return best ? toWine(best) : null;
+        return best ? toWine(best.vintage, best.confident) : null;
     } catch {
         return null;
     } finally {
