@@ -24,6 +24,7 @@ import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
 import Portal from '../Portal';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import WinePairing from '@/components/WinePairing/WinePairing';
+import CaveMatch from '@/components/CaveMatch/CaveMatch';
 import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
 import { getSubstitutions, Substitution } from '@/lib/substitutions';
@@ -1297,6 +1298,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <PortionsControl value={servings} base={recipe.servings || 4} onChange={setServings} compact />
                                 <MagicConverter />
                                 <WinePairing recipeId={recipe.id} title={recipe.title} category={recipe.category} ingredients={recipe.ingredients} compact />
+                                <CaveMatch recipe={recipe} />
                             </div>
                         </div>
                     )}

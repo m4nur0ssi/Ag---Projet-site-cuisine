@@ -37,6 +37,7 @@ const ShareButton = dynamic(() => import('@/components/ShareButton/ShareButton')
 const TVPlanner = dynamic(() => import('@/mobile/screens/tv/TVPlanner'), { ssr: false });
 const TVCourses = dynamic(() => import('@/mobile/screens/tv/TVCourses'), { ssr: false });
 const TVTrophies = dynamic(() => import('@/mobile/screens/tv/TVTrophies'), { ssr: false });
+const MaCave = dynamic(() => import('@/mobile/screens/tv/MaCave'), { ssr: false });
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 
@@ -447,7 +448,7 @@ export default function TVDesktopHome() {
     // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
-    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies'>('none');
+    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave'>('none');
 
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
     const [forYou, setForYou] = useState<Recipe[]>([]);
@@ -798,6 +799,7 @@ export default function TVDesktopHome() {
                     <NavItem icon={ICONS.cart} tour="shopping" active={panel === 'courses'} onClick={() => { setCollection(null); setFilters([]); setPanel('courses'); }}>Liste de courses</NavItem>
                     <NavItem icon={ICONS.heart} tour="favorites" onClick={() => router.push('/favorites')}>Favoris</NavItem>
                     <NavItem icon="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" active={panel === 'trophies'} onClick={() => { setCollection(null); setFilters([]); setPanel('trophies'); }}>Palmarès</NavItem>
+                    <NavItem icon="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" active={panel === 'cave'} onClick={() => { setCollection(null); setFilters([]); setPanel('cave'); }}>Ma cave</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
                         fournit que l'icône et la ligne de menu. */}
                     <button className={`${styles.navRow}`} onClick={() => setTuto(true)}>
@@ -847,7 +849,7 @@ export default function TVDesktopHome() {
             <main className={styles.content}>
                 {panel !== 'none' ? (
                     <div className={styles.panelHost}>
-                        {!user && panel !== 'trophies' ? (
+                        {!user && panel !== 'trophies' && panel !== 'cave' ? (
                             <TVAuthGate
                                 subtitle={panel === 'planner'
                                     ? 'Le planificateur de la semaine est réservé aux membres connectés.'
@@ -855,7 +857,8 @@ export default function TVDesktopHome() {
                             />
                         ) : panel === 'planner' ? <TVPlanner embedded />
                             : panel === 'trophies' ? <TVTrophies embedded />
-                                : <TVCourses embedded />}
+                                : panel === 'cave' ? <MaCave embedded />
+                                    : <TVCourses embedded />}
                     </div>
                 ) : filters.length > 0 ? (
                     <div className={styles.collection}>

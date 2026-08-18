@@ -22,6 +22,7 @@ import PortionsControl from '@/components/PortionsControl/PortionsControl';
 import DifficultyMeter from '@/components/DifficultyMeter/DifficultyMeter';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import WinePairing from '@/components/WinePairing/WinePairing';
+import CaveMatch from '@/components/CaveMatch/CaveMatch';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
 import { getSubstitutions, Substitution } from '@/lib/substitutions';
@@ -1293,6 +1294,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" /><circle cx="8.5" cy="9" r="1.6" /><path d="M21 15l-5-5L5 21" /></svg>
                                         Image
                                     </button>
+                                    <CaveMatch recipe={recipe} />
                                 </div>
                             </div>
                         </div>

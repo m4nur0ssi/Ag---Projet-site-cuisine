@@ -295,6 +295,10 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                     <Ic d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" />
                                     <span className={styles.navRowText}>Palmarès</span>
                                 </button>
+                                <button className={styles.navRow} onClick={() => go('/ma-cave')}>
+                                    <Ic d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" />
+                                    <span className={styles.navRowText}>Ma cave</span>
+                                </button>
                                 {/* La loupe TV (recette / ingrédients / assistant IA),
                                     surtout pas la page /search du site. */}
                                 <button className={styles.navRow} onClick={() => { onClose(); onSearch(); }}>
