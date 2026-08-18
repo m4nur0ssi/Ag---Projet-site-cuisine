@@ -49,6 +49,7 @@ export const viewport = {
 
 import AppShell from '@/components/AppShell'
 import CookieConsent from '@/components/CookieConsent/CookieConsent'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function RootLayout({
     children,
@@ -100,6 +101,8 @@ export default function RootLayout({
                     {children}
                 </AppShell>
                 <CookieConsent />
+                {/* Vercel Web Analytics (Hobby, gratuit) : visiteurs + pages vues. */}
+                <Analytics />
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
