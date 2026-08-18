@@ -245,23 +245,50 @@ function PairSheet({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
 function AddWine({ onClose }: { onClose: () => void }) {
     const [photo, setPhoto] = useState<string>('');
     const [photoUrl, setPhotoUrl] = useState('');
-    const [label, setLabel] = useState('');
     const [busy, setBusy] = useState(false);
     const [form, setForm] = useState<{ name: string; grape: string; year: string; color: WineColor; region: string; note: string }>(
         { name: '', grape: '', year: '', color: 'rouge', region: '', note: '' });
+    const [scanMsg, setScanMsg] = useState('');
     const fileRef = useRef<HTMLInputElement>(null);
+
+    // Compresse la photo avant l'envoi à l'IA vision (rapide, léger).
+    const compress = (dataUrl: string): Promise<string> => new Promise((res) => {
+        const img = new Image();
+        img.onload = () => {
+            const max = 900; const r = Math.min(1, max / Math.max(img.width, img.height));
+            const cv = document.createElement('canvas'); cv.width = img.width * r; cv.height = img.height * r;
+            const ctx = cv.getContext('2d'); if (!ctx) return res(dataUrl);
+            ctx.drawImage(img, 0, 0, cv.width, cv.height);
+            res(cv.toDataURL('image/jpeg', 0.82));
+        };
+        img.onerror = () => res(dataUrl);
+        img.src = dataUrl;
+    });
+
+    const recognizeImage = async (dataUrl: string) => {
+        setBusy(true); setScanMsg('Lecture de l’étiquette…');
+        try {
+            const small = await compress(dataUrl);
+            const res = await fetch('/api/wine-lookup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ image: small }) });
+            const data = await res.json();
+            if (data?.wine?.name) { setForm((f) => ({ ...f, ...data.wine })); setScanMsg('Reconnu ✓'); }
+            else setScanMsg('Non reconnu — complète à la main.');
+        } catch { setScanMsg('Reconnaissance impossible — saisie manuelle.'); }
+        setBusy(false);
+    };
 
     const onFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const f = e.target.files?.[0]; if (!f) return;
         const rd = new FileReader();
-        rd.onload = () => setPhoto(String(rd.result || ''));
+        rd.onload = () => { const url = String(rd.result || ''); setPhoto(url); recognizeImage(url); };
         rd.readAsDataURL(f);
     };
 
+    // Reconnaissance depuis le NOM tapé (si pas de photo ou pour compléter).
     const recognize = async () => {
-        const q = label.trim() || form.name.trim();
+        const q = form.name.trim();
         if (!q) return;
-        setBusy(true);
+        setBusy(true); setScanMsg('');
         try {
             const res = await fetch('/api/wine-lookup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ label: q }) });
             const data = await res.json();
@@ -271,9 +298,10 @@ function AddWine({ onClose }: { onClose: () => void }) {
     };
 
     const save = () => {
-        if (!form.name.trim()) return;
+        const name = form.name.trim();
+        if (!name) return;
         // Priorité : lien officiel collé > photo scannée.
-        addWine({ ...form, name: form.name.trim(), photo: photoUrl.trim() || photo || undefined });
+        addWine({ ...form, name, photo: photoUrl.trim() || photo || undefined });
         onClose();
     };
 
@@ -287,25 +315,24 @@ function AddWine({ onClose }: { onClose: () => void }) {
 
                 <div className={styles.addBody}>
                     <div className={styles.scanRow}>
-                        <button className={styles.scanBtn} onClick={() => fileRef.current?.click()}>
+                        <button className={styles.scanBtn} onClick={() => fileRef.current?.click()} disabled={busy}>
                             {photo ? <img src={photo} alt="" className={styles.scanThumb} /> : (
                                 <span className={styles.scanIc}>
                                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h2M17 5h2a2 2 0 0 1 2 2v2M21 15v2a2 2 0 0 1-2 2h-2M7 19H5a2 2 0 0 1-2-2v-2M7 12h10" /></svg>
                                     Scanner l’étiquette
                                 </span>
                             )}
+                            {busy && <span className={styles.scanBusy}><span className={styles.spin} />Lecture de l’étiquette…</span>}
                         </button>
                         <input ref={fileRef} type="file" accept="image/*" capture="environment" onChange={onFile} hidden />
-                        <div className={styles.scanHint}>Prends la bouteille en photo, puis l’IA remplit les infos.</div>
-                    </div>
-
-                    <div className={styles.recRow}>
-                        <input className={styles.inp} value={label} onChange={(e) => setLabel(e.target.value)} placeholder="Nom lu sur l’étiquette (ex. Château Margaux 2016)" />
-                        <button className={styles.recBtn} onClick={recognize} disabled={busy || (!label.trim() && !form.name.trim())}>{busy ? '…' : 'Reconnaître'}</button>
+                        <div className={styles.scanHint}>{scanMsg || 'Prends la bouteille en photo : l’IA lit l’étiquette et remplit tout automatiquement.'}</div>
                     </div>
 
                     <div className={styles.fields}>
-                        <input className={styles.inp} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Nom du vin" />
+                        <div className={styles.recRow}>
+                            <input className={styles.inp} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Nom du vin" />
+                            <button className={styles.recBtn} onClick={recognize} disabled={busy || !form.name.trim()} title="Compléter par le nom">{busy ? '…' : 'IA'}</button>
+                        </div>
                         <div className={styles.two}>
                             <input className={styles.inp} value={form.grape} onChange={(e) => setForm({ ...form, grape: e.target.value })} placeholder="Cépage" />
                             <input className={styles.inp} value={form.year} onChange={(e) => setForm({ ...form, year: e.target.value })} placeholder="Année" inputMode="numeric" />
