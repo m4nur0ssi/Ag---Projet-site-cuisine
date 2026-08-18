@@ -5,6 +5,10 @@
  * Le paramètre &v= permet de forcer le rafraîchissement quand une image WordPress change.
  */
 import { NextRequest, NextResponse } from 'next/server';
+import sharp from 'sharp';
+
+// sharp = binaire natif → runtime Node (pas Edge).
+export const runtime = 'nodejs';
 
 // Domaines autorisés (pour éviter que ce proxy soit utilisé pour autre chose)
 const ALLOWED_HOSTS = [
@@ -12,6 +16,13 @@ const ALLOWED_HOSTS = [
     '192.168.1.200',
     'lesrec3ttesm4giques.fr',
 ];
+
+// On sert du WebP redimensionné : la source (full-res du NAS) fait 2000-4000 px
+// alors que le site affiche 150-800 px. On envoie donc « juste ce qui s'affiche »
+// (× Retina), ce qui divise le Fast Origin Transfer Vercel par 5-10 sans perte
+// visible. Largeur pilotée par &w= ; jamais d'agrandissement.
+const MAX_W = 1280;   // plafond (héros/fiche en Retina)
+const DEFAULT_W = 900;
 
 export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
@@ -50,15 +61,42 @@ export async function GET(request: NextRequest) {
         }
 
         const contentType = response.headers.get('content-type') || 'image/jpeg';
-        const buffer = await response.arrayBuffer();
+        const original = Buffer.from(await response.arrayBuffer());
 
-        return new NextResponse(buffer, {
+        // Largeur demandée (bornée). Les GIF/SVG/animés ne passent pas par sharp.
+        const reqW = parseInt(searchParams.get('w') || '', 10);
+        const width = Math.min(MAX_W, Math.max(80, isNaN(reqW) ? DEFAULT_W : reqW));
+        const skip = /gif|svg|apng/i.test(contentType);
+
+        if (skip) {
+            return new NextResponse(new Uint8Array(original), {
+                headers: {
+                    'Content-Type': contentType,
+                    'Cache-Control': 'public, max-age=86400, s-maxage=2592000, stale-while-revalidate=86400',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            });
+        }
+
+        let out: Buffer; let outType = 'image/webp';
+        try {
+            out = await sharp(original)
+                .rotate() // respecte l'orientation EXIF
+                .resize({ width, withoutEnlargement: true }) // jamais d'upscale
+                .webp({ quality: 82 })
+                .toBuffer();
+        } catch {
+            // Si sharp échoue (format exotique) : on renvoie l'original tel quel.
+            out = original; outType = contentType;
+        }
+
+        return new NextResponse(new Uint8Array(out), {
             headers: {
-                'Content-Type': contentType,
-                // Cache LONG-TERME : 30 jours (2592000s) dans le CDN Vercel
-                // On utilise stale-while-revalidate pour que l'image soit servie instantanément même si le cache expire
+                'Content-Type': outType,
+                // Cache LONG-TERME : 30 jours dans le CDN Vercel (stale-while-revalidate).
                 'Cache-Control': 'public, max-age=86400, s-maxage=2592000, stale-while-revalidate=86400',
                 'Access-Control-Allow-Origin': '*',
+                'Vary': 'Accept',
             },
         });
     } catch (error) {
