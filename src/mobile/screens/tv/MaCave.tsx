@@ -49,6 +49,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     const [filter, setFilter] = useState<'tous' | WineColor>('tous');
     const [adding, setAdding] = useState(false);
     const [pairing, setPairing] = useState<CaveWine | null>(null);
+    const [zoom, setZoom] = useState<string | null>(null);
     const [q, setQ] = useState('');
     const [sort, setSort] = useState<'recent' | 'annee' | 'region'>('recent');
 
@@ -125,19 +126,44 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             ) : (
                 <div className={styles.grid}>
                     {shown.map((w) => (
-                        <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} />
+                        <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} />
                     ))}
                 </div>
             )}
 
             {adding && <AddWine onClose={() => setAdding(false)} />}
             {pairing && <PairSheet wine={pairing} onClose={() => setPairing(null)} />}
+            {zoom && <ZoomView src={zoom} onClose={() => setZoom(null)} />}
+        </div>
+    );
+}
+
+/* ── Zoom plein écran de la bouteille (molette / pincement + glisser) ──────── */
+function ZoomView({ src, onClose }: { src: string; onClose: () => void }) {
+    const [scale, setScale] = useState(1);
+    const [pos, setPos] = useState({ x: 0, y: 0 });
+    const drag = useRef<{ x: number; y: number } | null>(null);
+    return (
+        <div className={styles.zoomBack} onClick={onClose}
+            onWheel={(e) => { setScale((s) => Math.min(5, Math.max(1, s - e.deltaY * 0.002))); }}>
+            <button className={styles.zoomClose} onClick={onClose}><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
+            <img
+                src={src} alt="" className={styles.zoomImg}
+                style={{ transform: `translate(${pos.x}px, ${pos.y}px) scale(${scale})` }}
+                onClick={(e) => e.stopPropagation()}
+                onDoubleClick={() => { setScale((s) => (s > 1 ? 1 : 2.5)); setPos({ x: 0, y: 0 }); }}
+                onPointerDown={(e) => { drag.current = { x: e.clientX - pos.x, y: e.clientY - pos.y }; }}
+                onPointerMove={(e) => { if (drag.current && scale > 1) setPos({ x: e.clientX - drag.current.x, y: e.clientY - drag.current.y }); }}
+                onPointerUp={() => { drag.current = null; }}
+                draggable={false}
+            />
+            <div className={styles.zoomHint}>Molette / double-clic pour zoomer · glisser pour déplacer</div>
         </div>
     );
 }
 
 /* ── Carte vin : scène de cave (tonneau) + bouteille ──────────────────────── */
-function WineCard({ wine, onPair, onRemove }: { wine: CaveWine; onPair: () => void; onRemove: () => void }) {
+function WineCard({ wine, onPair, onRemove, onZoom }: { wine: CaveWine; onPair: () => void; onRemove: () => void; onZoom: () => void }) {
     const lp = useRef<ReturnType<typeof setTimeout> | null>(null);
     return (
         <div
@@ -149,9 +175,14 @@ function WineCard({ wine, onPair, onRemove }: { wine: CaveWine; onPair: () => vo
             <div className={styles.scene}>
                 <div className={styles.spot} />
                 <div className={styles.barrel} />
-                <div className={styles.bottle}>
+                <div className={styles.bottle} onClick={(e) => { if (wine.photo) { e.stopPropagation(); onZoom(); } }}>
                     {wine.photo ? <img src={wine.photo} alt="" className={styles.bottlePhoto} /> : <BottleSVG color={wine.color} />}
                 </div>
+                {wine.photo && (
+                    <button className={styles.zoomBtn} onClick={(e) => { e.stopPropagation(); onZoom(); }} aria-label="Agrandir">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4M11 8v6M8 11h6" /></svg>
+                    </button>
+                )}
                 <span className={`${styles.colorTag} ${styles['tag_' + wine.color]}`}>{COLOR_LABEL[wine.color]}</span>
                 <button className={styles.del} onClick={(e) => { e.stopPropagation(); onRemove(); }} aria-label="Retirer">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
@@ -213,6 +244,7 @@ function PairSheet({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
 /* ── Ajout d'un vin : scan étiquette + IA, ou saisie manuelle ─────────────── */
 function AddWine({ onClose }: { onClose: () => void }) {
     const [photo, setPhoto] = useState<string>('');
+    const [photoUrl, setPhotoUrl] = useState('');
     const [label, setLabel] = useState('');
     const [busy, setBusy] = useState(false);
     const [form, setForm] = useState<{ name: string; grape: string; year: string; color: WineColor; region: string; note: string }>(
@@ -240,7 +272,8 @@ function AddWine({ onClose }: { onClose: () => void }) {
 
     const save = () => {
         if (!form.name.trim()) return;
-        addWine({ ...form, name: form.name.trim(), photo: photo || undefined });
+        // Priorité : lien officiel collé > photo scannée.
+        addWine({ ...form, name: form.name.trim(), photo: photoUrl.trim() || photo || undefined });
         onClose();
     };
 
@@ -278,6 +311,7 @@ function AddWine({ onClose }: { onClose: () => void }) {
                             <input className={styles.inp} value={form.year} onChange={(e) => setForm({ ...form, year: e.target.value })} placeholder="Année" inputMode="numeric" />
                         </div>
                         <input className={styles.inp} value={form.region} onChange={(e) => setForm({ ...form, region: e.target.value })} placeholder="Région / appellation" />
+                        <input className={styles.inp} value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} placeholder="Lien de la photo officielle (optionnel, colle depuis le marchand)" />
                         <div className={styles.colorPick}>
                             {(['rouge', 'blanc', 'liqueur'] as WineColor[]).map((c) => (
                                 <button key={c} className={`${styles.colorOpt} ${form.color === c ? styles.colorOptOn : ''}`} onClick={() => setForm({ ...form, color: c })}>
