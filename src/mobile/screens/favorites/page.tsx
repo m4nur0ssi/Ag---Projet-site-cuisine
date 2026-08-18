@@ -14,7 +14,13 @@ import { precacheFavorites } from '@/lib/pwa';
 import { decodeHtml } from '@/mobile/lib/utils';
 import styles from './favorites.module.css';
 
-export default function FavoritesPage() {
+/**
+ * `embedded` : rendu DANS le shell desktop TV+ (barre latérale déjà présente).
+ * On retire alors le bouton retour, la barre du bas et le fond plein écran, et
+ * la fiche s'ouvre en flottant pour ne pas recouvrir le menu — exactement comme
+ * « Ma cave ».
+ */
+export default function FavoritesPage({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
     const [favoriteRecipes, setFavoriteRecipes] = useState<Recipe[]>([]);
     const [loading, setLoading] = useState(true);
@@ -43,16 +49,19 @@ export default function FavoritesPage() {
 
     useEffect(() => { if (favoriteRecipes.length) precacheFavorites(favoriteRecipes); }, [favoriteRecipes]);
 
-    const open = (r: Recipe) => window.dispatchEvent(new CustomEvent('openRecipe', { detail: r }));
+    const open = (r: Recipe) => window.dispatchEvent(
+        new CustomEvent(embedded ? 'openRecipeFromPlanner' : 'openRecipe', { detail: r }));
 
     return (
-        <div className={styles.page}>
+        <div className={`${styles.page} ${embedded ? styles.emb : ''}`}>
             <header className={styles.head}>
-                <button className={styles.back} onClick={() => router.push('/')} aria-label="Retour">
-                    <svg viewBox="0 0 8 14" width="13" height="13" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </button>
+                {!embedded && (
+                    <button className={styles.back} onClick={() => router.push('/')} aria-label="Retour">
+                        <svg viewBox="0 0 8 14" width="13" height="13" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </button>
+                )}
                 <div>
-                    <div className={styles.kicker}>Ta sélection</div>
+                    {!embedded && <div className={styles.kicker}>Ta sélection</div>}
                     <h1 className={styles.title}>Favoris</h1>
                 </div>
                 {!loading && favoriteRecipes.length > 0 && (
@@ -92,7 +101,7 @@ export default function FavoritesPage() {
                 )}
             </main>
 
-            <BottomNav />
+            {!embedded && <BottomNav />}
         </div>
     );
 }

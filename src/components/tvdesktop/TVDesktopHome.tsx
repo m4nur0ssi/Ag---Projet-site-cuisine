@@ -38,6 +38,7 @@ const TVPlanner = dynamic(() => import('@/mobile/screens/tv/TVPlanner'), { ssr: 
 const TVCourses = dynamic(() => import('@/mobile/screens/tv/TVCourses'), { ssr: false });
 const TVTrophies = dynamic(() => import('@/mobile/screens/tv/TVTrophies'), { ssr: false });
 const MaCave = dynamic(() => import('@/mobile/screens/tv/MaCave'), { ssr: false });
+const Favoris = dynamic(() => import('@/mobile/screens/favorites/page'), { ssr: false });
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 
@@ -448,7 +449,7 @@ export default function TVDesktopHome() {
     // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
-    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave'>('none');
+    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris'>('none');
 
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
     const [forYou, setForYou] = useState<Recipe[]>([]);
@@ -692,7 +693,7 @@ export default function TVDesktopHome() {
         courses: () => { setCollection(null); setFilters([]); setPanel('courses'); },
         trophies: () => { setCollection(null); setFilters([]); setPanel('trophies'); },
         cave: () => { setCollection(null); setFilters([]); setPanel('cave'); },
-        favoris: () => router.push('/favorites'),
+        favoris: () => { setCollection(null); setFilters([]); setPanel('favoris'); },
         tutoriel: () => setTuto(true),
         gouts: () => setTaste(true),
     };
@@ -820,7 +821,7 @@ export default function TVDesktopHome() {
                     <NavItem icon={ICONS.home} active={nav === 'accueil'} onClick={goHome}>Accueil</NavItem>
                     <NavItem icon={ICONS.planner} tour="planner" token="s:planner" active={panel === 'planner'} onClick={SHORTCUTS.planner}>Planificateur</NavItem>
                     <NavItem icon={ICONS.cart} tour="shopping" token="s:courses" active={panel === 'courses'} onClick={SHORTCUTS.courses}>Liste de courses</NavItem>
-                    <NavItem icon={ICONS.heart} tour="favorites" token="s:favoris" onClick={SHORTCUTS.favoris}>Favoris</NavItem>
+                    <NavItem icon={ICONS.heart} tour="favorites" token="s:favoris" active={panel === 'favoris'} onClick={SHORTCUTS.favoris}>Favoris</NavItem>
                     <NavItem icon="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" token="s:trophies" active={panel === 'trophies'} onClick={SHORTCUTS.trophies}>Palmarès</NavItem>
                     <NavItem icon="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" token="s:cave" active={panel === 'cave'} onClick={SHORTCUTS.cave}>Ma cave</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
@@ -872,11 +873,14 @@ export default function TVDesktopHome() {
                             <TVAuthGate
                                 subtitle={panel === 'planner'
                                     ? 'Le planificateur de la semaine est réservé aux membres connectés.'
-                                    : 'Ta liste de courses est réservée aux membres connectés.'}
+                                    : panel === 'favoris'
+                                        ? 'Tes recettes favorites sont liées à ton compte.'
+                                        : 'Ta liste de courses est réservée aux membres connectés.'}
                             />
                         ) : panel === 'planner' ? <TVPlanner embedded />
                             : panel === 'trophies' ? <TVTrophies embedded />
                                 : panel === 'cave' ? <MaCave embedded />
+                                : panel === 'favoris' ? <Favoris embedded />
                                     : <TVCourses embedded />}
                     </div>
                 ) : filters.length > 0 ? (

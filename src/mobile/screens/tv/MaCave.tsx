@@ -21,6 +21,12 @@ import {
 } from '@/lib/cave';
 import styles from './MaCave.module.css';
 
+/**
+ * Nom débarrassé du millésime qu'il traîne parfois : il est affiché à part, en
+ * gris, toujours à la même place. Sans ça on lisait « … 'Charmes' 2010 · 2010 ».
+ */
+const stripYear = (name: string) => name.replace(/\s*[·,-]?\s*\b(19|20)\d{2}\b\s*$/, '').trim() || name;
+
 /** Bandeau d'information de l'app (même canal que le reste du site). */
 const toast = (msg: string) => window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: msg }));
 
@@ -56,6 +62,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     const [pairing, setPairing] = useState<CaveWine | null>(null);
     const [zoom, setZoom] = useState<string | null>(null);
     const [editing, setEditing] = useState<CaveWine | null>(null);
+    const [menu, setMenu] = useState<{ wine: CaveWine; x: number; y: number } | null>(null);
     const [q, setQ] = useState('');
     const [sort, setSort] = useState<'recent' | 'annee' | 'region'>('recent');
 
@@ -141,7 +148,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             ) : (
                 <div className={styles.grid}>
                     {shown.map((w) => (
-                        <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onEdit={() => setEditing(w)} />
+                        <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
                     ))}
                 </div>
             )}
@@ -149,6 +156,16 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             {adding && <AddWine onClose={() => setAdding(false)} />}
             {pairing && <PairSheet wine={pairing} onClose={() => setPairing(null)} embedded={embedded} />}
             {editing && <EditWine wine={editing} onClose={() => setEditing(null)} />}
+            {menu && (
+                <CardMenu
+                    wine={menu.wine}
+                    at={{ x: menu.x, y: menu.y }}
+                    onClose={() => setMenu(null)}
+                    onPair={() => setPairing(menu.wine)}
+                    onEdit={() => setEditing(menu.wine)}
+                    onRemove={() => removeWine(menu.wine.id)}
+                />
+            )}
             {zoom && <ZoomView src={zoom} onClose={() => setZoom(null)} />}
         </div>
     );
@@ -179,14 +196,18 @@ function ZoomView({ src, onClose }: { src: string; onClose: () => void }) {
 }
 
 /* ── Carte vin : scène de cave (tonneau) + bouteille ──────────────────────── */
-function WineCard({ wine, onPair, onRemove, onZoom, onEdit }: { wine: CaveWine; onPair: () => void; onRemove: () => void; onZoom: () => void; onEdit: () => void }) {
+function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; onPair: () => void; onRemove: () => void; onZoom: () => void; onMenu: (x: number, y: number) => void }) {
     const lp = useRef<ReturnType<typeof setTimeout> | null>(null);
     return (
         <div
             className={styles.card}
-            /* Clic droit : corriger la fiche (couleur, millésime, cépage…). */
-            onContextMenu={(e) => { e.preventDefault(); onEdit(); }}
-            onPointerDown={() => { lp.current = setTimeout(onPair, 500); }}
+            /* Clic droit (desktop) et appui long (iPhone, où le clic droit
+               n'existe pas) ouvrent le même menu. */
+            onContextMenu={(e) => { e.preventDefault(); onMenu(e.clientX, e.clientY); }}
+            onPointerDown={(e) => {
+                const { clientX, clientY } = e;
+                lp.current = setTimeout(() => { navigator.vibrate?.(12); onMenu(clientX, clientY); }, 500);
+            }}
             onPointerUp={() => { if (lp.current) clearTimeout(lp.current); }}
             onPointerLeave={() => { if (lp.current) clearTimeout(lp.current); }}
         >
@@ -207,7 +228,10 @@ function WineCard({ wine, onPair, onRemove, onZoom, onEdit }: { wine: CaveWine; 
                 </button>
             </div>
             <div className={styles.info}>
-                <div className={styles.wName}>{wine.name}{wine.year ? <span className={styles.wYear}> · {wine.year}</span> : null}</div>
+                <div className={styles.wName}>
+                    {stripYear(wine.name)}
+                    {wine.year ? <span className={styles.wYear}> · {wine.year}</span> : null}
+                </div>
                 <div className={styles.wMeta}>{[wine.grape, wine.region].filter(Boolean).join(' · ')}</div>
                 <div className={styles.ratings}>
                     {wine.rating ? (
@@ -220,12 +244,14 @@ function WineCard({ wine, onPair, onRemove, onZoom, onEdit }: { wine: CaveWine; 
                         onSet={(n) => updateWine(wine.id, { myRating: n })}
                     />
                 </div>
-                {(() => {
-                    const w = drinkWindow(wine);
-                    if (!w) return null;
-                    const cls = w.status === 'tard' ? styles.apoLate : w.status === 'jeune' ? styles.apoWait : styles.apoNow;
-                    return <div className={`${styles.apogee} ${cls}`}>{w.label}</div>;
-                })()}
+                <div className={styles.apoSlot}>
+                    {(() => {
+                        const w = drinkWindow(wine);
+                        if (!w) return null;
+                        const cls = w.status === 'tard' ? styles.apoLate : w.status === 'jeune' ? styles.apoWait : styles.apoNow;
+                        return <span className={`${styles.apogee} ${cls}`}>{w.label}</span>;
+                    })()}
+                </div>
                 <div className={styles.stockRow}>
                     <div className={styles.stepper}>
                         <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) - 1); }} aria-label="Moins">−</button>
@@ -265,7 +291,38 @@ function MyStars({ value, onSet, big = false }: { value: number; onSet: (n: numb
 }
 
 /**
- * Modifier une bouteille — clic droit sur sa carte.
+ * Menu d'une bouteille — clic droit sur desktop, appui long sur iPhone où le
+ * clic droit n'existe pas. Il réunit les deux gestes utiles sur une carte :
+ * l'accord avec une recette et la correction de la fiche.
+ */
+function CardMenu({ wine, at, onClose, onPair, onEdit, onRemove }: {
+    wine: CaveWine; at: { x: number; y: number };
+    onClose: () => void; onPair: () => void; onEdit: () => void; onRemove: () => void;
+}) {
+    // On rabat le menu dans la fenêtre quand le clic tombe près d'un bord.
+    const W = 210, H = 176;
+    const x = Math.min(at.x, (typeof window !== 'undefined' ? window.innerWidth : 400) - W - 10);
+    const y = Math.min(at.y, (typeof window !== 'undefined' ? window.innerHeight : 800) - H - 10);
+    const Item = ({ d, label, danger, onClick }: { d: string; label: string; danger?: boolean; onClick: () => void }) => (
+        <button className={`${styles.ctxItem} ${danger ? styles.ctxDanger : ''}`} onClick={() => { onClick(); onClose(); }}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg>
+            {label}
+        </button>
+    );
+    return (
+        <div className={styles.ctxBack} onClick={onClose} onContextMenu={(e) => { e.preventDefault(); onClose(); }}>
+            <div className={styles.ctxMenu} style={{ left: x, top: y }} onClick={(e) => e.stopPropagation()}>
+                <div className={styles.ctxTitle}>{wine.name}</div>
+                <Item d="M4 4h16M7 4v6a5 5 0 0 0 10 0V4M12 15v5M9 20h6" label="Quelle recette ?" onClick={onPair} />
+                <Item d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" label="Corriger la fiche" onClick={onEdit} />
+                <Item d="M5 12h14" label="Retirer de la cave" danger onClick={onRemove} />
+            </div>
+        </div>
+    );
+}
+
+/**
+ * Modifier une bouteille — depuis le menu de sa carte.
  * L'IA se trompe (une couleur, un millésime, un cépage) : cette fiche permet de
  * rectifier sans repasser par un scan, dans le même langage visuel que le reste
  * de la cave plutôt que dans le vieux formulaire.
