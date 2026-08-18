@@ -194,8 +194,8 @@ function WineCard({ wine, onPair, onRemove, onZoom }: { wine: CaveWine; onPair: 
                 {(() => {
                     const w = drinkWindow(wine);
                     if (!w) return null;
-                    const cls = w.status === 'À boire vite' ? styles.apoLate : w.status === 'À garder' ? styles.apoWait : styles.apoNow;
-                    return <div className={`${styles.apogee} ${cls}`}>{w.status} · {w.from}–{w.to}</div>;
+                    const cls = w.status === 'tard' ? styles.apoLate : w.status === 'jeune' ? styles.apoWait : styles.apoNow;
+                    return <div className={`${styles.apogee} ${cls}`}>{w.label}</div>;
                 })()}
                 <div className={styles.stockRow}>
                     <div className={styles.stepper}>

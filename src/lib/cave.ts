@@ -18,19 +18,19 @@ export interface CaveWine {
     addedAt: number;
 }
 
-/** Fenêtre d'apogée (« prêt à boire ») estimée depuis la couleur + le millésime. */
-export function drinkWindow(wine: CaveWine): { from: number; to: number; status: string } | null {
+export type DrinkStatus = 'jeune' | 'pret' | 'apogee' | 'tard';
+
+/** Phrase d'œnologue (sans dates) selon couleur + millésime. */
+export function drinkWindow(wine: CaveWine): { status: DrinkStatus; label: string } | null {
     const y = parseInt(wine.year, 10);
     if (!y || y < 1900) return null;
     const span = wine.color === 'rouge' ? [3, 15] : wine.color === 'blanc' ? [1, 6] : [5, 30];
     const from = y + span[0], to = y + span[1];
     const now = new Date().getFullYear();
-    let status: string;
-    if (now < from) status = 'À garder';
-    else if (now > to) status = 'À boire vite';
-    else if (now <= from + (to - from) * 0.5) status = 'Prêt à boire';
-    else status = 'À son apogée';
-    return { from, to, status };
+    if (now < from) return { status: 'jeune', label: 'Encore un peu jeune' };
+    if (now > to) return { status: 'tard', label: 'À déguster sans tarder' };
+    if (now <= from + (to - from) * 0.5) return { status: 'pret', label: 'Prêt à boire' };
+    return { status: 'apogee', label: 'À son apogée' };
 }
 
 export const CAVE_KEY = 'ma-cave-v1';
