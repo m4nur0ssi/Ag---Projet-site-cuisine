@@ -1,7 +1,8 @@
 // « Ma cave » — base locale des vins de l'utilisateur (maquette).
 // Stockage localStorage ; chaque vin : nom, cépage, année, couleur, région, note,
-// photo de la bouteille (celle scannée/prise). La SCÈNE (tonneau + cave) est
-// rendue en CSS côté composant : seule la bouteille change.
+// photo de la bouteille (celle du marchand quand elle a été retrouvée, sinon
+// celle scannée). La SCÈNE (tonneau + cave) est rendue en CSS côté composant :
+// seule la bouteille change.
 
 export type WineColor = 'rouge' | 'blanc' | 'liqueur';
 
@@ -13,7 +14,9 @@ export interface CaveWine {
     color: WineColor;
     region: string;
     note?: string;
-    photo?: string;     // data URL de la bouteille scannée (optionnel)
+    photo?: string;     // bouteille officielle (URL Vivino) ou photo scannée
+    rating?: number;    // note Vivino /5, quand la bouteille y a été retrouvée
+    vivinoUrl?: string; // fiche marchand d'origine
     qty?: number;       // nombre de bouteilles en cave
     addedAt: number;
 }

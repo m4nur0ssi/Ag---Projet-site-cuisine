@@ -1,8 +1,10 @@
 'use client';
 /**
  * « Ma cave » — maquette Apple TV+ (mobile + desktop).
- * - Scanner l'étiquette (caméra mobile) → l'IA (/api/wine-lookup) remplit nom,
- *   cépage, année, couleur, région, note. Saisie manuelle aussi.
+ * - Scanner l'étiquette (caméra mobile) → /api/wine-lookup lit l'étiquette puis
+ *   retrouve la bouteille chez le marchand : sa PHOTO OFFICIELLE, le nom, le
+ *   cépage, l'année, la région et la note entrent directement dans la cave.
+ *   Saisie manuelle toujours possible.
  * - Chaque vin est présenté dans une SCÈNE de cave (tonneau de chêne) rendue en
  *   CSS : seule la bouteille change.
  * - Onglets Rouges / Blancs / Liqueurs. Sur un vin → « Quelle recette ? » propose
@@ -191,6 +193,7 @@ function WineCard({ wine, onPair, onRemove, onZoom }: { wine: CaveWine; onPair: 
             <div className={styles.info}>
                 <div className={styles.wName}>{wine.name}{wine.year ? <span className={styles.wYear}> · {wine.year}</span> : null}</div>
                 <div className={styles.wMeta}>{[wine.grape, wine.region].filter(Boolean).join(' · ')}</div>
+                {wine.rating ? <div className={styles.rating}>★ {wine.rating.toFixed(1)}<small>/5</small></div> : null}
                 {(() => {
                     const w = drinkWindow(wine);
                     if (!w) return null;
@@ -241,13 +244,17 @@ function PairSheet({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
     );
 }
 
-/* ── Ajout d'un vin : scan étiquette + IA, ou saisie manuelle ─────────────── */
+/* ── Ajout d'un vin : scan étiquette → ajout automatique ──────────────────── */
+type Official = { photo?: string; rating?: number; vivinoUrl?: string };
+
 function AddWine({ onClose }: { onClose: () => void }) {
     const [photo, setPhoto] = useState<string>('');
     const [photoUrl, setPhotoUrl] = useState('');
     const [busy, setBusy] = useState(false);
     const [form, setForm] = useState<{ name: string; grape: string; year: string; color: WineColor; region: string; note: string }>(
         { name: '', grape: '', year: '', color: 'rouge', region: '', note: '' });
+    // Photo officielle + note du marchand quand la bouteille a été retrouvée.
+    const [official, setOfficial] = useState<Official>({});
     const [scanMsg, setScanMsg] = useState('');
     const fileRef = useRef<HTMLInputElement>(null);
 
@@ -255,7 +262,9 @@ function AddWine({ onClose }: { onClose: () => void }) {
     const compress = (dataUrl: string): Promise<string> => new Promise((res) => {
         const img = new Image();
         img.onload = () => {
-            const max = 900; const r = Math.min(1, max / Math.max(img.width, img.height));
+            // 640 px suffit à lire une étiquette et divise par 2 les jetons envoyés
+            // au modèle vision (quota Groq gratuit : 8000 jetons/minute).
+            const max = 640; const r = Math.min(1, max / Math.max(img.width, img.height));
             const cv = document.createElement('canvas'); cv.width = img.width * r; cv.height = img.height * r;
             const ctx = cv.getContext('2d'); if (!ctx) return res(dataUrl);
             ctx.drawImage(img, 0, 0, cv.width, cv.height);
@@ -265,43 +274,78 @@ function AddWine({ onClose }: { onClose: () => void }) {
         img.src = dataUrl;
     });
 
-    const recognizeImage = async (dataUrl: string) => {
+    /**
+     * Scan → ajout direct. La photo part à /api/wine-lookup, qui lit l'étiquette
+     * puis retrouve la bouteille chez le marchand : on récupère la photo
+     * officielle + nom/cépage/année/région, et le vin entre dans la cave sans
+     * autre manipulation. Si la bouteille n'est pas reconnue, on retombe sur le
+     * formulaire pré-rempli plutôt que d'ajouter n'importe quoi.
+     */
+    const scanAndAdd = async (dataUrl: string) => {
         setBusy(true); setScanMsg('Lecture de l’étiquette…');
+        const step2 = setTimeout(() => setScanMsg('Recherche de la bouteille…'), 1400);
         try {
             const small = await compress(dataUrl);
             const res = await fetch('/api/wine-lookup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ image: small }) });
             const data = await res.json();
-            if (data?.wine?.name) { setForm((f) => ({ ...f, ...data.wine })); setScanMsg('Reconnu ✓'); }
+            const w = data?.wine;
+            if (w?.name) {
+                if (data.source === 'vivino') {
+                    // Bouteille retrouvée : belle photo d'étiquette + fiche → en cave.
+                    addWine({
+                        name: w.name, grape: w.grape || '', year: w.year || '',
+                        color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
+                        photo: w.photo || dataUrl, rating: w.rating, vivinoUrl: w.vivinoUrl,
+                    });
+                    onClose();
+                    return;
+                }
+                // Étiquette lue mais bouteille introuvable → on laisse vérifier.
+                setForm((f) => ({ ...f, ...w }));
+                setOfficial({});
+                setScanMsg('Étiquette lue, bouteille introuvable chez le marchand — vérifie puis ajoute.');
+            } else if (data?.quota) setScanMsg('Trop de scans d’affilée (quota IA) — réessaie dans une minute.');
             else setScanMsg('Non reconnu — complète à la main.');
         } catch { setScanMsg('Reconnaissance impossible — saisie manuelle.'); }
+        clearTimeout(step2);
         setBusy(false);
     };
 
     const onFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const f = e.target.files?.[0]; if (!f) return;
         const rd = new FileReader();
-        rd.onload = () => { const url = String(rd.result || ''); setPhoto(url); recognizeImage(url); };
+        rd.onload = () => { const url = String(rd.result || ''); setPhoto(url); scanAndAdd(url); };
         rd.readAsDataURL(f);
     };
 
-    // Reconnaissance depuis le NOM tapé (si pas de photo ou pour compléter).
+    // Recherche depuis le NOM tapé (si pas de photo) : même moteur, sans ajout
+    // automatique puisque l'utilisateur est déjà en train de saisir.
     const recognize = async () => {
         const q = form.name.trim();
         if (!q) return;
-        setBusy(true); setScanMsg('');
+        setBusy(true); setScanMsg('Recherche de la bouteille…');
         try {
             const res = await fetch('/api/wine-lookup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ label: q }) });
             const data = await res.json();
-            if (data?.wine) setForm((f) => ({ ...f, ...data.wine, note: data.wine.note || f.note }));
-        } catch { /* saisie manuelle */ }
+            const w = data?.wine;
+            if (w) {
+                setForm((f) => ({ ...f, name: w.name, grape: w.grape, year: w.year, color: w.color, region: w.region, note: w.note || f.note }));
+                setOfficial(data.source === 'vivino' ? { photo: w.photo, rating: w.rating, vivinoUrl: w.vivinoUrl } : {});
+                setScanMsg(data.source === 'vivino' ? 'Bouteille trouvée ✓' : 'Fiche estimée — pas de photo officielle.');
+            }
+        } catch { setScanMsg('Recherche impossible — saisie manuelle.'); }
         setBusy(false);
     };
 
     const save = () => {
         const name = form.name.trim();
         if (!name) return;
-        // Priorité : lien officiel collé > photo scannée.
-        addWine({ ...form, name, photo: photoUrl.trim() || photo || undefined });
+        // Priorité : lien collé > photo officielle du marchand > photo scannée.
+        addWine({
+            ...form, name,
+            photo: photoUrl.trim() || official.photo || photo || undefined,
+            rating: official.rating, vivinoUrl: official.vivinoUrl,
+        });
         onClose();
     };
 
@@ -316,16 +360,16 @@ function AddWine({ onClose }: { onClose: () => void }) {
                 <div className={styles.addBody}>
                     <div className={styles.scanRow}>
                         <button className={styles.scanBtn} onClick={() => fileRef.current?.click()} disabled={busy}>
-                            {photo ? <img src={photo} alt="" className={styles.scanThumb} /> : (
+                            {official.photo || photo ? <img src={official.photo || photo} alt="" className={styles.scanThumb} /> : (
                                 <span className={styles.scanIc}>
                                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h2M17 5h2a2 2 0 0 1 2 2v2M21 15v2a2 2 0 0 1-2 2h-2M7 19H5a2 2 0 0 1-2-2v-2M7 12h10" /></svg>
                                     Scanner l’étiquette
                                 </span>
                             )}
-                            {busy && <span className={styles.scanBusy}><span className={styles.spin} />Lecture de l’étiquette…</span>}
+                            {busy && <span className={styles.scanBusy}><span className={styles.spin} />{scanMsg || 'Lecture de l’étiquette…'}</span>}
                         </button>
                         <input ref={fileRef} type="file" accept="image/*" capture="environment" onChange={onFile} hidden />
-                        <div className={styles.scanHint}>{scanMsg || 'Prends la bouteille en photo : l’IA lit l’étiquette et remplit tout automatiquement.'}</div>
+                        <div className={styles.scanHint}>{(!busy && scanMsg) || 'Prends la bouteille en photo : l’étiquette est lue, la bouteille est retrouvée chez le marchand et entre dans ta cave avec sa vraie photo.'}</div>
                     </div>
 
                     <div className={styles.fields}>
