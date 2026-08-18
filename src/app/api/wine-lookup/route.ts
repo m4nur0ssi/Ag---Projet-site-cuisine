@@ -30,7 +30,8 @@ type Wine = {
 };
 
 const SYSTEM = `Tu es un sommelier. Renvoie les caractéristiques d'un vin STRICTEMENT en JSON :
-{"name":"nom du domaine/cuvée","grape":"cépage principal","year":"millésime si visible sinon \\"\\"","color":"rouge|blanc|liqueur","region":"appellation, région, pays","note":"une phrase courte: arômes/style"}
+{"readable":true,"name":"nom du domaine/cuvée","grape":"cépage principal","year":"millésime si visible sinon \\"\\"","color":"rouge|blanc|liqueur","region":"appellation, région, pays","note":"une phrase courte: arômes/style"}
+- "readable" : false si tu ne LIS pas réellement un nom sur une étiquette de vin (photo floue, sujet quelconque, texte illisible). Dans ce cas ne devine RIEN, mets false et laisse les autres champs vides. N'invente jamais un domaine plausible.
 - "color": "rouge", "blanc" ou "liqueur" (liquoreux/doux/porto/muscat). Rosé → "blanc".
 - "name" : recopie le nom tel qu'il figure sur l'étiquette (domaine + cuvée), sans le mot "millésime" ni la contenance. C'est ce nom qui servira à retrouver la bouteille chez un marchand.
 - Ne laisse aucun champ vide sauf éventuellement l'année. Estime au plus plausible d'après l'appellation.
@@ -79,11 +80,21 @@ function extractJson(raw: string) {
     throw new Error('JSON illisible');
 }
 
+/**
+ * Face à une photo floue ou hors sujet, le modèle vision ne dit pas « je ne
+ * sais pas » : il répond « Vin », « Wine », « Inconnu ». Ces noms-là ne sont
+ * pas des bouteilles et ne doivent pas atterrir dans la cave.
+ */
+const VAGUE = /^(vin|vins|wine|vino|bouteille|bottle|inconnu|unknown|n\/?a|sans nom|-{0,3})$/i;
+
 function toWine(raw: string, fallbackName: string): Wine {
     const parsed = extractJson(raw);
+    if (parsed.readable === false && !fallbackName) throw new Error('pas une étiquette de vin');
+    const name = String(parsed.name || fallbackName || '').trim();
+    if (!name || VAGUE.test(name)) throw new Error('étiquette illisible');
     const color = ['rouge', 'blanc', 'liqueur'].includes(parsed.color) ? parsed.color : 'rouge';
     return {
-        name: parsed.name || fallbackName || 'Vin',
+        name,
         grape: parsed.grape || '',
         year: String(parsed.year || ''),
         color,
@@ -159,8 +170,10 @@ export async function POST(request: Request) {
         return NextResponse.json({ wine: read, source: image ? 'vision' : 'text', quota });
     }
 
+    // Rien n'a pu être lu : on renvoie un nom VIDE, sinon le client ajouterait
+    // en cave une bouteille fantôme appelée « Vin ».
     return NextResponse.json({
-        wine: { name: label || 'Vin', grape: '', year: '', color: 'rouge', region: '', note: '' },
+        wine: { name: '', grape: '', year: '', color: 'rouge', region: '', note: '' },
         source: 'fallback',
         quota,
     });

@@ -77,16 +77,28 @@ function sameWord(a: string, b: string) {
     return editDistance(a, b, len >= 7 ? 2 : 1) <= (len >= 7 ? 2 : 1);
 }
 
+/** Nombre de mots de `a` retrouvés dans `b`, à l'orthographe près. */
+function overlap(a: string[], b: string[]) {
+    const taken = new Set<number>();
+    let n = 0;
+    for (const t of a) {
+        const hit = b.findIndex((u, i) => !taken.has(i) && sameWord(t, u));
+        if (hit !== -1) { taken.add(hit); n++; }
+    }
+    return n;
+}
+
+/** Part des mots de `a` présents dans `b` (0 → 1). */
+function coverage(a: string[], b: string[]) {
+    const A = [...new Set(a)], B = [...new Set(b)];
+    return A.length && B.length ? overlap(A, B) / A.length : 0;
+}
+
 /** Similarité F1 entre deux sacs de mots, à l'orthographe près. */
 function f1(a: string[], b: string[]) {
     const A = [...new Set(a)], B = [...new Set(b)];
     if (!A.length || !B.length) return 0;
-    const taken = new Set<number>();
-    let inter = 0;
-    for (const t of A) {
-        const hit = B.findIndex((u, i) => !taken.has(i) && sameWord(t, u));
-        if (hit !== -1) { taken.add(hit); inter++; }
-    }
+    const inter = overlap(A, B);
     if (!inter) return 0;
     const p = inter / B.length, r = inter / A.length;
     return (2 * p * r) / (p + r);
@@ -126,26 +138,34 @@ function pickPhoto(v: any): { url: string; bottle: boolean } {
 /** Le meilleur résultat : même domaine, même millésime, photo disponible. */
 function bestMatch(matches: any[], query: string, hintYear?: string) {
     const qt = tokens(query);
-    let best: any = null, bestScore = -1, bestWinery = 0;
+    let best: any = null, bestScore = -1, bestSure = false;
     for (const m of matches.slice(0, 24)) {
         const v = m?.vintage;
         if (!v?.wine) continue;
         const photo = pickPhoto(v);
         const count = v.statistics?.ratings_count || 0;
-        const winery = f1(qt, tokens(v.wine.winery?.name || ''));
-        let s = 6 * winery + 4 * f1(qt, tokens(v.name || ''));
+        const wt = tokens(v.wine.winery?.name || ''), nt = tokens(v.name || '');
+        const winery = f1(qt, wt);
+        let s = 6 * winery + 4 * f1(qt, nt);
         if (photo.url) s += photo.bottle ? 3 : 1.5;
         if (hintYear && String(v.year) === String(hintYear)) s += 2.5;
         // Sans millésime lu, un même vin sort en 20 exemplaires : on préfère le
         // plus récent et le plus commenté plutôt que le premier de la liste.
         else s += Math.min(1, Math.max(0, (Number(v.year) - 1980) / 45));
         s += Math.min(1.2, Math.log10(1 + count) / 3); // notoriété, en départage
-        if (s > bestScore) { bestScore = s; best = v; bestWinery = winery; }
+        // « Sûr » = le nom du domaine figure bien dans l'étiquette lue, ET
+        // l'étiquette est largement couverte par la fiche. On raisonne en
+        // couverture et non en F1 : « Ferreira » face à cinq mots lus est un
+        // domaine parfaitement reconnu, alors que son F1 plafonne à 0,33.
+        // Seuil haut sur le domaine : à 0,6 un négociant qui s'appelle comme
+        // l'appellation (« Négociant-Éleveur Châteauneuf-du-Pape ») passait pour
+        // le bon producteur sur une simple appellation lue.
+        const sure = coverage(wt, qt) >= 0.75 && coverage(qt, nt) >= 0.5;
+        if (s > bestScore) { bestScore = s; best = v; bestSure = sure; }
     }
     // En dessous de ce seuil, le résultat n'a plus rien à voir avec l'étiquette.
     if (bestScore < 3) return null;
-    // « Confiant » = c'est bien ce domaine-là, pas juste la même appellation.
-    return { vintage: best, confident: bestWinery >= 0.6 };
+    return { vintage: best, confident: bestSure };
 }
 
 function toWine(v: any, confident: boolean): VivinoWine {

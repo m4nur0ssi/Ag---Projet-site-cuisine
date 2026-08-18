@@ -248,7 +248,8 @@ function PairSheet({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
 type Official = { photo?: string; rating?: number; vivinoUrl?: string };
 
 function AddWine({ onClose }: { onClose: () => void }) {
-    const [photo, setPhoto] = useState<string>('');
+    const [photo, setPhoto] = useState<string>('');       // aperçu (pleine taille)
+    const [photoSmall, setPhotoSmall] = useState<string>(''); // version stockable
     const [photoUrl, setPhotoUrl] = useState('');
     const [busy, setBusy] = useState(false);
     const [form, setForm] = useState<{ name: string; grape: string; year: string; color: WineColor; region: string; note: string }>(
@@ -258,13 +259,17 @@ function AddWine({ onClose }: { onClose: () => void }) {
     const [scanMsg, setScanMsg] = useState('');
     const fileRef = useRef<HTMLInputElement>(null);
 
-    // Compresse la photo avant l'envoi à l'IA vision (rapide, léger).
-    const compress = (dataUrl: string): Promise<string> => new Promise((res) => {
+    /**
+     * Réduit la photo. Indispensable deux fois : 640 px suffit à lire une
+     * étiquette et divise par deux les jetons envoyés au modèle vision (quota
+     * Groq gratuit : 8000 jetons/minute) ; surtout, une photo d'iPhone brute
+     * pèse 3 Mo en base64 et fait EXPLOSER le quota localStorage de Safari
+     * (~5 Mo) dès la première bouteille gardée avec sa propre photo.
+     */
+    const compress = (dataUrl: string, max = 640): Promise<string> => new Promise((res) => {
         const img = new Image();
         img.onload = () => {
-            // 640 px suffit à lire une étiquette et divise par 2 les jetons envoyés
-            // au modèle vision (quota Groq gratuit : 8000 jetons/minute).
-            const max = 640; const r = Math.min(1, max / Math.max(img.width, img.height));
+            const r = Math.min(1, max / Math.max(img.width, img.height));
             const cv = document.createElement('canvas'); cv.width = img.width * r; cv.height = img.height * r;
             const ctx = cv.getContext('2d'); if (!ctx) return res(dataUrl);
             ctx.drawImage(img, 0, 0, cv.width, cv.height);
@@ -286,6 +291,7 @@ function AddWine({ onClose }: { onClose: () => void }) {
         const step2 = setTimeout(() => setScanMsg('Recherche de la bouteille…'), 1400);
         try {
             const small = await compress(dataUrl);
+            setPhotoSmall(small);
             const res = await fetch('/api/wine-lookup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ image: small }) });
             const data = await res.json();
             const w = data?.wine;
@@ -293,11 +299,18 @@ function AddWine({ onClose }: { onClose: () => void }) {
                 // L'étiquette est lue : le vin entre en cave, point. Quand le
                 // marchand a confirmé la bouteille on prend SA photo, sinon on
                 // garde celle qui vient d'être prise — jamais celle d'un voisin.
-                addWine({
-                    name: w.name, grape: w.grape || '', year: w.year || '',
-                    color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
-                    photo: w.photo || dataUrl, rating: w.rating, vivinoUrl: w.vivinoUrl,
-                });
+                try {
+                    addWine({
+                        name: w.name, grape: w.grape || '', year: w.year || '',
+                        color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
+                        photo: w.photo || small, rating: w.rating, vivinoUrl: w.vivinoUrl,
+                    });
+                } catch {
+                    // localStorage plein : le vin est bon, c'est la place qui manque.
+                    clearTimeout(step2); setBusy(false);
+                    setScanMsg('Cave pleine côté navigateur — retire un vin puis rescanne.');
+                    return;
+                }
                 onClose();
                 return;
             }
@@ -340,7 +353,7 @@ function AddWine({ onClose }: { onClose: () => void }) {
         // Priorité : lien collé > photo officielle du marchand > photo scannée.
         addWine({
             ...form, name,
-            photo: photoUrl.trim() || official.photo || photo || undefined,
+            photo: photoUrl.trim() || official.photo || photoSmall || undefined,
             rating: official.rating, vivinoUrl: official.vivinoUrl,
         });
         onClose();
