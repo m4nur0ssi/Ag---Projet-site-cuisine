@@ -10,8 +10,8 @@ import { createPortal } from 'react-dom';
 import { readCave, caveMatchForRecipe, type CaveWine, type WineColor } from '@/lib/cave';
 import styles from './CaveMatch.module.css';
 
-const COLOR_GLASS: Record<WineColor, string> = { rouge: '#7b1e2b', blanc: '#e6d27a', liqueur: '#c98a2b' };
-const COLOR_LABEL: Record<WineColor, string> = { rouge: 'Rouge', blanc: 'Blanc', liqueur: 'Liqueur' };
+const COLOR_GLASS: Record<WineColor, string> = { rouge: '#7b1e2b', blanc: '#e6d27a', rose: '#e08a97', liqueur: '#c98a2b' };
+const COLOR_LABEL: Record<WineColor, string> = { rouge: 'Rouge', blanc: 'Blanc', rose: 'Rosé', liqueur: 'Liqueur' };
 const vivino = (w: CaveWine) => `https://www.vivino.com/search/wines?q=${encodeURIComponent(`${w.name} ${w.region || ''}`.trim())}`;
 
 export default function CaveMatch({ recipe }: { recipe: { title?: string; category?: string; tags?: string[]; ingredients?: any[] } }) {

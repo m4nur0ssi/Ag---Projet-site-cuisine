@@ -16,13 +16,16 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import {
     readCave, addWine, removeWine, seedCaveIfEmpty, recipesForWine,
-    openBottle, setQty, drinkWindow,
+    openBottle, setQty, drinkWindow, updateWine, findKnownWine,
     CAVE_EVENT, type CaveWine, type WineColor,
 } from '@/lib/cave';
 import styles from './MaCave.module.css';
 
-const COLOR_LABEL: Record<WineColor, string> = { rouge: 'Rouge', blanc: 'Blanc', liqueur: 'Liqueur' };
-const COLOR_GLASS: Record<WineColor, string> = { rouge: '#7b1e2b', blanc: '#e6d27a', liqueur: '#c98a2b' };
+/** Bandeau d'information de l'app (même canal que le reste du site). */
+const toast = (msg: string) => window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: msg }));
+
+const COLOR_LABEL: Record<WineColor, string> = { rouge: 'Rouge', blanc: 'Blanc', rose: 'Rosé', liqueur: 'Liqueur' };
+const COLOR_GLASS: Record<WineColor, string> = { rouge: '#7b1e2b', blanc: '#e6d27a', rose: '#e08a97', liqueur: '#c98a2b' };
 
 /** Bouteille dessinée (repli quand pas de photo) — teintée selon la couleur. */
 function BottleSVG({ color }: { color: WineColor }) {
@@ -52,6 +55,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     const [adding, setAdding] = useState(false);
     const [pairing, setPairing] = useState<CaveWine | null>(null);
     const [zoom, setZoom] = useState<string | null>(null);
+    const [editing, setEditing] = useState<CaveWine | null>(null);
     const [q, setQ] = useState('');
     const [sort, setSort] = useState<'recent' | 'annee' | 'region'>('recent');
 
@@ -74,11 +78,21 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         else s.sort((a, b) => b.addedAt - a.addedAt);
         return s;
     }, [wines, filter, q, sort]);
-    const counts = useMemo(() => ({
-        rouge: wines.filter((w) => w.color === 'rouge').length,
-        blanc: wines.filter((w) => w.color === 'blanc').length,
-        liqueur: wines.filter((w) => w.color === 'liqueur').length,
-    }), [wines]);
+    // Un onglet de couleur n'a de sens que s'il y a quelque chose dedans :
+    // « Liqueurs 0 » n'apprend rien et encombre la barre.
+    const tabs = useMemo(() => {
+        const order: WineColor[] = ['rouge', 'blanc', 'rose', 'liqueur'];
+        const plural: Record<WineColor, string> = { rouge: 'Rouges', blanc: 'Blancs', rose: 'Rosés', liqueur: 'Liqueurs' };
+        const present = order
+            .map((c) => ({ key: c, label: plural[c], n: wines.filter((w) => w.color === c).length }))
+            .filter((t) => t.n > 0);
+        return [{ key: 'tous' as const, label: 'Tous', n: wines.length }, ...present];
+    }, [wines]);
+
+    // Si l'onglet courant se vide (dernière bouteille retirée), on revient à « Tous ».
+    useEffect(() => {
+        if (filter !== 'tous' && !tabs.some((t) => t.key === filter)) setFilter('tous');
+    }, [tabs, filter]);
 
     return (
         <div className={`${styles.page} ${embedded ? styles.emb : ''}`}>
@@ -88,10 +102,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                         <svg viewBox="0 0 8 14" width="13" height="13" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </button>
                 )}
-                <div>
-                    <div className={styles.kicker}>Ta cave</div>
-                    <h1 className={styles.title}>Ma cave</h1>
-                </div>
+                <h1 className={styles.title}>Ma cave</h1>
                 <button className={styles.addTop} onClick={() => setAdding(true)}>
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
                     Ajouter
@@ -99,8 +110,10 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             </header>
 
             <div className={styles.tabs}>
-                {([['tous', `Tous ${wines.length}`], ['rouge', `Rouges ${counts.rouge}`], ['blanc', `Blancs ${counts.blanc}`], ['liqueur', `Liqueurs ${counts.liqueur}`]] as const).map(([k, lbl]) => (
-                    <button key={k} className={`${styles.tab} ${filter === k ? styles.tabOn : ''}`} onClick={() => setFilter(k as any)}>{lbl}</button>
+                {tabs.map((t) => (
+                    <button key={t.key} className={`${styles.tab} ${filter === t.key ? styles.tabOn : ''}`} onClick={() => setFilter(t.key as any)}>
+                        {t.label} {t.n}
+                    </button>
                 ))}
             </div>
 
@@ -128,13 +141,14 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             ) : (
                 <div className={styles.grid}>
                     {shown.map((w) => (
-                        <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} />
+                        <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onEdit={() => setEditing(w)} />
                     ))}
                 </div>
             )}
 
             {adding && <AddWine onClose={() => setAdding(false)} />}
-            {pairing && <PairSheet wine={pairing} onClose={() => setPairing(null)} />}
+            {pairing && <PairSheet wine={pairing} onClose={() => setPairing(null)} embedded={embedded} />}
+            {editing && <EditWine wine={editing} onClose={() => setEditing(null)} />}
             {zoom && <ZoomView src={zoom} onClose={() => setZoom(null)} />}
         </div>
     );
@@ -165,11 +179,13 @@ function ZoomView({ src, onClose }: { src: string; onClose: () => void }) {
 }
 
 /* ── Carte vin : scène de cave (tonneau) + bouteille ──────────────────────── */
-function WineCard({ wine, onPair, onRemove, onZoom }: { wine: CaveWine; onPair: () => void; onRemove: () => void; onZoom: () => void }) {
+function WineCard({ wine, onPair, onRemove, onZoom, onEdit }: { wine: CaveWine; onPair: () => void; onRemove: () => void; onZoom: () => void; onEdit: () => void }) {
     const lp = useRef<ReturnType<typeof setTimeout> | null>(null);
     return (
         <div
             className={styles.card}
+            /* Clic droit : corriger la fiche (couleur, millésime, cépage…). */
+            onContextMenu={(e) => { e.preventDefault(); onEdit(); }}
             onPointerDown={() => { lp.current = setTimeout(onPair, 500); }}
             onPointerUp={() => { if (lp.current) clearTimeout(lp.current); }}
             onPointerLeave={() => { if (lp.current) clearTimeout(lp.current); }}
@@ -193,7 +209,17 @@ function WineCard({ wine, onPair, onRemove, onZoom }: { wine: CaveWine; onPair: 
             <div className={styles.info}>
                 <div className={styles.wName}>{wine.name}{wine.year ? <span className={styles.wYear}> · {wine.year}</span> : null}</div>
                 <div className={styles.wMeta}>{[wine.grape, wine.region].filter(Boolean).join(' · ')}</div>
-                {wine.rating ? <div className={styles.rating}>★ {wine.rating.toFixed(1)}<small>/5</small></div> : null}
+                <div className={styles.ratings}>
+                    {wine.rating ? (
+                        <span className={styles.rating} title="Note des dégustateurs">
+                            ★ {wine.rating.toFixed(1)}<small>/5</small>
+                        </span>
+                    ) : null}
+                    <MyStars
+                        value={wine.myRating ?? 0}
+                        onSet={(n) => updateWine(wine.id, { myRating: n })}
+                    />
+                </div>
                 {(() => {
                     const w = drinkWindow(wine);
                     if (!w) return null;
@@ -203,7 +229,7 @@ function WineCard({ wine, onPair, onRemove, onZoom }: { wine: CaveWine; onPair: 
                 <div className={styles.stockRow}>
                     <div className={styles.stepper}>
                         <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) - 1); }} aria-label="Moins">−</button>
-                        <span>{wine.qty ?? 1} <small>bt</small></span>
+                        <span>{wine.qty ?? 1}</span>
                         <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) + 1); }} aria-label="Plus">+</button>
                     </div>
                     <button className={styles.openBtn} disabled={(wine.qty ?? 1) <= 0} onClick={(e) => { e.stopPropagation(); openBottle(wine.id); }}>Ouvrir</button>
@@ -217,10 +243,120 @@ function WineCard({ wine, onPair, onRemove, onZoom }: { wine: CaveWine; onPair: 
     );
 }
 
+/**
+ * Note personnelle : cinq étoiles cliquables, distinctes de la note globale.
+ * Retoucher l'étoile déjà active efface la note (on s'est trompé de doigt).
+ */
+function MyStars({ value, onSet, big = false }: { value: number; onSet: (n: number) => void; big?: boolean }) {
+    return (
+        <span className={`${styles.myStars} ${big ? styles.myStarsBig : ''}`} title="Ta note">
+            {[1, 2, 3, 4, 5].map((n) => (
+                <button
+                    key={n}
+                    className={`${styles.myStar} ${n <= value ? styles.myStarOn : ''}`}
+                    aria-label={`Mettre ${n} sur 5`}
+                    onClick={(e) => { e.stopPropagation(); onSet(n === value ? 0 : n); }}
+                >
+                    ★
+                </button>
+            ))}
+        </span>
+    );
+}
+
+/**
+ * Modifier une bouteille — clic droit sur sa carte.
+ * L'IA se trompe (une couleur, un millésime, un cépage) : cette fiche permet de
+ * rectifier sans repasser par un scan, dans le même langage visuel que le reste
+ * de la cave plutôt que dans le vieux formulaire.
+ */
+function EditWine({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
+    const [f, setF] = useState({
+        name: wine.name, grape: wine.grape, year: wine.year,
+        color: wine.color, region: wine.region, note: wine.note || '',
+        photo: wine.photo || '', qty: wine.qty ?? 1, myRating: wine.myRating ?? 0,
+    });
+    const save = () => {
+        const name = f.name.trim();
+        if (!name) return;
+        updateWine(wine.id, { ...f, name, photo: f.photo.trim() || undefined });
+        onClose();
+    };
+    return (
+        <div className={styles.backdrop} onClick={onClose}>
+            <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
+                <div className={styles.sheetHead}>
+                    <div>
+                        <div className={styles.sheetKick}>Corriger la fiche</div>
+                        <div className={styles.sheetTitle}>{wine.name}</div>
+                    </div>
+                    <button className={styles.sheetClose} onClick={onClose} aria-label="Fermer">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                    </button>
+                </div>
+
+                <div className={styles.addBody}>
+                    {(f.photo || wine.photo) && (
+                        <div className={styles.editPreview}>
+                            <img src={f.photo || wine.photo} alt="" />
+                        </div>
+                    )}
+
+                    <div className={styles.fields}>
+                        <input className={styles.inp} value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} placeholder="Nom du vin" />
+                        <div className={styles.two}>
+                            <input className={styles.inp} value={f.grape} onChange={(e) => setF({ ...f, grape: e.target.value })} placeholder="Cépage" />
+                            <input className={styles.inp} value={f.year} onChange={(e) => setF({ ...f, year: e.target.value })} placeholder="Année" inputMode="numeric" />
+                        </div>
+                        <input className={styles.inp} value={f.region} onChange={(e) => setF({ ...f, region: e.target.value })} placeholder="Région / appellation" />
+                        <input className={styles.inp} value={f.note} onChange={(e) => setF({ ...f, note: e.target.value })} placeholder="Note de dégustation" />
+                        <input className={styles.inp} value={f.photo} onChange={(e) => setF({ ...f, photo: e.target.value })} placeholder="Lien de la photo (optionnel)" />
+
+                        <div className={styles.editLabel}>Couleur</div>
+                        <div className={styles.colorPick}>
+                            {(['rouge', 'blanc', 'rose', 'liqueur'] as WineColor[]).map((c) => (
+                                <button key={c} className={`${styles.colorOpt} ${f.color === c ? styles.colorOptOn : ''}`} onClick={() => setF({ ...f, color: c })}>
+                                    <span className={styles.colorDot} style={{ background: COLOR_GLASS[c] }} />{COLOR_LABEL[c]}
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className={styles.editRow}>
+                            <div>
+                                <div className={styles.editLabel}>Bouteilles</div>
+                                <div className={styles.stepper}>
+                                    <button onClick={() => setF({ ...f, qty: Math.max(0, f.qty - 1) })} aria-label="Moins">−</button>
+                                    <span>{f.qty}</span>
+                                    <button onClick={() => setF({ ...f, qty: f.qty + 1 })} aria-label="Plus">+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <div className={styles.editLabel}>Ta note</div>
+                                <MyStars big value={f.myRating} onSet={(n) => setF({ ...f, myRating: n })} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button className={styles.saveBtn} onClick={save} disabled={!f.name.trim()}>Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 /* ── Accord : recettes du site pour ce vin ────────────────────────────────── */
-function PairSheet({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
+function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () => void; embedded?: boolean }) {
     const recipes = useMemo(() => recipesForWine(wine, mockRecipes as any, 12), [wine]);
-    const open = (r: any) => { window.dispatchEvent(new CustomEvent('openRecipe', { detail: r })); onClose(); };
+    /**
+     * Encastrée dans le shell desktop, la cave ouvre la fiche FLOTTANTE
+     * (`openRecipeFromPlanner`) : la barre latérale et le titre « Ma cave »
+     * restent en place. L'event `openRecipe` déclencherait la fiche plein
+     * écran, qui recouvre le menu et fait perdre le fil.
+     */
+    const open = (r: any) => {
+        window.dispatchEvent(new CustomEvent(embedded ? 'openRecipeFromPlanner' : 'openRecipe', { detail: r }));
+        onClose();
+    };
     return (
         <div className={styles.backdrop} onClick={onClose}>
             <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
@@ -299,12 +435,20 @@ function AddWine({ onClose }: { onClose: () => void }) {
                 // L'étiquette est lue : le vin entre en cave, point. Quand le
                 // marchand a confirmé la bouteille on prend SA photo, sinon on
                 // garde celle qui vient d'être prise — jamais celle d'un voisin.
+                // Bouteille déjà passée par la cave ? On le dit — c'est justement
+                // ce qu'on veut savoir en scannant au rayon.
+                const known = findKnownWine(w.name);
                 try {
                     addWine({
                         name: w.name, grape: w.grape || '', year: w.year || '',
                         color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
                         photo: w.photo || small, rating: w.rating, vivinoUrl: w.vivinoUrl,
                     });
+                    if (known) {
+                        toast(known.year && w.year && known.year !== w.year
+                            ? `Déjà dégusté — tu avais le ${known.year}`
+                            : 'Déjà dégusté — ce vin est déjà passé par ta cave');
+                    }
                 } catch {
                     // localStorage plein : le vin est bon, c'est la place qui manque.
                     clearTimeout(step2); setBusy(false);
@@ -351,11 +495,13 @@ function AddWine({ onClose }: { onClose: () => void }) {
         const name = form.name.trim();
         if (!name) return;
         // Priorité : lien collé > photo officielle du marchand > photo scannée.
+        const known = findKnownWine(name);
         addWine({
             ...form, name,
             photo: photoUrl.trim() || official.photo || photoSmall || undefined,
             rating: official.rating, vivinoUrl: official.vivinoUrl,
         });
+        if (known) toast('Déjà dégusté — ce vin est déjà passé par ta cave');
         onClose();
     };
 

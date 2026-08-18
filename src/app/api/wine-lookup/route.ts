@@ -24,15 +24,16 @@ const GROQ_VISION_MODEL = process.env.WINE_GROQ_VISION_MODEL || 'qwen/qwen3.6-27
 
 type Wine = {
     name: string; grape: string; year: string;
-    color: 'rouge' | 'blanc' | 'liqueur';
+    color: 'rouge' | 'blanc' | 'rose' | 'liqueur';
     region: string; note: string;
     photo?: string; rating?: number; vivinoUrl?: string;
 };
 
 const SYSTEM = `Tu es un sommelier. Renvoie les caractéristiques d'un vin STRICTEMENT en JSON :
-{"readable":true,"name":"nom du domaine/cuvée","grape":"cépage principal","year":"millésime si visible sinon \\"\\"","color":"rouge|blanc|liqueur","region":"appellation, région, pays","note":"une phrase courte: arômes/style"}
+{"readable":true,"name":"nom du domaine/cuvée","grape":"cépage principal","year":"millésime si visible sinon \\"\\"","color":"rouge|blanc|rose|liqueur","region":"appellation, région, pays","note":"une phrase courte: arômes/style"}
 - "readable" : false si tu ne LIS pas réellement un nom sur une étiquette de vin (photo floue, sujet quelconque, texte illisible). Dans ce cas ne devine RIEN, mets false et laisse les autres champs vides. N'invente jamais un domaine plausible.
-- "color": "rouge", "blanc" ou "liqueur" (liquoreux/doux/porto/muscat). Rosé → "blanc".
+- "color": "rouge", "blanc", "rose" ou "liqueur" (liquoreux/doux/porto/muscat).
+- "year" : recopie le millésime IMPRIMÉ sur cette étiquette-ci, jamais celui d'une autre bouteille du même domaine. Vide si aucun chiffre d'année n'est lisible.
 - "name" : recopie le nom tel qu'il figure sur l'étiquette (domaine + cuvée), sans le mot "millésime" ni la contenance. C'est ce nom qui servira à retrouver la bouteille chez un marchand.
 - Ne laisse aucun champ vide sauf éventuellement l'année. Estime au plus plausible d'après l'appellation.
 Réponds UNIQUEMENT le JSON.`;
@@ -92,7 +93,7 @@ function toWine(raw: string, fallbackName: string): Wine {
     if (parsed.readable === false && !fallbackName) throw new Error('pas une étiquette de vin');
     const name = String(parsed.name || fallbackName || '').trim();
     if (!name || VAGUE.test(name)) throw new Error('étiquette illisible');
-    const color = ['rouge', 'blanc', 'liqueur'].includes(parsed.color) ? parsed.color : 'rouge';
+    const color = ['rouge', 'blanc', 'rose', 'liqueur'].includes(parsed.color) ? parsed.color : 'rouge';
     return {
         name,
         grape: parsed.grape || '',
@@ -109,10 +110,17 @@ function toWine(raw: string, fallbackName: string): Wine {
  * dégustation de l'IA est gardée si Vivino n'en fournit pas.
  */
 function merge(read: Wine | null, v: VivinoWine): Wine {
+    // Le millésime vient de L'ÉTIQUETTE, pas de la fiche : le marchand liste le
+    // même vin en vingt années et prévient lui-même que « le millésime sur la
+    // photo peut ne pas correspondre ». La bouteille en main fait foi.
+    const year = read?.year || v.year || '';
+    // Du coup le nom ne doit pas traîner l'année d'une AUTRE fiche, sinon on
+    // affiche « … 'Charmes' 2010 · 2022 ».
+    const name = v.name.replace(/\s*\b(19|20)\d{2}\b\s*$/, '').trim() || v.name;
     return {
-        name: v.name,
+        name,
         grape: v.grape || read?.grape || '',
-        year: v.year || read?.year || '',
+        year,
         color: v.color,
         region: v.region || read?.region || '',
         note: read?.note || v.note || '',

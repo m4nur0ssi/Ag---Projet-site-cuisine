@@ -15,7 +15,7 @@ export interface VivinoWine {
     year: string;        // '' si non millésimé
     grape: string;       // cépages principaux, « Cabernet Sauvignon, Merlot »
     region: string;      // « Margaux, France »
-    color: 'rouge' | 'blanc' | 'liqueur';
+    color: 'rouge' | 'blanc' | 'rose' | 'liqueur';
     note: string;        // phrase de style (corps / acidité / description)
     photo: string;       // URL absolue de la bouteille officielle
     rating: number;      // note Vivino /5 (0 si aucune)
@@ -31,9 +31,9 @@ export interface VivinoWine {
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
 
-/** type_id Vivino → les 3 couleurs de la cave (rosé et bulles rangés en blanc). */
+/** type_id Vivino → couleurs de la cave (les bulles se rangent avec les blancs). */
 const TYPE_COLOR: Record<number, VivinoWine['color']> = {
-    1: 'rouge', 2: 'blanc', 3: 'blanc', 4: 'blanc', 7: 'liqueur', 24: 'liqueur',
+    1: 'rouge', 2: 'blanc', 3: 'blanc', 4: 'rose', 7: 'liqueur', 24: 'liqueur',
 };
 
 function unescapeHtml(s: string) {
@@ -148,7 +148,10 @@ function bestMatch(matches: any[], query: string, hintYear?: string) {
         const winery = f1(qt, wt);
         let s = 6 * winery + 4 * f1(qt, nt);
         if (photo.url) s += photo.bottle ? 3 : 1.5;
-        if (hintYear && String(v.year) === String(hintYear)) s += 2.5;
+        // Le millésime lu sur l'étiquette de l'utilisateur pèse LOURD : Vivino
+        // liste le même vin en vingt années, et la fiche 2010 d'un Meursault
+        // porte une photo et un nom qui contrediraient sa bouteille 2022.
+        if (hintYear) s += String(v.year) === String(hintYear) ? 6 : -2;
         // Sans millésime lu, un même vin sort en 20 exemplaires : on préfère le
         // plus récent et le plus commenté plutôt que le premier de la liste.
         else s += Math.min(1, Math.max(0, (Number(v.year) - 1980) / 45));

@@ -4,7 +4,7 @@
 // celle scannée). La SCÈNE (tonneau + cave) est rendue en CSS côté composant :
 // seule la bouteille change.
 
-export type WineColor = 'rouge' | 'blanc' | 'liqueur';
+export type WineColor = 'rouge' | 'blanc' | 'rose' | 'liqueur';
 
 export interface CaveWine {
     id: string;
@@ -15,8 +15,11 @@ export interface CaveWine {
     region: string;
     note?: string;
     photo?: string;     // bouteille officielle (URL Vivino) ou photo scannée
-    rating?: number;    // note Vivino /5, quand la bouteille y a été retrouvée
+    rating?: number;    // note globale /5 (dégustateurs du marchand)
+    myRating?: number;  // note personnelle /5, saisie à la main
     vivinoUrl?: string; // fiche marchand d'origine
+    /** Déjà bue au moins une fois : sert à prévenir « déjà dégusté » au scan. */
+    tasted?: boolean;
     qty?: number;       // nombre de bouteilles en cave
     addedAt: number;
 }
@@ -27,7 +30,10 @@ export type DrinkStatus = 'jeune' | 'pret' | 'apogee' | 'tard';
 export function drinkWindow(wine: CaveWine): { status: DrinkStatus; label: string } | null {
     const y = parseInt(wine.year, 10);
     if (!y || y < 1900) return null;
-    const span = wine.color === 'rouge' ? [3, 15] : wine.color === 'blanc' ? [1, 6] : [5, 30];
+    const span = wine.color === 'rouge' ? [3, 15]
+        : wine.color === 'blanc' ? [1, 6]
+        : wine.color === 'rose' ? [1, 3]   // un rosé se boit jeune
+        : [5, 30];
     const from = y + span[0], to = y + span[1];
     const now = new Date().getFullYear();
     if (now < from) return { status: 'jeune', label: 'Encore un peu jeune' };
@@ -70,7 +76,25 @@ export function setQty(id: string, qty: number) {
 /** « Ouvrir une bouteille » → décrémente le stock. */
 export function openBottle(id: string) {
     const w = readCave().find((x) => x.id === id);
-    if (w) setQty(id, (w.qty ?? 1) - 1);
+    if (!w) return;
+    // Ouvrir marque le vin comme dégusté : c'est ce qui permet, des mois plus
+    // tard, d'annoncer « déjà dégusté » quand on rescanne la même étiquette.
+    updateWine(id, { qty: Math.max(0, (w.qty ?? 1) - 1), tasted: true });
+}
+
+/** Nom réduit à sa forme comparable (accents, casse et ponctuation ignorés). */
+export function wineKey(name: string) {
+    return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+/**
+ * Bouteille déjà connue de la cave, millésime ignoré : c'est le même vin qu'on
+ * a déjà bu ou qu'on a encore en stock.
+ */
+export function findKnownWine(name: string, cave = readCave()): CaveWine | undefined {
+    const k = wineKey(name);
+    return cave.find((w) => wineKey(w.name) === k);
 }
 
 export function removeWine(id: string) {
@@ -115,7 +139,7 @@ export function caveMatchForRecipe(recipe: { title?: string; category?: string; 
 }
 
 export function recipesForWine<T extends { id: string | number; title: string; category?: string; tags?: string[]; ingredients?: any[]; image?: string }>(wine: CaveWine, all: T[], limit = 12): T[] {
-    const kw = wine.color === 'rouge' ? RED_KW : wine.color === 'blanc' ? WHITE_KW : LIQ_KW;
+    const kw = wine.color === 'rouge' ? RED_KW : wine.color === 'liqueur' ? LIQ_KW : WHITE_KW;
     const hay = (r: T) => `${r.title} ${(r.tags || []).join(' ')} ${(r.ingredients || []).map((i: any) => i?.name || i).join(' ')}`.toLowerCase();
     const scored = all
         .filter((r) => r.image && (r.category || '').toLowerCase() !== 'restaurant')
@@ -123,7 +147,7 @@ export function recipesForWine<T extends { id: string | number; title: string; c
         .filter((x) => x.s > 0);
     // Repli si trop peu : catégorie plausible selon la couleur.
     if (scored.length < 4) {
-        const cat = wine.color === 'liqueur' ? ['desserts', 'patisserie'] : wine.color === 'blanc' ? ['plats', 'entrees'] : ['plats'];
+        const cat = wine.color === 'liqueur' ? ['desserts', 'patisserie'] : wine.color === 'rouge' ? ['plats'] : ['plats', 'entrees'];
         all.filter((r) => r.image && cat.includes((r.category || '').toLowerCase())).forEach((r) => {
             if (!scored.find((x) => String(x.r.id) === String(r.id))) scored.push({ r, s: 0.5 });
         });
