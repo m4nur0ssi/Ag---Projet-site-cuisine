@@ -257,13 +257,45 @@ function LabelScanner({ onShot, onClose, busy, message }: {
     const [hint, setHint] = useState('Cadre l’étiquette');
     const [aim, setAim] = useState(0);        // 0 → 1 : à quel point on y est
 
-    /** Photo pleine résolution de l'image courante. */
+    const frameRef = useRef<HTMLDivElement>(null);
+
+    /**
+     * Photo de ce qui est DANS LE CADRE, pas de toute la pièce.
+     *
+     * La vidéo est affichée en `object-fit: cover` : l'image source est agrandie
+     * puis rognée pour remplir l'écran. On refait donc le calcul à l'envers pour
+     * retrouver, en pixels de la caméra, le rectangle que l'utilisateur voit
+     * entre les quatre coins — et on ne garde que celui-là. Le plan de travail,
+     * le mur de la cuisine et le reste du salon disparaissent d'eux-mêmes.
+     */
     const grab = () => {
         const v = videoRef.current;
+        const f = frameRef.current;
         if (!v || !v.videoWidth) return null;
+
         const cv = document.createElement('canvas');
+        const ctx = cv.getContext('2d');
+        if (!ctx) return null;
+
+        if (f) {
+            const vr = v.getBoundingClientRect();
+            const fr = f.getBoundingClientRect();
+            const scale = Math.max(vr.width / v.videoWidth, vr.height / v.videoHeight);
+            // Coin haut-gauche de l'image source tel qu'il est posé à l'écran.
+            const offX = vr.left + (vr.width - v.videoWidth * scale) / 2;
+            const offY = vr.top + (vr.height - v.videoHeight * scale) / 2;
+            const sx = Math.max(0, (fr.left - offX) / scale);
+            const sy = Math.max(0, (fr.top - offY) / scale);
+            const sw = Math.min(v.videoWidth - sx, fr.width / scale);
+            const sh = Math.min(v.videoHeight - sy, fr.height / scale);
+            if (sw > 40 && sh > 40) {
+                cv.width = Math.round(sw); cv.height = Math.round(sh);
+                ctx.drawImage(v, sx, sy, sw, sh, 0, 0, cv.width, cv.height);
+                return cv.toDataURL('image/jpeg', 0.9);
+            }
+        }
         cv.width = v.videoWidth; cv.height = v.videoHeight;
-        cv.getContext('2d')?.drawImage(v, 0, 0);
+        ctx.drawImage(v, 0, 0);
         return cv.toDataURL('image/jpeg', 0.9);
     };
 
@@ -360,7 +392,7 @@ function LabelScanner({ onShot, onClose, busy, message }: {
             <video ref={videoRef} className={styles.scanVideo} playsInline muted autoPlay />
             <div className={styles.scanVeil} aria-hidden />
 
-            <div className={styles.scanFrame}>
+            <div className={styles.scanFrame} ref={frameRef}>
                 <span className={styles.scanCorner} data-c="tl" />
                 <span className={styles.scanCorner} data-c="tr" />
                 <span className={styles.scanCorner} data-c="bl" />
@@ -866,6 +898,45 @@ function AddWine({ onClose, shelf: initialShelf = 'cave' }: { onClose: () => voi
      * autre manipulation. Si la bouteille n'est pas reconnue, on retombe sur le
      * formulaire pré-rempli plutôt que d'ajouter n'importe quoi.
      */
+    /**
+     * Met la photo prise chez soi en SCÈNE DE CAVE : format portrait, fond noir,
+     * et les bords fondus dans le noir. Ce n'est pas un détourage — il faudrait
+     * un modèle de segmentation pour découper vraiment la bouteille — mais le
+     * plan de travail et le mur s'effacent, et la bouteille se pose sur le même
+     * noir que les photos du marchand. On ne s'en sert QUE quand le marchand n'a
+     * pas retrouvé la bouteille : sa photo à lui est déjà un détourage studio.
+     */
+    const toStudio = (dataUrl: string, w = 600, h = 800): Promise<string> => new Promise((res) => {
+        const img = new Image();
+        img.onload = () => {
+            const cv = document.createElement('canvas');
+            cv.width = w; cv.height = h;
+            const ctx = cv.getContext('2d');
+            if (!ctx) return res(dataUrl);
+
+            ctx.fillStyle = '#0b0806';
+            ctx.fillRect(0, 0, w, h);
+
+            // La photo remplit le cadre, centrée, sans déformation.
+            const r = Math.max(w / img.width, h / img.height);
+            const dw = img.width * r, dh = img.height * r;
+            ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
+
+            // Fondu vers le noir sur tout le pourtour : le décor s'éteint, le
+            // centre — la bouteille — reste net.
+            const g = ctx.createRadialGradient(w / 2, h * 0.46, Math.min(w, h) * 0.28, w / 2, h * 0.46, Math.max(w, h) * 0.62);
+            g.addColorStop(0, 'rgba(11,8,6,0)');
+            g.addColorStop(0.62, 'rgba(11,8,6,0.55)');
+            g.addColorStop(1, 'rgba(11,8,6,1)');
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, w, h);
+
+            res(cv.toDataURL('image/jpeg', 0.85));
+        };
+        img.onerror = () => res(dataUrl);
+        img.src = dataUrl;
+    });
+
     const scanAndAdd = async (dataUrl: string) => {
         setBusy(true); setScanMsg('Lecture de l’étiquette…');
         const step2 = setTimeout(() => setScanMsg('Recherche de la bouteille…'), 1400);
@@ -886,7 +957,9 @@ function AddWine({ onClose, shelf: initialShelf = 'cave' }: { onClose: () => voi
                     addWine({
                         name: w.name, grape: w.grape || '', year: w.year || '',
                         color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
-                        photo: w.photo || small, rating: w.rating, vivinoUrl: w.vivinoUrl,
+                        // Photo du marchand quand il a retrouvé la bouteille (déjà
+                        // détourée sur fond blanc) ; sinon la nôtre, mise en scène.
+                        photo: w.photo || (await toStudio(dataUrl)), rating: w.rating, vivinoUrl: w.vivinoUrl,
                         shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
                     });
                     if (known) {
@@ -936,14 +1009,17 @@ function AddWine({ onClose, shelf: initialShelf = 'cave' }: { onClose: () => voi
         setBusy(false);
     };
 
-    const save = () => {
+    const save = async () => {
         const name = form.name.trim();
         if (!name) return;
+        // Même règle qu'au scan : notre photo passe par la scène de cave, celle
+        // du marchand (déjà détourée) est prise telle quelle.
+        const mine = photoSmall ? await toStudio(photoSmall) : '';
         // Priorité : lien collé > photo officielle du marchand > photo scannée.
         const known = findKnownWine(name);
         addWine({
             ...form, name,
-            photo: photoUrl.trim() || official.photo || photoSmall || undefined,
+            photo: photoUrl.trim() || official.photo || mine || undefined,
             rating: official.rating, vivinoUrl: official.vivinoUrl,
             shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
         });
