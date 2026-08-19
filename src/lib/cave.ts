@@ -21,8 +21,21 @@ export interface CaveWine {
     /** Déjà bue au moins une fois : sert à prévenir « déjà dégusté » au scan. */
     tasted?: boolean;
     qty?: number;       // nombre de bouteilles en cave
+    /**
+     * Sur quelle étagère la bouteille se range :
+     *   • `cave`   — en stock, on l'a chez soi (défaut) ;
+     *   • `tasted` — « Goûté & approuvé » : bue et notée, mais plus en cave.
+     *     C'est là qu'atterrissent les vins bus ailleurs (chez un ami, au
+     *     restaurant) et ceux dont la dernière bouteille vient d'être ouverte.
+     */
+    shelf?: WineShelf;
     addedAt: number;
 }
+
+export type WineShelf = 'cave' | 'tasted';
+
+/** L'étagère d'une bouteille, `cave` par défaut (fiches d'avant la nouveauté). */
+export const shelfOf = (w: CaveWine): WineShelf => w.shelf === 'tasted' ? 'tasted' : 'cave';
 
 export type DrinkStatus = 'jeune' | 'pret' | 'apogee' | 'tard';
 
@@ -68,9 +81,29 @@ export function updateWine(id: string, patch: Partial<CaveWine>) {
     write(readCave().map((w) => (w.id === id ? { ...w, ...patch } : w)));
 }
 
-/** Change le stock (min 0). */
+/**
+ * Change le stock (min 0). Tomber à zéro ne fait pas disparaître la bouteille :
+ * elle passe sur l'étagère « Goûté & approuvé », avec sa photo, sa note et ses
+ * commentaires. On ne perd jamais un vin qu'on a aimé.
+ */
 export function setQty(id: string, qty: number) {
-    updateWine(id, { qty: Math.max(0, Math.round(qty)) });
+    const n = Math.max(0, Math.round(qty));
+    if (n === 0) {
+        updateWine(id, { qty: 0, shelf: 'tasted', tasted: true });
+        return;
+    }
+    // Remonter le stock d'une bouteille rangée en « goûté » la remet en cave.
+    updateWine(id, { qty: n, shelf: 'cave' });
+}
+
+/** Range la bouteille sur l'étagère « Goûté & approuvé » (glissé ou menu). */
+export function moveToTasted(id: string) {
+    updateWine(id, { shelf: 'tasted', tasted: true, qty: 0 });
+}
+
+/** Remet la bouteille en cave, avec une bouteille en stock. */
+export function moveToCave(id: string, qty = 1) {
+    updateWine(id, { shelf: 'cave', qty: Math.max(1, Math.round(qty)) });
 }
 
 /** « Ouvrir une bouteille » → décrémente le stock. */
@@ -79,7 +112,9 @@ export function openBottle(id: string) {
     if (!w) return;
     // Ouvrir marque le vin comme dégusté : c'est ce qui permet, des mois plus
     // tard, d'annoncer « déjà dégusté » quand on rescanne la même étiquette.
-    updateWine(id, { qty: Math.max(0, (w.qty ?? 1) - 1), tasted: true });
+    const left = Math.max(0, (w.qty ?? 1) - 1);
+    // Dernière bouteille ouverte : le vin quitte la cave pour « Goûté & approuvé ».
+    updateWine(id, { qty: left, tasted: true, shelf: left === 0 ? 'tasted' : 'cave' });
 }
 
 /** Nom réduit à sa forme comparable (accents, casse et ponctuation ignorés). */
@@ -110,6 +145,9 @@ export function seedCaveIfEmpty() {
         { id: 's2', name: 'Chablis Premier Cru', grape: 'Chardonnay', year: '2021', color: 'blanc', region: 'Chablis, Bourgogne', note: 'Minéral, vif, notes d’agrumes.', qty: 4, addedAt: Date.now() - 4000 },
         { id: 's3', name: 'Sauternes Château Rieussec', grape: 'Sémillon', year: '2015', color: 'liqueur', region: 'Sauternes, Bordeaux', note: 'Liquoreux, miel et abricot.', qty: 1, addedAt: Date.now() - 3000 },
         { id: 's4', name: 'Châteauneuf-du-Pape', grape: 'Grenache', year: '2019', color: 'rouge', region: 'Vallée du Rhône', note: 'Puissant, épicé, fruits noirs.', qty: 3, addedAt: Date.now() - 2000 },
+        // Deux bouteilles bues ailleurs : de quoi voir la seconde étagère remplie.
+        { id: 's5', name: 'Pouilly-Fumé', grape: 'Sauvignon blanc', year: '2022', color: 'blanc', region: 'Loire', note: 'Bu chez Marc — vif, silex.', qty: 0, shelf: 'tasted', tasted: true, myRating: 4, addedAt: Date.now() - 1500 },
+        { id: 's6', name: 'Barolo', grape: 'Nebbiolo', year: '2017', color: 'rouge', region: 'Piémont, Italie', note: 'Au restaurant — tanins fermes, rose et goudron.', qty: 0, shelf: 'tasted', tasted: true, myRating: 5, addedAt: Date.now() - 1000 },
     ];
     write(seed);
 }

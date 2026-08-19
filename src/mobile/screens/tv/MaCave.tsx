@@ -17,7 +17,8 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import {
     readCave, addWine, removeWine, seedCaveIfEmpty, recipesForWine,
     openBottle, setQty, drinkWindow, updateWine, findKnownWine,
-    CAVE_EVENT, type CaveWine, type WineColor,
+    moveToTasted, moveToCave, shelfOf,
+    CAVE_EVENT, type CaveWine, type WineColor, type WineShelf,
 } from '@/lib/cave';
 import styles from './MaCave.module.css';
 
@@ -58,7 +59,10 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
     const [wines, setWines] = useState<CaveWine[]>([]);
     const [filter, setFilter] = useState<'tous' | WineColor>('tous');
-    const [adding, setAdding] = useState(false);
+    // Destination du formulaire : la cave, ou l'étagère « Goûté & approuvé »
+    // (bouteille bue chez un ami, au restaurant… qu'on ne possède pas).
+    const [adding, setAdding] = useState<WineShelf | null>(null);
+    const [dropOn, setDropOn] = useState<WineShelf | null>(null);
     const [pairing, setPairing] = useState<CaveWine | null>(null);
     const [zoom, setZoom] = useState<string | null>(null);
     const [editing, setEditing] = useState<CaveWine | null>(null);
@@ -85,6 +89,23 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         else s.sort((a, b) => b.addedAt - a.addedAt);
         return s;
     }, [wines, filter, q, sort]);
+    // Les deux étagères, filtres et recherche déjà appliqués.
+    const inCave = useMemo(() => shown.filter((w) => shelfOf(w) === 'cave'), [shown]);
+    const tastedList = useMemo(() => shown.filter((w) => shelfOf(w) === 'tasted'), [shown]);
+
+    /** Glisser-déposer d'une carte d'une étagère à l'autre. */
+    const dropHandlers = (target: WineShelf) => ({
+        onDragOver: (e: React.DragEvent) => { e.preventDefault(); setDropOn(target); },
+        onDragLeave: () => setDropOn((d) => (d === target ? null : d)),
+        onDrop: (e: React.DragEvent) => {
+            e.preventDefault();
+            setDropOn(null);
+            const id = e.dataTransfer.getData('text/plain');
+            if (!id) return;
+            if (target === 'tasted') moveToTasted(id); else moveToCave(id);
+        },
+    });
+
     // Un onglet de couleur n'a de sens que s'il y a quelque chose dedans :
     // « Liqueurs 0 » n'apprend rien et encombre la barre.
     const tabs = useMemo(() => {
@@ -110,7 +131,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                     </button>
                 )}
                 <h1 className={styles.title}>Ma cave</h1>
-                <button className={styles.addTop} onClick={() => setAdding(true)}>
+                <button className={styles.addTop} onClick={() => setAdding('cave')}>
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
                     Ajouter
                 </button>
@@ -136,24 +157,63 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                 </div>
             </div>
 
-            {shown.length === 0 ? (
-                <div className={styles.empty}>
-                    <div className={styles.emptyIc}>
-                        <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" /></svg>
+            {/* ── Étagère 1 : ce qu'on a chez soi ── */}
+            <section
+                className={`${styles.shelf} ${dropOn === 'cave' ? styles.shelfDrop : ''}`}
+                {...dropHandlers('cave')}
+            >
+                {inCave.length === 0 ? (
+                    <div className={styles.empty}>
+                        <div className={styles.emptyIc}>
+                            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" /></svg>
+                        </div>
+                        <h2>Ta cave est vide</h2>
+                        <p>Scanne l’étiquette d’une bouteille pour l’ajouter.</p>
+                        <button className={styles.cta} onClick={() => setAdding('cave')}>Ajouter un vin</button>
                     </div>
-                    <h2>Ta cave est vide</h2>
-                    <p>Scanne l’étiquette d’une bouteille pour l’ajouter.</p>
-                    <button className={styles.cta} onClick={() => setAdding(true)}>Ajouter un vin</button>
-                </div>
-            ) : (
-                <div className={styles.grid}>
-                    {shown.map((w) => (
-                        <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
-                    ))}
-                </div>
-            )}
+                ) : (
+                    <div className={styles.grid}>
+                        {inCave.map((w) => (
+                            <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
+                        ))}
+                    </div>
+                )}
+            </section>
 
-            {adding && <AddWine onClose={() => setAdding(false)} />}
+            {/* ── Étagère 2 : bues, notées, gardées en mémoire ── */}
+            <section
+                className={`${styles.shelf} ${styles.shelfTasted} ${dropOn === 'tasted' ? styles.shelfDrop : ''}`}
+                {...dropHandlers('tasted')}
+            >
+                <div className={styles.shelfHead}>
+                    <div>
+                        <h2 className={styles.shelfTitle}>Goûté &amp; approuvé</h2>
+                        <p className={styles.shelfSub}>
+                            Les bouteilles que tu as bues — ailleurs, ou jusqu’à la dernière.
+                            Glisse une carte de ta cave ici, ou descends son stock à zéro.
+                        </p>
+                    </div>
+                    <button className={styles.addTop} onClick={() => setAdding('tasted')}>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
+                        Ajouter
+                    </button>
+                </div>
+
+                {tastedList.length === 0 ? (
+                    <div className={styles.shelfEmpty}>
+                        Rien encore. Une bouteille bue chez un ami ou au restaurant se scanne
+                        d’ici, et rejoint tes notes comme n’importe quel vin de la cave.
+                    </div>
+                ) : (
+                    <div className={styles.grid}>
+                        {tastedList.map((w) => (
+                            <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
+                        ))}
+                    </div>
+                )}
+            </section>
+
+            {adding && <AddWine shelf={adding} onClose={() => setAdding(null)} />}
             {pairing && <PairSheet wine={pairing} onClose={() => setPairing(null)} embedded={embedded} />}
             {editing && <EditWine wine={editing} onClose={() => setEditing(null)} />}
             {menu && (
@@ -198,9 +258,14 @@ function ZoomView({ src, onClose }: { src: string; onClose: () => void }) {
 /* ── Carte vin : scène de cave (tonneau) + bouteille ──────────────────────── */
 function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; onPair: () => void; onRemove: () => void; onZoom: () => void; onMenu: (x: number, y: number) => void }) {
     const lp = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const shelf = shelfOf(wine);
     return (
         <div
-            className={styles.card}
+            className={`${styles.card} ${shelf === 'tasted' ? styles.cardTasted : ''}`}
+            /* La carte se glisse d'une étagère à l'autre (souris). Au doigt, le
+               même déplacement passe par le menu de la carte. */
+            draggable
+            onDragStart={(e) => { e.dataTransfer.setData('text/plain', wine.id); e.dataTransfer.effectAllowed = 'move'; }}
             /* Clic droit (desktop) et appui long (iPhone, où le clic droit
                n'existe pas) ouvrent le même menu. */
             onContextMenu={(e) => { e.preventDefault(); onMenu(e.clientX, e.clientY); }}
@@ -252,14 +317,23 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                         return <span className={`${styles.apogee} ${cls}`}>{w.label}</span>;
                     })()}
                 </div>
-                <div className={styles.stockRow}>
-                    <div className={styles.stepper}>
-                        <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) - 1); }} aria-label="Moins">−</button>
-                        <span>{wine.qty ?? 1}</span>
-                        <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) + 1); }} aria-label="Plus">+</button>
+                {shelf === 'cave' ? (
+                    <div className={styles.stockRow}>
+                        <div className={styles.stepper}>
+                            <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) - 1); }} aria-label="Moins">−</button>
+                            <span>{wine.qty ?? 1}</span>
+                            <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) + 1); }} aria-label="Plus">+</button>
+                        </div>
+                        <button className={styles.openBtn} disabled={(wine.qty ?? 1) <= 0} onClick={(e) => { e.stopPropagation(); openBottle(wine.id); }}>Ouvrir</button>
                     </div>
-                    <button className={styles.openBtn} disabled={(wine.qty ?? 1) <= 0} onClick={(e) => { e.stopPropagation(); openBottle(wine.id); }}>Ouvrir</button>
-                </div>
+                ) : (
+                    /* Plus de stock à compter ici : le seul geste utile est d'en
+                       racheter une, ce qui la remet en cave. */
+                    <div className={styles.stockRow}>
+                        <span className={styles.tastedTag}>Goûté &amp; approuvé</span>
+                        <button className={styles.openBtn} onClick={(e) => { e.stopPropagation(); moveToCave(wine.id); }}>J’en ai repris</button>
+                    </div>
+                )}
                 <button className={styles.pairBtn} onClick={onPair}>
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16M7 4v6a5 5 0 0 0 10 0V4M12 15v5M9 20h6" /></svg>
                     Quelle recette ?
@@ -315,7 +389,22 @@ function CardMenu({ wine, at, onClose, onPair, onEdit, onRemove }: {
                 <div className={styles.ctxTitle}>{wine.name}</div>
                 <Item d="M4 4h16M7 4v6a5 5 0 0 0 10 0V4M12 15v5M9 20h6" label="Quelle recette ?" onClick={onPair} />
                 <Item d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" label="Corriger la fiche" onClick={onEdit} />
-                <Item d="M5 12h14" label="Retirer de la cave" danger onClick={onRemove} />
+                {/* Le déplacement d'une étagère à l'autre passe par ici au doigt :
+                    le glissé n'existe pas vraiment sur un téléphone. */}
+                {shelfOf(wine) === 'cave' ? (
+                    <Item
+                        d="M5 12l5 5L20 7"
+                        label="Ranger dans « Goûté & approuvé »"
+                        onClick={() => { moveToTasted(wine.id); onClose(); }}
+                    />
+                ) : (
+                    <Item
+                        d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z"
+                        label="Remettre dans ma cave"
+                        onClick={() => { moveToCave(wine.id); onClose(); }}
+                    />
+                )}
+                <Item d="M5 12h14" label={shelfOf(wine) === 'cave' ? 'Retirer de la cave' : 'Effacer cette bouteille'} danger onClick={onRemove} />
             </div>
         </div>
     );
@@ -440,7 +529,10 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
 /* ── Ajout d'un vin : scan étiquette → ajout automatique ──────────────────── */
 type Official = { photo?: string; rating?: number; vivinoUrl?: string };
 
-function AddWine({ onClose }: { onClose: () => void }) {
+function AddWine({ onClose, shelf: initialShelf = 'cave' }: { onClose: () => void; shelf?: WineShelf }) {
+    // Où ranger la bouteille : en cave (on l'a) ou dans « Goûté & approuvé »
+    // (bue chez un ami, au restaurant — on ne la possède pas).
+    const [shelf, setShelf] = useState<WineShelf>(initialShelf);
     const [photo, setPhoto] = useState<string>('');       // aperçu (pleine taille)
     const [photoSmall, setPhotoSmall] = useState<string>(''); // version stockable
     const [photoUrl, setPhotoUrl] = useState('');
@@ -500,6 +592,7 @@ function AddWine({ onClose }: { onClose: () => void }) {
                         name: w.name, grape: w.grape || '', year: w.year || '',
                         color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
                         photo: w.photo || small, rating: w.rating, vivinoUrl: w.vivinoUrl,
+                        shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
                     });
                     if (known) {
                         toast(known.year && w.year && known.year !== w.year
@@ -557,6 +650,7 @@ function AddWine({ onClose }: { onClose: () => void }) {
             ...form, name,
             photo: photoUrl.trim() || official.photo || photoSmall || undefined,
             rating: official.rating, vivinoUrl: official.vivinoUrl,
+            shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
         });
         if (known) toast('Déjà dégusté — ce vin est déjà passé par ta cave');
         onClose();
@@ -566,11 +660,28 @@ function AddWine({ onClose }: { onClose: () => void }) {
         <div className={styles.backdrop} onClick={onClose}>
             <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.sheetHead}>
-                    <div className={styles.sheetTitle}>Ajouter un vin</div>
+                    <div className={styles.sheetTitle}>{shelf === 'tasted' ? 'Ajouter une bouteille goûtée' : 'Ajouter un vin'}</div>
                     <button className={styles.sheetClose} onClick={onClose}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
                 </div>
 
                 <div className={styles.addBody}>
+                    {/* Où va la bouteille : on le demande AVANT le scan, parce que
+                        la réponse change le sens du geste — au restaurant on ne
+                        remplit pas sa cave, on garde une trace. */}
+                    <div className={styles.destRow}>
+                        {([['cave', 'Dans ma cave', 'Je l’ai chez moi'],
+                           ['tasted', 'Goûté & approuvé', 'Bue ailleurs, je la note']] as const).map(([k, lbl, sub]) => (
+                            <button
+                                key={k}
+                                className={`${styles.destBtn} ${shelf === k ? styles.destOn : ''}`}
+                                onClick={() => setShelf(k)}
+                            >
+                                <span className={styles.destLbl}>{lbl}</span>
+                                <span className={styles.destSub}>{sub}</span>
+                            </button>
+                        ))}
+                    </div>
+
                     <div className={styles.scanRow}>
                         <button className={styles.scanBtn} onClick={() => fileRef.current?.click()} disabled={busy}>
                             {official.photo || photo ? <img src={official.photo || photo} alt="" className={styles.scanThumb} /> : (
@@ -582,7 +693,7 @@ function AddWine({ onClose }: { onClose: () => void }) {
                             {busy && <span className={styles.scanBusy}><span className={styles.spin} />{scanMsg || 'Lecture de l’étiquette…'}</span>}
                         </button>
                         <input ref={fileRef} type="file" accept="image/*" capture="environment" onChange={onFile} hidden />
-                        <div className={styles.scanHint}>{(!busy && scanMsg) || 'Prends la bouteille en photo : l’étiquette est lue, la bouteille est retrouvée chez le marchand et entre dans ta cave avec sa vraie photo.'}</div>
+                        <div className={styles.scanHint}>{(!busy && scanMsg) || (shelf === 'tasted' ? 'Prends la bouteille en photo : l’étiquette est lue, la bouteille est retrouvée chez le marchand, et elle rejoint tes dégustations avec sa vraie photo — même si tu ne l’as pas chez toi.' : 'Prends la bouteille en photo : l’étiquette est lue, la bouteille est retrouvée chez le marchand et entre dans ta cave avec sa vraie photo.')}</div>
                     </div>
 
                     <div className={styles.fields}>
@@ -605,7 +716,7 @@ function AddWine({ onClose }: { onClose: () => void }) {
                         </div>
                     </div>
 
-                    <button className={styles.saveBtn} onClick={save} disabled={!form.name.trim()}>Ajouter à ma cave</button>
+                    <button className={styles.saveBtn} onClick={save} disabled={!form.name.trim()}>{shelf === 'tasted' ? 'Ajouter à « Goûté & approuvé »' : 'Ajouter à ma cave'}</button>
                 </div>
             </div>
         </div>

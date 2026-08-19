@@ -239,3 +239,79 @@
    au bas de CHAQUE carte, à la même altitude. */
 .card { height: 100%; display: flex; flex-direction: column; }
 .info { flex: 1 1 auto; }
+
+/* ── Deux étagères : la cave, puis « Goûté & approuvé » ───────────────────
+   Même carte, même présentation des deux côtés — seul le pied change (pas de
+   stock à compter sur une bouteille qu'on ne possède plus). La seconde étagère
+   se pose SOUS la première : sur un téléphone, une colonne de côté ne tiendrait
+   pas, et l'ordre « ce que j'ai / ce que j'ai bu » se lit tout seul. */
+.shelf {
+    border-radius: 20px;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+/* Cible du glissé : la zone s'éclaire quand une carte la survole. */
+.shelfDrop {
+    background: rgba(255, 90, 60, 0.08);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 107, 74, 0.55);
+}
+
+.shelfTasted { margin-top: 34px; padding-top: 22px; border-top: 0.5px solid rgba(255, 255, 255, 0.12); }
+
+.shelfHead {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 16px;
+}
+.shelfTitle {
+    margin: 0;
+    font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 26px;
+    letter-spacing: -.03em; text-transform: uppercase;
+    transform: skewX(-6deg); transform-origin: left bottom; color: #fff;
+}
+.shelfSub {
+    margin: 7px 0 0; max-width: 46ch;
+    font-size: 13.5px; line-height: 1.45; color: rgba(235, 235, 245, .55);
+}
+.shelfEmpty {
+    padding: 26px 18px; border-radius: 18px; max-width: 52ch;
+    background: rgba(255, 255, 255, .04);
+    box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .1);
+    font-size: 14px; line-height: 1.5; color: rgba(235, 235, 245, .6);
+}
+
+/* Une bouteille bue se distingue d'un coup d'œil, sans changer de mise en page. */
+.cardTasted .scene { filter: saturate(.88); }
+/* Sur une carte étroite, la pastille et le bouton ne tiennent pas côte à côte :
+   ils passent l'un sous l'autre plutôt que de se tronquer. */
+.cardTasted .stockRow { flex-wrap: wrap; gap: 8px; }
+.cardTasted .stockRow .openBtn { flex: 1 1 100%; }
+.tastedTag {
+    flex: 1 1 100%; justify-content: center;
+    display: inline-flex; align-items: center;
+    height: 30px; padding: 0 12px; border-radius: 999px;
+    background: linear-gradient(120deg, rgba(255, 46, 99, .18), rgba(255, 107, 74, .18));
+    box-shadow: inset 0 0 0 1px rgba(255, 107, 74, .35);
+    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 800; color: #FF8A7A;
+    white-space: nowrap;
+}
+
+/* Destination, dans le formulaire d'ajout. */
+.destRow { display: flex; gap: 10px; margin-bottom: 14px; }
+.destBtn {
+    flex: 1 1 0; display: flex; flex-direction: column; gap: 3px;
+    padding: 11px 13px; border: none; border-radius: 14px; cursor: pointer; text-align: left;
+    background: rgba(255, 255, 255, .06);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+    transition: background .18s ease, box-shadow .18s ease;
+}
+.destOn {
+    background: linear-gradient(120deg, rgba(255, 46, 99, .2), rgba(255, 107, 74, .2));
+    box-shadow: inset 0 0 0 1.5px rgba(255, 107, 74, .6);
+}
+.destLbl { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: #fff; }
+.destSub { font-size: 11.5px; color: rgba(235, 235, 245, .55); }
+
+@media (min-width: 760px) {
+    /* Écran large : la pastille et le bouton retrouvent leur ligne commune. */
+    .cardTasted .stockRow .openBtn { flex: 0 0 auto; }
+    .tastedTag { flex: 0 0 auto; }
+}
