@@ -226,6 +226,177 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     );
 }
 
+
+/**
+ * Viseur d'étiquette — on POINTE, ça se déclenche tout seul.
+ *
+ * Le flux passe dans un <canvas> réduit à 64 px de large. Deux mesures y sont
+ * prises à chaque image :
+ *   • la NETTETÉ : somme des écarts entre pixels voisins. Une photo floue a des
+ *     transitions douces, donc une somme basse — une étiquette lisible tranche.
+ *   • la STABILITÉ : écart moyen avec l'image précédente. Un téléphone qu'on
+ *     promène change beaucoup ; un téléphone tenu devant une bouteille, presque
+ *     pas.
+ * Quand les deux sont bonnes pendant 700 ms d'affilée, on prend la photo en
+ * pleine résolution et on enchaîne sur la lecture d'étiquette. Le déclencheur
+ * manuel reste là pour les cas où la lumière ne veut rien savoir.
+ */
+function LabelScanner({ onShot, onClose, busy, message }: {
+    onShot: (dataUrl: string) => void;
+    onClose: () => void;
+    busy: boolean;
+    message: string;
+}) {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const streamRef = useRef<MediaStream | null>(null);
+    const prev = useRef<Uint8ClampedArray | null>(null);
+    const steady = useRef(0);
+    const fired = useRef(false);
+    const [err, setErr] = useState('');
+    const [hint, setHint] = useState('Cadre l’étiquette');
+    const [aim, setAim] = useState(0);        // 0 → 1 : à quel point on y est
+
+    /** Photo pleine résolution de l'image courante. */
+    const grab = () => {
+        const v = videoRef.current;
+        if (!v || !v.videoWidth) return null;
+        const cv = document.createElement('canvas');
+        cv.width = v.videoWidth; cv.height = v.videoHeight;
+        cv.getContext('2d')?.drawImage(v, 0, 0);
+        return cv.toDataURL('image/jpeg', 0.9);
+    };
+
+    const shoot = () => {
+        if (fired.current || busy) return;
+        const shot = grab();
+        if (!shot) return;
+        fired.current = true;
+        navigator.vibrate?.(14);
+        onShot(shot);
+    };
+
+    // Une lecture ratée relance la surveillance : on ne fige pas le viseur.
+    useEffect(() => { if (!busy) { fired.current = false; steady.current = 0; } }, [busy]);
+
+    useEffect(() => {
+        let raf = 0;
+        let stop = false;
+
+        const start = async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 } },
+                    audio: false,
+                });
+                if (stop) { stream.getTracks().forEach((t) => t.stop()); return; }
+                streamRef.current = stream;
+                const v = videoRef.current;
+                if (v) { v.srcObject = stream; await v.play().catch(() => {}); }
+                loop();
+            } catch (e: any) {
+                setErr(e?.name === 'NotAllowedError'
+                    ? 'Accès à l’appareil photo refusé. Autorise-le, ou prends la photo depuis la pellicule.'
+                    : 'Pas d’appareil photo utilisable ici — prends la photo depuis la pellicule.');
+            }
+        };
+
+        const loop = () => {
+            if (stop) return;
+            raf = requestAnimationFrame(loop);
+            const v = videoRef.current;
+            if (!v || !v.videoWidth || busy || fired.current) return;
+
+            if (!canvasRef.current) canvasRef.current = document.createElement('canvas');
+            const cv = canvasRef.current;
+            cv.width = 64; cv.height = 48;
+            const ctx = cv.getContext('2d', { willReadFrequently: true });
+            if (!ctx) return;
+            ctx.drawImage(v, 0, 0, 64, 48);
+            const img = ctx.getImageData(0, 0, 64, 48).data;
+
+            // Niveaux de gris, puis netteté (contraste local) et mouvement.
+            const gray = new Uint8ClampedArray(64 * 48);
+            for (let i = 0, p = 0; i < img.length; i += 4, p++) {
+                gray[p] = (img[i] * 0.299 + img[i + 1] * 0.587 + img[i + 2] * 0.114) | 0;
+            }
+            let sharp = 0;
+            for (let y = 1; y < 47; y++) {
+                for (let x = 1; x < 63; x++) {
+                    const p = y * 64 + x;
+                    sharp += Math.abs(gray[p] * 2 - gray[p - 1] - gray[p + 1]);
+                }
+            }
+            sharp /= 62 * 46;
+
+            let move = 999;
+            if (prev.current) {
+                let d = 0;
+                for (let i = 0; i < gray.length; i++) d += Math.abs(gray[i] - prev.current[i]);
+                move = d / gray.length;
+            }
+            prev.current = gray;
+
+            const ok = sharp > 6 && move < 4;
+            steady.current = ok ? steady.current + 16 : 0;
+            setAim(Math.min(1, steady.current / 700));
+            setHint(!ok && move >= 4 ? 'Ne bouge plus…'
+                : !ok ? 'Approche l’étiquette, cherche la lumière'
+                : 'C’est net, on y est');
+            if (steady.current >= 700) shoot();
+        };
+
+        start();
+        return () => {
+            stop = true;
+            cancelAnimationFrame(raf);
+            streamRef.current?.getTracks().forEach((t) => t.stop());
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [busy]);
+
+    return (
+        <div className={styles.scanBack}>
+            <video ref={videoRef} className={styles.scanVideo} playsInline muted autoPlay />
+            <div className={styles.scanVeil} aria-hidden />
+
+            <div className={styles.scanFrame}>
+                <span className={styles.scanCorner} data-c="tl" />
+                <span className={styles.scanCorner} data-c="tr" />
+                <span className={styles.scanCorner} data-c="bl" />
+                <span className={styles.scanCorner} data-c="br" />
+                <div className={styles.scanAim} style={{ transform: `scaleX(${aim})` }} />
+            </div>
+
+            <div className={styles.scanTop}>
+                <button className={styles.scanClose} onClick={onClose} aria-label="Fermer">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                </button>
+            </div>
+
+            <div className={styles.scanBottom}>
+                <div className={styles.scanHintBig}>
+                    {err || (busy ? (message || 'Lecture de l’étiquette…') : hint)}
+                </div>
+                {!err && !busy && (
+                    <p className={styles.scanSub}>Tiens la bouteille dans le cadre : la photo part toute seule.</p>
+                )}
+                {/* Sans caméra, le déclencheur n'a rien à déclencher : on renvoie
+                    directement vers la pellicule. */}
+                {!busy && !err && (
+                    <button className={styles.scanShutter} onClick={shoot} aria-label="Prendre la photo">
+                        <span />
+                    </button>
+                )}
+                {err && (
+                    <button className={styles.scanPick} onClick={onClose}>Choisir une photo</button>
+                )}
+                {busy && <span className={styles.scanSpin} />}
+            </div>
+        </div>
+    );
+}
+
 /**
  * Champ à étiquette flottante : l'étiquette vit DANS le champ et remonte dès
  * qu'on écrit. On garde ainsi le nom de la donnée sous les yeux pendant la
@@ -663,6 +834,9 @@ function AddWine({ onClose, shelf: initialShelf = 'cave' }: { onClose: () => voi
     // Photo officielle + note du marchand quand la bouteille a été retrouvée.
     const [official, setOfficial] = useState<Official>({});
     const [scanMsg, setScanMsg] = useState('');
+    // Viseur en direct : c'est la voie normale du scan. La pellicule reste en
+    // secours (ordinateur sans caméra, autorisation refusée).
+    const [viewfinder, setViewfinder] = useState(false);
     const fileRef = useRef<HTMLInputElement>(null);
 
     /**
@@ -785,6 +959,15 @@ function AddWine({ onClose, shelf: initialShelf = 'cave' }: { onClose: () => voi
                     <button className={styles.sheetClose} onClick={onClose}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
                 </div>
 
+                {viewfinder && (
+                    <LabelScanner
+                        busy={busy}
+                        message={scanMsg}
+                        onClose={() => setViewfinder(false)}
+                        onShot={(url) => { setPhoto(url); scanAndAdd(url); }}
+                    />
+                )}
+
                 <div className={styles.addBody}>
                     {/* Où va la bouteille : on le demande AVANT le scan, parce que
                         la réponse change le sens du geste — au restaurant on ne
@@ -804,16 +987,19 @@ function AddWine({ onClose, shelf: initialShelf = 'cave' }: { onClose: () => voi
                     </div>
 
                     <div className={styles.scanRow}>
-                        <button className={styles.scanBtn} onClick={() => fileRef.current?.click()} disabled={busy}>
+                        <button className={styles.scanBtn} onClick={() => setViewfinder(true)} disabled={busy}>
                             {official.photo || photo ? <img src={official.photo || photo} alt="" className={styles.scanThumb} /> : (
                                 <span className={styles.scanIc}>
                                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h2M17 5h2a2 2 0 0 1 2 2v2M21 15v2a2 2 0 0 1-2 2h-2M7 19H5a2 2 0 0 1-2-2v-2M7 12h10" /></svg>
-                                    Scanner l’étiquette
+                                    Viser l’étiquette
                                 </span>
                             )}
                             {busy && <span className={styles.scanBusy}><span className={styles.spin} />{scanMsg || 'Lecture de l’étiquette…'}</span>}
                         </button>
                         <input ref={fileRef} type="file" accept="image/*" capture="environment" onChange={onFile} hidden />
+                        <button className={styles.scanFallback} onClick={() => fileRef.current?.click()} disabled={busy}>
+                            ou choisir une photo
+                        </button>
                         <div className={styles.scanHint}>{(!busy && scanMsg) || (shelf === 'tasted' ? 'Prends la bouteille en photo : l’étiquette est lue, la bouteille est retrouvée chez le marchand, et elle rejoint tes dégustations avec sa vraie photo — même si tu ne l’as pas chez toi.' : 'Prends la bouteille en photo : l’étiquette est lue, la bouteille est retrouvée chez le marchand et entre dans ta cave avec sa vraie photo.')}</div>
                     </div>
 

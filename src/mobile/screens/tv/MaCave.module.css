@@ -454,3 +454,87 @@
     background: rgba(255, 255, 255, .1);
 }
 .addTileLbl { font-family: 'Outfit', sans-serif; font-size: 13.5px; font-weight: 800; }
+
+/* ── Viseur d'étiquette ──────────────────────────────────────────────────
+   Plein écran, par-dessus tout : la caméra en fond, un cadre pour viser, et une
+   jauge qui se remplit à mesure que l'image se stabilise. Aucune commande à
+   toucher — le déclencheur manuel n'est qu'un secours. */
+.scanBack {
+    position: fixed; inset: 0; z-index: 100002;
+    background: #000;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+}
+.scanVideo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.scanVeil {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(58% 42% at 50% 45%, rgba(0,0,0,0) 40%, rgba(0,0,0,.62) 100%);
+}
+
+/* Le cadre de visée : quatre coins, rien de plus — on doit voir l'étiquette. */
+.scanFrame {
+    position: relative;
+    width: min(74vw, 320px); aspect-ratio: 3 / 4;
+    border-radius: 22px;
+}
+.scanCorner {
+    position: absolute; width: 30px; height: 30px;
+    border: 3px solid rgba(255,255,255,.9); border-radius: 4px;
+}
+.scanCorner[data-c='tl'] { top: -2px; left: -2px; border-right: none; border-bottom: none; border-radius: 14px 0 0 0; }
+.scanCorner[data-c='tr'] { top: -2px; right: -2px; border-left: none; border-bottom: none; border-radius: 0 14px 0 0; }
+.scanCorner[data-c='bl'] { bottom: -2px; left: -2px; border-right: none; border-top: none; border-radius: 0 0 0 14px; }
+.scanCorner[data-c='br'] { bottom: -2px; right: -2px; border-left: none; border-top: none; border-radius: 0 0 14px 0; }
+
+/* Jauge de visée : elle se remplit quand c'est net ET immobile, et retombe au
+   moindre mouvement. On comprend sans rien lire ce que le téléphone attend. */
+.scanAim {
+    position: absolute; left: 0; right: 0; bottom: -14px; height: 3px;
+    border-radius: 999px; background: #4cd964;
+    transform-origin: left center; transform: scaleX(0);
+    transition: transform .12s linear;
+    box-shadow: 0 0 14px rgba(76,217,100,.7);
+}
+
+.scanTop { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 14px); right: 16px; }
+.scanClose {
+    width: 42px; height: 42px; border: none; border-radius: 999px;
+    background: rgba(0,0,0,.45); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+
+.scanBottom {
+    position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + 26px);
+    display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 24px;
+    text-align: center;
+}
+.scanHintBig {
+    font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800; color: #fff;
+    text-shadow: 0 2px 14px rgba(0,0,0,.8);
+}
+.scanSub { margin: 0; font-size: 13px; color: rgba(255,255,255,.7); text-shadow: 0 1px 10px rgba(0,0,0,.8); }
+.scanShutter {
+    margin-top: 4px; width: 68px; height: 68px; border-radius: 999px; cursor: pointer;
+    border: 3px solid rgba(255,255,255,.9); background: none;
+    display: flex; align-items: center; justify-content: center;
+}
+.scanShutter span { width: 52px; height: 52px; border-radius: 999px; background: #fff; }
+.scanShutter:active span { transform: scale(.9); }
+.scanSpin {
+    width: 30px; height: 30px; border-radius: 999px;
+    border: 3px solid rgba(255,255,255,.25); border-top-color: #fff;
+    animation: scanSpin .8s linear infinite;
+}
+@keyframes scanSpin { to { transform: rotate(360deg); } }
+
+/* Secours : la pellicule, en tout petit sous le bouton de visée. */
+.scanFallback {
+    margin-top: 8px; padding: 0; border: none; background: none; cursor: pointer;
+    font-size: 12.5px; font-weight: 600; color: rgba(235,235,245,.5);
+    text-decoration: underline; text-underline-offset: 3px;
+}
+.scanFallback:hover { color: rgba(235,235,245,.8); }
+.scanPick {
+    margin-top: 6px; height: 46px; padding: 0 22px; border: none; border-radius: 999px; cursor: pointer;
+    background: #fff; color: #111; font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
+}
