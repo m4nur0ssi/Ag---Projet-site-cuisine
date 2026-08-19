@@ -250,17 +250,21 @@
 
 /* ── HÉROS ─────────────────────────────────────────────────────────────── */
 
+/* Composition : le texte tient toute la gauche, en grand ; le visuel occupe la
+   droite et DÉBORDE du bord de la fenêtre, comme une affiche Apple TV+. Plus de
+   gouttière à droite, donc plus de pavé noir — c'est l'image qui va au bout. */
 .hero {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 54px;
+    gap: clamp(24px, 3.5vw, 64px);
     /* Le héros occupe le premier écran : seule la rangée Top 10 dépasse en bas. */
-    height: 84vh;
-    min-height: 580px;
-    /* Marge haute : la carte/vidéo descend sous la signature, un vrai espace
-       sépare le titre « Magiques » du bord haut du visuel. */
-    padding: 96px 64px 0;
+    height: 88vh;
+    min-height: 620px;
+    /* Marge haute : le visuel descend sous la signature, un vrai espace sépare
+       le titre « Magiques » du bord haut de l'image. */
+    padding: 104px 0 0 clamp(40px, 4.6vw, 76px);
     overflow: hidden;
 }
 
@@ -271,14 +275,32 @@
     position: absolute; inset: -8%;
     width: 116%; height: 116%;
     object-fit: cover; object-position: 50% 42%;
-    filter: blur(46px) saturate(150%) brightness(0.72);
-    transform: scale(1.08);
+    filter: blur(52px) saturate(165%) brightness(0.82);
+    transform: scale(1.1);
 }
+/* Voile DIRECTIONNEL : sombre à gauche pour que le titre porte, presque
+   transparent à droite pour laisser vivre l'image, et fondu vers le fond de
+   page en bas pour que la première rangée s'enchaîne sans couture. */
 .heroBackdropVeil {
     position: absolute; inset: 0;
     background:
-        radial-gradient(120% 90% at 30% 30%, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.82) 100%),
-        linear-gradient(0deg, var(--bg) 0%, rgba(0,0,0,0.35) 22%, rgba(0,0,0,0) 55%);
+        linear-gradient(90deg, rgba(6,6,9,0.94) 0%, rgba(6,6,9,0.86) 30%, rgba(6,6,9,0.5) 62%, rgba(6,6,9,0.18) 100%),
+        radial-gradient(140% 110% at 12% 34%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 68%, rgba(0,0,0,0.7) 100%),
+        linear-gradient(0deg, var(--bg) 0%, rgba(6,6,9,0.5) 16%, rgba(0,0,0,0) 46%);
+}
+
+/* Halo : la photo à nouveau, énorme et noyée de flou, calée derrière le visuel.
+   Elle teinte toute la moitié droite du cadre — c'est ce qui remplace le noir. */
+.heroHalo {
+    position: absolute; z-index: 0;
+    right: -8%; top: 50%;
+    width: 66%; height: 96%;
+    transform: translateY(-50%);
+    object-fit: cover;
+    border-radius: 50%;
+    filter: blur(110px) saturate(210%) brightness(0.95);
+    opacity: 0.55;
+    pointer-events: none;
 }
 
 /* Bandeau haut : signature + compteur de recettes. */
@@ -302,25 +324,37 @@
 
 /* Carte verticale : la photo, puis la vidéo au bout de 2 s. Format plus haut
    que large (9/13) pour épouser les vidéos TikTok qui viennent s'y loger. */
-.heroLeft {
+/* Le visuel : calé à droite, il touche le bord de la fenêtre et n'a plus d'angle
+   de ce côté — l'affiche continue hors champ. Sa hauteur mène la danse, la
+   largeur suit le format. */
+.heroArt {
     position: relative; z-index: 1;
-    flex: 0 0 auto;
-    width: min(32vw, 430px);
+    justify-self: end; align-self: center;
+    height: min(76vh, 780px);
     aspect-ratio: 9 / 13;
-    max-height: 62vh;
-    border-radius: 24px;
+    border-radius: 30px 0 0 30px;
     overflow: hidden;
     background: #141416;
     box-shadow:
-        0 40px 100px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(255, 255, 255, 0.14);
+        -60px 0 140px rgba(0, 0, 0, 0.6),
+        0 30px 90px rgba(0, 0, 0, 0.55),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.14);
     cursor: pointer;
 }
 
-/* Colonne droite : contenu centré verticalement dans l'espace restant. */
-.heroRight {
-    position: relative; z-index: 1;
-    flex: 1 1 auto;
+/* Le bord gauche de l'affiche se fond dans le décor : sans ce dégradé, une arête
+   verticale nette coupait le héros en deux. Un calque plutôt qu'un `mask` :
+   Safari ne masque pas les iframes de façon fiable. */
+.heroArtFade {
+    position: absolute; inset: 0 auto 0 0; z-index: 3;
+    width: 26%;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--bg) 0%, rgba(6, 6, 9, 0.55) 45%, rgba(6, 6, 9, 0) 100%);
+}
+
+/* Colonne de gauche : le texte, centré verticalement, tout l'espace pour lui. */
+.heroPane {
+    position: relative; z-index: 2;
     min-width: 0;
     display: flex;
     align-items: center;
@@ -370,12 +404,12 @@
 
 .heroBody {
     position: relative; z-index: 2;
-    max-width: 560px;
+    max-width: min(46vw, 720px);
 }
 
 .heroKicker {
-    display: inline-block; margin-bottom: 14px;
-    padding: 6px 13px; border-radius: 999px;
+    display: inline-block; margin-bottom: 20px;
+    padding: 8px 16px; border-radius: 999px;
     background: rgba(28,28,30,0.55);
     -webkit-backdrop-filter: blur(18px) saturate(180%); backdrop-filter: blur(18px) saturate(180%);
     box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.18);
@@ -385,8 +419,8 @@
 .heroTitle {
     margin: 0;
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(38px, 4.6vw, 68px);
-    font-weight: 900; line-height: 0.92; letter-spacing: -0.035em;
+    font-size: clamp(46px, 5.6vw, 96px);
+    font-weight: 900; line-height: 0.9; letter-spacing: -0.038em;
     text-transform: uppercase;
     color: #fff; text-shadow: 0 2px 22px rgba(0,0,0,0.6);
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
@@ -403,9 +437,9 @@
 }
 
 .heroMeta {
-    display: flex; align-items: center; flex-wrap: wrap; gap: 9px;
-    margin-top: 16px;
-    font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 600;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 11px;
+    margin-top: 24px;
+    font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 600;
     color: rgba(255,255,255,0.92); text-shadow: 0 1px 10px rgba(0,0,0,0.6);
 }
 .dot { width: 3px; height: 3px; border-radius: 999px; background: rgba(255,255,255,0.5); }
@@ -414,13 +448,13 @@
     box-shadow: inset 0 0 0 1.2px rgba(255,255,255,0.45); color: rgba(255,255,255,0.9);
 }
 
-.heroActions { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+.heroActions { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
 
 .heroPlay {
     display: inline-flex; align-items: center; gap: 9px;
-    height: 48px; padding: 0 26px;
+    height: 54px; padding: 0 30px;
     border: none; border-radius: 999px; background: #fff; color: #000;
-    font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+    font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
     cursor: pointer; box-shadow: 0 8px 30px rgba(0,0,0,0.4);
     transition: transform 0.2s var(--ease), background 0.2s ease;
 }
@@ -428,7 +462,7 @@
 .heroPlay:active { transform: scale(0.97); }
 
 .heroPlus {
-    width: 48px; height: 48px;
+    width: 54px; height: 54px;
     display: flex; align-items: center; justify-content: center;
     border: none; border-radius: 999px;
     background: rgba(60,60,67,0.55);

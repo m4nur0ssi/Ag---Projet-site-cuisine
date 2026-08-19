@@ -390,6 +390,10 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                     />
                 </AnimatePresence>
                 <div className={styles.heroBackdropVeil} />
+                {/* Halo : la même photo, énorme et très floutée, posée derrière le
+                    visuel. C'est elle qui teinte la moitié droite du cadre — sans
+                    elle, ce côté-là restait un pavé noir. */}
+                <img className={styles.heroHalo} src={current.image} alt="" draggable={false} />
             </div>
 
             {/* Bandeau haut : la signature et le compteur de recettes. */}
@@ -401,39 +405,8 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                 </div>
             </div>
 
-            {/* Carte verticale : la photo, puis la vidéo au bout de 2 s. */}
-            <div className={styles.heroLeft} onClick={() => openRecipe(current)}>
-                <AnimatePresence>
-                    <motion.img
-                        key={current.id}
-                        className={styles.heroImg}
-                        src={current.image}
-                        alt=""
-                        initial={{ opacity: 0, scale: 1.05 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.9, ease: [0.32, 0.72, 0, 1] }}
-                        draggable={false}
-                    />
-                </AnimatePresence>
-                {playing && currentVid && (
-                    <iframe
-                        className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
-                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
-                        allow="autoplay; encrypted-media"
-                        title={label(current)}
-                    />
-                )}
-                <button className={`${styles.heroNav} ${styles.heroNavL}`} onClick={(e) => { e.stopPropagation(); go(-1); }} aria-label="Précédent">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </button>
-                <button className={`${styles.heroNav} ${styles.heroNavR}`} onClick={(e) => { e.stopPropagation(); go(1); }} aria-label="Suivant">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                </button>
-            </div>
-
-            {/* Détails à droite (titre, méta, actions). */}
-            <div className={styles.heroRight}>
+            {/* Le texte occupe la gauche, en grand : kicker, titre, méta, actions. */}
+            <div className={styles.heroPane}>
                 <motion.div
                     key={current.id}
                     className={styles.heroBody}
@@ -475,6 +448,39 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                     </div>
                 </motion.div>
             </div>
+            {/* Le visuel : la photo, puis la vidéo au bout de 2 s. Il déborde
+                du bord droit de la fenêtre, comme une affiche Apple TV+. */}
+            <div className={styles.heroArt} onClick={() => openRecipe(current)}>
+                <AnimatePresence>
+                    <motion.img
+                        key={current.id}
+                        className={styles.heroImg}
+                        src={current.image}
+                        alt=""
+                        initial={{ opacity: 0, scale: 1.05 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.9, ease: [0.32, 0.72, 0, 1] }}
+                        draggable={false}
+                    />
+                </AnimatePresence>
+                {playing && currentVid && (
+                    <iframe
+                        className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
+                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        allow="autoplay; encrypted-media"
+                        title={label(current)}
+                    />
+                )}
+                <div className={styles.heroArtFade} aria-hidden />
+                <button className={`${styles.heroNav} ${styles.heroNavL}`} onClick={(e) => { e.stopPropagation(); go(-1); }} aria-label="Précédent">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+                <button className={`${styles.heroNav} ${styles.heroNavR}`} onClick={(e) => { e.stopPropagation(); go(1); }} aria-label="Suivant">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+            </div>
+
         </div>
     );
 }
