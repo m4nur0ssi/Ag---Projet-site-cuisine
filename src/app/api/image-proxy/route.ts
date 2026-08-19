@@ -51,7 +51,10 @@ export async function GET(request: NextRequest) {
         // pendue jusqu'au timeout de la plateforme. En local (NAS hors réseau)
         // on descend très bas via IMAGE_PROXY_TIMEOUT_MS, sinon les 6 connexions
         // du navigateur restent bloquées et les chunks Next ne se chargent plus.
-        const timeoutMs = Number(process.env.IMAGE_PROXY_TIMEOUT_MS) || 15000;
+        // 30 s : les originaux du NAS pèsent plusieurs mégaoctets et remontent
+        // par la fibre montante d'une maison. Un plafond trop court ferait
+        // échouer des photos qui finissaient par arriver.
+        const timeoutMs = Number(process.env.IMAGE_PROXY_TIMEOUT_MS) || 30000;
 
         const response = await fetch(fetchUrl, {
             // Pas de vérification SSL nécessaire ici car Vercel → IP en HTTP

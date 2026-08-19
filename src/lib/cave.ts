@@ -136,18 +136,22 @@ export function removeWine(id: string) {
     write(readCave().filter((w) => w.id !== id));
 }
 
-// Quelques vins d'exemple pour que la maquette ne soit pas vide au 1er lancement.
+// Quelques vins d'exemple pour que la maquette ne soit pas vide au 1er
+// lancement. Ils portent LEUR VRAIE PHOTO de bouteille (relevée chez le
+// marchand) : sans `photo`, la carte retombe sur la bouteille dessinée, et la
+// cave de démonstration ne ressemblait pas du tout à ce qu'elle donne une fois
+// remplie par un scan.
 export function seedCaveIfEmpty() {
     if (typeof window === 'undefined') return;
     if (localStorage.getItem(CAVE_KEY)) return;
     const seed: CaveWine[] = [
-        { id: 's1', name: 'Château Margaux', grape: 'Cabernet Sauvignon', year: '2016', color: 'rouge', region: 'Margaux, Bordeaux', note: 'Grand cru, tanins soyeux.', qty: 2, rating: 4.6, addedAt: Date.now() - 5000 },
-        { id: 's2', name: 'Chablis Premier Cru', grape: 'Chardonnay', year: '2021', color: 'blanc', region: 'Chablis, Bourgogne', note: 'Minéral, vif, notes d’agrumes.', qty: 4, rating: 4.1, addedAt: Date.now() - 4000 },
-        { id: 's3', name: 'Sauternes Château Rieussec', grape: 'Sémillon', year: '2015', color: 'liqueur', region: 'Sauternes, Bordeaux', note: 'Liquoreux, miel et abricot.', qty: 1, rating: 4.4, addedAt: Date.now() - 3000 },
-        { id: 's4', name: 'Châteauneuf-du-Pape', grape: 'Grenache', year: '2019', color: 'rouge', region: 'Vallée du Rhône', note: 'Puissant, épicé, fruits noirs.', qty: 3, rating: 4.2, addedAt: Date.now() - 2000 },
+        { id: 's1', name: 'Château Margaux', grape: 'Cabernet Sauvignon', year: '2016', color: 'rouge', region: 'Margaux, Bordeaux', note: 'Grand cru, tanins soyeux.', qty: 2, rating: 4.6, photo: 'https://images.vivino.com/thumbs/IKYGOPzNQgW34bK7oGA31A_pb_x960.png', addedAt: Date.now() - 5000 },
+        { id: 's2', name: 'Chablis Premier Cru', grape: 'Chardonnay', year: '2021', color: 'blanc', region: 'Chablis, Bourgogne', note: 'Minéral, vif, notes d’agrumes.', qty: 4, rating: 4.1, photo: 'https://images.vivino.com/thumbs/6cD6an_qQ5m3v5aWDH1T4A_pb_x960.png', addedAt: Date.now() - 4000 },
+        { id: 's3', name: 'Sauternes Château Rieussec', grape: 'Sémillon', year: '2015', color: 'liqueur', region: 'Sauternes, Bordeaux', note: 'Liquoreux, miel et abricot.', qty: 1, rating: 4.4, photo: 'https://images.vivino.com/thumbs/qVrbJA2pRIykyEELJe1vWw_pb_x960.png', addedAt: Date.now() - 3000 },
+        { id: 's4', name: 'Châteauneuf-du-Pape', grape: 'Grenache', year: '2019', color: 'rouge', region: 'Vallée du Rhône', note: 'Puissant, épicé, fruits noirs.', qty: 3, rating: 4.2, photo: 'https://images.vivino.com/thumbs/7-9SDusGT9uwT1KApZT-Bw_375x500.jpg', addedAt: Date.now() - 2000 },
         // Deux bouteilles bues ailleurs : de quoi voir la seconde étagère remplie.
-        { id: 's5', name: 'Pouilly-Fumé', grape: 'Sauvignon blanc', year: '2022', color: 'blanc', region: 'Loire', note: 'Bu chez Marc — vif, silex.', qty: 0, shelf: 'tasted', tasted: true, myRating: 4, rating: 3.9, addedAt: Date.now() - 1500 },
-        { id: 's6', name: 'Barolo', grape: 'Nebbiolo', year: '2017', color: 'rouge', region: 'Piémont, Italie', note: 'Au restaurant — tanins fermes, rose et goudron.', qty: 0, shelf: 'tasted', tasted: true, myRating: 5, rating: 4.5, addedAt: Date.now() - 1000 },
+        { id: 's5', name: 'Pouilly-Fumé', grape: 'Sauvignon blanc', year: '2022', color: 'blanc', region: 'Loire', note: 'Bu chez Marc — vif, silex.', qty: 0, shelf: 'tasted', tasted: true, myRating: 4, rating: 3.9, photo: 'https://images.vivino.com/thumbs/6zF_pudDSCOMI_aR6r7Z0A_pb_x960.png', addedAt: Date.now() - 1500 },
+        { id: 's6', name: 'Barolo', grape: 'Nebbiolo', year: '2017', color: 'rouge', region: 'Piémont, Italie', note: 'Au restaurant — tanins fermes, rose et goudron.', qty: 0, shelf: 'tasted', tasted: true, myRating: 5, rating: 4.5, photo: 'https://images.vivino.com/thumbs/8mjJbyNNTsybefZwPaYcXA_pb_x960.png', addedAt: Date.now() - 1000 },
     ];
     write(seed);
 }

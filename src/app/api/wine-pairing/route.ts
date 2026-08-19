@@ -55,7 +55,12 @@ async function callGroq(userMsg: string): Promise<{ text?: string; error?: strin
             ],
         }),
     });
-    if (!res.ok) return { error: 'Groq ' + res.status, status: res.status };
+    if (!res.ok) {
+        // On garde le message du fournisseur : « Groq 400 » tout seul n'apprend
+        // rien, et c'est justement ce qui a masqué le refus pendant des jours.
+        const detail = (await res.text().catch(() => '')).slice(0, 240);
+        return { error: `Groq ${res.status} ${detail}`, status: res.status };
+    }
     const data = await res.json();
     const text = data?.choices?.[0]?.message?.content || '';
     return { text };
@@ -117,11 +122,31 @@ export async function POST(req: NextRequest) {
     const userMsg = `Recette : ${title}\nCatégorie : ${category}\nIngrédients :\n- ${ingredients.join('\n- ')}`;
 
     try {
-        const out = GROQ_KEY ? await callGroq(userMsg)
-            : GEMINI_KEY ? await callGemini(userMsg)
-            : await callAnthropic(userMsg);
-        if (out.error || !out.text) {
-            return NextResponse.json({ error: out.error || 'Réponse vide' }, { status: 502 });
+        /**
+         * VRAIE chaîne de repli. C'était un ternaire : dès que la clé Groq
+         * existait, Gemini et Anthropic n'étaient JAMAIS appelés, même quand
+         * Groq refusait la requête. Un seul refus passager suffisait donc à
+         * afficher « Impossible de proposer un vin ».
+         *
+         * Chaque fournisseur a droit à deux essais : Groq rend par moments un
+         * 400 sur une requête pourtant valable, et le second essai passe.
+         */
+        const chain: Array<() => Promise<{ text?: string; error?: string; status?: number }>> = [];
+        if (GROQ_KEY) chain.push(() => callGroq(userMsg));
+        if (GEMINI_KEY) chain.push(() => callGemini(userMsg));
+        if (ANTHROPIC_KEY) chain.push(() => callAnthropic(userMsg));
+
+        let out: { text?: string; error?: string; status?: number } = {};
+        let lastError = '';
+        for (const call of chain) {
+            for (let attempt = 0; attempt < 2 && !out.text; attempt++) {
+                out = await call();
+                if (!out.text) lastError = out.error || 'réponse vide';
+            }
+            if (out.text) break;
+        }
+        if (!out.text) {
+            return NextResponse.json({ error: lastError || 'Réponse vide' }, { status: 502 });
         }
         const match = out.text.match(/\{[\s\S]*\}/);
         if (!match) return NextResponse.json({ error: 'Réponse non parsable' }, { status: 502 });
