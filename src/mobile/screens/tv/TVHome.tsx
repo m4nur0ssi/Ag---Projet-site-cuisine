@@ -318,6 +318,9 @@ function Card({
     onToggleLater,
     onOpen,
     onLongPress,
+    showcase = false,
+    videoId = null,
+    domId,
 }: {
     recipe: Recipe;
     variant: CardVariant;
@@ -329,11 +332,22 @@ function Card({
     onToggleLater?: (r: Recipe) => void;
     onOpen: () => void;
     onLongPress: () => void;
+    /**
+     * Vitrine (rangée Desserts) : grande carte, titre incrusté qui NE BOUGE PAS
+     * quand la vidéo démarre — il vit à côté du visuel, pas dedans, sinon Safari
+     * fait remonter le calque de l'iframe par-dessus.
+     */
+    showcase?: boolean;
+    /** Id TikTok à jouer dans le visuel (vitrine seulement). */
+    videoId?: string | null;
+    /** Identifiant posé sur le nœud : la rangée s'en sert pour repérer la carte centrée. */
+    domId?: string;
 }) {
     const lp = useLongPress(onLongPress);
     return (
         <div
-            className={`${styles.card} ${styles[variant]}`}
+            data-id={domId}
+            className={`${styles.card} ${styles[variant]} ${showcase ? styles.showcaseCard : ''}`}
             {...lp.handlers}
             // Après un appui long, le clic de relâchement ne doit pas ouvrir la fiche.
             onClick={() => { if (lp.consumed.current) { lp.consumed.current = false; return; } haptic(8); onOpen(); }}
@@ -347,8 +361,18 @@ function Card({
                     decoding="async"
                     draggable={false}
                 />
-                {(overlayTitle || progress !== undefined) && <div className={styles.thumbScrim} />}
-                {overlayTitle && <div className={styles.overlayLabel}>{label(recipe)}</div>}
+                {showcase && videoId && (
+                    <iframe
+                        className={styles.cardVideo}
+                        // Lecteur nu : ni commandes, ni barre, ni logo, ni pseudo —
+                        // le cadre est agrandi pour que l'habillage sorte du champ.
+                        src={`https://www.tiktok.com/player/v1/${videoId}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        allow="autoplay; encrypted-media"
+                        title={label(recipe)}
+                    />
+                )}
+                {!showcase && (overlayTitle || progress !== undefined) && <div className={styles.thumbScrim} />}
+                {!showcase && overlayTitle && <div className={styles.overlayLabel}>{label(recipe)}</div>}
                 {progress !== undefined && (
                     <div className={styles.progressTrack}>
                         <div className={styles.progressFill} style={{ width: `${progress}%` }} />
@@ -369,8 +393,16 @@ function Card({
                     </button>
                 )}
             </div>
-            {!overlayTitle && <div className={styles.cardLabel}>{label(recipe)}</div>}
-            {subtitle && <div className={styles.cardSub}>{subtitle}</div>}
+            {/* Vitrine : le voile et le titre sont FRÈRES du visuel, jamais dedans —
+                c'est la seule façon qu'ils restent devant la vidéo sur Safari. */}
+            {showcase && (
+                <>
+                    <div className={styles.thumbScrim} aria-hidden />
+                    <div className={styles.overlayLabel}>{label(recipe)}</div>
+                </>
+            )}
+            {!overlayTitle && !showcase && <div className={styles.cardLabel}>{label(recipe)}</div>}
+            {subtitle && !showcase && <div className={styles.cardSub}>{subtitle}</div>}
         </div>
     );
 }
@@ -785,6 +817,7 @@ function Row({
     onSeeAll,
     onOpen,
     onLongPress,
+    showcase = false,
 }: {
     title: string;
     recipes: Recipe[];
@@ -801,8 +834,59 @@ function Row({
     onSeeAll: (title: string, recipes: Recipe[]) => void;
     onOpen: OpenSheet;
     onLongPress: (recipe: Recipe) => void;
+    /**
+     * Vitrine : grandes cartes à titre incrusté, et la carte arrêtée au CENTRE
+     * de la rangée lance sa vidéo au bout d'une seconde et demie — l'équivalent
+     * tactile du survol prolongé de la version de bureau.
+     */
+    showcase?: boolean;
 }) {
     const scroller = useRef<HTMLDivElement>(null);
+    // Carte qui joue : la plus proche du centre, une fois le doigt reposé.
+    const [playId, setPlayId] = useState<string | null>(null);
+    const shown = recipes.slice(0, 14);
+
+    useEffect(() => {
+        if (!showcase) return;
+        const el = scroller.current;
+        if (!el) return;
+        let timer: ReturnType<typeof setTimeout>;
+        let raf = 0;
+        let onScreen = false;
+
+        const centred = () => {
+            const mid = el.scrollLeft + el.clientWidth / 2;
+            let best: string | null = null;
+            let dist = Infinity;
+            Array.from(el.children).forEach((c) => {
+                const n = c as HTMLElement;
+                const d = Math.abs(n.offsetLeft + n.offsetWidth / 2 - mid);
+                if (d < dist) { dist = d; best = n.dataset.id ?? null; }
+            });
+            return best;
+        };
+        const schedule = () => {
+            clearTimeout(timer);
+            setPlayId(null);
+            if (!onScreen) return;
+            timer = setTimeout(() => setPlayId(centred()), 1500);
+        };
+        const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(schedule); };
+
+        // On ne joue que si la rangée est vraiment à l'écran.
+        const io = new IntersectionObserver(([e]) => {
+            onScreen = e.isIntersecting && e.intersectionRatio >= 0.5;
+            schedule();
+        }, { threshold: [0, 0.5, 1] });
+        io.observe(el);
+        el.addEventListener('scroll', onScroll, { passive: true });
+        return () => {
+            io.disconnect();
+            el.removeEventListener('scroll', onScroll);
+            clearTimeout(timer);
+            cancelAnimationFrame(raf);
+        };
+    }, [showcase, recipes]);
 
     if (!recipes.length) return null;
 
@@ -839,12 +923,15 @@ function Row({
                     </button>
                 )}
             </div>
-            <div className={styles.rowScroll} ref={scroller}>
-                {recipes.slice(0, 14).map((r, i) => (
+            <div className={`${styles.rowScroll} ${showcase ? styles.rowScrollShowcase : ''}`} ref={scroller}>
+                {shown.map((r, i) => (
                     <Card
                         key={r.id}
+                        domId={String(r.id)}
                         recipe={r}
                         variant={variant}
+                        showcase={showcase}
+                        videoId={showcase && playId === String(r.id) ? tiktokId(r) : null}
                         overlayTitle={overlayTitle}
                         subtitle={sub(r)}
                         progress={withProgress ? (progressMap?.[String(r.id)] ?? 0) : undefined}
@@ -1563,7 +1650,7 @@ export default function TVHome() {
                 <Row title="Entrées" recipes={byCat['entrees'] || []} variant="poster" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                 <Row title="Plats" recipes={byCat['plats'] || []} variant="wide" overlayTitle onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                 <Row title="Accompagnements" recipes={byCat['accompagnements'] || []} variant="square" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
-                <Row title="Desserts" recipes={byCat['desserts'] || []} variant="poster" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                <Row title="Desserts" recipes={byCat['desserts'] || []} variant="hugeCard" showcase onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                 <Row title="Pâtisseries" recipes={byCat['patisserie'] || []} variant="medium" subtitleMode="time" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
 
                 {/* Thématiques : même langage visuel que le reste, plus de tuiles à part. */}

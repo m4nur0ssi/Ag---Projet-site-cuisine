@@ -3237,3 +3237,56 @@
 }
 .heroMetaSplit, .heroActionsSplit { justify-content: center; }
 .heroTitleSplit { text-align: center; }
+
+/* ── CARTE VITRINE (rangée Desserts) ─────────────────────────────────────
+   Grande carte, titre incrusté, et la carte arrêtée au centre de la rangée
+   lance sa vidéo au bout d'1,5 s. Le titre ne bouge pas : il vit à CÔTÉ du
+   visuel, pas dedans, et le visuel est isolé — sans quoi Safari fait remonter
+   le calque de l'iframe par-dessus le texte. */
+.rowScrollShowcase {
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+}
+.showcaseCard {
+    position: relative;
+    width: 72vw;
+    max-width: 330px;
+    scroll-snap-align: center;
+}
+.showcaseCard .thumb {
+    aspect-ratio: 3 / 4;
+    border-radius: 18px;
+    isolation: isolate;
+    z-index: 0;
+}
+.showcaseCard .thumbScrim {
+    z-index: 2;
+    border-radius: 18px;
+    background: linear-gradient(0deg, rgba(6, 6, 9, 0.9) 1%, rgba(6, 6, 9, 0.42) 28%, rgba(6, 6, 9, 0) 58%);
+}
+.showcaseCard .overlayLabel {
+    z-index: 3;
+    left: 18px;
+    right: 18px;
+    bottom: 16px;
+    font-size: 21px;
+    line-height: 1.1;
+}
+
+/* L'habillage social de TikTok est ancré aux bords de la vidéo et aucun
+   paramètre ne l'enlève : le cadre prend le format 9/16, grandit de 38 % et se
+   centre, si bien que pseudo, logo et boutons sortent du champ. */
+.cardVideo {
+    position: absolute;
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: 138%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    transform: translate(-50%, -50%) translateZ(0);
+    z-index: 1;
+    border: 0;
+    display: block;
+    pointer-events: none;
+}
