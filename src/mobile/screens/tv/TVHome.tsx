@@ -891,17 +891,46 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     const brandOpacity = useTransform(scrollY, [0, 140], [1, 0]);
     const brandY = useTransform(scrollY, [0, 300], [0, -40]);
 
-    // Index courant : lu sur le scroll natif (rAF, pas de re-render par frame).
+    // La bande d'affiches est répétée trois fois et c'est la copie du MILIEU qui
+    // est active : il y a donc toujours des voisines des deux côtés, la bande
+    // court d'un bord à l'autre — même mécanique que le héros de bureau.
+    const loop = useMemo(() => [...recipes, ...recipes, ...recipes], [recipes]);
+    const activeSlot = recipes.length + index;
+
+    // Index courant : l'affiche la plus proche du CENTRE du cadre.
     useEffect(() => {
         const el = pagerRef.current;
-        if (!el) return;
+        if (!el || !recipes.length) return;
+        let raf = 0;
         const onScroll = () => {
-            const i = Math.round(el.scrollLeft / Math.max(1, el.clientWidth));
-            setIndex((prev) => (prev === i ? prev : i)); // setState no-op si identique
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+                const mid = el.scrollLeft + el.clientWidth / 2;
+                let best = 0;
+                let dist = Infinity;
+                Array.from(el.children).forEach((c, i) => {
+                    const n = c as HTMLElement;
+                    const d = Math.abs(n.offsetLeft + n.offsetWidth / 2 - mid);
+                    if (d < dist) { dist = d; best = i; }
+                });
+                const real = best % recipes.length;
+                setIndex((prev) => (prev === real ? prev : real));
+            });
         };
         el.addEventListener('scroll', onScroll, { passive: true });
-        return () => el.removeEventListener('scroll', onScroll);
-    }, []);
+        return () => { el.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
+    }, [recipes.length]);
+
+    // ...et l'affiche active revient au centre quand l'index change autrement
+    // que par le doigt (chevrons, rotation automatique).
+    useEffect(() => {
+        const el = pagerRef.current;
+        const child = el?.children[activeSlot] as HTMLElement | undefined;
+        if (!el || !child) return;
+        const target = child.offsetLeft + child.offsetWidth / 2 - el.clientWidth / 2;
+        if (Math.abs(el.scrollLeft - target) < 4) return;
+        el.scrollTo({ left: target, behavior: 'smooth' });
+    }, [activeSlot]);
 
     // Rotation auto toutes les 3 s. Le doigt reprend toujours la main : on met en
     // pause dès qu'on touche le héros, et on relance 6 s après le dernier geste.
@@ -922,8 +951,7 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
             // Ni quand l'onglet est en arrière-plan, ni quand le héros a quitté l'écran,
             // ni pendant la vidéo : on ne coupe pas une lecture en cours.
             if (paused || playingRef.current || document.hidden || window.scrollY > 240) return;
-            const next = (Math.round(el.scrollLeft / Math.max(1, el.clientWidth)) + 1) % recipes.length;
-            el.scrollTo({ left: next * el.clientWidth, behavior: 'smooth' });
+            setIndex((i) => (i + 1) % recipes.length);
         }, 3000);
 
         return () => {
@@ -971,11 +999,8 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
 
     /** Chevrons du héros : une recette en avant ou en arrière, en boucle. */
     const step = (dir: 1 | -1) => {
-        const el = pagerRef.current;
-        if (!el) return;
         haptic(8);
-        const n = (index + dir + recipes.length) % recipes.length;
-        el.scrollTo({ left: n * el.clientWidth, behavior: 'smooth' });
+        setIndex((i) => (i + dir + recipes.length) % recipes.length);
     };
 
     if (!current) return null;
@@ -986,21 +1011,18 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
 
     return (
         <div className={styles.heroSticky}>
+            {/* Fond : la photo de l'affiche active, noyée de flou. Ce n'est plus
+                elle qu'on balaye — c'est la galerie, en dessous. */}
             <motion.div className={styles.heroLayer} style={{ scale: heroScale, y: heroY }}>
-                <div className={styles.heroPager} ref={pagerRef}>
-                    {recipes.map((r, i) => (
-                        <div className={styles.heroSlide} key={r.id}>
-                            <img
-                                src={r.image}
-                                alt={label(r)}
-                                className={styles.heroImg}
-                                loading={i === 0 ? 'eager' : 'lazy'}
-                                decoding="async"
-                            />
-                            <div className={styles.heroScrim} />
-                        </div>
-                    ))}
-                </div>
+                <img
+                    key={current.id}
+                    src={current.image}
+                    alt=""
+                    className={styles.heroBackdropImg}
+                    decoding="async"
+                    draggable={false}
+                />
+                <div className={styles.heroBackdropVeil} />
             </motion.div>
 
             <motion.div className={styles.heroVeil} style={{ opacity: veil }} />
@@ -1052,94 +1074,104 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                 <AuthButton />
             </div>
 
-            {/* Le texte est hors du pager : il se substitue en fondu, il ne glisse pas. */}
+            {/* Galerie d'affiches, comme sur ordinateur : celle du milieu est
+                active — plus grande, nette, et c'est elle qui prend la vidéo au
+                bout de deux secondes. Un doigt fait défiler la bande. */}
             <motion.div className={styles.heroContent} style={{ y: contentY, opacity: contentOpacity }}>
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={current.id}
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
-                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12, width: '100%' }}
-                    >
-                        <span className={styles.heroKicker}>Nº {index + 1} des dernières recettes</span>
-
-                        {/* Photo à gauche, informations à droite : la photo n'est plus
-                            étirée plein écran, une source légère suffit désormais. */}
-                        <div className={styles.heroSplit}>
-                            <div className={styles.heroShot}>
+                <div className={styles.heroTrack} ref={pagerRef}>
+                    {loop.map((r, i) => {
+                        const real = i % recipes.length;
+                        const on = i === activeSlot;
+                        const ghost = i < recipes.length || i >= recipes.length * 2;
+                        return (
+                            <button
+                                key={`${r.id}-${i}`}
+                                className={`${styles.heroPoster} ${on ? styles.heroPosterOn : ''}`}
+                                onClick={() => { haptic(8); if (on) onOpen(recipes, real); else setIndex(real); }}
+                                aria-label={on ? `Voir ${label(r)}` : label(r)}
+                                aria-current={on || undefined}
+                                aria-hidden={ghost || undefined}
+                                tabIndex={ghost ? -1 : 0}
+                            >
                                 <img
-                                    src={current.image}
-                                    alt={label(current)}
-                                    className={styles.heroShotImg}
+                                    src={r.image}
+                                    alt=""
+                                    className={styles.heroPosterImg}
+                                    loading={real === 0 ? 'eager' : 'lazy'}
                                     decoding="async"
                                     draggable={false}
                                 />
-                                {playing && currentVid && (
+                                {on && playing && currentVid && (
                                     <iframe
                                         className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
                                         // Interface TikTok coupée : le cadre reste une image
                                         // qui s'anime, pas un lecteur incrusté.
                                         src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                                         allow="autoplay; encrypted-media"
-                                        title={label(current)}
+                                        title={label(r)}
                                     />
                                 )}
-                            </div>
+                                <div className={styles.heroPosterVeil} aria-hidden />
+                            </button>
+                        );
+                    })}
+                </div>
 
-                            <div className={styles.heroInfo}>
-                                {/* Mot par mot : l'inclinaison porte sur chaque mot, jamais
-                                    sur le bloc — sinon les lignes s'escaladent vers la
-                                    droite et la première lettre sort de la colonne. */}
-                                <h1 className={styles.heroTitleSplit}>
-                                    {label(current).split(/\s+/).filter(Boolean).map((w, n, all) => (
-                                        <Fragment key={`${w}-${n}`}>
-                                            <span className={styles.heroTitleWord}>{w}</span>
-                                            {n < all.length - 1 ? ' ' : ''}
-                                        </Fragment>
-                                    ))}
-                                </h1>
+                {/* Le texte désigne l'affiche active : il se substitue en fondu. */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={current.id}
+                        className={styles.heroInfo}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+                    >
+                        <span className={styles.heroKicker}>Nº {index + 1} des dernières recettes</span>
 
-                                <div className={styles.heroMetaSplit}>
-                                    <span>{catLabel(current)}</span>
-                                    {timeLabel(current) && (
-                                        <>
-                                            <span className={styles.heroDot}>·</span>
-                                            <span>{timeLabel(current)}</span>
-                                        </>
-                                    )}
+                        {/* Mot par mot : l'inclinaison porte sur chaque mot, jamais
+                            sur le bloc — sinon les lignes s'escaladent vers la
+                            droite et la première lettre sort de la colonne. */}
+                        <h1 className={styles.heroTitleSplit}>
+                            {label(current).split(/\s+/).filter(Boolean).map((w, n, all) => (
+                                <Fragment key={`${w}-${n}`}>
+                                    <span className={styles.heroTitleWord}>{w}</span>
+                                    {n < all.length - 1 ? ' ' : ''}
+                                </Fragment>
+                            ))}
+                        </h1>
+
+                        <div className={styles.heroMetaSplit}>
+                            <span>{catLabel(current)}</span>
+                            {timeLabel(current) && (
+                                <>
                                     <span className={styles.heroDot}>·</span>
-                                    <span>{(() => {
-                                        const d = timingOf(current).difficulty;
-                                        return d === 'facile' ? 'Facile' : d === 'moyen' ? 'Moyen' : 'Difficile';
-                                    })()}</span>
-                                    <span className={styles.heroBadge}>{current.servings || 4} pers.</span>
-                                </div>
-
-                                <div className={styles.heroActionsSplit}>
-                                    <button className={styles.heroPlaySplit} onClick={() => { haptic(10); onOpen(recipes, index); }}>
-                                        Voir la recette
-                                    </button>
-                                    <FavoriteButton
-                                        recipeId={String(current.id)}
-                                        imageUrl={current.image}
-                                        alwaysShow
-                                        className={styles.heroFavSplit}
-                                    />
-                                </div>
-                            </div>
+                                    <span>{timeLabel(current)}</span>
+                                </>
+                            )}
+                            <span className={styles.heroDot}>·</span>
+                            <span>{(() => {
+                                const d = timingOf(current).difficulty;
+                                return d === 'facile' ? 'Facile' : d === 'moyen' ? 'Moyen' : 'Difficile';
+                            })()}</span>
+                            <span className={styles.heroBadge}>{current.servings || 4} pers.</span>
                         </div>
 
+                        <div className={styles.heroActionsSplit}>
+                            <button className={styles.heroPlaySplit} onClick={() => { haptic(10); onOpen(recipes, index); }}>
+                                Voir la recette
+                            </button>
+                            <FavoriteButton
+                                recipeId={String(current.id)}
+                                imageUrl={current.image}
+                                alwaysShow
+                                className={styles.heroFavSplit}
+                            />
+                        </div>
                     </motion.div>
                 </AnimatePresence>
             </motion.div>
 
-            <motion.div className={styles.dots} style={{ opacity: contentOpacity }}>
-                {recipes.map((_, i) => (
-                    <span key={i} className={`${styles.dot} ${i === index ? styles.dotActive : ''}`} />
-                ))}
-            </motion.div>
         </div>
     );
 }

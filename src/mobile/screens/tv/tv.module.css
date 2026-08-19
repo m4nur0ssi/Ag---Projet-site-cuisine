@@ -98,7 +98,7 @@
     top: 0;
     /* Hauteur calée sur la rangée Top 10 (≈ 300 px avec son titre) : la carte
        du Top 10 apparaît ENTIÈRE en bas du premier écran, et rien de plus. */
-    height: clamp(330px, calc(100svh - 290px), 620px);
+    height: clamp(470px, calc(100svh - 190px), 720px);
     z-index: 0;
     overflow: hidden;
 }
@@ -260,12 +260,14 @@
     bottom: 0;
     z-index: 2;
     top: 0;
-    padding: calc(env(safe-area-inset-top, 0px) + 122px) 18px 30px;
+    /* Plus de gouttière latérale : la bande d'affiches doit atteindre les deux
+       bords. Ce sont les enfants qui reprennent leurs marges. */
+    padding: calc(env(safe-area-inset-top, 0px) + 104px) 0 26px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    text-align: left;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     gap: 14px;
     will-change: transform, opacity;
     /* Le bloc texte couvre le bas du héros : sans ça il avale le geste horizontal
@@ -1906,10 +1908,13 @@
     /* Contenu centré verticalement, sinon tout le haut du héros reste vide. */
     .heroContent {
         top: 0;
-        padding: 0;
+        padding: calc(env(safe-area-inset-top, 0px) + 96px) 0 30px;
         justify-content: center;
         align-items: center;
     }
+    /* Tablette : la bande a la place de montrer de plus grandes affiches. */
+    .heroPoster { width: 26vw; max-width: 220px; }
+    .heroPosterOn { width: 34vw; max-width: 330px; }
     .heroSplit {
         width: 100%;
         max-width: 1040px;
@@ -3139,3 +3144,96 @@
 .spEmbedded .spHint,
 .spEmbedded .spEmpty,
 .spEmbedded .spAiMsg { grid-column: 1 / -1; }
+
+/* ── HÉROS EN GALERIE D'AFFICHES (même parti que la version de bureau) ────
+   Le fond n'est plus une photo plein écran qu'on balaye : c'est un décor flou.
+   Ce qui se balaye, c'est la bande d'affiches — celle du milieu est active,
+   plus grande, nette, et c'est elle qui prend la vidéo. */
+
+.heroBackdropImg {
+    position: absolute;
+    inset: -8%;
+    width: 116%;
+    height: 116%;
+    object-fit: cover;
+    object-position: 50% 42%;
+    filter: blur(38px) saturate(160%) brightness(0.78);
+    transform: scale(1.08);
+}
+.heroBackdropVeil {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(120% 95% at 50% 32%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 62%, rgba(0, 0, 0, 0.82) 100%),
+        linear-gradient(0deg, var(--tv-bg) 0%, rgba(8, 8, 11, 0.7) 16%, rgba(0, 0, 0, 0) 50%);
+}
+
+/* La bande : défilement natif, arrêt au centre. Aucun rembourrage aux bouts —
+   la bande est répétée trois fois, elle déborde donc toujours des deux côtés. */
+.heroTrack {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 6px 0 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    pointer-events: auto;
+}
+.heroTrack::-webkit-scrollbar { display: none; }
+
+/* Affiche au repos : petite, en retrait. */
+.heroPoster {
+    position: relative;
+    flex: 0 0 auto;
+    width: 38vw;
+    max-width: 168px;
+    aspect-ratio: 9 / 13;
+    padding: 0;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #141416;
+    scroll-snap-align: center;
+    opacity: 0.6;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
+    transition: width 0.45s var(--tv-ease), opacity 0.45s var(--tv-ease), box-shadow 0.45s var(--tv-ease);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Affiche active : bien plus large, nette, éclairée. */
+.heroPosterOn {
+    width: 58vw;
+    max-width: 260px;
+    opacity: 1;
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.66), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.heroPosterImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.heroPosterVeil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(0deg, rgba(6, 6, 9, 0.45), rgba(6, 6, 9, 0.06));
+    transition: opacity 0.45s var(--tv-ease);
+}
+.heroPosterOn .heroPosterVeil { opacity: 0; }
+
+/* Le texte, sous la bande, centré : il désigne l'affiche active. */
+.heroInfo {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    padding: 0 18px;
+    text-align: center;
+}
+.heroMetaSplit, .heroActionsSplit { justify-content: center; }
+.heroTitleSplit { text-align: center; }
