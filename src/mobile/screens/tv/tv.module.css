@@ -1729,11 +1729,19 @@
 /* La vidéo occupe EXACTEMENT le cadre de la photo : le héros ne bouge pas
    quand elle démarre, l'image s'anime, c'est tout. Invisible tant qu'elle n'a
    pas prouvé qu'elle joue (sinon on afficherait le bandeau cookies de TikTok). */
+/* L'habillage social de TikTok (pseudo, logo, j'aime, commentaires, partage)
+   est ancré aux bords de la vidéo et aucun paramètre d'URL ne l'enlève. On donne
+   au cadre le format exact de la vidéo (9/16), on l'agrandit de 38 % et on le
+   centre : les bords, et l'habillage avec eux, sortent du cadre. */
 .heroShotVideo {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: 138%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    transform: translate(-50%, -50%) translateZ(0);
     border: 0;
     display: block;
     opacity: 0;

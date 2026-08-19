@@ -197,38 +197,39 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid }: {
                         title={label(recipe)}
                     />
                 )}
-
-                {/* Le titre, DANS la carte : même police et même texte que sous les
-                    autres cartes, mais posé en bas du visuel. La vidéo passe
-                    derrière lui, il ne bouge pas d'un pixel. */}
-                {inlaid && (
-                    <>
-                        <div className={styles.inlaidScrim} aria-hidden />
-                        <div
-                            className={styles.inlaidLabel}
-                            role="button"
-                            tabIndex={0}
-                            onClick={() => openRecipe(recipe)}
-                            onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
-                        >{label(recipe)}</div>
-                        {/* Le seul bouton du site s'efface dès que ça tourne. */}
-                        {onToggleLater && !playing && (
-                            <button
-                                className={`${styles.inlaidLater} ${later ? styles.laterBtnOn : ''}`}
-                                onClick={(e) => { e.stopPropagation(); onToggleLater(recipe); }}
-                                aria-label={later ? 'Retirer de « À faire plus tard »' : 'Ajouter à « À faire plus tard »'}
-                                title={later ? 'À faire plus tard : ajouté' : 'À faire plus tard'}
-                            >
-                                {later ? (
-                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                ) : (
-                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
-                                )}
-                            </button>
-                        )}
-                    </>
-                )}
             </div>
+
+            {/* Le titre, DANS la carte : même police et même texte que sous les
+                autres cartes, mais posé en bas du visuel. La vidéo passe
+                derrière lui, il ne bouge pas d'un pixel. */}
+            {inlaid && (
+                <>
+                    <div className={styles.inlaidScrim} aria-hidden />
+                    <div
+                        className={styles.inlaidLabel}
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => openRecipe(recipe)}
+                        onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
+                    >{label(recipe)}</div>
+                    {/* Le seul bouton du site s'efface dès que ça tourne. */}
+                    {onToggleLater && !playing && (
+                        <button
+                            className={`${styles.inlaidLater} ${later ? styles.laterBtnOn : ''}`}
+                            onClick={(e) => { e.stopPropagation(); onToggleLater(recipe); }}
+                            aria-label={later ? 'Retirer de « À faire plus tard »' : 'Ajouter à « À faire plus tard »'}
+                            title={later ? 'À faire plus tard : ajouté' : 'À faire plus tard'}
+                        >
+                            {later ? (
+                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                            ) : (
+                                <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
+                            )}
+                        </button>
+                    )}
+                </>
+            )}
+
             {/* Titre + bouton « À faire plus tard » (croix → coche). Le titre ouvre
                 la fiche ; cliquer la vidéo ne fait que la piloter. */}
             {!inlaid && (

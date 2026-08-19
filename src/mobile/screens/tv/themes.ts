@@ -32,9 +32,10 @@ export const THEMES: Theme[] = [
     { tag: 'epice', title: 'Épicé' },
     { tag: 'pas cher', title: 'Pas cher' },
     { tag: 'glaces', title: 'Les glaces' },
-    { tag: 'boissons', title: 'Rafraîchissements' },
+    // Deux rangées de boissons, et deux seulement : « Cocktails » = avec alcool,
+    // « Rafraîchissements » = tout le reste, sans alcool.
     { tag: 'cocktail', title: 'Cocktails' },
-    { tag: 'cocktail-sans-alcool', title: 'Cocktails sans alcool' },
+    { tag: 'boissons', title: 'Rafraîchissements' },
     { tag: 'sauces', title: 'Sauces' },
     { tag: 'dolce-vita', title: 'La Dolce Vita' },
     { tag: 'voila-lete', title: "Voilà l'été" },
@@ -78,11 +79,35 @@ function recipeText(recipe: Recipe) {
  * Recette salée rangée par erreur en pâtisserie/dessert (tiramisu salé,
  * cheesecake salé, tarte protéinée…). On la reconnaît au titre.
  */
+/** Ingrédients et plats franchement salés — s'ils sont dans le TITRE d'une
+ *  « pâtisserie », c'est un rangement raté (tarte tatin aux aubergines…). */
+const SAVORY_TITLE = new RegExp(
+    '\\b(aubergines?|courgettes?|poireaux?|thon|saumon|truite|sardines?|anchois|crabe|crevettes?'
+    + '|jambon|lardons?|bacon|chorizo|saucisses?|poulet|dinde|boeuf|veau|agneau|porc'
+    + '|chevre|roquefort|feta|mozzarella|comte|gruyere|parmesan|raclette|reblochon'
+    + '|epinards?|poivrons?|oignons?|echalotes?|tomates?|champignons?|brocolis?|chou[- ]fleur|courges?'
+    + '|potiron|butternut|betteraves?|petits? pois|lentilles?|pois chiches?'
+    + '|quiches?|pizzas?|croque|feuillete au|cake aux? (olives?|lardons?|thon)'
+    + '|olives?|pesto|moutarde|curry|chevre)\\b'
+);
+
+/**
+ * Recette salée rangée par erreur en pâtisserie/dessert (tiramisu salé,
+ * cheesecake salé au thon, tarte tatin aux aubergines, tarte protéinée…).
+ * On la reconnaît à son titre.
+ */
 export function isSavoryMiscat(recipe: Recipe): boolean {
     const cat = (recipe.category || '').toLowerCase();
     if (!['patisserie', 'desserts', 'glaces'].includes(cat)) return false;
-    const t = (recipe.title || '').toLowerCase();
-    return /\bsal[ée]e?\b/.test(t) || /prot[ée]in/.test(t);
+    // Sans accents : `\b` ne reconnaît pas « é » comme une lettre, si bien que
+    // /\bsalée?\b/ ne trouvait JAMAIS « salé » — d'où les cheesecakes au thon
+    // restés en desserts.
+    const t = norm((recipe.title || '').toLowerCase());
+    if (/protein/.test(t)) return true;
+    // « caramel au beurre salé », « cacahuètes salées » : sucré malgré le mot.
+    const sweetSalt = /caramel|beurre|cacahu|pistache|amande|noisette|chocolat|popcorn|pop[- ]corn/.test(t);
+    if (!sweetSalt && /\bsalee?s?\b/.test(t)) return true;
+    return SAVORY_TITLE.test(t);
 }
 
 export function matchesTag(
@@ -106,14 +131,6 @@ export function matchesTag(
     // Recettes salées mal rangées en pâtisserie (tiramisu salé, cheesecake salé,
     // tarte protéinée…) : on les sort des vues sucrées.
     if ((tagLower === 'patisserie' || tagLower === 'desserts') && isSavoryMiscat(recipe)) return false;
-
-    if (tagLower === 'boissons') {
-        return (
-            recipeCat === 'boissons' ||
-            recipeTags.some((t) => t.includes('boisson') || t.includes('cocktail') || t.includes('jus') || t.includes('rafra')) ||
-            ['boisson', 'cocktail', 'jus', 'smoothie', 'mojito', 'limonade', 'café', 'thé'].some((k) => titleLower.includes(k))
-        );
-    }
 
     if (tagLower === 'vegetarien') {
         if (recipeTags.some((t) => t.includes('végé') || t.includes('vege') || t.includes('vegetarien')) || recipeCat === 'vegetarien') return true;
@@ -186,24 +203,51 @@ export function matchesTag(
         );
     }
 
-    // Cocktails : on repère un cocktail (titre/tags/mots-clés, ou catégorie
-    // boissons), puis on trie selon la présence d'alcool dans le TEXTE COMPLET
-    // (titre + description + ingrédients + étapes).
-    if (tagLower === 'cocktail' || tagLower === 'cocktail-sans-alcool') {
+    // Les boissons se partagent en DEUX rangées, et deux seulement :
+    //   • « Cocktails »          = boisson AVEC alcool ;
+    //   • « Rafraîchissements »  = toutes les autres boissons, SANS alcool
+    //     (mocktails, smoothies, jus, thés glacés, limonades…).
+    // L'alcool est cherché dans le TEXTE COMPLET (titre + description +
+    // ingrédients + étapes), pas seulement dans le titre.
+    // `cocktail-sans-alcool` reste accepté : d'anciens raccourcis épinglés dans
+    // la Bibliothèque portent encore ce jeton, il pointe désormais la même
+    // rangée que « Rafraîchissements ».
+    if (tagLower === 'cocktail' || tagLower === 'cocktail-sans-alcool' || tagLower === 'boissons') {
         // Vrais cocktails (avec ou sans alcool selon la préparation).
         const cocktailWords = /\b(cocktails?|mojitos?|margaritas?|daiquiris?|spritz(er)?|mimosas?|sangrias?|punchs?|cosmopolitans?|colada|caipirinhas?|negronis?|bloody mary|mai[- ]?tai|cuba libre|gin[- ]?tonic|tequila sunrise|sex on the beach|mocktails?|virgin|piscine|americano|bellini|kir|sangria)\b/;
         // Boissons fraîches non alcoolisées → rangée « sans alcool » (pour la garnir).
         const softWords = /\b(smoothies?|milkshakes?|frapp[ée]s?|limonades?|jus\b|nectar|the glac[ée]|th[ée] glac[ée]|iced tea|granit[ée]s?|slush|infusion glac[ée]e|eau infus[ée]e|lassi)\b/;
         const alcohol = /\b(rhum|vodkas?|gin|t[ée]quilas?|whiskys?|whiskey|cognac|liqueurs?|cura[cç]ao|cointreau|triple[- ]sec|aperol|campari|martini|vermouth|prosecco|champagne|vin[- ](blanc|rouge|ros[ée]|mousseux|p[ée]tillant)|ros[ée]|bi[èe]res?|cidre|kahlua|baileys|amaretto|malibu|limoncello|porto|absinthe|calvados|armagnac|marsala|sak[ée]|pastis|ricard|schnaps|grand marnier|chartreuse|alcool|liquor|spirit)\b/;
-        const hasAlcohol = alcohol.test(normFull);
+        // « Sans alcool », « vierge », « virgin », « mocktail » : le mot « alcool »
+        // de « sans alcool » déclenchait le test et envoyait les mocktails chez
+        // les cocktails. La négation prime sur tout le reste.
+        const noAlcohol = /\b(sans[ -]alcool|vierge|virgin|mocktails?|sans[ -]rhum|sans[ -]vodka)\b/
+            .test(normFull);
+        // Un mojito reste un mojito même si la recette ne nomme pas le rhum :
+        // les cocktails classiquement alcoolisés comptent comme tels.
+        const boozyNames = /\b(mojitos?|margaritas?|daiquiris?|spritz(er)?|negronis?|caipirinhas?|cosmopolitans?|bloody mary|cuba libre|gin[- ]?tonic|tequila sunrise|sex on the beach|mai[- ]?tai|colada|sangrias?|bellini|americano|mimosas?|aperol|spritz)\b/;
+        const hasAlcohol = !noAlcohol && (alcohol.test(normFull) || boozyNames.test(norm(titleLower)));
         const isCocktail =
             recipeTags.some((t) => /cocktail|mojito|mocktail/.test(norm(t))) ||
             cocktailWords.test(norm(titleLower)) ||
             (recipeCat === 'boissons' && cocktailWords.test(normFull));
         const isSoft = softWords.test(norm(titleLower)) || (recipeCat === 'boissons' && softWords.test(normFull));
-        if (tagLower === 'cocktail') return isCocktail && hasAlcohol;
-        // Sans alcool : cocktail non alcoolisé OU boisson fraîche non alcoolisée.
-        return !hasAlcohol && (isCocktail || isSoft);
+        // Est-ce une boisson, tout court ? (la catégorie du site fait foi, sinon
+        // les tags, sinon les mots du titre).
+        // Indices FAIBLES (« café », « thé », « jus » dans le titre) : ils ne
+        // valent que hors des catégories de plats, sinon un « gâteau petit
+        // beurre café chocolat » finissait en rafraîchissement.
+        const looseDrink =
+            recipeTags.some((t) => /boisson|cocktail|jus|rafra/.test(norm(t))) ||
+            /\b(boissons?|jus|smoothies?|limonades?|cafes?|thes?|infusions?|sirops?|chocolat chaud)\b/.test(norm(titleLower));
+        const isDrink =
+            recipeCat === 'boissons' ||
+            isCocktail ||
+            isSoft ||
+            (looseDrink && !['desserts', 'patisserie', 'glaces', 'plats', 'entrees', 'accompagnements', 'sauces', 'restaurant'].includes(recipeCat));
+
+        if (tagLower === 'cocktail') return isDrink && hasAlcohol;
+        return isDrink && !hasAlcohol;
     }
 
     // Thèmes stricts : tag explicite ou catégorie (barbecue exclut les sauces).
