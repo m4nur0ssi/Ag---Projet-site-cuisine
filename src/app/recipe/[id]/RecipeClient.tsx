@@ -27,6 +27,7 @@ import { estimateRecipeCalories } from '@/lib/calories';
 import { mockRecipes } from '@/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './page.module.css';
+import { estimateRecipeTiming } from '@/lib/recipe-timing';
 
 interface RecipeClientProps {
     recipe: Recipe;
@@ -37,6 +38,13 @@ interface RecipeClientProps {
 type TabId = 'ingredients' | 'steps' | 'video';
 
 export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientProps) {
+    // Temps et difficulté recalculés depuis les étapes : les champs WordPress
+    // valent 15 + 30 et « moyen » sur les 617 recettes, si bien que cette page
+    // contredisait ses propres données structurées.
+    const timing = estimateRecipeTiming(recipe.steps);
+    const hasEstimate = timing.prepTime + timing.cookTime > 0;
+    const tPrep = hasEstimate ? timing.prepTime : (recipe.prepTime || 0);
+    const tCook = hasEstimate ? timing.cookTime : (recipe.cookTime || 0);
     const { user: authUser } = useAuth();
     const { startTimer, stopTimer } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
@@ -201,7 +209,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
         const title = recipe.title.toLowerCase();
         
         const hasMeat = tags.some(t => meatKeywords.some(m => t.includes(m))) || meatKeywords.some(m => title.includes(m));
-        const totalTime = (recipe.prepTime || 0) + (recipe.cookTime || 0);
+        const totalTime = tPrep + tCook;
         
         const list: { id: string; name: string }[] = [];
         
@@ -1014,28 +1022,28 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                             >
                                 {recipe.category === 'restaurant' ? 'Restaurant' : (
                                     <DifficultyMeter
-                                        prepTime={recipe.prepTime}
-                                        cookTime={recipe.cookTime}
+                                        prepTime={tPrep}
+                                        cookTime={tCook}
                                         steps={recipe.steps?.length}
-                                        difficulty={recipe.difficulty}
+                                        difficulty={timing.difficulty}
                                     />
                                 )}
                             </div>
                         </div>
                     </div>
 
-                    {recipe.category !== 'restaurant' && (recipe.prepTime || recipe.cookTime) && (
+                    {recipe.category !== 'restaurant' && (tPrep || tCook) ? (
                         <>
                             <div className={styles.metaDivider} />
                             <div className={styles.metaItem}>
                                 <span className={styles.metaIcon}>⏱️</span>
                                 <div>
                                     <div className={styles.metaLabel}>Temps</div>
-                                    <div className={styles.metaValue}>{(recipe.prepTime || 0) + (recipe.cookTime || 0)} min</div>
+                                    <div className={styles.metaValue}>{tPrep + tCook} min</div>
                                 </div>
                             </div>
                         </>
-                    )}
+                    ) : null}
                     {recipe.category !== 'restaurant' && (
                         <>
                             <div className={styles.metaDivider} />

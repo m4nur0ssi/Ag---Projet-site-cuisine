@@ -26,6 +26,7 @@ import { estimateRecipeCalories } from '@/mobile/lib/calories';
 import { motion, AnimatePresence } from 'framer-motion';
 import { mockRecipes } from '@/mobile/data/mockData';
 import styles from './page.module.css';
+import { estimateRecipeTiming } from '@/lib/recipe-timing';
 
 interface RecipeClientProps {
     recipe: Recipe;
@@ -36,6 +37,12 @@ interface RecipeClientProps {
 type TabId = 'ingredients' | 'steps' | 'video';
 
 export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientProps) {
+    // Temps et difficulté recalculés depuis les étapes : les champs WordPress
+    // valent 15 + 30 et « moyen » sur les 617 recettes.
+    const timing = estimateRecipeTiming(recipe.steps);
+    const hasEstimate = timing.prepTime + timing.cookTime > 0;
+    const tPrep = hasEstimate ? timing.prepTime : (recipe.prepTime || 0);
+    const tCook = hasEstimate ? timing.cookTime : (recipe.cookTime || 0);
     const { startTimer } = useTimer();
     const { user: authUser } = useAuth();
     const [servings, setServings] = useState(recipe.servings || 4);
@@ -550,30 +557,30 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                         <div>
                             <div className={styles.metaLabel}>{recipe.category === 'restaurant' ? 'Gamme' : 'Difficulté'}</div>
                             <div className={styles.metaValue}>{recipe.category === 'restaurant' ? 'Restaurant' : (
-                                <DifficultyMeter prepTime={recipe.prepTime} cookTime={recipe.cookTime} steps={recipe.steps?.length} difficulty={recipe.difficulty} showCaption={false} />
+                                <DifficultyMeter prepTime={tPrep} cookTime={tCook} steps={recipe.steps?.length} difficulty={timing.difficulty} showCaption={false} />
                             )}</div>
                         </div>
                     </div>
-                    {recipe.category !== 'restaurant' && recipe.prepTime > 0 && (
+                    {recipe.category !== 'restaurant' && tPrep > 0 && (
                         <>
                             <div className={styles.metaDivider} />
                             <div className={styles.metaItem}>
                                 <span>🔪</span>
                                 <div>
                                     <div className={styles.metaLabel}>Préparation</div>
-                                    <div className={styles.metaValue}>{recipe.prepTime} min</div>
+                                    <div className={styles.metaValue}>{tPrep} min</div>
                                 </div>
                             </div>
                         </>
                     )}
-                    {recipe.category !== 'restaurant' && recipe.cookTime > 0 && (
+                    {recipe.category !== 'restaurant' && tCook > 0 && (
                         <>
                             <div className={styles.metaDivider} />
                             <div className={styles.metaItem}>
                                 <span>🍳</span>
                                 <div>
                                     <div className={styles.metaLabel}>Cuisson</div>
-                                    <div className={styles.metaValue}>{recipe.cookTime} min</div>
+                                    <div className={styles.metaValue}>{tCook} min</div>
                                 </div>
                             </div>
                         </>
