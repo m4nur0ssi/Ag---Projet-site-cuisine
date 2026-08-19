@@ -683,13 +683,18 @@
 
 /* La vidéo TikTok est en 9/16 : on la déborde en hauteur pour remplir le 3/4
    (sinon bandes noires sur les côtés). */
+/* La vidéo remplissait la carte pile-poil : l'habillage social de TikTok, ancré
+   à SES bords, tombait donc exactement sur les bords de la carte. On agrandit de
+   38 % et on centre — pseudo, logo et colonne j'aime / commentaires / partage
+   sortent du champ. Même règle que le héros et les cartes à titre incrusté. */
 .top10Video {
     position: absolute;
-    left: 0;
+    left: 50%;
     top: 50%;
-    width: 100%;
-    height: 177.78%;
-    transform: translateY(-50%);
+    width: 138%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    transform: translate(-50%, -50%);
     border: 0;
     z-index: 1;
 }

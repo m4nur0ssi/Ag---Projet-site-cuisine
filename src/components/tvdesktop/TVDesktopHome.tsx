@@ -215,12 +215,9 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid }: {
                 {playing && vid && (
                     <iframe
                         className={`${styles.thumbVideo} ${ready ? styles.thumbVideoOn : ''}`}
-                        // Titre incrusté : le lecteur est nu — aucun bouton latéral,
-                        // aucun logo, aucune barre. Ailleurs les contrôles TikTok
-                        // restent (son, barre de progression, avance/recul).
-                        src={inlaid
-                            ? `https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`
-                            : `https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=1&progress_bar=1&play_button=1&volume_control=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        // Lecteur nu partout : aucun bouton latéral, aucun logo,
+                        // aucune barre — une carte qui s'anime, pas un lecteur.
+                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                         allow="autoplay; encrypted-media"
                         title={label(recipe)}
                     />

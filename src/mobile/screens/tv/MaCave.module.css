@@ -11,7 +11,7 @@
 .back { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 999px; border: none; background: rgba(255,255,255,.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 .kicker { font-size: 11px; font-weight: 800; letter-spacing: .26em; text-transform: uppercase; color: rgba(235,220,200,.55); }
 .title { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 32px; letter-spacing: -.03em; text-transform: uppercase; transform: skewX(-6deg); margin: 2px 0 0; }
-.addTop { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 15px; border: none; border-radius: 999px; cursor: pointer; background: linear-gradient(120deg,#7b1e2b,#a83248); color: #fff; font-weight: 800; font-size: 14px; }
+.addTop { margin-left: auto; flex: 0 0 auto; justify-content: center; min-width: 132px; display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 15px; border: none; border-radius: 999px; cursor: pointer; background: #fff; color: #111; font-weight: 800; font-size: 14px; }
 
 .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 18px; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
@@ -70,7 +70,7 @@
 .emptyIc { width: 76px; height: 76px; border-radius: 999px; display: flex; align-items: center; justify-content: center; color: #a83248; background: radial-gradient(circle at 50% 40%, rgba(168,50,72,.25), transparent 70%); box-shadow: inset 0 0 0 1px rgba(168,50,72,.4); }
 .empty h2 { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 22px; text-transform: uppercase; transform: skewX(-5deg); margin: 0; }
 .empty p { color: rgba(235,235,245,.55); font-size: 14.5px; max-width: 26ch; margin: 0; }
-.cta { margin-top: 14px; height: 48px; padding: 0 24px; border: none; border-radius: 15px; cursor: pointer; background: linear-gradient(120deg,#7b1e2b,#a83248); color: #fff; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 15px; }
+.cta { margin-top: 14px; height: 48px; padding: 0 24px; border: none; border-radius: 15px; cursor: pointer; background: #fff; color: #111; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 15px; }
 
 /* ── Feuilles (accord + ajout) ── */
 .backdrop { position: fixed; inset: 0; z-index: 100000; background: rgba(0,0,0,.6); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); display: flex; align-items: center; justify-content: center; padding: 16px; }
@@ -104,7 +104,7 @@
 .colorOpt { flex: 1; height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: none; border-radius: 12px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); color: rgba(235,235,245,.8); font-size: 13.5px; font-weight: 600; cursor: pointer; }
 .colorOptOn { background: #fff; color: #111; }
 .colorDot { width: 12px; height: 12px; border-radius: 999px; }
-.saveBtn { height: 52px; border: none; border-radius: 15px; cursor: pointer; background: linear-gradient(120deg,#7b1e2b,#a83248); color: #fff; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 16px; }
+.saveBtn { height: 52px; border: none; border-radius: 15px; cursor: pointer; background: #fff; color: #111; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 16px; }
 .saveBtn:disabled { opacity: .5; cursor: default; }
 
 :global([data-theme='light']) .page { background: #faf6f2; color: #1a1008; }
@@ -133,7 +133,7 @@
 .stepper button { width: 30px; height: 34px; border: none; background: none; color: #fff; font-size: 18px; cursor: pointer; }
 .stepper span { min-width: 42px; text-align: center; font-size: 13px; font-weight: 700; }
 .stepper small { color: rgba(235,235,245,.45); font-weight: 600; }
-.openBtn { flex: 1; height: 34px; border: none; border-radius: 11px; background: linear-gradient(120deg,#7b1e2b,#a83248); color: #fff; font-size: 13px; font-weight: 800; cursor: pointer; }
+.openBtn { flex: 1; height: 34px; border: none; border-radius: 11px; background: #fff; color: #111; font-size: 13px; font-weight: 800; cursor: pointer; }
 .openBtn:disabled { opacity: .4; cursor: default; background: rgba(255,255,255,.06); }
 
 /* Bouton loupe sur la carte + zoom plein écran */
@@ -176,7 +176,7 @@
 
 /* Encastrée dans le shell desktop, la barre de titre passe SOUS la pastille de
    compte (fixée en haut à droite) : « Ajouter » venait coller le prénom. */
-.emb .head { padding-right: 150px; }
+.emb .head, .emb .shelfHead { padding-right: 150px; }
 
 /* Menu d'une carte (clic droit / appui long). */
 .ctxBack { position: fixed; inset: 0; z-index: 6000; }
@@ -251,8 +251,8 @@
 }
 /* Cible du glissé : la zone s'éclaire quand une carte la survole. */
 .shelfDrop {
-    background: rgba(255, 90, 60, 0.08);
-    box-shadow: inset 0 0 0 1.5px rgba(255, 107, 74, 0.55);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.45);
 }
 
 .shelfTasted { margin-top: 34px; padding-top: 22px; border-top: 0.5px solid rgba(255, 255, 255, 0.12); }
@@ -288,9 +288,9 @@
     flex: 1 1 100%; justify-content: center;
     display: inline-flex; align-items: center;
     height: 30px; padding: 0 12px; border-radius: 999px;
-    background: linear-gradient(120deg, rgba(255, 46, 99, .18), rgba(255, 107, 74, .18));
-    box-shadow: inset 0 0 0 1px rgba(255, 107, 74, .35);
-    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 800; color: #FF8A7A;
+    background: rgba(255, 255, 255, .08);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16);
+    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700; color: rgba(235, 235, 245, .85);
     white-space: nowrap;
 }
 
@@ -304,8 +304,8 @@
     transition: background .18s ease, box-shadow .18s ease;
 }
 .destOn {
-    background: linear-gradient(120deg, rgba(255, 46, 99, .2), rgba(255, 107, 74, .2));
-    box-shadow: inset 0 0 0 1.5px rgba(255, 107, 74, .6);
+    background: rgba(255, 255, 255, .14);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .55);
 }
 .destLbl { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: #fff; }
 .destSub { font-size: 11.5px; color: rgba(235, 235, 245, .55); }

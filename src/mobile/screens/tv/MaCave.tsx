@@ -324,14 +324,13 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                             <span>{wine.qty ?? 1}</span>
                             <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) + 1); }} aria-label="Plus">+</button>
                         </div>
-                        <button className={styles.openBtn} disabled={(wine.qty ?? 1) <= 0} onClick={(e) => { e.stopPropagation(); openBottle(wine.id); }}>Ouvrir</button>
                     </div>
                 ) : (
                     /* Plus de stock à compter ici : le seul geste utile est d'en
                        racheter une, ce qui la remet en cave. */
                     <div className={styles.stockRow}>
                         <span className={styles.tastedTag}>Goûté &amp; approuvé</span>
-                        <button className={styles.openBtn} onClick={(e) => { e.stopPropagation(); moveToCave(wine.id); }}>J’en ai repris</button>
+                        <button className={styles.openBtn} onClick={(e) => { e.stopPropagation(); moveToCave(wine.id); }}>Ajouter à la cave</button>
                     </div>
                 )}
                 <button className={styles.pairBtn} onClick={onPair}>
