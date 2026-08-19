@@ -118,7 +118,17 @@ const Check = () => (
 // `posterXL` = grande verticale mise en avant ; `wideXL` = large et plus haute.
 type CardShape = 'wide' | 'poster' | 'square' | 'posterXL' | 'wideXL';
 
-function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
+// Motif de la mosaïque « catégorie » : chaque nom pointe une classe CSS qui
+// donne à la cellule sa taille (colonnes × rangées). Le motif se répète, si bien
+// que la grille alterne grandes verticales, larges, standards et petites — jamais
+// une grille uniforme. 12 cases avant de boucler : l'œil ne repère pas la répétition.
+const MOSAIC = [
+    'mTall', 'mStd', 'mWide', 'mStd',
+    'mStd', 'mWide', 'mSmall', 'mTall',
+    'mWide', 'mStd', 'mStd', 'mSmall',
+] as const;
+
+function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid }: {
     recipe: Recipe; shape: CardShape;
     onMenu: (r: Recipe, x: number, y: number) => void;
     /** Recette déjà dans « À faire plus tard » (croix → coche). */
@@ -127,11 +137,12 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
     /** Rang 1..10 affiché en grand sur le visuel (rangée Top 10). */
     rank?: number;
     /**
-     * Vitrine (vue catégorie / filtres) : grande carte, titre INCRUSTÉ dans le
-     * visuel, et une fois la vidéo lancée il ne reste QUE la vidéo et le titre —
-     * ni bouton, ni logo, ni barre de progression.
+     * Carte à titre INCRUSTÉ (rangée Desserts de l'accueil) : cinq cartes
+     * remplissent l'écran, le titre est posé en bas DANS le visuel et n'en
+     * bouge plus — la vidéo se lance derrière lui, sans aucune interface du
+     * lecteur (ni boutons de côté, ni logo, ni barre).
      */
-    showcase?: boolean;
+    inlaid?: boolean;
 }) {
     const vid = tiktokId(recipe);
     // Survol prolongé (1,5 s) → la vidéo se lance dans le visuel. Elle porte SES
@@ -165,7 +176,7 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
 
     return (
         <div
-            className={`${styles.card} ${styles[shape]} ${rank ? styles.cardRanked : ''} ${showcase ? styles.cardShow : ''}`}
+            className={`${styles.card} ${styles[shape]} ${rank ? styles.cardRanked : ''} ${inlaid ? styles.cardInlaid : ''}`}
             onContextMenu={(e) => { e.preventDefault(); onMenu(recipe, e.clientX, e.clientY); }}
             onMouseEnter={enter}
             onMouseLeave={leave}
@@ -176,10 +187,10 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
                 {playing && vid && (
                     <iframe
                         className={`${styles.thumbVideo} ${ready ? styles.thumbVideoOn : ''}`}
-                        // En vitrine, l'interface du lecteur est coupée : la carte
-                        // devient une image qui s'anime, rien d'autre. Ailleurs, les
-                        // contrôles restent (son, barre, avance/recul).
-                        src={showcase
+                        // Titre incrusté : le lecteur est nu — aucun bouton latéral,
+                        // aucun logo, aucune barre. Ailleurs les contrôles TikTok
+                        // restent (son, barre de progression, avance/recul).
+                        src={inlaid
                             ? `https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`
                             : `https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=1&progress_bar=1&play_button=1&volume_control=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                         allow="autoplay; encrypted-media"
@@ -187,29 +198,23 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
                     />
                 )}
 
-                {/* Vitrine : le titre vit DANS la carte et ne bouge plus, même
-                    quand la vidéo prend la place de la photo. */}
-                {showcase && (
+                {/* Le titre, DANS la carte : même police et même texte que sous les
+                    autres cartes, mais posé en bas du visuel. La vidéo passe
+                    derrière lui, il ne bouge pas d'un pixel. */}
+                {inlaid && (
                     <>
-                        <div className={styles.showScrim} aria-hidden />
-                        <div className={styles.showText}>
-                            <div
-                                className={styles.showTitle}
-                                role="button"
-                                tabIndex={0}
-                                onClick={() => openRecipe(recipe)}
-                                onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
-                            >{label(recipe)}</div>
-                            {/* La ligne d'infos s'efface quand la vidéo part : il ne
-                                reste alors que la vidéo et le titre. */}
-                            <div className={`${styles.showMeta} ${playing ? styles.showMetaOff : ''}`}>
-                                {[catLabel(recipe), timeLabel(recipe)].filter(Boolean).join(' · ')}
-                            </div>
-                        </div>
-                        {/* Le seul bouton de la vitrine disparaît dès que ça tourne. */}
+                        <div className={styles.inlaidScrim} aria-hidden />
+                        <div
+                            className={styles.inlaidLabel}
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => openRecipe(recipe)}
+                            onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
+                        >{label(recipe)}</div>
+                        {/* Le seul bouton du site s'efface dès que ça tourne. */}
                         {onToggleLater && !playing && (
                             <button
-                                className={`${styles.showLater} ${later ? styles.laterBtnOn : ''}`}
+                                className={`${styles.inlaidLater} ${later ? styles.laterBtnOn : ''}`}
                                 onClick={(e) => { e.stopPropagation(); onToggleLater(recipe); }}
                                 aria-label={later ? 'Retirer de « À faire plus tard »' : 'Ajouter à « À faire plus tard »'}
                                 title={later ? 'À faire plus tard : ajouté' : 'À faire plus tard'}
@@ -226,7 +231,7 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
             </div>
             {/* Titre + bouton « À faire plus tard » (croix → coche). Le titre ouvre
                 la fiche ; cliquer la vidéo ne fait que la piloter. */}
-            {!showcase && (
+            {!inlaid && (
             <div className={styles.cardLabelRow}>
                 <div
                     className={styles.cardLabel}
@@ -251,14 +256,14 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
                 )}
             </div>
             )}
-            {!showcase && <div className={styles.cardSub}>{[catLabel(recipe), timeLabel(recipe)].filter(Boolean).join(' · ')}</div>}
+            {!inlaid && <div className={styles.cardSub}>{[catLabel(recipe), timeLabel(recipe)].filter(Boolean).join(' · ')}</div>}
         </div>
     );
 }
 
 // ── Rangée horizontale (flèches au survol) ─────────────────────────────────
 
-function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onToggleLater, ranked }: {
+function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onToggleLater, ranked, inlaid }: {
     title: string; recipes: Recipe[]; shape: CardShape;
     /** Thème partageable : ajoute le bouton « Partager » (lien /?tag=…). */
     shareTag?: string;
@@ -268,6 +273,8 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
     onToggleLater?: (r: Recipe) => void;
     /** Rangée Top 10 : numérote les cartes de 1 à 10. */
     ranked?: boolean;
+    /** Rangée à titre incrusté : cinq grandes cartes par écran (voir `Card`). */
+    inlaid?: boolean;
 }) {
     const scroller = useRef<HTMLDivElement>(null);
     if (!recipes.length) return null;
@@ -305,6 +312,7 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
                             later={isLater?.(String(r.id))}
                             onToggleLater={onToggleLater}
                             rank={ranked ? i + 1 : undefined}
+                            inlaid={inlaid}
                         />
                     ))}
                 </div>
@@ -966,9 +974,11 @@ export default function TVDesktopHome() {
                             <button className={styles.filterClear} onClick={() => setFilters([])}>Tout effacer</button>
                         </div>
                         {filtered.length > 0 ? (
-                            <div className={styles.showGrid}>
-                                {filtered.map((r) => (
-                                    <Card key={r.id} recipe={r} shape="wide" showcase onMenu={onMenu} later={isLater(String(r.id))} onToggleLater={handleToggleLater} />
+                            <div className={styles.mosaic}>
+                                {filtered.map((r, i) => (
+                                    <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
+                                        <Card recipe={r} shape="wide" onMenu={onMenu} later={isLater(String(r.id))} onToggleLater={handleToggleLater} />
+                                    </div>
                                 ))}
                             </div>
                         ) : (
@@ -985,12 +995,14 @@ export default function TVDesktopHome() {
                             <h1 className={styles.collTitle}>{collection.title}</h1>
                             <span className={styles.collCount}>{collection.recipes.length} recette{collection.recipes.length > 1 ? 's' : ''}</span>
                         </div>
-                        {/* Grille de posters : toutes les cartes ont la même
-                            taille, grandes, titre et infos incrustés — la mise en
-                            page d'une rangée Apple TV+ dépliée. */}
-                        <div className={styles.showGrid}>
-                            {collection.recipes.map((r) => (
-                                <Card key={r.id} recipe={r} shape="wide" showcase onMenu={onMenu} />
+                        {/* Mosaïque : les cartes ne sont pas toutes de la même
+                            taille — grande verticale, large, standard, petite —
+                            selon un motif qui se répète, comme sur mobile. */}
+                        <div className={styles.mosaic}>
+                            {collection.recipes.map((r, i) => (
+                                <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
+                                    <Card recipe={r} shape="wide" onMenu={onMenu} />
+                                </div>
                             ))}
                         </div>
                     </div>
@@ -1007,7 +1019,7 @@ export default function TVDesktopHome() {
                             <Row title="Entrées" recipes={byCat['entrees'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             <Row title="Plats" recipes={byCat['plats'] || []} shape="wideXL" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             <Row title="Accompagnements" recipes={byCat['accompagnements'] || []} shape="square" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
-                            <Row title="Desserts" recipes={byCat['desserts'] || []} shape="posterXL" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            <Row title="Desserts" recipes={byCat['desserts'] || []} shape="posterXL" inlaid onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             <Row title="Pâtisseries" recipes={byCat['patisserie'] || []} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             {themeRows.map((row) => (
                                 <Row key={row.title} title={row.title} recipes={row.recipes} shape={row.shape} shareTag={row.tag} onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
