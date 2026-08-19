@@ -2,11 +2,401 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 17/08/2026 22:32:58
+ * Dernière mise à jour: 19/08/2026 13:29:01
  * Total: 661 recettes
  */
-export const exportSyncId = "1787005978589";
+export const exportSyncId = "1787146141362";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7059",
+        "title": "Porc au caramel",
+        "description": "Une recette de porc au caramel ultra simple, fondante et délicieuse. Nécessite une casserole, quelques ingrédients et un peu de patience pour un plat doux, sucré-salé, à refaire les yeux fermés.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7059_1786450767317.jpg&v=1787152383000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7495457251457649942\" data-video-id=\"7495457251457649942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7495457251457649942\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1,5 kg de travers de porc"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             500 g de riz blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             60 ml de sauce soja (salée ou sucrée, selon le goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Quelques gouttes d'ail ou 2 à 3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un peu d'huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un peu d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120 g de sucre"
+            }
+        ],
+        "steps": [
+            "1. Découper les travers de porc et les faire mariner dans la sauce soja et l'ail.",
+            "2. Faire chauffer un peu d'huile dans une casserole. Commencer par le côté gras, puis faire dorer toutes les faces de la viande.",
+            "3. Couvrir et laisser cuire à feu doux pendant 45 minutes à 1 heure 30.",
+            "4. À mi-cuisson, récupérer le jus de cuisson et le mettre de côté. Ajouter un peu d'eau et continuer la cuisson.",
+            "5. Quand la viande est bien fondante, remettre le jus de cuisson, ajouter le sucre et laisser réduire jusqu'à obtenir un caramel nappant.",
+            "6. Servir avec du riz blanc."
+        ],
+        "tags": [
+            "Asie",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7102",
+        "title": "Boulettes Kefta, aubergines grillées et yaourt grec",
+        "description": "Une recette savoureuse de boulettes de viande hachée (kefta) accompagnées d'aubergines grillées à l'huile d'olive et d'une sauce onctueuse au yaourt grec, tahini et harissa, le tout parsemé de pignons de pin et servi avec du pain libanais.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7102_1786542188466.jpg&v=1787152337000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643507520320834849\" data-video-id=\"7643507520320834849\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643507520320834849\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 oignon rouge ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 bonne cuillère à soupe de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍆\n             2 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bonne cuillère à soupe de zaatar"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bonne cuillère à soupe de tahini"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 petite cuillère à café de harissa"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre (et menthe si vous avez)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pignons de pin torréfiés à la poêle"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Dans un saladier, mélanger la viande hachée avec l'oignon rouge ciselé, le persil haché, la coriandre hachée, le cumin, le curcuma et le sel.",
+            "Former des boulettes avec la préparation de kefta.",
+            "Faire cuire les boulettes à feu moyen/vif sur chaque face jusqu'à ce qu'elles soient dorées et cuites à cœur.",
+            "Couper finement les aubergines à la mandoline.",
+            "Dans une poêle, faire revenir les aubergines coupées dans de l'huile d'olive avec le zaatar et une gousse d'ail hachée. Bien mélanger et laisser cuire environ vingt minutes jusqu'à ce qu'elles soient tendres.",
+            "Dans un bol, mélanger le yaourt grec, le tahini, le jus de citron, la harissa, la coriandre hachée (et la menthe si vous en avez).",
+            "Étaler la sauce au yaourt dans une assiette de service.",
+            "Disposer harmonieusement les boulettes de kefta, les aubergines grillées et les pignons de pin torréfiés sur la sauce.",
+            "Déguster immédiatement avec un bon pain libanais."
+        ],
+        "tags": [
+            "épicé",
+            "Liban",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7177",
+        "title": "Magret de canard, sauce Tigre et fenouil à l'orange",
+        "description": "Découvrez une recette originale de magret de canard, sublimé par une sauce Tigre qui pleure inspirée de la street food thaïlandaise. Le plat est accompagné d'une salade fraîcheur de fenouil et d'orange pour une touche acidulée et anisée d'exception.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7177_1786965702968-1.jpg&v=1787152267000",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7674625773940084000\" data-video-id=\"7674625773940084000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7674625773940084000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 beau magret de canard"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre du moulin"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             1 cuillère à soupe de riz gluant torréfié"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             3 cuillères à soupe de sauce poisson"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de sucre de palme (ou cassonade)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de piment séché en flocons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote émincée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de pâte de tamarin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 bulbe de fenouil (tranché très fin à la mandoline)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 orange pressée"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un demi citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Plats",
+            "Salades",
+            "Sauces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7193",
+        "title": "Bouchées de poulet asiatiques",
+        "description": "Découvrez une recette facile et savoureuse de bouchées de poulet aux saveurs asiatiques, roulées dans des feuilles de riz et cuites à l'étouffée. L'assaisonnement est clé pour personnaliser ce plat, idéal à servir avec une salade fraîche sucrée-sa...",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7193_1786963139742-1.jpeg&v=1787152214000",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652026367223074080\" data-video-id=\"7652026367223074080\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652026367223074080\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             600g d'escalope de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 botte d'oignons nouveaux ou cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 bouquet de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de sauce nuoc Mam"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre, sel, poivre au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             6 feuilles de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 cuillères à soupe d'huile pour la cuisson"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau (+bouillon) et un peu d'huile pour la cuisson"
+            }
+        ],
+        "steps": [
+            "Hacher finement l'escalope de poulet.",
+            "Ciseler le poivron, l'oignon, les oignons nouveaux (ou cébette) et la coriandre.",
+            "Dans un grand bol, mélanger le poulet haché avec le poivron, l'oignon, les oignons nouveaux, la coriandre, la sauce nuoc Mam, la sauce soja, le gingembre, le sel et le poivre.",
+            "Humidifier légèrement les feuilles de riz une par une.",
+            "Déposer une portion de la préparation au poulet sur chaque feuille de riz et rouler pour former des bouchées façon escargots.",
+            "Dans une poêle, faire chauffer 4 cuillères à soupe d'huile.",
+            "Faire dorer doucement une face des bouchées de poulet.",
+            "Ajouter un fond d'eau (et éventuellement de bouillon) et un peu d'huile dans la poêle.",
+            "Couvrir et laisser cuire à l'étouffée.",
+            "Retourner les bouchées et laisser l'excès d'eau s'évaporer jusqu'à ce qu'elles soient bien cuites et légèrement croustillantes.",
+            "Servir chaud, idéalement avec une salade fraîche sucrée-salée."
+        ],
+        "tags": [
+            "Asie",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7201",
+        "title": "Burrata mangue avocat",
+        "description": "Simple, rapide et parfait pour une entrée ou un apéritif à partager.",
+        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7201_1786964627653-1.jpg&v=1787152202000",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7674615375375404321\" data-video-id=\"7674615375375404321\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7674615375375404321\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n une burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1/2 mangue"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1/2 ou 1 avocat (selon la taille)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n 1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 1 fruit de la passion"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n un filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n poivre"
+            }
+        ],
+        "steps": [
+            "Couper la mangue et l'avocat en dés.",
+            "Émincer finement l'oignon rouge.",
+            "Ouvrir le fruit de la passion et récupérer la pulpe.",
+            "Ciseler la ciboulette.",
+            "Disposer la burrata dans une assiette de service.",
+            "Garnir la burrata avec les dés de mangue, d'avocat, l'oignon rouge émincé et la pulpe de fruit de la passion.",
+            "Parsemer de ciboulette ciselée.",
+            "Arroser d'un filet d'huile d'olive et assaisonner de sel et de poivre selon votre goût."
+        ],
+        "tags": [
+            "Entrées",
+            "Healthy",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7266",
         "title": "Cookies Churros au Nutella",
@@ -793,90 +1183,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7177",
-        "title": "Magret de canard, sauce Tigre qui pleure et fenouil à l'orange",
-        "description": "Découvrez une recette originale de magret de canard, sublimé par une sauce Tigre qui pleure inspirée de la street food thaïlandaise. Le plat est accompagné d'une salade fraîcheur de fenouil et d'orange pour une touche acidulée et anisée d'exception.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7177_1786965702968-1.jpg&v=1786986764000",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7674625773940084000\" data-video-id=\"7674625773940084000\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7674625773940084000\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 beau magret de canard"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre du moulin"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             1 cuillère à soupe de riz gluant torréfié"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus d'un citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             3 cuillères à soupe de sauce poisson"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à soupe de sucre de palme (ou cassonade)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 cuillère à café de piment séché en flocons"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote émincée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de pâte de tamarin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bulbe de fenouil (tranché très fin à la mandoline)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 orange pressée"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus d'un demi citron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Un filet d'huile d'olive"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie",
-            "épicé",
-            "Plats",
-            "Salades",
-            "Sauces",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7183",
         "title": "Gaspacho de melon",
         "description": "Un gaspacho de melon rafraîchissant et facile à préparer, parfait pour les dîners d'été. Sa douceur unique, apportée par le melon cantaloup, le distingue du gaspacho traditionnel et en fait un véritable succès.",
@@ -1339,76 +1645,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7201",
-        "title": "Burrata personnalisée mangue avocat",
-        "description": "Simple, rapide et parfait pour une entrée ou un apéritif à partager.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7201_1786964627653-1.jpg&v=1786984715000",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7674615375375404321\" data-video-id=\"7674615375375404321\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7674615375375404321\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             une burrata"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 mangue"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 ou 1 avocat (selon la taille)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 fruit de la passion"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             un filet d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            }
-        ],
-        "steps": [
-            "Couper la mangue et l'avocat en dés.",
-            "Émincer finement l'oignon rouge.",
-            "Ouvrir le fruit de la passion et récupérer la pulpe.",
-            "Ciseler la ciboulette.",
-            "Disposer la burrata dans une assiette de service.",
-            "Garnir la burrata avec les dés de mangue, d'avocat, l'oignon rouge émincé et la pulpe de fruit de la passion.",
-            "Parsemer de ciboulette ciselée.",
-            "Arroser d'un filet d'huile d'olive et assaisonner de sel et de poivre selon votre goût."
-        ],
-        "tags": [
-            "Entrées",
-            "Healthy",
-            "Italie",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7191",
         "title": "Brownies au citron",
         "description": "Lumineux, beurrés et remplis d'une saveur de citron frais, ces brownies au citron sont impossibles à résister ! Si doux, si acidulés, si bons !",
@@ -1781,84 +2017,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7193",
-        "title": "Bouchées de poulet asiatiques façon escargots",
-        "description": "Découvrez une recette facile et savoureuse de bouchées de poulet aux saveurs asiatiques, roulées dans des feuilles de riz et cuites à l'étouffée. L'assaisonnement est clé pour personnaliser ce plat, idéal à servir avec une salade fraîche sucrée-sa...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7193_1786963139742-1.jpeg&v=1786983133000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652026367223074080\" data-video-id=\"7652026367223074080\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652026367223074080\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             600g d'escalope de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 poivron"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 botte d'oignons nouveaux ou cébette"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 bouquet de coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à soupe de sauce nuoc Mam"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 cuillères à soupe de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gingembre, sel, poivre au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             6 feuilles de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 cuillères à soupe d'huile pour la cuisson"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Eau (+bouillon) et un peu d'huile pour la cuisson"
-            }
-        ],
-        "steps": [
-            "Hacher finement l'escalope de poulet.",
-            "Ciseler le poivron, l'oignon, les oignons nouveaux (ou cébette) et la coriandre.",
-            "Dans un grand bol, mélanger le poulet haché avec le poivron, l'oignon, les oignons nouveaux, la coriandre, la sauce nuoc Mam, la sauce soja, le gingembre, le sel et le poivre.",
-            "Humidifier légèrement les feuilles de riz une par une.",
-            "Déposer une portion de la préparation au poulet sur chaque feuille de riz et rouler pour former des bouchées façon escargots.",
-            "Dans une poêle, faire chauffer 4 cuillères à soupe d'huile.",
-            "Faire dorer doucement une face des bouchées de poulet.",
-            "Ajouter un fond d'eau (et éventuellement de bouillon) et un peu d'huile dans la poêle.",
-            "Couvrir et laisser cuire à l'étouffée.",
-            "Retourner les bouchées et laisser l'excès d'eau s'évaporer jusqu'à ce qu'elles soient bien cuites et légèrement croustillantes.",
-            "Servir chaud, idéalement avec une salade fraîche sucrée-salée."
-        ],
-        "tags": [
-            "Asie",
-            "Healthy"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -4316,107 +4474,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7102",
-        "title": "Boulettes Kefta, aubergines grillées et yaourt grec au tahini et harissa",
-        "description": "Une recette savoureuse de boulettes de viande hachée (kefta) accompagnées d'aubergines grillées à l'huile d'olive et d'une sauce onctueuse au yaourt grec, tahini et harissa, le tout parsemé de pignons de pin et servi avec du pain libanais.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7102_1786542188466.jpg&v=1786549451000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7643507520320834849\" data-video-id=\"7643507520320834849\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7643507520320834849\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             250 g de viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 oignon rouge ciselé"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil haché"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 bonne cuillère à soupe de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍆\n             2 aubergines"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bonne cuillère à soupe de zaatar"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 bonne cuillère à soupe de tahini"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 petite cuillère à café de harissa"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre (et menthe si vous avez)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pignons de pin torréfiés à la poêle"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Dans un saladier, mélanger la viande hachée avec l'oignon rouge ciselé, le persil haché, la coriandre hachée, le cumin, le curcuma et le sel.",
-            "Former des boulettes avec la préparation de kefta.",
-            "Faire cuire les boulettes à feu moyen/vif sur chaque face jusqu'à ce qu'elles soient dorées et cuites à cœur.",
-            "Couper finement les aubergines à la mandoline.",
-            "Dans une poêle, faire revenir les aubergines coupées dans de l'huile d'olive avec le zaatar et une gousse d'ail hachée. Bien mélanger et laisser cuire environ vingt minutes jusqu'à ce qu'elles soient tendres.",
-            "Dans un bol, mélanger le yaourt grec, le tahini, le jus de citron, la harissa, la coriandre hachée (et la menthe si vous en avez).",
-            "Étaler la sauce au yaourt dans une assiette de service.",
-            "Disposer harmonieusement les boulettes de kefta, les aubergines grillées et les pignons de pin torréfiés sur la sauce.",
-            "Déguster immédiatement avec un bon pain libanais."
-        ],
-        "tags": [
-            "épicé",
-            "Liban",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7086",
         "title": "Aubergines rôties laquées",
         "description": "Une recette simple et savoureuse d'aubergines rôties, enrobées d'une sauce laquée sucrée-salée à base de miel, sauce soja, ail et gingembre. Parfaites en accompagnement ou en entrée.",
@@ -4840,63 +4897,6 @@ export const mockRecipes: Recipe[] = [
             "épicé",
             "Poissons et crustacés",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7059",
-        "title": "Porc au caramel ultra simple",
-        "description": "Une recette de porc au caramel ultra simple, fondante et délicieuse. Nécessite une casserole, quelques ingrédients et un peu de patience pour un plat doux, sucré-salé, à refaire les yeux fermés.",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7059_1786450767317.jpg&v=1786458070000",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7495457251457649942\" data-video-id=\"7495457251457649942\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7495457251457649942\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1,5 kg de travers de porc"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             500 g de riz blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             60 ml de sauce soja (salée ou sucrée, selon le goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Quelques gouttes d'ail ou 2 à 3 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Un peu d'huile neutre"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             Un peu d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             120 g de sucre"
-            }
-        ],
-        "steps": [
-            "1. Découper les travers de porc et les faire mariner dans la sauce soja et l'ail.",
-            "2. Faire chauffer un peu d'huile dans une casserole. Commencer par le côté gras, puis faire dorer toutes les faces de la viande.",
-            "3. Couvrir et laisser cuire à feu doux pendant 45 minutes à 1 heure 30.",
-            "4. À mi-cuisson, récupérer le jus de cuisson et le mettre de côté. Ajouter un peu d'eau et continuer la cuisson.",
-            "5. Quand la viande est bien fondante, remettre le jus de cuisson, ajouter le sucre et laisser réduire jusqu'à obtenir un caramel nappant.",
-            "6. Servir avec du riz blanc."
-        ],
-        "tags": [
-            "Asie",
-            "Pas cher"
         ],
         "isFeatured": false,
         "isFavorite": false,
