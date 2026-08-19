@@ -768,8 +768,26 @@
 }
 .cardInlaid .thumb { aspect-ratio: 3 / 4.2; border-radius: 18px; }
 
+/* L'habillage social de TikTok (pseudo, logo, j'aime, commentaires, partage)
+   ne s'enlève PAS par paramètre d'URL : il est ancré aux bords de la vidéo, et
+   `controls=0` ne coupe que la lecture. On donne donc au cadre le format exact
+   de la vidéo (9/16), on l'agrandit de 38 % et on le centre : les bords sortent
+   de la carte, et l'habillage avec eux. Il ne reste que l'image. */
+.cardInlaid .thumbVideo {
+    inset: auto;
+    top: 50%; left: 50%;
+    width: 138%; height: auto;
+    aspect-ratio: 9 / 16;
+    /* translateZ : Safari compose les iframes dans un calque à part et les fait
+       remonter par-dessus les éléments positionnés. Promouvoir la vidéo ET les
+       incrustations remet chacun à sa place — le titre reste devant. */
+    transform: translate(-50%, -50%) translateZ(0);
+    z-index: 1;
+}
+
 .inlaidScrim {
     position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    transform: translateZ(0);
     background: linear-gradient(0deg, rgba(6,6,8,0.9) 1%, rgba(6,6,8,0.42) 26%, rgba(6,6,8,0) 56%);
 }
 /* Même police, même graisse, même inclinaison que le titre sous les autres
@@ -779,7 +797,7 @@
     cursor: pointer;
     font-family: 'Outfit', sans-serif;
     font-size: 19px; font-weight: 900; line-height: 1.14; letter-spacing: -0.02em;
-    text-transform: uppercase; transform: skewX(-7deg); transform-origin: left bottom;
+    text-transform: uppercase; transform: skewX(-7deg) translateZ(0); transform-origin: left bottom;
     color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,0.72);
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
