@@ -118,16 +118,6 @@ const Check = () => (
 // `posterXL` = grande verticale mise en avant ; `wideXL` = large et plus haute.
 type CardShape = 'wide' | 'poster' | 'square' | 'posterXL' | 'wideXL';
 
-// Motif de la mosaïque « catégorie » : chaque nom pointe une classe CSS qui
-// donne à la cellule sa taille (colonnes × rangées). Le motif se répète, si bien
-// que la grille alterne grandes verticales, larges, standards et petites — jamais
-// une grille uniforme. 12 cases avant de boucler : l'œil ne repère pas la répétition.
-const MOSAIC = [
-    'mTall', 'mStd', 'mWide', 'mStd',
-    'mStd', 'mWide', 'mSmall', 'mTall',
-    'mWide', 'mStd', 'mStd', 'mSmall',
-] as const;
-
 function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
     recipe: Recipe; shape: CardShape;
     onMenu: (r: Recipe, x: number, y: number) => void;
@@ -202,13 +192,20 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
                 {showcase && (
                     <>
                         <div className={styles.showScrim} aria-hidden />
-                        <div
-                            className={styles.showTitle}
-                            role="button"
-                            tabIndex={0}
-                            onClick={() => openRecipe(recipe)}
-                            onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
-                        >{label(recipe)}</div>
+                        <div className={styles.showText}>
+                            <div
+                                className={styles.showTitle}
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => openRecipe(recipe)}
+                                onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
+                            >{label(recipe)}</div>
+                            {/* La ligne d'infos s'efface quand la vidéo part : il ne
+                                reste alors que la vidéo et le titre. */}
+                            <div className={`${styles.showMeta} ${playing ? styles.showMetaOff : ''}`}>
+                                {[catLabel(recipe), timeLabel(recipe)].filter(Boolean).join(' · ')}
+                            </div>
+                        </div>
                         {/* Le seul bouton de la vitrine disparaît dès que ça tourne. */}
                         {onToggleLater && !playing && (
                             <button
@@ -969,11 +966,9 @@ export default function TVDesktopHome() {
                             <button className={styles.filterClear} onClick={() => setFilters([])}>Tout effacer</button>
                         </div>
                         {filtered.length > 0 ? (
-                            <div className={styles.mosaic}>
-                                {filtered.map((r, i) => (
-                                    <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
-                                        <Card recipe={r} shape="wide" showcase onMenu={onMenu} later={isLater(String(r.id))} onToggleLater={handleToggleLater} />
-                                    </div>
+                            <div className={styles.showGrid}>
+                                {filtered.map((r) => (
+                                    <Card key={r.id} recipe={r} shape="wide" showcase onMenu={onMenu} later={isLater(String(r.id))} onToggleLater={handleToggleLater} />
                                 ))}
                             </div>
                         ) : (
@@ -990,14 +985,12 @@ export default function TVDesktopHome() {
                             <h1 className={styles.collTitle}>{collection.title}</h1>
                             <span className={styles.collCount}>{collection.recipes.length} recette{collection.recipes.length > 1 ? 's' : ''}</span>
                         </div>
-                        {/* Mosaïque : les cartes ne sont pas toutes de la même
-                            taille — grande verticale, large, standard, petite —
-                            selon un motif qui se répète, comme sur mobile. */}
-                        <div className={styles.mosaic}>
-                            {collection.recipes.map((r, i) => (
-                                <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
-                                    <Card recipe={r} shape="wide" showcase onMenu={onMenu} />
-                                </div>
+                        {/* Grille de posters : toutes les cartes ont la même
+                            taille, grandes, titre et infos incrustés — la mise en
+                            page d'une rangée Apple TV+ dépliée. */}
+                        <div className={styles.showGrid}>
+                            {collection.recipes.map((r) => (
+                                <Card key={r.id} recipe={r} shape="wide" showcase onMenu={onMenu} />
                             ))}
                         </div>
                     </div>
