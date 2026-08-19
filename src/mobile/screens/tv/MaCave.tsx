@@ -294,6 +294,8 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
     const cardRef = useRef<HTMLDivElement>(null);
     const press = useRef<ReturnType<typeof setTimeout> | null>(null);
     const from = useRef<{ x: number; y: number } | null>(null);
+    const touch = useRef(false);
+    const pointer = useRef<number | null>(null);
     const [dragging, setDragging] = useState(false);
     const hovered = useRef<HTMLElement | null>(null);
 
@@ -308,10 +310,24 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
         if (el && el.dataset.shelf !== shelf) el.classList.add(styles.shelfDrop);
         hovered.current = el;
     };
+    /** La carte décolle : elle suit le pointeur et cesse d'intercepter les clics
+     *  (sinon le point sous le curseur désigne la carte, pas l'étagère visée). */
+    const startDrag = (pointerId: number) => {
+        if (press.current) { clearTimeout(press.current); press.current = null; }
+        navigator.vibrate?.(12);
+        setDragging(true);
+        const card = cardRef.current;
+        if (card) {
+            card.style.pointerEvents = 'none';
+            card.style.userSelect = 'none';
+            try { card.setPointerCapture?.(pointerId); } catch { /* capture refusée */ }
+        }
+    };
+
     const endDrag = (x?: number, y?: number) => {
         if (press.current) { clearTimeout(press.current); press.current = null; }
         const card = cardRef.current;
-        if (card) { card.style.transform = ''; card.style.zIndex = ''; card.style.pointerEvents = ''; }
+        if (card) { card.style.transform = ''; card.style.zIndex = ''; card.style.pointerEvents = ''; card.style.userSelect = ''; }
         const target = x != null && y != null ? shelfUnder(x, y) : null;
         highlight(null);
         setDragging(false);
@@ -335,25 +351,29 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                 if (e.button === 2) return;                    // clic droit : au menu
                 const { clientX, clientY, pointerId } = e;
                 from.current = { x: clientX, y: clientY };
-                press.current = setTimeout(() => {
-                    navigator.vibrate?.(12);
-                    setDragging(true);
-                    // On coupe les événements TOUT DE SUITE, sans attendre le
-                    // rendu : sans ça le premier mouvement interroge la carte
-                    // elle-même au lieu de l'étagère qu'elle survole, et rien ne
-                    // s'éclaire sous le doigt.
-                    if (cardRef.current) cardRef.current.style.pointerEvents = 'none';
-                    cardRef.current?.setPointerCapture?.(pointerId);
-                }, 260);
+                touch.current = e.pointerType !== 'mouse';
+                pointer.current = pointerId;
+                // Au DOIGT, on attend : sans ce délai, faire défiler la page
+                // décollerait une carte. À la SOURIS, on ne peut pas attendre —
+                // on presse et on tire dans le même mouvement, et le geste était
+                // annulé avant même d'avoir commencé.
+                if (touch.current) {
+                    press.current = setTimeout(() => { startDrag(pointerId); }, 260);
+                }
             }}
             onPointerMove={(e) => {
                 if (!from.current) return;
                 const dx = e.clientX - from.current.x;
                 const dy = e.clientY - from.current.y;
                 if (!dragging) {
-                    // Un vrai défilement annule l'attente : on ne décolle pas la
-                    // carte parce que le doigt a bougé pour faire défiler la page.
-                    if (Math.hypot(dx, dy) > 12 && press.current) { clearTimeout(press.current); press.current = null; from.current = null; }
+                    const moved = Math.hypot(dx, dy);
+                    if (!touch.current) {
+                        // Souris : trois pixels suffisent à dire qu'on tire.
+                        if (moved > 3) startDrag(pointer.current ?? e.pointerId);
+                    } else if (moved > 12 && press.current) {
+                        // Doigt : c'est un défilement, on renonce.
+                        clearTimeout(press.current); press.current = null; from.current = null;
+                    }
                     return;
                 }
                 const card = cardRef.current;
