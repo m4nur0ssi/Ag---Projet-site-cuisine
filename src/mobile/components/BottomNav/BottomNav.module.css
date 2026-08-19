@@ -66,12 +66,13 @@
     box-shadow: 0 15px 35px rgba(255, 59, 48, 0.35);
     border: 2px solid rgba(255, 255, 255, 0.2);
     flex-shrink: 0;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.34s cubic-bezier(0.22, 1.15, 0.36, 1), background 0.2s ease;
 }
 
 .isolatedSearchBtn:active {
-    transform: scale(0.85);
+    transform: scale(0.86);
     background: #e0352b;
+    transition-duration: 0.09s;
 }
 
 .indicatorTrack {
@@ -103,11 +104,29 @@
     justify-content: center;
     cursor: pointer;
     gap: 2px;
-    transition: transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    /* Enfoncement immédiat, retour avec un léger dépassement : c'est ce
+       déséquilibre entre l'aller et le retour qui fait le toucher « natif ».
+       Une transition symétrique de 0,2 s donnait un appui mou. */
+    transition: transform 0.34s cubic-bezier(0.22, 1.15, 0.36, 1);
 }
 
 .navItem:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
+    transition-duration: 0.09s;
+    transition-timing-function: cubic-bezier(0.3, 0, 0.6, 1);
+}
+
+/* L'icône marque le coup quand l'onglet devient actif. */
+.iconActive { animation: navPop 0.42s cubic-bezier(0.22, 1.15, 0.36, 1); }
+@keyframes navPop {
+    0% { transform: scale(0.86); }
+    45% { transform: scale(1.16); }
+    100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .navItem, .iconActive { transition: none; animation: none; }
 }
 
 .iconContainer {

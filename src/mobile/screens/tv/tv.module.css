@@ -3290,3 +3290,16 @@
     display: block;
     pointer-events: none;
 }
+
+/* ── Lignes du volet : elles s'allument, elles ne rétrécissent pas ────────
+   La règle générale d'appui (scale 0,94) convient à un bouton, pas à une ligne
+   pleine largeur : une liste native surligne la rangée touchée. On neutralise
+   donc la transformation ici et on met un fond, immédiat au contact. */
+:global(html.is-mobile) .navRow {
+    transition: background 0.18s ease;
+}
+:global(html.is-mobile) .navRow:active {
+    transform: none;
+    background: rgba(255, 255, 255, 0.14);
+    transition-duration: 0s;
+}

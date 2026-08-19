@@ -240,7 +240,9 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
     const dragging = !open && peek > 0;
     // Pendant le tirage on colle au doigt (aucune animation) ; au relâcher, un
     // ressort légèrement rebondissant finit la course.
-    const spring = { type: 'spring' as const, damping: 26, stiffness: 320, mass: 0.7 };
+    // Volet : plus raide et plus léger qu'avant (26/320/0.7). Il s'ouvre d'un
+    // coup sec et s'arrête net, comme un panneau d'app native.
+    const spring = { type: 'spring' as const, damping: 30, stiffness: 420, mass: 0.6 };
 
     return (
         <AnimatePresence>
@@ -252,7 +254,7 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: open ? 1 : peek }}
                         exit={{ opacity: 0 }}
-                        transition={dragging ? { duration: 0 } : { duration: 0.25 }}
+                        transition={dragging ? { duration: 0 } : { duration: 0.18 }}
                         style={{ pointerEvents: open ? 'auto' : 'none' }}
                     />
                     <motion.aside

@@ -43,6 +43,8 @@ export default function TasteOnboarding({ onClose, embedded = false }: { onClose
     // pour un oui, croix grise pour un non. Même geste au clic qu'au glissé.
     const [verdict, setVerdict] = useState<'like' | 'pass' | null>(null);
     const deciding = useRef(false);
+    /** Rappel du geste sur la toute première carte : elle amorce le mouvement. */
+    const [nudge, setNudge] = useState(true);
     const done = i >= deck.length;
 
     const finish = (likedIds: string[]) => {
@@ -58,6 +60,7 @@ export default function TasteOnboarding({ onClose, embedded = false }: { onClose
     const swipe = (love: boolean) => {
         if (deciding.current || done) return;
         deciding.current = true;
+        try { navigator.vibrate?.(love ? [10, 40, 14] : 12); } catch { /* noop */ }
         setVerdict(love ? 'like' : 'pass');
         // La carte part dans le sens du choix pendant que le signe s'imprime.
         setDrag(love ? 900 : -900);
@@ -74,7 +77,11 @@ export default function TasteOnboarding({ onClose, embedded = false }: { onClose
     };
 
     // Glisser la carte : droite = j'aime, gauche = je passe.
-    const onDown = (e: React.PointerEvent) => { dragX.current = e.clientX; (e.target as HTMLElement).setPointerCapture?.(e.pointerId); };
+    const onDown = (e: React.PointerEvent) => {
+        setNudge(false);                       // le doigt a compris, le rappel s'arrête
+        dragX.current = e.clientX;
+        (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    };
     const onMove = (e: React.PointerEvent) => { if (dragX.current != null) setDrag(e.clientX - dragX.current); };
     const onUp = () => {
         if (dragX.current == null) return;
@@ -116,7 +123,8 @@ export default function TasteOnboarding({ onClose, embedded = false }: { onClose
                                 }
                                 : { transform: `translateY(${depth * 12}px) scale(${1 - depth * 0.05})`, zIndex: k, opacity: 0.55 };
                             return (
-                                <div key={r.id} className={styles.card}
+                                <div key={r.id}
+                                    className={`${styles.card} ${front && nudge && i === 0 ? styles.cardNudge : ''}`}
                                     style={style as any}
                                     onPointerDown={front ? onDown : undefined}
                                     onPointerMove={front ? onMove : undefined}
@@ -124,8 +132,26 @@ export default function TasteOnboarding({ onClose, embedded = false }: { onClose
                                     onPointerCancel={front ? onUp : undefined}
                                 >
                                     <img src={r.image} alt="" draggable={false} />
-                                    {front && drag > 40 && <div className={styles.badgeLike}>J&apos;aime</div>}
-                                    {front && drag < -40 && <div className={styles.badgeNope}>Passer</div>}
+                                    {/* Tampons : ils apparaissent avec le geste et
+                                        grossissent à mesure qu'on approche du seuil. */}
+                                    {front && drag > 12 && (
+                                        <div
+                                            className={styles.badgeLike}
+                                            style={{
+                                                opacity: Math.min(1, (drag - 12) / 70),
+                                                transform: `rotate(8deg) scale(${0.8 + Math.min(1, drag / 110) * 0.3})`,
+                                            }}
+                                        >J&apos;aime</div>
+                                    )}
+                                    {front && drag < -12 && (
+                                        <div
+                                            className={styles.badgeNope}
+                                            style={{
+                                                opacity: Math.min(1, (-drag - 12) / 70),
+                                                transform: `rotate(-8deg) scale(${0.8 + Math.min(1, -drag / 110) * 0.3})`,
+                                            }}
+                                        >Passer</div>
+                                    )}
                                     <div className={styles.scrim} />
                                     <div className={styles.meta}>
                                         <span className={styles.cat}>{r.category}</span>
@@ -155,6 +181,27 @@ export default function TasteOnboarding({ onClose, embedded = false }: { onClose
                             </div>
                         )}
                     </div>
+                    {/* Sur téléphone, tout se joue au doigt : pas de boutons, mais
+                        une consigne claire et le compteur d'avancement. */}
+                    {!embedded ? (
+                        <div className={styles.guide}>
+                            <div className={styles.guideRow}>
+                                <span className={styles.guideNo}>
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M15 5l-7 7 7 7" /></svg>
+                                    Glisse à gauche
+                                </span>
+                                <span className={styles.guideCount}>{i + 1} / {deck.length}</span>
+                                <span className={styles.guideYes}>
+                                    Glisse à droite
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5l7 7-7 7" /></svg>
+                                </span>
+                            </div>
+                            <p className={styles.guideText}>
+                                À gauche pour passer, à droite si la recette te tente.
+                                Dix photos, et l&apos;accueil se règle sur toi.
+                            </p>
+                        </div>
+                    ) : (
                     <div className={styles.ctrls}>
                         <button className={styles.no} onClick={() => swipe(false)} aria-label="Passer">
                             <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
@@ -164,6 +211,7 @@ export default function TasteOnboarding({ onClose, embedded = false }: { onClose
                             <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /></svg>
                         </button>
                     </div>
+                    )}
                 </>
             ) : (
                 <div className={styles.doneWrap}>

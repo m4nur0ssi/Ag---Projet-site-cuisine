@@ -273,7 +273,9 @@ export default function BottomNav() {
     }, [pathname]);
 
     // Spring animation for the indicator
-    const springConfig = { damping: 25, stiffness: 300, mass: 0.8 };
+    // Plus raide et plus léger : la pastille rattrape le doigt au lieu de le
+    // suivre mollement (25/300/0.8 laissait un temps de retard visible).
+    const springConfig = { damping: 32, stiffness: 460, mass: 0.6 };
     const springX = useSpring(0, springConfig);
     const xTransform = useTransform(springX, (val) => `${val * 100}%`);
 
@@ -333,6 +335,9 @@ export default function BottomNav() {
     };
 
     const handleItemClick = (index: number) => {
+        // Retour haptique AVANT la navigation : le doigt reçoit sa réponse tout
+        // de suite, même si la page met un instant à venir.
+        handleVibrate(8);
         setActiveIndex(index);
         // Ferme toute fiche recette flottante ouverte (sinon elle reste par-dessus la page)
         window.dispatchEvent(new Event('magic-close-sheet'));
@@ -345,7 +350,6 @@ export default function BottomNav() {
         if ('path' in item && item.path) {
             router.push(item.path);
         }
-        handleVibrate(10);
     };
 
     const handleRecipeSelect = (recipe: any) => {

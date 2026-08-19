@@ -539,3 +539,39 @@ html.is-mobile[data-theme='light'] {
 html.is-mobile, html.is-mobile body {
     overscroll-behavior: none;
 }
+
+/* ── Réponse au doigt, partout dans l'app mobile ─────────────────────────
+   Un bouton natif s'enfonce tout de suite et remonte avec du ressort. Ici tout
+   était en `transition: all .3s` ou sans retour du tout : l'appui semblait
+   « mou », et le halo gris de Safari finissait le travail.
+   Enfoncement en 90 ms, retour en 340 ms sur une courbe qui dépasse légèrement.
+   Les surfaces qui gèrent déjà leur propre appui (cartes du héros, pile des
+   goûts) sont exclues : elles portent leur transformation en style. */
+html.is-mobile button,
+html.is-mobile [role='button'],
+html.is-mobile a.magic-press {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: transform 0.34s cubic-bezier(0.22, 1.15, 0.36, 1), opacity 0.2s ease;
+}
+html.is-mobile button:active,
+html.is-mobile [role='button']:active,
+html.is-mobile a.magic-press:active {
+    transform: scale(0.94);
+    transition-duration: 0.09s;
+    transition-timing-function: cubic-bezier(0.3, 0, 0.6, 1);
+}
+/* Exceptions : ces éléments pilotent eux-mêmes leur transformation (glissé,
+   pile de cartes, affiches du héros) — un scale ici les ferait sauter. */
+html.is-mobile [data-no-press],
+html.is-mobile [data-no-press]:active {
+    transform: none;
+    transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    html.is-mobile button,
+    html.is-mobile [role='button'],
+    html.is-mobile a.magic-press { transition: none; }
+    html.is-mobile button:active,
+    html.is-mobile [role='button']:active { transform: none; }
+}
