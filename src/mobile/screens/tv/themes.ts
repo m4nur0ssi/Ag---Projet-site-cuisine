@@ -6,7 +6,7 @@
 // (src/mobile/screens/page.tsx) pour que les résultats restent identiques.
 
 import { Recipe } from '@/mobile/types';
-import { totalMinutes } from './timing';
+import { totalMinutes, timedMinutes } from './timing';
 
 export interface Theme {
     /** Tag interne (identique à celui de l'accueil actuel). */
@@ -157,11 +157,15 @@ export function matchesTag(
     }
 
     if (tagLower === 'express') {
-        if (recipeTags.some((t) => t === 'express' || t === 'rapide') || titleLower.includes('express') || titleLower.includes('rapide')) return true;
-        // Durée ESTIMÉE depuis les étapes (les champs WP valent 45 min partout,
-        // ce qui rendait ce test toujours faux).
-        const total = totalMinutes(recipe);
-        if (total <= 0 || total > 30) return false;
+        // « Express » est une PROMESSE de durée : on ne l'accorde qu'aux recettes
+        // qui disent leur temps. Une étape chronométrée au moins (cuisson, repos,
+        // frigo, levée) ; sinon la recette sort, quoi qu'annonce son titre.
+        // Le raccourci d'avant — titre ou tag contenant « express » / « rapide » —
+        // passait outre le chronomètre et gonflait la rangée à 325 recettes sur
+        // 617 : un thème qui contient la moitié du site ne trie plus rien.
+        if (timedMinutes(recipe) <= 0) return false;
+        // Préparation + cuisson (repos et frigo compris), strictement sous 30 min.
+        if (totalMinutes(recipe) >= 30) return false;
         return !guards || !['desserts', 'patisserie', 'glaces', 'boissons', 'sauces'].includes(recipeCat);
     }
 

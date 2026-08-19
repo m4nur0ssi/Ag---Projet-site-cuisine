@@ -10,7 +10,7 @@
 //   • difficulté  = nombre d'étapes (≥ 9 difficile, ≥ 5 moyen)
 
 import { Recipe } from '@/mobile/types';
-import { estimateRecipeTiming, type RecipeTiming } from '@/lib/recipe-timing';
+import { estimateRecipeTiming, sumStepMinutes, type RecipeTiming } from '@/lib/recipe-timing';
 
 const cache = new WeakMap<Recipe, RecipeTiming>();
 
@@ -34,6 +34,17 @@ export function timingOf(recipe: Recipe): RecipeTiming {
     }
     return t;
 }
+
+/**
+ * Minutes écrites NOIR SUR BLANC dans les étapes — cuisson, repos, frigo, levée.
+ * Zéro = la recette ne dit rien de son temps, et aucune estimation ne peut le
+ * remplacer : les champs WordPress valent 15 + 30 partout.
+ *
+ * Sert aux thèmes qui promettent une durée (« Express ») : sans durée écrite,
+ * on ne peut pas promettre, donc on n'inscrit pas la recette.
+ */
+export const timedMinutes = (r: Recipe) =>
+    (r.steps || []).reduce((n, step) => n + sumStepMinutes(step), 0);
 
 export const totalMinutes = (r: Recipe) => {
     const t = timingOf(r);

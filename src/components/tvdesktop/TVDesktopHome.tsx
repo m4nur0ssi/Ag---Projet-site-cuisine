@@ -21,6 +21,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
 import { THEMES, matchesTag, isSavoryMiscat } from '@/mobile/screens/tv/themes';
+import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
@@ -51,12 +52,15 @@ const CATEGORY_LABEL: Record<string, string> = {
 };
 const label = (r: Recipe) => decodeHtml(r.title || '');
 const catLabel = (r: Recipe) => CATEGORY_LABEL[(r.category || '').toLowerCase()] || 'Recette';
-const timeLabel = (r: Recipe) => {
-    const t = (r.prepTime || 0) + (r.cookTime || 0);
-    if (!t) return '';
-    return t >= 60 ? `${Math.floor(t / 60)} h${t % 60 ? ` ${t % 60}` : ''}` : `${t} min`;
+// Temps et difficulté viennent de l'ESTIMATEUR, comme sur mobile. Les champs
+// WordPress valent 15 + 30 sur les 617 recettes (valeurs par défaut du sync,
+// jamais renseignées) : le bureau affichait donc « 45 min » et « Moyen » sur
+// absolument tout, y compris là où le thème « Express » promettait moins.
+const timeLabel = (r: Recipe) => formatMinutes(totalMinutes(r));
+const diffLabel = (r: Recipe) => {
+    const d = timingOf(r).difficulty;
+    return d === 'facile' ? 'Facile' : d === 'moyen' ? 'Moyen' : 'Difficile';
 };
-const diffLabel = (r: Recipe) => r.difficulty === 'facile' ? 'Facile' : r.difficulty === 'moyen' ? 'Moyen' : 'Difficile';
 
 const LATER_KEY = 'tv-later-v1';
 const readIds = (key: string): string[] => { try { return JSON.parse(localStorage.getItem(key) || '[]').map(String); } catch { return []; } };
