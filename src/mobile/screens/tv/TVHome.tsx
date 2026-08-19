@@ -344,6 +344,22 @@ function Card({
     domId?: string;
 }) {
     const lp = useLongPress(onLongPress);
+    // Le lecteur ne se montre QUE s'il joue pour de bon : sans consentement
+    // TikTok, il affiche son bandeau de cookies à la place de la vidéo, et la
+    // photo de la recette se faisait remplacer par un pavé bleu. Il signale sa
+    // lecture par postMessage — tant qu'on n'a rien reçu, la photo reste.
+    const [vidReady, setVidReady] = useState(false);
+    useEffect(() => {
+        setVidReady(false);
+        if (!videoId) return;
+        const onMessage = (e: MessageEvent) => {
+            const d = e.data;
+            if (d && typeof d === 'object' && d['x-tiktok-player']) setVidReady(true);
+        };
+        window.addEventListener('message', onMessage);
+        return () => window.removeEventListener('message', onMessage);
+    }, [videoId]);
+
     return (
         <div
             data-id={domId}
@@ -363,7 +379,7 @@ function Card({
                 />
                 {showcase && videoId && (
                     <iframe
-                        className={styles.cardVideo}
+                        className={`${styles.cardVideo} ${vidReady ? styles.cardVideoOn : ''}`}
                         // Lecteur nu : ni commandes, ni barre, ni logo, ni pseudo —
                         // le cadre est agrandi pour que l'habillage sorte du champ.
                         src={`https://www.tiktok.com/player/v1/${videoId}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
@@ -1091,10 +1107,6 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     };
 
     if (!current) return null;
-
-    // Palier typographique : les titres WP vont de « Tiramisu » à 60 caractères.
-    const len = label(current).length;
-    const titleClass = len > 34 ? styles.heroTitleS : len > 18 ? styles.heroTitleM : '';
 
     return (
         <div className={styles.heroSticky}>

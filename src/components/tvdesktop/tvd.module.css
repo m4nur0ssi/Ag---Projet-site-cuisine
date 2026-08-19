@@ -505,20 +505,6 @@
 }
 .heroPlus:hover { background: rgba(80,80,88,0.6); transform: scale(1.05); }
 
-/* Les points ferment la colonne de texte : dans le flux, sous les boutons, et
-   centrés sur la colonne. En absolu (bas à droite du bloc), ils flottaient à
-   mi-hauteur à droite du titre, sans rapport avec la composition. */
-.heroDots {
-    display: flex; align-items: center; justify-content: center; gap: 7px;
-    margin-top: 24px;
-}
-.heroDot {
-    width: 7px; height: 7px; padding: 0; border: none; border-radius: 999px;
-    background: rgba(255,255,255,0.32); cursor: pointer;
-    transition: width 0.4s var(--ease), background 0.4s var(--ease);
-}
-.heroDotOn { width: 22px; background: rgba(255,255,255,0.95); }
-
 /* ── RANGÉES ─────────────────────────────────────────────────────────────── */
 
 .rows { padding: 12px 0 60px; }
