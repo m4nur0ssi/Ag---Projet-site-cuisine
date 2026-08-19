@@ -4,6 +4,7 @@ import { mockRecipes } from '@/data/mockData';
 import type { Recipe } from '@/types';
 import RecipeClient from './RecipeRouter';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
+import { estimateRecipeTiming } from '@/lib/recipe-timing';
 
 const BASE = 'https://lesrecettesmagiques.fr';
 
@@ -49,11 +50,17 @@ function buildRecipeJsonLd(recipe: Recipe) {
     if (image) jsonLd.image = [image];
     if (recipe.servings) jsonLd.recipeYield = `${recipe.servings} portions`;
 
-    const prep = isoDuration(recipe.prepTime);
-    const cook = isoDuration(recipe.cookTime);
+    // Temps ESTIMÉS depuis les étapes : les champs WordPress valent 15 + 30 sur
+    // les 617 recettes (valeurs par défaut du sync). Publier « PT45M » partout,
+    // c'est envoyer une donnée fausse à Google sur chaque fiche.
+    const est = estimateRecipeTiming(recipe.steps);
+    const prepMin = est.prepTime + est.cookTime > 0 ? est.prepTime : (recipe.prepTime || 0);
+    const cookMin = est.prepTime + est.cookTime > 0 ? est.cookTime : (recipe.cookTime || 0);
+    const prep = isoDuration(prepMin);
+    const cook = isoDuration(cookMin);
     if (prep) jsonLd.prepTime = prep;
     if (cook) jsonLd.cookTime = cook;
-    const total = (recipe.prepTime || 0) + (recipe.cookTime || 0);
+    const total = prepMin + cookMin;
     if (total > 0) jsonLd.totalTime = `PT${total}M`;
 
     return jsonLd;

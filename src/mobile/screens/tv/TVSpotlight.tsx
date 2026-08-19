@@ -18,6 +18,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { buildFinderCatalog } from '@/lib/recipe-search-payload';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
+import { timingOf, totalMinutes, formatMinutes } from './timing';
 import styles from './tv.module.css';
 
 const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -281,10 +282,16 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         );
     };
 
-    const recipeMeta = (r: Recipe) =>
-        r.category === 'restaurant'
-            ? (r.restaurant?.subType ? `restaurant • ${r.restaurant.subType}` : 'restaurant')
-            : `${r.category} • ${r.difficulty}`;
+    // Durée et difficulté viennent de l'estimateur, comme partout ailleurs : le
+    // champ WordPress vaut 15 + 30 min et « moyen » sur les 617 recettes.
+    const recipeMeta = (r: Recipe) => {
+        if (r.category === 'restaurant') {
+            return r.restaurant?.subType ? `restaurant • ${r.restaurant.subType}` : 'restaurant';
+        }
+        const d = timingOf(r).difficulty;
+        const time = formatMinutes(totalMinutes(r));
+        return [r.category, time, d].filter(Boolean).join(' • ');
+    };
 
     const body = (
         <>
