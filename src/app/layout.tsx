@@ -90,6 +90,28 @@ export default function RootLayout({
                                     var mobUA = /iPhone|iPod|iPad|Android|Mobile/i.test(ua);
                                     window.__isMobile = !!(narrow || mobUA);
                                     document.documentElement.classList.add(window.__isMobile ? 'is-mobile' : 'is-desktop');
+
+                                    /* Écran d'accueil : la décision est prise ICI, avant le
+                                       premier affichage. Le splash est chargé à la demande ;
+                                       le temps que son morceau de code arrive (une bonne
+                                       demi-seconde en PWA), l'accueil s'affichait puis se
+                                       faisait recouvrir — ce clignotement, c'est l'écran de
+                                       trop. On masque donc le contenu tout de suite. */
+                                    if (window.__isMobile) {
+                                        var KEY = 'hasSeenMagicSplash-v8';
+                                        var sp = new URLSearchParams(window.location.search);
+                                        if (sp.has('fiche') || sp.has('q')) {
+                                            sessionStorage.setItem(KEY, 'true');
+                                        } else if (!sessionStorage.getItem(KEY)) {
+                                            document.documentElement.classList.add('is-splashing');
+                                            /* Filet : si le splash ne se montait pas (code non
+                                               chargé, erreur), le contenu resterait caché. Le
+                                               splash annule ce minuteur dès qu'il s'affiche. */
+                                            window.__splashGuard = setTimeout(function () {
+                                                document.documentElement.classList.remove('is-splashing');
+                                            }, 5000);
+                                        }
+                                    }
                                 } catch (e) { window.__isMobile = false; }
                             })();
                         `,

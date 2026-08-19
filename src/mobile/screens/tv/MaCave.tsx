@@ -317,26 +317,24 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                         return <span className={`${styles.apogee} ${cls}`}>{w.label}</span>;
                     })()}
                 </div>
-                {shelf === 'cave' ? (
-                    <div className={styles.stockRow}>
+                {/* Une seule ligne d'actions, en texte : le stock à gauche (ou le
+                    retour en cave), l'accord à droite. Un filet les sépare du
+                    reste — plus de pile de dalles sous chaque bouteille. */}
+                <div className={styles.stockRow}>
+                    {shelf === 'cave' ? (
                         <div className={styles.stepper}>
                             <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) - 1); }} aria-label="Moins">−</button>
                             <span>{wine.qty ?? 1}</span>
                             <button onClick={(e) => { e.stopPropagation(); setQty(wine.id, (wine.qty ?? 1) + 1); }} aria-label="Plus">+</button>
                         </div>
-                    </div>
-                ) : (
-                    /* Plus de stock à compter ici : le seul geste utile est d'en
-                       racheter une, ce qui la remet en cave. */
-                    <div className={styles.stockRow}>
-                        <span className={styles.tastedTag}>Goûté &amp; approuvé</span>
-                        <button className={styles.openBtn} onClick={(e) => { e.stopPropagation(); moveToCave(wine.id); }}>Ajouter à la cave</button>
-                    </div>
-                )}
-                <button className={styles.pairBtn} onClick={onPair}>
-                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16M7 4v6a5 5 0 0 0 10 0V4M12 15v5M9 20h6" /></svg>
-                    Quelle recette ?
-                </button>
+                    ) : (
+                        <button className={styles.openBtn} onClick={(e) => { e.stopPropagation(); moveToCave(wine.id); }}>+ Ma cave</button>
+                    )}
+                    <button className={styles.pairBtn} onClick={onPair}>
+                        Quelle recette
+                        <svg viewBox="0 0 8 14" width="9" height="9" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 1l6 6-6 6" /></svg>
+                    </button>
+                </div>
             </div>
         </div>
     );

@@ -15,7 +15,7 @@ export const TASTE_KEY = 'taste-liked-v1';
 export const TASTE_DONE_KEY = 'taste-onboarded';
 
 /** Durée du verdict (doit coller à l'animation CSS `.verdict`). */
-const VERDICT_MS = 420;
+const VERDICT_MS = 950;
 
 /**
  * `embedded` : rendu DANS le shell desktop TV+ (panneau, menu à gauche) plutôt

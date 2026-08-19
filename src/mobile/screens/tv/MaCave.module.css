@@ -62,8 +62,17 @@
 .wName { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 14.5px; line-height: 1.15; }
 .wYear { color: rgba(235,220,200,.6); font-weight: 700; }
 .wMeta { font-size: 11.5px; color: rgba(235,235,245,.5); margin-top: 3px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.pairBtn { margin-top: 9px; width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 36px; border: none; border-radius: 11px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; }
-.pairBtn:active { transform: scale(.97); }
+/* Le lien garde ses mots entiers : sur une carte étroite il passe sous le
+   compteur au lieu de se briser au milieu. */
+.pairBtn {
+    margin: 0; padding: 0; border: none; background: none; cursor: pointer; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
+    color: rgba(235, 235, 245, .85);
+    transition: color .18s ease;
+}
+.pairBtn:hover { color: #fff; }
+.pairBtn svg { opacity: .75; }
 
 /* ── Vide ── */
 .empty { text-align: center; padding: 60px 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
@@ -122,19 +131,51 @@
 .rating { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; font-size: 11.5px; font-weight: 800; color: #ffc24b; }
 .rating small { color: rgba(235,235,245,.45); font-weight: 600; }
 
-.apogee { display: inline-block; margin-top: 7px; font-size: 11px; font-weight: 800; letter-spacing: .02em; padding: 3px 8px; border-radius: 999px; }
-.apoNow { background: rgba(48,209,88,.16); color: #6be48c; }
-.apoWait { background: rgba(255,255,255,.08); color: rgba(235,235,245,.6); }
-.apoLate { background: rgba(255,159,10,.16); color: #ffc24b; }
+.apogee {
+    display: inline-flex; align-items: center; gap: 7px;
+    margin-top: 7px; padding: 0;
+    font-size: 12px; font-weight: 600; letter-spacing: .01em;
+    color: rgba(235, 235, 245, .62);
+}
+/* Un point de couleur porte l'information ; le texte reste gris. Une gélule
+   verte par carte, sur une grille de bouteilles, faisait sapin de Noël. */
+.apogee::before {
+    content: ''; width: 6px; height: 6px; border-radius: 999px; flex: 0 0 auto;
+    background: currentColor;
+}
+.apoNow::before { background: #4cd964; }
+.apoWait::before { background: rgba(235, 235, 245, .45); }
+.apoLate::before { background: #ffb02e; }
 
 /* Stock + ouvrir */
-.stockRow { display: flex; align-items: center; gap: 8px; margin-top: 9px; }
-.stepper { display: inline-flex; align-items: center; height: 34px; border-radius: 11px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); }
-.stepper button { width: 30px; height: 34px; border: none; background: none; color: #fff; font-size: 18px; cursor: pointer; }
-.stepper span { min-width: 42px; text-align: center; font-size: 13px; font-weight: 700; }
+/* Sous la bouteille, plus aucun pavé : un filet, puis une ligne d'actions en
+   texte. C'est la règle d'Apple TV+ — l'image porte le regard, le texte se tient
+   en retrait et ne se signale qu'au survol. */
+.stockRow {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; row-gap: 9px; flex-wrap: wrap;
+    margin-top: 10px; padding-top: 10px;
+    border-top: 0.5px solid rgba(255, 255, 255, .1);
+}
+.stepper { display: inline-flex; align-items: center; gap: 2px; }
+.stepper button {
+    width: 26px; height: 26px; border: none; border-radius: 999px;
+    background: rgba(255, 255, 255, .08); color: #fff;
+    font-size: 15px; line-height: 1; cursor: pointer;
+    transition: background .18s ease;
+}
+.stepper button:hover { background: rgba(255, 255, 255, .16); }
+.stepper span { min-width: 30px; text-align: center; font-size: 13px; font-weight: 700; }
 .stepper small { color: rgba(235,235,245,.45); font-weight: 600; }
-.openBtn { flex: 1; height: 34px; border: none; border-radius: 11px; background: #fff; color: #111; font-size: 13px; font-weight: 800; cursor: pointer; }
-.openBtn:disabled { opacity: .4; cursor: default; background: rgba(255,255,255,.06); }
+/* « Ajouter à la cave » : un lien, pas une dalle blanche. */
+.openBtn {
+    padding: 0; border: none; background: none; cursor: pointer; white-space: nowrap;
+    font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
+    color: rgba(235, 235, 245, .85);
+    transition: color .18s ease;
+}
+.openBtn:hover { color: #fff; }
+.openBtn:disabled { opacity: .4; cursor: default; }
 
 /* Bouton loupe sur la carte + zoom plein écran */
 .zoomBtn { position: absolute; bottom: 10px; right: 10px; z-index: 3; width: 30px; height: 30px; border: none; border-radius: 999px; background: rgba(10,10,14,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.2); }
@@ -280,19 +321,7 @@
 
 /* Une bouteille bue se distingue d'un coup d'œil, sans changer de mise en page. */
 .cardTasted .scene { filter: saturate(.88); }
-/* Sur une carte étroite, la pastille et le bouton ne tiennent pas côte à côte :
-   ils passent l'un sous l'autre plutôt que de se tronquer. */
-.cardTasted .stockRow { flex-wrap: wrap; gap: 8px; }
-.cardTasted .stockRow .openBtn { flex: 1 1 100%; }
-.tastedTag {
-    flex: 1 1 100%; justify-content: center;
-    display: inline-flex; align-items: center;
-    height: 30px; padding: 0 12px; border-radius: 999px;
-    background: rgba(255, 255, 255, .08);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16);
-    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700; color: rgba(235, 235, 245, .85);
-    white-space: nowrap;
-}
+
 
 /* Destination, dans le formulaire d'ajout. */
 .destRow { display: flex; gap: 10px; margin-bottom: 14px; }
@@ -310,8 +339,3 @@
 .destLbl { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: #fff; }
 .destSub { font-size: 11.5px; color: rgba(235, 235, 245, .55); }
 
-@media (min-width: 760px) {
-    /* Écran large : la pastille et le bouton retrouvent leur ligne commune. */
-    .cardTasted .stockRow .openBtn { flex: 0 0 auto; }
-    .tastedTag { flex: 0 0 auto; }
-}

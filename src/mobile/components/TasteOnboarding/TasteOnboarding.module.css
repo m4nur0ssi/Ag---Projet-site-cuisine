@@ -42,7 +42,7 @@
     position: absolute; inset: 0; z-index: 6;
     display: flex; align-items: center; justify-content: center;
     border-radius: 24px; pointer-events: none;
-    animation: verdictWash 420ms cubic-bezier(.32,.72,0,1) forwards;
+    animation: verdictWash 950ms cubic-bezier(.32,.72,0,1) forwards;
 }
 .verdictLike {
     background: radial-gradient(58% 58% at 50% 50%, rgba(255,46,99,.55), rgba(255,46,99,0) 72%);
@@ -52,20 +52,25 @@
     background: radial-gradient(58% 58% at 50% 50%, rgba(152,152,162,.42), rgba(152,152,162,0) 72%);
     color: rgba(235,235,245,.92);
 }
+/* Le signe occupe plus de la moitié de la carte : à 108 px il se perdait sur la
+   photo. Il s'installe vite, TIENT une demi-seconde de plus, puis s'efface. */
 .verdictMark {
-    width: 108px; height: 108px;
-    filter: drop-shadow(0 12px 34px rgba(0,0,0,.55));
-    animation: verdictMark 420ms cubic-bezier(.32,.72,0,1) forwards;
+    width: min(62%, 260px); height: auto; aspect-ratio: 1;
+    filter: drop-shadow(0 16px 44px rgba(0,0,0,.6));
+    animation: verdictMark 950ms cubic-bezier(.32,.72,0,1) forwards;
 }
 @keyframes verdictWash {
     0% { opacity: 0; }
-    24% { opacity: 1; }
+    12% { opacity: 1; }
+    68% { opacity: 1; }
     100% { opacity: 0; }
 }
 @keyframes verdictMark {
-    0% { transform: scale(.62); opacity: 0; }
-    30% { transform: scale(1.04); opacity: 1; }
-    100% { transform: scale(1.18); opacity: 0; }
+    0% { transform: scale(.55); opacity: 0; }
+    16% { transform: scale(1.06); opacity: 1; }
+    26% { transform: scale(1); opacity: 1; }
+    68% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.14); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
     .verdict, .verdictMark { animation-duration: 1ms; }

@@ -7,7 +7,12 @@ export const dynamic = 'force-dynamic';
 const GROQ_KEY = process.env.GROQ_API_KEY;
 const GEMINI_KEY = process.env.GEMINI_API_KEY;
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
-const GROQ_MODEL = process.env.WINE_GROQ_MODEL || 'llama-3.3-70b-versatile';
+// Groq RETIRE ses modèles sans préavis : `llama-3.3-70b-versatile` a disparu
+// du catalogue et l'API répondait 404 « model_not_found » — la recherche en
+// langage naturel, le menu et l'accord des vins tombaient tous les trois.
+// Modèle vérifié auprès de l'API le 2026-08-19, et surchargeable par variable
+// d'environnement le jour où celui-ci disparaîtra à son tour.
+const GROQ_MODEL = process.env.WINE_GROQ_MODEL || 'openai/gpt-oss-20b';
 const GEMINI_MODEL = process.env.WINE_GEMINI_MODEL || 'gemini-2.5-flash';
 const ANTHROPIC_MODEL = process.env.WINE_MODEL || 'claude-3-5-haiku-latest';
 

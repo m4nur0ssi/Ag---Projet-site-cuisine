@@ -8,8 +8,22 @@ import { useAuth } from '@/mobile/hooks/useAuth';
 
 export default function SplashScreen() {
     const { user, signInWithGoogle } = useAuth();
-    const [isVisible, setIsVisible] = useState(false);
-    const [shouldRender, setShouldRender] = useState(false);
+    /**
+     * Décision SYNCHRONE, dès le premier rendu : le script de `layout.tsx` a
+     * déjà masqué le contenu et posé `is-splashing`. Passer par un effet ferait
+     * rendre l'accueil une fois avant de le recouvrir — le clignotement qu'on
+     * cherche justement à supprimer.
+     */
+    const wanted = () => {
+        if (typeof window === 'undefined') return false;
+        try {
+            const sp = new URLSearchParams(window.location.search);
+            if (sp.has('fiche') || sp.has('q')) return false;
+            return !sessionStorage.getItem('hasSeenMagicSplash-v8');
+        } catch { return false; }
+    };
+    const [isVisible, setIsVisible] = useState(wanted);
+    const [shouldRender, setShouldRender] = useState(wanted);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
     
     // Pour ne pas re-afficher le splash pendant la session (bump la version pour forcer sa réapparition)
@@ -30,8 +44,9 @@ export default function SplashScreen() {
         const hasSeenSplash = sessionStorage.getItem(SESSION_KEY);
 
         if (!hasSeenSplash) {
-            setShouldRender(true);
-            setIsVisible(true);
+            // Le splash est là : on désamorce le filet de sécurité posé dans le
+            // <head>, sinon il découvrirait l'accueil au bout de 5 secondes.
+            try { clearTimeout((window as any).__splashGuard); } catch { /* noop */ }
             document.documentElement.classList.add('is-splashing');
         } else {
             // Safety: if the class is somehow there, remove it

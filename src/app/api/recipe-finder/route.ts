@@ -10,7 +10,12 @@ import { NextResponse } from 'next/server';
  * recherche texte locale.
  */
 const GROQ_KEY = process.env.GROQ_API_KEY;
-const GROQ_MODEL = process.env.MENU_GROQ_MODEL || 'llama-3.3-70b-versatile';
+// Groq RETIRE ses modèles sans préavis : `llama-3.3-70b-versatile` a disparu
+// du catalogue et l'API répondait 404 « model_not_found » — la recherche en
+// langage naturel, le menu et l'accord des vins tombaient tous les trois.
+// Modèle vérifié auprès de l'API le 2026-08-19, et surchargeable par variable
+// d'environnement le jour où celui-ci disparaîtra à son tour.
+const GROQ_MODEL = process.env.MENU_GROQ_MODEL || 'openai/gpt-oss-20b';
 
 interface CompactRecipe { id: string; t: string; cat?: string; tags?: string[]; ing?: string[] }
 
