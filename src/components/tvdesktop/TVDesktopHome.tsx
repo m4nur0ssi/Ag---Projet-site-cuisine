@@ -368,13 +368,20 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
         return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [playing, videoOn]);
 
+    // La bande d'affiches est répétée trois fois et c'est la copie du MILIEU qui
+    // est active : il y a donc toujours des voisines à gauche comme à droite,
+    // et la bande court d'un bord du héros à l'autre, même sur la première ou la
+    // dernière recette.
+    const loop = useMemo(() => [...recipes, ...recipes, ...recipes], [recipes]);
+    const activeSlot = recipes.length + index;
+
     // La piste se recentre sur l'affiche active : c'est elle qui reste au milieu
     // du cadre, les voisines débordent de part et d'autre.
     const trackRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        const el = trackRef.current?.children[index] as HTMLElement | undefined;
+        const el = trackRef.current?.children[activeSlot] as HTMLElement | undefined;
         el?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
-    }, [index]);
+    }, [activeSlot]);
 
     if (!current) return null;
     const go = (d: number) => setIndex((i) => (i + d + recipes.length) % recipes.length);
@@ -423,15 +430,18 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                 </button>
 
                 <div className={styles.heroTrack} ref={trackRef}>
-                    {recipes.map((r, i) => {
-                        const on = i === index;
+                    {loop.map((r, i) => {
+                        const real = i % recipes.length;
+                        const on = i === activeSlot;
                         return (
                             <button
-                                key={r.id}
+                                key={`${r.id}-${i}`}
                                 className={`${styles.heroPoster} ${on ? styles.heroPosterOn : ''}`}
-                                onClick={() => (on ? openRecipe(r) : setIndex(i))}
+                                onClick={() => (on ? openRecipe(r) : setIndex(real))}
                                 aria-label={on ? `Voir ${label(r)}` : label(r)}
                                 aria-current={on || undefined}
+                                aria-hidden={i < recipes.length || i >= recipes.length * 2 ? true : undefined}
+                                tabIndex={i < recipes.length || i >= recipes.length * 2 ? -1 : 0}
                             >
                                 <img className={styles.heroPosterImg} src={r.image} alt="" loading="lazy" decoding="async" draggable={false} />
                                 {on && playing && currentVid && (
@@ -451,6 +461,11 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                 <button className={styles.heroNav} onClick={() => go(1)} aria-label="Suivant">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
+
+                {/* Les deux bouts de la bande se fondent dans le décor : elle
+                    continue hors champ au lieu de s'arrêter net. */}
+                <div className={`${styles.heroGalleryFade} ${styles.heroGalleryFadeL}`} aria-hidden />
+                <div className={`${styles.heroGalleryFade} ${styles.heroGalleryFadeR}`} aria-hidden />
             </div>
 
             {/* Le texte, sous la galerie : il désigne l'affiche active. */}
