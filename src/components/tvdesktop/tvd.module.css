@@ -250,21 +250,20 @@
 
 /* ── HÉROS ─────────────────────────────────────────────────────────────── */
 
-/* Composition : le texte tient toute la gauche, en grand ; le visuel occupe la
-   droite et DÉBORDE du bord de la fenêtre, comme une affiche Apple TV+. Plus de
-   gouttière à droite, donc plus de pavé noir — c'est l'image qui va au bout. */
+/* Composition : une galerie d'affiches au centre, le texte dessous. L'affiche
+   active est plus grande et nette, les voisines restent en retrait — on voit
+   d'un coup d'œil ce qui vient avant et après. */
 .hero {
     position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: clamp(24px, 3.5vw, 64px);
+    justify-content: center;
+    gap: clamp(18px, 2.6vh, 34px);
     /* Le héros occupe le premier écran : seule la rangée Top 10 dépasse en bas. */
     height: 88vh;
-    min-height: 620px;
-    /* Marge haute : le visuel descend sous la signature, un vrai espace sépare
-       le titre « Magiques » du bord haut de l'image. */
-    padding: 104px 0 0 clamp(40px, 4.6vw, 76px);
+    min-height: 640px;
+    padding: 100px 0 24px;
     overflow: hidden;
 }
 
@@ -275,32 +274,120 @@
     position: absolute; inset: -8%;
     width: 116%; height: 116%;
     object-fit: cover; object-position: 50% 42%;
-    filter: blur(52px) saturate(165%) brightness(0.82);
+    filter: blur(52px) saturate(165%) brightness(0.8);
     transform: scale(1.1);
 }
-/* Voile DIRECTIONNEL : sombre à gauche pour que le titre porte, presque
-   transparent à droite pour laisser vivre l'image, et fondu vers le fond de
-   page en bas pour que la première rangée s'enchaîne sans couture. */
+/* Voile : sombre sur les bords et en bas pour que le texte porte, plus clair au
+   centre où vit la galerie, fondu vers le fond de page pour que la première
+   rangée s'enchaîne sans couture. */
 .heroBackdropVeil {
     position: absolute; inset: 0;
     background:
-        linear-gradient(90deg, rgba(6,6,9,0.94) 0%, rgba(6,6,9,0.86) 30%, rgba(6,6,9,0.5) 62%, rgba(6,6,9,0.18) 100%),
-        radial-gradient(140% 110% at 12% 34%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 68%, rgba(0,0,0,0.7) 100%),
-        linear-gradient(0deg, var(--bg) 0%, rgba(6,6,9,0.5) 16%, rgba(0,0,0,0) 46%);
+        radial-gradient(120% 95% at 50% 34%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.42) 62%, rgba(0,0,0,0.8) 100%),
+        linear-gradient(0deg, var(--bg) 0%, rgba(6,6,9,0.72) 18%, rgba(0,0,0,0) 52%);
 }
 
-/* Halo : la photo à nouveau, énorme et noyée de flou, calée derrière le visuel.
-   Elle teinte toute la moitié droite du cadre — c'est ce qui remplace le noir. */
+/* Halo : la photo à nouveau, énorme et noyée de flou, derrière la galerie —
+   c'est elle qui donne sa couleur au cadre. */
 .heroHalo {
     position: absolute; z-index: 0;
-    right: -8%; top: 50%;
-    width: 66%; height: 96%;
-    transform: translateY(-50%);
+    left: 50%; top: 42%;
+    width: 62%; height: 76%;
+    transform: translate(-50%, -50%);
     object-fit: cover;
     border-radius: 50%;
-    filter: blur(110px) saturate(210%) brightness(0.95);
-    opacity: 0.55;
+    filter: blur(120px) saturate(220%) brightness(1);
+    opacity: 0.5;
     pointer-events: none;
+}
+
+/* ── Galerie d'affiches ─────────────────────────────────────────────────── */
+
+.heroGallery {
+    position: relative; z-index: 2;
+    width: 100%;
+    display: flex; align-items: center;
+    min-height: 0;
+}
+
+/* Piste : les affiches défilent, celle qui est active se recentre toute seule.
+   Le rembourrage de 50 % permet à la première et à la dernière d'atteindre le
+   milieu du cadre. */
+.heroTrack {
+    flex: 1 1 auto;
+    display: flex; align-items: center;
+    gap: 20px;
+    padding: 30px calc(50% - 180px);
+    overflow-x: auto; overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+.heroTrack::-webkit-scrollbar { display: none; }
+
+/* Affiche au repos : petite, en retrait, un peu désaturée. */
+.heroPoster {
+    position: relative;
+    flex: 0 0 auto;
+    width: 200px;
+    aspect-ratio: 9 / 13;
+    padding: 0; border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #141416;
+    cursor: pointer;
+    scroll-snap-align: center;
+    opacity: 0.5;
+    filter: saturate(0.75);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.5), inset 0 0 0 0.5px rgba(255,255,255,0.1);
+    transition:
+        width 0.55s var(--ease), opacity 0.55s var(--ease),
+        filter 0.55s var(--ease), box-shadow 0.55s var(--ease);
+}
+.heroPoster:hover { opacity: 0.8; }
+
+/* Affiche active : deux fois plus large, nette, éclairée. */
+.heroPosterOn {
+    width: 360px;
+    opacity: 1;
+    filter: none;
+    box-shadow: 0 40px 110px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.2);
+}
+.heroPosterOn:hover { opacity: 1; }
+
+.heroPosterImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Un voile léger éteint les affiches au repos ; il disparaît sur l'active. */
+.heroPosterVeil {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(0deg, rgba(6,6,9,0.55), rgba(6,6,9,0.1));
+    transition: opacity 0.55s var(--ease);
+}
+.heroPosterOn .heroPosterVeil { opacity: 0; }
+
+/* Flèches : posées sur les bords du cadre, révélées au survol du héros. */
+.heroNav {
+    position: relative; z-index: 3;
+    flex: 0 0 auto;
+    margin: 0 18px;
+    width: 46px; height: 46px;
+    display: flex; align-items: center; justify-content: center;
+    border: none; border-radius: 999px;
+    background: rgba(0,0,0,0.35);
+    -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+    box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.18);
+    color: #fff; cursor: pointer; opacity: 0;
+    transition: opacity 0.25s ease, transform 0.2s var(--ease);
+}
+.hero:hover .heroNav { opacity: 1; }
+.heroNav:active { transform: scale(0.9); }
+
+/* ── Texte, sous la galerie ─────────────────────────────────────────────── */
+
+.heroBody {
+    position: relative; z-index: 2;
+    max-width: min(70vw, 900px);
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
 }
 
 /* Bandeau haut : signature + compteur de recettes. */
@@ -322,50 +409,6 @@
     color: rgba(255,255,255,0.7);
 }
 
-/* Carte verticale : la photo, puis la vidéo au bout de 2 s. Format plus haut
-   que large (9/13) pour épouser les vidéos TikTok qui viennent s'y loger. */
-/* Le visuel : calé à droite, il touche le bord de la fenêtre et n'a plus d'angle
-   de ce côté — l'affiche continue hors champ. Sa hauteur mène la danse, la
-   largeur suit le format. */
-.heroArt {
-    position: relative; z-index: 1;
-    justify-self: end; align-self: center;
-    height: min(76vh, 780px);
-    aspect-ratio: 9 / 13;
-    border-radius: 30px 0 0 30px;
-    overflow: hidden;
-    background: #141416;
-    box-shadow:
-        -60px 0 140px rgba(0, 0, 0, 0.6),
-        0 30px 90px rgba(0, 0, 0, 0.55),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.14);
-    cursor: pointer;
-}
-
-/* Le bord gauche de l'affiche se fond dans le décor : sans ce dégradé, une arête
-   verticale nette coupait le héros en deux. Un calque plutôt qu'un `mask` :
-   Safari ne masque pas les iframes de façon fiable. */
-.heroArtFade {
-    position: absolute; inset: 0 auto 0 0; z-index: 3;
-    width: 26%;
-    pointer-events: none;
-    background: linear-gradient(90deg, var(--bg) 0%, rgba(6, 6, 9, 0.55) 45%, rgba(6, 6, 9, 0) 100%);
-}
-
-/* Colonne de gauche : le texte, centré verticalement, tout l'espace pour lui. */
-.heroPane {
-    position: relative; z-index: 2;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-}
-
-.heroImg {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover; object-position: 50% 45%;
-}
-
 /* La vidéo occupe EXACTEMENT le cadre de la carte, invisible tant qu'elle n'a
    pas prouvé qu'elle joue (sinon on afficherait le bandeau cookies de TikTok). */
 /* Même règle que les cartes à titre incrusté : l'habillage social de TikTok est
@@ -385,30 +428,8 @@
 }
 .heroShotVideoOn { opacity: 1; }
 
-.heroNav {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    z-index: 3;
-    width: 46px; height: 46px;
-    display: flex; align-items: center; justify-content: center;
-    border: none; border-radius: 999px;
-    background: rgba(0,0,0,0.35);
-    -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
-    box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.18);
-    color: #fff; cursor: pointer; opacity: 0;
-    transition: opacity 0.25s ease, transform 0.2s var(--ease);
-}
-.hero:hover .heroNav { opacity: 1; }
-.heroNav:active { transform: translateY(-50%) scale(0.9); }
-.heroNavL { left: 18px; }
-.heroNavR { right: 18px; }
-
-.heroBody {
-    position: relative; z-index: 2;
-    max-width: min(46vw, 720px);
-}
-
 .heroKicker {
-    display: inline-block; margin-bottom: 20px;
+    display: inline-block; margin-bottom: 16px;
     padding: 8px 16px; border-radius: 999px;
     background: rgba(28,28,30,0.55);
     -webkit-backdrop-filter: blur(18px) saturate(180%); backdrop-filter: blur(18px) saturate(180%);
@@ -419,8 +440,8 @@
 .heroTitle {
     margin: 0;
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(46px, 5.6vw, 96px);
-    font-weight: 900; line-height: 0.9; letter-spacing: -0.038em;
+    font-size: clamp(34px, 3.6vw, 60px);
+    font-weight: 900; line-height: 0.94; letter-spacing: -0.035em;
     text-transform: uppercase;
     color: #fff; text-shadow: 0 2px 22px rgba(0,0,0,0.6);
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
@@ -437,8 +458,8 @@
 }
 
 .heroMeta {
-    display: flex; align-items: center; flex-wrap: wrap; gap: 11px;
-    margin-top: 24px;
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 11px;
+    margin-top: 18px;
     font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 600;
     color: rgba(255,255,255,0.92); text-shadow: 0 1px 10px rgba(0,0,0,0.6);
 }
@@ -448,7 +469,7 @@
     box-shadow: inset 0 0 0 1.2px rgba(255,255,255,0.45); color: rgba(255,255,255,0.9);
 }
 
-.heroActions { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+.heroActions { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 26px; }
 
 .heroPlay {
     display: inline-flex; align-items: center; gap: 9px;
@@ -477,7 +498,7 @@
    mi-hauteur à droite du titre, sans rapport avec la composition. */
 .heroDots {
     display: flex; align-items: center; justify-content: center; gap: 7px;
-    margin-top: 30px;
+    margin-top: 24px;
 }
 .heroDot {
     width: 7px; height: 7px; padding: 0; border: none; border-radius: 999px;
@@ -792,7 +813,6 @@
 
 @media (max-width: 1000px) {
     .sidebar { flex-basis: 220px; }
-    .heroBody { left: 34px; bottom: 48px; }
     .rowHead, .rowScroll { padding-left: 34px; padding-right: 34px; }
     .collection { padding-left: 34px; padding-right: 34px; }
 }

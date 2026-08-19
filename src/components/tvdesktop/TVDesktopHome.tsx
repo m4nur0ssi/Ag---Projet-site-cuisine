@@ -368,6 +368,14 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
         return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [playing, videoOn]);
 
+    // La piste se recentre sur l'affiche active : c'est elle qui reste au milieu
+    // du cadre, les voisines débordent de part et d'autre.
+    const trackRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const el = trackRef.current?.children[index] as HTMLElement | undefined;
+        el?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+    }, [index]);
+
     if (!current) return null;
     const go = (d: number) => setIndex((i) => (i + d + recipes.length) % recipes.length);
 
@@ -405,81 +413,82 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                 </div>
             </div>
 
-            {/* Le texte occupe la gauche, en grand : kicker, titre, méta, actions. */}
-            <div className={styles.heroPane}>
-                <motion.div
-                    key={current.id}
-                    className={styles.heroBody}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-                >
-                    <div className={styles.heroKicker}>Nº {index + 1} des dernières recettes</div>
-                    {/* Mot par mot : l'inclinaison porte sur chaque mot, sinon le
-                        skew du bloc décale chaque ligne et les premières lettres
-                        ne s'alignent plus. */}
-                    <h1 className={styles.heroTitle}>
-                        {label(current).split(/\s+/).filter(Boolean).map((w, n, all) => (
-                            <Fragment key={`${w}-${n}`}>
-                                <span className={styles.heroTitleWord}>{w}</span>
-                                {n < all.length - 1 ? ' ' : ''}
-                            </Fragment>
-                        ))}
-                    </h1>
-                    <div className={styles.heroMeta}>
-                        <span>{catLabel(current)}</span>
-                        {timeLabel(current) && (<><i className={styles.dot} />{timeLabel(current)}</>)}
-                        <i className={styles.dot} />{diffLabel(current)}
-                        <span className={styles.heroBadge}>{current.servings || 4} pers.</span>
-                    </div>
-                    <div className={styles.heroActions}>
-                        <button className={styles.heroPlay} onClick={() => openRecipe(current)}>
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                            Voir la recette
-                        </button>
-                        <button className={styles.heroPlus} onClick={(e) => onMenu(current, e.clientX, e.clientY)} aria-label="Plus">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
-                        </button>
-                    </div>
-                    <div className={styles.heroDots}>
-                        {recipes.map((_, i) => (
-                            <button key={i} className={`${styles.heroDot} ${i === index ? styles.heroDotOn : ''}`} onClick={() => setIndex(i)} aria-label={`Recette ${i + 1}`} />
-                        ))}
-                    </div>
-                </motion.div>
-            </div>
-            {/* Le visuel : la photo, puis la vidéo au bout de 2 s. Il déborde
-                du bord droit de la fenêtre, comme une affiche Apple TV+. */}
-            <div className={styles.heroArt} onClick={() => openRecipe(current)}>
-                <AnimatePresence>
-                    <motion.img
-                        key={current.id}
-                        className={styles.heroImg}
-                        src={current.image}
-                        alt=""
-                        initial={{ opacity: 0, scale: 1.05 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.9, ease: [0.32, 0.72, 0, 1] }}
-                        draggable={false}
-                    />
-                </AnimatePresence>
-                {playing && currentVid && (
-                    <iframe
-                        className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
-                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
-                        allow="autoplay; encrypted-media"
-                        title={label(current)}
-                    />
-                )}
-                <div className={styles.heroArtFade} aria-hidden />
-                <button className={`${styles.heroNav} ${styles.heroNavL}`} onClick={(e) => { e.stopPropagation(); go(-1); }} aria-label="Précédent">
+            {/* Galerie d'affiches : toutes les recettes du héros sont là, côte à
+                côte. Celle du milieu est l'affiche active — plus grande, nette,
+                et c'est elle qui prend la vidéo au bout de 2 s. Les voisines
+                restent en retrait ; un clic les ramène au centre. */}
+            <div className={styles.heroGallery}>
+                <button className={styles.heroNav} onClick={() => go(-1)} aria-label="Précédent">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
-                <button className={`${styles.heroNav} ${styles.heroNavR}`} onClick={(e) => { e.stopPropagation(); go(1); }} aria-label="Suivant">
+
+                <div className={styles.heroTrack} ref={trackRef}>
+                    {recipes.map((r, i) => {
+                        const on = i === index;
+                        return (
+                            <button
+                                key={r.id}
+                                className={`${styles.heroPoster} ${on ? styles.heroPosterOn : ''}`}
+                                onClick={() => (on ? openRecipe(r) : setIndex(i))}
+                                aria-label={on ? `Voir ${label(r)}` : label(r)}
+                                aria-current={on || undefined}
+                            >
+                                <img className={styles.heroPosterImg} src={r.image} alt="" loading="lazy" decoding="async" draggable={false} />
+                                {on && playing && currentVid && (
+                                    <iframe
+                                        className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
+                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                                        allow="autoplay; encrypted-media"
+                                        title={label(r)}
+                                    />
+                                )}
+                                <div className={styles.heroPosterVeil} aria-hidden />
+                            </button>
+                        );
+                    })}
+                </div>
+
+                <button className={styles.heroNav} onClick={() => go(1)} aria-label="Suivant">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </button>
             </div>
+
+            {/* Le texte, sous la galerie : il désigne l'affiche active. */}
+            <motion.div
+                key={current.id}
+                className={styles.heroBody}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
+            >
+                <div className={styles.heroKicker}>Nº {index + 1} des dernières recettes</div>
+                {/* Mot par mot : l'inclinaison porte sur chaque mot, sinon le
+                    skew du bloc décale chaque ligne et les premières lettres
+                    ne s'alignent plus. */}
+                <h1 className={styles.heroTitle}>
+                    {label(current).split(/\s+/).filter(Boolean).map((w, n, all) => (
+                        <Fragment key={`${w}-${n}`}>
+                            <span className={styles.heroTitleWord}>{w}</span>
+                            {n < all.length - 1 ? ' ' : ''}
+                        </Fragment>
+                    ))}
+                </h1>
+                <div className={styles.heroMeta}>
+                    <span>{catLabel(current)}</span>
+                    {timeLabel(current) && (<><i className={styles.dot} />{timeLabel(current)}</>)}
+                    <i className={styles.dot} />{diffLabel(current)}
+                    <span className={styles.heroBadge}>{current.servings || 4} pers.</span>
+                </div>
+                <div className={styles.heroActions}>
+                    <button className={styles.heroPlay} onClick={() => openRecipe(current)}>
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                        Voir la recette
+                    </button>
+                    <button className={styles.heroPlus} onClick={(e) => onMenu(current, e.clientX, e.clientY)} aria-label="Plus">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+                    </button>
+                </div>
+            </motion.div>
 
         </div>
     );
