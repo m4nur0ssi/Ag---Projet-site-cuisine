@@ -111,6 +111,11 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     const watchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const gotResultRef = useRef(false);
 
+    // Référence toujours à jour vers la dernière version de `toggleVoice` :
+    // l'effet d'ouverture peut l'appeler sans avoir à la lister en dépendance,
+    // et sans risquer d'appeler la version figée au premier rendu.
+    const toggleVoiceRef = useRef<() => void>(() => {});
+
     const toggleVoice = () => {
         if (typeof window === 'undefined') return;
         const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
@@ -174,6 +179,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         recognitionRef.current = rec;
         try { rec.start(); } catch { setIsListening(false); recognitionRef.current = null; }
     };
+    toggleVoiceRef.current = toggleVoice;
 
     // Lancement auto : 0,7 s d'inactivité après frappe OU dictée → recherche IA,
     // sans jamais toucher « Entrée ».
@@ -254,7 +260,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             if (initialMode) setMode(initialMode);
             const t = setTimeout(() => inputRef.current?.focus(), 320);
             let tv: ReturnType<typeof setTimeout> | undefined;
-            if (autoVoice) tv = setTimeout(() => toggleVoice(), 420);
+            if (autoVoice) tv = setTimeout(() => toggleVoiceRef.current(), 420);
             const prev = document.body.style.overflow;
             document.body.style.overflow = 'hidden';
             return () => { document.body.style.overflow = prev; clearTimeout(t); if (tv) clearTimeout(tv); };
@@ -264,7 +270,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         setAiQuery(''); setAiResults([]); setAiMessage(''); setAiError('');
         try { recognitionRef.current?.stop(); } catch {}
         setIsListening(false);
-    }, [open, embedded]);
+    }, [open, embedded, initialMode, autoVoice]);
 
     // Une ligne de résultat (image + drapeau + titre + méta).
     const ResultItem = ({ recipe, meta, note }: { recipe: Recipe; meta: string; note?: string }) => {

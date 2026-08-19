@@ -22,6 +22,7 @@ import { useRatingStats } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
 import { THEMES, matchesTag, isSavoryMiscat } from '@/mobile/screens/tv/themes';
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
+import { tiktokAllowed, tiktokPlayed, tiktokFailed } from '@/lib/tiktok-consent';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
@@ -61,6 +62,25 @@ const diffLabel = (r: Recipe) => {
     const d = timingOf(r).difficulty;
     return d === 'facile' ? 'Facile' : d === 'moyen' ? 'Moyen' : 'Difficile';
 };
+
+/* Listes de navigation de la barre latérale — constantes : hors du composant,
+   sinon elles sont recréées à chaque rendu et les dépendances du `useMemo` qui
+   les utilise deviennent mensongères. */
+const CATS: { key: string; label: string }[] = [
+    { key: 'aperitifs', label: 'Apéritifs' }, { key: 'entrees', label: 'Entrées' },
+    { key: 'plats', label: 'Plats' }, { key: 'accompagnements', label: 'Accompagnements' },
+    { key: 'desserts', label: 'Desserts' }, { key: 'patisserie', label: 'Pâtisseries' },
+    { key: 'restaurant', label: 'Comme au resto' },
+];
+
+/* Pays, en ordre alphabétique français (accents et casse ignorés). */
+const COUNTRIES: { tag: string; label: string }[] = [
+    { tag: 'afrique', label: 'Afrique' }, { tag: 'asie', label: 'Asie' },
+    { tag: 'espagne', label: 'Espagne' }, { tag: 'france', label: 'France' },
+    { tag: 'grece', label: 'Grèce' }, { tag: 'italie', label: 'Italie' },
+    { tag: 'liban', label: 'Liban' }, { tag: 'mexique', label: 'Mexique' },
+    { tag: 'orient', label: 'Orient' }, { tag: 'usa', label: 'USA' },
+];
 
 const LATER_KEY = 'tv-later-v1';
 const readIds = (key: string): string[] => { try { return JSON.parse(localStorage.getItem(key) || '[]').map(String); } catch { return []; } };
@@ -156,7 +176,9 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid }: {
     const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const enter = () => {
-        if (!vid) return;
+        // Navigateur qui n'a jamais réussi à lire : on ne tente rien, la photo
+        // vaut mieux qu'un bandeau de cookies en travers de la carte.
+        if (!vid || !tiktokAllowed()) return;
         timer.current = setTimeout(() => setPlaying(true), 1500);
     };
     const leave = () => {
@@ -172,10 +194,12 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid }: {
         if (!playing) return;
         const onMessage = (e: MessageEvent) => {
             const d = e.data;
-            if (d && typeof d === 'object' && d['x-tiktok-player']) setReady(true);
+            if (d && typeof d === 'object' && d['x-tiktok-player']) { setReady(true); tiktokPlayed(); }
         };
         window.addEventListener('message', onMessage);
-        return () => window.removeEventListener('message', onMessage);
+        // Silence au bout de 6 s = bandeau de cookies ou lecture refusée.
+        const giveUp = setTimeout(() => setReady((r) => { if (!r) tiktokFailed(); return r; }), 6000);
+        return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [playing]);
 
     return (
@@ -354,7 +378,7 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
     useEffect(() => {
         setPlaying(false);
         setVideoOn(false);
-        if (!currentVid) return;
+        if (!currentVid || !tiktokAllowed()) return;
         const t = setTimeout(() => { if (!document.hidden) setPlaying(true); }, AUTOPLAY_DELAY);
         return () => clearTimeout(t);
     }, [currentVid]);
@@ -365,10 +389,13 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
         if (!playing) return;
         const onMessage = (e: MessageEvent) => {
             const d = e.data;
-            if (d && typeof d === 'object' && d['x-tiktok-player']) setVideoOn(true);
+            if (d && typeof d === 'object' && d['x-tiktok-player']) { setVideoOn(true); tiktokPlayed(); }
         };
         window.addEventListener('message', onMessage);
-        const giveUp = setTimeout(() => setPlaying((p) => (videoOn ? p : false)), 6000);
+        const giveUp = setTimeout(() => setPlaying((p) => {
+            if (!videoOn) tiktokFailed();
+            return videoOn ? p : false;
+        }), 6000);
         return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [playing, videoOn]);
 
@@ -703,28 +730,12 @@ export default function TVDesktopHome() {
         } catch { /* noop */ }
     }, [openCollection]);
 
-    const CATS: { key: string; label: string }[] = [
-        { key: 'aperitifs', label: 'Apéritifs' }, { key: 'entrees', label: 'Entrées' },
-        { key: 'plats', label: 'Plats' }, { key: 'accompagnements', label: 'Accompagnements' },
-        { key: 'desserts', label: 'Desserts' }, { key: 'patisserie', label: 'Pâtisseries' },
-        { key: 'restaurant', label: 'Comme au resto' },
-    ];
-
     // Tendances (thèmes du feed) et Pays — mêmes listes que le volet mobile, pour
     // que la barre latérale desktop propose exactement la même navigation.
     const TRENDS = useMemo(
         () => [...THEMES].sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' })),
         []
     );
-    // Ordre alphabétique français (accents/casse ignorés), comme les catégories.
-    const COUNTRIES: { tag: string; label: string }[] = [
-        { tag: 'afrique', label: 'Afrique' }, { tag: 'asie', label: 'Asie' },
-        { tag: 'espagne', label: 'Espagne' }, { tag: 'france', label: 'France' },
-        { tag: 'grece', label: 'Grèce' }, { tag: 'italie', label: 'Italie' },
-        { tag: 'liban', label: 'Liban' }, { tag: 'mexique', label: 'Mexique' },
-        { tag: 'orient', label: 'Orient' }, { tag: 'usa', label: 'USA' },
-    ];
-
     const goCategory = (key: string, lbl: string) => {
         setNav(key);
         openCollection(lbl, byCat[key] || []);
@@ -749,7 +760,7 @@ export default function TVDesktopHome() {
             ...TRENDS.map((t) => ({ token: `t:${t.tag}`, label: t.title })),
             ...COUNTRIES.map((c) => ({ token: `p:${c.tag}`, label: c.label })),
         ],
-        [TRENDS] // CATS/COUNTRIES sont des constantes locales stables
+        [TRENDS] // CATS et COUNTRIES vivent hors du composant : stables
     );
     const labelOf = (token: string) => ALL_OPTIONS.find((o) => o.token === token)?.label || token.slice(2);
     // Recettes correspondant à TOUS les groupes cochés (ET), OU dans un groupe.

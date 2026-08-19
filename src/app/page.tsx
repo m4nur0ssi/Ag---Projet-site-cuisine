@@ -2,10 +2,11 @@
 import dynamic from 'next/dynamic';
 import { useIsMobile } from '@/components/device';
 
-// Accueil « Apple TV+ » des deux côtés. Les anciens accueils restent intacts
-// dans le dépôt (`@/mobile/screens/page` et `@/components/DesktopHome`) : pour
-// revenir en arrière, il suffit de rétablir l'import correspondant. Les routes
-// /tv et /tv-desktop servent toujours de bancs d'essai.
+// Accueil « Apple TV+ » des deux côtés. Les anciens accueils ont été supprimés
+// du dépôt (ils affichaient encore les temps WordPress, faux sur les 617
+// recettes) : pour revenir en arrière, prendre le tag `v-avant-accueil-tv`.
+// Les bancs d'essai /tv et /tv-desktop sont partis avec — l'accueil réel EST
+// désormais le banc d'essai.
 const MobileHome = dynamic(() => import('@/mobile/screens/tv/TVHome'), { ssr: false });
 const DesktopHome = dynamic(() => import('@/components/tvdesktop/TVDesktopHome'), { ssr: false });
 

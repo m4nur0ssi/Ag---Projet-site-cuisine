@@ -6,7 +6,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import styles from './BottomNav.module.css';
 import dynamic from 'next/dynamic';
-import WeekPlanner from '../WeekPlanner/WeekPlanner';
 import Portal from '../Portal';
 // Recherche « Apple TV+ » (la même que le menu), en remplacement de l'ancien
 // SpotlightSearch : la loupe de la barre du bas ouvre désormais ce panneau stylé.
@@ -60,7 +59,6 @@ const CalendarIcon = () => (
 export default function BottomNav() {
     const pathname = usePathname();
     const router = useRouter();
-    const [showPlanner, setShowPlanner] = useState(false);
     const [stats, setStats] = useState({ shopping: 0, favorites: 0 });
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [mounted, setMounted] = useState(false);
@@ -188,7 +186,6 @@ export default function BottomNav() {
     useEffect(() => {
         setIsSearchOpen(false);
         setIsTimerExpanded(false);
-        setShowPlanner(false);
 
         const wasOnRecipe = prevPathnameRef.current.startsWith('/recipe/');
         const isOnRecipe = pathname.startsWith('/recipe/');
@@ -343,10 +340,8 @@ export default function BottomNav() {
         window.dispatchEvent(new Event('magic-close-sheet'));
         setIsSheetOpen(false);
         const item = navItems[index];
-        // Le planificateur est un ÉCRAN (/tv-planner), plus un calque : on ne rouvre
-        // jamais l'ancien WeekPlanner par-dessus les nouvelles pages.
-        setShowPlanner(false);
-        // Now using union types safely or checking for path
+        // Le planificateur est un ÉCRAN (/tv-planner) : le calque WeekPlanner a
+        // été retiré de cette barre, plus rien ne pouvait l'ouvrir.
         if ('path' in item && item.path) {
             router.push(item.path);
         }
@@ -527,22 +522,6 @@ export default function BottomNav() {
                     isOpen={isSheetOpen} 
                     onClose={() => setIsSheetOpen(false)} 
                 />
-            )}
-            {showPlanner && (
-                <Portal>
-                    <div
-                        onClick={(e) => { if (e.target === e.currentTarget) setShowPlanner(false); }}
-                        style={{
-                            position: 'fixed', inset: 0, zIndex: 9000,
-                            background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)',
-                            overflowY: 'auto', WebkitOverflowScrolling: 'touch',
-                            paddingTop: 'env(safe-area-inset-top)', paddingBottom: 120,
-                            display: 'flex', flexDirection: 'column',
-                        }}
-                    >
-                        <WeekPlanner isOpen={showPlanner} onClose={() => setShowPlanner(false)} />
-                    </div>
-                </Portal>
             )}
         </>
     );

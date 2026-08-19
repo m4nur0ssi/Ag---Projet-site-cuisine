@@ -17,6 +17,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag, isSavoryMiscat } from './themes';
+import { tiktokAllowed, tiktokPlayed, tiktokFailed } from '@/lib/tiktok-consent';
 import { personalizedRecipes } from '@/lib/personalize';
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
@@ -354,10 +355,12 @@ function Card({
         if (!videoId) return;
         const onMessage = (e: MessageEvent) => {
             const d = e.data;
-            if (d && typeof d === 'object' && d['x-tiktok-player']) setVidReady(true);
+            if (d && typeof d === 'object' && d['x-tiktok-player']) { setVidReady(true); tiktokPlayed(); }
         };
         window.addEventListener('message', onMessage);
-        return () => window.removeEventListener('message', onMessage);
+        // Silence au bout de 6 s = bandeau de cookies ou lecture refusée.
+        const giveUp = setTimeout(() => setVidReady((r) => { if (!r) tiktokFailed(); return r; }), 6000);
+        return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [videoId]);
 
     return (
@@ -884,7 +887,8 @@ function Row({
         const schedule = () => {
             clearTimeout(timer);
             setPlayId(null);
-            if (!onScreen) return;
+            // Navigateur qui n'a jamais réussi à lire : on ne tente rien.
+            if (!onScreen || !tiktokAllowed()) return;
             timer = setTimeout(() => setPlayId(centred()), 1500);
         };
         const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(schedule); };
@@ -1072,7 +1076,7 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     useEffect(() => {
         setPlaying(false);
         setVideoOn(false);
-        if (!currentVid) return;
+        if (!currentVid || !tiktokAllowed()) return;
         // Héros sorti de l'écran ou onglet en arrière-plan : on ne démarre pas,
         // mais on réessaie — sinon une recette lue dans un onglet inactif ne
         // s'animerait plus jamais au retour.
@@ -1091,12 +1095,15 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         if (!playing) return;
         const onMessage = (e: MessageEvent) => {
             const d = e.data;
-            if (d && typeof d === 'object' && d['x-tiktok-player']) setVideoOn(true);
+            if (d && typeof d === 'object' && d['x-tiktok-player']) { setVideoOn(true); tiktokPlayed(); }
         };
         window.addEventListener('message', onMessage);
         // Silence au bout de 6 s = bandeau de cookies ou lecture refusée :
         // on retire le lecteur et la photo reprend la main, sans clignotement.
-        const giveUp = setTimeout(() => setPlaying((p) => (videoOn ? p : false)), 6000);
+        const giveUp = setTimeout(() => setPlaying((p) => {
+            if (!videoOn) tiktokFailed();
+            return videoOn ? p : false;
+        }), 6000);
         return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [playing, videoOn]);
 
