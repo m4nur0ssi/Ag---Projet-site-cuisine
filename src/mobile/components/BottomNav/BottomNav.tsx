@@ -391,7 +391,7 @@ export default function BottomNav() {
                                 </div>
 
                                 <div 
-                                    className={styles.miniCenter} 
+                                    className={`${styles.miniCenter} ${inCave ? styles.miniCenterAction : ''}`} 
                                     onClick={() => {
                                         if (inCave) {
                                             handleVibrate(12);
@@ -405,12 +405,7 @@ export default function BottomNav() {
                                     }}
                                 >
                                     {inCave ? (
-                                        <>
-                                            <span className={styles.miniScanIc}>
-                                                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h2M17 5h2a2 2 0 0 1 2 2v2M21 15v2a2 2 0 0 1-2 2h-2M7 19H5a2 2 0 0 1-2-2v-2M7 12h10" /></svg>
-                                            </span>
-                                            <span className={styles.miniTitle}>Ajouter un vin</span>
-                                        </>
+                                        <span className={styles.miniAction}>Ajouter un vin</span>
                                     ) : lastViewed ? (
                                         <>
                                             <img src={lastViewed.image} alt={lastViewed.title} className={styles.miniThumb} />
