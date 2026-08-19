@@ -131,10 +131,6 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                     </button>
                 )}
                 <h1 className={styles.title}>Ma cave</h1>
-                <button className={styles.addTop} onClick={() => setAdding('cave')}>
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
-                    Ajouter
-                </button>
             </header>
 
             <div className={styles.tabs}>
@@ -159,6 +155,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
 
             {/* ── Étagère 1 : ce qu'on a chez soi ── */}
             <section
+                data-shelf="cave"
                 className={`${styles.shelf} ${dropOn === 'cave' ? styles.shelfDrop : ''}`}
                 {...dropHandlers('cave')}
             >
@@ -176,12 +173,14 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                         {inCave.map((w) => (
                             <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
                         ))}
+                        <AddTile onClick={() => setAdding('cave')} label="Ajouter un vin" />
                     </div>
                 )}
             </section>
 
             {/* ── Étagère 2 : bues, notées, gardées en mémoire ── */}
             <section
+                data-shelf="tasted"
                 className={`${styles.shelf} ${styles.shelfTasted} ${dropOn === 'tasted' ? styles.shelfDrop : ''}`}
                 {...dropHandlers('tasted')}
             >
@@ -193,22 +192,18 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                             Glisse une carte de ta cave ici, ou descends son stock à zéro.
                         </p>
                     </div>
-                    <button className={styles.addTop} onClick={() => setAdding('tasted')}>
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
-                        Ajouter
-                    </button>
                 </div>
 
                 {tastedList.length === 0 ? (
-                    <div className={styles.shelfEmpty}>
-                        Rien encore. Une bouteille bue chez un ami ou au restaurant se scanne
-                        d’ici, et rejoint tes notes comme n’importe quel vin de la cave.
+                    <div className={styles.grid}>
+                        <AddTile onClick={() => setAdding('tasted')} label="Une bouteille goûtée" />
                     </div>
                 ) : (
                     <div className={styles.grid}>
                         {tastedList.map((w) => (
                             <WineCard key={w.id} wine={w} onPair={() => setPairing(w)} onRemove={() => removeWine(w.id)} onZoom={() => w.photo && setZoom(w.photo)} onMenu={(x, y) => setMenu({ wine: w, x, y })} />
                         ))}
+                        <AddTile onClick={() => setAdding('tasted')} label="Une bouteille goûtée" />
                     </div>
                 )}
             </section>
@@ -228,6 +223,44 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             )}
             {zoom && <ZoomView src={zoom} onClose={() => setZoom(null)} />}
         </div>
+    );
+}
+
+/**
+ * Champ à étiquette flottante : l'étiquette vit DANS le champ et remonte dès
+ * qu'on écrit. On garde ainsi le nom de la donnée sous les yeux pendant la
+ * saisie — un simple `placeholder` disparaît à la première lettre et on ne sait
+ * plus ce qu'on remplit.
+ */
+function Field({ label, value, onChange, hint, inputMode, autoFocus }: {
+    label: string; value: string; onChange: (v: string) => void;
+    hint?: string; inputMode?: 'numeric' | 'text'; autoFocus?: boolean;
+}) {
+    return (
+        <label className={`${styles.field} ${value ? styles.fieldFilled : ''}`}>
+            <input
+                className={styles.fieldInp}
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                inputMode={inputMode}
+                autoFocus={autoFocus}
+                placeholder=" "
+            />
+            <span className={styles.fieldLbl}>{label}{hint ? <em> · {hint}</em> : null}</span>
+        </label>
+    );
+}
+
+/** Tuile « Ajouter » : elle occupe une case de la grille, juste après la
+ *  dernière bouteille, et se décale d'elle-même quand une nouvelle entre. */
+function AddTile({ onClick, label }: { onClick: () => void; label: string }) {
+    return (
+        <button className={styles.addTile} onClick={onClick}>
+            <span className={styles.addTileIc}>
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
+            </span>
+            <span className={styles.addTileLbl}>{label}</span>
+        </button>
     );
 }
 
@@ -257,24 +290,78 @@ function ZoomView({ src, onClose }: { src: string; onClose: () => void }) {
 
 /* ── Carte vin : scène de cave (tonneau) + bouteille ──────────────────────── */
 function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; onPair: () => void; onRemove: () => void; onZoom: () => void; onMenu: (x: number, y: number) => void }) {
-    const lp = useRef<ReturnType<typeof setTimeout> | null>(null);
     const shelf = shelfOf(wine);
+    const cardRef = useRef<HTMLDivElement>(null);
+    const press = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const from = useRef<{ x: number; y: number } | null>(null);
+    const [dragging, setDragging] = useState(false);
+    const hovered = useRef<HTMLElement | null>(null);
+
+    /** Étagère survolée par le doigt, d'après ce qu'il y a sous le point. */
+    const shelfUnder = (x: number, y: number) => {
+        const el = document.elementFromPoint(x, y) as HTMLElement | null;
+        return (el?.closest('[data-shelf]') as HTMLElement | null) || null;
+    };
+    const highlight = (el: HTMLElement | null) => {
+        if (hovered.current === el) return;
+        hovered.current?.classList.remove(styles.shelfDrop);
+        if (el && el.dataset.shelf !== shelf) el.classList.add(styles.shelfDrop);
+        hovered.current = el;
+    };
+    const endDrag = (x?: number, y?: number) => {
+        if (press.current) { clearTimeout(press.current); press.current = null; }
+        const card = cardRef.current;
+        if (card) { card.style.transform = ''; card.style.zIndex = ''; card.style.pointerEvents = ''; }
+        const target = x != null && y != null ? shelfUnder(x, y) : null;
+        highlight(null);
+        setDragging(false);
+        from.current = null;
+        if (target && target.dataset.shelf && target.dataset.shelf !== shelf) {
+            navigator.vibrate?.(14);
+            if (target.dataset.shelf === 'tasted') moveToTasted(wine.id); else moveToCave(wine.id);
+        }
+    };
+
     return (
         <div
-            className={`${styles.card} ${shelf === 'tasted' ? styles.cardTasted : ''}`}
-            /* La carte se glisse d'une étagère à l'autre (souris). Au doigt, le
-               même déplacement passe par le menu de la carte. */
-            draggable
-            onDragStart={(e) => { e.dataTransfer.setData('text/plain', wine.id); e.dataTransfer.effectAllowed = 'move'; }}
-            /* Clic droit (desktop) et appui long (iPhone, où le clic droit
-               n'existe pas) ouvrent le même menu. */
+            ref={cardRef}
+            className={`${styles.card} ${shelf === 'tasted' ? styles.cardTasted : ''} ${dragging ? styles.cardDragging : ''}`}
+            /* Maintenir la carte la DÉCOLLE et la fait suivre le doigt : c'est le
+               geste attendu pour la ranger d'une étagère à l'autre. Le menu, lui,
+               reste au clic droit (et sur le « ⋯ » de la carte, seule voie au
+               doigt puisque le clic droit n'existe pas sur un téléphone). */
             onContextMenu={(e) => { e.preventDefault(); onMenu(e.clientX, e.clientY); }}
             onPointerDown={(e) => {
-                const { clientX, clientY } = e;
-                lp.current = setTimeout(() => { navigator.vibrate?.(12); onMenu(clientX, clientY); }, 500);
+                if (e.button === 2) return;                    // clic droit : au menu
+                const { clientX, clientY, pointerId } = e;
+                from.current = { x: clientX, y: clientY };
+                press.current = setTimeout(() => {
+                    navigator.vibrate?.(12);
+                    setDragging(true);
+                    // On coupe les événements TOUT DE SUITE, sans attendre le
+                    // rendu : sans ça le premier mouvement interroge la carte
+                    // elle-même au lieu de l'étagère qu'elle survole, et rien ne
+                    // s'éclaire sous le doigt.
+                    if (cardRef.current) cardRef.current.style.pointerEvents = 'none';
+                    cardRef.current?.setPointerCapture?.(pointerId);
+                }, 260);
             }}
-            onPointerUp={() => { if (lp.current) clearTimeout(lp.current); }}
-            onPointerLeave={() => { if (lp.current) clearTimeout(lp.current); }}
+            onPointerMove={(e) => {
+                if (!from.current) return;
+                const dx = e.clientX - from.current.x;
+                const dy = e.clientY - from.current.y;
+                if (!dragging) {
+                    // Un vrai défilement annule l'attente : on ne décolle pas la
+                    // carte parce que le doigt a bougé pour faire défiler la page.
+                    if (Math.hypot(dx, dy) > 12 && press.current) { clearTimeout(press.current); press.current = null; from.current = null; }
+                    return;
+                }
+                const card = cardRef.current;
+                if (card) { card.style.transform = `translate(${dx}px, ${dy}px) scale(1.04)`; card.style.zIndex = '50'; }
+                highlight(shelfUnder(e.clientX, e.clientY));
+            }}
+            onPointerUp={(e) => endDrag(e.clientX, e.clientY)}
+            onPointerCancel={() => endDrag()}
         >
             <div className={styles.scene}>
                 <div className={styles.spot} />
@@ -288,6 +375,13 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                     </button>
                 )}
                 <span className={`${styles.colorTag} ${styles['tag_' + wine.color]}`}>{COLOR_LABEL[wine.color]}</span>
+                <button
+                    className={styles.more}
+                    onClick={(e) => { e.stopPropagation(); onMenu(e.clientX, e.clientY); }}
+                    aria-label="Actions"
+                >
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><circle cx="5" cy="12" r="1.7" /><circle cx="12" cy="12" r="1.7" /><circle cx="19" cy="12" r="1.7" /></svg>
+                </button>
                 <button className={styles.del} onClick={(e) => { e.stopPropagation(); onRemove(); }} aria-label="Retirer">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                 </button>
@@ -298,22 +392,29 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                     {wine.year ? <span className={styles.wYear}> · {wine.year}</span> : null}
                 </div>
                 <div className={styles.wMeta}>{[wine.grape, wine.region].filter(Boolean).join(' · ')}</div>
+                {/* Ta note à gauche (cliquable), celle des dégustateurs à droite —
+                    elles ne disent pas la même chose et ne doivent pas se
+                    confondre. La rangée ne se rogne plus : la note publique
+                    disparaissait derrière une hauteur fixe. */}
                 <div className={styles.ratings}>
+                    <MyStars
+                        value={wine.myRating ?? 0}
+                        onSet={(n) => updateWine(wine.id, { myRating: n })}
+                    />
                     {wine.rating ? (
                         <span className={styles.rating} title="Note des dégustateurs">
                             ★ {wine.rating.toFixed(1)}<small>/5</small>
                         </span>
                     ) : null}
-                    <MyStars
-                        value={wine.myRating ?? 0}
-                        onSet={(n) => updateWine(wine.id, { myRating: n })}
-                    />
                 </div>
                 <div className={styles.apoSlot}>
                     {(() => {
                         const w = drinkWindow(wine);
                         if (!w) return null;
-                        const cls = w.status === 'tard' ? styles.apoLate : w.status === 'jeune' ? styles.apoWait : styles.apoNow;
+                        const cls = w.status === 'tard' ? styles.apoLate
+                            : w.status === 'jeune' ? styles.apoWait
+                            : w.status === 'apogee' ? styles.apoPeak
+                            : styles.apoNow;
                         return <span className={`${styles.apogee} ${cls}`}>{w.label}</span>;
                     })()}
                 </div>
@@ -439,21 +540,24 @@ function EditWine({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
                 </div>
 
                 <div className={styles.addBody}>
-                    {(f.photo || wine.photo) && (
-                        <div className={styles.editPreview}>
-                            <img src={f.photo || wine.photo} alt="" />
-                        </div>
-                    )}
+                    {/* La bouteille reste sous les yeux pendant qu'on corrige :
+                        c'est elle qu'on décrit, elle doit tenir la vedette. */}
+                    <div className={styles.editHero}>
+                        <div className={styles.editHeroGlow} aria-hidden />
+                        {(f.photo || wine.photo)
+                            ? <img className={styles.editHeroImg} src={f.photo || wine.photo} alt="" />
+                            : <span className={styles.editHeroFallback}><BottleSVG color={f.color} /></span>}
+                    </div>
 
                     <div className={styles.fields}>
-                        <input className={styles.inp} value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} placeholder="Nom du vin" />
+                        <Field label="Nom du vin" value={f.name} onChange={(v) => setF({ ...f, name: v })} autoFocus />
                         <div className={styles.two}>
-                            <input className={styles.inp} value={f.grape} onChange={(e) => setF({ ...f, grape: e.target.value })} placeholder="Cépage" />
-                            <input className={styles.inp} value={f.year} onChange={(e) => setF({ ...f, year: e.target.value })} placeholder="Année" inputMode="numeric" />
+                            <Field label="Cépage" value={f.grape} onChange={(v) => setF({ ...f, grape: v })} />
+                            <Field label="Année" value={f.year} onChange={(v) => setF({ ...f, year: v })} inputMode="numeric" />
                         </div>
-                        <input className={styles.inp} value={f.region} onChange={(e) => setF({ ...f, region: e.target.value })} placeholder="Région / appellation" />
-                        <input className={styles.inp} value={f.note} onChange={(e) => setF({ ...f, note: e.target.value })} placeholder="Note de dégustation" />
-                        <input className={styles.inp} value={f.photo} onChange={(e) => setF({ ...f, photo: e.target.value })} placeholder="Lien de la photo (optionnel)" />
+                        <Field label="Région / appellation" value={f.region} onChange={(v) => setF({ ...f, region: v })} />
+                        <Field label="Note de dégustation" value={f.note} onChange={(v) => setF({ ...f, note: v })} />
+                        <Field label="Lien de la photo" value={f.photo} onChange={(v) => setF({ ...f, photo: v })} hint="facultatif" />
 
                         <div className={styles.editLabel}>Couleur</div>
                         <div className={styles.colorPick}>

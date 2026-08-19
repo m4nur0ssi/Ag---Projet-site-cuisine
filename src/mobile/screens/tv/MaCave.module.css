@@ -5,7 +5,11 @@
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
     padding: 22px 16px calc(120px + env(safe-area-inset-bottom, 0px));
 }
-.emb { min-height: 0; background: none; padding: 4px 4px 40px; }
+/* Encastré : on garde de vraies gouttières (les cartes touchaient le bord) et
+   on réserve la place de la poignée de menu du shell en haut à gauche, qui
+   passait par-dessus le titre « Ma cave ». */
+.emb { min-height: 0; background: none; padding: 4px 34px 40px; }
+.emb .head { padding-left: 52px; }
 
 .head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
 .back { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 999px; border: none; background: rgba(255,255,255,.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
@@ -55,6 +59,23 @@
 .tag_rouge { background: rgba(123,30,43,.85); color: #ffd7dd; }
 .tag_blanc { background: rgba(230,210,122,.85); color: #3a2f00; }
 .tag_liqueur { background: rgba(201,138,43,.85); color: #2a1a00; }
+/* « ⋯ » : la seule voie vers le menu au doigt, puisque maintenir la carte sert
+   désormais à la glisser et que le clic droit n'existe pas sur un téléphone. */
+.more { position: absolute; top: 8px; right: 42px; z-index: 3; width: 28px; height: 28px; border: none; border-radius: 999px; background: rgba(10,10,14,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity .15s; }
+.card:hover .more, .more:focus-visible { opacity: 1; }
+/* Sans survol (téléphone), le « ⋯ » reste visible : c'est la seule entrée du
+   menu. La croix de suppression, elle, reste réservée au survol. */
+@media (hover: none) { .more { opacity: 1; } }
+
+/* Carte décollée : elle suit le doigt, passe au-dessus et laisse voir à travers
+   ce qu'il y a dessous (sinon elle masque l'étagère qu'on vise). */
+.cardDragging {
+    pointer-events: none;
+    opacity: .92;
+    filter: drop-shadow(0 26px 50px rgba(0, 0, 0, .65));
+    transition: none;
+}
+
 .del { position: absolute; top: 8px; right: 8px; z-index: 3; width: 28px; height: 28px; border: none; border-radius: 999px; background: rgba(10,10,14,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity .15s; }
 .card:hover .del { opacity: 1; }
 
@@ -105,8 +126,9 @@
 .recRow { display: flex; gap: 8px; }
 .recBtn { flex: 0 0 auto; height: 46px; padding: 0 16px; border: none; border-radius: 12px; background: linear-gradient(120deg,#c98a2b,#e0a94a); color: #241500; font-weight: 800; cursor: pointer; }
 .recBtn:disabled { opacity: .5; cursor: default; }
-.fields { display: flex; flex-direction: column; gap: 8px; }
-.two { display: flex; gap: 8px; }
+.fields { display: flex; flex-direction: column; gap: 10px; }
+.two { display: flex; gap: 10px; }
+.two > * { flex: 1 1 0; min-width: 0; }
 .inp { flex: 1; height: 46px; padding: 0 14px; border: none; border-radius: 12px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); color: #fff; font-size: 15px; }
 .inp::placeholder { color: rgba(235,235,245,.4); }
 .colorPick { display: flex; gap: 8px; }
@@ -119,7 +141,15 @@
 :global([data-theme='light']) .page { background: #faf6f2; color: #1a1008; }
 
 /* Barre recherche + tri */
-.toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+/* Recherche et tris : un bloc resserré et centré. Étirée sur toute la largeur,
+   la barre écrasait la grille de bouteilles qui, elle, ne fait que quelques
+   colonnes. */
+.toolbar {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    width: 100%; max-width: 720px; margin: 0 auto 18px;
+}
+.toolbar .searchWrap { height: 40px; }
+.toolbar .sortBtn { height: 40px; padding: 0 12px; font-size: 12.5px; }
 .searchWrap { flex: 1 1 220px; min-width: 180px; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; border-radius: 13px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); color: rgba(235,235,245,.7); }
 .search { flex: 1; background: none; border: none; outline: none; color: #fff; font-size: 15px; }
 .search::placeholder { color: rgba(235,235,245,.4); }
@@ -128,7 +158,7 @@
 .sortOn { background: #fff; color: #111; }
 
 /* Apogée */
-.rating { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; font-size: 11.5px; font-weight: 800; color: #ffc24b; }
+.rating { display: inline-flex; align-items: center; gap: 4px; margin-top: 0; white-space: nowrap; font-size: 11.5px; font-weight: 800; color: #ffc24b; }
 .rating small { color: rgba(235,235,245,.45); font-weight: 600; }
 
 .apogee {
@@ -143,9 +173,16 @@
     content: ''; width: 6px; height: 6px; border-radius: 999px; flex: 0 0 auto;
     background: currentColor;
 }
+/* Chaque état a sa couleur, texte compris : « prêt à boire » ne doit pas se
+   lire comme « à déguster sans tarder ». */
+.apoNow { color: #4cd964; }
 .apoNow::before { background: #4cd964; }
-.apoWait::before { background: rgba(235, 235, 245, .45); }
-.apoLate::before { background: #ffb02e; }
+.apoWait { color: rgba(180, 200, 255, .8); }
+.apoWait::before { background: rgba(150, 180, 255, .85); }
+.apoLate { color: #ff9f4a; }
+.apoLate::before { background: #ff9f4a; }
+.apoPeak { color: #ffd166; }
+.apoPeak::before { background: #ffd166; }
 
 /* Stock + ouvrir */
 /* Sous la bouteille, plus aucun pavé : un filet, puis une ligne d'actions en
@@ -194,7 +231,7 @@
 @keyframes caveSpin { to { transform: rotate(360deg); } }
 
 /* Notes : la globale (dégustateurs) et la tienne, sur la même ligne. */
-.ratings { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.ratings { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: nowrap; margin-top: 6px; }
 .myStars { display: inline-flex; gap: 1px; }
 .myStar {
     padding: 0; border: none; background: none; cursor: pointer; line-height: 1;
@@ -206,9 +243,60 @@
 .myStarOn { color: #eb5757; }
 .myStarsBig .myStar { font-size: 22px; }
 
-/* Fiche de correction : mêmes codes que le reste de la cave. */
-.editPreview { display: flex; justify-content: center; margin-bottom: 4px; }
-.editPreview img { height: 150px; width: auto; max-width: 60%; object-fit: contain; border-radius: 8px; }
+/* ── Fiche de correction ─────────────────────────────────────────────────
+   La bouteille en vedette, sur un halo, puis des champs à étiquette flottante :
+   on garde le nom de la donnée sous les yeux pendant la saisie. */
+.editHero {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    height: 190px; margin: 2px 0 18px;
+}
+.editHeroGlow {
+    position: absolute; width: 260px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 190, 120, .3), rgba(255, 150, 90, 0) 70%);
+    filter: blur(26px);
+}
+.editHeroImg {
+    position: relative; height: 100%; width: auto; max-width: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 26px 40px rgba(0, 0, 0, .65));
+    animation: editRise .5s cubic-bezier(.22, 1.1, .36, 1);
+}
+.editHeroFallback { position: relative; height: 100%; display: flex; animation: editRise .5s cubic-bezier(.22, 1.1, .36, 1); }
+.editHeroFallback svg { height: 100%; width: auto; }
+@keyframes editRise { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+
+/* Champ à étiquette flottante. */
+.field {
+    position: relative; display: block;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .05);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+    transition: background .18s ease, box-shadow .18s ease;
+}
+.field:focus-within {
+    background: rgba(255, 255, 255, .09);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .5);
+}
+.fieldInp {
+    width: 100%; height: 58px; padding: 20px 14px 6px;
+    border: none; background: none; outline: none;
+    color: #fff; font-size: 15px; font-weight: 600;
+}
+.fieldLbl {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 14px; font-weight: 500; color: rgba(235, 235, 245, .45);
+    transition: transform .18s cubic-bezier(.22, 1.1, .36, 1), font-size .18s ease, color .18s ease;
+}
+.fieldLbl em { font-style: normal; opacity: .7; }
+.field:focus-within .fieldLbl,
+.fieldFilled .fieldLbl {
+    transform: translateY(-19px);
+    font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(235, 235, 245, .55);
+}
+.field:focus-within .fieldLbl { color: #fff; }
 .editLabel {
     font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
     color: rgba(235,235,245,.45); margin: 4px 0 6px;
@@ -273,7 +361,8 @@
 /* La ligne des notes changeait de hauteur selon qu'une note globale existe ou
    non (la pastille « ★ 4,4 /5 » est plus haute que les étoiles seules) : hauteur
    FIXE, sinon tout ce qui suit descend de quelques pixels sur certaines cartes. */
-.ratings { height: 22px; min-height: 0; overflow: hidden; }
+/* Plus de hauteur fixe : elle coupait la note des dégustateurs. */
+.ratings { min-height: 20px; overflow: visible; }
 
 /* La carte s'étire sur toute la hauteur de sa rangée, et la colonne de texte
    avec elle : c'est ce qui permet à `margin-top: auto` de coller les commandes
@@ -339,3 +428,29 @@
 .destLbl { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: #fff; }
 .destSub { font-size: 11.5px; color: rgba(235, 235, 245, .55); }
 
+
+
+/* ── Tuile « Ajouter », en bout de grille ────────────────────────────────
+   Le bouton vivait dans l'en-tête, loin des bouteilles. Il prend maintenant la
+   place d'une carte, juste après la dernière — et se décale tout seul dès qu'une
+   bouteille entre, puisque c'est la grille qui le pousse. */
+.addTile {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    aspect-ratio: 3 / 4;
+    border: none; border-radius: 14px; cursor: pointer;
+    background: rgba(255, 255, 255, .035);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12);
+    color: rgba(235, 235, 245, .75);
+    transition: background .2s ease, box-shadow .2s ease, color .2s ease;
+}
+.addTile:hover {
+    background: rgba(255, 255, 255, .07);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .28);
+    color: #fff;
+}
+.addTileIc {
+    width: 46px; height: 46px; border-radius: 999px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255, 255, 255, .1);
+}
+.addTileLbl { font-family: 'Outfit', sans-serif; font-size: 13.5px; font-weight: 800; }
