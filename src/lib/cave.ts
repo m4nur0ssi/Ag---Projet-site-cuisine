@@ -180,17 +180,31 @@ export function caveMatchForRecipe(recipe: { title?: string; category?: string; 
     return { ideal, wines };
 }
 
+/**
+ * Une boisson ne s'accorde pas avec un vin — on ne sert pas un Barolo « avec un
+ * mojito ». Cocktails, jus, smoothies et compagnie sortent donc des accords,
+ * qu'ils soient rangés en boissons ou repérés à leur titre.
+ */
+const DRINK_KW = /(cocktails?|mojitos?|margaritas?|daiquiris?|spritz|negronis?|caipirinhas?|colada|sangrias?|punchs?|mocktails?|smoothies?|milkshakes?|frapp[ée]s?|limonades?|citronnade|jus\b|nectar|th[ée] glac[ée]|iced (tea|latte|coffee)|latte|cappuccino|caf[ée]\b|infusion|granit[ée]s?|slush|lassi|bissap|shots?\b|sours?\b|gin[- ]tonic|bloody mary)/i;
+
+const isDrinkRecipe = (r: { title?: string; category?: string; tags?: string[] }) => {
+    const cat = (r.category || '').toLowerCase();
+    if (cat === 'boissons') return true;
+    if ((r.tags || []).some((t) => /boisson|cocktail|jus|rafra/i.test(t))) return true;
+    return DRINK_KW.test(r.title || '');
+};
+
 export function recipesForWine<T extends { id: string | number; title: string; category?: string; tags?: string[]; ingredients?: any[]; image?: string }>(wine: CaveWine, all: T[], limit = 12): T[] {
     const kw = wine.color === 'rouge' ? RED_KW : wine.color === 'liqueur' ? LIQ_KW : WHITE_KW;
     const hay = (r: T) => `${r.title} ${(r.tags || []).join(' ')} ${(r.ingredients || []).map((i: any) => i?.name || i).join(' ')}`.toLowerCase();
     const scored = all
-        .filter((r) => r.image && (r.category || '').toLowerCase() !== 'restaurant')
+        .filter((r) => r.image && (r.category || '').toLowerCase() !== 'restaurant' && !isDrinkRecipe(r))
         .map((r) => ({ r, s: kw.test(hay(r)) ? 1 : 0 }))
         .filter((x) => x.s > 0);
     // Repli si trop peu : catégorie plausible selon la couleur.
     if (scored.length < 4) {
         const cat = wine.color === 'liqueur' ? ['desserts', 'patisserie'] : wine.color === 'rouge' ? ['plats'] : ['plats', 'entrees'];
-        all.filter((r) => r.image && cat.includes((r.category || '').toLowerCase())).forEach((r) => {
+        all.filter((r) => r.image && cat.includes((r.category || '').toLowerCase()) && !isDrinkRecipe(r)).forEach((r) => {
             if (!scored.find((x) => String(x.r.id) === String(r.id))) scored.push({ r, s: 0.5 });
         });
     }

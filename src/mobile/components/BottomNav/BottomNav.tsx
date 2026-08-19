@@ -76,6 +76,14 @@ export default function BottomNav() {
     const forceMiniTimerRef = useRef<NodeJS.Timeout | null>(null);
     const [lastViewed, setLastViewed] = useState<any>(null);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+    /**
+     * Dans « Ma cave », la pastille du milieu ne sert à rien : elle propose la
+     * dernière RECETTE vue, hors sujet quand on range ses bouteilles. Elle
+     * devient « Ajouter un vin » et ouvre directement le viseur — le geste
+     * qu'on vient faire ici neuf fois sur dix.
+     */
+    const inCave = pathname === '/ma-cave';
     const [showTimerMode, setShowTimerMode] = useState(false);
     const [isTimerExpanded, setIsTimerExpanded] = useState(false);
     const { activeTimer, stopTimer } = useTimer();
@@ -385,13 +393,25 @@ export default function BottomNav() {
                                 <div 
                                     className={styles.miniCenter} 
                                     onClick={() => {
+                                        if (inCave) {
+                                            handleVibrate(12);
+                                            window.dispatchEvent(new Event('macave-scan'));
+                                            return;
+                                        }
                                         if (lastViewed) {
                                             setIsSheetOpen(true);
                                             handleVibrate(15);
                                         }
                                     }}
                                 >
-                                    {lastViewed ? (
+                                    {inCave ? (
+                                        <>
+                                            <span className={styles.miniScanIc}>
+                                                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h2M17 5h2a2 2 0 0 1 2 2v2M21 15v2a2 2 0 0 1-2 2h-2M7 19H5a2 2 0 0 1-2-2v-2M7 12h10" /></svg>
+                                            </span>
+                                            <span className={styles.miniTitle}>Ajouter un vin</span>
+                                        </>
+                                    ) : lastViewed ? (
                                         <>
                                             <img src={lastViewed.image} alt={lastViewed.title} className={styles.miniThumb} />
                                             <span className={styles.miniTitle}>{decodeHtml(lastViewed.title)}</span>

@@ -18,7 +18,7 @@ import {
     readCave, addWine, removeWine, seedCaveIfEmpty, recipesForWine,
     openBottle, setQty, drinkWindow, updateWine, findKnownWine,
     moveToTasted, moveToCave, shelfOf,
-    CAVE_EVENT, type CaveWine, type WineColor, type WineShelf,
+    CAVE_EVENT, type CaveWine, type WineColor, type WineShelf, type DrinkStatus,
 } from '@/lib/cave';
 import styles from './MaCave.module.css';
 
@@ -63,12 +63,25 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     // (bouteille bue chez un ami, au restaurant… qu'on ne possède pas).
     const [adding, setAdding] = useState<WineShelf | null>(null);
     const [dropOn, setDropOn] = useState<WineShelf | null>(null);
+    /** Ouverture venue de la barre du bas : on va droit au viseur. */
+    const [scanNow, setScanNow] = useState(false);
     const [pairing, setPairing] = useState<CaveWine | null>(null);
     const [zoom, setZoom] = useState<string | null>(null);
     const [editing, setEditing] = useState<CaveWine | null>(null);
     const [menu, setMenu] = useState<{ wine: CaveWine; x: number; y: number } | null>(null);
+    // Filtre de MATURITÉ : « à boire ce soir » n'est pas la même question que
+    // « de quelle couleur ». Les deux se combinent.
+    const [ripe, setRipe] = useState<'tous' | DrinkStatus>('tous');
     const [q, setQ] = useState('');
     const [sort, setSort] = useState<'recent' | 'annee' | 'region'>('recent');
+
+    // La barre du bas, dans « Ma cave », propose « Ajouter un vin » : elle nous
+    // le demande par cet événement, et on ouvre le viseur directement.
+    useEffect(() => {
+        const scan = () => { setScanNow(true); setAdding('cave'); };
+        window.addEventListener('macave-scan', scan);
+        return () => window.removeEventListener('macave-scan', scan);
+    }, []);
 
     useEffect(() => {
         seedCaveIfEmpty();
@@ -81,6 +94,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
 
     const shown = useMemo(() => {
         let list = filter === 'tous' ? wines : wines.filter((w) => w.color === filter);
+        if (ripe !== 'tous') list = list.filter((w) => drinkWindow(w)?.status === ripe);
         const query = q.trim().toLowerCase();
         if (query) list = list.filter((w) => `${w.name} ${w.region} ${w.grape} ${w.year}`.toLowerCase().includes(query));
         const s = [...list];
@@ -88,7 +102,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         else if (sort === 'region') s.sort((a, b) => (a.region || '').localeCompare(b.region || '', 'fr'));
         else s.sort((a, b) => b.addedAt - a.addedAt);
         return s;
-    }, [wines, filter, q, sort]);
+    }, [wines, filter, ripe, q, sort]);
     // Les deux étagères, filtres et recherche déjà appliqués.
     const inCave = useMemo(() => shown.filter((w) => shelfOf(w) === 'cave'), [shown]);
     const tastedList = useMemo(() => shown.filter((w) => shelfOf(w) === 'tasted'), [shown]);
@@ -117,6 +131,25 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         return [{ key: 'tous' as const, label: 'Tous', n: wines.length }, ...present];
     }, [wines]);
 
+    /** Pastilles de maturité — seules celles qui ont des bouteilles s'affichent. */
+    const ripeTabs = useMemo(() => {
+        const order: { key: DrinkStatus; label: string }[] = [
+            { key: 'pret', label: 'À boire' },
+            { key: 'apogee', label: 'À son apogée' },
+            { key: 'jeune', label: 'Trop jeune' },
+            { key: 'tard', label: 'Sans tarder' },
+        ];
+        const pool = filter === 'tous' ? wines : wines.filter((w) => w.color === filter);
+        return order
+            .map((t) => ({ ...t, n: pool.filter((w) => drinkWindow(w)?.status === t.key).length }))
+            .filter((t) => t.n > 0);
+    }, [wines, filter]);
+
+    // Un filtre de maturité qui se vide (changement de couleur) revient à « Tous ».
+    useEffect(() => {
+        if (ripe !== 'tous' && !ripeTabs.some((t) => t.key === ripe)) setRipe('tous');
+    }, [ripeTabs, ripe]);
+
     // Si l'onglet courant se vide (dernière bouteille retirée), on revient à « Tous ».
     useEffect(() => {
         if (filter !== 'tous' && !tabs.some((t) => t.key === filter)) setFilter('tous');
@@ -140,6 +173,23 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                     </button>
                 ))}
             </div>
+
+            {ripeTabs.length > 0 && (
+                <div className={`${styles.tabs} ${styles.tabsRipe}`}>
+                    <button className={`${styles.tab} ${styles.tabRipe} ${ripe === 'tous' ? styles.tabOn : ''}`} onClick={() => setRipe('tous')}>
+                        Toutes maturités
+                    </button>
+                    {ripeTabs.map((t) => (
+                        <button
+                            key={t.key}
+                            className={`${styles.tab} ${styles.tabRipe} ${styles['ripe_' + t.key]} ${ripe === t.key ? styles.tabOn : ''}`}
+                            onClick={() => setRipe(t.key)}
+                        >
+                            <span className={styles.ripeDot} />{t.label} {t.n}
+                        </button>
+                    ))}
+                </div>
+            )}
 
             <div className={styles.toolbar}>
                 <div className={styles.searchWrap}>
@@ -208,7 +258,13 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                 )}
             </section>
 
-            {adding && <AddWine shelf={adding} onClose={() => setAdding(null)} />}
+            {adding && (
+                <AddWine
+                    shelf={adding}
+                    straightToCamera={scanNow}
+                    onClose={() => { setAdding(null); setScanNow(false); }}
+                />
+            )}
             {pairing && <PairSheet wine={pairing} onClose={() => setPairing(null)} embedded={embedded} />}
             {editing && <EditWine wine={editing} onClose={() => setEditing(null)} />}
             {menu && (
@@ -556,12 +612,17 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                 from.current = { x: clientX, y: clientY };
                 touch.current = e.pointerType !== 'mouse';
                 pointer.current = pointerId;
-                // Au DOIGT, on attend : sans ce délai, faire défiler la page
-                // décollerait une carte. À la SOURIS, on ne peut pas attendre —
-                // on presse et on tire dans le même mouvement, et le geste était
-                // annulé avant même d'avoir commencé.
+                // Au DOIGT, l'appui immobile ouvre le menu (il n'y a pas de clic
+                // droit sur un téléphone). Le glissé, lui, part au premier
+                // mouvement LATÉRAL — les deux gestes ne se marchent donc pas
+                // dessus, et un mouvement vertical reste un défilement de page.
                 if (touch.current) {
-                    press.current = setTimeout(() => { startDrag(pointerId); }, 260);
+                    press.current = setTimeout(() => {
+                        press.current = null;
+                        from.current = null;
+                        navigator.vibrate?.(12);
+                        onMenu(clientX, clientY);
+                    }, 480);
                 }
             }}
             onPointerMove={(e) => {
@@ -569,13 +630,17 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                 const dx = e.clientX - from.current.x;
                 const dy = e.clientY - from.current.y;
                 if (!dragging) {
-                    const moved = Math.hypot(dx, dy);
                     if (!touch.current) {
                         // Souris : trois pixels suffisent à dire qu'on tire.
-                        if (moved > 3) startDrag(pointer.current ?? e.pointerId);
-                    } else if (moved > 12 && press.current) {
-                        // Doigt : c'est un défilement, on renonce.
-                        clearTimeout(press.current); press.current = null; from.current = null;
+                        if (Math.hypot(dx, dy) > 3) startDrag(pointer.current ?? e.pointerId);
+                        return;
+                    }
+                    // Doigt : de côté on range, vers le haut ou le bas on défile.
+                    if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) {
+                        startDrag(pointer.current ?? e.pointerId);
+                    } else if (Math.abs(dy) > 12) {
+                        if (press.current) { clearTimeout(press.current); press.current = null; }
+                        from.current = null;
                     }
                     return;
                 }
@@ -598,13 +663,6 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                     </button>
                 )}
                 <span className={`${styles.colorTag} ${styles['tag_' + wine.color]}`}>{COLOR_LABEL[wine.color]}</span>
-                <button
-                    className={styles.more}
-                    onClick={(e) => { e.stopPropagation(); onMenu(e.clientX, e.clientY); }}
-                    aria-label="Actions"
-                >
-                    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><circle cx="5" cy="12" r="1.7" /><circle cx="12" cy="12" r="1.7" /><circle cx="19" cy="12" r="1.7" /></svg>
-                </button>
                 <button className={styles.del} onClick={(e) => { e.stopPropagation(); onRemove(); }} aria-label="Retirer">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                 </button>
@@ -853,7 +911,7 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
 /* ── Ajout d'un vin : scan étiquette → ajout automatique ──────────────────── */
 type Official = { photo?: string; rating?: number; vivinoUrl?: string };
 
-function AddWine({ onClose, shelf: initialShelf = 'cave' }: { onClose: () => void; shelf?: WineShelf }) {
+function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = false }: { onClose: () => void; shelf?: WineShelf; straightToCamera?: boolean }) {
     // Où ranger la bouteille : en cave (on l'a) ou dans « Goûté & approuvé »
     // (bue chez un ami, au restaurant — on ne la possède pas).
     const [shelf, setShelf] = useState<WineShelf>(initialShelf);
@@ -868,7 +926,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave' }: { onClose: () => voi
     const [scanMsg, setScanMsg] = useState('');
     // Viseur en direct : c'est la voie normale du scan. La pellicule reste en
     // secours (ordinateur sans caméra, autorisation refusée).
-    const [viewfinder, setViewfinder] = useState(false);
+    const [viewfinder, setViewfinder] = useState(straightToCamera);
     const fileRef = useRef<HTMLInputElement>(null);
 
     /**

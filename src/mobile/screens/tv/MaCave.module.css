@@ -59,13 +59,6 @@
 .tag_rouge { background: rgba(123,30,43,.85); color: #ffd7dd; }
 .tag_blanc { background: rgba(230,210,122,.85); color: #3a2f00; }
 .tag_liqueur { background: rgba(201,138,43,.85); color: #2a1a00; }
-/* « ⋯ » : la seule voie vers le menu au doigt, puisque maintenir la carte sert
-   désormais à la glisser et que le clic droit n'existe pas sur un téléphone. */
-.more { position: absolute; top: 8px; right: 42px; z-index: 3; width: 28px; height: 28px; border: none; border-radius: 999px; background: rgba(10,10,14,.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity .15s; }
-.card:hover .more, .more:focus-visible { opacity: 1; }
-/* Sans survol (téléphone), le « ⋯ » reste visible : c'est la seule entrée du
-   menu. La croix de suppression, elle, reste réservée au survol. */
-@media (hover: none) { .more { opacity: 1; } }
 
 /* Carte décollée : elle suit le doigt, passe au-dessus et laisse voir à travers
    ce qu'il y a dessous (sinon elle masque l'étagère qu'on vise). */
@@ -538,3 +531,18 @@
     margin-top: 6px; height: 46px; padding: 0 22px; border: none; border-radius: 999px; cursor: pointer;
     background: #fff; color: #111; font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
 }
+
+/* ── Filtre de maturité ──────────────────────────────────────────────────
+   Une seconde rangée sous les couleurs : « à boire ce soir » n'est pas la même
+   question que « de quelle couleur ». Chaque pastille porte le point de couleur
+   de son état, les mêmes que sur les cartes. */
+.tabsRipe { margin-top: -8px; margin-bottom: 16px; }
+.tabRipe { display: inline-flex; align-items: center; gap: 7px; height: 34px; font-size: 13px; }
+.ripeDot { width: 6px; height: 6px; border-radius: 999px; background: currentColor; flex: 0 0 auto; }
+.ripe_pret { color: #4cd964; }
+.ripe_apogee { color: #ffd166; }
+.ripe_jeune { color: rgba(180, 200, 255, .9); }
+.ripe_tard { color: #ff9f4a; }
+/* Sélectionnée : fond blanc comme les autres onglets, le point garde sa teinte. */
+.tabRipe.tabOn { color: #111; }
+.tabRipe.tabOn .ripeDot { background: #111; }
