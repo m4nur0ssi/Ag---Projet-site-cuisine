@@ -3094,7 +3094,9 @@
 .heroTrack {
     display: flex;
     align-items: center;
-    gap: 12px;
+    /* Écart négatif : les voisines sont réduites de 24 %, l'espace visuel entre
+       deux affiches reste donc confortable malgré le chevauchement des boîtes. */
+    gap: 0px;
     width: 100%;
     padding: 6px 0 14px;
     overflow-x: auto;
@@ -3107,12 +3109,16 @@
 }
 .heroTrack::-webkit-scrollbar { display: none; }
 
-/* Affiche au repos : petite, en retrait. */
+/* Toutes les affiches ont la MÊME largeur : c'est une échelle qui distingue
+   l'active, pas une largeur. Faire varier la largeur remettait la bande en page
+   à chaque tour — les positions bougeaient sous l'accrochage, qui retombait sur
+   la voisine, et le carrousel sautait d'une recette. Une transformation ne
+   touche pas à la mise en page (et s'anime sur le compositeur). */
 .heroPoster {
     position: relative;
     flex: 0 0 auto;
-    width: 38vw;
-    max-width: 168px;
+    width: 56vw;
+    max-width: 250px;
     aspect-ratio: 9 / 13;
     padding: 0;
     border: none;
@@ -3121,16 +3127,18 @@
     background: #141416;
     scroll-snap-align: center;
     opacity: 0.6;
+    transform: scale(0.76);
+    transform-origin: center;
     box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
-    transition: width 0.45s var(--tv-ease), opacity 0.45s var(--tv-ease), box-shadow 0.45s var(--tv-ease);
+    transition: transform 0.45s var(--tv-ease), opacity 0.45s var(--tv-ease), box-shadow 0.45s var(--tv-ease);
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Affiche active : bien plus large, nette, éclairée. */
+/* Affiche active : à sa taille pleine, nette, éclairée, et devant les voisines. */
 .heroPosterOn {
-    width: 58vw;
-    max-width: 260px;
+    z-index: 2;
     opacity: 1;
+    transform: scale(1);
     box-shadow: 0 26px 70px rgba(0, 0, 0, 0.66), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 

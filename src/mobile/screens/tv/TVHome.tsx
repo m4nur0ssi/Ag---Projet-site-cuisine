@@ -1004,12 +1004,23 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     const loop = useMemo(() => [...recipes, ...recipes, ...recipes], [recipes]);
     const activeSlot = recipes.length + index;
 
-    // Index courant : l'affiche la plus proche du CENTRE du cadre.
+    // Le doigt est-il en train de faire défiler ? Tant qu'il l'est, on ne
+    // recentre pas sous ses doigts.
+    const userScrolling = useRef(false);
+    const settleTimer = useRef<ReturnType<typeof setTimeout>>();
+    const lastSlot = useRef(0);
+    const didInit = useRef(false);
+
+    // Index courant : l'affiche la plus proche du CENTRE du cadre. Puis, une fois
+    // le geste retombé, on RAMÈNE silencieusement la bande dans la copie du
+    // milieu : c'est ce qui rend le carrousel sans fin. Sans ce rattrapage, on
+    // finissait par buter sur le bout de la bande.
     useEffect(() => {
         const el = pagerRef.current;
         if (!el || !recipes.length) return;
         let raf = 0;
         const onScroll = () => {
+            userScrolling.current = true;
             cancelAnimationFrame(raf);
             raf = requestAnimationFrame(() => {
                 const mid = el.scrollLeft + el.clientWidth / 2;
@@ -1020,21 +1031,54 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                     const d = Math.abs(n.offsetLeft + n.offsetWidth / 2 - mid);
                     if (d < dist) { dist = d; best = i; }
                 });
+                lastSlot.current = best;
                 const real = best % recipes.length;
                 setIndex((prev) => (prev === real ? prev : real));
             });
+
+            clearTimeout(settleTimer.current);
+            settleTimer.current = setTimeout(() => {
+                userScrolling.current = false;
+                // Sorti de la copie du milieu : on saute sur l'affiche JUMELLE,
+                // une copie plus loin. Le décalage se mesure entre les deux
+                // nœuds — `scrollWidth / 3` était faux (les écarts entre copies
+                // comptent dedans) et l'accrochage rattrapait ensuite d'un cran,
+                // ce qui faisait changer de recette toute seule.
+                const slot = lastSlot.current;
+                const twin = slot < recipes.length ? slot + recipes.length
+                    : slot >= recipes.length * 2 ? slot - recipes.length
+                    : -1;
+                if (twin < 0) return;
+                const from = el.children[slot] as HTMLElement | undefined;
+                const to = el.children[twin] as HTMLElement | undefined;
+                if (!from || !to) return;
+                el.scrollLeft += to.offsetLeft - from.offsetLeft;
+                lastSlot.current = twin;
+            }, 170);
         };
         el.addEventListener('scroll', onScroll, { passive: true });
-        return () => { el.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
+        return () => {
+            el.removeEventListener('scroll', onScroll);
+            cancelAnimationFrame(raf);
+            clearTimeout(settleTimer.current);
+        };
     }, [recipes.length]);
 
     // ...et l'affiche active revient au centre quand l'index change autrement
-    // que par le doigt (chevrons, rotation automatique).
+    // que par le doigt (chevrons, rotation, fin de vidéo).
     useEffect(() => {
         const el = pagerRef.current;
         const child = el?.children[activeSlot] as HTMLElement | undefined;
         if (!el || !child) return;
         const target = child.offsetLeft + child.offsetWidth / 2 - el.clientWidth / 2;
+        // Premier rendu : on se pose sur la copie du milieu sans animation,
+        // sinon la bande traverse l'écran au chargement.
+        if (!didInit.current) {
+            didInit.current = true;
+            el.scrollLeft = target;
+            return;
+        }
+        if (userScrolling.current) return;      // le doigt a la main
         if (Math.abs(el.scrollLeft - target) < 4) return;
         el.scrollTo({ left: target, behavior: 'smooth' });
     }, [activeSlot]);
@@ -1106,6 +1150,41 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         }), 6000);
         return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [playing, videoOn]);
+
+    // La vidéo va jusqu'au BOUT, et c'est sa fin qui fait tourner le héros.
+    // Avant, la rotation de 3 s était simplement suspendue pendant la lecture et
+    // plus rien ne la relançait : le héros restait bloqué sur la même recette.
+    //
+    // Le lecteur TikTok annonce sa position et sa durée (`onCurrentTime`) aux
+    // changements d'état. On arme donc un minuteur sur le temps restant. Filet de
+    // sécurité : s'il ne dit jamais sa durée, on passe quand même au bout de 25 s
+    // — le carrousel ne doit JAMAIS se figer.
+    useEffect(() => {
+        if (!playing || !videoOn || recipes.length < 2) return;
+        const nextCard = () => setIndex((i) => (i + 1) % recipes.length);
+        let atEnd: ReturnType<typeof setTimeout>;
+        let heardDuration = false;
+
+        const onMessage = (e: MessageEvent) => {
+            const d = e.data;
+            if (!d || typeof d !== 'object' || !d['x-tiktok-player']) return;
+            if (d.type !== 'onCurrentTime' || !d.value) return;
+            const { currentTime = 0, duration = 0 } = d.value as { currentTime?: number; duration?: number };
+            if (!duration) return;
+            heardDuration = true;
+            const left = Math.max(0.6, duration - currentTime);
+            clearTimeout(atEnd);
+            atEnd = setTimeout(nextCard, (left + 0.35) * 1000);
+        };
+
+        window.addEventListener('message', onMessage);
+        const safety = setTimeout(() => { if (!heardDuration) nextCard(); }, 25000);
+        return () => {
+            window.removeEventListener('message', onMessage);
+            clearTimeout(atEnd);
+            clearTimeout(safety);
+        };
+    }, [playing, videoOn, recipes.length]);
 
     /** Chevrons du héros : une recette en avant ou en arrière, en boucle. */
     const step = (dir: 1 | -1) => {
@@ -1512,9 +1591,15 @@ export default function TVHome() {
         return g;
     }, []);
 
-    // Le héros : les 6 dernières recettes (mockData est trié par date de modif WP).
+    // Le héros : les 6 dernières recettes PUBLIÉES. On trie explicitement par
+    // identifiant décroissant — l'ordre de `mockData` suit la date de dernière
+    // MODIFICATION, si bien qu'une vieille recette retouchée remontait en tête.
     const heroRecipes = useMemo(
-        () => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image).slice(0, 6),
+        () => mockRecipes
+            .filter((r) => r.category !== 'restaurant' && r.image)
+            .slice()
+            .sort((a, b) => parseInt(String(b.id), 10) - parseInt(String(a.id), 10))
+            .slice(0, 6),
         []
     );
 
