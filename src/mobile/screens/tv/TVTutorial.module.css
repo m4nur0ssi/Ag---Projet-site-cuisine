@@ -241,3 +241,49 @@
 @media (prefers-reduced-motion: reduce) {
     .barFill, .dot, .next, .glow { transition: none; }
 }
+
+/* ── Visite guidée en PANNEAU (shell desktop TV+) ──────────────────────── */
+/* Même contenu que le calque plein écran, posé dans la colonne de droite :
+   le menu reste visible à gauche, donc plus de `position: fixed`, plus de
+   « Passer », et une hauteur bornée pour que le pied reste sous la main. */
+.embedded {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    min-height: 0;
+    height: min(74vh, 660px);
+    padding: 4px 4px 0;
+    background: none;
+    overflow: hidden;
+}
+
+.embedded .panelHead { padding: 0 4px 14px; padding-right: 150px; }
+.panelTitle {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    transform: skewX(-6deg);
+    transform-origin: left bottom;
+    color: #fff;
+}
+.panelSub {
+    margin: 7px 0 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(235, 235, 245, 0.55);
+}
+
+/* La scène et le texte se partagent la largeur : sur un écran large, la
+   colonne unique du mobile laissait un désert de chaque côté. */
+/* La diapo garde TOUTE la largeur du pager (sinon deux écrans tiennent côte à
+   côte et le suivant déborde) : c'est le rembourrage qui centre le contenu. */
+.embedded .slide {
+    padding: 8px max(8px, calc((100% - 860px) / 2)) 16px;
+}
+.embedded .head { padding: 0 4px 10px; }
+.embedded .foot { padding: 10px 4px 16px; }

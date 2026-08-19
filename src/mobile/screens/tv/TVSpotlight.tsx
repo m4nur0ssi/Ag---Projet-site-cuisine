@@ -47,9 +47,15 @@ interface TVSpotlightProps {
     initialMode?: Mode;
     /** Démarre la dictée vocale automatiquement à l'ouverture (raccourci loupe). */
     autoVoice?: boolean;
+    /**
+     * `embedded` : rendu DANS le shell desktop TV+ (panneau, menu à gauche) au
+     * lieu du calque plein écran. Plus de bouton « Terminé », plus de fond
+     * verre, un en-tête titre + sous-titre — le moule des autres panneaux.
+     */
+    embedded?: boolean;
 }
 
-export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice }: TVSpotlightProps) {
+export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, embedded = false }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
@@ -232,10 +238,16 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         setIngInput('');
     };
 
-    const pick = (recipe: Recipe) => { haptic(8); onRecipeSelect(recipe); onClose(); };
+    const pick = (recipe: Recipe) => { haptic(8); onRecipeSelect(recipe); if (!embedded) onClose(); };
 
     // Ouverture : focus + page figée. Fermeture : on réinitialise tout.
     useEffect(() => {
+        // En panneau, l'écran est toujours « ouvert » : on focalise le champ une
+        // fois et on ne touche NI au scroll de la page NI à l'état saisi.
+        if (embedded) {
+            const t = setTimeout(() => inputRef.current?.focus(), 120);
+            return () => clearTimeout(t);
+        }
         if (open) {
             // Raccourci loupe : ouvre direct en mode assistant IA et lance la dictée.
             if (initialMode) setMode(initialMode);
@@ -251,7 +263,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         setAiQuery(''); setAiResults([]); setAiMessage(''); setAiError('');
         try { recognitionRef.current?.stop(); } catch {}
         setIsListening(false);
-    }, [open]);
+    }, [open, embedded]);
 
     // Une ligne de résultat (image + drapeau + titre + méta).
     const ResultItem = ({ recipe, meta, note }: { recipe: Recipe; meta: string; note?: string }) => {
@@ -274,16 +286,16 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
             ? (r.restaurant?.subType ? `restaurant • ${r.restaurant.subType}` : 'restaurant')
             : `${r.category} • ${r.difficulty}`;
 
-    return (
-        <AnimatePresence>
-            {open && (
-                <motion.div
-                    className={styles.spRoot}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.26, ease: [0.32, 0.72, 0, 1] }}
-                >
+    const body = (
+        <>
+                    {/* En panneau : gros titre + sous-titre, comme Favoris. */}
+                    {embedded && (
+                        <div className={styles.spPanelHead}>
+                            <h1 className={styles.spPanelTitle}>Recherche</h1>
+                            <p className={styles.spPanelSub}>Par mot, par ingrédients, ou en décrivant ton envie.</p>
+                        </div>
+                    )}
+
                     {/* Champ + Terminé */}
                     <div className={styles.spHead}>
                         <div className={styles.spField}>
@@ -334,7 +346,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                 </button>
                             )}
                         </div>
-                        <button className={styles.spCancel} onClick={onClose}>{hint || 'Terminé'}</button>
+                        {!embedded && <button className={styles.spCancel} onClick={onClose}>{hint || 'Terminé'}</button>}
                     </div>
 
                     {/* Segmented control : mode */}
@@ -444,6 +456,22 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                             </>
                         )}
                     </div>
+        </>
+    );
+
+    if (embedded) return <div className={styles.spEmbedded}>{body}</div>;
+
+    return (
+        <AnimatePresence>
+            {open && (
+                <motion.div
+                    className={styles.spRoot}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.26, ease: [0.32, 0.72, 0, 1] }}
+                >
+                    {body}
                 </motion.div>
             )}
         </AnimatePresence>

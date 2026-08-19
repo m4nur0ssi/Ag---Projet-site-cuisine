@@ -60,9 +60,11 @@ export default function FavoritesPage({ embedded = false }: { embedded?: boolean
                         <svg viewBox="0 0 8 14" width="13" height="13" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </button>
                 )}
+                {/* Même en-tête partout (encastré ou plein écran) : gros titre,
+                    sous-titre en dessous — le moule commun aux panneaux TV+. */}
                 <div>
-                    {!embedded && <div className={styles.kicker}>Ta sélection</div>}
                     <h1 className={styles.title}>Favoris</h1>
+                    <p className={styles.sub}>Mes préférés</p>
                 </div>
                 {!loading && favoriteRecipes.length > 0 && (
                     <span className={styles.count}>{favoriteRecipes.length}</span>
@@ -80,12 +82,14 @@ export default function FavoritesPage({ embedded = false }: { embedded?: boolean
                             <button key={r.id} className={styles.card} onClick={() => open(r)}>
                                 <div className={styles.poster}>
                                     <img src={r.image} alt="" loading="lazy" />
-                                    <div className={styles.scrim} />
                                     <span className={styles.heart}>
                                         <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /></svg>
                                     </span>
-                                    <span className={styles.cardTitle}>{decodeHtml(r.title)}</span>
                                 </div>
+                                {/* Titre SOUS l'image, en blanc — comme les cartes de
+                                    l'accueil. Incrusté sur la photo, il devenait
+                                    illisible dès que le visuel était clair. */}
+                                <span className={styles.cardTitle}>{decodeHtml(r.title)}</span>
                             </button>
                         ))}
                     </div>

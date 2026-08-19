@@ -3078,3 +3078,56 @@
 @media (min-width: 760px) {
     .edgeHandle { display: none; }
 }
+
+/* ── Recherche en PANNEAU (shell desktop TV+) ──────────────────────────── */
+/* Même écran que le calque plein écran, posé dans la colonne de droite : le
+   menu reste visible à gauche, donc ni fond verre, ni « Terminé », ni scroll
+   interne (c'est la colonne du shell qui défile). */
+.spEmbedded {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 4px 4px 40px;
+}
+
+.spPanelHead { padding: 0 4px 16px; padding-right: 150px; }
+.spPanelTitle {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    transform: skewX(-6deg);
+    transform-origin: left bottom;
+    color: #fff;
+}
+.spPanelSub {
+    margin: 7px 0 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(235, 235, 245, 0.55);
+}
+
+/* Gouttières : le shell fournit déjà les marges, on annule celles du mobile. */
+.spEmbedded .spHead { padding: 0 4px 12px; max-width: 720px; }
+.spEmbedded .spSegment { margin: 2px 4px 12px; max-width: 460px; }
+.spEmbedded .spGroups { padding: 0 4px 4px; }
+.spEmbedded .spChips { padding: 0 4px 8px; }
+
+/* Large : les résultats se rangent en colonnes plutôt qu'en liste étirée. */
+.spEmbedded .spResults {
+    overflow: visible;
+    padding: 4px 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 2px 18px;
+    align-content: start;
+}
+/* Les messages (aucun résultat, aide, réponse de l'assistant) tiennent la
+   largeur entière : sinon ils se perdent dans une seule colonne. */
+.spEmbedded .spHint,
+.spEmbedded .spEmpty,
+.spEmbedded .spAiMsg { grid-column: 1 / -1; }

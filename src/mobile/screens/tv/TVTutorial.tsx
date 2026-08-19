@@ -16,7 +16,8 @@ import styles from './TVTutorial.module.css';
 
 type Art =
     | 'hero' | 'rows' | 'press' | 'card' | 'filter' | 'search'
-    | 'planner' | 'side' | 'compose' | 'jourj' | 'fill' | 'views' | 'dock' | 'cocktail';
+    | 'planner' | 'side' | 'compose' | 'jourj' | 'fill' | 'views' | 'dock' | 'cocktail'
+    | 'cave' | 'ext';
 
 interface Step {
     kicker: string;
@@ -30,8 +31,8 @@ interface Step {
 
 const STEPS: Step[] = [
     { kicker: 'Accueil', title: 'Le grand visuel', art: 'hero', accent: '#FF453A',
-      text: "L'accueil s'ouvre sur les six dernières recettes, en plein écran. Balaye la grande photo pour passer à la suivante ; « Explorer » ouvre la fiche.",
-      hint: 'Balaye la grande photo, puis touche « Explorer ».',
+      text: "L'accueil s'ouvre sur les six dernières recettes, en grand. Balaye la photo (ou les flèches sur ordinateur) pour passer à la suivante ; « Voir la recette » ouvre la fiche.",
+      hint: 'Balaye la grande photo, puis touche « Voir la recette ».',
       tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,69,58,0.55), transparent 70%)' },
     { kicker: 'Accueil', title: 'Les rangées', art: 'rows', accent: '#FF9F0A',
       text: 'Sous le visuel : Top 10, Reprendre la cuisine, Nouveautés, les catégories et une rangée par thème — Pâtes, Express, Cocktails, Airfryer… Chaque rangée se balaye.',
@@ -39,7 +40,7 @@ const STEPS: Step[] = [
       tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,159,10,0.5), transparent 70%)' },
     { kicker: 'Accueil', title: 'L’appui long', art: 'press', accent: '#FFD60A',
       text: 'Garde le doigt une seconde sur une carte : un menu s’ouvre — Favoris, À faire plus tard, Accéder à la catégorie, Partager, Marquer comme visionné, Voir la recette.',
-      hint: 'Appui long sur n’importe quelle carte, sans la relâcher tout de suite.',
+      hint: 'Appui long sur n’importe quelle carte — clic droit sur ordinateur.',
       tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,214,10,0.45), transparent 70%)' },
     { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158',
       text: 'Ingrédients (nombre de personnes ajustable), étapes, minuteur, ta note au dixième, l’accord vin, les substitutions et l’ajout à la liste. Coche un ingrédient : il file dans « Par recette ».',
@@ -77,6 +78,14 @@ const STEPS: Step[] = [
       text: '« La semaine » fusionne tout par rayon (avec les toggles Semaine / Jour J), « Jour par jour » sépare les repas, « Par recette » garde les plats cochés en fiche.',
       hint: 'Coche des articles : les boutons Partager et Magasin apparaissent.',
       tint: 'radial-gradient(60% 100% at 50% 0%, rgba(10,132,255,0.45), transparent 70%)' },
+    { kicker: 'Courses', title: 'L’extension Chrome', art: 'ext', accent: '#8B5CF6',
+      text: 'Sur ordinateur, l’extension « Courses Magiques » pose ta liste par-dessus le site du magasin — Carrefour, Monoprix, Picard, Leclerc Drive — et passe au produit suivant toute seule. Plus besoin de changer d’onglet.',
+      hint: 'Liste de courses : la bulle violette donne le .zip et les cinq étapes d’installation.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(139,92,246,0.5), transparent 70%)' },
+    { kicker: 'Ma cave', title: 'Tes bouteilles', art: 'cave', accent: '#B23A48',
+      text: 'Photographie l’étiquette : le nom, le cépage, l’année, la région et la vraie photo de la bouteille entrent seuls en cave. Rouges, blancs, rosés et liqueurs, la quantité, ta note et l’apogée — « prêt à boire », « encore un peu jeune ».',
+      hint: 'Sur un vin, « Quelle recette ? » sort les plats du site qui vont avec.',
+      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(178,58,72,0.5), transparent 70%)' },
     { kicker: 'Apéritif', title: 'Les cocktails', art: 'cocktail', accent: '#FF6B4A',
       text: 'Deux nouvelles rangées : Cocktails et Cocktails sans alcool. Le tri se fait tout seul en lisant les ingrédients — un Mojito part avec l’alcool, sa version virgin sans.',
       hint: 'Cherche « cocktail » ou ouvre la rangée depuis l’accueil.',
@@ -205,11 +214,45 @@ function Illus({ kind, accent }: { kind: Art; accent: string }) {
             <circle cx="176" cy="106" r="4" stroke="#fff" strokeWidth="2" /><path d="M179 109l3 3" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
             {r(60, 26, 100, 52, 10, `url(#g-${kind})`)}
         </>);
+        case 'ext': return frame(<>
+            {/* Fenêtre du magasin + panneau de la liste posé par-dessus. */}
+            {r(14, 18, 192, 110, 10, 'rgba(255,255,255,0.06)', soft2)}
+            {r(14, 18, 192, 16, 10, soft)}
+            {[24, 34, 44].map((x) => <circle key={x} cx={x} cy={26} r="3" fill={soft2} />)}
+            {r(26, 46, 74, 44, 8, soft)}
+            {r(26, 98, 52, 8, 4, soft)}
+            {r(122, 44, 70, 74, 10, `url(#g-${kind})`)}
+            {[56, 72, 88, 104].map((y) => (
+                <g key={y}>
+                    <path d={`M132 ${y}l4 4 7-8`} stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                    {r(148, y - 4, 34, 6, 3, 'rgba(255,255,255,0.55)')}
+                </g>
+            ))}
+        </>);
+        case 'cave': return frame(<>
+            {/* Étagère de cave : trois bouteilles, celle du milieu mise en avant. */}
+            {r(24, 116, 172, 8, 4, soft2)}
+            {[54, 166].map((x) => (
+                <g key={x}>
+                    <path d={`M${x - 6} 116V70c0-6 2-8 2-14V44h8v12c0 6 2 8 2 14v46z`} fill={soft} />
+                    {r(x - 6, 86, 12, 12, 2, soft2)}
+                </g>
+            ))}
+            <path d="M104 116V64c0-7 3-9 3-16V32h6v16c0 7 3 9 3 16v52z" fill={`url(#g-${kind})`} />
+            {r(104, 78, 12, 16, 2, 'rgba(255,255,255,0.75)')}
+            {/* Verre servi, à droite. */}
+            <path d="M176 24h20l-3 14a7 7 0 0 1-14 0z" fill={c} opacity="0.85" />
+            <path d="M186 38v10M180 48h12" stroke={soft2} strokeWidth="2" strokeLinecap="round" />
+        </>);
         default: return frame(null);
     }
 }
 
-export default function TVTutorial({ onClose }: { onClose: () => void }) {
+/**
+ * `embedded` : rendu DANS le shell desktop TV+ (panneau, menu à gauche) au lieu
+ * du calque plein écran — même moule que Favoris et la Recherche.
+ */
+export default function TVTutorial({ onClose, embedded = false }: { onClose: () => void; embedded?: boolean }) {
     const [i, setI] = useState(0);
     const [mounted, setMounted] = useState(false);
     const pagerRef = useRef<HTMLDivElement>(null);
@@ -217,10 +260,12 @@ export default function TVTutorial({ onClose }: { onClose: () => void }) {
     useEffect(() => { setMounted(true); }, []);
 
     useEffect(() => {
+        // En panneau, la page derrière n'est pas recouverte : on ne fige rien.
+        if (embedded) return;
         const prev = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
         return () => { document.body.style.overflow = prev; };
-    }, []);
+    }, [embedded]);
 
     const onScroll = useCallback(() => {
         const el = pagerRef.current;
@@ -259,15 +304,22 @@ export default function TVTutorial({ onClose }: { onClose: () => void }) {
 
     const step = STEPS[i];
 
-    return createPortal(
-        <div className={styles.root} role="dialog" aria-modal="true" aria-label="Visite guidée">
+    const body = (
+        <>
             <div className={styles.glow} style={{ background: step.tint }} />
+
+            {embedded && (
+                <div className={styles.panelHead}>
+                    <h1 className={styles.panelTitle}>Tutoriel</h1>
+                    <p className={styles.panelSub}>La visite guidée du site, écran par écran.</p>
+                </div>
+            )}
 
             <header className={styles.head}>
                 <div className={styles.bar}>
                     <div className={styles.barFill} style={{ width: `${((i + 1) / STEPS.length) * 100}%` }} />
                 </div>
-                <button className={styles.skip} onClick={onClose}>Passer</button>
+                {!embedded && <button className={styles.skip} onClick={onClose}>Passer</button>}
             </header>
 
             <div className={styles.pager} ref={pagerRef} onScroll={onScroll}>
@@ -297,6 +349,14 @@ export default function TVTutorial({ onClose }: { onClose: () => void }) {
                     {i === STEPS.length - 1 ? 'Terminer' : 'Suivant'}
                 </button>
             </footer>
+        </>
+    );
+
+    if (embedded) return <div className={`${styles.root} ${styles.embedded}`}>{body}</div>;
+
+    return createPortal(
+        <div className={styles.root} role="dialog" aria-modal="true" aria-label="Visite guidée">
+            {body}
         </div>,
         document.body
     );

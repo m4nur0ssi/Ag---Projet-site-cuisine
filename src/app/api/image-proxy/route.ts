@@ -47,11 +47,18 @@ export async function GET(request: NextRequest) {
         // Forcer HTTP pour éviter les erreurs SSL côté serveur Vercel → NAS
         const fetchUrl = imageUrl.replace(/^https:\/\//i, 'http://');
 
+        // Plafond de temps : sans lui, un NAS injoignable laisse la fonction
+        // pendue jusqu'au timeout de la plateforme. En local (NAS hors réseau)
+        // on descend très bas via IMAGE_PROXY_TIMEOUT_MS, sinon les 6 connexions
+        // du navigateur restent bloquées et les chunks Next ne se chargent plus.
+        const timeoutMs = Number(process.env.IMAGE_PROXY_TIMEOUT_MS) || 15000;
+
         const response = await fetch(fetchUrl, {
             // Pas de vérification SSL nécessaire ici car Vercel → IP en HTTP
             headers: {
                 'User-Agent': 'Vercel-Image-Proxy/1.0',
             },
+            signal: AbortSignal.timeout(timeoutMs),
         });
 
         if (!response.ok) {

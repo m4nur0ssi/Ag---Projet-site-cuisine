@@ -11,7 +11,7 @@
  * du desktop de prod) — aucune modification de la prod.
  */
 
-import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -128,7 +128,7 @@ const MOSAIC = [
     'mWide', 'mStd', 'mStd', 'mSmall',
 ] as const;
 
-function Card({ recipe, shape, onMenu, later, onToggleLater, rank }: {
+function Card({ recipe, shape, onMenu, later, onToggleLater, rank, showcase }: {
     recipe: Recipe; shape: CardShape;
     onMenu: (r: Recipe, x: number, y: number) => void;
     /** Recette déjà dans « À faire plus tard » (croix → coche). */
@@ -136,6 +136,12 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank }: {
     onToggleLater?: (r: Recipe) => void;
     /** Rang 1..10 affiché en grand sur le visuel (rangée Top 10). */
     rank?: number;
+    /**
+     * Vitrine (vue catégorie / filtres) : grande carte, titre INCRUSTÉ dans le
+     * visuel, et une fois la vidéo lancée il ne reste QUE la vidéo et le titre —
+     * ni bouton, ni logo, ni barre de progression.
+     */
+    showcase?: boolean;
 }) {
     const vid = tiktokId(recipe);
     // Survol prolongé (1,5 s) → la vidéo se lance dans le visuel. Elle porte SES
@@ -169,7 +175,7 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank }: {
 
     return (
         <div
-            className={`${styles.card} ${styles[shape]} ${rank ? styles.cardRanked : ''}`}
+            className={`${styles.card} ${styles[shape]} ${rank ? styles.cardRanked : ''} ${showcase ? styles.cardShow : ''}`}
             onContextMenu={(e) => { e.preventDefault(); onMenu(recipe, e.clientX, e.clientY); }}
             onMouseEnter={enter}
             onMouseLeave={leave}
@@ -180,15 +186,50 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank }: {
                 {playing && vid && (
                     <iframe
                         className={`${styles.thumbVideo} ${ready ? styles.thumbVideoOn : ''}`}
-                        // Contrôles TikTok gardés : son, barre de progression, avance/recul.
-                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=1&progress_bar=1&play_button=1&volume_control=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        // En vitrine, l'interface du lecteur est coupée : la carte
+                        // devient une image qui s'anime, rien d'autre. Ailleurs, les
+                        // contrôles restent (son, barre, avance/recul).
+                        src={showcase
+                            ? `https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`
+                            : `https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=1&progress_bar=1&play_button=1&volume_control=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                         allow="autoplay; encrypted-media"
                         title={label(recipe)}
                     />
                 )}
+
+                {/* Vitrine : le titre vit DANS la carte et ne bouge plus, même
+                    quand la vidéo prend la place de la photo. */}
+                {showcase && (
+                    <>
+                        <div className={styles.showScrim} aria-hidden />
+                        <div
+                            className={styles.showTitle}
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => openRecipe(recipe)}
+                            onKeyDown={(e) => { if (e.key === 'Enter') openRecipe(recipe); }}
+                        >{label(recipe)}</div>
+                        {/* Le seul bouton de la vitrine disparaît dès que ça tourne. */}
+                        {onToggleLater && !playing && (
+                            <button
+                                className={`${styles.showLater} ${later ? styles.laterBtnOn : ''}`}
+                                onClick={(e) => { e.stopPropagation(); onToggleLater(recipe); }}
+                                aria-label={later ? 'Retirer de « À faire plus tard »' : 'Ajouter à « À faire plus tard »'}
+                                title={later ? 'À faire plus tard : ajouté' : 'À faire plus tard'}
+                            >
+                                {later ? (
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                ) : (
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
+                                )}
+                            </button>
+                        )}
+                    </>
+                )}
             </div>
             {/* Titre + bouton « À faire plus tard » (croix → coche). Le titre ouvre
                 la fiche ; cliquer la vidéo ne fait que la piloter. */}
+            {!showcase && (
             <div className={styles.cardLabelRow}>
                 <div
                     className={styles.cardLabel}
@@ -212,7 +253,8 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank }: {
                     </button>
                 )}
             </div>
-            <div className={styles.cardSub}>{[catLabel(recipe), timeLabel(recipe)].filter(Boolean).join(' · ')}</div>
+            )}
+            {!showcase && <div className={styles.cardSub}>{[catLabel(recipe), timeLabel(recipe)].filter(Boolean).join(' · ')}</div>}
         </div>
     );
 }
@@ -394,7 +436,17 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                     transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
                 >
                     <div className={styles.heroKicker}>Nº {index + 1} des dernières recettes</div>
-                    <h1 className={styles.heroTitle}>{label(current)}</h1>
+                    {/* Mot par mot : l'inclinaison porte sur chaque mot, sinon le
+                        skew du bloc décale chaque ligne et les premières lettres
+                        ne s'alignent plus. */}
+                    <h1 className={styles.heroTitle}>
+                        {label(current).split(/\s+/).filter(Boolean).map((w, n, all) => (
+                            <Fragment key={`${w}-${n}`}>
+                                <span className={styles.heroTitleWord}>{w}</span>
+                                {n < all.length - 1 ? ' ' : ''}
+                            </Fragment>
+                        ))}
+                    </h1>
                     <div className={styles.heroMeta}>
                         <span>{catLabel(current)}</span>
                         {timeLabel(current) && (<><i className={styles.dot} />{timeLabel(current)}</>)}
@@ -427,7 +479,6 @@ export default function TVDesktopHome() {
     const router = useRouter();
     const stats = useRatingStats();
     const { user } = useAuth();
-    const [searchOpen, setSearchOpen] = useState(false);
     const [collection, setCollection] = useState<{ title: string; recipes: Recipe[] } | null>(null);
     const [inProgress, setInProgress] = useState<{ recipe: Recipe; pct: number }[]>([]);
     const [laterIds, setLaterIds] = useState<string[]>([]);
@@ -439,8 +490,6 @@ export default function TVDesktopHome() {
     // Tendances / Pays repliés → on ne montre que les filtres cochés tant que fermé.
     const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({ 'Catégories': true });
     // Visite guidée « Apple TV+ » (même composant que le mobile), en modale.
-    const [tuto, setTuto] = useState(false);
-    const [taste, setTaste] = useState(false);
     const [shareCard, setShareCard] = useState<Recipe | null>(null);
     // Raccourcis épinglés dans « Bibliothèque » (glisser-déposer), + survol du drop.
     const [library, setLibrary] = useState<LibraryItem[]>([]);
@@ -449,7 +498,7 @@ export default function TVDesktopHome() {
     // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
-    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris'>('none');
+    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris' | 'search' | 'tuto' | 'gouts'>('none');
 
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
     const [forYou, setForYou] = useState<Recipe[]>([]);
@@ -694,8 +743,9 @@ export default function TVDesktopHome() {
         trophies: () => { setCollection(null); setFilters([]); setPanel('trophies'); },
         cave: () => { setCollection(null); setFilters([]); setPanel('cave'); },
         favoris: () => { setCollection(null); setFilters([]); setPanel('favoris'); },
-        tutoriel: () => setTuto(true),
-        gouts: () => setTaste(true),
+        recherche: () => { setCollection(null); setFilters([]); setPanel('search'); },
+        tutoriel: () => { setCollection(null); setFilters([]); setPanel('tuto'); },
+        gouts: () => { setCollection(null); setFilters([]); setPanel('gouts'); },
     };
 
     const openToken = (token: string, label: string) => {
@@ -813,7 +863,12 @@ export default function TVDesktopHome() {
                     </button>
                 </div>
 
-                <button className={styles.searchBtn} onClick={() => setSearchOpen(true)}>
+                {/* La recherche est un PANNEAU du shell (menu à gauche, résultats à
+                    droite), plus un calque qui recouvre tout. */}
+                <button
+                    className={`${styles.searchBtn} ${panel === 'search' ? styles.searchBtnOn : ''}`}
+                    onClick={SHORTCUTS.recherche}
+                >
                     <Ic d={ICONS.search} /><span>Rechercher</span>
                 </button>
 
@@ -826,8 +881,8 @@ export default function TVDesktopHome() {
                     <NavItem icon="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" token="s:cave" active={panel === 'cave'} onClick={SHORTCUTS.cave}>Ma cave</NavItem>
                     {/* Visite guidée : le bouton porte son propre libellé, on ne
                         fournit que l'icône et la ligne de menu. */}
-                    <NavItem icon={ICONS.book} token="s:tutoriel" onClick={SHORTCUTS.tutoriel}>Tutoriel</NavItem>
-                    <NavItem icon="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" token="s:gouts" onClick={SHORTCUTS.gouts}>Affine mes goûts</NavItem>
+                    <NavItem icon={ICONS.book} token="s:tutoriel" active={panel === 'tuto'} onClick={SHORTCUTS.tutoriel}>Tutoriel</NavItem>
+                    <NavItem icon="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" token="s:gouts" active={panel === 'gouts'} onClick={SHORTCUTS.gouts}>Affine mes goûts</NavItem>
                 </nav>
 
                 {/* Bibliothèque : zone de dépôt. On y glisse une catégorie / tendance /
@@ -869,7 +924,7 @@ export default function TVDesktopHome() {
             <main className={styles.content}>
                 {panel !== 'none' ? (
                     <div className={styles.panelHost}>
-                        {!user && panel !== 'trophies' && panel !== 'cave' ? (
+                        {!user && panel !== 'trophies' && panel !== 'cave' && panel !== 'search' && panel !== 'tuto' && panel !== 'gouts' ? (
                             <TVAuthGate
                                 subtitle={panel === 'planner'
                                     ? 'Le planificateur de la semaine est réservé aux membres connectés.'
@@ -881,7 +936,17 @@ export default function TVDesktopHome() {
                             : panel === 'trophies' ? <TVTrophies embedded />
                                 : panel === 'cave' ? <MaCave embedded />
                                 : panel === 'favoris' ? <Favoris embedded />
-                                    : <TVCourses embedded />}
+                                    : panel === 'tuto' ? <TVTutorial embedded onClose={() => setPanel('none')} />
+                                    : panel === 'gouts' ? <TasteOnboarding embedded onClose={() => setPanel('none')} />
+                                    : panel === 'search' ? (
+                                        <TVSpotlight
+                                            embedded
+                                            open
+                                            onClose={() => setPanel('none')}
+                                            onRecipeSelect={(r) => openRecipe(r)}
+                                        />
+                                    )
+                                        : <TVCourses embedded />}
                     </div>
                 ) : filters.length > 0 ? (
                     <div className={styles.collection}>
@@ -907,7 +972,7 @@ export default function TVDesktopHome() {
                             <div className={styles.mosaic}>
                                 {filtered.map((r, i) => (
                                     <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
-                                        <Card recipe={r} shape="wide" onMenu={onMenu} later={isLater(String(r.id))} onToggleLater={handleToggleLater} />
+                                        <Card recipe={r} shape="wide" showcase onMenu={onMenu} later={isLater(String(r.id))} onToggleLater={handleToggleLater} />
                                     </div>
                                 ))}
                             </div>
@@ -931,7 +996,7 @@ export default function TVDesktopHome() {
                         <div className={styles.mosaic}>
                             {collection.recipes.map((r, i) => (
                                 <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
-                                    <Card recipe={r} shape="wide" onMenu={onMenu} />
+                                    <Card recipe={r} shape="wide" showcase onMenu={onMenu} />
                                 </div>
                             ))}
                         </div>
@@ -1023,8 +1088,6 @@ export default function TVDesktopHome() {
                 )}
             </AnimatePresence>
 
-            <TVSpotlight open={searchOpen} onClose={() => setSearchOpen(false)} onRecipeSelect={(r) => openRecipe(r)} />
-
             {/* Message central « Ajouté » / « Supprimé », façon Apple TV+ (1,5 s). */}
             <AnimatePresence>
                 {toast && (toast.corner ? (
@@ -1052,8 +1115,6 @@ export default function TVDesktopHome() {
                 ))}
             </AnimatePresence>
 
-            {tuto && <TVTutorial onClose={() => setTuto(false)} />}
-            {taste && <TasteOnboarding onClose={() => setTaste(false)} />}
             {shareCard && <RecipeShareCard recipe={shareCard} onClose={() => setShareCard(null)} />}
         </div>
     );

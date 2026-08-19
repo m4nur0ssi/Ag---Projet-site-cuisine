@@ -14,9 +14,21 @@ import styles from './TasteOnboarding.module.css';
 export const TASTE_KEY = 'taste-liked-v1';
 export const TASTE_DONE_KEY = 'taste-onboarded';
 
-export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
+/** Durée du verdict (doit coller à l'animation CSS `.verdict`). */
+const VERDICT_MS = 420;
+
+/**
+ * `embedded` : rendu DANS le shell desktop TV+ (panneau, menu à gauche) plutôt
+ * qu'en calque plein écran — même moule que Favoris, Recherche et Tutoriel.
+ */
+export default function TasteOnboarding({ onClose, embedded = false }: { onClose: () => void; embedded?: boolean }) {
     const [mounted, setMounted] = useState(false);
-    useEffect(() => { setMounted(true); document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = ''; }; }, []);
+    useEffect(() => {
+        setMounted(true);
+        if (embedded) return;              // en panneau, la page derrière reste vivante
+        document.body.style.overflow = 'hidden';
+        return () => { document.body.style.overflow = ''; };
+    }, [embedded]);
 
     const deck = useMemo(() => {
         const pool = mockRecipes.filter((r: any) => r.category !== 'restaurant' && r.image && (r.steps?.length || 0) > 1);
@@ -27,6 +39,10 @@ export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
     const [liked, setLiked] = useState<string[]>([]);
     const [drag, setDrag] = useState(0);
     const dragX = useRef<number | null>(null);
+    // Verdict : la carte s'envole et un signe s'imprime par-dessus — cœur rouge
+    // pour un oui, croix grise pour un non. Même geste au clic qu'au glissé.
+    const [verdict, setVerdict] = useState<'like' | 'pass' | null>(null);
+    const deciding = useRef(false);
     const done = i >= deck.length;
 
     const finish = (likedIds: string[]) => {
@@ -40,12 +56,21 @@ export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
     };
 
     const swipe = (love: boolean) => {
-        const next = love ? [...liked, String(deck[i].id)] : liked;
-        setLiked(next);
-        setDrag(0);
-        const ni = i + 1;
-        setI(ni);
-        if (ni >= deck.length) finish(next);
+        if (deciding.current || done) return;
+        deciding.current = true;
+        setVerdict(love ? 'like' : 'pass');
+        // La carte part dans le sens du choix pendant que le signe s'imprime.
+        setDrag(love ? 900 : -900);
+        window.setTimeout(() => {
+            const next = love ? [...liked, String(deck[i].id)] : liked;
+            setLiked(next);
+            setDrag(0);
+            setVerdict(null);
+            const ni = i + 1;
+            setI(ni);
+            if (ni >= deck.length) finish(next);
+            deciding.current = false;
+        }, VERDICT_MS);
     };
 
     // Glisser la carte : droite = j'aime, gauche = je passe.
@@ -59,11 +84,21 @@ export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
     };
 
     if (!mounted) return null;
-    return createPortal(
-        <div className={styles.root} role="dialog" aria-modal="true">
+
+    const body = (
+        <>
             <header className={styles.head}>
-                <div className={styles.kick}>Affine tes goûts</div>
-                <button className={styles.skip} onClick={onClose}>Passer</button>
+                {embedded ? (
+                    <div>
+                        <h1 className={styles.panelTitle}>Affine mes goûts</h1>
+                        <p className={styles.panelSub}>Un cœur ou une croix sur dix recettes, et la rangée « Pour toi » se règle sur toi.</p>
+                    </div>
+                ) : (
+                    <>
+                        <div className={styles.kick}>Affine tes goûts</div>
+                        <button className={styles.skip} onClick={onClose}>Passer</button>
+                    </>
+                )}
             </header>
 
             {!done ? (
@@ -73,7 +108,12 @@ export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
                             const depth = arr.length - 1 - k;
                             const front = depth === 0;
                             const style = front
-                                ? { transform: `translateX(${drag}px) rotate(${drag / 22}deg)`, zIndex: k, opacity: 1, transition: dragX.current != null ? 'none' : undefined }
+                                ? {
+                                    transform: `translateX(${drag}px) rotate(${drag / 22}deg)`,
+                                    zIndex: k,
+                                    opacity: verdict ? 0 : 1,
+                                    transition: dragX.current != null ? 'none' : undefined,
+                                }
                                 : { transform: `translateY(${depth * 12}px) scale(${1 - depth * 0.05})`, zIndex: k, opacity: 0.55 };
                             return (
                                 <div key={r.id} className={styles.card}
@@ -94,6 +134,26 @@ export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
                                 </div>
                             );
                         })}
+
+                        {/* Le verdict : lavis coloré + signe, 420 ms, puis plus rien.
+                            Rouge et cœur pour un oui, gris et croix pour un non —
+                            strictement symétriques, sans rebond ni fanfare. */}
+                        {verdict && (
+                            <div
+                                className={`${styles.verdict} ${verdict === 'like' ? styles.verdictLike : styles.verdictPass}`}
+                                aria-hidden
+                            >
+                                {verdict === 'like' ? (
+                                    <svg className={styles.verdictMark} viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" />
+                                    </svg>
+                                ) : (
+                                    <svg className={styles.verdictMark} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+                                        <path d="M6 6l12 12M18 6L6 18" />
+                                    </svg>
+                                )}
+                            </div>
+                        )}
                     </div>
                     <div className={styles.ctrls}>
                         <button className={styles.no} onClick={() => swipe(false)} aria-label="Passer">
@@ -114,7 +174,13 @@ export default function TasteOnboarding({ onClose }: { onClose: () => void }) {
             )}
 
             <div className={styles.bg} aria-hidden />
-        </div>,
+        </>
+    );
+
+    if (embedded) return <div className={`${styles.root} ${styles.embedded}`}>{body}</div>;
+
+    return createPortal(
+        <div className={styles.root} role="dialog" aria-modal="true">{body}</div>,
         document.body
     );
 }
