@@ -168,6 +168,16 @@ function moveTo(dir, file) {
     try { fs.renameSync(file, path.join(dir, path.basename(file))); } catch { /* ignore */ }
 }
 
+/**
+ * Fichiers partis dans « erreurs », avec la raison.
+ *
+ * Sans cette liste, le script se terminait en SUCCÈS même quand des photos
+ * échouaient : le lanceur refermait la fenêtre au bout de deux secondes et le
+ * message d'erreur disparaissait avec elle. On ne pouvait plus savoir si le
+ * titre ne correspondait pas ou si l'envoi avait cassé.
+ */
+const echecs = [];
+
 async function processFile(file, index, recipes) {
     const ext = path.extname(file).toLowerCase();
     const mime = EXT_TYPE[ext];
@@ -176,6 +186,7 @@ async function processFile(file, index, recipes) {
     const recipe = findRecipe(index, recipes, base);
     if (!recipe) {
         console.log(`❓ "${base}" → aucune recette correspondante. (ignoré)`);
+        echecs.push({ fichier: base, raison: 'aucune recette ne porte ce titre' });
         moveTo(path.join(FOLDER, 'erreurs'), file);
         return false;
     }
@@ -213,6 +224,7 @@ async function processFile(file, index, recipes) {
         return !sameUrl; // true → un sync est nécessaire pour propager la nouvelle URL
     } catch (e) {
         console.error(`   ❌ ${e.message}`);
+        echecs.push({ fichier: base, raison: `envoi WordPress : ${e.message}` });
         moveTo(path.join(FOLDER, 'erreurs'), file);
         return false;
     }
@@ -256,6 +268,15 @@ function runSync() {
     const newCount = await scanOnce(index, recipes);
     // Au moins un upload a créé une nouvelle URL → on synchronise pour propager au site.
     if (newCount > 0) runSync();
+
+    // Bilan des échecs, et surtout : code de sortie non nul, pour que le
+    // lanceur LAISSE LA FENÊTRE OUVERTE et qu'on puisse lire la raison.
+    if (echecs.length) {
+        console.log(`\n⚠️  ${echecs.length} photo(s) rangée(s) dans « erreurs » :`);
+        echecs.forEach((e) => console.log(`   • ${e.fichier}\n     → ${e.raison}`));
+        console.log('\nCorrige, remonte le fichier dans le dossier « wordpress », puis relance.');
+        if (!WATCH) process.exitCode = 1;
+    }
     if (WATCH) {
         console.log('\n👀 Surveillance active — dépose une image pour l’uploader (Ctrl+C pour arrêter).');
         let busy = false;
