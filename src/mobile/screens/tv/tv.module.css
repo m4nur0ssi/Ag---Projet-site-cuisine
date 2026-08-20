@@ -45,6 +45,10 @@
         padding: 0 12px calc(150px + env(safe-area-inset-bottom, 0px));
     }
     .planDayTitle { grid-column: 1 / -1; }
+    /* « Jour J » gère lui-même sa grille : son en-tête et son conteneur prennent
+       toute la largeur, sinon ils se retrouvaient enfermés dans une demi-colonne
+       de 483 px — et la grille intérieure n'avait plus qu'une colonne. */
+    .jourjHead, .jourjGrid, .planTimelineBtn { grid-column: 1 / -1; }
     /* La liste « Mes recettes » occupe toute la largeur, en deux colonnes de cartes. */
     .cartList {
         grid-column: 1 / -1;
@@ -3537,4 +3541,49 @@
         transform: none;
         transition: none;
     }
+}
+
+/* ── « Jour J » : le menu d'un repas ─────────────────────────────────────
+   Six plats empilés sur toute la largeur, c'était une liste, pas un menu — et
+   sur grand écran chaque photo était étirée bien au-delà de sa définition (une
+   source de 640 px affichée sur 483, soit 966 px réels en Retina : flou
+   garanti). En grille, la carte redescend sous la taille de la source. */
+.jourjHead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+.jourjHead .planDayTitle { margin: 2px 0; }
+.jourjCount {
+    flex: 0 0 auto;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(235, 235, 245, 0.45);
+}
+.jourjGrid { display: block; }
+
+@media (min-width: 900px) {
+    .jourjGrid {
+        display: grid;
+        /* Trois colonnes à 1440, deux en fenêtre étroite : la carte reste sous
+           320 px, donc sous la définition des photos du site. */
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px 18px;
+        align-items: start;
+    }
+    .jourjGrid .planSlot { margin-bottom: 0; }
+    /* Format affiche plutôt que bandeau : le plat se lit, la photo respire. */
+    .jourjGrid .planCard,
+    .jourjGrid .planEmpty { aspect-ratio: 4 / 3; }
+    .jourjGrid .planCardTitle { font-size: 16px; line-height: 1.2; }
+    .jourjGrid .planCardMeta { font-size: 12px; }
+    /* Les commandes n'encombrent la carte que lorsqu'on la vise. */
+    .jourjGrid .planSlotActions { opacity: 0; transition: opacity 0.2s ease; }
+    .jourjGrid .planSlot:hover .planSlotActions,
+    .jourjGrid .planSlot:focus-within .planSlotActions { opacity: 1; }
 }

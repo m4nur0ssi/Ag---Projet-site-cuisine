@@ -671,16 +671,26 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 </>
             ) : (
                 <section className={styles.planSlide}>
-                    <h2 className={styles.planDayTitle}>Le menu</h2>
-                    {COURSES.map((c) => (
-                        <SlotView
-                            key={c.label}
-                            day={JOUR_J}
-                            meal={c.label}
-                            accepts={c.accepts}
-                            sideable={c.label === 'Plat'}
-                        />
-                    ))}
+                    <div className={styles.jourjHead}>
+                        <h2 className={styles.planDayTitle}>Le menu</h2>
+                        <span className={styles.jourjCount}>
+                            {planned} plat{planned > 1 ? 's' : ''} sur {COURSES.length}
+                        </span>
+                    </div>
+                    {/* En grille sur grand écran : six cartes pleine largeur
+                        étiraient des photos de 640 px sur 483 — soit le double en
+                        pixels réels sur un écran Retina, d'où le flou. */}
+                    <div className={styles.jourjGrid}>
+                        {COURSES.map((c) => (
+                            <SlotView
+                                key={c.label}
+                                day={JOUR_J}
+                                meal={c.label}
+                                accepts={c.accepts}
+                                sideable={c.label === 'Plat'}
+                            />
+                        ))}
+                    </div>
                     {timelineItems.length > 0 && (
                         <button className={styles.planTimelineBtn} onClick={() => { haptic(8); setShowTimeline(true); }}>
                             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
