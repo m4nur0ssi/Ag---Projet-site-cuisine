@@ -3605,8 +3605,15 @@
    moitié de l'écran vide et des cartes deux fois trop petites. */
 @media (min-width: 900px) {
     /* Un créneau par ligne : c'est ce qui rend les cartes deux fois plus
-       grandes sans rien déborder. */
-    .planSlide { grid-template-columns: 1fr; }
+       grandes sans rien déborder.
+       Le rembourrage bas est REPRIS ici : la règle de base (190 px, pour la
+       barre du bas mobile) est écrite plus loin dans le fichier et l'emportait
+       à spécificité égale. C'est elle qui creusait 190 px de vide entre la
+       dernière carte et les boutons. */
+    .planSlide {
+        grid-template-columns: 1fr;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    }
 
     .planPair { display: block; }
     .planPairSplit {
@@ -3615,16 +3622,18 @@
         gap: 16px;
         align-items: stretch;
     }
+    /* La hauteur suit celle de la FENÊTRE : les deux repas du jour ET les trois
+       boutons doivent tenir sans défiler. À format fixe, deux cartes de 304 px
+       dépassaient déjà de 299 px sur un écran de 900 ; un créneau VIDE, lui,
+       gardait son format 16/9 sur toute la largeur — soit plus de 1 000 px de
+       haut sur un grand écran, qui repoussaient les boutons hors de vue. */
     .planPairSplit .planCard,
-    .planPairSplit .planSide {
+    .planPairSplit .planSide,
+    .planSlide > .planSlot .planEmpty {
         width: 100%;
         margin-top: 0;
-        /* La hauteur suit celle de la FENÊTRE : les deux repas du jour et les
-           trois boutons doivent tenir sans défiler. À format fixe (16/10), deux
-           cartes de 304 px dépassaient de 299 px sur un écran de 900. Sur un
-           écran haut, les cartes reprennent leur ampleur. */
         aspect-ratio: auto;
-        height: clamp(150px, calc((100vh - 592px) / 2), 420px);
+        height: clamp(140px, calc((100vh - 620px) / 2), 380px);
     }
     .planPairSplit .planSide {
         position: relative;
