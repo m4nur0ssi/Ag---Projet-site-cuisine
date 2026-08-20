@@ -39,6 +39,7 @@ import { readCart, removeCartRecipe, CART_EVENT, type CartRecipe } from './recip
 import { timingFromSteps, passiveLabelFor, COURSE_OFFSET, type TimelineInput } from '@/lib/cooking-timeline';
 import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
+import TVToast from './TVToast';
 
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 const CookingTimeline = dynamic(() => import('@/mobile/components/CookingTimeline/CookingTimeline'), { ssr: false });
@@ -157,13 +158,30 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
 
     const clearAll = () => {
         const isJourJ = mode === 'jourj';
-        if (!window.confirm(isJourJ ? 'Effacer le menu Jour J ?' : 'Effacer tous les repas de la semaine ?')) return;
+        // Plus de fenêtre système : elle cassait net l'écran TV+. On efface, et
+        // on DIT ce qui vient de disparaître — c'est le message qui rassure,
+        // pas la question posée avant.
         haptic(12);
         const next: Plan = { ...plan };
+        const retires = isJourJ
+            ? Object.keys(plan[JOUR_J] || {}).length
+            : DAYS.reduce((n, d) => n + Object.keys(plan[d] || {}).length, 0);
         if (isJourJ) delete next[JOUR_J];
         else DAYS.forEach((d) => delete next[d]);
+        // Filet : le plan d'avant est gardé le temps du message. Effacer quatorze
+        // repas sans recours ne vaut pas mieux que la fenêtre qu'on a retirée.
+        const avant: Plan = JSON.parse(JSON.stringify(plan));
         save(next);
         setRecap(null);
+        window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+            detail: {
+                text: isJourJ
+                    ? `Menu du Jour J effacé · ${retires} plat${retires > 1 ? 's' : ''} retiré${retires > 1 ? 's' : ''}`
+                    : `Semaine effacée · ${retires} repas retiré${retires > 1 ? 's' : ''}`,
+                undoLabel: 'Annuler',
+                onUndo: () => { save(avant); haptic(8); },
+            },
+        }));
     };
 
     // ── Jour courant : lu sur le défilement natif du pager ────────────────
@@ -281,6 +299,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
 
     const norm = (t: string) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const FAM_LABEL: Record<FilterGroup, string> = { tendances: 'Tendances', pays: 'Pays', categorie: 'Catégories' };
+    /** Les libellés partagés portent un emoji de tête ; le compositeur n'en veut pas. */
+    const plain = (label: string) => label.replace(/^[^\p{L}]+/u, '').trim();
 
     /** Une recette passe si CHAQUE famille cochée trouve au moins un de ses tags. */
     const selFits = useCallback((r: Recipe, s: Sel) => {
@@ -307,7 +327,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const famItems = useMemo(() => {
         const all = FILTER_GROUPS[fam];
         const q = norm(famQuery.trim());
-        return q ? all.filter((i) => norm(i.label).includes(q)) : all;
+        return q ? all.filter((i) => norm(i.label).includes(q)) : all;   // l'emoji ne gêne pas : norm() le laisse hors des lettres
     }, [fam, famQuery]);
 
     const toggleSel = (tag: string) => {
@@ -440,7 +460,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             ? Object.keys(next[JOUR_J] || {}).length
             : Object.values(next).reduce((n, day) => n + Object.keys(day || {}).length, 0);
         const labelOf = (g: FilterGroup, t: string) =>
-            FILTER_GROUPS[g].find((i) => i.tag === t)?.label.replace(/^[^\p{L}]+/u, '') || t;
+            plain(FILTER_GROUPS[g].find((i) => i.tag === t)?.label || t) || t;
         const what = tagged
             ? ([...sub.categorie.map((t) => labelOf('categorie', t)),
                 ...sub.pays.map((t) => labelOf('pays', t)),
@@ -761,7 +781,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         className={`${styles.composeChip} ${sel[fam].includes(it.tag) ? styles.composeChipOn : ''}`}
                                         onClick={() => toggleSel(it.tag)}
                                     >
-                                        {it.label}
+                                        {plain(it.label)}
                                     </button>
                                 ))}
                                 {!famAll && famItems.length > 12 && (
@@ -784,7 +804,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                                     className={styles.selPill}
                                                     onClick={() => { haptic(5); setSel((p) => ({ ...p, [g]: p[g].filter((x) => x !== t) })); }}
                                                 >
-                                                    {FILTER_GROUPS[g].find((i) => i.tag === t)?.label || t} ✕
+                                                    {plain(FILTER_GROUPS[g].find((i) => i.tag === t)?.label || t)} ✕
                                                 </button>
                                             )))}
                                         <button className={styles.selClear} onClick={() => { haptic(6); setSel(EMPTY_SEL); }}>Tout effacer</button>
@@ -863,6 +883,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 <RecipeSheet recipe={detail} isOpen={true} onClose={() => setDetail(null)} />
             )}
             <Tip id="planner" />
+            <TVToast />
         </div>
     );
 }

@@ -3403,15 +3403,22 @@
    lit plus comme un bouton. Sur grand écran elles se rangent à droite, à une
    largeur d'objet. */
 @media (min-width: 1024px) {
-    /* La barre « Partager / Magasin » de la liste de courses souffre du même
-       mal : fixée d'un bord à l'autre de la fenêtre, elle passait par-dessus la
-       barre latérale et étalait deux boutons sur toute la largeur. */
+    /* La barre « Partager / Magasin » de la liste de courses : fixée d'un bord à
+       l'autre, elle passait par-dessus la barre latérale ; tassée dans le coin,
+       elle se lisait comme un badge oublié. Elle se pose CENTRÉE sur la colonne
+       de contenu (la barre latérale fait 280 px), à distance du bord bas. */
     .courseShop {
-        left: auto;
-        right: 34px;
+        /* `--tvd-side` vient du shell desktop (264 px, 220 px en fenêtre étroite,
+           0 quand la barre est repliée). Hors shell, le repli à 0 centre sur la
+           fenêtre. Une valeur écrite en dur se serait décalée à chaque cas. */
+        left: calc(var(--tvd-side, 0px) + (100vw - var(--tvd-side, 0px)) / 2);
+        right: auto;
         width: auto;
-        min-width: 220px;
-        bottom: 28px;
+        min-width: 200px;
+        transform: translateX(-50%);
+        bottom: 40px;
+        padding: 12px 16px;
+        border-radius: 999px;
     }
     .planRecap {
         left: auto;
@@ -3428,3 +3435,63 @@
         padding-right: 0;
     }
 }
+
+/* ── Message fugitif des écrans TV+ (voir TVToast.tsx) ───────────────────
+   Au-dessus de la barre du bas, centré, sans bouton : on informe, on ne
+   demande rien. */
+.tvToast {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    left: 50%;
+    bottom: calc(112px + env(safe-area-inset-bottom, 0px));
+    z-index: 23000;
+    transform: translateX(-50%);
+    max-width: min(92vw, 460px);
+    padding: 13px 20px;
+    border-radius: 999px;
+    background: rgba(34, 34, 36, 0.94);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    backdrop-filter: blur(40px) saturate(180%);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5), inset 0 0 0 0.5px rgba(255, 255, 255, 0.16);
+    animation: tvToastIn 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.tvToastText {
+    flex: 1 1 auto;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #fff;
+    text-align: center;
+}
+/* Le filet : « Annuler », tant que la capsule est là. */
+.tvToastUndo {
+    flex: 0 0 auto;
+    padding: 7px 14px;
+    border: none;
+    border-radius: 999px;
+    background: #fff;
+    color: #111;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13.5px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.tvToastUndo:active { transform: scale(0.94); }
+
+@keyframes tvToastIn {
+    from { opacity: 0; transform: translate(-50%, 14px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+@media (min-width: 1024px) {
+    /* Centré sur la colonne de contenu, pas sur la fenêtre (barre latérale). */
+    .tvToast {
+        left: calc(var(--tvd-side, 0px) + (100vw - var(--tvd-side, 0px)) / 2);
+        bottom: 40px;
+    }
+}
+:global([data-theme='light']) .tvToast { background: rgba(250, 250, 252, 0.96); }
+:global([data-theme='light']) .tvToastText { color: #111; }

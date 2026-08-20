@@ -29,6 +29,7 @@ import { haptic } from './TVHome';
 import { readCart, removeCartRecipe, CART_EVENT, type CartRecipe } from './recipeCart';
 import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
+import TVToast from './TVToast';
 
 const ShopActions = dynamic(() => import('@/mobile/components/ShopActions/ShopActions'), { ssr: false });
 
@@ -211,8 +212,12 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     };
 
     const clearAll = () => {
-        if (!window.confirm('Vider toute la liste de courses ?')) return;
+        // Pas de fenêtre système sur un écran TV+ : on vide, on annonce, et on
+        // garde de quoi revenir en arrière le temps du message.
         haptic(12);
+        const vides = items.length;
+        const listeAvant = JSON.parse(localStorage.getItem('magic-shopping-list') || '{}');
+        const cochesAvant = new Set(weekChecked);
         localStorage.removeItem('magic-shopping-list');
         setList({});
         // Les lignes du plan sont marquées « prises » pour ne pas revenir.
@@ -225,6 +230,20 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         setWeekChecked(checked);
         localStorage.setItem('meal-week-checked', JSON.stringify([...checked]));
         window.dispatchEvent(new Event('shoppingListUpdated'));
+        window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+            detail: {
+                text: `Liste vidée · ${vides} article${vides > 1 ? 's' : ''} retiré${vides > 1 ? 's' : ''}`,
+                undoLabel: 'Annuler',
+                onUndo: () => {
+                    localStorage.setItem('magic-shopping-list', JSON.stringify(listeAvant));
+                    setList(listeAvant);
+                    setWeekChecked(cochesAvant);
+                    localStorage.setItem('meal-week-checked', JSON.stringify([...cochesAvant]));
+                    window.dispatchEvent(new Event('shoppingListUpdated'));
+                    haptic(8);
+                },
+            },
+        }));
     };
 
     const restants = items.filter((it) => !isItemDone(it, done)).length;
@@ -513,7 +532,16 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 <div className={styles.cartCardHead}>
                                     {r.image && <img src={r.image} alt="" className={styles.cartThumb} draggable={false} />}
                                     <div className={styles.cartTitle}>{decodeHtml(r.title)}</div>
-                                    <button className={styles.cartRemove} onClick={() => { haptic(8); removeCartRecipe(r.id); }}>Retirer</button>
+                                    <button
+                                        className={styles.cartRemove}
+                                        onClick={() => {
+                                            haptic(8);
+                                            removeCartRecipe(r.id);
+                                            window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+                                                detail: `${decodeHtml(r.title)} retirée de la liste`,
+                                            }));
+                                        }}
+                                    >Retirer</button>
                                 </div>
                                 {r.ingredients.map((ing, i) => {
                                     const k = `${r.id}|${ing}`;
@@ -547,6 +575,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                     <ShopActions
                         items={items}
                         checkedKeys={selectedKeys}
+                        doneKeys={done}
                         title="Ma liste de courses"
                         onShopped={markDone}
                     />
@@ -600,6 +629,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                 )}
             </AnimatePresence>
             <Tip id="courses" />
+            <TVToast />
         </div>
     );
 }

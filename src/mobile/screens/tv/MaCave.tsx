@@ -24,6 +24,7 @@ import {
 import { whenCaveReady } from '@/mobile/lib/caveSync';
 import styles from './MaCave.module.css';
 import Tip from '@/components/Tip/Tip';
+import TVToast from './TVToast';
 
 /**
  * Nom débarrassé du millésime qu'il traîne parfois : il est affiché à part, en
@@ -311,6 +312,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             )}
             {picking && <PickWine wines={wines} onPick={revealWine} onClose={() => setPicking(false)} />}
             <Tip id="cave" />
+            <TVToast />
             {zoom && <ZoomView src={zoom} onClose={() => setZoom(null)} />}
         </div>
     );

@@ -12,6 +12,10 @@
     --accent: #0a84ff;
     --hair: rgba(255, 255, 255, 0.1);
     --ease: cubic-bezier(0.32, 0.72, 0, 1);
+    /* Largeur de la barre latérale, publiée pour les éléments en position fixed
+       qui doivent se centrer sur la COLONNE DE CONTENU et non sur la fenêtre
+       (barre « Partager / Magasin » de la liste de courses). */
+    --tvd-side: 264px;
 
     display: flex;
     height: 100vh;
@@ -53,6 +57,7 @@
 
 /* Repli complet : la barre disparaît, le contenu prend toute la largeur. */
 .shellClosed .sidebar { display: none; }
+.shellClosed { --tvd-side: 0px; }   /* barre repliée : le contenu occupe tout */
 .sidebarOpenBtn {
     position: absolute; top: 22px; left: 20px; z-index: 30;
     display: flex; align-items: center; justify-content: center;
@@ -259,11 +264,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: clamp(18px, 2.6vh, 34px);
-    /* Le héros occupe le premier écran : seule la rangée Top 10 dépasse en bas. */
-    height: 88vh;
-    min-height: 640px;
-    padding: 100px 0 24px;
+    gap: clamp(16px, 2.2vh, 30px);
+    /* Le héros occupe TOUT le premier écran : en arrivant on ne voit que lui,
+       la rangée Top 10 attend le premier défilement. */
+    height: 100vh;
+    min-height: 660px;
+    /* Les affiches descendent sous la signature au lieu de la toucher — la piste
+       débordait même au-dessus du cadre. Le compte est serré : rembourrage +
+       piste + titre doivent tenir dans la hauteur d'écran, sinon le titre
+       remonte par-dessus les affiches. */
+    padding: 96px 0 32px;
     overflow: hidden;
 }
 
@@ -283,21 +293,30 @@
 .heroBackdropVeil {
     position: absolute; inset: 0;
     background:
-        radial-gradient(120% 95% at 50% 34%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.42) 62%, rgba(0,0,0,0.8) 100%),
-        linear-gradient(0deg, var(--bg) 0%, rgba(6,6,9,0.72) 18%, rgba(0,0,0,0) 52%);
+        /* Assombrissement doux et LARGE : le précédent atteignait 0,8 de noir dès
+           le bord, ce qui se lisait comme deux barres, l'une au-dessus des
+           affiches, l'autre au-dessous. */
+        radial-gradient(150% 130% at 50% 42%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 58%, rgba(0,0,0,0.5) 100%),
+        /* Fondu vers le fond de page, mais bas et progressif : il commence sous
+           les affiches, pas au milieu du cadre. */
+        linear-gradient(0deg, var(--bg) 0%, rgba(6,6,9,0.55) 10%, rgba(0,0,0,0) 34%);
 }
 
 /* Halo : la photo à nouveau, énorme et noyée de flou, derrière la galerie —
    c'est elle qui donne sa couleur au cadre. */
 .heroHalo {
     position: absolute; z-index: 0;
-    left: 50%; top: 42%;
-    width: 62%; height: 76%;
+    left: 50%; top: 46%;
+    /* L'ellipse dépasse LARGEMENT du cadre : à 62 % × 76 %, ses bords tombaient
+       juste au-dessus et au-dessous des affiches et se lisaient comme deux
+       barres sombres encadrant la galerie. Débordante, sa transition sort de
+       l'écran et les affiches baignent dans une lumière continue. */
+    width: 128%; height: 132%;
     transform: translate(-50%, -50%);
     object-fit: cover;
     border-radius: 50%;
-    filter: blur(120px) saturate(220%) brightness(1);
-    opacity: 0.5;
+    filter: blur(150px) saturate(210%) brightness(1);
+    opacity: 0.42;
     pointer-events: none;
 }
 
@@ -319,7 +338,7 @@
     gap: 20px;
     /* La bande est répétée trois fois : il y a toujours de quoi remplir les deux
        côtés, plus besoin de rembourrer les extrémités. */
-    padding: 30px 0;
+    padding: 14px 0;
     overflow-x: auto; overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -330,7 +349,7 @@
 .heroPoster {
     position: relative;
     flex: 0 0 auto;
-    width: 200px;
+    width: 170px;
     aspect-ratio: 9 / 13;
     padding: 0; border: none;
     border-radius: 18px;
@@ -349,7 +368,7 @@
 
 /* Affiche active : deux fois plus large, nette, éclairée. */
 .heroPosterOn {
-    width: 360px;
+    width: 300px;
     opacity: 1;
     filter: none;
     box-shadow: 0 40px 110px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.2);
@@ -406,18 +425,18 @@
 .heroTopBar { position: absolute; top: 30px; left: 64px; z-index: 4; }
 .heroBrandKicker {
     font-family: 'Outfit', sans-serif;
-    font-size: 10px; font-weight: 700; letter-spacing: 0.42em; text-indent: 0.42em;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.42em; text-indent: 0.42em;
     text-transform: uppercase; color: rgba(255,255,255,0.66);
 }
 .heroBrandRow { display: flex; align-items: baseline; gap: 14px; margin-top: 3px; }
 .heroBrandWord {
     font-family: 'Outfit', sans-serif;
-    font-size: 30px; font-weight: 900; line-height: 1; letter-spacing: -0.025em;
+    font-size: 42px; font-weight: 900; line-height: 1; letter-spacing: -0.025em;
     text-transform: uppercase; transform: skewX(-7deg); transform-origin: left center;
     color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.55);
 }
 .heroBrandCount {
-    font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
+    font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 600;
     color: rgba(255,255,255,0.7);
 }
 
@@ -821,6 +840,7 @@
 
 @media (max-width: 1000px) {
     .sidebar { flex-basis: 220px; }
+    .shell { --tvd-side: 220px; }
     .rowHead, .rowScroll { padding-left: 34px; padding-right: 34px; }
     .collection { padding-left: 34px; padding-right: 34px; }
 }
