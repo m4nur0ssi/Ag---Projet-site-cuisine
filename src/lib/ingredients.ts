@@ -301,15 +301,46 @@ export const carrefourTerm = (name: string) => {
     return s || name;
 };
 
+/**
+ * Segment qui ne décrit qu'une PRÉPARATION, jamais un produit.
+ *
+ * « 2 magrets de canard, peau incisée et coupés en gros cubes » se coupait en
+ * trois, et « peau incisée » comme « coupés en gros cubes » atterrissaient dans
+ * la liste de courses au rayon « Autres / Ménager ». On n'achète pas une peau
+ * incisée. Un chiffre dans le segment le disqualifie : il porte alors une vraie
+ * quantité (« 400 g de tomates pelées » est un produit).
+ */
+const PREP_ONLY = /^(?:(?:finement|grossierement|tres|bien|prealablement|delicatement|soigneusement|environ|de preference)\s+)*(?:(?:la |le |les |sa |son |ses )?(?:peau|chair|graines?|pepins?|noyaux?|queues?|tiges?|feuilles?|bouts?|extremites?)\s+)?(?:coupee?s?|eminc(?:e|ee|es|ees)|hachee?s?|rapee?s?|pelee?s?|epluchee?s?|incisee?s?|tamisee?s?|fondue?s?|ciselee?s?|egouttee?s?|rincee?s?|denoyautee?s?|equeutee?s?|concassee?s?|effeuillee?s?|blanchie?s?|marinee?s?|reduite?s?|battue?s?|montee?s?|decoupee?s?|decongelee?s?|lavee?s?|essuyee?s?|torrefiee?s?|ramollie?s?|degraissee?s?|denervee?s?|parees?)\b/;
+
+/** « en morceaux », « en rondelles »… : une découpe, pas une course. */
+const CUT_ONLY = /^en\s+(?:gros\s+|petits?\s+|fines?\s+)?(?:morceaux|cubes|des|rondelles|lamelles|tranches|quartiers|batonnets|julienne|brunoise|lanieres|deux|quatre)\b/;
+
+/** Mentions de service ou d'option, jamais des produits à acheter. */
+const NOT_A_PRODUCT = /^(?:facultatif|optionnel|au choix|pour (?:la |le |le )?(?:deco|decoration|service|dressage|garniture)|a temperature ambiante|si besoin|au gout)\b/;
+
+const isPreparationOnly = (segment: string): boolean => {
+    const n = normalizeIng(segment).replace(/^[-•\s]+/, '').trim();
+    if (!n) return true;
+    if (/\d/.test(n)) return false;          // un chiffre = une quantité = un vrai produit
+    return PREP_ONLY.test(n) || CUT_ONLY.test(n) || NOT_A_PRODUCT.test(n);
+};
+
 // Sépare une ligne combinée en plusieurs ingrédients : "sel et poivre" → ["sel","poivre"],
 // "sel, poivre" → idem. Ne coupe PAS les décimales "1,5 l" (virgule requiert un espace après).
+//
+// On ne coupe PAS sur « ou » : c'est un CHOIX, pas une addition. « Brochettes ou
+// branches de romarin frais » donnait deux lignes, dont un « Brochettes » orphelin,
+// et laissait croire qu'il fallait acheter les deux.
 export const splitIngredients = (raw: string): string[] => {
     const parts = (raw || '')
-        .split(/\s+et\s+|\s+ou\s+|\s*&\s*|\s*\+\s*|,\s+/i)
-        .map(p => p.trim())
+        .split(/\s+et\s+|\s*&\s*|\s*\+\s*|,\s+/i)
+        // « Pour la garniture (optionnel) : fleur de sel » est une SECTION suivie
+        // d'un produit : on retire l'en-tête et on garde le sel. Sans ça, la
+        // règle « pour la garniture » emportait l'ingrédient avec elle.
+        .map(p => p.trim().replace(/^pour\s+[^:]{1,45}:\s*/i, '').trim())
         .filter(Boolean);
     // Ne garde que les segments porteurs d'un vrai produit (écarte "tamisée", "pelées"…)
-    const kept = parts.filter(p => productCore(p).length > 1);
+    const kept = parts.filter(p => productCore(p).length > 1 && !isPreparationOnly(p));
     return kept.length ? kept : [raw];
 };
 
