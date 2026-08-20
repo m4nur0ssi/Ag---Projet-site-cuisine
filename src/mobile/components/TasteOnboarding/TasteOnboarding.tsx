@@ -121,7 +121,10 @@ export default function TasteOnboarding({ onClose, embedded = false }: { onClose
                                     opacity: verdict ? 0 : 1,
                                     transition: dragX.current != null ? 'none' : undefined,
                                 }
-                                : { transform: `translateY(${depth * 12}px) scale(${1 - depth * 0.05})`, zIndex: k, opacity: 0.55 };
+                                // Pendant le verdict, la pile s'efface aussi : on ne
+                                // veut voir QUE le cœur ou la croix, pas la photo
+                                // suivante en transparence derrière.
+                                : { transform: `translateY(${depth * 12}px) scale(${1 - depth * 0.05})`, zIndex: k, opacity: verdict ? 0 : 0.55 };
                             return (
                                 <div key={r.id}
                                     className={`${styles.card} ${front && nudge && i === 0 ? styles.cardNudge : ''}`}

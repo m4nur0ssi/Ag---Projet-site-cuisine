@@ -38,18 +38,23 @@
    rouge + cœur pour un oui, lavis gris + croix pour un non. Deux animations
    strictement symétriques, sobres — la carte s'envole derrière, rien ne rebondit
    ni ne clignote. */
+/* Fond plein derrière le signe : la pile s'efface, il ne reste que le cœur ou la
+   croix. Un lavis translucide laissait voir la photo suivante par transparence. */
 .verdict {
     position: absolute; inset: 0; z-index: 6;
     display: flex; align-items: center; justify-content: center;
     border-radius: 24px; pointer-events: none;
     animation: verdictWash 950ms cubic-bezier(.32,.72,0,1) forwards;
 }
+/* Le dégradé est posé SUR une couleur pleine, dans le même raccourci : écrit
+   séparément, `background` remettait le fond à transparent et la carte suivante
+   réapparaissait derrière le signe. */
 .verdictLike {
-    background: radial-gradient(58% 58% at 50% 50%, rgba(255,46,99,.55), rgba(255,46,99,0) 72%);
+    background: radial-gradient(58% 58% at 50% 50%, rgba(255,46,99,.55), rgba(255,46,99,0) 72%) #0d0b12;
     color: #FF2E63;
 }
 .verdictPass {
-    background: radial-gradient(58% 58% at 50% 50%, rgba(152,152,162,.42), rgba(152,152,162,0) 72%);
+    background: radial-gradient(58% 58% at 50% 50%, rgba(152,152,162,.42), rgba(152,152,162,0) 72%) #0d0b12;
     color: rgba(235,235,245,.92);
 }
 /* Le signe occupe plus de la moitié de la carte : à 108 px il se perdait sur la

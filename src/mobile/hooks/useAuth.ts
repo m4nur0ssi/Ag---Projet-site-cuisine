@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { supabase, SupabaseUser } from '@/mobile/lib/supabase';
 import { pullFavorites } from '@/mobile/lib/favorites';
 import { pullShoppingState, startShoppingSync } from '@/mobile/lib/shoppingSync';
+import { pullCave, startCaveSync } from '@/mobile/lib/caveSync';
 
 /**
  * Où l'OAuth doit revenir. En PROD on force le domaine canonique
@@ -31,11 +32,13 @@ export function useAuth() {
             if (session && (event === 'SIGNED_IN' || event === 'INITIAL_SESSION')) {
                 pullFavorites().catch(() => {});
                 pullShoppingState().catch(() => {});
+                pullCave().catch(() => {});
             }
         });
 
         // Sync montante de l'état courses (débouncée). Idempotent.
         startShoppingSync();
+        startCaveSync();
 
         // Fallback: lit aussi la session directement
         supabase.auth.getSession().then(({ data, error }) => {

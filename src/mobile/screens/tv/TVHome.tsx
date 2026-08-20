@@ -1696,7 +1696,16 @@ export default function TVHome() {
                 selected={filters}
                 onToggle={toggleFilter}
                 onClear={() => { setFilters([]); setNavQuery(''); }}
-                onApply={() => { setNavOpen(false); openAll(filterTitle, filterResults); }}
+                onApply={() => {
+                    // La sélection a servi : on ouvre les résultats (la liste est
+                    // déjà figée dans `openAll`) PUIS on vide le menu. Sans ça, on
+                    // rouvrait le volet plus tard sur des cases encore cochées,
+                    // sans rapport avec ce qu'on voulait chercher ce jour-là.
+                    setNavOpen(false);
+                    openAll(filterTitle, filterResults);
+                    setFilters([]);
+                    setNavQuery('');
+                }}
                 onSearch={() => setSearchOpen(true)}
                 onTutorial={() => setTutoOpen(true)}
                 onTaste={() => setTasteOpen(true)}
