@@ -125,6 +125,47 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         return () => { window.removeEventListener(CAVE_EVENT, load); window.removeEventListener('storage', load); };
     }, []);
 
+    /**
+     * Rattrapage des photos collées AVANT que la mise en scène n'existe : elles
+     * sont restées sur fond blanc au milieu des autres. On les reprend une par
+     * une, doucement, et jamais deux fois (le résultat est une data-url, donc
+     * la bouteille sort d'elle-même de la liste à traiter).
+     *
+     * Une par une, et pas toutes d'un coup : chaque photo pèse une quarantaine
+     * de kilo-octets et la cave vit dans le stockage local, qui est étroit. Si
+     * l'écriture échoue — quota atteint — on s'arrête et on le dit, au lieu de
+     * boucler sur une erreur.
+     */
+    useEffect(() => {
+        let vivant = true;
+        const rattraper = async () => {
+            await whenCaveReady();
+            if (!vivant || (typeof navigator !== 'undefined' && navigator.onLine === false)) return;
+            const aFaire = readCave().filter((w) => (w.photo || '').startsWith('http'));
+            if (!aFaire.length) return;
+            // Dix-huit fiches qui changent d'aspect sans un mot, ça inquiète.
+            toast(`Mise en scène de ${aFaire.length} photo${aFaire.length > 1 ? 's' : ''}…`);
+            let faites = 0;
+            for (const w of aFaire) {
+                if (!vivant) return;
+                const scene = await studioFromUrl(w.photo || '');
+                if (!vivant) return;
+                if (!scene) continue;                    // injoignable : on laisse le lien
+                try {
+                    updateWine(w.id, { photo: scene });
+                    faites++;
+                } catch {
+                    toast('Cave pleine côté navigateur — les photos restantes gardent leur fond d’origine.');
+                    return;
+                }
+                await new Promise((r) => setTimeout(r, 600));
+            }
+            if (vivant && faites) toast(`${faites} photo${faites > 1 ? 's' : ''} remise${faites > 1 ? 's' : ''} en scène`);
+        };
+        rattraper();
+        return () => { vivant = false; };
+    }, []);
+
     const shown = useMemo(() => {
         let list = filter === 'tous' ? wines : wines.filter((w) => w.color === filter);
         if (ripe !== 'tous') list = list.filter((w) => drinkWindow(w)?.status === ripe);
@@ -912,10 +953,20 @@ function EditWine({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
         color: wine.color, region: wine.region, note: wine.note || '',
         photo: wine.photo || '', qty: wine.qty ?? 1, myRating: wine.myRating ?? 0,
     });
-    const save = () => {
+    const [busyPhoto, setBusyPhoto] = useState(false);
+    const save = async () => {
         const name = f.name.trim();
         if (!name) return;
-        updateWine(wine.id, { ...f, name, photo: f.photo.trim() || undefined });
+        // Une adresse collée ici passe par la scène de cave, exactement comme au
+        // scan : c'est le geste par lequel arrivent les photos sur fond blanc.
+        const lien = f.photo.trim();
+        let photo = lien || undefined;
+        if (lien && !lien.startsWith('data:') && lien !== wine.photo) {
+            setBusyPhoto(true);
+            photo = (await studioFromUrl(lien)) || lien;
+            setBusyPhoto(false);
+        }
+        updateWine(wine.id, { ...f, name, photo });
         onClose();
     };
     return (
@@ -976,7 +1027,9 @@ function EditWine({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
                         </div>
                     </div>
 
-                    <button className={styles.saveBtn} onClick={save} disabled={!f.name.trim()}>Enregistrer</button>
+                    <button className={styles.saveBtn} onClick={save} disabled={!f.name.trim() || busyPhoto}>
+                        {busyPhoto ? 'Mise en scène de la photo…' : 'Enregistrer'}
+                    </button>
                 </div>
             </div>
         </div>
@@ -1021,6 +1074,151 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
 
 /* ── Ajout d'un vin : scan étiquette → ajout automatique ──────────────────── */
 type Official = { photo?: string; rating?: number; vivinoUrl?: string };
+
+/**
+ * Met une photo « en scène » : fond de cave, la bouteille au centre, le décor
+ * qui s'éteint vers les bords. C'est ce qui donne leur unité aux fiches.
+ */
+type StudioOpts = {
+    /** 'cover' remplit le cadre (photo prise à la volée) ; 'contain' montre la
+     *  bouteille entière (visuel de marchand, déjà cadré serré). */
+    fit?: 'cover' | 'contain';
+    /** Efface le fond blanc des visuels détourés par les marchands. */
+    detourer?: boolean;
+    qualite?: number;
+};
+
+/**
+ * Efface le fond clair d'un visuel détouré.
+ *
+ * On part des BORDS et on progresse de proche en proche tant que les pixels
+ * restent clairs et ternes. Un simple seuil global aurait troué la bouteille
+ * partout où l'étiquette est blanche ; en partant du pourtour, on ne retire que
+ * ce qui touche le bord — le fond, précisément.
+ */
+function effacerFondClair(img: ImageData): void {
+    const { width: w, height: h, data } = img;
+    const clair = (i: number) => {
+        const r = data[i], g = data[i + 1], b = data[i + 2];
+        if (data[i + 3] < 8) return true;                       // déjà transparent
+        const max = Math.max(r, g, b), min = Math.min(r, g, b);
+        return min > 228 && max - min < 26;                     // clair ET terne
+    };
+    const vus = new Uint8Array(w * h);
+    const pile: number[] = [];
+    const pousser = (x: number, y: number) => {
+        if (x < 0 || y < 0 || x >= w || y >= h) return;
+        const p = y * w + x;
+        if (vus[p]) return;
+        vus[p] = 1;
+        if (clair(p * 4)) pile.push(p);
+    };
+    for (let x = 0; x < w; x++) { pousser(x, 0); pousser(x, h - 1); }
+    for (let y = 0; y < h; y++) { pousser(0, y); pousser(w - 1, y); }
+    while (pile.length) {
+        const p = pile.pop() as number;
+        data[p * 4 + 3] = 0;
+        const x = p % w, y = (p / w) | 0;
+        pousser(x + 1, y); pousser(x - 1, y); pousser(x, y + 1); pousser(x, y - 1);
+    }
+}
+
+/**
+ * Met une photo « en scène » : fond de cave, la bouteille au centre, le décor
+ * qui s'éteint vers les bords. C'est ce qui donne leur unité aux fiches.
+ */
+const toStudio = (dataUrl: string, w = 600, h = 800, opts: StudioOpts = {}): Promise<string> => new Promise((res) => {
+    const { fit = 'cover', detourer = false, qualite = 0.85 } = opts;
+    const img = new Image();
+    img.onload = () => {
+        const cv = document.createElement('canvas');
+        cv.width = w; cv.height = h;
+        const ctx = cv.getContext('2d');
+        if (!ctx) return res(dataUrl);
+
+        ctx.fillStyle = '#0b0806';
+        ctx.fillRect(0, 0, w, h);
+
+        // La photo remplit le cadre ('cover') ou y tient tout entière
+        // ('contain', avec une marge : une bouteille collée au bord fait cheap).
+        const marge = fit === 'contain' ? 0.82 : 1;
+        const r = fit === 'cover'
+            ? Math.max(w / img.width, h / img.height)
+            : Math.min((w * marge) / img.width, (h * marge) / img.height);
+        const dw = img.width * r, dh = img.height * r;
+        const dx = (w - dw) / 2, dy = (h - dh) / 2;
+
+        if (detourer) {
+            // Le détourage se fait à part, puis le résultat vient se poser sur le
+            // fond : sinon on effacerait le fond de cave avec le fond blanc.
+            const tmp = document.createElement('canvas');
+            tmp.width = Math.max(1, Math.round(dw)); tmp.height = Math.max(1, Math.round(dh));
+            const tctx = tmp.getContext('2d');
+            if (tctx) {
+                tctx.drawImage(img, 0, 0, tmp.width, tmp.height);
+                try {
+                    const px = tctx.getImageData(0, 0, tmp.width, tmp.height);
+                    effacerFondClair(px);
+                    tctx.putImageData(px, 0, 0);
+                } catch { /* canevas teinté : on garde l'image telle quelle */ }
+                ctx.drawImage(tmp, dx, dy);
+            } else {
+                ctx.drawImage(img, dx, dy, dw, dh);
+            }
+        } else {
+            ctx.drawImage(img, dx, dy, dw, dh);
+        }
+
+        // Fondu vers le noir sur tout le pourtour : le décor s'éteint, le
+        // centre — la bouteille — reste net.
+        const g = ctx.createRadialGradient(w / 2, h * 0.46, Math.min(w, h) * 0.28, w / 2, h * 0.46, Math.max(w, h) * 0.62);
+        g.addColorStop(0, 'rgba(11,8,6,0)');
+        g.addColorStop(0.62, 'rgba(11,8,6,0.55)');
+        g.addColorStop(1, 'rgba(11,8,6,1)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, w, h);
+
+        res(cv.toDataURL('image/jpeg', qualite));
+    };
+    img.onerror = () => res(dataUrl);
+    img.src = dataUrl;
+});
+
+/**
+ * Même mise en scène, à partir d'une ADRESSE collée (photo de marchand, image
+ * trouvée sur le web). Deux obstacles, deux réponses :
+ *
+ *   • le navigateur refuse de lire les pixels d'une image d'un autre domaine —
+ *     le canevas devient « teinté » et `toDataURL` échoue. On rapatrie donc
+ *     l'image par notre propre serveur (/api/wine-photo) ;
+ *   • la cave vit dans le stockage local, qui est étroit. Une photo collée sort
+ *     donc en 460 × 614 (~45 Ko) et non en 600 × 800 (~120 Ko) : à dix-huit
+ *     bouteilles, l'écart décide du dépassement de quota.
+ *
+ * Renvoie '' si l'image est injoignable — l'appelant garde alors le lien brut
+ * plutôt que de perdre la photo.
+ */
+async function studioFromUrl(url: string): Promise<string> {
+    const propre = (url || '').trim();
+    if (!propre || propre.startsWith('data:')) return '';
+    try {
+        // `/api/img` existe déjà pour « Partager en image » : même besoin (lire
+        // les pixels d'une image d'un autre domaine), même garde-fous. Un seul
+        // proxy vaut mieux que deux qui divergeront.
+        const res = await fetch(`/api/img?url=${encodeURIComponent(propre)}`);
+        if (!res.ok) return '';
+        const blob = await res.blob();
+        const dataUrl: string = await new Promise((ok, ko) => {
+            const fr = new FileReader();
+            fr.onload = () => ok(String(fr.result));
+            fr.onerror = ko;
+            fr.readAsDataURL(blob);
+        });
+        return await toStudio(dataUrl, 460, 614, { fit: 'contain', detourer: true, qualite: 0.86 });
+    } catch {
+        return '';
+    }
+}
 
 function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = false }: { onClose: () => void; shelf?: WineShelf; straightToCamera?: boolean }) {
     // Où ranger la bouteille : en cave (on l'a) ou dans « Goûté & approuvé »
@@ -1075,36 +1273,6 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
      * noir que les photos du marchand. On ne s'en sert QUE quand le marchand n'a
      * pas retrouvé la bouteille : sa photo à lui est déjà un détourage studio.
      */
-    const toStudio = (dataUrl: string, w = 600, h = 800): Promise<string> => new Promise((res) => {
-        const img = new Image();
-        img.onload = () => {
-            const cv = document.createElement('canvas');
-            cv.width = w; cv.height = h;
-            const ctx = cv.getContext('2d');
-            if (!ctx) return res(dataUrl);
-
-            ctx.fillStyle = '#0b0806';
-            ctx.fillRect(0, 0, w, h);
-
-            // La photo remplit le cadre, centrée, sans déformation.
-            const r = Math.max(w / img.width, h / img.height);
-            const dw = img.width * r, dh = img.height * r;
-            ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
-
-            // Fondu vers le noir sur tout le pourtour : le décor s'éteint, le
-            // centre — la bouteille — reste net.
-            const g = ctx.createRadialGradient(w / 2, h * 0.46, Math.min(w, h) * 0.28, w / 2, h * 0.46, Math.max(w, h) * 0.62);
-            g.addColorStop(0, 'rgba(11,8,6,0)');
-            g.addColorStop(0.62, 'rgba(11,8,6,0.55)');
-            g.addColorStop(1, 'rgba(11,8,6,1)');
-            ctx.fillStyle = g;
-            ctx.fillRect(0, 0, w, h);
-
-            res(cv.toDataURL('image/jpeg', 0.85));
-        };
-        img.onerror = () => res(dataUrl);
-        img.src = dataUrl;
-    });
 
     /**
      * `read` sert à LIRE l'étiquette (cadrage serré), `keep` à garder la photo
@@ -1134,9 +1302,10 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
                     addWine({
                         name: w.name, grape: w.grape || '', year: w.year || '',
                         color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
-                        // Photo du marchand quand il a retrouvé la bouteille (déjà
-                        // détourée sur fond blanc) ; sinon la nôtre, mise en scène.
-                        photo: w.photo || (await toStudio(keep)), rating: w.rating, vivinoUrl: w.vivinoUrl,
+                        // Photo du marchand quand il a retrouvé la bouteille : elle
+                        // arrive détourée sur fond blanc, on la remet en scène comme
+                        // la nôtre pour que toutes les fiches se ressemblent.
+                        photo: (w.photo ? (await studioFromUrl(w.photo)) || w.photo : '') || (await toStudio(keep)), rating: w.rating, vivinoUrl: w.vivinoUrl,
                         shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
                     });
                     if (known) {
@@ -1193,10 +1362,18 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         // du marchand (déjà détourée) est prise telle quelle.
         const mine = photoSmall ? await toStudio(photoSmall) : '';
         // Priorité : lien collé > photo officielle du marchand > photo scannée.
+        // Les deux premières arrivent détourées sur fond blanc : on les remet en
+        // scène comme les nôtres, sinon la cave mélange deux styles. Si le
+        // téléchargement échoue, on garde le lien brut — une photo blanche vaut
+        // mieux que pas de photo.
+        const colle = photoUrl.trim();
+        const scene = colle ? (await studioFromUrl(colle)) || colle
+            : official.photo ? (await studioFromUrl(official.photo)) || official.photo
+            : '';
         const known = findKnownWine(name);
         addWine({
             ...form, name,
-            photo: photoUrl.trim() || official.photo || mine || undefined,
+            photo: scene || mine || undefined,
             rating: official.rating, vivinoUrl: official.vivinoUrl,
             shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
         });
