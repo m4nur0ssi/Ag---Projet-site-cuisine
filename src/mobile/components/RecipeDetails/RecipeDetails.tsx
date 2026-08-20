@@ -7,7 +7,6 @@ import Image from 'next/image';
 import Header from '@/mobile/components/Header/Header';
 import MagicFilterBar from '@/mobile/components/MagicFilterBar/MagicFilterBar';
 import FavoriteButton from '@/mobile/components/FavoriteButton/FavoriteButton';
-import ShareButton from '@/mobile/components/ShareButton/ShareButton';
 import VoteButton from '@/mobile/components/VoteButton/VoteButtonSheet';
 import VideoSection from '@/mobile/components/VideoSection/VideoSection';
 import CreatorCard from '@/components/CreatorCard/CreatorCard';
@@ -885,11 +884,18 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 {flag && <span className={styles.categoryFlag}>{flag}</span>}
                             </motion.div>
 
-                            <ShareButton 
-                                url={`${typeof window !== 'undefined' ? window.location.origin : ''}/?fiche=${recipe.id}`} 
-                                title={recipe.title} 
+                            {/* Même partage que partout ailleurs : la carte image, qui
+                                porte le lien et le QR code. L'état existait déjà ici,
+                                mais rien ne l'ouvrait — la carte y était inaccessible. */}
+                            <button
                                 className={styles['share-btn-action']}
-                            />
+                                onClick={() => setShowShareCard(true)}
+                                aria-label="Partager la recette"
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 15V3" /><path d="m8 7 4-4 4 4" /><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" />
+                                </svg>
+                            </button>
                         </div>
 
                         <div className={styles.heroMainContent}>

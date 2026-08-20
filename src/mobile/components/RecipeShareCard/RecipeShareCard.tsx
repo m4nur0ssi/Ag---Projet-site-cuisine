@@ -205,7 +205,7 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
         <div className={styles.backdrop} onClick={onClose}>
             <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.head}>
-                    <span>Partager en image</span>
+                    <span>Partager la recette</span>
                     <button className={styles.close} onClick={onClose} aria-label="Fermer">
                         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                     </button>

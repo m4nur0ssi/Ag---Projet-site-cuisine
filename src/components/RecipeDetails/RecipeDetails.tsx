@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Header from '@/components/Header/Header';
 import MagicFilterBar from '@/components/MagicFilterBar/MagicFilterBar';
 import FavoriteButton from '@/components/FavoriteButton/FavoriteButton';
-import ShareButton from '@/components/ShareButton/ShareButton';
 import VoteButton from '@/components/VoteButton/VoteButton';
 import VideoSection from '@/components/VideoSection/VideoSection';
 import CreatorCard from '@/components/CreatorCard/CreatorCard';
@@ -816,11 +815,19 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 {flag && <span className={styles.categoryFlag}>{flag}</span>}
                             </motion.div>
 
-                            <ShareButton 
-                                url={`${typeof window !== 'undefined' ? window.location.origin : ''}/?fiche=${recipe.id}`}
-                                title={recipe.title} 
+                            {/* Un seul partage par surface : la carte image porte le
+                                lien, le titre et le QR code. Le bouton « Image » de
+                                la rangée d'outils faisait double emploi avec lui. */}
+                            <button
                                 className={styles['share-btn-action']}
-                            />
+                                onClick={() => setShowShareCard(true)}
+                                aria-label="Partager la recette"
+                                title="Partager la recette"
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 15V3" /><path d="m8 7 4-4 4 4" /><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" />
+                                </svg>
+                            </button>
                         </div>
 
                         <div className={styles.heroMainContent}>
@@ -1271,10 +1278,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         category={recipe.category}
                                         ingredients={recipe.ingredients}
                                     />
-                                    <button className={styles.shareImgTool} onClick={() => setShowShareCard(true)}>
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" /><circle cx="8.5" cy="9" r="1.6" /><path d="M21 15l-5-5L5 21" /></svg>
-                                        Image
-                                    </button>
                                     <CaveMatch recipe={recipe} />
                                 </div>
                             </div>

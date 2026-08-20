@@ -1893,11 +1893,10 @@ export default function TVHome() {
                                             <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); shareLink(`${origin}/?tag=${encodeURIComponent(cat)}`, catName); }}>
                                                 <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la catégorie</span>
                                             </button>
-                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); shareLink(`${origin}/?fiche=${r.id}`, label(r)); }}>
-                                                <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
-                                            </button>
+                                            {/* Une seule entrée : la carte image porte déjà le lien,
+                                                le titre et le QR code. */}
                                             <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard(rr); }}>
-                                                <MI d="M3 3h18v18H3zM8.5 9a1.6 1.6 0 1 0 0-.01M21 15l-5-5L5 21" /><span>Partager en image</span>
+                                                <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
                                             </button>
                                             <button className={`${styles.menuAction} ${lat ? styles.menuDanger : ''}`} onClick={() => { haptic(12); setMenu(null); handleToggleLater(r); }}>
                                                 {lat ? <MI d="M5 12h14" /> : <MI d="M12 5v14M5 12h14" />}<span>{lat ? 'Retirer de la liste' : 'À faire plus tard'}</span>
