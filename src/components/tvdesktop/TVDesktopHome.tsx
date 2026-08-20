@@ -494,8 +494,6 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
 
                 {/* Les deux bouts de la bande se fondent dans le décor : elle
                     continue hors champ au lieu de s'arrêter net. */}
-                <div className={`${styles.heroGalleryFade} ${styles.heroGalleryFadeL}`} aria-hidden />
-                <div className={`${styles.heroGalleryFade} ${styles.heroGalleryFadeR}`} aria-hidden />
             </div>
 
             {/* Le texte, sous la galerie : il désigne l'affiche active. */}
