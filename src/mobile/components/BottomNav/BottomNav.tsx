@@ -404,16 +404,28 @@ export default function BottomNav() {
                                                 <path d="M12 5v14M5 12h14" />
                                             </svg>
                                         </button>
+                                        {/* Les deux étagères, atteintes directement : le verre
+                                            plein mène à la cave, le verre vide aux bouteilles
+                                            déjà bues. Pas de recherche ici — la loupe générale
+                                            occupe déjà la droite de la barre. */}
                                         <button
                                             className={styles.caveBtn}
-                                            aria-label="Choisir une bouteille"
-                                            onClick={() => { handleVibrate(12); window.dispatchEvent(new Event('macave-pick')); }}
+                                            aria-label="Voir ma cave"
+                                            onClick={() => { handleVibrate(12); window.dispatchEvent(new Event('macave-shelf-cave')); }}
                                         >
-                                            {/* Le verre, pas une loupe : la recherche générale occupe
-                                                déjà la droite de la barre, deux loupes voisines ne se
-                                                distinguaient pas. */}
                                             <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" />
+                                                <path d="M5.6 8h12.8" strokeWidth="3" />
+                                            </svg>
+                                        </button>
+                                        <button
+                                            className={styles.caveBtn}
+                                            aria-label="Voir les bouteilles déjà dégustées"
+                                            onClick={() => { handleVibrate(12); window.dispatchEvent(new Event('macave-shelf-tasted')); }}
+                                        >
+                                            <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" />
+                                                <path d="M9.5 11.2l1.8 1.8 3.4-3.6" />
                                             </svg>
                                         </button>
                                     </div>

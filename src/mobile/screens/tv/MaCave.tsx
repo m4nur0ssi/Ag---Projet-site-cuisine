@@ -23,6 +23,10 @@ import {
 } from '@/lib/cave';
 import { whenCaveReady } from '@/mobile/lib/caveSync';
 import styles from './MaCave.module.css';
+// Le menu d'appui long réutilise TEL QUEL l'habillage de celui de l'accueil :
+// même taille, même grain, mêmes séparateurs. Deux menus dessinés séparément
+// finissent toujours par diverger.
+import tv from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
 import TVToast from './TVToast';
 
@@ -87,31 +91,32 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         return () => window.removeEventListener('macave-scan', scan);
     }, []);
 
-    // La loupe de la barre du bas ouvre le choix d'une bouteille : chercher sans
-    // remonter en haut de l'étagère, c'est tout l'intérêt.
-    const [picking, setPicking] = useState(false);
+    /**
+     * Les deux boutons d'étagère de la barre du bas amènent directement au rayon
+     * voulu, sans remonter la page. Le filtre courant est annulé au passage :
+     * viser « déjà dégusté » alors qu'on filtre les rouges menait à une étagère
+     * vide, et donc à un défilement vers rien.
+     */
     useEffect(() => {
-        const pick = () => setPicking(true);
-        window.addEventListener('macave-pick', pick);
-        return () => window.removeEventListener('macave-pick', pick);
+        const versEtagere = (quelle: WineShelf) => {
+            setFilter('tous');
+            setRipe('tous');
+            setQ('');
+            requestAnimationFrame(() => setTimeout(() => {
+                const el = document.querySelector(`[data-shelf="${quelle}"]`) as HTMLElement | null;
+                el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 60));
+        };
+        const cave = () => versEtagere('cave');
+        const tasted = () => versEtagere('tasted');
+        window.addEventListener('macave-shelf-cave', cave);
+        window.addEventListener('macave-shelf-tasted', tasted);
+        return () => {
+            window.removeEventListener('macave-shelf-cave', cave);
+            window.removeEventListener('macave-shelf-tasted', tasted);
+        };
     }, []);
 
-    /** Amène une bouteille sous les yeux et la fait clignoter une fois. */
-    const revealWine = (id: string) => {
-        setPicking(false);
-        // Le filtre courant peut la cacher : on l'annule, sinon on ferait
-        // défiler vers une carte qui n'est pas dans le DOM.
-        setFilter('tous');
-        setRipe('tous');
-        setQ('');
-        requestAnimationFrame(() => setTimeout(() => {
-            const el = document.querySelector(`[data-wine="${id}"]`) as HTMLElement | null;
-            if (!el) return;
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            el.classList.add(styles.cardFound);
-            setTimeout(() => el.classList.remove(styles.cardFound), 1600);
-        }, 60));
-    };
 
     useEffect(() => {
         const load = () => setWines(readCave());
@@ -344,76 +349,16 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
             {menu && (
                 <CardMenu
                     wine={menu.wine}
-                    at={{ x: menu.x, y: menu.y }}
                     onClose={() => setMenu(null)}
                     onPair={() => setPairing(menu.wine)}
                     onEdit={() => setEditing(menu.wine)}
                     onRemove={() => removeWine(menu.wine.id)}
                 />
             )}
-            {picking && <PickWine wines={wines} onPick={revealWine} onClose={() => setPicking(false)} />}
             <Tip id="cave" />
             <TVToast />
             {zoom && <ZoomView src={zoom} onClose={() => setZoom(null)} />}
         </div>
-    );
-}
-
-
-/**
- * Choix d'une bouteille sans remonter la page.
- *
- * La recherche du haut de l'écran devient injoignable dès qu'on a défilé : ici
- * elle revient sous le pouce, en feuille, et le choix ramène la carte à l'écran.
- */
-function PickWine({ wines, onPick, onClose }: { wines: CaveWine[]; onPick: (id: string) => void; onClose: () => void }) {
-    const [q, setQ] = useState('');
-    const inputRef = useRef<HTMLInputElement>(null);
-    useEffect(() => { inputRef.current?.focus(); }, []);
-
-    const list = useMemo(() => {
-        const needle = q.trim().toLowerCase();
-        const all = [...wines].sort((a, b) => b.addedAt - a.addedAt);
-        if (!needle) return all;
-        return all.filter((w) => `${w.name} ${w.region} ${w.grape} ${w.year}`.toLowerCase().includes(needle));
-    }, [wines, q]);
-
-    return createPortal(
-        <div className={styles.pickBackdrop} onClick={onClose}>
-            <div className={styles.pickSheet} onClick={(e) => e.stopPropagation()}>
-                <div className={styles.pickHead}>
-                    <div className={styles.pickTitle}>Choisir une bouteille</div>
-                    <button className={styles.pickClose} onClick={onClose} aria-label="Fermer">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
-                    </button>
-                </div>
-                <input
-                    ref={inputRef}
-                    className={styles.pickSearch}
-                    value={q}
-                    onChange={(e) => setQ(e.target.value)}
-                    placeholder="Nom, région, cépage, année…"
-                />
-                <div className={styles.pickList}>
-                    {list.map((w) => (
-                        <button key={w.id} className={styles.pickRow} onClick={() => onPick(w.id)}>
-                            {w.photo
-                                ? <img src={w.photo} alt="" className={styles.pickThumb} draggable={false} />
-                                : <span className={styles.pickDot} style={{ background: COLOR_GLASS[w.color] }} />}
-                            <span className={styles.pickInfo}>
-                                <span className={styles.pickName}>{w.name}</span>
-                                <span className={styles.pickMeta}>
-                                    {[w.year, w.region, w.grape].filter(Boolean).join(' · ')}
-                                </span>
-                            </span>
-                            {shelfOf(w) === 'tasted' && <span className={styles.pickTag}>Dégusté</span>}
-                        </button>
-                    ))}
-                    {!list.length && <div className={styles.pickEmpty}>Aucune bouteille à ce nom.</div>}
-                </div>
-            </div>
-        </div>,
-        document.body,
     );
 }
 
@@ -679,19 +624,36 @@ function ZoomView({ src, onClose }: { src: string; onClose: () => void }) {
     const [scale, setScale] = useState(1);
     const [pos, setPos] = useState({ x: 0, y: 0 });
     const drag = useRef<{ x: number; y: number } | null>(null);
+    /**
+     * Glissé vers le BAS = fermeture, comme partout ailleurs sur un téléphone.
+     * On ne l'écoute qu'à l'échelle 1 : une fois zoomé, le même geste sert à
+     * déplacer l'image, et fermer sous le doigt serait insupportable.
+     */
+    const bas = useRef<{ y: number; t: number } | null>(null);
     return (
-        <div className={styles.zoomBack} onClick={onClose}
-            onWheel={(e) => { setScale((s) => Math.min(5, Math.max(1, s - e.deltaY * 0.002))); }}>
+        <div
+            className={styles.zoomBack}
+            onClick={onClose}
+            onWheel={(e) => { setScale((s) => Math.min(5, Math.max(1, s - e.deltaY * 0.002))); }}
+            onPointerDown={(e) => { bas.current = { y: e.clientY, t: Date.now() }; }}
+            onPointerUp={(e) => {
+                const d = bas.current;
+                bas.current = null;
+                if (!d || scale > 1) return;
+                const parcouru = e.clientY - d.y;
+                const rapide = Date.now() - d.t < 700;
+                if (parcouru > 90 && rapide) onClose();
+            }}
+        >
             <button className={styles.zoomClose} onClick={onClose}><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
             <img
-                src={src} alt="" className={styles.zoomImg}
+                src={src} alt="" className={styles.zoomImg} draggable={false}
                 style={{ transform: `translate(${pos.x}px, ${pos.y}px) scale(${scale})` }}
                 onClick={(e) => e.stopPropagation()}
                 onDoubleClick={() => { setScale((s) => (s > 1 ? 1 : 2.5)); setPos({ x: 0, y: 0 }); }}
                 onPointerDown={(e) => { drag.current = { x: e.clientX - pos.x, y: e.clientY - pos.y }; }}
                 onPointerMove={(e) => { if (drag.current && scale > 1) setPos({ x: e.clientX - drag.current.x, y: e.clientY - drag.current.y }); }}
                 onPointerUp={() => { drag.current = null; }}
-                draggable={false}
             />
             <div className={styles.zoomHint}>Molette / double-clic pour zoomer · glisser pour déplacer</div>
         </div>
@@ -807,7 +769,9 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
                 <div className={styles.spot} />
                 <div className={styles.barrel} />
                 <div className={styles.bottle} onClick={(e) => { if (wine.photo) { e.stopPropagation(); onZoom(); } }}>
-                    {wine.photo ? <img src={wine.photo} alt="" className={styles.bottlePhoto} /> : <BottleSVG color={wine.color} />}
+                    {wine.photo
+                        ? <img src={wine.photo} alt="" className={styles.bottlePhoto} draggable={false} />
+                        : <BottleSVG color={wine.color} />}
                 </div>
                 {wine.photo && (
                     <button className={styles.zoomBtn} onClick={(e) => { e.stopPropagation(); onZoom(); }} aria-label="Agrandir">
@@ -900,42 +864,36 @@ function MyStars({ value, onSet, big = false }: { value: number; onSet: (n: numb
  * clic droit n'existe pas. Il réunit les deux gestes utiles sur une carte :
  * l'accord avec une recette et la correction de la fiche.
  */
-function CardMenu({ wine, at, onClose, onPair, onEdit, onRemove }: {
-    wine: CaveWine; at: { x: number; y: number };
+function CardMenu({ wine, onClose, onPair, onEdit, onRemove }: {
+    wine: CaveWine;
     onClose: () => void; onPair: () => void; onEdit: () => void; onRemove: () => void;
 }) {
-    // On rabat le menu dans la fenêtre quand le clic tombe près d'un bord.
-    const W = 210, H = 176;
-    const x = Math.min(at.x, (typeof window !== 'undefined' ? window.innerWidth : 400) - W - 10);
-    const y = Math.min(at.y, (typeof window !== 'undefined' ? window.innerHeight : 800) - H - 10);
     const Item = ({ d, label, danger, onClick }: { d: string; label: string; danger?: boolean; onClick: () => void }) => (
-        <button className={`${styles.ctxItem} ${danger ? styles.ctxDanger : ''}`} onClick={() => { onClick(); onClose(); }}>
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg>
-            {label}
+        <button
+            className={`${tv.menuAction} ${danger ? tv.menuDanger : ''}`}
+            onClick={() => { navigator.vibrate?.(8); onClick(); onClose(); }}
+        >
+            <svg className={tv.menuIcon} viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d={d} stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span>{label}</span>
         </button>
     );
     return (
-        <div className={styles.ctxBack} onClick={onClose} onContextMenu={(e) => { e.preventDefault(); onClose(); }}>
-            <div className={styles.ctxMenu} style={{ left: x, top: y }} onClick={(e) => e.stopPropagation()}>
-                <div className={styles.ctxTitle}>{wine.name}</div>
-                <Item d="M4 4h16M7 4v6a5 5 0 0 0 10 0V4M12 15v5M9 20h6" label="Quelle recette ?" onClick={onPair} />
-                <Item d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" label="Corriger la fiche" onClick={onEdit} />
-                {/* Le déplacement d'une étagère à l'autre passe par ici au doigt :
-                    le glissé n'existe pas vraiment sur un téléphone. */}
-                {shelfOf(wine) === 'cave' ? (
-                    <Item
-                        d="M5 12l5 5L20 7"
-                        label="Ranger dans « Goûté & approuvé »"
-                        onClick={() => { moveToTasted(wine.id); onClose(); }}
-                    />
-                ) : (
-                    <Item
-                        d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z"
-                        label="Remettre dans ma cave"
-                        onClick={() => { moveToCave(wine.id); onClose(); }}
-                    />
-                )}
-                <Item d="M5 12h14" label={shelfOf(wine) === 'cave' ? 'Retirer de la cave' : 'Effacer cette bouteille'} danger onClick={onRemove} />
+        <div className={tv.menuBackdrop} onClick={onClose} onContextMenu={(e) => { e.preventDefault(); onClose(); }}>
+            <div className={tv.menuCard} onClick={(e) => e.stopPropagation()}>
+                {wine.photo && <img className={tv.menuPreview} src={wine.photo} alt="" draggable={false} />}
+                <div className={tv.menuTitle}>{stripYear(wine.name)}</div>
+                <div className={tv.menuActions}>
+                    <Item d="M4 4h16M7 4v6a5 5 0 0 0 10 0V4M12 15v5M9 20h6" label="Quelle recette ?" onClick={onPair} />
+                    <Item d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" label="Corriger la fiche" onClick={onEdit} />
+                    {shelfOf(wine) === 'cave' ? (
+                        <Item d="M5 12l5 5L20 7" label="Ranger dans « Goûté & approuvé »" onClick={() => moveToTasted(wine.id)} />
+                    ) : (
+                        <Item d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" label="Remettre dans ma cave" onClick={() => moveToCave(wine.id)} />
+                    )}
+                    <Item d="M6 6l12 12M18 6L6 18" label="Retirer de la cave" danger onClick={onRemove} />
+                </div>
             </div>
         </div>
     );
