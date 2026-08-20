@@ -231,7 +231,9 @@ export default function ShoppingListPage() {
 
     // ── Commander sur Carrefour : recherche pas-à-pas (1 ingrédient à la fois) ──
     // Cible = uniquement les ingrédients cochés (la barre magasin n'apparaît que s'il y en a).
-    const selectedItems = items.filter(i => selected.has(i.key));
+    // Déjà barré = déjà dans le panier : hors de la file du magasin, sinon on
+    // refait défiler au magasin ce qu'on vient d'y prendre.
+    const selectedItems = items.filter(i => selected.has(i.key) && !isItemDone(i, done));
     const openCarrefourFor = (i: number) => {
         const it = selectedItems[i];
         if (!it) return;

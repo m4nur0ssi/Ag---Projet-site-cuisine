@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { carrefourTerm } from '@/mobile/lib/ingredients';
+import { useEffect, useRef, useState } from 'react';
+import { carrefourTerm, isItemDone } from '@/mobile/lib/ingredients';
 import type { ConsolItem } from '@/mobile/lib/ingredients';
 import { usePreferredStore, STORE_BY_ID, storeSearchWithQueue } from '@/lib/stores';
+import { onStoreItemDone, isStoreExtensionActive } from '@/lib/storeFeedback';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import styles from './ShopActions.module.css';
 
@@ -12,21 +13,39 @@ interface ShopActionsProps {
     title?: string;
     size?: 'sm' | 'md';
     checkedKeys?: Set<string>; // ingrédients cochés (sélectionnés) → cible de Carrefour/partage
+    doneKeys?: Set<string>;    // déjà barrés → hors de la file du magasin
     onShopped?: (item: ConsolItem) => void; // recherché sur Carrefour → rayer au retour
 }
 
 // Boutons Partager + Carrefour. Visibles UNIQUEMENT si au moins un ingrédient est
 // coché ; la cible (et donc la recherche magasin) = exactement les ingrédients cochés.
 // Barrer un ingrédient ne le sélectionne pas → ne fait pas apparaître ces boutons.
-export default function ShopActions({ items, title = 'Ma liste de courses', size = 'sm', checkedKeys, onShopped }: ShopActionsProps) {
+export default function ShopActions({ items, title = 'Ma liste de courses', size = 'sm', checkedKeys, doneKeys, onShopped }: ShopActionsProps) {
     const [idx, setIdx] = useState<number | null>(null);
     const [store] = usePreferredStore();
     const shop = STORE_BY_ID[store];
 
     // Cible = uniquement les items cochés (dans l'ordre d'affichage). Aucun coché → rien.
-    const list = checkedKeys
+    // Les articles DÉJÀ BARRÉS sortent de la file : on revient du magasin, on
+    // coche de nouveaux ingrédients, et la file doit reprendre là où on en est.
+    const list = (checkedKeys
         ? items.filter(it => it.keys.some(k => checkedKeys.has(k)))
-        : items;
+        : items
+    ).filter(it => !doneKeys || !isItemDone(it, doneKeys));
+
+    // L'extension signale l'article mis au panier : on le raye en direct.
+    // Les hooks restent AVANT le `return null` sous peine de casser leur ordre.
+    const listRef = useRef(list);
+    listRef.current = list;
+    const shoppedRef = useRef(onShopped);
+    shoppedRef.current = onShopped;
+    useEffect(() => onStoreItemDone(({ index }) => {
+        const it = listRef.current[index];
+        if (!it) return;
+        shoppedRef.current?.(it);
+        setIdx(Math.min(index + 1, listRef.current.length - 1));
+    }), []);
+
     if (!list.length) return null;
 
     const text = `🛒 ${title}\n\n` + list.map(i => `• ${i.display}`).join('\n');
@@ -43,7 +62,9 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
         if (!it) return;
         const queue = list.map(x => carrefourTerm(x.name));
         window.open(storeSearchWithQueue(store, queue, i), 'storeCart');
-        onShopped?.(it);
+        // Avec l'extension, c'est la mise au panier qui raye. Sans elle, personne
+        // ne préviendrait : on raye dès la recherche, comme avant.
+        if (!isStoreExtensionActive()) onShopped?.(it);
     };
     const go = (i: number) => { const n = Math.max(0, Math.min(i, list.length - 1)); setIdx(n); openStore(n); };
 

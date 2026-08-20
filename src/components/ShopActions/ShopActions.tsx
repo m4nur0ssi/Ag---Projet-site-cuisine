@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { carrefourTerm } from '@/lib/ingredients';
+import { carrefourTerm, isItemDone } from '@/lib/ingredients';
 import type { ConsolItem } from '@/lib/ingredients';
 import { usePreferredStore, STORE_BY_ID, storeSearchWithQueue } from '@/lib/stores';
 import { onStoreItemDone, isStoreExtensionActive } from '@/lib/storeFeedback';
@@ -13,21 +13,26 @@ interface ShopActionsProps {
     title?: string;
     size?: 'sm' | 'md';
     checkedKeys?: Set<string>; // ingrédients cochés (sélectionnés) → cible de Carrefour/partage
+    doneKeys?: Set<string>;    // déjà barrés → hors de la file du magasin
     onShopped?: (item: ConsolItem) => void; // recherché sur Carrefour → rayer au retour
 }
 
 // Boutons Partager + Carrefour. Visibles UNIQUEMENT si au moins un ingrédient est
 // coché ; la cible (et donc la recherche magasin) = exactement les ingrédients cochés.
 // Barrer un ingrédient ne le sélectionne pas → ne fait pas apparaître ces boutons.
-export default function ShopActions({ items, title = 'Ma liste de courses', size = 'sm', checkedKeys, onShopped }: ShopActionsProps) {
+export default function ShopActions({ items, title = 'Ma liste de courses', size = 'sm', checkedKeys, doneKeys, onShopped }: ShopActionsProps) {
     const [idx, setIdx] = useState<number | null>(null);
     const [store] = usePreferredStore();
     const shop = STORE_BY_ID[store];
 
     // Cible = uniquement les items cochés (dans l'ordre d'affichage). Aucun coché → rien.
-    const list = checkedKeys
+    // Les articles DÉJÀ BARRÉS sortent de la file : on en revient avec de
+    // nouveaux ingrédients cochés, et le magasin doit reprendre là où on en est,
+    // pas refaire défiler ce qui est déjà dans le panier.
+    const list = (checkedKeys
         ? items.filter(it => it.keys.some(k => checkedKeys.has(k)))
-        : items;
+        : items
+    ).filter(it => !doneKeys || !isItemDone(it, doneKeys));
 
     // L'extension nous dit quel article vient d'être mis au panier : on le raye
     // ici, en direct, pendant que l'utilisateur est encore sur le magasin.

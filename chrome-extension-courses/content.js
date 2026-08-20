@@ -11,6 +11,7 @@
         const h = location.hash.replace(/^#/, '');
         const p = new URLSearchParams(h);
         const raw = p.get('mlist');
+        const back = p.get('mo') || '';
         if (!raw) return null;
         try {
             const json = decodeURIComponent(escape(atob(decodeURIComponent(raw))));
@@ -20,8 +21,35 @@
         } catch (_) { return null; }
     }
 
-    const state = parseHash();
-    if (!state) return; // pas piloté par le site → ne rien afficher
+    /**
+     * La file SURVIT à la navigation dans le magasin.
+     *
+     * Le hash ne tient que le temps d'une recherche : dès qu'on ouvre une fiche
+     * produit ou qu'on clique dans un rayon, il disparaît et le widget avec lui —
+     * il fallait alors repartir du site pour le « réactiver ». On garde donc la
+     * file dans le sessionStorage de l'onglet : elle revient sur chaque page du
+     * magasin, et s'efface quand on ferme le widget ou qu'on finit la liste.
+     */
+    const MEM = 'magic-courses-queue';
+    function remember(st) {
+        try { sessionStorage.setItem(MEM, JSON.stringify({ raw: st.raw, idx: st.idx, back: st.back })); } catch (_) {}
+    }
+    function forget() { try { sessionStorage.removeItem(MEM); } catch (_) {} }
+    function recall() {
+        try {
+            const m = JSON.parse(sessionStorage.getItem(MEM) || 'null');
+            if (!m || !m.raw) return null;
+            const json = decodeURIComponent(escape(atob(decodeURIComponent(m.raw))));
+            const list = JSON.parse(json);
+            if (!Array.isArray(list) || !list.length) return null;
+            return { list, idx: Math.max(0, m.idx || 0), raw: m.raw, back: m.back || '' };
+        } catch (_) { return null; }
+    }
+
+    const fromHash = parseHash();
+    const state = fromHash || recall();
+    if (!state) return; // jamais lancé depuis le site → ne rien afficher
+    remember(state);
 
     // --- Construit l'URL de recherche selon le magasin --------------------
     function searchUrl(term) {
@@ -121,11 +149,11 @@
     `;
     document.documentElement.appendChild(box);
 
-    box.querySelector('.mcw-close').addEventListener('click', () => box.remove());
+    box.querySelector('.mcw-close').addEventListener('click', () => { forget(); box.remove(); });
     box.querySelector('.mcw-prev').addEventListener('click', () => goTo(state.idx - 1));
     box.querySelector('.mcw-next').addEventListener('click', () => {
         reportDone(state.idx); // « Ajouté » → rayé dans la liste restée ouverte
-        if (atLast) { box.querySelector('.mcw-item').textContent = '✅ Liste terminée !'; box.querySelector('.mcw-actions').remove(); }
+        if (atLast) { forget(); box.querySelector('.mcw-item').textContent = '✅ Liste terminée !'; box.querySelector('.mcw-actions').remove(); }
         else goTo(state.idx + 1);
     });
 
