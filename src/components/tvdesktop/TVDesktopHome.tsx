@@ -28,6 +28,7 @@ import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
 import Tip from '@/components/Tip/Tip';
+import SiteFooter from '@/components/SiteFooter/SiteFooter';
 
 const TVAuthGate = dynamic(() => import('./TVAuthGate'), { ssr: false });
 const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
@@ -1071,6 +1072,9 @@ export default function TVDesktopHome() {
                                 <Row key={row.title} title={row.title} recipes={row.recipes} shape={row.shape} shareTag={row.tag} onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             ))}
                             <Row title="Comme au resto" recipes={byCat['restaurant'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+
+                            {/* Fin du feed : mentions légales, contact, statut des vidéos. */}
+                            <SiteFooter />
                         </div>
                     </>
                 )}

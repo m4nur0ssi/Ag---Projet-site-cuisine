@@ -1,0 +1,61 @@
+/* Sombre par nature : les deux accueils (mobile et ordinateur) sont noirs. */
+.footer {
+    margin-top: 48px;
+    padding: 28px 20px 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    color: rgba(235, 235, 245, 0.62);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+    margin-bottom: 16px;
+}
+
+.link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.86rem;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+.link:hover { opacity: 1; text-decoration: underline; }
+
+.note {
+    max-width: 620px;
+    margin: 0 auto 10px;
+}
+
+.mail {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.small {
+    max-width: 620px;
+    margin: 0 auto 14px;
+    color: rgba(235, 235, 245, 0.38);
+}
+
+.copy {
+    margin: 0;
+    color: rgba(235, 235, 245, 0.38);
+    font-size: 0.78rem;
+}
+
+/* Sur ordinateur, le feed est large : le pied de page respire davantage. */
+@media (min-width: 1024px) {
+    .footer {
+        padding: 36px 48px 24px;
+        text-align: left;
+    }
+    .links { justify-content: flex-start; }
+    .note, .small { margin-left: 0; margin-right: 0; }
+}

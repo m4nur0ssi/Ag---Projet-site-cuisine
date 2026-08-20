@@ -2,7 +2,7 @@
 import { useAuth } from '@/mobile/hooks/useAuth';
 import styles from './RequestRecipeButton.module.css';
 
-const OWNER_EMAIL = 'm4nu.r0ssi@gmail.com';
+import { CONTACT_EMAIL as OWNER_EMAIL } from '@/lib/legal';
 
 function firstNameFrom(user: any): string {
     const meta = user?.user_metadata || {};

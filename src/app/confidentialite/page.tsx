@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
-import styles from './confidentialite.module.css';
+import LegalLayout from '@/components/LegalLayout/LegalLayout';
+import styles from '@/components/LegalLayout/legal.module.css';
+import { CONTACT_EMAIL, TAKEDOWN_DELAY } from '@/lib/legal';
 
 export const metadata: Metadata = {
     title: 'Politique de confidentialité — Les Recettes Magiques',
@@ -8,17 +10,12 @@ export const metadata: Metadata = {
 
 /*
  * Politique de confidentialité (RGPD / CNIL).
- * À COMPLÉTER par l'éditeur avant mise en production :
- *  - Identité de l'éditeur (nom / raison sociale, statut, adresse)
- *  - Hébergeur (Vercel : Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA)
- *  - Nom exact de l'outil de mesure d'audience une fois installé (ex : Google Analytics 4)
+ * Le nom de l'outil de mesure d'audience est à préciser ici le jour où il sera
+ * réellement installé (aujourd'hui : Google Consent Mode v2 réglé sur refus).
  */
 export default function ConfidentialitePage() {
     return (
-        <main className={styles.page}>
-            <h1 className={styles.title}>Politique de confidentialité</h1>
-            <p className={styles.updated}>Dernière mise à jour : 6 juillet 2026</p>
-
+        <LegalLayout title="Politique de confidentialité" current="/confidentialite">
             <p>
                 La présente politique explique quelles données personnelles sont collectées sur le
                 site <strong>Les Recettes Magiques</strong>, dans quel but, et quels sont vos droits.
@@ -27,8 +24,9 @@ export default function ConfidentialitePage() {
             </p>
 
             <div className={styles.note}>
-                Éditeur du site : <strong>[à compléter — nom / adresse]</strong>. Hébergeur :
-                Vercel Inc. Contact : <a href="mailto:m4nu.r0ssi@gmail.com">m4nu.r0ssi@gmail.com</a>.
+                Responsable de traitement : <strong>Manuel Rossi</strong> (voir les{' '}
+                <a href="/mentions-legales">mentions légales</a>). Hébergeur : Vercel Inc. Contact :{' '}
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </div>
 
             <h2>1. Données que nous collectons</h2>
@@ -42,6 +40,10 @@ export default function ConfidentialitePage() {
                     <strong>Préférences locales</strong> : favoris, liste de courses et planning sont
                     stockés dans le stockage local (localStorage) de votre navigateur, sur votre
                     appareil. Ces données ne sont pas transmises tant que vous n’avez pas de compte.
+                </li>
+                <li>
+                    <strong>Contenus que vous publiez</strong> : notes et commentaires laissés sur
+                    les recettes, associés à votre compte.
                 </li>
                 <li>
                     <strong>Mesure d’audience et publicité</strong> : uniquement si vous y consentez
@@ -73,6 +75,10 @@ export default function ConfidentialitePage() {
                 Votre choix est conservé dans votre navigateur et peut être modifié à tout moment en
                 effaçant les données du site.
             </p>
+            <p>
+                La lecture d’une vidéo TikTok intégrée peut amener TikTok à déposer ses propres
+                traceurs, sous sa seule responsabilité et selon sa politique de confidentialité.
+            </p>
 
             <h2>5. Durée de conservation</h2>
             <ul>
@@ -86,21 +92,27 @@ export default function ConfidentialitePage() {
                 Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation,
                 d’opposition et de portabilité de vos données, ainsi que du droit de retirer votre
                 consentement à tout moment. Pour les exercer, écrivez-nous à{' '}
-                <a href="mailto:m4nu.r0ssi@gmail.com">m4nu.r0ssi@gmail.com</a>. Vous pouvez aussi
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Vous pouvez aussi
                 introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">cnil.fr</a>).
             </p>
 
             <h2>7. Contenus TikTok et créateurs</h2>
             <p>
-                Certaines recettes intègrent des vidéos via le lecteur officiel TikTok. La lecture et
-                l’attribution reviennent à leurs auteurs. Si vous êtes l’auteur d’une vidéo et
-                souhaitez son retrait, contactez-nous à l’adresse ci-dessus.
+                Certaines recettes intègrent des vidéos via le lecteur officiel TikTok :{' '}
+                <strong>aucune vidéo n’est stockée sur nos serveurs</strong>, seul un lien vers la
+                publication d’origine est utilisé. La lecture et l’attribution reviennent à leurs
+                auteurs.
             </p>
+            <div className={styles.pledge}>
+                Auteur d’une vidéo qui souhaite son retrait : écrivez à{' '}
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>, le retrait est effectué
+                sous <strong>{TAKEDOWN_DELAY}</strong>.
+            </div>
 
             <h2>8. Modifications</h2>
             <p>
                 Cette politique peut évoluer. La date de dernière mise à jour figure en haut de page.
             </p>
-        </main>
+        </LegalLayout>
     );
 }

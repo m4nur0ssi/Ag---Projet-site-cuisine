@@ -90,6 +90,7 @@ const NavDrawer = dynamic(() => import('./NavDrawer'), { ssr: false });
 const EdgeHandle = dynamic(() => import('./EdgeHandle'), { ssr: false });
 import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './NavDrawer';
 import Tip from '@/components/Tip/Tip';
+import SiteFooter from '@/components/SiteFooter/SiteFooter';
 // Loupe modernisée AppleTV+ (mêmes fonctions que SpotlightSearch prod, habillage TV).
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 // Visite guidée de l'app mobile (remplace celle du site, écrite pour le desktop).
@@ -1798,6 +1799,9 @@ export default function TVHome() {
                     onOpen={openSheet}
                     onLongPress={openMenu}
                 />
+
+                {/* Fin du feed : mentions légales, contact, statut des vidéos. */}
+                <SiteFooter />
             </div>
 
             <AnimatePresence>

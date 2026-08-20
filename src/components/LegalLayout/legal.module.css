@@ -1,0 +1,113 @@
+.page {
+    background: #ffffff;
+    min-height: 100vh;
+    line-height: 1.65;
+    color: #2a2a2a;
+    padding-bottom: calc(130px + env(safe-area-inset-bottom, 0px));
+    /* Colonne centrée par le conteneur, pas par des marges auto : les titres et
+       encadrés fixent leur propre `margin`, ce qui écraserait un `margin: auto`. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page > * {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 760px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.back {
+    display: block;
+    padding-top: 28px;
+    font-size: 0.9rem;
+    color: #8a8a8a;
+    text-decoration: none;
+}
+
+.back:hover { color: #c2410c; }
+
+.title {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    margin: 10px 0 4px;
+}
+
+.updated {
+    color: #8a8a8a;
+    font-size: 0.85rem;
+    margin: 0 0 28px;
+}
+
+.page h2 {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin: 32px 0 8px;
+}
+
+.page h3 {
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 20px 0 6px;
+}
+
+.page p,
+.page li {
+    font-size: 0.98rem;
+}
+
+.page ul {
+    padding-left: 20px;
+    margin: 8px 0;
+}
+
+.page a {
+    color: #c2410c;
+    text-decoration: underline;
+}
+
+/* Encadré d'information : identité de l'éditeur, adresse de contact. */
+.note {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    margin: 16px 0;
+}
+
+/* Encadré d'engagement (retrait sous 48 h) : plus appuyé que .note. */
+.pledge {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    margin: 16px 0;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 44px;
+    padding-top: 20px;
+    border-top: 1px solid #ececec;
+}
+
+.navLink {
+    font-size: 0.9rem;
+    color: #c2410c;
+    text-decoration: none;
+}
+
+.navLink:hover { text-decoration: underline; }
+
+@media (max-width: 640px) {
+    .title { font-size: 1.6rem; }
+}

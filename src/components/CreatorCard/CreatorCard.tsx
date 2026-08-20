@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './CreatorCard.module.css';
 import { getCreatorForRecipe, getCreatorByHandle, resolveHandle, extractVideoId } from '@/lib/influencers';
+import { CONTACT_EMAIL } from '@/lib/legal';
 
 interface CreatorCardProps {
     videoHtml?: string;
@@ -136,7 +137,10 @@ const CreatorCard: React.FC<CreatorCardProps> = ({ videoHtml, tiktokHandle, tikt
 
             <div className={styles.footer}>
                 <a href={videoUrl} target="_blank" rel="noopener noreferrer">Regarder la vidéo originale ↗</a>
-                <a className={styles.claim} href="mailto:m4nu.r0ssi@gmail.com?subject=Vid%C3%A9o%20TikTok%20sur%20le%20site">
+                <a
+                    className={styles.claim}
+                    href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Demande de retrait d’une vidéo')}`}
+                >
                     Vous êtes l’auteur ?
                 </a>
             </div>
