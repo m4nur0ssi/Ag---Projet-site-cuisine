@@ -361,7 +361,12 @@
     scroll-snap-align: center;
     opacity: 0.62;
     filter: saturate(0.85);
-    box-shadow: 0 18px 50px rgba(0,0,0,0.5), inset 0 0 0 0.5px rgba(255,255,255,0.1);
+    /* Ombre COURTE et discrète. À 50 px de flou en noir à 50 %, les ombres des
+       sept affiches se rejoignaient en une bande sombre continue au-dessus et
+       au-dessous de la bande — le « bandeau noir » qu'on croyait venir du fond.
+       Le décor est lumineux : une affiche s'y détache par son contour, pas par
+       une flaque d'encre. */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.28), inset 0 0 0 0.5px rgba(255,255,255,0.14);
     transition:
         width 0.55s var(--ease), opacity 0.55s var(--ease),
         filter 0.55s var(--ease), box-shadow 0.55s var(--ease);
@@ -373,7 +378,9 @@
     width: 300px;
     opacity: 1;
     filter: none;
-    box-shadow: 0 40px 110px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.2);
+    /* L'affiche active se distingue par sa taille et sa netteté ; son ombre de
+       110 px noyait tout le cadre. */
+    box-shadow: 0 14px 34px rgba(0,0,0,0.38), inset 0 0 0 1px rgba(255,255,255,0.22);
 }
 .heroPosterOn:hover { opacity: 1; }
 
