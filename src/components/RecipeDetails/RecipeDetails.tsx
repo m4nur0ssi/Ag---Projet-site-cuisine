@@ -38,6 +38,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 import styles from './RecipeDetails.module.css';
+import Tip from '@/components/Tip/Tip';
 
 interface RecipeDetailsProps {
     recipe: Recipe;
@@ -984,6 +985,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             )}
 
             {/* #11 — Carnet de cuisine perso (connectés) */}
+            {/* Une adresse et une recette n'appellent pas le même conseil. */}
+            <Tip id={recipe.category === 'restaurant' ? 'resto' : 'fiche'} delay={1600} />
             {recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} />}
 
             {/* Enhanced UI pour restaurants: Badges, Adresse, Boutons Maps et Avis */}

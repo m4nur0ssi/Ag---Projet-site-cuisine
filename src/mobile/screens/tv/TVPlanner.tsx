@@ -332,8 +332,14 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         const totalTime = (r: Recipe) => { const t = estimateRecipeTiming(r.steps); return t.prepTime + t.cookTime; };
 
         // opts : express (≤30 min), prev (recette de la veille pour l'anti-gaspi).
+        // Combien de créneaux la tendance n'a PAS pu remplir. On ne peut pas
+        // laisser un trou dans la semaine, mais on doit le dire : sinon on
+        // annonce « Express » et on sert un plat de trois quarts d'heure.
+        let offTrend = 0;
+
         const pickFrom = (accepts: (r: Recipe) => boolean, opts?: { lastProtein?: string; express?: boolean; prev?: Recipe | null }): Recipe | null => {
             const onTrend = mockRecipes.filter((r) => r.image && accepts(r) && fits(r));
+            if (!onTrend.length && tag) offTrend++;
             const pool = onTrend.length ? onTrend : mockRecipes.filter((r) => r.image && accepts(r));
             if (!pool.length) return null;
 
@@ -344,8 +350,13 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             const varied = from.filter((r) => proteinOf(r) !== opts?.lastProtein);
             if (varied.length) from = varied;
 
-            // Express : privilégie les recettes courtes (repli si aucune).
-            if (opts?.express) { const quick = from.filter((r) => totalTime(r) <= 30); if (quick.length) from = quick; }
+            // Express : on cherche d'abord sous 30 min, puis sous 45 — plutôt que
+            // de renoncer d'un coup et de prendre n'importe quelle durée.
+            if (opts?.express) {
+                const quick = from.filter((r) => totalTime(r) <= 30);
+                const okish = quick.length ? quick : from.filter((r) => totalTime(r) <= 45);
+                if (okish.length) from = okish; else offTrend++;
+            }
 
             // Anti-gaspi : privilégie une recette partageant un ingrédient avec la veille.
             if (opts?.prev) {
@@ -392,6 +403,18 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         }
         save(next);
         setRecap(null);
+
+        // On DIT ce qui vient d'être fait. La feuille se referme et quatorze
+        // repas changent d'un coup : sans un mot, on croit qu'il ne s'est rien
+        // passé — et on ne sait pas si la tendance a pu être tenue partout.
+        const filled = mode === 'jourj'
+            ? Object.keys(next[JOUR_J] || {}).length
+            : Object.values(next).reduce((n, day) => n + Object.keys(day || {}).length, 0);
+        const what = tag ? (TRENDS.find((t) => t.tag === tag)?.label || tag) : 'Au hasard';
+        const msg = offTrend > 0
+            ? `${what} · ${filled} repas — ${offTrend} créneau${offTrend > 1 ? 'x' : ''} sans recette de cette tendance`
+            : `${what} · ${filled} repas composés`;
+        window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: msg }));
     };
 
     /** Remplit un créneau au hasard, dans la bonne catégorie. */
@@ -678,6 +701,11 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                     </button>
                                 </div>
                             )}
+                            {/* Les options du dessus se gardent d'une composition à
+                                l'autre ; les pastilles ci-dessous LANCENT. Rien ne
+                                le disait, et on cliquait « Express » en croyant
+                                cocher une case. */}
+                            <div className={styles.composeGo}>Lance avec une tendance</div>
                             <div className={styles.composeChips}>
                                 <button className={styles.composeChip} onClick={() => compose(null)}>Au hasard</button>
                                 {TRENDS.map((t) => (

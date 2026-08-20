@@ -3241,3 +3241,12 @@
     background: rgba(255, 255, 255, 0.14);
     transition-duration: 0s;
 }
+
+/* « Composer » : la ligne qui sépare les options (persistantes) des pastilles
+   qui, elles, déclenchent la composition. */
+.composeGo {
+    margin: 16px 0 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 10.5px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
+    color: rgba(235, 235, 245, .45);
+}

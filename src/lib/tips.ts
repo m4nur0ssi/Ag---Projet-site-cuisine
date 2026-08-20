@@ -47,6 +47,24 @@ export const TIPS: Record<string, Tip> = {
         title: 'Le cœur suit ton compte',
         text: 'Touche le cœur sur une recette, où que tu sois : elle se range ici, et te suit sur ton téléphone comme sur ton ordinateur.',
     },
+    palmares: {
+        id: 'palmares',
+        kicker: 'Palmarès',
+        title: 'Les trophées se gagnent en cuisinant',
+        text: 'Rien à cocher ici : ouvre une recette, suis ses étapes, et marque-la comme cuisinée. Les pays, les plats et les semaines planifiées comptent tout seuls.',
+    },
+    resto: {
+        id: 'resto',
+        kicker: 'Comme au resto',
+        title: 'Garde une trace de tes sorties',
+        text: 'Ouvre une adresse et donne-lui tes étoiles : la pilule « j’ai testé » se souvient de ton passage, et ta note se range à côté de celle des autres.',
+    },
+    fiche: {
+        id: 'fiche',
+        kicker: 'La fiche',
+        title: 'Deux gestes qui changent tout',
+        text: 'Coche un ingrédient : il part dans ta liste de courses. Fais un {geste} dessus : les remplacements possibles s’affichent, s’il t’en manque un.',
+    },
     recherche: {
         id: 'recherche',
         kicker: 'Recherche',

@@ -39,6 +39,7 @@ import { estimateRecipeCalories, estimateRecipeMacros } from '@/mobile/lib/calor
 import { mockRecipes } from '@/mobile/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './RecipeDetails.module.css';
+import Tip from '@/components/Tip/Tip';
 
 interface RecipeDetailsProps {
     recipe: Recipe;
@@ -1615,6 +1616,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             )}
 
             {/* Carnet "J'ai cuisiné" + note perso : connectés uniquement (composant auto-gaté). */}
+            {/* Une adresse et une recette n'appellent pas le même conseil. */}
+            <Tip id={recipe.category === 'restaurant' ? 'resto' : 'fiche'} delay={1600} />
             {!focusMode && recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} />}
 
             {/* Commentaires : lisibles par tous. Publier reste réservé aux connectés (géré dans le composant). */}

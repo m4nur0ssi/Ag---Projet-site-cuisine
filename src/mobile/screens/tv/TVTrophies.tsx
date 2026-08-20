@@ -8,6 +8,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { mockRecipes } from '@/mobile/data/mockData';
+import Tip from '@/components/Tip/Tip';
 
 const COUNTRY_TAGS = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'asie', 'afrique'];
 const SEEN_KEY = 'trophies-seen-v1';
@@ -186,6 +187,7 @@ export default function TVTrophies({ embedded = false }: { embedded?: boolean })
                 @keyframes revUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
                 @media (prefers-reduced-motion: reduce) { .revIc, .revKick, .revName { animation: none; } }
             `}</style>
+            <Tip id="palmares" delay={2600} />
         </div>
     );
 }
