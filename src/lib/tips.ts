@@ -33,7 +33,7 @@ export const TIPS: Record<string, Tip> = {
         id: 'planner',
         kicker: 'Planificateur',
         title: 'Une semaine entière en un geste',
-        text: 'Touche « Composer », tout en bas, choisis une tendance — Italie, Healthy, Barbecue — et les quatorze repas se remplissent sans jamais répéter un plat.',
+        text: 'Touche « Composer », tout en bas, coche ce que tu veux — un pays, une tendance, une catégorie, et ça se combine — puis les quatorze repas se remplissent sans jamais répéter un plat.',
     },
     courses: {
         id: 'courses',
@@ -63,7 +63,7 @@ export const TIPS: Record<string, Tip> = {
         id: 'fiche',
         kicker: 'La fiche',
         title: 'Deux gestes qui changent tout',
-        text: 'Coche un ingrédient : il part dans ta liste de courses. Fais un {geste} dessus : les remplacements possibles s’affichent, s’il t’en manque un.',
+        text: 'Coche un ingrédient : il part dans ta liste de courses. Touche « Lancer la préparation » : les étapes se lisent à voix haute, et tu réponds « suivant » sans poser ton couteau.',
     },
     recherche: {
         id: 'recherche',

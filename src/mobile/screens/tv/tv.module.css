@@ -2514,8 +2514,14 @@
 /* Feuille « Composer » : choisir une tendance pour tout remplir d'un geste. */
 .composeCard {
     width: 100%;
-    max-width: 340px;
-    padding: 20px 18px 18px;
+    max-width: 380px;
+    /* « Voir tout » déplie jusqu'à 27 pastilles : sans plafond ni défilement,
+       la carte sortait de l'écran et le bouton du bas devenait injoignable.
+       La barre de navigation mord le bas de l'écran : on lui laisse sa place. */
+    max-height: min(76vh, 700px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 20px 18px 0;
     border-radius: 20px;
     background: rgba(40, 40, 42, 0.7);
     -webkit-backdrop-filter: blur(50px) saturate(180%);
@@ -2557,6 +2563,145 @@
     transition: transform 0.2s var(--tv-ease), background 0.2s ease;
 }
 .composeChip:active { transform: scale(0.94); background: rgba(255, 255, 255, 0.22); }
+
+/* Coché : la pastille garde sa place, elle change de peau. */
+.composeChipOn {
+    background: linear-gradient(120deg, rgba(255, 194, 75, 0.28), rgba(255, 107, 74, 0.24));
+    box-shadow: inset 0 0 0 1px rgba(255, 180, 120, 0.55);
+}
+.composeChipMore { background: transparent; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22); opacity: 0.85; }
+
+/* ── Compositeur : familles de filtres ──────────────────────────────────
+   Cinquante filtres à plat, c'est un mur. Une famille à la fois, filtrable. */
+.famTabs {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    margin: 2px 0 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+}
+.famTab {
+    flex: 1 1 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 8px;
+    border: none;
+    border-radius: 9px;
+    background: transparent;
+    color: rgba(235, 235, 245, 0.62);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13.5px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.famTabOn { background: #fff; color: #0a0a0c; }
+.famTabCount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9px;
+    background: rgba(255, 107, 74, 0.9);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+}
+.famTabOn .famTabCount { background: #FF6B4A; }
+
+.famSearch {
+    width: 100%;
+    padding: 10px 13px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+.famSearch::placeholder { color: rgba(235, 235, 245, 0.38); }
+
+/* Récapitulatif de ce qui est coché + ce qu'il reste vraiment de recettes. */
+.selRecap { margin-top: 12px; }
+.selPills { display: flex; flex-wrap: wrap; gap: 6px; }
+.selPill {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 194, 75, 0.22);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.selClear {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: rgba(235, 235, 245, 0.5);
+    font-family: 'Outfit', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.selCountLow { padding: 8px 2px 6px; font-size: 12.5px; font-weight: 700; color: #FFB86B; }
+
+/* Pied de la carte : reste collé au bas pendant que les pastilles défilent. */
+.composeFooter {
+    position: sticky;
+    bottom: 0;
+    margin-top: 12px;
+    padding-bottom: 14px;
+    /* Fond PLEIN : en dégradé translucide, les pastilles qui défilent dessous
+       transparaissaient à travers l'avertissement, illisible. */
+    background: rgba(34, 34, 36, 0.97);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+/* Fondu au-dessus du pied : la liste ne se coupe pas net. */
+.composeFooter::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -16px;
+    height: 16px;
+    background: linear-gradient(to bottom, transparent, rgba(34, 34, 36, 0.97));
+    pointer-events: none;
+}
+
+.composeLaunch {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(120deg, #FFC24B, #FF6B4A);
+    color: #1a1109;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15.5px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 0.2s var(--tv-ease), opacity 0.2s ease;
+}
+.composeLaunch:active { transform: scale(0.98); }
+.composeLaunch:disabled { opacity: 0.4; cursor: default; }
+
+:global([data-theme='light']) .famTab { color: #555; }
+:global([data-theme='light']) .famTabOn { background: #111; color: #fff; }
+:global([data-theme='light']) .famSearch { background: rgba(0, 0, 0, 0.05); color: #111; }
+:global([data-theme='light']) .composeChip { background: rgba(0, 0, 0, 0.06); color: #222; }
+:global([data-theme='light']) .composeFooter { background: rgba(248, 248, 250, 0.97); }
+:global([data-theme='light']) .composeFooter::before { background: linear-gradient(to bottom, transparent, rgba(248, 248, 250, 0.97)); }
 
 /* ── Liste de courses (route /tv-courses) ───────────────────────────────── */
 
@@ -3258,6 +3403,16 @@
    lit plus comme un bouton. Sur grand écran elles se rangent à droite, à une
    largeur d'objet. */
 @media (min-width: 1024px) {
+    /* La barre « Partager / Magasin » de la liste de courses souffre du même
+       mal : fixée d'un bord à l'autre de la fenêtre, elle passait par-dessus la
+       barre latérale et étalait deux boutons sur toute la largeur. */
+    .courseShop {
+        left: auto;
+        right: 34px;
+        width: auto;
+        min-width: 220px;
+        bottom: 28px;
+    }
     .planRecap {
         left: auto;
         right: 34px;

@@ -30,7 +30,8 @@ import { normalizeIng, parseIngredient } from '@/mobile/lib/ingredients';
 import { rayonOf } from '@/lib/rayons';
 import { isCookable, hasSideIncluded, isSweet, proteinOf } from '@/lib/mealClassify';
 import { isTVSide, isTVMain, sidePool } from './sides';
-import { THEMES, matchesTag } from './themes';
+import { matchesTag } from './themes';
+import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { totalMinutes, formatMinutes } from './timing';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import { haptic } from './TVHome';
@@ -265,16 +266,62 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         });
     };
 
-    /** Tendances proposées au générateur (sous-ensemble lisible des thèmes). */
-    const TRENDS = useMemo(
-        () => ['healthy', 'vegetarien', 'express', 'dolce-vita', 'barbecue', 'pas cher', 'minceur']
-            .map((tag) => ({ tag, label: THEMES.find((t) => t.tag === tag)?.title || tag })),
-        []
-    );
+    /**
+     * Sélection du compositeur : trois familles, cumulables.
+     * Entre familles c'est un ET (Italie ET Express), dans une famille un OU
+     * (Italie OU Grèce) — comme les filtres du menu.
+     */
+    type Sel = Record<FilterGroup, string[]>;
+    const EMPTY_SEL: Sel = { categorie: [], pays: [], tendances: [] };
+    const [sel, setSel] = useState<Sel>(EMPTY_SEL);
+    const [fam, setFam] = useState<FilterGroup>('tendances');
+    const [famQuery, setFamQuery] = useState('');
+    const [famAll, setFamAll] = useState(false);
+    const selCount = sel.categorie.length + sel.pays.length + sel.tendances.length;
+
+    const norm = (t: string) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const FAM_LABEL: Record<FilterGroup, string> = { tendances: 'Tendances', pays: 'Pays', categorie: 'Catégories' };
+
+    /** Une recette passe si CHAQUE famille cochée trouve au moins un de ses tags. */
+    const selFits = useCallback((r: Recipe, s: Sel) => {
+        const groups = [s.categorie, s.pays, s.tendances].filter((g) => g.length);
+        if (!groups.length) return true;
+        // L'utilisateur a coché une catégorie lui-même : les garde-fous des thèmes
+        // (« Express » écarte les desserts) n'ont plus lieu d'être.
+        const opts = { ignoreCategoryGuards: !!s.categorie.length };
+        return groups.every((g) => g.some((t) => matchesTag(r, t, opts)));
+    }, []);
+
+    // Combien de recettes répondent VRAIMENT à la sélection, dans le rôle attendu
+    // (un créneau de semaine veut un plat). Sans ce compte, on coche trois filtres
+    // et on découvre après coup que la semaine est hors sujet.
+    const selMatches = useMemo(() => {
+        const accepts = mode === 'semaine' ? isTVMain : (r: Recipe) => isCookable(r);
+        return mockRecipes.filter((r) => r.image && accepts(r) && selFits(r, sel)).length;
+    }, [sel, mode, selFits]);
+
+    // Nombre de créneaux à remplir : sert à prévenir quand la sélection est trop
+    // étroite pour la semaine (14 repas) ou le menu du Jour J.
+    const NEEDED = mode === 'semaine' ? DAYS.length * MEALS.length : COURSES.filter((c) => c.label !== 'Accompagnement').length;
+
+    const famItems = useMemo(() => {
+        const all = FILTER_GROUPS[fam];
+        const q = norm(famQuery.trim());
+        return q ? all.filter((i) => norm(i.label).includes(q)) : all;
+    }, [fam, famQuery]);
+
+    const toggleSel = (tag: string) => {
+        haptic(6);
+        setSel((prev) => {
+            const cur = prev[fam];
+            return { ...prev, [fam]: cur.includes(tag) ? cur.filter((t) => t !== tag) : [...cur, tag] };
+        });
+    };
+
     const [composer, setComposer] = useState(false);
     const [showTimeline, setShowTimeline] = useState(false);
-    // Semaine intelligente : express en semaine, anti-gaspi (réutilise les restes).
-    const [smart, setSmart] = useState({ express: false, gaspi: false });
+    // Semaine intelligente : express en semaine.
+    const [smart, setSmart] = useState({ express: false });
 
     // Déroulé de la soirée (Jour J) : un item par plat du menu, avec sa part
     // active (prépa) et passive (four/frigo) devinée depuis les étapes.
@@ -305,13 +352,15 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
      * se répètent pas, les protéines alternent, et un plat servi nu reçoit sa
      * garniture — comme le ferait un menu proposé à la main.
      */
-    const compose = (tag: string | null) => {
+    const compose = (chosen: Sel | null) => {
         haptic(12);
         setComposer(false);
+        const sub = chosen || EMPTY_SEL;
+        const tagged = !!(sub.categorie.length || sub.pays.length || sub.tendances.length);
         // Nouveau menu = liste fraîche : on efface les marques « déjà pris » qui
         // masqueraient les créneaux réécrits dans « La semaine ».
         try { localStorage.removeItem('meal-week-checked'); } catch { /* noop */ }
-        const fits = (r: Recipe) => !tag || matchesTag(r, tag);
+        const fits = (r: Recipe) => selFits(r, sub);
 
         const next: Plan = { ...plan };
         const used = new Set<string>();
@@ -319,27 +368,16 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             ? sidePool(mockRecipes).filter(fits)
             : sidePool(mockRecipes));
 
-        // Mots-clés d'ingrédients d'une recette (pour l'anti-gaspi : réutiliser un
-        // ingrédient d'un jour à l'autre).
-        const ingKeys = (r: Recipe): Set<string> => {
-            const s = new Set<string>();
-            (r.ingredients || []).forEach((i: any) => {
-                String(i?.name || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
-                    .split(/[^a-z]+/).forEach((w) => { if (w.length >= 4) s.add(w); });
-            });
-            return s;
-        };
         const totalTime = (r: Recipe) => { const t = estimateRecipeTiming(r.steps); return t.prepTime + t.cookTime; };
 
-        // opts : express (≤30 min), prev (recette de la veille pour l'anti-gaspi).
         // Combien de créneaux la tendance n'a PAS pu remplir. On ne peut pas
         // laisser un trou dans la semaine, mais on doit le dire : sinon on
         // annonce « Express » et on sert un plat de trois quarts d'heure.
         let offTrend = 0;
 
-        const pickFrom = (accepts: (r: Recipe) => boolean, opts?: { lastProtein?: string; express?: boolean; prev?: Recipe | null }): Recipe | null => {
+        const pickFrom = (accepts: (r: Recipe) => boolean, opts?: { lastProtein?: string; express?: boolean }): Recipe | null => {
             const onTrend = mockRecipes.filter((r) => r.image && accepts(r) && fits(r));
-            if (!onTrend.length && tag) offTrend++;
+            if (!onTrend.length && tagged) offTrend++;
             const pool = onTrend.length ? onTrend : mockRecipes.filter((r) => r.image && accepts(r));
             if (!pool.length) return null;
 
@@ -356,13 +394,6 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 const quick = from.filter((r) => totalTime(r) <= 30);
                 const okish = quick.length ? quick : from.filter((r) => totalTime(r) <= 45);
                 if (okish.length) from = okish; else offTrend++;
-            }
-
-            // Anti-gaspi : privilégie une recette partageant un ingrédient avec la veille.
-            if (opts?.prev) {
-                const prevIng = ingKeys(opts.prev);
-                const reuse = from.filter((r) => { const k = ingKeys(r); for (const w of k) if (prevIng.has(w)) return true; return false; });
-                if (reuse.length) from = reuse;
             }
 
             const pick = from[Math.floor(Math.random() * from.length)];
@@ -386,16 +417,14 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             });
         } else {
             let last: string | undefined;
-            let prev: Recipe | null = null;
             DAYS.forEach((d, di) => {
                 next[d] = {};
                 // Express en SEMAINE (Lun→Ven), plats plus libres le week-end.
                 const express = smart.express && di < 5;
                 MEALS.forEach((m) => {
-                    const pick = pickFrom(isTVMain, { lastProtein: last, express, prev: smart.gaspi ? prev : null });
+                    const pick = pickFrom(isTVMain, { lastProtein: last, express });
                     if (!pick) return;
                     last = proteinOf(pick);
-                    prev = pick;
                     next[d][m] = withSide(pick);
                 });
                 if (!Object.keys(next[d]).length) delete next[d];
@@ -410,9 +439,15 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         const filled = mode === 'jourj'
             ? Object.keys(next[JOUR_J] || {}).length
             : Object.values(next).reduce((n, day) => n + Object.keys(day || {}).length, 0);
-        const what = tag ? (TRENDS.find((t) => t.tag === tag)?.label || tag) : 'Au hasard';
+        const labelOf = (g: FilterGroup, t: string) =>
+            FILTER_GROUPS[g].find((i) => i.tag === t)?.label.replace(/^[^\p{L}]+/u, '') || t;
+        const what = tagged
+            ? ([...sub.categorie.map((t) => labelOf('categorie', t)),
+                ...sub.pays.map((t) => labelOf('pays', t)),
+                ...sub.tendances.map((t) => labelOf('tendances', t))].join(' + '))
+            : 'Au hasard';
         const msg = offTrend > 0
-            ? `${what} · ${filled} repas — ${offTrend} créneau${offTrend > 1 ? 'x' : ''} sans recette de cette tendance`
+            ? `${what} · ${filled} repas — ${offTrend} créneau${offTrend > 1 ? 'x' : ''} hors filtre, faute de recette`
             : `${what} · ${filled} repas composés`;
         window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: msg }));
     };
@@ -662,7 +697,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 )}
             </AnimatePresence>
 
-            {/* Composer : une tendance, et tout le menu se remplit. */}
+            {/* Composer : des filtres cumulables, et tout le menu se remplit. */}
             <AnimatePresence>
                 {composer && (
                     <motion.div
@@ -681,7 +716,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                 Composer {mode === 'jourj' ? 'le menu' : 'la semaine'}
                             </div>
                             <div className={styles.composeHint}>
-                                Une tendance, et {mode === 'jourj' ? 'chaque plat du menu' : 'les quatorze repas'} se remplissent.
+                                Coche ce que tu veux — catégories, pays, tendances se combinent —
+                                et {mode === 'jourj' ? 'chaque plat du menu' : 'les quatorze repas'} se remplissent.
                             </div>
                             {mode === 'semaine' && (
                                 <div className={styles.smartRow}>
@@ -692,27 +728,87 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></svg>
                                         Express en semaine
                                     </button>
-                                    <button
-                                        className={`${styles.smartToggle} ${smart.gaspi ? styles.smartOn : ''}`}
-                                        onClick={() => setSmart((s) => ({ ...s, gaspi: !s.gaspi }))}
-                                    >
-                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9M3 12V6m0 6h6" /></svg>
-                                        Anti-gaspi (réutilise les restes)
-                                    </button>
                                 </div>
                             )}
-                            {/* Les options du dessus se gardent d'une composition à
-                                l'autre ; les pastilles ci-dessous LANCENT. Rien ne
-                                le disait, et on cliquait « Express » en croyant
-                                cocher une case. */}
-                            <div className={styles.composeGo}>Lance avec une tendance</div>
-                            <div className={styles.composeChips}>
-                                <button className={styles.composeChip} onClick={() => compose(null)}>Au hasard</button>
-                                {TRENDS.map((t) => (
-                                    <button key={t.tag} className={styles.composeChip} onClick={() => compose(t.tag)}>
-                                        {t.label}
+                            {/* Cinquante et quelques filtres ne tiennent pas à plat :
+                                on montre une famille à la fois, filtrable, repliée
+                                aux douze premiers. Cocher n'ENVOIE rien — c'est le
+                                bouton du bas qui lance. */}
+                            <div className={styles.famTabs}>
+                                {(['tendances', 'pays', 'categorie'] as FilterGroup[]).map((g) => (
+                                    <button
+                                        key={g}
+                                        className={`${styles.famTab} ${fam === g ? styles.famTabOn : ''}`}
+                                        onClick={() => { haptic(5); setFam(g); setFamQuery(''); setFamAll(false); }}
+                                    >
+                                        {FAM_LABEL[g]}
+                                        {sel[g].length > 0 && <span className={styles.famTabCount}>{sel[g].length}</span>}
                                     </button>
                                 ))}
+                            </div>
+
+                            <input
+                                className={styles.famSearch}
+                                value={famQuery}
+                                onChange={(e) => { setFamQuery(e.target.value); setFamAll(true); }}
+                                placeholder={`Filtrer ${FAM_LABEL[fam].toLowerCase()}…`}
+                            />
+
+                            <div className={styles.composeChips}>
+                                {(famAll ? famItems : famItems.slice(0, 12)).map((it) => (
+                                    <button
+                                        key={it.tag}
+                                        className={`${styles.composeChip} ${sel[fam].includes(it.tag) ? styles.composeChipOn : ''}`}
+                                        onClick={() => toggleSel(it.tag)}
+                                    >
+                                        {it.label}
+                                    </button>
+                                ))}
+                                {!famAll && famItems.length > 12 && (
+                                    <button className={`${styles.composeChip} ${styles.composeChipMore}`} onClick={() => setFamAll(true)}>
+                                        +{famItems.length - 12} autres
+                                    </button>
+                                )}
+                                {!famItems.length && <div className={styles.composeHint}>Aucun filtre à ce nom.</div>}
+                            </div>
+
+                            {/* Ce qui est coché, toutes familles confondues, et ce que
+                                ça laisse réellement comme recettes. */}
+                            {selCount > 0 && (
+                                <div className={styles.selRecap}>
+                                    <div className={styles.selPills}>
+                                        {(['categorie', 'pays', 'tendances'] as FilterGroup[]).flatMap((g) =>
+                                            sel[g].map((t) => (
+                                                <button
+                                                    key={`${g}-${t}`}
+                                                    className={styles.selPill}
+                                                    onClick={() => { haptic(5); setSel((p) => ({ ...p, [g]: p[g].filter((x) => x !== t) })); }}
+                                                >
+                                                    {FILTER_GROUPS[g].find((i) => i.tag === t)?.label || t} ✕
+                                                </button>
+                                            )))}
+                                        <button className={styles.selClear} onClick={() => { haptic(6); setSel(EMPTY_SEL); }}>Tout effacer</button>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Pied épinglé : le compte et le bouton ne doivent jamais
+                                partir sous le pli quand les pastilles défilent. */}
+                            <div className={styles.composeFooter}>
+                                {selCount > 0 && selMatches < NEEDED && (
+                                    <div className={styles.selCountLow}>
+                                        Trop peu pour {NEEDED} créneaux — certains sortiront du filtre.
+                                    </div>
+                                )}
+                                <button
+                                    className={styles.composeLaunch}
+                                    onClick={() => compose(selCount ? sel : null)}
+                                    disabled={selCount > 0 && selMatches === 0}
+                                >
+                                    {selCount
+                                        ? `Composer · ${selMatches} recette${selMatches > 1 ? 's' : ''}`
+                                        : 'Composer au hasard'}
+                                </button>
                             </div>
                         </motion.div>
                     </motion.div>
