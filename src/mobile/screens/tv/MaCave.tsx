@@ -1005,7 +1005,10 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
      * écran, qui recouvre le menu et fait perdre le fil.
      */
     const open = (r: any) => {
-        window.dispatchEvent(new CustomEvent(embedded ? 'openRecipeFromPlanner' : 'openRecipe', { detail: r }));
+        // Même règle que les favoris : c'est l'hôte global qui ouvre une fiche
+        // depuis un écran, dans les deux cas. `openRecipe` n'empile que DANS une
+        // fiche déjà ouverte — hors du shell, personne ne l'écoutait.
+        window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: r }));
         onClose();
     };
     return (

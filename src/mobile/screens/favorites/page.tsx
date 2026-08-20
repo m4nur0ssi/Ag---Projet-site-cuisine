@@ -50,8 +50,14 @@ export default function FavoritesPage({ embedded = false }: { embedded?: boolean
 
     useEffect(() => { if (favoriteRecipes.length) precacheFavorites(favoriteRecipes); }, [favoriteRecipes]);
 
+    /**
+     * Toujours `openRecipeFromPlanner` : c'est l'hôte GLOBAL (monté par le shell)
+     * qui ouvre une fiche depuis un écran. `openRecipe` ne sert qu'à empiler une
+     * recette DANS une fiche déjà ouverte — depuis les favoris, personne ne
+     * l'écoutait, et toucher une carte ne faisait rien du tout.
+     */
     const open = (r: Recipe) => window.dispatchEvent(
-        new CustomEvent(embedded ? 'openRecipeFromPlanner' : 'openRecipe', { detail: r }));
+        new CustomEvent('openRecipeFromPlanner', { detail: r }));
 
     return (
         <div className={`${styles.page} ${embedded ? styles.emb : ''}`}>
