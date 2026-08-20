@@ -243,19 +243,185 @@ const isDrinkRecipe = (r: { title?: string; category?: string; tags?: string[] }
     return DRINK_KW.test(r.title || '');
 };
 
-export function recipesForWine<T extends { id: string | number; title: string; category?: string; tags?: string[]; ingredients?: any[]; image?: string }>(wine: CaveWine, all: T[], limit = 12): T[] {
-    const kw = wine.color === 'rouge' ? RED_KW : wine.color === 'liqueur' ? LIQ_KW : WHITE_KW;
-    const hay = (r: T) => `${r.title} ${(r.tags || []).join(' ')} ${(r.ingredients || []).map((i: any) => i?.name || i).join(' ')}`.toLowerCase();
-    const scored = all
-        .filter((r) => r.image && (r.category || '').toLowerCase() !== 'restaurant' && !isDrinkRecipe(r))
-        .map((r) => ({ r, s: kw.test(hay(r)) ? 1 : 0 }))
-        .filter((x) => x.s > 0);
-    // Repli si trop peu : catégorie plausible selon la couleur.
-    if (scored.length < 4) {
-        const cat = wine.color === 'liqueur' ? ['desserts', 'patisserie'] : wine.color === 'rouge' ? ['plats'] : ['plats', 'entrees'];
-        all.filter((r) => r.image && cat.includes((r.category || '').toLowerCase()) && !isDrinkRecipe(r)).forEach((r) => {
-            if (!scored.find((x) => String(x.r.id) === String(r.id))) scored.push({ r, s: 0.5 });
-        });
+/**
+ * PROFIL D'UN VIN — ce qui décide vraiment d'un accord.
+ *
+ * La couleur ne suffit pas : elle mettait tous les rouges de la cave sur les
+ * mêmes plats, et tous les blancs sur les mêmes autres. Un gamay de Beaujolais
+ * et un cabernet de Bordeaux n'appellent pourtant pas le même dîner.
+ *
+ * On lit donc le cépage, la région et le nom pour en tirer quelques traits —
+ * ceux dont un sommelier se sert : tanin, corps, acidité, sucre, aromatique,
+ * élevage, bulle.
+ */
+export interface WineProfile {
+    tanin: boolean;        // structure qui demande de la matière grasse
+    corse: boolean;        // vin puissant (corsé)
+    leger: boolean;        // rouge délicat, chair fine
+    vif: boolean;          // acidité franche, minéralité
+    gras: boolean;         // blanc ample, souvent élevé en fût
+    aromatique: boolean;   // muscaté, épicé, demi-sec
+    sucre: boolean;        // vin doux, vin de liqueur
+    bulle: boolean;
+    /** Cuisine régionale à laquelle le vin appartient, s'il en revendique une. */
+    terroir: 'italie' | 'espagne' | 'portugal' | 'alsace' | 'provence' | null;
+    /** Phrase courte affichée en tête de la feuille d'accord. */
+    style: string;
+}
+
+export function wineProfile(wine: CaveWine): WineProfile {
+    const t = `${wine.grape || ''} ${wine.region || ''} ${wine.name || ''}`
+        .toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const a = (re: RegExp) => re.test(t);
+
+    // Chaque trait est réservé à la couleur qui peut le porter : « Cabernet
+    // Sauvignon » contient « sauvignon » et déclenchait les règles du sauvignon
+    // BLANC — un bordeaux se retrouvait sur un tartare de crevettes, avec pour
+    // raison « son acidité relève l'iode ».
+    const rouge = wine.color === 'rouge';
+    const blanc = wine.color === 'blanc';
+
+    const tannique = rouge && a(/cabernet|tannat|nebbiolo|barolo|barbaresco|syrah|shiraz|malbec|mourvedre|madiran|sagrantino|aglianico|bordeaux|medoc|pauillac|saint[- ]est|margaux|cahors/);
+    const leger = rouge && a(/pinot noir|gamay|beaujolais|cinsault|poulsard|trousseau|zweigelt/);
+    const vif = blanc && a(/\bsauvignon\b|muscadet|chablis|albarino|vermentino|verdejo|riesling|picpoul|melon de bourgogne|txakoli|assyrtiko|loire|sancerre|pouilly|entre[- ]deux[- ]mers/) && !a(/cabernet/);
+    const gras = blanc && a(/meursault|puligny|chassagne|corton|chardonnay|viognier|roussanne|marsanne|bourgogne blanc|macon|pouilly[- ]fuisse|saint[- ]veran/);
+    const aromatique = blanc && a(/gewurz|muscat|pinot gris|riesling|torrontes|alsace|jurancon|vouvray|chenin/);
+    const sucre = wine.color === 'liqueur' || a(/porto|banyuls|maury|rasteau|pineau|sauternes|monbazillac|coteaux du layon|jurancon moelleux|vin doux|liqueur|moelleux|tawny|late harvest/);
+    const bulle = a(/champagne|cremant|prosecco|cava|petillant|brut|blanquette|franciacorta/);
+
+    const terroir: WineProfile['terroir'] =
+        a(/italie|toscan|chianti|piemont|barolo|barbaresco|veneto|amarone|valpolicella|sicil|nebbiolo|sangiovese|primitivo/) ? 'italie'
+        : a(/espagne|rioja|ribera|priorat|tempranillo|albarino|cava/) ? 'espagne'
+        : a(/portugal|douro|porto|alentejo|dao|vinho verde/) ? 'portugal'
+        : a(/alsace|gewurz|riesling d alsace|edelzwicker/) ? 'alsace'
+        : a(/provence|bandol|cassis|coteaux d aix|var\b/) ? 'provence'
+        : null;
+
+    const corse = tannique || (rouge && a(/grenache|carignan|primitivo|zinfandel|amarone|chateauneuf|rhone|priorat|douro|alentejo/));
+
+    const style = sucre ? 'un vin doux'
+        : bulle ? 'une bulle'
+        : wine.color === 'rose' ? 'un rosé'
+        : wine.color === 'blanc' ? (gras ? 'un blanc ample' : aromatique ? 'un blanc aromatique' : 'un blanc vif')
+        : leger ? 'un rouge délicat'
+        : tannique ? 'un rouge tannique'
+        : corse ? 'un rouge charpenté'
+        : 'un rouge souple';
+
+    return { tanin: tannique, corse, leger, vif, gras, aromatique, sucre, bulle, terroir, style };
+}
+
+/** Une règle d'accord : ce qu'on cherche dans le plat, ce que ça vaut, pourquoi. */
+interface Regle { quoi: RegExp; poids: number; pourquoi: string }
+
+function reglesPour(wine: CaveWine, profil: WineProfile, maturite: DrinkStatus | null): Regle[] {
+    const r: Regle[] = [];
+
+    if (profil.tanin) {
+        r.push({ quoi: /(b[œo]euf|entrec[oô]te|c[oô]te de b|steak|bavette|onglet|agneau|gigot|magret|canard|gibier|chevreuil|sanglier|biche)/, poids: 10, pourquoi: 'ses tanins se fondent dans une viande rouge' });
+        r.push({ quoi: /(grill|barbecue|brais|r[oô]ti|mijot|daube|bourguignon|rago[uû]t)/, poids: 6, pourquoi: 'le grillé et le mijoté appellent sa structure' });
+        r.push({ quoi: /(comt[ée]|cantal|tomme|fromage affin|vieux fromage)/, poids: 4, pourquoi: 'un fromage de garde tient tête à ses tanins' });
     }
-    return scored.sort((a, b) => b.s - a.s).slice(0, limit).map((x) => x.r);
+    if (profil.leger) {
+        r.push({ quoi: /(volaille|poulet|dinde|pintade|lapin|veau|charcuterie|jambon|saucisson|terrine)/, poids: 9, pourquoi: 'sa légèreté respecte une chair fine' });
+        r.push({ quoi: /(champignon|c[eè]pe|girolle|truffe|betterave|lentille)/, poids: 7, pourquoi: 'ses notes de sous-bois répondent aux champignons' });
+        r.push({ quoi: /(saumon|thon mi[- ]cuit|anguille)/, poids: 5, pourquoi: 'un rouge léger passe sur un poisson gras, servi frais' });
+    }
+    if (profil.corse && !profil.leger) {
+        r.push({ quoi: /(chili|chorizo|merguez|paella|cassoulet|tajine|couscous|p[aâ]tes? [aà] la viande|lasagne|bolognaise|gratin)/, poids: 7, pourquoi: 'un plat nourrissant supporte sa puissance' });
+    }
+    if (profil.vif) {
+        r.push({ quoi: /(hu[iî]tre|coquillage|moule|palourde|crevette|gambas|langoustine|ceviche|tartare de poisson|sushi|sashimi)/, poids: 10, pourquoi: 'son acidité relève l’iode comme un trait de citron' });
+        r.push({ quoi: /(cabillaud|bar\b|dorade|truite|sole|merlan|lieu|poisson blanc|papillote)/, poids: 8, pourquoi: 'sa fraîcheur laisse parler un poisson blanc' });
+        r.push({ quoi: /(ch[eè]vre|feta|salade|asperge|citron|herbes fra[iî]ches|aneth)/, poids: 7, pourquoi: 'chèvre, herbes et agrumes sont son terrain' });
+    }
+    if (profil.gras) {
+        r.push({ quoi: /(risotto|cr[eè]me|beurre blanc|velout[ée]|gratin|quiche|vol[- ]au[- ]vent|blanquette)/, poids: 9, pourquoi: 'son gras épouse une sauce crémée' });
+        r.push({ quoi: /(homard|langoustine|saint[- ]jacques|noix de p[eé]toncle|turbot|lotte)/, poids: 9, pourquoi: 'il a l’ampleur qu’exige un crustacé noble' });
+        r.push({ quoi: /(volaille|poulet r[oô]ti|chapon|champignon)/, poids: 6, pourquoi: 'volaille rôtie et blanc de garde s’entendent' });
+    }
+    if (profil.aromatique) {
+        r.push({ quoi: /(curry|tha[iï]|indien|asiatique|wok|gingembre|coco|[eé]pic|piment|colombo|tandoori|tajine|marocain|libanais)/, poids: 10, pourquoi: 'son aromatique tient tête aux épices' });
+        r.push({ quoi: /(munster|fromage fort|choucroute|flammekueche|porc fum)/, poids: 6, pourquoi: 'accord de région, éprouvé' });
+    }
+    if (wine.color === 'rose') {
+        r.push({ quoi: /(salade|grill|barbecue|tapas|m[eé]diterran|tomate|courgette|aubergine|poivron|ratatouille|pizza|sandwich|brochette|melon|past[eè]que)/, poids: 9, pourquoi: 'la cuisine du soleil est faite pour lui' });
+    }
+    if (profil.sucre) {
+        r.push({ quoi: /(foie gras|roquefort|gorgonzola|stilton|fourme d ambert)/, poids: 10, pourquoi: 'le sucré et le salé-persillé se répondent' });
+    }
+    if (profil.bulle) {
+        r.push({ quoi: /(ap[eé]ritif|friture|beignet|tempura|chips|feuillet|toast|blini|saumon fum|hu[iî]tre|tapas|verrine)/, poids: 10, pourquoi: 'la bulle nettoie le gras et lance le repas' });
+    }
+    if (profil.terroir) {
+        const cuisine: Record<string, RegExp> = {
+            italie: /(p[aâ]tes|pasta|risotto|osso buco|lasagne|parmes|mozzarella|pizza|italien|milanaise|carbonara|gnocchi)/,
+            espagne: /(paella|tapas|chorizo|gazpacho|tortilla|espagnol|paprika|paella|jambon serrano)/,
+            portugal: /(morue|bacalhau|portugais|pastel|caldo)/,
+            alsace: /(choucroute|flammekueche|munster|baeckeoffe|alsacien|bretzel)/,
+            provence: /(ratatouille|proven[cç]al|tapenade|anchoïade|bouillabaisse|pistou|olive)/,
+        };
+        r.push({ quoi: cuisine[profil.terroir], poids: 8, pourquoi: 'ce qui pousse ensemble va ensemble' });
+    }
+    if (maturite === 'apogee' || maturite === 'tard') {
+        r.push({ quoi: /(mijot|brais[ée]|daube|truffe|champignon|civet|confit|cuisson lente)/, poids: 5, pourquoi: 'un vin à maturité aime les cuissons lentes' });
+    }
+    return r;
+}
+
+/**
+ * Recettes du site qui vont avec CE vin — et la raison de chacune.
+ *
+ * On note chaque plat contre le profil du vin (voir `wineProfile`) plutôt que
+ * contre sa seule couleur. La couleur reste un filet de sécurité, à petit poids,
+ * pour qu'une cave exotique ne renvoie jamais une liste vide.
+ */
+export interface PairSuggestion<T> { recipe: T; why: string }
+
+export function recipesForWine<T extends { id: string | number; title: string; category?: string; tags?: string[]; ingredients?: any[]; image?: string }>(
+    wine: CaveWine, all: T[], limit = 12,
+): PairSuggestion<T>[] {
+    const profil = wineProfile(wine);
+    const regles = reglesPour(wine, profil, drinkWindow(wine)?.status ?? null);
+    const filet = wine.color === 'rouge' ? RED_KW : wine.color === 'liqueur' ? LIQ_KW : WHITE_KW;
+    const sucreOuPas = /(dessert|g[âa]teau|tarte(?! sal)|chocolat|cr[èe]me p[âa]tissi|mousse|cheesecake|tiramisu|glace|p[âa]tisserie)/i;
+
+    const texte = (r: T) => `${r.title} ${(r.tags || []).join(' ')} ${(r.ingredients || []).map((i: any) => i?.name || i).join(' ')}`
+        .toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    const notes = all
+        .filter((r) => r.image && (r.category || '').toLowerCase() !== 'restaurant' && !isDrinkRecipe(r))
+        .map((r) => {
+            const h = texte(r);
+            let note = 0;
+            let pourquoi = '';
+            for (const regle of regles) {
+                if (!regle.quoi.test(h)) continue;
+                note += regle.poids;
+                if (!pourquoi || regle.poids > 8) pourquoi = regle.pourquoi;
+            }
+            // Le dessert se reconnaît à sa CATÉGORIE d'abord : « tarte tatin oignons,
+            // chèvre & chorizo » contient « tarte » sans être un dessert.
+            const cat = (r.category || '').toLowerCase();
+            // Certaines recettes salées sont rangées en pâtisserie à la source
+            // (« Tarte tatin aux aubergines ») : un mot franchement salé dans le
+            // titre l'emporte sur la catégorie.
+            const titreSale = /(aubergine|oignon|chorizo|lardon|jambon|poulet|b[œo]euf|porc|saumon|thon|crevette|courgette|tomate|poireau|epinard|champignon|ch[eè]vre|feta|comt[ée]|sal[ée]e?s?\b)/i
+                .test((r.title || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''));
+            const dessert = !titreSale && (['desserts', 'patisserie', 'glaces'].includes(cat)
+                || (sucreOuPas.test(h) && !['plats', 'entrees', 'aperitifs', 'accompagnements'].includes(cat)));
+            if (dessert && profil.sucre) { note += 10; if (!pourquoi) pourquoi = 'le sucre du vin doit égaler celui du dessert'; }
+            // Un dessert sous un vin sec, ou un plat salé sous un vin doux : accord raté.
+            if (dessert && !profil.sucre) note -= 12;
+            if (!dessert && profil.sucre) note -= 6;
+            if (filet.test(h)) note += 1;
+            return { r, note, pourquoi };
+        })
+        .filter((x) => x.note > 0)
+        .sort((a, b) => b.note - a.note);
+
+    return notes.slice(0, limit).map((x) => ({
+        recipe: x.r,
+        why: x.pourquoi || `l’accord classique d’${profil.style}`,
+    }));
 }

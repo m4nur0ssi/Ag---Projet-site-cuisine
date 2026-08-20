@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import {
-    readCave, addWine, removeWine, seedCaveIfEmpty, recipesForWine,
+    readCave, addWine, removeWine, seedCaveIfEmpty, recipesForWine, wineProfile,
     openBottle, setQty, drinkWindow, updateWine, findKnownWine,
     moveToTasted, moveToCave, shelfOf,
     CAVE_EVENT, type CaveWine, type WineColor, type WineShelf, type DrinkStatus,
@@ -1038,7 +1038,8 @@ function EditWine({ wine, onClose }: { wine: CaveWine; onClose: () => void }) {
 
 /* ── Accord : recettes du site pour ce vin ────────────────────────────────── */
 function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () => void; embedded?: boolean }) {
-    const recipes = useMemo(() => recipesForWine(wine, mockRecipes as any, 12), [wine]);
+    const accords = useMemo(() => recipesForWine(wine, mockRecipes as any, 12), [wine]);
+    const profil = useMemo(() => wineProfile(wine), [wine]);
     /**
      * Encastrée dans le shell desktop, la cave ouvre la fiche FLOTTANTE
      * (`openRecipeFromPlanner`) : la barre latérale et le titre « Ma cave »
@@ -1055,17 +1056,25 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
                 <div className={styles.sheetHead}>
                     <div>
                         <div className={styles.sheetKick}>Avec {wine.name}</div>
-                        <div className={styles.sheetTitle}>À cuisiner ce soir</div>
+                        {/* Le style du vin, pas seulement sa couleur : c'est lui qui
+                            explique pourquoi ces plats-là et pas d'autres. */}
+                        <div className={styles.sheetTitle}>Ce que demande {profil.style}</div>
                     </div>
                     <button className={styles.sheetClose} onClick={onClose}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
                 </div>
                 <div className={styles.pairGrid}>
-                    {recipes.map((r: any) => (
+                    {accords.map(({ recipe: r, why }: any) => (
                         <button key={r.id} className={styles.pairCard} onClick={() => open(r)}>
                             <img src={r.image} alt="" />
                             <span>{decodeHtml(r.title)}</span>
+                            {/* La RAISON de l'accord : sans elle, une grille de photos
+                                ne vaut pas mieux qu'une liste au hasard. */}
+                            <em className={styles.pairWhy}>{why}</em>
                         </button>
                     ))}
+                    {!accords.length && (
+                        <div className={styles.pairEmpty}>Aucun plat du site ne s’impose pour cette bouteille.</div>
+                    )}
                 </div>
             </div>
         </div>

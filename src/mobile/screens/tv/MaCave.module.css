@@ -607,3 +607,15 @@
 :global([data-theme='light']) .pickSheet { background: rgba(250, 246, 242, 0.98); }
 :global([data-theme='light']) .pickTitle, :global([data-theme='light']) .pickRow { color: #1a1008; }
 :global([data-theme='light']) .pickSearch { background: rgba(0, 0, 0, 0.05); color: #1a1008; }
+
+/* Raison de l'accord, sous le titre du plat : c'est le conseil, pas la photo. */
+.pairWhy {
+    display: block;
+    margin-top: 3px;
+    font-style: normal;
+    font-size: 11.5px;
+    line-height: 1.3;
+    color: rgba(235, 235, 245, 0.5);
+}
+.pairEmpty { padding: 20px 6px; font-size: 14px; color: rgba(235, 235, 245, 0.5); }
+:global([data-theme='light']) .pairWhy { color: #666; }
