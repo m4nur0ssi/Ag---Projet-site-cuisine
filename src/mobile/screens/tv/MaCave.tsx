@@ -298,7 +298,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
  * manuel reste là pour les cas où la lumière ne veut rien savoir.
  */
 function LabelScanner({ onShot, onClose, busy, message }: {
-    onShot: (dataUrl: string) => void;
+    onShot: (shot: { ocr: string; wide: string }) => void;
     onClose: () => void;
     busy: boolean;
     message: string;
@@ -324,7 +324,17 @@ function LabelScanner({ onShot, onClose, busy, message }: {
      * entre les quatre coins — et on ne garde que celui-là. Le plan de travail,
      * le mur de la cuisine et le reste du salon disparaissent d'eux-mêmes.
      */
-    const grab = () => {
+    /**
+     * `expand = 1` → exactement le cadre de visée : l'étiquette pleine largeur,
+     * ce qu'il faut au modèle pour LIRE.
+     * `expand > 1` → le même centre, en plus large : de quoi garder la bouteille
+     * entière pour la PHOTO gardée en cave.
+     *
+     * Les deux sortent du même instant : on lit sur l'une, on affiche l'autre.
+     * Sans ça, viser l'étiquette de près donnait une fiche… avec une étiquette
+     * pour toute image.
+     */
+    const grab = (expand = 1) => {
         const v = videoRef.current;
         const f = frameRef.current;
         if (!v || !v.videoWidth) return null;
@@ -340,13 +350,18 @@ function LabelScanner({ onShot, onClose, busy, message }: {
             // Coin haut-gauche de l'image source tel qu'il est posé à l'écran.
             const offX = vr.left + (vr.width - v.videoWidth * scale) / 2;
             const offY = vr.top + (vr.height - v.videoHeight * scale) / 2;
-            const sx = Math.max(0, (fr.left - offX) / scale);
-            const sy = Math.max(0, (fr.top - offY) / scale);
-            const sw = Math.min(v.videoWidth - sx, fr.width / scale);
-            const sh = Math.min(v.videoHeight - sy, fr.height / scale);
-            if (sw > 40 && sh > 40) {
-                cv.width = Math.round(sw); cv.height = Math.round(sh);
-                ctx.drawImage(v, sx, sy, sw, sh, 0, 0, cv.width, cv.height);
+            const cx = (fr.left + fr.width / 2 - offX) / scale;
+            const cy = (fr.top + fr.height / 2 - offY) / scale;
+            let w = (fr.width / scale) * expand;
+            let h = (fr.height / scale) * expand;
+            // On reste dans l'image : élargir ne doit pas décentrer la bouteille.
+            w = Math.min(w, v.videoWidth);
+            h = Math.min(h, v.videoHeight);
+            const sx = Math.min(Math.max(0, cx - w / 2), v.videoWidth - w);
+            const sy = Math.min(Math.max(0, cy - h / 2), v.videoHeight - h);
+            if (w > 40 && h > 40) {
+                cv.width = Math.round(w); cv.height = Math.round(h);
+                ctx.drawImage(v, sx, sy, w, h, 0, 0, cv.width, cv.height);
                 return cv.toDataURL('image/jpeg', 0.9);
             }
         }
@@ -357,11 +372,12 @@ function LabelScanner({ onShot, onClose, busy, message }: {
 
     const shoot = () => {
         if (fired.current || busy) return;
-        const shot = grab();
-        if (!shot) return;
+        const ocr = grab(1);            // serré : pour lire l'étiquette
+        if (!ocr) return;
+        const wide = grab(1.9) || ocr;  // large : pour garder la bouteille
         fired.current = true;
         navigator.vibrate?.(14);
-        onShot(shot);
+        onShot({ ocr, wide });
     };
 
     // Une lecture ratée relance la surveillance : on ne fige pas le viseur.
@@ -467,7 +483,7 @@ function LabelScanner({ onShot, onClose, busy, message }: {
                     {err || (busy ? (message || 'Lecture de l’étiquette…') : hint)}
                 </div>
                 {!err && !busy && (
-                    <p className={styles.scanSub}>Tiens la bouteille dans le cadre : la photo part toute seule.</p>
+                    <p className={styles.scanSub}>Mets l’étiquette dans le cadre — la photo part toute seule, et la bouteille entière est gardée.</p>
                 )}
                 {/* Sans caméra, le déclencheur n'a rien à déclencher : on renvoie
                     directement vers la pellicule. */}
@@ -995,12 +1011,20 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         img.src = dataUrl;
     });
 
-    const scanAndAdd = async (dataUrl: string) => {
+    /**
+     * `read` sert à LIRE l'étiquette (cadrage serré), `keep` à garder la photo
+     * (cadrage large). Sans distinction, viser l'étiquette de près laissait une
+     * fiche dont l'image n'était… qu'une étiquette.
+     */
+    const scanAndAdd = async (read: string, keep = read) => {
+        const dataUrl = read;
         setBusy(true); setScanMsg('Lecture de l’étiquette…');
         const step2 = setTimeout(() => setScanMsg('Recherche de la bouteille…'), 1400);
         try {
-            const small = await compress(dataUrl);
-            setPhotoSmall(small);
+            const small = await compress(dataUrl);          // serré : pour la lecture
+            // Ce qui restera en fiche si le scan échoue et qu'on complète à la
+            // main : la vue large, jamais le gros plan sur l'étiquette.
+            setPhotoSmall(keep === dataUrl ? small : await compress(keep));
             const res = await fetch('/api/wine-lookup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ image: small }) });
             const data = await res.json();
             const w = data?.wine;
@@ -1017,7 +1041,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
                         color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
                         // Photo du marchand quand il a retrouvé la bouteille (déjà
                         // détourée sur fond blanc) ; sinon la nôtre, mise en scène.
-                        photo: w.photo || (await toStudio(dataUrl)), rating: w.rating, vivinoUrl: w.vivinoUrl,
+                        photo: w.photo || (await toStudio(keep)), rating: w.rating, vivinoUrl: w.vivinoUrl,
                         shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
                     });
                     if (known) {
@@ -1098,7 +1122,7 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
                         busy={busy}
                         message={scanMsg}
                         onClose={() => setViewfinder(false)}
-                        onShot={(url) => { setPhoto(url); scanAndAdd(url); }}
+                        onShot={({ ocr, wide }) => { setPhoto(wide); scanAndAdd(ocr, wide); }}
                     />
                 )}
 

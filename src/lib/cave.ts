@@ -173,12 +173,61 @@ export function idealColorForRecipe(recipe: { title?: string; category?: string;
     return cat === 'entrees' ? 'blanc' : 'rouge';
 }
 
-/** Vins de LA cave qui vont avec ce plat (bonne couleur en tête). */
-export function caveMatchForRecipe(recipe: { title?: string; category?: string; tags?: string[]; ingredients?: any[] }, cave: CaveWine[]): { ideal: WineColor; wines: CaveWine[] } {
+/**
+ * Vins de LA cave qui vont avec ce plat, VRAIMENT classés.
+ *
+ * Le tri d'avant se contentait de remonter la bonne couleur puis déroulait
+ * toute la cave : on annonçait « un rouge » et on listait les vingt bouteilles.
+ * On note désormais chaque bouteille sur trois critères, et l'écran n'en met que
+ * deux en avant :
+ *   • la COULEUR attendue par le plat, qui pèse le plus lourd ;
+ *   • la QUALITÉ — ta note d'abord, celle des dégustateurs à défaut ;
+ *   • le MOMENT — une bouteille à son apogée passe devant une qu'il faut encore
+ *     attendre, et une bouteille qu'on n'a plus en stock descend tout en bas.
+ */
+export function caveMatchForRecipe(
+    recipe: { title?: string; category?: string; tags?: string[]; ingredients?: any[] },
+    cave: CaveWine[],
+): { ideal: WineColor; wines: CaveWine[]; why: (w: CaveWine) => string } {
     const ideal = idealColorForRecipe(recipe);
-    const wines = [...cave].sort((a, b) => (a.color === ideal ? -1 : 0) - (b.color === ideal ? -1 : 0));
-    return { ideal, wines };
+
+    const score = (w: CaveWine) => {
+        let s = w.color === ideal ? 100 : 0;
+        s += (w.myRating || w.rating || 0) * 9;
+        const when = drinkWindow(w)?.status;
+        if (when === 'apogee') s += 18;
+        else if (when === 'pret') s += 14;
+        else if (when === 'tard') s += 8;      // à boire sans tarder : l'occasion
+        else if (when === 'jeune') s -= 14;
+        return s;
+    };
+
+    /** L'a-t-on encore ? Une bouteille bue ne se sert pas ce soir. */
+    const inStock = (w: CaveWine) => shelfOf(w) === 'cave' && (w.qty ?? 0) > 0;
+
+    /** En une ligne : pourquoi celle-ci plutôt qu'une autre. */
+    const why = (w: CaveWine) => {
+        const bits: string[] = [];
+        bits.push(w.color === ideal ? `${COLOR_WORD[w.color]}, la couleur qu'appelle ce plat` : COLOR_WORD[w.color]);
+        const when = drinkWindow(w);
+        if (when && when.status !== 'jeune') bits.push(when.label.toLowerCase());
+        const note = w.myRating || w.rating;
+        if (note) bits.push(w.myRating ? `ta note ${w.myRating}/5` : `noté ${note.toFixed(1)}/5`);
+        return bits.join(' · ');
+    };
+
+    // On conseille d'abord ce qu'on a sous la main ; les bouteilles bues ne
+    // viennent qu'en dernier recours, quand la cave ne propose rien d'autre.
+    // Une pénalité de score ne suffisait pas : un coup de cœur noté 5/5 mais
+    // vide remontait devant une bouteille bien réelle.
+    const here = [...cave].filter(inStock).sort((a, b) => score(b) - score(a));
+    const gone = [...cave].filter((w) => !inStock(w)).sort((a, b) => score(b) - score(a));
+    return { ideal, wines: [...here, ...gone], why };
 }
+
+const COLOR_WORD: Record<WineColor, string> = {
+    rouge: 'Un rouge', blanc: 'Un blanc', rose: 'Un rosé', liqueur: 'Une liqueur',
+};
 
 /**
  * Une boisson ne s'accorde pas avec un vin — on ne sert pas un Barolo « avec un

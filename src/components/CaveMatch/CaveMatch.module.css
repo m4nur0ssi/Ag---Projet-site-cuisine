@@ -26,3 +26,11 @@
 .empty { text-align: center; padding: 20px 6px; }
 .empty p { color: rgba(235,235,245,.6); font-size: 14px; margin: 0 0 14px; }
 .go { width: 100%; height: 46px; border: none; border-radius: 13px; cursor: pointer; background: linear-gradient(120deg,#7b1e2b,#a83248); color: #fff; font-weight: 800; font-size: 14.5px; margin-top: 4px; }
+
+/* La bouteille elle-même dans la proposition : on reconnaît son étiquette avant
+   d'avoir lu son nom. */
+.shot {
+    width: 34px; height: 46px; flex: 0 0 auto;
+    object-fit: contain; border-radius: 6px;
+    background: rgba(255, 255, 255, .04);
+}

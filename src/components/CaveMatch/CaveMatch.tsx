@@ -17,7 +17,15 @@ const vivino = (w: CaveWine) => `https://www.vivino.com/search/wines?q=${encodeU
 export default function CaveMatch({ recipe }: { recipe: { title?: string; category?: string; tags?: string[]; ingredients?: any[] } }) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const { ideal, wines } = useMemo(() => (open ? caveMatchForRecipe(recipe, readCave()) : { ideal: 'rouge' as WineColor, wines: [] as CaveWine[] }), [open, recipe]);
+    const { ideal, wines, why } = useMemo(
+        () => (open
+            ? caveMatchForRecipe(recipe, readCave())
+            : { ideal: 'rouge' as WineColor, wines: [] as CaveWine[], why: () => '' }),
+        [open, recipe],
+    );
+    // Deux bouteilles mises en avant, pas la cave entière : c'est un conseil,
+    // pas un inventaire.
+    const picks = wines.slice(0, 2);
 
     return (
         <>
@@ -44,17 +52,21 @@ export default function CaveMatch({ recipe }: { recipe: { title?: string; catego
                             </div>
                         ) : (
                             <div className={styles.list}>
-                                {wines.slice(0, 6).map((w) => (
-                                    <a key={w.id} className={`${styles.row} ${w.color === ideal ? styles.rowBest : ''}`} href={vivino(w)} target="_blank" rel="noopener noreferrer">
-                                        <span className={styles.dot} style={{ background: COLOR_GLASS[w.color] }} />
+                                {picks.map((w, i) => (
+                                    <a key={w.id} className={`${styles.row} ${i === 0 ? styles.rowBest : ''}`} href={vivino(w)} target="_blank" rel="noopener noreferrer">
+                                        {w.photo
+                                            ? <img className={styles.shot} src={w.photo} alt="" />
+                                            : <span className={styles.dot} style={{ background: COLOR_GLASS[w.color] }} />}
                                         <span className={styles.info}>
                                             <span className={styles.name}>{w.name}{w.year ? ` · ${w.year}` : ''}</span>
-                                            <span className={styles.meta}>{[w.grape, w.region].filter(Boolean).join(' · ')}</span>
+                                            <span className={styles.meta}>{why(w)}</span>
                                         </span>
-                                        {w.color === ideal && <span className={styles.best}>Idéal</span>}
+                                        {i === 0 && <span className={styles.best}>Mon choix</span>}
                                     </a>
                                 ))}
-                                <button className={styles.go} onClick={() => { setOpen(false); router.push('/ma-cave'); }}>Voir toute ma cave</button>
+                                <button className={styles.go} onClick={() => { setOpen(false); router.push('/ma-cave'); }}>
+                                    {wines.length > picks.length ? `Voir mes ${wines.length} bouteilles` : 'Voir ma cave'}
+                                </button>
                             </div>
                         )}
                     </div>
