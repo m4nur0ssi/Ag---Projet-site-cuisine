@@ -97,15 +97,72 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
      * viser « déjà dégusté » alors qu'on filtre les rouges menait à une étagère
      * vide, et donc à un défilement vers rien.
      */
+    // La loupe de la barre du bas cherche des BOUTEILLES — vins comme liqueurs.
+    const [searching, setSearching] = useState(false);
     useEffect(() => {
+        const open = () => setSearching(true);
+        window.addEventListener('macave-search', open);
+        return () => window.removeEventListener('macave-search', open);
+    }, []);
+
+    /** Amène une bouteille sous les yeux et la fait clignoter une fois. */
+    const revealWine = (id: string) => {
+        setSearching(false);
+        // Le filtre courant peut la cacher : on l'annule, sinon on ferait
+        // défiler vers une carte absente du DOM.
+        setFilter('tous');
+        setRipe('tous');
+        setQ('');
+        setTimeout(() => {
+            const el = document.querySelector(`[data-wine="${id}"]`) as HTMLElement | null;
+            if (!el) return;
+            // Même remarque que pour les étagères : c'est la racine qui défile.
+            const racine = (document.scrollingElement || document.documentElement) as HTMLElement;
+            const y = el.getBoundingClientRect().top + racine.scrollTop - (window.innerHeight - el.offsetHeight) / 2;
+            try { racine.scrollTo({ top: Math.max(0, y), behavior: 'smooth' }); } catch { /* noop */ }
+            setTimeout(() => { if (Math.abs(racine.scrollTop - y) > 8) racine.scrollTop = Math.max(0, y); }, 340);
+            el.classList.add(styles.cardFound);
+            setTimeout(() => el.classList.remove(styles.cardFound), 1600);
+        }, 60);
+    };
+
+    useEffect(() => {
+        /**
+         * Fait défiler la page — et VÉRIFIE que ça a bougé.
+         *
+         * Sur cet écran, ni `scrollIntoView` ni `window.scrollTo` ne déplacent
+         * quoi que ce soit : la page ne défile pas dans la fenêtre mais dans
+         * l'élément racine, qui porte `overflow-y: auto` et une hauteur fixée.
+         * Le défilement en douceur y est ignoré, alors qu'une affectation
+         * directe de `scrollTop` fonctionne. On tente donc le doux, puis on
+         * impose la position si rien n'a bougé.
+         */
+        const defileVers = (y: number) => {
+            const racine = (document.scrollingElement || document.documentElement) as HTMLElement;
+            try { racine.scrollTo({ top: y, behavior: 'smooth' }); } catch { /* pas de scrollTo ici */ }
+            try { window.scrollTo({ top: y, behavior: 'smooth' }); } catch { /* noop */ }
+            setTimeout(() => {
+                if (Math.abs(racine.scrollTop - y) > 8) racine.scrollTop = y;
+            }, 340);
+        };
+
         const versEtagere = (quelle: WineShelf) => {
             setFilter('tous');
             setRipe('tous');
             setQ('');
-            requestAnimationFrame(() => setTimeout(() => {
+            // Pas de `requestAnimationFrame` ici : il ne se déclenche pas quand
+            // l'onglet n'est pas peint (arrière-plan, fenêtre masquée), et le
+            // défilement ne partait alors jamais. Un simple délai suffit à
+            // laisser le rendu des filtres se poser.
+            setTimeout(() => {
+                // « Ma cave » ramène en HAUT : c'est là que vivent le titre, la
+                // recherche et les filtres — et l'étagère commence juste après.
+                if (quelle === 'cave') { defileVers(0); return; }
                 const el = document.querySelector(`[data-shelf="${quelle}"]`) as HTMLElement | null;
-                el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 60));
+                if (!el) return;
+                const racine = (document.scrollingElement || document.documentElement) as HTMLElement;
+                defileVers(Math.max(0, el.getBoundingClientRect().top + racine.scrollTop - 12));
+            }, 80);
         };
         const cave = () => versEtagere('cave');
         const tasted = () => versEtagere('tasted');
@@ -355,10 +412,72 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                     onRemove={() => removeWine(menu.wine.id)}
                 />
             )}
+            {searching && <WineSearch wines={wines} onPick={revealWine} onClose={() => setSearching(false)} />}
             <Tip id="cave" />
             <TVToast />
             {zoom && <ZoomView src={zoom} onClose={() => setZoom(null)} />}
         </div>
+    );
+}
+
+
+/**
+ * Recherche dans SA cave — vins et liqueurs.
+ *
+ * La loupe de la barre du bas ouvre ceci, et non la recherche de recettes :
+ * dans « Ma cave », ce qu'on cherche est une bouteille. Le champ regarde le nom,
+ * la région, le cépage, l'année et la couleur, si bien que « liqueur » ou
+ * « rouge » suffisent à trier.
+ */
+function WineSearch({ wines, onPick, onClose }: { wines: CaveWine[]; onPick: (id: string) => void; onClose: () => void }) {
+    const [q, setQ] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
+    useEffect(() => { inputRef.current?.focus(); }, []);
+
+    const norm = (t: string) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const liste = useMemo(() => {
+        const needle = norm(q.trim());
+        const all = [...wines].sort((a, b) => b.addedAt - a.addedAt);
+        if (!needle) return all;
+        return all.filter((w) => norm(`${w.name} ${w.region} ${w.grape} ${w.year} ${w.color} ${COLOR_LABEL[w.color]}`).includes(needle));
+    }, [wines, q]);
+
+    return createPortal(
+        <div className={styles.pickBackdrop} onClick={onClose}>
+            <div className={styles.pickSheet} onClick={(e) => e.stopPropagation()}>
+                <div className={styles.pickHead}>
+                    <div className={styles.pickTitle}>Chercher une bouteille</div>
+                    <button className={styles.pickClose} onClick={onClose} aria-label="Fermer">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                    </button>
+                </div>
+                <input
+                    ref={inputRef}
+                    className={styles.pickSearch}
+                    value={q}
+                    onChange={(e) => setQ(e.target.value)}
+                    placeholder="Nom, région, cépage, couleur… (« liqueur », « rouge »)"
+                />
+                <div className={styles.pickList}>
+                    {liste.map((w) => (
+                        <button key={w.id} className={styles.pickRow} onClick={() => onPick(w.id)}>
+                            {w.photo
+                                ? <img src={w.photo} alt="" className={styles.pickThumb} draggable={false} />
+                                : <span className={styles.pickDot} style={{ background: COLOR_GLASS[w.color] }} />}
+                            <span className={styles.pickInfo}>
+                                <span className={styles.pickName}>{stripYear(w.name)}</span>
+                                <span className={styles.pickMeta}>
+                                    {[COLOR_LABEL[w.color], w.year, w.region, w.grape].filter(Boolean).join(' · ')}
+                                </span>
+                            </span>
+                            {shelfOf(w) === 'tasted' && <span className={styles.pickTag}>Dégusté</span>}
+                        </button>
+                    ))}
+                    {!liste.length && <div className={styles.pickEmpty}>Aucune bouteille à ce nom.</div>}
+                </div>
+            </div>
+        </div>,
+        document.body,
     );
 }
 

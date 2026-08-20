@@ -4,7 +4,9 @@
 
 .navWrapper {
     position: fixed;
-    bottom: 30px; /* Floating look */
+    /* Presque au ras du bord : 30 px la faisaient flotter haut et mangeaient
+       une bande de contenu. On garde de quoi dégager la barre d'accueil iOS. */
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
     left: 20px;
     right: 20px;
     z-index: 25000;

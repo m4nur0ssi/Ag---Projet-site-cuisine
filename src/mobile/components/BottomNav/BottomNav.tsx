@@ -26,6 +26,25 @@ const StorefrontIcon = () => (
     </svg>
 );
 
+/* Icônes propres à « Ma cave » : ajouter, l'étagère, les bouteilles bues. */
+const PlusIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+        <path d="M12 5v14M5 12h14" />
+    </svg>
+);
+const GlassIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" />
+        <path d="M5.6 8h12.8" strokeWidth="3" />
+    </svg>
+);
+const GlassCheckIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" />
+        <path d="M9.5 11.2l1.8 1.8 3.4-3.6" />
+    </svg>
+);
+
 const HeartIcon = ({ filled, isActive }: { filled?: boolean, isActive?: boolean }) => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill={filled ? "#ff3b30" : "none"} stroke={filled ? "#ff3b30" : (isActive ? "white" : "currentColor")} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
@@ -99,6 +118,21 @@ export default function BottomNav() {
     // Liste et Menu pointent vers les écrans « Apple TV+ » (/tv-courses, /tv-planner),
     // comme l'accueil : sans ça la barre du bas ramenait l'ancienne liste de courses
     // et l'ancien planificateur en calque par-dessus les nouveaux écrans.
+    /**
+     * Dans « Ma cave », la barre garde la FORME de l'accueil — une pilule de
+     * quatre boutons, la loupe rouge à part — et ne se replie pas au
+     * défilement : changer de forme en cours de route désoriente, et la
+     * version repliée n'offrait plus les étagères.
+     */
+    const replie = (isMiniMode || forceMiniMode) && !inCave;
+
+    const caveItems = [
+        { id: 'accueil', label: 'Accueil', Icon: StorefrontIcon, path: '/' },
+        { id: 'ajouter', label: 'Ajouter', Icon: PlusIcon, action: () => window.dispatchEvent(new Event('macave-scan')) },
+        { id: 'cave', label: 'Ma cave', Icon: GlassIcon, action: () => window.dispatchEvent(new Event('macave-shelf-cave')) },
+        { id: 'degustes', label: 'Dégustés', Icon: GlassCheckIcon, action: () => window.dispatchEvent(new Event('macave-shelf-tasted')) },
+    ];
+
     const navItems = [
         ...(isLoggedIn ? [
             { id: 'favoris', label: 'Favoris', Icon: HeartIcon, path: '/favorites', badge: stats.favorites },
@@ -107,6 +141,8 @@ export default function BottomNav() {
         { id: 'decouvrir', label: 'Accueil', Icon: StorefrontIcon, path: '/' },
         ...(isLoggedIn ? [{ id: 'planner', label: 'Menu', Icon: CalendarIcon, path: '/tv-planner' }] : []),
     ];
+    // Dans la cave, la pilule montre les gestes de la cave, pas ceux du site.
+    const items: any[] = inCave ? caveItems : navItems;
 
     // Toggle between Search and Timer every 3 seconds if timer is active
     useEffect(() => {
@@ -139,6 +175,10 @@ export default function BottomNav() {
         // Un appui long vient d'ouvrir la recherche vocale : on n'enchaîne pas le tap.
         if (searchLpFired.current) { searchLpFired.current = false; return; }
         handleVibrate(15);
+
+        // Dans la cave, la loupe cherche des BOUTEILLES : ouvrir la recherche de
+        // recettes ici n'aurait servi à rien.
+        if (inCave) { window.dispatchEvent(new Event('macave-search')); return; }
 
         const isCurrentlyChrono = activeTimer && (showTimerMode || isMiniMode);
 
@@ -347,10 +387,13 @@ export default function BottomNav() {
         // Ferme toute fiche recette flottante ouverte (sinon elle reste par-dessus la page)
         window.dispatchEvent(new Event('magic-close-sheet'));
         setIsSheetOpen(false);
-        const item = navItems[index];
+        const item: any = items[index];
+        // Un bouton de la cave agit sur la page (scanner, étagère) au lieu de
+        // naviguer : l'action prime quand elle existe.
+        if (item?.action) { item.action(); return; }
         // Le planificateur est un ÉCRAN (/tv-planner) : le calque WeekPlanner a
         // été retiré de cette barre, plus rien ne pouvait l'ouvrir.
-        if ('path' in item && item.path) {
+        if (item?.path) {
             router.push(item.path);
         }
     };
@@ -374,11 +417,11 @@ export default function BottomNav() {
             />
 
             <nav id="bottom-nav" className={styles.navWrapper}>
-                <div className={`${styles.multiPillContainer} ${(isMiniMode || forceMiniMode) ? styles.isMini : ''}`}>
+                <div className={`${styles.multiPillContainer} ${replie ? styles.isMini : ''}`}>
 
                    {/* 1. MINI MODE: SPLIT LAYOUT */}
                    <AnimatePresence>
-                        {(isMiniMode || forceMiniMode) && (
+                        {replie && (
                             <motion.div 
                                 className={styles.miniDockContainer}
                                 initial={{ opacity: 0, y: 30 }}
@@ -464,7 +507,7 @@ export default function BottomNav() {
                         )}
 
                         {/* 2. FULL MODE: STITCH DOCK */}
-                        {!(isMiniMode || forceMiniMode) && (
+                        {!replie && (
                             <motion.div 
                                 className={styles.fullDockContainer}
                                 initial={{ opacity: 0, y: 20 }}
@@ -484,12 +527,12 @@ export default function BottomNav() {
                                             className={styles.stitchIndicator}
                                             style={{ 
                                                 x: xTransform,
-                                                width: `${100 / navItems.length}%`
+                                                width: `${100 / items.length}%`
                                             }}
                                         />
                                     </div>
 
-                                    {navItems.map((item, index) => {
+                                    {items.map((item: any, index: number) => {
                                         const isActive = activeIndex === index;
 
                                         return (
