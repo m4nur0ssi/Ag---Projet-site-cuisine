@@ -47,7 +47,6 @@ export default function MagicConverter() {
     return (
         <div className={styles.container}>
             <button className={styles.toggle} onClick={() => setIsOpen(!isOpen)}>
-                <span style={{ fontSize: '1.1rem' }}>⚖️</span>
                 Convertisseur
             </button>
 

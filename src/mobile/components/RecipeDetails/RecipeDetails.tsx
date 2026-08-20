@@ -27,7 +27,6 @@ import WinePairing from '@/components/WinePairing/WinePairing';
 import CaveMatch from '@/components/CaveMatch/CaveMatch';
 import SplitTitle from '@/mobile/components/SplitTitle/SplitTitle';
 import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingredient-utils';
-import { getSubstitutions, Substitution } from '@/lib/substitutions';
 import { markCooking } from '@/mobile/screens/tv/progress';
 import dynamic from 'next/dynamic';
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
@@ -35,7 +34,7 @@ import StarRating from '@/mobile/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
 import CookingJournal from '@/components/CookingJournal/CookingJournal';
-import { estimateRecipeCalories, estimateRecipeMacros } from '@/mobile/lib/calories';
+import { estimateRecipeCalories } from '@/mobile/lib/calories';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './RecipeDetails.module.css';
@@ -154,33 +153,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             : null,
     [recipe, servings]);
 
-    // Macros estimées (protéines/glucides/lipides) pour l'anneau, dépliable au clic.
-    const macros = useMemo(() =>
-        recipe.category !== 'restaurant' && recipe.ingredients?.length > 0
-            ? estimateRecipeMacros(recipe.ingredients, servings)
-            : null,
-    [recipe, servings]);
-    const [showMacros, setShowMacros] = useState(false);
     const [showShareCard, setShowShareCard] = useState(false);
-
-    // Substitutions (appui long sur un ingrédient).
-    const [subs, setSubs] = useState<{ list: Substitution[]; x: number; y: number } | null>(null);
-    const lpTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const suppressClick = useRef(false);
-    const openSubs = (name: string, x: number, y: number) => {
-        const list = getSubstitutions(name);
-        if (!list) return;
-        const w = 230;
-        setSubs({ list, x: Math.min(x, (typeof window !== 'undefined' ? window.innerWidth : 380) - w - 8), y });
-        suppressClick.current = true;
-        if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(12);
-    };
-    useEffect(() => {
-        if (!subs) return;
-        const close = () => setSubs(null);
-        window.addEventListener('scroll', close, true);
-        return () => window.removeEventListener('scroll', close, true);
-    }, [subs]);
 
     const similarRecipes = useMemo(() => {
         // Fiche restaurant → « Autres restaurants ».
@@ -424,8 +397,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     };
 
     const toggleIngredient = (index: number) => {
-        // Un appui long vient d'ouvrir les substitutions : on n'enchaîne pas le toggle.
-        if (suppressClick.current) { suppressClick.current = false; return; }
         // Sécurité mobile : si on a bougé de plus de 10px → scroll, pas un clic
         if (touchStart.current && touchEnd.current) {
             const dx = Math.abs(touchStart.current.x - touchEnd.current.x);
@@ -546,7 +517,34 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         return recipe.steps.length > 0 ? (checkedCount / recipe.steps.length) * 100 : 0;
     }, [checkedSteps, recipe.steps.length]);
 
+    // Pilule blanche des onglets : sa position suit la vraie largeur du bouton actif.
+    const tabsBarRef = useRef<HTMLDivElement | null>(null);
+    const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+    const [tabInd, setTabInd] = useState({ left: 4, width: 0 });
+    useEffect(() => {
+        const measureTab = () => {
+            const btn = tabRefs.current[activeTab];
+            const bar = tabsBarRef.current;
+            if (!btn || !bar) return;
+            setTabInd({ left: btn.offsetLeft, width: btn.offsetWidth });
+        };
+        measureTab();
+        // La fiche s'ouvre en animation et les polices arrivent après le premier
+        // rendu : au montage la barre mesure encore 0. On observe sa taille au lieu
+        // de deviner un délai.
+        const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measureTab) : null;
+        if (ro && tabsBarRef.current) ro.observe(tabsBarRef.current);
+        window.addEventListener('resize', measureTab);
+        return () => { ro?.disconnect(); window.removeEventListener('resize', measureTab); };
+    }, [activeTab, recipe.id]);
+
     const isSpeakingRef = useRef(false);
+    // `focusMode` capturé dans une closure vaut encore `false` juste après le clic
+    // qui l'active (le re-render n'a pas eu lieu). Les callbacks de la synthèse et
+    // de la reconnaissance lisent donc ce ref, jamais l'état.
+    const focusModeRef = useRef(false);
+    const spokenRef = useRef<number | null>(null); // dernière étape lue à voix haute
+    useEffect(() => { focusModeRef.current = focusMode; }, [focusMode]);
 
     // iOS/Chrome : précharge la liste des voix (getVoices() est vide au 1er accès
     // tant que 'voiceschanged' n'a pas été émis) → 1er speak() a une voix FR dispo.
@@ -582,16 +580,20 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 setTimeout(() => {
                     if (isSpeakingRef.current) {
                         isSpeakingRef.current = false;
-                        if (focusMode) startRecognition();
+                        if (focusModeRef.current) startRecognitionRef.current();
                     }
                 }, 8000);
             };
             
             utterance.onend = () => {
                 isSpeakingRef.current = false;
-                if (focusMode) {
-                    setTimeout(startRecognition, 300);
-                }
+                if (focusModeRef.current) setTimeout(() => startRecognitionRef.current(), 300);
+            };
+            // Sans ça, une synthèse interrompue laissait `isSpeakingRef` à true et
+            // la reconnaissance restait bloquée jusqu'au filet de sécurité (8 s).
+            utterance.onerror = () => {
+                isSpeakingRef.current = false;
+                if (focusModeRef.current) setTimeout(() => startRecognitionRef.current(), 300);
             };
 
             window.speechSynthesis.speak(utterance);
@@ -648,7 +650,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     const startRecognition = useCallback(() => {
         if (typeof window !== 'undefined') {
             const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-            if (SpeechRecognition && !recognitionRef.current && focusMode && voiceOnRef.current && !isSpeakingRef.current) {
+            if (SpeechRecognition && !recognitionRef.current && focusModeRef.current && voiceOnRef.current && !isSpeakingRef.current) {
                 const recognition = new SpeechRecognition();
                 recognition.lang = 'fr-FR';
                 recognition.continuous = true;
@@ -661,8 +663,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 recognition.onend = () => {
                     setIsListening(false);
                     recognitionRef.current = null;
-                    if (focusMode && voiceOnRef.current && !isSpeakingRef.current) {
-                        setTimeout(startRecognition, 250);
+                    if (focusModeRef.current && voiceOnRef.current && !isSpeakingRef.current) {
+                        setTimeout(() => startRecognitionRef.current(), 250);
                     }
                 };
                 
@@ -700,6 +702,22 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 }
             }
         }
+    }, []);
+
+    // Les callbacks de la reconnaissance se rappellent eux-mêmes : passer par un ref
+    // évite la dépendance circulaire (startRecognition qui se cite dans ses deps).
+    const startRecognitionRef = useRef(startRecognition);
+    useEffect(() => { startRecognitionRef.current = startRecognition; }, [startRecognition]);
+
+    // Chien de garde : sur mobile la reconnaissance s'arrête toute seule (silence,
+    // passage en arrière-plan, fin de la lecture). Tant que le micro est demandé,
+    // on le relance — sinon l'icône reste allumée et plus rien n'est entendu.
+    useEffect(() => {
+        if (!focusMode) return;
+        const id = setInterval(() => {
+            if (voiceOnRef.current && !recognitionRef.current && !isSpeakingRef.current) startRecognitionRef.current();
+        }, 1500);
+        return () => clearInterval(id);
     }, [focusMode]);
 
     // Tap-to-talk : le tap fournit le geste utilisateur exigé par iOS Safari.
@@ -749,7 +767,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     // activeStepIndex vaut déjà 0 et ne change pas → sans lui, l'effet ne se rejoue
     // jamais et la 1re étape n'est jamais lue (ça ne parlait qu'à partir de « Suivant »).
     useEffect(() => {
-        if (focusMode) speak(recipe.steps[activeStepIndex]);
+        if (!focusMode) { spokenRef.current = null; return; }
+        if (spokenRef.current === activeStepIndex) return; // déjà lue dans le geste
+        spokenRef.current = activeStepIndex;
+        speak(recipe.steps[activeStepIndex]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeStepIndex, focusMode]);
 
@@ -895,9 +916,14 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 // Scroll auto vers le focus card (HUD)
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
-                                // IMPORTANT iOS : speechSynthesis.speak() doit être appelé
-                                // SYNCHRONEMENT dans le geste utilisateur pour débloquer le TTS.
-                                // Un setTimeout casse la chaîne du geste → aucune voix.
+                                // Tout ce qui suit DOIT rester dans la pile du geste :
+                                // iOS n'autorise ni la synthèse ni le micro en dehors.
+                                // `focusModeRef` est posé à la main car l'état ne sera à
+                                // jour qu'au prochain rendu, trop tard pour ces closures.
+                                focusModeRef.current = true;
+                                voiceOnRef.current = true;
+                                startRecognition();   // micro ouvert d'emblée, plus de tap
+                                spokenRef.current = 0; // l'étape 1 est lue ici, pas deux fois
                                 speak(recipe.steps[0]);
                             }}>
                                 <span className={styles.focusBtnIcon}>
@@ -1001,37 +1027,13 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <StarRating recipeId={recipe.id} size="small" />
                             </div>
                             {calorieEstimate && calorieEstimate.confidence !== 'low' && (
-                                <div
-                                    className={styles.metaWideSectionCal}
-                                    role={macros ? 'button' : undefined}
-                                    onClick={macros ? () => setShowMacros(v => !v) : undefined}
-                                    style={macros ? { cursor: 'pointer' } : undefined}
-                                >
-                                    <div className={styles.metaLabel}>CALORIES{macros ? ' ›' : ''}</div>
+                                <div className={styles.metaWideSectionCal}>
+                                    <div className={styles.metaLabel}>CALORIES</div>
                                     <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
                                 </div>
                             )}
                         </div>
 
-                        {/* Anneau macros — déplié en tapant les calories. */}
-                        {macros && showMacros && (() => {
-                            const tot = macros.protein * 4 + macros.carbs * 4 + macros.fat * 9 || 1;
-                            const p = (macros.protein * 4 / tot) * 100;
-                            const c = (macros.carbs * 4 / tot) * 100;
-                            return (
-                                <div className={styles.macroPanel}>
-                                    <div
-                                        className={styles.macroRing}
-                                        style={{ background: `conic-gradient(#FF6B4A 0 ${p}%, #FFC24B ${p}% ${p + c}%, #57C4E5 ${p + c}% 100%)` }}
-                                    />
-                                    <div className={styles.macroLegend}>
-                                        <div><span className={styles.macroDot} style={{ background: '#FF6B4A' }} /> Protéines <b>{macros.protein} g</b></div>
-                                        <div><span className={styles.macroDot} style={{ background: '#FFC24B' }} /> Glucides <b>{macros.carbs} g</b></div>
-                                        <div><span className={styles.macroDot} style={{ background: '#57C4E5' }} /> Lipides <b>{macros.fat} g</b></div>
-                                    </div>
-                                </div>
-                            );
-                        })()}
                     </div>
                 </div>
             )}
@@ -1258,10 +1260,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             {/* TABS */}
             {recipe.category !== 'restaurant' && (
                 <div className={styles.tabsWrapper}>
-                    <div className={styles.tabsBar}>
+                    <div className={styles.tabsBar} ref={tabsBarRef}>
                         {availableTabs.map((tab) => (
                             <button
                                 key={tab.id}
+                                ref={(el) => { tabRefs.current[tab.id] = el; }}
                                 className={`${styles.tabBtn} ${activeTab === tab.id ? styles.tabBtnActive : ''}`}
                                 onClick={() => switchTab(tab.id)}
                             >
@@ -1273,13 +1276,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 )}
                             </button>
                         ))}
-                        {/* Indicateur glissant */}
+                        {/* Indicateur glissant : mesuré sur l'onglet actif, plus calculé
+                            en fractions égales — les onglets n'ont pas la même largeur. */}
                         <div
                             className={styles.tabIndicator}
-                            style={{
-                                left: `calc(4px + ${availableTabs.findIndex(t => t.id === activeTab)} * ((100% - 8px) / ${availableTabs.length}))`,
-                                width: `calc((100% - 8px) / ${availableTabs.length})`
-                            }}
+                            style={{ left: tabInd.left, width: tabInd.width }}
                         />
                     </div>
 
@@ -1318,11 +1319,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                             className={`${styles.ingredientCard} ${checkedIngredients[idx] ? styles.ingredientDone : ''}`}
                                             style={{ animationDelay: `${idx * 40}ms` }}
                                             onClick={() => toggleIngredient(idx)}
-                                            onContextMenu={(e) => { e.preventDefault(); openSubs(ing.name, e.clientX, e.clientY); }}
-                                            onPointerDown={(e) => { const x = e.clientX, y = e.clientY; lpTimer.current = setTimeout(() => openSubs(ing.name, x, y), 450); }}
-                                            onPointerUp={() => { if (lpTimer.current) clearTimeout(lpTimer.current); }}
-                                            onPointerMove={() => { if (lpTimer.current) clearTimeout(lpTimer.current); }}
-                                            onPointerLeave={() => { if (lpTimer.current) clearTimeout(lpTimer.current); }}
                                         >
                                             {/* Case ronde à cocher, à gauche (mode liste). */}
                                             <span className={`${styles.ingCheck} ${checkedIngredients[idx] ? styles.ingCheckOn : ''}`}>
@@ -1482,9 +1478,12 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     }}
                 >
                     <div className={styles.focusHeader}>
-                        <div className={styles.focusTitle}>
-                            <SplitTitle text={recipe.title} noAnimation={true} />
-                        </div>
+                        {/* Miniature + titre : en pleine cuisine, on doit savoir d'un
+                            coup d'œil quelle recette tourne. */}
+                        {recipe.image && (
+                            <img src={recipe.image} alt="" className={styles.focusThumb} draggable={false} />
+                        )}
+                        <div className={styles.focusTitle}>{decodeHtml(recipe.title)}</div>
                         <div className={styles.focusHeaderActions}>
                             {/* Micro « tap-to-talk » : le tap fournit le geste utilisateur
                                 exigé par iOS pour démarrer la reconnaissance vocale. */}
@@ -1625,21 +1624,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         </div>
 
         {showShareCard && <RecipeShareCard recipe={recipe} onClose={() => setShowShareCard(false)} />}
-
-        {/* Popover substitutions (appui long sur un ingrédient) */}
-        {subs && (
-            <>
-                <div className={styles.subsScrim} onClick={() => setSubs(null)} />
-                <div className={styles.subsPopover} style={{ left: subs.x, top: subs.y }}>
-                    <div className={styles.subsHead}>Remplacer par</div>
-                    {subs.list.map((s, i) => (
-                        <button key={i} className={styles.subsItem} onClick={() => setSubs(null)}>
-                            <span className={styles.subsEmoji}>{s.emoji}</span> {s.label}
-                        </button>
-                    ))}
-                </div>
-            </>
-        )}
         </>
     );
 }

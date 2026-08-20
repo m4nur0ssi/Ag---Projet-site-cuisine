@@ -16,6 +16,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useTimer } from '@/components/Timer/TimerContext';
 import { parseDuration, stripHtml } from '@/lib/timer-utils';
 import { decodeHtml } from '@/lib/utils';
+import Portal from '@/components/Portal';
 import SmartText from '@/components/SmartText/SmartText';
 import MagicConverter from '@/components/MagicConverter/MagicConverter';
 import PortionsControl from '@/components/PortionsControl/PortionsControl';
@@ -25,14 +26,13 @@ import WinePairing from '@/components/WinePairing/WinePairing';
 import CaveMatch from '@/components/CaveMatch/CaveMatch';
 import SplitTitle from '@/components/SplitTitle/SplitTitle';
 import { getIngredientVisual } from '@/lib/ingredient-utils';
-import { getSubstitutions, Substitution } from '@/lib/substitutions';
 import { markCooking } from '@/mobile/screens/tv/progress';
 import CookingJournal from '@/components/CookingJournal/CookingJournal';
 import StarRating from '@/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import CommentSection from '@/components/CommentSection/CommentSection';
 import { supabase } from '@/lib/supabase';
-import { estimateRecipeCalories, estimateRecipeMacros } from '@/lib/calories';
+import { estimateRecipeCalories } from '@/lib/calories';
 import { mockRecipes } from '@/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
@@ -152,33 +152,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             ? estimateRecipeCalories(recipe.ingredients, servings)
             : null,
     [recipe, servings]);
-    const macros = useMemo(() =>
-        recipe.category !== 'restaurant' && recipe.ingredients?.length > 0
-            ? estimateRecipeMacros(recipe.ingredients, servings)
-            : null,
-    [recipe, servings]);
-    const [showMacros, setShowMacros] = useState(false);
     const [showShareCard, setShowShareCard] = useState(false);
 
-    // Substitutions (appui long / clic droit sur un ingrédient).
-    const [subs, setSubs] = useState<{ list: Substitution[]; x: number; y: number } | null>(null);
-    const lpTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const suppressClick = useRef(false);
-    const openSubs = (name: string, x: number, y: number) => {
-        const list = getSubstitutions(name);
-        if (!list) return;
-        const w = 240;
-        setSubs({ list, x: Math.min(x, (typeof window !== 'undefined' ? window.innerWidth : 400) - w - 8), y });
-        suppressClick.current = true;
-        if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(12);
-    };
-    useEffect(() => {
-        if (!subs) return;
-        const close = () => setSubs(null);
-        window.addEventListener('scroll', close, true);
-        window.addEventListener('resize', close);
-        return () => { window.removeEventListener('scroll', close, true); window.removeEventListener('resize', close); };
-    }, [subs]);
     const similarRecipes = useMemo(() => {
         // Fiche restaurant → « Autres restaurants » (mêmes catégorie, subType/tags priorisés).
         if (recipe.category === 'restaurant') {
@@ -390,8 +365,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     };
 
     const toggleIngredient = (index: number) => {
-        // Un appui long vient d'ouvrir les substitutions : on n'enchaîne pas le toggle.
-        if (suppressClick.current) { suppressClick.current = false; return; }
         // Sécurité mobile : si on a bougé de plus de 10px, on considère que c'est un scroll, pas un clic
         if (touchStart.current && touchEnd.current) {
             const dx = Math.abs(touchStart.current.x - touchEnd.current.x);
@@ -544,6 +517,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     }, [checkedSteps, recipe.steps.length]);
 
     const isSpeakingRef = useRef(false);
+    // `focusMode` capturé dans une closure vaut encore `false` juste après le clic
+    // qui l'active : les callbacks vocaux lisent ce ref, jamais l'état.
+    const focusModeRef = useRef(false);
+    useEffect(() => { focusModeRef.current = focusMode; }, [focusMode]);
+    const spokenRef = useRef<number | null>(null); // dernière étape lue à voix haute
 
     const speak = (text: string) => {
         if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -562,16 +540,14 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 setTimeout(() => {
                     if (isSpeakingRef.current) {
                         isSpeakingRef.current = false;
-                        if (focusMode) startRecognition();
+                        if (focusModeRef.current) startRecognitionRef.current();
                     }
                 }, 8000);
             };
             
             utterance.onend = () => {
                 isSpeakingRef.current = false;
-                if (focusMode) {
-                    setTimeout(startRecognition, 300);
-                }
+                if (focusModeRef.current) setTimeout(() => startRecognitionRef.current(), 300);
             };
 
             window.speechSynthesis.speak(utterance);
@@ -624,7 +600,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     const startRecognition = useCallback(() => {
         if (typeof window !== 'undefined') {
             const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-            if (SpeechRecognition && !recognitionRef.current && focusMode && !isSpeakingRef.current) {
+            if (SpeechRecognition && !recognitionRef.current && focusModeRef.current && !isSpeakingRef.current) {
                 const recognition = new SpeechRecognition();
                 recognition.lang = 'fr-FR';
                 recognition.continuous = true;
@@ -637,8 +613,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 recognition.onend = () => {
                     setIsListening(false);
                     recognitionRef.current = null;
-                    if (focusMode && !isSpeakingRef.current) {
-                        setTimeout(startRecognition, 250);
+                    if (focusModeRef.current && !isSpeakingRef.current) {
+                        setTimeout(() => startRecognitionRef.current(), 250);
                     }
                 };
                 
@@ -676,6 +652,21 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 }
             }
         }
+    }, []);
+
+    // Les callbacks de la reconnaissance se rappellent eux-mêmes : le ref évite
+    // la dépendance circulaire.
+    const startRecognitionRef = useRef(startRecognition);
+    useEffect(() => { startRecognitionRef.current = startRecognition; }, [startRecognition]);
+
+    // Chien de garde : la reconnaissance s'arrête d'elle-même (silence, onglet en
+    // arrière-plan, fin de lecture). Tant qu'on est en préparation, on la relance.
+    useEffect(() => {
+        if (!focusMode) return;
+        const id = setInterval(() => {
+            if (!recognitionRef.current && !isSpeakingRef.current) startRecognitionRef.current();
+        }, 1500);
+        return () => clearInterval(id);
     }, [focusMode]);
 
     // Voice recognition & TTS effect
@@ -706,12 +697,16 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         };
     }, [focusMode, startRecognition]);
 
-    // Speak when changing step in focus mode
+    // Lecture de l'étape courante. `focusMode` doit être dans les deps : à l'entrée,
+    // l'index vaut déjà 0 et ne change pas. `spokenRef` empêche la double lecture
+    // quand le clic a déjà lancé l'étape 1.
     useEffect(() => {
-        if (focusMode) {
-            speak(recipe.steps[activeStepIndex]);
-        }
-    }, [activeStepIndex]);
+        if (!focusMode) { spokenRef.current = null; return; }
+        if (spokenRef.current === activeStepIndex) return;
+        spokenRef.current = activeStepIndex;
+        speak(recipe.steps[activeStepIndex]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeStepIndex, focusMode]);
 
     const checkedCount = checkedIngredients.filter(Boolean).length;
 
@@ -851,11 +846,14 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 triggerHaptic();
                                 // Scroll auto vers le focus card (HUD)
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                                
-                                // On attend un peu que le mode focus s'active
-                                setTimeout(() => {
-                                    speak(recipe.steps[0]);
-                                }, 500);
+
+                                // Dans la pile du geste : hors de là, le navigateur
+                                // refuse la synthèse ET le micro. `focusModeRef` est
+                                // posé à la main, l'état n'arrivant qu'au rendu suivant.
+                                focusModeRef.current = true;
+                                startRecognition();
+                                spokenRef.current = 0;
+                                speak(recipe.steps[0]);
                             }}>
                                 <span className={styles.focusBtnIcon}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -954,33 +952,13 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         {calorieEstimate && calorieEstimate.confidence !== 'low' && (
                             <>
                                 <div className={styles.metaSeparator} />
-                                <div
-                                    className={styles.metaItem}
-                                    role={macros ? 'button' : undefined}
-                                    onClick={macros ? () => setShowMacros(v => !v) : undefined}
-                                    style={macros ? { cursor: 'pointer' } : undefined}
-                                >
-                                    <div className={styles.metaLabel}>CALORIES{macros ? ' ›' : ''}</div>
+                                <div className={styles.metaItem}>
+                                    <div className={styles.metaLabel}>CALORIES</div>
                                     <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
                                 </div>
                             </>
                         )}
                     </div>
-                    {macros && showMacros && (() => {
-                        const tot = macros.protein * 4 + macros.carbs * 4 + macros.fat * 9 || 1;
-                        const p = (macros.protein * 4 / tot) * 100;
-                        const c = (macros.carbs * 4 / tot) * 100;
-                        return (
-                            <div className={styles.macroPanel}>
-                                <div className={styles.macroRing} style={{ background: `conic-gradient(#FF6B4A 0 ${p}%, #FFC24B ${p}% ${p + c}%, #57C4E5 ${p + c}% 100%)` }} />
-                                <div className={styles.macroLegend}>
-                                    <div><span className={styles.macroDot} style={{ background: '#FF6B4A' }} /> Protéines <b>{macros.protein} g</b></div>
-                                    <div><span className={styles.macroDot} style={{ background: '#FFC24B' }} /> Glucides <b>{macros.carbs} g</b></div>
-                                    <div><span className={styles.macroDot} style={{ background: '#57C4E5' }} /> Lipides <b>{macros.fat} g</b></div>
-                                </div>
-                            </div>
-                        );
-                    })()}
                 </div>
             )}
 
@@ -1317,10 +1295,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                             className={`${styles.ingredientCard} ${checkedIngredients[idx] ? styles.ingredientDone : ''}`}
                                             style={{ animationDelay: `${idx * 40}ms` }}
                                             onClick={() => toggleIngredient(idx)}
-                                            onContextMenu={(e) => { e.preventDefault(); openSubs(ing.name, e.clientX, e.clientY); }}
-                                            onPointerDown={(e) => { const x = e.clientX, y = e.clientY; lpTimer.current = setTimeout(() => openSubs(ing.name, x, y), 450); }}
-                                            onPointerUp={() => { if (lpTimer.current) clearTimeout(lpTimer.current); }}
-                                            onPointerLeave={() => { if (lpTimer.current) clearTimeout(lpTimer.current); }}
                                         >
                                             {/* Case ronde à cocher, à gauche (mode liste). */}
                                             <span className={`${styles.ingCheck} ${checkedIngredients[idx] ? styles.ingCheckOn : ''}`}>
@@ -1527,6 +1501,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             {!focusMode && <CommentSection recipeId={String(recipe.id)} />}
 
             {focusMode && (
+                /* Portail vers <body> : la fiche parente porte un `transform`, ce qui
+                   en fait le référent des position:fixed — l'overlay « plein écran »
+                   héritait de son décalage (bandeau et titre coupés à mi-écran). */
+                <Portal>
                 <div
                     className={styles.focusOverlay}
                     style={{
@@ -1537,9 +1515,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     }}
                 >
                     <div className={styles.focusHeader}>
-                        <div className={styles.focusTitle}>
-                            <SplitTitle text={recipe.title} noAnimation={true} />
-                        </div>
+                        {/* Miniature + titre : savoir d'un coup d'œil quelle recette tourne. */}
+                        {recipe.image && (
+                            <img src={recipe.image} alt="" className={styles.focusThumb} draggable={false} />
+                        )}
+                        <div className={styles.focusTitle}>{decodeHtml(recipe.title)}</div>
                         <button className={styles.focusClose} onClick={() => {
                             setFocusMode(false);
                             triggerHaptic();
@@ -1643,25 +1623,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         </div>
                     </div>
                 </div>
+                </Portal>
             )}
         </div>
 
         {showShareCard && <RecipeShareCard recipe={recipe} onClose={() => setShowShareCard(false)} />}
-
-        {/* Popover substitutions (appui long / clic droit sur un ingrédient) */}
-        {subs && (
-            <>
-                <div className={styles.subsScrim} onClick={() => setSubs(null)} />
-                <div className={styles.subsPopover} style={{ left: subs.x, top: subs.y }}>
-                    <div className={styles.subsHead}>Remplacer par</div>
-                    {subs.list.map((s, i) => (
-                        <button key={i} className={styles.subsItem} onClick={() => setSubs(null)}>
-                            <span className={styles.subsEmoji}>{s.emoji}</span> {s.label}
-                        </button>
-                    ))}
-                </div>
-            </>
-        )}
         </>
     );
 }
