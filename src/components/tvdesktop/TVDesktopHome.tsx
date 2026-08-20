@@ -23,6 +23,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { THEMES, matchesTag, isSavoryMiscat } from '@/mobile/screens/tv/themes';
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed } from '@/lib/tiktok-consent';
+import { startScrollReveal } from '@/lib/scrollReveal';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
@@ -310,7 +311,7 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
         if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' });
     };
     return (
-        <section className={styles.row}>
+        <section className={styles.row} data-reveal>
             <div className={styles.rowHeadWrap}>
                 <button className={styles.rowHead} onClick={() => onSeeAll(title, recipes)}>
                     <h2 className={styles.rowTitle}>{title}</h2>
@@ -416,7 +417,7 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
     const go = (d: number) => setIndex((i) => (i + d + recipes.length) % recipes.length);
 
     return (
-        <div className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        <div data-hero className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
             {/* Fond cinéma : la photo courante, très floutée et assombrie, remplit
                tout le cadre — fini le pavé noir, on baigne dans la recette. */}
             <div className={styles.heroBackdrop} aria-hidden>
@@ -541,6 +542,9 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export default function TVDesktopHome() {
+    // Révélation des rangées au défilement (voir src/lib/scrollReveal.ts).
+    useEffect(() => startScrollReveal(), []);
+
     const router = useRouter();
     const stats = useRatingStats();
     const { user } = useAuth();

@@ -14,6 +14,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Recipe } from '@/mobile/types';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
+import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag, isSavoryMiscat } from './themes';
@@ -649,7 +650,7 @@ function TopTenRow({
     if (!recipes.length) return null;
 
     return (
-        <section className={styles.row}>
+        <section className={styles.row} data-reveal>
             <button className={styles.rowHead} onClick={() => { haptic(8); onSeeAll(title, recipes); }}>
                 <h2 className={styles.rowTitle}>{title}</h2>
                 <Chevron />
@@ -929,7 +930,7 @@ function Row({
     };
 
     return (
-        <section className={styles.row}>
+        <section className={styles.row} data-reveal>
             <div className={styles.rowHeadWrap}>
                 <button className={styles.rowHead} onClick={() => { haptic(8); onSeeAll(title, recipes); }}>
                     <h2 className={styles.rowTitle}>{title}</h2>
@@ -1365,6 +1366,9 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
 // ── Page ───────────────────────────────────────────────────────────────────
 
 export default function TVHome() {
+    // Révélation des rangées au défilement (voir src/lib/scrollReveal.ts).
+    useEffect(() => startScrollReveal(), []);
+
     const stats = useRatingStats();
     const [all, setAll] = useState<{ title: string; recipes: Recipe[] } | null>(null);
     const [sheet, setSheet] = useState<{ recipes: Recipe[]; index: number } | null>(null);

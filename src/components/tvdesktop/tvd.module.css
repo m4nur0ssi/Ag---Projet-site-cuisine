@@ -907,3 +907,75 @@
 @media (max-width: 1100px) {
     .cardInlaid { flex: 0 0 calc((100% - 2 * 16px) / 3); }
 }
+
+/* ── Révélation au défilement ────────────────────────────────────────────
+   Une rangée n'apparaît pas : elle MONTE, à peine, en se révélant. Deux
+   propriétés seulement (opacity, transform) — le compositeur les anime sans
+   refaire la mise en page, d'où la fluidité même sur une longue page.
+
+   Courbe : sortie très amortie (0.16, 1, 0.3, 1). Le mouvement démarre franc
+   et se pose sans rebond — c'est ce qui donne le calme des pages Apple, à
+   l'opposé d'un ease-out linéaire qui « tombe ». */
+:global([data-reveal-ready]) .row[data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0);
+    transition:
+        opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.row[data-reveal][data-revealed] {
+    opacity: 1;
+    transform: none;
+}
+/* Le contenu de la rangée suit son titre avec un souffle de retard : le regard
+   lit le titre, les cartes arrivent dessous. */
+:global([data-reveal-ready]) .row[data-reveal] .rowScroll,
+:global([data-reveal-ready]) .row[data-reveal] .collection {
+    transition: opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.09s,
+                transform 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.09s;
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+}
+.row[data-reveal][data-revealed] .rowScroll,
+.row[data-reveal][data-revealed] .collection {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Sortie du héros ─────────────────────────────────────────────────────
+   `--hero-out` va de 0 à 1 pendant qu'on le quitte (voir scrollReveal.ts). Le
+   héros recule et s'efface au lieu de glisser bêtement hors champ : c'est le
+   geste des pages produit d'Apple, où l'image cède la place au contenu. */
+.hero {
+    --hero-out: 0;
+}
+.hero .heroGallery,
+.hero .heroBody {
+    transform: translate3d(0, calc(var(--hero-out) * -46px), 0) scale(calc(1 - var(--hero-out) * 0.045));
+    opacity: calc(1 - var(--hero-out) * 0.85);
+    will-change: transform, opacity;
+}
+/* Le fond, lui, part MOINS vite que le contenu : c'est ce décalage qui crée la
+   profondeur. */
+.hero .heroBackdrop,
+.hero .heroHalo {
+    transform: translate3d(0, calc(var(--hero-out) * 22px), 0);
+}
+.hero .heroTopBar {
+    opacity: calc(1 - var(--hero-out) * 1.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :global([data-reveal-ready]) .row[data-reveal],
+    :global([data-reveal-ready]) .row[data-reveal] .rowScroll,
+    :global([data-reveal-ready]) .row[data-reveal] .collection {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .hero .heroGallery, .hero .heroBody, .hero .heroBackdrop, .hero .heroHalo, .hero .heroTopBar {
+        transform: none;
+        opacity: 1;
+    }
+}
