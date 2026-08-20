@@ -20,6 +20,7 @@ import { buildFinderCatalog } from '@/lib/recipe-search-payload';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import styles from './tv.module.css';
+import Tip from '@/components/Tip/Tip';
 
 const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
@@ -301,6 +302,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
 
     const body = (
         <>
+                    <Tip id="recherche" delay={1400} />
                     {/* En panneau : gros titre + sous-titre, comme Favoris. */}
                     {embedded && (
                         <div className={styles.spPanelHead}>

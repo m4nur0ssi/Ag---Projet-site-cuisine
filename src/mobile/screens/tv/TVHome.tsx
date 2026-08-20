@@ -88,6 +88,7 @@ const AuthButton = dynamic(() => import('@/mobile/components/AuthButton/AuthButt
 const NavDrawer = dynamic(() => import('./NavDrawer'), { ssr: false });
 const EdgeHandle = dynamic(() => import('./EdgeHandle'), { ssr: false });
 import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './NavDrawer';
+import Tip from '@/components/Tip/Tip';
 // Loupe modernisée AppleTV+ (mêmes fonctions que SpotlightSearch prod, habillage TV).
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 // Visite guidée de l'app mobile (remplace celle du site, écrite pour le desktop).
@@ -1931,6 +1932,7 @@ export default function TVHome() {
                 onRecipeSelect={(r) => openSheet([r], 0)}
             />
 
+            <Tip id="accueil" />
             {tutoOpen && <TVTutorial onClose={() => setTutoOpen(false)} />}
             {tasteOpen && <TasteOnboarding onClose={() => setTasteOpen(false)} />}
             {shareCard && <RecipeShareCard recipe={shareCard} onClose={() => setShareCard(null)} />}

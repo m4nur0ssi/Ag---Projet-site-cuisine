@@ -37,6 +37,7 @@ import { haptic } from './TVHome';
 import { readCart, removeCartRecipe, CART_EVENT, type CartRecipe } from './recipeCart';
 import { timingFromSteps, passiveLabelFor, COURSE_OFFSET, type TimelineInput } from '@/lib/cooking-timeline';
 import styles from './tv.module.css';
+import Tip from '@/components/Tip/Tip';
 
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 const CookingTimeline = dynamic(() => import('@/mobile/components/CookingTimeline/CookingTimeline'), { ssr: false });
@@ -737,6 +738,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             {detail && (
                 <RecipeSheet recipe={detail} isOpen={true} onClose={() => setDetail(null)} />
             )}
+            <Tip id="planner" />
         </div>
     );
 }

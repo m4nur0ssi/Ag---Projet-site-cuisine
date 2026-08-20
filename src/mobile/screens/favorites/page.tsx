@@ -13,6 +13,7 @@ import { pullFavorites, pruneOrphanFavorites } from '@/mobile/lib/favorites';
 import { precacheFavorites } from '@/lib/pwa';
 import { decodeHtml } from '@/mobile/lib/utils';
 import styles from './favorites.module.css';
+import Tip from '@/components/Tip/Tip';
 
 /**
  * `embedded` : rendu DANS le shell desktop TV+ (barre latérale déjà présente).
@@ -106,6 +107,7 @@ export default function FavoritesPage({ embedded = false }: { embedded?: boolean
             </main>
 
             {!embedded && <BottomNav />}
+            <Tip id="favoris" />
         </div>
     );
 }

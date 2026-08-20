@@ -21,6 +21,7 @@ import {
     CAVE_EVENT, type CaveWine, type WineColor, type WineShelf, type DrinkStatus,
 } from '@/lib/cave';
 import styles from './MaCave.module.css';
+import Tip from '@/components/Tip/Tip';
 
 /**
  * Nom débarrassé du millésime qu'il traîne parfois : il est affiché à part, en
@@ -277,6 +278,7 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                     onRemove={() => removeWine(menu.wine.id)}
                 />
             )}
+            <Tip id="cave" />
             {zoom && <ZoomView src={zoom} onClose={() => setZoom(null)} />}
         </div>
     );

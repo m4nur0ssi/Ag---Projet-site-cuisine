@@ -28,6 +28,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { haptic } from './TVHome';
 import { readCart, removeCartRecipe, CART_EVENT, type CartRecipe } from './recipeCart';
 import styles from './tv.module.css';
+import Tip from '@/components/Tip/Tip';
 
 const ShopActions = dynamic(() => import('@/mobile/components/ShopActions/ShopActions'), { ssr: false });
 
@@ -598,6 +599,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                     </motion.div>
                 )}
             </AnimatePresence>
+            <Tip id="courses" />
         </div>
     );
 }

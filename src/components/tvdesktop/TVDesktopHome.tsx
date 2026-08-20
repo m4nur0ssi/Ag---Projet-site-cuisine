@@ -26,6 +26,7 @@ import { tiktokAllowed, tiktokPlayed, tiktokFailed } from '@/lib/tiktok-consent'
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
+import Tip from '@/components/Tip/Tip';
 
 const TVAuthGate = dynamic(() => import('./TVAuthGate'), { ssr: false });
 const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
@@ -1163,6 +1164,7 @@ export default function TVDesktopHome() {
                 ))}
             </AnimatePresence>
 
+            <Tip id="accueil" />
             {shareCard && <RecipeShareCard recipe={shareCard} onClose={() => setShareCard(null)} />}
         </div>
     );
