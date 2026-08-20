@@ -10,6 +10,9 @@ import { NextResponse } from 'next/server';
  */
 export const runtime = 'nodejs';
 const MAX_BYTES = 8 * 1024 * 1024;
+// Sans plafond de temps, un hôte qui ne répond pas immobilise la fonction
+// jusqu'à son propre délai d'expiration.
+const TIMEOUT_MS = 10_000;
 
 function isPrivateHost(host: string): boolean {
     const h = host.toLowerCase();
@@ -17,7 +20,18 @@ function isPrivateHost(host: string): boolean {
     // Plages IP privées courantes.
     if (/^10\./.test(h) || /^192\.168\./.test(h) || /^169\.254\./.test(h)) return true;
     if (/^172\.(1[6-9]|2\d|3[01])\./.test(h)) return true;
+    if (h.endsWith('.internal') || h.startsWith('fc') || h.startsWith('fd') || h.startsWith('fe80:')) return true;
     return false;
+}
+
+/** Adresse acceptable : http(s) et hôte public. Sert aussi après redirection. */
+function urlAcceptable(u: string): boolean {
+    try {
+        const t = new URL(u);
+        return (t.protocol === 'http:' || t.protocol === 'https:') && !isPrivateHost(t.hostname);
+    } catch {
+        return false;
+    }
 }
 
 export async function GET(request: Request) {
@@ -33,13 +47,28 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: 'hôte non autorisé' }, { status: 400 });
     }
 
+    const stop = new AbortController();
+    const minuteur = setTimeout(() => stop.abort(), TIMEOUT_MS);
     let res: Response;
     try {
-        res = await fetch(target.toString(), { headers: { 'user-agent': 'lesrecettesmagiques-img-proxy' } });
+        res = await fetch(target.toString(), {
+            signal: stop.signal,
+            redirect: 'follow',
+            headers: {
+                // Un agent « robot » se fait refuser par plusieurs marchands
+                // (403) alors que la même image passe depuis un navigateur.
+                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Safari/605.1.15',
+                accept: 'image/*,*/*;q=0.8',
+            },
+        });
     } catch {
         return NextResponse.json({ error: 'fetch échoué' }, { status: 502 });
+    } finally {
+        clearTimeout(minuteur);
     }
     if (!res.ok) return NextResponse.json({ error: 'image introuvable' }, { status: res.status });
+    // Une redirection a pu mener ailleurs : on revérifie l'arrivée.
+    if (res.url && !urlAcceptable(res.url)) return NextResponse.json({ error: 'redirection refusée' }, { status: 400 });
 
     const type = res.headers.get('content-type') || '';
     if (!type.startsWith('image/')) return NextResponse.json({ error: 'pas une image' }, { status: 415 });

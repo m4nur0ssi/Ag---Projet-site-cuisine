@@ -51,10 +51,20 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
             ctx.fillText(meta, 88, H * 0.70);
 
             ctx.fillStyle = '#fff';
-            ctx.font = '900 104px -apple-system, system-ui, sans-serif';
-            const maxW = W - 176; let line = ''; let y = H * 0.70 + 108;
+            const maxW = W - 176;
+            // Un mot plus large que le cadre ne se coupe pas : il déborde et se
+            // fait rogner (« CHOCO-CACAHUÈT »). On réduit le corps jusqu'à ce que
+            // le mot le plus long tienne.
+            let corps = 104;
+            const plusLong = title.split(' ').reduce((a, b) => (a.length >= b.length ? a : b), '');
+            do {
+                ctx.font = `900 ${corps}px -apple-system, system-ui, sans-serif`;
+                if (ctx.measureText(plusLong).width <= maxW) break;
+                corps -= 6;
+            } while (corps > 58);
+            let line = ''; let y = H * 0.70 + 108;
             for (const word of title.split(' ')) {
-                if (ctx.measureText(line + word).width > maxW && line) { ctx.fillText(line.trim(), 88, y); line = ''; y += 112; }
+                if (ctx.measureText(line + word).width > maxW && line) { ctx.fillText(line.trim(), 88, y); line = ''; y += corps + 8; }
                 line += word + ' ';
             }
             ctx.fillText(line.trim(), 88, y);
@@ -91,22 +101,42 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
             c.closePath();
         };
 
-        // photoImg : undefined = pas encore tenté, null = échec, Image = ok.
-        let photoImg: HTMLImageElement | null | undefined = undefined;
-        const render = () => { if (photoImg !== undefined) paint(photoImg || null); };
+        // La carte se dessine TOUT DE SUITE, sans attendre la photo, et se
+        // redessine quand celle-ci arrive. L'ordre inverse — attendre la photo
+        // pour dessiner — laissait l'aperçu vide et le bouton éteint pour
+        // toujours dès que l'image ne répondait NI par un succès NI par une
+        // erreur (hôte injoignable qui laisse la connexion ouverte).
+        let photoImg: HTMLImageElement | null = null;
+        const render = () => paint(photoImg);
+        render();
 
+        let fini = false;
+        /**
+         * Une tentative de chargement, avec sa propre limite de temps : un
+         * `<img>` peut rester en attente indéfiniment, il n'a pas de délai.
+         */
         const load = (src: string, next?: () => void) => {
             const img = new Image();
             img.crossOrigin = 'anonymous';
-            img.onload = () => { photoImg = img; render(); };
-            img.onerror = () => { if (next) next(); else { photoImg = null; render(); } };
+            const abandon = setTimeout(() => { if (!fini) { if (next) next(); else fini = true; } }, 6000);
+            img.onload = () => {
+                if (fini) return;
+                fini = true; clearTimeout(abandon);
+                photoImg = img; render();
+            };
+            img.onerror = () => {
+                if (fini) return;
+                clearTimeout(abandon);
+                if (next) next(); else fini = true;
+            };
             img.src = src;
         };
-        // On dessine la carte DÈS que la photo est prête — indépendamment du QR
-        // (si la génération du QR échoue/traîne, l'aperçu ne doit pas rester vide).
-        if (!recipe.image) { photoImg = null; render(); }
-        else if (/^https?:\/\//i.test(recipe.image)) load(`/api/img?url=${encodeURIComponent(recipe.image)}`, () => load(recipe.image));
-        else load(recipe.image);
+        // Le proxy d'abord (même origine → export possible), la photo directe
+        // ensuite : elle salira le canevas, mais mieux vaut un aperçu qu'un vide.
+        if (recipe.image) {
+            if (/^https?:\/\//i.test(recipe.image)) load(`/api/img?url=${encodeURIComponent(recipe.image)}`, () => load(recipe.image));
+            else load(recipe.image);
+        }
 
         // QR en parallèle : quand il est prêt, on redessine avec le QR.
         try {
@@ -114,7 +144,11 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
                 .then((durl) => { const q = new Image(); q.onload = () => { qrImg = q; render(); }; q.src = durl; })
                 .catch(() => { /* pas de QR, tant pis */ });
         } catch { /* pas de QR */ }
-    }, [recipe]);
+        // `mounted` DOIT figurer ici : au premier rendu le composant renvoie null
+        // (le portail n'existe pas encore), donc `canvasRef` est vide et l'effet
+        // sortait aussitôt. Sans cette dépendance il ne se rejouait jamais — le
+        // canevas restait à sa taille par défaut, 300 × 150, et l'aperçu vide.
+    }, [recipe, mounted]);
 
     const share = async () => {
         const title = decodeHtml(recipe.title);
