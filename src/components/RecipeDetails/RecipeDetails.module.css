@@ -259,6 +259,9 @@
     align-items: center;
     z-index: 2;
     gap: 20px;
+    /* Sans cela, une colonne de grille refuse de descendre sous la taille de son
+       contenu et la carte ressort du cadre. */
+    min-width: 0;
 }
 
 .flameOverlay {
@@ -914,10 +917,14 @@
    ===================================================== */
 .heroGrid {
     display: grid;
-    grid-template-columns: 1fr 450px;
+    /* Colonne image FLUIDE, plafonnée : à 450 px fixes, la carte débordait de sa
+       colonne dès que la fenêtre se resserrait (mesuré : 83 px hors cadre, bord
+       droit coupé). `minmax` la laisse rétrécir, et la marge droite reste. */
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 450px);
     align-items: center; /* Aligne verticalement le texte et l'image */
     z-index: 2;
     gap: 20px;
+    padding-right: 20px;
 }
 
 /* Mode LISTE (maquette) : une ligne par ingrédient, case ronde à gauche. */
