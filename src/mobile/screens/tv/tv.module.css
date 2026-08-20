@@ -2311,9 +2311,13 @@
     bottom: 0;
     z-index: 40;
     display: flex;
-    gap: 8px;
+    /* Groupe centré, et non étiré d'un bord à l'autre : sur un écran large, un
+       bouton « Planificateur » de 780 px écrasait ses deux voisins. */
+    justify-content: center;
+    gap: 10px;
     /* Bandeau plein format : les boutons se détachaient du fond et semblaient
-       flotter au milieu des cartes. Le dégradé fait la transition. */
+       flotter au milieu des cartes. Le dégradé fait la transition. Le bas
+       réserve la hauteur de la barre de menu, qui vit par-dessus. */
     padding: 26px 16px calc(104px + env(safe-area-inset-bottom, 0px));
     background: linear-gradient(0deg, #000 42%, rgba(0, 0, 0, 0.92) 62%, rgba(0, 0, 0, 0) 100%);
     pointer-events: none;
@@ -2353,8 +2357,11 @@
 }
 
 .planValidate {
-    flex: 1 1 auto;
-    padding: 14px 16px;
+    /* Il domine par sa couleur, pas par sa taille : plus de `flex: 1` qui lui
+       donnait toute la largeur restante. */
+    flex: 0 1 auto;
+    max-width: 340px;
+    padding: 14px 26px;
     border: none;
     border-radius: 14px;
     background: #fff;
