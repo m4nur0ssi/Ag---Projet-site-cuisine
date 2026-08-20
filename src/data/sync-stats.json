@@ -1,5 +1,9 @@
 {
-  "lastSync": "2026-08-20T16:02:25.069Z",
-  "totalRecipes": 661,
-  "environment": "local"
+  "lastSync": "2026-08-20T20:35:45Z",
+  "trigger": "repository_dispatch",
+  "action": "wp_recipe_updated",
+  "postId": "7283",
+  "mode": "recent",
+  "status": "success",
+  "ts": 1787258145
 }
