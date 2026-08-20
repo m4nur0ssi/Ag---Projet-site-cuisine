@@ -20,6 +20,27 @@ import { CAVE_KEY, CAVE_EVENT } from '@/lib/cave';
 
 const STAMP_KEY = 'ma-cave-sync-v1';   // date du dernier échange réussi ici
 
+/**
+ * A-t-on déjà LU le nuage sur cet appareil ?
+ *
+ * Rien ne doit monter avant d'être descendu. Sans ce verrou, ouvrir « Ma cave »
+ * sur un appareil neuf écrivait les six bouteilles d'exemple, l'événement de
+ * changement partait, et la cave d'exemple écrasait dans le nuage la vraie cave
+ * remplie sur le téléphone.
+ */
+let pulled = false;
+let resolveReady: () => void;
+const ready = new Promise<void>((res) => { resolveReady = res; });
+
+/** Attend la première lecture du nuage (ou son abandon) avant d'écrire. */
+export function whenCaveReady(): Promise<void> { return ready; }
+
+function markPulled() {
+    if (pulled) return;
+    pulled = true;
+    resolveReady();
+}
+
 const readLocal = (): unknown[] => {
     try { const v = JSON.parse(localStorage.getItem(CAVE_KEY) || '[]'); return Array.isArray(v) ? v : []; }
     catch { return []; }
@@ -28,14 +49,17 @@ const readLocal = (): unknown[] => {
 /** À la connexion : le nuage hydrate la cave locale s'il est plus récent. */
 export async function pullCave(): Promise<void> {
     const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return;
+    if (!session) { markPulled(); return; }           // hors compte : rien à descendre
 
     const { data, error } = await supabase
         .from('cave_state')
         .select('data, updated_at')
         .eq('user_id', session.user.id)
         .maybeSingle();
-    if (error || !data) return;                       // réseau KO : on garde le local
+    // Réseau KO : on garde le local, mais on NE DÉVERROUILLE PAS l'envoi — on
+    // ignore ce que contient le nuage, ce serait le moment de tout écraser.
+    if (error) return;
+    if (!data) { markPulled(); return; }              // compte neuf : le local fera foi
 
     const cloud = Array.isArray(data.data) ? data.data : [];
     const local = readLocal();
@@ -44,11 +68,12 @@ export async function pullCave(): Promise<void> {
 
     // Cave locale non vide et plus fraîche que le nuage : c'est elle qui gagne,
     // et c'est à elle de monter (le push s'en charge juste après).
-    if (local.length && mine > theirs) return;
-    if (JSON.stringify(cloud) === JSON.stringify(local)) return;
+    if (local.length && mine > theirs) { markPulled(); return; }
+    if (JSON.stringify(cloud) === JSON.stringify(local)) { markPulled(); return; }
 
     localStorage.setItem(CAVE_KEY, JSON.stringify(cloud));
     localStorage.setItem(STAMP_KEY, String(theirs));
+    markPulled();
     window.dispatchEvent(new Event(CAVE_EVENT));
 }
 
@@ -56,6 +81,7 @@ let pushTimer: ReturnType<typeof setTimeout> | null = null;
 let started = false;
 
 async function pushNow(): Promise<void> {
+    if (!pulled) return;                              // jamais avant d'avoir lu
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return;
     const now = new Date();

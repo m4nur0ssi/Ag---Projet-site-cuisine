@@ -3250,3 +3250,26 @@
     font-size: 10.5px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
     color: rgba(235, 235, 245, .45);
 }
+
+/* ── Planificateur sur grand écran ───────────────────────────────────────
+   Ces barres sont dessinées pour un téléphone : elles s'étirent d'un bord à
+   l'autre de la FENÊTRE, donc par-dessus la barre latérale et sur deux mille
+   pixels de large. Un bouton « Voir la liste » aussi long qu'un écran ne se
+   lit plus comme un bouton. Sur grand écran elles se rangent à droite, à une
+   largeur d'objet. */
+@media (min-width: 1024px) {
+    .planRecap {
+        left: auto;
+        right: 34px;
+        width: min(420px, 34vw);
+        bottom: 96px;
+    }
+    .planFooter {
+        left: auto;
+        right: 34px;
+        width: min(620px, 52vw);
+        bottom: 22px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

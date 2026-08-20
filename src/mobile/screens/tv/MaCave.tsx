@@ -20,6 +20,7 @@ import {
     moveToTasted, moveToCave, shelfOf,
     CAVE_EVENT, type CaveWine, type WineColor, type WineShelf, type DrinkStatus,
 } from '@/lib/cave';
+import { whenCaveReady } from '@/mobile/lib/caveSync';
 import styles from './MaCave.module.css';
 import Tip from '@/components/Tip/Tip';
 
@@ -85,9 +86,12 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
     }, []);
 
     useEffect(() => {
-        seedCaveIfEmpty();
         const load = () => setWines(readCave());
-        load();
+        load();                                   // affichage immédiat de ce qu'on a
+        // Les bouteilles d'exemple n'arrivent QU'APRÈS la lecture du nuage :
+        // sinon, sur un appareil neuf, elles se seraient écrites par-dessus la
+        // vraie cave le temps que la synchro descende.
+        whenCaveReady().then(() => { seedCaveIfEmpty(); load(); });
         window.addEventListener(CAVE_EVENT, load);
         window.addEventListener('storage', load);
         return () => { window.removeEventListener(CAVE_EVENT, load); window.removeEventListener('storage', load); };
