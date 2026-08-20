@@ -5,7 +5,9 @@
 // PURGE les anciens caches à l'activation — sans ça, un visiteur déjà venu
 // pouvait continuer à recevoir l'ancienne page (repli hors-ligne des
 // navigations + chunks JS servis cache-first).
-const CACHE = 'recettes-magiques-v5';
+// v6 : « Partager en image » réparé (2026-08-20). Un iPhone déjà venu gardait
+// l'ancien lot de fichiers et continuait d'afficher un aperçu vide.
+const CACHE = 'recettes-magiques-v6';
 const OFFLINE_URL = new URL('offline.html', self.location).toString();
 
 self.addEventListener('install', (event) => {

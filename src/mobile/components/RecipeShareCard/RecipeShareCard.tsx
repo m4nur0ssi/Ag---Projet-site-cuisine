@@ -37,37 +37,64 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
         const paint = (img: HTMLImageElement | null) => {
             ctx.fillStyle = '#08080b'; ctx.fillRect(0, 0, W, H);
             if (img) {
-                const ratio = Math.max(W / img.width, (H * 0.64) / img.height);
+                const ratio = Math.max(W / img.width, (H * 0.56) / img.height);
                 const w = img.width * ratio, h = img.height * ratio;
                 ctx.drawImage(img, (W - w) / 2, 0, w, h);
-            } else { ctx.fillStyle = '#1a1420'; ctx.fillRect(0, 0, W, H * 0.64); }
-            const g = ctx.createLinearGradient(0, H * 0.32, 0, H * 0.72);
+            } else { ctx.fillStyle = '#1a1420'; ctx.fillRect(0, 0, W, H * 0.56); }
+            const g = ctx.createLinearGradient(0, H * 0.26, 0, H * 0.58);
             g.addColorStop(0, 'rgba(8,8,11,0)'); g.addColorStop(1, '#08080b');
-            ctx.fillStyle = g; ctx.fillRect(0, H * 0.30, W, H * 0.45);
+            ctx.fillStyle = g; ctx.fillRect(0, H * 0.24, W, H * 0.36);
 
             ctx.textAlign = 'left';
+            const maxW = W - 176;
+
+            /**
+             * Le bloc de texte doit tenir DANS sa zone, entre la photo et le pied
+             * de carte. L'ancienne version posait le titre à une hauteur fixe et
+             * espaçait ses lignes de 112 px : un titre de trois lignes passait
+             * sous le QR code et se faisait couper au bas de l'image.
+             *
+             * On calcule donc d'abord le découpage, puis on réduit le corps
+             * jusqu'à ce que le tout tienne en largeur ET en hauteur.
+             */
+            // La photo s'arrête à 56 % : le tiers restant appartient au texte, qui
+            // doit rester GRAND. À 64 % de photo, le titre se réduisait jusqu'à
+            // devenir illisible sur une vignette de messagerie.
+            const HAUT_TEXTE = H * 0.58;
+            const BAS_TEXTE = H - 330;                // au-dessus du QR et du domaine
+            const decouper = (taille: number): string[] => {
+                ctx.font = `900 ${taille}px -apple-system, system-ui, sans-serif`;
+                const lignes: string[] = [];
+                let ligne = '';
+                for (const mot of title.split(' ')) {
+                    if (ctx.measureText(ligne + mot).width > maxW && ligne) { lignes.push(ligne.trim()); ligne = ''; }
+                    ligne += mot + ' ';
+                }
+                if (ligne.trim()) lignes.push(ligne.trim());
+                return lignes;
+            };
+            let corps = 104;
+            let lignes = decouper(corps);
+            while (corps > 46) {
+                const troplarge = lignes.some((l) => ctx.measureText(l).width > maxW);
+                const trophaut = lignes.length * (corps + 10) > BAS_TEXTE - HAUT_TEXTE - 70;
+                if (!troplarge && !trophaut) break;
+                corps -= 6;
+                lignes = decouper(corps);
+            }
+
+            // Le bloc est calé sur le BAS de sa zone : la respiration se fait
+            // au-dessus, contre la photo, jamais contre le pied de carte.
+            const hauteurBloc = lignes.length * (corps + 10);
+            const yTitre = Math.max(HAUT_TEXTE + 70, BAS_TEXTE - hauteurBloc) ;
+
             ctx.fillStyle = '#FF6B4A';
             ctx.font = '800 40px -apple-system, system-ui, sans-serif';
-            ctx.fillText(meta, 88, H * 0.70);
+            ctx.fillText(meta, 88, yTitre - 46);
 
             ctx.fillStyle = '#fff';
-            const maxW = W - 176;
-            // Un mot plus large que le cadre ne se coupe pas : il déborde et se
-            // fait rogner (« CHOCO-CACAHUÈT »). On réduit le corps jusqu'à ce que
-            // le mot le plus long tienne.
-            let corps = 104;
-            const plusLong = title.split(' ').reduce((a, b) => (a.length >= b.length ? a : b), '');
-            do {
-                ctx.font = `900 ${corps}px -apple-system, system-ui, sans-serif`;
-                if (ctx.measureText(plusLong).width <= maxW) break;
-                corps -= 6;
-            } while (corps > 58);
-            let line = ''; let y = H * 0.70 + 108;
-            for (const word of title.split(' ')) {
-                if (ctx.measureText(line + word).width > maxW && line) { ctx.fillText(line.trim(), 88, y); line = ''; y += corps + 8; }
-                line += word + ' ';
-            }
-            ctx.fillText(line.trim(), 88, y);
+            ctx.font = `900 ${corps}px -apple-system, system-ui, sans-serif`;
+            lignes.forEach((l, i) => ctx.fillText(l, 88, yTitre + i * (corps + 10) + corps * 0.82));
 
             // QR en bas à droite : le lien de la recette voyage avec l'image,
             // même là où le texte-lien disparaît (stories Instagram/TikTok).
