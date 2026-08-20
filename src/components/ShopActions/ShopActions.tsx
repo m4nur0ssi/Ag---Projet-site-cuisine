@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { carrefourTerm } from '@/lib/ingredients';
 import type { ConsolItem } from '@/lib/ingredients';
 import { usePreferredStore, STORE_BY_ID, storeSearchWithQueue } from '@/lib/stores';
+import { onStoreItemDone, isStoreExtensionActive } from '@/lib/storeFeedback';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import styles from './ShopActions.module.css';
 
@@ -27,6 +28,22 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
     const list = checkedKeys
         ? items.filter(it => it.keys.some(k => checkedKeys.has(k)))
         : items;
+
+    // L'extension nous dit quel article vient d'être mis au panier : on le raye
+    // ici, en direct, pendant que l'utilisateur est encore sur le magasin.
+    // `listRef` évite de ré-abonner à chaque rendu (la liste est recalculée) ;
+    // les hooks restent AVANT le `return null` sous peine de casser leur ordre.
+    const listRef = useRef(list);
+    listRef.current = list;
+    const shoppedRef = useRef(onShopped);
+    shoppedRef.current = onShopped;
+    useEffect(() => onStoreItemDone(({ index }) => {
+        const it = listRef.current[index];
+        if (!it) return;
+        shoppedRef.current?.(it);
+        setIdx(Math.min(index + 1, listRef.current.length - 1));
+    }), []);
+
     if (!list.length) return null;
 
     const text = `🛒 ${title}\n\n` + list.map(i => `• ${i.display}`).join('\n');
@@ -45,7 +62,9 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
         // Magiques" fait défiler les produits sans changer d'onglet. Fenêtre nommée réutilisée.
         const queue = list.map(x => carrefourTerm(x.name));
         window.open(storeSearchWithQueue(store, queue, i), 'storeCart');
-        onShopped?.(it);
+        // Avec l'extension, c'est la mise au panier qui raye (plus juste). Sans elle,
+        // personne ne nous préviendra : on raye dès la recherche, comme avant.
+        if (!isStoreExtensionActive()) onShopped?.(it);
     };
     const go = (i: number) => { const n = Math.max(0, Math.min(i, list.length - 1)); setIdx(n); openStore(n); };
 

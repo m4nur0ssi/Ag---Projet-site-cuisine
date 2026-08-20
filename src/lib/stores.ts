@@ -26,11 +26,14 @@ export const STORE_BY_ID: Record<StoreId, StoreDef> =
 // URL de recherche d'un magasin + file complète des ingrédients encodée dans le
 // hash (#mlist=...&mi=index). L'extension "Courses Magiques" lit cette file pour
 // faire défiler les produits sans changer d'onglet. Sans extension : ignoré.
+// `mo` = notre origine : l'extension y renvoie « article validé » (postMessage
+// ciblé, pas de '*'), ce qui raye l'ingrédient ici pendant qu'on est au magasin.
 export function storeSearchWithQueue(id: StoreId, terms: string[], index = 0): string {
     const base = STORE_BY_ID[id].search(terms[index] || '');
     try {
         const payload = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(terms)))));
-        return `${base}#mlist=${payload}&mi=${index}`;
+        const origin = typeof window !== 'undefined' ? encodeURIComponent(window.location.origin) : '';
+        return `${base}#mlist=${payload}&mi=${index}${origin ? `&mo=${origin}` : ''}`;
     } catch {
         return base;
     }

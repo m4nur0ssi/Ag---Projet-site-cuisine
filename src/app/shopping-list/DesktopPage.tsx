@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import Header from '@/components/Header/Header';
 import TVAuthGate from '@/components/tvdesktop/TVAuthGate';
@@ -9,6 +9,7 @@ import { fmtQty, carrefourTerm, buildConsolidatedItems, getIngIcon as getIcon, d
 import type { ConsolItem } from '@/lib/ingredients';
 import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
 import { STORE_BY_ID, usePreferredStore, storeSearchWithQueue } from '@/lib/stores';
+import { onStoreItemDone, isStoreExtensionActive } from '@/lib/storeFeedback';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import ShopActions from '@/components/ShopActions/ShopActions';
 import styles from './shopping-list.module.css';
@@ -238,9 +239,21 @@ export default function ShoppingListPage() {
         // l'extension fait défiler les produits sans changer d'onglet.
         const queue = selectedItems.map(x => carrefourTerm(x.name));
         window.open(storeSearchWithQueue(store, queue, i), 'storeCart');
-        markDone(it); // recherché → rayé automatiquement
+        // Avec l'extension, c'est la mise au panier qui raye ; sans elle, personne
+        // ne nous préviendra, donc on raye dès la recherche comme avant.
+        if (!isStoreExtensionActive()) markDone(it);
     };
     const startCarrefour = () => { if (!selectedItems.length) return; setCarrefourIdx(0); openCarrefourFor(0); };
+
+    // Article mis au panier depuis le magasin → rayé ici en direct.
+    const selRef = useRef(selectedItems);
+    selRef.current = selectedItems;
+    useEffect(() => onStoreItemDone(({ index }) => {
+        const it = selRef.current[index];
+        if (!it) return;
+        markDone(it);
+        setCarrefourIdx(Math.min(index + 1, selRef.current.length - 1));
+    }), []);
     const carrefourGo = (i: number) => {
         const n = Math.max(0, Math.min(i, selectedItems.length - 1));
         setCarrefourIdx(n);
