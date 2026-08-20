@@ -42,7 +42,9 @@
         grid-template-columns: 1fr 1fr;
         column-gap: 22px;
         align-content: start;
-        padding: 0 12px calc(150px + env(safe-area-inset-bottom, 0px));
+        /* Le bandeau des boutons est désormais dans le flux : il ne reste à
+           réserver que la hauteur de la barre de menu. */
+        padding: 0 12px calc(12px + env(safe-area-inset-bottom, 0px));
     }
     .planDayTitle { grid-column: 1 / -1; }
     /* « Jour J » gère lui-même sa grille : son en-tête et son conteneur prennent
@@ -3437,13 +3439,22 @@
         width: min(420px, 34vw);
         bottom: 96px;
     }
+    /* Les trois boutons du planificateur : CENTRÉS en bas, sur la colonne de
+       contenu. Tassés à droite (`right: 34px`), ils se lisaient comme un badge
+       oublié dans le coin, et cette règle-ci écrasait le centrage défini plus
+       haut dans le fichier. */
+    /* Les trois boutons passent DANS LE FLUX, sous les cartes : collés au bas de
+       la fenêtre, ils recouvraient la dernière rangée pendant tout le
+       défilement. Sur un grand écran la page défile, un bandeau flottant n'a
+       plus de raison d'être. */
     .planFooter {
-        left: auto;
-        right: 34px;
-        width: min(620px, 52vw);
-        bottom: 22px;
-        padding-left: 0;
-        padding-right: 0;
+        position: static;
+        transform: none;
+        width: auto;
+        max-width: min(760px, 80vw);
+        margin: 20px auto 24px;
+        padding: 0;
+        background: none;
     }
 }
 
@@ -3586,4 +3597,132 @@
     .jourjGrid .planSlotActions { opacity: 0; transition: opacity 0.2s ease; }
     .jourjGrid .planSlot:hover .planSlotActions,
     .jourjGrid .planSlot:focus-within .planSlotActions { opacity: 1; }
+}
+
+/* ── Planificateur sur grand écran ────────────────────────────────────────
+   Un repas occupe une LIGNE entière, coupée en deux moitiés égales : la recette
+   à gauche, l'accompagnement à droite. Deux repas côte à côte laissaient la
+   moitié de l'écran vide et des cartes deux fois trop petites. */
+@media (min-width: 900px) {
+    /* Un créneau par ligne : c'est ce qui rend les cartes deux fois plus
+       grandes sans rien déborder. */
+    .planSlide { grid-template-columns: 1fr; }
+
+    .planPair { display: block; }
+    .planPairSplit {
+        display: grid;
+        grid-template-columns: 1fr 1fr;   /* deux moitiés STRICTEMENT égales */
+        gap: 16px;
+        align-items: stretch;
+    }
+    .planPairSplit .planCard,
+    .planPairSplit .planSide {
+        width: 100%;
+        margin-top: 0;
+        /* La hauteur suit celle de la FENÊTRE : les deux repas du jour et les
+           trois boutons doivent tenir sans défiler. À format fixe (16/10), deux
+           cartes de 304 px dépassaient de 299 px sur un écran de 900. Sur un
+           écran haut, les cartes reprennent leur ampleur. */
+        aspect-ratio: auto;
+        height: clamp(150px, calc((100vh - 592px) / 2), 420px);
+    }
+    .planPairSplit .planSide {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 12px;
+        padding: 22px;
+        border-radius: 16px;
+        background: transparent;
+        box-shadow: none;
+    }
+    /* Garniture présente : la moitié droite EST une carte, même cadre, même
+       photo pleine largeur, même titre incrusté que le plat. */
+    .planPairSplit .planSide:has(.planSideCard) { padding: 0; }
+    .planSideCard {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #141416;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+    }
+    .planSideRemove {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        z-index: 2;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 999px;
+        background: rgba(10, 10, 12, 0.7);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        color: #ff453a;
+        font-family: 'Outfit', sans-serif;
+        font-size: 12.5px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .planPairSplit .planSideAdd { flex: 0 1 auto; flex-direction: column; align-items: flex-start; gap: 8px; }
+    /* Les deux moitiés vides gardent le cadre en pointillé du plat. */
+    .planPairSplit .planSide:not(:has(.planSideCard)) {
+        background: rgba(255, 255, 255, 0.045);
+        box-shadow: inset 0 0 0 1.2px rgba(255, 255, 255, 0.12);
+    }
+
+    /* Moitié droite quand le plat n'appelle aucune garniture. */
+    .planSideNone { display: flex; flex-direction: column; gap: 8px; }
+    .planSideNoneText { font-size: 15px; color: rgba(235, 235, 245, 0.6); }
+    .planSideAddLite {
+        align-self: flex-start;
+        margin-top: 4px;
+        padding: 8px 14px;
+        border: none;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-family: 'Outfit', sans-serif;
+        font-size: 13.5px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .planSideAddLite:hover { background: rgba(255, 255, 255, 0.16); }
+
+    /* Corps de texte communs aux deux vues. */
+    .planCardTitle { font-size: 19px; line-height: 1.18; }
+    .planCardMeta { font-size: 13px; }
+    .planMeal { font-size: 12.5px; }
+    .planSideTitle { font-size: 17px; }
+
+    /* ── Jour J : six services, trois par rangée ── */
+    .jourjGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px 20px;
+        align-items: start;
+    }
+    .jourjGrid .planSlot { margin-bottom: 0; }
+    .jourjGrid .planCard,
+    .jourjGrid .planEmpty { aspect-ratio: 16 / 10; width: 100%; }
+    .jourjGrid .planSlotActions { opacity: 0; transition: opacity 0.2s ease; }
+    .jourjGrid .planSlot:hover .planSlotActions,
+    .jourjGrid .planSlot:focus-within .planSlotActions { opacity: 1; }
+
+    /* « Déroulé de la soirée » : centré sous la grille, au-dessus des boutons. */
+    /* « Déroulé de la soirée » : centré, AU-DESSUS des trois boutons. */
+    .planTimelineBtn {
+        display: flex;
+        justify-content: center;
+        width: auto;
+        max-width: 340px;
+        margin: 22px auto 0;
+    }
 }

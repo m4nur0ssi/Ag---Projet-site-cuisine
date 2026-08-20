@@ -506,7 +506,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 </div>
 
                 {slot ? (
-                    <>
+                    <div className={`${styles.planPair} ${sideable ? styles.planPairSplit : ''}`}>
                         {/* Un tap sur la carte ouvre la fiche complète de la recette. */}
                         <button className={styles.planCard} onClick={() => { haptic(8); setDetail(slot); }}>
                             <img src={slot.image} alt="" className={styles.planCardImg} draggable={false} />
@@ -519,20 +519,29 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             </div>
                         </button>
 
-                        {needsSide && (
+                        {sideable && (
                             <div className={styles.planSide}>
                                 {slot.side ? (
                                     <>
-                                        <img src={slot.side.image} alt="" className={styles.planSideImg} draggable={false} />
-                                        <button className={styles.planSideText} onClick={() => { haptic(8); setDetail(slot.side!); }}>
-                                            <span className={styles.planSideKicker}>Accompagnement</span>
-                                            <span className={styles.planSideTitle}>{label(slot.side)}</span>
+                                        {/* La garniture est une carte à part entière, de la
+                                            taille du plat : une vignette de 104 px à côté
+                                            d'une photo pleine largeur ne se regardait pas. */}
+                                        <button className={styles.planSideCard} onClick={() => { haptic(8); setDetail(slot.side!); }}>
+                                            <img src={slot.side.image} alt="" className={styles.planCardImg} draggable={false} />
+                                            <div className={styles.planCardScrim} />
+                                            <div className={styles.planCardText}>
+                                                <div className={styles.planSideKicker}>Accompagnement</div>
+                                                <div className={styles.planCardTitle}>{label(slot.side)}</div>
+                                                <div className={styles.planCardMeta}>
+                                                    {formatMinutes(totalMinutes(slot.side))} · Voir la recette ›
+                                                </div>
+                                            </div>
                                         </button>
-                                        <button className={styles.planRemove} onClick={() => { haptic(10); setSide(day, meal, null); }}>
+                                        <button className={styles.planSideRemove} onClick={() => { haptic(10); setSide(day, meal, null); }}>
                                             Retirer
                                         </button>
                                     </>
-                                ) : (
+                                ) : needsSide ? (
                                     <button
                                         className={styles.planSideAdd}
                                         onClick={() => { haptic(8); setPicker({ day, meal, side: true }); }}
@@ -541,10 +550,24 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         Ajouter un accompagnement
                                         <span className={styles.planSideWhy}>ce plat est servi nu</span>
                                     </button>
+                                ) : (
+                                    /* Le plat porte déjà sa garniture (gratin, salade
+                                       composée, plat complet) : on le DIT, plutôt que
+                                       de laisser une moitié vide sans explication. */
+                                    <div className={styles.planSideNone}>
+                                        <span className={styles.planSideKicker}>Accompagnement</span>
+                                        <span className={styles.planSideNoneText}>Ce plat se suffit à lui-même.</span>
+                                        <button
+                                            className={styles.planSideAddLite}
+                                            onClick={() => { haptic(8); setPicker({ day, meal, side: true }); }}
+                                        >
+                                            + En ajouter un quand même
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         )}
-                    </>
+                    </div>
                 ) : (
                     <div className={styles.planEmpty}>
                         <button className={styles.planAdd} onClick={() => { haptic(8); setPicker({ day, meal }); }}>
@@ -687,7 +710,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                 day={JOUR_J}
                                 meal={c.label}
                                 accepts={c.accepts}
-                                sideable={c.label === 'Plat'}
+                                /* Pas de garniture accolée ici : « Accompagnement »
+                                   est un service du menu, avec sa propre carte. Les
+                                   deux se superposaient dans la même case. */
                             />
                         ))}
                     </div>
