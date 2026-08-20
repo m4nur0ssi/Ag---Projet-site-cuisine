@@ -401,22 +401,31 @@
     transform: scale(0.9);
 }
 
-/* ── Pastille « Ajouter un vin » (page Ma cave) ──────────────────────────
-   Pas de vignette à aligner ici, donc pas de raison de coller à gauche : le
-   libellé se centre, seul, et la pastille s'éclaire pour se lire comme une
-   action et non comme un rappel. */
-.miniCenterAction {
+/* ── Deux actions de « Ma cave » (barre repliée) ─────────────────────────
+   « + » ajoute une bouteille, la loupe en atteint une sans remonter la page.
+   Deux pastilles rondes, comme les extrémités de la barre : rien à lire. */
+.caveActions {
+    flex: 1;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 0 18px;
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(255, 255, 255, 0.24);
+    gap: 10px;
 }
-.miniCenterAction:active { background: rgba(255, 255, 255, 0.22); }
-.miniAction {
-    font-family: 'Outfit', sans-serif;
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: -0.01em;
+.caveBtn {
+    width: 62px;
+    height: 62px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 31px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(40, 40, 40, 0.5);
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
     color: #fff;
-    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.32, 0.72, 0, 1), background 0.18s ease;
 }
+.caveBtn:active { transform: scale(0.92); background: rgba(255, 255, 255, 0.2); }

@@ -11,6 +11,7 @@
  *   une dizaine de recettes du site adaptées ; clic → ouvre la fiche.
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
@@ -84,6 +85,32 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
         window.addEventListener('macave-scan', scan);
         return () => window.removeEventListener('macave-scan', scan);
     }, []);
+
+    // La loupe de la barre du bas ouvre le choix d'une bouteille : chercher sans
+    // remonter en haut de l'étagère, c'est tout l'intérêt.
+    const [picking, setPicking] = useState(false);
+    useEffect(() => {
+        const pick = () => setPicking(true);
+        window.addEventListener('macave-pick', pick);
+        return () => window.removeEventListener('macave-pick', pick);
+    }, []);
+
+    /** Amène une bouteille sous les yeux et la fait clignoter une fois. */
+    const revealWine = (id: string) => {
+        setPicking(false);
+        // Le filtre courant peut la cacher : on l'annule, sinon on ferait
+        // défiler vers une carte qui n'est pas dans le DOM.
+        setFilter('tous');
+        setRipe('tous');
+        setQ('');
+        requestAnimationFrame(() => setTimeout(() => {
+            const el = document.querySelector(`[data-wine="${id}"]`) as HTMLElement | null;
+            if (!el) return;
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            el.classList.add(styles.cardFound);
+            setTimeout(() => el.classList.remove(styles.cardFound), 1600);
+        }, 60));
+    };
 
     useEffect(() => {
         const load = () => setWines(readCave());
@@ -282,9 +309,68 @@ export default function MaCave({ embedded = false }: { embedded?: boolean }) {
                     onRemove={() => removeWine(menu.wine.id)}
                 />
             )}
+            {picking && <PickWine wines={wines} onPick={revealWine} onClose={() => setPicking(false)} />}
             <Tip id="cave" />
             {zoom && <ZoomView src={zoom} onClose={() => setZoom(null)} />}
         </div>
+    );
+}
+
+
+/**
+ * Choix d'une bouteille sans remonter la page.
+ *
+ * La recherche du haut de l'écran devient injoignable dès qu'on a défilé : ici
+ * elle revient sous le pouce, en feuille, et le choix ramène la carte à l'écran.
+ */
+function PickWine({ wines, onPick, onClose }: { wines: CaveWine[]; onPick: (id: string) => void; onClose: () => void }) {
+    const [q, setQ] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
+    useEffect(() => { inputRef.current?.focus(); }, []);
+
+    const list = useMemo(() => {
+        const needle = q.trim().toLowerCase();
+        const all = [...wines].sort((a, b) => b.addedAt - a.addedAt);
+        if (!needle) return all;
+        return all.filter((w) => `${w.name} ${w.region} ${w.grape} ${w.year}`.toLowerCase().includes(needle));
+    }, [wines, q]);
+
+    return createPortal(
+        <div className={styles.pickBackdrop} onClick={onClose}>
+            <div className={styles.pickSheet} onClick={(e) => e.stopPropagation()}>
+                <div className={styles.pickHead}>
+                    <div className={styles.pickTitle}>Choisir une bouteille</div>
+                    <button className={styles.pickClose} onClick={onClose} aria-label="Fermer">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                    </button>
+                </div>
+                <input
+                    ref={inputRef}
+                    className={styles.pickSearch}
+                    value={q}
+                    onChange={(e) => setQ(e.target.value)}
+                    placeholder="Nom, région, cépage, année…"
+                />
+                <div className={styles.pickList}>
+                    {list.map((w) => (
+                        <button key={w.id} className={styles.pickRow} onClick={() => onPick(w.id)}>
+                            {w.photo
+                                ? <img src={w.photo} alt="" className={styles.pickThumb} draggable={false} />
+                                : <span className={styles.pickDot} style={{ background: COLOR_GLASS[w.color] }} />}
+                            <span className={styles.pickInfo}>
+                                <span className={styles.pickName}>{w.name}</span>
+                                <span className={styles.pickMeta}>
+                                    {[w.year, w.region, w.grape].filter(Boolean).join(' · ')}
+                                </span>
+                            </span>
+                            {shelfOf(w) === 'tasted' && <span className={styles.pickTag}>Dégusté</span>}
+                        </button>
+                    ))}
+                    {!list.length && <div className={styles.pickEmpty}>Aucune bouteille à ce nom.</div>}
+                </div>
+            </div>
+        </div>,
+        document.body,
     );
 }
 
@@ -622,6 +708,7 @@ function WineCard({ wine, onPair, onRemove, onZoom, onMenu }: { wine: CaveWine; 
     return (
         <div
             ref={cardRef}
+            data-wine={wine.id}
             className={`${styles.card} ${shelf === 'tasted' ? styles.cardTasted : ''} ${dragging ? styles.cardDragging : ''}`}
             /* Maintenir la carte la DÉCOLLE et la fait suivre le doigt : c'est le
                geste attendu pour la ranger d'une étagère à l'autre. Le menu, lui,

@@ -546,3 +546,64 @@
 /* Sélectionnée : fond blanc comme les autres onglets, le point garde sa teinte. */
 .tabRipe.tabOn { color: #111; }
 .tabRipe.tabOn .ripeDot { background: #111; }
+
+/* ── Choisir une bouteille (loupe de la barre du bas) ────────────────────
+   Feuille par le bas : le pouce y arrive, la recherche du haut de page non. */
+.pickBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 24000;
+    display: flex;
+    align-items: flex-end;
+    background: rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+.pickSheet {
+    width: 100%;
+    max-height: 74vh;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px calc(18px + env(safe-area-inset-bottom, 0px));
+    border-radius: 22px 22px 0 0;
+    background: rgba(32, 32, 34, 0.97);
+    box-shadow: 0 -18px 50px rgba(0, 0, 0, 0.55), inset 0 0 0 0.5px rgba(255, 255, 255, 0.14);
+}
+.pickHead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.pickTitle { font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 800; color: #fff; }
+.pickClose {
+    width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;
+    border: none; border-radius: 999px; background: rgba(255, 255, 255, 0.1); color: #fff; cursor: pointer;
+}
+.pickSearch {
+    width: 100%; padding: 12px 14px; margin-bottom: 10px;
+    border: none; border-radius: 12px; outline: none;
+    background: rgba(255, 255, 255, 0.08); color: #fff;
+    font-family: 'Outfit', sans-serif; font-size: 15px;
+}
+.pickSearch::placeholder { color: rgba(235, 235, 245, 0.38); }
+.pickList { flex: 1; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 4px; }
+.pickRow {
+    display: flex; align-items: center; gap: 12px; width: 100%;
+    padding: 10px; border: none; border-radius: 14px; background: transparent;
+    color: #fff; text-align: left; cursor: pointer;
+}
+.pickRow:active { background: rgba(255, 255, 255, 0.1); }
+.pickThumb { width: 34px; height: 46px; object-fit: cover; border-radius: 7px; flex: 0 0 auto; background: #000; }
+.pickDot { width: 14px; height: 14px; border-radius: 999px; flex: 0 0 auto; margin: 0 10px; }
+.pickInfo { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.pickName { font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pickMeta { font-size: 12.5px; color: rgba(235, 235, 245, 0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pickTag { flex: 0 0 auto; padding: 3px 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); font-size: 11px; font-weight: 700; color: rgba(235, 235, 245, 0.7); }
+.pickEmpty { padding: 24px 8px; text-align: center; font-size: 14px; color: rgba(235, 235, 245, 0.45); }
+
+/* La bouteille choisie clignote une fois, sinon on ne sait pas où on a atterri. */
+.cardFound { animation: cardFound 1.6s ease; }
+@keyframes cardFound {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 194, 75, 0); }
+    18%, 62% { box-shadow: 0 0 0 3px rgba(255, 194, 75, 0.9); }
+}
+
+:global([data-theme='light']) .pickSheet { background: rgba(250, 246, 242, 0.98); }
+:global([data-theme='light']) .pickTitle, :global([data-theme='light']) .pickRow { color: #1a1008; }
+:global([data-theme='light']) .pickSearch { background: rgba(0, 0, 0, 0.05); color: #1a1008; }

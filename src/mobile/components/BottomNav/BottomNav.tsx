@@ -390,23 +390,44 @@ export default function BottomNav() {
                                     <StorefrontIcon />
                                 </div>
 
+                                {inCave ? (
+                                    /* Deux gestes valent mieux qu'un libellé : « + » ajoute
+                                       une bouteille, la loupe en atteint une sans remonter
+                                       toute l'étagère. */
+                                    <div className={styles.caveActions}>
+                                        <button
+                                            className={styles.caveBtn}
+                                            aria-label="Ajouter un vin"
+                                            onClick={() => { handleVibrate(12); window.dispatchEvent(new Event('macave-scan')); }}
+                                        >
+                                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
+                                                <path d="M12 5v14M5 12h14" />
+                                            </svg>
+                                        </button>
+                                        <button
+                                            className={styles.caveBtn}
+                                            aria-label="Choisir une bouteille"
+                                            onClick={() => { handleVibrate(12); window.dispatchEvent(new Event('macave-pick')); }}
+                                        >
+                                            {/* Le verre, pas une loupe : la recherche générale occupe
+                                                déjà la droite de la barre, deux loupes voisines ne se
+                                                distinguaient pas. */}
+                                            <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                ) : (
                                 <div 
-                                    className={`${styles.miniCenter} ${inCave ? styles.miniCenterAction : ''}`} 
+                                    className={styles.miniCenter}
                                     onClick={() => {
-                                        if (inCave) {
-                                            handleVibrate(12);
-                                            window.dispatchEvent(new Event('macave-scan'));
-                                            return;
-                                        }
                                         if (lastViewed) {
                                             setIsSheetOpen(true);
                                             handleVibrate(15);
                                         }
                                     }}
                                 >
-                                    {inCave ? (
-                                        <span className={styles.miniAction}>Ajouter un vin</span>
-                                    ) : lastViewed ? (
+                                    {lastViewed ? (
                                         <>
                                             <img src={lastViewed.image} alt={lastViewed.title} className={styles.miniThumb} />
                                             <span className={styles.miniTitle}>{decodeHtml(lastViewed.title)}</span>
@@ -415,6 +436,7 @@ export default function BottomNav() {
                                         <span className={styles.miniTitle}>Les Recettes Magiques</span>
                                     )}
                                 </div>
+                                )}
 
                                 <motion.div
                                     data-tour="search"
