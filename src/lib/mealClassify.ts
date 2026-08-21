@@ -13,9 +13,20 @@
 export const MEAT_FISH = new Set(['poisson', 'boeuf', 'agneau', 'porc', 'poulet']);
 
 // Exclut les fiches restaurant / vidéo sans vraie recette.
-export const isCookable = (r: any): boolean =>
-    (r?.ingredients || []).length > 0 &&
-    !(r.ingredients || []).some((i: any) => /détaillés dans la vidéo/i.test(i?.name || ''));
+/**
+ * Recette dont les ingrédients ne sont pas écrits : la fiche renvoie à la
+ * vidéo. Elles restent cuisinables — on regarde — mais ne peuvent pas nourrir
+ * une liste de courses ni servir d'accompagnement.
+ */
+export const isVideoOnly = (r: any): boolean =>
+    (r?.ingredients || []).some((i: any) => /détaillés dans la vidéo/i.test(i?.name || ''));
+
+/**
+ * Recette qu'on peut mettre au menu. Les recettes « détaillées dans la vidéo »
+ * en font partie : les écarter revenait à les rendre impossibles à planifier
+ * alors qu'elles s'affichent partout ailleurs.
+ */
+export const isCookable = (r: any): boolean => (r?.ingredients || []).length > 0;
 
 const scanProtein = (t: string): string => {
     if (/poisson|saumon|salmon|thon|tuna|cabillaud|\bcod\b|crevette|shrimp|prawn|\bcolin\b|merlu|sardine|maquereau|gambas|lieu (noir|jaune)|truite|dorade|crustac|seafood|fruits de mer|\bfish\b|anchois|calmar|poulpe|seiche/.test(t)) return 'poisson';

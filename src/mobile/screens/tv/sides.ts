@@ -9,7 +9,7 @@
 // nulle part, et une base légume ou féculent réellement présente.
 
 import { Recipe } from '@/mobile/types';
-import { isCookable, isSauce, isSweet } from '@/lib/mealClassify';
+import { isCookable, isSauce, isSweet, isVideoOnly } from '@/lib/mealClassify';
 
 /** Viandes, poissons et charcuteries — cherchés dans le titre ET les ingrédients. */
 const MEAT_RX = /(viandes?|hach[ée]e?s?\b|b[oœ]ufs?|beef|carne|steaks?|bavettes?|paleron|entrec[ôo]tes?|rumsteck|veau|agneaux?|mouton|lamb|porcs?|pork|lardons?|lard\b|jambons?|ham\b|bacon|saucisse|saucisson|chorizo|merguez|pancetta|coppa|charcuterie|rillettes?|terrines?|p[âa]t[ée]s?\b|poulets?|volailles?|dindes?|canards?|chicken|escalopes?|magrets?|nuggets?|cordon bleu|keftas?|koftas?|foie gras|poissons?|saumons?|thons?|cabillauds?|colin\b|merlu|lieu noir|dorades?|daurades?|sardines?|maquereaux?|truites?|soles?\b|anchois|crevettes?|gambas|moules?\b|hu[îi]tres?|saint[- ]jacques|crabes?|homards?|langoustines?|calamars?|encornets?|poulpes?|seiches?|surimi|crustac|fruits de mer)/i;
@@ -28,7 +28,7 @@ const text = (r: Recipe) =>
  * ou de poisson, ni sauce, ni sucré.
  */
 export function isTVSide(r: Recipe): boolean {
-    if (!isCookable(r) || isSauce(r) || isSweet(r)) return false;
+    if (!isCookable(r) || isVideoOnly(r) || isSauce(r) || isSweet(r)) return false;
     const cat = (r.category || '').toLowerCase();
     if (['boissons', 'sauces', 'aperitifs'].includes(cat)) return false;
     if (NOT_SIDE_RX.test(r.title || '')) return false;
@@ -59,6 +59,6 @@ export const sidePool = (all: Recipe[]) => all.filter((r) => r.image && isTVSide
  * végétarien impossible à composer, et écartait des plats complets sans viande.
  */
 export function isTVMain(r: Recipe): boolean {
-    if (!isCookable(r) || isSauce(r) || isSweet(r)) return false;
+    if (!isCookable(r) || isVideoOnly(r) || isSauce(r) || isSweet(r)) return false;
     return (r.category || '').toLowerCase() === 'plats';
 }

@@ -316,7 +316,7 @@ const PREP_ONLY = /^(?:(?:finement|grossierement|tres|bien|prealablement|delicat
 const CUT_ONLY = /^en\s+(?:gros\s+|petits?\s+|fines?\s+)?(?:morceaux|cubes|des|rondelles|lamelles|tranches|quartiers|batonnets|julienne|brunoise|lanieres|deux|quatre)\b/;
 
 /** Mentions de service ou d'option, jamais des produits à acheter. */
-const NOT_A_PRODUCT = /^(?:facultatif|optionnel|au choix|pour (?:la |le |le )?(?:deco|decoration|service|dressage|garniture)|a temperature ambiante|si besoin|au gout)\b/;
+const NOT_A_PRODUCT = /^(?:facultatif|optionnel|au choix|pour (?:la |le |le )?(?:deco|decoration|service|dressage|garniture)|a temperature ambiante|si besoin|au gout)\b|detaill[ée]s? dans la video/;
 
 const isPreparationOnly = (segment: string): boolean => {
     const n = normalizeIng(segment).replace(/^[-•\s]+/, '').trim();

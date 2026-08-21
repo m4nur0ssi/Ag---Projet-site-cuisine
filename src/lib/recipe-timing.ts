@@ -55,7 +55,10 @@ function prepMinutesForStep(step: string): number {
     if (sum === 0) return DEFAULT_PREP_PER_STEP;
     const qty = stepQuantity(step);
     const qtyFactor = 1 + (qty - 1) * 0.4; // 2 unités = ×1,4 ; 3 = ×1,8…
-    return sum * qtyFactor;
+    // Plancher d'une minute : aucune étape ne se fait en trente secondes, et
+    // douze étapes « saler / poivrer » finissaient par voler dix minutes au
+    // total. On ne se trompe jamais en comptant large.
+    return Math.max(1, sum * qtyFactor);
 }
 
 export interface RecipeTiming {
