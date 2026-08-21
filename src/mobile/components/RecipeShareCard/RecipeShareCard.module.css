@@ -1,5 +1,9 @@
 .backdrop {
-    position: fixed; inset: 0; z-index: 3000;
+    position: fixed; inset: 0;
+    /* Au-dessus de TOUT : la fiche recette monte à 20000 et la barre du bas à
+       25000. À 3000, la carte de partage s'ouvrait DERRIÈRE la fiche depuis
+       laquelle on venait de la demander — le bouton semblait mort. */
+    z-index: 26000;
     background: rgba(0, 0, 0, 0.6);
     -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
     display: flex; align-items: center; justify-content: center; padding: 20px;

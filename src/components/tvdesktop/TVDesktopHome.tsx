@@ -558,7 +558,7 @@ export default function TVDesktopHome() {
     // Tendances / Pays repliés → on ne montre que les filtres cochés tant que fermé.
     const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({ 'Catégories': true });
     // Visite guidée « Apple TV+ » (même composant que le mobile), en modale.
-    const [shareCard, setShareCard] = useState<Recipe | null>(null);
+    const [shareCard, setShareCard] = useState<{ recipe: Recipe; category?: { label: string; tag: string; count: number } } | null>(null);
     // Raccourcis épinglés dans « Bibliothèque » (glisser-déposer), + survol du drop.
     const [library, setLibrary] = useState<LibraryItem[]>([]);
     const [dragOver, setDragOver] = useState(false);
@@ -1112,13 +1112,13 @@ export default function TVDesktopHome() {
                                     <button className={styles.ctxAction} onClick={() => { setMenu(null); goCategory(cat, catName); }}>
                                         <CtxIc d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
                                     </button>
-                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); shareLink(`${origin}/?tag=${encodeURIComponent(cat)}`, catName); }}>
+                                    <button className={styles.ctxAction} onClick={() => { const rr = r; setMenu(null); setShareCard({ recipe: rr, category: { label: catName, tag: cat, count: mockRecipes.filter((x: any) => (x.category || '').toLowerCase() === cat.toLowerCase()).length } }); }}>
                                         <CtxIc d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la catégorie</span>
                                     </button>
                                     {/* Une seule entrée de partage : la carte image porte DÉJÀ le
                                         lien, le titre et le QR code. Deux lignes voisines qui
                                         partagent la même recette ne servaient qu'à hésiter. */}
-                                    <button className={styles.ctxAction} onClick={() => { const rr = r; setMenu(null); setShareCard(rr); }}>
+                                    <button className={styles.ctxAction} onClick={() => { const rr = r; setMenu(null); setShareCard({ recipe: rr }); }}>
                                         <CtxIc d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
                                     </button>
                                     <button className={styles.ctxAction} onClick={() => { setMenu(null); handleToggleLater(r); }}>
@@ -1171,7 +1171,13 @@ export default function TVDesktopHome() {
             </AnimatePresence>
 
             <Tip id="accueil" />
-            {shareCard && <RecipeShareCard recipe={shareCard} onClose={() => setShareCard(null)} />}
+            {shareCard && (
+                <RecipeShareCard
+                    recipe={shareCard.recipe}
+                    category={shareCard.category}
+                    onClose={() => setShareCard(null)}
+                />
+            )}
         </div>
     );
 }

@@ -15,22 +15,35 @@ import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import { decodeHtml } from '@/mobile/lib/utils';
 import styles from './RecipeShareCard.module.css';
 
-export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onClose: () => void }) {
+/**
+ * `category` transforme la carte en affiche de COLLECTION : le nom du thème en
+ * grand, une photo prise parmi ses recettes, le QR vers la collection — et
+ * aucun titre de recette, puisque ce n'est pas une recette qu'on partage.
+ */
+export default function RecipeShareCard({ recipe, category, onClose }: {
+    recipe: any;
+    category?: { label: string; tag: string; count: number };
+    onClose: () => void;
+}) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [url, setUrl] = useState('');
     const [tainted, setTainted] = useState(false);
     const [mounted, setMounted] = useState(false);
     useEffect(() => { setMounted(true); }, []);
 
-    const shareUrl = `https://lesrecettesmagiques.fr/?fiche=${recipe.id}`;
+    const shareUrl = category
+        ? `https://lesrecettesmagiques.fr/?tag=${encodeURIComponent(category.tag)}`
+        : `https://lesrecettesmagiques.fr/?fiche=${recipe.id}`;
 
     useEffect(() => {
         const cv = canvasRef.current; if (!cv) return;
         const ctx = cv.getContext('2d'); if (!ctx) return;
         const W = 1080, H = 1920; cv.width = W; cv.height = H;
         const t = estimateRecipeTiming(recipe.steps);
-        const title = decodeHtml(recipe.title || '').toUpperCase();
-        const meta = `${(recipe.category || '').toUpperCase()}   ·   ${(t.prepTime + t.cookTime)} MIN`;
+        const title = (category ? category.label : decodeHtml(recipe.title || '')).toUpperCase();
+        const meta = category
+            ? `LES RECETTES MAGIQUES   ·   ${category.count} RECETTE${category.count > 1 ? 'S' : ''}`
+            : `${(recipe.category || '').toUpperCase()}   ·   ${(t.prepTime + t.cookTime)} MIN`;
 
         let qrImg: HTMLImageElement | null = null;
 
@@ -175,17 +188,19 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
         // (le portail n'existe pas encore), donc `canvasRef` est vide et l'effet
         // sortait aussitôt. Sans cette dépendance il ne se rejouait jamais — le
         // canevas restait à sa taille par défaut, 300 × 150, et l'aperçu vide.
-    }, [recipe, mounted]);
+    }, [recipe, category, mounted]);
 
     const share = async () => {
-        const title = decodeHtml(recipe.title);
-        const text = `${title} — la recette : ${shareUrl}`;
+        const title = category ? category.label : decodeHtml(recipe.title);
+        const text = category
+            ? `${title} sur Les Recettes Magiques : ${shareUrl}`
+            : `${title} — la recette : ${shareUrl}`;
         try {
             const nav = navigator as any;
             if (url && nav.canShare && canvasRef.current) {
                 const blob: Blob | null = await new Promise((res) => canvasRef.current!.toBlob(res as any, 'image/png'));
                 if (blob) {
-                    const file = new File([blob], `recette-${recipe.id}.png`, { type: 'image/png' });
+                    const file = new File([blob], category ? `collection-${category.tag}.png` : `recette-${recipe.id}.png`, { type: 'image/png' });
                     // Image + lien + texte : le destinataire reçoit la photo ET le
                     // lien cliquable (là où l'app le supporte).
                     if (nav.canShare({ files: [file] })) {
@@ -205,7 +220,7 @@ export default function RecipeShareCard({ recipe, onClose }: { recipe: any; onCl
         <div className={styles.backdrop} onClick={onClose}>
             <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.head}>
-                    <span>Partager la recette</span>
+                    <span>{category ? 'Partager la collection' : 'Partager la recette'}</span>
                     <button className={styles.close} onClick={onClose} aria-label="Fermer">
                         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                     </button>
