@@ -125,7 +125,8 @@
 .heroSound {
     position: absolute;
     right: 18px;
-    bottom: 16px;
+    /* Aligné sur la rangée de boutons, jamais sous la barre du bas. */
+    bottom: calc(106px + env(safe-area-inset-bottom, 0px));
     z-index: 6;
     width: 42px;
     height: 42px;
@@ -250,15 +251,19 @@
     bottom: 0;
     z-index: 2;
     top: 0;
+    /* Plancher du héros : la barre du bas (72 px) posée à 10 px du bord, plus un
+       peu d'air. Sans lui, le bloc était centré sur toute la hauteur et le bouton
+       « Voir la recette » finissait DERRIÈRE la barre. */
+    --tv-hero-floor: calc(100px + env(safe-area-inset-bottom, 0px));
     /* Plus de gouttière latérale : la bande d'affiches doit atteindre les deux
        bords. Ce sont les enfants qui reprennent leurs marges. */
-    padding: calc(env(safe-area-inset-top, 0px) + 104px) 0 26px;
+    padding: calc(env(safe-area-inset-top, 0px) + 104px) 0 var(--tv-hero-floor);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 14px;
+    gap: 18px;
     will-change: transform, opacity;
     /* Le bloc texte couvre le bas du héros : sans ça il avale le geste horizontal
        et le pager ne défile plus (on ne peut swiper que sur la photo, en haut).
@@ -3395,16 +3400,47 @@
 }
 .heroPosterOn .heroPosterVeil { opacity: 0; }
 
+/* Mobile : c'est la HAUTEUR de l'écran qui commande, pas la largeur. Une affiche
+   à 56vw faisait 303 px sur un iPhone et poussait le titre et le bouton sous la
+   barre du bas. Bornée, elle laisse la place au texte sur tous les formats.
+   (Réservé au mobile : au-delà, le héros est bien plus haut.) */
+@media (max-width: 759px) {
+    /* Le texte se cale sur le plancher (juste au-dessus de la barre du bas) et la
+       bande d'affiches prend TOUT ce qui reste : centrer l'ensemble laissait
+       autant de vide en haut qu'en bas, et le héros paraissait tomber. */
+    .heroContent { justify-content: flex-end; }
+    .heroTrack {
+        flex: 1 1 auto;
+        min-height: 0;
+        align-items: center;
+    }
+    .heroPoster {
+        width: auto;
+        height: 100%;
+        min-height: 168px;
+        /* Assez haute pour manger la place laissée par le texte : bridée à 320,
+           l'affiche laissait un trou de 80 px entre la photo et le titre. */
+        max-height: 380px;
+    }
+}
+
 /* Le texte, sous la bande, centré : il désigne l'affiche active. */
 .heroInfo {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 9px;
+    gap: 11px;
     width: 100%;
     padding: 0 18px;
     text-align: center;
+}
+
+/* Installée sur l'écran d'accueil, la barre du bas descend (voir BottomNav) :
+   le plancher du héros la suit, sinon un vide s'ouvre sous le bouton. */
+@media (display-mode: standalone) {
+    .heroContent { --tv-hero-floor: calc(96px + env(safe-area-inset-bottom, 0px) * 0.4); }
+    .heroSound { bottom: calc(102px + env(safe-area-inset-bottom, 0px) * 0.4); }
 }
 .heroMetaSplit, .heroActionsSplit { justify-content: center; }
 .heroTitleSplit { text-align: center; }

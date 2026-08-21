@@ -301,6 +301,13 @@
     border-color: rgba(0, 0, 0, 0.05);
 }
 
+/* Installée sur l'écran d'accueil, il n'y a plus de barre Safari sous la nôtre :
+   la marge de sécurité complète (34 px) la faisait flotter trop haut. On garde
+   de quoi dégager la barre d'accueil iOS, pas davantage. */
+@media (display-mode: standalone) {
+    .navWrapper { bottom: calc(2px + env(safe-area-inset-bottom, 0px) * 0.4); }
+}
+
 /* Media Queries */
 @media (min-width: 1024px) {
     .navWrapper {
