@@ -256,6 +256,14 @@ function useFittedCards() {
  * l'entrée du précédent au lieu d'en empiler une seconde.
  */
 let pendingBack: ReturnType<typeof setTimeout> | null = null;
+/**
+ * Un calque qui se referme rend l'entrée d'historique qu'il avait ajoutée. Le
+ * `popstate` qui en découle était pris pour un geste « retour » par les calques
+ * RESTÉS ouverts : fermer le menu d'appui long depuis une grille de catégorie
+ * fermait la grille avec lui, et on se retrouvait à l'accueil. Ce drapeau dit
+ * que le retour vient de nous, et qu'il ne concerne personne d'autre.
+ */
+let backEstDeNous = false;
 
 function useBackToClose(isOpen: boolean, close: () => void) {
     const holds = useRef(false);
@@ -278,7 +286,11 @@ function useBackToClose(isOpen: boolean, close: () => void) {
         if (pendingBack !== null) { clearTimeout(pendingBack); pendingBack = null; }
         else window.history.pushState({ tvOverlay: Date.now() }, '');
         holds.current = true;
-        const onPop = () => { holds.current = false; closeRef.current(); };
+        const onPop = () => {
+            if (backEstDeNous) { backEstDeNous = false; return; }
+            holds.current = false;
+            closeRef.current();
+        };
         window.addEventListener('popstate', onPop);
         return () => {
             window.removeEventListener('popstate', onPop);
@@ -295,7 +307,11 @@ function useBackToClose(isOpen: boolean, close: () => void) {
             pendingBack = setTimeout(() => {
                 pendingBack = null;
                 if (window.location.pathname !== from) return;
+                backEstDeNous = true;
                 window.history.back();
+                // Filet : si aucun `popstate` ne vient (navigation entre-temps),
+                // le drapeau ne doit pas rester levé et avaler un vrai retour.
+                setTimeout(() => { backEstDeNous = false; }, 400);
             }, 0);
         };
     }, [isOpen]);
@@ -425,6 +441,106 @@ function Card({
             )}
             {!overlayTitle && !showcase && <div className={styles.cardLabel}>{label(recipe)}</div>}
             {subtitle && !showcase && <div className={styles.cardSub}>{subtitle}</div>}
+        </div>
+    );
+}
+
+/**
+ * Carte de la vue « tout afficher » (une catégorie, une tendance).
+ *
+ * Deux gestes, deux résultats : toucher le VISUEL lance la vidéo — avec son
+ * bouton de son —, toucher le TITRE ouvre la fiche. Une seule cible pour les
+ * deux obligeait à choisir entre voir et lire.
+ */
+function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggleLater }: {
+    recipe: Recipe;
+    subtitle?: string;
+    onOpen: () => void;
+    onLongPress: () => void;
+    later?: boolean;
+    onToggleLater?: (r: Recipe) => void;
+}) {
+    const lp = useLongPress(onLongPress);
+    const vid = tiktokId(recipe);
+    const [playing, setPlaying] = useState(false);
+    const [ready, setReady] = useState(false);
+    const [sound, setSound] = useState(false);
+
+    useEffect(() => {
+        if (!playing) return;
+        const onMessage = (e: MessageEvent) => {
+            const d: any = e.data;
+            if (d && typeof d === 'object' && d['x-tiktok-player']) { setReady(true); tiktokPlayed(); }
+        };
+        window.addEventListener('message', onMessage);
+        const giveUp = setTimeout(() => setReady((r) => { if (!r) tiktokFailed(); return r; }), 6000);
+        return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
+    }, [playing]);
+
+    return (
+        <div className={`${styles.card} ${styles.wide}`} {...lp.handlers}>
+            <div
+                className={styles.thumb}
+                onClick={() => {
+                    if (lp.consumed.current) { lp.consumed.current = false; return; }
+                    if (!vid || !tiktokAllowed()) { onOpen(); return; }   // pas de vidéo → la fiche
+                    haptic(8);
+                    setPlaying((p) => !p);
+                }}
+            >
+                <img src={recipe.image} alt="" className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
+                {playing && vid && (
+                    <iframe
+                        className={`${styles.cardVideo} ${ready ? styles.cardVideoOn : ''}`}
+                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&muted=${sound ? 0 : 1}&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        allow="autoplay; encrypted-media"
+                        title={label(recipe)}
+                    />
+                )}
+                {playing && ready && (
+                    <button
+                        className={`${styles.cardSound} ${sound ? styles.cardSoundOn : ''}`}
+                        onClick={(e) => { e.stopPropagation(); haptic(8); setSound((v) => !v); }}
+                        aria-label={sound ? 'Couper le son' : 'Activer le son'}
+                    >
+                        {sound ? (
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M11 5 6 9H3v6h3l5 4z" /><path d="M15.5 8.5a5 5 0 0 1 0 7" />
+                            </svg>
+                        ) : (
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M11 5 6 9H3v6h3l5 4z" /><path d="M16 9l5 6M21 9l-5 6" />
+                            </svg>
+                        )}
+                    </button>
+                )}
+                {onToggleLater && (
+                    <button
+                        className={`${styles.laterBtn} ${later ? styles.laterBtnOn : ''}`}
+                        onClick={(e) => { e.stopPropagation(); haptic(12); onToggleLater(recipe); }}
+                        aria-label={later ? 'Retirer de « À faire plus tard »' : 'Ajouter à « À faire plus tard »'}
+                    >
+                        {later ? (
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        ) : (
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" /></svg>
+                        )}
+                    </button>
+                )}
+            </div>
+            {/* Le titre ouvre la fiche — c'est lui qu'on vise pour « voir la recette ». */}
+            <button
+                className={styles.cardLabelBtn}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    if (lp.consumed.current) { lp.consumed.current = false; return; }
+                    haptic(8);
+                    onOpen();
+                }}
+            >
+                {label(recipe)}
+            </button>
+            {subtitle && <div className={styles.cardSub}>{subtitle}</div>}
         </div>
     );
 }
@@ -986,6 +1102,24 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     // bleu « Allow all ». Le lecteur signale sa lecture par postMessage — tant
     // qu'on n'a rien reçu, l'image reste.
     const [videoOn, setVideoOn] = useState(false);
+    /**
+     * Son du héros. Coupé par défaut — un navigateur refuse de lancer une vidéo
+     * sonore sans geste de l'utilisateur, et une bande-son qui démarre seule à
+     * l'ouverture d'une page est une agression. Le choix se retient d'une
+     * visite à l'autre.
+     */
+    const [sound, setSound] = useState(false);
+    useEffect(() => {
+        try { setSound(localStorage.getItem('tv-hero-sound') === '1'); } catch { /* mode privé */ }
+    }, []);
+    const toggleSound = () => {
+        setSound((s) => {
+            const next = !s;
+            try { localStorage.setItem('tv-hero-sound', next ? '1' : '0'); } catch { /* noop */ }
+            return next;
+        });
+        haptic(8);
+    };
     const playingRef = useRef(false);
     playingRef.current = playing && videoOn;
     const { scrollY } = useScroll();
@@ -1294,7 +1428,10 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                                         className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
                                         // Interface TikTok coupée : le cadre reste une image
                                         // qui s'anime, pas un lecteur incrusté.
-                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                                        // `muted` fait partie de l'adresse : le changer
+                                        // recharge le lecteur, seule façon fiable de rendre
+                                        // le son — et le geste de l'utilisateur l'autorise.
+                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&muted=${sound ? 0 : 1}&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                                         allow="autoplay; encrypted-media"
                                         title={label(r)}
                                     />
@@ -1304,6 +1441,28 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                         );
                     })}
                 </div>
+
+                {/* Son de la vidéo du héros : n'apparaît que lorsqu'une vidéo joue
+                    pour de bon — un bouton de son sans son n'a aucun sens. */}
+                {playing && videoOn && currentVid && (
+                    <button
+                        className={`${styles.heroSound} ${sound ? styles.heroSoundOn : ''}`}
+                        onClick={(e) => { e.stopPropagation(); toggleSound(); }}
+                        aria-label={sound ? 'Couper le son' : 'Activer le son'}
+                    >
+                        {sound ? (
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M11 5 6 9H3v6h3l5 4z" />
+                                <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" />
+                            </svg>
+                        ) : (
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M11 5 6 9H3v6h3l5 4z" />
+                                <path d="M16 9l5 6M21 9l-5 6" />
+                            </svg>
+                        )}
+                    </button>
+                )}
 
                 {/* Le texte désigne l'affiche active : il se substitue en fondu. */}
                 <AnimatePresence mode="wait">
@@ -1376,7 +1535,7 @@ export default function TVHome() {
     const [menu, setMenu] = useState<Recipe | null>(null);
     const [navOpen, setNavOpen] = useState(false);
     const [tasteOpen, setTasteOpen] = useState(false);
-    const [shareCard, setShareCard] = useState<Recipe | null>(null);
+    const [shareCard, setShareCard] = useState<{ recipe: Recipe; category?: { label: string; tag: string; count: number } } | null>(null);
     // Proposition d'onboarding « goûts » UNE fois, et seulement en PWA installée
     // (vrai contexte « app ») — jamais forcé sur une visite web classique.
     useEffect(() => {
@@ -1816,13 +1975,16 @@ export default function TVHome() {
                         <div className={styles.allHead}>
                             <button className={styles.allBack} onClick={() => setAll(null)}>‹</button>
                             <h2 className={styles.allTitle}>{all.title}</h2>
+                            {/* Combien de recettes : la question vient toujours. */}
+                            <span className={styles.allCount}>
+                                {all.recipes.length} recette{all.recipes.length > 1 ? 's' : ''}
+                            </span>
                         </div>
                         <div className={styles.allGrid}>
                             {all.recipes.map((r, i) => (
-                                <Card
+                                <CollectionCard
                                     key={r.id}
                                     recipe={r}
-                                    variant="wide"
                                     subtitle={[catLabel(r), timeLabel(r)].filter(Boolean).join(' · ')}
                                     later={isLater(String(r.id))}
                                     onToggleLater={handleToggleLater}
@@ -1894,12 +2056,12 @@ export default function TVHome() {
                                             <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); openAll(catName, (byCat[cat] || []).length ? byCat[cat] : mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat && x.image)); }}>
                                                 <MI d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
                                             </button>
-                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); shareLink(`${origin}/?tag=${encodeURIComponent(cat)}`, catName); }}>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard({ recipe: rr, category: { label: catName, tag: cat, count: mockRecipes.filter((x: any) => (x.category || '').toLowerCase() === cat.toLowerCase()).length } }); }}>
                                                 <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la catégorie</span>
                                             </button>
                                             {/* Une seule entrée : la carte image porte déjà le lien,
                                                 le titre et le QR code. */}
-                                            <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard(rr); }}>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard({ recipe: rr }); }}>
                                                 <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
                                             </button>
                                             <button className={`${styles.menuAction} ${lat ? styles.menuDanger : ''}`} onClick={() => { haptic(12); setMenu(null); handleToggleLater(r); }}>
@@ -1942,7 +2104,13 @@ export default function TVHome() {
             <Tip id="accueil" />
             {tutoOpen && <TVTutorial onClose={() => setTutoOpen(false)} />}
             {tasteOpen && <TasteOnboarding onClose={() => setTasteOpen(false)} />}
-            {shareCard && <RecipeShareCard recipe={shareCard} onClose={() => setShareCard(null)} />}
+            {shareCard && (
+                <RecipeShareCard
+                    recipe={shareCard.recipe}
+                    category={shareCard.category}
+                    onClose={() => setShareCard(null)}
+                />
+            )}
         </div>
     );
 }

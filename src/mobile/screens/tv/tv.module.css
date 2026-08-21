@@ -102,9 +102,10 @@
 .heroSticky {
     position: sticky;
     top: 0;
-    /* Hauteur calée sur la rangée Top 10 (≈ 300 px avec son titre) : la carte
-       du Top 10 apparaît ENTIÈRE en bas du premier écran, et rien de plus. */
-    height: clamp(470px, calc(100svh - 190px), 720px);
+    /* Le héros occupe TOUT le premier écran : en arrivant on ne voit que lui,
+       la rangée Top 10 attend le premier défilement. */
+    height: 100svh;
+    min-height: 470px;
     z-index: 0;
     overflow: hidden;
 }
@@ -119,6 +120,30 @@
 /* Pager horizontal — scroll natif + snap (inertie iOS, zéro JS pendant le geste) */
 
 
+
+/* Bouton du son sur le héros : posé en bas à droite de l'affiche active. */
+.heroSound {
+    position: absolute;
+    right: 18px;
+    bottom: 16px;
+    z-index: 6;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(10, 10, 12, 0.55);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.22);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.32, 0.72, 0, 1), background 0.18s ease;
+}
+.heroSound:active { transform: scale(0.92); }
+.heroSoundOn { background: rgba(255, 255, 255, 0.92); color: #111; }
 
 /* Dégradés : lisibilité du texte + fondu vers le noir de la feuille. */
 
@@ -886,6 +911,59 @@
     cursor: pointer;
 }
 
+/* Nombre de recettes de la collection, à droite du titre. */
+.allCount {
+    margin-left: auto;
+    flex: 0 0 auto;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(235, 235, 245, 0.5);
+}
+
+/* Titre de carte cliquable : c'est lui qui ouvre la fiche, le visuel lançant
+   la vidéo. Il garde l'aspect d'un titre, pas d'un bouton. */
+.cardLabelBtn {
+    display: block;
+    width: 100%;
+    margin-top: 7px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: left;
+    cursor: pointer;
+}
+.cardLabelBtn:active { opacity: 0.6; }
+
+/* Son d'une carte de collection, coin bas droit du visuel. */
+.cardSound {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 4;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(10, 10, 12, 0.6);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.2);
+    color: #fff;
+    cursor: pointer;
+}
+.cardSoundOn { background: rgba(255, 255, 255, 0.92); color: #111; }
+
 .allTitle {
     font-family: 'Outfit', sans-serif;
     font-size: 24px;
@@ -897,9 +975,10 @@
 
 .allGrid {
     display: grid;
-    /* Colonnes fluides : 3 sur téléphone, davantage sur grand écran, mais la
-       carte garde toujours une taille raisonnable au lieu de s'étirer. */
-    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+    /* DEUX colonnes sur téléphone : à trois, la vignette était trop petite pour
+       qu'on distingue le plat, et le titre se coupait en deux lignes sur trois.
+       Au-delà, les colonnes se multiplient sans que la carte s'étire. */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-auto-flow: row dense;
     gap: 18px 10px;
     padding: 6px 16px calc(130px + env(safe-area-inset-bottom, 0px));
