@@ -121,31 +121,6 @@
 
 
 
-/* Bouton du son sur le héros : posé en bas à droite de l'affiche active. */
-.heroSound {
-    position: absolute;
-    right: 18px;
-    /* Aligné sur la rangée de boutons, jamais sous la barre du bas. */
-    bottom: calc(106px + env(safe-area-inset-bottom, 0px));
-    z-index: 6;
-    width: 42px;
-    height: 42px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 999px;
-    background: rgba(10, 10, 12, 0.55);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
-    backdrop-filter: blur(24px) saturate(160%);
-    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.22);
-    color: #fff;
-    cursor: pointer;
-    transition: transform 0.18s cubic-bezier(0.32, 0.72, 0, 1), background 0.18s ease;
-}
-.heroSound:active { transform: scale(0.92); }
-.heroSoundOn { background: rgba(255, 255, 255, 0.92); color: #111; }
-
 /* Dégradés : lisibilité du texte + fondu vers le noir de la feuille. */
 
 /* Voile qui noircit le héros pendant le scroll (fondu au noir « très Apple »). */
@@ -946,28 +921,6 @@
     cursor: pointer;
 }
 .cardLabelBtn:active { opacity: 0.6; }
-
-/* Son d'une carte de collection, coin bas droit du visuel. */
-.cardSound {
-    position: absolute;
-    right: 8px;
-    bottom: 8px;
-    z-index: 4;
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 999px;
-    background: rgba(10, 10, 12, 0.6);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.2);
-    color: #fff;
-    cursor: pointer;
-}
-.cardSoundOn { background: rgba(255, 255, 255, 0.92); color: #111; }
 
 .allTitle {
     font-family: 'Outfit', sans-serif;
@@ -3440,7 +3393,6 @@
    le plancher du héros la suit, sinon un vide s'ouvre sous le bouton. */
 @media (display-mode: standalone) {
     .heroContent { --tv-hero-floor: calc(96px + env(safe-area-inset-bottom, 0px) * 0.4); }
-    .heroSound { bottom: calc(102px + env(safe-area-inset-bottom, 0px) * 0.4); }
 }
 .heroMetaSplit, .heroActionsSplit { justify-content: center; }
 .heroTitleSplit { text-align: center; }

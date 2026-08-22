@@ -445,24 +445,17 @@ function Card({
     );
 }
 
-/**
- * Commande un lecteur TikTok (API postMessage du player v1).
+/*
+ * Pourquoi il n'y a PAS de bouton de son sur ces vidéos.
  *
- * Le son NE PASSE PAS par l'adresse du lecteur : changer `muted` recharge
- * l'iframe, et un lecteur qui redémarre sonore sans geste dans SA fenêtre est
- * arrêté par le navigateur — la vidéo repartait de zéro, toujours muette.
- * L'adresse reste donc `muted=1` pour tous, et le son s'ouvre après coup.
+ * Le lecteur est celui de TikTok, dans un cadre étranger. Le doigt appuie sur
+ * NOTRE page ; or Safari n'accorde le son qu'à un média démarré par un geste
+ * dans sa propre fenêtre. Recharger le lecteur en `muted=0` le fait repartir
+ * de zéro, toujours muet ; lui commander `unMute` par postMessage ne produit
+ * rien (essayé les deux, sur iPhone). Un bouton qui ne tient pas sa promesse
+ * vaut moins que pas de bouton : les vignettes sont des animations muettes,
+ * et le son se trouve sur TikTok.
  */
-function playerCommand(frame: HTMLIFrameElement | null, type: string, value?: unknown) {
-    frame?.contentWindow?.postMessage({ type, value, 'x-tiktok-player': true }, '*');
-}
-
-/** Ouvre ou coupe le son d'un lecteur déjà en train de jouer. */
-function playerSound(frame: HTMLIFrameElement | null, on: boolean) {
-    playerCommand(frame, on ? 'unMute' : 'mute');
-    // Le volume du player est sur 0–100 : sans ça, « unMute » rend un filet de son.
-    if (on) playerCommand(frame, 'setVolume', 100);
-}
 
 /**
  * Carte de la vue « tout afficher » (une catégorie, une tendance).
@@ -483,8 +476,6 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
     const vid = tiktokId(recipe);
     const [playing, setPlaying] = useState(false);
     const [ready, setReady] = useState(false);
-    const [sound, setSound] = useState(false);
-    const frameRef = useRef<HTMLIFrameElement | null>(null);
 
     useEffect(() => {
         if (!playing) return;
@@ -511,35 +502,11 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
                 <img src={recipe.image} alt="" className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
                 {playing && vid && (
                     <iframe
-                        ref={frameRef}
                         className={`${styles.cardVideo} ${ready ? styles.cardVideoOn : ''}`}
                         src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                         allow="autoplay; encrypted-media"
                         title={label(recipe)}
                     />
-                )}
-                {playing && ready && (
-                    <button
-                        className={`${styles.cardSound} ${sound ? styles.cardSoundOn : ''}`}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            haptic(8);
-                            const next = !sound;
-                            setSound(next);
-                            playerSound(frameRef.current, next);
-                        }}
-                        aria-label={sound ? 'Couper le son' : 'Activer le son'}
-                    >
-                        {sound ? (
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 5 6 9H3v6h3l5 4z" /><path d="M15.5 8.5a5 5 0 0 1 0 7" />
-                            </svg>
-                        ) : (
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 5 6 9H3v6h3l5 4z" /><path d="M16 9l5 6M21 9l-5 6" />
-                            </svg>
-                        )}
-                    </button>
                 )}
                 {onToggleLater && (
                     <button
@@ -1129,24 +1096,6 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     // bleu « Allow all ». Le lecteur signale sa lecture par postMessage — tant
     // qu'on n'a rien reçu, l'image reste.
     const [videoOn, setVideoOn] = useState(false);
-    /**
-     * Son du héros. Coupé par défaut — un navigateur refuse de lancer une vidéo
-     * sonore sans geste de l'utilisateur, et une bande-son qui démarre seule à
-     * l'ouverture d'une page est une agression. Le choix se retient d'une
-     * visite à l'autre.
-     */
-    const [sound, setSound] = useState(false);
-    const frameRef = useRef<HTMLIFrameElement | null>(null);
-    useEffect(() => {
-        try { setSound(localStorage.getItem('tv-hero-sound') === '1'); } catch { /* mode privé */ }
-    }, []);
-    const toggleSound = () => {
-        const next = !sound;
-        setSound(next);
-        playerSound(frameRef.current, next);
-        try { localStorage.setItem('tv-hero-sound', next ? '1' : '0'); } catch { /* noop */ }
-        haptic(8);
-    };
     const playingRef = useRef(false);
     playingRef.current = playing && videoOn;
     const { scrollY } = useScroll();
@@ -1315,14 +1264,6 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [playing, videoOn]);
 
-    // Le héros change de recette tout seul : chaque nouveau lecteur naît muet.
-    // Si le son était ouvert, on le rouvre dès que celui-ci parle — sinon le
-    // bouton restait allumé sur une vidéo silencieuse.
-    useEffect(() => {
-        if (!videoOn || !sound) return;
-        playerSound(frameRef.current, true);
-    }, [videoOn, currentVid, sound]);
-
     // La vidéo va jusqu'au BOUT, et c'est sa fin qui fait tourner le héros.
     // Avant, la rotation de 3 s était simplement suspendue pendant la lecture et
     // plus rien ne la relançait : le héros restait bloqué sur la même recette.
@@ -1460,12 +1401,10 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                                 />
                                 {on && playing && currentVid && (
                                     <iframe
-                                        ref={frameRef}
                                         className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
                                         // Interface TikTok coupée : le cadre reste une image
-                                        // qui s'anime, pas un lecteur incrusté.
-                                        // Toujours muet à l'ouverture : le son s'ouvre ensuite
-                                        // par postMessage (voir playerSound).
+                                        // qui s'anime, pas un lecteur incrusté. Toujours muet :
+                                        // le son est hors de notre portée (voir la note plus haut).
                                         src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                                         allow="autoplay; encrypted-media"
                                         title={label(r)}
@@ -1476,28 +1415,6 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                         );
                     })}
                 </div>
-
-                {/* Son de la vidéo du héros : n'apparaît que lorsqu'une vidéo joue
-                    pour de bon — un bouton de son sans son n'a aucun sens. */}
-                {playing && videoOn && currentVid && (
-                    <button
-                        className={`${styles.heroSound} ${sound ? styles.heroSoundOn : ''}`}
-                        onClick={(e) => { e.stopPropagation(); toggleSound(); }}
-                        aria-label={sound ? 'Couper le son' : 'Activer le son'}
-                    >
-                        {sound ? (
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 5 6 9H3v6h3l5 4z" />
-                                <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" />
-                            </svg>
-                        ) : (
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 5 6 9H3v6h3l5 4z" />
-                                <path d="M16 9l5 6M21 9l-5 6" />
-                            </svg>
-                        )}
-                    </button>
-                )}
 
                 {/* Le texte désigne l'affiche active : il se substitue en fondu. */}
                 <AnimatePresence mode="wait">
