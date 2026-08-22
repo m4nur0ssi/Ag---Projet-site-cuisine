@@ -2,11 +2,86 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 22/08/2026 03:37:14
- * Total: 661 recettes
+ * Dernière mise à jour: 22/08/2026 17:55:33
+ * Total: 662 recettes
  */
-export const exportSyncId = "1787369834239";
+export const exportSyncId = "1787421333329";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7297",
+        "title": "Salade Grecque",
+        "description": "Voici la recette de la salade grecque, un classique rafraîchissant et savoureux, parfait pour l'été et très demandé par la communauté.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7400855448460512545\" data-video-id=\"7400855448460512545\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7400855448460512545\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             3 tomates mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g d'olives noires (type Kalamata)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cuillères à soupe d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe de vinaigre de cidre (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Origan séché (selon le goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre (selon le goût)"
+            }
+        ],
+        "steps": [
+            "Lavez et coupez les tomates en dés.",
+            "Épluchez et coupez le concombre en rondelles ou en demi-rondelles.",
+            "Épépinez et coupez le poivron vert en lanières ou en dés.",
+            "Épluchez et émincez finement l'oignon rouge.",
+            "Dans un grand saladier, mélangez les tomates, le concombre, le poivron vert et l'oignon rouge.",
+            "Ajoutez la feta coupée en dés et les olives noires.",
+            "Dans un petit bol, préparez la vinaigrette en mélangeant l'huile d'olive extra vierge, le vinaigre de cidre (si utilisé), l'origan séché, le sel et le poivre.",
+            "Versez la vinaigrette sur la salade et mélangez délicatement.",
+            "Servez frais et dégustez."
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7283",
         "title": "Crème dessert choco-cacahuète",
