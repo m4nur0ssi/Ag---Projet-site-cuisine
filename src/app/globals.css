@@ -25,6 +25,85 @@ html.is-splashing #bottom-nav {
     display: none !important;
 }
 
+/* ── Écran d'accueil instantané ──────────────────────────────────────────
+   Ce bloc arrive avec le HTML : il se peint à la première image, avant tout
+   JavaScript. Il reprend au pixel le cadre du splash animé (même fond, même
+   typographie), si bien que le passage de l'un à l'autre ne se voit pas. */
+#splash-boot { display: none; }
+
+html.is-splashing #splash-boot {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    background: #000;
+}
+
+.splash-boot-frame {
+    position: fixed;
+    inset: 12px;
+    background:
+        radial-gradient(120% 70% at 50% -8%, #1c1526 0%, rgba(8, 8, 11, 0) 55%),
+        #08080b;
+    border-radius: 38px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    padding: 64px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    /* Les blocs prennent toute la largeur, comme dans le splash animé : sinon
+       le titre incliné ne retombe pas au même endroit d'une image à l'autre. */
+    align-items: stretch;
+    text-align: center;
+    overflow: hidden;
+}
+
+.splash-boot-kicker {
+    font-family: var(--font-outfit), sans-serif;
+    color: rgba(235, 235, 245, 0.6);
+    font-weight: 700;
+    font-size: 0.72rem;
+    line-height: 1;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.splash-boot-title {
+    font-family: var(--font-outfit), sans-serif;
+    font-size: 3.4rem;
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin-top: 4px;
+    text-transform: uppercase;
+    transform: skewX(-7deg);
+    color: #fff;
+    text-shadow: 0 2px 26px rgba(255, 107, 74, 0.28);
+    display: block;
+}
+
+.splash-boot-count {
+    font-family: var(--font-outfit), sans-serif;
+    color: rgba(235, 235, 245, 0.55);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    margin-top: 14px;
+    text-transform: uppercase;
+}
+
+/* Mêmes tailles que le splash animé sur téléphone (voir SplashScreen.module.css,
+   @media 480). Sans ça, le titre changeait de corps au moment de la relève. */
+@media (max-width: 480px) {
+    .splash-boot-kicker { font-size: 2.2rem; }
+    .splash-boot-title { font-size: 2.8rem; }
+}
+
+/* Le splash animé est monté : le squelette s'efface. Écrit APRÈS la règle
+   d'affichage, sinon la cascade le laisserait visible (même spécificité). */
+html.splash-live #splash-boot { display: none; }
+
 :root {
   /* Deep Night Palette (Stitch 2026) - TOTAL DARK */
   --color-bg-primary: #000000;

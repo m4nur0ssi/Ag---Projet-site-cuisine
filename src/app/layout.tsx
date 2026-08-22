@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { mockRecipes } from '@/data/mockData'
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://lesrecettesmagiques.fr'),
@@ -119,6 +120,22 @@ export default function RootLayout({
                 />
             </head>
             <body>
+                {/* Écran d'accueil INSTANTANÉ.
+
+                    Le vrai splash est un composant chargé à la demande : le temps
+                    que son morceau de code arrive et que React s'hydrate, l'écran
+                    restait noir — c'est l'attente signalée au lancement de la PWA.
+                    Ce squelette-ci vient avec le HTML : il s'affiche à la première
+                    image, sans une ligne de JavaScript. Le splash animé prend le
+                    relais dès qu'il est prêt (classe `splash-live`), sur le même
+                    fond et la même typographie : la relève ne se voit pas. */}
+                <div id="splash-boot" aria-hidden="true">
+                    <div className="splash-boot-frame">
+                        <p className="splash-boot-kicker">Les Recettes</p>
+                        <span className="splash-boot-title">Magiques</span>
+                        <span className="splash-boot-count">{mockRecipes.length} recettes</span>
+                    </div>
+                </div>
                 <AppShell>
                     {children}
                 </AppShell>

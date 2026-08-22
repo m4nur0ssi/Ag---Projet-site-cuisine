@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './SplashScreen.module.css';
 import { mockRecipes } from '@/mobile/data/mockData';
@@ -59,10 +59,23 @@ export default function SplashScreen() {
         };
     }, []);
 
+    /**
+     * Le squelette du <head> s'efface au moment PRÉCIS où ce composant peint sa
+     * première image (useLayoutEffect passe avant le rendu). Les deux se
+     * ressemblent au pixel : la relève est invisible, et il n'y a jamais ni
+     * doublon ni trou noir entre les deux.
+     */
+    useLayoutEffect(() => {
+        if (!shouldRender) return;
+        document.documentElement.classList.add('splash-live');
+        return () => { document.documentElement.classList.remove('splash-live'); };
+    }, [shouldRender]);
+
     const closeSplash = () => {
         setIsVisible(false);
         sessionStorage.setItem(SESSION_KEY, 'true');
         document.documentElement.classList.remove('is-splashing');
+        document.documentElement.classList.remove('splash-live');
         // On attend la fin de l'animation pour arrêter de render
         setTimeout(() => setShouldRender(false), 800);
     };
@@ -85,7 +98,9 @@ export default function SplashScreen() {
             {isVisible && (
                 <motion.div 
                     className={styles.splashContainer}
-                    initial={{ opacity: 0 }}
+                    // Aucun fondu d'entrée : le squelette du <head> affiche déjà ce
+                    // fond. Le faire naître de zéro rouvrirait un noir d'une demi-seconde.
+                    initial={{ opacity: 1 }}
                     animate={{ opacity: 1 }}
                     exit={{ 
                         opacity: 0,
@@ -95,10 +110,11 @@ export default function SplashScreen() {
                 >
                     <motion.div 
                         className={styles.iosFrame}
-                        initial={{ scale: 1.1, opacity: 0, y: 30 }}
+                        // Le cadre est DÉJÀ à l'écran (squelette) : l'animer depuis
+                        // une échelle de 1,1 donnerait une secousse à l'arrivée.
+                        initial={{ scale: 1, opacity: 1, y: 0 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
-                        exit={{ scale: 0.9, opacity: 0, y: -40, transition: { duration: 0.5 } }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        exit={{ scale: 0.9, opacity: 0, y: -40, transition: { duration: 0.4 } }}
                     >
                         {/* HEADER: TITLES + STATS */}
                         <motion.div 
@@ -109,32 +125,11 @@ export default function SplashScreen() {
                             }}
                             transition={{ duration: 0.4 }}
                         >
-                            <motion.h1 
-                                className={styles.titleMain}
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1, duration: 0.8 }}
-                            >
-                                Les Recettes
-                            </motion.h1>
-                            <motion.span 
-                                className={styles.titleMagiques}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.2, duration: 1, type: 'spring' }}
-                            >
-                                Magiques
-                            </motion.span>
-                            
-                            <motion.div 
-                                className={styles.recipeCount}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.4, duration: 0.8 }}
-                                style={{ color: '#FFFFFF' }} 
-                            >
+                            <h1 className={styles.titleMain}>Les Recettes</h1>
+                            <span className={styles.titleMagiques}>Magiques</span>
+                            <div className={styles.recipeCount} style={{ color: '#FFFFFF' }}>
                                 {recipeCountText}
-                            </motion.div>
+                            </div>
                         </motion.div>
 
                         {/* AUTO-CYCLING SINGLE CARD CAROUSEL (Main entrance focus) */}
@@ -159,7 +154,7 @@ export default function SplashScreen() {
                                 opacity: isSheetOpen ? 0 : 1,
                                 y: isSheetOpen ? 20 : 0
                             }}
-                            transition={{ delay: isSheetOpen ? 0 : 1.2, duration: 0.4 }}
+                            transition={{ delay: isSheetOpen ? 0 : 0.15, duration: 0.3 }}
                         >
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
                                 <button
