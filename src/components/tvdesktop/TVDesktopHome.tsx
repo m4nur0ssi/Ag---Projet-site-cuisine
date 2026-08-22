@@ -220,7 +220,7 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid }: {
                         className={`${styles.thumbVideo} ${ready ? styles.thumbVideoOn : ''}`}
                         // Lecteur nu partout : aucun bouton latéral, aucun logo,
                         // aucune barre — une carte qui s'anime, pas un lecteur.
-                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                         allow="autoplay; encrypted-media"
                         title={label(recipe)}
                     />
@@ -478,7 +478,7 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
                                 {on && playing && currentVid && (
                                     <iframe
                                         className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
-                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                                         allow="autoplay; encrypted-media"
                                         title={label(r)}
                                     />

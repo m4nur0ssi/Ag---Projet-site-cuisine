@@ -404,7 +404,7 @@ function Card({
                         className={`${styles.cardVideo} ${vidReady ? styles.cardVideoOn : ''}`}
                         // Lecteur nu : ni commandes, ni barre, ni logo, ni pseudo —
                         // le cadre est agrandi pour que l'habillage sorte du champ.
-                        src={`https://www.tiktok.com/player/v1/${videoId}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        src={`https://www.tiktok.com/player/v1/${videoId}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                         allow="autoplay; encrypted-media"
                         title={label(recipe)}
                     />
@@ -569,7 +569,6 @@ function TopTenRow({
     // Grand écran : la lecture ne part plus toute seule, elle suit la souris.
     const [wide, setWide] = useState(false);
     const hoverTimer = useRef<ReturnType<typeof setTimeout>>();
-    const [muted, setMuted] = useState(true);
     const [showControls, setShowControls] = useState(false);
     const [progress, setProgress] = useState({ current: 0, duration: 0 });
     const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -674,9 +673,8 @@ function TopTenRow({
         return () => clearTimeout(t);
     }, [visibleId, rowVisible, wide]);
 
-    // Nouvelle vidéo = état neuf (muette, sans commandes, progression à zéro).
+    // Nouvelle vidéo = état neuf (sans commandes, progression à zéro).
     useEffect(() => {
-        setMuted(true);
         setShowControls(false);
         setProgress({ current: 0, duration: 0 });
     }, [playingId]);
@@ -717,18 +715,6 @@ function TopTenRow({
     }, []);
 
     useEffect(() => () => clearTimeout(hideTimer.current), []);
-
-    const toggleSound = () => {
-        if (muted) {
-            command('unMute');
-            // Le volume du player est sur 0–100 : envoyer 1 revient à couper le son.
-            command('setVolume', 100);
-        } else {
-            command('mute');
-        }
-        setMuted((m) => !m);
-        revealControls();
-    };
 
     // Seek au doigt : on suit le glissement en local puis on envoie la position
     // au lecteur au relâchement (et au clic, pour la souris).
@@ -814,7 +800,7 @@ function TopTenRow({
                                         // Toute l'interface TikTok est coupée (controls=0) :
                                         // ni barre de progression, ni colonne like/commentaire.
                                         // On pilote le lecteur par postMessage à la place.
-                                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                                         allow="autoplay; encrypted-media"
                                         title={label(r)}
                                     />
@@ -838,16 +824,10 @@ function TopTenRow({
 
                                 {playing && (
                                     <>
-                                        {/* L'iframe ne remonte pas les taps : cette zone le fait. */}
+                                        {/* L'iframe ne remonte pas les taps : cette zone le fait.
+                                            Elle ne couvre QUE le bas du cadre — le haut doit rester
+                                            libre, c'est là que le lecteur pose son bouton de son. */}
                                         <div className={styles.top10Tap} onClick={revealControls} />
-
-                                        <button
-                                            className={styles.top10Sound}
-                                            aria-label={muted ? 'Activer le son' : 'Couper le son'}
-                                            onClick={(e) => { e.stopPropagation(); toggleSound(); }}
-                                        >
-                                            {muted ? '🔇' : '🔊'}
-                                        </button>
 
                                         <div className={`${styles.top10Controls} ${showControls ? styles.top10ControlsOn : ''}`}>
                                             <div

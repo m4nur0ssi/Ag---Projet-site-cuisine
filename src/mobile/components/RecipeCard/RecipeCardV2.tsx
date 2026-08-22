@@ -66,7 +66,7 @@ export default function RecipeCard({ recipe, activeTags = [] }: RecipeCardProps)
     const videoId = videoIdMatch ? videoIdMatch[1] : null;
     
     // We use player/v1 which is more "video only" and respects autoplay+muted better
-    const embedUrl = videoId ? `https://www.tiktok.com/player/v1/${videoId}?autoplay=1&muted=1&controls=0&loop=1` : null;
+    const embedUrl = videoId ? `https://www.tiktok.com/player/v1/${videoId}?autoplay=1&muted=1&controls=0&volume_control=1&loop=1` : null;
 
     const handleVideoLoad = () => {
         setIsVideoLoading(false);
