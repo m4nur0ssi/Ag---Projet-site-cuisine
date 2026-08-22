@@ -446,15 +446,15 @@ function Card({
 }
 
 /*
- * Pourquoi il n'y a PAS de bouton de son sur ces vidéos.
+ * Le son des vignettes : `volume_control=1`.
  *
- * Le lecteur est celui de TikTok, dans un cadre étranger. Le doigt appuie sur
- * NOTRE page ; or Safari n'accorde le son qu'à un média démarré par un geste
- * dans sa propre fenêtre. Recharger le lecteur en `muted=0` le fait repartir
- * de zéro, toujours muet ; lui commander `unMute` par postMessage ne produit
- * rien (essayé les deux, sur iPhone). Un bouton qui ne tient pas sa promesse
- * vaut moins que pas de bouton : les vignettes sont des animations muettes,
- * et le son se trouve sur TikTok.
+ * Le lecteur est celui de TikTok, dans un cadre étranger. Safari n'accorde le
+ * son qu'à un média démarré par un geste dans SA propre fenêtre : un bouton à
+ * nous, posé par-dessus, ne peut pas l'obtenir — recharger en `muted=0` fait
+ * repartir la vidéo de zéro, toujours muette, et `unMute` par postMessage ne
+ * produit rien (les deux essayés sur iPhone). Le seul bouton qui tienne sa
+ * promesse est celui de TikTok, DANS le cadre : le doigt tombe alors du bon
+ * côté de la frontière. On garde donc l'interface masquée, sauf ce bouton-là.
  */
 
 /**
@@ -503,7 +503,7 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
                 {playing && vid && (
                     <iframe
                         className={`${styles.cardVideo} ${ready ? styles.cardVideoOn : ''}`}
-                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                         allow="autoplay; encrypted-media"
                         title={label(recipe)}
                     />
@@ -1402,10 +1402,10 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                                 {on && playing && currentVid && (
                                     <iframe
                                         className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
-                                        // Interface TikTok coupée : le cadre reste une image
-                                        // qui s'anime, pas un lecteur incrusté. Toujours muet :
-                                        // le son est hors de notre portée (voir la note plus haut).
-                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                                        // Interface TikTok coupée, SAUF le bouton du son : c'est
+                                        // le seul qui puisse vraiment le rendre (voir la note plus
+                                        // haut). Le cadre reste une image qui s'anime.
+                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=1&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                                         allow="autoplay; encrypted-media"
                                         title={label(r)}
                                     />
