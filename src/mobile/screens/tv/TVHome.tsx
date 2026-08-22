@@ -446,6 +446,25 @@ function Card({
 }
 
 /**
+ * Commande un lecteur TikTok (API postMessage du player v1).
+ *
+ * Le son NE PASSE PAS par l'adresse du lecteur : changer `muted` recharge
+ * l'iframe, et un lecteur qui redémarre sonore sans geste dans SA fenêtre est
+ * arrêté par le navigateur — la vidéo repartait de zéro, toujours muette.
+ * L'adresse reste donc `muted=1` pour tous, et le son s'ouvre après coup.
+ */
+function playerCommand(frame: HTMLIFrameElement | null, type: string, value?: unknown) {
+    frame?.contentWindow?.postMessage({ type, value, 'x-tiktok-player': true }, '*');
+}
+
+/** Ouvre ou coupe le son d'un lecteur déjà en train de jouer. */
+function playerSound(frame: HTMLIFrameElement | null, on: boolean) {
+    playerCommand(frame, on ? 'unMute' : 'mute');
+    // Le volume du player est sur 0–100 : sans ça, « unMute » rend un filet de son.
+    if (on) playerCommand(frame, 'setVolume', 100);
+}
+
+/**
  * Carte de la vue « tout afficher » (une catégorie, une tendance).
  *
  * Deux gestes, deux résultats : toucher le VISUEL lance la vidéo — avec son
@@ -465,6 +484,7 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
     const [playing, setPlaying] = useState(false);
     const [ready, setReady] = useState(false);
     const [sound, setSound] = useState(false);
+    const frameRef = useRef<HTMLIFrameElement | null>(null);
 
     useEffect(() => {
         if (!playing) return;
@@ -491,8 +511,9 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
                 <img src={recipe.image} alt="" className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
                 {playing && vid && (
                     <iframe
+                        ref={frameRef}
                         className={`${styles.cardVideo} ${ready ? styles.cardVideoOn : ''}`}
-                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&muted=${sound ? 0 : 1}&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                        src={`https://www.tiktok.com/player/v1/${vid}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                         allow="autoplay; encrypted-media"
                         title={label(recipe)}
                     />
@@ -500,7 +521,13 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
                 {playing && ready && (
                     <button
                         className={`${styles.cardSound} ${sound ? styles.cardSoundOn : ''}`}
-                        onClick={(e) => { e.stopPropagation(); haptic(8); setSound((v) => !v); }}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            haptic(8);
+                            const next = !sound;
+                            setSound(next);
+                            playerSound(frameRef.current, next);
+                        }}
                         aria-label={sound ? 'Couper le son' : 'Activer le son'}
                     >
                         {sound ? (
@@ -1109,15 +1136,15 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
      * visite à l'autre.
      */
     const [sound, setSound] = useState(false);
+    const frameRef = useRef<HTMLIFrameElement | null>(null);
     useEffect(() => {
         try { setSound(localStorage.getItem('tv-hero-sound') === '1'); } catch { /* mode privé */ }
     }, []);
     const toggleSound = () => {
-        setSound((s) => {
-            const next = !s;
-            try { localStorage.setItem('tv-hero-sound', next ? '1' : '0'); } catch { /* noop */ }
-            return next;
-        });
+        const next = !sound;
+        setSound(next);
+        playerSound(frameRef.current, next);
+        try { localStorage.setItem('tv-hero-sound', next ? '1' : '0'); } catch { /* noop */ }
         haptic(8);
     };
     const playingRef = useRef(false);
@@ -1288,6 +1315,14 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         return () => { window.removeEventListener('message', onMessage); clearTimeout(giveUp); };
     }, [playing, videoOn]);
 
+    // Le héros change de recette tout seul : chaque nouveau lecteur naît muet.
+    // Si le son était ouvert, on le rouvre dès que celui-ci parle — sinon le
+    // bouton restait allumé sur une vidéo silencieuse.
+    useEffect(() => {
+        if (!videoOn || !sound) return;
+        playerSound(frameRef.current, true);
+    }, [videoOn, currentVid, sound]);
+
     // La vidéo va jusqu'au BOUT, et c'est sa fin qui fait tourner le héros.
     // Avant, la rotation de 3 s était simplement suspendue pendant la lecture et
     // plus rien ne la relançait : le héros restait bloqué sur la même recette.
@@ -1425,13 +1460,13 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                                 />
                                 {on && playing && currentVid && (
                                     <iframe
+                                        ref={frameRef}
                                         className={`${styles.heroShotVideo} ${videoOn ? styles.heroShotVideoOn : ''}`}
                                         // Interface TikTok coupée : le cadre reste une image
                                         // qui s'anime, pas un lecteur incrusté.
-                                        // `muted` fait partie de l'adresse : le changer
-                                        // recharge le lecteur, seule façon fiable de rendre
-                                        // le son — et le geste de l'utilisateur l'autorise.
-                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&muted=${sound ? 0 : 1}&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
+                                        // Toujours muet à l'ouverture : le son s'ouvre ensuite
+                                        // par postMessage (voir playerSound).
+                                        src={`https://www.tiktok.com/player/v1/${currentVid}?autoplay=1&muted=1&controls=0&progress_bar=0&play_button=0&volume_control=0&fullscreen_button=0&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0`}
                                         allow="autoplay; encrypted-media"
                                         title={label(r)}
                                     />
