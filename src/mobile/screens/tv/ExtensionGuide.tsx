@@ -37,7 +37,7 @@ const USAGE = [
     ['L’article se raye tout seul', 'Dans ta liste restée ouverte, chaque article validé se barre au fur et à mesure.'],
 ];
 
-export default function ExtensionGuide({ onClose }: { onClose: () => void }) {
+export default function ExtensionGuide({ onClose, embedded = false }: { onClose: () => void; embedded?: boolean }) {
     // Échap ferme, comme partout ailleurs.
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -48,14 +48,18 @@ export default function ExtensionGuide({ onClose }: { onClose: () => void }) {
     // Pas de garde « monté » : ce composant n'est chargé qu'au clic, côté
     // navigateur uniquement (ssr: false). Le garde ne servait qu'à retarder son
     // apparition d'un rendu.
-    return createPortal(
-        <div className={styles.extGuide}>
+    const corps = (
+        <div className={`${styles.extGuide} ${embedded ? styles.extEmbedded : ''}`}>
             <div className={styles.extHead}>
-                <button className={styles.extBack} onClick={onClose} aria-label="Fermer">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                </button>
+                {/* Sur ordinateur, la page vit DANS le cadre, à droite du menu :
+                    pas de bouton retour, on change de page par le menu. */}
+                {!embedded && (
+                    <button className={styles.extBack} onClick={onClose} aria-label="Fermer">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+                )}
                 <span className={styles.extKicker}>Courses</span>
             </div>
 
@@ -123,7 +127,10 @@ export default function ExtensionGuide({ onClose }: { onClose: () => void }) {
                     </li>
                 </ul>
             </div>
-        </div>,
-        document.body,
+        </div>
     );
+
+    // Sur téléphone, c'est un écran plein posé par-dessus ; sur ordinateur, un
+    // panneau parmi les autres, qui s'élargit quand on replie le menu.
+    return embedded ? corps : createPortal(corps, document.body);
 }

@@ -568,8 +568,7 @@ export default function TVDesktopHome() {
     // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
-    const [guideExtension, setGuideExtension] = useState(false);
-    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris' | 'search' | 'tuto' | 'gouts'>('none');
+    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris' | 'search' | 'tuto' | 'gouts' | 'extension'>('none');
 
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
     const [forYou, setForYou] = useState<Recipe[]>([]);
@@ -930,7 +929,7 @@ export default function TVDesktopHome() {
                     <NavItem icon={ICONS.planner} tour="planner" token="s:planner" active={panel === 'planner'} onClick={SHORTCUTS.planner}>Planificateur</NavItem>
                     <NavItem icon={ICONS.cart} tour="shopping" token="s:courses" active={panel === 'courses'} onClick={SHORTCUTS.courses}>Liste de courses</NavItem>
                     {/* L'assistant magasin : à quoi il sert, comment l'installer. */}
-                    <NavItem icon="M7 3.5h10a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5zM9.5 8h5M9.5 12h5M9.5 16h3" onClick={() => setGuideExtension(true)}>Extension Chrome</NavItem>
+                    <NavItem icon="M7 3.5h10a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5zM9.5 8h5M9.5 12h5M9.5 16h3" active={panel === 'extension'} onClick={() => { setPanel('extension'); setNav('accueil'); }}>Extension Chrome</NavItem>
                     <NavItem icon={ICONS.heart} tour="favorites" token="s:favoris" active={panel === 'favoris'} onClick={SHORTCUTS.favoris}>Favoris</NavItem>
                     <NavItem icon="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" token="s:trophies" active={panel === 'trophies'} onClick={SHORTCUTS.trophies}>Palmarès</NavItem>
                     <NavItem icon="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" token="s:cave" active={panel === 'cave'} onClick={SHORTCUTS.cave}>Ma cave</NavItem>
@@ -980,7 +979,7 @@ export default function TVDesktopHome() {
             <main className={styles.content}>
                 {panel !== 'none' ? (
                     <div className={styles.panelHost}>
-                        {!user && panel !== 'trophies' && panel !== 'cave' && panel !== 'search' && panel !== 'tuto' && panel !== 'gouts' ? (
+                        {!user && panel !== 'trophies' && panel !== 'cave' && panel !== 'search' && panel !== 'tuto' && panel !== 'gouts' && panel !== 'extension' ? (
                             <TVAuthGate
                                 subtitle={panel === 'planner'
                                     ? 'Le planificateur de la semaine est réservé aux membres connectés.'
@@ -994,6 +993,7 @@ export default function TVDesktopHome() {
                                 : panel === 'favoris' ? <Favoris embedded />
                                     : panel === 'tuto' ? <TVTutorial embedded onClose={() => setPanel('none')} />
                                     : panel === 'gouts' ? <TasteOnboarding embedded onClose={() => setPanel('none')} />
+                                    : panel === 'extension' ? <ExtensionGuide embedded onClose={() => setPanel('none')} />
                                     : panel === 'search' ? (
                                         <TVSpotlight
                                             embedded
@@ -1171,7 +1171,6 @@ export default function TVDesktopHome() {
             </AnimatePresence>
 
             <Tip id="accueil" />
-            {guideExtension && <ExtensionGuide onClose={() => setGuideExtension(false)} />}
             {shareCard && (
                 <RecipeShareCard
                     recipe={shareCard.recipe}

@@ -4196,6 +4196,17 @@
 }
 .extDownload:active { transform: scale(0.97); }
 
+/* En panneau : plus de position fixe, on remplit la place que le cadre donne —
+   et on s'élargit tout seul quand le menu se replie. */
+.extEmbedded {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    height: 100%;
+    background: none;
+}
+.extEmbedded .extHead { padding-top: 6px; }
+
 /* Grand écran : une colonne, pas une bande de texte de 1 200 px de large. */
 @media (min-width: 760px) {
     .extScroll { padding-left: 40px; padding-right: 40px; }
