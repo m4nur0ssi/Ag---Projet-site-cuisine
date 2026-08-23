@@ -36,7 +36,6 @@
 }
 .toggle:active { transform: scale(0.95); background: rgba(255, 255, 255, 0.14); }
 
-.icon { font-size: 15px; }
 
 /* ── La feuille ─────────────────────────────────────────────────────────── */
 

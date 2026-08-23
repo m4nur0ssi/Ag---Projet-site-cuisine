@@ -69,7 +69,6 @@ export default function MagicConverter() {
     return (
         <div className={styles.container}>
             <button className={styles.toggle} onClick={() => setIsOpen(!isOpen)}>
-                <span className={styles.icon}>⚖️</span>
                 Convertisseur
             </button>
 

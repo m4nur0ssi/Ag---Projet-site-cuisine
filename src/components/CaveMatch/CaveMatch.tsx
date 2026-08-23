@@ -30,7 +30,6 @@ export default function CaveMatch({ recipe }: { recipe: { title?: string; catego
     return (
         <>
             <button type="button" className={styles.pill} onClick={() => setOpen(true)}>
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" /></svg>
                 Ma cave
             </button>
 
