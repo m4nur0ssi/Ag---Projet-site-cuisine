@@ -1078,6 +1078,17 @@
     backdrop-filter: blur(14px);
 }
 
+/* Le temps du mouvement : pas de flou. Rien d'autre — le voile doit rester
+   translucide, sans quoi il masquerait la page pendant l'ouverture. */
+.navSansFlou {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* Seul le PANNEAU force son fond : privé de verre, il laisserait voir au
+   travers pendant les trois dixièmes de seconde du mouvement. */
+.navPanel.navSansFlou { background: rgba(24, 24, 26, 0.94); }
+
 .navPanel {
     position: fixed;
     top: 0;
@@ -1091,8 +1102,12 @@
     border-radius: 0 26px 26px 0;
     /* Verre profond : le contenu défile derrière, jamais de fond plat. */
     background: rgba(28, 28, 30, 0.72);
-    -webkit-backdrop-filter: blur(60px) saturate(180%);
-    backdrop-filter: blur(60px) saturate(180%);
+    /* 60 px de flou coûtaient cher pour rien : au-delà de 30, l'œil ne fait plus
+       la différence, mais le téléphone, si. */
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    backdrop-filter: blur(30px) saturate(180%);
+    /* Prévient le navigateur : ce panneau va se déplacer. */
+    will-change: transform;
     box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.1), 24px 0 70px rgba(0, 0, 0, 0.6);
     overflow: hidden;
 }

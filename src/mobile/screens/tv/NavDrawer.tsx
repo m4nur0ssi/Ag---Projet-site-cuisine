@@ -14,7 +14,6 @@ import { supabase } from '@/mobile/lib/supabase';
 import { motion, AnimatePresence } from 'framer-motion';
 import { THEMES } from './themes';
 import { MAIL_RECETTE } from '@/lib/mail-recette';
-const ExtensionGuide = dynamic(() => import('./ExtensionGuide'), { ssr: false });
 import styles from './tv.module.css';
 
 // Compte : déplacé du héros vers ici, à droite du titre.
@@ -250,18 +249,30 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
      * et s'arrête net, comme les panneaux de l'App Store. Pendant un glissement,
      * on ne lisse rien : le tiroir doit coller au doigt.
      */
-    const [guideExtension, setGuideExtension] = useState(false);
-
     const spring = { duration: 0.32, ease: [0.32, 0.72, 0, 1] as const };
 
+    /**
+     * Pendant que le volet se déplace, on ÉTEINT les flous d'arrière-plan.
+     *
+     * Le panneau porte un blur(60px) et le voile un blur(14px) : déplacer un
+     * élément qui floute ce qu'il y a derrière oblige l'iPhone à refaire ce
+     * calcul à chaque image — d'où les à-coups. Le verre revient dès que le
+     * volet est posé, et personne ne voit la différence sur 0,3 seconde.
+     */
+    const [bouge, setBouge] = useState(false);
+    useEffect(() => {
+        setBouge(true);
+        const t = setTimeout(() => setBouge(false), 340);
+        return () => clearTimeout(t);
+    }, [open]);
+    const enMouvement = bouge || dragging;
+
     return (
-        <>
-        {guideExtension && <ExtensionGuide onClose={() => setGuideExtension(false)} />}
         <AnimatePresence>
             {(open || dragging) && (
                 <>
                     <motion.div
-                        className={styles.navScrim}
+                        className={`${styles.navScrim} ${enMouvement ? styles.navSansFlou : ''}`}
                         onClick={onClose}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: open ? 1 : peek }}
@@ -270,7 +281,7 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                         style={{ pointerEvents: open ? 'auto' : 'none' }}
                     />
                     <motion.aside
-                        className={styles.navPanel}
+                        className={`${styles.navPanel} ${enMouvement ? styles.navSansFlou : ''}`}
                         initial={{ x: '-100%' }}
                         animate={{ x: open ? 0 : `${(peek - 1) * 100}%` }}
                         exit={{ x: '-100%' }}
@@ -340,13 +351,9 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 >
                                     <Ic d={ICONS.cart} /><span className={styles.navRowText}>Liste de courses</span>
                                 </button>
-                                {/* L'assistant magasin : à quoi il sert, et comment s'en
-                                    servir. Sans cet écran, l'extension existait sans que
-                                    personne ne sache qu'elle existait. */}
-                                <button className={styles.navRow} onClick={() => { haptic(8); setGuideExtension(true); }}>
-                                    <Ic d="M7 3.5h10a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5zM9.5 8h5M9.5 12h5M9.5 16h3" />
-                                    <span className={styles.navRowText}>Extension Chrome</span>
-                                </button>
+                                {/* Pas d'« Extension Chrome » ici : une extension ne
+                                    s'installe pas sur un téléphone. L'entrée n'existe que
+                                    dans le menu de l'ordinateur, là où elle sert. */}
                                 <button
                                     className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
                                     onClick={() => goAuthed('/favorites')}
@@ -465,6 +472,5 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                 </>
             )}
         </AnimatePresence>
-        </>
     );
 }
