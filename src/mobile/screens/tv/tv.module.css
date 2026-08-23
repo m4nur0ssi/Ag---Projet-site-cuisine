@@ -1038,8 +1038,8 @@
 /* Bouton d'ouverture : pendant du bouton compte, en haut à gauche du héros. */
 .heroMenuBtn {
     position: absolute;
-    top: calc(env(safe-area-inset-top, 0px) + 14px);
-    left: 14px;
+    top: calc(env(safe-area-inset-top, 0px) + 16px);
+    left: 16px;
     z-index: 4;
     width: 38px;
     height: 38px;
@@ -1058,6 +1058,16 @@
 }
 .heroMenuBtn:active { transform: scale(0.9); }
 .heroMenuBtn svg { width: 18px; height: 18px; }
+
+/* La cible du doigt déborde de 7 px tout autour : 52 px de zone utile pour un
+   bouton qui n'en montre que 38. Un pouce ne vise pas au pixel, et manquer le
+   menu donnait l'impression qu'il « ne répondait pas ». */
+.heroMenuBtn::after {
+    content: '';
+    position: absolute;
+    inset: -7px;
+    border-radius: 999px;
+}
 
 .navScrim {
     position: fixed;

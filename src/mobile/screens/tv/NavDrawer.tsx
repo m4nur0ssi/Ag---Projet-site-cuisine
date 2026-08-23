@@ -274,7 +274,13 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
     // ressort légèrement rebondissant finit la course.
     // Volet : plus raide et plus léger qu'avant (26/320/0.7). Il s'ouvre d'un
     // coup sec et s'arrête net, comme un panneau d'app native.
-    const spring = { type: 'spring' as const, damping: 30, stiffness: 420, mass: 0.6 };
+    /**
+     * La courbe d'iOS, pas un ressort. Le ressort (damping 30, raideur 420)
+     * mettait près d'une demi-seconde et finissait mou ; cette courbe part fort
+     * et s'arrête net, comme les panneaux de l'App Store. Pendant un glissement,
+     * on ne lisse rien : le tiroir doit coller au doigt.
+     */
+    const spring = { duration: 0.32, ease: [0.32, 0.72, 0, 1] as const };
 
     return (
         <AnimatePresence>
@@ -286,7 +292,7 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: open ? 1 : peek }}
                         exit={{ opacity: 0 }}
-                        transition={dragging ? { duration: 0 } : { duration: 0.18 }}
+                        transition={dragging ? { duration: 0 } : { duration: 0.24, ease: [0.32, 0.72, 0, 1] as const }}
                         style={{ pointerEvents: open ? 'auto' : 'none' }}
                     />
                     <motion.aside

@@ -557,7 +557,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
     const speak = (text: string) => {
         if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
+            // On n'annule QUE s'il y a de quoi : sur iPhone, un `cancel()` suivi
+            // aussitôt d'un `speak()` avale la nouvelle phrase, et on n'entend rien.
+            if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+                window.speechSynthesis.cancel();
+            }
             const utterance = new SpeechSynthesisUtterance(stripHtml(text));
             utterance.lang = 'fr-FR';
             utterance.rate = 1.0;
@@ -596,6 +600,17 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             };
 
             window.speechSynthesis.speak(utterance);
+
+            // Filet : il arrive que la toute première phrase reste coincée dans la
+            // file (l'iPhone met la synthèse en pause de lui-même). Si rien n'a
+            // démarré au bout d'une seconde, on la relance une fois.
+            setTimeout(() => {
+                if (isSpeakingRef.current) return;
+                try {
+                    window.speechSynthesis.resume();
+                    if (!window.speechSynthesis.speaking) window.speechSynthesis.speak(utterance);
+                } catch (e) { /* noop */ }
+            }, 1000);
         }
     };
 
@@ -928,8 +943,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 // jour qu'au prochain rendu, trop tard pour ces closures.
                                 focusModeRef.current = true;
                                 voiceOnRef.current = true;
-                                startRecognition();   // micro ouvert d'emblée, plus de tap
                                 spokenRef.current = 0; // l'étape 1 est lue ici, pas deux fois
+                                // La VOIX D'ABORD, le micro ensuite (il s'ouvre tout seul
+                                // quand la lecture s'achève). Ouvrir le micro avant fait
+                                // basculer la sortie audio de l'iPhone en mode
+                                // enregistrement : la synthèse partait, mais muette.
                                 speak(recipe.steps[0]);
                             }}>
                                 <span className={styles.focusBtnIcon}>
