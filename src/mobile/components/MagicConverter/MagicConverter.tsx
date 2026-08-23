@@ -54,13 +54,16 @@ export default function MagicConverter() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 9998 }}
+                        // La fiche recette monte à 20000 et la barre du bas à 25000 :
+                        // à 9998, cette fenêtre s'ouvrait DERRIÈRE la fiche d'où on
+                        // l'appelle. Le bouton répondait, on ne voyait rien.
+                        style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 25990 }}
                     />
                     <motion.div
                         className={styles.modal}
                         style={{
                             position: 'fixed', left: 12, right: 12, bottom: 20, top: 'auto',
-                            width: 'auto', zIndex: 9999, maxHeight: '80vh', overflowY: 'auto',
+                            width: 'auto', zIndex: 26000, maxHeight: '80vh', overflowY: 'auto',
                         }}
                         initial={{ y: "100%", opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}

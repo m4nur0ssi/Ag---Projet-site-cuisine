@@ -48,7 +48,7 @@
     width: 330px;
     position: fixed;
     right: 20px;
-    z-index: 9999;
+    z-index: 26000;
     top: auto;
     touch-action: none;
     max-height: 80vh;
