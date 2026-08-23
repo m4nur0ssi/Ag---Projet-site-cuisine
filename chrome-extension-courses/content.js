@@ -27,17 +27,27 @@
      * Le hash ne tient que le temps d'une recherche : dès qu'on ouvre une fiche
      * produit ou qu'on clique dans un rayon, il disparaît et le widget avec lui —
      * il fallait alors repartir du site pour le « réactiver ». On garde donc la
-     * file dans le sessionStorage de l'onglet : elle revient sur chaque page du
-     * magasin, et s'efface quand on ferme le widget ou qu'on finit la liste.
+     * file en mémoire : elle revient sur chaque page du magasin, et s'efface
+     * quand on ferme le widget ou qu'on finit la liste.
+     *
+     * localStorage et non sessionStorage : la mémoire de session meurt avec
+     * l'onglet. Fermer Carrefour par mégarde, ou reprendre ses courses le
+     * lendemain, obligeait à repartir du site — l'extension semblait éteinte.
      */
     const MEM = 'magic-courses-queue';
     function remember(st) {
-        try { sessionStorage.setItem(MEM, JSON.stringify({ raw: st.raw, idx: st.idx, back: st.back })); } catch (_) {}
+        try { localStorage.setItem(MEM, JSON.stringify({ raw: st.raw, idx: st.idx, back: st.back, at: Date.now() })); } catch (_) {}
     }
-    function forget() { try { sessionStorage.removeItem(MEM); } catch (_) {} }
+    function forget() {
+        try { localStorage.removeItem(MEM); sessionStorage.removeItem(MEM); } catch (_) {}
+    }
     function recall() {
         try {
-            const m = JSON.parse(sessionStorage.getItem(MEM) || 'null');
+            // On relit l'ancienne mémoire de session tant qu'une file y traîne :
+            // une liste en cours ne doit pas disparaître à la mise à jour.
+            const m = JSON.parse(localStorage.getItem(MEM) || sessionStorage.getItem(MEM) || 'null');
+            // Une file oubliée depuis une semaine n'est plus la liste du jour.
+            if (m && m.at && Date.now() - m.at > 7 * 24 * 3600 * 1000) { forget(); return null; }
             if (!m || !m.raw) return null;
             const json = decodeURIComponent(escape(atob(decodeURIComponent(m.raw))));
             const list = JSON.parse(json);
@@ -48,7 +58,32 @@
 
     const fromHash = parseHash();
     const state = fromHash || recall();
-    if (!state) return; // jamais lancé depuis le site → ne rien afficher
+
+    /**
+     * Aucune file en cours : l'extension ne se tait plus pour autant.
+     *
+     * Elle restait totalement invisible tant qu'on n'était pas arrivé depuis le
+     * site — elle avait l'air désactivée. Une pastille discrète s'affiche donc
+     * sur les sites de magasin ; elle mène à la liste, d'où l'on repart avec la
+     * file. Un clic sur la croix la range jusqu'à la prochaine visite.
+     */
+    if (!state) {
+        if (sessionStorage.getItem('magic-courses-hidden')) return;
+        const puce = document.createElement('div');
+        puce.id = 'magic-courses-badge';
+        puce.innerHTML = `
+            <a class="mcb-link" href="https://www.lesrecettesmagiques.fr/tv-courses" target="_blank" rel="noopener">
+                🪄 Ma liste de courses
+            </a>
+            <button class="mcb-close" title="Masquer">✕</button>
+        `;
+        document.documentElement.appendChild(puce);
+        puce.querySelector('.mcb-close').addEventListener('click', () => {
+            try { sessionStorage.setItem('magic-courses-hidden', '1'); } catch (_) {}
+            puce.remove();
+        });
+        return;
+    }
     remember(state);
 
     // --- Construit l'URL de recherche selon le magasin --------------------

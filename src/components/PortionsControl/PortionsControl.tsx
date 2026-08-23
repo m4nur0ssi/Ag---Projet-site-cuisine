@@ -25,7 +25,6 @@ export default function PortionsControl({ value, base, onChange, min = 1, max = 
 
     return (
         <div className={`${styles.pill} ${compact ? styles.compact : ''} ${scaled ? styles.active : ''}`}>
-            <span className={styles.icon}>👥</span>
             <button
                 type="button"
                 className={styles.step}
