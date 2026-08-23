@@ -1443,6 +1443,63 @@
 .spCancel:active { opacity: 0.5; }
 
 /* Segmented control (Recette / Ingrédients / Assistant). */
+/* ── Régime : « sans … » ─────────────────────────────────────────────────
+   Une bande discrète sous les modes. Rouge sourd : c'est un interdit, pas un
+   filtre de plus — et il vaut pour toute la recherche. */
+.spSans {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 16px 10px;
+}
+
+.spSansTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 59, 48, 0.16);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 59, 48, 0.4);
+    color: #ff8078;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.spSansX { color: rgba(255, 128, 120, 0.7); font-size: 11px; }
+
+.spSansAdd {
+    padding: 6px 11px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(118, 118, 128, 0.22);
+    color: rgba(235, 235, 245, 0.7);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.spSansField { display: inline-flex; }
+
+.spSansInput {
+    width: 150px;
+    padding: 6px 11px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(118, 118, 128, 0.28);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 13px;
+    outline: none;
+}
+.spSansInput::placeholder { color: rgba(235, 235, 245, 0.38); }
+
 .spSegment {
     flex: 0 0 auto;
     display: flex;
@@ -2904,6 +2961,90 @@
     line-height: 1.2;
     color: rgba(235, 235, 245, 0.55);
 }
+
+/* ── Modifier / barrer, à droite de chaque ligne ─────────────────────── */
+.courseAction {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
+    color: rgba(235, 235, 245, 0.75);
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.18s ease;
+}
+.courseAction:active { transform: scale(0.9); background: rgba(255, 255, 255, 0.16); }
+
+.courseValider {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+}
+.courseValider:active { transform: scale(0.9); }
+
+/* Le pas-à-pas prend la place de la quantité, dans la ligne même. */
+.courseStepper {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.courseStepBtn {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+}
+.courseStepBtn:active { transform: scale(0.9); }
+
+.courseStepInput {
+    width: 56px;
+    height: 28px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+}
+
+.courseStepUnit {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 13px;
+    color: rgba(235, 235, 245, 0.6);
+}
+
+/* Discrète mention : cette quantité ne vient plus du calcul. */
+.courseItemEdited { color: rgba(255, 255, 255, 0.38); font-style: italic; }
 
 .courseDelete {
     flex: 0 0 auto;

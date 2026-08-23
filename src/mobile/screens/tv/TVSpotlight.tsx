@@ -57,11 +57,75 @@ interface TVSpotlightProps {
     embedded?: boolean;
 }
 
+/**
+ * Ce qu'il faut vraiment chercher quand on écarte un aliment.
+ *
+ * Les recettes ne nomment pas leurs ingrédients comme on les demande : le
+ * poulet s'y appelle « volaille entière », le gluten n'apparaît jamais sous ce
+ * mot — c'est de la farine, du blé, des pâtes. Une exclusion qui ne lit que le
+ * mot tapé laisse passer la moitié des plats, et sur une allergie, laisser
+ * passer est pire que refuser trop.
+ *
+ * Cette table couvre les régimes courants ; tout autre mot est cherché tel quel.
+ */
+const FAMILLES_EXCLUSION: Record<string, string[]> = {
+    poulet: ['poulet', 'volaille', 'blanc de dinde', 'escalope de dinde'],
+    dinde: ['dinde', 'volaille'],
+    porc: ['porc', 'lard', 'lardon', 'jambon', 'bacon', 'chorizo', 'saucisson', 'andouille', 'boudin'],
+    boeuf: ['boeuf', 'bœuf', 'steak', 'bavette', 'entrecote', 'entrecôte', 'hache', 'haché'],
+    viande: ['boeuf', 'bœuf', 'porc', 'agneau', 'veau', 'poulet', 'volaille', 'lard', 'jambon', 'bacon', 'steak', 'saucisse'],
+    poisson: ['poisson', 'saumon', 'thon', 'cabillaud', 'colin', 'merlu', 'sardine', 'maquereau', 'anchois', 'truite', 'bar', 'dorade'],
+    'fruits de mer': ['crevette', 'moule', 'huitre', 'huître', 'gambas', 'calamar', 'poulpe', 'coquille', 'langoustine', 'crabe'],
+    gluten: ['farine', 'ble', 'blé', 'pate', 'pâte', 'pain', 'chapelure', 'semoule', 'boulgour', 'orge', 'seigle', 'biscuit', 'brioche'],
+    lactose: ['lait', 'beurre', 'creme', 'crème', 'fromage', 'yaourt', 'mascarpone', 'ricotta', 'mozzarella', 'parmesan', 'gruyere', 'gruyère'],
+    'lait': ['lait', 'creme', 'crème', 'beurre', 'fromage', 'yaourt'],
+    oeuf: ['oeuf', 'œuf'],
+    arachide: ['arachide', 'cacahuete', 'cacahuète', 'peanut'],
+    'fruits a coque': ['noix', 'noisette', 'amande', 'pistache', 'cajou', 'pecan', 'pécan'],
+    alcool: ['vin', 'biere', 'bière', 'rhum', 'whisky', 'cognac', 'vodka', 'liqueur', 'porto', 'champagne'],
+};
+
+/** Les mots à traquer pour une exclusion donnée. */
+function motsInterdits(mot: string): string[] {
+    const m = normalize(mot);
+    for (const [cle, liste] of Object.entries(FAMILLES_EXCLUSION)) {
+        if (normalize(cle) === m) return liste.map(normalize);
+    }
+    return [m];
+}
+
 export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, embedded = false }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
     const [ingInput, setIngInput] = useState('');
+    /**
+     * Régime alimentaire : les ingrédients dont on ne VEUT PAS.
+     *
+     * Une allergie ou un régime ne change pas d'une recherche à l'autre : la
+     * liste se retient d'une visite sur l'autre, et s'applique à TOUS les modes
+     * — chercher par nom, par ingrédients ou en décrivant son envie. Rien ne
+     * sert d'exclure l'arachide d'un côté pour la voir revenir de l'autre.
+     */
+    const [exclus, setExclus] = useState<string[]>([]);
+    const [exclusInput, setExclusInput] = useState('');
+    const [exclusOuvert, setExclusOuvert] = useState(false);
+    useEffect(() => {
+        try {
+            const brut = JSON.parse(localStorage.getItem('regime-sans') || '[]');
+            if (Array.isArray(brut)) setExclus(brut.filter((x) => typeof x === 'string'));
+        } catch { /* mode privé */ }
+    }, []);
+    const enregistrerExclus = (next: string[]) => {
+        setExclus(next);
+        try { localStorage.setItem('regime-sans', JSON.stringify(next)); } catch { /* noop */ }
+    };
+    const ajouterExclu = () => {
+        const val = exclusInput.trim().toLowerCase();
+        if (val && !exclus.includes(val)) enregistrerExclus([...exclus, val]);
+        setExclusInput('');
+    };
+
     const [activeGroup, setActiveGroup] = useState<FilterGroup | null>(null);
     // Multi-filtres cumulatifs (catégorie + pays + tendance combinés en ET).
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
@@ -78,8 +142,27 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     const [isListening, setIsListening] = useState(false);
     const recognitionRef = useRef<any>(null);
 
-    /** Vivier de base : tout le catalogue, ou le sous-ensemble imposé par l'appelant. */
-    const pool = useMemo(() => (filter ? mockRecipes.filter(filter) : mockRecipes), [filter]);
+    /**
+     * Vivier de base : tout le catalogue, ou le sous-ensemble imposé par
+     * l'appelant — moins ce que le régime interdit. En retranchant ICI, aucun
+     * mode n'a besoin d'y penser : ni la recherche, ni les filtres, ni
+     * l'assistant ne peuvent proposer une recette écartée.
+     */
+    const pool = useMemo(() => {
+        const base = filter ? mockRecipes.filter(filter) : mockRecipes;
+        if (!exclus.length) return base;
+        const bannis = exclus.flatMap(motsInterdits);
+        return base.filter((r) => {
+            // Le titre et les étiquettes comptent autant que la liste des
+            // ingrédients : « Ramen de poulet » se trahit par son nom.
+            const champs = [
+                normalize(r.title || ''),
+                ...(r.tags || []).map((t: string) => normalize(t)),
+                ...(r.ingredients || []).map((i: any) => normalize(i?.name || '')),
+            ];
+            return !champs.some((c) => bannis.some((b) => b && c.includes(b)));
+        });
+    }, [filter, exclus]);
     const localSearch = (q: string) => smartLocalSearch(pool as any, q, 5) as Recipe[];
 
     const askAssistant = async (raw?: string) => {
@@ -377,6 +460,46 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                 }}
                             >{lbl}</button>
                         ))}
+                    </div>
+
+                    {/* Régime : ce qu'on ne veut PAS voir, quel que soit le mode. */}
+                    <div className={styles.spSans}>
+                        {exclus.map((x) => (
+                            <button
+                                key={x}
+                                className={styles.spSansTag}
+                                onClick={() => { haptic(6); enregistrerExclus(exclus.filter((e) => e !== x)); }}
+                                aria-label={`Ne plus exclure ${x}`}
+                            >
+                                sans {x}
+                                <span className={styles.spSansX}>✕</span>
+                            </button>
+                        ))}
+
+                        {exclusOuvert ? (
+                            <span className={styles.spSansField}>
+                                <input
+                                    className={styles.spSansInput}
+                                    placeholder="Arachide, gluten…"
+                                    value={exclusInput}
+                                    autoFocus
+                                    onChange={(e) => setExclusInput(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); ajouterExclu(); }
+                                        if (e.key === 'Escape') { setExclusOuvert(false); setExclusInput(''); }
+                                    }}
+                                    onBlur={() => { ajouterExclu(); setExclusOuvert(false); }}
+                                    enterKeyHint="done" autoComplete="off" autoCorrect="off" spellCheck={false}
+                                />
+                            </span>
+                        ) : (
+                            <button
+                                className={styles.spSansAdd}
+                                onClick={() => { haptic(8); setExclusOuvert(true); }}
+                            >
+                                + Sans…
+                            </button>
+                        )}
                     </div>
 
                     {/* Groupes + chips (mode recette) */}

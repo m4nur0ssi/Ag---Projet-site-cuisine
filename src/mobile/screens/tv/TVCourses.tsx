@@ -122,6 +122,15 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const [done, setDone] = useState<Set<string>>(new Set());
     const [selected, setSelected] = useState<Set<string>>(new Set());
     const [overrides, setOverrides] = useState<Record<string, string>>({});
+    /**
+     * Quantités retouchées à la main, par clé d'article. La recette dit 200 g de
+     * farine ; au magasin on prend le paquet d'un kilo. La retouche est donc
+     * gardée à part et posée PAR-DESSUS le calcul, qui reste intact.
+     */
+    const [qtyEdits, setQtyEdits] = useState<Record<string, number>>({});
+    /** Article en cours d'édition, et la valeur tapée. */
+    const [editing, setEditing] = useState<string | null>(null);
+    const [editValue, setEditValue] = useState('');
     const [dayIdx, setDayIdx] = useState(todayIndex);
     // « La semaine » = TOUT le fusionné : semaine + Jour J + ajouts par recette.
     // Jour J inclus par défaut (pref partagée avec la pastille de nav), le toggle
@@ -153,6 +162,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             setPlan(j('meal-planner-week', '{}'));
             setWeekChecked(new Set(j('meal-week-checked', '[]')));
             setDone(new Set(j('shop-done', '[]')));
+            setQtyEdits(j('shop-qty', '{}'));
             setOverrides(readRayonOverrides());
         };
         read();
@@ -165,10 +175,17 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     }, []);
 
     /** Liste fusionnée : moteur de la prod, quantités additionnées. */
-    const items = useMemo<ConsolItem[]>(
-        () => buildConsolidatedItems(plan, weekChecked, list as any, withJourJ, withWeek),
-        [plan, weekChecked, list, withJourJ, withWeek]
-    );
+    const items = useMemo<ConsolItem[]>(() => {
+        const base = buildConsolidatedItems(plan, weekChecked, list as any, withJourJ, withWeek);
+        // La retouche remplace la quantité calculée — et rien d'autre : le texte
+        // se recompose, donc le chiffre du badge, le partage et la recherche
+        // magasin suivent d'eux-mêmes.
+        return base.map((it) => {
+            const q = qtyEdits[it.key];
+            if (q == null) return it;
+            return { ...it, qty: q, display: `${prettyQtyUnit(q, it.unit)} ${it.name}`.trim() };
+        });
+    }, [plan, weekChecked, list, withJourJ, withWeek, qtyEdits]);
 
     const hasJourJ = Object.keys(plan.JourJ || {}).length > 0;
     const hasWeek = Object.keys(plan).some((d) => d !== 'JourJ' && Object.keys(plan[d] || {}).length > 0);
@@ -208,6 +225,35 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         persistDone(n);
         return n;
     });
+
+    /**
+     * Le pas d'incrément suit l'unité : on n'ajoute pas un gramme de farine à la
+     * fois, ni cinquante œufs.
+     */
+    const pasDe = (unit: string) => (unit === 'g' || unit === 'ml' ? 50 : 1);
+
+    const persistQty = (next: Record<string, number>) => {
+        localStorage.setItem('shop-qty', JSON.stringify(next));
+        setQtyEdits(next);
+        window.dispatchEvent(new Event('shoppingListUpdated'));
+    };
+
+    const ouvrirEdition = (it: ConsolItem) => {
+        haptic(8);
+        setEditing(it.key);
+        setEditValue(it.qty != null ? fmtQty(it.qty) : '1');
+    };
+
+    const validerEdition = (it: ConsolItem) => {
+        const v = parseFloat((editValue || '').replace(',', '.'));
+        const next = { ...qtyEdits };
+        // Une valeur vide ou absurde efface la retouche : on retrouve le calcul.
+        if (!Number.isFinite(v) || v <= 0) delete next[it.key];
+        else next[it.key] = v;
+        persistQty(next);
+        setEditing(null);
+        haptic(10);
+    };
 
     /** Sélection : c'est elle qui alimente le partage et la recherche magasin. */
     const toggleSelect = (it: ConsolItem) => {
@@ -502,23 +548,106 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                             <IngredientVignette nom={it.name} icone={it.icon} nombre={nombreAAfficher(it)} />
                                             <span className={styles.courseItemTexts}>
                                                 <span className={styles.courseName}>{it.name || it.display}</span>
-                                                {it.qty != null && (
+                                                {editing === it.key ? (
+                                                    // Le pas-à-pas prend la place de la quantité : on modifie là où
+                                                    // on lit, sans fenêtre par-dessus la liste.
+                                                    <span
+                                                        className={styles.courseStepper}
+                                                        onClick={(e) => e.stopPropagation()}
+                                                    >
+                                                        <button
+                                                            className={styles.courseStepBtn}
+                                                            // Forme fonctionnelle obligatoire : trois appuis rapides
+                                                            // tombent dans le même rendu, et liraient tous la MÊME
+                                                            // valeur — deux incréments sur trois seraient perdus.
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setEditValue((prev) => fmtQty(Math.max(0, (parseFloat(prev.replace(',', '.')) || 0) - pasDe(it.unit))));
+                                                            }}
+                                                            aria-label="Moins"
+                                                        >−</button>
+                                                        <input
+                                                            className={styles.courseStepInput}
+                                                            value={editValue}
+                                                            inputMode="decimal"
+                                                            autoFocus
+                                                            onChange={(e) => setEditValue(e.target.value)}
+                                                            onClick={(e) => e.stopPropagation()}
+                                                            onKeyDown={(e) => { if (e.key === 'Enter') validerEdition(it); }}
+                                                        />
+                                                        <span className={styles.courseStepUnit}>
+                                                            {it.unit || (Number(editValue) > 1 ? 'pièces' : 'pièce')}
+                                                        </span>
+                                                        <button
+                                                            className={styles.courseStepBtn}
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setEditValue((prev) => fmtQty((parseFloat(prev.replace(',', '.')) || 0) + pasDe(it.unit)));
+                                                            }}
+                                                            aria-label="Plus"
+                                                        >+</button>
+                                                    </span>
+                                                ) : it.qty != null ? (
                                                     <span className={styles.courseItemQty}>
                                                         {/* Sans unité, « 4 » répéterait le chiffre du badge : on dit
                                                             en quoi on compte, comme au rayon. */}
                                                         {it.unit
                                                             ? prettyQtyUnit(it.qty, it.unit)
                                                             : `${fmtQty(it.qty)} ${it.qty > 1 ? 'pièces' : 'pièce'}`}
+                                                        {qtyEdits[it.key] != null && (
+                                                            <span className={styles.courseItemEdited}> · modifié</span>
+                                                        )}
                                                     </span>
-                                                )}
+                                                ) : null}
                                             </span>
                                         </button>
 
-                                        {isManual && (
+                                        {/* Modifier la quantité, et barrer. « Supprimer » ne fait pas
+                                            disparaître : la ligne reste, barrée, pour qu'on voie ce
+                                            qu'on a écarté — et qu'on puisse revenir dessus. */}
+                                        {editing === it.key ? (
+                                            <button
+                                                className={styles.courseValider}
+                                                onClick={() => validerEdition(it)}
+                                                aria-label="Valider la quantité"
+                                            >
+                                                <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+                                                    <path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </button>
+                                        ) : (
+                                            <>
+                                                <button
+                                                    className={styles.courseAction}
+                                                    onClick={() => ouvrirEdition(it)}
+                                                    aria-label="Modifier la quantité"
+                                                >
+                                                    <svg viewBox="0 0 24 24" fill="none" width="16" height="16" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                                                        <path d="M12 20h9" />
+                                                        <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" />
+                                                    </svg>
+                                                </button>
+                                                <button
+                                                    className={styles.courseAction}
+                                                    onClick={() => toggleDone(it)}
+                                                    aria-label={struck ? 'Remettre dans la liste' : 'Supprimer de la liste'}
+                                                >
+                                                    <svg viewBox="0 0 24 24" fill="none" width="16" height="16" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                                                        <path d="M4 7h16M9.5 7V5.2A1.2 1.2 0 0 1 10.7 4h2.6a1.2 1.2 0 0 1 1.2 1.2V7" />
+                                                        <path d="M6.5 7l.9 12.1A1.5 1.5 0 0 0 8.9 20.5h6.2a1.5 1.5 0 0 0 1.5-1.4L17.5 7" />
+                                                    </svg>
+                                                </button>
+                                            </>
+                                        )}
+
+                                        {/* Un ajout à la main peut partir pour de bon — mais seulement
+                                            une fois barré : trois boutons de front encombraient la ligne,
+                                            et l'ordre « je l'écarte, puis je l'efface » va de soi. */}
+                                        {isManual && struck && editing !== it.key && (
                                             <button
                                                 className={styles.courseDelete}
                                                 onClick={() => removeManual(it.display)}
-                                                aria-label="Supprimer"
+                                                aria-label="Retirer définitivement"
                                             >
                                                 ✕
                                             </button>
