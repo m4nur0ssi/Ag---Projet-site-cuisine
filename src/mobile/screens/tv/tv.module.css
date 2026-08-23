@@ -2818,14 +2818,16 @@
 /* ── Vignette d'ingrédient ───────────────────────────────────────────────
    Le format du rayon : une photo carrée, le chiffre posé dans le coin. Fond
    clair, parce que les photos sont détourées sur blanc — sur le noir de la
-   page, elles traîneraient un halo. */
+   page, elles traîneraient un halo. Gris très clair et non blanc : la moitié
+   des produits (ail, farine, oignon, lait) sont eux-mêmes blancs et se
+   perdaient sur un fond de la même couleur. */
 .courseVignette {
     position: relative;
     flex: 0 0 auto;
     width: 60px;
     height: 60px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.93);
+    background: #e9e9ec;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2839,6 +2841,10 @@
     border-radius: 14px;
     /* Un peu d'air : un produit collé aux bords fait vignette d'inventaire. */
     padding: 5px;
+    /* Les photos portent leur PROPRE fond blanc : posées telles quelles, elles
+       dessinaient un carré blanc au milieu du gris. En multipliant, leur blanc
+       prend la couleur du fond et disparaît — le produit, lui, garde le sien. */
+    mix-blend-mode: multiply;
 }
 
 .courseVignetteEmoji {
