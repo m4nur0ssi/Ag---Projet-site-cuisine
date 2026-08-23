@@ -15,7 +15,7 @@
  */
 
 import { createPortal } from 'react-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './tv.module.css';
 
 const MAGASINS = ['Carrefour', 'Picard', 'Monoprix', 'Leclerc Drive'];
@@ -38,9 +38,6 @@ const USAGE = [
 ];
 
 export default function ExtensionGuide({ onClose }: { onClose: () => void }) {
-    const [monte, setMonte] = useState(false);
-    useEffect(() => setMonte(true), []);
-
     // Échap ferme, comme partout ailleurs.
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -48,8 +45,9 @@ export default function ExtensionGuide({ onClose }: { onClose: () => void }) {
         return () => window.removeEventListener('keydown', onKey);
     }, [onClose]);
 
-    if (!monte) return null;
-
+    // Pas de garde « monté » : ce composant n'est chargé qu'au clic, côté
+    // navigateur uniquement (ssr: false). Le garde ne servait qu'à retarder son
+    // apparition d'un rendu.
     return createPortal(
         <div className={styles.extGuide}>
             <div className={styles.extHead}>

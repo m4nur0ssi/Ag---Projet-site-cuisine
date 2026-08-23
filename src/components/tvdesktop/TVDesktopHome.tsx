@@ -35,6 +35,8 @@ const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { s
 const AuthButton = dynamic(() => import('@/components/AuthButton/AuthButton'), { ssr: false });
 // Visite guidée du site (version desktop) : composant autonome, habillé en ligne de menu.
 const TVTutorial = dynamic(() => import('@/mobile/screens/tv/TVTutorial'), { ssr: false });
+const ExtensionGuide = dynamic(() => import('@/mobile/screens/tv/ExtensionGuide'), { ssr: false });
+import { MAIL_RECETTE } from '@/lib/mail-recette';
 // Partage d'un thème : même bouton que sur l'accueil actuel, même lien /?tag=…
 const ShareButton = dynamic(() => import('@/components/ShareButton/ShareButton'), { ssr: false });
 // Planificateur / Liste de courses : rendus DANS le contenu (la sidebar reste à gauche),
@@ -566,6 +568,7 @@ export default function TVDesktopHome() {
     // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
+    const [guideExtension, setGuideExtension] = useState(false);
     const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris' | 'search' | 'tuto' | 'gouts'>('none');
 
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
@@ -928,6 +931,8 @@ export default function TVDesktopHome() {
                     <NavItem icon={ICONS.home} active={nav === 'accueil'} onClick={goHome}>Accueil</NavItem>
                     <NavItem icon={ICONS.planner} tour="planner" token="s:planner" active={panel === 'planner'} onClick={SHORTCUTS.planner}>Planificateur</NavItem>
                     <NavItem icon={ICONS.cart} tour="shopping" token="s:courses" active={panel === 'courses'} onClick={SHORTCUTS.courses}>Liste de courses</NavItem>
+                    {/* L'assistant magasin : à quoi il sert, comment l'installer. */}
+                    <NavItem icon="M7 3.5h10a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5zM9.5 8h5M9.5 12h5M9.5 16h3" onClick={() => setGuideExtension(true)}>Extension Chrome</NavItem>
                     <NavItem icon={ICONS.heart} tour="favorites" token="s:favoris" active={panel === 'favoris'} onClick={SHORTCUTS.favoris}>Favoris</NavItem>
                     <NavItem icon="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3m10-4h3v1a3 3 0 0 1-3 3" token="s:trophies" active={panel === 'trophies'} onClick={SHORTCUTS.trophies}>Palmarès</NavItem>
                     <NavItem icon="M8 22h8M12 15v7M5 3h14l-1 6a6 6 0 0 1-12 0z" token="s:cave" active={panel === 'cave'} onClick={SHORTCUTS.cave}>Ma cave</NavItem>
@@ -935,6 +940,7 @@ export default function TVDesktopHome() {
                         fournit que l'icône et la ligne de menu. */}
                     <NavItem icon={ICONS.book} token="s:tutoriel" active={panel === 'tuto'} onClick={SHORTCUTS.tutoriel}>Tutoriel</NavItem>
                     <NavItem icon="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" token="s:gouts" active={panel === 'gouts'} onClick={SHORTCUTS.gouts}>Affine mes goûts</NavItem>
+                    <NavItem icon="M4 6.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zM3.4 7.4 12 13l8.6-5.6" onClick={() => { window.location.href = MAIL_RECETTE; }}>Ajouter une recette</NavItem>
                 </nav>
 
                 {/* Bibliothèque : zone de dépôt. On y glisse une catégorie / tendance /
@@ -1171,6 +1177,7 @@ export default function TVDesktopHome() {
             </AnimatePresence>
 
             <Tip id="accueil" />
+            {guideExtension && <ExtensionGuide onClose={() => setGuideExtension(false)} />}
             {shareCard && (
                 <RecipeShareCard
                     recipe={shareCard.recipe}

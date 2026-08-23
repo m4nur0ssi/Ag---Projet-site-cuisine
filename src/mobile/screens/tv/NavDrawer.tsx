@@ -13,7 +13,7 @@ import dynamic from 'next/dynamic';
 import { supabase } from '@/mobile/lib/supabase';
 import { motion, AnimatePresence } from 'framer-motion';
 import { THEMES } from './themes';
-import { CONTACT_EMAIL } from '@/lib/legal';
+import { MAIL_RECETTE } from '@/lib/mail-recette';
 const ExtensionGuide = dynamic(() => import('./ExtensionGuide'), { ssr: false });
 import styles from './tv.module.css';
 
@@ -37,37 +37,6 @@ const ICONS = {
     day: 'M12 7v5l3 1.8M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
     book: 'M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5z',
 };
-
-/**
- * « Ajouter une recette » : ouvre le courrier du téléphone, tout écrit.
- *
- * Le corps est un formulaire en creux — on répond sous chaque intitulé. Sans
- * ces lignes, on reçoit un lien seul et il faut relancer la personne pour les
- * étapes et la cuisson.
- */
-const MAIL_RECETTE = (() => {
-    const sujet = 'Ajouter une recette';
-    const corps = [
-        'Salut Manu,',
-        '',
-        "J'aimerais que tu ajoutes cette recette :",
-        '',
-        'Lien TikTok, lien YouTube ou titre de la recette :',
-        '',
-        '',
-        'Ingrédients :',
-        '',
-        '',
-        'Étapes :',
-        '',
-        '',
-        'Cuisson (température et durée) :',
-        '',
-        '',
-        'Merci !',
-    ].join('\n');
-    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
-})();
 
 /** Retour haptique (ignoré si non supporté). */
 const haptic = (ms = 8) => { try { navigator.vibrate?.(ms); } catch { /* noop */ } };

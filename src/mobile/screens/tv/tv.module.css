@@ -4196,6 +4196,14 @@
 }
 .extDownload:active { transform: scale(0.97); }
 
+/* Grand écran : une colonne, pas une bande de texte de 1 200 px de large. */
+@media (min-width: 760px) {
+    .extScroll { padding-left: 40px; padding-right: 40px; }
+    .extScroll > * { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .extHead { padding-left: 40px; }
+    .extTitle { font-size: 46px; }
+}
+
 .extFacts {
     margin: 0;
     padding-left: 18px;
