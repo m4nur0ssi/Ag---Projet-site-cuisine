@@ -155,6 +155,22 @@ export default function RootLayout({
                                     window.addEventListener('load', function() {
                                         navigator.serviceWorker.register('/sw.js');
                                     });
+                                    /* Le service worker prévient quand il a servi une COPIE
+                                       (réseau injoignable au lancement). On ne reste pas sur
+                                       une page d'il y a trois jours : dès que la connexion
+                                       revient, on recharge. Une seule fois — pas de boucle
+                                       si le réseau vacille. */
+                                    navigator.serviceWorker.addEventListener('message', function (e) {
+                                        if (!e.data || e.data.type !== 'SERVED_FROM_CACHE') return;
+                                        if (window.__copieSignalee) return;
+                                        window.__copieSignalee = true;
+                                        var rafraichir = function () {
+                                            if (!navigator.onLine) return;
+                                            window.removeEventListener('online', rafraichir);
+                                            location.reload();
+                                        };
+                                        window.addEventListener('online', rafraichir);
+                                    });
                                 }
                             }
                         `,

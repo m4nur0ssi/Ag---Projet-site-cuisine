@@ -7,7 +7,12 @@
 // navigations + chunks JS servis cache-first).
 // v6 : « Partager en image » réparé (2026-08-20). Un iPhone déjà venu gardait
 // l'ancien lot de fichiers et continuait d'afficher un aperçu vide.
-const CACHE = 'recettes-magiques-v6';
+// v7 : la PWA revenait parfois sur une VIEILLE page (2026-08-23). Au lancement,
+// la radio de l'iPhone n'est pas encore prête : le premier `fetch` échouait,
+// on servait la copie en cache — un HTML d'il y a plusieurs jours, avec ses
+// anciens fichiers, tous encore là (ils ne sont jamais purgés). D'où une app
+// d'apparence complète, mais périmée. Voir `reseauAvecSecondeChance`.
+const CACHE = 'recettes-magiques-v7';
 const OFFLINE_URL = new URL('offline.html', self.location).toString();
 
 self.addEventListener('install', (event) => {
@@ -44,6 +49,29 @@ self.addEventListener('message', (event) => {
     }
 });
 
+/**
+ * Le réseau, avec une seconde chance.
+ *
+ * Au démarrage d'une PWA, la première requête part souvent avant que la
+ * connexion soit établie et échoue aussitôt. Un demi-instant plus tard, elle
+ * passe. Sans ce rattrapage, cet échec d'une fraction de seconde condamnait
+ * toute la session à la copie en cache.
+ */
+async function reseauAvecSecondeChance(request) {
+    try {
+        return await fetch(request);
+    } catch (_) {
+        await new Promise((r) => setTimeout(r, 500));
+        return await fetch(request);
+    }
+}
+
+/** Prévient les pages ouvertes qu'elles affichent une copie, pas le site. */
+async function signalerCopie() {
+    const clients = await self.clients.matchAll({ type: 'window' });
+    clients.forEach((c) => c.postMessage({ type: 'SERVED_FROM_CACHE' }));
+}
+
 self.addEventListener('fetch', (event) => {
     const { request } = event;
     if (request.method !== 'GET') return;
@@ -56,13 +84,20 @@ self.addEventListener('fetch', (event) => {
     if (request.mode === 'navigate') {
         event.respondWith((async () => {
             try {
-                const net = await fetch(request);
+                const net = await reseauAvecSecondeChance(request);
                 const cache = await caches.open(CACHE);
                 cache.put(request, net.clone());
                 return net;
             } catch (_) {
                 const cached = await caches.match(request);
-                return cached || (await caches.match(OFFLINE_URL)) || Response.error();
+                if (cached) {
+                    // La page saura se recharger dès le retour du réseau : une
+                    // vieille copie dépanne hors ligne, elle ne doit pas devenir
+                    // la version que l'on croit à jour.
+                    event.waitUntil(signalerCopie());
+                    return cached;
+                }
+                return (await caches.match(OFFLINE_URL)) || Response.error();
             }
         })());
         return;
