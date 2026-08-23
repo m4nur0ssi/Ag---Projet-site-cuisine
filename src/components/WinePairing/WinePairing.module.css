@@ -4,8 +4,10 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    height: 54px;
+    /* Hauteur commune aux pilules de la fiche (portions, convertisseur, cave). */
+    height: 44px;
     padding: 0 16px;
+    font-size: 0.92rem;
     border-radius: 100px;
     background: rgba(255, 255, 255, 0.1);
     -webkit-backdrop-filter: blur(25px) saturate(200%);
@@ -28,11 +30,12 @@
 .pill:active { transform: scale(0.97); }
 .glass { font-size: 1.05rem; }
 
-/* Compact = aligné sur le convertisseur mobile (36px) */
+/* « Compact » ne change plus la HAUTEUR : quatre pilules côte à côte doivent
+   s'aligner, compactes ou non. Seul l'espacement se resserre. */
 .compact {
-    height: 36px;
+    height: 44px;
     padding: 0 14px;
-    font-size: 0.85rem;
+    font-size: 0.92rem;
     gap: 6px;
 }
 

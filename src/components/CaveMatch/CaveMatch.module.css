@@ -1,8 +1,9 @@
 .pill {
     display: inline-flex; align-items: center; gap: 6px;
-    height: 36px; padding: 0 14px; border: none; border-radius: 999px;
+    /* Hauteur commune aux pilules de la fiche. */
+    height: 44px; padding: 0 16px; border: none; border-radius: 999px;
     background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12);
-    color: #fff; font-size: 0.85rem; font-weight: 600; white-space: nowrap; cursor: pointer; flex: 0 0 auto;
+    color: #fff; font-size: 0.92rem; font-weight: 600; white-space: nowrap; cursor: pointer; flex: 0 0 auto;
 }
 .pill:active { transform: scale(.95); }
 :global([data-theme='light']) .pill { background: rgba(0,0,0,.05); box-shadow: inset 0 0 0 .5px rgba(0,0,0,.12); color: #111; }

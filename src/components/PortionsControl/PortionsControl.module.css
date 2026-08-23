@@ -82,10 +82,12 @@
     text-transform: none;
 }
 
-/* Compact : même forme/taille que le convertisseur mobile (hauteur 36px) */
+/* « Compact » ne change plus la HAUTEUR — sinon la pilule des portions retombe
+   à 36 px en mobile pendant que ses voisines en font 44. Seul l'intérieur se
+   resserre. */
 .compact {
-    height: 36px;
-    padding: 0 12px;
+    height: 44px;
+    padding: 0 8px;
     gap: 5px;
     background: var(--liquid-bg);
     border: 1px solid var(--liquid-border);
@@ -95,8 +97,8 @@
     margin-right: 0;
 }
 .compact .step {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
 }
 .compact .step svg {
     width: 15px;
