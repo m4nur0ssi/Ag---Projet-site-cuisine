@@ -4003,3 +4003,207 @@
         margin: 22px auto 0;
     }
 }
+
+
+/* ────────────────────────────────────────────────────────────────────────
+   MODE D'EMPLOI DE L'EXTENSION — écran plein, moule TV+
+   ──────────────────────────────────────────────────────────────────────── */
+
+.extGuide {
+    position: fixed;
+    inset: 0;
+    /* Au-dessus du tiroir (26000) d'où on l'ouvre. */
+    z-index: 27000;
+    display: flex;
+    flex-direction: column;
+    background:
+        radial-gradient(120% 60% at 50% -6%, #1c1526 0%, rgba(8, 8, 11, 0) 55%),
+        var(--tv-bg, #08080b);
+}
+
+.extHead {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: calc(env(safe-area-inset-top, 0px) + 14px) 18px 10px;
+}
+
+.extBack {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.14);
+    color: #fff;
+    cursor: pointer;
+}
+.extBack:active { transform: scale(0.92); }
+
+.extKicker {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: rgba(235, 235, 245, 0.45);
+}
+
+.extScroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 20px calc(120px + env(safe-area-inset-bottom, 0px));
+}
+
+.extTitle {
+    margin: 0 0 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(30px, 9vw, 42px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+    color: #fff;
+    transform: skewX(-7deg);
+    transform-origin: left bottom;
+}
+
+.extLead {
+    margin: 0 0 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.45;
+    color: rgba(235, 235, 245, 0.72);
+}
+
+.extStores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 16px;
+}
+
+.extStore {
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(235, 235, 245, 0.85);
+}
+
+/* L'avertissement « ordinateur seulement » : lu avant d'essayer, pas après. */
+.extNote {
+    margin-bottom: 26px;
+    padding: 13px 15px;
+    border-radius: 14px;
+    background: rgba(255, 159, 10, 0.12);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 159, 10, 0.35);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #ffd6a0;
+}
+.extNote strong { color: #fff; }
+
+.extSection {
+    margin: 0 0 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #fff;
+    transform: skewX(-7deg);
+    transform-origin: left bottom;
+}
+
+.extSteps {
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.extStep {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 13px 15px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.09);
+}
+
+.extNum {
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.extStepTexts {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.extStepTitle {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.extStepDetail {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: rgba(235, 235, 245, 0.6);
+}
+
+.extDownload {
+    display: block;
+    margin: 0 0 30px;
+    padding: 15px 0;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+}
+.extDownload:active { transform: scale(0.97); }
+
+.extFacts {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+    color: rgba(235, 235, 245, 0.62);
+}

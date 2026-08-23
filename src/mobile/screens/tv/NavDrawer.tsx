@@ -14,6 +14,7 @@ import { supabase } from '@/mobile/lib/supabase';
 import { motion, AnimatePresence } from 'framer-motion';
 import { THEMES } from './themes';
 import { CONTACT_EMAIL } from '@/lib/legal';
+const ExtensionGuide = dynamic(() => import('./ExtensionGuide'), { ssr: false });
 import styles from './tv.module.css';
 
 // Compte : déplacé du héros vers ici, à droite du titre.
@@ -280,9 +281,13 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
      * et s'arrête net, comme les panneaux de l'App Store. Pendant un glissement,
      * on ne lisse rien : le tiroir doit coller au doigt.
      */
+    const [guideExtension, setGuideExtension] = useState(false);
+
     const spring = { duration: 0.32, ease: [0.32, 0.72, 0, 1] as const };
 
     return (
+        <>
+        {guideExtension && <ExtensionGuide onClose={() => setGuideExtension(false)} />}
         <AnimatePresence>
             {(open || dragging) && (
                 <>
@@ -365,6 +370,13 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                     onClick={() => goAuthed('/tv-courses')}
                                 >
                                     <Ic d={ICONS.cart} /><span className={styles.navRowText}>Liste de courses</span>
+                                </button>
+                                {/* L'assistant magasin : à quoi il sert, et comment s'en
+                                    servir. Sans cet écran, l'extension existait sans que
+                                    personne ne sache qu'elle existait. */}
+                                <button className={styles.navRow} onClick={() => { haptic(8); setGuideExtension(true); }}>
+                                    <Ic d="M7 3.5h10a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5zM9.5 8h5M9.5 12h5M9.5 16h3" />
+                                    <span className={styles.navRowText}>Extension Chrome</span>
                                 </button>
                                 <button
                                     className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
@@ -484,5 +496,6 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                 </>
             )}
         </AnimatePresence>
+        </>
     );
 }
