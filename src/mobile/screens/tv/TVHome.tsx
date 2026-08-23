@@ -1745,14 +1745,23 @@ export default function TVHome() {
     const handleToggleLater = useCallback((r: Recipe) => {
         flash(toggleLater(String(r.id)) ? 'Ajouté' : 'Supprimé');
     }, [flash]);
-    // Partage (feuille native ou copie) + « marquer comme visionné ».
+    /*
+     * « Marquer comme visionné » a quitté le menu des cartes.
+     *
+     * Le bouton n'affichait rien : il ajoutait seulement la recette à
+     * l'historique, qui pèse pour 1 dans les recommandations « Pour toi »
+     * (contre 3 pour un favori). Un intitulé qui promet un suivi visible et ne
+     * montre rien vaut moins que pas de bouton. Le signal continue d'être
+     * enregistré tout seul à l'ouverture d'une fiche : rien n'est perdu.
+     */
+
+    // Partage (feuille native ou copie).
     const shareLink = useCallback(async (url: string, title: string) => {
         try {
             if (navigator.share) await navigator.share({ title, url });
             else { await navigator.clipboard.writeText(url); flash('Lien copié'); }
         } catch { /* annulé */ }
     }, [flash]);
-    const markSeen = useCallback((r: Recipe) => { pushSeen(String(r.id)); flash('Marqué comme visionné'); }, [flash]);
 
     // Thématiques : plus de tuiles illustrées — chaque thème devient une rangée de
     // vraies recettes. Un seul balayage de mockRecipes par thème, mémorisé.
@@ -1998,9 +2007,6 @@ export default function TVHome() {
                                             </button>
                                             <button className={`${styles.menuAction} ${lat ? styles.menuDanger : ''}`} onClick={() => { haptic(12); setMenu(null); handleToggleLater(r); }}>
                                                 {lat ? <MI d="M5 12h14" /> : <MI d="M12 5v14M5 12h14" />}<span>{lat ? 'Retirer de la liste' : 'À faire plus tard'}</span>
-                                            </button>
-                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); markSeen(r); }}>
-                                                <MI d="M3.5 7.5h13a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1zM6.5 13l2.5 2.5L14 10M17.5 4.5h3a1 1 0 0 1 1 1v3" /><span>Marquer comme visionné</span>
                                             </button>
                                             {resume.some((x) => String(x.id) === String(r.id)) && (
                                                 <button className={`${styles.menuAction} ${styles.menuDanger}`} onClick={() => { haptic(8); setMenu(null); clearProgress(String(r.id)); }}>

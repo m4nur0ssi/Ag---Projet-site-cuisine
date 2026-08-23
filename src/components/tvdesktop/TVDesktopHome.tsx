@@ -668,16 +668,14 @@ export default function TVDesktopHome() {
             else { await navigator.clipboard.writeText(url); flash('Lien copié'); }
         } catch { /* annulé */ }
     };
-    // « Marquer comme visionné » : ajoute à l'historique + toast.
-    const markSeen = (r: Recipe) => {
-        try {
-            const raw = JSON.parse(localStorage.getItem('recently-viewed') || '[]');
-            const rest = (Array.isArray(raw) ? raw : []).filter((x: any) => String(x?.id ?? x) !== String(r.id));
-            localStorage.setItem('recently-viewed', JSON.stringify([{ id: r.id }, ...rest].slice(0, 12)));
-            window.dispatchEvent(new Event('tv-seen-change'));
-        } catch { /* noop */ }
-        flash('Marqué comme visionné', true);
-    };
+    /*
+     * « Marquer comme visionné » a quitté le menu des cartes.
+     *
+     * Le bouton n'affichait rien : il ajoutait seulement la recette à
+     * l'historique, qui pèse pour 1 dans les recommandations « Pour toi »
+     * (contre 3 pour un favori). Le signal continue d'être enregistré tout
+     * seul à l'ouverture d'une fiche : rien n'est perdu.
+     */
 
     // ── Données des rangées ──
     const heroRecipes = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image).slice(0, 6), []);
@@ -1132,10 +1130,6 @@ export default function TVDesktopHome() {
                                             ? <CtxIc d="M5 12h14" />
                                             : <CtxIc d="M12 5v14M5 12h14" />}
                                         <span>{inLater ? 'Retirer de la liste' : 'À faire plus tard'}</span>
-                                    </button>
-                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); markSeen(r); }}>
-                                        <CtxIc d="M3.5 7.5h13a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1zM6.5 13l2.5 2.5L14 10M17.5 4.5h3a1 1 0 0 1 1 1v3" />
-                                        <span>Marquer comme visionné</span>
                                     </button>
                                     {resume.some((x) => String(x.id) === String(r.id)) && (
                                         <button className={styles.ctxAction} onClick={() => { setMenu(null); clearProgress(String(r.id)); }}>

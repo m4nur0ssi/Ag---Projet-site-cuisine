@@ -39,7 +39,7 @@ const STEPS: Step[] = [
       hint: 'Touche le titre d’une rangée (le chevron ›) : elle s’ouvre en grille entière.',
       tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,159,10,0.5), transparent 70%)' },
     { kicker: 'Accueil', title: 'L’appui long', art: 'press', accent: '#FFD60A',
-      text: 'Garde le doigt une seconde sur une carte : un menu s’ouvre — Favoris, À faire plus tard, Accéder à la catégorie, Partager, Marquer comme visionné, Voir la recette.',
+      text: 'Garde le doigt une seconde sur une carte : un menu s’ouvre — Favoris, À faire plus tard, Accéder à la catégorie, Partager, Voir la recette.',
       hint: 'Appui long sur n’importe quelle carte — clic droit sur ordinateur.',
       tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,214,10,0.45), transparent 70%)' },
     { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158',
