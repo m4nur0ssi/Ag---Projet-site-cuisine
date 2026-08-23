@@ -19,10 +19,11 @@ import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import {
-    buildConsolidatedItems, doneKeysOf, isItemDone, fmtQty,
+    buildConsolidatedItems, doneKeysOf, isItemDone, fmtQty, prettyQtyUnit,
     parseIngredient, cleanIngredientText, getIngIcon,
     type ConsolItem,
 } from '@/mobile/lib/ingredients';
+import { getIngredientVisual } from '@/mobile/lib/ingredient-utils';
 import { RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides } from '@/lib/rayons';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { haptic } from './TVHome';
@@ -48,6 +49,56 @@ type ListData = Record<string, {
     ingredients: ({ name: string; checked?: boolean } | string)[];
     source?: 'planner' | 'manuel';
 }>;
+
+/**
+ * La vignette d'un ingrédient, comme au supermarché : la vraie photo du produit
+ * quand on l'a (254 en dépôt local), l'emoji sinon — et le chiffre posé dessus
+ * dit combien il en faut.
+ *
+ * Le fond est clair parce que les photos sont détourées sur blanc : sur le noir
+ * de la page, elles auraient un halo.
+ */
+function IngredientVignette({ nom, icone, nombre }: { nom: string; icone: string; nombre: number }) {
+    const photo = useMemo(() => getIngredientVisual(nom), [nom]);
+    // Une photo peut manquer à l'appel : on repasse alors à l'emoji, sans trou.
+    const [rate, setRate] = useState(false);
+    useEffect(() => setRate(false), [photo]);
+
+    return (
+        <span className={styles.courseVignette}>
+            {photo && !rate ? (
+                <img
+                    src={photo}
+                    alt=""
+                    className={styles.courseVignetteImg}
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                    onError={() => setRate(true)}
+                />
+            ) : (
+                <span className={styles.courseVignetteEmoji}>{icone}</span>
+            )}
+            <span className={styles.courseVignetteQty}>{nombre}</span>
+        </span>
+    );
+}
+
+/**
+ * Le chiffre du badge. Une quantité en pièces se compte (4 poivrons) ; une
+ * quantité en grammes ou en litres, non — on affiche alors le nombre de
+ * recettes qui réclament l'ingrédient, l'information utile au rayon.
+ */
+function nombreDeLigne(p: { qty: number | null; unit: string }): number {
+    const enPieces = !p.unit || /^(piece|pièce|pieces|pièces)$/i.test(p.unit);
+    return enPieces && p.qty != null && Number.isInteger(p.qty) && p.qty >= 1 ? p.qty : 1;
+}
+
+function nombreAAfficher(it: ConsolItem): number {
+    const enPieces = !it.unit || /^(piece|pièce|pieces|pièces)$/i.test(it.unit);
+    if (enPieces && it.qty != null && Number.isInteger(it.qty) && it.qty >= 1) return it.qty;
+    return Math.max(1, it.count);
+}
 
 export default function TVCourses({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
@@ -265,6 +316,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                         recipe: decodeHtml(r?.title || ''),
                         image: r?.image as string | undefined,
                         icon: getIngIcon(p.name || raw),
+                        nom: p.name || raw,
+                        nombre: nombreDeLigne(p),
                         text: cleanIngredientText(raw) || raw,
                     };
                 })
@@ -275,7 +328,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     /** Toutes les recettes planifiées, chacune avec ses lignes d'ingrédients. */
     const planRecipes = useMemo(() => {
         const out: { id: string; day: string; meal: string; title: string; image?: string;
-                     lines: { key: string; icon: string; text: string }[] }[] = [];
+                     lines: { key: string; icon: string; nom: string; nombre: number; text: string }[] }[] = [];
         const visit = (day: string) => {
             Object.entries(plan[day] || {}).forEach(([meal, recipe]: [string, any]) => {
                 const withSide = recipe?.side ? [recipe, recipe.side] : [recipe];
@@ -292,6 +345,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                             return {
                                 key: `${day}|${meal}|${rIdx}|${idx}`,
                                 icon: getIngIcon(p.name || raw),
+                                nom: p.name || raw,
+                                nombre: nombreDeLigne(p),
                                 text: cleanIngredientText(raw) || raw,
                             };
                         }),
@@ -444,9 +499,19 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
 
                                         {/* Le texte barre / débarre : « je l'ai déjà ». */}
                                         <button className={styles.courseText} onClick={() => toggleDone(it)}>
-                                            <span className={styles.courseIcon}>{it.icon}</span>
-                                            <span className={styles.courseName}>{it.display}</span>
-                                            {it.count > 1 && <span className={styles.courseCount}>×{it.count}</span>}
+                                            <IngredientVignette nom={it.name} icone={it.icon} nombre={nombreAAfficher(it)} />
+                                            <span className={styles.courseItemTexts}>
+                                                <span className={styles.courseName}>{it.name || it.display}</span>
+                                                {it.qty != null && (
+                                                    <span className={styles.courseItemQty}>
+                                                        {/* Sans unité, « 4 » répéterait le chiffre du badge : on dit
+                                                            en quoi on compte, comme au rayon. */}
+                                                        {it.unit
+                                                            ? prettyQtyUnit(it.qty, it.unit)
+                                                            : `${fmtQty(it.qty)} ${it.qty > 1 ? 'pièces' : 'pièce'}`}
+                                                    </span>
+                                                )}
+                                            </span>
                                         </button>
 
                                         {isManual && (
@@ -512,7 +577,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                                 </svg>
                                             )}
                                         </span>
-                                        <span className={styles.courseIcon}>{l.icon}</span>
+                                        <IngredientVignette nom={l.nom} icone={l.icon} nombre={l.nombre} />
                                         <span className={styles.courseName}>{l.text}</span>
                                     </button>
                                 </div>
