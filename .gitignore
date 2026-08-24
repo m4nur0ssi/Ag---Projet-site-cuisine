@@ -19,6 +19,8 @@ tiktok-bot/latest-recipe.txt
 graphify-out/
 wp-writeback-ids.txt
 
-# Photos générées : elles restent locales tant que la série n'est pas validée.
-# À retirer d'ici le jour où elles partent en production.
-/public/recipes-ia/
+# Photos générées : les vignettes carte partent en production (servies en statique
+# par Vercel, référencées dans mockData). Les grandes (*.webp sans -carte) restent
+# locales — sources non utilisées par le site.
+/public/recipes-ia/*
+!/public/recipes-ia/*-carte.webp
