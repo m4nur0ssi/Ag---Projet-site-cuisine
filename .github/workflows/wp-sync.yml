@@ -162,6 +162,21 @@ jobs:
         continue-on-error: true
 
       # ------------------------------------------------------------------
+      # Génère l'image IA de la NOUVELLE recette (fal.ai + règles de plating
+      # de scripts/generate-recipe-images.js). Uniquement quand un post_id
+      # précis est fourni (webhook publish/update d'une recette), et seulement
+      # si l'image n'existe pas déjà (pas de --force → une mise à jour ne
+      # regénère pas). Le script repointe mockData vers /recipes-ia/<id>-carte.webp.
+      # Non bloquant. Nécessite le secret FAL_KEY (fal.ai/dashboard/keys).
+      # ------------------------------------------------------------------
+      - name: 🎨 Génère l'image IA de la recette
+        if: steps.mode.outputs.post_id != ''
+        run: node scripts/generate-recipe-images.js --ids "${{ steps.mode.outputs.post_id }}"
+        env:
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+        continue-on-error: true
+
+      # ------------------------------------------------------------------
       # Mise à jour du fichier de stats
       # ------------------------------------------------------------------
       - name: 📊 Update sync-stats.json
@@ -191,6 +206,8 @@ jobs:
           git config user.email "m4nu.r0ssi@gmail.com"
 
           git add src/data/mockData.ts src/mobile/data/mockData.ts src/data/restaurants-info.json src/data/sync-stats.json translate-cache.json 2>/dev/null || true
+          # Images IA générées pour les nouvelles recettes (carte + HD).
+          git add public/recipes-ia/*.webp 2>/dev/null || true
 
           if git diff --staged --quiet; then
             echo "✅ Aucun changement détecté, arrêt."
