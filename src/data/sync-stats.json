@@ -1,9 +1,9 @@
 {
-  "lastSync": "2026-08-24T15:10:43Z",
+  "lastSync": "2026-08-24T15:53:38Z",
   "trigger": "repository_dispatch",
   "action": "wp_recipe_updated",
-  "postId": "3483",
+  "postId": "3489",
   "mode": "recent",
   "status": "success",
-  "ts": 1787584243
+  "ts": 1787586818
 }
