@@ -244,6 +244,19 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    /* Un mot long ne doit pas déborder sous l'image opaque (coupure nette). */
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.heroTitleElegant .plain,
+.heroTitleElegant :global(.plain) {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .heroDescription {

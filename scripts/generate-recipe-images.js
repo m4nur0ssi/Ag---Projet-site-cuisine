@@ -358,8 +358,17 @@ const SCENES_SPECIALES = [
      'a loose heap of thin crispy vegetable chips ({T}), wafer-thin translucent rounds in different colours, '
      + 'piled in a bowl and scattered around, light and crisp, not roasted chunks'],
     [/tempura/i,
-     'a pile of light, airy tempura {T}: individual vegetable pieces in a pale crisp batter, golden and delicate, '
-     + 'arranged on paper with a small bowl of dipping sauce, never a bake or crumble'],
+     'a neat arrangement of individual tempura {T}: each separate vegetable piece (a courgette baton, a carrot '
+     + 'stick, a pepper strip, a green bean) coated in its own thin pale lacy tempura batter, distinct and '
+     + 'recognizable, light and crisp, laid out in a row on paper with a small bowl of dipping sauce — the pieces '
+     + 'are clearly separate, never clumped together, never popcorn-like balls, never a bake'],
+    [/focaccia/i,
+     'a thick rectangular focaccia bread of {T} on a baking tray, the surface covered in characteristic finger '
+     + 'dimples pooled with glossy olive oil, scattered with rosemary sprigs, coarse sea salt and a few olives '
+     + 'and cherry tomatoes pressed in, golden airy crumb, cut into a few squares, one lifted'],
+    [/grenailles?|pommes? de terre.*(parmesan|gruy[èe]re|four)|patates? .*r[ôo]ti/i,
+     'a dish of roasted baby potatoes (grenailles) of {T}, halved with crisp golden-brown cut faces, tossed with '
+     + 'melted stringy gruyère and grated parmesan and herbs, some crispy edges, served in a roasting dish'],
     [/rillettes?\b/i,
      'a bowl of {T}, a soft rustic spread/pâté with a rough forked texture, a spreading knife resting on the rim, '
      + 'slices of toasted bread and lemon alongside, no stew and no chunks'],

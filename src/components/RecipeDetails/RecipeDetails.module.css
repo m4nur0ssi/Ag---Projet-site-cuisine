@@ -241,6 +241,21 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    /* La colonne titre est étroite à côté de l'image : sans ça, un mot long
+       (« croustillant », « mayonnaise ») déborde et passe sous l'image opaque,
+       ce qui le coupe net. On garde le titre dans sa colonne. */
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.heroTitleElegant .plain,
+.heroTitleElegant :global(.plain) {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .heroDescription {
