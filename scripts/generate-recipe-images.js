@@ -395,6 +395,10 @@ const SCENES_SPECIALES = [
     [/k[ée]fta|kefta/i,
      'a tagine of {T}: rounded meatballs (vegetarian kefta) nestled in a rich red tomato sauce with eggs cracked '
      + 'and set on top, fresh coriander, the conical tagine lid set aside, seen from above'],
+    [/champis? de la flemme|champignons? farcis|stuffed mushrooms?/i,
+     'a tray of individual stuffed mushroom caps ({T}): whole round mushroom caps each filled with a creamy '
+     + 'ham-and-chive filling, topped with melted golden gratinéed cheese, browned on top, arranged side by side, '
+     + 'fresh chives scattered — clearly distinct stuffed caps, never a bake or a chunky sauté'],
     [/c[ôo]tes? de porc|c[ôo]telettes? de porc|pork chops?/i,
      'several thick bone-in pork chops of {T}, each a clearly recognizable pork chop with the visible rib bone, '
      + 'seared golden-brown on the surface, arranged in a pan/dish with the garlic-herb pan sauce spooned over, '
