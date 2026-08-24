@@ -1,5 +1,6 @@
 'use client';
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
+import { grandePhoto } from '@/lib/recipe-photo';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -905,7 +906,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         <div className={styles.imageCardContainer}>
                             {recipe.image ? (
                                 <Image
-                                    src={recipe.image}
+                                    // La fiche montre UNE photo en grand : elle prend
+                                    // l'exemplaire 1200 px, pas la vignette des cartes.
+                                    src={grandePhoto(recipe.image)}
                                     alt={recipe.title}
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 700px, 800px"

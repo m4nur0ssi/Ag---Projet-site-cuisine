@@ -1,5 +1,6 @@
 'use client';
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
+import { grandePhoto } from '@/lib/recipe-photo';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -533,7 +534,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                         </div>
                         <div className={styles.heroImageColumn}>
                             <div className={styles.imageCardContainer}>
-                                {recipe.image ? <Image src={recipe.image} alt={recipe.title} fill className={styles.imageMain} priority /> : <div className={styles.imagePlaceholderLarge}>🍽️</div>}
+                                {recipe.image ? <Image src={grandePhoto(recipe.image)} alt={recipe.title} fill className={styles.imageMain} priority /> : <div className={styles.imagePlaceholderLarge}>🍽️</div>}
                                 <div className={styles.imageGlassOverlay} />
                                 <div className={styles.flameOverlay}>
                                     <VoteButton recipeId={recipe.id} initialVotes={recipe.votes || 0} />

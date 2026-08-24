@@ -1,5 +1,6 @@
 'use client';
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
+import { grandePhoto } from '@/lib/recipe-photo';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
@@ -895,7 +896,8 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                             <div className={styles.imageCardContainer}>
                                 {recipe.image ? (
                                     <Image
-                                        src={recipe.image}
+                                        // Photo affichée en grand : exemplaire 1200 px.
+                                        src={grandePhoto(recipe.image)}
                                         alt={recipe.title}
                                         fill
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 700px, 800px"

@@ -9,8 +9,16 @@ wp-extract
 wp.zip
 .vercel
 .env*.local
+# `vercel env pull` écrit ici : le fichier contient le jeton GitHub, la clé de
+# service Supabase et le jeton Vercel. Il ne doit jamais partir dans le dépôt.
+.env.vercel
+.env.local.sauvegarde
 tiktok-bot/latest-recipe.txt
 
 .claude/
 graphify-out/
 wp-writeback-ids.txt
+
+# Photos générées : elles restent locales tant que la série n'est pas validée.
+# À retirer d'ici le jour où elles partent en production.
+/public/recipes-ia/
