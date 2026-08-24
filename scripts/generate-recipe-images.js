@@ -288,7 +288,11 @@ function formeDuTitre(titre) {
  * qui REMPLACE entièrement la scène générique. {T} = titre de la recette.
  */
 const SCENES_SPECIALES = [
-    [/cr[èe]me dessert|mousse|pot de cr[èe]me|panna ?cotta|pudding|cr[èe]me chocolat|tiramisu|yaourt|fromage blanc|flan\b/i,
+    [/flan\b|cr[èe]me caramel|cr[èe]me renvers[ée]e/i,
+     'a whole {T}, a silky smooth unmoulded caramel custard turned out onto a plate, glossy amber caramel '
+     + 'running down its sides and pooling around the base, one clean wedge sliced out to show the tender set '
+     + 'custard, no crust and no pastry, a spoon resting nearby'],
+    [/cr[èe]me dessert|mousse|pot de cr[èe]me|panna ?cotta|pudding|cr[èe]me chocolat|tiramisu|yaourt|fromage blanc/i,
      'several individual small glass pots and ramekins of {T}, smooth glossy spoonable surface, '
      + 'one topped with a garnish, a small spoon dipping into one pot, no cutting and no slices, '
      + 'the pots grouped together with the ingredients scattered loosely around'],
@@ -311,6 +315,86 @@ const SCENES_SPECIALES = [
      'a generous pile of golden deep-fried stuffed pastry parcels of {T}, half-moon and triangle shapes, '
      + 'crisp blistered golden crust, one broken open to reveal the spiced minced-meat filling steaming inside, '
      + 'a small bowl of dipping sauce and fresh herbs alongside'],
+    // ── Pâtisserie / formes précises ────────────────────────────────────────
+    [/torta della nonna/i,
+     'a whole Torta della Nonna, a pale golden custard-filled shortcrust tart, its surface entirely covered '
+     + 'with toasted pine nuts and dusted with icing sugar, one wedge cut to show the thick vanilla custard layer'],
+    [/layer cake|g[âa]teau.*[ée]tages?/i,
+     'a tall {T} shown from a slightly raised angle, several sponge layers stacked with cream and fruit between '
+     + 'each, the sides visible, one thick slice removed and laid on its side so the distinct layers show clearly'],
+    [/sp[ée]culoos|mascarpone/i,
+     'a chilled layered {T} scooped from a dish, alternating creamy mascarpone layers and biscuit/speculoos layers '
+     + 'clearly visible in cross-section, red berries on top, a spoonful lifted onto a plate, no baked crust'],
+    [/g[âa]teau roul|roul[ée].*l[ée]opard|swiss roll|b[ûu]che/i,
+     'a rolled sponge cake (Swiss roll) of {T} on a board, several round slices cut and laid flat to reveal the '
+     + 'spiral cross-section of sponge and cream filling, the whole roll behind them'],
+    [/tartelettes?\b/i,
+     'several individual round tartlets of {T} with crisp fluted pastry shells, each neatly filled and topped, '
+     + 'arranged in a loose group, no single large tart and no baking dish'],
+    [/cupcakes?\b/i,
+     'a batch of individual cupcakes of {T} in paper liners, each with a generous swirl of topping, '
+     + 'arranged in a loose group, one unwrapped to show the crumb'],
+    [/feuillet[ée]/i,
+     'several individual golden puff-pastry {T}, flaky layered pastry parcels/twists, crisp and glossy, '
+     + 'piled loosely, one broken open to show the melting filling, no large dish and no cake'],
+    [/phyllo|filo|roul[ée]s? .*[ée]pinard|b[öo]rek aux? [ée]pinard/i,
+     'a pile of crisp golden phyllo rolls (cigars) of {T}, thin flaky pastry rolled around the filling, '
+     + 'one cut across to show the spinach-and-cheese filling inside, sesame scattered, a yoghurt dip alongside'],
+    // ── Pains plats ─────────────────────────────────────────────────────────
+    [/flammekueche|tarte flamb/i,
+     'a very thin rectangular Alsatian flammekueche on baking paper, crisp cracker-thin base topped with white '
+     + 'crème fraîche, thin onion slices and lardons, cut into rectangles, one piece lifted'],
+    [/fougasse/i,
+     'a flat leaf-shaped fougasse bread with the characteristic diagonal cut slits opened into a ladder/leaf '
+     + 'pattern, golden crust brushed with oil and herbs, torn at one end, on a wooden board'],
+    // ── Apéritif / tartines / fritures ──────────────────────────────────────
+    [/\bcrostoni\b|\bcrostini\b|bruschett/i,
+     'several separate slices of toasted crusty bread ({T}), each slice open-face with the topping piled on top, '
+     + 'arranged in a row on a board, clearly individual toasts and not a bake or gratin'],
+    [/\btartines?\b|\btoasts?\b/i,
+     'several open-face {T}: individual slices of toasted bread, each spread and generously topped, arranged in a '
+     + 'row, the toppings fresh and clearly visible, never a baked dish or gratin'],
+    [/\bchips\b/i,
+     'a loose heap of thin crispy vegetable chips ({T}), wafer-thin translucent rounds in different colours, '
+     + 'piled in a bowl and scattered around, light and crisp, not roasted chunks'],
+    [/tempura/i,
+     'a pile of light, airy tempura {T}: individual vegetable pieces in a pale crisp batter, golden and delicate, '
+     + 'arranged on paper with a small bowl of dipping sauce, never a bake or crumble'],
+    [/rillettes?\b/i,
+     'a bowl of {T}, a soft rustic spread/pâté with a rough forked texture, a spreading knife resting on the rim, '
+     + 'slices of toasted bread and lemon alongside, no stew and no chunks'],
+    // ── Salades fraîches / soupes froides ───────────────────────────────────
+    [/taboul|tabboul/i,
+     'a fresh {T} in a shallow bowl, mostly bright green finely chopped parsley and mint with bulgur, diced tomato '
+     + 'and onion, raw and glistening, a wedge of lemon on the side, a cold uncooked herb salad'],
+    [/\bsalade\b/i,
+     'a fresh colourful {T} loosely tossed in a wide shallow bowl, raw crisp ingredients clearly identifiable and '
+     + 'vibrant, glossy dressing, a cold salad — never baked, never in an oven dish'],
+    [/gaspacho.*(concombre|courgette|vert|avocat)|(concombre|courgette).*gaspacho/i,
+     'a chilled bowl of smooth PALE GREEN cucumber gazpacho, cold and creamy green, a swirl on the surface, '
+     + 'a drizzle of olive oil, cubes of white feta and fresh mint leaves scattered on top, clearly a cold green soup'],
+    [/gaspacho|gazpacho/i,
+     'a chilled bowl of cold {T} soup, smooth and served cold with ice implied, a swirl of the soup, a drizzle of '
+     + 'olive oil and a small garnish on top, the colour taken from its vegetables, clearly a cold soup'],
+    // ── Plats salés spécifiques ─────────────────────────────────────────────
+    [/houmous.*(lahm|viande|meat)|bil ?lahm/i,
+     'a wide plate of smooth hummus spread in a swirl, generously topped in the centre with spiced sautéed minced '
+     + 'meat and toasted pine nuts, olive oil and paprika, warm flatbread torn alongside'],
+    [/saumon croustillant|crispy salmon|saumon.*croustill/i,
+     'crispy-skinned salmon fillets, golden lacquered crust on top, flaked open at one corner to show the pink '
+     + 'tender flesh, a swoosh of spicy mayonnaise and sesame/spring onion, on a plate'],
+    [/k[ée]fta|kefta/i,
+     'a tagine of {T}: rounded meatballs (vegetarian kefta) nestled in a rich red tomato sauce with eggs cracked '
+     + 'and set on top, fresh coriander, the conical tagine lid set aside, seen from above'],
+    [/travers\b|spare ?ribs|\bribs\b|gochujang/i,
+     'a pile of sticky glazed {T} ribs, deep-brown lacquered caramelised glaze clinging to the meat, sesame and '
+     + 'sliced spring onion scattered over, one rib pulled slightly aside, on a dark tray'],
+    [/[ée]paule d.?agneau|souris d.?agneau|gigot|agneau.*chef/i,
+     'a slow-roasted lamb shoulder on a serving platter, deeply browned and glistening, so tender the meat is '
+     + 'pulling away from the bone, some pulled apart with two forks, roasting juices and herbs around it'],
+    [/pancakes?\b/i,
+     'a short stack of small round golden pancakes of {T}, one stack cut through to reveal a savoury filling of '
+     + 'ham and melting cheese, arranged on a plate, individual fluffy pancakes and not a single large cake'],
 ];
 
 /** La scène spéciale imposée par le titre, s'il y en a une. */
