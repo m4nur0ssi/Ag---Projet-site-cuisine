@@ -282,6 +282,31 @@ function formeDuTitre(titre) {
 }
 
 /**
+ * Certains plats ne se « coupent » pas : le template par défaut (plat entamé,
+ * part prélevée, pile d'assiettes) transforme une crème dessert en gâteau tranché
+ * et des beignets fourrés en tarte. Ces plats imposent leur propre mise en scène,
+ * qui REMPLACE entièrement la scène générique. {T} = titre de la recette.
+ */
+const SCENES_SPECIALES = [
+    [/cr[èe]me dessert|mousse|pot de cr[èe]me|panna ?cotta|pudding|cr[èe]me chocolat|tiramisu|yaourt|fromage blanc|flan\b/i,
+     'several individual small glass pots and ramekins of {T}, smooth glossy spoonable surface, '
+     + 'one topped with a garnish, a small spoon dipping into one pot, no cutting and no slices, '
+     + 'the pots grouped together with the ingredients scattered loosely around'],
+    [/samboussek|sambousek|samosas?|b[öo]rek|beignets? (de|[àa] la|au|aux) viande|chaussons? [àa] la viande|empanadas?/i,
+     'a generous pile of golden deep-fried stuffed pastry parcels of {T}, half-moon and triangle shapes, '
+     + 'crisp blistered golden crust, one broken open to reveal the spiced minced-meat filling steaming inside, '
+     + 'a small bowl of dipping sauce and fresh herbs alongside'],
+];
+
+/** La scène spéciale imposée par le titre, s'il y en a une. */
+function sceneSpeciale(titre) {
+    for (const [motif, description] of SCENES_SPECIALES) {
+        if (motif.test(titre || '')) return description;
+    }
+    return '';
+}
+
+/**
  * Choisit dans une liste à partir de l'identifiant : stable d'une exécution à
  * l'autre, et deux recettes voisines ne tombent pas sur la même entrée.
  */
@@ -360,6 +385,7 @@ function consigne(recette) {
      * ne se coupe pas — on la déplie autrement, mais toujours vue du dessus.
      */
     const forme = formeDuTitre(recette.title);
+    const speciale = sceneSpeciale(recette.title);
 
     const scene = boisson
         ? [
@@ -372,6 +398,8 @@ function consigne(recette) {
             'halved citrus fruits and fresh herb sprigs on the bar counter.',
             'A bar scene: only glassware, bar tools and fruit.',
         ].join(' ')
+        : speciale
+        ? `Seen from directly above: ${speciale.replace(/\{T\}/g, recette.title)}.`
         : [
             `A dish of ${recette.title} seen from directly above, already cut into,`,
             forme ? `The dish is shaped as: ${forme}.` : '',
