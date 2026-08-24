@@ -292,6 +292,21 @@ const SCENES_SPECIALES = [
      'several individual small glass pots and ramekins of {T}, smooth glossy spoonable surface, '
      + 'one topped with a garnish, a small spoon dipping into one pot, no cutting and no slices, '
      + 'the pots grouped together with the ingredients scattered loosely around'],
+    [/hachis parmentier|\bparmentier\b/i,
+     'a baked {T} in a white oven dish, a smooth mashed-potato crust with fork-drawn ridges browned golden on top, '
+     + 'a generous corner portion scooped out to reveal the layer of rich minced beef underneath, '
+     + 'the scooped serving on a plate nearby'],
+    [/\bcalzones?\b/i,
+     'folded half-moon calzone pizza pockets of {T}, puffed golden baked dough with a crimped sealed edge, '
+     + 'one cut across so the melted cheese and filling spill out and stretch, a little tomato sauce alongside'],
+    [/\bcouronne\b/i,
+     'a large ring-shaped (crown) tart of {T} with a hollow open centre, a golden pastry ring topped all the way '
+     + 'around its circumference with the garnish, seen from directly above so the empty middle is clearly visible, '
+     + 'presented whole on a round wooden board'],
+    [/\baray[eè]s?\b|pita farci|pain pita.*farci/i,
+     'wedges of Lebanese arayes — flat pita bread stuffed with spiced minced meat and pine nuts, '
+     + 'pan-grilled until the bread is crisp and golden, cut into triangles with the meat filling '
+     + 'clearly visible along the cut edge, a small bowl of tzatziki or yoghurt dip and fresh mint alongside'],
     [/samboussek|sambousek|samosas?|b[öo]rek|beignets? (de|[àa] la|au|aux) viande|chaussons? [àa] la viande|empanadas?/i,
      'a generous pile of golden deep-fried stuffed pastry parcels of {T}, half-moon and triangle shapes, '
      + 'crisp blistered golden crust, one broken open to reveal the spiced minced-meat filling steaming inside, '
