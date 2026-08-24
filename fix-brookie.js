@@ -3,8 +3,8 @@ const fetch = require('node-fetch');
 require('dotenv').config({ path: __dirname + '/tiktok-bot/.env' });
 
 async function uploadAndAttach() {
-    const user = process.env.WP_USERNAME || "m4nu";
-    const pass = process.env.WP_PASSWORD || "2TlsWemp!";
+    const user = process.env.WP_USERNAME;
+    const pass = process.env.WP_PASSWORD;
     const wpUrl = 'http://192.168.1.200/wordpress/xmlrpc.php';
     const postId = 3499;
 

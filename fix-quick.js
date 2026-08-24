@@ -3,7 +3,7 @@ const https = require('https');
 const Buffer = require('buffer').Buffer;
 
 const WP_URL = 'http://192.168.1.200/wordpress/wp-json/wp/v2';
-const WP_AUTH = Buffer.from('m4nu:2TlsWemp!').toString('base64');
+const WP_AUTH = Buffer.from(`${process.env.WP_USERNAME}:${process.env.WP_PASSWORD}`).toString('base64');
 const PIXABAY_KEY = '44284898-75df2864d4b8e9106093630f4';
 
 async function fetchPost(slug) {

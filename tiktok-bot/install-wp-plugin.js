@@ -11,7 +11,7 @@ const FormData = require('form-data');
 
 const WP_URL  = 'http://109.221.250.122/wordpress';
 const WP_USER = 'm4nu';
-const WP_PASS = '2TlsWemp!';
+const WP_PASS = process.env.WP_PASSWORD;
 const ZIP_PATH = path.join(__dirname, 'plugin-build', 'lrm-github-sync.zip');
 
 // Token GitHub à configurer après installation (depuis argument CLI)

@@ -6,7 +6,7 @@ const options = {
   path: '/wordpress/wp-json/wp/v2/users/me',
   method: 'GET',
   headers: {
-    'Authorization': 'Basic ' + Buffer.from('m4nu:2TlsWemp!').toString('base64')
+    'Authorization': 'Basic ' + Buffer.from(`${process.env.WP_USERNAME}:${process.env.WP_PASSWORD}`).toString('base64')
   }
 };
 

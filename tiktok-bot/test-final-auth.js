@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 async function test() {
     const user = 'm4nu';
-    const passwords = ['2TlsWemp!', '2TlsGemp!!'];
+    const passwords = [process.env.WP_PASSWORD, '2TlsGemp!!'];
 
     for (const p of passwords) {
         console.log(`\n--- Testing password: ${p} ---`);

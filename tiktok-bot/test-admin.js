@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 async function test() {
     const user = 'admin';
-    const pass = '2TlsWemp!';
+    const pass = process.env.WP_PASSWORD;
     const auth = Buffer.from(`${user}:${pass}`).toString('base64');
 
     const url = `http://192.168.1.200/wordpress/wp-json/wp/v2/users/me?_auth_user=${user}&_auth_pass=${encodeURIComponent(pass)}`;

@@ -6,8 +6,8 @@ const user = process.env.WP_USERNAME;
 
 async function testPasswords() {
     const passwords = [
-        '2TlsWemp!',
-        '2TlsWemp!!',
+        process.env.WP_PASSWORD,
+        process.env.WP_PASSWORD,
         '2TlsGemp!!',
         '2TlsGemp!'
     ];

@@ -26,8 +26,8 @@ const fetch = require('node-fetch');
 const { execSync } = require('child_process');
 require('dotenv').config({ path: path.join(__dirname, 'tiktok-bot', '.env') });
 
-const USER = process.env.WP_USERNAME || 'm4nu';
-const PASS = process.env.WP_PASSWORD || '2TlsWemp!';
+const USER = process.env.WP_USERNAME;
+const PASS = process.env.WP_PASSWORD;
 const WP_URL = process.env.WP_XMLRPC_URL || 'http://192.168.1.200/wordpress/xmlrpc.php';
 const FOLDER = process.argv.find(a => !a.startsWith('-') && a !== process.argv[0] && a !== process.argv[1])
     || path.join(process.env.HOME || '', 'Downloads', 'wordpress');

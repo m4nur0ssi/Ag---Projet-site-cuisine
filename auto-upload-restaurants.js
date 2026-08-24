@@ -34,8 +34,8 @@ const { execFileSync, execSync } = require('child_process');
 const fetch = require('node-fetch');
 require('dotenv').config({ path: path.join(__dirname, 'tiktok-bot', '.env') });
 
-const USER = process.env.WP_USERNAME || 'm4nu';
-const PASS = process.env.WP_PASSWORD || '2TlsWemp!';
+const USER = process.env.WP_USERNAME;
+const PASS = process.env.WP_PASSWORD;
 const WP_URL = process.env.WP_XMLRPC_URL || 'http://192.168.1.200/wordpress/xmlrpc.php';
 const WP_PUBLIC_HOST = process.env.WP_PUBLIC_HOST || '109.221.250.122'; // hôte public servi via image-proxy
 const FOLDER = process.argv.slice(2).find(a => !a.startsWith('-'))

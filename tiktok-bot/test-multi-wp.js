@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const user = 'm4nu';
-const pass = '2TlsWemp!';
+const pass = process.env.WP_PASSWORD;
 const auth = Buffer.from(`${user}:${pass}`).toString('base64');
 
 async function testDomain() {

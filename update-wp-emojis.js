@@ -5,7 +5,7 @@ const http = require('http');
 const WORDPRESS_LOCAL_IP = '192.168.1.200';
 
 const USERNAME = 'm4nu';
-const APP_PASSWORD = '2TlsWemp!'; // Or normal password if Basic Auth plugin allows it
+const APP_PASSWORD = process.env.WP_PASSWORD; // Or normal password if Basic Auth plugin allows it
 
 const emojiMap = JSON.parse(fs.readFileSync('ingredient-icons.json', 'utf8'));
 

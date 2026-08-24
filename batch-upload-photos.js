@@ -2,8 +2,8 @@ const fs = require('fs');
 const fetch = require('node-fetch');
 require('dotenv').config({ path: __dirname + '/tiktok-bot/.env' });
 
-const user = process.env.WP_USERNAME || "m4nu";
-const pass = process.env.WP_PASSWORD || "2TlsWemp!";
+const user = process.env.WP_USERNAME;
+const pass = process.env.WP_PASSWORD;
 const wpUrl = 'http://192.168.1.200/wordpress/xmlrpc.php';
 const brain = '/Users/manu/.gemini/antigravity/brain/32d2ade6-c907-4fd6-b997-917a7b6820de';
 

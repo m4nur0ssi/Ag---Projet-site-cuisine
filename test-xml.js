@@ -7,7 +7,7 @@ async function test() {
       <params>
           <param><value><int>1</int></value></param>
           <param><value><string>m4nu</string></value></param>
-          <param><value><string>2TlsWemp!</string></value></param>
+          <param><value><string>${process.env.WP_PASSWORD}</string></value></param>
           <param><value>
               <struct>
                   <member><name>post_title</name><value><string>Test & test</string></value></member>

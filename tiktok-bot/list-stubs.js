@@ -1,7 +1,7 @@
 
 const fetch = require('node-fetch');
 const user = 'm4nu';
-const pass = '2TlsWemp!';
+const pass = process.env.WP_PASSWORD;
 const wpUrl = 'http://109.221.250.122/wordpress/xmlrpc.php';
 
 async function listStubs() {

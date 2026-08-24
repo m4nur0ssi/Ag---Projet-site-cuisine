@@ -4,8 +4,8 @@ const fetch = require('node-fetch');
 
 async function listDraftsXMLRPC() {
     const wpUrl = (process.env.WP_URL || 'http://109.221.250.122/wordpress').replace(/\/$/, '') + '/xmlrpc.php';
-    const user = process.env.WP_USERNAME || 'm4nu';
-    const pass = process.env.WP_PASSWORD || '2TlsWemp!';
+    const user = process.env.WP_USERNAME;
+    const pass = process.env.WP_PASSWORD;
     const encoding = '<?xml version="1.0" encoding="UTF-8"?>';
 
     console.log(`🔍 Interrogation via XML-RPC: ${wpUrl}...`);

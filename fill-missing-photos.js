@@ -17,8 +17,8 @@ require('dotenv').config({ path: __dirname + '/tiktok-bot/.env' });
 
 const { generateImageWithGemini } = require('./tiktok-bot/photo-search');
 
-const WP_USER = process.env.WP_USERNAME || 'm4nu';
-const WP_PASS = process.env.WP_PASSWORD || '2TlsWemp!';
+const WP_USER = process.env.WP_USERNAME;
+const WP_PASS = process.env.WP_PASSWORD;
 const WP_LOCAL = 'http://192.168.1.200/wordpress';
 const WP_XMLRPC = `${WP_LOCAL}/xmlrpc.php`;
 
