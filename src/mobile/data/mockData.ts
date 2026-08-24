@@ -6000,7 +6000,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7205",
         "title": "Côtes de porc étouffées à l'ail et aux herbes",
         "description": "Ces côtes de porc étouffées à l'ail et aux herbes sont juteuses, saisies à la poêle et mijotées dans une riche sauce au beurre, à l'ail et aux herbes fraîches jusqu'à ce qu'elles soient parfaitement tendres. Servies avec des pommes de terre nouvel...",
-        "image": "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F08%2Frecipe_7205_1787238765583.jpg&v=1787246060000",
+        "image": "/recipes-ia/7205-carte.webp",
         "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,

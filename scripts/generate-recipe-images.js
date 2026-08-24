@@ -395,6 +395,10 @@ const SCENES_SPECIALES = [
     [/k[ée]fta|kefta/i,
      'a tagine of {T}: rounded meatballs (vegetarian kefta) nestled in a rich red tomato sauce with eggs cracked '
      + 'and set on top, fresh coriander, the conical tagine lid set aside, seen from above'],
+    [/c[ôo]tes? de porc|c[ôo]telettes? de porc|pork chops?/i,
+     'several thick bone-in pork chops of {T}, each a clearly recognizable pork chop with the visible rib bone, '
+     + 'seared golden-brown on the surface, arranged in a pan/dish with the garlic-herb pan sauce spooned over, '
+     + 'fresh herbs on top — distinct whole chops, never shredded or diced meat'],
     [/travers\b|spare ?ribs|\bribs\b|gochujang/i,
      'a pile of sticky glazed {T} ribs, deep-brown lacquered caramelised glaze clinging to the meat, sesame and '
      + 'sliced spring onion scattered over, one rib pulled slightly aside, on a dark tray'],
