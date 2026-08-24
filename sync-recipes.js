@@ -286,6 +286,13 @@ function extractRecipeData(post) {
                 const idx = Math.min(Math.max(1, rInfo.cover || 1), rInfo.photos.length) - 1;
                 return rInfo.photos[idx];
             }
+            // Photo générée (fal.ai) présente dans le dépôt → prioritaire et durable :
+            // servie en statique par Vercel, elle ne dépend ni du NAS ni de l'image à la une
+            // WP (qui peut changer ou être supprimée). Sinon la synchro écraserait le pointeur.
+            // Voir generate-recipe-images.js (--relier).
+            if (fs.existsSync(path.join(__dirname, 'public', 'recipes-ia', `${post.id}-carte.webp`))) {
+                return `/recipes-ia/${post.id}-carte.webp`;
+            }
             return post._embedded?.['wp:featuredmedia']?.[0]?.source_url
                 ? `/api/image-proxy?url=${encodeURIComponent(post._embedded['wp:featuredmedia'][0].source_url.replace(WORDPRESS_LOCAL_IP, WORDPRESS_PUBLIC_IP))}&v=${new Date(post.modified).getTime()}`
                 : "/images/recipe-placeholder.svg";
