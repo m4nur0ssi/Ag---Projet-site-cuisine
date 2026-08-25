@@ -453,8 +453,10 @@ const SCENES_SPECIALES = [
      + 'cream inside, golden and soft'],
     // ── Fritures / roulés / bricks ──────────────────────────────────────────
     [/\bnems?\b|rouleaux de printemps|spring rolls?|rouleaux imp[ée]riaux/i,
-     'a pile of crisp golden fried Vietnamese nems (spring rolls) of {T}, tight cylindrical rolls, deep-fried crunchy, '
-     + 'one cut across to show the filling, fresh lettuce and herbs and a dipping sauce alongside'],
+     'a generous mounded pile of deep-fried Vietnamese nems (fried spring rolls) of {T} stacked like a pyramid on a '
+     + 'white plate, each a thick finger-length roll with a deep golden-brown BLISTERED bubbly crackly fried wrapper '
+     + '(clearly deep-fried pastry rolls, NOT pasta and NOT smooth tubes), one broken open to show the savoury '
+     + 'filling, a small bowl of dipping sauce and fresh herbs and lettuce leaves alongside'],
     [/\bbrick\b|bricks?\b|\bb[öo]rek\b/i,
      'crisp golden fried brick pastry parcels of {T}, thin shatteringly-crisp filo triangles/cigars, one broken open '
      + 'to reveal the filling, a lemon wedge and dip alongside — never a stew or a bowl of rice'],
