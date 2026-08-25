@@ -783,8 +783,9 @@ function lireRecettes() {
 
 // ────────────────────────────────────────────────────────────────────────────
 // Référence VIDÉO : au lieu de deviner le plat depuis le titre, on regarde la
-// vidéo TikTok de la recette (frames de fin = plat fini), on la décrit via Groq
-// vision, et on injecte cette description dans le prompt. Active par --video.
+// vidéo TikTok de la recette (frames de l'accroche puis de la fin, là où le plat
+// fini se montre), on la décrit via la vision, et on injecte cette description
+// dans le prompt. Active par --video.
 // ────────────────────────────────────────────────────────────────────────────
 const { execSync } = require('child_process');
 const os = require('os');
@@ -798,7 +799,7 @@ function videoIdDe(recette) {
     return m ? m[1] : null;
 }
 
-/** Télécharge la vidéo + extrait quelques frames (début + fin), réduites à 512px. */
+/** Télécharge la vidéo + extrait des frames (4 premières secondes, puis fin), réduites à 448px. */
 function framesDeLaVideo(id, dossier) {
     const env = { ...process.env, PATH: `${BIN}:${process.env.PATH}` };
     const mp4 = path.join(dossier, 'v.mp4');
@@ -807,14 +808,21 @@ function framesDeLaVideo(id, dossier) {
     const dur = parseFloat(execSync(
         `ffprobe -v error -show_entries format=duration -of csv=p=0 ${JSON.stringify(mp4)}`,
         { env }).toString().trim()) || 10;
-    // Le plat fini est presque toujours dans le dernier quart ; on prend aussi
-    // une frame du tout début (parfois un plan du plat avant la recette).
-    // Plusieurs frames, FIN d'abord : le plat fini apparaît à des moments variés
-    // (parfois la toute fin, parfois avant l'outro). On les essaie dans l'ordre et
-    // on garde la 1re que la vision reconnaît comme plat fini (voir decrireFal).
+    /*
+     * Les QUATRE PREMIÈRES SECONDES d'abord, puis la fin.
+     *
+     * On ne regardait que le dernier tiers. Or l'accroche TikTok ouvre presque
+     * toujours sur le plat fini, tandis que la fin part souvent ailleurs : le
+     * kebab adana terminait sur sa salade d'accompagnement et sa sauce yaourt,
+     * d'où des galettes de viande hachée à la place des brochettes ; les smashed
+     * potatoes montraient leur assiette dès la première seconde. Les frames du
+     * début passent donc en tête. Quand la vidéo commence sur des ingrédients
+     * crus ou un visage, la vision répond NONE et on retombe sur la fin.
+     */
     const temps = [
+        0.4, 1.3, 2.4, 3.6,
         Math.max(0, dur - 0.3), dur * 0.96, dur * 0.90, dur * 0.83, dur * 0.72, dur * 0.55,
-    ];
+    ].filter((t) => t < dur);
     const frames = [];
     temps.forEach((t, i) => {
         const out = path.join(dossier, `f${i}.jpg`);
@@ -832,7 +840,7 @@ async function decrirePlat(recette, frames) {
     if (!process.env.GROQ_API_KEY || !frames.length) return null;
     const contenu = [{
         type: 'text',
-        text: `These are frames from the END of a cooking video for a recipe titled "${recette.title}". `
+        text: `These are frames from the opening and the end of a cooking video for a recipe titled "${recette.title}". `
             + `Describe ONLY the finished, plated dish as it should look for an editorial food photo: `
             + `its exact form/shape, colours, the key visible components, how it is plated and the vessel/plate. `
             + `Answer directly with one or two concise English sentences and nothing else — no reasoning, no preamble. `
