@@ -765,10 +765,12 @@ function framesDeLaVideo(id, dossier) {
         { env }).toString().trim()) || 10;
     // Le plat fini est presque toujours dans le dernier quart ; on prend aussi
     // une frame du tout début (parfois un plan du plat avant la recette).
-    // 1 frame (à ~90 % de la vidéo = plat fini montré, avant l'outro) : Groq free
-    // tier plafonne à 8000 tokens/min et 2 images (~6400) faisaient tomber en 429
-    // en rafale. Une seule image (~1800 tokens) passe largement.
-    const temps = [dur * 0.90];
+    // Plusieurs frames, FIN d'abord : le plat fini apparaît à des moments variés
+    // (parfois la toute fin, parfois avant l'outro). On les essaie dans l'ordre et
+    // on garde la 1re que la vision reconnaît comme plat fini (voir decrireFal).
+    const temps = [
+        Math.max(0, dur - 0.3), dur * 0.96, dur * 0.90, dur * 0.83, dur * 0.72, dur * 0.55,
+    ];
     const frames = [];
     temps.forEach((t, i) => {
         const out = path.join(dossier, `f${i}.jpg`);
@@ -846,30 +848,32 @@ async function decrirePlat(recette, frames) {
  */
 async function decrireFal(recette, frames) {
     if (!process.env.FAL_KEY || !frames.length) return null;
-    const data = 'data:image/jpeg;base64,' + fs.readFileSync(frames[0]).toString('base64');
-    const prompt = `This is a frame from the END of a cooking video for a recipe titled "${recette.title}". `
-        + `Describe ONLY the finished, plated dish for an editorial food photo: its exact form/shape, colours, `
-        + `the key visible components, how it is plated and the vessel/plate. One or two concise English sentences. `
-        + `Do NOT mention camera, background, hands, on-screen text or people. If no finished dish is visible, reply exactly: NONE`;
-    const c = new AbortController();
-    const t = setTimeout(() => c.abort(), 60000);
-    try {
-        const rep = await fetch('https://fal.run/fal-ai/any-llm/vision', {
-            method: 'POST',
-            headers: { authorization: `Key ${process.env.FAL_KEY}`, 'content-type': 'application/json' },
-            body: JSON.stringify({ prompt, image_url: data, model: 'google/gemini-flash-1.5' }),
-            signal: c.signal,
-        });
-        if (!rep.ok) return null;
-        const d = await rep.json();
-        let txt = (d?.output || '').replace(/\s+/g, ' ').trim();
-        if (!txt || /^none\b/i.test(txt) || txt.length < 15) return null;
-        return txt.slice(0, 500);
-    } catch {
-        return null;
-    } finally {
-        clearTimeout(t);
+    const prompt = `This is a still frame from a cooking video for a recipe titled "${recette.title}". `
+        + `If it shows the FINISHED, plated dish, describe ONLY that dish for an editorial food photo: its exact `
+        + `form/shape, colours, the key visible components, how it is plated and the vessel/plate — one or two concise `
+        + `English sentences, no mention of camera, background, hands, on-screen text or people. `
+        + `If the frame does NOT clearly show the finished plated dish (e.g. mid-cooking, raw ingredients, a person, `
+        + `just text), reply exactly: NONE`;
+    // On essaie les frames dans l'ordre (fin d'abord) et on garde la 1re reconnue.
+    for (const f of frames) {
+        const data = 'data:image/jpeg;base64,' + fs.readFileSync(f).toString('base64');
+        const c = new AbortController();
+        const t = setTimeout(() => c.abort(), 60000);
+        try {
+            const rep = await fetch('https://fal.run/fal-ai/any-llm/vision', {
+                method: 'POST',
+                headers: { authorization: `Key ${process.env.FAL_KEY}`, 'content-type': 'application/json' },
+                body: JSON.stringify({ prompt, image_url: data, model: 'google/gemini-flash-1.5' }),
+                signal: c.signal,
+            });
+            if (rep.ok) {
+                const d = await rep.json();
+                const txt = (d?.output || '').replace(/\s+/g, ' ').trim();
+                if (txt && !/^none\b/i.test(txt) && txt.length >= 15) return txt.slice(0, 500);
+            }
+        } catch { /* frame suivante */ } finally { clearTimeout(t); }
     }
+    return null;
 }
 
 /** Regarde la vidéo et renvoie une description du plat, ou null si impossible. */
