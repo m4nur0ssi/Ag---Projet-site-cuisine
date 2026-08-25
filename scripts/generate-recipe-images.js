@@ -858,27 +858,32 @@ function sauvegarderAncienne(recette) {
 }
 
 async function genererUne(recette, descPlat) {
-    const rep = await fetch(`https://fal.run/${MODELE}`, {
-        method: 'POST',
-        headers: {
-            authorization: `Key ${process.env.FAL_KEY}`,
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            prompt: consigne(recette, descPlat),
-            // « ultra » se pilote par ratio ; les autres modèles par un gabarit
-            // nommé. Portrait 3:4 : le format tient aussi bien sur une carte
-            // carrée que sur l'affiche verticale du héros.
-            ...(MODELE.includes('ultra')
-                ? { aspect_ratio: '3:4' }
-                : { image_size: 'portrait_4_3' }),
-            num_images: 1,
-            enable_safety_checker: true,
-        }),
+    const corps = JSON.stringify({
+        prompt: consigne(recette, descPlat),
+        // « ultra » se pilote par ratio ; les autres modèles par un gabarit
+        // nommé. Portrait 3:4 : le format tient aussi bien sur une carte
+        // carrée que sur l'affiche verticale du héros.
+        ...(MODELE.includes('ultra')
+            ? { aspect_ratio: '3:4' }
+            : { image_size: 'portrait_4_3' }),
+        num_images: 1,
+        enable_safety_checker: true,
     });
-    if (!rep.ok) {
-        const detail = (await rep.text()).slice(0, 200);
-        throw new Error(`API ${rep.status} — ${detail}`);
+    // fal renvoie par intermittence « User is locked. Reason: TOP_UP » et 429
+    // même quand le compte a du crédit (propagation incohérente côté fal) : on
+    // réessaie plusieurs fois avant d'abandonner.
+    let rep, detail = '';
+    for (let essai = 1; essai <= 6; essai++) {
+        rep = await fetch(`https://fal.run/${MODELE}`, {
+            method: 'POST',
+            headers: { authorization: `Key ${process.env.FAL_KEY}`, 'content-type': 'application/json' },
+            body: corps,
+        });
+        if (rep.ok) break;
+        detail = (await rep.text()).slice(0, 200);
+        const transitoire = rep.status === 429 || /TOP_UP|locked/i.test(detail);
+        if (!transitoire || essai === 6) throw new Error(`API ${rep.status} — ${detail}`);
+        await new Promise((res) => setTimeout(res, 2500 * essai));
     }
     const data = await rep.json();
     // fal ne renvoie pas l'image : il renvoie son adresse, à aller chercher.
