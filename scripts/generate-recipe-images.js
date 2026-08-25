@@ -313,6 +313,38 @@ const SCENES_SPECIALES = [
      + 'ladyfinger biscuits alternating with thick pale mascarpone cream, the surface completely and evenly dusted '
      + 'with dark cocoa powder unless the ingredients call for another topping, one square portion lifted out onto '
      + 'a plate so the layers show along the cut edge — always visibly a tiramisu, a full dish and never small pots'],
+    [/king fusion|mc ?flurry/i,
+     'a clear plastic cup of {T} standing squarely on the table, filled to the brim with thick pale soft-serve '
+     + 'ice cream, a dark chocolate-hazelnut spread swirled over the top and running down the inside of the cup, '
+     + 'crunchy chocolate crisped pearls scattered over it, a long spoon planted in the middle — the cup resting '
+     + 'flat on the surface, never floating or tilted in the air'],
+    [/boulettes? de poisson/i,
+     'a wide shallow pan of {T}: pale golden fish balls simmering in a bright red tomato sauce, strips of yellow '
+     + 'preserved lemon peel and whole dark purple olives tucked between them, chopped coriander and parsley '
+     + 'scattered over, a serving spooned onto a plate of plain white rice beside the pan'],
+    /*
+     * La ligne des ingrédients s'arrête au septième : le lait de coco du
+     * cabillaud arrivait en huitième position et la sauce sortait claire. On la
+     * décrit donc dans la scène.
+     */
+    [/(?:cabillaud|poisson|colin|lieu|crevettes?).*lait de coco|lait de coco.*(?:cabillaud|poisson|colin|lieu)/i,
+     'pieces of white fish in a wide pan of {T}, bathed in a thick creamy pale coconut sauce — opaque and ivory, '
+     + 'clinging to the fish rather than running clear — flecked with red paprika and chopped coriander, '
+     + 'a portion served over white rice on a plate beside the pan'],
+    [/cabillaud|filets? de morue|dos de morue/i,
+     'thick white flaky {T} fillets as the only protein — no prawns, no shrimp, no shellfish anywhere — plated '
+     + 'with their sauce spooned over and around them, the flesh just cooked and separating into large moist '
+     + 'flakes where a fork has been pressed in, the accompaniments the recipe calls for arranged alongside'],
+    [/ktipiti|htipiti|tirokafteri/i,
+     'a shallow bowl of {T}: a thick creamy dip of roasted red peppers blended with crumbled white feta, its '
+     + 'colour a soft salmon pink flecked with red pepper, swirled with the back of a spoon into ridges holding '
+     + 'a pool of olive oil, extra crumbled feta and chopped chives on top, warm pita wedges alongside — '
+     + 'a pepper and feta dip, absolutely no prawns and no seafood'],
+    [/papillote/i,
+     'an opened foil {T} parcel lying flat on a wooden board, its edges folded up into a shallow tray: pale '
+     + 'poached white fish fillets, just cooked and never browned or grilled, resting among sliced courgette, '
+     + 'halved red and yellow cherry tomatoes and thin rings of spring onion, the cooking juices pooled in the '
+     + 'foil, and a thick spoonful of pale garlic aioli set in one corner of the parcel'],
     [/tarte normande/i,
      'a whole {T}: an apple custard tart, thin apple slices arranged in overlapping circles over a set golden '
      + 'custard in a buttery pastry shell, the top caramelised — burnished amber and glossy, the apple edges '
@@ -356,7 +388,8 @@ const SCENES_SPECIALES = [
     [/cr[èe]mes? dessert|\bmousse\b|pot de cr[èe]me|panna ?cotta|pudding|cr[èe]me chocolat|tiramisu|yaourt|fromage blanc/i,
      'several individual small glass pots and ramekins of {T}, smooth glossy spoonable surface, '
      + 'one topped with a garnish, a small spoon dipping into one pot, no cutting and no slices, '
-     + 'the pots grouped together with the ingredients scattered loosely around'],
+     + 'the pots grouped together and all standing flat on the surface — never floating or tipped in mid-air — '
+     + 'with the ingredients scattered loosely around'],
     [/hachis parmentier|\bparmentier\b/i,
      'a baked {T} in a white oven dish, a smooth mashed-potato crust with fork-drawn ridges browned golden on top, '
      + 'a generous corner portion scooped out to reveal the layer of rich minced beef underneath, '
