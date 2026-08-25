@@ -292,7 +292,7 @@ const SCENES_SPECIALES = [
      'a whole {T}, a silky smooth unmoulded caramel custard turned out onto a plate, glossy amber caramel '
      + 'running down its sides and pooling around the base, one clean wedge sliced out to show the tender set '
      + 'custard, no crust and no pastry, a spoon resting nearby'],
-    [/cr[èe]me dessert|mousse|pot de cr[èe]me|panna ?cotta|pudding|cr[èe]me chocolat|tiramisu|yaourt|fromage blanc/i,
+    [/cr[èe]mes? dessert|\bmousse\b|pot de cr[èe]me|panna ?cotta|pudding|cr[èe]me chocolat|tiramisu|yaourt|fromage blanc/i,
      'several individual small glass pots and ramekins of {T}, smooth glossy spoonable surface, '
      + 'one topped with a garnish, a small spoon dipping into one pot, no cutting and no slices, '
      + 'the pots grouped together with the ingredients scattered loosely around'],
@@ -409,9 +409,136 @@ const SCENES_SPECIALES = [
     [/[ée]paule d.?agneau|souris d.?agneau|gigot|agneau.*chef/i,
      'a slow-roasted lamb shoulder on a serving platter, deeply browned and glistening, so tender the meat is '
      + 'pulling away from the bone, some pulled apart with two forks, roasting juices and herbs around it'],
-    [/pancakes?\b/i,
-     'a short stack of small round golden pancakes of {T}, one stack cut through to reveal a savoury filling of '
+    [/pancakes?.*(jambon|fromage|ham|cheese)|(jambon|fromage).*pancakes?/i,
+     'a short stack of small round golden savoury pancakes of {T}, one stack cut through to reveal a filling of '
      + 'ham and melting cheese, arranged on a plate, individual fluffy pancakes and not a single large cake'],
+    [/pancakes?\b/i,
+     'a tall stack of round fluffy American pancakes of {T}, golden and soft, drizzled with syrup, a knob of butter '
+     + 'melting on top and fresh berries around, a sweet breakfast stack — never a single large cake'],
+    // ── Soupes / veloutés (bols, jamais gratins) ────────────────────────────
+    [/\bsoupe\b|velout[ée]|potage|\bbisque\b|\bpho\b|minestrone/i,
+     'a bowl of {T}, clearly a soup — liquid broth or smooth pureed soup filling a deep bowl, a swirl of cream and '
+     + 'a garnish on top, a spoon resting in it, steam implied, served in a bowl and never baked in a dish'],
+    // ── Glaces / sorbets (boules en coupe) ──────────────────────────────────
+    [/sorbet|\bglace\b|granit[ée]|cr[èe]me glac/i,
+     'rounded scoops of {T} sorbet/ice cream in a chilled coupe glass or bowl, smooth frozen balls, slightly melting, '
+     + 'a few pieces of the flavouring fruit alongside, clearly a cold frozen dessert and never a baked custard'],
+    // ── Pâtisseries à forme précise ─────────────────────────────────────────
+    [/cr[êe]pes?\b/i,
+     'a stack of thin flat French crêpes of {T}, very thin pale golden pancakes folded into quarters or loosely '
+     + 'rolled, one folded triangle in front, a light dusting or filling visible, never a thick soufflé or bake'],
+    [/cannel[ée]s?\b/i,
+     'several individual Bordeaux cannelés of {T}, small fluted cylindrical cakes with a dark caramelised mahogany '
+     + 'crust and pale custardy interior, arranged in a group, one cut to show the soft inside'],
+    [/paris-?brest/i,
+     'a Paris-Brest of {T}: a ring of choux pastry split horizontally and filled with piped praline cream, the top '
+     + 'scattered with flaked almonds and dusted with icing sugar, one portion cut'],
+    [/g[âa]teau.*mousse|mousse.*g[âa]teau/i,
+     'a tall sliceable {T} mousse cake on a plate, a smooth set chocolate mousse layer on a thin base, one clean '
+     + 'wedge cut and lifted to show the airy mousse texture, glossy top — a cake, not pots'],
+    [/\bfraisier\b/i,
+     'a Fraisier cake of {T}: a layered sponge-and-crème-mousseline cake with halved strawberries lined up cut-side '
+     + 'out all around the visible sides, a smooth top, one slice removed to show the neat layers'],
+    [/bomboloni|beignets? fourr[ée]s?|malasada/i,
+     'a pile of round Italian bomboloni of {T}, golden deep-fried sugar-coated doughnuts, one cut open to show the '
+     + 'cream/custard filling oozing, dusted with sugar'],
+    [/bouch[ée]es? glac|glac[ée]es?\b/i,
+     'small individual frozen {T} bites on a chilled plate, little frozen bonbons/squares with a chocolate coating, '
+     + 'one bitten to show the frozen layers, frost implied — a cold frozen treat, never a baked cake'],
+    [/dans des citrons|cr[èe]me.*citron.*citron|citrons? givr/i,
+     'hollowed-out lemon halves filled with smooth lemon cream, arranged on a plate with mint, the fruit shells used '
+     + 'as cups — clearly citrus filled with cream, never a bake'],
+    [/bambas?\b/i,
+     'a plate of Portuguese bambas de nata: round sugar-dusted fried cream buns, one split to show the pale custard '
+     + 'cream inside, golden and soft'],
+    // ── Fritures / roulés / bricks ──────────────────────────────────────────
+    [/\bnems?\b|rouleaux de printemps|spring rolls?|rouleaux imp[ée]riaux/i,
+     'a pile of crisp golden fried Vietnamese nems (spring rolls) of {T}, tight cylindrical rolls, deep-fried crunchy, '
+     + 'one cut across to show the filling, fresh lettuce and herbs and a dipping sauce alongside'],
+    [/\bbrick\b|bricks?\b|\bb[öo]rek\b/i,
+     'crisp golden fried brick pastry parcels of {T}, thin shatteringly-crisp filo triangles/cigars, one broken open '
+     + 'to reveal the filling, a lemon wedge and dip alongside — never a stew or a bowl of rice'],
+    [/frites? d.?avocat|avocado fries/i,
+     'a pile of avocado fries of {T}: wedges of avocado in a crisp golden breadcrumb coating, one broken to show the '
+     + 'creamy green avocado inside, a dip alongside — never potato fries'],
+    [/r[öo]sti|rosti/i,
+     'a golden crisp grated-potato rösti of {T}, a flat round pan-fried potato cake with lacy crisp edges, cut into '
+     + 'wedges, the topping (smoked salmon and cream) laid over it'],
+    [/bao\b|bao buns?/i,
+     'soft white steamed bao buns of {T}, pillowy folded white steamed buns (not golden or baked), each holding a '
+     + 'glazed filling, arranged on parchment in a steamer basket, one open to show the filling'],
+    [/\bchoux\b|profiterole|[ée]clair/i,
+     'several individual round choux pastry puffs of {T}, light golden hollow puffs filled with cream, some topped '
+     + 'with caramel or icing, one cut open to show the cream — round cream puffs, never a flan or slab'],
+    // ── Sushi / makis ───────────────────────────────────────────────────────
+    [/makis?\b|sushi|maki\b/i,
+     'neat rounds of maki sushi of {T}, cylindrical rolls sliced into rounds standing cut-side up to show the rice '
+     + 'and filling spiral, arranged in a row with soy sauce, ginger and wasabi alongside'],
+    // ── Desserts régionaux / techniques ─────────────────────────────────────
+    [/li[ée]geois/i,
+     'a tall glass of {T} liégeois: layers of cream/ice and sauce in a clear glass topped with a swirl of whipped '
+     + 'cream, seen straight-on, clearly a layered dessert in a glass'],
+    [/duchesse/i,
+     'a tray of pommes duchesse of {T}: individual piped rosettes/swirls of mashed potato baked golden and crisp at '
+     + 'the edges, arranged in neat rows, distinct piped shapes and never a gratin'],
+    [/tapioca/i,
+     'a bowl of {T}: creamy white tapioca pudding, small translucent pearls in milk, smooth and soft, a spoon in it, '
+     + 'a light garnish — never a cheesy bake'],
+    [/crumble|cumble/i,
+     'a {T} in a baking dish topped with a generous golden crumbly streusel topping, one portion scooped out to show '
+     + 'the soft fruit underneath, a scoop of the crumble on a plate — the crumbly topping clearly visible'],
+    [/scarpaccia/i,
+     'a very thin flat Tuscan scarpaccia of {T}, a wafer-thin savoury zucchini tart/cake baked crisp and golden with '
+     + 'thin courgette slices covering the top, cut into squares'],
+    [/coupelles?|banane plantain|plantain/i,
+     'small fried plantain cups of {T}, little golden cup-shaped fried plantain shells holding a filling, arranged in '
+     + 'a group on a plate'],
+    // ── Cuisine du monde (orientale / méditerranéenne) ──────────────────────
+    [/tzatziki/i,
+     'a bowl of tzatziki: thick white yoghurt-and-cucumber dip, smooth and creamy, drizzled with olive oil, a few '
+     + 'cucumber slices and mint on top, warm pita bread alongside — a cold white dip, never a bake'],
+    [/dolma|feuilles? de vigne|yaprak/i,
+     'a plate of dolma: neat little rolled stuffed vine leaves of {T}, tight dark-green cylinders arranged in rows, '
+     + 'lemon wedges and a yoghurt dip alongside, one cut to show the rice-and-herb filling'],
+    [/shish taouk|chich taouk|\btaouk\b/i,
+     'grilled shish taouk chicken skewers of {T}: cubes of marinated chicken chargrilled with golden edges threaded '
+     + 'on skewers, garlic sauce and grilled vegetables alongside, fresh and off the grill'],
+    [/koobideh|kefta.*kebab|kebab koobideh|brochettes? de viande hach/i,
+     'long koobideh kebabs of {T}: elongated skewers of chargrilled seasoned minced meat, slightly charred, served '
+     + 'with saffron rice or Shirazi salad and grilled tomato alongside'],
+    [/\bfalafel/i,
+     'a pile of falafel of {T}: small deep-fried chickpea balls, craggy golden-brown crust and green herby interior '
+     + '(one broken open to show it), with tahini sauce, pita and fresh salad alongside'],
+    [/kessra|kesra|galette.*semoule|khobz/i,
+     'a round flat Algerian semolina flatbread (kesra) of {T}, golden and rustic, torn or cut into wedges to show it '
+     + 'is stuffed with a spiced filling, on a wooden board — a flatbread, never a creamy bake'],
+    [/madras|\bcurry\b|massaman|korma|tikka masala/i,
+     'a bowl of {T} curry: tender pieces in a rich glossy spiced sauce, fresh coriander on top, fluffy white rice '
+     + 'served alongside, warm and saucy — clearly a curry in a bowl with rice'],
+    [/chermoula|sauce verte|salsa verde/i,
+     'a small bowl of {T}: a vibrant green herb sauce, loose and glistening with olive oil, flecks of herbs and '
+     + 'garlic visible, a spoon lifting some — clearly a fresh green sauce in a bowl, never a bake'],
+    [/casatiello/i,
+     'a Neapolitan casatiello: a golden ring-shaped savoury bread of {T} studded with cubes of salami and cheese and '
+     + 'whole eggs pressed into the dough around the ring, one wedge cut'],
+    [/\bramen\b/i,
+     'a deep bowl of {T} ramen: wheat noodles in a rich broth, topped with sliced meat, a soft halved egg, spring '
+     + 'onion and nori, chopsticks resting on the bowl — a brothy noodle soup, never a dry bake'],
+    [/omurice|omelette.*riz/i,
+     'a plate of omurice: a smooth golden omelette blanket draped over a mound of fried rice, a stripe of ketchup on '
+     + 'top, a spoon at the side — clearly an omelette-wrapped rice, never a stew'],
+    [/salade c[ée]sar|caesar/i,
+     'a Caesar salad of {T}: crisp romaine lettuce leaves tossed with creamy dressing, golden croutons, shaved '
+     + 'parmesan and black pepper, in a wide bowl — fresh crisp salad with visible croutons and parmesan'],
+    [/char ?si[uo]|char ?sui|char ?siew|char ?sio|charsiu/i,
+     'sliced char siu pork of {T}: glossy lacquered deep-red BBQ pork, sliced into strips showing the pink centre and '
+     + 'caramelised edges, over or beside steamed white rice, spring onion and sesame — never diced cubes'],
+    [/stea?ck? hach[ée]|steak hach|beef patty|steak farci/i,
+     'a thick juicy beef patty of {T} on a plate, seared brown, cut open so melting cheese oozes from the centre, a '
+     + 'little sauce and garnish alongside — a single stuffed beef patty, never diced or a bake'],
+    [/poire farcie|pomme farcie|fruits? farcis?/i,
+     'halved {T}: fruit halves hollowed and stuffed with a savoury filling, baked until golden, arranged cut-side up '
+     + 'on a plate so the filling shows, never a gratin of slices'],
 ];
 
 /** La scène spéciale imposée par le titre, s'il y en a une. */
