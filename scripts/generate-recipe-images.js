@@ -840,6 +840,38 @@ async function decrirePlat(recette, frames) {
     }
 }
 
+/**
+ * Vision de secours via fal (pas de quota journalier contrairement à Groq gratuit).
+ * fal-ai/any-llm/vision + gemini-flash accepte une data URI directement.
+ */
+async function decrireFal(recette, frames) {
+    if (!process.env.FAL_KEY || !frames.length) return null;
+    const data = 'data:image/jpeg;base64,' + fs.readFileSync(frames[0]).toString('base64');
+    const prompt = `This is a frame from the END of a cooking video for a recipe titled "${recette.title}". `
+        + `Describe ONLY the finished, plated dish for an editorial food photo: its exact form/shape, colours, `
+        + `the key visible components, how it is plated and the vessel/plate. One or two concise English sentences. `
+        + `Do NOT mention camera, background, hands, on-screen text or people. If no finished dish is visible, reply exactly: NONE`;
+    const c = new AbortController();
+    const t = setTimeout(() => c.abort(), 60000);
+    try {
+        const rep = await fetch('https://fal.run/fal-ai/any-llm/vision', {
+            method: 'POST',
+            headers: { authorization: `Key ${process.env.FAL_KEY}`, 'content-type': 'application/json' },
+            body: JSON.stringify({ prompt, image_url: data, model: 'google/gemini-flash-1.5' }),
+            signal: c.signal,
+        });
+        if (!rep.ok) return null;
+        const d = await rep.json();
+        let txt = (d?.output || '').replace(/\s+/g, ' ').trim();
+        if (!txt || /^none\b/i.test(txt) || txt.length < 15) return null;
+        return txt.slice(0, 500);
+    } catch {
+        return null;
+    } finally {
+        clearTimeout(t);
+    }
+}
+
 /** Regarde la vidéo et renvoie une description du plat, ou null si impossible. */
 async function descriptionDepuisVideo(recette) {
     const id = videoIdDe(recette);
@@ -847,7 +879,11 @@ async function descriptionDepuisVideo(recette) {
     const dossier = fs.mkdtempSync(path.join(os.tmpdir(), 'recimg-'));
     try {
         const frames = framesDeLaVideo(id, dossier);
-        return await decrirePlat(recette, frames);
+        if (!frames.length) return null;
+        // fal en premier si demandé (Groq gratuit est capé à 200k tokens/jour) ;
+        // sinon Groq puis repli fal automatique.
+        if (aOption('--vision-fal')) return await decrireFal(recette, frames);
+        return (await decrirePlat(recette, frames)) || (await decrireFal(recette, frames));
     } catch {
         return null;
     } finally {
