@@ -302,6 +302,21 @@ const SCENES_SPECIALES = [
      'a wide shallow bowl of {T}: plenty of deep golden roasted chickpeas, crisp and paprika-dusted, scattered '
      + 'generously over cucumber rounds, avocado cubes, thin red onion slivers, crumbled white feta, pine nuts and '
      + 'chopped dill — the whole chickpeas clearly the main element, never bread croutons'],
+    /*
+     * Le tiramisu tombait dans la règle des « petits pots » avec les mousses et
+     * les panna cotta, alors que c'est un plat entier qu'on découpe. Les formes
+     * dérivées gardent leur propre gabarit : cupcakes, rochers, bûche façon
+     * Magnum, version salée — d'où l'exclusion.
+     */
+    [/^(?=.*tiramisu)(?!.*(?:cupcake|rocher|magnum|sal[ée]))/i,
+     'a whole {T} in a rectangular ceramic dish, seen as a sharing dessert: clean stacked layers of soaked '
+     + 'ladyfinger biscuits alternating with thick pale mascarpone cream, the surface completely and evenly dusted '
+     + 'with dark cocoa powder unless the ingredients call for another topping, one square portion lifted out onto '
+     + 'a plate so the layers show along the cut edge — always visibly a tiramisu, a full dish and never small pots'],
+    [/tarte normande/i,
+     'a whole {T}: an apple custard tart, thin apple slices arranged in overlapping circles over a set golden '
+     + 'custard in a buttery pastry shell, the top caramelised — burnished amber and glossy, the apple edges '
+     + 'browned and lightly blistered by the sugar — one wedge cut out and lifted onto a plate'],
     [/p[âa]te [àa] (?:pizza|pain|brioche)|p[âa]te lev[ée]e/i,
      'a single smooth round ball of raw {T} resting on a floured wooden board, its surface soft and slightly '
      + 'domed with a dusting of white flour, a light scatter of flour around it and a folded cloth nearby — '
