@@ -20,7 +20,7 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
-import { THEMES, matchesTag, isSavoryMiscat } from '@/mobile/screens/tv/themes';
+import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf } from '@/mobile/screens/tv/themes';
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
 import { startScrollReveal } from '@/lib/scrollReveal';
@@ -55,6 +55,15 @@ const CATEGORY_LABEL: Record<string, string> = {
     aperitifs: 'Apéritif', entrees: 'Entrée', plats: 'Plat', accompagnements: 'Accompagnement',
     desserts: 'Dessert', patisserie: 'Pâtisserie', restaurant: 'Comme au resto',
     glaces: 'Glace', boissons: 'Boisson', sauces: 'Sauce',
+};
+/**
+ * Collection d'où l'on partage : la rangée ou la page où se trouvait la carte
+ * (thème, catégorie, pays), et non la catégorie de la recette cliquée.
+ */
+type Coll = { label: string; tag: string; count: number };
+const collOf = (title: string, count: number, tag?: string): Coll | undefined => {
+    const t = collectionTagOf(tag || title);
+    return t ? { label: title, tag: t, count } : undefined;
 };
 const label = (r: Recipe) => decodeHtml(r.title || '');
 const catLabel = (r: Recipe) => CATEGORY_LABEL[(r.category || '').toLowerCase()] || 'Recette';
@@ -157,9 +166,11 @@ const MOSAIC = [
     'mWide', 'mStd', 'mStd', 'mSmall',
 ] as const;
 
-function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid }: {
+function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll }: {
     recipe: Recipe; shape: CardShape;
-    onMenu: (r: Recipe, x: number, y: number) => void;
+    onMenu: (r: Recipe, x: number, y: number, coll?: Coll) => void;
+    /** Collection de la rangée / page qui porte cette carte (voir `Coll`). */
+    coll?: Coll;
     /** Recette déjà dans « À faire plus tard » (croix → coche). */
     later?: boolean;
     onToggleLater?: (r: Recipe) => void;
@@ -213,7 +224,7 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid }: {
     return (
         <div
             className={`${styles.card} ${styles[shape]} ${rank ? styles.cardRanked : ''} ${inlaid ? styles.cardInlaid : ''}`}
-            onContextMenu={(e) => { e.preventDefault(); onMenu(recipe, e.clientX, e.clientY); }}
+            onContextMenu={(e) => { e.preventDefault(); onMenu(recipe, e.clientX, e.clientY, coll); }}
             onMouseEnter={enter}
             onMouseLeave={leave}
         >
@@ -302,7 +313,7 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
     /** Thème partageable : ajoute le bouton « Partager » (lien /?tag=…). */
     shareTag?: string;
     onSeeAll: (title: string, recipes: Recipe[]) => void;
-    onMenu: (r: Recipe, x: number, y: number) => void;
+    onMenu: (r: Recipe, x: number, y: number, coll?: Coll) => void;
     isLater?: (id: string) => boolean;
     onToggleLater?: (r: Recipe) => void;
     /** Rangée Top 10 : numérote les cartes de 1 à 10. */
@@ -311,6 +322,9 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
     inlaid?: boolean;
 }) {
     const scroller = useRef<HTMLDivElement>(null);
+    // La rangée SAIT ce qu'elle est : son titre (ou son tag de thème) suffit à
+    // nommer la collection que ses cartes partagent.
+    const coll = collOf(title, recipes.length, shareTag);
     if (!recipes.length) return null;
     const nudge = (dir: number) => {
         const el = scroller.current;
@@ -343,6 +357,7 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
                             recipe={r}
                             shape={shape}
                             onMenu={onMenu}
+                            coll={coll}
                             later={isLater?.(String(r.id))}
                             onToggleLater={onToggleLater}
                             rank={ranked ? i + 1 : undefined}
@@ -360,7 +375,7 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
 
 // ── Héros carrousel ─────────────────────────────────────────────────────────
 
-function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; onMenu: (r: Recipe, x: number, y: number) => void }) {
+function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; onMenu: (r: Recipe, x: number, y: number, coll?: Coll) => void }) {
     const [index, setIndex] = useState(0);
     const [paused, setPaused] = useState(false);
     // La vidéo ne part pas d'emblée : deux secondes de photo, puis elle prend la
@@ -556,7 +571,7 @@ export default function TVDesktopHome() {
     const [collection, setCollection] = useState<{ title: string; recipes: Recipe[] } | null>(null);
     const [inProgress, setInProgress] = useState<{ recipe: Recipe; pct: number }[]>([]);
     const [laterIds, setLaterIds] = useState<string[]>([]);
-    const [menu, setMenu] = useState<{ recipe: Recipe; x: number; y: number } | null>(null);
+    const [menu, setMenu] = useState<{ recipe: Recipe; x: number; y: number; coll?: Coll } | null>(null);
     const [nav, setNav] = useState<'accueil' | string>('accueil');
     // Barre latérale repliable : on agrandit la page d'un clic.
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -640,7 +655,7 @@ export default function TVDesktopHome() {
         });
     }, []);
 
-    const onMenu = useCallback((recipe: Recipe, x: number, y: number) => setMenu({ recipe, x, y }), []);
+    const onMenu = useCallback((recipe: Recipe, x: number, y: number, coll?: Coll) => setMenu({ recipe, x, y, coll }), []);
 
     const toggleLater = (id: string): boolean => {
         const list = readIds(LATER_KEY);
@@ -1056,7 +1071,7 @@ export default function TVDesktopHome() {
                         <div className={styles.mosaic}>
                             {collection.recipes.map((r, i) => (
                                 <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
-                                    <Card recipe={r} shape="wide" onMenu={onMenu} />
+                                    <Card recipe={r} shape="wide" onMenu={onMenu} coll={collOf(collection.title, collection.recipes.length)} />
                                 </div>
                             ))}
                         </div>
@@ -1105,6 +1120,13 @@ export default function TVDesktopHome() {
                             const r = menu.recipe;
                             const cat = (r.category || '').toLowerCase();
                             const catName = catLabel(r);
+                            // Sans contexte (héros, rangée « Nouveautés »…), on retombe
+                            // sur la catégorie de la recette.
+                            const coll: Coll = menu.coll || {
+                                label: catName,
+                                tag: cat,
+                                count: mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat).length,
+                            };
                             const origin = typeof window !== 'undefined' ? window.location.origin : '';
                             const inLater = laterIds.includes(String(r.id));
                             const CtxIc = ({ d }: { d: string }) => (
@@ -1120,8 +1142,8 @@ export default function TVDesktopHome() {
                                     <button className={styles.ctxAction} onClick={() => { setMenu(null); goCategory(cat, catName); }}>
                                         <CtxIc d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
                                     </button>
-                                    <button className={styles.ctxAction} onClick={() => { const rr = r; setMenu(null); setShareCard({ recipe: rr, category: { label: catName, tag: cat, count: mockRecipes.filter((x: any) => (x.category || '').toLowerCase() === cat.toLowerCase()).length } }); }}>
-                                        <CtxIc d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la catégorie</span>
+                                    <button className={styles.ctxAction} onClick={() => { const rr = r; setMenu(null); setShareCard({ recipe: rr, category: coll }); }}>
+                                        <CtxIc d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager « {coll.label} »</span>
                                     </button>
                                     {/* Une seule entrée de partage : la carte image porte DÉJÀ le
                                         lien, le titre et le QR code. Deux lignes voisines qui

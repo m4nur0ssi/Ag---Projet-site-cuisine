@@ -55,6 +55,38 @@ export const THEMES: Theme[] = [
 const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
 
 /**
+ * Nom d'une collection (rangée, page « Voir tout », entrée du menu) → tag
+ * partageable, ou `null` si ce n'en est pas une (« Nouveautés », « Top 10 »…).
+ *
+ * Partager une collection doit annoncer LA collection d'où l'on vient. Le menu
+ * ne connaissait que la recette cliquée : depuis « Voilà l'été », la carte
+ * sortait « Plat » ou « Entrée » — la catégorie de cette recette-là.
+ */
+const COLLECTION_TAGS: Record<string, string> = {
+    aperitif: 'aperitifs', aperitifs: 'aperitifs',
+    entree: 'entrees', entrees: 'entrees',
+    plat: 'plats', plats: 'plats',
+    accompagnement: 'accompagnements', accompagnements: 'accompagnements',
+    dessert: 'desserts', desserts: 'desserts',
+    patisserie: 'patisserie', patisseries: 'patisserie',
+    glace: 'glaces', glaces: 'glaces',
+    boisson: 'boissons', boissons: 'boissons',
+    sauce: 'sauces', sauces: 'sauces',
+    'comme au resto': 'restaurant', restaurant: 'restaurant',
+    afrique: 'afrique', asie: 'asie', espagne: 'espagne', france: 'france',
+    grece: 'grece', italie: 'italie', liban: 'liban', mexique: 'mexique',
+    orient: 'orient', usa: 'usa',
+};
+
+export function collectionTagOf(label: string): string | null {
+    const n = norm((label || '').toLowerCase()).trim();
+    if (!n) return null;
+    const theme = THEMES.find((t) => norm(t.title.toLowerCase()) === n || t.tag === n);
+    if (theme) return theme.tag;
+    return COLLECTION_TAGS[n] || null;
+}
+
+/**
  * Texte complet d'une recette (titre + description + étapes + ingrédients), mis en
  * cache : 30 thèmes × 600 recettes = 18 000 appels, le recalcul coûterait ~100 ms.
  */

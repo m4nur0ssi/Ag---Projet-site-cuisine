@@ -17,7 +17,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
-import { THEMES, matchesTag, isSavoryMiscat } from './themes';
+import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf } from './themes';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
 import { personalizedRecipes } from '@/lib/personalize';
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
@@ -549,6 +549,16 @@ const tiktokId = (recipe: Recipe) => recipe.videoHtml?.match(/data-video-id="(\d
 /** Délai d'affichage avant que la vidéo ne démarre. */
 const AUTOPLAY_DELAY = 2000;
 
+/**
+ * Collection d'où l'on partage : la rangée ou la page « Voir tout » qui porte
+ * la carte (thème, catégorie, pays) — pas la catégorie de la recette cliquée.
+ */
+type Coll = { label: string; tag: string; count: number };
+const collOf = (title: string, count: number, tag?: string): Coll | undefined => {
+    const t = collectionTagOf(tag || title);
+    return t ? { label: title, tag: t, count } : undefined;
+};
+
 function TopTenRow({
     recipes,
     title,
@@ -947,7 +957,7 @@ function Row({
     onToggleLater?: (r: Recipe) => void;
     onSeeAll: (title: string, recipes: Recipe[]) => void;
     onOpen: OpenSheet;
-    onLongPress: (recipe: Recipe) => void;
+    onLongPress: (recipe: Recipe, coll?: Coll) => void;
     /**
      * Vitrine : grandes cartes à titre incrusté, et la carte arrêtée au CENTRE
      * de la rangée lance sa vidéo au bout d'une seconde et demie — l'équivalent
@@ -956,6 +966,9 @@ function Row({
     showcase?: boolean;
 }) {
     const scroller = useRef<HTMLDivElement>(null);
+    // La rangée SAIT ce qu'elle est : son titre (ou son tag de thème) nomme la
+    // collection que ses cartes partagent.
+    const coll = collOf(title, recipes.length, shareTag);
     // Carte qui joue : la plus proche du centre, une fois le doigt reposé.
     const [playId, setPlayId] = useState<string | null>(null);
     const shown = recipes.slice(0, 14);
@@ -1055,7 +1068,7 @@ function Row({
                         // La liste passée est CELLE DE LA RANGÉE entière (pas les 14
                         // affichées) : dans le sheet, on continue de swiper.
                         onOpen={() => onOpen(recipes, i)}
-                        onLongPress={() => onLongPress(r)}
+                        onLongPress={() => onLongPress(r, coll)}
                     />
                 ))}
             </div>
@@ -1467,7 +1480,7 @@ export default function TVHome() {
     const stats = useRatingStats();
     const [all, setAll] = useState<{ title: string; recipes: Recipe[] } | null>(null);
     const [sheet, setSheet] = useState<{ recipes: Recipe[]; index: number } | null>(null);
-    const [menu, setMenu] = useState<Recipe | null>(null);
+    const [menu, setMenu] = useState<{ recipe: Recipe; coll?: Coll } | null>(null);
     const [navOpen, setNavOpen] = useState(false);
     const [tasteOpen, setTasteOpen] = useState(false);
     const [shareCard, setShareCard] = useState<{ recipe: Recipe; category?: { label: string; tag: string; count: number } } | null>(null);
@@ -1582,7 +1595,7 @@ export default function TVHome() {
         return () => { bar.style.display = ''; };
     }, [overlayOpen]);
 
-    const openMenu = useCallback((recipe: Recipe) => setMenu(recipe), []);
+    const openMenu = useCallback((recipe: Recipe, coll?: Coll) => setMenu({ recipe, coll }), []);
 
     // Le balayage « retour » ferme le calque du dessus au lieu de quitter /tv.
     useBackToClose(!!all, () => setAll(null));
@@ -1933,7 +1946,7 @@ export default function TVHome() {
                                     later={isLater(String(r.id))}
                                     onToggleLater={handleToggleLater}
                                     onOpen={() => openSheet(all.recipes, i)}
-                                    onLongPress={() => openMenu(r)}
+                                    onLongPress={() => openMenu(r, collOf(all.title, all.recipes.length))}
                                 />
                             ))}
                         </div>
@@ -1976,13 +1989,20 @@ export default function TVHome() {
                             exit={{ scale: 0.92, opacity: 0 }}
                             transition={{ type: 'spring', damping: 26, stiffness: 360 }}
                         >
-                            <img className={styles.menuPreview} src={menu.image} alt="" draggable={false} />
-                            <div className={styles.menuTitle}>{label(menu)}</div>
+                            <img className={styles.menuPreview} src={menu.recipe.image} alt="" draggable={false} />
+                            <div className={styles.menuTitle}>{label(menu.recipe)}</div>
                             <div className={styles.menuActions}>
                                 {(() => {
-                                    const r = menu;
+                                    const r = menu.recipe;
                                     const cat = (r.category || '').toLowerCase();
                                     const catName = catLabel(r);
+                                    // Sans contexte (rangée « Nouveautés », favoris…),
+                                    // on retombe sur la catégorie de la recette.
+                                    const coll: Coll = menu.coll || {
+                                        label: catName,
+                                        tag: cat,
+                                        count: mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat).length,
+                                    };
                                     const origin = typeof window !== 'undefined' ? window.location.origin : '';
                                     const fav = favIds.includes(String(r.id));
                                     const lat = laterIds.includes(String(r.id));
@@ -2000,8 +2020,8 @@ export default function TVHome() {
                                             <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); openAll(catName, (byCat[cat] || []).length ? byCat[cat] : mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat && x.image)); }}>
                                                 <MI d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
                                             </button>
-                                            <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard({ recipe: rr, category: { label: catName, tag: cat, count: mockRecipes.filter((x: any) => (x.category || '').toLowerCase() === cat.toLowerCase()).length } }); }}>
-                                                <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la catégorie</span>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard({ recipe: rr, category: coll }); }}>
+                                                <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager « {coll.label} »</span>
                                             </button>
                                             {/* Une seule entrée : la carte image porte déjà le lien,
                                                 le titre et le QR code. */}
