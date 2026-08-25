@@ -22,7 +22,7 @@ import { useRatingStats } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
 import { THEMES, matchesTag, isSavoryMiscat } from '@/mobile/screens/tv/themes';
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
-import { tiktokAllowed, tiktokPlayed, tiktokFailed } from '@/lib/tiktok-consent';
+import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
 import { startScrollReveal } from '@/lib/scrollReveal';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
@@ -198,8 +198,11 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid }: {
     useEffect(() => {
         if (!playing) return;
         const onMessage = (e: MessageEvent) => {
-            const d = e.data;
-            if (d && typeof d === 'object' && d['x-tiktok-player']) { setReady(true); tiktokPlayed(); }
+            const sig = tiktokSignal(e);
+            if (sig === 'play') { setReady(true); tiktokPlayed(); }
+            // Le lecteur annonce qu'il ne lira pas : on le retire tout de suite
+            // au lieu d'attendre 6 s avec son bandeau en travers de la carte.
+            else if (sig === 'error') { tiktokFailed(); setPlaying(false); }
         };
         window.addEventListener('message', onMessage);
         // Silence au bout de 6 s = bandeau de cookies ou lecture refusée.
@@ -390,8 +393,9 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
     useEffect(() => {
         if (!playing) return;
         const onMessage = (e: MessageEvent) => {
-            const d = e.data;
-            if (d && typeof d === 'object' && d['x-tiktok-player']) { setVideoOn(true); tiktokPlayed(); }
+            const sig = tiktokSignal(e);
+            if (sig === 'play') { setVideoOn(true); tiktokPlayed(); }
+            else if (sig === 'error') { tiktokFailed(); setPlaying(false); }
         };
         window.addEventListener('message', onMessage);
         const giveUp = setTimeout(() => setPlaying((p) => {

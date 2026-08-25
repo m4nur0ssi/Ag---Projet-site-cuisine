@@ -18,7 +18,7 @@ import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag, isSavoryMiscat } from './themes';
-import { tiktokAllowed, tiktokPlayed, tiktokFailed } from '@/lib/tiktok-consent';
+import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
 import { personalizedRecipes } from '@/lib/personalize';
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
@@ -373,8 +373,9 @@ function Card({
         setVidReady(false);
         if (!videoId) return;
         const onMessage = (e: MessageEvent) => {
-            const d = e.data;
-            if (d && typeof d === 'object' && d['x-tiktok-player']) { setVidReady(true); tiktokPlayed(); }
+            const sig = tiktokSignal(e);
+            if (sig === 'play') { setVidReady(true); tiktokPlayed(); }
+            else if (sig === 'error') tiktokFailed();
         };
         window.addEventListener('message', onMessage);
         // Silence au bout de 6 s = bandeau de cookies ou lecture refusée.
@@ -480,8 +481,9 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
     useEffect(() => {
         if (!playing) return;
         const onMessage = (e: MessageEvent) => {
-            const d: any = e.data;
-            if (d && typeof d === 'object' && d['x-tiktok-player']) { setReady(true); tiktokPlayed(); }
+            const sig = tiktokSignal(e);
+            if (sig === 'play') { setReady(true); tiktokPlayed(); }
+            else if (sig === 'error') { tiktokFailed(); setPlaying(false); }
         };
         window.addEventListener('message', onMessage);
         const giveUp = setTimeout(() => setReady((r) => { if (!r) tiktokFailed(); return r; }), 6000);
@@ -1231,8 +1233,9 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
     useEffect(() => {
         if (!playing) return;
         const onMessage = (e: MessageEvent) => {
-            const d = e.data;
-            if (d && typeof d === 'object' && d['x-tiktok-player']) { setVideoOn(true); tiktokPlayed(); }
+            const sig = tiktokSignal(e);
+            if (sig === 'play') { setVideoOn(true); tiktokPlayed(); }
+            else if (sig === 'error') { tiktokFailed(); setPlaying(false); }
         };
         window.addEventListener('message', onMessage);
         // Silence au bout de 6 s = bandeau de cookies ou lecture refusée :

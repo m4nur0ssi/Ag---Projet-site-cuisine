@@ -14,8 +14,11 @@
  * pour de bon (l'utilisateur a accepté les cookies quelque part).
  */
 
-const OK_KEY = 'tiktok-plays-v1';    // '1' = une vidéo a déjà joué ici
-const FAIL_KEY = 'tiktok-fails-v1';  // nombre d'essais restés muets
+// v2 : la v1 comptait n'importe quel message du lecteur comme une lecture
+// réussie, y compris le bandeau de cookies — des navigateurs qui ne liront
+// jamais rien étaient marqués « ça joue ici ». On repart de zéro.
+const OK_KEY = 'tiktok-plays-v2';    // '1' = une vidéo a déjà joué ici
+const FAIL_KEY = 'tiktok-fails-v2';  // nombre d'essais restés muets
 const MAX_FAILS = 2;
 
 const read = (k: string) => {
@@ -43,4 +46,27 @@ export function tiktokPlayed(): void {
 export function tiktokFailed(): void {
     if (read(OK_KEY) === '1') return;
     write(FAIL_KEY, String(Number(read(FAIL_KEY) || 0) + 1));
+}
+
+/**
+ * Le lecteur TikTok parle-t-il pour dire qu'il JOUE ?
+ *
+ * Il envoie aussi des messages quand il n'affiche que son bandeau de cookies
+ * (`onPlayerReady`, `onError`). Les prendre pour un succès, c'était laisser le
+ * pavé bleu « Player error » en travers du visuel ET lever la garde à vie
+ * (`tiktok-plays-v1`) sur un navigateur qui ne lira jamais rien. On n'accepte
+ * donc que la preuve d'une image qui avance.
+ */
+export function tiktokSignal(e: MessageEvent): 'play' | 'error' | null {
+    const d = e.data as Record<string, unknown> | null;
+    if (!d || typeof d !== 'object' || !d['x-tiktok-player']) return null;
+    const type = String(d.type || '');
+    if (type === 'onError') return 'error';
+    if (type === 'onStateChange') return Number(d.value) === 1 ? 'play' : null;
+    if (type === 'onCurrentTime') {
+        const v = d.value as { currentTime?: number } | number | undefined;
+        const t = typeof v === 'object' && v ? Number(v.currentTime) : Number(v);
+        return t > 0 ? 'play' : null;
+    }
+    return null;
 }
