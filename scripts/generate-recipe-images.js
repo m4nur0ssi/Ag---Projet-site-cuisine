@@ -302,6 +302,16 @@ const SCENES_SPECIALES = [
      'a wide shallow bowl of {T}: plenty of deep golden roasted chickpeas, crisp and paprika-dusted, scattered '
      + 'generously over cucumber rounds, avocado cubes, thin red onion slivers, crumbled white feta, pine nuts and '
      + 'chopped dill — the whole chickpeas clearly the main element, never bread croutons'],
+    [/p[âa]te [àa] (?:pizza|pain|brioche)|p[âa]te lev[ée]e/i,
+     'a single smooth round ball of raw {T} resting on a floured wooden board, its surface soft and slightly '
+     + 'domed with a dusting of white flour, a light scatter of flour around it and a folded cloth nearby — '
+     + 'raw dough only, never a baked or topped pizza'],
+    [/caprese/i,
+     'a long rectangular white platter of {T}: a glaze of olive oil and dark pomegranate molasses zigzagged across '
+     + 'the plate, a row of thick ripe tomato slices along one side, round slices of white mozzarella down the '
+     + 'middle, slices of green avocado laid over them, finely chopped red onion and fresh dill and parsley '
+     + 'scattered on top — a flat composed platter, never a tossed bowl of salad leaves, '
+     + 'and nothing to drink anywhere in frame: no cup, no mug, no glass'],
     [/adana|kebab hach|k[öo]fte|kefta|lule ?kebab/i,
      'long flat {T} skewers: elongated logs of spiced minced meat pressed onto flat skewers, deep red-orange '
      + 'from paprika and chilli, char-grilled with blackened ridges along their length, laid side by side on a dark '
@@ -925,10 +935,13 @@ async function decrireFal(recette, frames) {
      * cause quand rien n'a abouti.
      */
     let dernierStatut = null;
-    // On essaie les frames dans l'ordre (fin d'abord) et on garde la 1re reconnue.
+    const patienter = (statut, essai) => (essai >= 5
+        ? Promise.resolve()
+        : new Promise((res) => setTimeout(res, (statut === 403 || statut === 429 ? 8000 : 1500) * essai)));
+    // On essaie les frames dans l'ordre (accroche d'abord) et on garde la 1re reconnue.
     for (const f of frames) {
         const data = 'data:image/jpeg;base64,' + fs.readFileSync(f).toString('base64');
-        for (let essai = 1; essai <= 3; essai++) {
+        for (let essai = 1; essai <= 5; essai++) {
             const c = new AbortController();
             const t = setTimeout(() => c.abort(), 60000);
             try {
@@ -945,10 +958,13 @@ async function decrireFal(recette, frames) {
                     break; // vrai NONE : la frame ne montre pas le plat, on passe à la suivante
                 }
                 dernierStatut = rep.status;
-                if (essai < 3) await new Promise((res) => setTimeout(res, 1500 * essai));
+                // Un compte fal fraîchement rechargé alterne 200 et 403 pendant
+                // plusieurs minutes : deux secondes d'attente ne suffisent pas à
+                // traverser le trou, il faut tenir comme le fait la génération.
+                await patienter(rep.status, essai);
             } catch (e) {
                 dernierStatut = e.name === 'AbortError' ? 'timeout' : 'réseau';
-                if (essai < 3) await new Promise((res) => setTimeout(res, 1500 * essai));
+                await patienter(null, essai);
             } finally { clearTimeout(t); }
         }
     }
