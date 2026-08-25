@@ -68,17 +68,28 @@ export interface RecipeTiming {
     steps: number;
 }
 
+// Étapes « passives » dont la durée n'est PAS de la cuisson : repos, réfrigération,
+// levée, marinade, congélation… Ces délais comptent dans la PRÉPARATION, pas la
+// cuisson (une pâte à crêpes qui repose 1 h ne « cuit » pas pendant ce temps).
+const REST_RE = /(reposer|repos|refroidir|refroidiss|ti[ée]dir|r[ée]frig[ée]r|frigo|au frais|au r[ée]frig[ée]rateur|mariner|marinade|laisser (?:lever|pousser|gonfler|d[ée]gorger|infuser|tremper|mac[ée]rer)|(?:lev[ée]e|pousse) de la p[âa]te|cong[ée]l|au cong[ée]lateur|prise au (?:froid|cong)|prendre au (?:froid|frais))/i;
+
 export function estimateRecipeTiming(steps?: string[]): RecipeTiming {
     const list = (steps || []).map(s => String(s || '').trim()).filter(Boolean);
     let cook = 0;
-    let prep = 0;
+    let prepActive = 0;   // travail actif estimé (reçoit la marge ×1,15)
+    let prepRest = 0;     // délais passifs explicites (repos/refroidissement…)
     for (const step of list) {
         const mins = sumStepMinutes(step);
-        if (mins > 0) { cook += mins; continue; } // étape chronométrée = cuisson / repos
-        prep += prepMinutesForStep(step);
+        if (mins > 0) {
+            // Une durée écrite dans une étape de repos/refroidissement → préparation.
+            if (REST_RE.test(step)) prepRest += mins;
+            else cook += mins; // sinon = cuisson
+            continue;
+        }
+        prepActive += prepMinutesForStep(step);
     }
-    // Petite marge de sécurité : on cuisine rarement plus vite que prévu.
-    prep = Math.ceil(prep * 1.15);
+    // Marge de sécurité sur le seul travail actif ; les délais de repos sont exacts.
+    const prep = Math.ceil(prepActive * 1.15) + prepRest;
     const n = list.length;
     const difficulty = n >= 9 ? 'difficile' : n >= 5 ? 'moyen' : 'facile';
     return { prepTime: prep, cookTime: cook, difficulty, steps: n };
