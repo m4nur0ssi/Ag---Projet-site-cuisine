@@ -302,6 +302,17 @@ const SCENES_SPECIALES = [
      'a wide shallow bowl of {T}: plenty of deep golden roasted chickpeas, crisp and paprika-dusted, scattered '
      + 'generously over cucumber rounds, avocado cubes, thin red onion slivers, crumbled white feta, pine nuts and '
      + 'chopped dill — the whole chickpeas clearly the main element, never bread croutons'],
+    [/adana|kebab hach|k[öo]fte|kefta|lule ?kebab/i,
+     'long flat {T} skewers: elongated logs of spiced minced meat pressed onto flat skewers, deep red-orange '
+     + 'from paprika and chilli, char-grilled with blackened ridges along their length, laid side by side on a dark '
+     + 'slate plate with herbed rice pilaf and a bowl of creamy yoghurt sauce flecked with chilli — long skewers, '
+     + 'never round patties and never a burger'],
+    [/smashed potato|pommes? de terre [ée]cras[ée]es?/i,
+     'a plate of {T}: whole small potatoes smashed flat under a press so their skins split open and the fluffy '
+     + 'insides burst out at the ragged torn edges, roasted until those shaggy edges are dark golden brown and '
+     + 'blistered crisp while the centres stay soft, each one a different broken shape with cracks and craters '
+     + 'across its surface, glossy with garlic-parsley-chilli oil and dusted with grated parmesan — smashed broken '
+     + 'potatoes with torn frilly edges, never smooth round slices, never neat cubes or wedges'],
     [/poireaux? (?:confits?|gratin[ée]s?|[àa] la cr[èe]me)/i,
      'a rectangular white ceramic baking dish of {T}: short thick leek segments packed tightly side by side, '
      + 'their tops deeply caramelised golden-brown and gratinated under melted cheese, sitting in a pale ivory '
