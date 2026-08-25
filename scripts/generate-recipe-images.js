@@ -288,6 +288,26 @@ function formeDuTitre(titre) {
  * qui REMPLACE entièrement la scène générique. {T} = titre de la recette.
  */
 const SCENES_SPECIALES = [
+    /*
+     * Trois plats que la vision de la vidéo a mal lus (le vert des pâtes pris
+     * pour une salade, les pois chiches rôtis pour des croûtons, le beurre pour
+     * la viande qu'il accompagne). Leur scène est donc écrite à la main, et on
+     * les régénère sans --video pour qu'elle l'emporte.
+     */
+    [/p[âa]tes? vert|p[âa]tes? [àa] l['’]?[ée]pinard|pesto d['’]?[ée]pinard/i,
+     'a bowl of {T}: cooked pasta entirely coated in a vivid bright-green spinach and almond pesto, '
+     + 'every strand stained green, glossy with olive oil, shavings of parmesan and toasted almonds on top, '
+     + 'a fork twirling a mouthful — pasta only, never a leaf salad'],
+    [/salade.*pois chiches?|pois chiches? croustillants?/i,
+     'a wide shallow bowl of {T}: plenty of deep golden roasted chickpeas, crisp and paprika-dusted, scattered '
+     + 'generously over cucumber rounds, avocado cubes, thin red onion slivers, crumbled white feta, pine nuts and '
+     + 'chopped dill — the whole chickpeas clearly the main element, never bread croutons'],
+    [/beurre persill|beurre (?:[àa] l['’]?ail|ma[îi]tre d['’]?h[ôo]tel|aux? herbes)/i,
+     'a chilled log of {T}: soft yellow butter densely packed with bright green chopped parsley — vivid green '
+     + 'herb specks visible everywhere through the butter, green all the way through, never plain pale butter — '
+     + 'sliced into thick round discs on a small plate, one disc melting golden over a thick grilled red beef steak '
+     + 'resting beside it on a board, the herb-green butter the clear subject in the foreground and the meat behind it',
+     { sansIngredients: true }],
     [/flan\b|cr[èe]me caramel|cr[èe]me renvers[ée]e/i,
      'a whole {T}, a silky smooth unmoulded caramel custard turned out onto a plate, glossy amber caramel '
      + 'running down its sides and pooling around the base, one clean wedge sliced out to show the tender set '
@@ -543,12 +563,19 @@ const SCENES_SPECIALES = [
      + 'on a plate so the filling shows, never a gratin of slices'],
 ];
 
-/** La scène spéciale imposée par le titre, s'il y en a une. */
+/**
+ * La scène spéciale imposée par le titre, s'il y en a une.
+ *
+ * Certaines recettes traînent les ingrédients d'une AUTRE recette dans leur
+ * fiche WordPress (le beurre persillé embarque farine, semoule et levure d'un
+ * pain) : la ligne « The dish is made of… » y ferait dessiner du pain à côté du
+ * beurre. Une scène peut donc demander qu'on la supprime.
+ */
 function sceneSpeciale(titre) {
-    for (const [motif, description] of SCENES_SPECIALES) {
-        if (motif.test(titre || '')) return description;
+    for (const [motif, description, options] of SCENES_SPECIALES) {
+        if (motif.test(titre || '')) return { texte: description, ...options };
     }
-    return '';
+    return null;
 }
 
 /**
@@ -682,7 +709,7 @@ function consigne(recette, descPlat) {
         : descPlat
         ? `${capitale(vue.lead)}: ${recette.title} — ${descPlat}`
         : speciale
-        ? `${capitale(vue.lead)}: ${speciale.replace(/\{T\}/g, recette.title)}.`
+        ? `${capitale(vue.lead)}: ${speciale.texte.replace(/\{T\}/g, recette.title)}.`
         : [
             `A dish of ${recette.title} ${vue.lead}, already cut into,`,
             forme ? `The dish is shaped as: ${forme}.` : '',
@@ -699,7 +726,8 @@ function consigne(recette, descPlat) {
             ? 'Straight-on beverage photography, styled editorial cocktail shot.'
             : vue.opener,
         scene,
-        ingredients ? `The dish is made of: ${ingredients}.` : '',
+        ingredients && !(speciale && speciale.sansIngredients)
+            ? `The dish is made of: ${ingredients}.` : '',
         boisson ? '' : cadrage,
         `Surface: ${table}. Tableware: ${vaisselle}. ${couverts}.`,
         // Dit explicitement : sans ça, un plat brun sur bois brun se noie.
@@ -848,31 +876,59 @@ async function decrirePlat(recette, frames) {
  */
 async function decrireFal(recette, frames) {
     if (!process.env.FAL_KEY || !frames.length) return null;
+    /*
+     * Le prompt écartait toute frame contenant une personne ou du texte incrusté.
+     * Or c'est la norme sur TikTok : le plat fini est presque toujours montré à
+     * bout de bras, sous un sous-titre. Le modèle répondait donc NONE alors que
+     * l'assiette était parfaitement visible. On lui demande maintenant d'ignorer
+     * le décor et de ne renoncer que si AUCUN plat fini n'apparaît.
+     */
     const prompt = `This is a still frame from a cooking video for a recipe titled "${recette.title}". `
-        + `If it shows the FINISHED, plated dish, describe ONLY that dish for an editorial food photo: its exact `
-        + `form/shape, colours, the key visible components, how it is plated and the vessel/plate — one or two concise `
-        + `English sentences, no mention of camera, background, hands, on-screen text or people. `
-        + `If the frame does NOT clearly show the finished plated dish (e.g. mid-cooking, raw ingredients, a person, `
-        + `just text), reply exactly: NONE`;
+        + `If the finished dish is visible ANYWHERE in the frame — including held in someone's hands, `
+        + `partly covered by on-screen text, or standing next to a person — describe ONLY that dish for an `
+        + `editorial food photo: its exact form/shape, colours, the key visible components, how it is served and `
+        + `the vessel/plate/glass — one or two concise English sentences. Ignore and never mention the camera, `
+        + `background, hands, on-screen text or people. `
+        + `Reply exactly NONE only if no finished dish appears at all (raw ingredients, mid-cooking, `
+        + `an empty pan, a talking head or plain text only).`;
+    /*
+     * Un refus de fal n'est PAS un « la vidéo ne montre pas le plat ».
+     *
+     * La première version passait à la frame suivante dès que l'appel échouait,
+     * sans distinguer un vrai NONE d'un 429/403 : sur un lot de 30, la moitié des
+     * recettes retombaient sur le repli texte alors que leur vidéo montrait
+     * parfaitement l'assiette. On réessaie donc chaque frame, et on remonte la
+     * cause quand rien n'a abouti.
+     */
+    let dernierStatut = null;
     // On essaie les frames dans l'ordre (fin d'abord) et on garde la 1re reconnue.
     for (const f of frames) {
         const data = 'data:image/jpeg;base64,' + fs.readFileSync(f).toString('base64');
-        const c = new AbortController();
-        const t = setTimeout(() => c.abort(), 60000);
-        try {
-            const rep = await fetch('https://fal.run/fal-ai/any-llm/vision', {
-                method: 'POST',
-                headers: { authorization: `Key ${process.env.FAL_KEY}`, 'content-type': 'application/json' },
-                body: JSON.stringify({ prompt, image_url: data, model: 'google/gemini-flash-1.5' }),
-                signal: c.signal,
-            });
-            if (rep.ok) {
-                const d = await rep.json();
-                const txt = (d?.output || '').replace(/\s+/g, ' ').trim();
-                if (txt && !/^none\b/i.test(txt) && txt.length >= 15) return txt.slice(0, 500);
-            }
-        } catch { /* frame suivante */ } finally { clearTimeout(t); }
+        for (let essai = 1; essai <= 3; essai++) {
+            const c = new AbortController();
+            const t = setTimeout(() => c.abort(), 60000);
+            try {
+                const rep = await fetch('https://fal.run/fal-ai/any-llm/vision', {
+                    method: 'POST',
+                    headers: { authorization: `Key ${process.env.FAL_KEY}`, 'content-type': 'application/json' },
+                    body: JSON.stringify({ prompt, image_url: data, model: 'google/gemini-flash-1.5' }),
+                    signal: c.signal,
+                });
+                if (rep.ok) {
+                    const d = await rep.json();
+                    const txt = (d?.output || '').replace(/\s+/g, ' ').trim();
+                    if (txt && !/^none\b/i.test(txt) && txt.length >= 15) return txt.slice(0, 500);
+                    break; // vrai NONE : la frame ne montre pas le plat, on passe à la suivante
+                }
+                dernierStatut = rep.status;
+                if (essai < 3) await new Promise((res) => setTimeout(res, 1500 * essai));
+            } catch (e) {
+                dernierStatut = e.name === 'AbortError' ? 'timeout' : 'réseau';
+                if (essai < 3) await new Promise((res) => setTimeout(res, 1500 * essai));
+            } finally { clearTimeout(t); }
+        }
     }
+    if (dernierStatut) throw new Error(`vision fal indisponible (${dernierStatut})`);
     return null;
 }
 
@@ -888,7 +944,13 @@ async function descriptionDepuisVideo(recette) {
         // sinon Groq puis repli fal automatique.
         if (aOption('--vision-fal')) return await decrireFal(recette, frames);
         return (await decrirePlat(recette, frames)) || (await decrireFal(recette, frames));
-    } catch {
+    } catch (e) {
+        /*
+         * Vision en panne ≠ vidéo muette. Dans le premier cas on ABANDONNE la
+         * recette : générer quand même donnerait une image tirée du seul titre,
+         * payée au même prix, qu'il faudrait refaire. On la repassera plus tard.
+         */
+        if (/vision fal indisponible/.test(e.message || '')) throw e;
         return null;
     } finally {
         fs.rmSync(dossier, { recursive: true, force: true });
