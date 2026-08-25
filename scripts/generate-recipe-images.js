@@ -601,7 +601,7 @@ const VUES = [
 ];
 const capitale = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
-function consigne(recette) {
+function consigne(recette, descPlat) {
     // Les noms venus de WordPress arrivent avec un emoji de rayon et une rafale
     // d'espaces : « 🍅              3 tomates mûres ». On rend le texte nu, sinon
     // la consigne part polluée et le modèle peut dessiner les pictogrammes.
@@ -675,6 +675,10 @@ function consigne(recette) {
             'halved citrus fruits and fresh herb sprigs on the bar counter.',
             'A bar scene: only glassware, bar tools and fruit.',
         ].join(' ')
+        // Description tirée de la vraie vidéo (--video) : prioritaire, elle
+        // remplace la devinette par titre. On garde l'angle et le style éditorial.
+        : descPlat
+        ? `${capitale(vue.lead)}: ${recette.title} — ${descPlat}`
         : speciale
         ? `${capitale(vue.lead)}: ${speciale.replace(/\{T\}/g, recette.title)}.`
         : [
@@ -731,7 +735,129 @@ function lireRecettes() {
     }
 }
 
-async function genererUne(recette) {
+// ────────────────────────────────────────────────────────────────────────────
+// Référence VIDÉO : au lieu de deviner le plat depuis le titre, on regarde la
+// vidéo TikTok de la recette (frames de fin = plat fini), on la décrit via Groq
+// vision, et on injecte cette description dans le prompt. Active par --video.
+// ────────────────────────────────────────────────────────────────────────────
+const { execSync } = require('child_process');
+const os = require('os');
+const BIN = '/opt/homebrew/bin'; // yt-dlp + ffmpeg (brew)
+const GROQ_VISION = process.env.GROQ_VISION_MODEL || 'qwen/qwen3.6-27b';
+
+/** Id TikTok depuis le champ videoHtml de la recette. */
+function videoIdDe(recette) {
+    const h = recette.videoHtml || '';
+    const m = h.match(/data-video-id="(\d+)"/) || h.match(/tiktok\.com\/(?:v|@[^/]+\/video)\/(\d+)/);
+    return m ? m[1] : null;
+}
+
+/** Télécharge la vidéo + extrait quelques frames (début + fin), réduites à 512px. */
+function framesDeLaVideo(id, dossier) {
+    const env = { ...process.env, PATH: `${BIN}:${process.env.PATH}` };
+    const mp4 = path.join(dossier, 'v.mp4');
+    execSync(`yt-dlp --no-warnings -o ${JSON.stringify(mp4)} "https://www.tiktok.com/@t/video/${id}"`,
+        { env, stdio: 'ignore', timeout: 90000 });
+    const dur = parseFloat(execSync(
+        `ffprobe -v error -show_entries format=duration -of csv=p=0 ${JSON.stringify(mp4)}`,
+        { env }).toString().trim()) || 10;
+    // Le plat fini est presque toujours dans le dernier quart ; on prend aussi
+    // une frame du tout début (parfois un plan du plat avant la recette).
+    const temps = [dur * 0.82, dur * 0.91, Math.max(0, dur - 0.4)];
+    const frames = [];
+    temps.forEach((t, i) => {
+        const out = path.join(dossier, `f${i}.jpg`);
+        try {
+            execSync(`ffmpeg -loglevel error -ss ${t.toFixed(2)} -i ${JSON.stringify(mp4)} -frames:v 1 -vf scale=512:-1 ${JSON.stringify(out)} -y`,
+                { env, timeout: 30000 });
+            if (fs.existsSync(out)) frames.push(out);
+        } catch { /* frame ratée, on continue */ }
+    });
+    return frames;
+}
+
+/** Décrit le plat fini via Groq vision. Renvoie une phrase EN, ou null. */
+async function decrirePlat(recette, frames) {
+    if (!process.env.GROQ_API_KEY || !frames.length) return null;
+    const contenu = [{
+        type: 'text',
+        text: `These are frames from the END of a cooking video for a recipe titled "${recette.title}". `
+            + `Describe ONLY the finished, plated dish as it should look for an editorial food photo: `
+            + `its exact form/shape, colours, the key visible components, how it is plated and the vessel/plate. `
+            + `Answer directly with one or two concise English sentences and nothing else — no reasoning, no preamble. `
+            + `Do NOT mention camera, background, hands, on-screen text or people. `
+            + `If no finished dish is clearly visible in any frame, reply exactly: NONE`,
+    }];
+    for (const f of frames) {
+        contenu.push({
+            type: 'image_url',
+            image_url: { url: 'data:image/jpeg;base64,' + fs.readFileSync(f).toString('base64') },
+        });
+    }
+    const c = new AbortController();
+    const t = setTimeout(() => c.abort(), 60000);
+    try {
+        const rep = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+                'content-type': 'application/json',
+                // Sans un User-Agent de navigateur, Cloudflare renvoie 403/1010.
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36',
+            },
+            body: JSON.stringify({
+                model: GROQ_VISION,
+                messages: [{ role: 'user', content: contenu }],
+                max_tokens: 700,
+                temperature: 0.2,
+            }),
+            signal: c.signal,
+        });
+        if (!rep.ok) return null;
+        const data = await rep.json();
+        let txt = data?.choices?.[0]?.message?.content || '';
+        // qwen émet un bloc <think>…</think> : on garde ce qui suit le dernier.
+        if (/<\/think>/i.test(txt)) txt = txt.split(/<\/think>/i).pop();
+        else if (/<think>/i.test(txt)) txt = ''; // n'a fait que réfléchir (tronqué)
+        txt = txt.replace(/<\/?think>/gi, '').trim();
+        if (!txt || /^none\b/i.test(txt) || txt.length < 15) return null;
+        return txt.replace(/\s+/g, ' ').slice(0, 500);
+    } catch {
+        return null;
+    } finally {
+        clearTimeout(t);
+    }
+}
+
+/** Regarde la vidéo et renvoie une description du plat, ou null si impossible. */
+async function descriptionDepuisVideo(recette) {
+    const id = videoIdDe(recette);
+    if (!id) return null;
+    const dossier = fs.mkdtempSync(path.join(os.tmpdir(), 'recimg-'));
+    try {
+        const frames = framesDeLaVideo(id, dossier);
+        return await decrirePlat(recette, frames);
+    } catch {
+        return null;
+    } finally {
+        fs.rmSync(dossier, { recursive: true, force: true });
+    }
+}
+
+/** Sauve l'ancienne image (avant écrasement) dans un dossier du Bureau. */
+function sauvegarderAncienne(recette) {
+    const dest = path.join(os.homedir(), 'Desktop', 'anciennes-photos-recettes', 'remplacees');
+    fs.mkdirSync(dest, { recursive: true });
+    const safe = String(recette.title || recette.id).replace(/[^\p{L}\p{N}]+/gu, '_').slice(0, 60);
+    for (const suf of ['.webp', '-carte.webp']) {
+        const src = path.join(DOSSIER, `${recette.id}${suf}`);
+        if (fs.existsSync(src)) {
+            fs.copyFileSync(src, path.join(dest, `${recette.id}_${safe}${suf}`));
+        }
+    }
+}
+
+async function genererUne(recette, descPlat) {
     const rep = await fetch(`https://fal.run/${MODELE}`, {
         method: 'POST',
         headers: {
@@ -739,7 +865,7 @@ async function genererUne(recette) {
             'content-type': 'application/json',
         },
         body: JSON.stringify({
-            prompt: consigne(recette),
+            prompt: consigne(recette, descPlat),
             // « ultra » se pilote par ratio ; les autres modèles par un gabarit
             // nommé. Portrait 3:4 : le format tient aussi bien sur une carte
             // carrée que sur l'affiche verticale du héros.
@@ -846,7 +972,15 @@ function pointerVers(id, chemin) {
             continue;
         }
         try {
-            const buffer = await genererUne(r);
+            // Regarde la vidéo TikTok pour décrire le vrai plat (si --video).
+            let descPlat = null;
+            if (aOption('--video')) {
+                descPlat = await descriptionDepuisVideo(r);
+                console.log(`  🎬 ${r.id} vidéo : ${descPlat ? descPlat.slice(0, 90) + '…' : 'pas de description (repli titre)'}`);
+            }
+            // Sauve l'ancienne image sur le Bureau avant de l'écraser.
+            if (fs.existsSync(fichier)) sauvegarderAncienne(r);
+            const buffer = await genererUne(r, descPlat);
             const poids = [];
             for (const t of TAILLES) {
                 const sortie = path.join(DOSSIER, `${r.id}${t.suffixe}.webp`);
