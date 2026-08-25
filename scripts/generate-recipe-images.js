@@ -569,6 +569,38 @@ function tirage(liste, id, sel) {
     return liste[(h >>> 0) % liste.length];
 }
 
+/**
+ * Angle de prise de vue. Tout était en flat-lay vu du dessus → monotone. On
+ * garde ~70 % vu du dessus et ~30 % réparti sur des angles « livre de cuisine »
+ * (3/4 rapproché, de face à hauteur d'assiette, gros plan macro). Choisi par
+ * hash de l'id → stable et réparti. Ne s'applique pas aux boissons (déjà de face).
+ * `lead` s'insère dans la phrase de scène ; `opener` et `camera` encadrent le prompt.
+ */
+const VUE_DESSUS = {
+    opener: 'Overhead flat-lay food photography, styled editorial cookbook shot.',
+    lead: 'seen from directly above',
+    camera: 'Camera directly overhead at 90 degrees, everything sharp, natural colours, generous negative space, an abundant but tidy arrangement.',
+};
+const VUES = [
+    VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, VUE_DESSUS, // 7/10 = 70 %
+    {
+        opener: 'Three-quarter 45-degree food photography, styled editorial cookbook shot.',
+        lead: 'seen from a low 45-degree three-quarter angle',
+        camera: 'Camera at a 45-degree three-quarter angle, close and intimate, shallow depth of field with a softly blurred background, natural colours.',
+    },
+    {
+        opener: 'Straight-on eye-level food photography, styled editorial cookbook shot.',
+        lead: 'seen straight-on at eye level',
+        camera: 'Camera at table height, straight-on eye-level view, the dish sharp and the background gently blurred, natural colours.',
+    },
+    {
+        opener: 'Close-up macro food photography, styled editorial cookbook shot.',
+        lead: 'in a tight close-up crop that fills the frame',
+        camera: 'Camera very close for a tight macro crop, the food filling the frame, very shallow depth of field, natural colours.',
+    },
+];
+const capitale = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
 function consigne(recette) {
     // Les noms venus de WordPress arrivent avec un emoji de rayon et une rafale
     // d'espaces : « 🍅              3 tomates mûres ». On rend le texte nu, sinon
@@ -599,6 +631,8 @@ function consigne(recette) {
     const cadrage = tirage(CADRAGES, id, 53);
 
     const boisson = recette.category === 'boissons' || recette.category === 'rafraichissements';
+    // Angle de prise de vue (70 % dessus / 30 % autres), stable par id.
+    const vue = tirage(VUES, id, 67);
 
     /**
      * Tout le catalogue tirait vers le brun automnal : c'est le défaut du style
@@ -642,9 +676,9 @@ function consigne(recette) {
             'A bar scene: only glassware, bar tools and fruit.',
         ].join(' ')
         : speciale
-        ? `Seen from directly above: ${speciale.replace(/\{T\}/g, recette.title)}.`
+        ? `${capitale(vue.lead)}: ${speciale.replace(/\{T\}/g, recette.title)}.`
         : [
-            `A dish of ${recette.title} seen from directly above, already cut into,`,
+            `A dish of ${recette.title} ${vue.lead}, already cut into,`,
             forme ? `The dish is shaped as: ${forme}.` : '',
             contenant ? `Served in ${contenant}.` : '',
             'one portion lifted out and resting on a small plate nearby,',
@@ -657,7 +691,7 @@ function consigne(recette) {
             // Vu du dessus, un cocktail n'est qu'un rond de liquide : on perd la
             // transparence, les couches, la glace et la buée. De face, tout revient.
             ? 'Straight-on beverage photography, styled editorial cocktail shot.'
-            : 'Overhead flat-lay food photography, styled editorial cookbook shot.',
+            : vue.opener,
         scene,
         ingredients ? `The dish is made of: ${ingredients}.` : '',
         boisson ? '' : cadrage,
@@ -667,7 +701,7 @@ function consigne(recette) {
         `Lighting: ${lumiere}. ${palette}`,
         boisson
             ? 'Camera at glass height, straight-on eye-level view, the glass sharp and the background softly blurred, natural colours.'
-            : 'Camera directly overhead at 90 degrees, everything sharp, natural colours, generous negative space, an abundant but tidy arrangement.',
+            : vue.camera,
         // Répété et explicite : les modèles rapides inventent volontiers des
         // étiquettes couvertes de fausses lettres.
         'STRICTLY NO text, NO letters, NO words, NO labels, NO logos, NO packaging,',
