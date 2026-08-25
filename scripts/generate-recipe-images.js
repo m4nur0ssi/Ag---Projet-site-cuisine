@@ -302,6 +302,11 @@ const SCENES_SPECIALES = [
      'a wide shallow bowl of {T}: plenty of deep golden roasted chickpeas, crisp and paprika-dusted, scattered '
      + 'generously over cucumber rounds, avocado cubes, thin red onion slivers, crumbled white feta, pine nuts and '
      + 'chopped dill — the whole chickpeas clearly the main element, never bread croutons'],
+    [/poireaux? (?:confits?|gratin[ée]s?|[àa] la cr[èe]me)/i,
+     'a rectangular white ceramic baking dish of {T}: short thick leek segments packed tightly side by side, '
+     + 'their tops deeply caramelised golden-brown and gratinated under melted cheese, sitting in a pale ivory '
+     + 'cream sauce that pools around them, scattered with chopped parsley, one segment lifted out on a spoon '
+     + 'showing its soft pale-green layers — a creamy baked leek gratin, never a brown gravy and never a stew'],
     [/beurre persill|beurre (?:[àa] l['’]?ail|ma[îi]tre d['’]?h[ôo]tel|aux? herbes)/i,
      'a chilled log of {T}: soft yellow butter densely packed with bright green chopped parsley — vivid green '
      + 'herb specks visible everywhere through the butter, green all the way through, never plain pale butter — '
