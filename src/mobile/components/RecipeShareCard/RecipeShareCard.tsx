@@ -49,11 +49,19 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
 
         const paint = (img: HTMLImageElement | null) => {
             ctx.fillStyle = '#08080b'; ctx.fillRect(0, 0, W, H);
+            // La photo est DÉCOUPÉE sur sa bande (56 % du haut). Sans ce clip,
+            // une photo verticale — ratio calculé sur la largeur — s'étirait sur
+            // toute la hauteur de la carte : le titre, le QR et le domaine se
+            // retrouvaient posés par-dessus l'image, illisibles.
+            const BANDE = H * 0.56;
             if (img) {
-                const ratio = Math.max(W / img.width, (H * 0.56) / img.height);
+                const ratio = Math.max(W / img.width, BANDE / img.height);
                 const w = img.width * ratio, h = img.height * ratio;
-                ctx.drawImage(img, (W - w) / 2, 0, w, h);
-            } else { ctx.fillStyle = '#1a1420'; ctx.fillRect(0, 0, W, H * 0.56); }
+                ctx.save();
+                ctx.beginPath(); ctx.rect(0, 0, W, BANDE); ctx.clip();
+                ctx.drawImage(img, (W - w) / 2, (BANDE - h) / 2, w, h);
+                ctx.restore();
+            } else { ctx.fillStyle = '#1a1420'; ctx.fillRect(0, 0, W, BANDE); }
             const g = ctx.createLinearGradient(0, H * 0.26, 0, H * 0.58);
             g.addColorStop(0, 'rgba(8,8,11,0)'); g.addColorStop(1, '#08080b');
             ctx.fillStyle = g; ctx.fillRect(0, H * 0.24, W, H * 0.36);
@@ -74,7 +82,12 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
             // doit rester GRAND. À 64 % de photo, le titre se réduisait jusqu'à
             // devenir illisible sur une vignette de messagerie.
             const HAUT_TEXTE = H * 0.58;
-            const BAS_TEXTE = H - 330;                // au-dessus du QR et du domaine
+            // Collection : le pied ne porte QUE le QR, centré → le texte peut
+            // descendre plus bas, il s'arrête juste au-dessus du carré blanc.
+            const QR = 220, QRPAD = 16;
+            const qx = category ? (W - QR) / 2 : W - QR - 88;
+            const qy = category ? H - QR - 120 : H - QR - 96;
+            const BAS_TEXTE = category ? qy - QRPAD - 56 : H - 330;
             const decouper = (taille: number): string[] => {
                 ctx.font = `900 ${taille}px -apple-system, system-ui, sans-serif`;
                 const lignes: string[] = [];
@@ -111,21 +124,21 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
 
             // QR en bas à droite : le lien de la recette voyage avec l'image,
             // même là où le texte-lien disparaît (stories Instagram/TikTok).
-            const QR = 220, qx = W - QR - 88, qy = H - QR - 96;
             if (qrImg) {
-                const pad = 16, r = 24;
                 ctx.fillStyle = '#fff';
-                roundRect(ctx, qx - pad, qy - pad, QR + pad * 2, QR + pad * 2, r); ctx.fill();
+                roundRect(ctx, qx - QRPAD, qy - QRPAD, QR + QRPAD * 2, QR + QRPAD * 2, 24); ctx.fill();
                 ctx.drawImage(qrImg, qx, qy, QR, QR);
             }
 
-            ctx.fillStyle = 'rgba(235,235,245,.6)';
-            ctx.font = '600 44px -apple-system, system-ui, sans-serif';
-            ctx.textAlign = 'left';
-            ctx.fillText('lesrecettesmagiques.fr', 88, H - 150);
-            ctx.font = '600 34px -apple-system, system-ui, sans-serif';
-            ctx.fillStyle = 'rgba(235,235,245,.4)';
-            ctx.fillText('Scanne pour la recette', 88, H - 100);
+            if (!category) {
+                ctx.fillStyle = 'rgba(235,235,245,.6)';
+                ctx.font = '600 44px -apple-system, system-ui, sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText('lesrecettesmagiques.fr', 88, H - 150);
+                ctx.font = '600 34px -apple-system, system-ui, sans-serif';
+                ctx.fillStyle = 'rgba(235,235,245,.4)';
+                ctx.fillText('Scanne pour la recette', 88, H - 100);
+            }
 
             try { setUrl(cv.toDataURL('image/png')); setTainted(false); }
             catch { setTainted(true); }
@@ -220,7 +233,9 @@ export default function RecipeShareCard({ recipe, category, onClose }: {
         <div className={styles.backdrop} onClick={onClose}>
             <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.head}>
-                    <span>{category ? 'Partager la collection' : 'Partager la recette'}</span>
+                    <span>{category
+                        ? `${category.label} · ${category.count} recette${category.count > 1 ? 's' : ''}`
+                        : 'Partager la recette'}</span>
                     <button className={styles.close} onClick={onClose} aria-label="Fermer">
                         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                     </button>
