@@ -763,12 +763,15 @@ function framesDeLaVideo(id, dossier) {
         { env }).toString().trim()) || 10;
     // Le plat fini est presque toujours dans le dernier quart ; on prend aussi
     // une frame du tout début (parfois un plan du plat avant la recette).
-    const temps = [dur * 0.82, dur * 0.91, Math.max(0, dur - 0.4)];
+    // 1 frame (à ~90 % de la vidéo = plat fini montré, avant l'outro) : Groq free
+    // tier plafonne à 8000 tokens/min et 2 images (~6400) faisaient tomber en 429
+    // en rafale. Une seule image (~1800 tokens) passe largement.
+    const temps = [dur * 0.90];
     const frames = [];
     temps.forEach((t, i) => {
         const out = path.join(dossier, `f${i}.jpg`);
         try {
-            execSync(`ffmpeg -loglevel error -ss ${t.toFixed(2)} -i ${JSON.stringify(mp4)} -frames:v 1 -vf scale=512:-1 ${JSON.stringify(out)} -y`,
+            execSync(`ffmpeg -loglevel error -ss ${t.toFixed(2)} -i ${JSON.stringify(mp4)} -frames:v 1 -vf scale=448:-1 ${JSON.stringify(out)} -y`,
                 { env, timeout: 30000 });
             if (fs.existsSync(out)) frames.push(out);
         } catch { /* frame ratée, on continue */ }
@@ -794,26 +797,34 @@ async function decrirePlat(recette, frames) {
             image_url: { url: 'data:image/jpeg;base64,' + fs.readFileSync(f).toString('base64') },
         });
     }
-    const c = new AbortController();
-    const t = setTimeout(() => c.abort(), 60000);
+    const body = JSON.stringify({
+        model: GROQ_VISION,
+        messages: [{ role: 'user', content: contenu }],
+        max_tokens: 700,
+        temperature: 0.2,
+    });
+    const headers = {
+        authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        'content-type': 'application/json',
+        // Sans un User-Agent de navigateur, Cloudflare renvoie 403/1010.
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36',
+    };
     try {
-        const rep = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-                'content-type': 'application/json',
-                // Sans un User-Agent de navigateur, Cloudflare renvoie 403/1010.
-                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36',
-            },
-            body: JSON.stringify({
-                model: GROQ_VISION,
-                messages: [{ role: 'user', content: contenu }],
-                max_tokens: 700,
-                temperature: 0.2,
-            }),
-            signal: c.signal,
-        });
-        if (!rep.ok) return null;
+        let rep, txt417 = '';
+        // Free tier Groq = 8000 tokens/min : on encaisse les 429 en attendant le
+        // délai indiqué, jusqu'à 4 essais.
+        for (let essai = 1; essai <= 4; essai++) {
+            const c = new AbortController();
+            const t = setTimeout(() => c.abort(), 60000);
+            rep = await fetch('https://api.groq.com/openai/v1/chat/completions',
+                { method: 'POST', headers, body, signal: c.signal }).finally(() => clearTimeout(t));
+            if (rep.ok) break;
+            txt417 = (await rep.text());
+            if (rep.status !== 429 || essai === 4) return null;
+            const m = txt417.match(/try again in ([\d.]+)s/i);
+            const attente = m ? Math.ceil(parseFloat(m[1]) * 1000) + 800 : 12000;
+            await new Promise((res) => setTimeout(res, attente));
+        }
         const data = await rep.json();
         let txt = data?.choices?.[0]?.message?.content || '';
         // qwen émet un bloc <think>…</think> : on garde ce qui suit le dernier.
@@ -824,8 +835,6 @@ async function decrirePlat(recette, frames) {
         return txt.replace(/\s+/g, ' ').slice(0, 500);
     } catch {
         return null;
-    } finally {
-        clearTimeout(t);
     }
 }
 
@@ -1004,8 +1013,10 @@ function pointerVers(id, chemin) {
             console.log(`✗ ${r.title} — ${e.message}`);
             ratees++;
         }
-        // On ne bouscule pas l'API : une image à la fois, avec un souffle.
-        await new Promise((res) => setTimeout(res, 1200));
+        // On ne bouscule pas l'API : une image à la fois, avec un souffle. En mode
+        // --video, la vision Groq est plafonnée à 8000 tokens/min (~3200/appel) :
+        // on espace davantage pour éviter les 429 qui font retomber sur le titre.
+        await new Promise((res) => setTimeout(res, aOption('--video') ? 9000 : 1200));
     }
 
     console.log(`\n${faites} générée(s), ${sautees} déjà là, ${ratees} en échec.`);
