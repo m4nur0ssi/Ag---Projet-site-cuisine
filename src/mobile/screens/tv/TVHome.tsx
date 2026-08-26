@@ -545,6 +545,14 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
 // ── Top 10 : une recette par écran + lecture auto de la vidéo ──────────────
 
 /**
+ * Vrai dès qu'un calque recouvre l'accueil (fiche, recherche, menu…).
+ *
+ * Au niveau du module : le héros et l'accueil sont deux composants distincts de
+ * ce fichier, et un seul accueil vit à la fois.
+ */
+const calqueOuvert = { current: false };
+
+/**
  * Id TikTok. Les recettes de l'accueil l'apportent déjà (extrait au build) ;
  * l'expression régulière ne sert plus qu'aux recettes venues d'ailleurs.
  */
@@ -1198,8 +1206,17 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         el.scrollTo({ left: target, behavior: 'smooth' });
     }, [activeSlot]);
 
-    // Rotation auto toutes les 3 s. Le doigt reprend toujours la main : on met en
-    // pause dès qu'on touche le héros, et on relance 6 s après le dernier geste.
+    /*
+     * Rotation auto toutes les 3 s. Le doigt reprend toujours la main : on met en
+     * pause dès qu'on touche le héros, et on relance 6 s après le dernier geste.
+     *
+     * Elle s'arrête aussi quand une fiche ou un calque recouvre l'accueil. Le
+     * garde-fou `scrollY > 240` n'y suffisait pas : à l'ouverture d'une fiche, le
+     * corps est figé et le défilement retombe à zéro. Le héros continuait donc de
+     * changer d'affiche derrière la fiche — relevé sur l'appareil, une vingtaine
+     * d'animations d'opacité et de transformation pendant quelques balayages,
+     * dont beaucoup interrompues en cours de route.
+     */
     useEffect(() => {
         const el = pagerRef.current;
         if (!el || recipes.length < 2) return;
@@ -1217,6 +1234,7 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
             // Ni quand l'onglet est en arrière-plan, ni quand le héros a quitté l'écran,
             // ni pendant la vidéo : on ne coupe pas une lecture en cours.
             if (paused || playingRef.current || document.hidden || window.scrollY > 240) return;
+            if (calqueOuvert.current) return;
             setIndex((i) => (i + 1) % recipes.length);
         }, 3000);
 
@@ -1595,6 +1613,9 @@ export default function TVHome() {
     // Sinon son dock (Accueil/loupe) reste tappable par-dessus ou à travers le
     // calque selon le contexte d'empilement, et ses boutons se comportent mal.
     const overlayOpen = searchOpen || tutoOpen || !!sheet || !!all || !!menu;
+    // La rotation du héros doit s'arrêter quand un calque le recouvre ; elle
+    // tourne dans un intervalle, qui ne verrait pas passer un état.
+    calqueOuvert.current = overlayOpen;
     useEffect(() => {
         const bar = document.getElementById('bottom-nav');
         if (!bar) return;

@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
 import { grandePhoto } from '@/lib/recipe-photo';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -521,7 +521,18 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     const tabsBarRef = useRef<HTMLDivElement | null>(null);
     const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
     const [tabInd, setTabInd] = useState({ left: 4, width: 0 });
-    useEffect(() => {
+    /*
+     * Mesure AVANT le premier rendu, et non après.
+     *
+     * L'indicateur naissait à `width: 0` puis recevait sa vraie largeur une fois
+     * la carte peinte. Or sa transition est en cubic-bezier(0.34, 1.56, …) : ce
+     * 1,56 dépasse la cible avant d'y revenir. Chaque carte affichée faisait donc
+     * rebondir la pastille blanche sous les onglets — mesuré sur l'appareil,
+     * quatre fois en quelques balayages. Posée en useLayoutEffect, la largeur est
+     * déjà la bonne à la première image : plus rien à animer. Le rebond reste,
+     * lui, quand on change d'onglet — c'est là qu'il a du sens.
+     */
+    useLayoutEffect(() => {
         const measureTab = () => {
             const btn = tabRefs.current[activeTab];
             const bar = tabsBarRef.current;
