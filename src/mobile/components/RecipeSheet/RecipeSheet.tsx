@@ -32,6 +32,8 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
 
     const scrollYRef = useRef(0);
     const containerRef = useRef<HTMLDivElement>(null);
+    /** La piste horizontale : on lui écrit sa transformation à la main au changement de recette. */
+    const trackRef = useRef<HTMLDivElement>(null);
     const scrollRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
     // MotionValues
@@ -168,11 +170,24 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
             ease: [0.25, 0.1, 0.25, 1], // Ease standard plus stable
             duration: 0.3,
             onComplete: () => {
-                // Atomique : flushSync force le re-render de la nouvelle carte AVANT le reset
-                // de x. Sinon React batche setCurrentIdx → 1 frame avec l'ancienne carte
-                // recentrée (x déjà à 0) = le rebond/flash en changeant de recette.
+                /*
+                 * Le rebond en changeant de recette venait d'ici.
+                 *
+                 * flushSync monte bien la nouvelle carte tout de suite, mais
+                 * `x.jump(0)` ne fait que poser la valeur : framer n'écrit la
+                 * transformation qu'à sa frame suivante. Le navigateur peignait
+                 * donc une image avec le NOUVEAU contenu encore décalé d'une
+                 * largeur d'écran — on apercevait la recette d'après — avant que
+                 * tout ne revienne en place. Seize millisecondes, largement assez
+                 * pour lire un à-coup.
+                 *
+                 * On écrit donc la transformation nous-mêmes, dans le même bloc
+                 * synchrone : la première image peinte est déjà la bonne. Framer
+                 * réécrira la même valeur à sa frame suivante, sans effet visible.
+                 */
                 flushSync(() => setCurrentIdx(newIdx));
                 x.jump(0);
+                if (trackRef.current) trackRef.current.style.transform = 'translateX(0px)';
             }
         });
     }, [currentIdx, x, snapBack]);
@@ -323,6 +338,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             {/* TRACK PRINCIPAL */}
                             <motion.div 
                                 className={styles.swipeTrack}
+                                ref={trackRef}
                                 style={{ x, display: 'flex', width: '100%', height: '100%', position: 'relative' }}
                                 onTouchStart={handleTouchStart}
                                 onTouchMove={handleTouchMove}
