@@ -313,6 +313,32 @@ const SCENES_SPECIALES = [
      + 'ladyfinger biscuits alternating with thick pale mascarpone cream, the surface completely and evenly dusted '
      + 'with dark cocoa powder unless the ingredients call for another topping, one square portion lifted out onto '
      + 'a plate so the layers show along the cut edge — always visibly a tiramisu, a full dish and never small pots'],
+    [/tarte.*p[êe]che.*panna ?cotta|panna ?cotta.*p[êe]che/i,
+     'a whole round {T} on a board: a dark golden tart shell filled flush with diced peaches set in a rosy jelly, '
+     + 'the top covered with piped domes of white panna cotta speckled with vanilla seeds, thin wedges of fresh '
+     + 'peach and glossy halved plums tucked between the domes, a mint leaf and a purple flower petal — '
+     + 'a flat fruit tart crowded with white cream domes, never a plain custard tart'],
+    [/tarte.*fruits rouges|tarte aux? fraises?/i,
+     'a whole round {T} on a wooden board: a pale golden shortcrust shell filled flush with a deep crimson berry '
+     + 'compote, glossy and smooth, topped with evenly spaced piped domes of white whipped cream alternating with '
+     + 'slices of fresh strawberry laid flat and a few whole raspberries — a flat glazed berry tart, '
+     + 'never a lattice pie and never whole fruit heaped up'],
+    [/poche [àa] douille/i,
+     'a cloth piping bag fitted with a fluted steel nozzle, plump with pale cream and twisted closed just above '
+     + 'the filling, lying on a marble worktop beside a bowl of the same cream and a few piped rosettes on baking '
+     + 'paper — the piping bag itself is the subject of the photograph',
+     { sansIngredients: true }],
+    [/bagel/i,
+     'a {T} on a board: a sesame bagel split in half, its base thickly spread with a chunky cream cheese mixture '
+     + 'flecked with dill and chives, layered with folded ribbons of orange smoked salmon, thin cucumber rounds '
+     + 'and slivers of red onion, the crown resting tilted against it so the filling shows in section, '
+     + 'a lemon wedge alongside'],
+    [/croque? ?mc ?do|croque? ?mc ?donald/i,
+     'a {T}: two flat burger buns pressed and toasted together like a croque-monsieur, golden and flattened, '
+     + 'a thin beef patty and melted orange cheese oozing from the edges, slivers of onion and pickle visible, '
+     + 'cut in half diagonally and stacked so the squashed layers show, a smear of burger sauce on the plate — '
+     + 'a pressed toasted burger sandwich, never a tall burger and never a fish or salmon filling',
+     { sansIngredients: true }],
     [/king fusion|mc ?flurry/i,
      'a clear plastic cup of {T} standing squarely on the table, filled to the brim with thick pale soft-serve '
      + 'ice cream, a dark chocolate-hazelnut spread swirled over the top and running down the inside of the cup, '
