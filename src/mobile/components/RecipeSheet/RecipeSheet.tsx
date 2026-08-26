@@ -30,11 +30,16 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     useEffect(() => { setRecipes(baseRecipes); }, [baseRecipes]);
     const [shouldRender, setShouldRender] = useState(isOpen);
     /**
-     * Les cartes voisines se montent APRÈS la frame où l'on recentre la piste.
-     * Construire une fiche entière coûte plusieurs millisecondes ; le faire dans
-     * le même bloc synchrone que la fin de l'animation faisait sauter l'image.
+     * Les recettes déjà construites, par identifiant.
+     *
+     * Une carte montée ne se démonte JAMAIS tant que la fiche est ouverte : la
+     * remonter rejouerait ses animations d'entrée — le fondu des onglets, le
+     * compteur de votes — et un balayage enchaîné retomberait dessus en pleine
+     * apparition. Seule une carte encore inconnue attend une frame avant de se
+     * construire, pour ne pas se bâtir dans le même bloc synchrone que la fin de
+     * l'animation.
      */
-    const [voisinsMontes, setVoisinsMontes] = useState(false);
+    const [montees, setMontees] = useState<string[]>([]);
 
     const scrollYRef = useRef(0);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -136,18 +141,25 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     const handleAnimationComplete = () => { if (!isOpen) setShouldRender(false); };
 
     /*
-     * Les voisines arrivent juste après la carte demandée. Deux déclencheurs :
-     * la frame suivante, et un minuteur de secours — dans un onglet en arrière-
-     * plan, requestAnimationFrame est gelé, et sans ce filet les cartes voisines
-     * ne se monteraient jamais.
+     * Les voisines rejoignent la liste juste après la carte demandée. Deux
+     * déclencheurs : la frame suivante, et un minuteur de secours — dans un
+     * onglet en arrière-plan, requestAnimationFrame est gelé, et sans ce filet
+     * les cartes voisines ne se monteraient jamais.
      */
     useEffect(() => {
-        if (!isOpen) { setVoisinsMontes(false); return; }
-        const monter = () => setVoisinsMontes(true);
+        if (!isOpen) { setMontees([]); return; }
+        const monter = () => setMontees((deja) => {
+            const voulues = [currentIdx - 1, currentIdx, currentIdx + 1]
+                .map((i) => recipes[i]?.id)
+                .filter(Boolean)
+                .map(String);
+            const manquantes = voulues.filter((id) => !deja.includes(id));
+            return manquantes.length ? [...deja, ...manquantes] : deja;
+        });
         const frame = requestAnimationFrame(monter);
         const secours = setTimeout(monter, 120);
         return () => { cancelAnimationFrame(frame); clearTimeout(secours); };
-    }, [isOpen, currentIdx]);
+    }, [isOpen, currentIdx, recipes]);
 
     /**
      * Sortie de la fiche.
@@ -205,10 +217,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                  * synchrone : la première image peinte est déjà la bonne. Framer
                  * réécrira la même valeur à sa frame suivante, sans effet visible.
                  */
-                flushSync(() => {
-                    setVoisinsMontes(false);
-                    setCurrentIdx(newIdx);
-                });
+                flushSync(() => setCurrentIdx(newIdx));
                 x.jump(0);
                 if (trackRef.current) trackRef.current.style.transform = 'translateX(0px)';
             }
@@ -452,7 +461,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                                                  * image avant de se construire : sans ça, elle se
                                                  * monte pendant la frame où l'on recentre la piste.
                                                  */}
-                                                {(courante || voisinsMontes) && <RecipeDetails recipe={r} isModal={true} />}
+                                                {(courante || montees.includes(String(r.id))) && <RecipeDetails recipe={r} isModal={true} />}
                                             </div>
                                         </div>
                                     );

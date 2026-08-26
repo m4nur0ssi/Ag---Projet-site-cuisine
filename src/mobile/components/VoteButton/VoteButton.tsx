@@ -11,6 +11,16 @@ interface VoteButtonProps {
     hideCount?: boolean;
 }
 
+/**
+ * Comptes déjà connus, partagés par toutes les flammes de la session.
+ *
+ * Chaque carte de recette montait sa propre flamme et interrogeait l'API : en
+ * feuilletant les fiches, le nombre arrivait APRÈS coup, faisait surgir le
+ * compteur du bas et re-rendait toute la fiche en pleine transition. On garde
+ * donc la réponse, et une carte déjà vue n'attend plus rien.
+ */
+const comptes = new Map<string, number>();
+
 const FlameIcon = ({ active }: { active: boolean }) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill={active ? "#ff3b30" : "none"} stroke={active ? "#ff3b30" : "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2c0 0-2 4-2 7.5s2 4.5 2 4.5 2-1 2-4.5S12 2 12 2z" />
@@ -20,7 +30,7 @@ const FlameIcon = ({ active }: { active: boolean }) => (
 );
 
 export default function VoteButton({ recipeId, initialVotes = 0, className, hideCount = false }: VoteButtonProps) {
-    const [votes, setVotes] = useState(initialVotes);
+    const [votes, setVotes] = useState(() => comptes.get(recipeId) ?? initialVotes);
     const [hasVoted, setHasVoted] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
 
@@ -28,10 +38,14 @@ export default function VoteButton({ recipeId, initialVotes = 0, className, hide
         const votedRecipes = JSON.parse(localStorage.getItem('voted_recipes') || '[]');
         setHasVoted(votedRecipes.includes(recipeId));
 
+        if (comptes.has(recipeId)) return;
         fetch(`/api/votes?recipeId=${recipeId}`)
             .then(res => res.json())
             .then(data => {
-                if (data.votes !== undefined) setVotes(data.votes);
+                if (data.votes === undefined) return;
+                comptes.set(recipeId, data.votes);
+                // On ne re-rend que si le nombre change vraiment.
+                setVotes((precedent) => (precedent === data.votes ? precedent : data.votes));
             })
             .catch(() => {});
     }, [recipeId]);
@@ -41,7 +55,7 @@ export default function VoteButton({ recipeId, initialVotes = 0, className, hide
         e.stopPropagation();
 
         setHasVoted(true);
-        setVotes(prev => prev + 1);
+        setVotes(prev => { comptes.set(recipeId, prev + 1); return prev + 1; });
         
         setIsAnimating(true);
         setTimeout(() => setIsAnimating(false), 800);
@@ -82,7 +96,10 @@ export default function VoteButton({ recipeId, initialVotes = 0, className, hide
             <AnimatePresence>
                 {hasAnyVotes && !hideCount && (
                     <motion.span
-                        initial={{ opacity: 0, y: 10 }}
+                        // Le compteur ne s'anime QU'au vote de l'utilisateur : quand
+                        // il arrive du réseau, il se contente d'apparaître, sans
+                        // surgir du bas à côté de la flamme.
+                        initial={false}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         style={{ fontSize: '15px', fontWeight: '900', color: '#ff3b30', textShadow: '0 0 12px rgba(255, 59, 48, 0.4)' }}
