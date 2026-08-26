@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 26/08/2026 03:49:14
+ * Dernière mise à jour: 26/08/2026 16:11:02
  * Total: 662 recettes
  */
-export const exportSyncId = "1787716154764";
+export const exportSyncId = "1787760662429";
 export const mockRecipes: Recipe[] = [
     {
         "id": "7283",
@@ -4343,7 +4343,11 @@ export const mockRecipes: Recipe[] = [
             "libanais",
             "moyen-orient",
             "ramadan",
-            "rapide"
+            "rapide",
+            "recette",
+            "salade",
+            "tabouleh",
+            "Végétarien"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -5619,7 +5623,12 @@ export const mockRecipes: Recipe[] = [
             "Four",
             "fromage",
             "italien",
-            "Pain"
+            "Pain",
+            "rapide",
+            "Recette de Toscane",
+            "Saucisse",
+            "Toast",
+            "Toscan"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -23403,7 +23412,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/31kVcFuLujg\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
+        "videoHtml": "<iframe loading=\"lazy\" width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/31kVcFuLujg\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
         "ingredients": [
             {
                 "quantity": "",
@@ -25088,7 +25097,7 @@ export const mockRecipes: Recipe[] = [
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/9ZTW2ygRqiI\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
+        "videoHtml": "<iframe loading=\"lazy\" width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/9ZTW2ygRqiI\" title=\"Recette en vidéo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen style=\"border-radius: 12px;\"></iframe>",
         "ingredients": [
             {
                 "quantity": "",
