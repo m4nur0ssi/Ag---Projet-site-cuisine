@@ -6,6 +6,7 @@ import { Recipe } from '@/mobile/types';
 import Portal from '@/mobile/components/Portal';
 import styles from './RecipeSheet.module.css';
 import RecipeDetails from '@/mobile/components/RecipeDetails/RecipeDetails';
+import { demarrerDiagnosticAnimations } from '@/mobile/lib/diag-animations';
 
 interface RecipeSheetProps {
     recipe: Recipe;
@@ -139,6 +140,9 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     }, [isOpen]);
 
     const handleAnimationComplete = () => { if (!isOpen) setShouldRender(false); };
+
+    // Relevé embarqué : inerte sans `?diag=anim` dans l'adresse.
+    useEffect(() => { if (isOpen) demarrerDiagnosticAnimations(); }, [isOpen]);
 
     /*
      * Les voisines rejoignent la liste juste après la carte demandée. Deux
