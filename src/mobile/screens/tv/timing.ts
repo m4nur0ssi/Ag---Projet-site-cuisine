@@ -17,10 +17,19 @@ const cache = new WeakMap<Recipe, RecipeTiming>();
 /** Arrondi à 5 min : afficher « 23 min » donnerait une fausse précision. */
 const round5 = (n: number) => (n <= 0 ? 0 : Math.max(5, Math.round(n / 5) * 5));
 
+/*
+ * Les recettes de l'accueil arrivent avec leur estimation déjà faite au build
+ * (voir scripts/build-home-data.js) : relire les étapes des 662 recettes au
+ * démarrage coûtait une centaine de millisecondes sur le thread principal. Le
+ * calcul est le même, seul le moment change — et les recettes venues d'ailleurs
+ * (desktop, fiches) n'ont pas le champ et suivent l'ancien chemin.
+ */
+type PreCalcule = Recipe & { est?: RecipeTiming; timed?: number };
+
 export function timingOf(recipe: Recipe): RecipeTiming {
     let t = cache.get(recipe);
     if (!t) {
-        const est = estimateRecipeTiming(recipe.steps);
+        const est = (recipe as PreCalcule).est || estimateRecipeTiming(recipe.steps);
         t = est.prepTime + est.cookTime > 0
             ? { ...est, prepTime: round5(est.prepTime), cookTime: round5(est.cookTime) }
             // Recette sans étapes exploitables : on retombe sur les valeurs WP.
@@ -44,7 +53,8 @@ export function timingOf(recipe: Recipe): RecipeTiming {
  * on ne peut pas promettre, donc on n'inscrit pas la recette.
  */
 export const timedMinutes = (r: Recipe) =>
-    (r.steps || []).reduce((n, step) => n + sumStepMinutes(step), 0);
+    (r as PreCalcule).timed
+    ?? (r.steps || []).reduce((n, step) => n + sumStepMinutes(step), 0);
 
 export const totalMinutes = (r: Recipe) => {
     const t = timingOf(r);

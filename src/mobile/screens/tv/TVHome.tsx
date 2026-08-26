@@ -12,7 +12,8 @@ import { Fragment, useEffect, useMemo, useRef, useState, useCallback } from 'rea
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
-import { mockRecipes } from '@/mobile/data/mockData';
+import { homeRecipes as mockRecipes, type HomeRecipe } from '@/mobile/data/home-recipes';
+import { chargerVideos, videoHtmlDe } from '@/mobile/data/videos-embed';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats } from '@/mobile/lib/ratings';
@@ -543,8 +544,14 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
 
 // ── Top 10 : une recette par écran + lecture auto de la vidéo ──────────────
 
-/** Id TikTok extrait de l'embed WordPress (`data-video-id="..."`). */
-const tiktokId = (recipe: Recipe) => recipe.videoHtml?.match(/data-video-id="(\d+)"/)?.[1] || null;
+/**
+ * Id TikTok. Les recettes de l'accueil l'apportent déjà (extrait au build) ;
+ * l'expression régulière ne sert plus qu'aux recettes venues d'ailleurs.
+ */
+const tiktokId = (recipe: Recipe) =>
+    (recipe as HomeRecipe).tiktokId
+    || recipe.videoHtml?.match(/data-video-id="(\d+)"/)?.[1]
+    || null;
 
 /** Délai d'affichage avant que la vidéo ne démarre. */
 const AUTOPLAY_DELAY = 2000;
@@ -1595,6 +1602,17 @@ export default function TVHome() {
         return () => { bar.style.display = ''; };
     }, [overlayOpen]);
 
+    /*
+     * Les embeds vidéo (300 ko) ne servent qu'une fois une fiche ouverte : on
+     * les récupère quand le navigateur n'a plus rien d'urgent à faire, donc
+     * après l'affichage des rangées, et bien avant le premier appui.
+     */
+    useEffect(() => {
+        const w = window as Window & { requestIdleCallback?: (cb: () => void) => number };
+        if (w.requestIdleCallback) w.requestIdleCallback(() => { chargerVideos(); });
+        else setTimeout(() => { chargerVideos(); }, 1200);
+    }, []);
+
     const openMenu = useCallback((recipe: Recipe, coll?: Coll) => setMenu({ recipe, coll }), []);
 
     // Le balayage « retour » ferme le calque du dessus au lieu de quitter /tv.
@@ -1685,7 +1703,13 @@ export default function TVHome() {
         const opened = list[index];
         if (opened) pushSeen(String(opened.id));
         const start = Math.max(0, Math.min(index - Math.floor(SHEET_WINDOW / 2), Math.max(0, list.length - SHEET_WINDOW)));
-        setSheet({ recipes: list.slice(start, start + SHEET_WINDOW), index: index - start });
+        // La fiche attend un `videoHtml` ; il vit dans un module chargé à part
+        // (300 ko qui ne servent qu'ici) et on le recolle à l'ouverture.
+        const fenetre = list.slice(start, start + SHEET_WINDOW).map((r) => {
+            const html = r.videoHtml || videoHtmlDe(r.id);
+            return html ? { ...r, videoHtml: html } : r;
+        });
+        setSheet({ recipes: fenetre, index: index - start });
     }, []);
 
     const byCat = useMemo(() => {
