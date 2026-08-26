@@ -39,7 +39,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     const scrollYRef = useRef(0);
     const containerRef = useRef<HTMLDivElement>(null);
     /** La piste horizontale : on lui écrit sa transformation à la main au changement de recette. */
-    const trackRef = useRef<HTMLDivElement>(null);
+    const trackRef = useRef<HTMLDivElement | null>(null);
     const scrollRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
     // MotionValues
@@ -216,7 +216,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     }, [currentIdx, x, snapBack]);
 
     // ─── Touch Handlers ──────────────────────────────────────────────────
-    const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const handleTouchStart = useCallback((e: TouchEvent) => {
         touchStartX.current = e.touches[0].clientX;
         touchStartY.current = e.touches[0].clientY;
         touchLastX.current = e.touches[0].clientX;
@@ -228,7 +228,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         isDraggingX.current = false;
     }, []);
 
-    const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    const handleTouchMove = useCallback((e: TouchEvent) => {
         const cx = e.touches[0].clientX;
         const cy = e.touches[0].clientY;
         const dx = cx - touchStartX.current;
@@ -277,7 +277,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         }
     }, [currentIdx, recipes.length, x, y]);
 
-    const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const handleTouchEnd = useCallback((e: TouchEvent) => {
         const dx = x.get();
         const dy = y.get();
         const width = containerRef.current?.offsetWidth || window.innerWidth;
@@ -311,6 +311,50 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         isDraggingY.current = false;
         isDraggingX.current = false;
     }, [currentIdx, dismiss, recipes.length, snapBack, goToIndex, x, y]);
+
+    /*
+     * Les gestes sont branchés À LA MAIN sur la piste, en `passive: false`.
+     *
+     * React attache `touchmove` en mode PASSIF : le `preventDefault()` du
+     * gestionnaire horizontal n'avait aucun effet — mesuré en envoyant un
+     * touchmove annulable, `defaultPrevented` restait faux. Safari gardait donc
+     * son propre traitement du geste par-dessus le déplacement JS, et c'est son
+     * rebond élastique que l'on voyait à chaque changement de recette.
+     *
+     * Le branchement se fait depuis la RÉFÉRENCE de la piste et non depuis un
+     * effet : l'élément y est garanti, sans dépendre de l'ordre des rendus.
+     * Les enveloppes ci-dessous sont créées une fois pour toutes et lisent le
+     * gestionnaire courant, ce qui évite de tout re-brancher à chaque frappe.
+     */
+    const gestes = useRef({ start: handleTouchStart, move: handleTouchMove, end: handleTouchEnd });
+    gestes.current = { start: handleTouchStart, move: handleTouchMove, end: handleTouchEnd };
+
+    const enveloppes = useRef({
+        start: (e: TouchEvent) => gestes.current.start(e),
+        move: (e: TouchEvent) => gestes.current.move(e),
+        end: (e: TouchEvent) => gestes.current.end(e),
+    });
+
+    const brancherPiste = useCallback((el: HTMLDivElement | null) => {
+        const precedent = trackRef.current;
+        if (precedent === el) return;
+        const { start, move, end } = enveloppes.current;
+        if (precedent) {
+            precedent.removeEventListener('touchstart', start);
+            precedent.removeEventListener('touchmove', move);
+            precedent.removeEventListener('touchend', end);
+            precedent.removeEventListener('touchcancel', end);
+        }
+        trackRef.current = el;
+        if (el) {
+            const opts = { passive: false } as AddEventListenerOptions;
+            el.addEventListener('touchstart', start, opts);
+            el.addEventListener('touchmove', move, opts);
+            el.addEventListener('touchend', end, opts);
+            el.addEventListener('touchcancel', end, opts);
+        }
+    }, []);
+
 
     if (!shouldRender) return null;
 
@@ -361,11 +405,8 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             {/* TRACK PRINCIPAL */}
                             <motion.div 
                                 className={styles.swipeTrack}
-                                ref={trackRef}
+                                ref={brancherPiste}
                                 style={{ x, display: 'flex', width: '100%', height: '100%', position: 'relative' }}
-                                onTouchStart={handleTouchStart}
-                                onTouchMove={handleTouchMove}
-                                onTouchEnd={handleTouchEnd}
                             >
                                 {/*
                                  * LES TROIS EMPLACEMENTS — précédent, courant, suivant.
