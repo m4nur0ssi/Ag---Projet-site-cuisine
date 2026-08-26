@@ -13,7 +13,7 @@ import dynamic from 'next/dynamic';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
 import { homeRecipes as mockRecipes, type HomeRecipe } from '@/mobile/data/home-recipes';
-import { chargerVideos, videoHtmlDe } from '@/mobile/data/videos-embed';
+import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-embed';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats } from '@/mobile/lib/ratings';
@@ -89,7 +89,7 @@ const FavoriteButton = dynamic(() => import('@/mobile/components/FavoriteButton/
 const AuthButton = dynamic(() => import('@/mobile/components/AuthButton/AuthButton'), { ssr: false });
 const NavDrawer = dynamic(() => import('./NavDrawer'), { ssr: false });
 const EdgeHandle = dynamic(() => import('./EdgeHandle'), { ssr: false });
-import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './NavDrawer';
+import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './filters';
 import Tip from '@/components/Tip/Tip';
 import SiteFooter from '@/components/SiteFooter/SiteFooter';
 // Loupe modernisée AppleTV+ (mêmes fonctions que SpotlightSearch prod, habillage TV).
@@ -1603,14 +1603,14 @@ export default function TVHome() {
     }, [overlayOpen]);
 
     /*
-     * Les embeds vidéo (300 ko) ne servent qu'une fois une fiche ouverte : on
-     * les récupère quand le navigateur n'a plus rien d'urgent à faire, donc
-     * après l'affichage des rangées, et bien avant le premier appui.
+     * Étapes, ingrédients et embeds vidéo ne servent qu'une fois une fiche
+     * ouverte : on les récupère quand le navigateur n'a plus rien d'urgent à
+     * faire, donc après l'affichage des rangées, et bien avant le premier appui.
      */
     useEffect(() => {
         const w = window as Window & { requestIdleCallback?: (cb: () => void) => number };
-        if (w.requestIdleCallback) w.requestIdleCallback(() => { chargerVideos(); });
-        else setTimeout(() => { chargerVideos(); }, 1200);
+        if (w.requestIdleCallback) w.requestIdleCallback(() => { void chargerVideos(); });
+        else setTimeout(() => { void chargerVideos(); }, 1200);
     }, []);
 
     const openMenu = useCallback((recipe: Recipe, coll?: Coll) => setMenu({ recipe, coll }), []);
@@ -1703,13 +1703,19 @@ export default function TVHome() {
         const opened = list[index];
         if (opened) pushSeen(String(opened.id));
         const start = Math.max(0, Math.min(index - Math.floor(SHEET_WINDOW / 2), Math.max(0, list.length - SHEET_WINDOW)));
-        // La fiche attend un `videoHtml` ; il vit dans un module chargé à part
-        // (300 ko qui ne servent qu'ici) et on le recolle à l'ouverture.
-        const fenetre = list.slice(start, start + SHEET_WINDOW).map((r) => {
-            const html = r.videoHtml || videoHtmlDe(r.id);
-            return html ? { ...r, videoHtml: html } : r;
-        });
-        setSheet({ recipes: fenetre, index: index - start });
+        /*
+         * La fiche attend des étapes, des ingrédients et un embed vidéo. Ces
+         * trois-là vivent dans des modules chargés à part — ils ne servent
+         * qu'ici et pèsent les trois quarts du catalogue — et on les recolle au
+         * moment d'ouvrir. S'ils ne sont pas encore arrivés (ouverture dans la
+         * première seconde), la fiche s'affiche et se complète juste après.
+         */
+        setSheet({ recipes: list.slice(start, start + SHEET_WINDOW).map(completer), index: index - start });
+        if (!detailsPrets()) {
+            chargerVideos().then(() => {
+                setSheet((ouvert) => (ouvert ? { ...ouvert, recipes: ouvert.recipes.map(completer) } : ouvert));
+            });
+        }
     }, []);
 
     const byCat = useMemo(() => {

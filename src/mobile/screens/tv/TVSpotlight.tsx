@@ -13,7 +13,19 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
-import { mockRecipes } from '@/mobile/data/mockData';
+/*
+ * La recherche part des mêmes données que l'accueil, complétées par les étapes
+ * et les ingrédients : ces deux modules sont déjà chargés quand l'utilisateur
+ * ouvre la recherche. Importer le catalogue complet ferait télécharger une
+ * deuxième copie de tout, juste pour lire des noms d'ingrédients.
+ */
+import { homeRecipes } from '@/mobile/data/home-recipes';
+import { detailById } from '@/mobile/data/home-details';
+
+const mockRecipes = homeRecipes.map((r) => {
+    const d = detailById[String(r.id)];
+    return d ? { ...r, steps: d.steps, ingredients: d.ingredients } : r;
+});
 import { decodeHtml } from '@/mobile/lib/utils';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { buildFinderCatalog } from '@/lib/recipe-search-payload';

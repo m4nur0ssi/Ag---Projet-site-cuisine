@@ -78,6 +78,13 @@ const COLLECTION_TAGS: Record<string, string> = {
     orient: 'orient', usa: 'usa',
 };
 
+/**
+ * Les tags que `collectionTagOf` sait produire. Sert au script de build à
+ * pré-calculer l'appartenance : il doit couvrir TOUS les tags qu'une vue peut
+ * demander, sinon une rangée se viderait sans prévenir.
+ */
+export const COLLECTION_TAGS_VALEURS = [...new Set(Object.values(COLLECTION_TAGS))];
+
 export function collectionTagOf(label: string): string | null {
     const n = norm((label || '').toLowerCase()).trim();
     if (!n) return null;
@@ -128,7 +135,18 @@ const SAVORY_TITLE = new RegExp(
  * cheesecake salé au thon, tarte tatin aux aubergines, tarte protéinée…).
  * On la reconnaît à son titre.
  */
+/**
+ * Recettes de l'accueil : leur appartenance aux rangées est calculée au build
+ * (scripts/build-home-data.js) par CES fonctions-ci, ce qui permet de ne plus
+ * embarquer étapes ni ingrédients — ils ne servaient qu'à composer le texte
+ * fouillé ci-dessous. Une recette venue d'ailleurs (desktop, fiche, planning)
+ * n'a pas ces champs et suit l'ancien chemin, intact.
+ */
+type PreCalculee = Recipe & { tagsStricts?: string[]; tagsLarges?: string[]; sale?: boolean };
+
 export function isSavoryMiscat(recipe: Recipe): boolean {
+    const pre = (recipe as PreCalculee).sale;
+    if (pre !== undefined) return pre;
     const cat = (recipe.category || '').toLowerCase();
     if (!['patisserie', 'desserts', 'glaces'].includes(cat)) return false;
     // Sans accents : `\b` ne reconnaît pas « é » comme une lettre, si bien que
@@ -153,6 +171,11 @@ export function matchesTag(
      */
     opts?: { ignoreCategoryGuards?: boolean }
 ): boolean {
+    const pre = recipe as PreCalculee;
+    if (pre.tagsStricts && pre.tagsLarges) {
+        const liste = opts?.ignoreCategoryGuards ? pre.tagsLarges : pre.tagsStricts;
+        return liste.includes(tag.toLowerCase());
+    }
     const guards = !opts?.ignoreCategoryGuards;
     const tagLower = tag.toLowerCase();
     const recipeTags = (recipe.tags || []).map((t) => t.toLowerCase());
