@@ -356,6 +356,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
     const switchTab = (tab: TabId) => {
         setPrevTab(activeTab);
+        // À partir d'ici la pastille a le droit de glisser : c'est un choix humain.
+        setOngletChoisi(true);
         setActiveTab(tab);
         // Scroll to top of tab content
         if (tabContentRef.current) {
@@ -521,6 +523,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     const tabsBarRef = useRef<HTMLDivElement | null>(null);
     const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
     const [tabInd, setTabInd] = useState({ left: 4, width: 0 });
+    /** Vrai dès que l'utilisateur a lui-même changé d'onglet : la pastille peut glisser. */
+    const [ongletChoisi, setOngletChoisi] = useState(false);
     /*
      * Mesure AVANT le premier rendu, et non après.
      *
@@ -1054,6 +1058,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                         steps={timing.steps}
                                         difficulty={timing.difficulty}
                                         showCaption={false}
+                                        // Dans la fiche qui défile, l'entrée à ressort
+                                        // rejouait à chaque carte.
+                                        anime={!isModal}
                                     />
                                 </div>
                             </div>
@@ -1318,6 +1325,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             en fractions égales — les onglets n'ont pas la même largeur. */}
                         <div
                             className={styles.tabIndicator}
+                            data-anime={ongletChoisi ? 'oui' : undefined}
                             style={{ left: tabInd.left, width: tabInd.width }}
                         />
                     </div>
@@ -1344,7 +1352,12 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     )}
 
                     {/* Contenu des tabs - scrollable individuellement */}
-                    <div className={styles.tabContent} ref={tabContentRef} key={activeTab}>
+                    <div
+                        className={styles.tabContent}
+                        data-anime={ongletChoisi ? 'oui' : undefined}
+                        ref={tabContentRef}
+                        key={activeTab}
+                    >
 
                         {/* TAB: Ingrédients */}
                         {activeTab === 'ingredients' && (

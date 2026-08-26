@@ -10,6 +10,8 @@ interface Props {
     steps?: number;
     difficulty?: string; // indice de secours si pas de temps/étapes
     showCaption?: boolean; // affiche "X étapes" à côté (desktop). false = barres seules (PWA).
+    /** Entrée animée des barres. À couper là où le composant rejoue à chaque carte. */
+    anime?: boolean;
 }
 
 // Niveau 1..3 — piloté D'ABORD par le nombre d'étapes (plus d'étapes = plus difficile) ;
@@ -33,7 +35,7 @@ const LEVELS = [
     { from: '#fb7185', to: '#ef4444', glow: 'rgba(239,68,68,0.55)' },    // 3 — rouge
 ];
 
-export default function DifficultyMeter({ prepTime, cookTime, steps, difficulty, showCaption = true }: Props) {
+export default function DifficultyMeter({ prepTime, cookTime, steps, difficulty, showCaption = true, anime = true }: Props) {
     const level = useMemo(
         () => computeLevel(prepTime, cookTime, steps, difficulty),
         [prepTime, cookTime, steps, difficulty]
@@ -57,14 +59,20 @@ export default function DifficultyMeter({ prepTime, cookTime, steps, difficulty,
                                     : undefined,
                                 boxShadow: on ? `0 0 10px ${color.glow}` : undefined,
                             }}
-                            initial={{ scaleY: 0, opacity: 0 }}
+                            /*
+                             * Le ressort (amortissement 0,39) dépasse la cible avant
+                             * d'y revenir : joli à l'ouverture d'une page, insupportable
+                             * quand il rejoue à chaque carte d'un carrousel. `anime`
+                             * permet de l'éteindre là où la fiche défile.
+                             */
+                            initial={anime ? { scaleY: 0, opacity: 0 } : false}
                             animate={{ scaleY: 1, opacity: 1 }}
-                            transition={{
+                            transition={anime ? {
                                 delay: 0.12 + i * 0.09,
                                 type: 'spring',
                                 stiffness: 520,
                                 damping: 18,
-                            }}
+                            } : { duration: 0 }}
                         />
                     );
                 })}

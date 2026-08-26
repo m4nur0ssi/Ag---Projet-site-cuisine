@@ -125,14 +125,21 @@ export default function VoteButtonSheet({ recipeId, initialVotes = 0, className 
 
     return (
         <div className={`${styles.voteWrapper} ${className || ''}`}>
+            {/*
+              * Plus d'animation de mise en page (`layout`) ici.
+              *
+              * Elle anime le `transform` de l'élément dès que framer le croit
+              * déplacé — or la piste du carrousel se translate en permanence
+              * pendant un balayage. Relevé sur l'appareil : 28 animations de
+              * 340 ms sur la flamme en douze secondes, soit le rebond signalé.
+              * Le bouton garde ses réactions au doigt, qui sont voulues.
+              */}
             <motion.div 
                 className={styles.splitContainer}
-                layout
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             >
                 {/* Bouton Flamme (Toggle) */}
                 <motion.button
-                    layout
                     className={`${styles.flameBubble} ${hasVoted ? styles.voted : ''}`}
                     onClick={handleVoteToggle}
                     whileHover={{ scale: 1.15 }}
@@ -145,7 +152,6 @@ export default function VoteButtonSheet({ recipeId, initialVotes = 0, className 
                 <AnimatePresence>
                     {votes > 0 && (
                         <motion.div 
-                            layout
                             className={styles.countBubble}
                             initial={{ scale: 0, opacity: 0, x: -10 }}
                             animate={{ scale: 1, opacity: 1, x: 0 }}
