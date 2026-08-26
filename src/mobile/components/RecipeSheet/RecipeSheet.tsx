@@ -15,7 +15,9 @@ interface RecipeSheetProps {
     recipeIndex?: number;
 }
 
-const DISMISS_Y = 160;
+// Distance au-delà de laquelle un glissement lent ferme la fiche. Un geste
+// rapide n'a pas à l'atteindre : la vitesse suffit (voir handleTouchEnd).
+const DISMISS_Y = 120;
 const DISMISS_V = 600;
 const SWIPE_THRESHOLD = 0.25; 
 const SWIPE_VELOCITY = 400;
@@ -41,6 +43,10 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     const touchStartX = useRef(0);
     const touchStartY = useRef(0);
     const touchLastX = useRef(0);
+    const touchLastY = useRef(0);
+    const touchLastT = useRef(0);
+    /** Vitesse verticale du doigt en px/ms, sur les dernières millisecondes. */
+    const vitesseY = useRef(0);
     const gestureType = useRef<'none' | 'horizontal' | 'vertical'>('none');
     const isDraggingY = useRef(false);
     const isDraggingX = useRef(false);
@@ -121,9 +127,23 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
 
     const handleAnimationComplete = () => { if (!isOpen) setShouldRender(false); };
 
-    const dismiss = useCallback(() => {
+    /**
+     * Sortie de la fiche.
+     *
+     * La durée n'est plus fixe : elle se déduit de la vitesse du doigt et de ce
+     * qu'il reste à parcourir. Un geste franc rendait la main en 400 ms — le
+     * temps que la fiche descende à sa propre allure, sans rapport avec celle du
+     * poignet. On garde la même courbe, on la parcourt au rythme du geste, entre
+     * 130 et 260 ms.
+     */
+    const dismiss = useCallback((vitesse = 0) => {
         if (navigator.vibrate) navigator.vibrate(30);
-        animate(y, window.innerHeight + 100, { type: 'tween', ease: [0.32, 0.72, 0, 1], duration: 0.4, onComplete: onClose });
+        const reste = window.innerHeight + 100 - y.get();
+        // vitesse en px/ms ; on plafonne pour ne pas obtenir d'animation nulle.
+        const duree = Math.min(0.26, Math.max(0.13, reste / Math.max(vitesse, 1.2) / 1000));
+        animate(y, window.innerHeight + 100, {
+            type: 'tween', ease: [0.32, 0.72, 0, 1], duration: duree, onComplete: onClose,
+        });
     }, [y, onClose]);
 
     const snapBack = useCallback(() => {
@@ -162,6 +182,9 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         touchStartX.current = e.touches[0].clientX;
         touchStartY.current = e.touches[0].clientY;
         touchLastX.current = e.touches[0].clientX;
+        touchLastY.current = e.touches[0].clientY;
+        touchLastT.current = performance.now();
+        vitesseY.current = 0;
         gestureType.current = 'none';
         isDraggingY.current = false;
         isDraggingX.current = false;
@@ -175,7 +198,14 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         const absDx = Math.abs(dx);
         const absDy = Math.abs(dy);
 
+        // Vitesse instantanée : c'est elle qui distingue un geste franc d'un
+        // glissement hésitant, et elle vaut mieux qu'une distance seuil.
+        const maintenant = performance.now();
+        const dt = maintenant - touchLastT.current;
+        if (dt > 0) vitesseY.current = (cy - touchLastY.current) / dt;
         touchLastX.current = cx;
+        touchLastY.current = cy;
+        touchLastT.current = maintenant;
 
         const currentScrollEl = scrollRefs.current[currentIdx];
         const atTop = currentScrollEl ? currentScrollEl.scrollTop <= 0 : true;
@@ -216,7 +246,10 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         const vx = (touchLastX.current - touchStartX.current) / 100; // Estimation simple
 
         if (gestureType.current === 'vertical' && isDraggingY.current) {
-            if (dy > DISMISS_Y) dismiss();
+            // DISMISS_V existait sans jamais servir : seule la distance comptait,
+            // si bien qu'un geste vif mais court ramenait la fiche en place.
+            const lance = vitesseY.current * 1000 > DISMISS_V && dy > 24;
+            if (dy > DISMISS_Y || lance) dismiss(vitesseY.current);
             else snapBack();
         }
 
@@ -266,7 +299,14 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                             className={styles.sheet}
                             initial={{ y: '100%' }}
                             animate={{ y: 0 }}
-                            exit={{ y: '105%' }}
+                            /*
+                             * Sortie en tween court plutôt qu'au ressort : après un
+                             * balayage, la fiche est DÉJÀ hors écran (dismiss l'y a
+                             * emmenée) et le ressort ne faisait qu'ajouter trois cents
+                             * millisecondes avant de rendre la main. L'entrée garde
+                             * son ressort, elle.
+                             */
+                            exit={{ y: '105%', transition: { type: 'tween', ease: [0.32, 0.72, 0, 1], duration: 0.18 } }}
                             style={{ y }}
                             transition={{ type: 'spring', damping: 35, stiffness: 400, mass: 0.6 }}
                         >
