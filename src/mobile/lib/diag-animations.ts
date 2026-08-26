@@ -23,15 +23,20 @@ export function demarrerDiagnosticAnimations(): void {
 
     const cartouche = document.createElement('div');
     cartouche.setAttribute('role', 'status');
+    /*
+     * Le cartouche ne doit RIEN intercepter : la première version se plaçait en
+     * bas, sous le pouce, et se fermait au clic — le balayage tombait dessus et
+     * arrêtait la mesure au moment précis qu'on voulait observer. Il est donc
+     * transparent aux gestes, et posé en haut.
+     */
     cartouche.style.cssText = [
-        'position:fixed', 'left:8px', 'right:8px', 'bottom:8px', 'z-index:2147483647',
-        'max-height:42vh', 'overflow:auto', 'background:rgba(0,0,0,.86)', 'color:#fff',
-        'font:11px/1.35 ui-monospace,monospace', 'padding:8px 10px', 'border-radius:10px',
-        'white-space:pre-wrap', 'pointer-events:auto',
+        'position:fixed', 'left:6px', 'right:6px', 'top:6px', 'z-index:2147483647',
+        'max-height:40vh', 'overflow:hidden', 'background:rgba(0,0,0,.88)', 'color:#fff',
+        'font:10px/1.3 ui-monospace,monospace', 'padding:6px 8px', 'border-radius:8px',
+        'white-space:pre-wrap', 'pointer-events:none', 'touch-action:none',
     ].join(';');
-    cartouche.textContent = 'relevé en cours — fais ton geste…\n';
+    cartouche.textContent = 'relevé en cours — ouvre une recette et balaye…\n';
     document.body.appendChild(cartouche);
-    cartouche.addEventListener('click', () => cartouche.remove());
 
     const connues = new WeakSet<Animation>();
     document.getAnimations().forEach((a) => connues.add(a));
@@ -93,7 +98,7 @@ export function demarrerDiagnosticAnimations(): void {
             .sort((a, b) => b[1] - a[1])
             .map(([l, n]) => `${String(n).padStart(3)} × ${l}`)
             .join('\n');
-        cartouche.textContent = `relevé (${Math.round((Date.now() - debut) / 1000)}s) — touche pour fermer\n`
+        cartouche.textContent = `relevé ${Math.round((Date.now() - debut) / 1000)}s / 15s\n`
             + `— ANIMATIONS —\n${liste(compte) || '(aucune)'}\n`
             + `— DÉCALAGES —\n${liste(compteSecousses) || '(aucun)'}`;
         if (Date.now() - debut > 15000) window.clearInterval(minuteur);
