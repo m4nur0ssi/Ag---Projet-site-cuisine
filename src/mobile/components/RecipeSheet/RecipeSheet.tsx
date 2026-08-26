@@ -29,6 +29,12 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     // Resync quand on ouvre une nouvelle fiche (props changent).
     useEffect(() => { setRecipes(baseRecipes); }, [baseRecipes]);
     const [shouldRender, setShouldRender] = useState(isOpen);
+    /**
+     * Les cartes voisines se montent APRÈS la frame où l'on recentre la piste.
+     * Construire une fiche entière coûte plusieurs millisecondes ; le faire dans
+     * le même bloc synchrone que la fin de l'animation faisait sauter l'image.
+     */
+    const [voisinsMontes, setVoisinsMontes] = useState(false);
 
     const scrollYRef = useRef(0);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -129,6 +135,20 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
 
     const handleAnimationComplete = () => { if (!isOpen) setShouldRender(false); };
 
+    /*
+     * Les voisines arrivent juste après la carte demandée. Deux déclencheurs :
+     * la frame suivante, et un minuteur de secours — dans un onglet en arrière-
+     * plan, requestAnimationFrame est gelé, et sans ce filet les cartes voisines
+     * ne se monteraient jamais.
+     */
+    useEffect(() => {
+        if (!isOpen) { setVoisinsMontes(false); return; }
+        const monter = () => setVoisinsMontes(true);
+        const frame = requestAnimationFrame(monter);
+        const secours = setTimeout(monter, 120);
+        return () => { cancelAnimationFrame(frame); clearTimeout(secours); };
+    }, [isOpen, currentIdx]);
+
     /**
      * Sortie de la fiche.
      *
@@ -185,7 +205,10 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                  * synchrone : la première image peinte est déjà la bonne. Framer
                  * réécrira la même valeur à sa frame suivante, sans effet visible.
                  */
-                flushSync(() => setCurrentIdx(newIdx));
+                flushSync(() => {
+                    setVoisinsMontes(false);
+                    setCurrentIdx(newIdx);
+                });
                 x.jump(0);
                 if (trackRef.current) trackRef.current.style.transform = 'translateX(0px)';
             }
@@ -344,34 +367,55 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
                                 onTouchMove={handleTouchMove}
                                 onTouchEnd={handleTouchEnd}
                             >
-                                {/* Slot Précédent */}
-                                {prevRecipe && (
-                                    <div key={`prev-${prevRecipe.id}`} style={{ position: 'absolute', left: '-100%', width: '100%', height: '100%', overflow: 'hidden' }}>
-                                        <div className={styles.scrollArea}>
-                                            <RecipeDetails recipe={prevRecipe} isModal={true} />
+                                {/*
+                                 * LES TROIS EMPLACEMENTS — précédent, courant, suivant.
+                                 *
+                                 * Ils étaient écrits en trois blocs distincts, avec des clés
+                                 * portant leur RÔLE (`prev-`, `curr-`, `next-`). En changeant
+                                 * de recette, celle qu'on venait de faire glisser passait de
+                                 * `next-1234` à `curr-1234` : pour React, deux éléments sans
+                                 * rapport. Il démontait donc la carte affichée et en
+                                 * remontait une neuve, à l'identique — le temps de reconstruire
+                                 * une fiche entière, images comprises, dans le même bloc
+                                 * synchrone que la fin de l'animation. D'où la secousse, à
+                                 * chaque passage.
+                                 *
+                                 * Une seule liste, des clés portant l'IDENTIFIANT de la
+                                 * recette, une position calculée depuis l'écart à l'index
+                                 * courant : React reconnaît les cartes déjà montées et se
+                                 * contente de les déplacer.
+                                 */}
+                                {[-1, 0, 1].map((ecart) => {
+                                    const idx = currentIdx + ecart;
+                                    const r = recipes[idx];
+                                    if (!r) return null;
+                                    const courante = ecart === 0;
+                                    return (
+                                        <div
+                                            key={r.id}
+                                            style={{
+                                                position: 'absolute',
+                                                left: `${ecart * 100}%`,
+                                                width: '100%',
+                                                height: '100%',
+                                                overflow: 'hidden',
+                                            }}
+                                        >
+                                            <div
+                                                className={styles.scrollArea}
+                                                ref={courante ? (el) => { scrollRefs.current[currentIdx] = el; } : undefined}
+                                            >
+                                                {courante && <button className={styles.closeBtn} onClick={onClose}>✕</button>}
+                                                {/*
+                                                 * La carte voisine qui vient d'apparaître attend une
+                                                 * image avant de se construire : sans ça, elle se
+                                                 * monte pendant la frame où l'on recentre la piste.
+                                                 */}
+                                                {(courante || voisinsMontes) && <RecipeDetails recipe={r} isModal={true} />}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-
-                                {/* Slot Central */}
-                                <div 
-                                    key={`curr-${currentRecipe.id}`}
-                                    className={styles.scrollArea} 
-                                    ref={el => { scrollRefs.current[currentIdx] = el; }}
-                                    style={{ width: '100%', height: '100%', overflowY: 'auto' }}
-                                >
-                                    <button className={styles.closeBtn} onClick={onClose}>✕</button>
-                                    <RecipeDetails recipe={currentRecipe} isModal={true} />
-                                </div>
-
-                                {/* Slot Suivant */}
-                                {nextRecipe && (
-                                    <div key={`next-${nextRecipe.id}`} style={{ position: 'absolute', left: '100%', width: '100%', height: '100%', overflow: 'hidden' }}>
-                                        <div className={styles.scrollArea}>
-                                            <RecipeDetails recipe={nextRecipe} isModal={true} />
-                                        </div>
-                                    </div>
-                                )}
+                                    );
+                                })}
                             </motion.div>
 
                             {/* Nav Arrows */}
