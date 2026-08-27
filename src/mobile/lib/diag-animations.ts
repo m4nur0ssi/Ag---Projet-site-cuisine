@@ -83,7 +83,45 @@ export function demarrerDiagnosticAnimations(): void {
         observateur.observe({ type: 'layout-shift', buffered: true } as PerformanceObserverInit);
     } catch { /* navigateur sans layout-shift : on garde les animations */ }
 
+    /*
+     * Position de la piste, image par image.
+     *
+     * Un rebond « dans le sens du geste » ne se voit dans aucune liste
+     * d'animations : il faut regarder la valeur elle-même. On note donc, à
+     * chaque frame, le décalage horizontal de la piste, et on résume chaque
+     * geste par ses extrêmes — si la valeur dépasse sa cible puis revient, ou
+     * repasse du signe opposé avant de se poser, le rebond est là, chiffré.
+     */
+    const gestes: string[] = [];
+    let serie: number[] = [];
+    const lirePiste = () => {
+        const piste = document.querySelector('[class*="swipeTrack"]') as HTMLElement | null;
+        if (!piste) return null;
+        const t = getComputedStyle(piste).transform;
+        if (!t || t === 'none') return 0;
+        const m = t.match(/matrix.*\((.+)\)/);
+        if (!m) return 0;
+        const v = m[1].split(', ').map(Number);
+        return Math.round(v.length > 6 ? v[12] : v[4]);
+    };
+    const suivrePiste = () => {
+        const x = lirePiste();
+        if (x !== null) {
+            if (Math.abs(x) > 2) serie.push(x);
+            else if (serie.length > 3) {
+                const min = Math.min(...serie);
+                const max = Math.max(...serie);
+                const sens = Math.abs(min) > Math.abs(max) ? 'gauche' : 'droite';
+                const contre = sens === 'gauche' ? max : min;   // écart du signe opposé
+                gestes.push(`${sens} : min ${min} max ${max}${Math.abs(contre) > 2 ? ` ← DÉPASSEMENT ${contre}` : ''}`);
+                serie = [];
+            } else serie = [];
+        }
+        if (Date.now() - debut < 15000) requestAnimationFrame(suivrePiste);
+    };
+
     const debut = Date.now();
+    requestAnimationFrame(suivrePiste);
     const minuteur = window.setInterval(() => {
         document.getAnimations().forEach((a) => {
             if (connues.has(a)) return;
@@ -100,7 +138,8 @@ export function demarrerDiagnosticAnimations(): void {
             .join('\n');
         cartouche.textContent = `relevé ${Math.round((Date.now() - debut) / 1000)}s / 15s\n`
             + `— ANIMATIONS —\n${liste(compte) || '(aucune)'}\n`
-            + `— DÉCALAGES —\n${liste(compteSecousses) || '(aucun)'}`;
+            + `— DÉCALAGES —\n${liste(compteSecousses) || '(aucun)'}\n`
+            + `— PISTE —\n${gestes.slice(-4).join('\n') || '(aucun geste)'}`;
         if (Date.now() - debut > 15000) window.clearInterval(minuteur);
     }, 100);
 }
