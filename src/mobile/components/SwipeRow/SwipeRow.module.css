@@ -1,0 +1,45 @@
+/*
+ * Ligne balayable — habillage.
+ *
+ * Volontairement sobre en CSS : flexbox, transform et transition, rien qui
+ * demande un navigateur récent. Cet écran doit se comporter pareil sur un
+ * iPhone d'il y a cinq ans et sur un Android d'entrée de gamme.
+ */
+.enveloppe {
+    position: relative;
+    overflow: hidden;
+    /* Le doigt peut défiler verticalement ; l'horizontale est à nous. */
+    touch-action: pan-y;
+}
+
+.panneau {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border: none;
+    background: #ff3b30;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    /* Le texte reste lisible même quand le panneau n'est encore qu'un liseré. */
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.panneau:active {
+    background: #e0322a;
+}
+
+.contenu {
+    position: relative;
+    /* Le fond suit la page : sans lui, le rouge transparaîtrait sous la ligne. */
+    background: inherit;
+    will-change: transform;
+}

@@ -2847,6 +2847,9 @@
     color: rgba(235, 235, 245, 0.45);
 }
 
+/* Enveloppée par une ligne balayable : c'est l'enveloppe qui porte l'écart. */
+.courseRowSwipe { margin-bottom: 0; }
+
 .courseRow {
     display: flex;
     align-items: center;

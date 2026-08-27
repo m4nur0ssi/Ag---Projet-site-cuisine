@@ -20,6 +20,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import {
     buildConsolidatedItems, doneKeysOf, isItemDone, fmtQty, prettyQtyUnit,
+    canonicalIng,
     parseIngredient, cleanIngredientText, getIngIcon,
     type ConsolItem,
 } from '@/mobile/lib/ingredients';
@@ -30,6 +31,7 @@ import { haptic } from './TVHome';
 import { readCart, removeCartRecipe, CART_EVENT, type CartRecipe } from './recipeCart';
 import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
+import SwipeRow from '@/mobile/components/SwipeRow/SwipeRow';
 import TVToast from './TVToast';
 
 const ShopActions = dynamic(() => import('@/mobile/components/ShopActions/ShopActions'), { ssr: false });
@@ -308,6 +310,39 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         saveList(next);
     };
 
+    /**
+     * Retirer une ligne pour de bon, d'où qu'elle vienne.
+     *
+     * La ligne affichée peut fusionner plusieurs ingrédients de recettes
+     * différentes — c'est le principe de la liste consolidée. On retire donc
+     * partout ce qui porte le même produit, avec la MÊME canonicalisation que
+     * celle qui les avait regroupés : sinon on effacerait la ligne à l'écran en
+     * laissant ses sources derrière, et elle reviendrait au prochain calcul.
+     */
+    const supprimerLigne = (it: ConsolItem) => {
+        haptic(10);
+        const cible = canonicalIng(it.name, it.unit).name;
+        const next: ListData = {};
+        Object.entries(list).forEach(([cle, entree]) => {
+            const gardes = entree.ingredients.filter((ing) => {
+                const raw = typeof ing === 'string' ? ing : ing.name;
+                const p = parseIngredient(raw);
+                if (!p.name) return true;
+                return canonicalIng(p.name, p.unit, raw).name !== cible;
+            });
+            if (gardes.length) next[cle] = { ...entree, ingredients: gardes };
+        });
+        saveList(next);
+        // Les cases cochées de cette ligne n'ont plus d'objet.
+        setDone((prev) => {
+            const n = new Set(prev);
+            doneKeysOf(it).forEach((k) => n.delete(k));
+            persistDone(n);
+            return n;
+        });
+        setSelected((prev) => { const n = new Set(prev); n.delete(it.key); return n; });
+    };
+
     const clearAll = () => {
         // Pas de fenêtre système sur un écran TV+ : on vide, on annonce, et on
         // garde de quoi revenir en arrière le temps du message.
@@ -529,7 +564,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 const struck = isItemDone(it, done);
                                 const isManual = !!it.manual;
                                 return (
-                                    <div className={`${styles.courseRow} ${struck ? styles.courseRowDone : ''}`} key={it.key}>
+                                    <SwipeRow key={it.key} onDelete={() => supprimerLigne(it)}>
+                                    <div className={`${styles.courseRow} ${styles.courseRowSwipe} ${struck ? styles.courseRowDone : ''}`}>
                                         {/* Case : sélectionne pour le magasin et le partage. */}
                                         <button
                                             className={`${styles.courseCheck} ${selected.has(it.key) ? styles.courseCheckOn : ''}`}
@@ -640,19 +676,12 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                             </>
                                         )}
 
-                                        {/* Un ajout à la main peut partir pour de bon — mais seulement
-                                            une fois barré : trois boutons de front encombraient la ligne,
-                                            et l'ordre « je l'écarte, puis je l'efface » va de soi. */}
-                                        {isManual && struck && editing !== it.key && (
-                                            <button
-                                                className={styles.courseDelete}
-                                                onClick={() => removeManual(it.display)}
-                                                aria-label="Retirer définitivement"
-                                            >
-                                                ✕
-                                            </button>
-                                        )}
+                                        {/* La croix rouge a disparu : on écarte la ligne du doigt, vers
+                                            la gauche, et le panneau « Supprimer » se découvre — le geste
+                                            vaut pour toutes les lignes, pas seulement les ajouts à la
+                                            main, et il évite un troisième bouton dans la rangée. */}
                                     </div>
+                                    </SwipeRow>
                                 );
                             })}
                         </section>
