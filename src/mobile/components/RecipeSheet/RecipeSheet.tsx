@@ -196,7 +196,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         }
         
         const direction = newIdx > currentIdx ? 1 : -1;
-        const width = containerRef.current?.offsetWidth || window.innerWidth;
+        const width = pasDuCarrousel();
         
         if (navigator.vibrate) navigator.vibrate(10);
 
@@ -293,7 +293,7 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     const handleTouchEnd = useCallback((e: TouchEvent) => {
         const dx = x.get();
         const dy = y.get();
-        const width = containerRef.current?.offsetWidth || window.innerWidth;
+        const width = pasDuCarrousel();
         const vx = (touchLastX.current - touchStartX.current) / 100; // Estimation simple
 
         if (gestureType.current === 'vertical' && isDraggingY.current) {
@@ -347,6 +347,21 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
         move: (e: TouchEvent) => gestes.current.move(e),
         end: (e: TouchEvent) => gestes.current.end(e),
     });
+
+    /**
+     * Largeur d'un pas du carrousel.
+     *
+     * C'est celle de LA PISTE, pas celle de l'écran : les emplacements voisins
+     * sont posés à `left: ±100%` de la piste, et la piste vit dans une fiche
+     * large de 94 %. On mesurait le conteneur, qui occupe tout l'écran — 375
+     * contre 351 sur un iPhone, 402 contre 378 sur un grand modèle. L'animation
+     * emmenait donc la carte 24 pixels trop loin, et le basculement la recalait
+     * d'un coup : l'à-coup dans le sens du geste, à chaque changement de recette.
+     */
+    const pasDuCarrousel = useCallback(
+        () => trackRef.current?.offsetWidth || containerRef.current?.offsetWidth || window.innerWidth,
+        [],
+    );
 
     const brancherPiste = useCallback((el: HTMLDivElement | null) => {
         const precedent = trackRef.current;

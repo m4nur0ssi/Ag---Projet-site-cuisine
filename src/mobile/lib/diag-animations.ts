@@ -94,28 +94,52 @@ export function demarrerDiagnosticAnimations(): void {
      */
     const gestes: string[] = [];
     let serie: number[] = [];
-    const lirePiste = () => {
-        const piste = document.querySelector('[class*="swipeTrack"]') as HTMLElement | null;
-        if (!piste) return null;
-        const t = getComputedStyle(piste).transform;
+    let apres: number[] = [];
+    let finGeste = 0;
+
+    const decalageDe = (el: Element | null) => {
+        if (!el) return 0;
+        const t = getComputedStyle(el as HTMLElement).transform;
         if (!t || t === 'none') return 0;
         const m = t.match(/matrix.*\((.+)\)/);
         if (!m) return 0;
         const v = m[1].split(', ').map(Number);
         return Math.round(v.length > 6 ? v[12] : v[4]);
     };
+
+    /*
+     * On suit la piste ET la carte affichée, pendant le geste et UNE DEMI-SECONDE
+     * APRÈS. La première version arrêtait de mesurer au moment précis où la piste
+     * revient à zéro — c'est-à-dire à l'instant du basculement, donc juste avant
+     * ce qu'on cherche.
+     */
     const suivrePiste = () => {
-        const x = lirePiste();
-        if (x !== null) {
-            if (Math.abs(x) > 2) serie.push(x);
-            else if (serie.length > 3) {
-                const min = Math.min(...serie);
-                const max = Math.max(...serie);
-                const sens = Math.abs(min) > Math.abs(max) ? 'gauche' : 'droite';
-                const contre = sens === 'gauche' ? max : min;   // écart du signe opposé
-                gestes.push(`${sens} : min ${min} max ${max}${Math.abs(contre) > 2 ? ` ← DÉPASSEMENT ${contre}` : ''}`);
-                serie = [];
-            } else serie = [];
+        const piste = document.querySelector('[class*="swipeTrack"]');
+        const x = decalageDe(piste);
+        const maintenant = Date.now();
+
+        if (Math.abs(x) > 2) {
+            serie.push(x);
+            finGeste = 0;
+            apres = [];
+        } else if (serie.length > 3) {
+            const min = Math.min(...serie);
+            const max = Math.max(...serie);
+            gestes.push(`${Math.abs(min) > Math.abs(max) ? 'gauche' : 'droite'} : ${min} → ${max}`);
+            serie = [];
+            finGeste = maintenant;
+        } else if (finGeste && maintenant - finGeste < 600) {
+            // Après le basculement : la carte du milieu bouge-t-elle encore ?
+            const carte = piste && piste.children[Math.floor(piste.children.length / 2)];
+            const dx = decalageDe(carte || null);
+            if (Math.abs(x) > 0 || Math.abs(dx) > 0) apres.push(x || dx);
+        } else if (finGeste && apres.length) {
+            const m = apres.reduce((a, b) => (Math.abs(b) > Math.abs(a) ? b : a), 0);
+            if (Math.abs(m) > 1) gestes.push(`   ↳ APRÈS le basculement : ${m}px`);
+            apres = [];
+            finGeste = 0;
+        } else {
+            serie = [];
         }
         if (Date.now() - debut < 15000) requestAnimationFrame(suivrePiste);
     };
