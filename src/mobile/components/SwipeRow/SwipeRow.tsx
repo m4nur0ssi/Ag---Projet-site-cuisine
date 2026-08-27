@@ -22,7 +22,8 @@ import styles from './SwipeRow.module.css';
  *     une courbe qui dépasse sa cible se lit comme un rebond, et c'est
  *     précisément ce qu'on ne veut pas ici.
  */
-const LARGEUR_PANNEAU = 96;   // ce qu'on découvre quand la ligne reste ouverte
+const LARGEUR_PANNEAU = 116;  // ce qu'on découvre quand la ligne reste ouverte
+const MARGE = 6;              // air entre la pastille et le bord de la ligne
 const SEUIL_OUVERTURE = 40;   // au-delà, la ligne reste ouverte au relâchement
 const PART_SUPPRESSION = 0.55; // fraction de la largeur au-delà de laquelle on supprime
 
@@ -108,14 +109,27 @@ export default function SwipeRow({
 
     return (
         <div className={styles.enveloppe} ref={brancher}>
+            {/*
+              * La pastille grandit avec le geste, comme dans Fichiers : au début
+              * ce n'est qu'un liseré rouge, et le mot n'apparaît qu'une fois la
+              * place suffisante. Elle reste détachée des bords de la ligne.
+              */}
+            {/* Largeur nulle au repos : une largeur négative serait ignorée par le
+                navigateur, et la pastille resterait visible en liseré rouge. */}
             <button
                 className={styles.panneau}
-                style={{ width: Math.max(LARGEUR_PANNEAU, decalage) }}
+                style={{ width: Math.max(0, decalage - MARGE), visibility: decalage > 1 ? 'visible' : 'hidden' }}
                 onClick={supprimer}
                 tabIndex={decalage > 0 ? 0 : -1}
                 aria-hidden={decalage === 0}
+                aria-label={libelle}
             >
-                {libelle}
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                    strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M4 7h16M9.5 7V5.2A1.2 1.2 0 0 1 10.7 4h2.6a1.2 1.2 0 0 1 1.2 1.2V7" />
+                    <path d="M6.5 7l.9 12.1A1.5 1.5 0 0 0 8.9 20.5h6.2a1.5 1.5 0 0 0 1.5-1.4L17.5 7" />
+                </svg>
+                {decalage > LARGEUR_PANNEAU * 0.72 && <span className={styles.libelle}>{libelle}</span>}
             </button>
 
             <div

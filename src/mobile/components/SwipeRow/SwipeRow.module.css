@@ -8,33 +8,43 @@
 .enveloppe {
     position: relative;
     overflow: hidden;
+    /* L'écart entre deux lignes appartient à l'enveloppe : la ligne le lui a
+       cédé, sinon la pastille rouge dépasserait dans le blanc qui les sépare. */
+    margin-bottom: 6px;
+    border-radius: 13px;
     /* Le doigt peut défiler verticalement ; l'horizontale est à nous. */
     touch-action: pan-y;
 }
 
 .panneau {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    top: 2px;
+    right: 6px;
+    bottom: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 12px;
+    gap: 7px;
+    padding: 0;
     border: none;
-    background: #ff3b30;
+    border-radius: 13px;
+    background: #ff453a;
     color: #fff;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
-    /* Le texte reste lisible même quand le panneau n'est encore qu'un liseré. */
+    /* Le mot ne doit jamais se couper en deux lignes quand la pastille grandit. */
     white-space: nowrap;
     overflow: hidden;
 }
 
 .panneau:active {
-    background: #e0322a;
+    background: #e03b31;
+}
+
+.libelle {
+    /* Rien de plus : le mot arrive quand la pastille a la place de l'accueillir. */
+    padding-right: 2px;
 }
 
 .contenu {
