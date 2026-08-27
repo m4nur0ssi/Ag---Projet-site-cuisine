@@ -343,6 +343,7 @@ function Card({
     onLongPress,
     showcase = false,
     videoId = null,
+    onWantVideo,
     domId,
 }: {
     recipe: Recipe;
@@ -363,10 +364,18 @@ function Card({
     showcase?: boolean;
     /** Id TikTok à jouer dans le visuel (vitrine seulement). */
     videoId?: string | null;
+    /**
+     * Le doigt réclame la vidéo (vitrine seulement).
+     *
+     * La rangée n'en lance qu'une à la fois : c'est elle qui tranche, la carte
+     * ne fait que transmettre le geste.
+     */
+    onWantVideo?: (on: boolean) => void;
     /** Identifiant posé sur le nœud : la rangée s'en sert pour repérer la carte centrée. */
     domId?: string;
 }) {
     const lp = useLongPress(onLongPress);
+    const vid = showcase ? tiktokId(recipe) : null;
     // Le lecteur ne se montre QUE s'il joue pour de bon : sans consentement
     // TikTok, il affiche son bandeau de cookies à la place de la vidéo, et la
     // photo de la recette se faisait remplacer par un pavé bleu. Il signale sa
@@ -394,7 +403,21 @@ function Card({
             // Après un appui long, le clic de relâchement ne doit pas ouvrir la fiche.
             onClick={() => { if (lp.consumed.current) { lp.consumed.current = false; return; } haptic(8); onOpen(); }}
         >
-            <div className={styles.thumb}>
+            <div
+                className={styles.thumb}
+                /*
+                 * Vitrine : le VISUEL lance la vidéo, le titre ouvre la fiche —
+                 * même partage des rôles que sur les cartes de catégorie. Sans
+                 * lui, la vidéo ne partait qu'au bout d'une seconde et demie au
+                 * centre de la rangée, et jamais si la garde avait renoncé.
+                 */
+                onClick={showcase && vid && onWantVideo ? (e) => {
+                    e.stopPropagation();
+                    if (lp.consumed.current) { lp.consumed.current = false; return; }
+                    haptic(8);
+                    onWantVideo(!videoId);
+                } : undefined}
+            >
                 <img
                     src={recipe.image}
                     alt={label(recipe)}
@@ -443,6 +466,7 @@ function Card({
                     <div className={styles.overlayLabel}>{label(recipe)}</div>
                 </>
             )}
+
             {!overlayTitle && !showcase && <div className={styles.cardLabel}>{label(recipe)}</div>}
             {subtitle && !showcase && <div className={styles.cardSub}>{subtitle}</div>}
         </div>
@@ -820,7 +844,14 @@ function TopTenRow({
                                 // la fiche (le titre s'en charge).
                                 onClick={playing ? undefined : () => {
                                     if (pressConsumed.current) { pressConsumed.current = false; return; }
-                                    onOpen(recipes, i);
+                                    // Le VISUEL lance la vidéo — le bloc de texte, en bas,
+                                    // reste la porte de la fiche. Avant, il fallait attendre
+                                    // les deux secondes de lecture auto, sans moyen de la
+                                    // demander.
+                                    if (!vid) { onOpen(recipes, i); return; }
+                                    if (!tiktokAllowed()) tiktokDemandeExplicite();
+                                    haptic(8);
+                                    setPlayingId(id);
                                 }}
                             >
                                 <img src={r.image} alt={label(r)} className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
@@ -991,6 +1022,15 @@ function Row({
     const coll = collOf(title, recipes.length, shareTag);
     // Carte qui joue : la plus proche du centre, une fois le doigt reposé.
     const [playId, setPlayId] = useState<string | null>(null);
+    /**
+     * Vrai quand c'est le DOIGT qui a désigné la carte qui joue.
+     *
+     * Le centrage automatique coupe la vidéo au moindre défilement. Sur un
+     * choix explicite, ce serait insupportable : la lecture demandée mourait
+     * au premier frisson de la rangée. Le geste prime donc, jusqu'à ce que la
+     * rangée quitte l'écran.
+     */
+    const manuel = useRef(false);
     const shown = recipes.slice(0, 14);
 
     useEffect(() => {
@@ -1014,6 +1054,7 @@ function Row({
         };
         const schedule = () => {
             clearTimeout(timer);
+            if (manuel.current) return;   // le doigt a choisi : on ne recentre pas
             setPlayId(null);
             // Navigateur qui n'a jamais réussi à lire : on ne tente rien.
             if (!onScreen || !tiktokAllowed()) return;
@@ -1024,6 +1065,8 @@ function Row({
         // On ne joue que si la rangée est vraiment à l'écran.
         const io = new IntersectionObserver(([e]) => {
             onScreen = e.isIntersecting && e.intersectionRatio >= 0.5;
+            // Rangée sortie de l'écran : le choix du doigt est périmé.
+            if (!onScreen) { manuel.current = false; setPlayId(null); }
             schedule();
         }, { threshold: [0, 0.5, 1] });
         io.observe(el);
@@ -1080,6 +1123,13 @@ function Row({
                         variant={variant}
                         showcase={showcase}
                         videoId={showcase && playId === String(r.id) ? tiktokId(r) : null}
+                        onWantVideo={showcase ? (on: boolean) => {
+                            // Un appui EST une demande de vidéo : on tente, même
+                            // si la garde avait renoncé faute de lecture réussie.
+                            if (on && !tiktokAllowed()) tiktokDemandeExplicite();
+                            manuel.current = on;
+                            setPlayId(on ? String(r.id) : null);
+                        } : undefined}
                         overlayTitle={overlayTitle}
                         subtitle={sub(r)}
                         progress={withProgress ? (progressMap?.[String(r.id)] ?? 0) : undefined}
@@ -1479,8 +1529,27 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
                             <button
                                 key={`${r.id}-${i}`}
                                 className={`${styles.heroPoster} ${on ? styles.heroPosterOn : ''}`}
-                                onClick={() => { haptic(8); if (on) onOpen(recipes, real); else setIndex(real); }}
-                                aria-label={on ? `Voir ${label(r)}` : label(r)}
+                                /*
+                                 * Affiche voisine : on l'amène au centre.
+                                 * Affiche active : elle lance SA vidéo, et un second
+                                 * appui rend la photo. La fiche s'ouvre par le titre
+                                 * ou par « Voir la recette », juste en dessous — le
+                                 * visuel appartient à la vidéo, comme partout ailleurs.
+                                 */
+                                onClick={() => {
+                                    haptic(8);
+                                    if (!on) { setIndex(real); return; }
+                                    if (!currentVid) { onOpen(recipes, real); return; }
+                                    if (playing) { setPlaying(false); setVideoOn(false); return; }
+                                    if (!tiktokAllowed()) tiktokDemandeExplicite();
+                                    setPlaying(true);
+                                }}
+                                aria-label={
+                                    !on ? label(r)
+                                    : !currentVid ? `Voir ${label(r)}`
+                                    : playing ? `Arrêter la vidéo de ${label(r)}`
+                                    : `Lancer la vidéo de ${label(r)}`
+                                }
                                 aria-current={on || undefined}
                                 aria-hidden={ghost || undefined}
                                 tabIndex={ghost ? -1 : 0}
