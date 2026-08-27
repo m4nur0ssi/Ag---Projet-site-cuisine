@@ -19,7 +19,7 @@ import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf } from './themes';
-import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
+import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal, tiktokDemandeExplicite } from '@/lib/tiktok-consent';
 import { personalizedRecipes } from '@/lib/personalize';
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
@@ -499,7 +499,10 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
                 className={styles.thumb}
                 onClick={() => {
                     if (lp.consumed.current) { lp.consumed.current = false; return; }
-                    if (!vid || !tiktokAllowed()) { onOpen(); return; }   // pas de vidéo → la fiche
+                    if (!vid) { onOpen(); return; }   // pas de vidéo → la fiche
+                    // Un appui sur la carte EST une demande de vidéo : on tente,
+                    // même si la garde avait renoncé. Si ça échoue, la photo revient.
+                    if (!tiktokAllowed()) tiktokDemandeExplicite();
                     haptic(8);
                     setPlaying((p) => !p);
                 }}
@@ -1205,7 +1208,33 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         }
         if (userScrolling.current) return;      // le doigt a la main
         if (Math.abs(el.scrollLeft - target) < 4) return;
-        el.scrollTo({ left: target, behavior: 'smooth' });
+
+        /*
+         * Défilement mené à la main, et non par `behavior: 'smooth'`.
+         *
+         * La durée du défilement natif est imposée par le navigateur : sur
+         * Safari, la bande file en deux cents millisecondes pendant que les
+         * affiches mettent 450 ms à changer d'échelle et d'opacité. Les deux
+         * mouvements racontent alors deux histoires différentes, et le passage
+         * paraît brusque. On parcourt donc la distance nous-mêmes, sur la même
+         * durée et la même courbe que les affiches — tout arrive ensemble.
+         */
+        const depart = el.scrollLeft;
+        const delta = target - depart;
+        const t0 = performance.now();
+        // Approche de cubic-bezier(0.32, 0.72, 0, 1) : départ franc, arrivée qui
+        // se pose. Une interpolation linéaire donnerait un mouvement mécanique.
+        const adoucir = (t: number) => 1 - Math.pow(1 - t, 4);
+        let frame = 0;
+        const avancer = (maintenant: number) => {
+            // Le doigt reprend la main à tout instant : on s'efface.
+            if (userScrolling.current) return;
+            const p = Math.min(1, (maintenant - t0) / 450);
+            el.scrollLeft = depart + delta * adoucir(p);
+            if (p < 1) frame = requestAnimationFrame(avancer);
+        };
+        frame = requestAnimationFrame(avancer);
+        return () => cancelAnimationFrame(frame);
     }, [activeSlot]);
 
     /*

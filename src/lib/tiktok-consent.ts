@@ -19,7 +19,18 @@
 // jamais rien étaient marqués « ça joue ici ». On repart de zéro.
 const OK_KEY = 'tiktok-plays-v2';    // '1' = une vidéo a déjà joué ici
 const FAIL_KEY = 'tiktok-fails-v2';  // nombre d'essais restés muets
+const DATE_KEY = 'tiktok-fails-date-v2'; // quand le compte a commencé
 const MAX_FAILS = 2;
+/*
+ * La garde s'oublie au bout d'une semaine.
+ *
+ * Deux échecs suffisaient à couper les vidéos DÉFINITIVEMENT sur cet appareil.
+ * Or la cause est presque toujours un réglage — les cookies tiers bloqués par
+ * défaut dans Safari — et un réglage, ça change. Sans péremption, quelqu'un qui
+ * autorise TikTok le lendemain garde des photos pour toujours et n'a aucun
+ * moyen de le savoir.
+ */
+const PEREMPTION = 7 * 24 * 3600 * 1000;
 
 const read = (k: string) => {
     try { return localStorage.getItem(k); } catch { return null; }
@@ -32,7 +43,26 @@ const write = (k: string, v: string) => {
 export function tiktokAllowed(): boolean {
     if (typeof window === 'undefined') return false;
     if (read(OK_KEY) === '1') return true;
+    const depuis = Number(read(DATE_KEY) || 0);
+    if (depuis && Date.now() - depuis > PEREMPTION) {
+        write(FAIL_KEY, '0');
+        write(DATE_KEY, '');
+        return true;
+    }
     return Number(read(FAIL_KEY) || 0) < MAX_FAILS;
+}
+
+/**
+ * L'utilisateur a demandé une vidéo LUI-MÊME.
+ *
+ * Son geste passe avant notre heuristique : on tente, quoi qu'ait décidé la
+ * garde. Si ça marche, elle saute pour de bon ; sinon la photo revient et rien
+ * n'est perdu. Sans cette porte, personne ne pouvait revenir en arrière — on
+ * refusait même d'essayer quand on nous le demandait explicitement.
+ */
+export function tiktokDemandeExplicite(): void {
+    write(FAIL_KEY, '0');
+    write(DATE_KEY, String(Date.now()));
 }
 
 /** Une vidéo a joué pour de bon : la garde saute définitivement. */
@@ -45,6 +75,7 @@ export function tiktokPlayed(): void {
 /** Le lecteur est resté muet (bandeau de cookies, lecture refusée). */
 export function tiktokFailed(): void {
     if (read(OK_KEY) === '1') return;
+    if (!read(DATE_KEY)) write(DATE_KEY, String(Date.now()));
     write(FAIL_KEY, String(Number(read(FAIL_KEY) || 0) + 1));
 }
 
