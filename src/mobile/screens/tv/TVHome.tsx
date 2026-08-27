@@ -1102,6 +1102,8 @@ function Row({
 function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenSheet; onMenu: () => void }) {
     const pagerRef = useRef<HTMLDivElement>(null);
     const [index, setIndex] = useState(0);
+    /** Vrai pendant un défilement que NOUS pilotons (chevrons, rotation, retour au centre). */
+    const defilementAuto = useRef(false);
     // La vidéo ne part pas d'emblée : la photo s'installe deux secondes, comme
     // sur la rangée Top 10, puis la vidéo prend sa place dans le même cadre.
     const [playing, setPlaying] = useState(false);
@@ -1148,6 +1150,15 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         if (!el || !recipes.length) return;
         let raf = 0;
         const onScroll = () => {
+            /*
+             * Notre propre défilement ne doit pas être pris pour un geste.
+             *
+             * Écrire la position image par image émet un événement `scroll` à
+             * chaque frame. Sans ce garde-fou, l'animation programmée levait
+             * elle-même le drapeau « le doigt a la main », s'interrompait à la
+             * première frame, et l'ancrage rattrapait le reste d'un coup sec.
+             */
+            if (defilementAuto.current) return;
             userScrolling.current = true;
             cancelAnimationFrame(raf);
             raf = requestAnimationFrame(() => {
@@ -1226,15 +1237,46 @@ function Hero({ recipes, onOpen, onMenu }: { recipes: Recipe[]; onOpen: OpenShee
         // se pose. Une interpolation linéaire donnerait un mouvement mécanique.
         const adoucir = (t: number) => 1 - Math.pow(1 - t, 4);
         let frame = 0;
+
+        /*
+         * L'ancrage est suspendu le temps du trajet.
+         *
+         * `scroll-snap-type: x mandatory` recale la bande sur l'affiche la plus
+         * proche à chaque frame : pendant qu'on écrit la position, le moteur
+         * d'ancrage tire dans l'autre sens, et le mouvement hache. On le rend à
+         * l'arrivée, où il reprend son rôle pour le doigt.
+         */
+        defilementAuto.current = true;
+        el.style.scrollSnapType = 'none';
+
+        const finir = () => {
+            el.style.scrollSnapType = '';
+            defilementAuto.current = false;
+            /*
+             * La bande est faite de trois copies du catalogue : quand on sort de
+             * celle du milieu, un rattrapage silencieux nous y ramène, et c'est
+             * ce qui donne la boucle sans fin. Il est déclenché par l'événement
+             * de défilement — que nous venons justement d'ignorer. On en émet
+             * donc un à l'arrivée, sans quoi la bande finirait par buter au bout.
+             */
+            el.dispatchEvent(new Event('scroll'));
+        };
+        // Un doigt posé annule le trajet : il reprend la main immédiatement.
+        const interrompre = () => { cancelAnimationFrame(frame); finir(); };
+        el.addEventListener('touchstart', interrompre, { passive: true });
+
         const avancer = (maintenant: number) => {
-            // Le doigt reprend la main à tout instant : on s'efface.
-            if (userScrolling.current) return;
             const p = Math.min(1, (maintenant - t0) / 450);
             el.scrollLeft = depart + delta * adoucir(p);
             if (p < 1) frame = requestAnimationFrame(avancer);
+            else finir();
         };
         frame = requestAnimationFrame(avancer);
-        return () => cancelAnimationFrame(frame);
+        return () => {
+            cancelAnimationFrame(frame);
+            el.removeEventListener('touchstart', interrompre);
+            finir();
+        };
     }, [activeSlot]);
 
     /*
