@@ -55,15 +55,33 @@ const CATEGORY_LABEL: Record<string, string> = {
     aperitifs: 'Apéritif', entrees: 'Entrée', plats: 'Plat', accompagnements: 'Accompagnement',
     desserts: 'Dessert', patisserie: 'Pâtisserie', restaurant: 'Comme au resto',
     glaces: 'Glace', boissons: 'Boisson', sauces: 'Sauce',
+    rafraichissements: 'Rafraîchissement',
+};
+
+/**
+ * Nom d'une catégorie prise comme COLLECTION — au pluriel.
+ *
+ * `CATEGORY_LABEL` nomme UNE recette ; une affiche de partage nomme les
+ * vingt-cinq. Le repli d'avant écrivait « RECETTE » en travers de l'affiche dès
+ * que la catégorie manquait à la table.
+ */
+const COLLECTION_LABEL: Record<string, string> = {
+    aperitifs: 'Apéritifs', entrees: 'Entrées', plats: 'Plats',
+    accompagnements: 'Accompagnements', desserts: 'Desserts', patisserie: 'Pâtisseries',
+    restaurant: 'Comme au resto', glaces: 'Glaces', boissons: 'Boissons',
+    sauces: 'Sauces', rafraichissements: 'Rafraîchissements',
 };
 /**
  * Collection d'où l'on partage : la rangée ou la page où se trouvait la carte
  * (thème, catégorie, pays), et non la catégorie de la recette cliquée.
  */
-type Coll = { label: string; tag: string; count: number };
-const collOf = (title: string, count: number, tag?: string): Coll | undefined => {
+type Coll = { label: string; tag: string; count: number; photos?: string[] };
+/** Photos de la collection pour les cartes du fond de l'affiche de partage. */
+const photosDe = (list: Recipe[], sauf?: string): string[] =>
+    list.filter((r) => r.image && r.image !== sauf).slice(0, 3).map((r) => r.image as string);
+const collOf = (title: string, recipes: Recipe[], tag?: string): Coll | undefined => {
     const t = collectionTagOf(tag || title);
-    return t ? { label: title, tag: t, count } : undefined;
+    return t ? { label: title, tag: t, count: recipes.length, photos: photosDe(recipes) } : undefined;
 };
 const label = (r: Recipe) => decodeHtml(r.title || '');
 const catLabel = (r: Recipe) => CATEGORY_LABEL[(r.category || '').toLowerCase()] || 'Recette';
@@ -324,7 +342,7 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
     const scroller = useRef<HTMLDivElement>(null);
     // La rangée SAIT ce qu'elle est : son titre (ou son tag de thème) suffit à
     // nommer la collection que ses cartes partagent.
-    const coll = collOf(title, recipes.length, shareTag);
+    const coll = collOf(title, recipes, shareTag);
     if (!recipes.length) return null;
     const nudge = (dir: number) => {
         const el = scroller.current;
@@ -1071,7 +1089,7 @@ export default function TVDesktopHome() {
                         <div className={styles.mosaic}>
                             {collection.recipes.map((r, i) => (
                                 <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
-                                    <Card recipe={r} shape="wide" onMenu={onMenu} coll={collOf(collection.title, collection.recipes.length)} />
+                                    <Card recipe={r} shape="wide" onMenu={onMenu} coll={collOf(collection.title, collection.recipes)} />
                                 </div>
                             ))}
                         </div>
@@ -1122,10 +1140,14 @@ export default function TVDesktopHome() {
                             const catName = catLabel(r);
                             // Sans contexte (héros, rangée « Nouveautés »…), on retombe
                             // sur la catégorie de la recette.
+                            // Sans contexte de rangée, la collection est la catégorie
+                            // de la recette — nommée au pluriel.
+                            const memeCat = mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat);
                             const coll: Coll = menu.coll || {
-                                label: catName,
+                                label: COLLECTION_LABEL[cat] || catName,
                                 tag: cat,
-                                count: mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat).length,
+                                count: memeCat.length,
+                                photos: photosDe(memeCat as Recipe[], r.image),
                             };
                             const origin = typeof window !== 'undefined' ? window.location.origin : '';
                             const inLater = laterIds.includes(String(r.id));
