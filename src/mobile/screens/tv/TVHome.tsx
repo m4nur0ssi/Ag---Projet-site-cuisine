@@ -1722,11 +1722,47 @@ export default function TVHome() {
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
     const [forYou, setForYou] = useState<Recipe[]>([]);
     useEffect(() => {
-        const load = () => setForYou(personalizedRecipes(mockRecipes) as Recipe[]);
-        load();
-        const evts = ['tv-seen-change', 'magic-favorite-change', PROGRESS_EVENT, 'focus'];
-        evts.forEach((e) => window.addEventListener(e, load));
-        return () => evts.forEach((e) => window.removeEventListener(e, load));
+        // Vrai quand la rangée est à l'écran : en dessous de quatre recettes, on
+        // ne l'affiche pas (voir le rendu), et il n'y a donc rien à bousculer.
+        let affichee = false;
+        const calculer = () => {
+            const liste = personalizedRecipes(mockRecipes) as Recipe[];
+            affichee = liste.length >= 4;
+            setForYou(liste);
+        };
+        calculer();
+        /*
+         * La rangée ne se réordonne JAMAIS sous les yeux du lecteur.
+         *
+         * Ouvrir une recette l'inscrit dans l'historique, et l'historique nourrit
+         * ces recommandations : la rangée se recalculait donc dans la demi-seconde
+         * qui précédait l'ouverture de la fiche. Les cartes changeaient de place
+         * sous le doigt — on voyait la photo et le titre se substituer — avant que
+         * la bonne recette ne s'ouvre. Un favori ou une étape cochée produisaient
+         * le même sursaut.
+         *
+         * On note donc qu'il y a du neuf, et on ne l'applique qu'au retour dans
+         * l'application. Les recommandations restent stables le temps d'une visite,
+         * et changent entre deux — c'est aussi ce qu'on attend d'elles.
+         */
+        let enAttente = false;
+        const appliquer = () => { enAttente = false; calculer(); };
+        const marquer = () => {
+            enAttente = true;
+            // Rangée pas encore à l'écran — première visite, premiers favoris :
+            // rien à déplacer sous les yeux, elle peut apparaître tout de suite.
+            if (!affichee) appliquer();
+        };
+        const rafraichir = () => { if (enAttente && !document.hidden) appliquer(); };
+        const evts = ['tv-seen-change', 'magic-favorite-change', PROGRESS_EVENT];
+        evts.forEach((e) => window.addEventListener(e, marquer));
+        window.addEventListener('focus', rafraichir);
+        document.addEventListener('visibilitychange', rafraichir);
+        return () => {
+            evts.forEach((e) => window.removeEventListener(e, marquer));
+            window.removeEventListener('focus', rafraichir);
+            document.removeEventListener('visibilitychange', rafraichir);
+        };
     }, []);
 
     // Listes locales : « à faire plus tard » et cache des favoris, tenues à jour
