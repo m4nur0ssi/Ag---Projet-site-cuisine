@@ -11,10 +11,39 @@ export const metadata: Metadata = {
     description: 'Découvrez des recettes magiques et délicieuses pour enchanter vos papilles',
     keywords: ['recettes', 'recettes magiques', 'cuisine', 'magie', 'gastronomie', 'recette facile'],
     manifest: '/manifest.json',
+    /*
+     * Plein écran sur les iPhone d'avant iOS 16.4.
+     *
+     * Depuis 16.4, Safari lit le manifeste et honore `display: standalone`.
+     * En dessous, sans ces balises, le site ajouté à l'écran d'accueil s'ouvre
+     * AVEC la barre d'adresse — c'est-à-dire sans l'allure d'application qui
+     * justifie l'installation.
+     */
+    appleWebApp: {
+        capable: true,
+        title: 'Recettes Magiques',
+        // Le contenu passe sous l'heure et la batterie, qui restent lisibles en
+        // blanc sur nos fonds sombres.
+        statusBarStyle: 'black-translucent',
+    },
     icons: [
         { rel: 'icon', url: '/icons/icon-192x192.png', type: 'image/png' },
         { rel: 'apple-touch-icon', sizes: '180x180', url: '/icons/icon-180x180.png' },
         { rel: 'apple-touch-icon', sizes: '192x192', url: '/icons/icon-192x192.png' },
+        /*
+         * Écrans de lancement iOS. Apple ne met pas ces images à l'échelle : il
+         * faut la taille exacte de l'écran, sélectionnée par media query, sinon
+         * il retombe sur un rectangle vide. Générés par
+         * `node scripts/build-splash-ios.js`.
+         */
+        ...[
+            [1320, 2868, 3], [1290, 2796, 3], [1206, 2622, 3], [1179, 2556, 3],
+            [1170, 2532, 3], [1125, 2436, 3], [828, 1792, 2], [750, 1334, 2],
+        ].map(([l, h, d]) => ({
+            rel: 'apple-touch-startup-image',
+            url: `/splash/splash-${l}x${h}.png`,
+            media: `(device-width: ${l / d}px) and (device-height: ${h / d}px) and (-webkit-device-pixel-ratio: ${d}) and (orientation: portrait)`,
+        })),
     ],
     alternates: {
         canonical: '/',

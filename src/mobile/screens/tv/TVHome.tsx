@@ -96,6 +96,8 @@ import SiteFooter from '@/components/SiteFooter/SiteFooter';
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 // Visite guidée de l'app mobile (remplace celle du site, écrite pour le desktop).
 const TVTutorial = dynamic(() => import('./TVTutorial'), { ssr: false });
+/* Invitation à installer : ne se montre qu'à la 3e visite, et jamais deux fois. */
+const InstallInvite = dynamic(() => import('@/mobile/components/InstallInvite/InstallInvite'), { ssr: false });
 
 /**
  * Nombre de fiches chargées dans le sheet autour de celle qu'on ouvre.
@@ -2114,6 +2116,7 @@ export default function TVHome() {
             />
 
             <Tip id="accueil" />
+            <InstallInvite />
             {tutoOpen && <TVTutorial onClose={() => setTutoOpen(false)} />}
             {tasteOpen && <TasteOnboarding onClose={() => setTasteOpen(false)} />}
             {shareCard && (

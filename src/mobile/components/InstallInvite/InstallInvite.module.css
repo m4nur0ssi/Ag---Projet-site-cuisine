@@ -1,0 +1,99 @@
+/*
+ * Invitation à installer — habillage.
+ *
+ * Elle se pose au-dessus de la barre du bas, à la même largeur que les cartes
+ * de l'accueil, et n'occupe jamais tout l'écran : c'est une proposition, pas un
+ * péage. Rien de récent en CSS ici — flexbox, transform, transition — pour que
+ * l'écran se comporte pareil sur un iPhone d'il y a cinq ans.
+ */
+.carte {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    /* Au-dessus de la barre du bas, encoche comprise. */
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+    z-index: 9000;
+    padding: 16px 18px 18px;
+    border-radius: 20px;
+    background: rgba(28, 28, 30, 0.96);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+    color: #fff;
+    animation: monte 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes monte {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+}
+
+.fermer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.sur {
+    margin: 0 0 4px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.titre {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.25;
+    padding-right: 28px;
+}
+
+.texte {
+    margin: 0 0 14px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.geste {
+    color: #fff;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.principal,
+.secondaire {
+    flex: 1;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 13px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.principal {
+    background: #fff;
+    color: #111;
+}
+
+.secondaire {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.principal:active { transform: scale(0.97); }
+.secondaire:active { transform: scale(0.97); }
