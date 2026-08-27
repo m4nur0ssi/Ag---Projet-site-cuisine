@@ -132,14 +132,28 @@ export function demarrerDiagnosticAnimations(): void {
         lignes.forEach((l) => { compte[l] = (compte[l] || 0) + 1; });
         const compteSecousses: Record<string, number> = {};
         secousses.forEach((l) => { compteSecousses[l] = (compteSecousses[l] || 0) + 1; });
-        const liste = (o: Record<string, number>) => Object.entries(o)
+        /*
+         * L'ordre compte : le cartouche est plafonné en hauteur, et la première
+         * version noyait la mesure de la piste sous cinquante lignes d'animations
+         * de l'accueil. Les sections utiles passent donc en tête, et la liste des
+         * animations est réduite à ce qui se joue DANS la fiche — le reste est
+         * compté d'une ligne.
+         */
+        const liste = (o: Record<string, number>, max = 99) => Object.entries(o)
             .sort((a, b) => b[1] - a[1])
+            .slice(0, max)
             .map(([l, n]) => `${String(n).padStart(3)} × ${l}`)
             .join('\n');
+        const fiche: Record<string, number> = {};
+        let accueil = 0;
+        Object.entries(compte).forEach(([l, n]) => {
+            if (/^tv_|^SplashScreen/.test(l)) accueil += n; else fiche[l] = n;
+        });
         cartouche.textContent = `relevé ${Math.round((Date.now() - debut) / 1000)}s / 15s\n`
-            + `— ANIMATIONS —\n${liste(compte) || '(aucune)'}\n`
-            + `— DÉCALAGES —\n${liste(compteSecousses) || '(aucun)'}\n`
-            + `— PISTE —\n${gestes.slice(-4).join('\n') || '(aucun geste)'}`;
+            + `— PISTE —\n${gestes.slice(-5).join('\n') || '(aucun geste)'}\n`
+            + `— DÉCALAGES —\n${liste(compteSecousses, 4) || '(aucun)'}\n`
+            + `— DANS LA FICHE —\n${liste(fiche, 6) || '(aucune)'}\n`
+            + `— accueil, derrière : ${accueil} animations`;
         if (Date.now() - debut > 15000) window.clearInterval(minuteur);
     }, 100);
 }
