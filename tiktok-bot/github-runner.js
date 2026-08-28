@@ -174,6 +174,17 @@ async function run() {
                         console.log("   ⏳ Quota épuisé : la file est laissée en l'état, reprise au prochain passage.");
                         return;
                     }
+                    /*
+                     * On lève la marque « déjà traitée ».
+                     *
+                     * Elle est posée AVANT publication pour qu'un double passage du
+                     * workflow ne crée pas deux fois la même recette. Après un
+                     * échec, elle condamnait la vidéo : toute nouvelle tentative
+                     * était écartée d'office, et la recette devenait impossible à
+                     * rattraper. Le contrôle de doublon côté WordPress reste là pour
+                     * ce qu'elle protégeait.
+                     */
+                    if (videoId) demarquer(videoId);
                     noterEchec(data, item, cause);
                 }
 
