@@ -1164,6 +1164,12 @@ function PairSheet({ wine, onClose, embedded }: { wine: CaveWine; onClose: () =>
 /* ── Ajout d'un vin : scan étiquette → ajout automatique ──────────────────── */
 type Official = { photo?: string; rating?: number; vivinoUrl?: string };
 
+/** Ce que `/api/wine-lookup` renvoie : la lecture de l'étiquette, enrichie. */
+type VinLu = {
+    name: string; grape?: string; year?: string; color?: string;
+    region?: string; note?: string;
+} & Official;
+
 /**
  * Met une photo « en scène » : fond de cave, la bouteille au centre, le décor
  * qui s'éteint vers les bords. C'est ce qui donne leur unité aux fiches.
@@ -1321,6 +1327,16 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         { name: '', grape: '', year: '', color: 'rouge', region: '', note: '' });
     // Photo officielle + note du marchand quand la bouteille a été retrouvée.
     const [official, setOfficial] = useState<Official>({});
+    /**
+     * La bouteille lue, PROPOSÉE mais pas encore rangée.
+     *
+     * Le scan ajoutait directement en cave. On voyait donc le résultat une fois
+     * qu'il était trop tard : mauvais millésime, homonyme du bon domaine, ou
+     * simplement l'envie de savoir ce que le vin vaut avant de le garder. La
+     * fiche s'affiche maintenant d'abord — note des dégustateurs comprise — et
+     * c'est le doigt qui tranche.
+     */
+    const [candidat, setCandidat] = useState<{ vin: VinLu; source: string; scan: string } | null>(null);
     const [scanMsg, setScanMsg] = useState('');
     // Viseur en direct : c'est la voie normale du scan. La pellicule reste en
     // secours (ordinateur sans caméra, autorisation refusée).
@@ -1374,41 +1390,30 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         const step2 = setTimeout(() => setScanMsg('Recherche de la bouteille…'), 1400);
         try {
             const small = await compress(dataUrl);          // serré : pour la lecture
-            // Ce qui restera en fiche si le scan échoue et qu'on complète à la
-            // main : la vue large, jamais le gros plan sur l'étiquette.
-            setPhotoSmall(keep === dataUrl ? small : await compress(keep));
+            /*
+             * La photo à GARDER se prépare pendant que le serveur lit
+             * l'étiquette. Avant, on la compressait d'abord et la requête
+             * n'partait qu'ensuite : une seconde de redimensionnement ajoutée
+             * devant, pour rien, à chaque scan.
+             */
+            const gardeeEnCours = keep === dataUrl ? Promise.resolve(small) : compress(keep);
             const res = await fetch('/api/wine-lookup', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ image: small }) });
             const data = await res.json();
+            const gardee = await gardeeEnCours;
+            setPhotoSmall(gardee);
             const w = data?.wine;
             if (w?.name) {
-                // L'étiquette est lue : le vin entre en cave, point. Quand le
-                // marchand a confirmé la bouteille on prend SA photo, sinon on
-                // garde celle qui vient d'être prise — jamais celle d'un voisin.
-                // Bouteille déjà passée par la cave ? On le dit — c'est justement
-                // ce qu'on veut savoir en scannant au rayon.
-                const known = findKnownWine(w.name);
-                try {
-                    addWine({
-                        name: w.name, grape: w.grape || '', year: w.year || '',
-                        color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
-                        // Photo du marchand quand il a retrouvé la bouteille : elle
-                        // arrive détourée sur fond blanc, on la remet en scène comme
-                        // la nôtre pour que toutes les fiches se ressemblent.
-                        photo: (w.photo ? (await studioFromUrl(w.photo)) || w.photo : '') || (await toStudio(keep)), rating: w.rating, vivinoUrl: w.vivinoUrl,
-                        shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
-                    });
-                    if (known) {
-                        toast(known.year && w.year && known.year !== w.year
-                            ? `Déjà dégusté — tu avais le ${known.year}`
-                            : 'Déjà dégusté — ce vin est déjà passé par ta cave');
-                    }
-                } catch {
-                    // localStorage plein : le vin est bon, c'est la place qui manque.
-                    clearTimeout(step2); setBusy(false);
-                    setScanMsg('Cave pleine côté navigateur — retire un vin puis rescanne.');
-                    return;
-                }
-                onClose();
+                /*
+                 * On PROPOSE. La mise en scène des photos — téléchargement chez
+                 * le marchand, fond de cave, dégradé — attend la validation :
+                 * elle prenait une à deux secondes de plus AVANT que quoi que ce
+                 * soit ne s'affiche, alors qu'elle ne sert qu'une fois le vin
+                 * gardé.
+                 */
+                clearTimeout(step2);
+                setBusy(false); setScanMsg('');
+                setViewfinder(false);
+                setCandidat({ vin: w, source: String(data?.source || ''), scan: gardee });
                 return;
             }
             if (data?.quota) setScanMsg('Trop de scans d’affilée (quota IA) — réessaie dans une minute.');
@@ -1416,6 +1421,46 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
         } catch { setScanMsg('Reconnaissance impossible — saisie manuelle.'); }
         clearTimeout(step2);
         setBusy(false);
+    };
+
+    /**
+     * La bouteille proposée entre en cave.
+     *
+     * C'est ici, et pas au scan, que les photos passent par la scène de cave :
+     * on télécharge celle du marchand, on la détoure, on la pose sur le fond
+     * sombre. Une à deux secondes, mais après le geste de validation — plus
+     * avant l'affichage du résultat.
+     */
+    const ajouterCandidat = async () => {
+        if (!candidat) return;
+        const w = candidat.vin;
+        setBusy(true); setScanMsg('Ajout à la cave…');
+        const known = findKnownWine(w.name);
+        try {
+            // Photo du marchand quand il a retrouvé la bouteille : elle arrive
+            // détourée sur fond blanc, on la remet en scène comme la nôtre pour
+            // que toutes les fiches se ressemblent. Sinon, la photo prise —
+            // jamais celle d'un voisin.
+            const photoFinale = (w.photo ? (await studioFromUrl(w.photo)) || w.photo : '')
+                || (await toStudio(candidat.scan));
+            addWine({
+                name: w.name, grape: w.grape || '', year: w.year || '',
+                color: (w.color || 'rouge') as WineColor, region: w.region || '', note: w.note || '',
+                photo: photoFinale, rating: w.rating, vivinoUrl: w.vivinoUrl,
+                shelf, tasted: shelf === 'tasted' || undefined, qty: shelf === 'tasted' ? 0 : 1,
+            });
+        } catch {
+            // localStorage plein : le vin est bon, c'est la place qui manque.
+            setBusy(false);
+            setScanMsg('Cave pleine côté navigateur — retire un vin puis réessaie.');
+            return;
+        }
+        if (known) {
+            toast(known.year && w.year && known.year !== w.year
+                ? `Déjà dégusté — tu avais le ${known.year}`
+                : 'Déjà dégusté — ce vin est déjà passé par ta cave');
+        }
+        onClose();
     };
 
     const onFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1487,7 +1532,25 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
                     />
                 )}
 
-                <div className={styles.addBody}>
+                {/*
+                  * La bouteille lue, avant qu'elle n'entre en cave.
+                  *
+                  * Elle prend toute la feuille : c'est le moment où l'on décide,
+                  * le formulaire n'a rien à dire ici.
+                  */}
+                {candidat && (
+                    <VinPropose
+                        vin={candidat.vin}
+                        scan={candidat.scan}
+                        etagere={shelf}
+                        occupe={busy}
+                        message={scanMsg}
+                        onAnnuler={() => { setCandidat(null); setScanMsg(''); }}
+                        onValider={ajouterCandidat}
+                    />
+                )}
+
+                <div className={styles.addBody} hidden={!!candidat}>
                     {/* Où va la bouteille : on le demande AVANT le scan, parce que
                         la réponse change le sens du geste — au restaurant on ne
                         remplit pas sa cave, on garde une trace. */}
@@ -1544,6 +1607,77 @@ function AddWine({ onClose, shelf: initialShelf = 'cave', straightToCamera = fal
 
                     <button className={styles.saveBtn} onClick={save} disabled={!form.name.trim()}>{shelf === 'tasted' ? 'Ajouter à « Goûté & approuvé »' : 'Ajouter à ma cave'}</button>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+/**
+ * La bouteille lue, proposée avant d'entrer en cave.
+ * ================================================
+ *
+ * Ce qu'on veut savoir avant de garder un vin : est-ce bien LUI (bon domaine,
+ * bon millésime), et est-ce qu'il est bon. La première question se règle d'un
+ * coup d'œil à la photo et au nom ; la seconde par la note des dégustateurs,
+ * et par les avis, qu'on ouvre chez ceux dont c'est le métier — Vivino d'abord,
+ * une recherche Google pour le reste. On ne recopie pas leurs avis : ils ne
+ * nous appartiennent pas, et un lien reste à jour.
+ */
+function VinPropose({ vin, scan, etagere, occupe, message, onAnnuler, onValider }: {
+    vin: VinLu;
+    scan: string;
+    etagere: WineShelf;
+    occupe: boolean;
+    message: string;
+    onAnnuler: () => void;
+    onValider: () => void;
+}) {
+    const photo = vin.photo || scan;
+    const note = typeof vin.rating === 'number' && vin.rating > 0 ? vin.rating : null;
+    const ligne = [vin.year, vin.region, vin.grape].filter(Boolean).join(' · ');
+    const requete = encodeURIComponent(`${vin.name} ${vin.year || ''} vin avis`.trim());
+
+    return (
+        <div className={styles.proposeWrap}>
+            <div className={styles.proposeVisuel}>
+                {photo ? <img src={photo} alt="" className={styles.proposeImg} /> : <div className={styles.proposeVide} />}
+                {note !== null && (
+                    <div className={styles.proposeNote}>
+                        <span className={styles.proposeNoteEtoile}>★</span>
+                        <span className={styles.proposeNoteVal}>{note.toFixed(1).replace('.', ',')}</span>
+                        <span className={styles.proposeNoteSur}>/5</span>
+                    </div>
+                )}
+            </div>
+
+            <div className={styles.proposeNom}>{vin.name}</div>
+            {ligne && <div className={styles.proposeMeta}>{ligne}</div>}
+            {vin.note && <p className={styles.proposeTexte}>{vin.note}</p>}
+
+            {/* Les avis vivent chez eux : on y emmène, on ne les recopie pas. */}
+            <div className={styles.proposeAvis}>
+                {vin.vivinoUrl && (
+                    <a className={styles.proposeLien} href={vin.vivinoUrl} target="_blank" rel="noopener noreferrer">
+                        Avis Vivino
+                    </a>
+                )}
+                <a
+                    className={styles.proposeLien}
+                    href={`https://www.google.com/search?q=${requete}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Avis Google
+                </a>
+            </div>
+
+            {message && <div className={styles.proposeMsg}>{message}</div>}
+
+            <div className={styles.proposeActions}>
+                <button className={styles.proposeAnnuler} onClick={onAnnuler} disabled={occupe}>Annuler</button>
+                <button className={styles.proposeValider} onClick={onValider} disabled={occupe}>
+                    {occupe ? 'Ajout…' : etagere === 'tasted' ? 'Ajouter aux dégustés' : 'Ajouter à ma cave'}
+                </button>
             </div>
         </div>
     );

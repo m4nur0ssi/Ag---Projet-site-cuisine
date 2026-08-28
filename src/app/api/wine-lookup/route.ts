@@ -137,15 +137,24 @@ function query(w: Wine) {
 }
 
 /**
- * Cherche la bouteille, et retente avec l'appellation si la première passe ne
- * tombe pas sur le bon domaine : « Bocas Lágrima » seul ne suffit pas, « Bocas
- * Lágrima Porto Portugal » retrouve le producteur.
+ * Cherche la bouteille par le nom, et aussi avec l'appellation : « Bocas
+ * Lágrima » seul ne suffit pas, « Bocas Lágrima Porto Portugal » retrouve le
+ * producteur.
+ *
+ * Les deux requêtes partent ENSEMBLE. En série, la seconde n'était lancée
+ * qu'après l'échec de la première : le scan durait deux allers-retours dès que
+ * le nom seul ne suffisait pas, et c'est justement le cas fréquent. Une requête
+ * de plus chez le marchand coûte moins cher que deux secondes d'attente devant
+ * une bouteille à la main.
  */
 async function locate(read: Wine) {
-    const first = await findOnVivino(query(read), read.year);
-    if (first?.confident || !read.region) return first;
-    const second = await findOnVivino(`${read.name} ${read.region}`.trim(), read.year);
-    return second?.confident ? second : first;
+    const [first, second] = await Promise.all([
+        findOnVivino(query(read), read.year),
+        read.region ? findOnVivino(`${read.name} ${read.region}`.trim(), read.year) : Promise.resolve(null),
+    ]);
+    if (first?.confident) return first;
+    if (second?.confident) return second;
+    return first || second;
 }
 
 export async function POST(request: Request) {
