@@ -1641,14 +1641,35 @@ function VinPropose({ vin, scan, etagere, occupe, message, onAnnuler, onValider 
         <div className={styles.proposeWrap}>
             <div className={styles.proposeVisuel}>
                 {photo ? <img src={photo} alt="" className={styles.proposeImg} /> : <div className={styles.proposeVide} />}
-                {note !== null && (
-                    <div className={styles.proposeNote}>
-                        <span className={styles.proposeNoteEtoile}>★</span>
+            </div>
+
+            {/*
+              * La note vit SOUS la bouteille, pas dessus.
+              *
+              * Posée sur la photo, elle en cachait l'étiquette — celle qu'on
+              * vient justement de vérifier — et restait petite pour ne pas trop
+              * en manger. Ici elle a la place d'être lue de loin.
+              */}
+            {note !== null && (
+                <div className={styles.proposeNote}>
+                    <div className={styles.proposeEtoiles} aria-hidden>
+                        {[0, 1, 2, 3, 4].map((i) => (
+                            <span key={i} className={styles.proposeEtoile}>
+                                <span className={styles.proposeEtoileFond}>★</span>
+                                <span
+                                    className={styles.proposeEtoilePlein}
+                                    style={{ width: `${Math.min(1, Math.max(0, note - i)) * 100}%` }}
+                                >★</span>
+                            </span>
+                        ))}
+                    </div>
+                    <div className={styles.proposeNoteLigne}>
                         <span className={styles.proposeNoteVal}>{note.toFixed(1).replace('.', ',')}</span>
                         <span className={styles.proposeNoteSur}>/5</span>
+                        <span className={styles.proposeNoteSource}>{vin.vivinoUrl ? 'sur Vivino' : 'note moyenne'}</span>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
 
             <div className={styles.proposeNom}>{vin.name}</div>
             {ligne && <div className={styles.proposeMeta}>{ligne}</div>}

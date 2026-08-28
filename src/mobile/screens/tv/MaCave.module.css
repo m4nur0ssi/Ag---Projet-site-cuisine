@@ -670,25 +670,68 @@
     background: linear-gradient(160deg, #241a14, #0b0806);
 }
 
-/* La note des dégustateurs, posée sur la photo : c'est la première chose
-   qu'on cherche, elle n'a pas à attendre son tour plus bas. */
+/* ── La note, sous la bouteille ──────────────────────────────────────────
+   Posée SUR la photo, elle cachait l'étiquette qu'on vient de vérifier, et
+   restait petite pour ne pas trop en manger. Ici elle se lit de loin. */
 .proposeNote {
-    position: absolute;
-    left: 8px;
-    bottom: 8px;
     display: flex;
-    align-items: baseline;
-    gap: 3px;
-    padding: 5px 10px;
-    border-radius: 999px;
-    background: rgba(10, 8, 6, 0.82);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
 }
 
-.proposeNoteEtoile { color: #ffc24b; font-size: 13px; }
-.proposeNoteVal { color: #fff; font-size: 16px; font-weight: 800; font-variant-numeric: tabular-nums; }
-.proposeNoteSur { color: rgba(255, 255, 255, 0.45); font-size: 11px; font-weight: 700; }
+.proposeEtoiles {
+    display: flex;
+    gap: 3px;
+}
+
+/* Étoile en deux couches : le contour, et le remplissage rogné en largeur —
+   c'est ce qui permet de montrer un 4,4 et pas un 4 ou un 5. */
+.proposeEtoile {
+    position: relative;
+    display: inline-block;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.proposeEtoileFond { color: rgba(255, 255, 255, 0.18); }
+
+.proposeEtoilePlein {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    color: #ffc24b;
+    white-space: nowrap;
+}
+
+.proposeNoteLigne {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.proposeNoteVal {
+    color: #fff;
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+
+.proposeNoteSur {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.proposeNoteSource {
+    margin-left: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+}
 
 .proposeNom {
     margin-top: 4px;
