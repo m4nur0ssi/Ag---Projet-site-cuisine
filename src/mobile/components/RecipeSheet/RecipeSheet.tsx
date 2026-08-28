@@ -29,22 +29,6 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     const [currentIdx, setCurrentIdx] = useState(recipeIndex);
     // Resync quand on ouvre une nouvelle fiche (props changent).
     useEffect(() => { setRecipes(baseRecipes); }, [baseRecipes]);
-
-    /*
-     * Prévenir la PAGE qu'une fiche est posée dessus.
-     *
-     * C'est elle qui recule et s'arrondit — le geste d'iOS. La règle vit dans
-     * `globals.css` : la feuille est portée dans `document.body`, elle n'a aucun
-     * lien de parenté avec l'enveloppe de la page et ne peut pas la styler
-     * autrement qu'en lui posant ce drapeau.
-     */
-    useEffect(() => {
-        if (typeof document === 'undefined') return;
-        document.body.classList.toggle('fiche-en-avant', !!isOpen);
-        // Démontage brutal (navigation, rechargement à chaud) : la page ne doit
-        // pas rester en arrière-plan réduit, sans feuille pour l'expliquer.
-        return () => document.body.classList.remove('fiche-en-avant');
-    }, [isOpen]);
     const [shouldRender, setShouldRender] = useState(isOpen);
     /**
      * Les recettes déjà construites, par identifiant.
