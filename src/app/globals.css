@@ -9,8 +9,32 @@ html.is-splashing body {
 }
 
 .main-content-wrapper {
-    transition: opacity 0.8s ease-in-out;
+    transition:
+        opacity 0.8s ease-in-out,
+        transform 0.42s cubic-bezier(0.32, 0.72, 0, 1),
+        clip-path 0.42s cubic-bezier(0.32, 0.72, 0, 1);
     opacity: 1;
+}
+
+/*
+ * La page recule derrière la fiche.
+ * ================================
+ *
+ * Le geste d'iOS : ouvrir une feuille repousse la page d'un cran en arrière,
+ * lui arrondit les angles, et on la voit dépasser tout autour. C'est ce qui
+ * dit « tu es toujours sur l'accueil, on a juste posé quelque chose dessus ».
+ *
+ * `clip-path` plutôt qu'`overflow: hidden` : ce dernier ferait de l'enveloppe
+ * un conteneur de défilement, ce qui casse le héros collant de l'accueil et le
+ * défilement de la page. `clip-path` ne touche qu'à la peinture.
+ *
+ * L'échelle reste discrète (0,97) : la page doit rester PLUS LARGE que la
+ * feuille, sinon elle disparaît derrière et il n'y a plus rien à voir.
+ */
+body.fiche-en-avant .main-content-wrapper {
+    transform: scale(0.97) translateY(12px);
+    transform-origin: 50% 0;
+    clip-path: inset(0 round 26px);
 }
 
 html.is-splashing .main-content-wrapper {

@@ -13,17 +13,30 @@
     inset: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.92);
-    -webkit-backdrop-filter: blur(40px);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
+    /*
+     * Le voile laisse VOIR la page en dessous.
+     *
+     * À 92 % de noir, il n'y avait plus rien derrière : la fiche flottait sur un
+     * fond mort. On veut au contraire reconnaître d'où l'on vient — c'est ce qui
+     * fait qu'une feuille se lit comme posée PAR-DESSUS, et pas comme un
+     * changement d'écran. Le flou fait le reste du travail de mise à distance.
+     */
+    background: rgba(0, 0, 0, 0.58);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
     z-index: 5001;
     pointer-events: auto;
 }
 
 .sheet {
     position: relative;
-    width: 94%;
+    /*
+     * 88 % et non 94 % : la page qui recule derrière doit dépasser des DEUX
+     * côtés. À 94 %, la feuille était plus large que la page réduite et la
+     * masquait entièrement — on ne voyait plus qu'une bande, du côté où le
+     * hasard du contenu avait posé une photo claire.
+     */
+    width: 88%;
     height: 92vh;
     max-width: 800px;
     margin: 0 auto;
