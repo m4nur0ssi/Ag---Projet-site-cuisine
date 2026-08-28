@@ -24,3 +24,4 @@ wp-writeback-ids.txt
 # Seuls les éventuels autres fichiers (png sources, etc.) restent locaux.
 /public/recipes-ia/*
 !/public/recipes-ia/*.webp
+scripts/.releve-prix.json

@@ -51,106 +51,131 @@ type Tarif = [number, number, Base, number?];
  * la forme que `canonicalIng` produit. Le quatrième champ est la portion retenue
  * quand la ligne ne porte aucune quantité (« Sel », « Thym ») : une pincée pour
  * un condiment, une botte pour une herbe, une part raisonnable pour le reste.
+ *
+ * D'OÙ VIENNENT CES CHIFFRES — relevé du 28 août 2026
+ * ---------------------------------------------------
+ * Cent produits sont calés sur des ÉTIQUETTES RÉELLES : celles d'Open Prices
+ * (prices.openfoodfacts.org), une base ouverte où des contributeurs
+ * photographient les prix en rayon, datés, avec l'enseigne. Pour les produits
+ * emballés on passe d'abord par Open Food Facts, qui donne les références les
+ * plus scannées en France et leur contenance, ce qui permet de ramener au kilo.
+ * Seuls les relevés français de moins de trente mois sont retenus ; les magasins
+ * bio sont écartés (leurs étiquettes ne disent rien d'un hypermarché) ; la
+ * fourchette va du 25ᵉ au 80ᵉ centile de ce qui reste. Enseignes présentes :
+ * Lidl, Aldi, Carrefour et ses formats, Auchan, Leclerc, Intermarché, Super U,
+ * Casino, Monoprix, Franprix.
+ *
+ * Le reste — viandes de détail, poissons frais, fromages à la coupe, épices —
+ * n'existe pas dans cette base : ils se vendent sans code-barres. Ces valeurs
+ * sont posées à la main, calées sur les relevés voisins qui, eux, sont mesurés.
+ *
+ * Quinze relevés ont été ÉCARTÉS parce qu'ils ne mesuraient pas le produit
+ * qu'on cuisine : « saumon » y désigne surtout des tranches fumées, « vinaigre »
+ * du balsamique, « lentille » des bocaux cuits ; et pour les fruits vendus à la
+ * pièce (kiwi, avocat, mangue, concombre, salade), les contributeurs saisissent
+ * le prix de l'unité là où la base attend un prix au kilo.
+ *
+ * Pour rafraîchir : le relevé se rejoue, la méthode est décrite ci-dessus.
  */
 const PRIX: Record<string, Tarif> = {
     // ── Viandes ────────────────────────────────────────────────────────────
-    'poulet': [6, 11, 'kg'], 'blanc de poulet': [9, 14, 'kg'], 'filet de poulet': [9, 14, 'kg'],
-    'escalope de poulet': [10, 15, 'kg'], 'cuisse de poulet': [4, 7, 'kg'], 'aiguillette de poulet': [10, 15, 'kg'],
-    'dinde': [8, 13, 'kg'], 'escalope de dinde': [9, 14, 'kg'],
-    'boeuf': [12, 20, 'kg'], 'viande hachee': [9, 15, 'kg'], 'steak hache': [9, 15, 'kg'],
-    'boeuf hache': [9, 15, 'kg'], 'steak': [15, 24, 'kg'], 'entrecote': [20, 32, 'kg'],
-    'bavette': [16, 25, 'kg'], 'rumsteck': [18, 28, 'kg'], 'paleron': [10, 16, 'kg'], 'bourguignon': [11, 17, 'kg'],
-    'veau': [18, 28, 'kg'], 'agneau': [15, 26, 'kg'], 'gigot': [14, 24, 'kg'], 'cotelette': [12, 20, 'kg'],
-    'porc': [7, 12, 'kg'], 'filet mignon': [12, 19, 'kg'], 'echine': [7, 11, 'kg'], 'travers de porc': [7, 12, 'kg'],
-    'lardon': [8, 13, 'kg'], 'poitrine fumee': [8, 13, 'kg'], 'bacon': [12, 19, 'kg'],
-    'jambon': [11, 18, 'kg'], 'jambon cru': [25, 40, 'kg'], 'chorizo': [12, 20, 'kg'],
-    'saucisse': [8, 13, 'kg'], 'merguez': [9, 14, 'kg'], 'saucisson': [14, 22, 'kg'],
-    'canard': [12, 20, 'kg'], 'magret': [18, 28, 'kg'], 'confit de canard': [14, 22, 'kg'],
-    'lapin': [10, 16, 'kg'], 'foie gras': [60, 110, 'kg'], 'merguez de boeuf': [9, 14, 'kg'],
+    'poulet': [7.4, 18, 'kg'], 'blanc de poulet': [11, 17, 'kg'], 'filet de poulet': [11, 17, 'kg'],
+    'escalope de poulet': [12, 18, 'kg'], 'cuisse de poulet': [5, 9, 'kg'], 'aiguillette de poulet': [12, 18, 'kg'],
+    'dinde': [10, 16, 'kg'], 'escalope de dinde': [11, 17, 'kg'],
+    'boeuf': [15, 28, 'kg'], 'viande hachee': [11, 17, 'kg'], 'steak hache': [11, 17, 'kg'],
+    'boeuf hache': [11, 17, 'kg'], 'steak': [18, 28, 'kg'], 'entrecote': [24, 36, 'kg'],
+    'bavette': [19, 29, 'kg'], 'rumsteck': [21, 31, 'kg'], 'paleron': [12, 19, 'kg'], 'bourguignon': [13, 20, 'kg'],
+    'veau': [21, 32, 'kg'], 'agneau': [18, 30, 'kg'], 'gigot': [14, 24, 'kg'], 'cotelette': [14, 23, 'kg'],
+    'porc': [9, 15, 'kg'], 'filet mignon': [14, 22, 'kg'], 'echine': [9, 15, 'kg'], 'travers de porc': [8, 14, 'kg'],
+    'lardon': [12, 16, 'kg'], 'poitrine fumee': [11, 16, 'kg'], 'bacon': [14, 22, 'kg'],
+    'jambon': [13, 20, 'kg'], 'jambon cru': [28, 45, 'kg'], 'chorizo': [8.4, 17, 'kg'],
+    'saucisse': [7.8, 14, 'kg'], 'merguez': [11, 16, 'kg'], 'saucisson': [16, 26, 'kg'],
+    'canard': [14, 22, 'kg'], 'magret': [21, 32, 'kg'], 'confit de canard': [16, 26, 'kg'],
+    'lapin': [12, 19, 'kg'], 'foie gras': [60, 110, 'kg'], 'merguez de boeuf': [11, 17, 'kg'],
 
     // ── Poissons et fruits de mer ──────────────────────────────────────────
-    'saumon': [16, 26, 'kg'], 'pave de saumon': [18, 28, 'kg'], 'saumon fume': [28, 45, 'kg'],
-    'cabillaud': [13, 22, 'kg'], 'colin': [10, 17, 'kg'], 'lieu': [10, 17, 'kg'], 'merlu': [11, 18, 'kg'],
-    'dorade': [12, 20, 'kg'], 'bar': [16, 26, 'kg'], 'truite': [11, 18, 'kg'], 'sole': [22, 36, 'kg'],
-    'thon': [10, 18, 'kg'], 'sardine': [5, 10, 'kg'], 'maquereau': [5, 10, 'kg'], 'anchois': [14, 24, 'kg'],
-    'crevette': [12, 22, 'kg'], 'gambas': [16, 28, 'kg'], 'moule': [4, 7, 'kg'], 'palourde': [8, 14, 'kg'],
-    'calamar': [9, 16, 'kg'], 'poulpe': [12, 20, 'kg'], 'saint-jacques': [22, 38, 'kg'], 'crabe': [10, 18, 'kg'],
-    'surimi': [7, 12, 'kg'], 'poisson': [11, 19, 'kg'],
+    'saumon': [18, 28, 'kg'], 'pave de saumon': [18, 28, 'kg'], 'saumon fume': [28, 45, 'kg'],
+    'cabillaud': [16, 26, 'kg'], 'colin': [12, 20, 'kg'], 'lieu': [10, 17, 'kg'], 'merlu': [13, 21, 'kg'],
+    'dorade': [14, 24, 'kg'], 'bar': [18, 30, 'kg'], 'truite': [13, 20, 'kg'], 'sole': [22, 36, 'kg'],
+    'thon': [16, 23, 'kg'], 'sardine': [14, 22, 'kg'], 'maquereau': [5, 10, 'kg'], 'anchois': [14, 24, 'kg'],
+    'crevette': [15, 28, 'kg'], 'gambas': [20, 34, 'kg'], 'moule': [4.5, 8, 'kg'], 'palourde': [8, 14, 'kg'],
+    'calamar': [10, 18, 'kg'], 'poulpe': [12, 20, 'kg'], 'saint-jacques': [26, 44, 'kg'], 'crabe': [10, 18, 'kg'],
+    'surimi': [9.5, 14, 'kg'], 'poisson': [14, 24, 'kg'],
 
     // ── Légumes ────────────────────────────────────────────────────────────
-    'pomme de terre': [1.1, 2, 'kg'], 'patate douce': [2.2, 4, 'kg'],
-    'carotte': [1.1, 2, 'kg'], 'oignon': [1.2, 2.2, 'kg'], 'oignon rouge': [1.6, 2.8, 'kg'],
-    'echalote': [3, 5, 'kg'], 'ail': [6, 11, 'kg', 5], 'poireau': [2, 3.5, 'kg'],
-    'tomate': [2.2, 4.2, 'kg'], 'tomate cerise': [5, 9, 'kg'], 'tomate concassee': [1.5, 2.8, 'kg'],
-    'coulis de tomate': [1.5, 2.8, 'l'], 'concentre de tomate': [4, 7, 'kg', 30],
-    'courgette': [1.8, 3.4, 'kg'], 'aubergine': [2.2, 4, 'kg'], 'poivron': [2.8, 5, 'kg'],
-    'champignon': [4, 7.5, 'kg'], 'champignon de paris': [4, 7.5, 'kg'], 'cepe': [20, 40, 'kg'],
-    'brocoli': [2.4, 4.2, 'kg'], 'chou-fleur': [2, 3.6, 'kg'], 'chou': [1.5, 2.8, 'kg'],
-    'epinard': [3, 6, 'kg'], 'haricot vert': [3.5, 6.5, 'kg'], 'petit pois': [2.2, 4, 'kg'],
-    'concombre': [2, 3.5, 'kg'], 'salade': [2.5, 4.5, 'kg'], 'roquette': [8, 14, 'kg'], 'mache': [8, 14, 'kg'],
-    'celeri': [2, 3.6, 'kg'], 'fenouil': [2.5, 4.2, 'kg'], 'navet': [1.6, 3, 'kg'], 'betterave': [2.4, 4, 'kg'],
+    'pomme de terre': [1.8, 3.0, 'kg'], 'patate douce': [2.5, 4.2, 'kg'],
+    'carotte': [1.8, 2.8, 'kg'], 'oignon': [2.2, 3.5, 'kg'], 'oignon rouge': [1.6, 2.8, 'kg'],
+    'echalote': [3.8, 8.0, 'kg'], 'ail': [6, 11, 'kg', 5], 'poireau': [2.5, 3.9, 'kg'],
+    'tomate': [2.5, 5.0, 'kg'], 'tomate cerise': [5, 9, 'kg'], 'tomate concassee': [4.6, 7.3, 'kg'],
+    'coulis de tomate': [1.5, 2.8, 'l'], 'concentre de tomate': [7.4, 8.8, 'kg', 30],
+    'courgette': [1.8, 3.4, 'kg'], 'aubergine': [2.9, 5.0, 'kg'], 'poivron': [3.7, 5.2, 'kg'],
+    'champignon': [5.1, 12, 'kg'], 'champignon de paris': [4, 7.5, 'kg'], 'cepe': [20, 40, 'kg'],
+    'brocoli': [2.6, 4.8, 'kg'], 'chou-fleur': [2.8, 4.0, 'kg'], 'chou': [2.0, 3.5, 'kg'],
+    'epinard': [3, 6, 'kg'], 'haricot vert': [4.0, 12, 'kg'], 'petit pois': [5.0, 12, 'kg'],
+    'concombre': [3.4, 5.7, 'kg'], 'salade': [4.3, 5.5, 'kg'], 'roquette': [8, 14, 'kg'], 'mache': [8, 14, 'kg'],
+    'celeri': [2.5, 3.7, 'kg'], 'fenouil': [2.5, 4.2, 'kg'], 'navet': [1.6, 3, 'kg'], 'betterave': [2.4, 4, 'kg'],
     'potiron': [1.4, 2.8, 'kg'], 'courge': [1.6, 3, 'kg'], 'butternut': [1.8, 3.2, 'kg'],
-    'radis': [2.5, 4.5, 'kg'], 'endive': [2.5, 4.2, 'kg'], 'asperge': [7, 13, 'kg'],
-    'artichaut': [3, 5.5, 'kg'], 'mais': [2.5, 4.5, 'kg'], 'olive': [7, 13, 'kg', 40],
-    'cornichon': [5, 9, 'kg', 30], 'poivron grille': [5, 9, 'kg'], 'gingembre': [8, 14, 'kg', 10],
-    'citronnelle': [12, 20, 'kg', 5], 'avocat': [5, 9, 'kg'], 'chou rouge': [1.8, 3.2, 'kg'],
+    'radis': [1.8, 4.0, 'kg'], 'endive': [2.7, 4.9, 'kg'], 'asperge': [7.8, 13, 'kg'],
+    'artichaut': [3, 5.5, 'kg'], 'mais': [4.2, 6.9, 'kg'], 'olive': [6.0, 16, 'kg', 40],
+    'cornichon': [8.4, 15, 'kg', 30], 'poivron grille': [5, 9, 'kg'], 'gingembre': [8, 14, 'kg', 10],
+    'citronnelle': [12, 20, 'kg', 5], 'avocat': [7, 13, 'kg'], 'chou rouge': [1.8, 3.2, 'kg'],
 
     // ── Fruits ─────────────────────────────────────────────────────────────
-    'pomme': [1.8, 3.2, 'kg'], 'poire': [2.2, 3.8, 'kg'], 'banane': [1.4, 2.4, 'kg'],
-    'orange': [1.7, 3, 'kg'], 'citron': [2.4, 4, 'kg'], 'citron vert': [4, 7, 'kg'],
-    'fraise': [6, 12, 'kg'], 'framboise': [12, 22, 'kg'], 'myrtille': [12, 22, 'kg'], 'mure': [12, 22, 'kg'],
-    'peche': [2.4, 4.4, 'kg'], 'abricot': [3, 6, 'kg'], 'prune': [2.5, 4.5, 'kg'], 'cerise': [6, 12, 'kg'],
-    'raisin': [3, 5.5, 'kg'], 'kiwi': [3, 5.5, 'kg'], 'mangue': [4, 7, 'kg'], 'ananas': [2, 3.6, 'kg'],
-    'melon': [2, 4, 'kg'], 'pasteque': [1, 2.2, 'kg'], 'figue': [6, 11, 'kg'], 'grenade': [4, 7, 'kg'],
-    'datte': [7, 13, 'kg'], 'raisin sec': [5, 9, 'kg'], 'abricot sec': [7, 12, 'kg'],
-    'fruit rouge': [8, 15, 'kg'], 'noix de coco': [4, 7, 'kg'], 'lait de coco': [2.5, 4.5, 'l'],
+    'pomme': [2.5, 3.9, 'kg'], 'poire': [3.0, 4.5, 'kg'], 'banane': [1.9, 2.2, 'kg'],
+    'orange': [2.2, 3.5, 'kg'], 'citron': [3.0, 5.0, 'kg'], 'citron vert': [4.0, 6.9, 'kg'],
+    'fraise': [11, 21, 'kg'], 'framboise': [29, 34, 'kg'], 'myrtille': [20, 24, 'kg'], 'mure': [12, 22, 'kg'],
+    'peche': [3.5, 6.0, 'kg'], 'abricot': [4.0, 7.8, 'kg'], 'prune': [3.8, 5.6, 'kg'], 'cerise': [9.6, 15, 'kg'],
+    'raisin': [5.0, 8.9, 'kg'], 'kiwi': [3.5, 6, 'kg'], 'mangue': [4.5, 8.5, 'kg'], 'ananas': [2, 3.6, 'kg'],
+    'melon': [1.8, 4.2, 'kg'], 'pasteque': [2.8, 5.8, 'kg'], 'figue': [11, 16, 'kg'], 'grenade': [4, 7, 'kg'],
+    'datte': [4.3, 8.6, 'kg'], 'raisin sec': [8.0, 14, 'kg'], 'abricot sec': [7, 12, 'kg'],
+    'fruit rouge': [8, 15, 'kg'], 'noix de coco': [4, 7, 'kg'], 'lait de coco': [4.8, 5.0, 'l'],
 
     // ── Crémerie et œufs ───────────────────────────────────────────────────
-    'lait': [0.9, 1.4, 'l'], 'lait entier': [1, 1.5, 'l'], 'lait de soja': [1.4, 2.4, 'l'],
-    'lait d amande': [2, 3.4, 'l'], 'creme liquide': [2.6, 4.6, 'l'], 'creme fraiche': [3, 5.2, 'l'],
-    'creme epaisse': [3, 5.2, 'l'], 'mascarpone': [6, 10, 'kg'], 'ricotta': [5, 9, 'kg'],
-    'beurre': [8, 13, 'kg'], 'margarine': [3, 5.5, 'kg'],
-    'oeuf': [0.24, 0.45, 'piece', 1],
-    'yaourt': [0.3, 0.6, 'piece', 1], 'yaourt grec': [0.5, 0.9, 'piece', 1],
-    'fromage blanc': [2.4, 4.4, 'kg'], 'skyr': [4, 7, 'kg'],
-    'fromage': [9, 16, 'kg'], 'fromage rape': [8, 14, 'kg'], 'gruyere': [9, 15, 'kg'],
-    'emmental': [8, 14, 'kg'], 'comte': [15, 24, 'kg'], 'parmesan': [16, 28, 'kg'],
-    'mozzarella': [7, 12, 'kg'], 'burrata': [14, 24, 'kg'], 'feta': [8, 14, 'kg'],
-    'chevre': [11, 19, 'kg'], 'roquefort': [16, 26, 'kg'], 'bleu': [12, 20, 'kg'],
-    'raclette': [10, 17, 'kg'], 'reblochon': [12, 20, 'kg'], 'camembert': [8, 14, 'kg'],
-    'cheddar': [10, 17, 'kg'], 'boursin': [12, 20, 'kg'], 'philadelphia': [10, 17, 'kg'],
+    'lait': [1.3, 1.9, 'l'], 'lait entier': [1, 1.5, 'l'], 'lait de soja': [1.4, 2.4, 'l'],
+    'lait d amande': [2, 3.4, 'l'], 'creme liquide': [4.8, 12, 'l'], 'creme fraiche': [5, 10, 'l'],
+    'creme epaisse': [5, 10, 'l'], 'mascarpone': [6.8, 10, 'kg'], 'ricotta': [5.6, 9.5, 'kg'],
+    'beurre': [10, 13, 'kg'], 'margarine': [4, 7, 'kg'],
+    'oeuf': [0.33, 0.66, 'piece', 1],
+    'yaourt': [0.26, 0.65, 'piece', 1], 'yaourt grec': [0.5, 0.9, 'piece', 1],
+    'fromage blanc': [3, 6, 'kg'], 'skyr': [5, 9, 'kg'],
+    'fromage': [11, 19, 'kg'], 'fromage rape': [9.8, 22, 'kg'], 'gruyere': [11, 18, 'kg'],
+    'emmental': [10, 16, 'kg'], 'comte': [14, 24, 'kg'], 'parmesan': [19, 32, 'kg'],
+    'mozzarella': [8.2, 10, 'kg'], 'burrata': [14, 24, 'kg'], 'feta': [12, 21, 'kg'],
+    'chevre': [13, 22, 'kg'], 'roquefort': [18, 30, 'kg'], 'bleu': [14, 23, 'kg'],
+    'raclette': [12, 19, 'kg'], 'reblochon': [14, 22, 'kg'], 'camembert': [7.9, 13, 'kg'],
+    'cheddar': [12, 20, 'kg'], 'boursin': [12, 20, 'kg'], 'philadelphia': [10, 17, 'kg'],
     'creme de coco': [3, 5.5, 'l'],
 
     // ── Épicerie sèche ─────────────────────────────────────────────────────
-    'farine': [0.8, 1.6, 'kg', 150], 'fecule de mais': [2, 3.6, 'kg', 20], 'maizena': [2, 3.6, 'kg', 20],
-    'sucre': [0.9, 1.7, 'kg', 80], 'sucre glace': [2, 3.6, 'kg', 40], 'cassonade': [1.6, 3, 'kg', 60],
+    'farine': [1.6, 3.5, 'kg', 150], 'fecule de mais': [2, 3.6, 'kg', 20], 'maizena': [2, 3.6, 'kg', 20],
+    'sucre': [2.6, 4.8, 'kg', 80], 'sucre glace': [2, 3.6, 'kg', 40], 'cassonade': [1.6, 3, 'kg', 60],
     'levure': [8, 15, 'kg', 8], 'levure chimique': [8, 15, 'kg', 8], 'levure de boulanger': [10, 18, 'kg', 8],
-    'bicarbonate': [4, 8, 'kg', 5], 'sel': [0.5, 1.2, 'kg', 3], 'fleur de sel': [8, 15, 'kg', 2],
+    'bicarbonate': [4, 8, 'kg', 5], 'sel': [0.6, 2, 'kg', 3], 'fleur de sel': [8, 15, 'kg', 2],
     'poivre': [18, 35, 'kg', 2], 'sucre vanille': [12, 22, 'kg', 8],
-    'riz': [1.4, 2.8, 'kg'], 'riz basmati': [2, 3.8, 'kg'], 'riz arborio': [2.6, 4.6, 'kg'],
-    'pate': [1.1, 2.4, 'kg'], 'spaghetti': [1.1, 2.4, 'kg'], 'tagliatelle': [1.6, 3, 'kg'],
-    'lasagne': [1.8, 3.2, 'kg'], 'nouille': [2, 3.6, 'kg'], 'semoule': [1.4, 2.6, 'kg'],
-    'boulgour': [2, 3.6, 'kg'], 'quinoa': [4, 7.5, 'kg'], 'lentille': [2, 3.6, 'kg'],
-    'pois chiche': [1.8, 3.2, 'kg'], 'haricot rouge': [1.8, 3.2, 'kg'], 'haricot blanc': [1.8, 3.2, 'kg'],
-    'flocon d avoine': [1.8, 3.2, 'kg'], 'chapelure': [2, 3.6, 'kg', 40],
-    'pain': [2.5, 4.5, 'kg', 60], 'pain de mie': [2.5, 4.5, 'kg', 60], 'baguette': [1, 1.5, 'piece', 1],
+    'riz': [3.8, 8.3, 'kg'], 'riz basmati': [2, 3.8, 'kg'], 'riz arborio': [2.6, 4.6, 'kg'],
+    'pate': [2.7, 4.9, 'kg'], 'spaghetti': [1.1, 2.4, 'kg'], 'tagliatelle': [1.6, 3, 'kg'],
+    'lasagne': [1.8, 3.2, 'kg'], 'nouille': [2, 3.6, 'kg'], 'semoule': [2, 4, 'kg'],
+    'boulgour': [2, 3.6, 'kg'], 'quinoa': [7.9, 15, 'kg'], 'lentille': [3, 5.5, 'kg'],
+    'pois chiche': [3.9, 7.3, 'kg'], 'haricot rouge': [1.8, 3.2, 'kg'], 'haricot blanc': [1.8, 3.2, 'kg'],
+    'flocon d avoine': [2.8, 4.1, 'kg'], 'chapelure': [2.4, 4.3, 'kg', 40],
+    'pain': [2.5, 4.5, 'kg', 60], 'pain de mie': [3.2, 5.6, 'kg', 60], 'baguette': [1, 1.5, 'piece', 1],
     'tortilla': [4, 7, 'kg', 60], 'pita': [4, 7, 'kg', 60], 'bagel': [5, 9, 'kg', 90],
-    'pate feuilletee': [1.5, 2.8, 'piece', 1], 'pate brisee': [1.3, 2.4, 'piece', 1],
+    'pate feuilletee': [1.13, 1.59, 'piece', 1], 'pate brisee': [1.3, 2.4, 'piece', 1],
     'pate sablee': [1.5, 2.8, 'piece', 1], 'pate a pizza': [1.5, 2.8, 'piece', 1],
-    'feuille de brick': [2, 3.6, 'piece', 1], 'biscuit': [6, 11, 'kg'], 'speculoos': [7, 12, 'kg'],
-    'boudoir': [7, 12, 'kg'], 'petit-beurre': [4, 8, 'kg'],
+    'feuille de brick': [2, 3.6, 'piece', 1], 'biscuit': [7.4, 13, 'kg'], 'speculoos': [7, 12, 'kg'],
+    'boudoir': [7, 12, 'kg'], 'petit-beurre': [5, 9, 'kg'],
 
     // ── Matières grasses, condiments, sauces ───────────────────────────────
-    'huile d olive': [6, 11, 'l', 20], 'huile': [2, 4, 'l', 20], 'huile de tournesol': [1.8, 3.4, 'l', 20],
+    'huile d olive': [12, 17, 'l', 20], 'huile': [2, 4, 'l', 20], 'huile de tournesol': [1.6, 2.2, 'l', 20],
     'huile de sesame': [10, 18, 'l', 8], 'huile de coco': [8, 15, 'l', 15],
-    'vinaigre': [1.5, 3, 'l', 15], 'vinaigre balsamique': [4, 8, 'l', 12],
+    'vinaigre': [1.5, 4, 'l', 15], 'vinaigre balsamique': [4, 8, 'l', 12],
     'sauce soja': [4, 8, 'l', 15], 'sauce worcestershire': [8, 14, 'l', 8],
-    'moutarde': [3.5, 6.5, 'kg', 15], 'ketchup': [2.8, 5, 'kg', 20], 'mayonnaise': [4, 7.5, 'kg', 20],
-    'miel': [8, 16, 'kg', 20], 'sirop d erable': [16, 28, 'l', 20], 'confiture': [4, 7.5, 'kg', 30],
-    'tahini': [10, 18, 'kg', 20], 'beurre de cacahuete': [7, 13, 'kg', 25],
-    'bouillon': [12, 22, 'kg', 10], 'fond de veau': [14, 24, 'kg', 10], 'fond de volaille': [14, 24, 'kg', 10],
+    'moutarde': [3.5, 6.5, 'kg', 15], 'ketchup': [4.6, 6.3, 'kg', 20], 'mayonnaise': [4, 7.5, 'kg', 20],
+    'miel': [9.8, 17, 'kg', 20], 'sirop d erable': [16, 23, 'l', 20], 'confiture': [5, 9, 'kg', 30],
+    'tahini': [17, 21, 'kg', 20], 'beurre de cacahuete': [10, 14, 'kg', 25],
+    'bouillon': [14, 26, 'kg', 10], 'fond de veau': [16, 28, 'kg', 10], 'fond de volaille': [16, 28, 'kg', 10],
     'harissa': [8, 15, 'kg', 10], 'pesto': [10, 18, 'kg', 30], 'tapenade': [10, 18, 'kg', 25],
-    'creme de balsamique': [8, 14, 'l', 8], 'sauce tomate': [2, 3.8, 'kg'],
+    'creme de balsamique': [8, 14, 'l', 8], 'sauce tomate': [4.7, 6.3, 'kg'],
 
     // ── Épices et herbes ───────────────────────────────────────────────────
     'paprika': [16, 30, 'kg', 3], 'curry': [16, 30, 'kg', 3], 'cumin': [16, 30, 'kg', 3],
@@ -166,7 +191,7 @@ const PRIX: Record<string, Tarif> = {
      * sont sous-estimées de deux ou trois euros, ce qui ne se voit pas.
      */
     'vanille': [50, 95, 'l', 5],
-    'cacao': [10, 20, 'kg', 15], 'cannelle en poudre': [20, 38, 'kg', 3],
+    'cacao': [6.4, 10, 'kg', 15], 'cannelle en poudre': [20, 38, 'kg', 3],
     'ail en poudre': [16, 30, 'kg', 3], 'oignon en poudre': [16, 30, 'kg', 3],
     'gingembre en poudre': [18, 32, 'kg', 3], 'coriandre en poudre': [16, 30, 'kg', 3],
     'persil': [9, 16, 'kg', 20], 'coriandre': [9, 16, 'kg', 20], 'basilic': [14, 25, 'kg', 15],
@@ -174,30 +199,30 @@ const PRIX: Record<string, Tarif> = {
     'estragon': [16, 28, 'kg', 8], 'sauge': [18, 32, 'kg', 5],
 
     // ── Sucré ──────────────────────────────────────────────────────────────
-    'chocolat': [8, 16, 'kg'], 'chocolat noir': [8, 16, 'kg'], 'chocolat au lait': [8, 15, 'kg'],
+    'chocolat': [8, 16, 'kg'], 'chocolat noir': [8, 18, 'kg'], 'chocolat au lait': [9, 18, 'kg'],
     'chocolat blanc': [9, 17, 'kg'], 'pepite de chocolat': [10, 18, 'kg'],
-    'praline': [14, 25, 'kg'], 'nutella': [7, 12, 'kg', 30], 'caramel': [8, 15, 'kg', 30],
+    'praline': [14, 25, 'kg'], 'nutella': [9.4, 15, 'kg', 30], 'caramel': [8, 15, 'kg', 30],
     'gelatine': [40, 80, 'kg', 6], 'agar-agar': [80, 150, 'kg', 2],
-    'amande': [12, 22, 'kg'], 'poudre d amande': [12, 22, 'kg'], 'noisette': [12, 22, 'kg'],
-    'noix': [10, 19, 'kg'], 'noix de cajou': [14, 24, 'kg'], 'pistache': [20, 36, 'kg'],
-    'pignon de pin': [40, 75, 'kg'], 'cacahuete': [5, 10, 'kg'], 'graine de sesame': [6, 12, 'kg'],
+    'amande': [15, 28, 'kg'], 'poudre d amande': [12, 22, 'kg'], 'noisette': [26, 36, 'kg'],
+    'noix': [21, 37, 'kg'], 'noix de cajou': [14, 31, 'kg'], 'pistache': [15, 24, 'kg'],
+    'pignon de pin': [40, 75, 'kg'], 'cacahuete': [3.8, 12, 'kg'], 'graine de sesame': [11, 15, 'kg'],
     'noix de pecan': [16, 28, 'kg'], 'graine de courge': [8, 15, 'kg'], 'graine de tournesol': [5, 10, 'kg'],
-    'chantilly': [6, 11, 'l'], 'glace': [4, 9, 'l'],
+    'chantilly': [6, 11, 'l'], 'glace': [5.5, 9.5, 'l'],
 
     // ── Boissons et alcools ────────────────────────────────────────────────
-    'eau': [0.2, 0.6, 'l'], 'eau gazeuse': [0.4, 1, 'l'], 'jus d orange': [1.2, 2.4, 'l'],
-    'vin blanc': [3, 8, 'l'], 'vin rouge': [3, 8, 'l'], 'biere': [1.6, 3.5, 'l'],
+    'eau': [0.2, 0.6, 'l'], 'eau gazeuse': [0.4, 1, 'l'], 'jus d orange': [2.6, 3.2, 'l'],
+    'vin blanc': [4.3, 11, 'l'], 'vin rouge': [4.1, 5.0, 'l'], 'biere': [3.2, 4.2, 'l'],
     'rhum': [15, 26, 'l'], 'vodka': [14, 24, 'l'], 'tequila': [20, 36, 'l'], 'gin': [16, 30, 'l'],
     'whisky': [18, 34, 'l'], 'cognac': [30, 55, 'l'], 'aperol': [12, 20, 'l'], 'campari': [16, 26, 'l'],
     'limoncello': [14, 24, 'l'], 'cointreau': [22, 38, 'l'], 'champagne': [20, 42, 'l'],
     'prosecco': [5, 11, 'l'], 'porto': [8, 15, 'l'], 'cidre': [2, 4, 'l'],
-    'sirop': [3, 6, 'l', 20], 'the': [40, 80, 'kg', 3], 'cafe': [12, 24, 'kg', 10],
+    'sirop': [3.8, 6.1, 'l', 20], 'the': [40, 80, 'kg', 3], 'cafe': [21, 44, 'kg', 10],
     'tonic': [1, 2.4, 'l'], 'limonade': [0.8, 2, 'l'], 'jus de citron': [2.5, 4.5, 'l'],
 
     // ── Divers ─────────────────────────────────────────────────────────────
-    'tofu': [7, 13, 'kg'], 'seitan': [10, 18, 'kg'], 'lentille corail': [3, 5.5, 'kg'],
+    'tofu': [9.5, 17, 'kg'], 'seitan': [10, 18, 'kg'], 'lentille corail': [3, 5.5, 'kg'],
     'levure maltee': [20, 36, 'kg', 8], 'graine de chia': [10, 18, 'kg', 15],
-    'sucre de coco': [8, 15, 'kg', 40], 'compote': [2.5, 4.5, 'kg', 100],
+    'sucre de coco': [8, 15, 'kg', 40], 'compote': [2.4, 4.0, 'kg', 100],
     // Repérés sur le catalogue : sans eux, l'extrait se facturait au prix de la
     // gousse et la glace à la vanille au prix de la vanille.
     'extrait de vanille': [50, 95, 'l', 5], 'arome vanille': [40, 80, 'l', 5],
