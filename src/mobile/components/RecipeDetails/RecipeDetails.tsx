@@ -32,6 +32,8 @@ import dynamic from 'next/dynamic';
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 import StarRating from '@/mobile/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
+import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
+import { prixRecette } from '@/lib/recipe-price';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
 import CookingJournal from '@/components/CookingJournal/CookingJournal';
 import { estimateRecipeCalories } from '@/mobile/lib/calories';
@@ -84,6 +86,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
     // Default to 'steps' if no ingredients (restaurant), else 'ingredients'
     const defaultTab: TabId = recipe.category === 'restaurant' ? 'steps' : 'ingredients';
+
+    // Estimation du prix des ingrédients (Lidl → Carrefour). Recalculée seulement
+    // quand la recette change : elle relit et chiffre toutes ses lignes.
+    const prix = useMemo(() => prixRecette(recipe), [recipe]);
+
     const [activeTab, setActiveTab] = useState<TabId>(defaultTab);
     const [prevTab, setPrevTab] = useState<TabId | null>(null);
     const tabContentRef = useRef<HTMLDivElement>(null);
@@ -942,7 +949,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             )}
                         </div>
 
-                        {/* Bouton Lancer cuisine dans le Hero pour mobile & desktop */}
+                        {/* Le bouton d'action et le prix vont de pair : ce que le plat
+                            demande de gestes, et ce qu'il coûte. */}
+                        <div className={styles.heroActionsRow}>
                         {recipe.category !== 'restaurant' && recipe.steps.length > 0 && !focusMode && (
                             <button className={styles.heroFocusBtn} onClick={() => {
                                 setFocusMode(true);
@@ -974,6 +983,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <span className={styles.focusBtnText}>Lancer la préparation</span>
                             </button>
                         )}
+
+                            {/* Ce que le plat coûte à faire, à côté de ce qu'il demande de temps. */}
+                            <PrixMoyen prix={prix} />
+                        </div>
                     </motion.div>
 
                     {/* Colonne DROITE : Photo avec Actions interactives */}

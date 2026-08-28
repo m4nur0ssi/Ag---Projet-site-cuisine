@@ -1,0 +1,74 @@
+/*
+ * Pastille de prix — verre dépoli, façon Apple TV+.
+ *
+ * Volontairement discrète : c'est une information de contexte, pas un argument
+ * de vente. Elle se pose à côté du bouton d'action sans lui disputer l'œil, et
+ * ne demande rien de récent au navigateur (pas de `:has`, pas de conteneur) —
+ * cet écran doit tenir sur un iPhone d'il y a cinq ans.
+ */
+.pastille {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    white-space: nowrap;
+    line-height: 1.15;
+}
+
+:global([data-theme='light']) .pastille {
+    background: rgba(0, 0, 0, 0.045);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.libelle {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: rgba(235, 235, 245, 0.5);
+}
+
+:global([data-theme='light']) .libelle {
+    color: rgba(60, 60, 67, 0.6);
+}
+
+.valeur {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+:global([data-theme='light']) .valeur {
+    color: #1b1a19;
+}
+
+/* Total d'une semaine : le chiffre porte la section, il a le droit d'être grand. */
+.grande {
+    padding: 11px 22px;
+}
+
+.grande .valeur {
+    font-size: 20px;
+}
+
+/* Une ligne de planning : le prix accompagne, il ne commente pas. */
+.petite {
+    padding: 4px 11px;
+    gap: 0;
+}
+
+.petite .libelle {
+    font-size: 8.5px;
+}
+
+.petite .valeur {
+    font-size: 12.5px;
+}

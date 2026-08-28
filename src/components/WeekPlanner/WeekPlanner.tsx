@@ -8,6 +8,8 @@ import { normalizeIng, parseIngredient } from '@/lib/ingredients';
 import { rayonOf, RAYON_BY_ID } from '@/lib/rayons';
 import { supabase } from '@/lib/supabase';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
+import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
+import { prixRecette, additionner } from '@/lib/recipe-price';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { isCookable, isMainDish, isSideDish, hasSideIncluded, proteinOf, isSweet, MEAT_FISH } from '@/lib/mealClassify';
 import styles from './WeekPlanner.module.css';
@@ -48,6 +50,31 @@ interface WeekPlannerProps {
 export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }: WeekPlannerProps) {
     const [plan, setPlan] = useState<Plan>({});
     const [view, setView] = useState<'semaine' | 'jourj'>('semaine');
+
+    /**
+     * Ce que le plan coûte.
+     *
+     * Le prix d'une recette est calculé une fois par identifiant : le même plat
+     * peut revenir deux fois dans la semaine, il ne se relit pas deux fois. Les
+     * accompagnements comptent, ils finissent dans le même caddie.
+     */
+    const prixDuPlan = useMemo(() => {
+        const cache = new Map<string, ReturnType<typeof prixRecette>>();
+        const prixDe = (r: any) => {
+            const k = String(r?.id ?? '');
+            if (!cache.has(k)) cache.set(k, r ? prixRecette(r) : null);
+            return cache.get(k) || null;
+        };
+        const cases = view === 'jourj'
+            ? COURSES.map((c) => plan[JOUR_J_KEY]?.[c.label])
+            : DAYS.flatMap((d) => MEALS.map((m) => plan[d]?.[m]));
+        return additionner(
+            cases
+                .filter(Boolean)
+                .flatMap((slot: any) => (slot.side ? [slot, slot.side] : [slot]))
+                .map(prixDe),
+        );
+    }, [plan, view]);
     const [validated, setValidated] = useState(false);
     const [sideGroup, setSideGroup] = useState<FilterGroup | null>(null);
     const [hiddenCourses, setHiddenCourses] = useState<string[]>([]);
@@ -566,6 +593,14 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
                                 onClick={() => setView('jourj')}
                                 data-tour="planner-jourj"
                             >Jour J</button>
+
+                            {/* Ce que le plan coûte, à côté du choix de la vue :
+                                la question se pose au moment où l'on compare les
+                                deux, pas une fois la liste de courses remplie. */}
+                            <PrixMoyen
+                                prix={prixDuPlan}
+                                libelle={view === 'jourj' ? 'Prix du menu' : 'Prix de la semaine'}
+                            />
                         </div>
 
                         {!validated && (

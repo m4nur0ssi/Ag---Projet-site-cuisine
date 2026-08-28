@@ -421,6 +421,22 @@
 
 /* ---- Bouton Lancer Magie dans le Hero ---- */
 /* « Lancer la préparation » : pilule pleine dégradée flamme, texte sombre (TV+). */
+/* Le bouton d'action et le prix : côte à côte, à la ligne si la colonne est étroite. */
+.heroActionsRow {
+    margin: 32px 0 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* La marge verticale appartient à la rangée, plus au bouton : sinon la pastille
+   se retrouvait décalée de 32 px vers le bas. */
+.heroActionsRow .heroFocusBtn {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .heroFocusBtn {
     display: flex;
     align-items: center;

@@ -4244,3 +4244,24 @@
     line-height: 1.45;
     color: rgba(235, 235, 245, 0.62);
 }
+
+/* ── Prix du plan ────────────────────────────────────────────────────────── */
+
+/* Le total, sous l'en-tête : il répond à la question qui suit « combien de repas ». */
+.planPrix {
+    display: flex;
+    justify-content: center;
+    padding: 2px 16px 10px;
+}
+
+/* Le titre du jour et son prix sur la même ligne, le prix poussé à droite. */
+.planDayHead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.planDayHead .planDayTitle {
+    margin-bottom: 0;
+}

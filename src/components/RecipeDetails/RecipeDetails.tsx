@@ -17,6 +17,8 @@ import { useTimer } from '@/components/Timer/TimerContext';
 import { parseDuration, stripHtml } from '@/lib/timer-utils';
 import { decodeHtml } from '@/lib/utils';
 import { useAjusterTitre } from '@/lib/useAjusterTitre';
+import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
+import { prixRecette } from '@/lib/recipe-price';
 import Portal from '@/components/Portal';
 import SmartText from '@/components/SmartText/SmartText';
 import MagicConverter from '@/components/MagicConverter/MagicConverter';
@@ -84,6 +86,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     // Le titre vit dans une colonne étroite : on le redescend jusqu'à ce qu'il y
     // tienne, plutôt que de laisser le navigateur le couper en syllabes.
     const titreRef = useAjusterTitre<HTMLHeadingElement>(recipe.title);
+
+    // Estimation du prix des ingrédients (Lidl → Carrefour). Recalculée seulement
+    // quand la recette change : elle relit et chiffre toutes ses lignes.
+    const prix = useMemo(() => prixRecette(recipe), [recipe]);
     const [activeTab, setActiveTab] = useState<TabId>(defaultTab);
     const [prevTab, setPrevTab] = useState<TabId | null>(null);
     const tabContentRef = useRef<HTMLDivElement>(null);
@@ -863,7 +869,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             )}
                         </div>
 
-                        {/* Bouton Lancer cuisine dans le Hero pour mobile & desktop */}
+                        {/* Le bouton d'action et le prix vont de pair : ce que le plat
+                            demande de gestes, et ce qu'il coûte. */}
+                        <div className={styles.heroActionsRow}>
                         {recipe.category !== 'restaurant' && recipe.steps.length > 0 && !focusMode && (
                             <button className={styles.heroFocusBtn} onClick={() => {
                                 setFocusMode(true);
@@ -892,6 +900,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <span className={styles.focusBtnText}>Lancer la préparation</span>
                             </button>
                         )}
+
+                            {/* Ce que le plat coûte à faire, à côté de ce qu'il demande de temps. */}
+                            <PrixMoyen prix={prix} />
+                        </div>
                     </motion.div>
 
                     {/* Colonne DROITE : Photo avec Actions interactives */}

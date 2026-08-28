@@ -25,6 +25,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Recipe } from '@/mobile/types';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
+import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
+import { prixRecette, additionner } from '@/lib/recipe-price';
 import { supabase } from '@/mobile/lib/supabase';
 import { normalizeIng, parseIngredient } from '@/mobile/lib/ingredients';
 import { rayonOf } from '@/lib/rayons';
@@ -214,6 +216,39 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const planned = useMemo(() => (mode === 'jourj'
         ? Object.keys(plan[JOUR_J] || {}).length
         : DAYS.reduce((n, d) => n + Object.keys(plan[d] || {}).length, 0)), [plan, mode]);
+
+    /**
+     * Ce que le plan coûte.
+     *
+     * Les accompagnements comptent comme les plats — ils finissent dans le même
+     * caddie. Le prix d'une recette est calculé une seule fois par identifiant :
+     * le même plat peut revenir deux fois dans la semaine, mais il ne se relit
+     * pas deux fois.
+     */
+    const prixParJour = useMemo(() => {
+        const cache = new Map<string, ReturnType<typeof prixRecette>>();
+        const prixDe = (r: Recipe) => {
+            const k = String(r.id);
+            if (!cache.has(k)) cache.set(k, prixRecette(r));
+            return cache.get(k) || null;
+        };
+        const duJour = (jour: string, repas: readonly string[]) => additionner(
+            repas
+                .map((m) => plan[jour]?.[m] as Slot | undefined)
+                .filter(Boolean)
+                .flatMap((slot) => (slot!.side ? [slot!, slot!.side as Recipe] : [slot!]))
+                .map(prixDe),
+        );
+        const jours: Record<string, ReturnType<typeof additionner>> = {};
+        DAYS.forEach((d) => { jours[d] = duJour(d, MEALS); });
+        return {
+            jours,
+            semaine: additionner(DAYS.map((d) => jours[d])),
+            jourJ: duJour(JOUR_J, COURSES.map((c) => c.label)),
+        };
+    }, [plan]);
+
+    const prixCourant = mode === 'jourj' ? prixParJour.jourJ : prixParJour.semaine;
 
     /** Ce que le choix en cours doit accepter. */
     const pickerFilter = useMemo(() => {
@@ -624,6 +659,18 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 </div>
             </header>
 
+            {/* Ce que le plan coûte : la question vient tout de suite après « combien
+                de repas ». Rien de planifié, rien à afficher. */}
+            {mode !== 'panier' && planned > 0 && (
+                <div className={styles.planPrix}>
+                    <PrixMoyen
+                        prix={prixCourant}
+                        libelle={mode === 'jourj' ? 'Prix du menu' : 'Prix de la semaine'}
+                        taille="grande"
+                    />
+                </div>
+            )}
+
             <div className={styles.planModes}>
                 {(['semaine', 'jourj'] as const).map((m) => (
                     <button
@@ -684,7 +731,12 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     <div className={styles.planPager} ref={pagerRef}>
                         {DAYS.map((day) => (
                             <section className={styles.planSlide} key={day}>
-                                <h2 className={styles.planDayTitle}>{DAY_FULL[day]}</h2>
+                                <div className={styles.planDayHead}>
+                                    <h2 className={styles.planDayTitle}>{DAY_FULL[day]}</h2>
+                                    {/* Le prix du jour : c'est à cette échelle qu'on
+                                        décide de remplacer un plat par un autre. */}
+                                    <PrixMoyen prix={prixParJour.jours[day]} libelle="Ce jour" taille="petite" />
+                                </div>
                                 {MEALS.map((meal) => (
                                     <SlotView key={meal} day={day} meal={meal} accepts={isTVMain} sideable />
                                 ))}
