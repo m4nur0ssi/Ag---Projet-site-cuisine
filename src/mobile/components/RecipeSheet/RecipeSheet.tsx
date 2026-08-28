@@ -109,7 +109,19 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
             y.set(0);
             x.set(0);
             scrollYRef.current = window.scrollY;
-            document.body.style.top = `-${scrollYRef.current}px`;
+            /*
+             * Derrière la fiche, on voit TOUJOURS le haut du site.
+             *
+             * Le verrou figeait la page là où le doigt l'avait laissée : ouvrir
+             * une recette depuis le héros montrait la signature et le nombre de
+             * recettes, l'ouvrir depuis le bas de l'accueil montrait un bout de
+             * rangée quelconque. La fiche flottait donc sur un fond différent à
+             * chaque fois, alors que c'est un décor : il doit être le même.
+             *
+             * `scrollYRef` garde la vraie position pour la rendre à la fermeture
+             * — on revient exactement là où on avait cliqué.
+             */
+            document.body.style.top = '0px';
             document.body.style.position = 'fixed';
             document.body.style.width = '100vw';
             document.body.style.overflow = 'hidden';
