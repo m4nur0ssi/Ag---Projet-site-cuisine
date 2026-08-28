@@ -2,11 +2,97 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 28/08/2026 14:45:48
- * Total: 662 recettes
+ * Dernière mise à jour: 28/08/2026 18:21:56
+ * Total: 663 recettes
  */
-export const exportSyncId = "1787928348884";
+export const exportSyncId = "1787941316018";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7395",
+        "title": "Pancakes aux Fraises",
+        "description": "Une recette de pancakes fins et moelleux, colorés en rose grâce à la poudre de betterave, garnis d'une crème fouettée légère et de fraises fraîches. Ils sont ensuite roulés et servis frais.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7672933123818032414\" data-video-id=\"7672933123818032414\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7672933123818032414\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 tasse (240 ml) de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             ½ tasse (65 g) de farine tout usage"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 cuillères à soupe de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille (pour les pancakes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de poudre de betterave"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 tasse (240 ml) de crème liquide entière froide"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille (pour la garniture)"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             Fraises fraîches, coupées en fines tranches"
+            }
+        ],
+        "steps": [
+            "Fouettez tous les ingrédients des pancakes (œufs, lait, farine, fécule de maïs, sucre, beurre fondu, extrait de vanille, sel, poudre de betterave) jusqu'à obtenir une pâte lisse, puis passez la pâte au tamis.",
+            "Laissez reposer la pâte pendant environ 30 minutes.",
+            "Graissez légèrement une poêle antiadhésive et faites cuire de très fines crêpes à feu doux pendant environ 30 à 40 secondes par côté.",
+            "Maintenez le feu doux pour que les pancakes restent moelleux et conservent leur jolie couleur rose.",
+            "Laissez les pancakes refroidir complètement avant de les garnir.",
+            "Fouettez la crème liquide entière froide avec le sucre glace et l'extrait de vanille jusqu'à obtenir des pics fermes.",
+            "Placez un pancake côté lisse vers le bas, ajoutez de la crème fouettée, disposez les tranches de fraises par-dessus, ajoutez un peu plus de crème fouettée, puis repliez les côtés et roulez-le en un rectangle soigné.",
+            "Réfrigérez pendant au moins 1 heure avant de servir."
+        ],
+        "tags": [
+            "Glaces",
+            "Pas cher",
+            "pâtisserie",
+            "USA",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7283",
         "title": "Crème dessert choco-cacahuète",
