@@ -61,6 +61,23 @@ async function fetchLatestFavorites() {
     }
 }
 
+/**
+ * Garde la trace d'une demande qui n'a pas abouti.
+ *
+ * L'item est retiré de la file quoi qu'il arrive — c'est voulu, un lien
+ * impossible ne doit pas bloquer les suivants. Mais il disparaissait alors sans
+ * laisser un mot : côté téléphone, la recette envoyée ne revenait jamais et rien
+ * n'expliquait pourquoi. On la range donc dans `echecs`, avec sa raison et sa
+ * date. Le fichier est commité par le workflow : la trace est lisible dans
+ * l'historique, et le lien reste sous la main pour réessayer.
+ */
+function noterEchec(data, item, raison) {
+    data.echecs = Array.isArray(data.echecs) ? data.echecs : [];
+    data.echecs.push({ ...item, raison, quand: new Date().toISOString() });
+    // On garde les vingt derniers : de quoi comprendre, sans faire enfler le dépôt.
+    if (data.echecs.length > 20) data.echecs = data.echecs.slice(-20);
+}
+
 async function run() {
     console.log('GitHub Runner - Demarrage...');
     const { processRecipe } = require('./recipe-processor');
@@ -97,6 +114,8 @@ async function run() {
                 // ⚠️ Marquer comme traité AVANT publication pour éviter les doublons si le workflow tourne deux fois
                 if (videoId) markAsProcessed(videoId);
                 let recipeName;
+                let raison = '';
+                try {
                 if (isYouTube) {
                     // Recette YouTube : même logique que le CLI (extraction + IA + publication).
                     const { importYouTubeRecipe } = require('./youtube-import');
@@ -109,14 +128,23 @@ async function run() {
                         country: item.country
                     });
                 }
+                } catch (e) {
+                    // Une exception ne doit pas emporter le job : les recettes
+                    // suivantes de la file ont le droit d'être traitées, et la
+                    // raison de l'échec a le droit d'être écrite quelque part.
+                    raison = (e && e.message) ? String(e.message).slice(0, 200) : String(e);
+                    console.log(`   ❌ Exception : ${raison}`);
+                    recipeName = false;
+                }
 
                 if (typeof recipeName === 'string') {
                     fs.writeFileSync(path.join(__dirname, 'latest-recipe.txt'), recipeName);
                     console.log(`   ✅ Success : "${recipeName}"`);
                 } else {
                     console.log(`   ⚠️ Echec ou Ignoré : ${videoUrl}`);
+                    noterEchec(data, item, raison || 'traitement sans résultat');
                 }
-                
+
                 // On retire TOUJOURS l'item de la file après tentative pour ne pas bloquer
                 data.queue.shift();
                 fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
