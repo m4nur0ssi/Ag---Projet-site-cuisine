@@ -190,6 +190,10 @@ async function run() {
                     const temporaire = cause === RAISON_QUOTA || /WordPress/i.test(cause);
                     item.essais = (item.essais || 0) + 1;
                     if (temporaire && item.essais < MAX_ESSAIS) {
+                        // La raison voyage avec la recette : au passage suivant, on
+                        // sait ce qui bloquait sans relire les journaux d'Actions.
+                        item.derniereRaison = cause;
+                        item.derniereTentative = new Date().toISOString();
                         fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
                         console.log(`   ⏳ Panne passagère (${cause}) — tentative ${item.essais}/${MAX_ESSAIS}, on garde la recette en file.`);
                         return;   // les suivantes échoueraient de la même façon
