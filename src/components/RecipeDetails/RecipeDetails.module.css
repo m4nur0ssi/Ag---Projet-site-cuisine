@@ -246,16 +246,24 @@
        ce qui le coupe net. On garde le titre dans sa colonne. */
     min-width: 0;
     max-width: 100%;
+    /*
+     * Ni césure ni coupure de mot.
+     *
+     * `hyphens: auto` et `word-break: break-word` hachaient les titres en
+     * syllabes — « Sam-bous-sek Li-banais » — parce que la colonne était trop
+     * étroite pour le corps demandé. On corrige la CAUSE (la colonne et la
+     * taille), et on laisse `overflow-wrap` en dernier recours : il coupe sans
+     * tiret, et seulement si un mot ne peut vraiment pas tenir.
+     */
     overflow-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
+    /* Un titre de deux ou trois mots se répartit sur des lignes égales. */
+    text-wrap: balance;
 }
 
 .heroTitleElegant .plain,
 .heroTitleElegant :global(.plain) {
     max-width: 100%;
     overflow-wrap: break-word;
-    word-break: break-word;
 }
 
 .heroDescription {
@@ -934,8 +942,10 @@
     display: grid;
     /* Colonne image FLUIDE, plafonnée : à 450 px fixes, la carte débordait de sa
        colonne dès que la fenêtre se resserrait (mesuré : 83 px hors cadre, bord
-       droit coupé). `minmax` la laisse rétrécir, et la marge droite reste. */
-    grid-template-columns: minmax(0, 1fr) minmax(260px, 450px);
+       droit coupé). `minmax` la laisse rétrécir, et la marge droite reste.
+       Le texte a maintenant un plancher : sans lui, l'image prenait ses 450 px
+       et laissait 230 px au titre — un mot sur deux se coupait en syllabes. */
+    grid-template-columns: minmax(280px, 1fr) minmax(0, 420px);
     align-items: center; /* Aligne verticalement le texte et l'image */
     z-index: 2;
     gap: 20px;

@@ -16,6 +16,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useTimer } from '@/components/Timer/TimerContext';
 import { parseDuration, stripHtml } from '@/lib/timer-utils';
 import { decodeHtml } from '@/lib/utils';
+import { useAjusterTitre } from '@/lib/useAjusterTitre';
 import Portal from '@/components/Portal';
 import SmartText from '@/components/SmartText/SmartText';
 import MagicConverter from '@/components/MagicConverter/MagicConverter';
@@ -80,6 +81,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
     // Default to 'steps' if no ingredients (restaurant), else 'ingredients'
     const defaultTab: TabId = recipe.category === 'restaurant' ? 'steps' : 'ingredients';
+    // Le titre vit dans une colonne étroite : on le redescend jusqu'à ce qu'il y
+    // tienne, plutôt que de laisser le navigateur le couper en syllabes.
+    const titreRef = useAjusterTitre<HTMLHeadingElement>(recipe.title);
     const [activeTab, setActiveTab] = useState<TabId>(defaultTab);
     const [prevTab, setPrevTab] = useState<TabId | null>(null);
     const tabContentRef = useRef<HTMLDivElement>(null);
@@ -847,7 +851,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                         </div>
 
                         <div className={styles.heroMainContent}>
-                            <h1 className={styles.heroTitleElegant}>
+                            <h1 className={styles.heroTitleElegant} ref={titreRef}>
                                 <SplitTitle text={decodeHtml(recipe.title)} noAnimation={true} plain />
                             </h1>
                             
