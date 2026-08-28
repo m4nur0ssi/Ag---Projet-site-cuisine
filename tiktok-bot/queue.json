@@ -1,11 +1,13 @@
 {
-  "queue": [
+  "queue": [],
+  "echecs": [
     {
       "videoUrl": "https://www.tiktok.com/@bymesika/video/7672933123818032414",
       "country": "Pâtisserie",
       "timestamp": "2026-08-28T08:58:46.725Z",
-      "note": "3e tentative : cette fois le pipeline dira POURQUOI s'il échoue."
+      "note": "3e tentative : cette fois le pipeline dira POURQUOI s'il échoue.",
+      "raison": "WordPress a refusé la publication",
+      "quand": "2026-08-28T13:23:24.818Z"
     }
-  ],
-  "echecs": []
+  ]
 }
