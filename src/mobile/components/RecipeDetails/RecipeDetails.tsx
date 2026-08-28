@@ -30,10 +30,9 @@ import { getIngredientVisual, translateIngredientName } from '@/mobile/lib/ingre
 import { markCooking } from '@/mobile/screens/tv/progress';
 import dynamic from 'next/dynamic';
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
-import StarRating from '@/mobile/components/StarRating/StarRating';
+import StarRating, { type NoteStats } from '@/mobile/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
-import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
-import { prixRecette } from '@/lib/recipe-price';
+import { prixRecette, formatFourchette } from '@/lib/recipe-price';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
 import CookingJournal from '@/components/CookingJournal/CookingJournal';
 import { estimateRecipeCalories } from '@/mobile/lib/calories';
@@ -90,6 +89,9 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     // Estimation du prix des ingrédients (Lidl → Carrefour). Recalculée seulement
     // quand la recette change : elle relit et chiffre toutes ses lignes.
     const prix = useMemo(() => prixRecette(recipe), [recipe]);
+    // Les chiffres de la note viennent de StarRating (il interroge Supabase) ;
+    // la ligne du cadre, elle, se compose ici pour s'aligner sur les autres.
+    const [note, setNote] = useState<NoteStats>({ moyenne: 0, votants: 0, mienne: 0, connecte: false });
 
     const [activeTab, setActiveTab] = useState<TabId>(defaultTab);
     const [prevTab, setPrevTab] = useState<TabId | null>(null);
@@ -983,9 +985,6 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 <span className={styles.focusBtnText}>Lancer la préparation</span>
                             </button>
                         )}
-
-                            {/* Ce que le plat coûte à faire, à côté de ce qu'il demande de temps. */}
-                            <PrixMoyen prix={prix} />
                         </div>
                     </motion.div>
 
@@ -1078,16 +1077,43 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 </div>
                             </div>
                         </div>
-                        {/* Ligne 2 : Note + Calories réunis dans un seul cadre pleine largeur */}
-                        <div className={styles.metaWideItem}>
-                            <div className={styles.metaWideSection}>
-                                <div className={styles.metaLabel}>{authUser ? 'MA NOTE' : 'NOTE'}</div>
-                                <StarRating recipeId={recipe.id} size="small" />
+                        {/*
+                          * Le cadre d'informations.
+                          *
+                          * Une ligne = une étiquette à gauche, sa valeur à droite, toutes
+                          * sur la même colonne. L'ancienne version empilait deux blocs
+                          * centrés surmontés chacun de son titre en petites capitales —
+                          * « MA NOTE », « CALORIES » — et rien ne s'alignait avec rien.
+                          * Le titre du cadre a disparu avec eux : les étiquettes se
+                          * suffisent.
+                          */}
+                        <div className={styles.infoCard}>
+                            <div className={styles.infoRow}>
+                                <span className={styles.infoLabel}>Prix moyen</span>
+                                <span className={styles.infoValue}>{formatFourchette(prix) || '—'}</span>
                             </div>
+
+                            <div className={styles.infoRow}>
+                                <span className={styles.infoLabel}>
+                                    {note.connecte ? 'Votre note' : 'Note'}
+                                    <span className={styles.infoDeuxPoints}> : </span>
+                                    <span className={styles.infoValue}>
+                                        {(note.connecte ? note.mienne : note.moyenne) > 0
+                                            ? (note.connecte ? note.mienne : note.moyenne).toFixed(1).replace('.', ',')
+                                            : '—'}
+                                        <span className={styles.infoSurCinq}>/5</span>
+                                    </span>
+                                    {note.votants > 0 && <span className={styles.infoVotants}> ({note.votants})</span>}
+                                </span>
+                                <StarRating recipeId={recipe.id} size="small" layout="ligne" onStats={setNote} />
+                            </div>
+
                             {calorieEstimate && calorieEstimate.confidence !== 'low' && (
-                                <div className={styles.metaWideSectionCal}>
-                                    <div className={styles.metaLabel}>CALORIES</div>
-                                    <div className={styles.metaValue}>{calorieEstimate.perServing} kcal<span style={{fontSize:'0.7rem',opacity:0.5}}>/pers.</span></div>
+                                <div className={styles.infoRow}>
+                                    <span className={styles.infoLabel}>Calories</span>
+                                    <span className={styles.infoValue}>
+                                        {calorieEstimate.perServing} kcal<span className={styles.infoUnite}>/pers.</span>
+                                    </span>
                                 </div>
                             )}
                         </div>

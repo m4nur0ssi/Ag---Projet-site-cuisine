@@ -4,13 +4,26 @@ import { supabase } from '@/mobile/lib/supabase';
 import { submitRating } from '@/mobile/lib/ratings';
 import styles from './StarRating.module.css';
 
+/** Ce que le composant sait de la note, une fois Supabase interrogé. */
+export interface NoteStats { moyenne: number; votants: number; mienne: number; connecte: boolean }
+
 interface StarRatingProps {
     recipeId: string;
     readonly?: boolean;
     size?: 'small' | 'large';
+    /**
+     * `ligne` : rien que les étoiles.
+     *
+     * La fiche compose elle-même sa ligne — « Votre note : 3,9/5 (1) » à
+     * gauche, les étoiles à droite — pour que toutes les lignes du cadre
+     * tombent sur la même colonne. Elle a besoin des chiffres, pas de la mise
+     * en page ; `onStats` les lui remonte.
+     */
+    layout?: 'colonne' | 'ligne';
+    onStats?: (s: NoteStats) => void;
 }
 
-export default function StarRating({ recipeId, size = 'large' }: StarRatingProps) {
+export default function StarRating({ recipeId, size = 'large', layout = 'colonne', onStats }: StarRatingProps) {
     const [avg, setAvg] = useState(0);
     const [count, setCount] = useState(0);
     const [mine, setMine] = useState(0);
@@ -49,6 +62,24 @@ export default function StarRating({ recipeId, size = 'large' }: StarRatingProps
         window.dispatchEvent(new CustomEvent('recipeRated', { detail: { recipeId, rating: nv } }));
         if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(15);
     };
+
+    // Les chiffres remontent au parent, qui en fait ce qu'il veut.
+    useEffect(() => {
+        onStats?.({ moyenne: avg, votants: count, mienne: mine, connecte: !!user });
+        // `onStats` reste hors des dépendances : le parent le recrée à chaque
+        // rendu, et l'y mettre relancerait la boucle sans fin.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [avg, count, mine, user]);
+
+    if (layout === 'ligne') {
+        // Sans compte, les étoiles ne montrent que la moyenne : on ne laisse pas
+        // traîner un contrôle qui ne répond à rien.
+        return (
+            <div className={`${styles.wrap} ${styles[size]} ${styles.ligne} ${user ? '' : styles.inerte}`}>
+                <StarSlider value={user ? mine : avg} onChange={vote} />
+            </div>
+        );
+    }
 
     return (
         <div className={`${styles.wrap} ${styles[size]}`}>

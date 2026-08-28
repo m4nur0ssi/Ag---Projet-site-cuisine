@@ -88,3 +88,17 @@
     color: #FBBF24;
     text-shadow: 0 2px 8px rgba(251, 191, 36, 0.35);
 }
+
+/* ── Mode « ligne » : rien que les étoiles ──────────────────────────────────
+   La fiche compose sa propre ligne autour d'elles. */
+.ligne {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+}
+
+/* Sans compte : les étoiles disent la moyenne et n'attendent aucun geste. */
+.inerte {
+    pointer-events: none;
+    opacity: 0.75;
+}
