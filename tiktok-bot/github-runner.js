@@ -9,6 +9,8 @@ const fs = require('fs');
 const path = require('path');
 
 const PROCESSED_FILE = path.join(__dirname, 'processed-videos.json');
+/** Combien de fois on retente une recette avant de renoncer (panne passagère). */
+const MAX_ESSAIS = 6;
 
 function loadProcessed() {
     try {
@@ -161,20 +163,6 @@ async function run() {
                     console.log(`   ⚠️ Echec ou Ignoré : ${videoUrl} — ${cause}`);
 
                     /*
-                     * Le quota d'IA se recharge : cet échec-là n'est pas définitif.
-                     * Le code du processeur l'annonçait déjà — « recette laissée en
-                     * file d'attente pour retry demain » — mais on la retirait
-                     * quand même, et elle était perdue pour de bon. On la laisse,
-                     * on démarque la vidéo, et on s'arrête là : les suivantes
-                     * échoueraient de la même façon.
-                     */
-                    if (cause === RAISON_QUOTA) {
-                        if (videoId) demarquer(videoId);
-                        fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
-                        console.log("   ⏳ Quota épuisé : la file est laissée en l'état, reprise au prochain passage.");
-                        return;
-                    }
-                    /*
                      * On lève la marque « déjà traitée ».
                      *
                      * Elle est posée AVANT publication pour qu'un double passage du
@@ -185,7 +173,28 @@ async function run() {
                      * ce qu'elle protégeait.
                      */
                     if (videoId) demarquer(videoId);
-                    noterEchec(data, item, cause);
+
+                    /*
+                     * Certaines pannes ne parlent pas de la recette.
+                     *
+                     * Le quota d'IA se recharge ; le WordPress du NAS s'arrête et
+                     * repart. Perdre une recette parce que la base de données
+                     * dormait à cette minute-là n'a aucun sens : on la laisse en
+                     * tête de file et le passage horaire du workflow la reprendra
+                     * tout seul, jusqu'à ce que ça marche.
+                     *
+                     * Avec un compteur, tout de même : une recette qu'on ne saura
+                     * jamais publier ne doit pas bloquer les suivantes pour
+                     * toujours. Au sixième échec, elle rejoint la trace.
+                     */
+                    const temporaire = cause === RAISON_QUOTA || /WordPress/i.test(cause);
+                    item.essais = (item.essais || 0) + 1;
+                    if (temporaire && item.essais < MAX_ESSAIS) {
+                        fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
+                        console.log(`   ⏳ Panne passagère (${cause}) — tentative ${item.essais}/${MAX_ESSAIS}, on garde la recette en file.`);
+                        return;   // les suivantes échoueraient de la même façon
+                    }
+                    noterEchec(data, item, temporaire ? `${cause} — abandon après ${item.essais} tentatives` : cause);
                 }
 
                 // On retire TOUJOURS l'item de la file après tentative pour ne pas bloquer
