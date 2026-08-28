@@ -1,6 +1,7 @@
 'use client';
 
 import { supabase } from './supabase';
+import { ecrireStock } from '@/lib/stockage';
 
 // Clés localStorage de l'état "courses" synchronisées dans Supabase (table shopping_state).
 // NB: meal-planner-week est déjà synchronisé via la table meal_plans → pas ici.
@@ -24,7 +25,7 @@ export async function pullShoppingState(): Promise<void> {
     KEYS.forEach(k => {
         if (!(k in cloud)) return;
         const v = typeof cloud[k] === 'string' ? (cloud[k] as string) : JSON.stringify(cloud[k]);
-        if (localStorage.getItem(k) !== v) { localStorage.setItem(k, v); changed = true; }
+        if (localStorage.getItem(k) !== v) { ecrireStock(k, v); changed = true; }
     });
     if (changed) window.dispatchEvent(new Event('shoppingListUpdated'));
 }

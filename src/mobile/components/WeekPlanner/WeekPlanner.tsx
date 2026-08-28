@@ -12,6 +12,7 @@ import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { isCookable, isMainDish, isSideDish, hasSideIncluded, proteinOf, isSweet, MEAT_FISH } from '@/lib/mealClassify';
 import styles from './WeekPlanner.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 const MEALS = ['Midi', 'Soir'] as const;
@@ -82,7 +83,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                     .maybeSingle();
                 if (data?.plan) {
                     apply(data.plan);
-                    localStorage.setItem('meal-planner-week', JSON.stringify(data.plan));
+                    ecrireStock('meal-planner-week', JSON.stringify(data.plan));
                     return;
                 }
             }
@@ -112,7 +113,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
 
     const save = async (newPlan: Plan) => {
         setPlan(newPlan);
-        localStorage.setItem('meal-planner-week', JSON.stringify(newPlan));
+        ecrireStock('meal-planner-week', JSON.stringify(newPlan));
         // Plan modifié → la liste fusionnée + la pastille doivent se rafraîchir.
         window.dispatchEvent(new Event('shoppingListUpdated'));
         const { data: { session } } = await supabase.auth.getSession();
@@ -230,7 +231,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
     const toggleCourse = (label: string) => {
         setHiddenCourses(prev => {
             const next = prev.includes(label) ? prev.filter(l => l !== label) : [...prev, label];
-            localStorage.setItem(HIDDEN_KEY, JSON.stringify(next));
+            ecrireStock(HIDDEN_KEY, JSON.stringify(next));
             return next;
         });
         // si on supprime la carte, on vide aussi la recette du plan
@@ -247,7 +248,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         setHiddenDays(prev => {
             const hiding = !prev.includes(day);
             const next = hiding ? [...prev, day] : prev.filter(d => d !== day);
-            localStorage.setItem(HIDDEN_DAYS_KEY, JSON.stringify(next));
+            ecrireStock(HIDDEN_DAYS_KEY, JSON.stringify(next));
             if (hiding) {
                 const np = { ...plan };
                 delete np[day];
@@ -423,7 +424,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
         const total = lineKeys.size;
         const rayons = [...rayonCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([id, n]) => ({ id, n }));
         setRecap({ total, rayons });
-        localStorage.setItem('magic-shopping-list', JSON.stringify(data));
+        ecrireStock('magic-shopping-list', JSON.stringify(data));
         window.dispatchEvent(new Event('shoppingListUpdated'));
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: `${total} ingrédient${total > 1 ? 's' : ''} ajouté${total > 1 ? 's' : ''} à ta liste 🛒`,
@@ -501,7 +502,7 @@ export default function WeekPlanner({ isOpen, onClose }: WeekPlannerProps) {
                                 // une section Jour J séparée (après Dimanche) dans la liste de courses.
                                 if (view === 'jourj') {
                                     const inFused = window.confirm('Ajouter les courses du Jour J à la liste fusionnée ?\n\nOK = oui (fusionnées avec la semaine)\nAnnuler = non (section Jour J séparée)');
-                                    localStorage.setItem('jourj-in-fused', inFused ? 'true' : 'false');
+                                    ecrireStock('jourj-in-fused', inFused ? 'true' : 'false');
                                 }
                                 addPlanToShoppingList();
                             }

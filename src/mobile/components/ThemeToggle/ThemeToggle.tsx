@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import styles from './ThemeToggle.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 interface ThemeToggleProps {
     className?: string;
@@ -39,7 +40,7 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
         const newTheme = theme === 'light' ? 'dark' : 'light';
         setTheme(newTheme);
         document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        ecrireStock('theme', newTheme);
         
         if (typeof navigator !== 'undefined' && navigator.vibrate) {
             navigator.vibrate(10);

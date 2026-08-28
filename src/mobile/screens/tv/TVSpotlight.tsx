@@ -33,6 +33,7 @@ import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
+import { ecrireStock } from '@/lib/stockage';
 
 const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
@@ -130,7 +131,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     }, []);
     const enregistrerExclus = (next: string[]) => {
         setExclus(next);
-        try { localStorage.setItem('regime-sans', JSON.stringify(next)); } catch { /* noop */ }
+        try { ecrireStock('regime-sans', JSON.stringify(next)); } catch { /* noop */ }
     };
     const ajouterExclu = () => {
         const val = exclusInput.trim().toLowerCase();

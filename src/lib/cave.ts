@@ -4,6 +4,7 @@
 // celle scannée). La SCÈNE (tonneau + cave) est rendue en CSS côté composant :
 // seule la bouteille change.
 
+import { ecrireStock } from '@/lib/stockage';
 export type WineColor = 'rouge' | 'blanc' | 'rose' | 'liqueur';
 
 export interface CaveWine {
@@ -67,7 +68,7 @@ export function readCave(): CaveWine[] {
 }
 
 function write(list: CaveWine[]) {
-    localStorage.setItem(CAVE_KEY, JSON.stringify(list));
+    ecrireStock(CAVE_KEY, JSON.stringify(list));
     window.dispatchEvent(new Event(CAVE_EVENT));
 }
 

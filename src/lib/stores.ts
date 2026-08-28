@@ -2,6 +2,7 @@
 // Magasins disponibles pour "Commander". Le choix est persistant (localStorage)
 // et partagé partout via l'event 'store-changed'.
 import { useEffect, useState } from 'react';
+import { ecrireStock } from '@/lib/stockage';
 
 export type StoreId = 'carrefour' | 'picard' | 'monoprix' | 'leclerc';
 
@@ -50,7 +51,7 @@ export function getPreferredStore(): StoreId {
 }
 
 export function setPreferredStore(id: StoreId): void {
-    try { localStorage.setItem(KEY, id); } catch { /* noop */ }
+    try { ecrireStock(KEY, id); } catch { /* noop */ }
     if (typeof window !== 'undefined') window.dispatchEvent(new Event('store-changed'));
 }
 

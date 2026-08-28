@@ -8,6 +8,7 @@
 // fait plus doublon.
 
 import { Recipe } from '@/mobile/types';
+import { ecrireStock } from '@/lib/stockage';
 
 /** Émis quand une étape est cochée/décochée : la home recalcule sa rangée. */
 export const PROGRESS_EVENT = 'tv-progress-change';
@@ -21,7 +22,7 @@ const COOK_KEY = (id: string | number) => `recipe-cooking-${id}`;
 
 export function markCooking(id: string | number): void {
     if (typeof window === 'undefined') return;
-    try { localStorage.setItem(COOK_KEY(id), '1'); } catch { /* noop */ }
+    try { ecrireStock(COOK_KEY(id), '1'); } catch { /* noop */ }
 }
 function isCooking(id: string | number): boolean {
     if (typeof window === 'undefined') return false;

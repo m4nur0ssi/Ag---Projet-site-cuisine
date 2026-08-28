@@ -7,6 +7,7 @@ import { parseIngredient, getIngIcon, buildConsolidatedItems, cleanIngredientTex
 import type { ConsolItem } from '@/mobile/lib/ingredients';
 import ShopActions from '@/mobile/components/ShopActions/ShopActions';
 import styles from './WeekMenuCarousel.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 const FULL: Record<string, string> = { Lun: 'Lundi', Mar: 'Mardi', Mer: 'Mercredi', Jeu: 'Jeudi', Ven: 'Vendredi', Sam: 'Samedi', Dim: 'Dimanche' };
@@ -213,7 +214,7 @@ export default function WeekMenuCarousel() {
         setDone(prev => {
             const n = new Set(prev);
             n.has(key) ? n.delete(key) : n.add(key);
-            localStorage.setItem('shop-done', JSON.stringify(Array.from(n)));
+            ecrireStock('shop-done', JSON.stringify(Array.from(n)));
             window.dispatchEvent(new Event('shoppingListUpdated'));
             return n;
         });
@@ -227,7 +228,7 @@ export default function WeekMenuCarousel() {
         setDone(prev => {
             const n = new Set(prev);
             (item.keys.length ? item.keys : []).forEach(k => n.add(k));
-            localStorage.setItem('shop-done', JSON.stringify(Array.from(n)));
+            ecrireStock('shop-done', JSON.stringify(Array.from(n)));
             window.dispatchEvent(new Event('shoppingListUpdated'));
             return n;
         });

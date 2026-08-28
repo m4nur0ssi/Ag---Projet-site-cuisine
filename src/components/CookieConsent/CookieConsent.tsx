@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import styles from './CookieConsent.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 const STORAGE_KEY = 'cookie-consent-v1';
 type Choice = 'accepted' | 'refused';
@@ -39,7 +40,7 @@ export default function CookieConsent() {
     }
 
     function choose(choice: Choice) {
-        try { localStorage.setItem(STORAGE_KEY, choice); } catch { }
+        try { ecrireStock(STORAGE_KEY, choice); } catch { }
         applyConsent(choice);
         setVisible(false);
     }

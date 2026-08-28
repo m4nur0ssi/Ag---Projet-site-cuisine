@@ -40,6 +40,7 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './RecipeDetails.module.css';
 import Tip from '@/components/Tip/Tip';
+import { ecrireStock } from '@/lib/stockage';
 
 interface RecipeDetailsProps {
     recipe: Recipe;
@@ -133,7 +134,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
             // Enregistre l'heure de sortie
             return () => {
-                localStorage.setItem(exitKey, Date.now().toString());
+                ecrireStock(exitKey, Date.now().toString());
             };
         }
     }, [recipe.id]);
@@ -270,7 +271,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         document.addEventListener('visibilitychange', handleVisibilityChange);
 
         if (typeof window !== 'undefined') {
-            window.localStorage.setItem('active-recipe-id', recipe.id);
+            ecrireStock('active-recipe-id', recipe.id);
             
             const lastViewedData = {
                 id: recipe.id,
@@ -278,7 +279,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 image: recipe.image,
                 category: recipe.category
             };
-            window.localStorage.setItem('magic-last-viewed', JSON.stringify(lastViewedData));
+            ecrireStock('magic-last-viewed', JSON.stringify(lastViewedData));
             window.dispatchEvent(new CustomEvent('recipeViewed', { detail: lastViewedData }));
             
             // Sync initial state with shopping list
@@ -388,7 +389,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         triggerHaptic();
 
         if (typeof window !== 'undefined') {
-            window.localStorage.setItem('active-recipe-id', recipe.id);
+            ecrireStock('active-recipe-id', recipe.id);
             markCooking(recipe.id); // cuisson réellement démarrée → « Reprendre la cuisine »
             // Prévient la home « Reprendre la cuisine » que la progression a changé.
             window.dispatchEvent(new Event('tv-progress-change'));
@@ -450,7 +451,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 delete cart[recipe.id];
             }
 
-            window.localStorage.setItem('magic-shopping-list', JSON.stringify(cart));
+            ecrireStock('magic-shopping-list', JSON.stringify(cart));
             window.dispatchEvent(new Event('shoppingListUpdated'));
         }
     };
@@ -504,7 +505,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     image: recipe.image,
                     ingredients: ingredientObjects
                 };
-                window.localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
+                ecrireStock('magic-shopping-list', JSON.stringify(existingData));
                 
                 // Notifier le Header immédiatement
                 window.dispatchEvent(new Event('shoppingListUpdated'));

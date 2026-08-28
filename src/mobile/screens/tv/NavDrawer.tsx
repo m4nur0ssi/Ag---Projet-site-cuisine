@@ -51,6 +51,7 @@ const Check = () => (
 // un module de composant. On les réexporte ici, les imports existants ne
 // bougent pas.
 import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './filters';
+import { ecrireStock } from '@/lib/stockage';
 export { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS };
 
 interface NavDrawerProps {
@@ -401,7 +402,7 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                                             haptic(8);
                                                             const next = pinned.filter((p) => p.token !== o.token);
                                                             setPinned(next);
-                                                            try { localStorage.setItem('tv-library-v1', JSON.stringify(next)); } catch { /* noop */ }
+                                                            try { ecrireStock('tv-library-v1', JSON.stringify(next)); } catch { /* noop */ }
                                                             window.dispatchEvent(new Event('tv-library-change'));
                                                         }}
                                                     >

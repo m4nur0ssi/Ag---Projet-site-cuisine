@@ -14,6 +14,7 @@ import SmartText from '@/mobile/components/SmartText/SmartText';
 import MagicConverter from '@/mobile/components/MagicConverter/MagicConverter';
 import VideoSection from '@/mobile/components/VideoSection/VideoSection';
 import styles from './RecipeDetail.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 interface RecipeDetailProps {
     recipe: Recipe;
@@ -121,7 +122,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                 title: recipe.title,
                 ingredients: selectedIngredients.map(name => ({ name, checked: false }))
             };
-            localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
+            ecrireStock('magic-shopping-list', JSON.stringify(existingData));
             window.dispatchEvent(new Event('shoppingListUpdated'));
             triggerHaptic();
             alert('Ajouté au panier ! 🛒');

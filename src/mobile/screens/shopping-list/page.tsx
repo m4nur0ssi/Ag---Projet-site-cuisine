@@ -11,6 +11,7 @@ import type { ConsolItem } from '@/mobile/lib/ingredients';
 import ShopActions from '@/mobile/components/ShopActions/ShopActions';
 import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
 import styles from './shopping-list.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 interface ListData {
     [key: string]: {
@@ -80,7 +81,7 @@ export default function ShoppingListPage() {
     const toggleRayonCollapse = (rid: string) => setCollapsedRayons(prev => {
         const n = new Set(prev);
         n.has(rid) ? n.delete(rid) : n.add(rid);
-        localStorage.setItem('shop-rayons-collapsed', JSON.stringify([...n]));
+        ecrireStock('shop-rayons-collapsed', JSON.stringify([...n]));
         return n;
     });
     const reassignRayon = (it: ConsolItem, rid: string) => {
@@ -91,7 +92,7 @@ export default function ShoppingListPage() {
 
     // ── persistance localStorage ──
     const saveList = (newData: ListData) => {
-        window.localStorage.setItem('magic-shopping-list', JSON.stringify(newData));
+        ecrireStock('magic-shopping-list', JSON.stringify(newData));
         setShoppingList(newData);
         window.dispatchEvent(new Event('shoppingListUpdated'));
     };
@@ -114,7 +115,7 @@ export default function ShoppingListPage() {
     const toggleAll = () => setSelected(allSelected ? new Set() : new Set(items.map(i => i.key)));
 
     // ── rayé / fait ──
-    const persistDone = (s: Set<string>) => { localStorage.setItem('shop-done', JSON.stringify([...s])); window.dispatchEvent(new Event('shoppingListUpdated')); };
+    const persistDone = (s: Set<string>) => { ecrireStock('shop-done', JSON.stringify([...s])); window.dispatchEvent(new Event('shoppingListUpdated')); };
     const toggleDone = (it: ConsolItem) => setDone(prev => {
         const n = new Set(prev); const ks = doneKeysOf(it); const already = ks.every(k => n.has(k));
         ks.forEach(k => (already ? n.delete(k) : n.add(k))); persistDone(n); return n;
@@ -152,7 +153,7 @@ export default function ShoppingListPage() {
             });
         });
         setWeekChecked(checked);
-        localStorage.setItem('meal-week-checked', JSON.stringify([...checked]));
+        ecrireStock('meal-week-checked', JSON.stringify([...checked]));
         window.dispatchEvent(new Event('shoppingListUpdated'));
     };
 

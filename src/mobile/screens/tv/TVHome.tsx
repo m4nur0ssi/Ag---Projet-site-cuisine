@@ -107,6 +107,7 @@ const EdgeHandle = dynamic(() => import('./EdgeHandle'), { ssr: false });
 import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './filters';
 import Tip from '@/components/Tip/Tip';
 import SiteFooter from '@/components/SiteFooter/SiteFooter';
+import { ecrireStock } from '@/lib/stockage';
 // Loupe modernisée AppleTV+ (mêmes fonctions que SpotlightSearch prod, habillage TV).
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 // Visite guidée de l'app mobile (remplace celle du site, écrite pour le desktop).
@@ -166,7 +167,7 @@ async function toggleFavorite(id: string): Promise<'added' | 'removed' | 'auth'>
     }
     const favs = readIds('favorites');
     const has = favs.includes(id);
-    localStorage.setItem('favorites', JSON.stringify(has ? favs.filter((f) => f !== id) : [...favs, id]));
+    ecrireStock('favorites', JSON.stringify(has ? favs.filter((f) => f !== id) : [...favs, id]));
     if (has) await supabase.from('favorites').delete().eq('user_id', session.user.id).eq('recipe_id', id);
     else await supabase.from('favorites').upsert({ user_id: session.user.id, recipe_id: id });
     window.dispatchEvent(new Event('storage'));

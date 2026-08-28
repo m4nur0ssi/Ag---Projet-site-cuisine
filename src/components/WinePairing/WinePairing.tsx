@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Portal from '@/components/Portal';
 import styles from './WinePairing.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 interface Wine {
     name: string;
@@ -73,7 +74,7 @@ export default function WinePairing({ recipeId, title, category, ingredients, co
                 return;
             }
             setWines(data.wines);
-            try { localStorage.setItem(cacheKey(recipeId), JSON.stringify(data.wines)); } catch { /* ignore */ }
+            try { ecrireStock(cacheKey(recipeId), JSON.stringify(data.wines)); } catch { /* ignore */ }
         } catch {
             setError('Pas de connexion. Réessaie plus tard.');
         } finally {

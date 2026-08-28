@@ -1,6 +1,7 @@
 'use client';
 
 import { supabase } from './supabase';
+import { ecrireStock } from '@/lib/stockage';
 
 /**
  * Source de vérité des favoris = Supabase (table `favorites`, par user_id).
@@ -31,7 +32,7 @@ export async function pullFavorites(): Promise<string[]> {
     const ids = data.map((r: { recipe_id: string | number }) => String(r.recipe_id));
     const next = JSON.stringify(ids);
     if (localStorage.getItem('favorites') !== next) {
-        localStorage.setItem('favorites', next);
+        ecrireStock('favorites', next);
         window.dispatchEvent(new Event('magic-favorite-change'));
     }
     return ids;

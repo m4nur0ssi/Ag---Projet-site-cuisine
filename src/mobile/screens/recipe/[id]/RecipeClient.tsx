@@ -28,6 +28,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { mockRecipes } from '@/mobile/data/mockData';
 import styles from './page.module.css';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
+import { ecrireStock } from '@/lib/stockage';
 
 interface RecipeClientProps {
     recipe: Recipe;
@@ -115,7 +116,9 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
                     setCheckedIngredients(new Array(recipe?.ingredients?.length || 0).fill(false));
                 }
             }
-            return () => localStorage.setItem(exitKey, Date.now().toString());
+            // Accolades : le nettoyage d'un effet ne doit RIEN renvoyer, et
+        // `ecrireStock` renvoie un booléen.
+        return () => { ecrireStock(exitKey, Date.now().toString()); };
         }
     }, [recipe.id]);
 
@@ -394,7 +397,7 @@ export default function RecipeClient({ recipe, prevId, nextId }: RecipeClientPro
         
         const existing = JSON.parse(localStorage.getItem('magic-shopping-list') || '{}');
         existing[recipe.id] = { title: recipe.title, ingredients: selected.map(n => ({ name: n, checked: false })) };
-        localStorage.setItem('magic-shopping-list', JSON.stringify(existing));
+        ecrireStock('magic-shopping-list', JSON.stringify(existing));
         window.dispatchEvent(new Event('shoppingListUpdated'));
         triggerHaptic();
     };

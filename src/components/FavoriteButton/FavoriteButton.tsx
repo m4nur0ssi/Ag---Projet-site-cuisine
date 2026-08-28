@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import styles from './FavoriteButton.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 interface FavoriteButtonProps {
     recipeId: string;
@@ -84,7 +85,7 @@ export default function FavoriteButton({ recipeId, initialFavorite = false, imag
             const idx = favs.indexOf(recipeId);
             if (idx > -1) favs.splice(idx, 1);
         }
-        localStorage.setItem('favorites', JSON.stringify(favs));
+        ecrireStock('favorites', JSON.stringify(favs));
 
         // Supabase
         {

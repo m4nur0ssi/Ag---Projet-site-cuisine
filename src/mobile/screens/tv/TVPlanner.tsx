@@ -42,6 +42,7 @@ import { timingFromSteps, passiveLabelFor, COURSE_OFFSET, type TimelineInput } f
 import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
 import TVToast from './TVToast';
+import { ecrireStock } from '@/lib/stockage';
 
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 const CookingTimeline = dynamic(() => import('@/mobile/components/CookingTimeline/CookingTimeline'), { ssr: false });
@@ -104,7 +105,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     .eq('user_id', session.user.id).maybeSingle();
                 if (data?.plan) {
                     setPlan(data.plan);
-                    localStorage.setItem('meal-planner-week', JSON.stringify(data.plan));
+                    ecrireStock('meal-planner-week', JSON.stringify(data.plan));
                     return;
                 }
             }
@@ -116,7 +117,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     /** Enregistre partout : local, Supabase, et prévient la liste de courses. */
     const save = useCallback(async (next: Plan) => {
         setPlan(next);
-        localStorage.setItem('meal-planner-week', JSON.stringify(next));
+        ecrireStock('meal-planner-week', JSON.stringify(next));
         window.dispatchEvent(new Event('shoppingListUpdated'));
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
@@ -308,7 +309,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             };
         }
 
-        localStorage.setItem('magic-shopping-list', JSON.stringify(data));
+        ecrireStock('magic-shopping-list', JSON.stringify(data));
         window.dispatchEvent(new Event('shoppingListUpdated'));
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: `${lines.size} ingrédient${lines.size > 1 ? 's' : ''} ajouté${lines.size > 1 ? 's' : ''} à ta liste 🛒`,

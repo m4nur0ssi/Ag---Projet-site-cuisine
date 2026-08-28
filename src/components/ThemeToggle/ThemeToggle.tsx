@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './ThemeToggle.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 interface ThemeToggleProps {
     className?: string;
@@ -27,7 +28,7 @@ export default function ThemeToggle({ className, children }: ThemeToggleProps) {
         const newTheme = theme === 'light' ? 'dark' : 'light';
         setTheme(newTheme);
         document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        ecrireStock('theme', newTheme);
         
         // Vibration haptique iOS
         if (typeof navigator !== 'undefined' && navigator.vibrate) {

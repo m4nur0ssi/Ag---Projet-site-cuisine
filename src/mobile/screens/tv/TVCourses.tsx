@@ -33,6 +33,7 @@ import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
 import SwipeRow from '@/mobile/components/SwipeRow/SwipeRow';
 import TVToast from './TVToast';
+import { ecrireStock } from '@/lib/stockage';
 
 const ShopActions = dynamic(() => import('@/mobile/components/ShopActions/ShopActions'), { ssr: false });
 
@@ -141,14 +142,14 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         typeof window === 'undefined' ? true : localStorage.getItem('jourj-in-fused') !== 'false'
     );
     useEffect(() => {
-        if (typeof window !== 'undefined') localStorage.setItem('jourj-in-fused', withJourJ ? 'true' : 'false');
+        if (typeof window !== 'undefined') ecrireStock('jourj-in-fused', withJourJ ? 'true' : 'false');
     }, [withJourJ]);
     // Ingrédients du planificateur SEMAINE : toggle dédié, symétrique au Jour J.
     const [withWeek, setWithWeek] = useState(
         typeof window === 'undefined' ? true : localStorage.getItem('week-in-fused') !== 'false'
     );
     useEffect(() => {
-        if (typeof window !== 'undefined') localStorage.setItem('week-in-fused', withWeek ? 'true' : 'false');
+        if (typeof window !== 'undefined') ecrireStock('week-in-fused', withWeek ? 'true' : 'false');
     }, [withWeek]);
     // Mode « Par recette » : cases cochées, clé `day|meal|rIdx|idx`.
     const [recipeSel, setRecipeSel] = useState<Set<string>>(new Set());
@@ -204,7 +205,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     }, [items, overrides]);
 
     const persistDone = (s: Set<string>) => {
-        localStorage.setItem('shop-done', JSON.stringify([...s]));
+        ecrireStock('shop-done', JSON.stringify([...s]));
         window.dispatchEvent(new Event('shoppingListUpdated'));
     };
 
@@ -235,7 +236,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const pasDe = (unit: string) => (unit === 'g' || unit === 'ml' ? 50 : 1);
 
     const persistQty = (next: Record<string, number>) => {
-        localStorage.setItem('shop-qty', JSON.stringify(next));
+        ecrireStock('shop-qty', JSON.stringify(next));
         setQtyEdits(next);
         window.dispatchEvent(new Event('shoppingListUpdated'));
     };
@@ -274,7 +275,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     }, [items, selected]);
 
     const saveList = useCallback((next: ListData) => {
-        localStorage.setItem('magic-shopping-list', JSON.stringify(next));
+        ecrireStock('magic-shopping-list', JSON.stringify(next));
         setList(next);
         window.dispatchEvent(new Event('shoppingListUpdated'));
     }, []);
@@ -360,17 +361,17 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             });
         });
         setWeekChecked(checked);
-        localStorage.setItem('meal-week-checked', JSON.stringify([...checked]));
+        ecrireStock('meal-week-checked', JSON.stringify([...checked]));
         window.dispatchEvent(new Event('shoppingListUpdated'));
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: {
                 text: `Liste vidée · ${vides} article${vides > 1 ? 's' : ''} retiré${vides > 1 ? 's' : ''}`,
                 undoLabel: 'Annuler',
                 onUndo: () => {
-                    localStorage.setItem('magic-shopping-list', JSON.stringify(listeAvant));
+                    ecrireStock('magic-shopping-list', JSON.stringify(listeAvant));
                     setList(listeAvant);
                     setWeekChecked(cochesAvant);
-                    localStorage.setItem('meal-week-checked', JSON.stringify([...cochesAvant]));
+                    ecrireStock('meal-week-checked', JSON.stringify([...cochesAvant]));
                     window.dispatchEvent(new Event('shoppingListUpdated'));
                     haptic(8);
                 },

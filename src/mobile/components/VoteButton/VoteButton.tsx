@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './VoteButton.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 interface VoteButtonProps {
     recipeId: string;
@@ -62,7 +63,7 @@ export default function VoteButton({ recipeId, initialVotes = 0, className, hide
 
         let votedRecipes = JSON.parse(localStorage.getItem('voted_recipes') || '[]');
         if (!votedRecipes.includes(recipeId)) votedRecipes.push(recipeId);
-        localStorage.setItem('voted_recipes', JSON.stringify(votedRecipes));
+        ecrireStock('voted_recipes', JSON.stringify(votedRecipes));
 
         // Vibrate for feedback
         if (typeof navigator !== 'undefined' && navigator.vibrate) {

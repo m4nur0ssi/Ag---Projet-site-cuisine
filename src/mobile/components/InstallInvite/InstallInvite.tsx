@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './InstallInvite.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 /**
  * L'invitation à installer l'application.
@@ -91,7 +92,7 @@ export default function InstallInvite() {
     }, []);
 
     const refuser = () => {
-        try { localStorage.setItem(CLE_REFUS, 'oui'); } catch { /* noop */ }
+        try { ecrireStock(CLE_REFUS, 'oui'); } catch { /* noop */ }
         setVisible(false);
     };
 
@@ -100,7 +101,7 @@ export default function InstallInvite() {
         await invite.prompt();
         const { outcome } = await invite.userChoice;
         // Accepté ou non, on ne repropose pas : le choix a été fait en conscience.
-        try { localStorage.setItem(CLE_REFUS, 'oui'); } catch { /* noop */ }
+        try { ecrireStock(CLE_REFUS, 'oui'); } catch { /* noop */ }
         setVisible(false);
         if (outcome === 'accepted') setInvite(null);
     };

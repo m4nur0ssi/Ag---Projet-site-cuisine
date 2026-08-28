@@ -2,6 +2,7 @@
 
 import { supabase } from './supabase';
 import { CAVE_KEY, CAVE_EVENT } from '@/lib/cave';
+import { ecrireStock } from '@/lib/stockage';
 
 /**
  * « Ma cave » suit le COMPTE, plus le navigateur.
@@ -71,8 +72,8 @@ export async function pullCave(): Promise<void> {
     if (local.length && mine > theirs) { markPulled(); return; }
     if (JSON.stringify(cloud) === JSON.stringify(local)) { markPulled(); return; }
 
-    localStorage.setItem(CAVE_KEY, JSON.stringify(cloud));
-    localStorage.setItem(STAMP_KEY, String(theirs));
+    ecrireStock(CAVE_KEY, JSON.stringify(cloud));
+    ecrireStock(STAMP_KEY, String(theirs));
     markPulled();
     window.dispatchEvent(new Event(CAVE_EVENT));
 }
@@ -90,7 +91,7 @@ async function pushNow(): Promise<void> {
         data: readLocal(),
         updated_at: now.toISOString(),
     });
-    if (!error) localStorage.setItem(STAMP_KEY, String(now.getTime()));
+    if (!error) ecrireStock(STAMP_KEY, String(now.getTime()));
 }
 
 /**

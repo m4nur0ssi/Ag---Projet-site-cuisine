@@ -42,6 +42,7 @@ import dynamic from 'next/dynamic';
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 import styles from './RecipeDetails.module.css';
 import Tip from '@/components/Tip/Tip';
+import { ecrireStock } from '@/lib/stockage';
 
 interface RecipeDetailsProps {
     recipe: Recipe;
@@ -130,7 +131,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
             // Enregistre l'heure de sortie
             return () => {
-                localStorage.setItem(exitKey, Date.now().toString());
+                ecrireStock(exitKey, Date.now().toString());
             };
         }
     }, [recipe.id]);
@@ -263,7 +264,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         requestWakeLock();
 
         if (typeof window !== 'undefined') {
-            window.localStorage.setItem('active-recipe-id', recipe.id);
+            ecrireStock('active-recipe-id', recipe.id);
             
             // Sync initial state with shopping list
             const syncWithShoppingList = () => {
@@ -355,7 +356,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
         triggerHaptic();
 
         if (typeof window !== 'undefined') {
-            window.localStorage.setItem('active-recipe-id', recipe.id);
+            ecrireStock('active-recipe-id', recipe.id);
             markCooking(recipe.id); // cuisson réellement démarrée
             // Prévient la home « Reprendre la cuisine » que la progression a changé.
             window.dispatchEvent(new Event('tv-progress-change'));
@@ -416,7 +417,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     ingredients: selected.map(name => ({ name, checked: false })),
                 };
             }
-            window.localStorage.setItem('magic-shopping-list', JSON.stringify(data));
+            ecrireStock('magic-shopping-list', JSON.stringify(data));
             window.dispatchEvent(new Event('shoppingListUpdated'));
         } catch (e) {
             console.error('syncCartFromChecked', e);
@@ -472,7 +473,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     image: recipe.image,
                     ingredients: ingredientObjects
                 };
-                window.localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
+                ecrireStock('magic-shopping-list', JSON.stringify(existingData));
                 
                 // Notifier le Header immédiatement
                 window.dispatchEvent(new Event('shoppingListUpdated'));
@@ -505,7 +506,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 image: recipe.image,
                 ingredients: selectedIngredients.map(name => ({ name, checked: false })),
             };
-            window.localStorage.setItem('magic-shopping-list', JSON.stringify(existingData));
+            ecrireStock('magic-shopping-list', JSON.stringify(existingData));
             window.dispatchEvent(new Event('shoppingListUpdated'));
             triggerHaptic();
         } catch (e) {

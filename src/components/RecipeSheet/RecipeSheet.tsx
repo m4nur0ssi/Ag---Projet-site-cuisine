@@ -5,6 +5,7 @@ import { Recipe } from '@/types';
 import Portal from '@/components/Portal';
 import styles from './RecipeSheet.module.css';
 import RecipeDetails from '@/components/RecipeDetails/RecipeDetails';
+import { ecrireStock } from '@/lib/stockage';
 
 interface RecipeSheetProps {
     recipe: Recipe;
@@ -42,7 +43,7 @@ export default function RecipeSheet({ recipe: initialRecipe, isOpen, onClose }: 
 
     useEffect(() => {
         if (isOpen && currentRecipe) {
-            localStorage.setItem('magic-last-viewed', JSON.stringify({
+            ecrireStock('magic-last-viewed', JSON.stringify({
                 id: currentRecipe.id,
                 title: currentRecipe.title,
                 image: currentRecipe.image

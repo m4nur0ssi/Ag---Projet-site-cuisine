@@ -37,6 +37,7 @@ const AuthButton = dynamic(() => import('@/components/AuthButton/AuthButton'), {
 const TVTutorial = dynamic(() => import('@/mobile/screens/tv/TVTutorial'), { ssr: false });
 const ExtensionGuide = dynamic(() => import('@/mobile/screens/tv/ExtensionGuide'), { ssr: false });
 import { MAIL_RECETTE } from '@/lib/mail-recette';
+import { ecrireStock } from '@/lib/stockage';
 // Partage d'un thème : même bouton que sur l'accueil actuel, même lien /?tag=…
 const ShareButton = dynamic(() => import('@/components/ShareButton/ShareButton'), { ssr: false });
 // Planificateur / Liste de courses : rendus DANS le contenu (la sidebar reste à gauche),
@@ -679,7 +680,7 @@ export default function TVDesktopHome() {
         const list = readIds(LATER_KEY);
         const has = list.includes(id);
         const next = has ? list.filter((x) => x !== id) : [...list, id];
-        localStorage.setItem(LATER_KEY, JSON.stringify(next));
+        ecrireStock(LATER_KEY, JSON.stringify(next));
         window.dispatchEvent(new Event('tv-later-change'));
         return !has; // true = vient d'être ajoutée
     };

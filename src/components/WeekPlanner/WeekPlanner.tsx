@@ -13,6 +13,7 @@ import { prixRecette, additionner } from '@/lib/recipe-price';
 import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { isCookable, isMainDish, isSideDish, hasSideIncluded, proteinOf, isSweet, MEAT_FISH } from '@/lib/mealClassify';
 import styles from './WeekPlanner.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 const MEALS = ['Midi', 'Soir'] as const;
@@ -121,7 +122,7 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
                     .maybeSingle();
                 if (data?.plan) {
                     apply(data.plan);
-                    localStorage.setItem('meal-planner-week', JSON.stringify(data.plan));
+                    ecrireStock('meal-planner-week', JSON.stringify(data.plan));
                     return;
                 }
             }
@@ -150,7 +151,7 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
         // Tutoriel : les menus qu'il compose (démo du Menu IA) sont une illustration.
         // On les affiche sans jamais écraser le vrai planning de l'utilisateur.
         if (demo) return;
-        localStorage.setItem('meal-planner-week', JSON.stringify(newPlan));
+        ecrireStock('meal-planner-week', JSON.stringify(newPlan));
         // Plan modifié → la liste fusionnée + la pastille doivent se rafraîchir.
         window.dispatchEvent(new Event('shoppingListUpdated'));
         // …et le survol "recettes du jour" de l'icône planificateur (Header).
@@ -291,7 +292,7 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
     const toggleCourse = (label: string) => {
         setHiddenCourses(prev => {
             const next = prev.includes(label) ? prev.filter(l => l !== label) : [...prev, label];
-            if (!demo) localStorage.setItem(HIDDEN_KEY, JSON.stringify(next));
+            if (!demo) ecrireStock(HIDDEN_KEY, JSON.stringify(next));
             return next;
         });
         // si on supprime la carte, on vide aussi la recette du plan
@@ -308,7 +309,7 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
         setHiddenDays(prev => {
             const hiding = !prev.includes(day);
             const next = hiding ? [...prev, day] : prev.filter(d => d !== day);
-            if (!demo) localStorage.setItem(HIDDEN_DAYS_KEY, JSON.stringify(next));
+            if (!demo) ecrireStock(HIDDEN_DAYS_KEY, JSON.stringify(next));
             if (hiding) {
                 // Vide les recettes du jour supprimé → absentes des ingrédients de la semaine.
                 const np = { ...plan };
@@ -495,7 +496,7 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
         const total = lineKeys.size;
         const rayons = [...rayonCount.entries()].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([id, n]) => ({ id, n }));
         setRecap({ total, rayons });
-        localStorage.setItem('magic-shopping-list', JSON.stringify(data));
+        ecrireStock('magic-shopping-list', JSON.stringify(data));
         window.dispatchEvent(new Event('shoppingListUpdated'));
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: `${total} ingrédient${total > 1 ? 's' : ''} ajouté${total > 1 ? 's' : ''} à ta liste 🛒`,
@@ -571,7 +572,7 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
                                 // une section Jour J séparée (après Dimanche) dans la liste de courses.
                                 if (view === 'jourj') {
                                     const inFused = window.confirm('Ajouter les courses du Jour J à la liste fusionnée ?\n\nOK = oui (fusionnées avec la semaine)\nAnnuler = non (section Jour J séparée)');
-                                    localStorage.setItem('jourj-in-fused', inFused ? 'true' : 'false');
+                                    ecrireStock('jourj-in-fused', inFused ? 'true' : 'false');
                                 }
                                 addPlanToShoppingList();
                             }

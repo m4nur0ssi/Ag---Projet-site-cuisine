@@ -1,4 +1,5 @@
 'use client';
+import { ecrireStock } from '@/lib/stockage';
 // Pont magasin → liste de courses.
 //
 // L'onglet magasin est ouvert par nos soins (window.open nommé 'storeCart'), donc
@@ -36,7 +37,7 @@ export function onStoreItemDone(cb: (msg: StoreDoneMessage) => void): () => void
         const d = e.data as any;
         if (!d || d.source !== 'courses-magiques' || d.type !== 'item-done') return;
         if (typeof d.index !== 'number') return;
-        try { localStorage.setItem(FLAG, '1'); } catch { /* mode privé */ }
+        try { ecrireStock(FLAG, '1'); } catch { /* mode privé */ }
         cb({ index: d.index, term: typeof d.term === 'string' ? d.term : '' });
     };
     window.addEventListener('message', handler);

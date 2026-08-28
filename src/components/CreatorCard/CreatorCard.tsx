@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './CreatorCard.module.css';
 import { getCreatorForRecipe, getCreatorByHandle, resolveHandle, extractVideoId } from '@/lib/influencers';
 import { CONTACT_EMAIL } from '@/lib/legal';
+import { ecrireStock } from '@/lib/stockage';
 
 interface CreatorCardProps {
     videoHtml?: string;
@@ -50,7 +51,7 @@ const CreatorCard: React.FC<CreatorCardProps> = ({ videoHtml, tiktokHandle, tikt
             .then((data: RemoteCreator | null) => {
                 if (cancelled || !data || (!data.authorName && !data.authorUrl)) return;
                 setRemote(data);
-                try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch { /* ignore */ }
+                try { ecrireStock(cacheKey, JSON.stringify(data)); } catch { /* ignore */ }
             })
             .catch(() => { /* dégradation douce : on garde l'attribution minimale */ });
         return () => { cancelled = true; };

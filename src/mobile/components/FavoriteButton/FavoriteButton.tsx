@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '@/mobile/lib/supabase';
 import styles from './FavoriteButton.module.css';
+import { ecrireStock } from '@/lib/stockage';
 
 interface FavoriteButtonProps {
     recipeId: string;
@@ -83,7 +84,7 @@ export default function FavoriteButton({ recipeId, initialFavorite = false, imag
             const idx = favs.indexOf(recipeId);
             if (idx > -1) favs.splice(idx, 1);
         }
-        localStorage.setItem('favorites', JSON.stringify(favs));
+        ecrireStock('favorites', JSON.stringify(favs));
 
         if (newState) {
             await supabase.from('favorites').upsert({ user_id: session.user.id, recipe_id: recipeId });
