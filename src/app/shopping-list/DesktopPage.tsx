@@ -10,6 +10,7 @@ import type { ConsolItem } from '@/lib/ingredients';
 import { RAYONS, RAYON_BY_ID, RAYON_ORDER, rayonOf, readRayonOverrides, writeRayonOverride } from '@/lib/rayons';
 import { STORE_BY_ID, usePreferredStore, storeSearchWithQueue } from '@/lib/stores';
 import { onStoreItemDone, isStoreExtensionActive } from '@/lib/storeFeedback';
+import { ecrireStock } from '@/lib/stockage';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import ShopActions from '@/components/ShopActions/ShopActions';
 import styles from './shopping-list.module.css';
@@ -36,7 +37,17 @@ export default function ShoppingListPage() {
     const [carrefourIdx, setCarrefourIdx] = useState<number | null>(null);
     const [manualName, setManualName] = useState('');
     const [manualQty, setManualQty] = useState('');
+    /*
+     * Ce qui entre dans la liste fusionnée.
+     *
+     * Deux interrupteurs, exactement comme sur téléphone, et surtout les MÊMES
+     * clés de stockage : `week-in-fused` et `jourj-in-fused`. Le bureau lisait
+     * la seconde sans jamais offrir de bouton, et ignorait la première : la
+     * semaine y était toujours incluse. Régler la chose sur son téléphone
+     * n'avait donc aucun effet ici.
+     */
     const [includeJourJ, setIncludeJourJ] = useState(true);
+    const [includeWeek, setIncludeWeek] = useState(true);
     const [done, setDone] = useState<Set<string>>(new Set());
     // Rayons : overrides manuels + rayons repliés + item dont le sélecteur est ouvert.
     const [rayonOverrides, setRayonOverrides] = useState<Record<string, string>>({});
@@ -58,6 +69,7 @@ export default function ShoppingListPage() {
             setRayonOverrides(readRayonOverrides());
             try { setCollapsedRayons(new Set(JSON.parse(localStorage.getItem('shop-rayons-collapsed') || '[]'))); } catch { setCollapsedRayons(new Set()); }
             setIncludeJourJ(localStorage.getItem('jourj-in-fused') !== 'false');
+            setIncludeWeek(localStorage.getItem('week-in-fused') !== 'false');
         };
         read();
         window.addEventListener('shoppingListUpdated', read);
@@ -71,9 +83,22 @@ export default function ShoppingListPage() {
     // Liste fusionnée = ingrédients de la semaine (hors cases cochées en vue "par jour")
     //                   + ajouts manuels (recettes hors planificateur)
     const items = useMemo<ConsolItem[]>(
-        () => buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ),
-        [shoppingList, weekPlan, weekChecked, includeJourJ]
+        () => buildConsolidatedItems(weekPlan, weekChecked, shoppingList, includeJourJ, includeWeek),
+        [shoppingList, weekPlan, weekChecked, includeJourJ, includeWeek]
     );
+
+    /** Y a-t-il quelque chose à inclure ? Sinon le bouton n'a rien à proposer. */
+    const aUnJourJ = useMemo(() => Object.keys(weekPlan?.JourJ || {}).length > 0, [weekPlan]);
+    const aDesJoursDeSemaine = useMemo(
+        () => Object.keys(weekPlan || {}).some((j) => j !== 'JourJ' && Object.keys(weekPlan[j] || {}).length > 0),
+        [weekPlan],
+    );
+
+    /** Bascule un interrupteur ET l'écrit là où le téléphone viendra le lire. */
+    const basculer = (cle: string, valeur: boolean, poser: (v: boolean) => void) => {
+        poser(!valeur);
+        ecrireStock(cle, !valeur ? 'true' : 'false');
+    };
 
     // Groupement par rayon (affichage seulement — l'ordre/état des items reste intact).
     const groupedRayons = useMemo(() => {
@@ -313,6 +338,32 @@ export default function ShoppingListPage() {
                 )}
                 {weekMode === 'fusion' && (
                   <>
+                    {/* Ce qui alimente la liste : la semaine, le Jour J, ou les deux.
+                        Les boutons n'apparaissent que si le plan correspondant existe —
+                        proposer d'inclure un menu vide n'aurait aucun sens. */}
+                    {(aDesJoursDeSemaine || aUnJourJ) && (
+                        <div className={styles.sourcesRow}>
+                            {aDesJoursDeSemaine && (
+                                <button
+                                    className={`${styles.sourceBtn} ${includeWeek ? styles.sourceBtnOn : ''}`}
+                                    onClick={() => basculer('week-in-fused', includeWeek, setIncludeWeek)}
+                                >
+                                    <span className={styles.sourceDot} />
+                                    {includeWeek ? 'Semaine incluse dans la liste' : 'Ajouter les ingrédients de la semaine'}
+                                </button>
+                            )}
+                            {aUnJourJ && (
+                                <button
+                                    className={`${styles.sourceBtn} ${includeJourJ ? styles.sourceBtnOn : ''}`}
+                                    onClick={() => basculer('jourj-in-fused', includeJourJ, setIncludeJourJ)}
+                                >
+                                    <span className={styles.sourceDot} />
+                                    {includeJourJ ? 'Jour J inclus dans la liste' : 'Ajouter les ingrédients du Jour J'}
+                                </button>
+                            )}
+                        </div>
+                    )}
+
                     {/* Ajout manuel d'un article (alimentaire ou ménager) */}
                     <div className={styles.addItemBar}>
                         <span className={styles.addItemPreview}>{manualName.trim() ? getIcon(manualName) : '🛒'}</span>

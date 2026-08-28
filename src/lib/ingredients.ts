@@ -399,6 +399,15 @@ export const buildConsolidatedItems = (
     weekChecked: Set<string>,
     shoppingList: Record<string, any>,
     includeJourJ: boolean = true,
+    /**
+     * Les jours de SEMAINE entrent-ils dans la liste ?
+     *
+     * Le mobile a ce réglage depuis longtemps ; la copie de bureau ne l'avait
+     * jamais reçu, si bien que la semaine y était toujours incluse et que le
+     * bouton n'existait pas. Les deux écrans partagent pourtant le même
+     * stockage : l'un obéissait au réglage, l'autre l'ignorait.
+     */
+    includeWeek: boolean = true,
 ): ConsolItem[] => {
     const map = new Map<string, ConsolItem>();
     let ord = 0;
@@ -438,7 +447,8 @@ export const buildConsolidatedItems = (
         }
     };
     Object.keys(weekPlan || {}).forEach(dayKey => {
-        if (dayKey === 'JourJ' && !includeJourJ) return; // Jour J exclu de la liste fusionnée
+        if (dayKey === 'JourJ') { if (!includeJourJ) return; }      // Jour J : toggle dédié
+        else if (!includeWeek) return;                             // jours de semaine : toggle dédié
         const day = weekPlan[dayKey] || {};
         Object.keys(day).forEach(mealKey => {
             const recipe = day[mealKey];

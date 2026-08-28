@@ -468,3 +468,61 @@
 .recipeIng:hover { background: rgba(255,255,255,0.05); }
 .recipeIng input { width: 18px; height: 18px; accent-color: #10b981; cursor: pointer; }
 .recipeIngDone span { text-decoration: line-through; opacity: 0.45; }
+
+/* ── Sources de la liste fusionnée ───────────────────────────────────────────
+ *
+ * Semaine et Jour J : deux interrupteurs, mêmes libellés et même sens que sur
+ * téléphone, parce que c'est le même réglage — il voyage par `week-in-fused` et
+ * `jourj-in-fused`. Allumé = inclus.
+ */
+.sourcesRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.sourceBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(235, 235, 245, 0.68);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.sourceBtn:hover { background: rgba(255, 255, 255, 0.09); }
+
+.sourceBtnOn {
+    border-color: rgba(52, 199, 89, 0.45);
+    background: rgba(52, 199, 89, 0.12);
+    color: #fff;
+}
+
+/* La pastille dit l'état d'un coup d'œil, sans lire le libellé. */
+.sourceDot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.sourceBtnOn .sourceDot { background: #34c759; }
+
+:global([data-theme='light']) .sourceBtn {
+    border-color: rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.04);
+    color: rgba(60, 60, 67, 0.7);
+}
+
+:global([data-theme='light']) .sourceBtnOn {
+    border-color: rgba(52, 199, 89, 0.5);
+    background: rgba(52, 199, 89, 0.14);
+    color: #14251a;
+}
