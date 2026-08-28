@@ -357,9 +357,23 @@ async function checkWordPressDuplicate(videoUrl) {
     return false;
 }
 
+/**
+ * Pourquoi la dernière tentative a échoué.
+ *
+ * `processRecipe` renvoie `false` pour des situations sans rapport : pas d'URL,
+ * l'IA qui ne voit pas de recette, le quota épuisé, WordPress qui refuse.
+ * L'appelant ne pouvait donc écrire qu'« échec » dans sa trace, et il fallait
+ * deviner. On garde la raison ici, il vient la lire.
+ */
+let derniereRaison = '';
+const RAISON_QUOTA = 'quota IA épuisé';
+function raisonDuDernierEchec() { return derniereRaison; }
+const echouer = (raison) => { derniereRaison = raison; return false; };
+
 async function processRecipe({ videoUrl, description, author, title, country }) {
+    derniereRaison = '';
     if (!videoUrl || videoUrl === '...') {
-        return false;
+        return echouer('aucune URL fournie');
     }
     console.log(`\n📋 Analyse : ${videoUrl}`);
 
@@ -423,13 +437,13 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
             console.log('   🍽️ Restaurant : pas une recette pour l\'IA, mais fiche resto forcée.');
         } else {
             console.log('   🚫 Ce n\'est pas une recette selon l\'IA (ou erreur Quota).');
-            return false;
+            return echouer('l\'IA n\'a pas reconnu une recette dans cette vidéo');
         }
     }
 
     if (analysis.isQuotaExceeded) {
         console.log('   ⏳ Quota Gemini dépassé — recette laissée en file d\'attente pour retry demain (reset minuit UTC).');
-        return false; // La recette reste dans la queue GitHub, sera retraitée automatiquement
+        return echouer(RAISON_QUOTA); // La recette reste dans la queue GitHub, sera retraitée automatiquement
     }
 
     if (['dessert', 'patisserie', 'sucré'].some(c => analysis.category.toLowerCase().includes(c))) analysis.category = 'desserts';
@@ -603,8 +617,8 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         return analysis.recipeName;
     } else {
         console.log(`   ❌ Échec de la publication WordPress.`);
-        return false;
+        return echouer('WordPress a refusé la publication');
     }
 }
 
-module.exports = { processRecipe, fetchTikTokMetadata, checkWordPressDuplicate, isRecipeWithGemini };
+module.exports = { processRecipe, raisonDuDernierEchec, RAISON_QUOTA, fetchTikTokMetadata, checkWordPressDuplicate, isRecipeWithGemini };

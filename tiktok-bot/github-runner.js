@@ -21,6 +21,22 @@ function isAlreadyProcessed(videoId) {
     return loadProcessed().videoIds.includes(String(videoId));
 }
 
+/**
+ * Retire une vidéo de la liste des traitées.
+ *
+ * On la marque AVANT publication pour qu'un double passage du workflow ne crée
+ * pas deux fois la même recette. Quand la tentative échoue pour une raison
+ * temporaire, cette marque devient un piège : la vidéo ne serait plus jamais
+ * retentée. On la lève.
+ */
+function demarquer(videoId) {
+    const data = loadProcessed();
+    const i = data.videoIds.indexOf(String(videoId));
+    if (i === -1) return;
+    data.videoIds.splice(i, 1);
+    fs.writeFileSync(PROCESSED_FILE, JSON.stringify(data, null, 2));
+}
+
 function markAsProcessed(videoId) {
     const data = loadProcessed();
     if (!data.videoIds.includes(String(videoId))) {
@@ -80,7 +96,7 @@ function noterEchec(data, item, raison) {
 
 async function run() {
     console.log('GitHub Runner - Demarrage...');
-    const { processRecipe } = require('./recipe-processor');
+    const { processRecipe, raisonDuDernierEchec, RAISON_QUOTA } = require('./recipe-processor');
 
     const manualUrl = process.env.VIDEO_URL;
     const country = process.env.COUNTRY;
@@ -141,8 +157,24 @@ async function run() {
                     fs.writeFileSync(path.join(__dirname, 'latest-recipe.txt'), recipeName);
                     console.log(`   ✅ Success : "${recipeName}"`);
                 } else {
-                    console.log(`   ⚠️ Echec ou Ignoré : ${videoUrl}`);
-                    noterEchec(data, item, raison || 'traitement sans résultat');
+                    const cause = raison || raisonDuDernierEchec() || 'traitement sans résultat';
+                    console.log(`   ⚠️ Echec ou Ignoré : ${videoUrl} — ${cause}`);
+
+                    /*
+                     * Le quota d'IA se recharge : cet échec-là n'est pas définitif.
+                     * Le code du processeur l'annonçait déjà — « recette laissée en
+                     * file d'attente pour retry demain » — mais on la retirait
+                     * quand même, et elle était perdue pour de bon. On la laisse,
+                     * on démarque la vidéo, et on s'arrête là : les suivantes
+                     * échoueraient de la même façon.
+                     */
+                    if (cause === RAISON_QUOTA) {
+                        if (videoId) demarquer(videoId);
+                        fs.writeFileSync(queuePath, JSON.stringify(data, null, 2));
+                        console.log("   ⏳ Quota épuisé : la file est laissée en l'état, reprise au prochain passage.");
+                        return;
+                    }
+                    noterEchec(data, item, cause);
                 }
 
                 // On retire TOUJOURS l'item de la file après tentative pour ne pas bloquer

@@ -1,13 +1,11 @@
 {
-  "queue": [],
-  "echecs": [
+  "queue": [
     {
       "videoUrl": "https://www.tiktok.com/@bymesika/video/7672933123818032414",
       "country": "Pâtisserie",
       "timestamp": "2026-08-28T08:58:46.725Z",
-      "note": "Renvoyée : le lien court vm.tiktok.com/ZN8FdNYHc n'avait rien donné le 28 août.",
-      "raison": "traitement sans résultat",
-      "quand": "2026-08-28T13:19:47.134Z"
+      "note": "3e tentative : cette fois le pipeline dira POURQUOI s'il échoue."
     }
-  ]
+  ],
+  "echecs": []
 }
