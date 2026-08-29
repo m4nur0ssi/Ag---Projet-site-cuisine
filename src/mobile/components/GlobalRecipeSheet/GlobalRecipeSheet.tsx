@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { mockRecipes } from '@/mobile/data/mockData';
 
 const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
 
@@ -14,7 +15,17 @@ export default function GlobalRecipeSheet() {
     const [recipe, setRecipe] = useState<any>(null);
 
     useEffect(() => {
-        const open = (e: any) => { if (e.detail) setRecipe(e.detail); };
+        const open = (e: any) => {
+            const d = e.detail;
+            if (!d) return;
+            // La recette rangée dans le planificateur est parfois MINIMALE (id, titre,
+            // image, ingrédients) : sans `steps`, la fiche plantait (recipe.steps.length).
+            // On récupère la recette COMPLÈTE depuis le catalogue par son id, et on
+            // garantit des tableaux pour steps/ingredients/tags.
+            const full = mockRecipes.find((r: any) => String(r.id) === String(d.id));
+            const base = full ? { ...d, ...full } : d;
+            setRecipe({ category: 'plats', steps: [], ingredients: [], tags: [], ...base });
+        };
         window.addEventListener('openRecipeFromPlanner', open);
         return () => window.removeEventListener('openRecipeFromPlanner', open);
     }, []);

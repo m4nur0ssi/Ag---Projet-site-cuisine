@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import RecipeSheet from '@/components/RecipeSheet/RecipeSheet';
+import { mockRecipes } from '@/mobile/data/mockData';
 
 /**
  * Hôte global de la recette flottante (RecipeSheet).
@@ -12,7 +13,13 @@ export default function GlobalRecipeSheet() {
     const [recipe, setRecipe] = useState<any>(null);
 
     useEffect(() => {
-        const open = (e: any) => { if (e.detail) setRecipe(e.detail); };
+        const open = (e: any) => {
+            const d = e.detail;
+            if (!d) return;
+            const full = mockRecipes.find((r: any) => String(r.id) === String(d.id));
+            const base = full ? { ...d, ...full } : d;
+            setRecipe({ category: 'plats', steps: [], ingredients: [], tags: [], ...base });
+        };
         window.addEventListener('openRecipeFromPlanner', open);
         return () => window.removeEventListener('openRecipeFromPlanner', open);
     }, []);
