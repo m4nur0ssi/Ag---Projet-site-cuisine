@@ -196,6 +196,23 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const hasJourJ = Object.keys(plan.JourJ || {}).length > 0;
     const hasWeek = Object.keys(plan).some((d) => d !== 'JourJ' && Object.keys(plan[d] || {}).length > 0);
 
+    // Auto-réparation : « Vider » (et d'anciennes synchros) marquent TOUS les
+    // créneaux comme « pris » dans meal-week-checked (clés positionnelles
+    // day|meal|idx). En replanifiant, les nouvelles recettes retombent sur les
+    // mêmes créneaux → déjà masqués → « La semaine » reste vide alors que le plan
+    // est plein. Si la liste n'est vide QUE à cause de ce masque, on le réinitialise
+    // (un plan fraîchement rempli ne contient rien « déjà acheté »).
+    useEffect(() => {
+        if (weekChecked.size === 0) return;
+        if (items.length > 0) return; // au moins un article visible → pas de blocage
+        const sansMasque = buildConsolidatedItems(plan, new Set(), list as any, withJourJ, withWeek);
+        if (sansMasque.length > 0) {
+            setWeekChecked(new Set());
+            ecrireStock('meal-week-checked', '[]');
+            window.dispatchEvent(new Event('shoppingListUpdated'));
+        }
+    }, [items, weekChecked, plan, list, withJourJ, withWeek]);
+
     /** Rangée par rayon de supermarché, dans l'ordre du magasin. */
     const byRayon = useMemo(() => {
         const map = new Map<string, ConsolItem[]>();
