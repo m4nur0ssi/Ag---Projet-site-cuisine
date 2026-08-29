@@ -103,6 +103,20 @@ function nombreAAfficher(it: ConsolItem): number {
     return Math.max(1, it.count);
 }
 
+/**
+ * Signature du contenu d'un plan (jours, créneaux, recette + nb d'ingrédients).
+ * Sert à distinguer un « Vider » volontaire (plan inchangé) d'un masque périmé
+ * (plan modifié depuis) pour l'auto-réparation de « La semaine ».
+ */
+function planSignature(p: Record<string, Record<string, any>>): string {
+    return Object.keys(p || {}).sort().map(d =>
+        `${d}:` + Object.keys(p[d] || {}).sort().map(m => {
+            const r = p[d][m];
+            return `${m}=${(r?.id || r?.title || '')}#${(r?.ingredients || []).length}`;
+        }).join(',')
+    ).join('|');
+}
+
 export default function TVCourses({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
     const [mode, setMode] = useState<'semaine' | 'jour' | 'recette' | 'panier'>('semaine');
@@ -206,11 +220,17 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         if (weekChecked.size === 0) return;
         if (items.length > 0) return; // au moins un article visible → pas de blocage
         const sansMasque = buildConsolidatedItems(plan, new Set(), list as any, withJourJ, withWeek);
-        if (sansMasque.length > 0) {
-            setWeekChecked(new Set());
-            ecrireStock('meal-week-checked', '[]');
-            window.dispatchEvent(new Event('shoppingListUpdated'));
-        }
+        if (sansMasque.length === 0) return; // vraiment rien à afficher
+        // « Vider » VOLONTAIRE sur CE plan → on respecte la liste vide. On ne
+        // ré-affiche que si le plan a changé depuis (masque devenu périmé) ou si
+        // le masque vient d'ailleurs (ancienne synchro sans signature).
+        let sig = '';
+        try { sig = localStorage.getItem('meal-week-checked-sig') || ''; } catch { /* noop */ }
+        if (sig && sig === planSignature(plan)) return;
+        setWeekChecked(new Set());
+        ecrireStock('meal-week-checked', '[]');
+        try { localStorage.removeItem('meal-week-checked-sig'); } catch { /* noop */ }
+        window.dispatchEvent(new Event('shoppingListUpdated'));
     }, [items, weekChecked, plan, list, withJourJ, withWeek]);
 
     /** Rangée par rayon de supermarché, dans l'ordre du magasin. */
@@ -382,6 +402,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         });
         setWeekChecked(checked);
         ecrireStock('meal-week-checked', JSON.stringify([...checked]));
+        // Signature du plan vidé : tant que le plan ne change pas, ce « Vider » est
+        // volontaire et l'auto-réparation NE doit PAS ré-afficher la liste.
+        ecrireStock('meal-week-checked-sig', planSignature(plan));
         window.dispatchEvent(new Event('shoppingListUpdated'));
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: {
