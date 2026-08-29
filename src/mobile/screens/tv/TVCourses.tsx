@@ -124,6 +124,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const [weekChecked, setWeekChecked] = useState<Set<string>>(new Set());
     const [done, setDone] = useState<Set<string>>(new Set());
     const [selected, setSelected] = useState<Set<string>>(new Set());
+    // Vue « Jour par jour » : ingrédients COCHÉS (= sélectionnés pour le magasin),
+    // par clé de créneau (`jour|repas|idx`), même logique que la vue semaine.
+    const [jourSel, setJourSel] = useState<Set<string>>(new Set());
     const [overrides, setOverrides] = useState<Record<string, string>>({});
     /**
      * Quantités retouchées à la main, par clé d'article. La recette dit 200 g de
@@ -465,6 +468,31 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         });
     };
 
+    // Coche/décoche un ingrédient de la vue Jour (= le sélectionne pour le magasin).
+    const toggleJourSel = (doneKey: string) => {
+        haptic(6);
+        setJourSel((prev) => {
+            const n = new Set(prev);
+            n.has(doneKey) ? n.delete(doneKey) : n.add(doneKey);
+            return n;
+        });
+    };
+
+    // Cible magasin de la vue Jour : on part des créneaux cochés (hors barrés) et
+    // on retrouve les articles consolidés correspondants. Les clés consolidées
+    // portent un suffixe `|sub` (blocs éclatés) : on matche donc par PRÉFIXE
+    // `jour|repas|idx`. Un article ainsi ciblé alimente Partager + magasin + extension.
+    const jourItems = useMemo(() => {
+        if (!jourSel.size) return [] as ConsolItem[];
+        const cible = new Set<string>();
+        jourSel.forEach((k) => { if (!done.has(k)) cible.add(k); });
+        if (!cible.size) return [] as ConsolItem[];
+        return items.filter((it) =>
+            !isItemDone(it, done) &&
+            it.keys.some((k) => cible.has(k.split('|').slice(0, 3).join('|')))
+        );
+    }, [items, jourSel, done]);
+
     return (
         <div className={`${styles.page} ${embedded ? styles.embedded : ''}`}>
             <header className={styles.planHead}>
@@ -725,20 +753,28 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                             </span>
                                         </h3>
                                     )}
-                                    <button
+                                    <div
                                         className={`${styles.courseRow} ${styles.courseRowFlat} ${struck ? styles.courseRowDone : ''}`}
-                                        onClick={() => toggleDayLine(l.doneKey)}
                                     >
-                                        <span className={`${styles.courseCheck} ${struck ? styles.courseCheckOn : ''}`}>
-                                            {struck && (
+                                        {/* Cercle : SÉLECTIONNE l'ingrédient (cible magasin/partage),
+                                            même logique que la vue « La semaine ». */}
+                                        <button
+                                            className={`${styles.courseCheck} ${jourSel.has(l.doneKey) ? styles.courseCheckOn : ''}`}
+                                            onClick={() => toggleJourSel(l.doneKey)}
+                                            aria-label="Sélectionner"
+                                        >
+                                            {jourSel.has(l.doneKey) && (
                                                 <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
                                                     <path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>
                                             )}
-                                        </span>
-                                        <IngredientVignette nom={l.nom} icone={l.icon} nombre={l.nombre} />
-                                        <span className={styles.courseName}>{l.text}</span>
-                                    </button>
+                                        </button>
+                                        {/* Le texte barre / débarre : « je l'ai déjà ». */}
+                                        <button className={styles.courseText} onClick={() => toggleDayLine(l.doneKey)}>
+                                            <IngredientVignette nom={l.nom} icone={l.icon} nombre={l.nombre} />
+                                            <span className={styles.courseName}>{l.text}</span>
+                                        </button>
+                                    </div>
                                 </div>
                             );
                         });
@@ -799,6 +835,19 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                     <ShopActions
                         items={items}
                         checkedKeys={selectedKeys}
+                        doneKeys={done}
+                        title="Ma liste de courses"
+                        onShopped={markDone}
+                    />
+                </div>
+            )}
+
+            {/* Vue « Jour par jour » : même barre magasin, ciblant les ingrédients
+                cochés du jour (Partager + magasin + extension), comme la semaine. */}
+            {mode === 'jour' && jourItems.length > 0 && (
+                <div className={styles.courseShop}>
+                    <ShopActions
+                        items={jourItems}
                         doneKeys={done}
                         title="Ma liste de courses"
                         onShopped={markDone}
