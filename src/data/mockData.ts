@@ -11,7 +11,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7395",
         "title": "Pancakes aux Fraises",
         "description": "Une recette de pancakes fins et moelleux, colorés en rose grâce à la poudre de betterave, garnis d'une crème fouettée légère et de fraises fraîches. Ils sont ensuite roulés et servis frais.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7395-carte.webp",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
