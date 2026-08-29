@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { supabase, SupabaseUser } from '@/lib/supabase';
 import { pullFavorites } from '@/lib/favorites';
-import { pullShoppingState, startShoppingSync } from '@/lib/shoppingSync';
+import { pullShoppingState, startShoppingSync, startShoppingRealtime } from '@/lib/shoppingSync';
 import { pullCave, startCaveSync } from '@/mobile/lib/caveSync';
 
 /**
@@ -33,6 +33,8 @@ export function useAuth() {
                 pullFavorites().catch(() => {});
                 pullShoppingState().catch(() => {});
                 pullCave().catch(() => {});
+                // Sync temps réel descendante (courses + planning) entre appareils.
+                startShoppingRealtime(session.user.id);
             }
         });
 

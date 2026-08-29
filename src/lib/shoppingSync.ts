@@ -32,6 +32,9 @@ export async function pullShoppingState(): Promise<void> {
 
 let pushTimer: ReturnType<typeof setTimeout> | null = null;
 let started = false;
+// Dernière charge poussée par CET appareil : sert à ignorer l'écho de nos propres
+// écritures quand le realtime nous les renvoie (sinon boucle push↔pull).
+let lastPushJson = '';
 
 async function pushNow(): Promise<void> {
     const { data: { session } } = await supabase.auth.getSession();
@@ -42,11 +45,60 @@ async function pushNow(): Promise<void> {
         if (raw == null) return;
         try { payload[k] = JSON.parse(raw); } catch { payload[k] = raw; }
     });
+    lastPushJson = JSON.stringify(payload);
     await supabase.from('shopping_state').upsert({
         user_id: session.user.id,
         data: payload,
         updated_at: new Date().toISOString(),
     });
+}
+
+let realtimeStarted = false;
+
+/**
+ * Sync DESCENDANTE en temps réel : dès qu'un autre appareil (connecté au même
+ * compte) modifie l'état courses (table `shopping_state`) ou le planning
+ * (`meal_plans`), on hydrate le localStorage et on émet les mêmes événements que
+ * les modifications locales → l'écran se met à jour aussitôt, sans reconnexion.
+ * Nécessite que la réplication Realtime soit activée sur ces tables côté Supabase.
+ */
+export function startShoppingRealtime(userId: string): void {
+    if (realtimeStarted || typeof window === 'undefined' || !userId) return;
+    realtimeStarted = true;
+
+    supabase
+        .channel(`rt-shopping-${userId}`)
+        .on('postgres_changes',
+            { event: '*', schema: 'public', table: 'shopping_state', filter: `user_id=eq.${userId}` },
+            payload => {
+                const cloud = (payload.new as { data?: Record<string, unknown> })?.data;
+                if (!cloud) return;
+                // Notre propre écriture nous revient → rien à faire.
+                if (JSON.stringify(cloud) === lastPushJson) return;
+                let changed = false;
+                KEYS.forEach(k => {
+                    if (!(k in cloud)) return;
+                    const v = typeof cloud[k] === 'string' ? (cloud[k] as string) : JSON.stringify(cloud[k]);
+                    if (localStorage.getItem(k) !== v) { ecrireStock(k, v); changed = true; }
+                });
+                if (changed) window.dispatchEvent(new Event('shoppingListUpdated'));
+            })
+        .subscribe();
+
+    supabase
+        .channel(`rt-meal-${userId}`)
+        .on('postgres_changes',
+            { event: '*', schema: 'public', table: 'meal_plans', filter: `user_id=eq.${userId}` },
+            payload => {
+                const plan = (payload.new as { plan?: unknown })?.plan;
+                if (plan == null) return;
+                const v = JSON.stringify(plan);
+                if (localStorage.getItem('meal-planner-week') === v) return; // notre propre écho
+                ecrireStock('meal-planner-week', v);
+                window.dispatchEvent(new Event('meal-plan-updated'));
+                window.dispatchEvent(new Event('shoppingListUpdated'));
+            })
+        .subscribe();
 }
 
 /**
