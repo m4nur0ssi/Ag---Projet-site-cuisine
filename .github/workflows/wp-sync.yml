@@ -169,9 +169,18 @@ jobs:
       # regénère pas). Le script repointe mockData vers /recipes-ia/<id>-carte.webp.
       # Non bloquant. Nécessite le secret FAL_KEY (fal.ai/dashboard/keys).
       # ------------------------------------------------------------------
-      - name: 🎨 Génère l'image IA de la recette
+      - name: 🎬 Outils vidéo (yt-dlp + ffmpeg)
         if: steps.mode.outputs.post_id != ''
-        run: node scripts/generate-recipe-images.js --ids "${{ steps.mode.outputs.post_id }}"
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y ffmpeg
+          sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+          sudo chmod a+rx /usr/local/bin/yt-dlp
+          yt-dlp --version && ffmpeg -version | head -1
+        continue-on-error: true
+
+      - name: 🎨 Génère l'image IA de la recette (d'après la vidéo TikTok)
+        if: steps.mode.outputs.post_id != ''
+        run: node scripts/generate-recipe-images.js --ids "${{ steps.mode.outputs.post_id }}" --video --vision-fal
         env:
           FAL_KEY: ${{ secrets.FAL_KEY }}
         continue-on-error: true

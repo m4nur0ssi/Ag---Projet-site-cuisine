@@ -903,10 +903,13 @@ function framesDeLaVideo(id, dossier) {
      * début passent donc en tête. Quand la vidéo commence sur des ingrédients
      * crus ou un visage, la vision répond NONE et on retombe sur la fin.
      */
+    // On lit les 4 PREMIÈRES et les 4 DERNIÈRES secondes de la vidéo : le plat fini
+    // apparaît presque toujours dans l'une des deux. Le début passe en tête (souvent
+    // un plan du plat dès l'ouverture) ; sinon la vision répond NONE et on prend la fin.
     const temps = [
-        0.4, 1.3, 2.4, 3.6,
-        Math.max(0, dur - 0.3), dur * 0.96, dur * 0.90, dur * 0.83, dur * 0.72, dur * 0.55,
-    ].filter((t) => t < dur);
+        0.4, 1.4, 2.4, 3.4,                                  // 4 premières secondes
+        Math.max(0, dur - 0.3), dur - 1.3, dur - 2.3, dur - 3.3, // 4 dernières secondes
+    ].filter((t) => t >= 0 && t < dur);
     const frames = [];
     temps.forEach((t, i) => {
         const out = path.join(dossier, `f${i}.jpg`);
