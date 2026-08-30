@@ -2,11 +2,151 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 30/08/2026 08:40:26
- * Total: 663 recettes
+ * Dernière mise à jour: 30/08/2026 13:01:15
+ * Total: 665 recettes
  */
-export const exportSyncId = "1788079226312";
+export const exportSyncId = "1788094875337";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7400",
+        "title": "Cheesecake sans cuisson au chocolat blanc et framboises",
+        "description": "C'est l'un de mes cheesecakes préférés de tous les temps !",
+        "image": "/recipes-ia/7400-carte.webp",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7667242830426803478\" data-video-id=\"7667242830426803478\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7667242830426803478\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             350g de biscuits sablés"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de beurre salé ou non salé, fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             350ml de crème double (crème entière liquide), froide"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             250g de chocolat blanc, fondu et légèrement refroidi"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de fromage frais (type Philadelphia), à température ambiante"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             120g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n             250g de framboises fraîches"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             170g de chocolat blanc (pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             90ml de crème double (crème entière liquide, pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n             Framboises fraîches (environ 200g, pour la décoration)"
+            },
+            {
+                "quantity": "",
+                "name": "🍇\n             Framboises lyophilisées (pour la décoration)"
+            }
+        ],
+        "steps": [
+            "Pour la base : Écraser les biscuits sablés en miettes fines. Mélanger les miettes de biscuits avec le beurre fondu jusqu'à ce que tout soit bien combiné.",
+            "Presser fermement le mélange de biscuits au fond d'un moule à charnière de 20 cm (8 pouces). Placer au réfrigérateur pendant que vous préparez la garniture.",
+            "Pour la garniture au cheesecake : Dans un grand bol, fouetter la crème double froide jusqu'à obtenir des pics fermes. Réserver.",
+            "Dans un autre grand bol, battre le fromage frais (à température ambiante) avec le sucre glace jusqu'à obtenir une consistance lisse et homogène.",
+            "Incorporer délicatement le chocolat blanc fondu et légèrement refroidi au mélange de fromage frais.",
+            "Ajouter ensuite la crème fouettée au mélange de fromage frais et chocolat blanc, en pliant doucement jusqu'à ce que tout soit bien incorporé.",
+            "Incorporer les 250g de framboises fraîches à la garniture.",
+            "Verser la garniture sur la base de biscuits refroidie et lisser le dessus avec une spatule.",
+            "Réfrigérer le cheesecake pendant au moins 4 à 6 heures, ou idéalement toute une nuit, pour qu'il prenne bien.",
+            "Pour le topping : Faire fondre les 170g de chocolat blanc avec les 90ml de crème double au micro-ondes ou au bain-marie. Mélanger jusqu'à obtenir une ganache lisse. Laisser refroidir légèrement.",
+            "Une fois le cheesecake bien pris, verser la ganache refroidie sur le dessus.",
+            "Décorer avec des framboises fraîches (environ 200g) et des framboises lyophilisées avant de servir. Démouler délicatement le cheesecake."
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie",
+            "USA",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7398",
+        "title": "Cookie chaud et glace",
+        "description": "Une recette simple pour préparer un cookie moelleux et chocolaté, à servir chaud sur de la glace à la vanille. Le résultat est un mélange chaud, moelleux, chocolaté et légèrement croquant sur la glace froide.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7676544218990497046\" data-video-id=\"7676544218990497046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7676544218990497046\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             150 g de beurre ramolli"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1,5 dl de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1,5 dl de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             4 dl de farine de blé"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat noir concassé"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180°C.",
+            "Fouetter le beurre ramolli, le sucre en poudre et la cassonade jusqu'à obtenir une consistance crémeuse.",
+            "Ajouter l'œuf et mélanger.",
+            "Mélanger la farine de blé et la levure chimique, puis incorporer au mélange.",
+            "Incorporer le chocolat concassé.",
+            "Rouler la pâte en petites boules et les disposer serrées dans un petit plat allant au four, sans papier sulfurisé.",
+            "Cuire au four pendant environ 15 à 18 minutes, jusqu'à ce que les cookies aient fondu ensemble et aient une surface dorée, mais soient encore moelleux au centre.",
+            "Laisser reposer quelques minutes, puis servir le cookie chaud et moelleux sur de la glace à la vanille."
+        ],
+        "tags": [
+            "Les Glaces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7395",
         "title": "Pancakes aux Fraises",
