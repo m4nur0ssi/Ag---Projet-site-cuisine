@@ -2,11 +2,68 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 31/08/2026 09:34:44
- * Total: 665 recettes
+ * Dernière mise à jour: 31/08/2026 16:45:41
+ * Total: 666 recettes
  */
-export const exportSyncId = "1788168884548";
+export const exportSyncId = "1788194741651";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7402",
+        "title": "Chèvre rôti au miel",
+        "description": "Découvrez une recette gourmande et facile de bûchettes de chèvre rôties au four, enroulées dans du speck, nappées de miel et de vin blanc, puis relevées d'une touche de piment d'Espelette. Idéal pour un apéritif ou une entrée.",
+        "image": "/recipes-ia/7402-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7679910200001744160\" data-video-id=\"7679910200001744160\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7679910200001744160\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             10 bûchettes de chèvre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10 tranches de speck"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl de vin blanc sec"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four.",
+            "Envelopper chaque bûchette de chèvre dans une tranche de speck.",
+            "Disposer les bûchettes sur une plaque de cuisson.",
+            "Arroser de miel et de vin blanc sec.",
+            "Assaisonner de piment d'Espelette, de poivre et d'un filet d'huile d'olive.",
+            "Faire rôtir au four jusqu'à ce que le chèvre soit doré et fondant."
+        ],
+        "tags": [
+            "Apéritifs",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7400",
         "title": "Cheesecake sans cuisson au chocolat blanc et framboises",
