@@ -14,7 +14,8 @@
     "start": "next start",
     "lint": "next lint",
     "sync-recipes": "node sync-recipes.js",
-    "build:home-data": "node scripts/build-home-data.js"
+    "build:home-data": "node scripts/build-home-data.js",
+    "photos:push": "bash scripts/pousser-photos.sh"
   },
   "dependencies": {
     "@notionhq/client": "^5.9.0",
