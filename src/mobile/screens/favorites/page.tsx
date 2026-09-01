@@ -7,7 +7,13 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import BottomNav from '@/mobile/components/BottomNav/BottomNav';
-import { mockRecipes } from '@/mobile/data/mockData';
+/*
+ * Le catalogue ALLÉGÉ : on ne fait ici que retrouver des recettes par
+ * identifiant et les afficher en cartes. Cette page est PRÉCHARGÉE par la barre
+ * du bas — lui faire tirer le catalogue complet, c'était 1,5 Mo de JavaScript
+ * téléchargés en fond sur un écran qu'on n'ouvrira peut-être jamais.
+ */
+import { homeRecipes as mockRecipes } from '@/mobile/data/home-recipes';
 import { Recipe } from '@/mobile/types';
 import { pullFavorites, pruneOrphanFavorites } from '@/mobile/lib/favorites';
 import { precacheFavorites } from '@/lib/pwa';

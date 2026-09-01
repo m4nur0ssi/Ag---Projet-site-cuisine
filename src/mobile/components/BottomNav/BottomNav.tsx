@@ -10,7 +10,18 @@ import Portal from '../Portal';
 // Recherche « Apple TV+ » (la même que le menu), en remplacement de l'ancien
 // SpotlightSearch : la loupe de la barre du bas ouvre désormais ce panneau stylé.
 const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
-import { mockRecipes } from '@/mobile/data/mockData';
+/*
+ * Le catalogue ALLÉGÉ, pas le complet.
+ *
+ * `mockData` pèse 1,5 Mo de JavaScript à analyser ; ce module-ci en fait 0,5 et
+ * porte tout ce qu'une carte demande. Les trois quarts manquants — étapes,
+ * ingrédients, HTML d'embed — ne servent qu'une fois une fiche ouverte, et
+ * c'est la feuille qui va les chercher elle-même.
+ *
+ * Ce composant est monté à CHAQUE page : importer le catalogue entier ici
+ * annulait l'allègement de l'accueil, qui téléchargeait alors les deux.
+ */
+import { homeRecipes as mockRecipes } from '@/mobile/data/home-recipes';
 import { useTimer } from '@/mobile/components/Timer/TimerContext';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { supabase } from '@/mobile/lib/supabase';
@@ -109,9 +120,35 @@ export default function BottomNav() {
     const dockRef = useRef<HTMLDivElement>(null);
     const autoCloseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Prefetch des routes de la barre → navigation plus rapide (charge les chunks à l'avance)
+    /*
+     * Préchargement des routes de la barre — mais PAS pendant le démarrage.
+     *
+     * L'intention est bonne : toucher « Favoris » doit ouvrir tout de suite.
+     * Sauf que ce préchargement partait à la seconde où la barre se montait, et
+     * `/favorites` tire à lui seul le catalogue complet — 267 ko compressés,
+     * 1,5 Mo à analyser — en concurrence directe avec l'accueil qu'on est en
+     * train d'attendre. On payait l'écran suivant avant d'avoir fini le premier.
+     *
+     * On attend donc que le navigateur n'ait plus rien d'urgent. La navigation
+     * reste préchargée, elle l'est juste une seconde plus tard.
+     */
     useEffect(() => {
-        ['/favorites', '/tv-courses', '/tv-planner', '/'].forEach(p => { try { router.prefetch(p); } catch { /* noop */ } });
+        const lancer = () => {
+            ['/favorites', '/tv-courses', '/tv-planner', '/'].forEach((p) => {
+                try { router.prefetch(p); } catch { /* noop */ }
+            });
+        };
+        const w = window as unknown as {
+            requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number;
+            cancelIdleCallback?: (id: number) => void;
+        };
+        if (typeof w.requestIdleCallback === 'function') {
+            const id = w.requestIdleCallback(lancer, { timeout: 5000 });
+            return () => { try { w.cancelIdleCallback?.(id); } catch { /* noop */ } };
+        }
+        // Safari d'avant 16.4 n'a pas ce rendez-vous : un délai fait l'affaire.
+        const t = setTimeout(lancer, 2500);
+        return () => clearTimeout(t);
     }, [router]);
 
     // Favoris + Liste + Menu réservés aux connectés : déconnecté = Accueil + Recherche seulement.

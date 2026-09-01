@@ -1,6 +1,13 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { mockRecipes } from '@/data/mockData'
+/*
+ * Le catalogue ALLÉGÉ, pour un seul nombre.
+ *
+ * Cette page n'affiche de lui que `length`, dans l'écran d'attente. Importer le
+ * catalogue complet — 1,5 Mo de JavaScript — pour compter ses éléments est le
+ * plus mauvais rapport de tout le projet.
+ */
+import { homeRecipes as mockRecipes } from '@/mobile/data/home-recipes'
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://lesrecettesmagiques.fr'),

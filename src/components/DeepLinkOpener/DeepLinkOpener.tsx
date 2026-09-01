@@ -1,6 +1,5 @@
 'use client';
 import { useEffect } from 'react';
-import { mockRecipes } from '@/data/mockData';
 
 /**
  * Ouvre la fiche IDENTIQUE à l'app quand on arrive via un lien partagé
@@ -15,6 +14,8 @@ export default function DeepLinkOpener() {
         let id: string | null = null;
         try { id = new URLSearchParams(window.location.search).get('fiche'); } catch { return; }
         if (!id) return;
+        let annule = false;
+        let minuteur: ReturnType<typeof setInterval> | null = null;
 
         // On arrive par un lien recette (ex. Pasta Lya) → pas d'intro d'accueil.
         // Posé tout de suite : les splash (dont le mobile, en import dynamique)
@@ -24,8 +25,21 @@ export default function DeepLinkOpener() {
             sessionStorage.setItem('hasSeenMagicSplash-v8', 'true');
         } catch { /* */ }
 
-        const recipe = mockRecipes.find(r => String(r.id) === String(id));
-        if (!recipe) return;
+        /*
+         * Le catalogue n'est chargé QU'ICI, une fois qu'on sait qu'il y a un
+         * lien à ouvrir.
+         *
+         * Ce composant est monté à chaque page, et son import en tête tirait
+         * 1,5 Mo de JavaScript au démarrage — pour une fonction qui ne sert
+         * qu'aux visiteurs arrivant par un lien partagé, c'est-à-dire presque
+         * jamais. On paie donc le catalogue seulement quand il faut vraiment.
+         */
+        import('@/data/mockData').then(({ mockRecipes }) => {
+            if (annule) return;
+            const recipe = mockRecipes.find((r) => String(r.id) === String(id));
+            if (!recipe) return;
+            ouvrir(recipe);
+        });
 
         /*
          * On attend que l'hôte de la fiche écoute VRAIMENT avant d'émettre.
@@ -35,24 +49,30 @@ export default function DeepLinkOpener() {
          * retombait sur l'accueil. Ici on sonde jusqu'à 10 s, puis on émet
          * quand même (sur desktop l'hôte est chargé d'emblée : premier tour).
          */
-        let tries = 0;
-        const fire = () => {
-            window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: recipe }));
-            // Nettoie l'URL → un refresh ou un partage de la home ne rouvre pas la fiche.
-            try {
-                const u = new URL(window.location.href);
-                u.searchParams.delete('fiche');
-                window.history.replaceState({}, '', u.pathname + u.search + u.hash);
-            } catch { /* */ }
+        function ouvrir(recipe: any) {
+            let tries = 0;
+            const fire = () => {
+                window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: recipe }));
+                // Nettoie l'URL → un refresh ou un partage de la home ne rouvre pas la fiche.
+                try {
+                    const u = new URL(window.location.href);
+                    u.searchParams.delete('fiche');
+                    window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+                } catch { /* */ }
+            };
+            minuteur = setInterval(() => {
+                const ready = (window as unknown as { __recipeSheetReady?: boolean }).__recipeSheetReady;
+                if (ready || ++tries > 100) {
+                    if (minuteur) clearInterval(minuteur);
+                    fire();
+                }
+            }, 100);
+        }
+
+        return () => {
+            annule = true;
+            if (minuteur) clearInterval(minuteur);
         };
-        const timer = setInterval(() => {
-            const ready = (window as unknown as { __recipeSheetReady?: boolean }).__recipeSheetReady;
-            if (ready || ++tries > 100) {
-                clearInterval(timer);
-                fire();
-            }
-        }, 100);
-        return () => clearInterval(timer);
     }, []);
     return null;
 }

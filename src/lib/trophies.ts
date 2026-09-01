@@ -1,5 +1,13 @@
 // Trophées — calcul partagé (page Palmarès + révélation globale).
-import { mockRecipes } from '@/mobile/data/mockData';
+/*
+ * Le catalogue ALLÉGÉ.
+ *
+ * On ne lit ici que les `tags` des recettes cuisinées, et le module léger les
+ * porte. Le complet pèse 1,5 Mo de JavaScript à analyser — or le guetteur de
+ * trophées est monté à CHAQUE page : il faisait à lui seul télécharger tout le
+ * catalogue au démarrage, en plus des données de l'accueil.
+ */
+import { homeRecipes as mockRecipes } from '@/mobile/data/home-recipes';
 
 export const TROPHY_SEEN_KEY = 'trophies-seen-v1';
 const COUNTRY_TAGS = ['france', 'italie', 'espagne', 'grece', 'liban', 'usa', 'mexique', 'orient', 'asie', 'afrique'];

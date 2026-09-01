@@ -8,7 +8,16 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 
 // ── Chrome desktop (site actuel) ──
 import { TimerProvider } from '@/components/Timer/TimerContext';
-import GlobalRecipeSheet from '@/components/GlobalRecipeSheet/GlobalRecipeSheet';
+/*
+ * La feuille de BUREAU en import différé, comme celle du téléphone.
+ *
+ * Importée en tête, elle entrait dans le paquet de cette coquille — qui est
+ * chargée sur TOUTES les pages, téléphone compris. Or elle tire le catalogue
+ * complet : 1,5 Mo de JavaScript à télécharger et à analyser au démarrage d'un
+ * mobile qui ne l'affichera jamais. Elle n'est rendue que dans la branche
+ * bureau ; elle n'a donc aucune raison d'être là avant.
+ */
+const GlobalRecipeSheet = dynamic(() => import('@/components/GlobalRecipeSheet/GlobalRecipeSheet'), { ssr: false });
 import DeepLinkOpener from '@/components/DeepLinkOpener/DeepLinkOpener';
 
 // ── Chrome mobile (app embarquée) ──

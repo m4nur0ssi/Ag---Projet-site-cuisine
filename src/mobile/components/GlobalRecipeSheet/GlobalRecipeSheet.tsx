@@ -1,7 +1,18 @@
 'use client';
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { mockRecipes } from '@/mobile/data/mockData';
+/*
+ * Le catalogue ALLÉGÉ, pas le complet.
+ *
+ * `mockData` pèse 1,5 Mo de JavaScript à analyser ; ce module-ci en fait 0,5 et
+ * porte tout ce qu'une carte demande. Les trois quarts manquants — étapes,
+ * ingrédients, HTML d'embed — ne servent qu'une fois une fiche ouverte, et
+ * c'est la feuille qui va les chercher elle-même.
+ *
+ * Ce composant est monté à CHAQUE page : importer le catalogue entier ici
+ * annulait l'allègement de l'accueil, qui téléchargeait alors les deux.
+ */
+import { homeRecipes as mockRecipes } from '@/mobile/data/home-recipes';
 
 const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
 
