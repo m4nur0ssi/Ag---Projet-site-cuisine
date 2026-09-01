@@ -13,11 +13,11 @@ export default function SplashScreen() {
 
     useEffect(() => {
         // Lien entrant profond (ex. depuis Pasta Lya) : `?fiche` ouvre une
-        // recette, `?q` une recherche pré-remplie. Dans les deux cas on arrive
-        // sur le contenu demandé, pas sur l'intro.
+        // recette, `?q` / `?ingredients` une recherche pré-remplie. Dans tous
+        // les cas on arrive sur le contenu demandé, pas sur l'intro.
         try {
             const sp = new URLSearchParams(window.location.search);
-            if (sp.has('fiche') || sp.has('q')) {
+            if (sp.has('fiche') || sp.has('q') || sp.has('ingredients')) {
                 sessionStorage.setItem('hasSeenMagicSplash-v5', 'true');
                 return;
             }

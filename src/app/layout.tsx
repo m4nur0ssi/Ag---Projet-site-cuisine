@@ -130,7 +130,7 @@ export default function RootLayout({
                                     if (window.__isMobile) {
                                         var KEY = 'hasSeenMagicSplash-v8';
                                         var sp = new URLSearchParams(window.location.search);
-                                        if (sp.has('fiche') || sp.has('q')) {
+                                        if (sp.has('fiche') || sp.has('q') || sp.has('ingredients')) {
                                             sessionStorage.setItem(KEY, 'true');
                                         } else if (!sessionStorage.getItem(KEY)) {
                                             document.documentElement.classList.add('is-splashing');
