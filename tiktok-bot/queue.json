@@ -1,10 +1,13 @@
 {
-  "queue": [
+  "queue": [],
+  "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN8FcaP8F/",
       "country": "Apéritifs",
-      "timestamp": "2026-09-01T13:05:07.910Z"
+      "timestamp": "2026-09-01T13:05:07.910Z",
+      "essais": 1,
+      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
+      "quand": "2026-09-01T13:06:26.238Z"
     }
-  ],
-  "echecs": []
+  ]
 }
