@@ -1728,6 +1728,12 @@ export default function TVHome() {
     const [filters, setFilters] = useState<string[]>([]);
     const [navQuery, setNavQuery] = useState('');
     const [searchOpen, setSearchOpen] = useState(false);
+    /*
+     * Recherche amorcée par un lien extérieur (« /?q=… », « /?ingredients=… »,
+     * « /?italien=1 ») : la recherche s'ouvre déjà remplie. Liens partagés,
+     * newsletters, sites partenaires — tous visent l'accueil.
+     */
+    const [seed, setSeed] = useState<{ q: string; ing: string; italien: boolean } | null>(null);
     const [tutoOpen, setTutoOpen] = useState(false);
     const [laterIds, setLaterIds] = useState<string[]>([]);
     const [favIds, setFavIds] = useState<string[]>([]);
@@ -1918,6 +1924,33 @@ export default function TVHome() {
             window.history.replaceState({}, '', u.pathname + u.search + u.hash);
         } catch { /* noop */ }
     }, [openAll]);
+
+    /*
+     * Lien de recherche externe : /?q=parmesan, /?ingredients=parmesan,pesto
+     * (+ &italien=1 pour rester en cuisine italienne). On ouvre la recherche
+     * pré-remplie, puis on nettoie l'URL.
+     */
+    useEffect(() => {
+        let sp: URLSearchParams;
+        try { sp = new URLSearchParams(window.location.search); } catch { return; }
+        const q = (sp.get('q') || '').trim();
+        const ing = (sp.get('ingredients') || '').trim();
+        if (!q && !ing) return;
+        setSeed({ q, ing, italien: sp.get('italien') === '1' });
+        setSearchOpen(true);
+        try {
+            const u = new URL(window.location.href);
+            // `pastalya` : marqueur de provenance d'un partenaire, retiré comme le reste.
+            ['q', 'ingredients', 'italien', 'pastalya'].forEach((k) => u.searchParams.delete(k));
+            window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+        } catch { /* noop */ }
+    }, []);
+
+    // Pool restreint à l'Italie quand le lien le demande.
+    const seedFilter = useMemo(
+        () => (seed?.italien ? (r: Recipe) => (r.tags || []).some((t: string) => /italie|dolce/i.test(t)) : undefined),
+        [seed?.italien]
+    );
 
     // Ouvre la fiche ET ses voisines de la même rangée : swipe horizontal dans le
     // sheet pour parcourir la catégorie sans revenir à l'accueil.
@@ -2317,6 +2350,9 @@ export default function TVHome() {
                 open={searchOpen}
                 onClose={() => setSearchOpen(false)}
                 onRecipeSelect={(r) => openSheet([r], 0)}
+                initialQuery={seed?.q}
+                initialIngredients={seed?.ing}
+                filter={seedFilter}
             />
 
             <Tip id="accueil" />

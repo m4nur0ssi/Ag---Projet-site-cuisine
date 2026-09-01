@@ -63,6 +63,19 @@ interface TVSpotlightProps {
     /** Démarre la dictée vocale automatiquement à l'ouverture (raccourci loupe). */
     autoVoice?: boolean;
     /**
+     * Recherche pré-remplie par un lien externe (« /?q=parmesan ») : on arrive
+     * avec le champ déjà rempli et les résultats affichés, pas sur une page
+     * vide. Lien partagé, newsletter, ou site partenaire qui envoie l'ingrédient
+     * de sa fiche produit.
+     */
+    initialQuery?: string;
+    /**
+     * Ingrédients pré-cochés (« /?ingredients=parmesan,jambon cru »), séparés par
+     * des virgules. Ouvre directement le mode « avec mes ingrédients », une puce
+     * par ingrédient — un panier de courses devient une recherche.
+     */
+    initialIngredients?: string;
+    /**
      * `embedded` : rendu DANS le shell desktop TV+ (panneau, menu à gauche) au
      * lieu du calque plein écran. Plus de bouton « Terminé », plus de fond
      * verre, un en-tête titre + sous-titre — le moule des autres panneaux.
@@ -107,7 +120,7 @@ function motsInterdits(mot: string): string[] {
     return [m];
 }
 
-export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, embedded = false }: TVSpotlightProps) {
+export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hint, initialMode, autoVoice, initialQuery, initialIngredients, embedded = false }: TVSpotlightProps) {
     const [query, setQuery] = useState('');
     const [mode, setMode] = useState<Mode>('recipe');
     const [ingTags, setIngTags] = useState<string[]>([]);
@@ -368,6 +381,34 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         try { recognitionRef.current?.stop(); } catch {}
         setIsListening(false);
     }, [open, embedded, initialMode, autoVoice]);
+
+    /*
+     * Amorce venue de l'URL (lien externe). Elle s'applique UNE fois par
+     * valeur reçue : ensuite l'écran appartient au visiteur, une frappe ne doit
+     * jamais être écrasée par un effet qui repasse. Plusieurs ingrédients →
+     * mode « ingrédients » (une puce chacun) ; un seul mot → recherche par nom.
+     */
+    const seedRef = useRef<string | null>(null);
+    useEffect(() => {
+        if (!open && !embedded) return;
+        const ings = (initialIngredients || '')
+            .split(/\s*[,;]\s*/)
+            .map((t) => t.trim().toLowerCase())
+            .filter(Boolean);
+        const q = (initialQuery || '').trim();
+        if (!q && !ings.length) return;
+        const seed = `${q}|${ings.join(',')}`;
+        if (seedRef.current === seed) return;
+        seedRef.current = seed;
+        if (ings.length) {
+            setMode('ingredients');
+            setIngTags(ings);
+            setIngInput('');
+        } else {
+            setMode('recipe');
+            setQuery(q);
+        }
+    }, [open, embedded, initialQuery, initialIngredients]);
 
     // Une ligne de résultat (image + drapeau + titre + méta).
     const ResultItem = ({ recipe, meta, note }: { recipe: Recipe; meta: string; note?: string }) => {

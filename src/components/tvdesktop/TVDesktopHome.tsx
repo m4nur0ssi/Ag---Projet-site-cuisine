@@ -607,6 +607,13 @@ export default function TVDesktopHome() {
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
     const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris' | 'search' | 'tuto' | 'gouts' | 'extension'>('none');
+    /*
+     * Recherche amorcée par un lien extérieur (« /?q=… », « /?ingredients=… »,
+     * « /?italien=1 ») : le panneau Rechercher s'ouvre pré-rempli. Sert aux liens
+     * partagés, aux newsletters et aux sites partenaires (une épicerie envoie
+     * l'ingrédient de sa fiche produit). C'est l'accueil qui reçoit ces liens.
+     */
+    const [seed, setSeed] = useState<{ q: string; ing: string; italien: boolean } | null>(null);
 
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
     const [forYou, setForYou] = useState<Recipe[]>([]);
@@ -768,6 +775,35 @@ export default function TVDesktopHome() {
             window.history.replaceState({}, '', u.pathname + u.search + u.hash);
         } catch { /* noop */ }
     }, [openCollection]);
+
+    /*
+     * Lien de recherche externe : /?q=parmesan, /?ingredients=parmesan,pesto,
+     * avec &italien=1 pour ne proposer que la cuisine italienne. On ouvre le
+     * panneau Rechercher pré-rempli, puis on nettoie l'URL — un rafraîchissement
+     * ne doit pas rejouer la recherche de quelqu'un d'autre.
+     */
+    useEffect(() => {
+        let sp: URLSearchParams;
+        try { sp = new URLSearchParams(window.location.search); } catch { return; }
+        const q = (sp.get('q') || '').trim();
+        const ing = (sp.get('ingredients') || '').trim();
+        if (!q && !ing) return;
+        setSeed({ q, ing, italien: sp.get('italien') === '1' });
+        setPanel('search');
+        try {
+            const u = new URL(window.location.href);
+            // `pastalya` : marqueur de provenance d'un partenaire, retiré comme le reste.
+            ['q', 'ingredients', 'italien', 'pastalya'].forEach((k) => u.searchParams.delete(k));
+            window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+        } catch { /* noop */ }
+    }, []);
+
+    // Pool restreint à l'Italie quand le lien le demande : une épicerie italienne
+    // n'envoie pas ses clients sur un chorizo espagnol.
+    const seedFilter = useMemo(
+        () => (seed?.italien ? (r: Recipe) => (r.tags || []).some((t: string) => /italie|dolce/i.test(t)) : undefined),
+        [seed?.italien]
+    );
 
     // Tendances (thèmes du feed) et Pays — mêmes listes que le volet mobile, pour
     // que la barre latérale desktop propose exactement la même navigation.
@@ -1038,6 +1074,9 @@ export default function TVDesktopHome() {
                                             open
                                             onClose={() => setPanel('none')}
                                             onRecipeSelect={(r) => openRecipe(r)}
+                                            initialQuery={seed?.q}
+                                            initialIngredients={seed?.ing}
+                                            filter={seedFilter}
                                         />
                                     )
                                         : <TVCourses embedded />}
