@@ -26,9 +26,17 @@ export default function DeepLinkOpener() {
 
         const recipe = mockRecipes.find(r => String(r.id) === String(id));
         if (!recipe) return;
-        // Le splash est court-circuité quand `?fiche` est présent : on laisse
-        // juste la home se monter, puis on ouvre la fiche flottante.
-        const t = setTimeout(() => {
+
+        /*
+         * On attend que l'hôte de la fiche écoute VRAIMENT avant d'émettre.
+         * Un délai fixe ne suffisait pas : sur mobile l'hôte arrive en import
+         * dynamique, et sur un téléphone en 4G son morceau de code met souvent
+         * plus d'une demi-seconde — l'event partait dans le vide et le lien
+         * retombait sur l'accueil. Ici on sonde jusqu'à 10 s, puis on émet
+         * quand même (sur desktop l'hôte est chargé d'emblée : premier tour).
+         */
+        let tries = 0;
+        const fire = () => {
             window.dispatchEvent(new CustomEvent('openRecipeFromPlanner', { detail: recipe }));
             // Nettoie l'URL → un refresh ou un partage de la home ne rouvre pas la fiche.
             try {
@@ -36,8 +44,15 @@ export default function DeepLinkOpener() {
                 u.searchParams.delete('fiche');
                 window.history.replaceState({}, '', u.pathname + u.search + u.hash);
             } catch { /* */ }
-        }, 550);
-        return () => clearTimeout(t);
+        };
+        const timer = setInterval(() => {
+            const ready = (window as unknown as { __recipeSheetReady?: boolean }).__recipeSheetReady;
+            if (ready || ++tries > 100) {
+                clearInterval(timer);
+                fire();
+            }
+        }, 100);
+        return () => clearInterval(timer);
     }, []);
     return null;
 }

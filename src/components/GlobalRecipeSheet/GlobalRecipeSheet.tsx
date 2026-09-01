@@ -21,7 +21,14 @@ export default function GlobalRecipeSheet() {
             setRecipe({ category: 'plats', steps: [], ingredients: [], tags: [], ...base });
         };
         window.addEventListener('openRecipeFromPlanner', open);
-        return () => window.removeEventListener('openRecipeFromPlanner', open);
+        // Signale qu'un hôte écoute : un lien entrant (`/?fiche=…`) attend ce
+        // drapeau avant d'émettre. Sur mobile cet hôte arrive en import
+        // dynamique, souvent APRÈS le lien — l'event partait dans le vide.
+        (window as unknown as { __recipeSheetReady?: boolean }).__recipeSheetReady = true;
+        return () => {
+            window.removeEventListener('openRecipeFromPlanner', open);
+            (window as unknown as { __recipeSheetReady?: boolean }).__recipeSheetReady = false;
+        };
     }, []);
 
     if (!recipe) return null;
