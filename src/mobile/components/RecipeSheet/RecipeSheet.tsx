@@ -7,6 +7,7 @@ import Portal from '@/mobile/components/Portal';
 import styles from './RecipeSheet.module.css';
 import RecipeDetails from '@/mobile/components/RecipeDetails/RecipeDetails';
 import { demarrerDiagnosticAnimations } from '@/mobile/lib/diag-animations';
+import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-embed';
 
 interface RecipeSheetProps {
     recipe: Recipe;
@@ -28,7 +29,27 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
     const [recipes, setRecipes] = useState(baseRecipes);
     const [currentIdx, setCurrentIdx] = useState(recipeIndex);
     // Resync quand on ouvre une nouvelle fiche (props changent).
-    useEffect(() => { setRecipes(baseRecipes); }, [baseRecipes]);
+    useEffect(() => { setRecipes(baseRecipes.map(completer)); }, [baseRecipes]);
+
+    /*
+     * Rendre à la recette ses étapes, ses ingrédients et sa VIDÉO.
+     *
+     * L'accueil ne transporte plus ces trois-là — ils pèsent les trois quarts du
+     * catalogue et ne servent qu'ici. Ils reviennent d'un module chargé à part.
+     * C'était à l'appelant de les recoller, et un seul le faisait : la fiche
+     * ouverte depuis le planificateur, la recherche, les favoris ou la barre du
+     * bas arrivait sans `videoHtml`, donc SANS L'ONGLET VIDÉO.
+     *
+     * On le fait donc ici, une bonne fois : plus personne ne peut l'oublier.
+     */
+    useEffect(() => {
+        if (!isOpen || detailsPrets()) return;
+        let vivant = true;
+        chargerVideos().then(() => {
+            if (vivant) setRecipes((liste) => liste.map(completer));
+        });
+        return () => { vivant = false; };
+    }, [isOpen, baseRecipes]);
     const [shouldRender, setShouldRender] = useState(isOpen);
     /**
      * Les recettes déjà construites, par identifiant.
