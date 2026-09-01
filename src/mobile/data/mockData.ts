@@ -149,7 +149,7 @@ export const mockRecipes: Recipe[] = [
         "id": "7398",
         "title": "Cookie chaud et glace",
         "description": "Une recette simple pour préparer un cookie moelleux et chocolaté, à servir chaud sur de la glace à la vanille. Le résultat est un mélange chaud, moelleux, chocolaté et légèrement croquant sur la glace froide.",
-        "image": "/images/recipe-placeholder.svg",
+        "image": "/recipes-ia/7398-carte.webp",
         "category": "glaces",
         "difficulty": "moyen",
         "prepTime": 15,
