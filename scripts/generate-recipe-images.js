@@ -289,6 +289,17 @@ function formeDuTitre(titre) {
  */
 const SCENES_SPECIALES = [
     /*
+     * Chèvre rôti au miel : la vision a vu du rose (le speck) et du jaune (le
+     * fromage fondu) et en a fait un gratin de pommes de terre au lard. Ce sont
+     * des bûchettes ENTIÈRES, chacune roulée dans sa tranche, posées côte à côte.
+     */
+    [/ch[èe]vre r[ôo]ti au miel/i,
+     'a baking dish of {T}: ten individual goat cheese logs, each one wrapped in a single slice of speck, '
+     + 'lined up side by side, the cheese softened and golden at the edges, glossy honey drizzled over them '
+     + 'and pooling in the dish, a dusting of red Espelette pepper, sprigs of thyme — whole wrapped logs, '
+     + 'never a gratin, never sliced potatoes',
+     { sansIngredients: true }],
+    /*
      * Trois plats que la vision de la vidéo a mal lus (le vert des pâtes pris
      * pour une salade, les pois chiches rôtis pour des croûtons, le beurre pour
      * la viande qu'il accompagne). Leur scène est donc écrite à la main, et on
