@@ -15,6 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { THEMES } from './themes';
 import { MAIL_RECETTE } from '@/lib/mail-recette';
 import styles from './tv.module.css';
+import InstallerApp from '@/components/InstallerApp/InstallerApp';
 
 // Compte : déplacé du héros vers ici, à droite du titre.
 const AuthButton = dynamic(() => import('@/mobile/components/AuthButton/AuthButton'), { ssr: false });
@@ -360,6 +361,20 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                     <Ic d="M4 6.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zM3.4 7.4 12 13l8.6-5.6" />
                                     <span className={styles.navRowText}>Ajouter une recette</span>
                                 </a>
+                                {/* L'invite de l'écran d'ouverture ne se voit qu'au
+                                    lancement, et cet écran ne s'affiche qu'une fois par
+                                    session : impossible d'y revenir. Ici, elle est
+                                    toujours retrouvable. Elle disparaît d'elle-même
+                                    quand l'app est déjà installée — il n'y a alors plus
+                                    rien à proposer. */}
+                                <InstallerApp
+                                    classeDeclencheur={styles.navRow}
+                                    avantOuverture={onClose}
+                                    contenuDeclencheur={<>
+                                        <Ic d="M12 3v11m-4-4 4 4 4-4M5 17v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2" />
+                                        <span className={styles.navRowText}>Installer l’application</span>
+                                    </>}
+                                />
                                 {/* Visite guidée DE L'APP MOBILE : celle du site desktop
                                     (components/Tutorial) décrivait des écrans qui
                                     n'existent plus ici. */}

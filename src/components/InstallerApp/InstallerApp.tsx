@@ -18,7 +18,7 @@
  * quelqu'un qui est justement en train d'utiliser l'app installée est absurde.
  */
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './InstallerApp.module.css';
 
 interface InviteInstallation extends Event {
@@ -49,7 +49,20 @@ const Menu = () => (
     </svg>
 );
 
-export default function InstallerApp() {
+/**
+ * Le déclencheur est habillable par l'appelant : lien discret sous les boutons
+ * de l'écran d'ouverture, ou ligne du menu latéral. Une seule invite, un seul
+ * panneau — sinon les deux textes divergent au premier changement.
+ */
+export default function InstallerApp({
+    classeDeclencheur,
+    contenuDeclencheur,
+    avantOuverture,
+}: {
+    classeDeclencheur?: string;
+    contenuDeclencheur?: React.ReactNode;
+    avantOuverture?: () => void;
+} = {}) {
     // Rendu client uniquement : le serveur ne sait ni quel appareil, ni si l'app
     // est déjà installée. Décider trop tôt ferait clignoter l'invite.
     const [pret, setPret] = useState(false);
@@ -108,14 +121,15 @@ export default function InstallerApp() {
         <>
             <button
                 type="button"
-                className={styles.lien}
+                className={classeDeclencheur || styles.lien}
                 onClick={(e) => {
                     e.stopPropagation();
+                    avantOuverture?.();
                     if (!ios && invite) { installerAndroid(); return; }
                     setOuvert(true);
                 }}
             >
-                Installer l’application
+                {contenuDeclencheur || 'Installer l’application'}
             </button>
 
             {ouvert && (
