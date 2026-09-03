@@ -4309,3 +4309,68 @@
 }
 
 .planSideAddLite:active { color: rgba(255, 255, 255, 0.7); }
+
+/* ── En panneau de bureau : le même en-tête que la Recherche ─────────────────
+ *
+ * La colonne de lecture du mobile (`max-width` + marges automatiques) centrait
+ * le titre au milieu de la zone pendant que le sur-titre restait collé au bord
+ * — deux alignements pour un même en-tête, à 215 px l'un de l'autre. Sur
+ * grand écran, on garde la colonne pour le TEXTE, mais l'en-tête s'aligne à
+ * gauche, au même corps et au même endroit que « Recherche ».
+ */
+.extEmbedded .extHead {
+    padding-left: 4px;
+}
+
+.extEmbedded .extScroll {
+    padding-left: 4px;
+    padding-right: 40px;
+}
+
+.extEmbedded .extScroll > * {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.extEmbedded .extTitle {
+    font-size: 40px;
+    margin-bottom: 7px;
+    /* Même inclinaison que « Recherche » : à -7°, le bord de la première lettre
+       tombait quatre pixels plus à gauche et les deux titres ne s'alignaient pas. */
+    transform: skewX(-6deg);
+}
+
+/* Le détail sous le titre : même rôle que le sous-titre de la Recherche, donc
+   même police et même gris. */
+.extEmbedded .extLead {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(235, 235, 245, 0.55);
+}
+
+/* ── Panneaux de bureau : un seul en-tête pour tous ──────────────────────────
+ *
+ * Chaque panneau est d'abord un écran de téléphone, avec son propre en-tête :
+ * ouvrir « Recherche » puis « Planificateur » donnait deux titres de tailles
+ * différentes (40 px contre 27), à quarante pixels d'écart horizontal. Sur
+ * grand écran, ils partent tous du même point, au même corps.
+ */
+/* Le retrait de la page, pas seulement celui de l'en-tête : sinon le titre
+   s'aligne sur les autres panneaux mais plus sur son propre contenu. */
+.page.embedded {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+/* L'en-tête porte son propre retrait de 18 px, hérité du téléphone : il
+   décalait le titre du planificateur et de la liste par rapport aux autres. */
+.embedded .planHead {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.embedded .planTitle {
+    font-size: 40px;
+    line-height: 1;
+}

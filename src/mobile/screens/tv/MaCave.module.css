@@ -9,7 +9,8 @@
    on réserve la place de la poignée de menu du shell en haut à gauche, qui
    passait par-dessus le titre « Ma cave ». */
 .emb { min-height: 0; background: none; padding: 4px 34px 40px; }
-.emb .head { padding-left: 52px; }
+/* 52 px décalaient le titre de la cave de tous les autres panneaux du menu. */
+.emb .head { padding-left: 4px; }
 
 .head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
 .back { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 999px; border: none; background: rgba(255,255,255,.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
@@ -819,4 +820,18 @@
  */
 .addBody[hidden] {
     display: none;
+}
+
+/* En panneau de bureau, l'en-tête s'aligne sur celui de la Recherche : même
+   corps, même point de départ. Voir la note dans tv.module.css. */
+/* Le retrait de la page entière, pour que le titre s'aligne sur les autres
+   panneaux ET sur son propre contenu. */
+.page.emb {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.emb .title {
+    font-size: 40px;
+    line-height: 1;
 }

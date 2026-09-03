@@ -133,7 +133,10 @@ export default function TVTrophies({ embedded = false }: { embedded?: boolean })
             <style jsx>{`
                 .tp { min-height: 100vh; background: radial-gradient(120% 80% at 50% -8%, #1a1420 0%, rgba(8,8,11,0) 55%), #08080b; color: #fff; padding: 28px 18px 90px; max-width: 820px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
                 .tp.emb { min-height: 0; background: none; padding: 4px 4px 40px; max-width: none; }
-                .tp.emb .hd { margin-bottom: 18px; }
+                /* En panneau de bureau : même en-tête que les autres écrans du
+                   menu — même corps, même point de départ (voir tv.module.css). */
+                .tp.emb .hd { margin-bottom: 18px; padding-left: 4px; }
+                .tp.emb h1 { font-size: 40px; line-height: 1; }
                 .hd { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
                 .back { width: 40px; height: 40px; border-radius: 999px; border: none; background: rgba(255,255,255,.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; flex: 0 0 auto; }
                 .kick { font-size: 11px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: rgba(235,235,245,.5); }
