@@ -80,11 +80,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     return (
         <DeviceContext.Provider value={false}>
             <TimerProvider>
-                {/* Splash desktop (animation logo) retiré : inutile sur l'accueil TV+. */}
-                <div className="main-content-wrapper">{children}</div>
-                <GlobalRecipeSheet />
-                <TrophyWatcher />
-                <DeepLinkOpener />
+                {/* Le planificateur desktop réutilise des écrans mobiles (fiche recette
+                    flottante) qui lisent le minuteur mobile : sans ce fournisseur,
+                    ouvrir une recette depuis le planificateur cassait la page. */}
+                <MobileTimerProvider>
+                    {/* Splash desktop (animation logo) retiré : inutile sur l'accueil TV+. */}
+                    <div className="main-content-wrapper">{children}</div>
+                    <GlobalRecipeSheet />
+                    <TrophyWatcher />
+                    <DeepLinkOpener />
+                </MobileTimerProvider>
             </TimerProvider>
         </DeviceContext.Provider>
     );
