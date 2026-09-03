@@ -2103,8 +2103,16 @@
 }
 
 .focusStepCard {
-    background: white !important; /* Fond Blanc Premium pour la lecture */
-    border: none;
+    /*
+     * Carte SOMBRE, pas blanche.
+     *
+     * Le rectangle blanc au milieu d'une application noire éblouit dans une
+     * cuisine mal éclairée et casse net la continuité avec le reste. On garde
+     * le verre sombre du thème, avec un texte clair : c'est lisible de loin,
+     * les mains occupées, sans agresser.
+     */
+    background: rgba(22, 22, 24, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 40px;
     padding: 50px 40px;
     width: 100%;
@@ -2154,7 +2162,7 @@
     font-size: clamp(1.4rem, 5.5vw, 2.6rem);
     line-height: 1.3;
     font-weight: 800;
-    color: #000000 !important; /* Texte Noir Profond Apple */
+    color: #ffffff !important;
     margin: 0;
     text-wrap: balance;
     white-space: pre-wrap; /* Support multi-ligne */
@@ -2726,3 +2734,56 @@
 [data-theme='light'] .infoVotants {
     color: rgba(60, 60, 67, 0.6);
 }
+
+/* ── Fin de la préparation ───────────────────────────────────────────────────
+ *
+ * On reste dans l'écran de cuisine, sur la même carte sombre : la dernière
+ * étape s'efface, le nom du plat prend sa place. Pas d'émoticône, pas de point
+ * d'exclamation — le travail est fini, ça se dit calmement.
+ */
+.focusFinCard {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+}
+
+.focusFinKicker {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.focusFinTitre {
+    margin: 6px 0 0;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-wrap: balance;
+}
+
+.focusFinTexte {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(235, 235, 245, 0.55);
+}
+
+.focusFinBtn {
+    margin-top: 26px;
+    padding: 14px 40px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.focusFinBtn:active { background: rgba(255, 255, 255, 0.2); }

@@ -90,6 +90,14 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     // Estimation du prix des ingrédients (Lidl → Carrefour). Recalculée seulement
     // quand la recette change : elle relit et chiffre toutes ses lignes.
     const prix = useMemo(() => prixRecette(recipe), [recipe]);
+    /**
+     * La dernière étape est passée.
+     *
+     * On restait sur une `alert()` du système — un rectangle gris, une police
+     * qui n'est pas la nôtre, un point d'exclamation et une coupe de champagne.
+     * On termine dans le même écran que les étapes, et on laisse partir.
+     */
+    const [termine, setTermine] = useState(false);
     // Les chiffres de la note viennent de StarRating (il interroge Supabase) ;
     // la ligne du cadre, elle, se compose ici pour s'aligner sur les autres.
     const [note, setNote] = useState<NoteStats>({ moyenne: 0, votants: 0, mienne: 0, connecte: false });
@@ -659,10 +667,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 startTimer(minutes, shortLabel, recipe.id);
             }
         } else {
-            setFocusMode(false);
-            if (typeof window !== 'undefined') {
-                alert('Félicitations ! Recette terminée ! 🥂');
-            }
+            setTermine(true);
         }
     };
 
@@ -1606,6 +1611,26 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     </div>
 
                     <div className={styles.focusContent}>
+                        {termine ? (
+                            <motion.div
+                                className={`${styles.focusStepCard} ${styles.focusFinCard}`}
+                                initial={{ opacity: 0, scale: 0.94 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                            >
+                                <div className={styles.focusFinKicker}>Recette terminée</div>
+                                <h2 className={styles.focusFinTitre}>{decodeHtml(recipe.title)}</h2>
+                                <p className={styles.focusFinTexte}>
+                                    {recipe.steps.length} étape{recipe.steps.length > 1 ? 's passées' : ' passée'}. Bon appétit.
+                                </p>
+                                <button
+                                    className={styles.focusFinBtn}
+                                    onClick={() => { setTermine(false); setFocusMode(false); }}
+                                >
+                                    Fermer
+                                </button>
+                            </motion.div>
+                        ) : (
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeStepIndex}
@@ -1634,6 +1659,7 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 </h2>
                             </motion.div>
                         </AnimatePresence>
+                        )}
                     </div>
 
                     {/* CONTRÔLES TACTILES ET VOCAUX (HUD FLOTTANT) */}
