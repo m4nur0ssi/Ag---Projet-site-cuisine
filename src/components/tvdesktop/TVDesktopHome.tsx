@@ -24,6 +24,7 @@ import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf } from '@/mobile/sc
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
 import { startScrollReveal } from '@/lib/scrollReveal';
+import { startSectionSnap } from '@/lib/sectionSnap';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
@@ -350,7 +351,7 @@ function Row({ title, recipes, shape, shareTag, onSeeAll, onMenu, isLater, onTog
         if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' });
     };
     return (
-        <section className={styles.row} data-reveal>
+        <section className={styles.row} data-reveal data-snap>
             <div className={styles.rowHeadWrap}>
                 <button className={styles.rowHead} onClick={() => onSeeAll(title, recipes)}>
                     <h2 className={styles.rowTitle}>{title}</h2>
@@ -458,7 +459,7 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
     const go = (d: number) => setIndex((i) => (i + d + recipes.length) % recipes.length);
 
     return (
-        <div data-hero className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        <div data-hero data-snap className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
             {/* Fond cinéma : la photo courante, très floutée et assombrie, remplit
                tout le cadre — fini le pavé noir, on baigne dans la recette. */}
             <div className={styles.heroBackdrop} aria-hidden>
@@ -584,6 +585,9 @@ export default function TVDesktopHome() {
     // Révélation des rangées au défilement (voir src/lib/scrollReveal.ts).
     useEffect(() => startScrollReveal(), []);
 
+    // Colonne de contenu : c'est ELLE qui défile (le shell tient en 100 vh).
+    const contentRef = useRef<HTMLElement>(null);
+
     const router = useRouter();
     const stats = useRatingStats();
     const { user } = useAuth();
@@ -614,6 +618,20 @@ export default function TVDesktopHome() {
      * l'ingrédient de sa fiche produit). C'est l'accueil qui reçoit ces liens.
      */
     const [seed, setSeed] = useState<{ q: string; ing: string; italien: boolean } | null>(null);
+
+    /*
+     * Défilement PAR SECTION sur l'accueil (voir src/lib/sectionSnap.ts) : un cran
+     * de molette amène la rangée suivante en haut du cadre, comme si on avait
+     * cliqué son onglet. Uniquement sur l'accueil : une collection, un panneau ou
+     * une grille filtrée sont des pages qu'on parcourt normalement.
+     */
+    const accueilPlein = panel === 'none' && !collection && filters.length === 0;
+    useEffect(() => {
+        if (!accueilPlein) return;
+        const el = contentRef.current;
+        if (!el) return;
+        return startSectionSnap(el, 18);
+    }, [accueilPlein]);
 
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
     const [forYou, setForYou] = useState<Recipe[]>([]);
@@ -1050,7 +1068,7 @@ export default function TVDesktopHome() {
             </aside>
 
             {/* ── Contenu ── */}
-            <main className={styles.content}>
+            <main className={styles.content} ref={contentRef}>
                 {panel !== 'none' ? (
                     <div className={styles.panelHost}>
                         {!user && panel !== 'trophies' && panel !== 'cave' && panel !== 'search' && panel !== 'tuto' && panel !== 'gouts' && panel !== 'extension' ? (
@@ -1154,8 +1172,12 @@ export default function TVDesktopHome() {
                             ))}
                             <Row title="Comme au resto" recipes={byCat['restaurant'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
 
-                            {/* Fin du feed : mentions légales, contact, statut des vidéos. */}
-                            <SiteFooter />
+                            {/* Fin du feed : mentions légales, contact, statut des vidéos.
+                                `data-snap` : le pied de page est le dernier cran du
+                                défilement par section, sinon il resterait inatteignable. */}
+                            <div data-snap>
+                                <SiteFooter />
+                            </div>
                         </div>
                     </>
                 )}
