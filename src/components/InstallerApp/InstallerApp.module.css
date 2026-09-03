@@ -1,0 +1,172 @@
+/*
+ * Invite d'installation — même grammaire que l'écran d'accueil TV+ :
+ * noir, verre dépoli, Outfit pour les titres, blanc atténué pour le reste.
+ *
+ * Le lien vit sous les deux boutons de l'écran d'ouverture, où la place est
+ * comptée : il reste discret tant qu'on ne le touche pas.
+ */
+
+.lien {
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    font-family: var(--font-outfit), 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: rgba(235, 235, 245, 0.5);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(235, 235, 245, 0.22);
+    cursor: pointer;
+}
+
+.voile {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;          /* l'écran d'ouverture est à 10000 */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 16px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    animation: voileEntre 0.22s ease-out;
+}
+
+.panneau {
+    width: 100%;
+    max-width: 460px;
+    max-height: 82vh;
+    max-height: 82dvh;
+    overflow-y: auto;
+    padding: 24px 22px 20px;
+    border-radius: 28px;
+    background: #131316;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    animation: panneauMonte 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes voileEntre { from { opacity: 0; } to { opacity: 1; } }
+@keyframes panneauMonte { from { transform: translateY(28px); } to { transform: translateY(0); } }
+
+/* Une entrée qui glisse n'a de sens que si l'appareil accepte le mouvement. */
+@media (prefers-reduced-motion: reduce) {
+    .voile, .panneau { animation: none; }
+}
+
+.kicker {
+    margin: 0;
+    font-family: var(--font-outfit), 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(235, 235, 245, 0.38);
+}
+
+.titre {
+    margin: 6px 0 0;
+    font-family: var(--font-outfit), 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: #ffffff;
+}
+
+.chapeau {
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(235, 235, 245, 0.62);
+}
+
+.etapes {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.etape {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 15px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: rgba(235, 235, 245, 0.84);
+}
+
+.etape b { color: #ffffff; font-weight: 700; }
+
+.num {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin-top: 1px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.10);
+    font-family: var(--font-outfit), 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Les icônes sont citées AU MILIEU d'une phrase : elles doivent s'asseoir sur
+   la ligne de base du texte, pas flotter au-dessus. */
+.pas {
+    display: inline-block;
+    vertical-align: -3px;
+    margin: 0 1px;
+    opacity: 0.9;
+}
+
+.note {
+    margin: 14px 0 0;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: rgba(235, 235, 245, 0.42);
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.principal,
+.secondaire {
+    flex: 1;
+    padding: 14px 18px;
+    border-radius: 999px;
+    font-family: var(--font-outfit), 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+}
+
+.principal {
+    background: #ffffff;
+    border: none;
+    color: #0a0a0c;
+}
+
+.secondaire {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}

@@ -2,6 +2,7 @@
 import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './SplashScreen.module.css';
+import InstallerApp from '@/components/InstallerApp/InstallerApp';
 /*
  * Le catalogue ALLÉGÉ, pas le complet.
  *
@@ -158,14 +159,23 @@ export default function SplashScreen() {
                         </div>
 
                         {/* EXPLORER BUTTON */}
+                        {/* `initial={false}` : les boutons NAISSENT visibles.
+                            Avec une entrée en fondu depuis `opacity: 0`, leur
+                            apparition dépendait d'une animation — donc d'une
+                            boucle d'images. Quand cette boucle ne tourne pas au
+                            chargement (onglet en arrière-plan, retour sur l'app,
+                            page restaurée), l'animation ne démarre jamais et le
+                            pied de page reste transparent : « Explorer » et
+                            « Se connecter » étaient là, cliquables, invisibles.
+                            Le même remède que pour le cadre, juste au-dessus. */}
                         <motion.div 
                             className={styles.footer}
-                            initial={{ opacity: 0, y: 40 }}
+                            initial={false}
                             animate={{ 
                                 opacity: isSheetOpen ? 0 : 1,
                                 y: isSheetOpen ? 20 : 0
                             }}
-                            transition={{ delay: isSheetOpen ? 0 : 0.15, duration: 0.3 }}
+                            transition={{ duration: 0.3 }}
                         >
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
                                 <button
@@ -184,6 +194,9 @@ export default function SplashScreen() {
                                         Se connecter
                                     </button>
                                 )}
+                                {/* Le manifeste et le service worker existaient déjà ;
+                                    il manquait l'endroit où proposer l'installation. */}
+                                <InstallerApp />
                             </div>
                         </motion.div>
                     </motion.div>

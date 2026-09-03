@@ -3,6 +3,7 @@
     inset: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background: #000000;
     z-index: 10000;
     display: flex;
@@ -13,7 +14,15 @@
 
 .iosFrame {
     position: fixed;
-    inset: 12px;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    /* Pas de `inset: 12px` : sur iPhone, la barre d'outils de Safari mord sur le
+       bas d'un élément fixe, et l'indicateur d'accueil sur les 34 derniers
+       pixels. « Explorer » se retrouvait dessous. `dvh` suit la hauteur
+       réellement visible, et la marge de sécurité écarte l'indicateur. */
+    height: calc(100vh - 24px);
+    height: calc(100dvh - 24px - env(safe-area-inset-bottom, 0px));
     /* Fond cinéma : noir + halo pourpre discret en haut, comme l'accueil TV+. */
     background:
         radial-gradient(120% 70% at 50% -8%, #1c1526 0%, rgba(8,8,11,0) 55%),
@@ -22,7 +31,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 64px 20px 40px;
+    padding: 64px 20px 28px;
     z-index: 10;
     overflow: hidden;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
