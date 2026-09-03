@@ -4265,3 +4265,47 @@
 .planDayHead .planDayTitle {
     margin-bottom: 0;
 }
+
+/* ── « Ce plat se suffit à lui-même » ────────────────────────────────────────
+ *
+ * Ces trois classes étaient posées dans le JSX sans jamais avoir été écrites :
+ * l'étiquette, la phrase et le bouton se retrouvaient sur la même ligne, chacun
+ * dans sa police, l'un par-dessus l'autre. On les empile, dans le langage du
+ * bloc voisin (`.planSide`) pour que les deux cas — garniture proposée ou plat
+ * complet — se ressemblent.
+ */
+.planSideNone {
+    /* Le cadre est celui du parent `.planSide` : en poser un second ici donnait
+       une boîte dans une boîte. On ne fait qu'empiler. */
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    padding: 2px 0;
+}
+
+.planSideNoneText {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* Une porte de sortie, pas une invitation : elle ne doit pas peser autant que
+   le bouton « Ajouter un accompagnement » du cas où il en manque vraiment un. */
+.planSideAddLite {
+    margin-top: 3px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.42);
+    cursor: pointer;
+}
+
+.planSideAddLite:active { color: rgba(255, 255, 255, 0.7); }
