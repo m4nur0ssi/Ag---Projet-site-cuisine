@@ -1,0 +1,376 @@
+/*
+ * Fiche restaurant — habillage Apple TV+.
+ *
+ * Mêmes règles que le reste du site : fond noir, verre dépoli très léger,
+ * Outfit pour les titres, texte secondaire en blanc atténué. Les repères sont
+ * dessinés au trait plutôt qu'en émoticônes : une rangée de 💶⭐🅿️ jurait avec
+ * tout le reste.
+ *
+ * Un seul fichier pour le téléphone et le bureau ; la seule bascule est la
+ * largeur, à 760 px, comme partout ailleurs.
+ */
+
+.fiche {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 6px 0 4px;
+    color: #ffffff;
+}
+
+.ico {
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+
+/* ───────────────────────────── repères en pastilles ─────────────────────── */
+
+.reperes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.repere {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: rgba(235, 235, 245, 0.88);
+    white-space: nowrap;
+}
+
+.repereLien {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.repereFin {
+    color: rgba(235, 235, 245, 0.45);
+    font-weight: 500;
+}
+
+/* Le seul endroit où la couleur parle : ouvert ou fermé, maintenant. */
+.ouvert {
+    background: rgba(48, 209, 88, 0.14);
+    border-color: rgba(48, 209, 88, 0.34);
+    color: #6ee787;
+}
+
+.ferme {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: rgba(235, 235, 245, 0.45);
+}
+
+/* ─────────────────────────────── sections ───────────────────────────────── */
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.kicker {
+    margin: 0;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(235, 235, 245, 0.38);
+}
+
+.titre {
+    margin: -8px 0 0;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: #ffffff;
+}
+
+/* ─────────────────────────────── ta visite ──────────────────────────────── */
+
+/* Le plat commandé est l'information la plus personnelle de la fiche : elle
+   mérite la plus grande typographie du bloc, pas une ligne de liste. */
+.plat {
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: linear-gradient(140deg, rgba(59, 130, 246, 0.16), rgba(59, 130, 246, 0.04));
+    border: 1px solid rgba(59, 130, 246, 0.26);
+}
+
+.platLabel {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0 0 8px;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(147, 197, 253, 0.9);
+}
+
+.platNom {
+    margin: 0;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.32;
+    letter-spacing: -0.015em;
+    color: #ffffff;
+}
+
+.duo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.carte {
+    padding: 15px 17px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.carteLabel {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 6px;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+}
+
+.bon .carteLabel { color: rgba(110, 231, 135, 0.92); }
+.moins .carteLabel { color: rgba(255, 214, 122, 0.92); }
+
+.carteTexte {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: rgba(235, 235, 245, 0.78);
+}
+
+.table {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 13px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: rgba(235, 235, 245, 0.78);
+}
+
+.tableLabel {
+    font-weight: 700;
+    color: rgba(235, 235, 245, 0.95);
+}
+
+.notes {
+    display: block;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* ──────────────────────────────── la carte ──────────────────────────────── */
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.menuLigne {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 11px 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.menuLigne:last-child { border-bottom: none; }
+
+.menuNom {
+    font-size: 14.5px;
+    line-height: 1.4;
+    color: rgba(235, 235, 245, 0.86);
+}
+
+/* Le pointillé du menu de restaurant : il relie le plat à son prix. */
+.menuPointille {
+    flex: 1;
+    min-width: 14px;
+    height: 1px;
+    align-self: flex-end;
+    margin-bottom: 5px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.28) 1px, transparent 1px);
+    background-size: 5px 1px;
+    background-repeat: repeat-x;
+}
+
+.menuPrix {
+    flex-shrink: 0;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: #ffffff;
+}
+
+.menuTotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 4px 0 0;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    font-size: 12.5px;
+    color: rgba(235, 235, 245, 0.5);
+}
+
+.menuTotalPrix {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: #ffffff;
+}
+
+/* ───────────────────────────────── le lieu ──────────────────────────────── */
+
+.lieu {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.para { display: flex; flex-direction: column; gap: 6px; }
+
+.paraTitre {
+    margin: 0;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(235, 235, 245, 0.55);
+}
+
+.paraTexte {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.62;
+    color: rgba(235, 235, 245, 0.75);
+}
+
+/* ──────────────────────────────── s'y rendre ────────────────────────────── */
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.ligne {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.035);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: rgba(235, 235, 245, 0.82);
+    text-decoration: none;
+}
+
+.ligne:last-child { border-bottom: none; }
+.ligne .ico { margin-top: 1px; }
+
+.pointOuvert,
+.pointFerme {
+    display: block;
+    margin-top: 3px;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.pointOuvert { color: #6ee787; }
+.pointFerme { color: rgba(235, 235, 245, 0.42); }
+
+.boutons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.bouton {
+    flex: 1 1 120px;
+    padding: 13px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.boutonFort {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+}
+
+/* ─────────────────────────────── bureau ─────────────────────────────────── */
+
+@media (min-width: 760px) {
+    .fiche { gap: 38px; }
+    .duo { grid-template-columns: 1fr 1fr; }
+    .titre { font-size: 26px; }
+    .platNom { font-size: 22px; }
+    .bouton { flex: 0 0 auto; min-width: 150px; }
+}
+
+/* Le survol n'existe qu'à la souris : sur un écran tactile il colle. */
+@media (hover: hover) {
+    .repereLien:hover,
+    .ligne[href]:hover { background: rgba(255, 255, 255, 0.08); }
+    .bouton:hover { background: rgba(255, 255, 255, 0.13); }
+    .boutonFort:hover { background: rgba(255, 255, 255, 0.88); }
+}

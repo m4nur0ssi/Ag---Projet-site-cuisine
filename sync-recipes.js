@@ -34,14 +34,14 @@ function isPastaRecipe(title, ingredients) {
 const RESTAURANTS_INFO_PATH = path.join(__dirname, 'src', 'data', 'restaurants-info.json');
 let RESTAURANTS_INFO = {};
 try { RESTAURANTS_INFO = require('./src/data/restaurants-info.json'); } catch { RESTAURANTS_INFO = {}; }
-const { enrichRestaurant: enrichOSM } = require('./place-lookup');
+const { enrichRestaurant: enrichOSM, villeDuTexte } = require('./place-lookup');
 const { enrichRestaurant: enrichFSQ } = require('./foursquare');
 const _sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 // Foursquare (note/prix, clé gratuite) d'abord, OSM (adresse/terrasse) en complément/secours.
-async function enrichRestaurantAny(title) {
-    const fsq = await enrichFSQ(title);           // note, prix, horaires, adresse…
-    const osm = await enrichOSM(title);           // adresse, terrasse, mapsUrl
+async function enrichRestaurantAny(title, ville) {
+    const fsq = await enrichFSQ(title, ville || 'Paris');  // note, prix, horaires, adresse…
+    const osm = await enrichOSM(title, ville);             // adresse, terrasse, mapsUrl
     if (!fsq && !osm) return null;
     return { ...(osm || {}), ...(fsq || {}) };    // Foursquare prioritaire sur OSM
 }
@@ -65,16 +65,32 @@ async function enrichRestaurantsMissingInfo(posts) {
         const tags = (post._embedded?.['wp:term']?.[1]?.map(t => String(t.name).toLowerCase()) || []);
         const subTag = tags.find(t => t.startsWith('resto-'));
         const subType = existing.subType || (subTag ? subTag.replace(/^resto-/, '') : undefined);
-        console.log(`   🍽️ Recherche infos (Foursquare + OSM) pour "${title}"…`);
-        const places = await enrichRestaurantAny(title);
+        // La ville se lit dans le texte de la fiche : la chercher systématiquement
+        // « à Paris » condamnait Le Raincy et Marly-le-Roi à rester sans adresse.
+        const texte = [
+            post.content?.rendered || '',
+            post.excerpt?.rendered || '',
+            title,
+        ].join(' ').replace(/<[^>]+>/g, ' ');
+        const ville = villeDuTexte(decodeHtmlEntities(texte));
+        console.log(`   🍽️ Recherche infos (Foursquare + OSM) pour "${title}"${ville ? ` à ${ville}` : ''}…`);
+        const places = await enrichRestaurantAny(title, ville);
         await _sleep(1100); // Nominatim : 1 req/s max
         if (places) {
             RESTAURANTS_INFO[id] = { ...(subType ? { subType } : {}), ...places, ...existing };
             changed = true;
             console.log(`      ✅ ${places.address || '(sans adresse)'}${places.rating ? ` · ${places.rating}★` : ''}`);
-        } else if (subType && !existing.subType) {
-            RESTAURANTS_INFO[id] = { subType, ...existing };
-            changed = true;
+        } else if (subType || ville) {
+            // Rien trouvé : on garde au moins de quoi ouvrir une carte et classer
+            // la fiche, plutôt que de la laisser entièrement vide.
+            const secours = {
+                ...(subType ? { subType } : {}),
+                ...(ville ? { mapsQuery: `${title}, ${ville}` } : {}),
+            };
+            if (Object.keys(secours).some((k) => existing[k] === undefined)) {
+                RESTAURANTS_INFO[id] = { ...secours, ...existing };
+                changed = true;
+            }
         }
     }
     if (changed) {
