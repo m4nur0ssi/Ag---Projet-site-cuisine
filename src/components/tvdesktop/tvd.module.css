@@ -986,3 +986,131 @@
         opacity: 1;
     }
 }
+
+/* ── ASCENSEUR PAR RANGÉES ───────────────────────────────────────────────────
+   La barre du navigateur ne dit rien d'utile sur un accueil de trente-neuf
+   rangées : ce n'est pas une longueur, c'est une liste. On la remplace par une
+   échelle de crans — un cran par rangée. Au repos elle s'efface presque ; elle
+   se montre le temps d'un changement de section et au survol, où chaque cran
+   donne son nom. */
+
+/* Barre native masquée là où l'échelle prend le relais (l'accueil). Les
+   collections et les panneaux gardent la leur : ce sont de vraies longueurs. */
+.contentRailed { scrollbar-width: none; }
+.contentRailed::-webkit-scrollbar { width: 0; height: 0; }
+
+.rail {
+    position: fixed;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 5px;
+    border-radius: 999px;
+    background: rgba(28, 28, 30, 0.34);
+    -webkit-backdrop-filter: blur(20px) saturate(170%);
+    backdrop-filter: blur(20px) saturate(170%);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+    opacity: 0.5;
+    transition: opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+/* Réveil : pendant qu'on change de rangée, puis au survol. */
+.railOn { opacity: 0.85; }
+.rail:hover {
+    opacity: 1;
+    background: rgba(28, 28, 30, 0.66);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.railTrack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    /* Le glissé du doigt / de la souris parcourt les rangées d'un trait : le
+       navigateur ne doit pas y voir un défilement à lui. */
+    touch-action: none;
+}
+
+.railTick {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 6px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.railTickBar {
+    width: 9px;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.42);
+    transition: width 0.22s var(--ease), height 0.22s var(--ease), background 0.22s ease;
+}
+.railTick:hover .railTickBar { width: 15px; background: rgba(255, 255, 255, 0.78); }
+/* La rangée où l'on se trouve : un cran plus long et franchement blanc. */
+.railTickOn .railTickBar { width: 17px; height: 3px; background: #fff; }
+
+/* Nom de la rangée, au survol de son cran. Posé à gauche de l'échelle pour ne
+   pas sortir de l'écran. */
+.railTip {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%) translateX(4px);
+    padding: 4px 9px;
+    border-radius: 8px;
+    background: rgba(28, 28, 30, 0.94);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.16s ease, transform 0.16s var(--ease);
+}
+/* Un seul nom à la fois : celui du cran survolé. Le cran courant se reconnaît
+   déjà à sa longueur et à son blanc — lui coller une étiquette en plus ne ferait
+   que deux bulles concurrentes sur les cartes. */
+.railTick:hover .railTip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    z-index: 2;
+}
+
+.railArrow {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s var(--ease);
+}
+.railArrow:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    transform: scale(1.1);
+}
+.railArrow:active { transform: scale(0.94); }
+
+@media (prefers-reduced-motion: reduce) {
+    .rail, .railTickBar, .railTip, .railArrow { transition: none; }
+}

@@ -24,7 +24,7 @@ import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf } from '@/mobile/sc
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
 import { startScrollReveal } from '@/lib/scrollReveal';
-import { startSectionSnap } from '@/lib/sectionSnap';
+import { startSectionSnap, SnapController } from '@/lib/sectionSnap';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import styles from './tvd.module.css';
@@ -459,7 +459,7 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
     const go = (d: number) => setIndex((i) => (i + d + recipes.length) % recipes.length);
 
     return (
-        <div data-hero data-snap className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        <div data-hero data-snap data-snap-label="À la une" className={styles.hero} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
             {/* Fond cinéma : la photo courante, très floutée et assombrie, remplit
                tout le cadre — fini le pavé noir, on baigne dans la recette. */}
             <div className={styles.heroBackdrop} aria-hidden>
@@ -579,6 +579,82 @@ function Hero({ recipes, total, onMenu }: { recipes: Recipe[]; total: number; on
     );
 }
 
+// ── Ascenseur par sections ──────────────────────────────────────────────────
+
+/**
+ * Ascenseur maison, à droite du cadre. La barre du navigateur ne dit rien
+ * d'utile ici : un accueil de trente-neuf rangées n'est pas une longueur, c'est
+ * une liste. Chaque cran est donc une RANGÉE — on la survole pour lire son nom,
+ * on clique pour y aller, on glisse le long de l'échelle pour la parcourir d'un
+ * trait. Les deux chevrons avancent d'une rangée.
+ *
+ * Discret au repos (la barre s'efface), net au survol et le temps d'un
+ * changement de section.
+ */
+function SectionRail({ titres, index, ctl }: { titres: string[]; index: number; ctl: SnapController | null }) {
+    const piste = useRef<HTMLDivElement>(null);
+    const glisse = useRef(false);
+    // Réveil : l'ascenseur se montre franchement pendant qu'on change de rangée,
+    // puis retourne à sa discrétion.
+    const [eveille, setEveille] = useState(false);
+    const minuteur = useRef<ReturnType<typeof setTimeout> | null>(null);
+    useEffect(() => {
+        setEveille(true);
+        if (minuteur.current) clearTimeout(minuteur.current);
+        minuteur.current = setTimeout(() => setEveille(false), 1100);
+        return () => { if (minuteur.current) clearTimeout(minuteur.current); };
+    }, [index]);
+
+    if (titres.length < 3) return null;
+
+    /** Rangée visée par un point de l'échelle (glissé compris). */
+    const viser = (clientY: number) => {
+        const el = piste.current;
+        if (!el) return 0;
+        const r = el.getBoundingClientRect();
+        const p = (clientY - r.top) / Math.max(1, r.height);
+        return Math.max(0, Math.min(titres.length - 1, Math.round(p * (titres.length - 1))));
+    };
+
+    return (
+        <div className={`${styles.rail} ${eveille ? styles.railOn : ''}`}>
+            <button className={styles.railArrow} onClick={() => ctl?.step(-1)} aria-label="Rangée précédente">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none"><path d="M5 15l7-7 7 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+
+            <div
+                className={styles.railTrack}
+                ref={piste}
+                onPointerDown={(e) => {
+                    glisse.current = true;
+                    e.currentTarget.setPointerCapture(e.pointerId);
+                    ctl?.goTo(viser(e.clientY), true);
+                }}
+                onPointerMove={(e) => { if (glisse.current) ctl?.goTo(viser(e.clientY), true); }}
+                onPointerUp={(e) => { glisse.current = false; e.currentTarget.releasePointerCapture(e.pointerId); }}
+                onPointerCancel={() => { glisse.current = false; }}
+            >
+                {titres.map((t, i) => (
+                    <button
+                        key={`${t}-${i}`}
+                        className={`${styles.railTick} ${i === index ? styles.railTickOn : ''}`}
+                        onClick={() => ctl?.goTo(i)}
+                        aria-label={t}
+                        aria-current={i === index}
+                    >
+                        <span className={styles.railTickBar} />
+                        <span className={styles.railTip}>{t}</span>
+                    </button>
+                ))}
+            </div>
+
+            <button className={styles.railArrow} onClick={() => ctl?.step(1)} aria-label="Rangée suivante">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none"><path d="M5 9l7 7 7-7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+        </div>
+    );
+}
+
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export default function TVDesktopHome() {
@@ -626,11 +702,18 @@ export default function TVDesktopHome() {
      * une grille filtrée sont des pages qu'on parcourt normalement.
      */
     const accueilPlein = panel === 'none' && !collection && filters.length === 0;
+    const [snap, setSnap] = useState<SnapController | null>(null);
+    const [rail, setRail] = useState<{ index: number; titres: string[] }>({ index: 0, titres: [] });
     useEffect(() => {
-        if (!accueilPlein) return;
+        if (!accueilPlein) { setSnap(null); setRail({ index: 0, titres: [] }); return; }
         const el = contentRef.current;
         if (!el) return;
-        return startSectionSnap(el, 18);
+        const ctl = startSectionSnap(el, 18);
+        setSnap(ctl);
+        // Les rangées arrivent après coup (« Pour toi », thèmes, images qui posent
+        // enfin leur hauteur) : on republie tant que la liste bouge encore.
+        const off = ctl.subscribe((index, titres) => setRail({ index, titres }));
+        return () => { off(); ctl.detach(); setSnap(null); };
     }, [accueilPlein]);
 
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
@@ -1068,7 +1151,7 @@ export default function TVDesktopHome() {
             </aside>
 
             {/* ── Contenu ── */}
-            <main className={styles.content} ref={contentRef}>
+            <main className={`${styles.content} ${accueilPlein ? styles.contentRailed : ''}`} ref={contentRef}>
                 {panel !== 'none' ? (
                     <div className={styles.panelHost}>
                         {!user && panel !== 'trophies' && panel !== 'cave' && panel !== 'search' && panel !== 'tuto' && panel !== 'gouts' && panel !== 'extension' ? (
@@ -1175,13 +1258,16 @@ export default function TVDesktopHome() {
                             {/* Fin du feed : mentions légales, contact, statut des vidéos.
                                 `data-snap` : le pied de page est le dernier cran du
                                 défilement par section, sinon il resterait inatteignable. */}
-                            <div data-snap>
+                            <div data-snap data-snap-label="Informations">
                                 <SiteFooter />
                             </div>
                         </div>
                     </>
                 )}
             </main>
+
+            {/* ── Ascenseur par rangées (accueil seulement) ── */}
+            {accueilPlein && <SectionRail titres={rail.titres} index={rail.index} ctl={snap} />}
 
             {/* ── Menu contextuel (clic droit / bouton +) ── */}
             <AnimatePresence>
