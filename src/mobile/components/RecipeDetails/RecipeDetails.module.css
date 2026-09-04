@@ -64,6 +64,37 @@
     padding-top: 20px !important;
 }
 
+/* Le halo du haut — c'est LUI que l'on voit en ouvrant une fiche.
+   Il descend depuis la photo et s'éteint au niveau des pilules (préparation,
+   étapes, vidéo), pour que la couleur accompagne l'image sans déborder sur le
+   contenu. Sa teinte est lue dans la photo elle-même (voir couleur-image.ts) ;
+   la transition adoucit le passage de la couleur de repli à la vraie. */
+.heroNewLayout::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 76%;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(125% 100% at 50% -6%,
+            rgba(var(--dynamic-accent-rgb), 0.40) 0%,
+            rgba(var(--dynamic-accent-rgb), 0.20) 38%,
+            rgba(var(--dynamic-accent-rgb), 0.06) 62%,
+            transparent 82%);
+    transition: background 520ms ease;
+}
+
+/* Le contenu passe DEVANT le halo : sans cela, la photo et les pilules
+   disparaissaient derrière lui. */
+.heroNewLayout > * {
+    position: relative;
+    z-index: 1;
+}
+
+
 .main {
     max-width: 1200px; /* Aligné sur le layout large */
     margin: 0 auto;
@@ -102,7 +133,6 @@
     width: 100%;
     min-height: auto;
     background: var(--color-bg-secondary);
-    background: radial-gradient(circle at top right, rgba(var(--dynamic-accent-rgb), 0.12) 0%, transparent 60%);
     padding: 340px 40px 40px; /* Espace pour le fixed header PC (340px au lieu de 200px) */
     overflow: clip; /* clip ne crée pas de scroll container, contrairement à hidden */
 }

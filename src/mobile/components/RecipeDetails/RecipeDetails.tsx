@@ -33,9 +33,12 @@ const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCar
 import StarRating, { type NoteStats } from '@/mobile/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import { prixRecette, formatFourchette } from '@/lib/recipe-price';
+import NutriScore from '@/components/NutriScore/NutriScore';
+import { nutriscoreRecette } from '@/lib/nutriscore';
 import CommentSection from '@/mobile/components/CommentSection/CommentSection';
 import CookingJournal from '@/components/CookingJournal/CookingJournal';
 import FicheResto from '@/components/FicheResto/FicheResto';
+import { useAmbianceImage } from '@/lib/useAmbianceImage';
 import { estimateRecipeCalories } from '@/mobile/lib/calories';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -107,7 +110,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     const [prevTab, setPrevTab] = useState<TabId | null>(null);
     const tabContentRef = useRef<HTMLDivElement>(null);
 
-    // Dynamic Colors based on category
+    // La couleur d'ambiance vient de la PHOTO, plus de la catégorie : deux plats
+    // rangés au même rayon n'ont pas la même lumière à l'œil, et c'est l'image
+    // que l'on regarde. Les couleurs de catégorie ne servent plus que de repli,
+    // le temps que la photo soit lue — sans quoi la fiche s'ouvrirait en gris.
+    const ambiance = useAmbianceImage(recipe.image);
     const theme = useMemo(() => {
         const categories: Record<string, { accent: string; glow: string; bg: string; rgb: string }> = {
             aperitifs: { accent: '#10b981', glow: '0 0 20px rgba(16, 185, 129, 0.4)', bg: 'rgba(16, 185, 129, 0.1)', rgb: '16, 185, 129' },
@@ -117,8 +124,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             vegetarien: { accent: '#22c55e', glow: '0 0 20px rgba(34, 197, 94, 0.4)', bg: 'rgba(34, 197, 94, 0.1)', rgb: '34, 197, 94' },
             restaurant: { accent: '#3b82f6', glow: '0 0 20px rgba(59, 130, 246, 0.4)', bg: 'rgba(59, 130, 246, 0.1)', rgb: '59, 130, 246' },
         };
-        return categories[recipe.category] || categories.plats;
-    }, [recipe.category]);
+        return ambiance || categories[recipe.category] || categories.plats;
+    }, [recipe.category, ambiance]);
 
     // Persistence
     const [checkedSteps, setCheckedSteps] = useLocalStorage<boolean[]>(`recipe-steps-${recipe.id}`, new Array(recipe?.steps?.length || 0).fill(false));
@@ -171,6 +178,13 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             ? estimateRecipeCalories(recipe.ingredients, servings)
             : null,
     [recipe, servings]);
+    /*
+     * Le Nutri-Score se lit pour cent grammes : il ne dépend pas du nombre de
+     * portions choisi, seulement de la recette. Voir la note côté bureau.
+     */
+    const nutriscore = useMemo(() =>
+        recipe.category !== 'restaurant' ? nutriscoreRecette(recipe) : null,
+    [recipe]);
 
     const [showShareCard, setShowShareCard] = useState(false);
 
@@ -1124,6 +1138,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                 </div>
                             )}
                         </div>
+
+                        {/* Le Nutri-Score prend son propre cadre, sous celui des
+                            informations : l'échelle A–E se déplie, et une ligne du
+                            cadre voisin ne peut pas grandir sans pousser les autres. */}
+                        {nutriscore && <NutriScore resultat={nutriscore} />}
 
                     </div>
                 </div>

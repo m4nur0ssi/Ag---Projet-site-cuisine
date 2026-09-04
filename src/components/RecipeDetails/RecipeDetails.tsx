@@ -32,11 +32,14 @@ import { getIngredientVisual } from '@/lib/ingredient-utils';
 import { markCooking } from '@/mobile/screens/tv/progress';
 import CookingJournal from '@/components/CookingJournal/CookingJournal';
 import FicheResto from '@/components/FicheResto/FicheResto';
+import { useAmbianceImage } from '@/lib/useAmbianceImage';
 import StarRating from '@/components/StarRating/StarRating';
 import RestaurantGallery from '@/components/RestaurantGallery/RestaurantGallery';
 import CommentSection from '@/components/CommentSection/CommentSection';
 import { supabase } from '@/lib/supabase';
 import { estimateRecipeCalories } from '@/lib/calories';
+import NutriScore from '@/components/NutriScore/NutriScore';
+import { nutriscoreRecette } from '@/lib/nutriscore';
 import { mockRecipes } from '@/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
@@ -96,7 +99,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
     const [prevTab, setPrevTab] = useState<TabId | null>(null);
     const tabContentRef = useRef<HTMLDivElement>(null);
 
-    // Dynamic Colors based on category
+    // La couleur d'ambiance vient de la PHOTO, plus de la catégorie : deux plats
+    // rangés au même rayon n'ont pas la même lumière à l'œil, et c'est l'image
+    // que l'on regarde. Les couleurs de catégorie ne servent plus que de repli,
+    // le temps que la photo soit lue — sans quoi la fiche s'ouvrirait en gris.
+    const ambiance = useAmbianceImage(recipe.image);
     const theme = useMemo(() => {
         const categories: Record<string, { accent: string; glow: string; bg: string; rgb: string }> = {
             aperitifs: { accent: '#10b981', glow: '0 0 20px rgba(16, 185, 129, 0.4)', bg: 'rgba(16, 185, 129, 0.1)', rgb: '16, 185, 129' },
@@ -106,8 +113,8 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             vegetarien: { accent: '#22c55e', glow: '0 0 20px rgba(34, 197, 94, 0.4)', bg: 'rgba(34, 197, 94, 0.1)', rgb: '34, 197, 94' },
             restaurant: { accent: '#3b82f6', glow: '0 0 20px rgba(59, 130, 246, 0.4)', bg: 'rgba(59, 130, 246, 0.1)', rgb: '59, 130, 246' },
         };
-        return categories[recipe.category] || categories.plats;
-    }, [recipe.category]);
+        return ambiance || categories[recipe.category] || categories.plats;
+    }, [recipe.category, ambiance]);
 
     // Persistence
     const [checkedSteps, setCheckedSteps] = useLocalStorage<boolean[]>(`recipe-steps-${recipe.id}`, new Array(recipe?.steps?.length || 0).fill(false));
@@ -164,6 +171,16 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             ? estimateRecipeCalories(recipe.ingredients, servings)
             : null,
     [recipe, servings]);
+    /*
+     * Le Nutri-Score ne suit PAS le curseur de portions.
+     *
+     * Il se lit pour cent grammes de plat : doubler les portions double le poids
+     * et les nutriments dans la même proportion, et la lettre ne bouge pas. Le
+     * recalculer à chaque cran ferait le même travail pour le même résultat.
+     */
+    const nutriscore = useMemo(() =>
+        recipe.category !== 'restaurant' ? nutriscoreRecette(recipe) : null,
+    [recipe]);
     const [showShareCard, setShowShareCard] = useState(false);
 
     const similarRecipes = useMemo(() => {
@@ -1004,6 +1021,14 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             </>
                         )}
                     </div>
+                    {/* Le Nutri-Score passe SOUS la rangée : l'échelle A–E et sa
+                        phrase ne tiennent pas dans une case de quatre-vingts pixels,
+                        et la bande est déjà prévue pour un panneau pleine largeur. */}
+                    {nutriscore && (
+                        <div className={styles.nutriscoreRangee}>
+                            <NutriScore resultat={nutriscore} />
+                        </div>
+                    )}
                 </div>
             )}
 
