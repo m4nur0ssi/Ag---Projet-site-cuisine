@@ -1,0 +1,253 @@
+/*
+ * Le bandeau reprend la matière des cartes voisines — même verre dépoli, même
+ * rayon de 20 px, même bordure d'un blanc à peine visible — pour se poser dans
+ * la bande d'informations sans en casser la ligne. La seule couleur vive de
+ * l'ensemble est celle de la lettre obtenue, et elle ne sert qu'à elle.
+ */
+.bloc {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    /* La lueur colorée reste sous le seuil du décoratif : elle signale la lettre
+       du plat au coin de l'œil, sans transformer la fiche en feu tricolore. */
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02), 0 18px 40px -28px var(--nutri);
+}
+
+[data-theme='light'] .bloc {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+/* ── En-tête ─────────────────────────────────────────────────────────────── */
+
+.entete {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 16px 18px;
+    background: none;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.entete:hover { background: rgba(255, 255, 255, 0.03); }
+[data-theme='light'] .entete:hover { background: rgba(0, 0, 0, 0.02); }
+.entete:focus-visible { outline: 2px solid var(--nutri); outline-offset: -3px; }
+
+.intitule {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+    flex: 1;
+}
+
+.titre {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1;
+}
+[data-theme='light'] .titre { color: rgba(0, 0, 0, 0.45); }
+
+.legende {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+}
+
+/* ── L'échelle A–E ───────────────────────────────────────────────────────── */
+
+.echelle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+/*
+ * Les quatre lettres non obtenues restent lisibles mais sans couleur : la
+ * pastille officielle les colore toutes, ce qui oblige à chercher laquelle est
+ * grossie. Ici une seule est peinte, et le regard n'a rien à chercher.
+ */
+.lettre,
+.lettreActive {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    will-change: transform;
+}
+
+.lettre {
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.35);
+}
+[data-theme='light'] .lettre {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.lettreActive {
+    color: #fff;
+    font-size: 0.95rem;
+    box-shadow: 0 6px 18px -6px var(--nutri);
+}
+
+.chevron {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.4);
+}
+[data-theme='light'] .chevron { color: rgba(0, 0, 0, 0.35); }
+
+/* ── Le détail ───────────────────────────────────────────────────────────── */
+
+/* La hauteur vient de React, qui a mesuré le contenu ; la transition fait le
+   reste. `visibility` retire le panneau replié du parcours au clavier. */
+.panneau {
+    overflow: hidden;
+    transition: height 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0s linear 0.42s;
+    visibility: hidden;
+}
+.panneau[aria-hidden='false'] {
+    visibility: visible;
+    transition: height 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
+                visibility 0s;
+}
+
+.panneauInterieur {
+    padding: 4px 18px 18px 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    margin-top: 2px;
+}
+[data-theme='light'] .panneauInterieur { border-top-color: rgba(0, 0, 0, 0.06); }
+
+.pour100 {
+    margin: 14px 0 12px 0;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+[data-theme='light'] .pour100 { color: rgba(0, 0, 0, 0.45); }
+
+/*
+ * Trois colonnes : le nom, la jauge, la valeur. La jauge occupe l'espace libre
+ * pour que toutes les valeurs s'alignent à droite sur une même verticale —
+ * autrement l'œil ne peut pas comparer deux lignes d'un coup.
+ */
+.composante {
+    display: grid;
+    grid-template-columns: minmax(0, auto) 1fr minmax(72px, auto);
+    align-items: center;
+    gap: 12px;
+    padding: 7px 0;
+}
+
+.composanteNom {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(235, 235, 245, 0.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+[data-theme='light'] .composanteNom { color: rgba(0, 0, 0, 0.55); }
+
+.jauge {
+    position: relative;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+[data-theme='light'] .jauge { background: rgba(0, 0, 0, 0.07); }
+
+.jaugeMauvaise,
+.jaugeBonne {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    transform-origin: left center;
+}
+
+/* La jauge d'une composante défavorable prend la couleur de la lettre : plus le
+   plat penche vers le E, plus ses excès se voient. */
+.jaugeMauvaise { background: var(--nutri); }
+.jaugeBonne { background: #34c759; }
+
+.composanteValeur {
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-align: right;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.composanteUnite {
+    font-size: 0.75rem;
+    font-weight: 600;
+    opacity: 0.5;
+}
+
+.separateur {
+    height: 1px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.07);
+}
+[data-theme='light'] .separateur { background: rgba(0, 0, 0, 0.06); }
+
+.portion {
+    margin: 14px 0 0 0;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: rgba(235, 235, 245, 0.7);
+}
+[data-theme='light'] .portion { color: rgba(0, 0, 0, 0.6); }
+.portion strong { color: var(--color-text-primary); font-weight: 800; }
+
+.reserve {
+    margin: 10px 0 0 0;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: rgba(235, 235, 245, 0.4);
+}
+[data-theme='light'] .reserve { color: rgba(0, 0, 0, 0.4); }
+
+@media (max-width: 520px) {
+    .entete { gap: 12px; padding: 14px 16px; }
+    .legende { font-size: 0.88rem; }
+    .lettre, .lettreActive { width: 23px; height: 27px; }
+    .panneauInterieur { padding: 4px 16px 16px 16px; }
+    .composante { grid-template-columns: minmax(0, auto) 1fr minmax(64px, auto); gap: 10px; }
+    .composanteNom { font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lettre, .lettreActive, .jaugeBonne, .jaugeMauvaise, .chevron, .panneau { transition: none !important; }
+}

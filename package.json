@@ -17,7 +17,8 @@
     "build:home-data": "node scripts/build-home-data.js",
     "photos:push": "bash scripts/pousser-photos.sh",
     "photo:refaire": "bash scripts/refaire-photo.sh",
-    "wp:verifier": "node scripts/verifier-wordpress.js"
+    "wp:verifier": "node scripts/verifier-wordpress.js",
+    "nutri:verifier": "node scripts/verifier-nutriscore.js"
   },
   "dependencies": {
     "@notionhq/client": "^5.9.0",
