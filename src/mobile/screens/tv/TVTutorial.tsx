@@ -15,9 +15,9 @@ import { haptic } from './TVHome';
 import styles from './TVTutorial.module.css';
 
 type Art =
-    | 'hero' | 'rows' | 'press' | 'card' | 'filter' | 'search'
+    | 'hero' | 'rows' | 'press' | 'clic' | 'card' | 'cook' | 'filter' | 'search'
     | 'planner' | 'side' | 'compose' | 'jourj' | 'fill' | 'views' | 'dock' | 'cocktail'
-    | 'cave' | 'ext';
+    | 'cave' | 'ext' | 'sidebar' | 'library' | 'trophy' | 'taste' | 'install';
 
 interface Step {
     kicker: string;
@@ -29,71 +29,154 @@ interface Step {
     art: Art;
 }
 
-const STEPS: Step[] = [
-    { kicker: 'Accueil', title: 'Le grand visuel', art: 'hero', accent: '#FF453A',
-      text: "L'accueil s'ouvre sur les six dernières recettes, en grand. Balaye la photo (ou les flèches sur ordinateur) pour passer à la suivante ; « Voir la recette » ouvre la fiche.",
-      hint: 'Balaye la grande photo, puis touche « Voir la recette ».',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,69,58,0.55), transparent 70%)' },
-    { kicker: 'Accueil', title: 'Les rangées', art: 'rows', accent: '#FF9F0A',
-      text: 'Sous le visuel : Top 10, Reprendre la cuisine, Nouveautés, les catégories et une rangée par thème — Pâtes, Express, Cocktails, Airfryer… Chaque rangée se balaye.',
-      hint: 'Touche le titre d’une rangée (le chevron ›) : elle s’ouvre en grille entière.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,159,10,0.5), transparent 70%)' },
-    { kicker: 'Accueil', title: 'L’appui long', art: 'press', accent: '#FFD60A',
+const T = {
+    hero: 'radial-gradient(60% 100% at 50% 0%, rgba(255,69,58,0.55), transparent 70%)',
+    orange: 'radial-gradient(60% 100% at 50% 0%, rgba(255,159,10,0.5), transparent 70%)',
+    jaune: 'radial-gradient(60% 100% at 50% 0%, rgba(255,214,10,0.45), transparent 70%)',
+    vert: 'radial-gradient(60% 100% at 50% 0%, rgba(48,209,88,0.45), transparent 70%)',
+    bleu: 'radial-gradient(60% 100% at 50% 0%, rgba(10,132,255,0.5), transparent 70%)',
+    indigo: 'radial-gradient(60% 100% at 50% 0%, rgba(94,92,230,0.55), transparent 70%)',
+    violet: 'radial-gradient(60% 100% at 50% 0%, rgba(191,90,242,0.5), transparent 70%)',
+    rose: 'radial-gradient(60% 100% at 50% 0%, rgba(255,45,85,0.45), transparent 70%)',
+    cyan: 'radial-gradient(60% 100% at 50% 0%, rgba(100,210,255,0.45), transparent 70%)',
+    mauve: 'radial-gradient(60% 100% at 50% 0%, rgba(139,92,246,0.5), transparent 70%)',
+    vin: 'radial-gradient(60% 100% at 50% 0%, rgba(178,58,72,0.5), transparent 70%)',
+    corail: 'radial-gradient(60% 100% at 50% 0%, rgba(255,107,74,0.5), transparent 70%)',
+    gris: 'radial-gradient(60% 100% at 50% 0%, rgba(142,142,147,0.45), transparent 70%)',
+};
+
+/*
+ * Deux visites, pas une.
+ *
+ * Le même texte ne peut pas décrire les deux : « balaye la photo » n'a aucun
+ * sens avec une souris, et « la molette change de rangée » n'en a aucun avec un
+ * doigt. Pire, les écrans eux-mêmes diffèrent — le bureau a une barre latérale
+ * et une bibliothèque qu'on remplit par glissé, le téléphone a un tiroir et une
+ * barre du bas. Une visite guidée qui désigne un bouton absent est pire que pas
+ * de visite du tout : elle fait douter l'utilisateur de ce qu'il voit.
+ */
+
+const STEPS_MOBILE: Step[] = [
+    { kicker: 'Accueil', title: 'Le grand visuel', art: 'hero', accent: '#FF453A', tint: T.hero,
+      text: "L'accueil s'ouvre sur les dernières recettes, en grand. Balaye la photo pour passer à la suivante ; « Voir la recette » ouvre la fiche.",
+      hint: 'Balaye la grande photo, puis touche « Voir la recette ».' },
+    { kicker: 'Accueil', title: 'Les rangées', art: 'rows', accent: '#FF9F0A', tint: T.orange,
+      text: 'Sous le visuel : Top 10, Reprendre la cuisine, À faire plus tard, Pour toi, Nouveautés, puis une rangée par catégorie et par thème — Pâtes, Express, Cocktails, Airfryer… Chaque rangée se balaye.',
+      hint: 'Touche le titre d’une rangée (le chevron ›) : elle s’ouvre en grille entière.' },
+    { kicker: 'Accueil', title: 'L’appui long', art: 'press', accent: '#FFD60A', tint: T.jaune,
       text: 'Garde le doigt une seconde sur une carte : un menu s’ouvre — Favoris, À faire plus tard, Accéder à la catégorie, Partager, Voir la recette.',
-      hint: 'Appui long sur n’importe quelle carte — clic droit sur ordinateur.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,214,10,0.45), transparent 70%)' },
-    { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158',
+      hint: 'Le cœur plein range en favoris, l’horloge dans « À faire plus tard ».' },
+    { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158', tint: T.vert,
       text: 'Ingrédients (nombre de personnes ajustable), étapes, minuteur, ta note au dixième, l’accord vin et l’ajout à la liste. Coche un ingrédient : il file dans « Par recette ».',
-      hint: 'Fiche ouverte : balaye vers la gauche pour la recette voisine ; « Lancer la préparation » lit les étapes à voix haute.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(48,209,88,0.45), transparent 70%)' },
-    { kicker: 'Menu', title: 'Filtrer', art: 'filter', accent: '#0A84FF',
-      text: 'Catégories, Tendances et Pays, cochables et repliables. Les filtres se combinent : OU dans un groupe, ET entre groupes — « un dessert espagnol express ».',
-      hint: 'Coche Desserts + Espagne, puis touche « Voir N recettes ».',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(10,132,255,0.5), transparent 70%)' },
-    { kicker: 'Recherche', title: 'Trois façons', art: 'search', accent: '#5E5CE6',
+      hint: 'Fiche ouverte : balaye vers la gauche pour la recette voisine.' },
+    { kicker: 'Recette', title: 'Cuisiner pas à pas', art: 'cook', accent: '#FF6B4A', tint: T.corail,
+      text: '« Lancer la préparation » passe en mode cuisine : une étape à la fois, en grand, avec le minuteur qui démarre tout seul quand l’étape en demande un.',
+      hint: 'Une recette commencée revient dans « Reprendre la cuisine », sur l’accueil.' },
+    { kicker: 'Menu', title: 'Filtrer', art: 'filter', accent: '#0A84FF', tint: T.bleu,
+      text: 'Le tiroir ouvre Catégories, Tendances et Pays, cochables et repliables. Les filtres se combinent : OU dans un groupe, ET entre groupes — « un dessert espagnol express ».',
+      hint: 'Coche Desserts + Espagne, puis touche « Voir N recettes ».' },
+    { kicker: 'Recherche', title: 'Trois façons', art: 'search', accent: '#5E5CE6', tint: T.indigo,
       text: 'La loupe ouvre Recette (son nom), Ingrédients (ce qu’il te reste au frigo) et Assistant IA, qui comprend une demande en langage courant — à la voix aussi.',
-      hint: 'Appui long sur la loupe : la dictée vocale démarre direct sur l’Assistant.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(94,92,230,0.55), transparent 70%)' },
-    { kicker: 'Planificateur', title: 'Ma semaine', art: 'planner', accent: '#BF5AF2',
+      hint: 'Appui long sur la loupe : la dictée démarre direct sur l’Assistant.' },
+    { kicker: 'Planificateur', title: 'Ma semaine', art: 'planner', accent: '#BF5AF2', tint: T.violet,
       text: 'Un jour par écran, ouvert sur aujourd’hui : Midi et Soir. « Choisir un plat » ouvre le sélecteur, « Surprends-moi » en tire un au hasard.',
-      hint: 'Balaye pour changer de jour, ou touche Lun… Dim en haut.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(191,90,242,0.5), transparent 70%)' },
-    { kicker: 'Planificateur', title: 'L’accompagnement', art: 'side', accent: '#FF2D55',
+      hint: 'Balaye pour changer de jour, ou touche Lun… Dim en haut.' },
+    { kicker: 'Planificateur', title: 'L’accompagnement', art: 'side', accent: '#FF2D55', tint: T.rose,
       text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — ouvre une ligne « Accompagnement » sous lui. Un couscous, déjà complet, n’en demande pas.',
-      hint: 'Mets une viande à midi : la ligne Accompagnement apparaît juste dessous.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,45,85,0.45), transparent 70%)' },
-    { kicker: 'Planificateur', title: 'Composer', art: 'compose', accent: '#64D2FF',
+      hint: 'Mets une viande à midi : la ligne Accompagnement apparaît juste dessous.' },
+    { kicker: 'Planificateur', title: 'Composer', art: 'compose', accent: '#64D2FF', tint: T.cyan,
       text: '« Composer » remplit toute la semaine sur une tendance — Italie, Healthy, Barbecue… — sans répéter un plat ni sortir du thème.',
-      hint: 'Touche Composer, choisis une tendance, regarde les 14 repas se remplir.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(100,210,255,0.45), transparent 70%)' },
-    { kicker: 'Planificateur', title: 'Le Jour J', art: 'jourj', accent: '#FF9F0A',
+      hint: 'Touche Composer, choisis une tendance, regarde les 14 repas se remplir.' },
+    { kicker: 'Planificateur', title: 'Le Jour J', art: 'jourj', accent: '#FF9F0A', tint: T.orange,
       text: 'Un onglet à part pour un repas complet : apéritif, entrée, plat, accompagnement, dessert et pâtisserie. Idéal pour un dîner d’invités.',
-      hint: 'En haut, bascule « Semaine » → « Jour J ».',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,159,10,0.45), transparent 70%)' },
-    { kicker: 'Courses', title: 'Remplir la liste', art: 'fill', accent: '#30D158',
+      hint: 'En haut, bascule « Semaine » → « Jour J ».' },
+    { kicker: 'Courses', title: 'Remplir la liste', art: 'fill', accent: '#30D158', tint: T.vert,
       text: '« Remplir ma liste de courses » envoie tous les ingrédients du menu dans la liste, regroupés par rayon et sans doublon.',
-      hint: 'Menu prêt : touche le bouton blanc en bas du planificateur.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(48,209,88,0.45), transparent 70%)' },
-    { kicker: 'Courses', title: 'Trois vues', art: 'views', accent: '#0A84FF',
-      text: '« La semaine » fusionne tout par rayon (avec les toggles Semaine / Jour J), « Jour par jour » sépare les repas, « Par recette » garde les plats cochés en fiche.',
-      hint: 'Coche des articles : les boutons Partager et Magasin apparaissent.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(10,132,255,0.45), transparent 70%)' },
-    { kicker: 'Courses', title: 'L’extension Chrome', art: 'ext', accent: '#8B5CF6',
-      text: 'Sur ordinateur, l’extension « Courses Magiques » pose ta liste par-dessus le site du magasin — Carrefour, Monoprix, Picard, Leclerc Drive — et passe au produit suivant toute seule. Plus besoin de changer d’onglet.',
-      hint: 'Liste de courses : la bulle violette donne le .zip et les cinq étapes d’installation.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(139,92,246,0.5), transparent 70%)' },
-    { kicker: 'Ma cave', title: 'Tes bouteilles', art: 'cave', accent: '#B23A48',
-      text: 'Photographie l’étiquette : le nom, le cépage, l’année, la région et la vraie photo de la bouteille entrent seuls en cave. Rouges, blancs, rosés et liqueurs, la quantité, ta note et l’apogée — « prêt à boire », « encore un peu jeune ».',
-      hint: 'Sur un vin, « Quelle recette ? » sort les plats du site qui vont avec.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(178,58,72,0.5), transparent 70%)' },
-    { kicker: 'Apéritif', title: 'Les cocktails', art: 'cocktail', accent: '#FF6B4A',
-      text: 'Deux nouvelles rangées : Cocktails et Cocktails sans alcool. Le tri se fait tout seul en lisant les ingrédients — un Mojito part avec l’alcool, sa version virgin sans.',
-      hint: 'Cherche « cocktail » ou ouvre la rangée depuis l’accueil.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(255,107,74,0.5), transparent 70%)' },
-    { kicker: 'Partout', title: 'La barre du bas', art: 'dock', accent: '#8E8E93',
-      text: 'Favoris, Liste, Accueil et Menu, plus la loupe. Elle te suit partout et se réduit quand tu fais défiler. Ajoute le site à ton écran d’accueil : il s’ouvre en plein écran, comme une app.',
-      hint: 'Partage → « Sur l’écran d’accueil » pour l’installer comme une app.',
-      tint: 'radial-gradient(60% 100% at 50% 0%, rgba(142,142,147,0.45), transparent 70%)' },
+      hint: 'Menu prêt : touche le bouton blanc en bas du planificateur.' },
+    { kicker: 'Courses', title: 'Trois vues', art: 'views', accent: '#0A84FF', tint: T.bleu,
+      text: '« La semaine » fusionne tout par rayon (avec les bascules Semaine / Jour J), « Jour par jour » sépare les repas, « Par recette » garde les plats cochés en fiche.',
+      hint: 'Coche des articles : les boutons Partager et Magasin apparaissent.' },
+    { kicker: 'Ma cave', title: 'Tes bouteilles', art: 'cave', accent: '#B23A48', tint: T.vin,
+      text: 'Photographie l’étiquette : le nom, le cépage, l’année, la région et la vraie photo de la bouteille entrent seuls en cave. Deux étagères — la cave, et « Goûté & approuvé ».',
+      hint: 'Sur un vin, « Quelle recette ? » sort les plats du site qui vont avec.' },
+    { kicker: 'Palmarès', title: 'Tes trophées', art: 'trophy', accent: '#FFC24B', tint: T.jaune,
+      text: 'Six badges qui se débloquent en cuisinant pour de vrai : Première flamme, Apprenti, Chef de maison, Collectionneur, Tour du monde, Organisé. Rien à réclamer, ils viennent seuls.',
+      hint: '« Tour du monde » compte les pays différents que tu as cuisinés.' },
+    { kicker: 'Tes goûts', title: 'Affine mes goûts', art: 'taste', accent: '#FF2E63', tint: T.rose,
+      text: 'Dix recettes, un glissé chacune : à droite j’aime, à gauche je passe. C’est tout ce qui nourrit la rangée « Pour toi » de l’accueil.',
+      hint: 'Optionnel et rejouable — la rangée « Pour toi » se recalcule aussitôt.' },
+    { kicker: 'Apéritif', title: 'Les cocktails', art: 'cocktail', accent: '#FF6B4A', tint: T.corail,
+      text: 'Deux rangées à part : Cocktails et Cocktails sans alcool. Le tri se fait tout seul en lisant les ingrédients — un Mojito part avec l’alcool, sa version virgin sans.',
+      hint: 'Cherche « cocktail » ou ouvre la rangée depuis l’accueil.' },
+    { kicker: 'Partout', title: 'La barre du bas', art: 'dock', accent: '#8E8E93', tint: T.gris,
+      text: 'Favoris, Liste, Accueil et Menu, plus la loupe. Elle te suit partout et se réduit quand tu fais défiler.',
+      hint: 'Le menu (à droite) ouvre le tiroir : filtres, planificateur, cave, palmarès.' },
+    { kicker: 'Installer', title: 'Comme une app', art: 'install', accent: '#0A84FF', tint: T.bleu,
+      text: 'Posé sur l’écran d’accueil, le site s’ouvre en plein écran, sans barre d’adresse. Depuis iOS 26, le chemin passe par le bouton ⋯ de la barre du bas, puis Partager.',
+      hint: 'Menu → « Installer l’application » : les cinq écrans y sont dessinés.' },
+];
+
+const STEPS_BUREAU: Step[] = [
+    { kicker: 'Repères', title: 'Le menu de gauche', art: 'sidebar', accent: '#8E8E93', tint: T.gris,
+      text: 'Tout part de la barre latérale : Planificateur, Liste de courses, Extension Chrome, Favoris, Palmarès, Ma cave, Tutoriel, Affine mes goûts — puis les Catégories, Tendances et Pays, dépliables.',
+      hint: 'Le chevron en haut replie la barre : l’accueil récupère toute la largeur.' },
+    { kicker: 'Accueil', title: 'Le grand visuel', art: 'hero', accent: '#FF453A', tint: T.hero,
+      text: 'L’accueil s’ouvre sur les dernières recettes, en grand. Les flèches ‹ › changent de recette, « Voir la recette » ouvre la fiche.',
+      hint: 'Le bouton ⋯ du visuel ouvre le même menu que le clic droit sur une carte.' },
+    { kicker: 'Accueil', title: 'Les rangées', art: 'rows', accent: '#FF9F0A', tint: T.orange,
+      text: 'Top 10, Reprendre la cuisine, À faire plus tard, Pour toi, Nouveautés, les catégories puis les thèmes. La molette change de RANGÉE — pas de trois centimètres — et la rangée visée vient se placer au centre.',
+      hint: 'À droite, l’ascenseur de rangées saute directement à Desserts ou Cocktails.' },
+    { kicker: 'Accueil', title: 'Le clic droit', art: 'clic', accent: '#FFD60A', tint: T.jaune,
+      text: 'Clic droit sur une carte : Favoris, À faire plus tard, Accéder à la catégorie, Partager, Voir la recette. Les flèches ‹ › de chaque rangée la font défiler d’un écran.',
+      hint: 'L’icône horloge, au survol d’une carte, met la recette « à faire plus tard ».' },
+    { kicker: 'Recette', title: 'La fiche', art: 'card', accent: '#30D158', tint: T.vert,
+      text: 'Ingrédients (nombre de personnes ajustable), étapes, minuteur, ta note au dixième, l’accord vin et l’ajout à la liste. Coche un ingrédient : il file dans « Par recette ».',
+      hint: 'Échap referme la fiche et rend l’accueil à l’endroit exact où tu étais.' },
+    { kicker: 'Recette', title: 'Cuisiner pas à pas', art: 'cook', accent: '#FF6B4A', tint: T.corail,
+      text: '« Lancer la préparation » passe en mode cuisine : une étape à la fois, en grand, avec le minuteur qui démarre tout seul quand l’étape en demande un.',
+      hint: 'Une recette commencée revient dans « Reprendre la cuisine », sur l’accueil.' },
+    { kicker: 'Menu', title: 'Filtrer', art: 'filter', accent: '#0A84FF', tint: T.bleu,
+      text: 'Catégories, Tendances et Pays s’ouvrent dans la barre latérale. Les cases se cumulent : OU dans un groupe, ET entre groupes — « un dessert espagnol express ».',
+      hint: 'Coche Plats + Italie + Express : la grille se recompose sans recharger la page.' },
+    { kicker: 'Menu', title: 'La bibliothèque', art: 'library', accent: '#5E5CE6', tint: T.indigo,
+      text: 'Glisse une catégorie, une tendance ou un pays vers le haut de la barre : il s’épingle dans ta bibliothèque, et te suit jusque dans le tiroir du téléphone.',
+      hint: 'La croix, au survol d’une épingle, la retire de la bibliothèque.' },
+    { kicker: 'Recherche', title: 'Trois façons', art: 'search', accent: '#5E5CE6', tint: T.indigo,
+      text: 'La loupe ouvre Recette (son nom), Ingrédients (ce qu’il te reste au frigo) et Assistant IA, qui comprend une demande en langage courant.',
+      hint: 'L’Assistant sort aussi des restaurants : ville, type de cuisine, terrasse.' },
+    { kicker: 'Planificateur', title: 'Ma semaine', art: 'planner', accent: '#BF5AF2', tint: T.violet,
+      text: 'Le panneau s’ouvre à droite du menu, ouvert sur aujourd’hui : Midi et Soir. « Choisir un plat » ouvre le sélecteur, « Surprends-moi » en tire un au hasard.',
+      hint: 'Lun… Dim en haut : un clic suffit pour changer de jour.' },
+    { kicker: 'Planificateur', title: 'L’accompagnement', art: 'side', accent: '#FF2D55', tint: T.rose,
+      text: 'Un plat servi nu — viande ou poisson sans féculent ni légume — ouvre une ligne « Accompagnement » sous lui. Un couscous, déjà complet, n’en demande pas.',
+      hint: 'Mets une viande à midi : la ligne Accompagnement apparaît juste dessous.' },
+    { kicker: 'Planificateur', title: 'Composer', art: 'compose', accent: '#64D2FF', tint: T.cyan,
+      text: '« Composer » remplit toute la semaine sur une tendance — Italie, Healthy, Barbecue… — sans répéter un plat ni sortir du thème.',
+      hint: 'Clique Composer, choisis une tendance, regarde les 14 repas se remplir.' },
+    { kicker: 'Planificateur', title: 'Le Jour J', art: 'jourj', accent: '#FF9F0A', tint: T.orange,
+      text: 'Un onglet à part pour un repas complet : apéritif, entrée, plat, accompagnement, dessert et pâtisserie. Idéal pour un dîner d’invités.',
+      hint: 'En haut, bascule « Semaine » → « Jour J ».' },
+    { kicker: 'Courses', title: 'Remplir la liste', art: 'fill', accent: '#30D158', tint: T.vert,
+      text: '« Remplir ma liste de courses » envoie tous les ingrédients du menu dans la liste, regroupés par rayon et sans doublon.',
+      hint: 'Menu prêt : le bouton blanc est en bas du planificateur.' },
+    { kicker: 'Courses', title: 'Trois vues', art: 'views', accent: '#0A84FF', tint: T.bleu,
+      text: '« La semaine » fusionne tout par rayon (avec les bascules Semaine / Jour J), « Jour par jour » sépare les repas, « Par recette » garde les plats cochés en fiche.',
+      hint: 'Coche des articles : les boutons Partager et Magasin apparaissent.' },
+    { kicker: 'Courses', title: 'L’extension Chrome', art: 'ext', accent: '#8B5CF6', tint: T.mauve,
+      text: 'L’extension « Courses Magiques » pose ta liste par-dessus le site du magasin — Carrefour, Monoprix, Picard, Leclerc Drive — et passe au produit suivant toute seule. Plus besoin de changer d’onglet.',
+      hint: 'Menu → Extension Chrome : le .zip et les cinq étapes d’installation.' },
+    { kicker: 'Ma cave', title: 'Tes bouteilles', art: 'cave', accent: '#B23A48', tint: T.vin,
+      text: 'Le nom, le cépage, l’année, la région et la vraie photo de la bouteille. Deux étagères — la cave, et « Goûté & approuvé » — et un glissé pour passer de l’une à l’autre.',
+      hint: 'Sur un vin, « Quelle recette ? » sort les plats du site qui vont avec.' },
+    { kicker: 'Palmarès', title: 'Tes trophées', art: 'trophy', accent: '#FFC24B', tint: T.jaune,
+      text: 'Six badges qui se débloquent en cuisinant pour de vrai : Première flamme, Apprenti, Chef de maison, Collectionneur, Tour du monde, Organisé. Rien à réclamer, ils viennent seuls.',
+      hint: '« Tour du monde » compte les pays différents que tu as cuisinés.' },
+    { kicker: 'Tes goûts', title: 'Affine mes goûts', art: 'taste', accent: '#FF2E63', tint: T.rose,
+      text: 'Dix recettes, un glissé (ou un clic) chacune : à droite j’aime, à gauche je passe. C’est tout ce qui nourrit la rangée « Pour toi » de l’accueil.',
+      hint: 'Optionnel et rejouable — la rangée « Pour toi » se recalcule aussitôt.' },
+    { kicker: 'Installer', title: 'Dans le Dock', art: 'install', accent: '#0A84FF', tint: T.bleu,
+      text: 'Le site s’installe aussi sur l’ordinateur : sa propre fenêtre, sans barre d’adresse ni onglets. Chrome et Edge le proposent depuis la barre d’adresse, Safari par Fichier → Ajouter au Dock.',
+      hint: 'Menu → « Installer l’application » : le chemin y est dessiné pour ton navigateur.' },
 ];
 
 /** Mini-scène illustrée d'une étape. Cadre commun + contenu spécifique. */
@@ -244,6 +327,82 @@ function Illus({ kind, accent }: { kind: Art; accent: string }) {
             <path d="M176 24h20l-3 14a7 7 0 0 1-14 0z" fill={c} opacity="0.85" />
             <path d="M186 38v10M180 48h12" stroke={soft2} strokeWidth="2" strokeLinecap="round" />
         </>);
+        case 'clic': return frame(<>
+            {/* Curseur sur une carte + menu contextuel ouvert à côté. */}
+            {r(20, 24, 92, 102, 12, `url(#g-${kind})`)}
+            <path d="M64 76l0 30 8-8 6 12 6-3-6-12 11 0z" fill="#fff" stroke="#111" strokeWidth="1.4" strokeLinejoin="round" />
+            {r(120, 30, 84, 90, 12, 'rgba(30,30,34,0.95)', soft2)}
+            {[42, 60, 78, 96].map((y) => r(130, y, 64, 8, 4, soft2))}
+        </>);
+        case 'cook': return frame(<>
+            {/* Une étape en grand + le minuteur qui tourne. */}
+            {r(16, 16, 128, 118, 12, soft)}
+            <text x="30" y="40" fontSize="9" fill="#fff" fillOpacity="0.5">ÉTAPE 3 / 7</text>
+            {[54, 70, 86].map((y) => r(30, y, 100, 8, 4, soft2))}
+            {r(30, 106, 60, 16, 8, '#fff')}
+            <circle cx="178" cy="70" r="28" stroke={soft2} strokeWidth="5" />
+            <path d="M178 42a28 28 0 0 1 20 47" stroke={c} strokeWidth="5" strokeLinecap="round" />
+            <text x="178" y="74" textAnchor="middle" fontSize="12" fontWeight="800" fill="#fff">8:00</text>
+        </>);
+        case 'sidebar': return frame(<>
+            {/* La barre latérale, et la page qui vit à sa droite. */}
+            {r(10, 10, 62, 130, 10, 'rgba(30,30,34,0.95)', soft2)}
+            {r(20, 20, 34, 8, 4, soft2)}
+            {[38, 54, 70, 86, 102, 118].map((y, k) => (
+                <g key={y}>
+                    <circle cx="27" cy={y + 4} r="4" fill={k === 0 ? c : soft2} />
+                    {r(37, y, k === 0 ? 28 : 24, 8, 4, k === 0 ? `url(#g-${kind})` : soft2)}
+                </g>
+            ))}
+            {r(82, 10, 128, 44, 10, soft)}
+            {[62, 100].map((y) => [82, 126, 170].map((x) => r(x, y, 38, 32, 6, soft)))}
+        </>);
+        case 'library': return frame(<>
+            {/* Une pastille glissée depuis la liste vers la bibliothèque épinglée. */}
+            {r(10, 10, 76, 130, 10, 'rgba(30,30,34,0.95)', soft2)}
+            <text x="20" y="26" fontSize="8" fill="#fff" fillOpacity="0.5">BIBLIOTHÈQUE</text>
+            {[34, 50].map((y) => r(20, y, 56, 10, 5, `url(#g-${kind})`))}
+            {r(20, 66, 56, 1, 0.5, soft2)}
+            {[76, 92, 108, 124].map((y) => r(20, y, 56, 10, 5, soft))}
+            <path d="M96 100c22-6 30-30 50-40" stroke={soft2} strokeWidth="2" strokeDasharray="4 4" strokeLinecap="round" />
+            {r(140, 46, 56, 12, 6, c)}
+            <path d="M150 66l0 22 6-6 5 9 5-2-5-9 8 0z" fill="#fff" stroke="#111" strokeWidth="1.2" strokeLinejoin="round" />
+        </>);
+        case 'trophy': return frame(<>
+            {/* Six badges, quatre débloqués. */}
+            {[0, 1, 2].map((col) => [0, 1].map((ligne) => {
+                const x = 24 + col * 60; const y = 22 + ligne * 58; const on = col + ligne * 3 < 4;
+                return (
+                    <g key={`${col}-${ligne}`}>
+                        <circle cx={x + 20} cy={y + 20} r="19" fill={on ? `url(#g-${kind})` : soft} stroke={soft2} strokeWidth="1" />
+                        <path d={`M${x + 14} ${y + 28}h12M${x + 20} ${y + 24}v4M${x + 14} ${y + 12}h12v5a6 6 0 0 1-12 0z`}
+                            stroke={on ? '#fff' : soft2} strokeWidth="1.8" strokeLinecap="round" fill="none" />
+                        {r(x + 6, y + 44, 28, 5, 2.5, on ? soft2 : soft)}
+                    </g>
+                );
+            }))}
+        </>);
+        case 'taste': return frame(<>
+            {/* Le paquet de cartes, celle du dessus partie à droite. */}
+            {r(52, 26, 84, 100, 12, soft)}
+            {r(62, 20, 84, 106, 12, soft2)}
+            <g transform="rotate(9 130 70)">
+                {r(96, 14, 88, 112, 12, `url(#g-${kind})`)}
+            </g>
+            <path d="M172 46c3-5 11-3 11 3 0 6-7 10-11 13-4-3-11-7-11-13 0-6 8-8 11-3z" fill="#fff" />
+            <path d="M34 62l14 14M48 62l-14 14" stroke={soft2} strokeWidth="3" strokeLinecap="round" />
+        </>);
+        case 'install': return frame(<>
+            {/* L'icône qui saute de la fenêtre vers l'écran d'accueil. */}
+            {r(14, 22, 84, 96, 12, soft, soft2)}
+            {r(24, 32, 64, 10, 5, soft2)}
+            {r(38, 58, 36, 36, 9, `url(#g-${kind})`)}
+            <path d="M104 70h28M132 70l-7-6M132 70l-7 6" stroke={soft2} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+            {r(142, 14, 64, 122, 14, 'rgba(30,30,34,0.95)', soft2)}
+            {[26, 62].map((y) => [150, 182].map((x) => r(x, y, 24, 24, 7, soft)))}
+            {r(150, 98, 24, 24, 7, `url(#g-${kind})`)}
+            {r(182, 98, 24, 24, 7, soft)}
+        </>);
         default: return frame(null);
     }
 }
@@ -256,6 +415,14 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
     const [i, setI] = useState(0);
     const [mounted, setMounted] = useState(false);
     const pagerRef = useRef<HTMLDivElement>(null);
+
+    /*
+     * `embedded` n'est vrai que dans le shell de bureau (TVDesktopHome) ; le
+     * téléphone rend toujours le calque plein écran. C'est donc aussi le
+     * signal le plus sûr de la plateforme — plus sûr qu'une largeur d'écran,
+     * qui ment sur un iPad en paysage ou une fenêtre étroite.
+     */
+    const STEPS = embedded ? STEPS_BUREAU : STEPS_MOBILE;
 
     useEffect(() => { setMounted(true); }, []);
 
@@ -272,7 +439,7 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
         if (!el) return;
         const next = Math.round(el.scrollLeft / el.clientWidth);
         setI((v) => (v === next ? v : Math.min(STEPS.length - 1, Math.max(0, next))));
-    }, []);
+    }, [STEPS.length]);
 
     const goTo = (n: number) => {
         const el = pagerRef.current;
@@ -298,7 +465,7 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
         };
         window.addEventListener('keydown', onKey);
         return () => window.removeEventListener('keydown', onKey);
-    }, [i, onClose]);
+    }, [i, onClose, STEPS.length]);
 
     if (!mounted) return null;
 

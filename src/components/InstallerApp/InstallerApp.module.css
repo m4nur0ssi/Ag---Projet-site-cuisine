@@ -95,9 +95,6 @@
 }
 
 .etape {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
     padding: 13px 15px;
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.045);
@@ -105,6 +102,28 @@
     font-size: 14.5px;
     line-height: 1.45;
     color: rgba(235, 235, 245, 0.84);
+}
+
+/* Le numéro et la phrase tiennent sur une ligne ; la scène, quand il y en a
+   une, se glisse dessous, alignée sur le texte et pas sur la pastille. */
+.ligne {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+/* La scène dessinée. Elle vaut mieux qu'une capture d'écran : elle ne périme
+   pas à la prochaine version d'iOS, elle pèse deux kilos-octets, et elle ne
+   montre QUE ce qui compte — le bouton entouré. */
+.scene {
+    display: block;
+    width: 100%;
+    margin: 10px 0 0 34px;
+    max-width: 260px;
+    height: auto;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .etape b { color: #ffffff; font-weight: 700; }

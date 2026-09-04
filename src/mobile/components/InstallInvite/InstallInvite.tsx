@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import styles from './InstallInvite.module.css';
 import { ecrireStock } from '@/lib/stockage';
+import InstallerApp from '@/components/InstallerApp/InstallerApp';
 
 /**
  * L'invitation à installer l'application.
@@ -91,8 +92,17 @@ export default function InstallInvite() {
         return () => { window.removeEventListener('beforeinstallprompt', capter); clearInterval(guetter); };
     }, []);
 
-    const refuser = () => {
+    /**
+     * Le choix est fait : on ne redemandera plus. La bannière reste à l'écran
+     * — le pas-à-pas s'ouvre PAR-DESSUS elle, et la faire disparaître ici
+     * démonterait le composant qui porte ce pas-à-pas.
+     */
+    const noterVu = () => {
         try { ecrireStock(CLE_REFUS, 'oui'); } catch { /* noop */ }
+    };
+
+    const refuser = () => {
+        noterVu();
         setVisible(false);
     };
 
@@ -117,12 +127,23 @@ export default function InstallInvite() {
 
             {ios ? (
                 <>
+                    {/*
+                     * iOS 26 a rangé le partage derrière le « ⋯ » de la barre du
+                     * bas : décrire le geste en une phrase envoyait chercher un
+                     * bouton disparu. On renvoie donc au pas-à-pas dessiné, seul
+                     * endroit où les cinq écrans sont montrés.
+                     */}
                     <p className={styles.texte}>
-                        Touche <span className={styles.geste}>Partager</span> en bas de Safari,
-                        puis <span className={styles.geste}>{'Sur l\u2019écran d\u2019accueil'}</span>.
-                        {' Plus de barre d\u2019adresse, l\u2019app s\u2019ouvre d\u2019une icône.'}
+                        {'Cinq gestes dans Safari et l\u2019app se pose sur ton écran d\u2019accueil : plus de barre d\u2019adresse, ouverture en plein écran.'}
                     </p>
-                    <button className={styles.principal} onClick={refuser}>{'J\u2019ai compris'}</button>
+                    <div className={styles.actions}>
+                        <button className={styles.secondaire} onClick={refuser}>Non merci</button>
+                        <InstallerApp
+                            classeDeclencheur={styles.principal}
+                            contenuDeclencheur="Montre-moi"
+                            avantOuverture={noterVu}
+                        />
+                    </div>
                 </>
             ) : (
                 <>
