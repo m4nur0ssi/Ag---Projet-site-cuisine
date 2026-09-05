@@ -521,26 +521,31 @@
     transition: opacity 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-    .card {
-        background: #fff;
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    }
-    .card:hover {
-        border-color: var(--glow-color, #7f0df2);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-    .title {
-        color: #000000 !important;
-    }
-    .description {
-        color: rgba(0, 0, 0, 0.8);
-    }
-    .imagePlaceholder {
-        background: #f5f5f7;
-    }
+/* Clair / sombre : une seule question posée, l'attribut data-theme, que le
+   script d'amorçage du layout pose avant le premier affichage (choix
+   enregistré, sinon réglage du système). L'ancien bloc « @media
+   prefers-color-scheme » répondait, lui, au seul réglage du système : sur
+   un téléphone en clair il blanchissait les fonds pendant que les règles
+   data-theme, muettes, laissaient les textes en blanc. */
+:global([data-theme='light']) .card {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
+:global([data-theme='light']) .card:hover {
+    border-color: var(--glow-color, #7f0df2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+:global([data-theme='light']) .title {
+    color: #000000 !important;
+}
+:global([data-theme='light']) .description {
+    color: rgba(0, 0, 0, 0.8);
+}
+:global([data-theme='light']) .imagePlaceholder {
+    background: #f5f5f7;
+}
+
 
 :root[data-theme='light'] .card {
     background: #fff;
@@ -592,4 +597,4 @@
     }
 }
 
-
+

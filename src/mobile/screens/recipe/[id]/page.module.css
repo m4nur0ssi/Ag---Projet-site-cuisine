@@ -1512,15 +1512,11 @@
     transition: transform 0.2s cubic-bezier(0.32, 0, 0.67, 0), opacity 0.18s ease;
 }
 
-@media (prefers-color-scheme: light) {
-    .page { background: #ffffff !important; }
-    .heroNewLayout { background: #f9f9fb !important; }
-    
-    .heroTitleElegant, .heroDescription, .heroDescription p, .focusBtnText, .servingsNumber, .metaValue, .metaLabel, .ingredientProgressText, .ingName, .ingQty, .stepBody, .recipeDescription, .seeAll, .viewMoreText, .tabBtn, .itemName, .focusStepText {
-        color: #000000 !important;
-        opacity: 1 !important;
-    }
-}
+/* Le doublon « @media prefers-color-scheme » a été retiré : il répondait au
+   réglage du système seul, alors que les règles data-theme juste en dessous
+   disent exactement la même chose et suivent, elles, le choix de
+   l'utilisateur. Les deux ensemble se contredisaient dès que le téléphone
+   était en clair et l'application en sombre — fond blanc, texte blanc. */
 
 :global([data-theme='light']) .page { background: #ffffff !important; }
 :global([data-theme='light']) .heroNewLayout { background: #f9f9fb !important; }

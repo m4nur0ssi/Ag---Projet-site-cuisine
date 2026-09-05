@@ -102,3 +102,7 @@
     pointer-events: none;
     opacity: 0.75;
 }
+
+/* Étoile vide : un blanc à 20 % ne se voit pas sur un fond clair. En clair,
+   c'est la même trame, mais en encre. */
+:global([data-theme='light']) .slStarBase { color: rgba(0, 0, 0, 0.18); }

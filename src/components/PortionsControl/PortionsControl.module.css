@@ -116,15 +116,20 @@
     font-size: 0.55rem;
 }
 
-@media (prefers-color-scheme: light) {
-    .pill {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #000;
-    }
-    .step {
-        background: rgba(0, 0, 0, 0.04);
-        border-color: rgba(0, 0, 0, 0.12);
-        color: #000;
-    }
+/* Clair / sombre : une seule question posée, l'attribut data-theme, que le
+   script d'amorçage du layout pose avant le premier affichage (choix
+   enregistré, sinon réglage du système). L'ancien bloc « @media
+   prefers-color-scheme » répondait, lui, au seul réglage du système : sur
+   un téléphone en clair il blanchissait les fonds pendant que les règles
+   data-theme, muettes, laissaient les textes en blanc. */
+:global([data-theme='light']) .pill {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #000;
 }
+:global([data-theme='light']) .step {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.12);
+    color: #000;
+}
+

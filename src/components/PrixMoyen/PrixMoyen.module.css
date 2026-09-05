@@ -72,3 +72,11 @@
 .petite .valeur {
     font-size: 12.5px;
 }
+
+/* Fond noir imposé (écrans TV+) : on annule les couleurs du thème clair. */
+:global([data-theme='light']) .pastille.sombre {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+:global([data-theme='light']) .pastille.sombre .libelle { color: rgba(235, 235, 245, 0.5); }
+:global([data-theme='light']) .pastille.sombre .valeur { color: #fff; }

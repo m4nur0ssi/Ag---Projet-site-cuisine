@@ -57,3 +57,12 @@
     transform: skewX(-6deg);
     text-shadow: 0 2px 22px rgba(0, 0, 0, 0.5);
 }
+
+/* En clair, le titre est posé sur un fond presque blanc : le blanc incliné y
+   disparaissait complètement. Il prend l'encre du thème, et l'ombre passe du
+   noir diffus à une ombre nette et discrète. */
+:global([data-theme='light']) .plain {
+    color: var(--color-text-primary);
+    -webkit-text-fill-color: var(--color-text-primary);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}

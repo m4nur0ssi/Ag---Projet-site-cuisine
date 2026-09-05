@@ -25,15 +25,13 @@ const MoonIcon = () => (
 export default function ThemeToggle({ className }: ThemeToggleProps) {
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
+    /* Le thème est déjà résolu et posé sur <html> par le script d'amorçage du
+       layout (choix enregistré, sinon réglage du téléphone). Le bouton se
+       contente de lire ce qui est affiché : c'est ce qui garantit que le
+       soleil et la lune correspondent à l'écran, sur tous les écrans. */
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-        if (savedTheme) {
-            setTheme(savedTheme);
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-            setTheme('light');
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
+        const actuel = document.documentElement.getAttribute('data-theme');
+        setTheme(actuel === 'light' ? 'light' : 'dark');
     }, []);
 
     const toggleTheme = () => {

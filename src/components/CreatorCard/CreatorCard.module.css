@@ -142,14 +142,19 @@
     font-weight: 500 !important;
 }
 
-@media (prefers-color-scheme: dark) {
-    .card {
-        background: rgba(40, 40, 44, 0.55);
-        border-color: rgba(255, 255, 255, 0.08);
-    }
-    .name { color: #f2f2f2; }
-    .bio, .attribution { color: #cfcfcf; }
-    .meta span { background: rgba(255, 255, 255, 0.08); color: #ddd; }
-    .metaLink { background: rgba(255, 255, 255, 0.08); color: #ff5c7c; }
-    .footer { border-top-color: rgba(255, 255, 255, 0.08); }
+/* Clair / sombre : une seule question posée, l'attribut data-theme, que le
+   script d'amorçage du layout pose avant le premier affichage (choix
+   enregistré, sinon réglage du système). L'ancien bloc « @media
+   prefers-color-scheme » répondait, lui, au seul réglage du système : sur
+   un téléphone en clair il blanchissait les fonds pendant que les règles
+   data-theme, muettes, laissaient les textes en blanc. */
+:global([data-theme='dark']) .card {
+    background: rgba(40, 40, 44, 0.55);
+    border-color: rgba(255, 255, 255, 0.08);
 }
+:global([data-theme='dark']) .name { color: #f2f2f2; }
+:global([data-theme='dark']) .bio, :global([data-theme='dark']) .attribution { color: #cfcfcf; }
+:global([data-theme='dark']) .meta span { background: rgba(255, 255, 255, 0.08); color: #ddd; }
+:global([data-theme='dark']) .metaLink { background: rgba(255, 255, 255, 0.08); color: #ff5c7c; }
+:global([data-theme='dark']) .footer { border-top-color: rgba(255, 255, 255, 0.08); }
+

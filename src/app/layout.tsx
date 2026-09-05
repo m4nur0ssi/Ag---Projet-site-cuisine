@@ -121,6 +121,29 @@ export default function RootLayout({
                     dangerouslySetInnerHTML={{
                         __html: `
                             (function() {
+                                /* Clair ou sombre : la réponse est écrite ICI, avant le
+                                   premier affichage, et une bonne fois.
+
+                                   Les feuilles de style posaient la question de deux
+                                   façons — l'attribut data-theme, et la préférence
+                                   du système. Or data-theme n'était posé que par le
+                                   bouton de thème, qui n'est pas monté sur tous les
+                                   écrans : téléphone en mode clair, l'attribut restait
+                                   absent. Les règles « système clair » blanchissaient
+                                   les fonds, celles de data-theme laissaient les
+                                   textes en blanc — on lisait du blanc sur du blanc.
+
+                                   Une seule source, donc : le choix de l'utilisateur
+                                   s'il en a fait un, sinon le réglage du téléphone. */
+                                try {
+                                    var t = localStorage.getItem('theme');
+                                    if (t !== 'light' && t !== 'dark') {
+                                        t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                                    }
+                                    document.documentElement.setAttribute('data-theme', t);
+                                } catch (e) {
+                                    document.documentElement.setAttribute('data-theme', 'dark');
+                                }
                                 try {
                                     var ua = navigator.userAgent || '';
                                     var narrow = window.matchMedia('(max-width: 1024px)').matches;

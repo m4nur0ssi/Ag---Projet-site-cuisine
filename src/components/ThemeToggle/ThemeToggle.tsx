@@ -12,16 +12,12 @@ interface ThemeToggleProps {
 export default function ThemeToggle({ className, children }: ThemeToggleProps) {
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
+    /* Le thème est déjà résolu et posé sur <html> par le script d'amorçage du
+       layout (choix enregistré, sinon réglage du système) : le bouton lit ce
+       qui est réellement affiché plutôt que de refaire ce calcul. */
     useEffect(() => {
-        // Init theme from localStorage or system preference
-        const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-        if (savedTheme) {
-            setTheme(savedTheme);
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-            setTheme('light');
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
+        const actuel = document.documentElement.getAttribute('data-theme');
+        setTheme(actuel === 'light' ? 'light' : 'dark');
     }, []);
 
     const toggleTheme = () => {

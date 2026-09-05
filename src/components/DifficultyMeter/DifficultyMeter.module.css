@@ -36,7 +36,12 @@
     white-space: nowrap;
 }
 
-@media (prefers-color-scheme: light) {
-    .bar { background: rgba(0, 0, 0, 0.12); }
-    .caption { color: #1d1d1f; }
-}
+/* Clair / sombre : une seule question posée, l'attribut data-theme, que le
+   script d'amorçage du layout pose avant le premier affichage (choix
+   enregistré, sinon réglage du système). L'ancien bloc « @media
+   prefers-color-scheme » répondait, lui, au seul réglage du système : sur
+   un téléphone en clair il blanchissait les fonds pendant que les règles
+   data-theme, muettes, laissaient les textes en blanc. */
+:global([data-theme='light']) .bar { background: rgba(0, 0, 0, 0.12); }
+:global([data-theme='light']) .caption { color: #1d1d1f; }
+
