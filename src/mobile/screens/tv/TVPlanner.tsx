@@ -34,6 +34,7 @@ import { isTVSide, isTVMain, sidePool } from './sides';
 import {
     DAYS, DAY_FULL, MEALS, JOUR_J, COURSES, todayIndex,
     chargerPlan, enregistrerPlan, poserRecette, oublierCoches, PLAN_EVENT,
+    posableEnSemaine, recetteEnMain, reposer, creneauAccepte, EN_MAIN_EVENT,
     type Plan, type Slot,
 } from './plan';
 import { matchesTag } from './themes';
@@ -74,6 +75,20 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const [picker, setPicker] = useState<{ day: string; meal: string; side?: boolean } | null>(null);
     const [detail, setDetail] = useState<Recipe | null>(null);
     const [recap, setRecap] = useState<{ total: number; rayons: { id: string; n: number }[] } | null>(null);
+    /*
+     * La recette apportée depuis une carte ou une fiche.
+     *
+     * On arrive ici en la tenant : tous les créneaux qui l'acceptent affichent
+     * « Poser ici », et une barre en bas rappelle ce qu'on a dans la main tant
+     * qu'on ne l'a pas posée.
+     */
+    const [enMain, setEnMain] = useState<Recipe | null>(null);
+    useEffect(() => {
+        setEnMain(recetteEnMain());
+        const suivre = (e: Event) => setEnMain((e as CustomEvent).detail as Recipe | null);
+        window.addEventListener(EN_MAIN_EVENT, suivre);
+        return () => window.removeEventListener(EN_MAIN_EVENT, suivre);
+    }, []);
     const pagerRef = useRef<HTMLDivElement>(null);
 
     // ── Chargement : Supabase si connecté, sinon cache local ───────────────
@@ -209,7 +224,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         if (!picker) return undefined;
         if (picker.side) return isTVSide;
         if (picker.day === JOUR_J) return COURSES.find((c) => c.label === picker.meal)?.accepts;
-        return isTVMain; // créneau de semaine : uniquement des plats
+        // Créneau de semaine : tout ce qui se cuisine. On y met ce qu'on veut —
+        // c'est « Composer » qui reste discipliné, pas la main de l'utilisateur.
+        return posableEnSemaine;
     }, [picker]);
 
     /**
@@ -471,8 +488,33 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     };
 
     // ── Rendu d'un créneau (semaine ou Jour J) ─────────────────────────────
-    const SlotView = ({ day, meal, accepts, sideable }: {
-        day: string; meal: string; accepts: (r: Recipe) => boolean; sideable?: boolean;
+    /**
+     * Poser la recette qu'on tient dans ce créneau.
+     *
+     * On repose la main tout de suite : le geste est fini, et la barre du bas
+     * doit disparaître au moment où la carte apparaît, pas après.
+     */
+    const poserEnMain = (day: string, meal: string) => {
+        if (!enMain) return;
+        const remplace = plan[day]?.[meal];
+        haptic(14);
+        setSlot(day, meal, enMain);
+        reposer();
+        window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+            detail: {
+                text: remplace
+                    ? `${label(enMain)} remplace ${label(remplace)} · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`
+                    : `Ajouté · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`,
+            },
+        }));
+    };
+
+    const SlotView = ({ day, meal, accepts, surprend, sideable }: {
+        day: string; meal: string;
+        accepts: (r: Recipe) => boolean;
+        /** Ce que « Surprends-moi » a le droit de tirer (par défaut, ce que le créneau accepte). */
+        surprend?: (r: Recipe) => boolean;
+        sideable?: boolean;
     }) => {
         const slot = plan[day]?.[meal];
         // Viande ou poisson servi nu → on propose une garniture.
@@ -484,9 +526,15 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     <span className={styles.planMeal}>{meal}</span>
                     {slot && (
                         <span className={styles.planSlotActions}>
-                            <button className={styles.planSwap} onClick={() => { haptic(8); setPicker({ day, meal }); }}>
-                                Changer
-                            </button>
+                            {enMain && creneauAccepte(enMain, day, meal) ? (
+                                <button className={styles.planPoser} onClick={() => poserEnMain(day, meal)}>
+                                    Poser ici
+                                </button>
+                            ) : (
+                                <button className={styles.planSwap} onClick={() => { haptic(8); setPicker({ day, meal }); }}>
+                                    Changer
+                                </button>
+                            )}
                             <button className={styles.planRemove} onClick={() => { haptic(10); setSlot(day, meal, null); }}>
                                 Retirer
                             </button>
@@ -558,14 +606,28 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                         )}
                     </div>
                 ) : (
-                    <div className={styles.planEmpty}>
-                        <button className={styles.planAdd} onClick={() => { haptic(8); setPicker({ day, meal }); }}>
-                            <span className={styles.planPlus}>+</span>
-                            Choisir {meal === 'Plat' || meal === 'Midi' || meal === 'Soir' ? 'un plat' : 'une recette'}
-                        </button>
-                        <button className={styles.planSurprise} onClick={() => surprise(day, meal, accepts)}>
-                            Surprends-moi
-                        </button>
+                    <div className={`${styles.planEmpty} ${enMain && creneauAccepte(enMain, day, meal) ? styles.planEmptyCible : ''}`}>
+                        {enMain && creneauAccepte(enMain, day, meal) ? (
+                            /* Une recette est en main : ce créneau ne propose plus de
+                               choisir ni de tirer au sort — il propose de la recevoir. */
+                            <button className={styles.planPoserGrand} onClick={() => poserEnMain(day, meal)}>
+                                <img src={enMain.image} alt="" className={styles.planPoserVignette} draggable={false} />
+                                <span className={styles.planPoserTexte}>
+                                    <span className={styles.planPoserQuoi}>Poser ici</span>
+                                    <span className={styles.planPoserNom}>{label(enMain)}</span>
+                                </span>
+                            </button>
+                        ) : (
+                            <>
+                                <button className={styles.planAdd} onClick={() => { haptic(8); setPicker({ day, meal }); }}>
+                                    <span className={styles.planPlus}>+</span>
+                                    Choisir {meal === 'Plat' ? 'un plat' : 'une recette'}
+                                </button>
+                                <button className={styles.planSurprise} onClick={() => surprise(day, meal, surprend || accepts)}>
+                                    Surprends-moi
+                                </button>
+                            </>
+                        )}
                     </div>
                 )}
             </div>
@@ -594,7 +656,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     }
 
     return (
-        <div className={`${styles.page} ${embedded ? styles.embedded : ''}`}>
+        <div className={`${styles.page} ${embedded ? styles.embedded : ''} ${enMain ? styles.pageEnMain : ''}`}>
             <header className={styles.planHead}>
                 {/* Dans le shell desktop, la sidebar gère le retour : pas de flèche ici. */}
                 {!embedded && (
@@ -693,7 +755,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                     <PrixMoyen prix={prixParJour.jours[day]} libelle="Ce jour" taille="petite" sombre />
                                 </div>
                                 {MEALS.map((meal) => (
-                                    <SlotView key={meal} day={day} meal={meal} accepts={isTVMain} sideable />
+                                    <SlotView key={meal} day={day} meal={meal} accepts={posableEnSemaine} surprend={isTVMain} sideable />
                                 ))}
                             </section>
                         ))}
@@ -924,6 +986,35 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
             {detail && (
                 <RecipeSheet recipe={detail} isOpen={true} onClose={() => setDetail(null)} />
             )}
+            {/* ── La recette qu'on tient ─────────────────────────────────────
+                Tant qu'elle n'est pas posée, elle reste visible : c'est ce qui
+                explique pourquoi les créneaux disent « Poser ici », et c'est la
+                seule sortie si on change d'avis. */}
+            <AnimatePresence>
+                {enMain && (
+                    <motion.div
+                        className={styles.enMainBar}
+                        initial={{ y: 90, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: 90, opacity: 0 }}
+                        transition={{ type: 'spring', damping: 30, stiffness: 340 }}
+                    >
+                        <img src={enMain.image} alt="" className={styles.enMainVignette} draggable={false} />
+                        <div className={styles.enMainTexte}>
+                            <div className={styles.enMainKicker}>Choisissez un créneau</div>
+                            <div className={styles.enMainNom}>{label(enMain)}</div>
+                        </div>
+                        <button
+                            className={styles.enMainAnnuler}
+                            onClick={() => { haptic(8); reposer(); }}
+                            aria-label="Reposer la recette"
+                        >
+                            Annuler
+                        </button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             <Tip id="planner" />
             <TVToast />
         </div>

@@ -4374,3 +4374,171 @@
     font-size: 40px;
     line-height: 1;
 }
+
+/* ── Poser une recette apportée d'ailleurs ───────────────────────────────────
+ *
+ * On arrive au planificateur en tenant une recette (appui long sur une carte,
+ * bouton « Planifier » d'une fiche). Deux choses doivent alors se voir sans
+ * qu'on ait à les lire : ce qu'on tient, et où on a le droit de le poser.
+ */
+
+/* Les créneaux qui acceptent ce qu'on tient s'éclairent et respirent. Un
+   cadre continu, plus clair que les autres : l'œil les trouve en balayant. */
+.planEmptyCible {
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: inset 0 0 0 1.6px var(--color-accent-primary, #7f0df2);
+    animation: planCible 2.4s ease-in-out infinite;
+}
+
+@keyframes planCible {
+    0%, 100% { box-shadow: inset 0 0 0 1.6px rgba(127, 13, 242, 0.55); }
+    50% { box-shadow: inset 0 0 0 1.6px rgba(127, 13, 242, 1); }
+}
+
+/* Le créneau vide devient une cible : la vignette de la recette, et le geste
+   nommé. Plus de « Choisir » ni de « Surprends-moi » — on a déjà choisi. */
+.planPoserGrand {
+    flex: 1 1 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    text-align: left;
+}
+.planPoserGrand:active { transform: scale(0.97); }
+
+.planPoserVignette {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 auto;
+    border-radius: 11px;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.planPoserTexte { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+
+.planPoserQuoi {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #fff;
+}
+
+.planPoserNom {
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: rgba(235, 235, 245, 0.62);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Créneau déjà pris : « Poser ici » remplace « Changer ». Poser dessus, c'est
+   remplacer — le message qui suit le dit, on ne pose pas la question avant. */
+.planPoser {
+    border: none;
+    border-radius: 999px;
+    padding: 5px 13px;
+    background: var(--color-accent-primary, #7f0df2);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+.planPoser:active { transform: scale(0.94); }
+
+/* La barre du bas : ce qu'on tient, tant qu'on ne l'a pas posé. Au-dessus de
+   la barre de navigation, comme le message fugitif. */
+.enMainBar {
+    position: fixed;
+    /* Centrée par les marges, PAS par une transformation : framer-motion écrit
+       sa propre `transform` pour l'animation d'entrée et effacerait un
+       translateX posé ici — la barre partait alors se coller à droite.
+       Et posée AU-DESSUS du bandeau d'actions (Composer / Effacer / Remplir),
+       qui occupe déjà tout le bas de l'écran. */
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: calc(200px + env(safe-area-inset-bottom, 0px));
+    z-index: 23500;
+    width: min(92vw, 520px);
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 10px 12px 10px 10px;
+    border-radius: 999px;
+    background: rgba(34, 34, 36, 0.95);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    backdrop-filter: blur(40px) saturate(180%);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55), inset 0 0 0 0.5px rgba(255, 255, 255, 0.16);
+}
+
+.enMainVignette {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    border-radius: 13px;
+    object-fit: cover;
+}
+
+.enMainTexte { flex: 1 1 auto; min-width: 0; }
+
+.enMainKicker {
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent-secondary, #a855f7);
+}
+
+.enMainNom {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.enMainAnnuler {
+    flex: 0 0 auto;
+    border: none;
+    border-radius: 999px;
+    padding: 9px 16px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.enMainAnnuler:active { transform: scale(0.94); }
+
+/* La barre flotte au-dessus du contenu : sans cette place réservée, elle
+   couvrait le dernier créneau du jour — justement l'un de ceux qu'on vient
+   poser. On défile un peu plus, et tout reste atteignable. */
+/* Semaine ET Jour J passent par `.planSlide` : une seule règle suffit. */
+.pageEnMain .planSlide { padding-bottom: calc(266px + env(safe-area-inset-bottom, 0px)); }
+
+/* Au bureau, le planificateur est un panneau : pas de barre de navigation en
+   bas, et le bandeau d'actions y est bien plus court. */
+.embedded .enMainBar { bottom: 104px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .planEmptyCible { animation: none; box-shadow: inset 0 0 0 1.6px rgba(127, 13, 242, 0.9); }
+}

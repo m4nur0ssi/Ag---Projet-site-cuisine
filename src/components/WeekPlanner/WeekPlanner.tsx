@@ -14,7 +14,8 @@ import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { isCookable, isMainDish, isSideDish, hasSideIncluded, proteinOf, isSweet, MEAT_FISH } from '@/lib/mealClassify';
 import styles from './WeekPlanner.module.css';
 import { ecrireStock } from '@/lib/stockage';
-import { PLAN_EVENT } from '@/mobile/screens/tv/plan';
+import Portal from '@/components/Portal';
+import { PLAN_EVENT, EN_MAIN_EVENT, recetteEnMain, reposer, creneauAccepte } from '@/mobile/screens/tv/plan';
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 const MEALS = ['Midi', 'Soir'] as const;
@@ -202,6 +203,41 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
             } catch {}
         });
         if (changed) window.dispatchEvent(new Event('shoppingListUpdated'));
+    };
+
+    /*
+     * La recette apportée depuis une carte ou une fiche.
+     *
+     * On arrive au planificateur en la tenant : les créneaux qui l'acceptent
+     * proposent de la recevoir, et une barre en bas rappelle ce qu'on a dans la
+     * main tant qu'on ne l'a pas posée.
+     */
+    const [enMain, setEnMain] = useState<any>(null);
+    useEffect(() => {
+        if (demo) return;
+        setEnMain(recetteEnMain());
+        const suivre = (e: Event) => setEnMain((e as CustomEvent).detail);
+        window.addEventListener(EN_MAIN_EVENT, suivre);
+        return () => window.removeEventListener(EN_MAIN_EVENT, suivre);
+    }, [demo]);
+
+    /** Ce créneau peut-il recevoir ce qu'on tient ? */
+    const cible = (day: string, meal: string) => !!enMain && creneauAccepte(enMain, day, meal);
+
+    /** Poser la recette tenue en main dans ce créneau. */
+    const poserEnMain = (day: string, meal: string) => {
+        if (!enMain) return;
+        const remplace = plan[day]?.[meal];
+        const np = { ...plan, [day]: { ...(plan[day] || {}) } };
+        np[day][meal] = enMain;
+        clearSlotChecks(k => k.startsWith(`${day}|${meal}|`));
+        save(np);
+        reposer();
+        window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+            detail: remplace
+                ? `${decodeHtml(enMain.title)} remplace ${decodeHtml(remplace.title)} · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`
+                : `Ajouté · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`,
+        }));
     };
 
     const removeSlot = (day: string, meal: string) => {
@@ -682,7 +718,7 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
                                                         key={meal}
                                                         /* 1re case de la 1re journée = cible du tutoriel */
                                                         data-tour={day === visibleDays[0] && mealIdx === 0 ? 'planner-slot' : undefined}
-                                                        className={`${styles.mealSlot} ${dragOver === slotKey ? styles.dropTarget : ''}`}
+                                                        className={`${styles.mealSlot} ${dragOver === slotKey ? styles.dropTarget : ''} ${cible(day, meal) ? styles.enMainCible : ''}`}
                                                         onDragOver={!validated ? (e) => { if (!drag) return; e.preventDefault(); setDragOver(slotKey); } : undefined}
                                                         onDragLeave={() => setDragOver(prev => prev === slotKey ? null : prev)}
                                                         onDrop={!validated ? (e) => { if (!drag) return; e.preventDefault(); moveSlot(drag, { day, meal }); setDrag(null); setDragOver(null); } : undefined}
@@ -699,6 +735,13 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
                                                             >
                                                                 <img src={recipe.image} alt={recipe.title} className={styles.vignetteImg} />
                                                                 <div className={styles.vignetteTitle}>{decodeHtml(recipe.title)}</div>
+                                                                {cible(day, meal) && (
+                                                                    /* On tient une recette : poser dessus remplace celle-ci.
+                                                                       Le message qui suit le dit — pas de question avant. */
+                                                                    <button className={styles.poserVignette} onClick={e => { e.stopPropagation(); poserEnMain(day, meal); }}>
+                                                                        Poser ici
+                                                                    </button>
+                                                                )}
                                                                 {!validated && (
                                                                     <>
                                                                     <button className={styles.previewVignette} onClick={e => { e.stopPropagation(); openRecipe(recipe); }} title="Voir la recette" aria-label="Voir la recette">Voir</button>
@@ -731,6 +774,21 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
                                                                 </button>
                                                             ) : null}
                                                             </div>
+                                                            </>
+                                                        ) : cible(day, meal) ? (
+                                                            /* Une recette est en main : la case ne propose plus d'en
+                                                               chercher une — on a déjà choisi, elle se contente de
+                                                               l'accueillir. Vrai même sur un plan validé : venir
+                                                               poser ici est un geste délibéré. */
+                                                            <>
+                                                            <button className={styles.poserSlot} onClick={() => poserEnMain(day, meal)}>
+                                                                {enMain.image && <img src={enMain.image} alt="" className={styles.poserThumb} />}
+                                                                <span className={styles.poserTexte}>
+                                                                    <span className={styles.poserQuoi}>Poser ici</span>
+                                                                    <span className={styles.poserNom}>{decodeHtml(enMain.title)}</span>
+                                                                </span>
+                                                            </button>
+                                                            <div className={styles.sideSlot} />
                                                             </>
                                                         ) : validated ? (
                                                             <>
@@ -994,6 +1052,26 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
                         </div>
                     </div>
                 </div>
+            )}
+
+            {/* ── La recette qu'on tient ─────────────────────────────────────
+                Tant qu'elle n'est pas posée, elle reste visible : c'est ce qui
+                explique pourquoi les cases disent « Poser ici », et c'est la
+                seule sortie si on change d'avis. */}
+            {/* Portalée dans le corps de la page : le calque du planificateur porte
+                une transformation, qui recalerait un `position: fixed` sur lui —
+                la barre partait alors flotter au milieu de l'écran. */}
+            {enMain && (
+                <Portal>
+                <div className={styles.enMainBar}>
+                    {enMain.image && <img src={enMain.image} alt="" className={styles.enMainVignette} />}
+                    <div className={styles.enMainTexte}>
+                        <div className={styles.enMainKicker}>Choisissez un créneau</div>
+                        <div className={styles.enMainNom}>{decodeHtml(enMain.title)}</div>
+                    </div>
+                    <button className={styles.enMainAnnuler} onClick={() => reposer()}>Annuler</button>
+                </div>
+                </Portal>
             )}
         </>
     );

@@ -28,7 +28,7 @@ import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-emb
 import { supabase } from '@/mobile/lib/supabase';
 import {
     DAYS, DAY_FULL, MEALS, JOUR_J, COURSES,
-    chargerPlan, enregistrerPlan, lirePlan, placesPour, poserRecette, todayIndex,
+    chargerPlan, enregistrerPlan, lirePlan, placesPour, poserRecette, prendreEnMain, todayIndex,
     type Plan,
 } from '@/mobile/screens/tv/plan';
 import styles from './PlanPicker.module.css';
@@ -292,12 +292,16 @@ export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlani
                                      * de TOUTES les pages : elle nous suivrait jusque dans
                                      * le planificateur. On lui demande de s'écarter.
                                      */
+                                    /* La recette part AVEC nous : le planificateur la
+                                       trouvera en main et proposera de la poser
+                                       directement, sans avoir à la rechercher. */
+                                    prendreEnMain(recipe);
                                     window.dispatchEvent(new Event(FERMER_FICHE));
                                     if (ouvrirPlanificateur) { onClose(); ouvrirPlanificateur(); }
                                     else router.push('/tv-planner');
                                 }}
                             >
-                                Ouvrir le planificateur
+                                {poses > 0 ? 'Voir le planificateur' : 'Choisir dans le planificateur'}
                             </button>
                         </footer>
                         )}
