@@ -2,46 +2,74 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 05/09/2026 08:24:45
+ * Dernière mise à jour: 05/09/2026 08:56:07
  * Total: 666 recettes
  */
-export const exportSyncId = "1788596685052";
+export const exportSyncId = "1788598567054";
 export const mockRecipes: Recipe[] = [
     {
-        "id": "7402",
-        "title": "Chèvre rôti au miel",
-        "description": "Découvrez une recette gourmande et facile de bûchettes de chèvre rôties au four, enroulées dans du speck, nappées de miel et de vin blanc, puis relevées d'une touche de piment d'Espelette. Idéal pour un apéritif ou une entrée.",
-        "image": "/recipes-ia/7402-carte.webp",
-        "category": "aperitifs",
+        "id": "6444",
+        "title": "Vitello Tonnato Maison",
+        "description": "Une recette maison de Vitello Tonnato, un délicieux mariage terre-mer de veau et de thon, facile à préparer et très savoureuse.",
+        "image": "/recipes-ia/6444-carte.webp",
+        "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7679910200001744160\" data-video-id=\"7679910200001744160\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7679910200001744160\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656387003956645153\" data-video-id=\"7656387003956645153\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656387003956645153\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🥣\n             10 bûchettes de chèvre"
+                "name": "🥜\n             300g de noix de veau"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             10 tranches de speck"
+                "name": "🥕\n             Carottes"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de miel"
+                "name": "🧅\n             Oignons nouveaux"
             },
             {
                 "quantity": "",
-                "name": "💧\n             10 cl de vin blanc sec"
+                "name": "🌿\n             Thym"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Piment d'Espelette"
+                "name": "🌿\n             Romarin"
             },
             {
                 "quantity": "",
-                "name": "🌶️\n             Poivre"
+                "name": "💧\n             Un verre de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des caprons (câpres à queue)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de thon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 filets d'anchois"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de câpres"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf mollet"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
             },
             {
                 "quantity": "",
@@ -49,16 +77,459 @@ export const mockRecipes: Recipe[] = [
             }
         ],
         "steps": [
-            "Préchauffer le four.",
-            "Envelopper chaque bûchette de chèvre dans une tranche de speck.",
-            "Disposer les bûchettes sur une plaque de cuisson.",
-            "Arroser de miel et de vin blanc sec.",
-            "Assaisonner de piment d'Espelette, de poivre et d'un filet d'huile d'olive.",
-            "Faire rôtir au four jusqu'à ce que le chèvre soit doré et fondant."
+            "Suivre les instructions détaillées dans la vidéo"
         ],
         "tags": [
-            "Apéritifs",
+            "Entrées",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6468",
+        "title": "Achard de mangue - version salade",
+        "description": "Une recette estivale d'achard de mangue en version salade, avec des crevettes pour les protéines.",
+        "image": "/recipes-ia/6468-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656385835629022497\" data-video-id=\"7656385835629022497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656385835629022497\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Mangue"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n             Crevettes"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Afrique",
+            "épicé",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6612",
+        "title": "Mijoté de bœuf aux pommes de terre, petits pois et carottes",
+        "description": "Un plat réconfortant de bœuf mijoté avec des pommes de terre, des carottes et des petits pois, parfait pour un repas savoureux et chaleureux.",
+        "image": "/recipes-ia/6612-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642360728757849377\" data-video-id=\"7642360728757849377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642360728757849377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             600 g de paleron de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cube de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Kubor (bouillon cube)"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             800 ml d'eau chaude"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de laurier"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 branche de romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 grande cuillère de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes de terre (épluchées et coupées en morceaux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             Carottes (épluchées et coupées en morceaux)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             350 g de petits pois"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Dans une poêle, faire chauffer un filet d'huile d'olive. Fariner légèrement les morceaux de viande et les faire dorer des deux côtés.",
+            "Ajouter l'oignon haché, la feuille de laurier, la branche de romarin et les gousses d'ail.",
+            "Incorporer le concentré de tomate et bien mélanger, laisser cuire quelques minutes pour que les saveurs se développent.",
+            "Ajouter le bouillon de volaille et le Kubor chaud (dilués dans l'eau chaude) jusqu'à couvrir la viande. Mettre le couvercle et laisser mijoter à feu doux pendant environ 1 heure, en remuant de temps en temps.",
+            "Au cours des 15 dernières minutes, ajouter les pommes de terre, les carottes en morceaux et les petits pois. Ajuster l'assaisonnement en sel et en poivre. Remettre le couvercle et laisser cuire jusqu'à ce que le tout soit bien tendre et crémeux."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Famille",
             "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6835",
+        "title": "Chili Cheese Maison",
+        "description": "Une version maison des célèbres Chili Cheese de Burger King, réputée encore meilleure et plus économique. Ces bouchées croustillantes au cœur fondant et épicé sont parfaites pour l'apéritif.",
+        "image": "/recipes-ia/6835-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650545690245893409\" data-video-id=\"7650545690245893409\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650545690245893409\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧀\n             150 g de cheddar râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 g de fromage frais à tartiner"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 petit piment jalapeño"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Chapelure panko"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de tournesol ou de colza"
+            }
+        ],
+        "steps": [
+            "Coupez le jalapeño en tout petits dés puis mélangez-le avec le cheddar râpé et le fromage frais à tartiner.",
+            "Assaisonnez légèrement puis formez des petites boules avec le mélange.",
+            "Placez les boules au réfrigérateur pendant au moins 30 minutes pour qu'elles se raffermissent.",
+            "Passez chaque boule dans la farine, puis dans l'œuf battu et enfin dans la chapelure panko.",
+            "Faites chauffer l'huile (de tournesol ou de colza) puis plongez les chili cheese quelques minutes jusqu'à ce qu'ils soient bien dorés.",
+            "Égouttez-les sur du papier absorbant et servez-les immédiatement."
+        ],
+        "tags": [
+            "Accompagnements",
+            "épicé",
+            "Pas cher",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6845",
+        "title": "Mini cheesecakes Oreo-myrtille",
+        "description": "Ces mini cheesecakes individuels sont composés d'une coque en chocolat, d'une garniture crémeuse au fromage frais, d'un coulis de myrtilles et sont surmontés d'un demi-Oreo. Parfaits pour une touche gourmande et rafraîchissante.",
+        "image": "/recipes-ia/6845-carte.webp",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650167716740861216\" data-video-id=\"7650167716740861216\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650167716740861216\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de myrtilles surgelées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             18 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             20 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             8 g de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 ml d'eau pour délayer la fécule"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             2-3 gouttes de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150 g de fromage frais (type Philadelphia)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             60 ml de crème liquide entière (pour chantilly)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à soupe de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 biscuits Oreo (12 moitiés)"
+            }
+        ],
+        "steps": [
+            "Faire fondre le chocolat et en tapisser 12 cavités d'un moule en silicone. Placer au réfrigérateur jusqu'à ce que le chocolat soit complètement durci.",
+            "Pour la sauce aux myrtilles, faire cuire les myrtilles, le sucre et 20 ml d'eau pendant quelques minutes. Délayer la fécule de maïs dans 10 ml d'eau, l'ajouter à la sauce et cuire jusqu'à épaississement. Enfin, ajouter quelques gouttes de jus de citron et laisser refroidir.",
+            "Fouetter le fromage frais, la crème liquide entière et le sucre glace jusqu'à obtenir une crème lisse.",
+            "Dans chaque coque en chocolat, déposer d'abord une couche de crème blanche.",
+            "Ajouter un peu de sauce aux myrtilles au centre.",
+            "Presser une moitié de biscuit Oreo sur le dessus pour recouvrir la crème.",
+            "Placer au réfrigérateur pendant au moins 1 heure, puis démouler délicatement du moule en silicone et servir."
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7131",
+        "title": "Crème froide de courgettes, chèvre frais et œuf poché",
+        "description": "Une crème froide de courgettes onctueuse, relevée par du chèvre frais et du basilic, servie avec un œuf poché, des croûtons croustillants et des noisettes concassées. Une entrée légère et rafraîchissante.",
+        "image": "/recipes-ia/7131-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7651352599421078817\" data-video-id=\"7651352599421078817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7651352599421078817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes moyennes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g de chèvre frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petite échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 tranches de pain"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Quelques noisettes concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques herbes fraîches"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            }
+        ],
+        "steps": [
+            "Couper les courgettes en morceaux.",
+            "Faire revenir l'échalote émincée dans l'huile d'olive pendant quelques minutes.",
+            "Ajouter les courgettes et laisser cuire environ 25 minutes jusqu'à ce qu'elles soient bien tendres.",
+            "Laisser refroidir complètement.",
+            "Mixer les courgettes avec le chèvre frais, le basilic, du sel et du poivre jusqu'à obtenir une crème lisse.",
+            "Réserver au réfrigérateur au moins 1 heure.",
+            "Couper le pain en petits cubes et les faire dorer à la poêle avec un filet d'huile d'olive pour obtenir des croûtons croustillants.",
+            "Pocher les œufs dans une eau frémissante vinaigrée pendant environ 2 minutes.",
+            "Répartir la crème froide de courgettes dans des assiettes creuses.",
+            "Déposer délicatement l'œuf poché au centre.",
+            "Ajouter les croûtons et les noisettes concassées.",
+            "Terminer avec quelques herbes fraîches, un filet d'huile d'olive, de la fleur de sel et un peu de poivre.",
+            "Servir immédiatement."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "Soupes",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7398",
+        "title": "Cookie chaud et glace",
+        "description": "Une recette simple pour préparer un cookie moelleux et chocolaté, à servir chaud sur de la glace à la vanille. Le résultat est un mélange chaud, moelleux, chocolaté et légèrement croquant sur la glace froide.",
+        "image": "/recipes-ia/7398-carte.webp",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7676544218990497046\" data-video-id=\"7676544218990497046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7676544218990497046\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             150 g de beurre ramolli"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1,5 dl de sucre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1,5 dl de cassonade"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             4 dl de farine de blé"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             100 g de chocolat noir concassé"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 180°C.",
+            "Fouetter le beurre ramolli, le sucre en poudre et la cassonade jusqu'à obtenir une consistance crémeuse.",
+            "Ajouter l'œuf et mélanger.",
+            "Mélanger la farine de blé et la levure chimique, puis incorporer au mélange.",
+            "Incorporer le chocolat concassé.",
+            "Rouler la pâte en petites boules et les disposer serrées dans un petit plat allant au four, sans papier sulfurisé.",
+            "Cuire au four pendant environ 15 à 18 minutes, jusqu'à ce que les cookies aient fondu ensemble et aient une surface dorée, mais soient encore moelleux au centre.",
+            "Laisser reposer quelques minutes, puis servir le cookie chaud et moelleux sur de la glace à la vanille."
+        ],
+        "tags": [
+            "Les Glaces",
+            "USA"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -146,59 +617,132 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7398",
-        "title": "Cookie chaud et glace",
-        "description": "Une recette simple pour préparer un cookie moelleux et chocolaté, à servir chaud sur de la glace à la vanille. Le résultat est un mélange chaud, moelleux, chocolaté et légèrement croquant sur la glace froide.",
-        "image": "/recipes-ia/7398-carte.webp",
-        "category": "glaces",
+        "id": "7402",
+        "title": "Chèvre rôti au miel",
+        "description": "Découvrez une recette gourmande et facile de bûchettes de chèvre rôties au four, enroulées dans du speck, nappées de miel et de vin blanc, puis relevées d'une touche de piment d'Espelette. Idéal pour un apéritif ou une entrée.",
+        "image": "/recipes-ia/7402-carte.webp",
+        "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
         "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7676544218990497046\" data-video-id=\"7676544218990497046\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7676544218990497046\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7679910200001744160\" data-video-id=\"7679910200001744160\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7679910200001744160\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
         "ingredients": [
             {
                 "quantity": "",
-                "name": "🧈\n             150 g de beurre ramolli"
+                "name": "🥣\n             10 bûchettes de chèvre"
             },
             {
                 "quantity": "",
-                "name": "🍯\n             1,5 dl de sucre en poudre"
+                "name": "🥣\n             10 tranches de speck"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             1,5 dl de cassonade"
+                "name": "🍯\n             2 cuillères à soupe de miel"
             },
             {
                 "quantity": "",
-                "name": "🥚\n             1 œuf"
+                "name": "💧\n             10 cl de vin blanc sec"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             2 cuillères à café de levure chimique"
+                "name": "🌶️\n             Piment d'Espelette"
             },
             {
                 "quantity": "",
-                "name": "🌾\n             4 dl de farine de blé"
+                "name": "🌶️\n             Poivre"
             },
             {
                 "quantity": "",
-                "name": "🍫\n             100 g de chocolat noir concassé"
+                "name": "🍾\n             Huile d'olive"
             }
         ],
         "steps": [
-            "Préchauffer le four à 180°C.",
-            "Fouetter le beurre ramolli, le sucre en poudre et la cassonade jusqu'à obtenir une consistance crémeuse.",
-            "Ajouter l'œuf et mélanger.",
-            "Mélanger la farine de blé et la levure chimique, puis incorporer au mélange.",
-            "Incorporer le chocolat concassé.",
-            "Rouler la pâte en petites boules et les disposer serrées dans un petit plat allant au four, sans papier sulfurisé.",
-            "Cuire au four pendant environ 15 à 18 minutes, jusqu'à ce que les cookies aient fondu ensemble et aient une surface dorée, mais soient encore moelleux au centre.",
-            "Laisser reposer quelques minutes, puis servir le cookie chaud et moelleux sur de la glace à la vanille."
+            "Préchauffer le four.",
+            "Envelopper chaque bûchette de chèvre dans une tranche de speck.",
+            "Disposer les bûchettes sur une plaque de cuisson.",
+            "Arroser de miel et de vin blanc sec.",
+            "Assaisonner de piment d'Espelette, de poivre et d'un filet d'huile d'olive.",
+            "Faire rôtir au four jusqu'à ce que le chèvre soit doré et fondant."
         ],
         "tags": [
-            "Les Glaces",
-            "USA"
+            "Apéritifs",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7297",
+        "title": "Salade Grecque",
+        "description": "Voici la recette de la salade grecque, un classique rafraîchissant et savoureux, parfait pour l'été et très demandé par la communauté.",
+        "image": "/recipes-ia/7297-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7400855448460512545\" data-video-id=\"7400855448460512545\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7400855448460512545\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             3 tomates mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 g d'olives noires (type Kalamata)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cuillères à soupe d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe de vinaigre de cidre (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Origan séché (selon le goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre (selon le goût)"
+            }
+        ],
+        "steps": [
+            "Lavez et coupez les tomates en dés.",
+            "Épluchez et coupez le concombre en rondelles ou en demi-rondelles.",
+            "Épépinez et coupez le poivron vert en lanières ou en dés.",
+            "Épluchez et émincez finement l'oignon rouge.",
+            "Dans un grand saladier, mélangez les tomates, le concombre, le poivron vert et l'oignon rouge.",
+            "Ajoutez la feta coupée en dés et les olives noires.",
+            "Dans un petit bol, préparez la vinaigrette en mélangeant l'huile d'olive extra vierge, le vinaigre de cidre (si utilisé), l'origan séché, le sel et le poivre.",
+            "Versez la vinaigrette sur la salade et mélangez délicatement.",
+            "Servez frais et dégustez."
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -5997,81 +6541,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7297",
-        "title": "Salade Grecque",
-        "description": "Voici la recette de la salade grecque, un classique rafraîchissant et savoureux, parfait pour l'été et très demandé par la communauté.",
-        "image": "/recipes-ia/7297-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7400855448460512545\" data-video-id=\"7400855448460512545\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7400855448460512545\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             3 tomates mûres"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 poivron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             200 g de feta"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 g d'olives noires (type Kalamata)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             4 cuillères à soupe d'huile d'olive extra vierge"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe de vinaigre de cidre (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Origan séché (selon le goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre (selon le goût)"
-            }
-        ],
-        "steps": [
-            "Lavez et coupez les tomates en dés.",
-            "Épluchez et coupez le concombre en rondelles ou en demi-rondelles.",
-            "Épépinez et coupez le poivron vert en lanières ou en dés.",
-            "Épluchez et émincez finement l'oignon rouge.",
-            "Dans un grand saladier, mélangez les tomates, le concombre, le poivron vert et l'oignon rouge.",
-            "Ajoutez la feta coupée en dés et les olives noires.",
-            "Dans un petit bol, préparez la vinaigrette en mélangeant l'huile d'olive extra vierge, le vinaigre de cidre (si utilisé), l'origan séché, le sel et le poivre.",
-            "Versez la vinaigrette sur la salade et mélangez délicatement.",
-            "Servez frais et dégustez."
-        ],
-        "tags": [
-            "Grèce",
-            "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6931",
         "title": "Sauce Barbecue Woody Maison",
         "description": "Découvrez une recette de sauce barbecue maison, bien différente des sauces du commerce souvent trop sucrées. Cette sauce Woody offre un équilibre parfait entre le fumé, le légèrement sucré et une touche d'orange rafraîchissante. Avec seulement 17 ...",
@@ -9617,93 +10086,6 @@ export const mockRecipes: Recipe[] = [
             "minceur",
             "Poissons et crustacés",
             "tarte",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7131",
-        "title": "Crème froide de courgettes, chèvre frais et œuf poché",
-        "description": "Une crème froide de courgettes onctueuse, relevée par du chèvre frais et du basilic, servie avec un œuf poché, des croûtons croustillants et des noisettes concassées. Une entrée légère et rafraîchissante.",
-        "image": "/recipes-ia/7131-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7651352599421078817\" data-video-id=\"7651352599421078817\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7651352599421078817\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2 courgettes moyennes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 g de chèvre frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 petite échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques feuilles de basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 tranches de pain"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Quelques noisettes concassées"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques herbes fraîches"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            }
-        ],
-        "steps": [
-            "Couper les courgettes en morceaux.",
-            "Faire revenir l'échalote émincée dans l'huile d'olive pendant quelques minutes.",
-            "Ajouter les courgettes et laisser cuire environ 25 minutes jusqu'à ce qu'elles soient bien tendres.",
-            "Laisser refroidir complètement.",
-            "Mixer les courgettes avec le chèvre frais, le basilic, du sel et du poivre jusqu'à obtenir une crème lisse.",
-            "Réserver au réfrigérateur au moins 1 heure.",
-            "Couper le pain en petits cubes et les faire dorer à la poêle avec un filet d'huile d'olive pour obtenir des croûtons croustillants.",
-            "Pocher les œufs dans une eau frémissante vinaigrée pendant environ 2 minutes.",
-            "Répartir la crème froide de courgettes dans des assiettes creuses.",
-            "Déposer délicatement l'œuf poché au centre.",
-            "Ajouter les croûtons et les noisettes concassées.",
-            "Terminer avec quelques herbes fraîches, un filet d'huile d'olive, de la fleur de sel et un peu de poivre.",
-            "Servir immédiatement."
-        ],
-        "tags": [
-            "Healthy",
-            "minceur",
-            "Soupes",
-            "Végé",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -16662,148 +17044,6 @@ export const mockRecipes: Recipe[] = [
         }
     },
     {
-        "id": "6845",
-        "title": "Mini cheesecakes Oreo-myrtille",
-        "description": "Ces mini cheesecakes individuels sont composés d'une coque en chocolat, d'une garniture crémeuse au fromage frais, d'un coulis de myrtilles et sont surmontés d'un demi-Oreo. Parfaits pour une touche gourmande et rafraîchissante.",
-        "image": "/recipes-ia/6845-carte.webp",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650167716740861216\" data-video-id=\"7650167716740861216\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650167716740861216\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍫\n             100 g de chocolat"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 g de myrtilles surgelées"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             18 g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             20 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             8 g de fécule de maïs"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             10 ml d'eau pour délayer la fécule"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             2-3 gouttes de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150 g de fromage frais (type Philadelphia)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             60 ml de crème liquide entière (pour chantilly)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 cuillères à soupe de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6 biscuits Oreo (12 moitiés)"
-            }
-        ],
-        "steps": [
-            "Faire fondre le chocolat et en tapisser 12 cavités d'un moule en silicone. Placer au réfrigérateur jusqu'à ce que le chocolat soit complètement durci.",
-            "Pour la sauce aux myrtilles, faire cuire les myrtilles, le sucre et 20 ml d'eau pendant quelques minutes. Délayer la fécule de maïs dans 10 ml d'eau, l'ajouter à la sauce et cuire jusqu'à épaississement. Enfin, ajouter quelques gouttes de jus de citron et laisser refroidir.",
-            "Fouetter le fromage frais, la crème liquide entière et le sucre glace jusqu'à obtenir une crème lisse.",
-            "Dans chaque coque en chocolat, déposer d'abord une couche de crème blanche.",
-            "Ajouter un peu de sauce aux myrtilles au centre.",
-            "Presser une moitié de biscuit Oreo sur le dessus pour recouvrir la crème.",
-            "Placer au réfrigérateur pendant au moins 1 heure, puis démouler délicatement du moule en silicone et servir."
-        ],
-        "tags": [
-            "Glaces",
-            "pâtisserie",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6835",
-        "title": "Chili Cheese Maison",
-        "description": "Une version maison des célèbres Chili Cheese de Burger King, réputée encore meilleure et plus économique. Ces bouchées croustillantes au cœur fondant et épicé sont parfaites pour l'apéritif.",
-        "image": "/recipes-ia/6835-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650545690245893409\" data-video-id=\"7650545690245893409\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650545690245893409\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧀\n             150 g de cheddar râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80 g de fromage frais à tartiner"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 petit piment jalapeño"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             Chapelure panko"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile de tournesol ou de colza"
-            }
-        ],
-        "steps": [
-            "Coupez le jalapeño en tout petits dés puis mélangez-le avec le cheddar râpé et le fromage frais à tartiner.",
-            "Assaisonnez légèrement puis formez des petites boules avec le mélange.",
-            "Placez les boules au réfrigérateur pendant au moins 30 minutes pour qu'elles se raffermissent.",
-            "Passez chaque boule dans la farine, puis dans l'œuf battu et enfin dans la chapelure panko.",
-            "Faites chauffer l'huile (de tournesol ou de colza) puis plongez les chili cheese quelques minutes jusqu'à ce qu'ils soient bien dorés.",
-            "Égouttez-les sur du papier absorbant et servez-les immédiatement."
-        ],
-        "tags": [
-            "Accompagnements",
-            "épicé",
-            "Pas cher",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "163",
         "title": "Japonais Ippudo",
         "description": "    Attention ovni ou plutôt Yūfō en nippon.... Connaissez vous les rāmen  ? Mais si vous savez les soupes avec plein de trucs dedans ! A la base, le Ramen est un plat chinois à base de pâtes tirées à la main par le cuisinier appelés la mian. Le p...",
@@ -19864,99 +20104,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6612",
-        "title": "Mijoté de bœuf aux pommes de terre, petits pois et carottes",
-        "description": "Un plat réconfortant de bœuf mijoté avec des pommes de terre, des carottes et des petits pois, parfait pour un repas savoureux et chaleureux.",
-        "image": "/recipes-ia/6612-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642360728757849377\" data-video-id=\"7642360728757849377\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642360728757849377\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             600 g de paleron de bœuf"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             Farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cube de bouillon de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Kubor (bouillon cube)"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             800 ml d'eau chaude"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon haché"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 feuille de laurier"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 branche de romarin"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 grande cuillère de concentré de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes de terre (épluchées et coupées en morceaux)"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             Carottes (épluchées et coupées en morceaux)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             350 g de petits pois"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Dans une poêle, faire chauffer un filet d'huile d'olive. Fariner légèrement les morceaux de viande et les faire dorer des deux côtés.",
-            "Ajouter l'oignon haché, la feuille de laurier, la branche de romarin et les gousses d'ail.",
-            "Incorporer le concentré de tomate et bien mélanger, laisser cuire quelques minutes pour que les saveurs se développent.",
-            "Ajouter le bouillon de volaille et le Kubor chaud (dilués dans l'eau chaude) jusqu'à couvrir la viande. Mettre le couvercle et laisser mijoter à feu doux pendant environ 1 heure, en remuant de temps en temps.",
-            "Au cours des 15 dernières minutes, ajouter les pommes de terre, les carottes en morceaux et les petits pois. Ajuster l'assaisonnement en sel et en poivre. Remettre le couvercle et laisser cuire jusqu'à ce que le tout soit bien tendre et crémeux."
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Famille",
-            "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6448",
         "title": "King Fusion Nutella (version diet et protéinée)",
         "description": "Recette de King Fusion Nutella glacé, version allégée et riche en protéines, préparée avec le Ninja Creami.",
@@ -22216,153 +22363,6 @@ export const mockRecipes: Recipe[] = [
             "Gratins",
             "Healthy",
             "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6468",
-        "title": "Achard de mangue - version salade",
-        "description": "Une recette estivale d'achard de mangue en version salade, avec des crevettes pour les protéines.",
-        "image": "/recipes-ia/6468-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656385835629022497\" data-video-id=\"7656385835629022497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656385835629022497\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Mangue"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gingembre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🦐\n             Crevettes"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "épicé",
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6444",
-        "title": "Vitello Tonnato Maison",
-        "description": "Une recette maison de Vitello Tonnato, un délicieux mariage terre-mer de veau et de thon, facile à préparer et très savoureuse.",
-        "image": "/recipes-ia/6444-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656387003956645153\" data-video-id=\"7656387003956645153\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656387003956645153\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥜\n             300g de noix de veau"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             Carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignons nouveaux"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Romarin"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             Un verre de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Des caprons (câpres à queue)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 boîte de thon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 filets d'anchois"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de câpres"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf mollet"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cuillère à café de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Entrées",
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
