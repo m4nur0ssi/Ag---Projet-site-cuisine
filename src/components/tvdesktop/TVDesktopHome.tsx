@@ -27,6 +27,7 @@ import { startScrollReveal } from '@/lib/scrollReveal';
 import { startSectionSnap, SnapController } from '@/lib/sectionSnap';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
+import { planifiable, OUVRIR_PLANIFICATEUR } from '@/mobile/screens/tv/plan';
 import styles from './tvd.module.css';
 import Tip from '@/components/Tip/Tip';
 import SiteFooter from '@/components/SiteFooter/SiteFooter';
@@ -51,6 +52,7 @@ const MaCave = dynamic(() => import('@/mobile/screens/tv/MaCave'), { ssr: false 
 const Favoris = dynamic(() => import('@/mobile/screens/favorites/page'), { ssr: false });
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
+const PlanPicker = dynamic(() => import('@/mobile/components/PlanPicker/PlanPicker'), { ssr: false });
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -684,6 +686,8 @@ export default function TVDesktopHome() {
     const [inProgress, setInProgress] = useState<{ recipe: Recipe; pct: number }[]>([]);
     const [laterIds, setLaterIds] = useState<string[]>([]);
     const [menu, setMenu] = useState<{ recipe: Recipe; x: number; y: number; coll?: Coll } | null>(null);
+    // Recette à caser dans la semaine (volet « Ajouter au planificateur »).
+    const [planFor, setPlanFor] = useState<Recipe | null>(null);
     const [nav, setNav] = useState<'accueil' | string>('accueil');
     // Barre latérale repliable : on agrandit la page d'un clic.
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -768,6 +772,17 @@ export default function TVDesktopHome() {
         const open = () => { setCollection(null); setFilters([]); setPanel('courses'); };
         window.addEventListener('magic-open-courses', open);
         return () => window.removeEventListener('magic-open-courses', open);
+    }, []);
+
+    /*
+     * Le volet « Ajouter au planificateur » d'une fiche ouverte DANS ce shell
+     * n'a pas d'adresse où aller : ici le planificateur est un panneau, pas une
+     * page. Il le demande, on l'affiche.
+     */
+    useEffect(() => {
+        const open = () => { setCollection(null); setFilters([]); setPanel('planner'); };
+        window.addEventListener(OUVRIR_PLANIFICATEUR, open);
+        return () => window.removeEventListener(OUVRIR_PLANIFICATEUR, open);
     }, []);
 
     // Ferme le menu contextuel sur clic ailleurs / Échap.
@@ -1332,6 +1347,13 @@ export default function TVDesktopHome() {
                                     <button className={styles.ctxAction} onClick={() => { setMenu(null); openRecipe(r); }}>
                                         <CtxIc d="M8 5v14l11-7z" /><span>Voir la recette</span>
                                     </button>
+                                    {/* Une recette qui n'entre dans aucun créneau (restaurant,
+                                        sauce…) n'a rien à faire dans le planificateur. */}
+                                    {planifiable(r) && (
+                                        <button className={styles.ctxAction} onClick={() => { const rr = r; setMenu(null); setPlanFor(rr); }}>
+                                            <CtxIc d="M8 3v3M16 3v3M4 8h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 12v5M9.5 14.5h5" /><span>Ajouter au planificateur</span>
+                                        </button>
+                                    )}
                                     <button className={styles.ctxAction} onClick={() => { setMenu(null); goCategory(cat, catName); }}>
                                         <CtxIc d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
                                     </button>
@@ -1388,6 +1410,16 @@ export default function TVDesktopHome() {
                     </motion.div>
                 ))}
             </AnimatePresence>
+
+            {/* Ajouter au planificateur : la semaine s'ouvre au centre, on clique le créneau. */}
+            {planFor && (
+                <PlanPicker
+                    recipe={planFor}
+                    open={true}
+                    onClose={() => setPlanFor(null)}
+                    ouvrirPlanificateur={() => SHORTCUTS.planner()}
+                />
+            )}
 
             <Tip id="accueil" />
             {shareCard && (

@@ -46,6 +46,8 @@ import dynamic from 'next/dynamic';
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 import styles from './RecipeDetails.module.css';
 import Tip from '@/components/Tip/Tip';
+import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
+import { planifiable, OUVRIR_PLANIFICATEUR } from '@/mobile/screens/tv/plan';
 import { ecrireStock } from '@/lib/stockage';
 
 interface RecipeDetailsProps {
@@ -58,6 +60,8 @@ interface RecipeDetailsProps {
 type TabId = 'ingredients' | 'steps' | 'video';
 
 export default function RecipeDetails({ recipe, prevId, nextId, isModal = false }: RecipeDetailsProps) {
+    // Volet « Ajouter au planificateur » ouvert depuis la fiche.
+    const [planOpen, setPlanOpen] = useState(false);
     const { startTimer } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
@@ -920,6 +924,22 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                             </button>
                         )}
 
+                            {/* Caser le plat dans la semaine sans quitter sa fiche. Une
+                                recette qui n'entre dans aucun créneau (restaurant,
+                                sauce…) ne montre pas le bouton. */}
+                            {!focusMode && planifiable(recipe) && (
+                                <button
+                                    type="button"
+                                    className={styles.heroPlanBtn}
+                                    onClick={() => setPlanOpen(true)}
+                                >
+                                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden>
+                                        <path d="M8 3v3M16 3v3M4 8h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 12v5M9.5 14.5h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                    <span>Planifier</span>
+                                </button>
+                            )}
+
                             {/* Ce que le plat coûte à faire, à côté de ce qu'il demande de temps. */}
                             <PrixMoyen prix={prix} />
                         </div>
@@ -1034,6 +1054,16 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
 
             {/* #11 — Carnet de cuisine perso (connectés) */}
             {/* Une adresse et une recette n'appellent pas le même conseil. */}
+            {/* Ajouter au planificateur : la semaine s'ouvre au centre de l'écran. */}
+            {planOpen && (
+                <PlanPicker
+                    recipe={recipe}
+                    open={true}
+                    onClose={() => setPlanOpen(false)}
+                    ouvrirPlanificateur={() => window.dispatchEvent(new Event(OUVRIR_PLANIFICATEUR))}
+                />
+            )}
+
             <Tip id={recipe.category === 'restaurant' ? 'resto' : 'fiche'} delay={1600} />
             {recipe.category !== 'restaurant' && <CookingJournal recipeId={recipe.id} />}
 

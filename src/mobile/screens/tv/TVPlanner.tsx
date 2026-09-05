@@ -27,11 +27,15 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import PrixMoyen from '@/components/PrixMoyen/PrixMoyen';
 import { prixRecette, additionner } from '@/lib/recipe-price';
-import { supabase } from '@/mobile/lib/supabase';
 import { normalizeIng, parseIngredient } from '@/mobile/lib/ingredients';
 import { rayonOf } from '@/lib/rayons';
 import { isCookable, hasSideIncluded, isSweet, proteinOf } from '@/lib/mealClassify';
 import { isTVSide, isTVMain, sidePool } from './sides';
+import {
+    DAYS, DAY_FULL, MEALS, JOUR_J, COURSES, todayIndex,
+    chargerPlan, enregistrerPlan, poserRecette, oublierCoches, PLAN_EVENT,
+    type Plan, type Slot,
+} from './plan';
 import { matchesTag } from './themes';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { totalMinutes, formatMinutes } from './timing';
@@ -48,29 +52,6 @@ const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 const CookingTimeline = dynamic(() => import('@/mobile/components/CookingTimeline/CookingTimeline'), { ssr: false });
 const RecipeSheet = dynamic(() => import('@/mobile/components/RecipeSheet/RecipeSheet'), { ssr: false });
 
-const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as const;
-const DAY_FULL: Record<string, string> = {
-    Lun: 'Lundi', Mar: 'Mardi', Mer: 'Mercredi', Jeu: 'Jeudi',
-    Ven: 'Vendredi', Sam: 'Samedi', Dim: 'Dimanche',
-};
-const MEALS = ['Midi', 'Soir'] as const;
-const JOUR_J = 'JourJ';
-
-/** Index du jour courant, semaine commençant le lundi (getDay : 0 = dimanche). */
-const todayIndex = () => (new Date().getDay() + 6) % 7;
-
-/** Cartes du repas complet, et ce que chacune accepte. */
-const COURSES: { label: string; accepts: (r: Recipe) => boolean }[] = [
-    { label: 'Apéritif', accepts: (r) => r.category === 'aperitifs' && isCookable(r) },
-    { label: 'Entrée', accepts: (r) => r.category === 'entrees' && isCookable(r) },
-    { label: 'Plat', accepts: (r) => isTVMain(r) },
-    { label: 'Accompagnement', accepts: (r) => isTVSide(r) },
-    { label: 'Dessert', accepts: (r) => r.category === 'desserts' && isCookable(r) },
-    { label: 'Pâtisserie', accepts: (r) => r.category === 'patisserie' && isCookable(r) },
-];
-
-type Slot = Recipe & { side?: Recipe };
-type Plan = Record<string, Record<string, Slot>>;
 
 const label = (r: Recipe) => decodeHtml(r.title || '');
 
@@ -97,56 +78,28 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
 
     // ── Chargement : Supabase si connecté, sinon cache local ───────────────
     useEffect(() => {
-        const load = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session) {
-                const { data } = await supabase
-                    .from('meal_plans').select('plan')
-                    .eq('user_id', session.user.id).maybeSingle();
-                if (data?.plan) {
-                    setPlan(data.plan);
-                    ecrireStock('meal-planner-week', JSON.stringify(data.plan));
-                    return;
-                }
-            }
-            try { setPlan(JSON.parse(localStorage.getItem('meal-planner-week') || '{}')); } catch { /* vide */ }
-        };
-        load();
+        let vivant = true;
+        chargerPlan().then((p) => { if (vivant) setPlan(p); });
+        return () => { vivant = false; };
+    }, []);
+
+    /* La semaine se remplit aussi d'ailleurs (volet « Ajouter au
+       planificateur » d'une carte ou d'une fiche). L'écran, s'il est déjà
+       ouvert derrière, doit montrer le créneau qui vient d'être pris. */
+    useEffect(() => {
+        const onPlan = (e: Event) => setPlan((e as CustomEvent).detail as Plan);
+        window.addEventListener(PLAN_EVENT, onPlan);
+        return () => window.removeEventListener(PLAN_EVENT, onPlan);
     }, []);
 
     /** Enregistre partout : local, Supabase, et prévient la liste de courses. */
     const save = useCallback(async (next: Plan) => {
         setPlan(next);
-        ecrireStock('meal-planner-week', JSON.stringify(next));
-        window.dispatchEvent(new Event('shoppingListUpdated'));
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session) {
-            await supabase.from('meal_plans').upsert({
-                user_id: session.user.id,
-                plan: next,
-                updated_at: new Date().toISOString(),
-            });
-        }
+        await enregistrerPlan(next);
     }, []);
 
-    // « Vider » (liste de courses) marque les créneaux comme « déjà pris »
-    // (meal-week-checked, clé `day|meal|idx`). Sans purge, replanifier le même
-    // créneau laissait ses ingrédients invisibles dans « La semaine ». On efface
-    // donc ces marques dès qu'on (re)pose une recette dans le créneau.
-    const clearWeekChecked = (day: string, meal: string) => {
-        try {
-            const arr: string[] = JSON.parse(localStorage.getItem('meal-week-checked') || '[]');
-            const kept = arr.filter((k) => !k.startsWith(`${day}|${meal}|`));
-            if (kept.length !== arr.length) localStorage.setItem('meal-week-checked', JSON.stringify(kept));
-        } catch { /* noop */ }
-    };
-
     const setSlot = (day: string, meal: string, recipe: Recipe | null) => {
-        const next: Plan = { ...plan, [day]: { ...(plan[day] || {}) } };
-        if (recipe) { next[day][meal] = recipe as Slot; clearWeekChecked(day, meal); }
-        else delete next[day][meal];
-        if (!Object.keys(next[day]).length) delete next[day];
-        save(next);
+        save(poserRecette(plan, day, meal, recipe));
     };
 
     /** Accompagnement rattaché au plat du créneau (même forme qu'en prod). */
@@ -154,7 +107,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         const main = plan[day]?.[meal];
         if (!main) return;
         const next: Plan = { ...plan, [day]: { ...(plan[day] || {}) } };
-        if (side) { next[day][meal] = { ...main, side }; clearWeekChecked(day, meal); }
+        if (side) { next[day][meal] = { ...main, side }; oublierCoches(day, meal); }
         else { const { side: _drop, ...rest } = main; next[day][meal] = rest as Slot; }
         save(next);
     };
@@ -668,6 +621,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                         prix={prixCourant}
                         libelle={mode === 'jourj' ? 'Prix du menu' : 'Prix de la semaine'}
                         taille="grande"
+                        sombre
                     />
                 </div>
             )}
@@ -736,7 +690,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                     <h2 className={styles.planDayTitle}>{DAY_FULL[day]}</h2>
                                     {/* Le prix du jour : c'est à cette échelle qu'on
                                         décide de remplacer un plat par un autre. */}
-                                    <PrixMoyen prix={prixParJour.jours[day]} libelle="Ce jour" taille="petite" />
+                                    <PrixMoyen prix={prixParJour.jours[day]} libelle="Ce jour" taille="petite" sombre />
                                 </div>
                                 {MEALS.map((meal) => (
                                     <SlotView key={meal} day={day} meal={meal} accepts={isTVMain} sideable />

@@ -24,6 +24,7 @@ import { personalizedRecipes } from '@/lib/personalize';
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 import { timingOf, totalMinutes, formatMinutes } from './timing';
+import { planifiable } from './plan';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from './progress';
 import styles from './tv.module.css';
 
@@ -114,6 +115,7 @@ const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 const TVTutorial = dynamic(() => import('./TVTutorial'), { ssr: false });
 /* Invitation à installer : ne se montre qu'à la 3e visite, et jamais deux fois. */
 const InstallInvite = dynamic(() => import('@/mobile/components/InstallInvite/InstallInvite'), { ssr: false });
+const PlanPicker = dynamic(() => import('@/mobile/components/PlanPicker/PlanPicker'), { ssr: false });
 
 /**
  * Nombre de fiches chargées dans le sheet autour de celle qu'on ouvre.
@@ -1672,6 +1674,8 @@ export default function TVHome() {
     const [all, setAll] = useState<{ title: string; recipes: Recipe[] } | null>(null);
     const [sheet, setSheet] = useState<{ recipes: Recipe[]; index: number } | null>(null);
     const [menu, setMenu] = useState<{ recipe: Recipe; coll?: Coll } | null>(null);
+    // Recette à caser dans la semaine (volet « Ajouter au planificateur »).
+    const [planFor, setPlanFor] = useState<Recipe | null>(null);
     const [navOpen, setNavOpen] = useState(false);
     const [tasteOpen, setTasteOpen] = useState(false);
     const [shareCard, setShareCard] = useState<{ recipe: Recipe; category?: { label: string; tag: string; count: number } } | null>(null);
@@ -1820,7 +1824,7 @@ export default function TVHome() {
     // afficher », menu d'appui long) → on masque la barre du bas (BottomNav prod).
     // Sinon son dock (Accueil/loupe) reste tappable par-dessus ou à travers le
     // calque selon le contexte d'empilement, et ses boutons se comportent mal.
-    const overlayOpen = searchOpen || tutoOpen || !!sheet || !!all || !!menu;
+    const overlayOpen = searchOpen || tutoOpen || !!sheet || !!all || !!menu || !!planFor;
     // La rotation du héros doit s'arrêter quand un calque le recouvre ; elle
     // tourne dans un intervalle, qui ne verrait pas passer un état.
     calqueOuvert.current = overlayOpen;
@@ -1848,6 +1852,7 @@ export default function TVHome() {
     useBackToClose(!!all, () => setAll(null));
     useBackToClose(!!sheet, () => setSheet(null));
     useBackToClose(!!menu, () => setMenu(null));
+    useBackToClose(!!planFor, () => setPlanFor(null));
     useBackToClose(navOpen, () => setNavOpen(false));
     useBackToClose(searchOpen, () => setSearchOpen(false));
     useBackToClose(tutoOpen, () => setTutoOpen(false));
@@ -2304,6 +2309,17 @@ export default function TVHome() {
                                             <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); openSheet([r], 0); }}>
                                                 <MI d="M8 5v14l11-7z" /><span>Voir la recette</span>
                                             </button>
+                                            {(() => {
+                                                // Une recette qui n'entre dans aucun créneau (restaurant,
+                                                // sauce…) n'a rien à faire dans le planificateur : on ne
+                                                // propose pas une porte qui ne mène nulle part.
+                                                if (!planifiable(r)) return null;
+                                                return (
+                                                    <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setPlanFor(rr); }}>
+                                                        <MI d="M8 3v3M16 3v3M4 8h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 12v5M9.5 14.5h5" /><span>Ajouter au planificateur</span>
+                                                    </button>
+                                                );
+                                            })()}
                                             <button className={`${styles.menuAction} ${fav ? styles.menuDanger : ''}`} onClick={() => { haptic(12); setMenu(null); toggleFavorite(String(r.id)); }}>
                                                 <MI d="M20.8 6.6a4.6 4.6 0 0 0-6.5 0L12 8.9 9.7 6.6a4.6 4.6 0 1 0-6.5 6.5l1 1L12 21l7.8-6.9 1-1a4.6 4.6 0 0 0 0-6.5z" /><span>{fav ? 'Retirer des favoris' : 'Ajouter aux favoris'}</span>
                                             </button>
@@ -2334,6 +2350,11 @@ export default function TVHome() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Ajouter au planificateur : la semaine s'affiche, on touche le créneau. */}
+            {planFor && (
+                <PlanPicker recipe={planFor} open={true} onClose={() => setPlanFor(null)} />
+            )}
 
             {/* Fiche recette : swipe horizontal d'une recette à l'autre dans la rangée. */}
             {sheet && (

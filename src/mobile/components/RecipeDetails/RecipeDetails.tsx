@@ -44,6 +44,8 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './RecipeDetails.module.css';
 import Tip from '@/components/Tip/Tip';
+import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
+import { placesPour } from '@/mobile/screens/tv/plan';
 import { ecrireStock } from '@/lib/stockage';
 
 interface RecipeDetailsProps {
@@ -56,6 +58,8 @@ interface RecipeDetailsProps {
 type TabId = 'ingredients' | 'steps' | 'video';
 
 export default function RecipeDetails({ recipe, prevId, nextId, isModal = false }: RecipeDetailsProps) {
+    // Volet « Ajouter au planificateur » ouvert depuis la fiche.
+    const [planOpen, setPlanOpen] = useState(false);
     const { startTimer } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
@@ -872,6 +876,11 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                     />
                 </div>
             )}
+            {/* Ajouter au planificateur : la semaine s'affiche par-dessus la fiche. */}
+            {planOpen && (
+                <PlanPicker recipe={recipe} open={true} onClose={() => setPlanOpen(false)} />
+            )}
+
             {/* Toast panier */}
             <AnimatePresence>
                 {toast && (
@@ -1004,6 +1013,21 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                                     </svg>
                                 </span>
                                 <span className={styles.focusBtnText}>Lancer la préparation</span>
+                            </button>
+                        )}
+                        {/* Caser le plat dans la semaine sans quitter sa fiche.
+                            Une recette qui n'entre dans aucun créneau (restaurant,
+                            sauce…) ne montre pas le bouton. */}
+                        {!focusMode && (placesPour(recipe).semaine || placesPour(recipe).courses.length > 0) && (
+                            <button
+                                type="button"
+                                className={styles.heroPlanBtn}
+                                onClick={() => { triggerHaptic(); setPlanOpen(true); }}
+                            >
+                                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden>
+                                    <path d="M8 3v3M16 3v3M4 8h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 12v5M9.5 14.5h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>Planifier</span>
                             </button>
                         )}
                         </div>
@@ -1347,26 +1371,19 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
             )}
             {/* Recettes similaires */}
             {!focusMode && similarRecipes.length > 0 && (
-                <div style={{ padding: '0 0 8px' }}>
-                    <div style={{ padding: '0 20px 10px', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', opacity: 0.5, textTransform: 'uppercase' }}>
+                <div className={styles.similarSection}>
+                    <div className={styles.similarKicker}>
                         {recipe.category === 'restaurant' ? 'Autres restaurants' : 'Recettes similaires'}
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, padding: '0 20px 4px' }}>
+                    <div className={styles.similarGrid}>
                         {similarRecipes.map(r => (
                             <button
                                 key={r.id}
+                                className={styles.similarCard}
                                 onClick={() => window.dispatchEvent(new CustomEvent('openRecipe', { detail: r }))}
-                                style={{
-                                    background: 'rgba(255,255,255,0.06)',
-                                    border: '1px solid rgba(255,255,255,0.1)', borderRadius: 14,
-                                    overflow: 'hidden', cursor: 'pointer', padding: 0, textAlign: 'left'
-                                }}
                             >
-                                <img src={r.image} alt={r.title} style={{ width: '100%', height: 90, objectFit: 'cover', display: 'block' }} />
-                                <div style={{ padding: '6px 8px', fontSize: '0.72rem', color: 'white', fontWeight: 600, lineHeight: 1.3,
-                                    display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                                    {r.title}
-                                </div>
+                                <img src={r.image} alt={r.title} className={styles.similarImg} />
+                                <div className={styles.similarName}>{r.title}</div>
                             </button>
                         ))}
                     </div>

@@ -6,6 +6,7 @@ import SpotlightSearch from '../SpotlightSearch/SpotlightSearch';
 import SplitTitle from '../SplitTitle/SplitTitle';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import WeekPlanner from '../WeekPlanner/WeekPlanner';
+import { OUVRIR_PLANIFICATEUR } from '@/mobile/screens/tv/plan';
 import AuthButton from '../AuthButton/AuthButton';
 import PlannerTooltip from './PlannerTooltip';
 import PlannerIcon from '../PlannerIcon/PlannerIcon';
@@ -48,6 +49,18 @@ export default function Header({
     const [scrolled, setScrolled] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isPlannerOpen, setIsPlannerOpen] = useState(false);
+
+    /*
+     * Le planificateur du bureau n'est pas une page : c'est ce calque-ci, tenu
+     * par l'en-tête. Un écran qui veut l'ouvrir (le volet « Ajouter au
+     * planificateur », par exemple) ne peut donc pas y naviguer — il le
+     * demande, et c'est ici qu'on répond.
+     */
+    useEffect(() => {
+        const ouvrir = () => setIsPlannerOpen(true);
+        window.addEventListener(OUVRIR_PLANIFICATEUR, ouvrir);
+        return () => window.removeEventListener(OUVRIR_PLANIFICATEUR, ouvrir);
+    }, []);
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncStatus, setSyncStatus] = useState<'idle' | 'ok' | 'error'>('idle');
     const [toast, setToast] = useState<{ message: string; show: boolean }>({ message: '', show: false });

@@ -1,0 +1,313 @@
+/* Volet « Ajouter au planificateur ».
+   Les couleurs sortent des variables du thème : le volet suit le mode clair du
+   téléphone sans qu'on ait à le redire ici. */
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    /* Au-dessus de la fiche recette (20000) ET de la barre de navigation du bas
+       (25000) : sans cela, la barre recouvrait les deux boutons du pied. */
+    z-index: 26500;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+}
+
+.sheet {
+    width: min(560px, 100%);
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    border-radius: 28px 28px 0 0;
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.45), inset 0 0.5px 0 var(--glass-border);
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    overflow: hidden;
+}
+
+.grip {
+    width: 40px;
+    height: 5px;
+    margin: 10px auto 4px;
+    border-radius: 3px;
+    background: var(--color-text-tertiary);
+    opacity: 0.5;
+    flex: 0 0 auto;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 20px 4px;
+    flex: 0 0 auto;
+}
+
+.thumb {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 auto;
+    border-radius: 14px;
+    object-fit: cover;
+    background: var(--glass-bg);
+}
+
+.headText { min-width: 0; }
+
+.kicker {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+}
+
+.name {
+    margin-top: 3px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hint {
+    margin: 10px 20px 6px;
+    font-size: 0.86rem;
+    line-height: 1.4;
+    color: var(--color-text-tertiary);
+    flex: 0 0 auto;
+}
+
+.body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 16px 8px;
+    overscroll-behavior: contain;
+}
+
+.section { margin-top: 10px; }
+
+.sectionTitle {
+    margin: 0 4px 8px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+}
+
+.week {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dayRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dayName {
+    flex: 0 0 86px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    line-height: 1.15;
+}
+
+.dayToday .dayName { color: var(--color-text-primary); }
+
+.todayTag {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent-orange);
+}
+
+.daySlots {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    min-width: 0;
+}
+
+.courses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+/* Une case du planificateur : l'étiquette du créneau au-dessus, ce qu'il
+   contient en dessous. Hauteur fixe, sinon la grille sautait selon la longueur
+   des titres. */
+.slot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-width: 0;
+    height: 54px;
+    padding: 0 12px;
+    border: none;
+    border-radius: 14px;
+    background: var(--glass-bg);
+    box-shadow: inset 0 0 0 1px var(--glass-border);
+    color: var(--color-text-primary);
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.slotLabel {
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.slotEmpty {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text-tertiary);
+}
+
+.slotTakenText {
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Case prise par CETTE recette : c'est le seul endroit coloré du volet, on ne
+   peut pas le manquer d'un coup d'œil. */
+.slotMine {
+    background: var(--color-accent-primary);
+    box-shadow: none;
+    color: #ffffff;
+}
+
+.slotMine .slotLabel { color: rgba(255, 255, 255, 0.72); }
+
+.slotDone {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.slotDone svg { width: 14px; height: 14px; flex: 0 0 auto; }
+
+.slotFlash { animation: pose 0.42s cubic-bezier(0.22, 1.1, 0.36, 1); }
+
+@keyframes pose {
+    0% { transform: scale(0.9); }
+    55% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.slot:active { transform: scale(0.96); }
+
+.foot {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 10px;
+    padding: 12px 20px 4px;
+    box-shadow: inset 0 1px 0 var(--glass-border);
+}
+
+.footGhost,
+.footMain {
+    flex: 1 1 0;
+    height: 48px;
+    border: none;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.footGhost {
+    background: var(--glass-bg);
+    box-shadow: inset 0 0 0 1px var(--glass-border);
+    color: var(--color-text-primary);
+}
+
+.footMain {
+    background: var(--color-text-primary);
+    color: var(--color-bg-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slotFlash { animation: none; }
+}
+
+/* ── Au bureau ───────────────────────────────────────────────────────────────
+ *
+ * Le même volet, mais posé au centre comme une fenêtre : sur un grand écran,
+ * une feuille collée au bas de la page laisse un vide et oblige à descendre
+ * l'œil. Les créneaux, eux, ne changent pas — c'est le même planificateur,
+ * qu'on le remplisse au doigt ou à la souris.
+ */
+@media (min-width: 760px) {
+    .backdrop { align-items: center; }
+
+    .sheet {
+        width: min(620px, 92vw);
+        max-height: 82vh;
+        border-radius: 24px;
+        padding-bottom: 12px;
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+    }
+
+    .grip { display: none; }
+
+    .head { padding-top: 20px; }
+
+    /* La souris survole : les créneaux répondent, ce que le doigt n'a pas. */
+    .slot:hover { background: var(--glass-bg-dark, var(--glass-bg)); }
+    .slotMine:hover { filter: brightness(1.08); }
+    .slot:active { transform: none; }
+}
+
+/* Volet ouvert sans compte : on le dit, et on propose la seule suite utile. */
+.gate {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 12px 20px 20px;
+}
+
+.gateTexte {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+}

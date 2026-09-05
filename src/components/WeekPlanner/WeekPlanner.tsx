@@ -14,6 +14,7 @@ import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { isCookable, isMainDish, isSideDish, hasSideIncluded, proteinOf, isSweet, MEAT_FISH } from '@/lib/mealClassify';
 import styles from './WeekPlanner.module.css';
 import { ecrireStock } from '@/lib/stockage';
+import { PLAN_EVENT } from '@/mobile/screens/tv/plan';
 
 const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 const MEALS = ['Midi', 'Soir'] as const;
@@ -130,6 +131,24 @@ export default function WeekPlanner({ isOpen, onClose, demo = false, demoPlan }:
         };
         load();
     }, [isOpen, demo, demoPlan]);
+
+    /*
+     * La semaine se remplit aussi d'ailleurs : le volet « Ajouter au
+     * planificateur » d'une carte ou d'une fiche écrit dans le même plan. Si ce
+     * calque est déjà ouvert derrière, il doit montrer le créneau qui vient
+     * d'être pris — sans quoi il afficherait un plan périmé et l'écraserait au
+     * prochain enregistrement.
+     */
+    useEffect(() => {
+        if (demo) return;
+        const onPlan = (e: Event) => {
+            const p = (e as CustomEvent).detail as Plan;
+            setPlan(p);
+            setValidated(Object.keys(p).length > 0);
+        };
+        window.addEventListener(PLAN_EVENT, onPlan);
+        return () => window.removeEventListener(PLAN_EVENT, onPlan);
+    }, [demo]);
 
     useEffect(() => {
         if (picker) { setLockOpen(false); setTimeout(() => inputRef.current?.focus(), 100); }

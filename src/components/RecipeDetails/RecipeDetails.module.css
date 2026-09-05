@@ -1847,15 +1847,11 @@
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
 }
 
-@media (prefers-color-scheme: light) {
-    .page { background: #ffffff !important; }
-    .heroNewLayout { background: #f9f9fb !important; }
-    
-    .heroTitleElegant, .heroDescription, .heroDescription p, .focusBtnText, .servingsNumber, .metaValue, .metaLabel, .ingredientProgressText, .ingName, .ingQty, .stepBody, .recipeDescription, .seeAll, .viewMoreText, .tabBtn, .itemName, .focusStepText {
-        color: #000000 !important;
-        opacity: 1 !important;
-    }
-}
+/* Le doublon « @media prefers-color-scheme » a été retiré : il répondait au
+   réglage du système seul, alors que les règles data-theme juste en dessous
+   disent exactement la même chose et suivent, elles, le choix de
+   l'utilisateur. Les deux ensemble se contredisaient dès que le téléphone
+   était en clair et l'application en sombre — fond blanc, texte blanc. */
 
 :global([data-theme='light']) .page { background: #ffffff !important; }
 :global([data-theme='light']) .heroNewLayout { background: #f9f9fb !important; }
@@ -2673,3 +2669,32 @@ a.restoCoordRow:hover { background: rgba(255, 255, 255, 0.08); }
     width: 100%;
     margin-top: 12px;
 }
+
+/* ── « Planifier » ───────────────────────────────────────────────────────────
+ *
+ * Second bouton du héros, à côté de « Lancer la préparation ». Volontairement
+ * plus discret : préparer maintenant reste le geste principal, caser le plat
+ * dans la semaine vient après.
+ */
+.heroPlanBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    height: 54px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 999px;
+    background: var(--glass-bg);
+    box-shadow: inset 0 0 0 1.5px var(--glass-border);
+    color: var(--color-text-primary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.heroPlanBtn:hover { transform: scale(1.03); }
+.heroPlanBtn:active { transform: scale(0.97); }
