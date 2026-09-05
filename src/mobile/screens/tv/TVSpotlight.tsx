@@ -11,6 +11,7 @@
  */
 
 import { useState, useEffect, useRef, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
 /*
@@ -34,8 +35,15 @@ import { timingOf, totalMinutes, formatMinutes } from './timing';
 import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
 import { ecrireStock } from '@/lib/stockage';
+import { readCave, drinkWindow, type CaveWine } from '@/lib/cave';
+import { intentionVin, compacterCave, accordLocal } from '@/lib/accordCave';
 
 const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+/** Le mot qu'on lit sur une étiquette, plutôt que la clé technique. */
+const COULEUR_MOT: Record<string, string> = {
+    rouge: 'Rouge', blanc: 'Blanc', rose: 'Rosé', liqueur: 'Liquoreux',
+};
 
 /** Retire emojis/drapeaux/symboles décoratifs des libellés (langage sobre TV). */
 /** Retour haptique (ignoré si non supporté). */
@@ -158,10 +166,20 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     const toggleFilter = (tag: string) =>
         setActiveFilters((prev) => prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]);
     const inputRef = useRef<HTMLInputElement>(null);
+    const router = useRouter();
 
     // Assistant IA
     const [aiQuery, setAiQuery] = useState('');
     const [aiResults, setAiResults] = useState<Recipe[]>([]);
+    /*
+     * L'assistant répond aussi en BOUTEILLES.
+     *
+     * « Un vin de ma cave pour du poulet » n'est pas une demande de recette :
+     * il proposait cinq plats au poulet. Quand la question porte sur le vin, on
+     * cherche dans la cave de l'utilisateur — celle de l'appareil — au lieu du
+     * catalogue.
+     */
+    const [aiWines, setAiWines] = useState<CaveWine[]>([]);
     const [aiMessage, setAiMessage] = useState('');
     const [aiBusy, setAiBusy] = useState(false);
     const [aiError, setAiError] = useState('');
@@ -194,22 +212,48 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     const askAssistant = async (raw?: string) => {
         const q = (raw ?? aiQuery).trim();
         if (!q || aiBusy) return;
-        setAiBusy(true); setAiError(''); setAiResults([]); setAiMessage('');
+        setAiBusy(true); setAiError(''); setAiResults([]); setAiWines([]); setAiMessage('');
+        // La cave vit sur l'appareil : elle part avec la question, sinon le
+        // serveur n'aurait aucun moyen de savoir ce qu'on possède.
+        const cave = readCave();
+        const surLeVin = intentionVin(q);
         try {
             const compact = buildFinderCatalog(pool as any);
             const res = await fetch('/api/recipe-finder', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ query: q, recipes: compact }),
+                body: JSON.stringify({ query: q, recipes: compact, cave: compacterCave(cave) }),
             });
             if (!res.ok) throw new Error('api');
             const data = await res.json();
+
+            if (data.kind === 'wines') {
+                const parId = new Map(cave.map((w) => [String(w.id), w]));
+                const bouteilles = (data.ids || []).map((id: string) => parId.get(String(id))).filter(Boolean) as CaveWine[];
+                if (bouteilles.length) { setAiWines(bouteilles); setAiMessage(data.message || ''); }
+                // Cave vide : le message du serveur l'explique, inutile de
+                // basculer sur des recettes que personne n'a demandées.
+                else if (!cave.length) setAiError(data.message || 'Ta cave est vide.');
+                else throw new Error('empty');
+                return;
+            }
+
             const byId = new Map(pool.map((r) => [String(r.id), r]));
             let found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean) as Recipe[];
             if (filter) found = found.filter(filter);
             if (found.length) { setAiResults(found); setAiMessage(data.message || ''); }
             else throw new Error('empty');
         } catch {
+            // Assistant injoignable : on répond quand même, avec les accords de
+            // base pour le vin, et la recherche texte pour le reste.
+            if (surLeVin) {
+                const bouteilles = accordLocal(q, cave);
+                if (bouteilles.length) { setAiWines(bouteilles); setAiMessage('Dans ta cave, ce qui s\'en rapproche le plus'); }
+                else setAiError(cave.length
+                    ? 'Aucune bouteille de ta cave ne convient vraiment. Reformule ta demande.'
+                    : 'Ta cave est vide — ajoute des bouteilles pour que je puisse te conseiller.');
+                return;
+            }
             const local = localSearch(q);
             if (local.length) { setAiResults(local); setAiMessage('Voici ce que j\'ai trouvé sur le site'); }
             else setAiError('Aucune recette du site ne correspond. Reformule ta demande.');
@@ -426,6 +470,42 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         );
     };
 
+    /**
+     * Une bouteille de la cave, en résultat d'assistant.
+     *
+     * Même gabarit qu'une recette — vignette, titre, ligne de contexte — pour
+     * qu'on n'ait pas à réapprendre à lire la liste. La photo de la bouteille
+     * est celle du marchand quand elle a été retrouvée ; sans photo, la pastille
+     * porte la couleur du vin.
+     */
+    const WineItem = ({ wine }: { wine: CaveWine }) => {
+        const fenetre = drinkWindow(wine);
+        const meta = [
+            COULEUR_MOT[wine.color] || wine.color,
+            wine.year,
+            wine.region,
+        ].filter(Boolean).join(' • ');
+        const reste = (wine.qty || 1) > 1 ? `${wine.qty} bouteilles en cave` : null;
+        return (
+            <button className={styles.spItem} onClick={() => { haptic(8); onClose(); router.push('/ma-cave'); }}>
+                <div className={styles.spThumbWrap}>
+                    {wine.photo
+                        ? <img src={wine.photo} alt="" className={styles.spThumb} loading="lazy" decoding="async" draggable={false} />
+                        : <span className={`${styles.spWinePuce} ${styles['spWine_' + wine.color]}`} aria-hidden />}
+                </div>
+                <div className={styles.spInfo}>
+                    <div className={styles.spTitle}>{wine.name}</div>
+                    <div className={styles.spMeta}>{meta}</div>
+                    {(fenetre || reste) && (
+                        <div className={styles.spMissing}>
+                            {[fenetre?.label, reste].filter(Boolean).join(' · ')}
+                        </div>
+                    )}
+                </div>
+            </button>
+        );
+    };
+
     // Durée et difficulté viennent de l'estimateur, comme partout ailleurs : le
     // champ WordPress vaut 15 + 30 min et « moyen » sur les 617 recettes.
     const recipeMeta = (r: Recipe) => {
@@ -613,9 +693,10 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                 {aiBusy && <div className={styles.spHint}>L&apos;assistant cherche…</div>}
                                 {!aiBusy && aiMessage && <div className={styles.spAiMsg}>{aiMessage}</div>}
                                 {!aiBusy && aiError && <div className={styles.spEmpty}>{aiError}</div>}
-                                {!aiBusy && !aiResults.length && !aiError && (
-                                    <div className={styles.spEmpty}>Décris ton envie (ou dicte) : « un dessert au chocolat sans gluten », « plat italien rapide »…</div>
+                                {!aiBusy && !aiResults.length && !aiWines.length && !aiError && (
+                                    <div className={styles.spEmpty}>Décris ton envie (ou dicte) : « un dessert au chocolat sans gluten », « plat italien rapide », « un vin de ma cave pour du poulet »…</div>
                                 )}
+                                {aiWines.map((w) => <WineItem key={w.id} wine={w} />)}
                                 {aiResults.map((r) => <ResultItem key={r.id} recipe={r} meta={recipeMeta(r)} />)}
                             </>
                         )}

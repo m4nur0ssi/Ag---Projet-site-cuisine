@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { intentionVin, type CompactWine } from '@/lib/accordCave';
 
 /**
  * Assistant IA de recettes (#3).
@@ -66,7 +67,25 @@ Règles STRICTES :
 - "message" : une phrase courte et chaleureuse en français qui présente la sélection.
 Réponds STRICTEMENT en JSON : {"ids":["12","7"],"message":"..."} sans texte autour.`;
 
-async function callGroq(userMsg: string) {
+/* ── L'assistant sait aussi lire VOTRE cave ──────────────────────────────────
+ *
+ * « Je veux un vin de ma cave pour du poulet » n'appelle pas des recettes de
+ * poulet : la question porte sur les bouteilles qu'on possède. L'aiguillage se
+ * fait AVANT le modèle, sur la demande elle-même — plus sûr que d'espérer
+ * qu'il choisisse le bon rayon, et sans toucher au fonctionnement des recettes.
+ */
+const SYSTEM_VIN = `Tu es le sommelier d'un particulier. On te donne sa demande et LA LISTE des bouteilles qu'il a réellement en cave (id, n = nom, c = couleur, g = cépage, y = millésime, r = région, q = bouteilles restantes).
+Ta mission : choisir dans SA CAVE la ou les bouteilles qui conviennent le mieux à ce qu'il décrit (un plat, une occasion, une couleur, une envie).
+Règles STRICTES :
+- Choisis UNIQUEMENT des id présents dans la liste fournie. N'invente JAMAIS une bouteille : il ne possède que celles-là.
+- Renvoie de 1 à 3 bouteilles, la meilleure en premier.
+- Respecte la couleur demandée si l'utilisateur en cite une.
+- S'il décrit un plat, applique les accords classiques (poisson et fruits de mer → blanc ; viande rouge et gibier → rouge ; volaille et porc → blanc vif ou rouge léger ; plats épicés → blanc ou rosé ; dessert → liquoreux).
+- Si aucune bouteille ne convient vraiment, propose quand même la moins mauvaise et dis-le franchement dans le message.
+- "message" : UNE phrase courte en français qui nomme l'accord et le justifie simplement (ex. « Le Sancerre : sa vivacité tiendra tête à la crème du poulet. »). Pas de jargon inutile.
+Réponds STRICTEMENT en JSON : {"ids":["w12"],"message":"..."} sans texte autour.`;
+
+async function callGroq(userMsg: string, system: string = SYSTEM) {
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { 'content-type': 'application/json', authorization: `Bearer ${GROQ_KEY}` },
@@ -76,7 +95,7 @@ async function callGroq(userMsg: string) {
             max_tokens: 500,
             response_format: { type: 'json_object' },
             messages: [
-                { role: 'system', content: SYSTEM },
+                { role: 'system', content: system },
                 { role: 'user', content: userMsg },
             ],
         }),
@@ -94,8 +113,40 @@ export async function POST(request: Request) {
         const body = await request.json();
         const query: string = typeof body?.query === 'string' ? body.query.trim() : '';
         const recipes: CompactRecipe[] = Array.isArray(body?.recipes) ? body.recipes : [];
+        const cave: CompactWine[] = Array.isArray(body?.cave) ? body.cave : [];
         if (!query || !recipes.length) {
             return NextResponse.json({ error: 'query et recipes requis' }, { status: 400 });
+        }
+
+        /* Demande de vin : on répond en bouteilles, pas en recettes. La cave
+           voyage avec la question — elle vit sur l'appareil, le serveur ne la
+           connaît pas autrement. Vide, on le dit plutôt que de répondre à côté. */
+        if (intentionVin(query)) {
+            if (!cave.length) {
+                return NextResponse.json({
+                    kind: 'wines',
+                    ids: [],
+                    message: 'Ta cave est vide pour le moment — ajoute des bouteilles pour que je puisse te conseiller.',
+                });
+            }
+            const raw = await callGroq(
+                JSON.stringify({ demande: query, cave }),
+                SYSTEM_VIN,
+            );
+            let choix: any;
+            try { choix = JSON.parse(raw); } catch { return NextResponse.json({ error: 'Réponse IA illisible' }, { status: 502 }); }
+            const idsCave = new Set(cave.map((w) => String(w.id)));
+            const ids = (Array.isArray(choix?.ids) ? choix.ids : [])
+                .map((id: any) => String(id))
+                .filter((id: string) => idsCave.has(id))
+                .slice(0, 3);
+            // Rien de valide : le front applique ses propres accords de repli.
+            if (!ids.length) return NextResponse.json({ error: 'Aucune bouteille trouvée' }, { status: 404 });
+            return NextResponse.json({
+                kind: 'wines',
+                ids,
+                message: typeof choix?.message === 'string' ? choix.message : '',
+            });
         }
 
         const userMsg = JSON.stringify({ demande: query, recettes: shortlistForLLM(query, recipes) });
@@ -113,11 +164,11 @@ export async function POST(request: Request) {
         if (!ids.length) {
             // L'IA n'a rien renvoyé de valide → repli mots-clés (ville/type/tags…).
             const fb = keywordFallback(query, recipes);
-            if (fb.length) return NextResponse.json({ ids: fb, message: 'Voici ce qui se rapproche le plus 👇' });
+            if (fb.length) return NextResponse.json({ kind: 'recipes', ids: fb, message: 'Voici ce qui se rapproche le plus 👇' });
             return NextResponse.json({ error: 'Aucune recette trouvée' }, { status: 404 });
         }
         const message = typeof parsed?.message === 'string' ? parsed.message : '';
-        return NextResponse.json({ ids, message });
+        return NextResponse.json({ kind: 'recipes', ids, message });
     } catch (e: any) {
         return NextResponse.json({ error: e?.message || 'Erreur assistant IA' }, { status: 500 });
     }

@@ -8,6 +8,21 @@ import { smartLocalSearch } from '@/lib/recipeSmartSearch';
 import { buildFinderCatalog } from '@/lib/recipe-search-payload';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import styles from './SpotlightSearch.module.css';
+import { readCave, drinkWindow, type CaveWine } from '@/lib/cave';
+import { intentionVin, compacterCave, accordLocal } from '@/lib/accordCave';
+
+/** Le mot qu'on lit sur une étiquette, plutôt que la clé technique. */
+const COULEUR_MOT: Record<string, string> = {
+    rouge: 'Rouge', blanc: 'Blanc', rose: 'Rosé', liqueur: 'Liquoreux',
+};
+
+/** Sans photo de bouteille, la vignette porte la couleur du vin. */
+const COULEUR_FOND: Record<string, string> = {
+    rouge: 'linear-gradient(150deg, #7b1224, #40060f)',
+    blanc: 'linear-gradient(150deg, #e8d9a0, #b79b4f)',
+    rose: 'linear-gradient(150deg, #f0a9a0, #d1665c)',
+    liqueur: 'linear-gradient(150deg, #d8a34a, #8a5a15)',
+};
 
 export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     const [query, setQuery] = useState('');
@@ -21,6 +36,12 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
     // Assistant IA : demande en langage naturel (texte/voix) → recettes EXISTANTES du site
     const [aiQuery, setAiQuery] = useState('');
     const [aiResults, setAiResults] = useState<any[]>([]);
+    /*
+     * L'assistant répond aussi en BOUTEILLES. « Un vin de ma cave pour du
+     * poulet » n'est pas une demande de recette : il proposait cinq plats au
+     * poulet. La cave vit sur l'appareil, elle part avec la question.
+     */
+    const [aiWines, setAiWines] = useState<CaveWine[]>([]);
     const [aiMessage, setAiMessage] = useState('');
     const [aiBusy, setAiBusy] = useState(false);
     const [aiError, setAiError] = useState('');
@@ -35,21 +56,44 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
         setAiBusy(true);
         setAiError('');
         setAiResults([]);
+        setAiWines([]);
         setAiMessage('');
+        const cave = readCave();
+        const surLeVin = intentionVin(q);
         try {
             const compact = buildFinderCatalog(mockRecipes as any);
             const res = await fetch('/api/recipe-finder', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ query: q, recipes: compact }),
+                body: JSON.stringify({ query: q, recipes: compact, cave: compacterCave(cave) }),
             });
             if (!res.ok) throw new Error('api');
             const data = await res.json();
+
+            if (data.kind === 'wines') {
+                const parId = new Map(cave.map(w => [String(w.id), w]));
+                const bouteilles = (data.ids || []).map((id: string) => parId.get(String(id))).filter(Boolean) as CaveWine[];
+                if (bouteilles.length) { setAiWines(bouteilles); setAiMessage(data.message || ''); }
+                else if (!cave.length) setAiError(data.message || 'Ta cave est vide.');
+                else throw new Error('empty');
+                return;
+            }
+
             const byId = new Map(mockRecipes.map(r => [String(r.id), r]));
             const found = (data.ids || []).map((id: string) => byId.get(String(id))).filter(Boolean);
             if (found.length) { setAiResults(found); setAiMessage(data.message || ''); }
             else throw new Error('empty');
         } catch {
+            // Assistant injoignable : accords de base pour le vin, recherche
+            // texte pour le reste — plutôt qu'une page vide.
+            if (surLeVin) {
+                const bouteilles = accordLocal(q, cave);
+                if (bouteilles.length) { setAiWines(bouteilles); setAiMessage('Dans ta cave, ce qui s\'en rapproche le plus 🍷'); }
+                else setAiError(cave.length
+                    ? 'Aucune bouteille de ta cave ne convient vraiment. Reformule ta demande.'
+                    : 'Ta cave est vide — ajoute des bouteilles pour que je puisse te conseiller 🍷');
+                return;
+            }
             const local = localSearch(q);
             if (local.length) { setAiResults(local); setAiMessage('Voici ce que j\'ai trouvé sur le site 👇'); }
             else setAiError('Aucune recette du site ne correspond. Reformule ta demande ✨');
@@ -278,9 +322,36 @@ export default function SpotlightSearch({ isOpen, onClose }: { isOpen: boolean; 
                             {aiBusy && <div className={styles.recentTitle}>✨ L&apos;assistant cherche…</div>}
                             {!aiBusy && aiMessage && <div className={styles.aiMessage}>✨ {aiMessage}</div>}
                             {!aiBusy && aiError && <div className={styles.noResult}>{aiError}</div>}
-                            {!aiBusy && !aiResults.length && !aiError && (
-                                <div className={styles.noResult}>Décris ton envie (ou dicte 🎤) : « un dessert au chocolat sans gluten », « plat italien rapide »…</div>
+                            {!aiBusy && !aiResults.length && !aiWines.length && !aiError && (
+                                <div className={styles.noResult}>Décris ton envie (ou dicte 🎤) : « un dessert au chocolat sans gluten », « plat italien rapide », « un vin de ma cave pour du poulet »…</div>
                             )}
+                            {aiWines.map((wine) => {
+                                const fenetre = drinkWindow(wine);
+                                const meta = [COULEUR_MOT[wine.color] || wine.color, wine.year, wine.region].filter(Boolean).join(' • ');
+                                const reste = (wine.qty || 1) > 1 ? `${wine.qty} bouteilles en cave` : null;
+                                return (
+                                    <button
+                                        type="button"
+                                        key={wine.id}
+                                        className={styles.resultItem}
+                                        onClick={() => { onClose(); window.location.href = '/ma-cave'; }}
+                                        style={{ textAlign: 'left', background: 'none', border: 'none', width: '100%', cursor: 'pointer' }}
+                                    >
+                                        <div className={styles.thumbWrapper}>
+                                            <span className={styles.miniFlag}>🍷</span>
+                                            {wine.photo
+                                                ? <img src={wine.photo} alt="" className={styles.thumb} />
+                                                : <span className={styles.thumb} style={{ background: COULEUR_FOND[wine.color] }} />}
+                                        </div>
+                                        <div className={styles.resultInfo}>
+                                            <div className={styles.resultTitle}>{wine.name}</div>
+                                            <div className={styles.resultMeta}>
+                                                {[meta, fenetre?.label, reste].filter(Boolean).join(' • ')}
+                                            </div>
+                                        </div>
+                                    </button>
+                                );
+                            })}
                             {aiResults.map(recipe => {
                                 const countryTag = recipe.tags?.find((t: string) => countryFlags[t.toLowerCase()]);
                                 const flag = countryTag ? countryFlags[countryTag.toLowerCase()] : '🪄';
