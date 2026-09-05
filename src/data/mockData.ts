@@ -2,10 +2,10 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 02/09/2026 07:32:36
+ * Dernière mise à jour: 05/09/2026 08:24:45
  * Total: 666 recettes
  */
-export const exportSyncId = "1788334356403";
+export const exportSyncId = "1788596685052";
 export const mockRecipes: Recipe[] = [
     {
         "id": "7402",
@@ -16650,6 +16650,7 @@ export const mockRecipes: Recipe[] = [
             "subType": "brasserie",
             "address": "Boulevard Richard-Lenoir, 75011 Paris",
             "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8547710,2.3693864",
+            "mapsQuery": "Santa Carne, Paris",
             "photos": [
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_1_1784045595472.jpeg&v=1784045601436",
                 "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_2_1784045602959.jpg&v=1784045606239",
@@ -48268,7 +48269,10 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": ""
+        "address": "",
+        "restaurant": {
+            "mapsQuery": "L'Odysee, Paris"
+        }
     },
     {
         "id": "237",
@@ -48300,7 +48304,10 @@ export const mockRecipes: Recipe[] = [
         "tags": [],
         "isFeatured": false,
         "isFavorite": false,
-        "address": ""
+        "address": "",
+        "restaurant": {
+            "mapsQuery": "Le club des cinq, Paris"
+        }
     },
     {
         "id": "260",
@@ -48334,7 +48341,10 @@ export const mockRecipes: Recipe[] = [
         ],
         "isFeatured": false,
         "isFavorite": false,
-        "address": ""
+        "address": "",
+        "restaurant": {
+            "mapsQuery": "Bistrot à Burger, Marly-le-Roi"
+        }
     },
     {
         "id": "115",

@@ -55,6 +55,15 @@
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_163_8_1783764799436.jpg&v=1783764817655"
     ]
   },
+  "237": {
+    "mapsQuery": "Le club des cinq, Paris"
+  },
+  "260": {
+    "mapsQuery": "Bistrot à Burger, Marly-le-Roi"
+  },
+  "278": {
+    "mapsQuery": "L'Odysee, Paris"
+  },
   "1187": {
     "subType": "italien",
     "priceLevel": 2,
@@ -224,6 +233,7 @@
     "subType": "brasserie",
     "address": "Boulevard Richard-Lenoir, 75011 Paris",
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=48.8547710,2.3693864",
+    "mapsQuery": "Santa Carne, Paris",
     "photos": [
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_1_1784045595472.jpeg&v=1784045601436",
       "/api/image-proxy?url=http%3A%2F%2F109.221.250.122%2Fwordpress%2Fwp-content%2Fuploads%2F2026%2F07%2Fresto_6859_2_1784045602959.jpg&v=1784045606239",
