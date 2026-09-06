@@ -1353,10 +1353,17 @@ async function genererCloudflare(consigneTexte) {
         const rep = await fetch(`https://api.cloudflare.com/client/v4/accounts/${compte}/ai/run/${modele}`, {
             method: 'POST',
             headers: { authorization: `Bearer ${jeton}`, 'content-type': 'application/json' },
-            // steps plafonne à 8 chez Cloudflare. width/height ne sont pas
-            // documentés pour ce modèle : on les envoie quand même (ignorés le
-            // cas échéant), et on lit de toute façon la taille RÉELLE ensuite.
-            body: JSON.stringify({ prompt, steps: 8, width: 1024, height: 1024 }),
+            /*
+             * `steps` plafonne à 8 chez Cloudflare, et SURTOUT : pas de
+             * `width` ni de `height`. Ce modèle REFUSE la requête entière si on
+             * les envoie — « Additional or unevaluated properties '/width,
+             * /height' not allowed », erreur 5006. On les passait en pensant
+             * qu'ils seraient ignorés ; ils faisaient échouer chaque appel, et
+             * la chaîne basculait sur le payant sans qu'on sache pourquoi.
+             * Il rend du 1024 carré de toute façon, et on lit la taille réelle
+             * juste après.
+             */
+            body: JSON.stringify({ prompt, steps: 8 }),
         });
         if (rep.ok) {
             const d = await rep.json();
