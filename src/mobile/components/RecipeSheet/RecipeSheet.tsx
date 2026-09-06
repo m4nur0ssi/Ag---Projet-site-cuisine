@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform, animate } from '
 import { Recipe } from '@/mobile/types';
 import Portal from '@/mobile/components/Portal';
 import styles from './RecipeSheet.module.css';
+import { estRetourInterne } from '@/mobile/screens/tv/retour';
 import RecipeDetails from '@/mobile/components/RecipeDetails/RecipeDetails';
 import { demarrerDiagnosticAnimations } from '@/mobile/lib/diag-animations';
 import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-embed';
@@ -151,6 +152,14 @@ export default function RecipeSheet({ recipe, isOpen, onClose, allRecipes, recip
             window.history.pushState({ modal: 'recipe' }, '');
 
             const handlePopState = () => {
+                /*
+                 * Un calque posé PAR-DESSUS la fiche (le volet « Ajouter au
+                 * planificateur ») rend son entrée d'historique en se fermant.
+                 * Le `popstate` qui en résulte ne nous concerne pas : sans ce
+                 * garde-fou, fermer ce volet refermait la fiche avec lui, et la
+                 * pile perdait une entrée à chaque fois.
+                 */
+                if (estRetourInterne()) return;
                 onClose();
             };
 

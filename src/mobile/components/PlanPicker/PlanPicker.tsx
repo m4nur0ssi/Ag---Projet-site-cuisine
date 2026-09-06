@@ -111,9 +111,15 @@ export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlani
         return () => clearTimeout(t);
     }, [flash]);
 
-    /* Le geste « retour » est laissé à l'écran qui ouvre le volet : l'accueil TV
-       tient une pile d'historique commune à tous ses calques, et un `pushState`
-       posé ici en dehors de cette pile refermait le calque du dessous. */
+    /*
+     * Le geste « retour » est déclaré par l'ÉCRAN qui ouvre ce volet
+     * (`useBackToClose` dans l'accueil TV et dans la fiche recette), pas ici.
+     *
+     * Ce composant arrive par un import à la demande : il monte une fraction de
+     * seconde APRÈS le clic. Trop tard pour reprendre l'entrée d'historique que
+     * le menu vient de libérer — elle était déjà rendue, et la pile gagnait un
+     * aller-retour parasite à chaque ouverture.
+     */
 
     /**
      * Toucher une case. Elle prend la recette ; la retoucher la libère.

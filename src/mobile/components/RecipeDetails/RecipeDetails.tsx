@@ -46,6 +46,7 @@ import styles from './RecipeDetails.module.css';
 import Tip from '@/components/Tip/Tip';
 import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
 import { placesPour } from '@/mobile/screens/tv/plan';
+import { useBackToClose } from '@/mobile/screens/tv/retour';
 import { ecrireStock } from '@/lib/stockage';
 
 interface RecipeDetailsProps {
@@ -60,6 +61,16 @@ type TabId = 'ingredients' | 'steps' | 'video';
 export default function RecipeDetails({ recipe, prevId, nextId, isModal = false }: RecipeDetailsProps) {
     // Volet « Ajouter au planificateur » ouvert depuis la fiche.
     const [planOpen, setPlanOpen] = useState(false);
+    /*
+     * Le balayage « retour » referme le volet au lieu de quitter la fiche.
+     *
+     * Sans cela, ouvrir le planificateur depuis une recette puis balayer depuis
+     * le bord de l'écran faisait sortir de la page — et, dans l'application
+     * installée, cela revient à la relancer. C'est la même pile d'historique
+     * que celle des calques de l'accueil : une seule mécanique, pour que
+     * personne ne rende une entrée qu'il n'a pas posée.
+     */
+    useBackToClose(planOpen, () => setPlanOpen(false));
     const { startTimer } = useTimer();
     const [servings, setServings] = useState(recipe.servings || 4);
     const [focusMode, setFocusMode] = useState(false);
