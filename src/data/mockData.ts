@@ -2,11 +2,98 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/09/2026 21:43:19
- * Total: 671 recettes
+ * Dernière mise à jour: 06/09/2026 22:09:37
+ * Total: 672 recettes
  */
-export const exportSyncId = "1788730999510";
+export const exportSyncId = "1788732577733";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7429",
+        "title": "Pain burger pliable",
+        "description": "Une recette de pain burger maison, facile à plier, préparée en deux étapes avec un preferment pour une mie moelleuse et une cuisson au four.",
+        "image": "/recipes-ia/7429-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7681711318738439457\" data-video-id=\"7681711318738439457\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7681711318738439457\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour le preferment :"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             100 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             100 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 g de levure boulangère"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour la pâte :"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             300 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             35 g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             140 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             3 g de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 g de levure boulangère"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour dorer :"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre (quantité suffisante)"
+            }
+        ],
+        "steps": [
+            "1. Préparez le preferment : mélangez 100 g de farine, 100 ml d'eau et 2 g de levure boulangère. Laissez reposer pendant un certain temps (généralement 30 minutes à 1 heure) pour l'activer.",
+            "2. Dans un grand bol, combinez 300 g de farine, 1 œuf, 35 g de sucre, 140 ml de lait, 3 g de sel et 5 g de levure boulangère.",
+            "3. Ajoutez le preferment à ce mélange et pétrissez la pâte jusqu'à ce qu'elle commence à se former.",
+            "4. Incorporez les 25 g de beurre mou et continuez de pétrir jusqu'à obtenir une pâte homogène, lisse et élastique.",
+            "5. Laissez la pâte lever dans un endroit chaud, couverte, jusqu'à ce qu'elle double de volume (environ 1 à 2 heures).",
+            "6. Dégazez la pâte et divisez-la en portions égales. Façonnez chaque portion en pain burger pliable selon la technique désirée.",
+            "7. Disposez les pains sur une plaque de cuisson recouverte de papier sulfurisé. Laissez-les lever une seconde fois pendant environ 30 minutes.",
+            "8. Avant d'enfourner, badigeonnez délicatement la surface des pains avec du beurre fondu.",
+            "9. Faites cuire les pains dans un four préchauffé à 190°C pendant 20 minutes, ou jusqu'à ce qu'ils soient dorés."
+        ],
+        "tags": [
+            "Sandwichs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7423",
         "title": "Apéritif Tomate Mozzarella",
