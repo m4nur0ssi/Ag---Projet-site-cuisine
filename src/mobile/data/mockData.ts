@@ -2,11 +2,131 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/09/2026 20:14:59
- * Total: 667 recettes
+ * Dernière mise à jour: 06/09/2026 20:57:36
+ * Total: 669 recettes
  */
-export const exportSyncId = "1788725699717";
+export const exportSyncId = "1788728256413";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7417",
+        "title": "Salade verte facile à la crème fraîche",
+        "description": "Découvrez une des salades vertes les plus simples et délicieuses, parfaite pour un soir de semaine paresseux. Elle se compose de laitue Boston ou Bibb, d'une vinaigrette à base de moutarde de Dijon, de crème fraîche, d'huile, de vinaigre, de sel, ...",
+        "image": "/recipes-ia/7417-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7143989331349212462\" data-video-id=\"7143989331349212462\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7143989331349212462\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             Laitue Boston ou Bibb"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde de Dijon"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette (en grande quantité)"
+            }
+        ],
+        "steps": [
+            "Lavez et essorez soigneusement la laitue Boston ou Bibb. Déchirez-la en morceaux si nécessaire.",
+            "Dans un grand saladier, mélangez la moutarde de Dijon, la crème fraîche, l'huile et le vinaigre.",
+            "Assaisonnez la vinaigrette avec du sel et du poivre selon votre goût.",
+            "Ciselez finement la ciboulette et ajoutez-la à la vinaigrette. Mélangez bien.",
+            "Ajoutez la laitue dans le saladier et mélangez délicatement pour bien enrober toutes les feuilles de vinaigrette.",
+            "Servez immédiatement comme accompagnement ou entrée légère."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Healthy",
+            "Salades",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7419",
+        "title": "Frites croustillantes Peri Peri",
+        "description": "Des frites maison croustillantes assaisonnées avec un mélange d'épices peri peri fait maison, garanties meilleures et plus croustillantes que celles des restaurants à emporter.",
+        "image": "/recipes-ia/7419-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7277197479148375328\" data-video-id=\"7277197479148375328\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7277197479148375328\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             500g de grosses pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 grand bol d'eau froide avec 2 tasses de glaçons"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cuillères à soupe de fécule de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel en flocons"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café de poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café de poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 à 3 cuillères à soupe d'assaisonnement peri peri (recette disponible sur le profil)"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions mentionnées dans la vidéo."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Afrique",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7414",
         "title": "Lasagnes",
