@@ -162,15 +162,18 @@ jobs:
         continue-on-error: true
 
       # ------------------------------------------------------------------
-      # Génère l'image IA de la NOUVELLE recette (fal.ai + règles de plating
-      # de scripts/generate-recipe-images.js). Uniquement quand un post_id
-      # précis est fourni (webhook publish/update d'une recette), et seulement
-      # si l'image n'existe pas déjà (pas de --force → une mise à jour ne
-      # regénère pas). Le script repointe mockData vers /recipes-ia/<id>-carte.webp.
-      # Non bloquant. Nécessite le secret FAL_KEY (fal.ai/dashboard/keys).
+      # PHOTO DE LA RECETTE — génération, puis renvoi vers WordPress.
+      #
+      # Ces deux étapes tournent À CHAQUE PASSAGE, plus seulement quand un
+      # post_id arrive. C'est le point qui rendait la chaîne fragile : la photo
+      # ne se fabriquait que sur le webhook WordPress, et une seule absence de
+      # webhook (NAS éteint, adresse publique changée, quota épuisé) laissait
+      # la recette sans photo pour toujours — rien ne repassait dessus.
+      # `--manquantes` regarde ce qui manque sur le disque au lieu d'attendre
+      # qu'on le lui dise : le retard se résorbe tout seul, passage après
+      # passage, y compris sur la synchro de secours de 3 h du matin.
       # ------------------------------------------------------------------
       - name: 🎬 Outils vidéo (yt-dlp + ffmpeg)
-        if: steps.mode.outputs.post_id != ''
         run: |
           sudo apt-get update -y && sudo apt-get install -y ffmpeg
           sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
@@ -178,11 +181,33 @@ jobs:
           yt-dlp --version && ffmpeg -version | head -1
         continue-on-error: true
 
-      - name: 🎨 Génère l'image IA de la recette (d'après la vidéo TikTok)
-        if: steps.mode.outputs.post_id != ''
-        run: node scripts/generate-recipe-images.js --ids "${{ steps.mode.outputs.post_id }}" --video --vision-fal
+      # La recette qui vient d'être publiée d'abord (--ids), puis 3 de retard
+      # (--manquantes). Trois, parce qu'une photo prend ~1 min vidéo comprise et
+      # que le job est plafonné à 20 min : de quoi rattraper sans risquer la
+      # coupure. Fournisseurs gratuits d'abord, fal seulement s'ils tombent.
+      - name: 🎨 Génère les photos manquantes (d'après la vidéo TikTok)
+        run: node scripts/generate-recipe-images.js --ids "${{ steps.mode.outputs.post_id }}" --manquantes 3 --video
         env:
+          GEMINI_IMAGE_KEY: ${{ secrets.GEMINI_IMAGE_KEY }}
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS || secrets.GEMINI_API_KEY }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           FAL_KEY: ${{ secrets.FAL_KEY }}
+        continue-on-error: true
+
+      # Renvoi vers WordPress : le NAS n'avait JAMAIS reçu ces photos (elles
+      # n'allaient que dans le dépôt), d'où des articles sans image à la une
+      # alors que le site les affiche. On travaille par identifiant — l'id de
+      # recette EST l'id du post — et on ne touche pas aux articles qui ont
+      # déjà une image. Le site ne dépend pas de cette étape : sync-recipes.js
+      # fait gagner le fichier local sur l'image à la une WordPress.
+      - name: 📤 Renvoie les photos vers WordPress
+        run: node scripts/pousser-photo-wp.js --manquantes 25
+        env:
+          WP_URL: http://${{ secrets.WP_PUBLIC_IP }}/wordpress
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
         continue-on-error: true
 
       # ------------------------------------------------------------------

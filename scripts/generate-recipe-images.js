@@ -14,8 +14,34 @@
  * catégorie et des ingrédients, qui ne sont pas protégés dans leur substance.
  * Rien n'est copié, il n'y a pas de dérivation possible.
  *
- * Fournisseur : fal.ai (modèle FLUX). Gemini a été écarté — le projet Google
- * du compte est signalé, sa clé revient « suspended » quoi qu'on fasse.
+ * Fournisseurs, du gratuit au payant
+ * ----------------------------------
+ * Les fabricants d'image sont essayés DANS L'ORDRE, et on s'arrête au premier
+ * qui répond. Par défaut : `cloudflare,fal`.
+ *
+ *   1. Cloudflare  @cf/black-forest-labs/flux-1-schnell, palier GRATUIT
+ *                  (10 000 neurones/jour, très au-dessus de notre rythme).
+ *                  Ne rend que du carré 1024 : on recadre au centre en 3:4,
+ *                  soit 768 px de large. Clés : CF_ACCOUNT_ID + CF_API_TOKEN.
+ *   2. fal.ai      flux-pro/v1.1-ultra, PAYANT (~5 c l'image), 1792 px de large.
+ *                  Dernier recours : il ne puise dans les crédits déjà achetés
+ *                  que lorsque le gratuit est en panne ou à court de quota.
+ *
+ * Gemini a été ESSAYÉ et écarté pour l'image, pas par principe : le palier
+ * gratuit de gemini-2.5-flash-image annonce noir sur blanc
+ * « generate_content_free_tier_requests, limit: 0 ». Générer avec Gemini
+ * suppose donc d'activer la facturation, ce qui ne vaut pas mieux que fal.
+ * Le code reste là (`--fournisseurs gemini,…`) pour le jour où ce palier
+ * s'ouvre, mais il n'est plus dans la chaîne par défaut. Sa VISION, elle,
+ * est bien gratuite et sert de deuxième marche — voir `decrireGemini`.
+ *
+ * Le recours au payant n'est donc jamais un choix : c'est ce qu'il reste quand
+ * le gratuit ne répond pas. `--fournisseurs` force l'ordre, `--fal` réserve la
+ * génération à fal (retouche ponctuelle en pleine définition).
+ *
+ * Ce que ça coûte en définition : seul fal dépasse la taille de la fiche
+ * recette. Cloudflare couvre la carte (760 px) à sa définition native et est
+ * agrandi pour la fiche (1200 px) — voir `redimensionner()`.
  *
  * Usage
  * -----
@@ -32,9 +58,20 @@
  *   --oldest N    les N plus anciennes (c'est par là qu'on commence : ce sont
  *                 les images en ligne depuis le plus longtemps, donc les plus
  *                 exposées et les plus susceptibles d'avoir été repérées)
+ *   --manquantes N  les N recettes SANS photo générée, la plus récente d'abord.
+ *                 C'est le rattrapage : il ne dépend d'aucun événement, donc
+ *                 une recette ratée (NAS muet, quota épuisé, vision en panne)
+ *                 est reprise au passage suivant au lieu d'être perdue.
+ *                 Se combine avec --ids (l'union des deux est traitée).
  *   --all         tout le catalogue (long : voir --dry-run d'abord)
  *   --dry-run     n'appelle rien, montre seulement les consignes qui partiraient
  *   --force       régénère même si l'image existe déjà
+ *   --fournisseurs a,b  ordre des fabricants d'image (défaut cloudflare,fal ;
+ *                 « gemini » existe mais suppose la facturation Google activée)
+ *   --fal         raccourci pour --fournisseurs fal (pleine définition, payant)
+ *   --max-payant N  au plus N images payées par exécution (défaut 5). Garde-fou
+ *                 des lancements automatiques : une panne prolongée du gratuit
+ *                 ne peut pas vider les crédits fal sans que personne ne voie.
  *   --relier      ne génère RIEN : refait seulement pointer mockData vers les
  *                 images déjà présentes. Indispensable après une synchro
  *                 WordPress, qui réécrit mockData et efface les pointeurs.
@@ -82,16 +119,39 @@ const TAILLES = [
     { suffixe: '-carte', largeur: 760, qualite: 75 },  // ~110 ko
 ];
 
+/**
+ * Écrit une taille. Réduit d'habitude ; agrandit quand il le faut.
+ *
+ * fal rend 1792 px de large : les deux tailles se taillent dedans. Les deux
+ * fournisseurs gratuits rendent 768 à 896 px — de quoi servir la carte à sa
+ * définition exacte, mais pas la fiche. On refusait alors d'agrandir
+ * (`withoutEnlargement`), et la fiche recevait un fichier de 896 px dans un
+ * emplacement de 1200 : c'est le NAVIGATEUR qui l'étirait, avec un filtre
+ * bien plus grossier que le nôtre. Autant le faire ici, en lanczos, avec un
+ * accentuage léger pour rattraper le flou de l'agrandissement.
+ */
+async function redimensionner(buffer, largeur, qualite, sortie) {
+    const source = await sharp(buffer).metadata();
+    let img = sharp(buffer).resize({ width: largeur, kernel: sharp.kernel.lanczos3 });
+    // L'accentuage ne se justifie QUE sur un agrandissement : appliqué à une
+    // réduction, il fait ressortir le grain du modèle et durcit les bords.
+    if (source.width && source.width < largeur) img = img.sharpen({ sigma: 0.7 });
+    await img.webp({ quality: qualite }).toFile(sortie);
+}
+
 /** Lit .env.local sans dépendance : le script tourne hors de Next. */
-function chargerEnv() {
-    const fichier = path.join(RACINE, '.env.local');
+function chargerEnv(fichier) {
     if (!fs.existsSync(fichier)) return;
     for (const ligne of fs.readFileSync(fichier, 'utf8').split('\n')) {
         const m = ligne.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)$/);
         if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim().replace(/^["']|["']$/g, '');
     }
 }
-chargerEnv();
+chargerEnv(path.join(RACINE, '.env.local'));
+// Les clés Gemini du bot vivent dans tiktok-bot/.env — sans ça, la marche
+// gratuite serait invisible depuis le Mac et on retomberait sur fal à chaque
+// retouche. `.env.local` reste prioritaire (ses identifiants sont les à jour).
+chargerEnv(path.join(RACINE, 'tiktok-bot', '.env'));
 
 // ── Lecture des arguments ────────────────────────────────────────────────
 const args = process.argv.slice(2);
@@ -885,7 +945,16 @@ function lireRecettes() {
 const { execSync } = require('child_process');
 const os = require('os');
 const BIN = '/opt/homebrew/bin'; // yt-dlp + ffmpeg (brew)
-const GROQ_VISION = process.env.GROQ_VISION_MODEL || 'qwen/qwen3.6-27b';
+/**
+ * Modèles de vision Groq, essayés dans l'ordre.
+ *
+ * Groq retire ses modèles sans prévenir (llama-3.3-70b a disparu du jour au
+ * lendemain et a emporté /api/wine-pairing avec lui). Un seul nom en dur, et
+ * la marche gratuite du pipeline tombe le jour du retrait. On en garde donc
+ * plusieurs : un 404 / « decommissioned » fait passer au suivant.
+ */
+const GROQ_VISIONS = (process.env.GROQ_VISION_MODEL || 'qwen/qwen3.6-27b,meta-llama/llama-4-scout-17b-16e-instruct,meta-llama/llama-4-maverick-17b-128e-instruct')
+    .split(',').map((s) => s.trim()).filter(Boolean);
 
 /** Id TikTok depuis le champ videoHtml de la recette. */
 function videoIdDe(recette) {
@@ -951,45 +1020,78 @@ async function decrirePlat(recette, frames) {
             image_url: { url: 'data:image/jpeg;base64,' + fs.readFileSync(f).toString('base64') },
         });
     }
-    const body = JSON.stringify({
-        model: GROQ_VISION,
-        messages: [{ role: 'user', content: contenu }],
-        max_tokens: 700,
-        temperature: 0.2,
-    });
     const headers = {
         authorization: `Bearer ${process.env.GROQ_API_KEY}`,
         'content-type': 'application/json',
         // Sans un User-Agent de navigateur, Cloudflare renvoie 403/1010.
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36',
     };
-    try {
-        let rep, txt417 = '';
-        // Free tier Groq = 8000 tokens/min : on encaisse les 429 en attendant le
-        // délai indiqué, jusqu'à 4 essais.
-        for (let essai = 1; essai <= 4; essai++) {
-            const c = new AbortController();
-            const t = setTimeout(() => c.abort(), 60000);
-            rep = await fetch('https://api.groq.com/openai/v1/chat/completions',
-                { method: 'POST', headers, body, signal: c.signal }).finally(() => clearTimeout(t));
-            if (rep.ok) break;
-            txt417 = (await rep.text());
-            if (rep.status !== 429 || essai === 4) return null;
-            const m = txt417.match(/try again in ([\d.]+)s/i);
-            const attente = m ? Math.ceil(parseFloat(m[1]) * 1000) + 800 : 12000;
-            await new Promise((res) => setTimeout(res, attente));
+    // Un modèle retiré répond 404/400 : on n'insiste pas, on prend le suivant.
+    for (const modele of GROQ_VISIONS) {
+        /*
+         * 900, et pas un de plus — la valeur est coincée entre deux murs.
+         *
+         * En dessous : qwen réfléchit dans un bloc <think>…</think> AVANT de
+         * répondre, et ce bloc compte dans le budget. À 700 la réflexion en
+         * mangeait l'essentiel ; sur « Vitello Tonnato » il restait de quoi
+         * écrire « The Vitello Tonnato is presented in a deep blue bowl, » —
+         * une demi-phrase, renvoyée telle quelle au fabricant d'image, qui
+         * inventait le reste du plat. Rien ne le signalait : la description
+         * était non vide, donc jugée bonne. Une mesure réelle donne ~400 tokens
+         * de sortie, réflexion comprise.
+         *
+         * Au-dessus : le palier gratuit de Groq plafonne la SORTIE à 1000
+         * tokens par minute, et il refuse la requête sur la seule valeur de
+         * max_tokens, avant même de la traiter — « Limit 1000, Requested 2380 ».
+         * Demander large ne coûte donc pas cher : ça ne marche pas du tout.
+         *
+         * En plus du budget, on REFUSE une réponse coupée (finish_reason
+         * « length ») au lieu de la prendre pour argent comptant.
+         */
+        const body = JSON.stringify({
+            model: modele,
+            messages: [{ role: 'user', content: contenu }],
+            max_tokens: 900,
+            temperature: 0.2,
+        });
+        try {
+            let rep, corpsErreur = '';
+            // Free tier Groq = 8000 tokens/min : on encaisse les 429 en attendant le
+            // délai indiqué, jusqu'à 4 essais.
+            for (let essai = 1; essai <= 4; essai++) {
+                const c = new AbortController();
+                const t = setTimeout(() => c.abort(), 60000);
+                rep = await fetch('https://api.groq.com/openai/v1/chat/completions',
+                    { method: 'POST', headers, body, signal: c.signal }).finally(() => clearTimeout(t));
+                if (rep.ok) break;
+                corpsErreur = (await rep.text());
+                if (rep.status !== 429 || essai === 4) break;
+                const m = corpsErreur.match(/try again in ([\d.]+)s/i);
+                const attente = m ? Math.ceil(parseFloat(m[1]) * 1000) + 800 : 12000;
+                await new Promise((res) => setTimeout(res, attente));
+            }
+            if (!rep.ok) {
+                // Modèle disparu du catalogue → on essaie le suivant de la liste.
+                if (/decommission|does not exist|not found/i.test(corpsErreur) || rep.status === 404) continue;
+                return null;    // quota, clé, panne : les autres modèles n'y changeront rien
+            }
+            const data = await rep.json();
+            const choix = data?.choices?.[0];
+            let txt = choix?.message?.content || '';
+            // qwen émet un bloc <think>…</think> : on garde ce qui suit le dernier.
+            if (/<\/think>/i.test(txt)) txt = txt.split(/<\/think>/i).pop();
+            else if (/<think>/i.test(txt)) txt = ''; // n'a fait que réfléchir (tronqué)
+            txt = txt.replace(/<\/?think>/gi, '').trim();
+            // Réponse coupée au plafond de tokens : c'est un bout de phrase, pas
+            // une description. On rend la main au fournisseur suivant.
+            if (choix?.finish_reason === 'length') return null;
+            if (!txt || /^none\b/i.test(txt) || txt.length < 15) return null;
+            return txt.replace(/\s+/g, ' ').slice(0, 500);
+        } catch {
+            return null;
         }
-        const data = await rep.json();
-        let txt = data?.choices?.[0]?.message?.content || '';
-        // qwen émet un bloc <think>…</think> : on garde ce qui suit le dernier.
-        if (/<\/think>/i.test(txt)) txt = txt.split(/<\/think>/i).pop();
-        else if (/<think>/i.test(txt)) txt = ''; // n'a fait que réfléchir (tronqué)
-        txt = txt.replace(/<\/?think>/gi, '').trim();
-        if (!txt || /^none\b/i.test(txt) || txt.length < 15) return null;
-        return txt.replace(/\s+/g, ' ').slice(0, 500);
-    } catch {
-        return null;
     }
+    return null;
 }
 
 /**
@@ -1060,6 +1162,88 @@ async function decrireFal(recette, frames) {
     return null;
 }
 
+/**
+ * La clé Gemini. `GEMINI_API_KEYS` est une LISTE (le bot TikTok tourne dessus
+ * pour épuiser les quotas l'une après l'autre) : on prend la première.
+ * `GEMINI_IMAGE_KEY` la court-circuite — c'est là qu'on met la clé du projet
+ * neuf quand l'ancien est signalé.
+ */
+function cleGemini() {
+    const brut = process.env.GEMINI_IMAGE_KEY || process.env.GEMINI_API_KEYS || process.env.GEMINI_API_KEY || '';
+    return brut.split(',')[0].trim() || null;
+}
+
+const GEMINI_API = 'https://generativelanguage.googleapis.com/v1beta/models';
+
+/**
+ * Vision gratuite via Gemini : deuxième marche, entre Groq (capé à la journée)
+ * et fal (payant). Même contrat que les deux autres : une phrase EN, `null`
+ * quand le plat n'est pas visible, une exception quand c'est le SERVICE qui est
+ * en panne — la nuance décide si on génère quand même depuis le titre ou si on
+ * repasse la recette plus tard.
+ */
+async function decrireGemini(recette, frames) {
+    const cle = cleGemini();
+    if (!cle || !frames.length) return null;
+    /*
+     * Plusieurs modèles, pour la même raison que côté Groq : Google retire les
+     * siens vite. gemini-2.0-flash et gemini-2.5-flash-lite répondent DÉJÀ 404
+     * (« no longer available »), et l'erreur nomme le successeur. Un seul nom
+     * en dur, et la marche gratuite tomberait le jour du retrait suivant.
+     */
+    const modeles = (process.env.GEMINI_VISION_MODEL || 'gemini-2.5-flash,gemini-3.6-flash')
+        .split(',').map((s) => s.trim()).filter(Boolean);
+    const parts = [{
+        text: `These are frames from the opening and the end of a cooking video for a recipe titled "${recette.title}". `
+            + `Describe ONLY the finished, plated dish as it should look for an editorial food photo: `
+            + `its exact form/shape, colours, the key visible components, how it is plated and the vessel/plate. `
+            + `The dish counts as visible even when held in someone's hands or partly covered by on-screen text. `
+            + `Answer with one or two concise English sentences and nothing else. `
+            + `Never mention the camera, background, hands, on-screen text or people. `
+            + `If no finished dish appears in any frame, reply exactly: NONE`,
+    }];
+    for (const f of frames) {
+        parts.push({ inlineData: { mimeType: 'image/jpeg', data: fs.readFileSync(f).toString('base64') } });
+    }
+    let dernierStatut = null;
+    for (const modele of modeles) {
+        for (let essai = 1; essai <= 3; essai++) {
+            const c = new AbortController();
+            const t = setTimeout(() => c.abort(), 60000);
+            try {
+                const rep = await fetch(`${GEMINI_API}/${modele}:generateContent?key=${cle}`, {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts }],
+                        generationConfig: { temperature: 0.2, maxOutputTokens: 400 },
+                    }),
+                    signal: c.signal,
+                });
+                if (rep.ok) {
+                    const d = await rep.json();
+                    const txt = (d?.candidates?.[0]?.content?.parts || [])
+                        .map((p) => p.text || '').join(' ').replace(/\s+/g, ' ').trim();
+                    if (!txt || /^none\b/i.test(txt) || txt.length < 15) return null;
+                    return txt.slice(0, 500);
+                }
+                dernierStatut = rep.status;
+                // 404 = modèle retiré du catalogue : on passe au suivant de la liste.
+                if (rep.status === 404) break;
+                // 400/403 = clé morte ou projet signalé : les autres modèles
+                // buteront pareil, inutile de dérouler la liste.
+                if (rep.status === 400 || rep.status === 403) return null;
+                // 503 « high demand » et 429 sont passagers : on laisse du temps.
+                await new Promise((res) => setTimeout(res, 4000 * essai));
+            } catch (e) {
+                dernierStatut = e.name === 'AbortError' ? 'timeout' : 'réseau';
+                await new Promise((res) => setTimeout(res, 3000 * essai));
+            } finally { clearTimeout(t); }
+        }
+    }
+    throw new Error(`vision gemini indisponible (${dernierStatut})`);
+}
+
 /** Regarde la vidéo et renvoie une description du plat, ou null si impossible. */
 async function descriptionDepuisVideo(recette) {
     const id = videoIdDe(recette);
@@ -1068,17 +1252,28 @@ async function descriptionDepuisVideo(recette) {
     try {
         const frames = framesDeLaVideo(id, dossier);
         if (!frames.length) return null;
-        // fal en premier si demandé (Groq gratuit est capé à 200k tokens/jour) ;
-        // sinon Groq puis repli fal automatique.
+        // fal en premier si demandé (retouche ponctuelle) ; sinon les deux
+        // gratuits d'abord — Groq (capé à 200k tokens/jour) puis Gemini — et
+        // fal seulement quand les deux sont indisponibles.
         if (aOption('--vision-fal')) return await decrireFal(recette, frames);
-        return (await decrirePlat(recette, frames)) || (await decrireFal(recette, frames));
+        const parGroq = await decrirePlat(recette, frames);
+        if (parGroq) return parGroq;
+        try {
+            const parGemini = await decrireGemini(recette, frames);
+            if (parGemini) return parGemini;
+        } catch (e) {
+            // Gemini en panne n'est pas une réponse : on laisse fal trancher.
+            if (!/vision gemini indisponible/.test(e.message || '')) throw e;
+        }
+        return await decrireFal(recette, frames);
     } catch (e) {
         /*
          * Vision en panne ≠ vidéo muette. Dans le premier cas on ABANDONNE la
          * recette : générer quand même donnerait une image tirée du seul titre,
-         * payée au même prix, qu'il faudrait refaire. On la repassera plus tard.
+         * payée au même prix, qu'il faudrait refaire. On la repassera plus tard
+         * — c'est précisément ce que rattrape `--manquantes`.
          */
-        if (/vision fal indisponible/.test(e.message || '')) throw e;
+        if (/vision (fal|gemini) indisponible/.test(e.message || '')) throw e;
         return null;
     } finally {
         fs.rmSync(dossier, { recursive: true, force: true });
@@ -1098,9 +1293,158 @@ function sauvegarderAncienne(recette) {
     }
 }
 
+/**
+ * Gemini 2.5 Flash Image — HORS chaîne par défaut, et c'est délibéré.
+ *
+ * C'est le seul fournisseur à sortir du portrait NATIF : on lui demande du 3:4
+ * et il le rend sans recadrage, autour de 896 px de large. Techniquement le
+ * meilleur des trois pour notre cadrage… mais son palier gratuit est à zéro
+ * (« generate_content_free_tier_requests, limit: 0 »), donc l'utiliser revient
+ * à payer. On le garde câblé pour le jour où ça change : `--fournisseurs
+ * gemini,cloudflare,fal`.
+ */
+async function genererGemini(consigneTexte) {
+    const cle = cleGemini();
+    if (!cle) throw new Error('pas de clé Gemini');
+    const modele = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image';
+    let dernier = '';
+    for (let essai = 1; essai <= 3; essai++) {
+        const rep = await fetch(`${GEMINI_API}/${modele}:generateContent?key=${cle}`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: consigneTexte }] }],
+                generationConfig: { responseModalities: ['IMAGE'], imageConfig: { aspectRatio: '3:4' } },
+            }),
+        });
+        if (rep.ok) {
+            const d = await rep.json();
+            const part = (d?.candidates?.[0]?.content?.parts || []).find((p) => p.inlineData?.data);
+            if (!part) throw new Error('réponse sans image');
+            return Buffer.from(part.inlineData.data, 'base64');
+        }
+        dernier = (await rep.text()).slice(0, 200);
+        // 429 = quota du palier gratuit atteint pour la minute ; on souffle.
+        // 400/403 = clé morte ou projet signalé : inutile d'insister.
+        if (rep.status !== 429 || essai === 3) throw new Error(`Gemini ${rep.status} — ${dernier}`);
+        await new Promise((res) => setTimeout(res, 20000 * essai));
+    }
+    throw new Error(`Gemini — ${dernier}`);
+}
+
+/**
+ * Cloudflare Workers AI (FLUX schnell) — deuxième marche, gratuite.
+ *
+ * Il ne sait rendre que du CARRÉ 1024. On recadre au centre en 3:4, ce qui
+ * donne 768 × 1024. Le cadrage du bas est le moins risqué : la consigne place
+ * le plat au centre et remplit les bords de vaisselle, donc rogner à gauche et
+ * à droite n'ampute jamais l'assiette.
+ */
+async function genererCloudflare(consigneTexte) {
+    const compte = process.env.CF_ACCOUNT_ID;
+    const jeton = process.env.CF_API_TOKEN;
+    if (!compte || !jeton) throw new Error('pas de clés Cloudflare');
+    const modele = process.env.CF_IMAGE_MODEL || '@cf/black-forest-labs/flux-1-schnell';
+    // La consigne de la maison dépasse parfois la limite du modèle (2048
+    // caractères) : on la coupe, les interdits sont en tête.
+    const prompt = consigneTexte.slice(0, 2040);
+    let dernier = '';
+    for (let essai = 1; essai <= 3; essai++) {
+        const rep = await fetch(`https://api.cloudflare.com/client/v4/accounts/${compte}/ai/run/${modele}`, {
+            method: 'POST',
+            headers: { authorization: `Bearer ${jeton}`, 'content-type': 'application/json' },
+            // steps plafonne à 8 chez Cloudflare. width/height ne sont pas
+            // documentés pour ce modèle : on les envoie quand même (ignorés le
+            // cas échéant), et on lit de toute façon la taille RÉELLE ensuite.
+            body: JSON.stringify({ prompt, steps: 8, width: 1024, height: 1024 }),
+        });
+        if (rep.ok) {
+            const d = await rep.json();
+            const b64 = d?.result?.image;
+            if (!b64) throw new Error('réponse sans image');
+            const rendu = Buffer.from(b64, 'base64');
+            const meta = await sharp(rendu).metadata();
+            const hauteur = meta.height || 1024;
+            const largeur = Math.round(hauteur * 0.75);   // recadrage centré en 3:4
+            /*
+             * Garde-fou de définition. Ce modèle est facturé « par tuile de
+             * 512 » et sa taille de sortie n'est pas garantie par la doc : s'il
+             * rend du 512, le 3:4 tombe à 384 px et il faudrait DOUBLER pour
+             * remplir une carte de 760. Un agrandissement pareil se voit. Mieux
+             * vaut renoncer et laisser la main à fal : une image payée mais nette
+             * vaut mieux qu'une image gratuite et molle, et le cas est rare.
+             */
+            if (largeur < 700) throw new Error(`rendu trop petit (${meta.width}×${meta.height})`);
+            return await sharp(rendu)
+                .extract({
+                    top: 0,
+                    left: Math.round(((meta.width || 1024) - largeur) / 2),
+                    width: largeur,
+                    height: hauteur,
+                })
+                .png()
+                .toBuffer();
+        }
+        dernier = (await rep.text()).slice(0, 200);
+        if (rep.status !== 429 || essai === 3) throw new Error(`Cloudflare ${rep.status} — ${dernier}`);
+        await new Promise((res) => setTimeout(res, 15000 * essai));
+    }
+    throw new Error(`Cloudflare — ${dernier}`);
+}
+
+/**
+ * Enchaîne les fournisseurs et renvoie { buffer, par } — `par` sert au journal,
+ * pour qu'on voie d'un coup d'œil combien d'images sont passées par le payant.
+ */
+const FOURNISSEURS = {
+    gemini: { nom: 'Gemini (gratuit)', appel: genererGemini, dispo: () => !!cleGemini() },
+    cloudflare: { nom: 'Cloudflare (gratuit)', appel: genererCloudflare, dispo: () => !!(process.env.CF_ACCOUNT_ID && process.env.CF_API_TOKEN) },
+    fal: { nom: 'fal (payant)', appel: (c) => genererFal(c), dispo: () => !!process.env.FAL_KEY },
+};
+
+function ordreFournisseurs() {
+    if (aOption('--fal')) return ['fal'];
+    const demande = valeur('--fournisseurs') || process.env.IMAGE_FOURNISSEURS || 'cloudflare,fal';
+    return demande.split(',').map((s) => s.trim()).filter((n) => FOURNISSEURS[n]);
+}
+
+/*
+ * PLAFOND DE DÉPENSE, par exécution.
+ *
+ * Le repli payant est voulu — mais il est déclenché par une PANNE, et une
+ * panne ne dure pas cinq minutes. Si Cloudflare tombe une nuit et que le
+ * rattrapage passe toutes les heures, chaque passage bascule sur fal sans que
+ * personne ne regarde. On borne donc : au-delà de N images payantes dans une
+ * même exécution, fal est écarté et les recettes restantes sont laissées pour
+ * plus tard — `--manquantes` les reprendra de toute façon.
+ * `--fal` (retouche manuelle assumée) et `--force` ne sont pas concernés.
+ */
+const MAX_PAYANT = parseInt(valeur('--max-payant') || process.env.IMAGE_MAX_PAYANT || '5', 10);
+let payantes = 0;
+
 async function genererUne(recette, descPlat) {
+    const consigneTexte = consigne(recette, descPlat);
+    let noms = ordreFournisseurs().filter((n) => FOURNISSEURS[n].dispo());
+    if (!noms.length) throw new Error('aucun fournisseur configuré (voir CF_ACCOUNT_ID/CF_API_TOKEN, FAL_KEY)');
+    const plafonne = !aOption('--fal') && !aOption('--force') && payantes >= MAX_PAYANT;
+    if (plafonne) noms = noms.filter((n) => n !== 'fal');
+    if (!noms.length) throw new Error(`plafond de ${MAX_PAYANT} image(s) payante(s) atteint — repris au prochain passage`);
+    const raisons = [];
+    for (const nom of noms) {
+        try {
+            const buffer = await FOURNISSEURS[nom].appel(consigneTexte);
+            if (nom === 'fal') payantes++;
+            return { buffer, par: FOURNISSEURS[nom].nom };
+        } catch (e) {
+            raisons.push(`${nom}: ${e.message}`);
+        }
+    }
+    throw new Error(raisons.join(' | '));
+}
+
+async function genererFal(consigneTexte) {
     const corps = JSON.stringify({
-        prompt: consigne(recette, descPlat),
+        prompt: consigneTexte,
         // « ultra » se pilote par ratio ; les autres modèles par un gabarit
         // nommé. Portrait 3:4 : le format tient aussi bien sur une carte
         // carrée que sur l'affiche verticale du héros.
@@ -1148,10 +1492,43 @@ function pointerVers(id, chemin) {
 (async () => {
     const recettes = lireRecettes();
 
+    /*
+     * LE RATTRAPAGE.
+     *
+     * Tout le reste du script vise des recettes qu'on lui DÉSIGNE : un id, les
+     * N dernières, tout. Ça marchait tant qu'un événement arrivait à coup sûr —
+     * le webhook WordPress à la publication. Il suffit qu'il manque une fois
+     * (NAS éteint, adresse publique changée, quota épuisé, vision en panne)
+     * pour que la recette passe sans photo, définitivement : plus rien ne
+     * repasse dessus.
+     *
+     * `--manquantes` renverse la logique : au lieu d'attendre qu'on lui dise
+     * quoi faire, le script REGARDE ce qui manque sur le disque. Lancé à chaque
+     * synchronisation, il finit toujours par rattraper ce qui a été raté, sans
+     * qu'on ait à s'en occuper.
+     */
+    const sansPhoto = (r) => !fs.existsSync(path.join(DOSSIER, `${r.id}-carte.webp`));
     let cibles;
-    if (valeur('--ids')) {
-        const ids = valeur('--ids').split(',').map((s) => s.trim());
+    if (valeur('--ids') || valeur('--manquantes')) {
+        const ids = (valeur('--ids') || '').split(',').map((s) => s.trim()).filter(Boolean);
         cibles = recettes.filter((r) => ids.includes(String(r.id)));
+        if (valeur('--manquantes')) {
+            const combien = parseInt(valeur('--manquantes'), 10) || 0;
+            const vus = new Set(cibles.map((r) => String(r.id)));
+            // Le catalogue va du plus récent au plus ancien : on rattrape les
+            // nouveautés d'abord, ce sont elles qu'on regarde le lendemain.
+            for (const r of recettes) {
+                if (cibles.length >= ids.length + combien) break;
+                if (vus.has(String(r.id)) || !sansPhoto(r)) continue;
+                // Les fiches restaurant n'ont pas d'assiette à montrer : elles
+                // sont écartées plus bas de toute façon. Sans ce filtre ICI,
+                // elles consommeraient les N places du rattrapage à chaque
+                // passage et aucune vraie recette ne serait jamais reprise.
+                if (r.category === 'restaurant') continue;
+                cibles.push(r);
+                vus.add(String(r.id));
+            }
+        }
     } else if (valeur('--recent')) {
         cibles = recettes.slice(0, parseInt(valeur('--recent'), 10) || 5);
     } else if (valeur('--oldest')) {
@@ -1161,7 +1538,7 @@ function pointerVers(id, chemin) {
     } else if (aOption('--all')) {
         cibles = recettes;
     } else {
-        console.error('Précise --ids, --recent N ou --all.');
+        console.error('Précise --ids, --manquantes N, --recent N ou --all.');
         process.exit(1);
     }
 
@@ -1202,10 +1579,15 @@ function pointerVers(id, chemin) {
         return;
     }
 
-    if (!process.env.FAL_KEY) {
-        console.error('FAL_KEY manquante. Ajoute-la dans .env.local (voir fal.ai/dashboard/keys).');
+    const dispos = ordreFournisseurs().filter((n) => FOURNISSEURS[n].dispo());
+    if (!dispos.length) {
+        console.error('Aucun fournisseur d\'image configuré. Renseigne au moins une clé :');
+        console.error('  GEMINI_IMAGE_KEY  (gratuit — aistudio.google.com/apikey)');
+        console.error('  CF_ACCOUNT_ID + CF_API_TOKEN  (gratuit — dash.cloudflare.com → Workers AI)');
+        console.error('  FAL_KEY  (payant — fal.ai/dashboard/keys)');
         process.exit(1);
     }
+    console.log(`Fournisseurs, dans l'ordre : ${dispos.map((n) => FOURNISSEURS[n].nom).join(' → ')}\n`);
 
     fs.mkdirSync(DOSSIER, { recursive: true });
     let faites = 0, sautees = 0, ratees = 0;
@@ -1224,22 +1606,20 @@ function pointerVers(id, chemin) {
                 descPlat = await descriptionDepuisVideo(r);
                 console.log(`  🎬 ${r.id} vidéo : ${descPlat ? descPlat.slice(0, 90) + '…' : 'pas de description (repli titre)'}`);
             }
-            // Sauve l'ancienne image sur le Bureau avant de l'écraser.
-            if (fs.existsSync(fichier)) sauvegarderAncienne(r);
-            const buffer = await genererUne(r, descPlat);
+            // Sauve l'ancienne image sur le Bureau avant de l'écraser. Inutile
+            // sur un runner GitHub : le Bureau y est un dossier jetable.
+            if (fs.existsSync(fichier) && !process.env.CI) sauvegarderAncienne(r);
+            const { buffer, par } = await genererUne(r, descPlat);
             const poids = [];
             for (const t of TAILLES) {
                 const sortie = path.join(DOSSIER, `${r.id}${t.suffixe}.webp`);
-                await sharp(buffer)
-                    .resize({ width: t.largeur, withoutEnlargement: true })
-                    .webp({ quality: t.qualite })
-                    .toFile(sortie);
+                await redimensionner(buffer, t.largeur, t.qualite, sortie);
                 poids.push(`${t.largeur}px : ${Math.round(fs.statSync(sortie).size / 1024)} ko`);
             }
             // Le site pointe sur la PETITE : c'est elle qui s'affiche trente fois
             // sur l'accueil. La fiche recette ira chercher la grande.
             pointerVers(r.id, `/recipes-ia/${r.id}-carte.webp`);
-            console.log(`✓ ${r.title} — ${poids.join(', ')}`);
+            console.log(`✓ ${r.title} — ${par} — ${poids.join(', ')}`);
             faites++;
         } catch (e) {
             console.log(`✗ ${r.title} — ${e.message}`);

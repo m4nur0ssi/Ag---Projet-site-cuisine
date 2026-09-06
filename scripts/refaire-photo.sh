@@ -81,40 +81,22 @@ echo "Photos refaites :$TRAITEES"
 echo "════════════════════════════════════════════"
 
 # ── WordPress ────────────────────────────────────────────────────────────────
-# `auto-upload-wp.js` travaille par DOSSIER : il rapproche le nom du fichier du
-# titre de la recette. On lui prépare donc une copie nommée d'après le titre.
-DEPOT="$HOME/Downloads/wordpress"
-mkdir -p "$DEPOT"
-PREPARES=0
-for id in $TRAITEES; do
-    GRANDE="public/recipes-ia/$id.webp"
-    [ -f "$GRANDE" ] || { echo "   ⚠️  $id : pas de photo générée, on passe."; continue; }
-    TITRE=$(node -e "
-        const fs=require('fs');
-        const s=fs.readFileSync('src/data/mockData.ts','utf8');
-        const d=s.indexOf('= [', s.indexOf('mockRecipes'))+2;
-        const rs=JSON.parse(s.slice(d, s.lastIndexOf('];')+1));
-        const r=rs.find(x=>String(x.id)==='$id');
-        process.stdout.write(r ? r.title.replace(/[\/:]/g,' ') : '');
-    ")
-    [ -z "$TITRE" ] && continue
-    cp "$GRANDE" "$DEPOT/$TITRE.webp"
-    PREPARES=$((PREPARES+1))
-done
-
-if [ "$PREPARES" -gt 0 ]; then
+# On passait par `auto-upload-wp.js`, qui travaille par DOSSIER et rapproche le
+# nom du fichier du TITRE de la recette : il fallait fabriquer des copies dans
+# ~/Downloads/wordpress, et un titre renommé dans WordPress faisait dérailler le
+# rapprochement. `pousser-photo-wp.js` envoie par IDENTIFIANT — l'id de recette
+# EST l'id du post — donc plus de copies, plus de rapprochement à l'aveugle.
+# `--force` parce qu'ici on REMPLACE sciemment une photo qui existe déjà.
+echo
+echo "📤 Envoi vers WordPress…"
+if ! node scripts/pousser-photo-wp.js --ids "$(echo "$TRAITEES" | tr ' ' ',' | sed 's/,$//')" --force; then
     echo
-    echo "📤 Envoi vers WordPress ($PREPARES photo(s))…"
-    export WP_XMLRPC_URL="${WP_XMLRPC_URL:-http://109.221.250.122/wordpress/xmlrpc.php}"
-    if ! node auto-upload-wp.js; then
-        echo
-        echo "   ⚠️  WordPress a refusé. Causes possibles, dans l'ordre :"
-        echo "      • identifiants périmés dans .env.local (WP_USERNAME / WP_PASSWORD)"
-        echo "        → vérifie avec : npm run wp:verifier"
-        echo "      • NAS éteint, ou son adresse publique a changé"
-        echo "   Sans conséquence pour le site : c'est le dépôt Git qui décide"
-        echo "   de la photo affichée. On continue."
-    fi
+    echo "   ⚠️  WordPress a refusé. Causes possibles, dans l'ordre :"
+    echo "      • identifiants périmés dans .env.local (WP_USERNAME / WP_PASSWORD)"
+    echo "        → vérifie avec : npm run wp:verifier"
+    echo "      • NAS éteint, ou son adresse publique a changé"
+    echo "   Sans conséquence pour le site : c'est le dépôt Git qui décide"
+    echo "   de la photo affichée. On continue."
 fi
 
 # ── Le site ──────────────────────────────────────────────────────────────────

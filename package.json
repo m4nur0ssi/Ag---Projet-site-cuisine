@@ -17,6 +17,8 @@
     "build:home-data": "node scripts/build-home-data.js",
     "photos:push": "bash scripts/pousser-photos.sh",
     "photo:refaire": "bash scripts/refaire-photo.sh",
+    "photos:manquantes": "node scripts/generate-recipe-images.js --manquantes 10 --video",
+    "photos:wordpress": "node scripts/pousser-photo-wp.js --manquantes 50",
     "wp:verifier": "node scripts/verifier-wordpress.js",
     "nutri:verifier": "node scripts/verifier-nutriscore.js"
   },
