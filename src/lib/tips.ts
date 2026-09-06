@@ -38,8 +38,8 @@ export const TIPS: Record<string, Tip> = {
     courses: {
         id: 'courses',
         kicker: 'Liste de courses',
-        title: 'Coche, puis choisis ton magasin',
-        text: 'Coche les articles que tu veux : les boutons « Partager » et « Magasin » apparaissent alors, et n’emportent QUE ce qui est coché.',
+        title: 'Décoche ce que tu as déjà',
+        text: 'Tout part au magasin par défaut. Décoche ce qui est déjà dans tes placards : « Partager » et « Magasin » n’emportent que ce qui reste coché.',
     },
     favoris: {
         id: 'favoris',

@@ -137,10 +137,6 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
     const [plan, setPlan] = useState<Record<string, Record<string, any>>>({});
     const [weekChecked, setWeekChecked] = useState<Set<string>>(new Set());
     const [done, setDone] = useState<Set<string>>(new Set());
-    const [selected, setSelected] = useState<Set<string>>(new Set());
-    // Vue « Jour par jour » : ingrédients COCHÉS (= sélectionnés pour le magasin),
-    // par clé de créneau (`jour|repas|idx`), même logique que la vue semaine.
-    const [jourSel, setJourSel] = useState<Set<string>>(new Set());
     const [overrides, setOverrides] = useState<Record<string, string>>({});
     /**
      * Quantités retouchées à la main, par clé d'article. La recette dit 200 g de
@@ -169,7 +165,6 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         if (typeof window !== 'undefined') ecrireStock('week-in-fused', withWeek ? 'true' : 'false');
     }, [withWeek]);
     // Mode « Par recette » : cases cochées, clé `day|meal|rIdx|idx`.
-    const [recipeSel, setRecipeSel] = useState<Set<string>>(new Set());
     const [adding, setAdding] = useState(false);
     const [name, setName] = useState('');
     const [qty, setQty] = useState('');
@@ -298,21 +293,21 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         haptic(10);
     };
 
-    /** Sélection : c'est elle qui alimente le partage et la recherche magasin. */
-    const toggleSelect = (it: ConsolItem) => {
-        haptic(6);
-        setSelected((prev) => {
-            const n = new Set(prev);
-            const k = it.key;
-            n.has(k) ? n.delete(k) : n.add(k);
-            return n;
-        });
-    };
+    /**
+     * Ce qui part au magasin : tout ce qui est encore COCHÉ.
+     *
+     * Auparavant il fallait cocher soi-même, une ligne après l'autre, ce qu'on
+     * voulait commander — et les boutons restaient cachés tant qu'on n'avait
+     * rien coché. C'était l'inverse du geste réel : on part avec sa liste
+     * entière, et on en retire ce qu'on a déjà dans son placard.
+     */
+    const aPrendre = useMemo(() => items.filter((it) => !isItemDone(it, done)), [items, done]);
+
     const selectedKeys = useMemo(() => {
         const s = new Set<string>();
-        items.filter((i) => selected.has(i.key)).forEach((i) => i.keys.forEach((k) => s.add(k)));
+        aPrendre.forEach((i) => i.keys.forEach((k) => s.add(k)));
         return s;
-    }, [items, selected]);
+    }, [aPrendre]);
 
     const saveList = useCallback((next: ListData) => {
         ecrireStock('magic-shopping-list', JSON.stringify(next));
@@ -381,7 +376,6 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             persistDone(n);
             return n;
         });
-        setSelected((prev) => { const n = new Set(prev); n.delete(it.key); return n; });
     };
 
     const clearAll = () => {
@@ -486,7 +480,8 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
 
     /** Partage d'UNE recette : uniquement les lignes cochées de celle-ci. */
     const shareRecipe = async (r: { title: string; lines: { key: string; text: string }[] }) => {
-        const picked = r.lines.filter((l) => recipeSel.has(l.key));
+        // Tout ce qui n'est pas déjà chez soi part au partage.
+        const picked = r.lines.filter((l) => !done.has(l.key));
         if (!picked.length) return;
         haptic(10);
         const text = `🛒 ${r.title}\n\n` + picked.map((l) => `• ${l.text}`).join('\n');
@@ -508,30 +503,32 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         });
     };
 
-    // Coche/décoche un ingrédient de la vue Jour (= le sélectionne pour le magasin).
-    const toggleJourSel = (doneKey: string) => {
-        haptic(6);
-        setJourSel((prev) => {
-            const n = new Set(prev);
-            n.has(doneKey) ? n.delete(doneKey) : n.add(doneKey);
-            return n;
-        });
-    };
-
-    // Cible magasin de la vue Jour : on part des créneaux cochés (hors barrés) et
-    // on retrouve les articles consolidés correspondants. Les clés consolidées
-    // portent un suffixe `|sub` (blocs éclatés) : on matche donc par PRÉFIXE
-    // `jour|repas|idx`. Un article ainsi ciblé alimente Partager + magasin + extension.
+    /**
+     * Cible magasin de la vue Jour : tout ce qu'il reste à prendre CE JOUR-LÀ.
+     *
+     * Il fallait auparavant cocher soi-même chaque ingrédient à commander. La
+     * liste part maintenant entière, moins ce qu'on a décoché — on retire ce
+     * qu'on a déjà, on ne désigne plus ce qu'on veut.
+     *
+     * Les clés consolidées portent un suffixe `|sub` (blocs éclatés) : on
+     * compare donc sur le PRÉFIXE `jour|repas|idx`.
+     */
     const jourItems = useMemo(() => {
-        if (!jourSel.size) return [] as ConsolItem[];
-        const cible = new Set<string>();
-        jourSel.forEach((k) => { if (!done.has(k)) cible.add(k); });
-        if (!cible.size) return [] as ConsolItem[];
+        const dayKey = DAYS[dayIdx];
+        const duJour = new Set<string>();
+        Object.keys(plan[dayKey] || {}).forEach((meal) => {
+            const recette = plan[dayKey][meal];
+            (recette?.ingredients || []).forEach((_: unknown, idx: number) => {
+                const k = `${dayKey}|${meal}|${idx}`;
+                if (!done.has(k)) duJour.add(k);
+            });
+        });
+        if (!duJour.size) return [] as ConsolItem[];
         return items.filter((it) =>
             !isItemDone(it, done) &&
-            it.keys.some((k) => cible.has(k.split('|').slice(0, 3).join('|')))
+            it.keys.some((k) => duJour.has(k.split('|').slice(0, 3).join('|')))
         );
-    }, [items, jourSel, done]);
+    }, [items, done, plan, dayIdx]);
 
     return (
         <div className={`${styles.page} ${embedded ? styles.embedded : ''}`}>
@@ -635,20 +632,26 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                 return (
                                     <SwipeRow key={it.key} onDelete={() => supprimerLigne(it)}>
                                     <div className={`${styles.courseRow} ${styles.courseRowSwipe} ${struck ? styles.courseRowDone : ''}`}>
-                                        {/* Case : sélectionne pour le magasin et le partage. */}
+                                        {/*
+                                            Cochée = à prendre. C'est l'état de DÉPART :
+                                            une liste qu'on vient de composer est une liste
+                                            de courses entière, prête à partir au magasin.
+                                            On décoche ce qu'on a déjà chez soi.
+                                        */}
                                         <button
-                                            className={`${styles.courseCheck} ${selected.has(it.key) ? styles.courseCheckOn : ''}`}
-                                            onClick={() => toggleSelect(it)}
-                                            aria-label="Sélectionner"
+                                            className={`${styles.courseCheck} ${struck ? '' : styles.courseCheckOn}`}
+                                            onClick={() => toggleDone(it)}
+                                            aria-label={struck ? 'Je ne l’ai pas : à prendre' : 'Je l’ai déjà'}
                                         >
-                                            {selected.has(it.key) && (
+                                            {!struck && (
                                                 <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
                                                     <path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>
                                             )}
                                         </button>
 
-                                        {/* Le texte barre / débarre : « je l'ai déjà ». */}
+                                        {/* Le texte fait la même chose que la case : un seul
+                                            geste, deux endroits où le faire. */}
                                         <button className={styles.courseText} onClick={() => toggleDone(it)}>
                                             <IngredientVignette nom={it.name} icone={it.icon} nombre={nombreAAfficher(it)} />
                                             <span className={styles.courseItemTexts}>
@@ -704,6 +707,11 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                                         )}
                                                     </span>
                                                 ) : null}
+                                                {/* Ces articles-là ne viennent pas du planificateur :
+                                                    ils restent quand on change tout le menu, ce qui
+                                                    surprend si rien ne le dit. Sous le nom, jamais
+                                                    tronqué — et affiché même sans quantité. */}
+                                                {isManual && <span className={styles.courseAjout}>ajouté</span>}
                                             </span>
                                         </button>
 
@@ -732,10 +740,19 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                                         <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" />
                                                     </svg>
                                                 </button>
+                                                {/*
+                                                    Un ajout à la main s'efface pour de bon : il
+                                                    n'appartient à aucune recette, personne ne le
+                                                    fera revenir, et le garder barré encombrait la
+                                                    liste d'un article qu'on venait d'écarter.
+                                                    Une ligne venue du planificateur, elle, se barre
+                                                    seulement : on ne retire pas un ingrédient d'une
+                                                    recette qu'on va cuisiner.
+                                                */}
                                                 <button
                                                     className={styles.courseAction}
-                                                    onClick={() => toggleDone(it)}
-                                                    aria-label={struck ? 'Remettre dans la liste' : 'Supprimer de la liste'}
+                                                    onClick={() => (isManual ? supprimerLigne(it) : toggleDone(it))}
+                                                    aria-label={isManual ? 'Supprimer définitivement' : (struck ? 'Remettre dans la liste' : 'Je l’ai déjà')}
                                                 >
                                                     <svg viewBox="0 0 24 24" fill="none" width="16" height="16" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
                                                         <path d="M4 7h16M9.5 7V5.2A1.2 1.2 0 0 1 10.7 4h2.6a1.2 1.2 0 0 1 1.2 1.2V7" />
@@ -796,20 +813,19 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                     <div
                                         className={`${styles.courseRow} ${styles.courseRowFlat} ${struck ? styles.courseRowDone : ''}`}
                                     >
-                                        {/* Cercle : SÉLECTIONNE l'ingrédient (cible magasin/partage),
-                                            même logique que la vue « La semaine ». */}
+                                        {/* Cochée = à prendre, comme dans « La semaine ». */}
                                         <button
-                                            className={`${styles.courseCheck} ${jourSel.has(l.doneKey) ? styles.courseCheckOn : ''}`}
-                                            onClick={() => toggleJourSel(l.doneKey)}
-                                            aria-label="Sélectionner"
+                                            className={`${styles.courseCheck} ${struck ? '' : styles.courseCheckOn}`}
+                                            onClick={() => toggleDayLine(l.doneKey)}
+                                            aria-label={struck ? 'Je ne l’ai pas : à prendre' : 'Je l’ai déjà'}
                                         >
-                                            {jourSel.has(l.doneKey) && (
+                                            {!struck && (
                                                 <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
                                                     <path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>
                                             )}
                                         </button>
-                                        {/* Le texte barre / débarre : « je l'ai déjà ». */}
+                                        {/* Le texte fait la même chose que la case. */}
                                         <button className={styles.courseText} onClick={() => toggleDayLine(l.doneKey)}>
                                             <IngredientVignette nom={l.nom} icone={l.icon} nombre={l.nombre} />
                                             <span className={styles.courseName}>{l.text}</span>
@@ -852,8 +868,11 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
                                             className={`${styles.courseRow} ${styles.courseRowFlat} ${struck ? styles.courseRowDone : ''}`}
                                             onClick={() => { haptic(6); setCartChecked((prev) => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }); }}
                                         >
-                                            <span className={`${styles.courseCheck} ${struck ? styles.courseCheckOn : ''}`}>
-                                                {struck && (
+                                            {/* Cochée = à prendre : `cartChecked` retient
+                                                ce qu'on a DÉJÀ, l'affichage montre donc
+                                                l'inverse. */}
+                                            <span className={`${styles.courseCheck} ${struck ? '' : styles.courseCheckOn}`}>
+                                                {!struck && (
                                                     <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
                                                         <path d="M4.5 12.5 9.5 17.5 19.5 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
                                                     </svg>
@@ -870,7 +889,7 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
             )}
 
             {/* Partage + recherche magasin : la cible, ce sont les articles cochés. */}
-            {mode === 'semaine' && selected.size > 0 && (
+            {mode === 'semaine' && aPrendre.length > 0 && (
                 <div className={styles.courseShop}>
                     <ShopActions
                         items={items}
