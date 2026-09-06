@@ -51,6 +51,28 @@ function keywordFallback(query: string, recipes: CompactRecipe[]): string[] {
     return scoreByQuery(query, recipes).filter(x => x.s > 0).slice(0, 5).map(x => String(x.r.id));
 }
 
+/**
+ * Lire la réponse, même mal emballée.
+ *
+ * Exiger de Groq un objet JSON lui fait REFUSER la requête entière dès qu'il
+ * n'y parvient pas (« Failed to validate JSON ») : une réponse imparfaite vaut
+ * mieux qu'un mur. On lui laisse donc la bride sur le cou pour l'accord des
+ * vins, et on récupère ici le premier objet de son texte.
+ */
+function lireJson(raw: string): any {
+    try { return JSON.parse(raw); } catch { /* on cherche à la main */ }
+    const debut = raw.indexOf('{');
+    if (debut < 0) return null;
+    let profondeur = 0;
+    for (let i = debut; i < raw.length; i++) {
+        if (raw[i] === '{') profondeur++;
+        else if (raw[i] === '}' && --profondeur === 0) {
+            try { return JSON.parse(raw.slice(debut, i + 1)); } catch { return null; }
+        }
+    }
+    return null;
+}
+
 const SYSTEM = `Tu es l'assistant culinaire d'un site de recettes.
 On te donne la demande d'un utilisateur (en langage naturel) et la LISTE des recettes disponibles sur le site (id, titre, catégorie, tags, et "ing" = mots-clés d'ingrédients principaux).
 Sers-toi des ingrédients ("ing") : ex. une demande « gâteau au chocolat » doit matcher une recette dont "ing" contient "chocolat" même si son titre ne le dit pas (ex. "Gâteau Suzy").
@@ -74,26 +96,28 @@ Réponds STRICTEMENT en JSON : {"ids":["12","7"],"message":"..."} sans texte aut
  * fait AVANT le modèle, sur la demande elle-même — plus sûr que d'espérer
  * qu'il choisisse le bon rayon, et sans toucher au fonctionnement des recettes.
  */
-const SYSTEM_VIN = `Tu es le sommelier d'un particulier. On te donne sa demande et LA LISTE des bouteilles qu'il a réellement en cave (id, n = nom, c = couleur, g = cépage, y = millésime, r = région, q = bouteilles restantes).
+const SYSTEM_VIN = `Tu es le sommelier d'un particulier. Tu écris TOUJOURS en français, jamais en anglais. On te donne sa demande et LA LISTE des bouteilles qu'il a réellement en cave (id, n = nom, c = couleur, g = cépage, y = millésime, r = région, q = bouteilles restantes, w = état : "jeune" encore fermé, "pret" prêt à boire, "apogee" à son sommet, "tard" à boire sans attendre).
 Ta mission : choisir dans SA CAVE la ou les bouteilles qui conviennent le mieux à ce qu'il décrit (un plat, une occasion, une couleur, une envie).
 Règles STRICTES :
 - Choisis UNIQUEMENT des id présents dans la liste fournie. N'invente JAMAIS une bouteille : il ne possède que celles-là.
-- Renvoie de 1 à 3 bouteilles, la meilleure en premier.
+- Renvoie de 1 à 3 bouteilles, LA MEILLEURE EN PREMIER.
 - Respecte la couleur demandée si l'utilisateur en cite une.
-- S'il décrit un plat, applique les accords classiques (poisson et fruits de mer → blanc ; viande rouge et gibier → rouge ; volaille et porc → blanc vif ou rouge léger ; plats épicés → blanc ou rosé ; dessert → liquoreux).
-- Si aucune bouteille ne convient vraiment, propose quand même la moins mauvaise et dis-le franchement dans le message.
-- "message" : UNE phrase courte en français qui nomme l'accord et le justifie simplement (ex. « Le Sancerre : sa vivacité tiendra tête à la crème du poulet. »). Pas de jargon inutile.
-Réponds STRICTEMENT en JSON : {"ids":["w12"],"message":"..."} sans texte autour.`;
+- Raisonne sur le PLAT PRÉCIS qu'il nomme : sa cuisson, sa sauce, son gras, sa puissance. Une volaille rôtie, une volaille à la crème et une volaille au curry n'appellent pas la même bouteille.
+- Accords de départ, à affiner selon le plat : poisson et fruits de mer → blanc vif ; viande rouge et gibier → rouge structuré ; volaille et porc → blanc ample ou rouge léger ; plats épicés → blanc aromatique ou rosé ; fromages → selon la pâte ; dessert → liquoreux.
+- À qualité d'accord égale, préfère une bouteille "apogee" ou "tard" : c'est le moment de la boire.
+- Si aucune bouteille ne convient vraiment, propose quand même la moins mauvaise et dis-le franchement.
+- "message" : UNE phrase COURTE EN FRANÇAIS — 25 mots maximum, pas une tirade. Nomme le vin, puis LA raison qui vaut pour ce plat-là : sa vivacité, sa structure, son âge, son cépage. Choisis un seul argument, le plus juste. N'emploie jamais une formule toute faite et ne recopie aucun exemple : deux plats différents doivent recevoir deux phrases différentes. Pas de jargon, et JAMAIS les codes techniques de la liste ("apogee", "pret", "tard", "c", "g", "w") : écris comme on parle.
+Réponds STRICTEMENT en JSON : {"ids":["…"],"message":"…"} sans texte autour.`;
 
-async function callGroq(userMsg: string, system: string = SYSTEM) {
+async function callGroq(userMsg: string, system: string = SYSTEM, temperature = 0.5, maxTokens = 500, jsonStrict = true) {
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { 'content-type': 'application/json', authorization: `Bearer ${GROQ_KEY}` },
         body: JSON.stringify({
             model: GROQ_MODEL,
-            temperature: 0.5,
-            max_tokens: 500,
-            response_format: { type: 'json_object' },
+            temperature,
+            max_tokens: maxTokens,
+            ...(jsonStrict ? { response_format: { type: 'json_object' } } : {}),
             messages: [
                 { role: 'system', content: system },
                 { role: 'user', content: userMsg },
@@ -129,12 +153,25 @@ export async function POST(request: Request) {
                     message: 'Ta cave est vide pour le moment — ajoute des bouteilles pour que je puisse te conseiller.',
                 });
             }
+            /*
+             * De la place pour raisonner.
+             *
+             * Une phrase d'accord argumentée est plus longue qu'un simple
+             * classement de recettes : à 500 jetons, la réponse était coupée en
+             * plein JSON et Groq la refusait (« Failed to validate JSON »). On
+             * ne réessaie PAS en cas d'échec : le quota est compté à la minute,
+             * et une seconde tentative le brûle pour tout le monde — c'est
+             * l'accord de repli, côté écran, qui prend le relais.
+             */
             const raw = await callGroq(
                 JSON.stringify({ demande: query, cave }),
                 SYSTEM_VIN,
+                0.5,
+                900,
+                false,
             );
-            let choix: any;
-            try { choix = JSON.parse(raw); } catch { return NextResponse.json({ error: 'Réponse IA illisible' }, { status: 502 }); }
+            const choix = lireJson(raw);
+            if (!choix) return NextResponse.json({ error: 'Réponse IA illisible' }, { status: 502 });
             const idsCave = new Set(cave.map((w) => String(w.id)));
             const ids = (Array.isArray(choix?.ids) ? choix.ids : [])
                 .map((id: any) => String(id))

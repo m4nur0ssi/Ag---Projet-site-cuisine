@@ -11,7 +11,7 @@
  * question reçoive la même lecture des deux côtés.
  */
 
-import type { CaveWine, WineColor } from '@/lib/cave';
+import { drinkWindow, type CaveWine, type WineColor } from '@/lib/cave';
 
 const sansAccent = (s: string): string =>
     String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -43,6 +43,12 @@ export interface CompactWine {
     y?: string;             // millésime
     r?: string;             // région
     q?: number;             // bouteilles restantes
+    /**
+     * Où en est la bouteille : jeune, prête, à son apogée, ou à boire sans
+     * attendre. Un sommelier ne conseille pas seulement l'accord — il sait
+     * aussi laquelle il est temps d'ouvrir.
+     */
+    w?: string;
 }
 
 /** La cave, réduite au nécessaire. Les bouteilles bues ne sont pas proposées. */
@@ -57,6 +63,7 @@ export function compacterCave(cave: CaveWine[]): CompactWine[] {
             y: w.year || undefined,
             r: w.region || undefined,
             q: w.qty,
+            w: drinkWindow(w)?.status,
         }));
 }
 
