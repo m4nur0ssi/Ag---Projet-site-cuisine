@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { rechargerSiChunkPerime } from '@/lib/chunkPerime';
 
 /**
  * L'écran d'erreur.
@@ -13,10 +14,21 @@ import { useEffect } from 'react';
  * retrouver la trace côté serveur.
  */
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+    /*
+     * Une page plus vieille que le site réclame un fichier qui n'existe plus :
+     * ce n'est pas un plantage, c'est une version périmée. On recharge, une
+     * fois — le nouveau document connaît les nouveaux fichiers.
+     */
+    const [recharge, setRecharge] = useState(false);
     useEffect(() => {
+        if (rechargerSiChunkPerime(error)) { setRecharge(true); return; }
         // La console garde le détail complet pour qui vient regarder.
         console.error('[erreur]', error);
     }, [error]);
+
+    // Le rechargement est lancé : ne rien montrer plutôt qu'un écran d'erreur
+    // qui disparaîtrait aussitôt.
+    if (recharge) return null;
 
     return (
         <div style={enveloppe}>
