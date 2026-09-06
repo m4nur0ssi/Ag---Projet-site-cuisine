@@ -20,6 +20,8 @@ import { precacheFavorites } from '@/lib/pwa';
 import { decodeHtml } from '@/mobile/lib/utils';
 import styles from './favorites.module.css';
 import Tip from '@/components/Tip/Tip';
+import RecipeMenu from '@/mobile/components/RecipeMenu/RecipeMenu';
+import { useLongPress } from '@/mobile/hooks/useLongPress';
 
 /**
  * `embedded` : rendu DANS le shell desktop TV+ (barre latérale déjà présente).
@@ -27,10 +29,46 @@ import Tip from '@/components/Tip/Tip';
  * la fiche s'ouvre en flottant pour ne pas recouvrir le menu — exactement comme
  * « Ma cave ».
  */
+/**
+ * Une carte de favori. Composant à part parce qu'un appui long, c'est un
+ * `useRef` et un minuteur : il en faut un par carte, et les règles des hooks
+ * interdisent d'en créer dans une boucle.
+ */
+function Carte({ recipe, onOpen, onLong }: { recipe: Recipe; onOpen: () => void; onLong: () => void }) {
+    const lp = useLongPress(onLong);
+    return (
+        <button
+            className={styles.card}
+            {...lp.handlers}
+            onClick={() => { if (lp.consumed.current) { lp.consumed.current = false; return; } onOpen(); }}
+        >
+            <div className={styles.poster}>
+                <img src={recipe.image} alt="" loading="lazy" />
+                <span className={styles.heart}>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /></svg>
+                </span>
+            </div>
+            {/* Titre SOUS l'image, en blanc — comme les cartes de l'accueil.
+                Incrusté sur la photo, il devenait illisible dès que le visuel
+                était clair. */}
+            <span className={styles.cardTitle}>{decodeHtml(recipe.title)}</span>
+        </button>
+    );
+}
+
 export default function FavoritesPage({ embedded = false }: { embedded?: boolean }) {
     const router = useRouter();
     const [favoriteRecipes, setFavoriteRecipes] = useState<Recipe[]>([]);
     const [loading, setLoading] = useState(true);
+    /*
+     * Appui long → le MÊME menu que partout ailleurs.
+     *
+     * Ces cartes montrent des recettes comme celles de l'accueil ; rien ne
+     * justifiait qu'elles n'offrent ni partage, ni planificateur, ni « à faire
+     * plus tard ». Le menu vit maintenant dans son propre composant, on ne fait
+     * que l'appeler.
+     */
+    const [menu, setMenu] = useState<Recipe | null>(null);
 
     useEffect(() => {
         const renderFromCache = () => {
@@ -92,18 +130,7 @@ export default function FavoritesPage({ embedded = false }: { embedded?: boolean
                 ) : favoriteRecipes.length > 0 ? (
                     <div className={styles.grid}>
                         {favoriteRecipes.map((r) => (
-                            <button key={r.id} className={styles.card} onClick={() => open(r)}>
-                                <div className={styles.poster}>
-                                    <img src={r.image} alt="" loading="lazy" />
-                                    <span className={styles.heart}>
-                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /></svg>
-                                    </span>
-                                </div>
-                                {/* Titre SOUS l'image, en blanc — comme les cartes de
-                                    l'accueil. Incrusté sur la photo, il devenait
-                                    illisible dès que le visuel était clair. */}
-                                <span className={styles.cardTitle}>{decodeHtml(r.title)}</span>
-                            </button>
+                            <Carte key={r.id} recipe={r} onOpen={() => open(r)} onLong={() => setMenu(r)} />
                         ))}
                     </div>
                 ) : (
@@ -117,6 +144,8 @@ export default function FavoritesPage({ embedded = false }: { embedded?: boolean
                     </div>
                 )}
             </main>
+
+            {menu && <RecipeMenu recipe={menu} onClose={() => setMenu(null)} onOpenRecipe={open} />}
 
             {!embedded && <BottomNav />}
             <Tip id="favoris" />
