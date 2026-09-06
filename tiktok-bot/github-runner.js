@@ -158,6 +158,20 @@ async function run() {
                 if (typeof recipeName === 'string') {
                     fs.writeFileSync(path.join(__dirname, 'latest-recipe.txt'), recipeName);
                     console.log(`   ✅ Success : "${recipeName}"`);
+                } else if (recipeName === true) {
+                    /*
+                     * DÉJÀ PUBLIÉE — ce n'est pas un échec.
+                     *
+                     * Le traitement répond `true` (et non le nom de la recette)
+                     * quand WordPress la connaît déjà. Ce cas tombait dans la
+                     * branche d'échec ci-dessous, sans raison à donner : la
+                     * recette rejoignait la liste des ratés sous l'étiquette
+                     * « traitement sans résultat », et l'on croyait à une panne
+                     * du bot alors que tout s'était bien passé.
+                     *
+                     * On la retire simplement de la file, en le disant.
+                     */
+                    console.log(`   ⏭️ Déjà publiée sur WordPress — rien à refaire.`);
                 } else {
                     const cause = raison || raisonDuDernierEchec() || 'traitement sans résultat';
                     console.log(`   ⚠️ Echec ou Ignoré : ${videoUrl} — ${cause}`);
