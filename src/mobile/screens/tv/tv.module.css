@@ -4588,3 +4588,60 @@
     box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.14);
     color: rgba(60, 60, 67, 0.7);
 }
+
+/* ── Le planificateur sur un grand écran ─────────────────────────────────────
+ *
+ * Tout y était étiré à la largeur de la fenêtre. Sur 2 000 px, la photo d'une
+ * recette devient un bandeau de mille pixels pour deux cents de haut, le pavé
+ * « Accompagnement » un désert, et le « Surprends-moi » d'un créneau vide une
+ * colonne étroite et démesurément haute à côté d'un rectangle noir.
+ *
+ * On borne donc la colonne, comme le fait déjà la barre du bas (1 040 px), et
+ * un créneau VIDE reprend la grille du créneau rempli : deux moitiés égales,
+ * l'une pour choisir, l'autre pour se laisser surprendre. Les deux colonnes
+ * tombent alors exactement là où arriveront le plat et sa garniture.
+ */
+@media (min-width: 900px) {
+    .planSlide {
+        width: 100%;
+        max-width: 1040px;
+        margin-inline: auto;
+    }
+
+    .planSlide > .planSlot .planEmpty {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    /* Chaque moitié porte son propre cadre : le conteneur n'en a plus. */
+    .planSlide > .planSlot .planAdd,
+    .planSlide > .planSlot .planSurprise {
+        height: 100%;
+        padding: 0 18px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.045);
+        box-shadow: inset 0 0 0 1.2px rgba(255, 255, 255, 0.12);
+        font-size: 15px;
+    }
+
+    .planSlide > .planSlot .planSurprise {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.07);
+        box-shadow: inset 0 0 0 1.2px rgba(255, 255, 255, 0.1);
+    }
+
+    .planSlide > .planSlot .planAdd:hover,
+    .planSlide > .planSlot .planSurprise:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Le texte de la garniture n'a pas à flotter au milieu d'un grand vide :
+       il se cale en haut, là où l'œil le cherche après le titre du plat. */
+    .planPairSplit .planSide:not(:has(.planSideCard)) { justify-content: flex-start; }
+}
