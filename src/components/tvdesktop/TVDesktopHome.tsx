@@ -16,6 +16,15 @@ import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
+/*
+ * Chargé AVEC l'écran, pas à la demande.
+ *
+ * En import différé, taper « Ajouter au planificateur » réclamait un morceau de
+ * code au réseau — le seul de l'écran à partir après le démarrage. Une
+ * microcoupure suffisait à le perdre, et l'application se relançait. Le volet
+ * est petit : il voyage avec le reste.
+ */
+import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats } from '@/mobile/lib/ratings';
@@ -52,7 +61,6 @@ const MaCave = dynamic(() => import('@/mobile/screens/tv/MaCave'), { ssr: false 
 const Favoris = dynamic(() => import('@/mobile/screens/favorites/page'), { ssr: false });
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
-const PlanPicker = dynamic(() => import('@/mobile/components/PlanPicker/PlanPicker'), { ssr: false });
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 

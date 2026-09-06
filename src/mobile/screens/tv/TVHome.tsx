@@ -12,6 +12,15 @@ import { Fragment, useEffect, useMemo, useRef, useState, useCallback } from 'rea
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
+/*
+ * Chargé AVEC l'écran, pas à la demande.
+ *
+ * En import différé, taper « Ajouter au planificateur » réclamait un morceau de
+ * code au réseau — le seul de l'écran à partir après le démarrage. Une
+ * microcoupure suffisait à le perdre, et l'application se relançait. Le volet
+ * est petit : il voyage avec le reste.
+ */
+import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
 import { homeRecipes as mockRecipes, type HomeRecipe } from '@/mobile/data/home-recipes';
 import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-embed';
 import { decodeHtml } from '@/mobile/lib/utils';
@@ -116,7 +125,6 @@ const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 const TVTutorial = dynamic(() => import('./TVTutorial'), { ssr: false });
 /* Invitation à installer : ne se montre qu'à la 3e visite, et jamais deux fois. */
 const InstallInvite = dynamic(() => import('@/mobile/components/InstallInvite/InstallInvite'), { ssr: false });
-const PlanPicker = dynamic(() => import('@/mobile/components/PlanPicker/PlanPicker'), { ssr: false });
 
 /**
  * Nombre de fiches chargées dans le sheet autour de celle qu'on ouvre.

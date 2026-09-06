@@ -12,7 +12,13 @@
 // on servait la copie en cache — un HTML d'il y a plusieurs jours, avec ses
 // anciens fichiers, tous encore là (ils ne sont jamais purgés). D'où une app
 // d'apparence complète, mais périmée. Voir `reseauAvecSecondeChance`.
-const CACHE = 'recettes-magiques-v7';
+// v8 : l'app se relançait en tapant « Ajouter au planificateur » (2026-09-06).
+// Un morceau de code chargé À LA DEMANDE est le seul à partir APRÈS le
+// démarrage — donc le seul exposé à une microcoupure. On répondait alors
+// `Response.error()`, sans appel : Next.js constate le morceau manquant et
+// recharge la page, écran d'ouverture compris. Les statiques ont désormais la
+// même seconde chance que les navigations.
+const CACHE = 'recettes-magiques-v8';
 const OFFLINE_URL = new URL('offline.html', self.location).toString();
 
 self.addEventListener('install', (event) => {
@@ -124,7 +130,17 @@ self.addEventListener('fetch', (event) => {
             const cached = await caches.match(request);
             if (cached) return cached;
             try {
-                const net = await fetch(request);
+                /*
+                 * La MÊME seconde chance que les navigations.
+                 *
+                 * Les morceaux de code chargés à la demande (un volet, une
+                 * fiche) partent APRÈS le démarrage : ce sont les seuls à
+                 * traverser le réseau en pleine utilisation, quand on passe
+                 * sous un porche ou que la radio décroche une seconde. Un échec
+                 * d'une fraction de seconde renvoyait `Response.error()` — et
+                 * Next.js, voyant le morceau manquant, rechargeait la page.
+                 */
+                const net = await reseauAvecSecondeChance(request);
                 if (net && net.status === 200) { const c = await caches.open(CACHE); c.put(request, net.clone()); }
                 return net;
             } catch (_) { return cached || Response.error(); }
