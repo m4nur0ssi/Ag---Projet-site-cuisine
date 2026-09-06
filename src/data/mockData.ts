@@ -2,11 +2,116 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/09/2026 07:26:05
- * Total: 666 recettes
+ * Dernière mise à jour: 06/09/2026 20:14:59
+ * Total: 667 recettes
  */
-export const exportSyncId = "1788679565648";
+export const exportSyncId = "1788725699717";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7414",
+        "title": "Lasagnes",
+        "description": "Voici ma recette de lasagnes, un plat que j'adore et que vous apprécierez sûrement. Elle a été préparée avec la cuisinière Midea México Xtreme Chef Air.",
+        "image": "/recipes-ia/7414-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7387153174618098949\" data-video-id=\"7387153174618098949\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7387153174618098949\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500 g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             3 carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 branches de céleri"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             5 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1/4 tasse de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 tasse de vin rouge (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 boîte de tomates pelées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             30 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             500 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Noix de muscade"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella (pour les couches)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan (pour les couches)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Gouda (pour les couches)"
+            }
+        ],
+        "steps": [
+            "Pour la sauce à la viande : Hacher les carottes, le céleri, l'oignon et l'ail. Faire revenir ces légumes dans une poêle. Ajouter la viande hachée et la faire dorer.",
+            "Incorporer le concentré de tomate, le vin rouge (si utilisé) et les tomates pelées. Assaisonner avec du sel, du poivre, du romarin et du thym. Laisser mijoter la sauce le plus longtemps possible pour un meilleur goût.",
+            "Pour la béchamel : Dans une casserole, faire fondre le beurre. Ajouter la farine et mélanger pour former un roux. Incorporer progressivement le lait en fouettant constamment jusqu'à épaississement. Saler, poivrer et ajouter une pincée de noix de muscade.",
+            "Assembler les lasagnes : Dans un plat allant au four, alterner des couches de pâtes à lasagnes, de sauce à la viande, de béchamel et des fromages râpés (mozzarella, parmesan, gouda). Répéter l'opération jusqu'à épuisement des ingrédients, en terminant par une couche de béchamel et de fromage.",
+            "Cuisson : Faire cuire les lasagnes dans un four préchauffé selon les instructions des pâtes, jusqu'à ce qu'elles soient dorées et bouillonnantes."
+        ],
+        "tags": [
+            "Gratins",
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6444",
         "title": "Vitello Tonnato Maison",
