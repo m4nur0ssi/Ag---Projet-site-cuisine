@@ -2,11 +2,131 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 06/09/2026 20:57:36
- * Total: 669 recettes
+ * Dernière mise à jour: 06/09/2026 21:43:19
+ * Total: 671 recettes
  */
-export const exportSyncId = "1788728256413";
+export const exportSyncId = "1788730999510";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7423",
+        "title": "Apéritif Tomate Mozzarella",
+        "description": "Une entrée ou un apéritif frais et savoureux à base de tomates, mozzarella, basilic et baguette grillée, assaisonné d'huile d'olive et de vinaigre balsamique.",
+        "image": "/recipes-ia/7423-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671376167726746893\" data-video-id=\"7671376167726746893\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671376167726746893\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Baguette"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Dans un plat, verser l'huile d'olive et un peu de vinaigre balsamique. Saupoudrer de gros sel et de poivre, ajouter l'ail haché et le basilic frais, puis bien mélanger pour créer une marinade.",
+            "Faire légèrement griller des tranches de baguette dans un peu d'huile d'olive jusqu'à ce qu'elles soient dorées et croustillantes.",
+            "Bien tremper les fines tranches de tomates et de mozzarella dans la marinade préparée.",
+            "Disposer les tranches de tomates et de mozzarella marinées sur les tranches de baguette grillées. Servir immédiatement."
+        ],
+        "tags": [
+            "Italie",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7425",
+        "title": "Salade de laitue romaine au citron et parmesan",
+        "description": "J'ai adoré à quel point cette salade est facile et fraîche. Elle ne contient pas beaucoup d'ingrédients mais offre une saveur excellente !",
+        "image": "/recipes-ia/7425-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7223408664017669418\" data-video-id=\"7223408664017669418\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7223408664017669418\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             Laitue romaine"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Assaisonnement citron et poivre (facultatif)"
+            }
+        ],
+        "steps": [
+            "Laver et préparer la laitue romaine.",
+            "Dans un grand saladier, mélanger la laitue romaine avec le jus de citron, le parmesan frais et l'huile d'olive extra vierge.",
+            "Ajouter le sel, le poivre et l'assaisonnement citron et poivre (si désiré).",
+            "Bien mélanger tous les ingrédients et servir immédiatement."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7417",
         "title": "Salade verte facile à la crème fraîche",
