@@ -3120,7 +3120,10 @@
     position: fixed;
     left: 18px;
     right: 18px;
-    bottom: calc(164px + env(safe-area-inset-bottom, 0px));
+    /* Au-dessus du bandeau d'actions (Ajouter / Vider / Planificateur), avec de
+       quoi respirer : à douze pixels près, le bord arrondi de cette barre
+       venait mordre le haut du bouton « Vider ». */
+    bottom: calc(180px + env(safe-area-inset-bottom, 0px));
     z-index: 41;
     display: flex;
     justify-content: center;
@@ -4644,4 +4647,17 @@
     /* Le texte de la garniture n'a pas à flotter au milieu d'un grand vide :
        il se cale en haut, là où l'œil le cherche après le titre du plat. */
     .planPairSplit .planSide:not(:has(.planSideCard)) { justify-content: flex-start; }
+}
+
+/* ── La barre magasin, au bureau ─────────────────────────────────────────────
+ *
+ * Le panneau de la liste colle ses boutons au bas de la zone de contenu
+ * (bandeau `sticky`), tandis que cette barre-ci reste accrochée à la fenêtre.
+ * Arrivé en bas de la liste, les deux se retrouvaient au même endroit et la
+ * barre recouvrait « Vider ». On la remonte au-dessus du bandeau.
+ */
+@media (min-width: 1024px) {
+    .embedded .courseShop {
+        bottom: 122px;
+    }
 }

@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { ecrireStock } from '@/lib/stockage';
 
-export type StoreId = 'carrefour' | 'picard' | 'monoprix' | 'leclerc';
+export type StoreId = 'carrefour' | 'picard' | 'monoprix' | 'leclerc' | 'intermarche' | 'auchan';
 
 export interface StoreDef {
     id: StoreId;
@@ -19,6 +19,14 @@ export const STORES: StoreDef[] = [
     { id: 'picard',    label: 'Picard',    color: '#0A4A9F', logo: '/images/stores/picard.svg',    search: q => `https://www.picard.fr/recherche?q=${encodeURIComponent(q)}` },
     { id: 'monoprix',  label: 'Monoprix',  color: '#E6007E', logo: '/images/stores/monoprix.svg',  search: q => `https://courses.monoprix.fr/search?q=${encodeURIComponent(q)}` },
     { id: 'leclerc',   label: 'E.Leclerc', color: '#0066B3', logo: '/images/stores/leclerc.svg',   search: q => `https://fd7-courses.leclercdrive.fr/magasin-159301-159301-Blanc-Mesnil/recherche.aspx?TexteRecherche=${encodeURIComponent(q)}` },
+    // Vérifié le 2026-09-06 : « tomate » y renvoie bien des tomates cerises et
+    // des tomates en grappe — de l'alimentaire, pas la marketplace.
+    { id: 'auchan',    label: 'Auchan',    color: '#E2001A', logo: '/images/stores/auchan.svg',    search: q => `https://www.auchan.fr/recherche?text=${encodeURIComponent(q)}` },
+    // Intermarché place un mur de consentement devant ses résultats, qui se
+    // relève à chaque tentative : le format n'a pas pu être confirmé de
+    // l'extérieur. La route existe et répond ; si elle vous mène à une page
+    // vide, c'est ici qu'il faut la corriger.
+    { id: 'intermarche', label: 'Intermarché', color: '#E2001A', logo: '/images/stores/intermarche.svg', search: q => `https://www.intermarche.com/recherche/${encodeURIComponent(q)}` },
 ];
 
 export const STORE_BY_ID: Record<StoreId, StoreDef> =
