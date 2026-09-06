@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { getCookEntries, addCookEntry, deleteCookEntry, updateCookEntry, type CookEntry } from '@/lib/cookingLog';
+import { marquerCuisinee, oublierCuisinee } from '@/lib/dejaCuisine';
 import styles from './CookingJournal.module.css';
 
 // #11 — Carnet de cuisine perso affiché dans la fiche recette.
@@ -44,6 +45,9 @@ export default function CookingJournal({ recipeId, variant = 'recipe' }: { recip
         const { entry, error } = await addCookEntry(recipeId, note);
         if (entry) {
             setEntries(prev => [entry, ...prev]);
+            // La vignette porte sa coche dans la seconde, sans attendre un
+            // aller-retour avec le compte.
+            marquerCuisinee(recipeId);
             setNote('');
             setOpen(false);
         } else if (error === 'auth') {
@@ -58,7 +62,12 @@ export default function CookingJournal({ recipeId, variant = 'recipe' }: { recip
 
     const remove = async (id: string) => {
         await deleteCookEntry(id);
-        setEntries(prev => prev.filter(e => e.id !== id));
+        setEntries(prev => {
+            const restant = prev.filter(e => e.id !== id);
+            // Dernière trace effacée : la recette redevient « jamais faite ».
+            if (!restant.length) oublierCuisinee(recipeId);
+            return restant;
+        });
     };
 
     // Édition d'une note existante (l'auteur connecté ; RLS le garantit côté base).

@@ -34,6 +34,8 @@ const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboardin
 const RecipeShareCard = dynamic(() => import('@/mobile/components/RecipeShareCard/RecipeShareCard'), { ssr: false });
 import { timingOf, totalMinutes, formatMinutes } from './timing';
 import { useBackToClose } from './retour';
+import DejaFaite from '@/components/DejaFaite/DejaFaite';
+import { useDejaCuisine } from '@/lib/dejaCuisine';
 import { planifiable } from './plan';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from './progress';
 import styles from './tv.module.css';
@@ -322,6 +324,8 @@ function Card({
     domId?: string;
 }) {
     const lp = useLongPress(onLongPress);
+    /* Un instantané partagé par toutes les cartes : voir `useDejaCuisine`. */
+    const dejaFaite = useDejaCuisine()(recipe.id);
     const vid = showcase ? tiktokId(recipe) : null;
     // Le lecteur ne se montre QUE s'il joue pour de bon : sans consentement
     // TikTok, il affiche son bandeau de cookies à la place de la vidéo, et la
@@ -390,6 +394,8 @@ function Card({
                         <div className={styles.progressFill} style={{ width: `${progress}%` }} />
                     </div>
                 )}
+                {/* Déjà cuisinée : une coche discrète, à l'opposé du « + ». */}
+                {dejaFaite && <DejaFaite />}
                 {/* Croix → coche : ajoute/retire de « À faire plus tard ». */}
                 {onToggleLater && (
                     <button

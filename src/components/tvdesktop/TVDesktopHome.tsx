@@ -37,6 +37,8 @@ import { startSectionSnap, SnapController } from '@/lib/sectionSnap';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import { planifiable, OUVRIR_PLANIFICATEUR } from '@/mobile/screens/tv/plan';
+import DejaFaite from '@/components/DejaFaite/DejaFaite';
+import { useDejaCuisine } from '@/lib/dejaCuisine';
 import styles from './tvd.module.css';
 import Tip from '@/components/Tip/Tip';
 import SiteFooter from '@/components/SiteFooter/SiteFooter';
@@ -216,6 +218,8 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
     inlaid?: boolean;
 }) {
     const vid = tiktokId(recipe);
+    /* Un instantané partagé par toutes les cartes : voir `useDejaCuisine`. */
+    const dejaFaite = useDejaCuisine()(recipe.id);
     // Survol prolongé (1,5 s) → la vidéo se lance dans le visuel. Elle porte SES
     // contrôles (son + barre de progression) : la souris avance et recule dedans.
     const [playing, setPlaying] = useState(false);
@@ -284,6 +288,8 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
                         title={label(recipe)}
                     />
                 )}
+                {/* Déjà cuisinée : une coche discrète, à l'opposé du « + ». */}
+                {dejaFaite && <DejaFaite />}
             </div>
 
             {/* Le titre, DANS la carte : même police et même texte que sous les

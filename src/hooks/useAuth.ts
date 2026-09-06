@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { supabase, SupabaseUser } from '@/lib/supabase';
 import { pullFavorites } from '@/lib/favorites';
+import { tirerDejaCuisine } from '@/lib/dejaCuisine';
 import { pullShoppingState, startShoppingSync, startShoppingRealtime } from '@/lib/shoppingSync';
 import { pullCave, startCaveSync } from '@/mobile/lib/caveSync';
 
@@ -31,6 +32,8 @@ export function useAuth() {
             // Au login / 1re session : hydrate favoris + état courses depuis Supabase (suit le compte).
             if (session && (event === 'SIGNED_IN' || event === 'INITIAL_SESSION')) {
                 pullFavorites().catch(() => {});
+                // Les recettes déjà cuisinées : la marque sur les vignettes.
+                tirerDejaCuisine().catch(() => {});
                 pullShoppingState().catch(() => {});
                 pullCave().catch(() => {});
                 // Sync temps réel descendante (courses + planning) entre appareils.

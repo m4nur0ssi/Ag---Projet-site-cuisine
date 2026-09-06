@@ -22,6 +22,8 @@ import styles from './favorites.module.css';
 import Tip from '@/components/Tip/Tip';
 import RecipeMenu from '@/mobile/components/RecipeMenu/RecipeMenu';
 import { useLongPress } from '@/mobile/hooks/useLongPress';
+import DejaFaite from '@/components/DejaFaite/DejaFaite';
+import { useDejaCuisine } from '@/lib/dejaCuisine';
 
 /**
  * `embedded` : rendu DANS le shell desktop TV+ (barre latérale déjà présente).
@@ -36,6 +38,7 @@ import { useLongPress } from '@/mobile/hooks/useLongPress';
  */
 function Carte({ recipe, onOpen, onLong }: { recipe: Recipe; onOpen: () => void; onLong: () => void }) {
     const lp = useLongPress(onLong);
+    const dejaFaite = useDejaCuisine()(recipe.id);
     return (
         <button
             className={styles.card}
@@ -44,6 +47,7 @@ function Carte({ recipe, onOpen, onLong }: { recipe: Recipe; onOpen: () => void;
         >
             <div className={styles.poster}>
                 <img src={recipe.image} alt="" loading="lazy" />
+                {dejaFaite && <DejaFaite />}
                 <span className={styles.heart}>
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /></svg>
                 </span>
