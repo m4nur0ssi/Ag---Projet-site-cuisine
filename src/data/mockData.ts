@@ -2,11 +2,284 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/09/2026 12:04:52
- * Total: 682 recettes
+ * Dernière mise à jour: 07/09/2026 14:28:54
+ * Total: 683 recettes
  */
-export const exportSyncId = "1788782692983";
+export const exportSyncId = "1788791334823";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7445",
+        "title": "Beignets de courgettes à la feta (Kolokithokeftedes) et Tzatziki",
+        "description": "Ces beignets de courgettes à la feta, croustillants à l'extérieur et fondants à l'intérieur, sont servis avec un tzatziki maison rafraîchissant. Parfaits pour l'apéritif.",
+        "image": "/recipes-ia/7445-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630197133752192278\" data-video-id=\"7630197133752192278\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630197133752192278\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 à 100 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             7 cuillères à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1/2 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques olives (pour servir)"
+            }
+        ],
+        "steps": [
+            "Pour les beignets : Râpez les courgettes, le petit oignon et la gousse d'ail.",
+            "Pressez fermement le mélange râpé dans un torchon propre pour en extraire un maximum d'eau.",
+            "Hachez la menthe et l'aneth.",
+            "Dans un grand bol, mélangez les légumes râpés et pressés avec l'œuf, la feta émiettée, la farine, les herbes hachées, le sel et le poivre.",
+            "Faites chauffer de l'huile dans une poêle à frire.",
+            "Formez des petits tas de pâte et déposez-les délicatement dans l'huile chaude. Laissez dorer des deux côtés jusqu'à ce qu'ils soient croustillants.",
+            "Égouttez les beignets sur du papier absorbant, ajoutez un peu de fleur de sel et servez-les immédiatement.",
+            "Pour le tzatziki : Râpez le demi-concombre et la gousse d'ail.",
+            "Pressez bien le concombre râpé pour enlever l'excès d'eau.",
+            "Dans un bol, mélangez le yaourt grec, le concombre et l'ail râpés et pressés, l'huile d'olive, le jus de citron, la menthe et l'aneth hachées, et le sel.",
+            "Mélangez bien et servez le tzatziki bien frais avec un filet d'huile d'olive et quelques olives."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Grèce",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7447",
+        "title": "Apéritif gourmand avocat et crevettes",
+        "description": "Un apéritif facile et savoureux composé de toasts de pain de mie grillés, garnis d'un guacamole maison et de crevettes poêlées.",
+        "image": "/recipes-ia/7447-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7675370204309802272\" data-video-id=\"7675370204309802272\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7675370204309802272\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥖\n             Pain de mie"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persillade"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n             Crevettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            }
+        ],
+        "steps": [
+            "Découper des rondelles dans les tranches de pain de mie à l'aide d'un emporte-pièce.",
+            "Badigeonner les rondelles d'un mélange d'huile, d'ail et de persillade, puis les faire griller au four.",
+            "Dans un bol, écraser l'avocat.",
+            "Ajouter l'oignon, la tomate, le jus de citron, le sel, le poivre et la persillade. Bien mélanger jusqu'à l'obtention d'un guacamole.",
+            "Faire revenir les crevettes dans un peu de beurre avec du sel et de la persillade.",
+            "Une fois tous les éléments prêts, assembler l'apéritif et le déguster immédiatement afin d'éviter l'oxydation de l'avocat."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Mexique",
+            "Poissons et crustacés",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7462",
+        "title": "Riz façon kebab à la dinde",
+        "description": "Une recette de riz façon kebab à la dinde, préparée en un seul plat (one pot), idéale pour un régime alimentaire équilibré. Elle est riche en protéines et faible en lipides, avec des macros détaillées pour deux portions, conçue pour vous aider à a...",
+        "image": "/recipes-ia/7462-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7682043988622282016\" data-video-id=\"7682043988622282016\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7682043988622282016\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             360 g de filet de dinde"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             140 g de riz cru"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 courgette"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1/2 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 portion de fromage blanc 0 %"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             10 g de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             5 g d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5 g de stévia"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Épices au choix"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau"
+            }
+        ],
+        "steps": [
+            "Coupez la dinde en morceaux, assaisonnez avec du sel, des épices, de l'origan et de l'ail, puis faites-la griller dans une poêle bien chaude. Réservez.",
+            "Coupez l'oignon, le poivron et la courgette. Faites revenir la moitié de l'oignon avec le poivron et la dinde, puis réservez. Dans la même poêle, ajoutez le reste de l'oignon, la courgette et le riz cru. Ajoutez de l'eau, couvrez et laissez cuire tranquillement jusqu'à ce que le riz soit tendre.",
+            "Pendant ce temps, préparez la sauce en mélangeant le fromage blanc 0 %, la moutarde, les 5 g d'huile d'olive, la stévia, du sel et des épices.",
+            "Quand le riz est cuit, ajoutez la dinde et les légumes cuits puis couvrez quelques minutes pour bien réchauffer l'ensemble. Terminez avec l'oignon rouge et la tomate coupés finement pour apporter la fraîcheur façon kebab, puis ajoutez la sauce."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "Orient",
+            "Sandwichs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7449",
         "title": "Olives panées à la feta",
@@ -249,186 +522,6 @@ export const mockRecipes: Recipe[] = [
             "Espagne",
             "Pas cher",
             "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7447",
-        "title": "Apéritif gourmand avocat et crevettes",
-        "description": "Un apéritif facile et savoureux composé de toasts de pain de mie grillés, garnis d'un guacamole maison et de crevettes poêlées.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7675370204309802272\" data-video-id=\"7675370204309802272\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7675370204309802272\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥖\n             Pain de mie"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persillade"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             Avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🦐\n             Crevettes"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile"
-            }
-        ],
-        "steps": [
-            "Découper des rondelles dans les tranches de pain de mie à l'aide d'un emporte-pièce.",
-            "Badigeonner les rondelles d'un mélange d'huile, d'ail et de persillade, puis les faire griller au four.",
-            "Dans un bol, écraser l'avocat.",
-            "Ajouter l'oignon, la tomate, le jus de citron, le sel, le poivre et la persillade. Bien mélanger jusqu'à l'obtention d'un guacamole.",
-            "Faire revenir les crevettes dans un peu de beurre avec du sel et de la persillade.",
-            "Une fois tous les éléments prêts, assembler l'apéritif et le déguster immédiatement afin d'éviter l'oxydation de l'avocat."
-        ],
-        "tags": [
-            "Apéritifs",
-            "Mexique",
-            "Poissons et crustacés",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7445",
-        "title": "Beignets de courgettes à la feta (Kolokithokeftedes) et Tzatziki",
-        "description": "Ces beignets de courgettes à la feta, croustillants à l'extérieur et fondants à l'intérieur, sont servis avec un tzatziki maison rafraîchissant. Parfaits pour l'apéritif.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630197133752192278\" data-video-id=\"7630197133752192278\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630197133752192278\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2 courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             80 à 100 g de feta"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             7 cuillères à soupe de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 petit oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Aneth"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile (pour la cuisson)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1/2 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques olives (pour servir)"
-            }
-        ],
-        "steps": [
-            "Pour les beignets : Râpez les courgettes, le petit oignon et la gousse d'ail.",
-            "Pressez fermement le mélange râpé dans un torchon propre pour en extraire un maximum d'eau.",
-            "Hachez la menthe et l'aneth.",
-            "Dans un grand bol, mélangez les légumes râpés et pressés avec l'œuf, la feta émiettée, la farine, les herbes hachées, le sel et le poivre.",
-            "Faites chauffer de l'huile dans une poêle à frire.",
-            "Formez des petits tas de pâte et déposez-les délicatement dans l'huile chaude. Laissez dorer des deux côtés jusqu'à ce qu'ils soient croustillants.",
-            "Égouttez les beignets sur du papier absorbant, ajoutez un peu de fleur de sel et servez-les immédiatement.",
-            "Pour le tzatziki : Râpez le demi-concombre et la gousse d'ail.",
-            "Pressez bien le concombre râpé pour enlever l'excès d'eau.",
-            "Dans un bol, mélangez le yaourt grec, le concombre et l'ail râpés et pressés, l'huile d'olive, le jus de citron, la menthe et l'aneth hachées, et le sel.",
-            "Mélangez bien et servez le tzatziki bien frais avec un filet d'huile d'olive et quelques olives."
-        ],
-        "tags": [
-            "Apéritifs",
-            "Grèce",
-            "Sauces",
-            "Végé",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
