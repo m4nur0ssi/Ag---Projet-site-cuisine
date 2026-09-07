@@ -2,11 +2,284 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/09/2026 08:23:27
- * Total: 673 recettes
+ * Dernière mise à jour: 07/09/2026 08:47:13
+ * Total: 676 recettes
  */
-export const exportSyncId = "1788769407924";
+export const exportSyncId = "1788770833113";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7437",
+        "title": "Flans de patates douces rôties, saumon et sauce à l'aneth",
+        "description": "Une recette gourmande, facile et équilibrée, composée de petits flans de patates douces rôties, d'un pavé de saumon mariné et d'une sauce crémeuse à la moutarde et à l'aneth. Idéal en entrée ou en plat principal.",
+        "image": "/recipes-ia/7437-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7680952634206915873\" data-video-id=\"7680952634206915873\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7680952634206915873\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥔\n             2 petites patates douces"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             4 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de sauce soja salée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de sirop d'érable (ou sirop d'agave)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             120 ml de crème légère"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             15 g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à café de maïzena (ou farine)"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             1 pavé de saumon"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n             Un peu de sauce soja (pour le saumon)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             20 cl de crème légère (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 grosse cuillère à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Aneth ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Un petit morceau de bouillon émietté"
+            }
+        ],
+        "steps": [
+            "Peler et couper les patates douces. Dans un saladier, les mariner avec 4 cuillères à soupe d'huile d'olive, 2 cuillères à soupe de sauce soja salée, 1 cuillère à soupe de sirop d'érable (ou d'agave) et 1 cuillère à café d'ail.",
+            "Faire cuire les patates douces marinées pendant 30 minutes à 190 degrés Celsius, à couvert.",
+            "Dans un autre bol, mélanger 120 ml de crème légère, 1 œuf, 15 g de parmesan et 1 cuillère à café de maïzena (ou de farine).",
+            "Incorporer les patates douces cuites à la préparation des flans. Répartir le mélange dans 2 ramequins. Faire cuire pendant 10 à 12 minutes supplémentaires.",
+            "Mariner le pavé de saumon avec un peu de sauce soja pendant 10 minutes.",
+            "Cuire le saumon au Airfryer à 200 degrés Celsius pendant 10 minutes.",
+            "Dans une petite casserole, mélanger 20 cl de crème légère, une grosse cuillère à soupe de moutarde, de l'aneth ciselé et un petit morceau de bouillon émietté. Laisser infuser à feu doux pendant 5 minutes.",
+            "Servir les flans de patates douces rôties accompagnés du pavé de saumon et nappés de la sauce à l'aneth."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Healthy",
+            "Poissons et crustacés",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7439",
+        "title": "Dip de courgette",
+        "description": "Un dip d'été ultra savoureux à déguster à la cuillère, sur du pain grillé ou avec des légumes croquants. Simple, rapide et hyper aromatique.",
+        "image": "/recipes-ia/7439-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7543155513794546951\" data-video-id=\"7543155513794546951\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7543155513794546951\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cuillères à soupe de tahini"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             ½ jus de citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de yaourt grec (ou végétal)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 cuillères à café de paprika (doux ou fumé)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une petite poignée de basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Une petite poignée d'estragon frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive (pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Pistaches concassées (pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Feuilles de basilic frais supplémentaires (pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feuilles d'estragon frais supplémentaires (pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Une pincée de piment d'Espelette (optionnel)"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 200°C.",
+            "Coupez les courgettes en deux dans la longueur et quadrillez la chair au couteau.",
+            "Déposez-les sur une plaque avec la gousse d'ail entière. Arrosez d'huile d'olive, salez, poivrez, et ajoutez une pincée de piment d'Espelette si vous le souhaitez.",
+            "Enfournez 35 à 40 minutes, jusqu'à ce que les courgettes soient bien fondantes.",
+            "Laissez refroidir. Coupez les courgettes en tronçons (gardez la peau) et épluchez l'ail.",
+            "Mixez le tout avec le tahini, le jus de citron, le yaourt, les épices, les herbes fraîches, le sel et le poivre.",
+            "Dressez dans une assiette creuse. Ajoutez un filet d'huile d'olive, les pistaches concassées et les herbes fraîches en topping."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Healthy",
+            "Orient",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7435",
+        "title": "Chakchouka aux pommes de terre et oignons caramélisés",
+        "description": "Une chakchouka revisitée et gourmande, préparée avec des pommes de terre et des oignons caramélisés, relevée de paprika fumé et de gingembre, et agrémentée d'œufs. Parfaite pour un repas savoureux et réconfortant.",
+        "image": "/recipes-ia/7435-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7328452086457224481\" data-video-id=\"7328452086457224481\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7328452086457224481\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             2 grosses pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 cuillère à café de gingembre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cube Maggi KUBOR émietté"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 cuillère à café de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil pour la décoration"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas fournies dans la description."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Afrique",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7432",
         "title": "Biscotti Cantucci italiens",
