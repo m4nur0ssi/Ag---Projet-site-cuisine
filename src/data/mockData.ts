@@ -2,11 +2,512 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 07/09/2026 08:47:13
- * Total: 676 recettes
+ * Dernière mise à jour: 07/09/2026 12:04:52
+ * Total: 682 recettes
  */
-export const exportSyncId = "1788770833113";
+export const exportSyncId = "1788782692983";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7449",
+        "title": "Olives panées à la feta",
+        "description": "Une recette d'apéritif festive pour Noël, proposant des olives vertes dénoyautées farcies à la feta, panées et frites jusqu'à obtenir une belle coloration dorée.",
+        "image": "/recipes-ia/7449-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7584501402613927190\" data-video-id=\"7584501402613927190\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7584501402613927190\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Olives vertes dénoyautées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feta"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs battus"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de friture"
+            }
+        ],
+        "steps": [
+            "Farcir chaque olive avec un petit morceau de feta.",
+            "Rouler les olives dans la farine.",
+            "Les passer dans l'œuf battu.",
+            "Les enrober de chapelure.",
+            "Recommencer : farine → œuf → chapelure (double panure).",
+            "Plonger dans une huile bien chaude et frire quelques secondes jusqu'à belle coloration.",
+            "Égoutter sur papier absorbant."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Noël",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7451",
+        "title": "Tartinade d'aubergines et poivrons",
+        "description": "Une tartinade savoureuse et facile à préparer, à base d'aubergines et de poivrons rouges rôtis au four avec de l'ail, parfaite pour accompagner des toasts à l'apéritif.",
+        "image": "/recipes-ia/7451-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641965944423648534\" data-video-id=\"7641965944423648534\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641965944423648534\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n             2 grandes aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 poivrons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 tête d'ail entière"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 poignée de persil frais haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain grillé"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 220°C.",
+            "Placer les aubergines entières et les poivrons entiers sur une plaque de cuisson. Couper le haut de la tête d'ail et l'arroser d'huile d'olive avant de l'enfermer dans du papier cuisson.",
+            "Saler et poivrer les aubergines et les poivrons puis arroser d'huile d'olive. Enfourner 25 à 30 minutes pour que les légumes soient bien tendres et dorés.",
+            "Tailler en cubes les aubergines épluchées et les poivrons. Presser la tête d'ail pour récupérer la pulpe.",
+            "Hacher les légumes rôtis avec la purée d'ail et le persil ciselé. Goûter et ajuster l'assaisonnement si besoin.",
+            "Déguster chaud ou froid avec des toasts de pain grillé !"
+        ],
+        "tags": [
+            "Apéritifs",
+            "Healthy",
+            "Pas cher",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7453",
+        "title": "Tartinade de poivrons rôtis et mogettes",
+        "description": "Une tartinade ultra savoureuse, fondante et relevée, parfaite pour l'apéritif ou un snack sain.",
+        "image": "/recipes-ia/7453-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7524737676218551574\" data-video-id=\"7524737676218551574\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7524737676218551574\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             3 poivrons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             1 carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 tête d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             150-200g de mogettes de Vendée (ou haricots blancs)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 branche de romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/4 de bloc de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            }
+        ],
+        "steps": [
+            "Après cuisson des légumes (poivrons, oignon, carotte, ail), mixer tous les ingrédients ensemble.",
+            "Servir la tartinade sur du pain grillé."
+        ],
+        "tags": [
+            "Apéritifs",
+            "épicé",
+            "France",
+            "Healthy",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7455",
+        "title": "Moules au chorizo",
+        "description": "Une recette savoureuse de moules cuisinées avec du chorizo, de l'oignon, de l'ail et du vin blanc.",
+        "image": "/recipes-ia/7455-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7682465842545675552\" data-video-id=\"7682465842545675552\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7682465842545675552\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 kg de moules"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             200 g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 cl de"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "épicé",
+            "Espagne",
+            "Pas cher",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7447",
+        "title": "Apéritif gourmand avocat et crevettes",
+        "description": "Un apéritif facile et savoureux composé de toasts de pain de mie grillés, garnis d'un guacamole maison et de crevettes poêlées.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7675370204309802272\" data-video-id=\"7675370204309802272\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7675370204309802272\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥖\n             Pain de mie"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persillade"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             Avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n             Crevettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            }
+        ],
+        "steps": [
+            "Découper des rondelles dans les tranches de pain de mie à l'aide d'un emporte-pièce.",
+            "Badigeonner les rondelles d'un mélange d'huile, d'ail et de persillade, puis les faire griller au four.",
+            "Dans un bol, écraser l'avocat.",
+            "Ajouter l'oignon, la tomate, le jus de citron, le sel, le poivre et la persillade. Bien mélanger jusqu'à l'obtention d'un guacamole.",
+            "Faire revenir les crevettes dans un peu de beurre avec du sel et de la persillade.",
+            "Une fois tous les éléments prêts, assembler l'apéritif et le déguster immédiatement afin d'éviter l'oxydation de l'avocat."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Mexique",
+            "Poissons et crustacés",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7445",
+        "title": "Beignets de courgettes à la feta (Kolokithokeftedes) et Tzatziki",
+        "description": "Ces beignets de courgettes à la feta, croustillants à l'extérieur et fondants à l'intérieur, sont servis avec un tzatziki maison rafraîchissant. Parfaits pour l'apéritif.",
+        "image": "/images/recipe-placeholder.svg",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630197133752192278\" data-video-id=\"7630197133752192278\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630197133752192278\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             80 à 100 g de feta"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             7 cuillères à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 petit oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Aneth"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1/2 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques olives (pour servir)"
+            }
+        ],
+        "steps": [
+            "Pour les beignets : Râpez les courgettes, le petit oignon et la gousse d'ail.",
+            "Pressez fermement le mélange râpé dans un torchon propre pour en extraire un maximum d'eau.",
+            "Hachez la menthe et l'aneth.",
+            "Dans un grand bol, mélangez les légumes râpés et pressés avec l'œuf, la feta émiettée, la farine, les herbes hachées, le sel et le poivre.",
+            "Faites chauffer de l'huile dans une poêle à frire.",
+            "Formez des petits tas de pâte et déposez-les délicatement dans l'huile chaude. Laissez dorer des deux côtés jusqu'à ce qu'ils soient croustillants.",
+            "Égouttez les beignets sur du papier absorbant, ajoutez un peu de fleur de sel et servez-les immédiatement.",
+            "Pour le tzatziki : Râpez le demi-concombre et la gousse d'ail.",
+            "Pressez bien le concombre râpé pour enlever l'excès d'eau.",
+            "Dans un bol, mélangez le yaourt grec, le concombre et l'ail râpés et pressés, l'huile d'olive, le jus de citron, la menthe et l'aneth hachées, et le sel.",
+            "Mélangez bien et servez le tzatziki bien frais avec un filet d'huile d'olive et quelques olives."
+        ],
+        "tags": [
+            "Apéritifs",
+            "Grèce",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7435",
+        "title": "Chakchouka aux pommes de terre et oignons caramélisés",
+        "description": "Une chakchouka revisitée et gourmande, préparée avec des pommes de terre et des oignons caramélisés, relevée de paprika fumé et de gingembre, et agrémentée d'œufs. Parfaite pour un repas savoureux et réconfortant.",
+        "image": "/recipes-ia/7435-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7328452086457224481\" data-video-id=\"7328452086457224481\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7328452086457224481\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             2 grosses pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 cuillère à café de gingembre en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 cube Maggi KUBOR émietté"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 cuillère à café de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil pour la décoration"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas fournies dans la description."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Afrique",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7437",
         "title": "Flans de patates douces rôties, saumon et sauce à l'aneth",
@@ -201,80 +702,6 @@ export const mockRecipes: Recipe[] = [
             "Sauces",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7435",
-        "title": "Chakchouka aux pommes de terre et oignons caramélisés",
-        "description": "Une chakchouka revisitée et gourmande, préparée avec des pommes de terre et des oignons caramélisés, relevée de paprika fumé et de gingembre, et agrémentée d'œufs. Parfaite pour un repas savoureux et réconfortant.",
-        "image": "/recipes-ia/7435-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7328452086457224481\" data-video-id=\"7328452086457224481\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7328452086457224481\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             2 grosses pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à soupe de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 cuillère à café de gingembre en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 cube Maggi KUBOR émietté"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             1 cuillère à café de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil pour la décoration"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas fournies dans la description."
-        ],
-        "tags": [
-            "Accompagnements",
-            "Afrique",
-            "Pas cher",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
