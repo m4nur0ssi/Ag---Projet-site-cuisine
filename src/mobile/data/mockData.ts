@@ -2,11 +2,104 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/09/2026 16:42:02
+ * Dernière mise à jour: 08/09/2026 18:23:44
  * Total: 689 recettes
  */
-export const exportSyncId = "1788885722721";
+export const exportSyncId = "1788891824738";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7482",
+        "title": "Gyozas au poulet faits maison",
+        "description": "Découvrez comment préparer facilement et économiquement des gyozas au poulet faits maison, bien meilleurs que ceux du commerce. Une farce savoureuse et une sauce pimentée pour un régal assuré.",
+        "image": "/recipes-ia/7482-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7682841555153030433\" data-video-id=\"7682841555153030433\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7682841555153030433\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             700 g de poulet haché"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             1 grosse carotte râpée"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 champignon émincé"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons nouveaux"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cuillères à soupe de sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             3 cuillères à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feuilles à gyozas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6 cuillères à soupe de soja sucrée (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 cuillères à soupe d'huile pimentée (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de Nokoss (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de sésame (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons nouveaux (pour la sauce)"
+            }
+        ],
+        "steps": [
+            "1. Mélangez tous les ingrédients de la farce.",
+            "2. Déposez une petite quantité de farce au centre d'une feuille à gyoza, humidifiez les bords avec de l'eau puis refermez en portefeuille.",
+            "3. Vous pouvez les cuire directement ou les congeler crus. Si vous les congelez, ne les décongelez surtout pas avant cuisson.",
+            "4. Faites-les dorer dans une poêle avec un filet d'huile, ajoutez un peu d'eau puis couvrez pour terminer la cuisson à la vapeur pendant environ 5 minutes.",
+            "5. Mélangez tous les ingrédients de la sauce et servez avec les gyozas bien chauds."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7467",
         "title": "Escalope à la Milanaise",
@@ -12148,99 +12241,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7482",
-        "title": "Gyozas au poulet faits maison",
-        "description": "Découvrez comment préparer facilement et économiquement des gyozas au poulet faits maison, bien meilleurs que ceux du commerce. Une farce savoureuse et une sauce pimentée pour un régal assuré.",
-        "image": "/recipes-ia/7482-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7682841555153030433\" data-video-id=\"7682841555153030433\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7682841555153030433\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             700 g de poulet haché"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             1 grosse carotte râpée"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 champignon émincé"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignons nouveaux"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de gingembre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cuillère à café d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 cuillères à soupe de sauce huître"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             3 cuillères à soupe de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Feuilles à gyozas"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6 cuillères à soupe de soja sucrée (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             2 cuillères à soupe d'huile pimentée (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de Nokoss (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cuillère à café d'ail (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Graines de sésame (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignons nouveaux (pour la sauce)"
-            }
-        ],
-        "steps": [
-            "1. Mélangez tous les ingrédients de la farce.",
-            "2. Déposez une petite quantité de farce au centre d'une feuille à gyoza, humidifiez les bords avec de l'eau puis refermez en portefeuille.",
-            "3. Vous pouvez les cuire directement ou les congeler crus. Si vous les congelez, ne les décongelez surtout pas avant cuisson.",
-            "4. Faites-les dorer dans une poêle avec un filet d'huile, ajoutez un peu d'eau puis couvrez pour terminer la cuisson à la vapeur pendant environ 5 minutes.",
-            "5. Mélangez tous les ingrédients de la sauce et servez avec les gyozas bien chauds."
-        ],
-        "tags": [
-            "Asie",
-            "épicé",
-            "Pas cher"
         ],
         "isFeatured": false,
         "isFavorite": false,
