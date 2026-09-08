@@ -30,6 +30,14 @@
     overflow: hidden;
 }
 
+/* La zone qu'on peut tirer pour refermer : la poignée et son pourtour. */
+.dragZone {
+    flex: 0 0 auto;
+    padding: 2px 0 0;
+    cursor: grab;
+}
+.dragZone:active { cursor: grabbing; }
+
 .grip {
     width: 40px;
     height: 5px;
@@ -183,6 +191,42 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* Un service inhabituel pour cette recette (des biscuits en entrée…) : en
+   retrait, jamais interdit — le classement se trompe, pas le cuisinier. */
+.slotOther { opacity: 0.55; }
+.slotOther .slotLabel { font-weight: 700; }
+
+/* Le repas qu'on tient : il s'éclaire, on sait ce qui va bouger. */
+.slotEnMain {
+    box-shadow: inset 0 0 0 2px rgba(255, 194, 75, 0.9);
+    opacity: 1;
+}
+
+/* Le bandeau qui dit ce qu'on tient, et comment y renoncer. */
+.enMainBandeau {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 20px 8px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(255, 194, 75, 0.14);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 194, 75, 0.5);
+}
+.enMainTexte { flex: 1 1 auto; font-size: 0.85rem; line-height: 1.35; }
+.enMainTexte b { font-weight: 800; }
+.enMainAnnuler {
+    flex: 0 0 auto;
+    padding: 7px 12px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .slotEmpty {

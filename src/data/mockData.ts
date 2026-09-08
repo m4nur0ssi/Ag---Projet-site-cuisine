@@ -504,7 +504,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Biscotti Cantucci italiens",
         "description": "Découvrez comment préparer des Cantucci, ces délicieux biscuits aux amandes originaires de Toscane. Faciles et rapides à réaliser, même à la dernière minute, ils ne nécessitent aucun outil spécial. Parfaits pour un cadeau de dernière minute, ils s...",
         "image": "/recipes-ia/7432-carte.webp",
-        "category": "plats",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,

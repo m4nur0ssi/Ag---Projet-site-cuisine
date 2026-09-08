@@ -34,7 +34,7 @@ import { isTVSide, isTVMain, sidePool } from './sides';
 import {
     DAYS, DAY_FULL, MEALS, JOUR_J, COURSES, todayIndex,
     chargerPlan, enregistrerPlan, poserRecette, oublierCoches, PLAN_EVENT,
-    posableEnSemaine, recetteEnMain, reposer, creneauAccepte, EN_MAIN_EVENT,
+    posableEnSemaine, recetteEnMain, prendreEnMain, origineEnMain, reposer, creneauAccepte, EN_MAIN_EVENT,
     type Plan, type Slot,
 } from './plan';
 import { matchesTag } from './themes';
@@ -117,6 +117,209 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const setSlot = (day: string, meal: string, recipe: Recipe | null) => {
         save(poserRecette(plan, day, meal, recipe));
     };
+
+    /* ── Déplacer un repas d'un jour à l'autre ───────────────────────────────
+     *
+     * Jusqu'ici, changer un plat de jour demandait de le retirer, d'aller au
+     * bon créneau, puis de le rechercher. On l'attrape désormais et on le
+     * dépose : au doigt, l'appui tenu décolle la carte ; à la souris, trois
+     * pixels suffisent. Le créneau visé s'allume, et s'il est déjà pris les
+     * deux repas s'échangent — jamais rien ne disparaît en route.
+     *
+     * DEUX PRÉCAUTIONS qui expliquent la forme du code :
+     *
+     *   • ce qui suit le doigt est un SOSIE posé dans la page, pas la carte
+     *     elle-même. L'écran se redessine sans prévenir (la semaine change, un
+     *     message passe) et la vraie carte est alors reconstruite : elle
+     *     repartait à sa place au milieu du geste ;
+     *   • les mouvements sont écoutés sur la FENÊTRE, pas sur la carte. Sans
+     *     ça, dès que la carte est reconstruite, plus personne ne reçoit la
+     *     suite du glissé.
+     */
+    const tirage = useRef<{
+        day: string; meal: string; rect: DOMRect; sosie: HTMLElement | null;
+        x: number; y: number; touch: boolean;
+        presse: ReturnType<typeof setTimeout> | null; actif: boolean;
+    } | null>(null);
+    const vise = useRef<HTMLElement | null>(null);
+    /** Instant du dernier lâcher : le clic qui suit appartient au glissé. */
+    const apresTirage = useRef(0);
+    /** Dernier changement de jour pendant un glissé (le pager ne saute pas en boucle). */
+    const dernierSaut = useRef(0);
+    const defile = useRef<ReturnType<typeof setInterval> | null>(null);
+
+    const creneauSous = (x: number, y: number): HTMLElement | null => {
+        const el = document.elementFromPoint(x, y) as HTMLElement | null;
+        return (el?.closest('[data-creneau]') as HTMLElement | null) || null;
+    };
+
+    const viser = (el: HTMLElement | null) => {
+        if (vise.current === el) return;
+        vise.current?.classList.remove(styles.planSlotCible);
+        const t = tirage.current;
+        if (el && el.dataset.creneau !== `${t?.day}|${t?.meal}`) {
+            el.classList.add(styles.planSlotCible);
+            vise.current = el;
+        } else {
+            vise.current = null;
+        }
+    };
+
+    /** Poser le repas ailleurs. Créneau occupé : les deux s'échangent. */
+    const deplacer = (de: { day: string; meal: string }, vers: { day: string; meal: string }) => {
+        if (de.day === vers.day && de.meal === vers.meal) return;
+        const source = plan[de.day]?.[de.meal];
+        if (!source) return;
+        const cible = plan[vers.day]?.[vers.meal];
+        let next = poserRecette(plan, de.day, de.meal, (cible as Recipe) || null);
+        next = poserRecette(next, vers.day, vers.meal, source as Recipe);
+        save(next);
+        reposer();   // le geste est allé au bout : la main se rouvre
+        haptic(14);
+        window.dispatchEvent(new CustomEvent('magic-toast-notify', {
+            detail: {
+                text: cible
+                    ? `${label(source)} et ${label(cible)} ont échangé de place`
+                    : `${label(source)} · ${DAY_FULL[vers.day] || vers.day} ${vers.meal.toLowerCase()}`,
+            },
+        }));
+    };
+
+    /*
+     * Défilement automatique près des bords : une semaine ne tient pas dans un
+     * écran. En haut et en bas, la page défile ; à gauche et à droite, on
+     * change de JOUR — c'est ce qui permet d'emmener un plat de lundi à
+     * dimanche sans lâcher.
+     */
+    const arreterDefilement = () => {
+        if (defile.current) { clearInterval(defile.current); defile.current = null; }
+    };
+    const bordsPendantLeGlisse = (x: number, y: number) => {
+        const marge = 110;
+        const pas = y < marge ? -14 : y > window.innerHeight - marge ? 14 : 0;
+        if (!pas) arreterDefilement();
+        else if (!defile.current) defile.current = setInterval(() => window.scrollBy(0, pas), 16);
+
+        if (mode !== 'semaine') return;
+        const el = pagerRef.current;
+        if (!el) return;
+        // Les bords du CARROUSEL, pas ceux de la fenêtre : au bureau, la semaine
+        // n'occupe qu'un panneau, et l'écran est large.
+        const cadre = el.getBoundingClientRect();
+        const bord = 54;
+        const sens = x < cadre.left + bord ? -1 : x > cadre.right - bord ? 1 : 0;
+        if (!sens || Date.now() - dernierSaut.current < 700) return;
+        const courant = Math.round(el.scrollLeft / Math.max(1, el.clientWidth));
+        const suivant = Math.max(0, Math.min(DAYS.length - 1, courant + sens));
+        if (suivant === courant) return;
+        dernierSaut.current = Date.now();
+        haptic(8);
+        goToDay(suivant);
+    };
+
+    /** Le sosie : la carte que l'on voit voyager sous le doigt. */
+    const creerSosie = (source: HTMLElement, rect: DOMRect) => {
+        const sosie = source.cloneNode(true) as HTMLElement;
+        sosie.style.cssText = [
+            'position:fixed', `left:${rect.left}px`, `top:${rect.top}px`,
+            `width:${rect.width}px`, `height:${rect.height}px`,
+            'margin:0', 'z-index:30000', 'pointer-events:none',
+            'opacity:0.94', 'transform:scale(1.03)', 'transition:none',
+            'box-shadow:0 24px 60px rgba(0,0,0,.6)', 'border-radius:18px',
+        ].join(';');
+        document.body.appendChild(sosie);
+        return sosie;
+    };
+
+    const finTirage = (x?: number, y?: number) => {
+        arreterDefilement();
+        const t = tirage.current;
+        tirage.current = null;
+        window.removeEventListener('pointermove', enMouvement);
+        window.removeEventListener('pointerup', auLacher);
+        window.removeEventListener('pointercancel', auLacher);
+        if (t?.presse) clearTimeout(t.presse);
+        t?.sosie?.remove();
+        const cible = t?.actif
+            ? (vise.current || (x != null && y != null ? creneauSous(x, y) : null))
+            : null;
+        if (t?.actif) apresTirage.current = Date.now();
+        vise.current?.classList.remove(styles.planSlotCible);
+        vise.current = null;
+        const dest = cible?.dataset.creneau?.split('|');
+        if (t?.actif && dest && dest.length === 2) deplacer({ day: t.day, meal: t.meal }, { day: dest[0], meal: dest[1] });
+    };
+
+    /*
+     * Les écouteurs posés sur la fenêtre doivent garder la MÊME identité pour
+     * pouvoir être retirés — mais lire, eux, l'état du rendu courant. D'où ce
+     * relais : une enveloppe stable, un contenu remis à jour à chaque rendu.
+     */
+    const bougerRef = useRef<(e: PointerEvent) => void>(() => {});
+    const lacherRef = useRef<(e: PointerEvent) => void>(() => {});
+    const enMouvement = useCallback((e: PointerEvent) => bougerRef.current(e), []);
+    const auLacher = useCallback((e: PointerEvent) => lacherRef.current(e), []);
+
+    bougerRef.current = (e: PointerEvent) => {
+        const t = tirage.current;
+        if (!t) return;
+        const dx = e.clientX - t.x;
+        const dy = e.clientY - t.y;
+        if (!t.actif) {
+            if (!t.touch) { if (Math.hypot(dx, dy) > 3) demarrerTirage(); return; }
+            // Le doigt bouge avant que la carte décolle : c'est un défilement.
+            if (Math.hypot(dx, dy) > 12) { if (t.presse) clearTimeout(t.presse); finTirage(); }
+            return;
+        }
+        // La page ne défile plus sous la carte qu'on tient.
+        if (e.cancelable) e.preventDefault();
+        if (t.sosie) t.sosie.style.transform = `translate(${dx}px, ${dy}px) scale(1.03)`;
+        viser(creneauSous(e.clientX, e.clientY));
+        bordsPendantLeGlisse(e.clientX, e.clientY);
+    };
+    lacherRef.current = (e: PointerEvent) => finTirage(e.clientX, e.clientY);
+
+    const demarrerTirage = () => {
+        const t = tirage.current;
+        if (!t || t.actif) return;
+        const source = document.querySelector(`[data-creneau="${t.day}|${t.meal}"] button[class*="planCard"]`) as HTMLElement | null;
+        const repas = plan[t.day]?.[t.meal];
+        if (!source || !repas) return;
+        t.actif = true;
+        t.presse = null;
+        haptic(12);
+        t.sosie = creerSosie(source, t.rect);
+        /*
+         * L'appui long fait DEUX choses à la fois, et c'est voulu : la carte
+         * décolle pour qui veut la faire glisser, et la recette passe « en
+         * main » pour qui préfère lâcher, changer de jour tranquillement, puis
+         * toucher un créneau. Un seul geste, deux façons de s'en servir — la
+         * semaine défile un jour par écran, viser à l'aveugle en tenant le
+         * doigt appuyé n'est pas donné à tout le monde.
+         */
+        prendreEnMain(repas as Recipe, { jour: t.day, repas: t.meal });
+    };
+
+    /** Les gestes de la carte d'un créneau, prêts à étaler sur le bouton. */
+    const prises = (day: string, meal: string) => ({
+        onPointerDown: (e: React.PointerEvent<HTMLElement>) => {
+            if (e.button === 2) return;
+            const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+            const touch = e.pointerType !== 'mouse';
+            const t = {
+                day, meal, rect, sosie: null as HTMLElement | null,
+                x: e.clientX, y: e.clientY, touch,
+                presse: null as ReturnType<typeof setTimeout> | null, actif: false,
+            };
+            tirage.current = t;
+            window.addEventListener('pointermove', enMouvement, { passive: false });
+            window.addEventListener('pointerup', auLacher);
+            window.addEventListener('pointercancel', auLacher);
+            // Au doigt, l'appui TENU décolle la carte : un glissé immédiat doit
+            // rester un défilement de la page.
+            if (touch) t.presse = setTimeout(() => { if (tirage.current === t) demarrerTirage(); }, 300);
+        },
+    });
 
     /** Accompagnement rattaché au plat du créneau (même forme qu'en prod). */
     const setSide = (day: string, meal: string, side: Recipe | null) => {
@@ -498,14 +701,29 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     const poserEnMain = (day: string, meal: string) => {
         if (!enMain) return;
         const remplace = plan[day]?.[meal];
+        const venue = origineEnMain();
         haptic(14);
-        setSlot(day, meal, enMain);
+        /*
+         * Une recette prise DANS la semaine se DÉPLACE : sa case de départ se
+         * vide, et si la case d'arrivée était prise, les deux repas
+         * s'échangent. Sans ça, prendre lundi pour poser jeudi laissait le plat
+         * aux deux endroits.
+         */
+        if (venue && (venue.jour !== day || venue.repas !== meal)) {
+            let next = poserRecette(plan, venue.jour, venue.repas, (remplace as Recipe) || null);
+            next = poserRecette(next, day, meal, enMain);
+            save(next);
+        } else {
+            setSlot(day, meal, enMain);
+        }
         reposer();
         window.dispatchEvent(new CustomEvent('magic-toast-notify', {
             detail: {
                 text: remplace
-                    ? `${label(enMain)} remplace ${label(remplace)} · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`
-                    : `Ajouté · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`,
+                    ? venue
+                        ? `${label(enMain)} et ${label(remplace)} ont échangé de place`
+                        : `${label(enMain)} remplace ${label(remplace)} · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`
+                    : `${venue ? 'Déplacé' : 'Ajouté'} · ${DAY_FULL[day] || day} ${meal.toLowerCase()}`,
             },
         }));
     };
@@ -522,7 +740,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         const needsSide = !!slot && !!sideable && !hasSideIncluded(slot) && !isSweet(slot);
 
         return (
-            <div className={styles.planSlot}>
+            <div className={styles.planSlot} data-creneau={`${day}|${meal}`}>
                 <div className={styles.planSlotHead}>
                     <span className={styles.planMeal}>{meal}</span>
                     {slot && (
@@ -546,7 +764,15 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                 {slot ? (
                     <div className={`${styles.planPair} ${sideable ? styles.planPairSplit : ''}`}>
                         {/* Un tap sur la carte ouvre la fiche complète de la recette. */}
-                        <button className={styles.planCard} onClick={() => { haptic(8); setDetail(slot); }}>
+                        <button
+                            className={styles.planCard}
+                            onClick={() => {
+                                // Le clic qui suit un glissé n'ouvre pas la fiche.
+                                if (Date.now() - apresTirage.current < 400) return;
+                                haptic(8); setDetail(slot);
+                            }}
+                            {...prises(day, meal)}
+                        >
                             <img src={slot.image} alt="" className={styles.planCardImg} draggable={false} />
                             <div className={styles.planCardScrim} />
                             <div className={styles.planCardText}>

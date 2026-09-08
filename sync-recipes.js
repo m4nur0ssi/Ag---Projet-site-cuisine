@@ -343,6 +343,10 @@ function extractRecipeData(post) {
             // Tarte/quiche/cake SALÉ → plat, jamais dessert (ex. "Tarte salée aux tomates, chèvre").
             const SAVORY = /(sal[ée]e?s?\b|tomate|ch[èe]vre|fromage|feta|mozzarella|oignon|poireau|courgette|[ée]pinard|thon|saumon|jambon|lardon|bacon|l[ée]gume|quiche|moutarde|pesto|brocoli|champignon|poulet|chorizo|anchois|olive|ratatouille)/;
             if (/\b(tarte|quiche|cake)\b/.test(title) && SAVORY.test(title)) return "plats";
+            // Biscuiterie : « Biscotti Cantucci italiens » finissait en PLAT faute
+            // d'un mot connu — un plat de biscuits aux amandes, personne n'y croit.
+            const BISCUITERIE = /\b(biscott[io]s?|cantucc?ini?|biscuits?|sabl[ée]s?|macarons?|meringues?|madeleines?|shortbreads?|sp[ée]culoos|palmiers?|florentins?)\b/;
+            if (BISCUITERIE.test(title) && !SAVORY.test(title)) return "patisserie";
             if (['gâteau', 'cake', 'tarte', 'cookie', 'muffins', 'pâtisserie'].some(k => title.includes(k))) return "desserts";
             if (['chocolat', 'sucre', 'fruit', 'tiramisu', 'mousse', 'dessert'].some(k => title.includes(k))) return "desserts";
             // Filet : nom étranger sans mot-clé FR (ex. "Portokalopita") mais dont le titre OU

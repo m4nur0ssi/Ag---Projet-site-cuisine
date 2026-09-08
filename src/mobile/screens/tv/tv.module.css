@@ -2347,6 +2347,19 @@
 }
 
 /* Créneau rempli : la photo occupe la carte, le titre est incrusté. */
+/* Un repas qu'on tient : il décolle et suit le doigt. Le créneau visé s'allume,
+   pour qu'on sache où il tombera avant de lâcher. */
+.planCardTire {
+    opacity: 0.92;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    transition: none;
+}
+.planSlotCible {
+    outline: 2px dashed rgba(255, 194, 75, 0.9);
+    outline-offset: 3px;
+    border-radius: 18px;
+}
+
 .planCard {
     position: relative;
     display: block;

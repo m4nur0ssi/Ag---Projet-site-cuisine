@@ -17,7 +17,7 @@
  * tout passe par `screens/tv/plan.ts`.
  */
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Portal from '@/mobile/components/Portal';
@@ -52,6 +52,35 @@ interface PlanPickerProps {
 
 export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlanificateur }: PlanPickerProps) {
     const router = useRouter();
+    /*
+     * Refermer en tirant vers le bas.
+     *
+     * Écrit à la main plutôt qu'avec le glissé de la bibliothèque d'animation :
+     * on veut que la prise soit LE HAUT du volet (poignée + en-tête) et que tout
+     * le reste continue de défiler normalement.
+     */
+    const [tire, setTire] = useState(0);
+    const depart = useRef<number | null>(null);
+    const prise = {
+        onPointerDown: (e: React.PointerEvent) => {
+            depart.current = e.clientY;
+            setTire(0);
+        },
+        onPointerMove: (e: React.PointerEvent) => {
+            if (depart.current === null) return;
+            // Vers le bas seulement : tirer vers le haut ne fait rien.
+            setTire(Math.max(0, e.clientY - depart.current));
+        },
+        onPointerUp: (e: React.PointerEvent) => {
+            if (depart.current === null) return;
+            const parcouru = e.clientY - depart.current;
+            depart.current = null;
+            setTire(0);
+            if (parcouru > 110) onClose();
+        },
+        onPointerCancel: () => { depart.current = null; setTire(0); },
+        style: { touchAction: 'none' as const },
+    };
     const [plan, setPlan] = useState<Plan>({});
     /*
      * La recette COMPLÈTE, ingrédients compris.
@@ -126,10 +155,40 @@ export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlani
      * Une case occupée par AUTRE CHOSE se remplace — c'est ce qu'on attend
      * d'un créneau qu'on désigne exprès.
      */
+    /*
+     * Déplacer un repas DÉJÀ posé, sans quitter ce volet.
+     *
+     * Appui long sur une case occupée : le repas passe « en main ». La case
+     * suivante qu'on touche le reçoit — vide, il s'y installe ; prise, les deux
+     * repas s'échangent. C'est le copier-coller de la semaine, au doigt.
+     */
+    const [enMain, setEnMain] = useState<{ jour: string; repas: string } | null>(null);
+    const repasEnMain = enMain ? plan[enMain.jour]?.[enMain.repas] : null;
+
+    const deplacer = useCallback((de: { jour: string; repas: string }, vers: { jour: string; repas: string }) => {
+        const source = plan[de.jour]?.[de.repas];
+        if (!source) return;
+        if (de.jour === vers.jour && de.repas === vers.repas) return;
+        const cible = plan[vers.jour]?.[vers.repas];
+        let next = poserRecette(plan, de.jour, de.repas, (cible as Recipe) || null);
+        next = poserRecette(next, vers.jour, vers.repas, source as Recipe);
+        setPlan(next);
+        void enregistrerPlan(next);
+        buzz(14);
+        setFlash(`${vers.jour}|${vers.repas}`);
+    }, [plan]);
+
     const toggle = useCallback((jour: string, repas: string) => {
         // Le temps que la session revienne, la grille est déjà à l'écran : on ne
         // laisse pas remplir un planificateur qu'on n'aura pas le droit de lire.
         if (connecte === false) return;
+        // Un repas est en main : la case touchée le reçoit, au lieu de recevoir
+        // la recette de la fiche.
+        if (enMain) {
+            deplacer(enMain, { jour, repas });
+            setEnMain(null);
+            return;
+        }
         const occupe = plan[jour]?.[repas];
         const cestMoi = occupe && String(occupe.id) === id;
         const next = poserRecette(plan, jour, repas, cestMoi ? null : recipe);
@@ -137,20 +196,60 @@ export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlani
         void enregistrerPlan(next);
         buzz(cestMoi ? 8 : 14);
         if (!cestMoi) setFlash(`${jour}|${repas}`);
-    }, [plan, id, recipe, connecte]);
+    }, [plan, id, recipe, connecte, enMain, deplacer]);
+
+    /** L'appui long qui met un repas en main (la souris : clic droit). */
+    const presse = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const departPresse = useRef<{ x: number; y: number } | null>(null);
+    const prendreEnMainSiOccupe = (jour: string, repas: string) => {
+        if (!plan[jour]?.[repas]) return;
+        buzz(12);
+        setEnMain({ jour, repas });
+    };
+    const gestesCase = (jour: string, repas: string) => ({
+        onPointerDown: (e: React.PointerEvent) => {
+            if (e.button === 2) return;
+            departPresse.current = { x: e.clientX, y: e.clientY };
+            if (presse.current) clearTimeout(presse.current);
+            presse.current = setTimeout(() => {
+                presse.current = null;
+                departPresse.current = null;
+                prendreEnMainSiOccupe(jour, repas);
+            }, 320);
+        },
+        onPointerMove: (e: React.PointerEvent) => {
+            const d = departPresse.current;
+            if (!d) return;
+            if (Math.hypot(e.clientX - d.x, e.clientY - d.y) > 12) {
+                if (presse.current) { clearTimeout(presse.current); presse.current = null; }
+                departPresse.current = null;
+            }
+        },
+        onPointerUp: () => {
+            if (presse.current) { clearTimeout(presse.current); presse.current = null; }
+            departPresse.current = null;
+        },
+        onPointerCancel: () => {
+            if (presse.current) { clearTimeout(presse.current); presse.current = null; }
+            departPresse.current = null;
+        },
+        onContextMenu: (e: React.MouseEvent) => { e.preventDefault(); prendreEnMainSiOccupe(jour, repas); },
+    });
 
     if (!open) return null;
 
     /** Une case : vide, prise par cette recette, ou prise par une autre. */
-    const Case = ({ jour, repas, libelle }: { jour: string; repas: string; libelle?: string }) => {
+    const Case = ({ jour, repas, libelle, inhabituel = false }: { jour: string; repas: string; libelle?: string; inhabituel?: boolean }) => {
         const occupe = plan[jour]?.[repas];
         const cestMoi = !!occupe && String(occupe.id) === id;
         const cle = `${jour}|${repas}`;
         return (
             <button
                 type="button"
-                className={`${styles.slot} ${cestMoi ? styles.slotMine : ''} ${occupe && !cestMoi ? styles.slotTaken : ''} ${flash === cle ? styles.slotFlash : ''}`}
+                title={inhabituel ? `Inhabituel pour cette recette — mais c'est toi qui décides.` : undefined}
+                className={`${styles.slot} ${cestMoi ? styles.slotMine : ''} ${occupe && !cestMoi ? styles.slotTaken : ''} ${flash === cle ? styles.slotFlash : ''} ${inhabituel && !cestMoi ? styles.slotOther : ''} ${enMain && enMain.jour === jour && enMain.repas === repas ? styles.slotEnMain : ''}`}
                 onClick={() => toggle(jour, repas)}
+                {...gestesCase(jour, repas)}
                 aria-pressed={cestMoi}
                 aria-label={
                     cestMoi
@@ -194,15 +293,21 @@ export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlani
                         className={styles.sheet}
                         onClick={(e) => e.stopPropagation()}
                         initial={{ y: '100%' }}
-                        animate={{ y: 0 }}
+                        /* `tire` suit le doigt quand on referme d'un glissé ; il vaut 0
+                           le reste du temps, donc le volet reste où il est. */
+                        animate={{ y: tire }}
                         exit={{ y: '100%' }}
-                        transition={{ type: 'spring', damping: 30, stiffness: 320 }}
+                        transition={tire ? { type: 'tween', duration: 0 } : { type: 'spring', damping: 30, stiffness: 320 }}
                         role="dialog"
                         aria-label="Ajouter au planificateur"
                     >
-                        <div className={styles.grip} />
+                        {/* Tirer depuis le haut referme : la poignée et l'en-tête sont la
+                            prise. Plus bas, le doigt appartient à la liste des jours. */}
+                        <div className={styles.dragZone} {...prise}>
+                            <div className={styles.grip} />
+                        </div>
 
-                        <header className={styles.head}>
+                        <header className={styles.head} {...prise}>
                             {recipe.image && <img className={styles.thumb} src={recipe.image} alt="" draggable={false} />}
                             <div className={styles.headText}>
                                 <div className={styles.kicker}>Ajouter au planificateur</div>
@@ -229,14 +334,27 @@ export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlani
                             </div>
                         ) : (
                         <>
+                        {repasEnMain && (
+                            <div className={styles.enMainBandeau}>
+                                <span className={styles.enMainTexte}>
+                                    On tient <b>{titre(repasEnMain)}</b> — touchez le créneau d’arrivée.
+                                </span>
+                                <button type="button" className={styles.enMainAnnuler} onClick={() => { buzz(8); setEnMain(null); }}>
+                                    Annuler
+                                </button>
+                            </div>
+                        )}
+
                         <p className={styles.hint}>
-                            {places.semaine || places.courses.length
-                                ? 'Touchez le créneau voulu. Retouchez-le pour l’enlever.'
-                                : pret
-                                    ? 'Cette recette n’entre dans aucun créneau du planificateur.'
-                                    /* Les ingrédients arrivent : sans eux, on ne sait pas
-                                       encore à quels créneaux la recette a droit. */
-                                    : 'Un instant…'}
+                            {enMain
+                                ? 'Le repas tenu ira dans la case que vous touchez ; si elle est prise, les deux s’échangent.'
+                                : places.semaine || places.courses.length
+                                    ? 'Touchez le créneau voulu. Retouchez-le pour l’enlever. Appui long sur un repas déjà posé pour le déplacer.'
+                                    : pret
+                                        ? 'Cette recette n’entre dans aucun créneau du planificateur.'
+                                        /* Les ingrédients arrivent : sans eux, on ne sait pas
+                                           encore à quels créneaux la recette a droit. */
+                                        : 'Un instant…'}
                         </p>
 
                         <div className={styles.body}>
@@ -259,12 +377,26 @@ export default function PlanPicker({ recipe: recette, open, onClose, ouvrirPlani
                                 </section>
                             )}
 
-                            {places.courses.length > 0 && (
+                            {(places.courses.length > 0 || places.semaine) && (
                                 <section className={styles.section}>
                                     <h3 className={styles.sectionTitle}>Le repas du Jour J</h3>
+                                    {/*
+                                        TOUS les services, pas seulement ceux que la
+                                        catégorie autorise. Le classement d'une recette
+                                        se trompe (des biscuits rangés en « plat »), et
+                                        c'est le cuisinier qui décide de son menu : un
+                                        service inhabituel s'affiche en retrait, mais
+                                        reste à un doigt.
+                                    */}
                                     <div className={styles.courses}>
-                                        {places.courses.map((c) => (
-                                            <Case key={c} jour={JOUR_J} repas={c} libelle={c} />
+                                        {COURSES.map((c) => (
+                                            <Case
+                                                key={c.label}
+                                                jour={JOUR_J}
+                                                repas={c.label}
+                                                libelle={c.label}
+                                                inhabituel={!places.courses.includes(c.label)}
+                                            />
                                         ))}
                                     </div>
                                 </section>

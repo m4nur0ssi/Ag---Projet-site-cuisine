@@ -228,12 +228,30 @@ export function recetteEnMain(): Recipe | null {
     } catch { return null; }
 }
 
-/** Prend la recette en main : le planificateur l'attendra à l'arrivée. */
-export function prendreEnMain(r: Recipe): void {
+/**
+ * Prend la recette en main : le planificateur l'attendra à l'arrivée.
+ *
+ * `origine` dit d'où elle vient quand on la retire d'un créneau : le jour où on
+ * la repose ailleurs, la case de départ doit se vider — sinon on ne DÉPLACE
+ * pas le repas, on le duplique.
+ */
+export function prendreEnMain(r: Recipe, origine?: { jour: string; repas: string }): void {
     try {
-        sessionStorage.setItem(CLE_EN_MAIN, JSON.stringify({ recette: r, pris: Date.now() }));
+        sessionStorage.setItem(CLE_EN_MAIN, JSON.stringify({ recette: r, pris: Date.now(), origine: origine || null }));
     } catch { /* plein */ }
     window.dispatchEvent(new CustomEvent(EN_MAIN_EVENT, { detail: r }));
+}
+
+/** Le créneau d'où vient la recette qu'on tient, s'il y en a un. */
+export function origineEnMain(): { jour: string; repas: string } | null {
+    if (typeof window === 'undefined') return null;
+    try {
+        const brut = sessionStorage.getItem(CLE_EN_MAIN);
+        if (!brut) return null;
+        const { origine, pris } = JSON.parse(brut) as { origine: { jour: string; repas: string } | null; pris: number };
+        if (!origine || Date.now() - pris > VIE_EN_MAIN_MS) return null;
+        return origine;
+    } catch { return null; }
 }
 
 /** Repose la recette : posée dans un créneau, ou abandonnée. */
