@@ -216,6 +216,8 @@ Règles :
 - Elle donne rarement les quantités : laisse "quantity" vide plutôt que d'en inventer une.
 - "quantity" garde son unité entière : "2 tranches" et name "emmental", jamais "2" et name "emmental". Une quantité floue à l'oral ("un peu", "quelques", "une pincée") n'est pas une quantité : laisse "quantity" vide.
 - "name" s'écrit comme sur une liste de courses, au singulier et sans élision ("jambon", pas "p'tit peu jambon").
+- La voix DICTE les nombres en toutes lettres, et c'est là qu'on se trompe : « cent-quatre-vingts degrés » fait 180 °C, pas 144 ; « deux cent dix » fait 210 ; « quarante-cinq minutes » fait 45. Relis chaque nombre que tu écris.
+- Un four se règle par paliers de 10 (140, 180, 210, 240). Si tu obtiens 144 ou 184, c'est que tu as mal converti : reprends la phrase.
 - Une étape est un GESTE de cuisine. L'auteur finit presque toujours par vanter son plat ou demander un abonnement : ce n'est pas une étape, ne la garde pas ("Régalez-vous", "Dites-moi en commentaire", "C'est trop bon"). Un vrai dressage ou service, si, ("Servez bien chaud avec du persil").
 - Quand la description et la voix se contredisent, LA VOIX A RAISON : c'est l'auteur qui cuisine.
 - Ignore les mots-dièse, les mentions de comptes et les appels à s'abonner.`;
@@ -304,51 +306,62 @@ function ranger(texte) {
 const patienter = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /*
- * Le compteur de Groq, tenu de notre côté.
+ * Le débit, dicté par Groq lui-même.
  *
- * Attendre le refus pour ralentir ne suffit pas : le quota se reconstitue par
- * fenêtre glissante d'une minute, et quatre relances n'y suffisaient pas
- * toujours. On tient donc nous-mêmes le compte des jetons consommés dans les
- * soixante dernières secondes, et on ne part que si la prochaine recette tient
- * dans ce qui reste.
+ * Premier essai : un compteur maison des jetons de la dernière minute. Erreur.
+ * Il comptait aussi les appels REFUSÉS — qui ne consomment rien — si bien qu'à
+ * chaque relance il s'enfonçait un peu plus dans un quota imaginaire : une
+ * recette toutes les trois minutes, quand Groq annonçait 7 907 jetons libres.
+ *
+ * Or Groq dit exactement ce qu'il reste et quand il recharge, à chaque réponse
+ * (`x-ratelimit-remaining-tokens`, `x-ratelimit-reset-tokens`). On le croit lui,
+ * plutôt que de tenir un double des comptes.
  */
-const GROQ_PAR_MINUTE = 8000;
-const consommation = [];      // { instant, jetons }
-
-function jetonsRecents() {
-    const limite = Date.now() - 60000;
-    while (consommation.length && consommation[0].instant < limite) consommation.shift();
-    return consommation.reduce((t, c) => t + c.jetons, 0);
-}
-
-/** Retarde l'appel jusqu'à ce que `prevus` jetons tiennent dans la fenêtre. */
-async function laisserLaPlace(prevus) {
-    for (let garde = 0; garde < 12; garde++) {
-        const reste = GROQ_PAR_MINUTE - jetonsRecents();
-        if (reste >= prevus) return;
-        // Le plus ancien appel sort de la fenêtre à cet instant-là.
-        const sortie = consommation[0].instant + 60000 - Date.now();
-        await patienter(Math.min(Math.max(sortie + 250, 500), 61000));
-    }
-}
+let resteJetons = null;    // ce que Groq annonçait à la dernière réponse
+let quandRecharge = 0;     // l'instant où sa fenêtre se rouvre
 
 /*
- * Groq compte en jetons PAR MINUTE — huit mille, prompt et réponse confondus.
- * Une recette en coûte deux mille : au rythme du script, le compteur était vidé
- * en trois recettes et les cent soixante-cinq suivantes ont pris un 429.
+ * Le quota de Groq ne se compte pas seulement à la minute : chaque modèle a
+ * aussi sa journée — 200 000 jetons, soit environ quatre-vingts recettes. Le
+ * refus le dit en toutes lettres (« tokens per day (TPD) »), là où l'entête ne
+ * parle que de la minute ; on lisait donc « attendez 65 s » pour une porte
+ * fermée jusqu'au lendemain.
  *
- * Ce n'est pas une panne, c'est une cadence. Groq dit lui-même combien de temps
- * attendre (`retry-after`) : on attend, et on reprend.
+ * Ces journées sont propres à chaque modèle. On en tient donc plusieurs, et on
+ * passe au suivant quand l'un a fini la sienne.
  */
+const GROQ_MODELES = (process.env.GROQ_TEXT_MODEL || 'openai/gpt-oss-20b,openai/gpt-oss-120b,qwen/qwen3.8-27b').split(',');
+const journeeFinie = new Set();
+
+const quotaDuJour = (corps) => /tokens per day|TPD/i.test(corps || '');
+
+/** « 697ms », « 2.775s », « 2h9m36s » → millisecondes. */
+function dureeEnMs(texte) {
+    if (!texte) return 0;
+    const ms = texte.match(/([\d.]+)ms/);
+    if (ms) return parseFloat(ms[1]);
+    let total = 0;
+    for (const [, n, unite] of texte.matchAll(/([\d.]+)(h|m|s)/g)) {
+        total += parseFloat(n) * (unite === 'h' ? 3600000 : unite === 'm' ? 60000 : 1000);
+    }
+    return total;
+}
+
 async function parGroq(messages, essai = 0) {
     const jeton = process.env.GROQ_API_KEY;
     if (!jeton) throw new Error('clé Groq absente');
-    const modele = process.env.GROQ_TEXT_MODEL || 'openai/gpt-oss-20b';
+    const modele = GROQ_MODELES.find((m) => !journeeFinie.has(m));
+    if (!modele) throw new Error('Groq : tous les modèles ont fini leur journée');
 
     // Le prompt se mesure, la réponse s'estime : une recette détaillée tient en
     // un millier de jetons, réflexion écourtée comprise.
     const prevus = Math.ceil(messages.reduce((n, m) => n + m.content.length, 0) / 4) + 1000;
-    await laisserLaPlace(prevus);
+
+    // Si Groq a dit qu'il ne reste pas la place, on attend sa recharge — elle se
+    // compte en secondes, pas en minutes.
+    if (resteJetons !== null && resteJetons < prevus) {
+        await patienter(Math.min(Math.max(quandRecharge - Date.now(), 300), 65000));
+    }
 
     const rep = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
@@ -364,26 +377,38 @@ async function parGroq(messages, essai = 0) {
             model: modele,
             max_tokens: 4000,
             temperature: 0.2,
-            reasoning_effort: 'low',
+            // Qwen n'accepte que « none » ou « default » ; gpt-oss veut « low ».
+            reasoning_effort: modele.startsWith('qwen') ? 'none' : 'low',
             messages,
         }),
     });
 
-    if (rep.status === 429 && essai < 8) {
-        // Refus malgré le compteur : on croyait avoir la place, on ne l'avait
-        // pas. On enregistre la dépense supposée pour ne pas se reprendre à
-        // repartir trop tôt.
-        consommation.push({ instant: Date.now(), jetons: prevus });
-        const dit = parseFloat(rep.headers.get('retry-after') || '0');
-        const attente = Math.min(Math.max(dit ? dit * 1000 : 8000 * (essai + 1), 2000), 65000);
-        console.log(`   · Groq demande ${Math.round(attente / 1000)} s de pause.`);
-        await patienter(attente);
-        return parGroq(messages, essai + 1);
+    // Ce que Groq annonce fait foi, refus compris.
+    const reste = parseFloat(rep.headers.get('x-ratelimit-remaining-tokens'));
+    if (!Number.isNaN(reste)) resteJetons = reste;
+    quandRecharge = Date.now() + dureeEnMs(rep.headers.get('x-ratelimit-reset-tokens'));
+
+    if (rep.status === 429) {
+        const corps = await rep.text();
+        if (quotaDuJour(corps)) {
+            journeeFinie.add(modele);
+            const suivant = GROQ_MODELES.find((m) => !journeeFinie.has(m));
+            console.log(`   · ${modele} a fini sa journée${suivant ? ` — on passe à ${suivant}.` : '.'}`);
+            if (!suivant) throw new Error('Groq : tous les modèles ont fini leur journée');
+            return parGroq(messages, essai);
+        }
+        if (essai < 8) {
+            const dit = parseFloat(rep.headers.get('retry-after') || '0');
+            const attente = Math.min(Math.max(dit ? dit * 1000 : 8000 * (essai + 1), 2000), 65000);
+            console.log(`   · Groq demande ${Math.round(attente / 1000)} s de pause.`);
+            await patienter(attente);
+            return parGroq(messages, essai + 1);
+        }
+        throw new Error(`Groq 429 — ${corps.slice(0, 160)}`);
     }
 
     if (!rep.ok) throw new Error(`Groq ${rep.status} — ${(await rep.text()).slice(0, 160)}`);
     const d = await rep.json();
-    consommation.push({ instant: Date.now(), jetons: d?.usage?.total_tokens || prevus });
     return d?.choices?.[0]?.message?.content ?? '';
 }
 
