@@ -438,3 +438,32 @@
     transition: transform 0.18s cubic-bezier(0.32, 0.72, 0, 1), background 0.18s ease;
 }
 .caveBtn:active { transform: scale(0.92); background: rgba(255, 255, 255, 0.2); }
+
+/* ── Le porte-clavier ────────────────────────────────────────────────────────
+ *
+ * Un champ invisible, dont le seul rôle est de prendre le focus PENDANT l'appui
+ * sur la loupe : iOS n'ouvre le clavier qu'à cette condition, et le vrai champ
+ * de recherche, lui, n'est monté qu'après. Le clavier passe ensuite tout seul
+ * de l'un à l'autre.
+ *
+ * Ni `display: none` ni `visibility: hidden` : un champ ainsi caché refuse le
+ * focus. On le laisse donc « visible » mais transparent, épais d'un pixel, posé
+ * en bas, hors d'atteinte du doigt. 16 px de corps, sinon Safari zoome sur la
+ * page en le focalisant.
+ */
+.kbKeeper {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: none;
+    outline: none;
+    opacity: 0;
+    background: transparent;
+    color: transparent;
+    font-size: 16px;
+    pointer-events: none;
+}

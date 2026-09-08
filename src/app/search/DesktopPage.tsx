@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header/Header';
 import BottomNav from '@/components/BottomNav/BottomNav';
@@ -13,6 +13,7 @@ import styles from './search.module.css';
 export default function SearchPage() {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
     // Mode « italien » (lien depuis Pasta Lya) : on ne montre QUE les recettes
     // taguées Italie / Dolce Vita — jamais de chorizo espagnol sur une épicerie
     // italienne.
@@ -80,6 +81,7 @@ export default function SearchPage() {
             <main className={styles.main}>
                 <div className={styles.searchBar}>
                     <input
+                        ref={inputRef}
                         type="text"
                         placeholder="Rechercher une recette ou un ingrédient..."
                         className={styles.input}
@@ -87,6 +89,21 @@ export default function SearchPage() {
                         onChange={(e) => setSearchQuery(e.target.value)}
                         autoFocus
                     />
+                    {/* Croix : vide le champ et rend le curseur, comme sur mobile. */}
+                    {searchQuery.length > 0 && (
+                        <button
+                            type="button"
+                            className={styles.clear}
+                            onMouseDown={(e) => e.preventDefault()}
+                            onClick={() => { setSearchQuery(''); inputRef.current?.focus(); }}
+                            aria-label="Effacer la recherche"
+                        >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+                                <circle cx="12" cy="12" r="9" fill="currentColor" opacity="0.35" />
+                                <path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                        </button>
+                    )}
                 </div>
 
                 {searchQuery.trim() === '' ? (

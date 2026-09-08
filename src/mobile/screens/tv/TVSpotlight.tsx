@@ -399,25 +399,52 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         setIngInput('');
     };
 
+    // Croix « tout effacer » : ce qu'elle vide dépend du mode affiché.
+    const hasSomethingToClear =
+        mode === 'assistant' ? aiQuery.trim().length > 0
+            : mode === 'recipe' ? query.length > 0
+                : ingInput.length > 0 || ingTags.length > 0;
+
+    const clearField = () => {
+        if (mode === 'assistant') { setAiQuery(''); setAiResults([]); setAiMessage(''); setAiError(''); }
+        else if (mode === 'recipe') setQuery('');
+        else { setIngInput(''); setIngTags([]); }
+        inputRef.current?.focus();
+    };
+
     const pick = (recipe: Recipe) => { haptic(8); onRecipeSelect(recipe); if (!embedded) onClose(); };
+
+    /*
+     * Curseur dans le champ dès l'ouverture. Le panneau arrive en animation :
+     * un seul essai tombe parfois avant que l'input existe, donc on retente
+     * quelques fois et on s'arrête dès qu'il a le focus.
+     */
+    const focusSoon = () => {
+        const delays = [0, 60, 160, 320, 500];
+        const timers = delays.map((d) => setTimeout(() => {
+            const el = inputRef.current;
+            if (el && document.activeElement !== el) el.focus({ preventScroll: true });
+        }, d));
+        return () => timers.forEach(clearTimeout);
+    };
 
     // Ouverture : focus + page figée. Fermeture : on réinitialise tout.
     useEffect(() => {
         // En panneau, l'écran est toujours « ouvert » : on focalise le champ une
         // fois et on ne touche NI au scroll de la page NI à l'état saisi.
         if (embedded) {
-            const t = setTimeout(() => inputRef.current?.focus(), 120);
-            return () => clearTimeout(t);
+            const stop = focusSoon();
+            return () => stop();
         }
         if (open) {
             // Raccourci loupe : ouvre direct en mode assistant IA et lance la dictée.
             if (initialMode) setMode(initialMode);
-            const t = setTimeout(() => inputRef.current?.focus(), 320);
+            const stop = focusSoon();
             let tv: ReturnType<typeof setTimeout> | undefined;
             if (autoVoice) tv = setTimeout(() => toggleVoiceRef.current(), 420);
             const prev = document.body.style.overflow;
             document.body.style.overflow = 'hidden';
-            return () => { document.body.style.overflow = prev; clearTimeout(t); if (tv) clearTimeout(tv); };
+            return () => { document.body.style.overflow = prev; stop(); if (tv) clearTimeout(tv); };
         }
         setQuery(''); setIngTags([]); setIngInput(''); setMode('recipe');
         setActiveGroup(null); setActiveFilters([]);
@@ -557,6 +584,20 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                     onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addIngTag(); } }}
                                     enterKeyHint="done" autoComplete="off" autoCorrect="off" spellCheck={false}
                                 />
+                            )}
+                            {/* Croix : vide le champ (et les puces) d'un geste, curseur rendu au champ. */}
+                            {hasSomethingToClear && (
+                                <button
+                                    className={styles.spClear}
+                                    onMouseDown={(e) => e.preventDefault()}
+                                    onClick={() => { haptic(8); clearField(); }}
+                                    aria-label="Effacer la recherche"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+                                        <circle cx="12" cy="12" r="9" fill="currentColor" opacity="0.35" />
+                                        <path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                </button>
                             )}
                             {/* Valider sans clavier : les résultats se recalculent aussitôt. */}
                             {mode === 'ingredients' && ingInput.trim() && (

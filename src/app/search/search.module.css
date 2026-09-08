@@ -48,9 +48,31 @@
     z-index: 10;
 }
 
+/* Croix « tout effacer », posée dans le champ. */
+.clear {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+.clear:hover { color: var(--color-text-primary); }
+.clear:active { transform: translateY(-50%) scale(0.9); }
+
 .input {
     width: 100%;
-    padding: 18px 24px;
+    padding: 18px 56px 18px 24px;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
     background: var(--color-bg-tertiary);

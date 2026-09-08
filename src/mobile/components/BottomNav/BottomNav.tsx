@@ -96,6 +96,30 @@ export default function BottomNav() {
     const [voiceSearch, setVoiceSearch] = useState(false);
     const searchLpTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const searchLpFired = useRef(false);
+    /*
+     * Le champ de recherche n'existe pas encore quand on appuie sur la loupe :
+     * le panneau ne se monte qu'après. Or iOS n'ouvre le clavier que si un champ
+     * prend le focus PENDANT le geste de l'utilisateur — un `focus()` posé dans
+     * un `setTimeout` arrive trop tard et ne fait rien. On voyait donc la
+     * recherche s'ouvrir… sans clavier, et il fallait retaper dans le champ.
+     *
+     * Ce champ-ci, invisible, prend le focus dans le geste lui-même : le clavier
+     * monte tout de suite, et le vrai champ le récupère quand il apparaît (iOS
+     * garde le clavier ouvert quand le focus passe d'un champ à un autre).
+     */
+    const keeperRef = useRef<HTMLInputElement>(null);
+    const keeperTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const ouvrirClavier = () => {
+        const el = keeperRef.current;
+        if (!el) return;
+        el.focus({ preventScroll: true });
+        // Filet : si le vrai champ n'a pas pris le relais, on rend le clavier
+        // plutôt que de laisser la frappe tomber dans le vide.
+        if (keeperTimer.current) clearTimeout(keeperTimer.current);
+        keeperTimer.current = setTimeout(() => {
+            if (document.activeElement === el) el.blur();
+        }, 900);
+    };
     const [activeIndex, setActiveIndex] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const pointerStartX = useRef<number | null>(null);
@@ -223,6 +247,8 @@ export default function BottomNav() {
             setIsTimerExpanded(!isTimerExpanded);
         } else {
             setVoiceSearch(false);
+            // Le clavier d'abord (tant qu'on est dans le geste), le panneau ensuite.
+            ouvrirClavier();
             setIsSearchOpen(true);
             setIsTimerExpanded(false);
         }
@@ -232,13 +258,19 @@ export default function BottomNav() {
     const startSearchLp = () => {
         searchLpFired.current = false;
         if (searchLpTimer.current) clearTimeout(searchLpTimer.current);
+        /*
+         * 450 ms, c'est court pour un pouce : un appui un peu appuyé partait en
+         * dictée et on se retrouvait sur l'assistant (« Dis-moi ton envie… »)
+         * alors qu'on voulait simplement chercher. 650 ms, et le moindre
+         * glissement annule — l'appui long reste volontaire.
+         */
         searchLpTimer.current = setTimeout(() => {
             searchLpFired.current = true;
             handleVibrate(22);
             setVoiceSearch(true);
             setIsTimerExpanded(false);
             setIsSearchOpen(true);
-        }, 450);
+        }, 650);
     };
     const endSearchLp = () => { if (searchLpTimer.current) clearTimeout(searchLpTimer.current); };
 
@@ -445,6 +477,16 @@ export default function BottomNav() {
 
     return (
         <>
+            {/* Le porte-clavier : invisible, hors du flux, jamais atteint au doigt. */}
+            <input
+                ref={keeperRef}
+                className={styles.kbKeeper}
+                type="text"
+                tabIndex={-1}
+                aria-hidden="true"
+                autoComplete="off"
+            />
+
             <TVSpotlight
                 open={isSearchOpen}
                 onClose={() => { setIsSearchOpen(false); setVoiceSearch(false); }}
@@ -536,6 +578,8 @@ export default function BottomNav() {
                                     onClick={handleSearchOrTimerClick}
                                     onPointerDown={startSearchLp}
                                     onPointerUp={endSearchLp}
+                                    onPointerMove={endSearchLp}
+                                    onPointerCancel={endSearchLp}
                                     onPointerLeave={endSearchLp}
                                 >
                                     {renderSearchOrTimer(true)}
@@ -609,6 +653,8 @@ export default function BottomNav() {
                                     onClick={handleSearchOrTimerClick}
                                     onPointerDown={startSearchLp}
                                     onPointerUp={endSearchLp}
+                                    onPointerMove={endSearchLp}
+                                    onPointerCancel={endSearchLp}
                                     onPointerLeave={endSearchLp}
                                 >
                                     {renderSearchOrTimer()}
