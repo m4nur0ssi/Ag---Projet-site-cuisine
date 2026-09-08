@@ -103,9 +103,90 @@ async function descriptionTikTok(tiktokId) {
     return '';
 }
 
+/* ── Ce que dit la vidéo, transcrit par TikTok ───────────────────────────── */
+
+/*
+ * TikTok sous-titre lui-même ses vidéos, et publie ces sous-titres dans la
+ * page : `subtitleInfos` porte l'adresse d'un fichier WebVTT, en clair, sans
+ * clé ni cookie ni requête signée. `Source: "ASR"` désigne la piste faite par
+ * sa reconnaissance vocale — c'est-à-dire la recette dictée par l'auteur.
+ *
+ * C'est ce qui manquait. La description ne dit souvent que le titre ; la voix,
+ * elle, dit toujours les gestes. Et cette transcription-là est FAITE PAR
+ * TIKTOK : rien à télécharger, rien à transcrire, aucun quota. Elle est aussi
+ * plus fidèle que le bloc recette affiché dans l'application, qui reformule
+ * (sur le croque McDo il annonçait du pain de mie et du cheddar quand la voix
+ * dit un pain à burger et de l'emmental).
+ */
+
+/** Le tableau JSON qui suit `"cle":[` — repéré en comptant les crochets. */
+function tableauJson(page, cle) {
+    const i = page.indexOf(`"${cle}":[`);
+    if (i < 0) return null;
+    const debut = page.indexOf('[', i);
+    let p = 0, ech = false, chaine = false;
+    for (let j = debut; j < page.length; j++) {
+        const c = page[j];
+        if (ech) { ech = false; continue; }
+        if (c === '\\') { ech = true; continue; }
+        if (c === '"') { chaine = !chaine; continue; }
+        if (chaine) continue;
+        if (c === '[') p++;
+        else if (c === ']' && --p === 0) {
+            try { return JSON.parse(page.slice(debut, j + 1)); } catch { return null; }
+        }
+    }
+    return null;
+}
+
+const NAVIGATEUR = {
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    'accept-language': 'fr-FR,fr;q=0.9',
+};
+
+/** Les pistes de sous-titres, la meilleure d'abord : voix française avant tout. */
+function pistes(page) {
+    const t = tableauJson(page, 'subtitleInfos') || [];
+    const rang = (p) => {
+        const fr = String(p.LanguageCodeName || '').startsWith('fr');
+        const voix = p.Source === 'ASR';
+        return fr && voix ? 0 : fr ? 1 : voix ? 2 : 3;
+    };
+    return t.slice().sort((a, b) => rang(a) - rang(b));
+}
+
+/** Le WebVTT débarrassé de ses horodatages : un texte suivi. */
+function vttEnTexte(vtt) {
+    return vtt.split(/\r?\n/)
+        .map((l) => l.trim())
+        .filter((l) => l && l !== 'WEBVTT' && !l.includes('-->') && !/^\d+$/.test(l))
+        .join(' ');
+}
+
+async function transcriptionTikTok(tiktokId) {
+    const url = `https://www.tiktok.com/@t/video/${tiktokId}`;
+    let page;
+    try {
+        const r = await fetch(url, { headers: NAVIGATEUR });
+        if (!r.ok) return null;
+        page = await r.text();
+    } catch { return null; }
+
+    for (const p of pistes(page)) {
+        if (!p.Url) continue;
+        try {
+            const r = await fetch(p.Url, { headers: { ...NAVIGATEUR, referer: 'https://www.tiktok.com/' } });
+            if (!r.ok) continue;
+            const texte = vttEnTexte(await r.text());
+            if (texte.length > 40) return { texte, source: p.Source, langue: p.LanguageCodeName };
+        } catch { /* piste suivante */ }
+    }
+    return null;
+}
+
 /* ── L'extraction, par une IA gratuite ───────────────────────────────────── */
 
-const CONSIGNE = `Tu reçois la description d'une vidéo de cuisine TikTok, écrite par l'auteur de la recette.
+const CONSIGNE = `Tu reçois une vidéo de cuisine TikTok sous deux formes : la description écrite par l'auteur, et la transcription de ce qu'il DIT dans la vidéo.
 Extrais-en la recette et réponds UNIQUEMENT par du JSON, sans texte autour :
 {"ingredients":[{"quantity":"200 g","name":"farine"}],"steps":["Étape en français.","..."]}
 
@@ -114,7 +195,13 @@ Règles :
 - "quantity" : la quantité telle qu'écrite ("2", "200 g", "1 c. à soupe"). Vide si l'auteur n'en donne pas.
 - "name" : le seul nom de l'ingrédient, sans la quantité.
 - "steps" : une phrase par étape, à l'impératif, dans l'ordre. Reprends les durées et les températures quand elles sont dites.
-- N'INVENTE RIEN. Si la description ne donne pas les étapes, renvoie "steps":[] — mais donne quand même les ingrédients si elle les liste.
+- N'INVENTE RIEN : pas d'ingrédient qui n'est ni écrit ni dit, pas de température devinée. Si rien ne donne les étapes, renvoie "steps":[].
+- La transcription est de l'oral, dicté en cuisinant : elle décrit les gestes dans l'ordre mais sans ponctuation fiable, avec des tics de langue et parfois un mot mal entendu. Récris-la en phrases propres à l'impératif ; corrige l'évident ("1" pour "un", "p'tit" pour "petit").
+- Elle donne rarement les quantités : laisse "quantity" vide plutôt que d'en inventer une.
+- "quantity" garde son unité entière : "2 tranches" et name "emmental", jamais "2" et name "emmental". Une quantité floue à l'oral ("un peu", "quelques", "une pincée") n'est pas une quantité : laisse "quantity" vide.
+- "name" s'écrit comme sur une liste de courses, au singulier et sans élision ("jambon", pas "p'tit peu jambon").
+- Une étape est un GESTE de cuisine. L'auteur finit presque toujours par vanter son plat ou demander un abonnement : ce n'est pas une étape, ne la garde pas ("Régalez-vous", "Dites-moi en commentaire", "C'est trop bon"). Un vrai dressage ou service, si, ("Sers bien chaud avec du persil").
+- Quand la description et la voix se contredisent, LA VOIX A RAISON : c'est l'auteur qui cuisine.
 - Ignore les mots-dièse, les mentions de comptes et les appels à s'abonner.`;
 
 /**
@@ -139,7 +226,7 @@ function lireJson(brut) {
     return null;
 }
 
-async function extraire(titre, description) {
+async function extraire(titre, description, transcription) {
     const compte = process.env.CF_ACCOUNT_ID;
     const jeton = process.env.CF_API_TOKEN;
     if (!compte || !jeton) throw new Error('clés Cloudflare absentes');
@@ -152,7 +239,16 @@ async function extraire(titre, description) {
             temperature: 0.2,
             messages: [
                 { role: 'system', content: CONSIGNE },
-                { role: 'user', content: `Titre : ${titre}\n\nDescription :\n${description.slice(0, 4000)}` },
+                {
+                    role: 'user',
+                    content: [
+                        `Titre : ${titre}`,
+                        `Description :\n${(description || '(vide)').slice(0, 3000)}`,
+                        transcription
+                            ? `Transcription de la vidéo :\n${transcription.slice(0, 5000)}`
+                            : 'Transcription de la vidéo : indisponible.',
+                    ].join('\n\n'),
+                },
             ],
         }),
     });
@@ -203,8 +299,29 @@ async function contenuDe(postId) {
 }
 
 /** Remplit une liste du plugin, en gardant ses attributs d'origine. */
+function motifListe(balise, id) {
+    return new RegExp(`(<${balise}[^>]*id=["']${id}["'][^>]*>)([\\s\\S]*?)(</${balise}>)`, 'i');
+}
+
+/**
+ * Une liste ne compte que si elle porte autre chose que le pis-aller.
+ *
+ * Beaucoup de ces recettes ont déjà de VRAIS ingrédients, relus, parfois
+ * corrigés à la main — seules leurs étapes manquent. Les remplacer par ce que
+ * l'IA entend dans la bande-son serait une perte sèche. On ne réécrit donc une
+ * liste que si elle est vide ou remplie du « voir la vidéo » d'origine.
+ */
+function listeGarnie(html, balise, id) {
+    const m = html.match(motifListe(balise, id));
+    if (!m) return false;
+    const lignes = [...m[2].matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)]
+        .map((l) => l[1].replace(/<[^>]+>/g, '').trim())
+        .filter((t) => t.length > 2 && !REPLI.test(t));
+    return lignes.length > 0;
+}
+
 function remplirListe(html, balise, id, elements) {
-    const motif = new RegExp(`(<${balise}[^>]*id=["']${id}["'][^>]*>)([\\s\\S]*?)(</${balise}>)`, 'i');
+    const motif = motifListe(balise, id);
     if (!motif.test(html)) return null;
     const lis = elements.map((t) => `<li>${xmlEchappe(t)}</li>`).join('');
     return html.replace(motif, `$1${lis}$3`);
@@ -250,21 +367,30 @@ async function ecrireContenu(postId, html) {
     let sansEtapes = 0, ratees = 0;
 
     for (const r of cibles) {
-        const desc = await descriptionTikTok(idTikTok(r.videoHtml));
-        if (!desc) { console.log(`— ${r.id} ${r.title}\n   description TikTok introuvable.\n`); ratees++; continue; }
+        const tiktokId = idTikTok(r.videoHtml);
+        const [desc, voix] = await Promise.all([
+            descriptionTikTok(tiktokId),
+            transcriptionTikTok(tiktokId),
+        ]);
+        /*
+         * Une description vide n'est plus un échec : la voix suffit. On ne
+         * renonce que si les deux manquent.
+         */
+        if (!desc && !voix) { console.log(`— ${r.id} ${r.title}\n   ni description ni transcription chez TikTok.\n`); ratees++; continue; }
         let res;
-        try { res = await extraire(r.title, desc); }
+        try { res = await extraire(r.title, desc, voix && voix.texte); }
         catch (e) { console.log(`— ${r.id} ${r.title}\n   ✗ ${e.message}\n`); ratees++; continue; }
 
         console.log(`— ${r.id} ${r.title}`);
-        console.log(`   description : ${desc.replace(/\s+/g, ' ').slice(0, 100)}…`);
+        if (desc) console.log(`   description : ${desc.replace(/\s+/g, ' ').slice(0, 100)}…`);
+        if (voix) console.log(`   voix (${voix.source}/${voix.langue}) : ${voix.texte.replace(/\s+/g, ' ').slice(0, 100)}…`);
         if (!res.steps.length && !opt('--sans-ingredients')) {
-            console.log(`   ⚠️  aucune étape dans la description (${res.ingredients.length} ingrédient(s) trouvé(s)) — à revoir à la main.\n`);
+            console.log(`   ⚠️  aucune étape exploitable (${res.ingredients.length} ingrédient(s) trouvé(s)) — à revoir à la main.\n`);
             sansEtapes++;
             continue;
         }
         if (!res.ingredients.length) {
-            console.log(`   ⚠️  la description ne liste rien d'exploitable — à revoir à la main.\n`);
+            console.log(`   ⚠️  ni la description ni la voix ne listent d'ingrédient — à revoir à la main.\n`);
             sansEtapes++;
             continue;
         }
@@ -278,9 +404,14 @@ async function ecrireContenu(postId, html) {
         if (opt('--ecrire')) {
             try {
                 const html = await contenuDe(r.id);
-                let neuf = remplirListe(html, 'ul', 'mpprecipe-ingredients-list',
-                    res.ingredients.map((i) => [i.quantity, i.name].filter(Boolean).join(' ').trim()));
-                if (!neuf) throw new Error('liste d\'ingrédients introuvable dans l\'article');
+                let neuf = html;
+                if (listeGarnie(html, 'ul', 'mpprecipe-ingredients-list')) {
+                    console.log('   · ingrédients déjà renseignés : gardés tels quels.');
+                } else {
+                    neuf = remplirListe(html, 'ul', 'mpprecipe-ingredients-list',
+                        res.ingredients.map((i) => [i.quantity, i.name].filter(Boolean).join(' ').trim()));
+                    if (!neuf) throw new Error('liste d\'ingrédients introuvable dans l\'article');
+                }
                 if (res.steps.length) {
                     const avecEtapes = remplirListe(neuf, 'ol', 'mpprecipe-instructions-list', res.steps);
                     if (avecEtapes) neuf = avecEtapes;
@@ -295,7 +426,7 @@ async function ecrireContenu(postId, html) {
     }
 
     fs.writeFileSync('/tmp/etapes-proposees.json', JSON.stringify(retenues, null, 1));
-    console.log(`\n${retenues.length} recette(s) récupérable(s), ${sansEtapes} sans étapes dans la description, ${ratees} en échec.`);
+    console.log(`\n${retenues.length} recette(s) récupérable(s), ${sansEtapes} sans étapes exploitables, ${ratees} en échec.`);
     console.log('Proposition écrite dans /tmp/etapes-proposees.json');
     if (!opt('--ecrire')) console.log('Rien n\'a été modifié. Relance avec --ecrire pour appliquer.');
 })();

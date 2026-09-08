@@ -61,13 +61,78 @@ function extractRestaurantName(desc) {
     return '';
 }
 
-async function isRecipeWithGemini(description, title) {
+/* ── Ce que dit la vidéo, transcrit par TikTok ────────────────────────────────
+ *
+ * TikTok sous-titre lui-même ses vidéos et publie ces sous-titres dans la page
+ * qu'on télécharge déjà : `subtitleInfos` porte l'adresse d'un WebVTT, en
+ * clair, sans clé ni requête signée. `Source: "ASR"` est la piste faite par sa
+ * reconnaissance vocale — la recette dictée par l'auteur.
+ *
+ * C'est ce qui manquait aux 182 recettes sans étapes : leur description ne dit
+ * que le titre, alors que la voix dit tous les gestes. On la joint désormais à
+ * la description avant l'analyse.
+ */
+
+/** Le tableau JSON qui suit `"cle":[` — repéré en comptant les crochets. */
+function tableauJson(page, cle) {
+    const i = page.indexOf(`"${cle}":[`);
+    if (i < 0) return null;
+    const debut = page.indexOf('[', i);
+    let p = 0, ech = false, chaine = false;
+    for (let j = debut; j < page.length; j++) {
+        const c = page[j];
+        if (ech) { ech = false; continue; }
+        if (c === '\\') { ech = true; continue; }
+        if (c === '"') { chaine = !chaine; continue; }
+        if (chaine) continue;
+        if (c === '[') p++;
+        else if (c === ']' && --p === 0) {
+            try { return JSON.parse(page.slice(debut, j + 1)); } catch { return null; }
+        }
+    }
+    return null;
+}
+
+/** Le WebVTT débarrassé de ses horodatages : un texte suivi. */
+function vttEnTexte(vtt) {
+    return vtt.split(/\r?\n/)
+        .map((l) => l.trim())
+        .filter((l) => l && l !== 'WEBVTT' && !l.includes('-->') && !/^\d+$/.test(l))
+        .join(' ');
+}
+
+/** La transcription de la vidéo, la voix française d'abord. Null si aucune. */
+async function transcriptionDepuisPage(html) {
+    const pistes = tableauJson(html, 'subtitleInfos') || [];
+    const rang = (p) => {
+        const fr = String(p.LanguageCodeName || '').startsWith('fr');
+        const voix = p.Source === 'ASR';
+        return fr && voix ? 0 : fr ? 1 : voix ? 2 : 3;
+    };
+    for (const piste of pistes.slice().sort((a, b) => rang(a) - rang(b))) {
+        if (!piste.Url) continue;
+        try {
+            const r = await fetch(piste.Url, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                    'Referer': 'https://www.tiktok.com/',
+                },
+            });
+            if (!r.ok) continue;
+            const texte = vttEnTexte(await r.text());
+            if (texte.length > 40) return texte;
+        } catch { /* piste suivante */ }
+    }
+    return null;
+}
+
+async function isRecipeWithGemini(description, title, transcription) {
     const desc = (description || '').toLowerCase();
     const isManual = desc.includes('iphone') || desc.includes('remote') || (title && title.toLowerCase().includes('iphone'));
 
     // On a réduit la sévérité : si c'est manuel ou un "Stub" WordPress, on tente l'analyse même avec peu de texte
     const isStub = title && title.includes('attente');
-    if (!description || description.trim().length < 5) {
+    if ((!description || description.trim().length < 5) && !transcription) {
         if (!isManual && !isStub) return null;
         console.log(`   ⚠️ Description très faible (${description}), mais mode manuel/stub détecté. On tente l'analyse Gemini...`);
     }
@@ -85,7 +150,13 @@ async function isRecipeWithGemini(description, title) {
 
     Si c'est une recette, extrais les détails au format JSON.
     Titre détecté : "${title || ''}"
-    Description : "${description}"
+    Description : "${description || ''}"
+${transcription ? `    Transcription de ce que dit l'auteur dans la vidéo : "${transcription.slice(0, 5000)}"
+
+    La transcription est de l'oral, dicté en cuisinant : gestes dans l'ordre, sans
+    ponctuation fiable, avec des tics de langue. Récris-la en phrases propres à
+    l'impératif. Elle donne rarement les quantités : n'en invente pas. Quand elle
+    contredit la description, ELLE A RAISON — c'est l'auteur qui cuisine.` : ''}
 
     Format JSON attendu: {
         "isRecipe": true,
@@ -233,6 +304,10 @@ async function fetchTikTokMetadata(videoUrl) {
         });
         const html = await res.text();
         const finalUrl = res.url || effectiveUrl;
+        // La page porte les sous-titres de TikTok : on les lit une fois pour toutes,
+        // quel que soit le chemin par lequel on obtiendra ensuite la description.
+        const transcription = await transcriptionDepuisPage(html);
+        if (transcription) console.log(`    🗣️  Voix de la vidéo transcrite par TikTok (${transcription.length} caractères).`);
 
         // Tentative 1 : JSON Rehydration (Le plus fiable)
         const jsonMatch = html.match(/<script id="__UNIVERSAL_DATA_FOR_REHYDRATION__" type="application\/json">([\s\S]*?)<\/script>/);
@@ -248,7 +323,8 @@ async function fetchTikTokMetadata(videoUrl) {
                         title: itemStruct.desc,
                         description: itemStruct.desc,
                         finalUrl: finalUrl,
-                        author: itemStruct.author?.uniqueId
+                        author: itemStruct.author?.uniqueId,
+                        transcription
                     };
                 }
             } catch (e) {
@@ -273,7 +349,8 @@ async function fetchTikTokMetadata(videoUrl) {
                         title: oData.title.split('\n')[0],
                         description: oData.title,
                         finalUrl: finalUrl,
-                        author: oData.author_name
+                        author: oData.author_name,
+                        transcription
                     };
                 }
             } else {
@@ -294,7 +371,8 @@ async function fetchTikTokMetadata(videoUrl) {
                         title: oData.title.split('\n')[0],
                         description: oData.title,
                         finalUrl: longUrl,
-                        author: oData.author_name
+                        author: oData.author_name,
+                        transcription
                     };
                 }
             }
@@ -309,11 +387,18 @@ async function fetchTikTokMetadata(videoUrl) {
 
         const bestDesc = (metaDescMatch ? metaDescMatch[1] : (ogDescMatch ? ogDescMatch[1] : (titleMatch ? titleMatch[1] : '')));
 
+        if (transcription && (!bestDesc || bestDesc.includes('TikTok - Make Your Day'))) {
+            // La description est vide ou générique, mais l'auteur dicte sa recette :
+            // il y a de quoi travailler.
+            return { title: title || '', description: '', finalUrl, transcription };
+        }
+
         if (bestDesc && !bestDesc.includes('TikTok - Make Your Day')) {
             return {
                 title: bestDesc,
                 description: bestDesc,
-                finalUrl: finalUrl
+                finalUrl: finalUrl,
+                transcription
             };
         }
     } catch (e) {
@@ -419,7 +504,7 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
     const isRestaurant = !!(country && country.toLowerCase().includes('restaurant'));
 
     console.log(`   🧠 Analyse de la recette par l'IA...`);
-    let analysis = await isRecipeWithGemini(description, title);
+    let analysis = await isRecipeWithGemini(description, title, metadata?.transcription);
 
     let isStub = false;
     if (!analysis || !analysis.isRecipe) {
