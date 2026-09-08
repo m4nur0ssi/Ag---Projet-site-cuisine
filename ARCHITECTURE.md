@@ -173,8 +173,21 @@ photo sur le Bureau, puis envoie tout. Il accepte PNG, JPEG et WebP, de
 n'importe quelles dimensions.
 
 Si les deux `.webp` ont déjà été déposés à la main dans `public/recipes-ia`,
-répondre **Entrée** à la question du fichier : il saute la conversion et se
-contente d'envoyer.
+répondre **Entrée** deux fois à la question du fichier : il saute la conversion
+et se contente d'envoyer. Ce chemin **refuse** de continuer si aucun des deux
+fichiers n'a réellement changé — c'est git qui tranche, pas la simple présence
+des fichiers.
+
+Après chaque conversion, la paire est relue et ses dimensions affichées :
+
+```bash
+node scripts/verifier-paire-photo.js 7467
+```
+
+Il vérifie les deux largeurs (1200 / 760) **et** que les deux fichiers montrent
+bien la même photo, par comparaison d'empreintes 16×16. Remplacer une seule des
+deux tailles est la panne la plus sournoise du projet : la carte change, la
+fiche garde l'ancienne image, et ça ne se voit qu'une fois en ligne.
 
 La brique de conversion est utilisable seule :
 
@@ -501,6 +514,16 @@ Corrigé par : marges resserrées et libellé court (« Liste de courses ») sou
 430 px, `white-space: nowrap` sur les trois boutons, et un dégradé plein noir
 sous les boutons. Barre mesurée après correction : **177 px**, sous les 190 px
 que `.planSlide` réserve.
+
+**8 septembre 2026 — le faux « déjà en place » de `photo:perso`.**
+Le chemin sans image ne vérifiait que l'EXISTENCE des deux fichiers — vraie de
+toutes les recettes du catalogue. Un appui sur Entrée par réflexe suffisait donc
+à s'y engager : le script annonçait « on les enverra tels quels », puis l'envoi
+répondait « aucune photo modifiée, rien à envoyer ». Deux messages
+contradictoires dans la même exécution, et l'impression que seule la vignette
+avait été traitée. Il exige désormais un vrai changement (jugé par git), la
+question de l'image se repose une fois avant d'accepter le silence, et chaque
+conversion est suivie d'un contrôle de la paire.
 
 **8 septembre 2026 — les deux chemins pour changer une photo.**
 `photo:refaire` ne passait pas `--video` : il travaillait au texte de la recette

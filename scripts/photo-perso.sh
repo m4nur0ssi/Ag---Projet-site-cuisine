@@ -76,7 +76,15 @@ poser() {
     local image="$2"
 
     if [ -z "$image" ]; then
-        # Rien à convertir : on vérifie juste que les deux fichiers sont là.
+        # Pas d'image à convertir : on prétend envoyer ce qui est déjà là. Encore
+        # faut-il que quelque chose ait VRAIMENT changé.
+        #
+        # La première version se contentait de vérifier que les deux fichiers
+        # EXISTAIENT — ce qui est vrai de toutes les recettes du catalogue. Elle
+        # annonçait donc « on les enverra tels quels », puis l'envoi vers le site
+        # répondait « aucune photo modifiée, rien à envoyer » : deux messages
+        # contradictoires dans la même exécution, et l'impression que le script
+        # n'avait traité qu'une image sur deux.
         local manquants=""
         [ -f "public/recipes-ia/$ids.webp" ] || manquants="$manquants $ids.webp"
         [ -f "public/recipes-ia/$ids-carte.webp" ] || manquants="$manquants $ids-carte.webp"
@@ -85,7 +93,21 @@ poser() {
             echo "      Donne une image à convertir, ou dépose les deux .webp toi-même."
             return 1
         fi
-        echo "   ✔ Les deux fichiers sont là, on les enverra tels quels."
+
+        # git est le seul juge : c'est lui qui décide de ce qui partira.
+        local change
+        change=$(git status --porcelain -- \
+            "public/recipes-ia/$ids.webp" "public/recipes-ia/$ids-carte.webp" | wc -l | tr -d ' ')
+        if [ "$change" = "0" ]; then
+            echo "   ⚠️  Les deux fichiers existent, mais AUCUN n'a été modifié."
+            echo "      La photo en ligne est déjà celle qui est sur ce disque :"
+            echo "      il n'y a rien à envoyer, et rien ne changerait sur le site."
+            echo
+            echo "      Si tu voulais poser une nouvelle photo, relance et GLISSE"
+            echo "      le fichier image quand la question est posée."
+            return 1
+        fi
+        echo "   ✔ $change fichier(s) modifié(s) à la main, on les enverra tels quels."
         TRAITEES="$TRAITEES $ids"
         return 0
     fi
@@ -97,6 +119,15 @@ poser() {
 
     echo "🖼  Conversion pour la recette $ids…"
     node scripts/convertir-photo.js "$ids" "$image"
+
+    # Ceinture et bretelles : on RELIT les deux fichiers et on montre leurs
+    # dimensions. Une photo de carte sans sa grande version laisse la fiche sur
+    # l'ancienne image — le genre de panne qui ne se voit qu'une fois en ligne.
+    if ! node scripts/verifier-paire-photo.js "$ids"; then
+        echo "   ⚠️  La paire est incomplète : on n'enverra pas cette recette."
+        return 1
+    fi
+
     TRAITEES="$TRAITEES $ids"
     return 0
 }
@@ -120,10 +151,23 @@ demander_et_poser() {
 
     echo
     echo "Quelle image ? Glisse le fichier ici depuis le Finder."
-    echo "(Entrée seule = les deux .webp sont déjà en place, on envoie tels quels)"
     printf "→ "
     read -r image
     image=$(nettoyer_chemin "$image")
+
+    # Entrée seule était trop facile à taper par réflexe, et menait au chemin
+    # « les fichiers sont déjà en place » sans qu'on l'ait voulu. On redemande
+    # une fois, en disant ce que le silence signifie.
+    if [ -z "$image" ]; then
+        echo
+        echo "   Aucune image donnée."
+        echo "   • Pour en poser une : glisse le fichier maintenant."
+        echo "   • Si tu as DÉJÀ remplacé les deux .webp toi-même dans"
+        echo "     public/recipes-ia : appuie simplement sur Entrée."
+        printf "→ "
+        read -r image
+        image=$(nettoyer_chemin "$image")
+    fi
 
     poser "$ids" "$image" || true
     return 0
