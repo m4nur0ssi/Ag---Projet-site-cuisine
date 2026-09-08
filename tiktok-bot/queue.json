@@ -1,31 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN82k4shT/",
-      "country": "Italie",
-      "timestamp": "2026-09-08T09:27:57.661Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN82k4C75/",
-      "country": "Pâtes",
-      "timestamp": "2026-09-08T09:29:55.794Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN82kw46j/",
-      "country": "Italie",
-      "timestamp": "2026-09-08T09:31:00.174Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN82kvpyD/",
-      "country": "Pâtes",
-      "timestamp": "2026-09-08T09:32:00.985Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN82kgXNg/",
-      "country": "Italie",
-      "timestamp": "2026-09-08T09:33:46.522Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN8FcaP8F/",
@@ -42,6 +16,22 @@
       "essais": 1,
       "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
       "quand": "2026-09-07T08:26:27.347Z"
+    },
+    {
+      "videoUrl": "https://vm.tiktok.com/ZN82kvpyD/",
+      "country": "Pâtes",
+      "timestamp": "2026-09-08T09:32:00.985Z",
+      "essais": 1,
+      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
+      "quand": "2026-09-08T09:35:22.492Z"
+    },
+    {
+      "videoUrl": "https://vm.tiktok.com/ZN82kgXNg/",
+      "country": "Italie",
+      "timestamp": "2026-09-08T09:33:46.522Z",
+      "essais": 1,
+      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
+      "quand": "2026-09-08T09:35:37.977Z"
     }
   ]
 }
