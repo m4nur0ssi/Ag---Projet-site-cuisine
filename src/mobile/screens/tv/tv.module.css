@@ -16,6 +16,12 @@
     color: var(--tv-txt);
     min-height: 100vh;
     overflow-x: hidden;
+    /* `clip` coupe comme `hidden`, mais ne fait PAS de la page un conteneur de
+       défilement. Avec `hidden`, tout `position: sticky` posé à l'intérieur
+       collait au cadre de la page — qui ne défile pas — donc ne collait à rien :
+       c'est ce qui laissait la barre des jours sortir par le haut. Les
+       navigateurs qui ignorent `clip` gardent `hidden` juste au-dessus. */
+    overflow-x: clip;
     /* Sans ça, un appui long sur une carte ouvre D'ABORD le menu natif d'iOS
        (Copier / Partager / Ouvrir l'image) par-dessus le nôtre. */
     -webkit-touch-callout: none;
@@ -2165,13 +2171,29 @@
     color: rgba(235, 235, 245, 0.6);
 }
 
-/* Barre des jours : repère fixe pendant le balayage. */
+/* ── Barre des jours ─────────────────────────────────────────────────────────
+ *
+ * « Repère fixe pendant le balayage » : elle ne l'était pas. Elle défilait avec
+ * la page, et une journée un peu remplie la faisait sortir par le haut — sous
+ * la barre d'état du téléphone en mode application. On voyait encore les
+ * pastilles, on appuyait dessus, et RIEN ne se passait : le doigt tombait sur
+ * la barre d'état, pas sur le bouton.
+ *
+ * Elle est donc collée en haut, sous l'encoche, avec un fond flou pour que les
+ * cartes qui passent dessous ne la rendent pas illisible.
+ */
 .planDays {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 30;
     display: flex;
     gap: 6px;
     padding: 6px 18px 14px;
     overflow-x: auto;
     scrollbar-width: none;
+    background: rgba(0, 0, 0, 0.72);
+    -webkit-backdrop-filter: blur(24px) saturate(170%);
+    backdrop-filter: blur(24px) saturate(170%);
 }
 .planDays::-webkit-scrollbar { display: none; }
 
@@ -2427,8 +2449,19 @@
        26 px du haut, tombaient dans la partie encore transparente et laissaient
        voir la carte derrière eux — on croyait à un bandeau flottant au milieu
        de l'écran. Le noir est désormais plein sous les boutons, et le fondu
-       tient dans la marge haute. */
-    background: linear-gradient(0deg, #000 80%, rgba(0, 0, 0, 0.88) 90%, rgba(0, 0, 0, 0) 100%);
+       tient dans la marge haute.
+
+       Les arrêts sont en PIXELS, pas en pourcentage : la barre ne fait pas la
+       même hauteur partout (libellé court ou long, encoche, « en main »), et un
+       fondu à 80 % laissait de nouveau les boutons dans le transparent dès que
+       la barre grandissait. En pixels, il tient toujours dans les 26 px de
+       marge haute, quelle que soit la hauteur de la barre. */
+    background: linear-gradient(
+        0deg,
+        #000 calc(100% - 26px),
+        rgba(0, 0, 0, 0.9) calc(100% - 12px),
+        rgba(0, 0, 0, 0) 100%
+    );
     pointer-events: none;
 }
 .planFooter > * { pointer-events: auto; }
@@ -2573,6 +2606,57 @@
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
     font-size: 13px;
     font-weight: 500;
+    cursor: pointer;
+}
+
+/* ── L'accompagnement au téléphone ───────────────────────────────────────────
+ *
+ * Depuis que la garniture est une CARTE (`.planSideCard`, photo pleine largeur
+ * et titre incrusté comme le plat), seul le grand écran l'habillait : les règles
+ * vivaient dans `@media (min-width: 900px)`. Au téléphone le bouton restait donc
+ * NU — la photo sortait à sa taille naturelle, débordait du cadre, et
+ * « Retirer » redevenait un lien bleu de système.
+ *
+ * Le cadre de base est donc ici ; le grand écran ne fait plus que l'étirer sur
+ * la hauteur de sa colonne. La ligne fine d'origine (`.planSideImg`,
+ * `.planSideText`) reste pour les vues qui s'en servent encore.
+ */
+.planSide:has(.planSideCard) {
+    position: relative;
+    display: block;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+.planSideCard {
+    position: relative;
+    display: block;
+    width: 100%;
+    /* Un cran plus basse que le plat : elle l'accompagne, elle ne le double pas. */
+    aspect-ratio: 16 / 10;
+    padding: 0;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #141416;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+.planSideRemove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(10, 10, 12, 0.7);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    color: #ff453a;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
     cursor: pointer;
 }
 

@@ -208,6 +208,13 @@ html, body {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
+  /* `clip` coupe pareil, mais ne fait PAS du corps de page un conteneur de
+     défilement. Avec `hidden`, `overflow-y` passe implicitement à `auto` : le
+     corps devient un conteneur qui, lui, ne défile jamais (c'est `html` qui
+     défile), et TOUT `position: sticky` posé à l'intérieur ne colle alors à
+     rien — la barre des jours du planificateur, entre autres, sortait par le
+     haut. Les navigateurs qui ignorent `clip` gardent la ligne du dessus. */
+  overflow-x: clip;
   position: relative;
   background-color: var(--color-bg-secondary);
   -webkit-overflow-scrolling: touch;
@@ -226,6 +233,7 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   /* Desktop Premium Base */
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @media (min-width: 1025px) {
