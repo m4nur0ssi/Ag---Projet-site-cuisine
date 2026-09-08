@@ -2,11 +2,5093 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/09/2026 12:45:28
+ * Dernière mise à jour: 08/09/2026 14:19:45
  * Total: 689 recettes
  */
-export const exportSyncId = "1788871528861";
+export const exportSyncId = "1788877185385";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6310",
+        "title": "Jus délicieux et rafraîchissant",
+        "description": "Un jus frais et désaltérant à base de pastèque, pêche, citron et menthe, parfait pour l'été.",
+        "image": "/recipes-ia/6310-carte.webp",
+        "category": "rafraichissements",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653924796475952416\" data-video-id=\"7653924796475952416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653924796475952416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             400g de pastèques"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 à 3 pêches blanches"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 1 ou 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques feuilles de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques glaçons"
+            }
+        ],
+        "steps": [
+            "Ajoutez la pastèque coupée en morceaux.",
+            "Ajoutez les pêches blanches coupées en morceaux.",
+            "Ajoutez le jus des citrons.",
+            "Ajoutez une pincée de sel.",
+            "Mélangez le tout jusqu'à obtenir une consistance lisse.",
+            "Filtrez le mélange pour enlever les pulpes.",
+            "Placez le jus filtré au congélateur pour le refroidir.",
+            "Ajoutez quelques feuilles de menthe pour la fraîcheur.",
+            "Servez bien frais, éventuellement avec des glaçons."
+        ],
+        "tags": [
+            "Healthy",
+            "Rafraîchissements",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6347",
+        "title": "PÂTES SAUCE TOMATE SPICY",
+        "description": "Des pâtes relevées à la sauce tomate, agrémentées de breasola et de parmesan, parfaites pour une personne.",
+        "image": "/recipes-ia/6347-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7606397282812038422\" data-video-id=\"7606397282812038422\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7606397282812038422\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             80 g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 demi oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un peu de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             4 CAS de sauce tomate ou pulpe de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Un filet de crème"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices : piment d'Espelette, origan, sel poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques tranches de breasola"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Une tranche de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil plat"
+            }
+        ],
+        "steps": [
+            "Cuisinez l'oignon rouge et l'ail dans une poêle, puis déglacez avec du vin blanc.",
+            "Ajoutez les pâtes et faites cuire jusqu'à ce qu'elles soient al dente.",
+            "Pendant ce temps, préparez la sauce en mélangeant la sauce tomate basilique, la crème épaisse, le piment d'Espelette, l'origan, le sel, le poivre et le parmesan.",
+            "Mélangez bien la préparation et laissez cuire quelques minutes.",
+            "Dressez le plat en ajoutant du parmesan, des tranches de bresaola, une tranche de citron et du persil plat."
+        ],
+        "tags": [
+            "épicé",
+            "Italie",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6345",
+        "title": "Salade César",
+        "description": "Une salade César classique et rafraîchissante avec du poulet pané, des tomates cerises et du parmesan.",
+        "image": "/recipes-ia/6345-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653779236460743968\" data-video-id=\"7653779236460743968\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653779236460743968\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥗\n             salade Batavia"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             Poulet pané"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             2 cas de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             copeaux de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             crème balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             sauce César (vinaigrette)"
+            }
+        ],
+        "steps": [
+            "Coupez la salade en petits morceaux.",
+            "Mettez la salade de côté.",
+            "Coupez très finement l'oignon rouge et le poulet pané.",
+            "Étalez la salade dans l'assiette.",
+            "Ajoutez une première couche de sauce César.",
+            "Disposez l'oignon et le poulet, en étalant bien les morceaux.",
+            "Ajoutez généreusement des croûtons de salade.",
+            "Saupoudrez 1 cuillère à soupe de parmesan et quelques copeaux de parmesan.",
+            "Coupez les tomates cerises en deux et étalez-les.",
+            "Ajoutez la crème balsamique et la sauce César."
+        ],
+        "tags": [
+            "Salades",
+            "USA",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6351",
+        "title": "Taboulé de chou-fleur",
+        "description": "Une recette légère, fraîche et pleine de saveurs pour les beaux jours ! Un taboulé revisité, sans semoule, simple à préparer et parfait pour un repas d'été frais et gourmand !",
+        "image": "/recipes-ia/6351-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654604752155725089\" data-video-id=\"7654604752155725089\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654604752155725089\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥬\n             1 chou-fleur"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1 petite boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             150 g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             4 tranches de jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Coupez le chou-fleur en fleurettes et mixez-le jusqu'à obtenir une texture semblable à la semoule.",
+            "Coupez la tomate en petits tubes et le concombre en dés.",
+            "Hachez finement l'oignon rouge, le persil et la ciboulette.",
+            "Mélangez le chou-fleur mixé avec la tomate, le concombre, l'oignon, le persil, la ciboulette, le jambon blanc et le fromage comté.",
+            "Ajoutez les pois chiches, le sel, le poivre, le jus d'un citron et l'huile d'olive.",
+            "Mélangez bien tous les ingrédients.",
+            "Laissez reposer 30 minutes au frais avant de servir."
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6327",
+        "title": "Brochettes de poulet ananas piquantes à l'airfryer",
+        "description": "Des brochettes de poulet et ananas relevées avec une sauce piquante, idéales pour une cuisson rapide à l'airfryer.",
+        "image": "/recipes-ia/6327-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649798540742380833\" data-video-id=\"7649798540742380833\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649798540742380833\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 filet de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/2 ananas"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce piquante (aigre douce piquante)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sauce huître"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Curry"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais"
+            }
+        ],
+        "steps": [
+            "Découpez l'ananas et le poulet en morceaux de même taille.",
+            "Mettez les morceaux dans un saladier.",
+            "Assaisonnez avec la sauce piquante, la sauce huître, le curry, le paprika, le sel, le poivre et le piment d'Espelette.",
+            "Formez les brochettes sur des piques en bois.",
+            "Cuisez les brochettes dans l'airfryer pendant 12 minutes à 140 °C.",
+            "Pendant la cuisson, préparez une sauce en mélangeant le beurre fondu, la sauce piquante et le persil.",
+            "Nappez les brochettes avec la sauce à la fin de la cuisson.",
+            "Servez les brochettes chaudes sur une assiette et nappez encore un peu de sauce si désiré."
+        ],
+        "tags": [
+            "airfryer",
+            "asiatique",
+            "épicé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6367",
+        "title": "Glace Maison sans matériel",
+        "description": "Une recette facile pour préparer de la glace maison sans avoir besoin de sorbetière.",
+        "image": "/recipes-ia/6367-carte.webp",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655396135166594337\" data-video-id=\"7655396135166594337\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655396135166594337\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "2 tablettes chocolat"
+            },
+            {
+                "quantity": "",
+                "name": "10cl crème liquide"
+            },
+            {
+                "quantity": "",
+                "name": "mascarpone"
+            },
+            {
+                "quantity": "",
+                "name": "pépites de chocolat noir"
+            }
+        ],
+        "steps": [
+            "Prenez des gobelets en carton.",
+            "Prenez 2 tablettes de chocolat.",
+            "Mettez les tablettes de chocolat dans un bol et faites-les fondre au micro-ondes pendant quelques secondes.",
+            "Une fois le chocolat fondu, mélangez bien.",
+            "Versez le chocolat fondu dans les gobelets et faites tourner les gobelets pour que le chocolat recouvre bien les bords.",
+            "Enlevez l'excès de chocolat qui déborde.",
+            "Mettez les gobelets au congélateur.",
+            "Après qu'ils soient congelés, retirez les gobelets du congélateur et ajoutez le mascarpone au chocolat fondu.",
+            "Mélangez bien le tout.",
+            "Ajoutez environ 10 cl de crème liquide et mélangez pendant 2 minutes pour obtenir une bonne texture.",
+            "Ajoutez des pépites de chocolat noir (ou d'un autre type) et mélangez une dernière fois.",
+            "Remplissez les gobelets congelés avec la préparation.",
+            "Insérez un bâtonnet (ou une petite fourchette en carton) dans chaque gobelet.",
+            "Mettez les gobelets au congélateur pendant 1 à 2 heures jusqu'à ce que la glace soit prise.",
+            "Déchirez le gobelet pour servir la glace."
+        ],
+        "tags": [
+            "Les Glaces",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6333",
+        "title": "Kinder Country Airfryer",
+        "description": "Une recette facile et rapide pour préparer des Kinder Country maison au Airfryer en seulement 3 minutes et à moindre coût.",
+        "image": "/recipes-ia/6333-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641271173887692064\" data-video-id=\"7641271173887692064\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641271173887692064\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "riz soufflé"
+            },
+            {
+                "quantity": "",
+                "name": "1 tablette chocolat blanc"
+            },
+            {
+                "quantity": "",
+                "name": "1 tablette chocolat au lait"
+            }
+        ],
+        "steps": [
+            "Préchauffez l'airfryer à 150 °C",
+            "Faites fondre le riz soufflé et les deux tablettes de chocolat pendant 3 minutes",
+            "Mélangez le chocolat pour bien l'unifier",
+            "Mettez le mélange au frigo pendant 10 minutes pour qu'il fige",
+            "Servez les Kinder Country"
+        ],
+        "tags": [
+            "Desserts",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6325",
+        "title": "Salade fraîche d'été aux pois chiches et fêta",
+        "description": "Une salade bien fraîche pour l'été, qui change de la salade verte 👀🤤",
+        "image": "/recipes-ia/6325-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653502841876696353\" data-video-id=\"7653502841876696353\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653502841876696353\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             pois chiche"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n             avocat"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             pignons de pain"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             poivre"
+            }
+        ],
+        "steps": [
+            "Découpez 1 oignon rouge, 1 concombre et 1 avocat.",
+            "Mélangez 2 gousses d'ail, l'huile d'olive, le citron et 1 bonne cuillère de moutarde, puis ajoutez le sel et le poivre.",
+            "Dans un saladier, versez les pois chiches, le concombre, l'oignon rouge, l'avocat, un peu de persil, quelques pignons de pain et la feta.",
+            "Ajoutez la sauce préparée et mélangez bien."
+        ],
+        "tags": [
+            "Grèce",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6331",
+        "title": "Salade fraîche pastèque et pêche",
+        "description": "La salade la plus fraîche de l'été☀️✨ La pastèque dans la salade tu valides ?👀",
+        "image": "/recipes-ia/6331-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645618857603763488\" data-video-id=\"7645618857603763488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645618857603763488\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pastèque"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pêche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fêta"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre balsamique"
+            }
+        ],
+        "steps": [
+            "Prenez une belle pastèque et découpez-la en petits cubes.",
+            "Découpez quelques pêches en petits cubes de la même taille que la pastèque.",
+            "Coupez la fêta en petits cubes de la même taille que la pastèque.",
+            "Mettez tous les ingrédients dans un saladier.",
+            "Ajoutez du basilic.",
+            "Ajoutez une petite quantité d'huile d'olive.",
+            "Ajoutez du sel.",
+            "Ajoutez du poivre.",
+            "Ajoutez une petite quantité de vinaigre balsamique.",
+            "Servez la salade."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6335",
+        "title": "Tartinable à l'ail confit",
+        "description": "Un tartinable savoureux et intense à base d'ail confit, parfait pour l'apéritif.",
+        "image": "/recipes-ia/6335-carte.webp",
+        "category": "aperitifs",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630432257085410582\" data-video-id=\"7630432257085410582\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630432257085410582\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             ail confit"
+            }
+        ],
+        "steps": [
+            "Préchauffez le four à 160 °C.",
+            "Mettez les gousses d'ail dans un petit ramequin.",
+            "Ajoutez de l'huile d'olive jusqu'en haut.",
+            "Assaisonnez avec un peu de sel et de poivre.",
+            "Faites cuire au four pendant 40 minutes.",
+            "Écrasez l'ail confit avec une fourchette.",
+            "Ajoutez un peu d'huile de cuisson si désiré.",
+            "Tartinez sur des tartines de pain grillé."
+        ],
+        "tags": [
+            "Apéritifs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6422",
+        "title": "SAUCE SWEET CHILI",
+        "description": "Une sauce sweet chili maison, bien meilleure que celle du commerce, avec plus de goût, moins chère et sans conservateur.",
+        "image": "/recipes-ia/6422-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7378175594032303393\" data-video-id=\"7378175594032303393\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7378175594032303393\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             10 piments oiseaux"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             5 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             3/4 bol de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             3/4 du bol de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1/2 bol de sauce poisson"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 bol d'eau (25 cl)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cas de maizena"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            }
+        ],
+        "steps": [
+            "Mélangez les piments oiseaux et les gousses d'ail pour obtenir une pâte.",
+            "Faites revenir la pâte dans de l'huile neutre à feu doux.",
+            "Ajoutez le vinaigre de riz, le sucre blanc et la sauce poisson.",
+            "Laissez cuire à feu doux pendant 15 minutes.",
+            "Rectifiez avec du sel, ajoutez un peu d'eau et faites revenir encore 5 minutes.",
+            "Épaississez le tout avec la fécule de maïs.",
+            "Servez."
+        ],
+        "tags": [
+            "Asi",
+            "épicé",
+            "Pas cher",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6406",
+        "title": "Sauce Cowboy et Côte de Bœuf",
+        "description": "Une recette rapide et savoureuse de côte de bœuf accompagnée d'une sauce cowboy maison relevée.",
+        "image": "/recipes-ia/6406-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7561102485838925078\" data-video-id=\"7561102485838925078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7561102485838925078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             200g beurre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1/2 càc sel (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment en flocon (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 càc paprika (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 càc moutarde (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 côte de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25g beurre (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Romarin (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail (pour la cuisson)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la cuisson)"
+            }
+        ],
+        "steps": [
+            "Préchauffez le four à 200 °C.",
+            "Dans une poêle à feu moyen, faites chauffer l'huile d'olive avec une noisette de beurre.",
+            "Ajoutez la côte de bœuf à froid et faites cuire jusqu'à ce qu'elle soit bien dorée.",
+            "Retournez la viande, ajoutez le romarin, une gousse d'ail écrasée et un peu de beurre.",
+            "Quand la viande mousse, arrosez‑la généreusement.",
+            "Terminez la cuisson au four à 200 °C pendant 10 à 15 minutes selon votre préférence de cuisson.",
+            "Pendant ce temps, faites fondre du beurre à feu doux avec une gousse d'ail hachée.",
+            "Ajoutez le sel, le poivre, le paprika, le piment en flocon, le persil, la ciboulette, le thym, le 1/2 jus de citron et la moutarde.",
+            "Mélangez bien jusqu'à obtenir une sauce homogène.",
+            "Servez la côte de bœuf avec la sauce cowboy, en ajoutant une touche de ciboulette si désiré."
+        ],
+        "tags": [
+            "épicé",
+            "Sauces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6412",
+        "title": "Sauce Sriracha Maison",
+        "description": "Recette pour faire votre propre sauce sriracha maison, piquante et savoureuse.",
+        "image": "/recipes-ia/6412-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7374080251342671137\" data-video-id=\"7374080251342671137\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7374080251342671137\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌶️\n             500 g de piments rouges marocains"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             100 g d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Vinaigre blanc (à hauteur)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une cuillère à soupe de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             140 g de sucre"
+            }
+        ],
+        "steps": [
+            "Coupez les piments en grosses rondelles.",
+            "Réservez-les dans une casserole.",
+            "Épluchez 100 g d'ail, écrasez les gousses.",
+            "Ajoutez l'ail aux piments.",
+            "Versez le vinaigre blanc à hauteur.",
+            "Portez à ébullition, laissez cuire 10 minutes.",
+            "Transférez les piments et l'ail dans un blender.",
+            "Ajoutez 6 cuillères à soupe de vinaigre de cuisson (ou vinaigre blanc).",
+            "Réduisez en smoothie.",
+            "Filtrez à l'aide d'une passoire.",
+            "Ajoutez 1 cuillère à soupe de sel, 140 g de sucre blanc.",
+            "Sur feu doux, mélangez pendant 3 minutes.",
+            "Réajustez le niveau de sel et de sucre.",
+            "Laissez refroidir.",
+            "Transférez la sauce dans des contenants, conservez au réfrigérateur jusqu'à 1 mois."
+        ],
+        "tags": [
+            "asiatique",
+            "épicé",
+            "Pas cher",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6116",
+        "title": "Bol asperges vertes, soja & jaune d'oeuf",
+        "description": "Un bol frais et savoureux à base d'asperges vertes, assaisonné de sauce soja, huile de sésame et mirin, garni de nori, sésame et d'un jaune d'œuf pour une touche onctueuse.",
+        "image": "/recipes-ia/6116-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634567643676249346\" data-video-id=\"7634567643676249346\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634567643676249346\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g d'asperges vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 càs d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 càs de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 càs de mirin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 feuille de nori"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 càs de sésame (ou furikake)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            }
+        ],
+        "steps": [
+            "Cuire les asperges vertes 3 à 4 minutes dans de l'eau salée.",
+            "Couper les asperges en petits morceaux.",
+            "Préparer la vinaigrette en mélangeant l'huile de sésame, le vinaigre de riz, la sauce soja et, si désiré, le mirin.",
+            "Ajouter le zeste et le jus du citron vert à la vinaigrette.",
+            "Sécher et ajouter une petite quantité de feuilles de nori à la vinaigrette.",
+            "Saupoudrer de sésame torréfié.",
+            "Verser la vinaigrette sur les asperges encore tièdes.",
+            "Ajouter du riz bien chaud dans le bol.",
+            "Ajouter un jaune d'œuf sur le dessus.",
+            "Parsemer de ciboulette fraîche."
+        ],
+        "tags": [
+            "Asie",
+            "Healthy",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6381",
+        "title": "Cheesecake salé sans cuisson",
+        "description": "Une recette ultra fraîche, parfaite pour les journées d'été ! Facile à préparer, sans cuisson et idéale en entrée ou à partager à l'apéro.",
+        "image": "/recipes-ia/6381-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656024768084331808\" data-video-id=\"7656024768084331808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656024768084331808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de Tuc"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             300 g de yaourt à la grecque nature"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon cru"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 feuilles de gélatine"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Mélangez le tuc avec le beurre fondu jusqu'à obtenir une texture homogène.",
+            "Déposez la préparation dans un moule et égalisez la surface.",
+            "Laissez reposer au réfrigérateur pendant 30 minutes.",
+            "Réhydratez les feuilles de gélatine dans de l'eau froide.",
+            "Dans un saladier, mélangez le fromage frais et le yaourt à la grecque nature.",
+            "Ajoutez la ciboulette fraîche, le jus d'un citron et du poivre, puis mélangez à nouveau.",
+            "Faites fondre la gélatine réhydratée dans un peu d'eau chaude et incorporez-la au mélange de fromage.",
+            "Ajoutez le jambon cru et versez l'appareil sur la base de biscuit dans le moule.",
+            "Laissez prendre au réfrigérateur pendant plusieurs heures.",
+            "Pendant ce temps, hachez finement l'oignon rouge, épépinez les tomates et coupez-les en brunoise, puis coupez le concombre en dés.",
+            "Mélangez les légumes avec un peu de persil frais, du sel, du poivre et de l'huile d'olive dans un saladier.",
+            "Une fois le cheesecake pris, démoulez-le et déposez le tartare de légumes sur le dessus.",
+            "Servez frais et dégustez."
+        ],
+        "tags": [
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6337",
+        "title": "Salade marocaine",
+        "description": "Une salade toute simple, rapide à faire et parfaite pour accompagner vos barbeuc cet été.",
+        "image": "/recipes-ia/6337-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630014915067120918\" data-video-id=\"7630014915067120918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630014915067120918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Découpez les tomates, le concombre et l'oignon rouge en petits morceaux égaux.",
+            "Mettez les légumes dans un saladier.",
+            "Ajoutez une bonne huile d'olive.",
+            "Ajoutez le jus d'un citron.",
+            "Salez et poivrez selon votre goût.",
+            "Ajoutez un peu de persil haché.",
+            "Mélangez bien les ingrédients."
+        ],
+        "tags": [
+            "barbecue",
+            "Healthy",
+            "Orient",
+            "Pas cher",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6458",
+        "title": "Bœuf au Chorizo",
+        "description": "Un plat savoureux à base de filet de bœuf et de chorizo à griller, relevé par la ciboulette.",
+        "image": "/recipes-ia/6458-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657231223806315809\" data-video-id=\"7657231223806315809\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657231223806315809\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             500g Filet de bœuf (rumsteck ou bavette)"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             200g chorizo à griller"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            }
+        ],
+        "steps": [
+            "Piquez le filet de bœuf avec des cure-dents.",
+            "Retirez la peau du chorizo et collez la chair sur le filet de bœuf.",
+            "Roulez le filet de bœuf.",
+            "Placez le filet roulé au congélateur pendant 10 à 15 minutes pour faciliter la découpe.",
+            "Tranchez le filet en lamelles d'environ 0,5 cm.",
+            "Piquez chaque tranche avec un cure-dent.",
+            "Cuisez les lamelles à la poêle, à la planche à ou au barbecue, 30 secondes de chaque côté.",
+            "Disposez les lamelles dans une assiette et parsemez de ciboulette avant de servir."
+        ],
+        "tags": [
+            "Entrées",
+            "épicé",
+            "Espagne"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6456",
+        "title": "CHUROFFLE",
+        "description": "Une recette hybride de gaufres inspirées des churros, facile à réaliser avec des ingrédients de base.",
+        "image": "/recipes-ia/6456-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7646000791429467424\" data-video-id=\"7646000791429467424\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7646000791429467424\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             150g de farine T55"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             200 ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             55 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            }
+        ],
+        "steps": [
+            "Faire chauffer l'eau avec le sel, le sucre et le beurre jusqu'à ébullition.",
+            "Retirer du feu et ajouter la farine d'un seul coup, puis mélanger à la spatule.",
+            "Remettre la pâte sur feu doux pendant quelques minutes afin de bien la dessécher jusqu'à ce qu'elle se détache des parois de la poêle.",
+            "Verser la pâte dans un saladier, puis ajouter les œufs un à un en mélangeant bien entre chaque ajout jusqu'à obtenir une pâte lisse et homogène.",
+            "Transférer la pâte dans une poche à douille.",
+            "Faire chauffer l'huile jusqu'à ce qu'elle soit bien chaude.",
+            "Appuyer sur la poche à douille pour faire sortir la pâte directement au-dessus de l'huile.",
+            "Couper les churros à l'aide d'un ciseau pour former des petits morceaux.",
+            "Laisser cuire jusqu'à ce qu'ils soient bien dorés.",
+            "Déposer les churros sur du papier absorbant.",
+            "Enrober immédiatement les churros dans un mélange de sucre et d'un peu de cannelle.",
+            "Servir avec du chocolat."
+        ],
+        "tags": [
+            "Espagne",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6494",
+        "title": "Carpaccio de Melon",
+        "description": "Une entrée fraîche et légère à base de rubans de melon, mozzarella di bufala ultra crémeuse, jambon cru, pesto et pignons de pin. Prête en seulement 10 minutes, elle est parfaite pour les journées d'été.",
+        "image": "/recipes-ia/6494-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657528299907730720\" data-video-id=\"7657528299907730720\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657528299907730720\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             melon"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             mozzarella di bufala"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             jambon cru"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             pesto"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             pignons de pin"
+            }
+        ],
+        "steps": [
+            "Coupez le melon en deux, retirez les pépins, découpez en quartiers, puis réalisez des rubans à l'aide d'un économe.",
+            "Disposez les rubans de melon dans un plat.",
+            "Déposez au centre une boule de mozzarella.",
+            "Ajoutez des tranches de jambon cru.",
+            "Parsemez de feuilles de basilic.",
+            "Ajoutez une cuillère de pesto.",
+            "Saupoudrez de pignons de pin.",
+            "Versez un filet d'huile d'olive."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6484",
+        "title": "MUFFINS PIZZA",
+        "description": "Délicieux et faciles à préparer, ces muffins pizza sans gluten sont parfaits pour un apéritif, un pique-nique ou accompagnés d'une salade. Avec leurs saveurs d'été, ils raviront petits et grands.",
+        "image": "/recipes-ia/6484-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7290581924899245345\" data-video-id=\"7290581924899245345\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7290581924899245345\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "100 g farine de riz"
+            },
+            {
+                "quantity": "",
+                "name": "100 g farine de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "1 sachet levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "fromage blanc de brebis"
+            },
+            {
+                "quantity": "",
+                "name": "huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "2 cuillères à soupe sauce tomate"
+            },
+            {
+                "quantity": "",
+                "name": "sel"
+            },
+            {
+                "quantity": "",
+                "name": "basilic"
+            },
+            {
+                "quantity": "",
+                "name": "origan"
+            },
+            {
+                "quantity": "",
+                "name": "thym"
+            },
+            {
+                "quantity": "",
+                "name": "olive noire"
+            },
+            {
+                "quantity": "",
+                "name": "2 cuillères à soupe parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "olives"
+            },
+            {
+                "quantity": "",
+                "name": "gruyère"
+            }
+        ],
+        "steps": [
+            "Mélangez 100 g de farine de riz, 100 g de farine de maïs, 1 sachet de levure chimique, 2 œufs, le fromage blanc de brebis, un peu d'huile d'olive, 2 cuillères à soupe de sauce tomate et un peu de sel dans un bol.",
+            "Ajoutez les aromates : basilic, origan, thym, un peu d'olive noire et 2 cuillères à soupe de parmesan, puis mélangez bien.",
+            "Incorporez les tomates cerises, la mozzarella, les olives et le gruyère, et mélangez à nouveau.",
+            "Versez la pâte dans des caissettes à muffins, en remplissant à moitié ou trois quarts.",
+            "Ajoutez un peu de sauce tomate, un petit bout de mozzarella, des olives, un peu de gruyère et du thym sur chaque muffin.",
+            "Enfournez à 210 °C pendant 20 minutes.",
+            "Sortez les muffins pizza et servez chauds."
+        ],
+        "tags": [
+            "Healthy",
+            "Italie",
+            "Sans Gluten",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6482",
+        "title": "Naan sans gluten",
+        "description": "Une recette facile de naan maison sans gluten et sans lactose, préparé avec des pommes de terre cuites à l'eau.",
+        "image": "/recipes-ia/6482-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7504007883512843542\" data-video-id=\"7504007883512843542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7504007883512843542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             120ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             200g de pommes de terre cuite à l'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             250g de farine pour pain sans gluten (ici, Schär)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             10g de levure sèche instantanée"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             huile d'olive + herbes"
+            }
+        ],
+        "steps": [
+            "Mélangez les pommes de terre cuites à l'eau avec le lait.",
+            "Mixez le tout avec un mixeur plongeur.",
+            "Ajoutez le sel, la levure sèche, puis la farine.",
+            "Pétrissez la pâte jusqu'à ce qu'elle soit élastique.",
+            "Découpez la pâte en 3 pour obtenir 6 boules.",
+            "Étalez chaque boule en forme de naan allongée ou ronde.",
+            "Chauffez une poêle à feu moyen et ajoutez un peu d'huile.",
+            "Faites cuire la pâte quelques minutes de chaque côté.",
+            "Facultatif : badigeonnez les pains naan d'huile d'olive et d'herbes."
+        ],
+        "tags": [
+            "Orient",
+            "Sans Gluten"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6488",
+        "title": "Salade de Pâtes Crémeuse",
+        "description": "Une salade de pâtes fraîche et crémeuse, idéale pour l'été, combinant pâtes, légumes croquants (tomates cerises, concombre, oignon rouge), gouda au cumin, thon, et une sauce onctueuse à base de yaourt grec, paprika et piment.",
+        "image": "/recipes-ia/6488-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657587145925791008\" data-video-id=\"7657587145925791008\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657587145925791008\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             Pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             Concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gouda au cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Thon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Yaourts grecs (2)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika (une pincée)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment (une pincée)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons en flocons"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            }
+        ],
+        "steps": [
+            "Faites fondre le beurre avec le paprika et le piment.",
+            "Mélangez le beurre fondu avec le yaourt grec.",
+            "Ajoutez les pâtes à la sauce.",
+            "Ajoutez les tomates cerises, le concombre, l'oignon rouge et les dés de gouda au cumin.",
+            "Ajoutez le thon.",
+            "Servez bien chaud."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Sauces",
+            "Voilà l'été",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6496",
+        "title": "Spaghettis froids à la crème de pistache et à la mortadelle",
+        "description": "Une recette ultra fraîche, gourmande et prête en quelques minutes. Parfaite pour les journées ensoleillées !",
+        "image": "/recipes-ia/6496-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657930088125599008\" data-video-id=\"7657930088125599008\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657930088125599008\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥜\n             120 g de pistaches décortiquées non salées"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50 g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 petite gousse d'ail (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zeste et le jus d'un demi-citron"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             8 à 10 feuilles de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             8 cl d'huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl d'eau très froide (ajoute-en un peu si besoin pour obtenir une crème bien lisse)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Quelques tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tranches de mortadelle"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Roquefort (facultatif, pour une touche plus corsée)"
+            }
+        ],
+        "steps": [
+            "Coupez la mortadelle en petits morceaux.",
+            "Rincez les spaghettis à l'eau froide et égouttez-les.",
+            "Dans un mixeur, déposez les pistaches, le parmesan, la gousse d'ail, les feuilles de basilic et le jus d'un demi‑citron.",
+            "Assaisonnez avec un peu de sel et de poivre, puis ajoutez l'huile d'olive et l'eau très froide.",
+            "Mélangez à vitesse maximale jusqu'à obtenir une crème lisse.",
+            "Dans un saladier, mettez les spaghettis froids, les tomates cerises coupées en morceaux et la mortadelle.",
+            "Ajoutez la crème de pistache et mélangez bien.",
+            "Laissez reposer 30 minutes au réfrigérateur pour que la salade soit bien fraîche.",
+            "Servez en nid, en ajoutant éventuellement un peu de pesto, de mortadelle et de tomates sur le dessus."
+        ],
+        "tags": [
+            "Italie",
+            "Salades",
+            "Voilà l'été",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6590",
+        "title": "Boulettes de poisson à la marocaine",
+        "description": "Une recette savoureuse de boulettes de poisson blanc aux épices marocaines, accompagnées d'une sauce tomate parfumée aux olives et citron confit.",
+        "image": "/recipes-ia/6590-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7584814718779542806\" data-video-id=\"7584814718779542806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7584814718779542806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             800 g de filets de poisson blanc (cabillaud, merlan, églefin...)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café de coriandre moulue"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pincée de harissa"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail râpées"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 cuillère à soupe de pulpe de citron confit"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pour la sauce :"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             400 g de pulpe de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Olives"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Lamelles de citron confit"
+            }
+        ],
+        "steps": [
+            "Mettez le cabillaud dans un hachoir et hachez-le.",
+            "Ajoutez le paprika, la coriandre moulue, le cumin et une pincée de poivre au poisson haché et mélangez bien.",
+            "Dans une poêle bien chaude, faites revenir l'ail avec une bonne quantité d'huile d'olive.",
+            "Versez le mélange de poisson dans la poêle et faites cuire jusqu'à ce que les boules soient bien dorées et ne collent pas."
+        ],
+        "tags": [
+            "Afrique",
+            "épicé",
+            "Healthy",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6568",
+        "title": "Cabillaud à la bordelaise et sauce hollandaise maison",
+        "description": "Une recette simple, fondante et ultra gourmande, parfaite pour impressionner sans stress ! Ce plat propose un poisson croustillant accompagné d'une sauce bien crémeuse, un combo parfait.",
+        "image": "/recipes-ia/6568-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604063927198043414\" data-video-id=\"7604063927198043414\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604063927198043414\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 filets de cabillaud"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30 g de beurre demi-sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             60 g de chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 cuillères à soupe de persil (pour le cabillaud)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus d'un demi-citron (pour le cabillaud)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour le cabillaud)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œufs"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 cuillère à soupe d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre fondu"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus d'un demi-citron (pour la sauce hollandaise)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             2 cuillères à soupe de persil (pour la sauce hollandaise)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour la sauce hollandaise)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour la sauce hollandaise)"
+            }
+        ],
+        "steps": [
+            "Mélangez 1 petit peu de beurre avec 1 échalote, 1 gousse d'ail, du persil haché, de la chapelure, du jus de citron et 1 petit peu de poivre pour former une pâte semblable à un crumble.",
+            "Déposez les filets de cabillaud dans un plat allant au four et étalez la préparation sur le dessus pour former une croûte.",
+            "Préchauffez le four à 180 °C et faites cuire les filets pendant 20 à 25 minutes.",
+            "Battez 2 jaunes d'œufs avec 1 cuillère à soupe d'eau sur feu doux, en veillant à ne pas trop chauffer la préparation.",
+            "Ajoutez le beurre fondu en filet tout en fouettant énergiquement jusqu'à obtenir une sauce hollandaise crémeuse.",
+            "Assaisonnez la sauce avec du sel, du poivre et du persil, puis servez avec l'accompagnement de votre choix."
+        ],
+        "tags": [
+            "France",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6592",
+        "title": "Crevettes sautées à l'ail et au miel",
+        "description": "Une recette rapide et facile de crevettes sautées, relevées à l'ail, au miel et à la sauce soja, parfaites pour un plat savoureux.",
+        "image": "/recipes-ia/6592-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7222711592104873243\" data-video-id=\"7222711592104873243\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7222711592104873243\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🦐\n             15 crevettes crues"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de Maïzena"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de piments concassés"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             10 cl de sauce soja sucrée"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             8 cl d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             30 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre"
+            }
+        ],
+        "steps": [
+            "Mélangez la maïzena, le paprika, un peu de poivre et une pointe de sel dans un bol.",
+            "Ajoutez une petite cuillère à café de piments concassés et complétez avec de l'eau froide.",
+            "Incorporez le miel et la sauce soja sucrée et laissez reposer la sauce de côté.",
+            "Faites chauffer une poêle avec une noisette de beurre et faites sauter les crevettes pendant environ dix secondes de chaque côté jusqu'à ce qu'elles soient bien colorées.",
+            "Retirez les crevettes de la poêle et ajoutez deux à trois gousses d'ail finement hachées, faites revenir l'ail une à deux minutes sans coloration.",
+            "Ajoutez la sauce préparée et laissez cuire deux à trois minutes jusqu'à ce que la sauce épaississe.",
+            "Ajoutez une petite noisette de beurre pour finir la sauce.",
+            "Réintégrez les crevettes dans la poêle pour les enrober de sauce.",
+            "Ajoutez un peu de coriandre si vous le souhaitez.",
+            "Presser un jus de citron vert sur les crevettes.",
+            "Servez les crevettes sur du riz préparé et versez généreusement la sauce."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6600",
+        "title": "Glace au chocolat protéinée",
+        "description": "Une recette de glace au chocolat riche en protéines (38g) et faible en calories (moins de 270 kcal par pot), idéale pour un régime alimentaire et pour se faire plaisir.",
+        "image": "/recipes-ia/6600-carte.webp",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633015698725326102\" data-video-id=\"7633015698725326102\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633015698725326102\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Isolat de whey : 30g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Poudre aromatisante : 5g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage blanc 0% : 100g"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Lait : 200ml"
+            }
+        ],
+        "steps": [
+            "Mélangez le lait, le fromage blanc, la whey isolate, le flavpowder et la gomme xanthane dans un blender.",
+            "Laissez reposer 24 h avant de mettre le mélange dans la machine à glace."
+        ],
+        "tags": [
+            "Healthy",
+            "Les Glaces",
+            "minceur"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6558",
+        "title": "Papillote de Poisson à l'Aïoli",
+        "description": "Une recette de papillote de poisson accompagnée de légumes variés (pommes de terre, carotte, oignon rouge, courgette, tomates cerises) et servie avec une sauce aïoli maison.",
+        "image": "/recipes-ia/6558-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7544401991926091030\" data-video-id=\"7544401991926091030\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7544401991926091030\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de poisson"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             Quelques petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             1 carotte"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 courgette"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Quelques tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe de vinaigre de cidre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             150 ml d'huile de tournesol"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            }
+        ],
+        "steps": [
+            "Préchauffez le four à 144 °C",
+            "Coupez le poisson en morceaux pas trop gros",
+            "Assaisonnez le poisson avec du sel, du poivre et un filet d'huile d'olive",
+            "Coupez quelques petites patates en tranches",
+            "Coupez 2 carottes en tranches",
+            "Coupez 1 courgette en tranches",
+            "Coupez 1/2 oignon rouge en fines lamelles",
+            "Disposez les patates, courgettes et oignons tranchés dans le fond d'une feuille de papier cuisson",
+            "Déposez le poisson par-dessus",
+            "Ajoutez les morceaux de carottes et quelques tomates cerises",
+            "Fermez hermétiquement la papillote",
+            "Enfournez la papillote au four ou à l'air fryer pendant 25 minutes",
+            "Pendant ce temps, préparez l'aïoli : mettez 1 jaune d'œuf dans un bol",
+            "Ajoutez 1 càc de moutarde et 1 càs de vinaigre de cidre",
+            "Montez le mélange au fouet en incorporant petit à petit 150 ml d'huile de tournesol",
+            "Ajoutez 1 gousse d'ail écrasée, 1 trait de jus de citron et du sel",
+            "Mélangez bien jusqu'à obtenir une consistance épaisse",
+            "Servez l'aïoli avec la papillote de poisson"
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6560",
+        "title": "Poisson fondant, sauce citronnée",
+        "description": "Une recette de poisson fondant accompagné d'une sauce citronnée, de haricots verts et de pommes de terre grenailles.",
+        "image": "/recipes-ia/6560-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7574094285134482710\" data-video-id=\"7574094285134482710\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7574094285134482710\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             3 pavés de cabillaud"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             200g de haricots verts frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             200g de pommes de terre grenailles"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Quelques brins de ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             1 petit pot de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron (pour son jus)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de zaatar"
+            }
+        ],
+        "steps": [
+            "Cuire les pommes de terre grenailles et les haricots verts pendant une vingtaine de minutes.",
+            "Découper les pavés de cabillaud, les badigeonner d'huile d'olive et les saisir dans une poêle bien chaude.",
+            "Lorsque les pommes de terre sont cuites, les faire revenir dans la poêle avec un filet d'huile d'olive, les haricots verts, un peu de sel, une pincée de zaatar ou du thym, l'origan, qu'importe.",
+            "Retourner les poissons, les retirer de la poêle et préparer la sauce.",
+            "Faire fondre du beurre dans la poêle, ajouter la gousse d'ail, les échalotes, le jus d'un demi‑citron, la ciboulette fraîche, puis verser le pot de crème.",
+            "Laisser réduire la sauce en ajoutant une cuillère à soupe de moutarde, puis laisser réduire encore 12 minutes.",
+            "Dresser la sauce et servir."
+        ],
+        "tags": [
+            "Healthy",
+            "minceur",
+            "Orient",
+            "Poissons et crustacés",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6582",
+        "title": "Vinaigrette à la mangue",
+        "description": "Une vinaigrette exotique à la mangue pour sublimer toutes vos salades fades.",
+        "image": "/recipes-ia/6582-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7262545070497254688\" data-video-id=\"7262545070497254688\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7262545070497254688\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "mangue"
+            },
+            {
+                "quantity": "",
+                "name": "jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "miel"
+            },
+            {
+                "quantity": "",
+                "name": "persil"
+            },
+            {
+                "quantity": "",
+                "name": "sel"
+            },
+            {
+                "quantity": "",
+                "name": "piment"
+            },
+            {
+                "quantity": "",
+                "name": "eau"
+            },
+            {
+                "quantity": "",
+                "name": "huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "sésame"
+            }
+        ],
+        "steps": [
+            "Mélangez la mangue, le jus de citron, l'ail en poudre, le miel, le persil, le sel, le piment, l'eau, l'huile d'olive et le sésame dans un mixeur jusqu'à consistance lisse.",
+            "Versez la vinaigrette dans un bol et servez immédiatement."
+        ],
+        "tags": [
+            "Healthy",
+            "Salades",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6710",
+        "title": "Glace à l'hibiscus (Bissap)",
+        "description": "Découvrez une recette de glace rafraîchissante et simple, parfaite pour l'été, qui évoque les saveurs de l'enfance. Réalisée à base de fleurs d'hibiscus (bissap), de sucre et de sucre vanillé, elle peut être agrémentée d'un arôme de fraise si dési...",
+        "image": "/recipes-ia/6710-carte.webp",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657274204244462880\" data-video-id=\"7657274204244462880\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657274204244462880\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Fleurs d'hibiscus (bissap)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Arôme de fraise (facultatif)"
+            }
+        ],
+        "steps": [
+            "Lavez soigneusement les feuilles d'hibiscus pour enlever les impuretés",
+            "Versez les feuilles lavées dans une marmite et ajoutez de l'eau",
+            "Portez à ébullition",
+            "Laissez refroidir le mélange",
+            "Filtrez le liquide à l'aide d'un tamis",
+            "Ajoutez le sucre vanillé, l'arôme vanille et, si vous le souhaitez, l'arôme fraise",
+            "Mélangez bien le tout",
+            "Ajoutez la menthe noire si vous le désirez",
+            "Mettez le mélange dans des petits sachets ou des moules à glace, en resserrant bien pour fermer",
+            "Placez les sachets ou moules au congélateur pour une nuit ou 5 à 6 heures selon votre congélateur"
+        ],
+        "tags": [
+            "Afrique",
+            "Les Glaces",
+            "Pas cher",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6747",
+        "title": "Technique de cuisson de la côte de bœuf",
+        "description": "Ce contenu présente une technique privilégiée pour la cuisson de la côte de bœuf, un plat emblématique de l'été. L'auteur propose une recette détaillée, mettant l'accent sur l'importance du temps pour une cuisson réussie, en contraste avec les vid...",
+        "image": "/recipes-ia/6747-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7395182689839566113\" data-video-id=\"7395182689839566113\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7395182689839566113\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Côte de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Temps"
+            }
+        ],
+        "steps": [
+            "Assaisonnez généreusement la côte de bœuf pour obtenir une belle croûte.",
+            "Préparez le barbecue avec une braise pas trop puissante.",
+            "Placez la côte de bœuf sur la grille et surveillez la coloration, en la retournant régulièrement pour éviter que la flamme ne touche la viande.",
+            "Continuez la cuisson jusqu'à ce que la viande soit bien colorée de tous les côtés.",
+            "Vérifiez la température interne : elle doit atteindre 40 °C pour rester bleu (crue).",
+            "Coupez l'os si désiré, puis remettez la côte en cuisson pour obtenir une surface bien croustillante.",
+            "Séparez la partie tendre (la noix) de la chaînette en utilisant la pointe du couteau, en gardant les morceaux de gras pour les bouillons ou autres utilisations.",
+            "Laissez reposer la côte près d'une source de chaleur pour maintenir la chaleur.",
+            "Faites des dés de gras dans une casserole, faites fondre et faites frire les dés pour obtenir des gratons.",
+            "Arrosez la côte avec le gras fondu pour ajouter de la saveur avant de servir."
+        ],
+        "tags": [
+            "barbecue",
+            "France",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6837",
+        "title": "Aïoli",
+        "description": "Une recette simple et rapide pour préparer un aïoli maison, une mayonnaise à l'ail typique de la Provence, parfaite pour accompagner poissons, légumes ou viandes.",
+        "image": "/recipes-ia/6837-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661710175581064480\" data-video-id=\"7661710175581064480\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661710175581064480\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧂\n             2 à 3 gousses d'ail (selon l'intensité désirée)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             100 ml d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100 ml d'huile de pépins de raisin, de tournesol ou de colza"
+            }
+        ],
+        "steps": [
+            "Épluchez deux-trois gousses d'ail et retirez le germe.",
+            "Mettez les gousses d'ail dans un pilon avec de la fleur de sel et écrasez jusqu'à obtenir une crème.",
+            "Ajoutez un jaune d'œuf, une cuillère de moutarde et un mix d'huile d'olive et d'huile de pépin de raisin.",
+            "Montez le mélange en filet fin jusqu'à obtenir une texture lisse et homogène."
+        ],
+        "tags": [
+            "France",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6874",
+        "title": "Brochettes de poulet au chorizo et patatas bravas",
+        "description": "Découvrez une recette estivale et savoureuse de brochettes de poulet et de chorizo, accompagnées de patatas bravas maison relevées. Idéal pour un barbecue rapide et plein de saveurs.",
+        "image": "/recipes-ia/6874-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7662411435388980513\" data-video-id=\"7662411435388980513\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7662411435388980513\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             2 blancs de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             100g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             12-15 petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             100 ml de bouillon de volaille (à ajuster)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de flocons de piment"
+            }
+        ],
+        "steps": [
+            "Hachez le chorizo en petits morceaux.",
+            "Ouvrez un blanc de poulet et étalez-y le chorizo.",
+            "Enroulez le poulet autour du chorizo comme sur la vidéo.",
+            "Laissez reposer les brochettes au congélateur pendant 1 à 2 heures.",
+            "Précuisez les pommes de terre à l'eau.",
+            "Coupez l'oignon et l'ail en petits morceaux.",
+            "Faites revenir l'oignon et l'ail dans une poêle avec de l'huile d'olive.",
+            "Ajoutez la farine et le paprika fumé.",
+            "Mouillez le tout avec le bouillon de volaille.",
+            "Lorsque le mélange épaissit, ajoutez le piment et mixez.",
+            "Écrasez les pommes de terre précuites avec un presse-purée.",
+            "Arrosez les pommes de terre avec un filet d'huile d'olive.",
+            "Enfournez à 210 °C pendant 20 minutes.",
+            "Sortez les brochettes du congélateur, coupez-les en rondelles et formez les brochettes.",
+            "Cuisez les brochettes au barbecue."
+        ],
+        "tags": [
+            "barbecue",
+            "épicé",
+            "Espagne",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6799",
+        "title": "Madeleines fourrées au chocolat",
+        "description": "Une recette simple pour préparer de délicieuses madeleines moelleuses, fourrées au chocolat ou au Nutella.",
+        "image": "/recipes-ia/6799-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660925640845036832\" data-video-id=\"7660925640845036832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660925640845036832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             150g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 sachet de levure chimique (8g)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             Extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             100g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Nutella (pour le fourrage)"
+            }
+        ],
+        "steps": [
+            "Fouettez les œufs avec le sucre jusqu'à obtenir une texture légère et mousseuse.",
+            "Ajoutez le lait, le beurre fondu, quelques gouttes d'amandamer et un peu d'extrait de vanille, puis mélangez bien jusqu'à obtenir une préparation homogène.",
+            "Ajoutez la farine et la levure en une seule fois, puis fouettez à nouveau pour obtenir une pâte lisse et sans grumeaux.",
+            "Graissez légèrement le moule à madeleines, puis remplissez chaque empreinte sans aller jusqu'en haut afin d'éviter que la pâte ne déborde pendant la cuisson.",
+            "Ajoutez quelques pépites de chocolat sur le dessus de chaque empreinte.",
+            "Préchauffez le four à 200 °C et faites cuire pendant environ 12 minutes.",
+            "À la sortie du four, laissez les madeleines légèrement refroidir jusqu'à ce qu'elles puissent être manipulées.",
+            "Ajoutez un peu de pâte à tartiner à l'intérieur de chaque madeleine pour un cœur encore plus gourmand.",
+            "Nettoyez le moule et déposez quelques pépites de chocolat, puis laissez-les fondre doucement grâce à la chaleur du four encore chaud mais éteint.",
+            "Étalez le chocolat fondu dans chaque empreinte, puis remplacez les madeleines en appuyant légèrement pour bien les enrouler.",
+            "Placez le tout au réfrigérateur pendant au moins 45 minutes."
+        ],
+        "tags": [
+            "France",
+            "Les Glaces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6872",
+        "title": "Salade de chèvre chaud",
+        "description": "Une recette de salade fraîche et gourmande, idéale pour l'été, composée de chèvre chaud pané, de tomates variées, de radis, concombre et poivrons, le tout assaisonné d'une vinaigrette au miel. Simple et rapide à réaliser.",
+        "image": "/recipes-ia/6872-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7541432743696141591\" data-video-id=\"7541432743696141591\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7541432743696141591\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥓\n             2 Perlardon"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 poignée de panure"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 tomate Cœur de Bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate Ananas"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate Noire de Crimée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4-5 radis"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 mini concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             3 mini poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Salade verte"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             2 tranches de pain de mie"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à café de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à café de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             3 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Pannez un perlardon en le trempant d'un œuf puis dans la panure, puis réservez au frais.",
+            "Lavez les radis et coupez-les en fines tranches.",
+            "Coupez les mini concombres en fines tranches.",
+            "Coupez une tomate cœur de bœuf en fines tranches.",
+            "Coupez une tomate ananas en fines tranches.",
+            "Coupez une tomate noire de Crimée en très fines tranches.",
+            "Cuisez les mini poivrons dans une poêle jusqu'à ce qu'ils soient tendres.",
+            "Coupez le pain de mie en tranches à l'aide d'un cercle et faites-le légèrement toaster.",
+            "Préparez une vinaigrette en mélangeant le miel, le vinaigre balsamique, la moutarde, l'huile d'olive, le sel et le poivre.",
+            "Dressez les tomates et la salade dans une assiette.",
+            "Faites frire le perlardon dans de l'huile neutre, en le retournant une fois.",
+            "Disposez les radis et les concombres sur le pain de mie, placez le perlardon sur le dessus, puis nappez de la vinaigrette au miel."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6813",
+        "title": "Salade parisienne",
+        "description": "Une salade fraîche et complète inspirée de Paris, composée de jambon, emmental, œufs, légumes et pommes de terre, accompagnée d'une sauce mayonnaise allégée au yaourt grec.",
+        "image": "/recipes-ia/6813-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657211259170950432\" data-video-id=\"7657211259170950432\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657211259170950432\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥓\n             2 tranches de jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30g d'emmental"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             5-6 cornichons"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 champignons de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1-2 tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             6 petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Salade (laitue ou mélange de jeunes pousses)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à café de vinaigre (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de moutarde à l'ancienne (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cuillères à soupe de yaourt grec (pour la sauce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Coupez le jambon blanc en morceaux de 1,1 cm.",
+            "Coupez l'emmental en fines tranches.",
+            "Coupez les pommes de terre en petits morceaux et faites-les cuire à l'eau.",
+            "Coupez les tomates en tranches.",
+            "Coupez les champignons de Paris en tranches.",
+            "Cuisez les œufs pendant 5 à 6 minutes, puis plongez-les dans l'eau froide, écalez-les, coupez-les en deux et réservez.",
+            "Coupez les cornichons en fines tranches.",
+            "Épluchez les pommes de terre et coupez-les en petits morceaux.",
+            "Préparez la sauce allégée : dans un bol, mélangez le jaune d'œuf, le vinaigre, la moutarde à l'ancienne, le sel et le poivre.",
+            "Ajoutez un filet d'huile d'olive et mélangez bien.",
+            "Ajoutez le yaourt grec et mélangez à nouveau.",
+            "Disposez la salade dans une assiette, ajoutez les ingrédients coupés, nappez de sauce et servez chaud."
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6880",
+        "title": "Moules Maison",
+        "description": "Une recette pour préparer des moules maison avec une cuisson parfaite.",
+        "image": "/recipes-ia/6880-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7659820489828781345\" data-video-id=\"7659820489828781345\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7659820489828781345\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "250 g liquide (vin blanc et eau)"
+            },
+            {
+                "quantity": "",
+                "name": "125 g vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "125 g eau"
+            },
+            {
+                "quantity": "",
+                "name": "200 g crème crue"
+            },
+            {
+                "quantity": "",
+                "name": "huile neutre"
+            },
+            {
+                "quantity": "",
+                "name": "moules"
+            },
+            {
+                "quantity": "",
+                "name": "échalote"
+            },
+            {
+                "quantity": "",
+                "name": "ail"
+            },
+            {
+                "quantity": "",
+                "name": "piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "persil"
+            },
+            {
+                "quantity": "",
+                "name": "beurre"
+            }
+        ],
+        "steps": [
+            "Mettez l'huile neutre dans une casserole et faites chauffer.",
+            "Ajoutez les moules et laissez-les saisir jusqu'à ce qu'elles s'ouvrent.",
+            "Versez le vin blanc et l'eau dans la casserole, couvrez et laissez cuire 3 à 6 minutes jusqu'à ce que le vin blanc soit bien réduit.",
+            "Retirez les moules de la casserole et réservez-les.",
+            "Dans la même casserole, faites fondre le beurre et ajoutez l'échalote et l'ail, laissez cuire jusqu'à ce que l'échalote soit translucide.",
+            "Ajoutez le vin blanc réduit et laissez bouillir à fond.",
+            "Ajoutez la crème crue et le piment d'Espelette, puis laissez cuire quelques minutes.",
+            "Répartissez la sauce sur les moules, parsemez de persil haché grossier et servez immédiatement."
+        ],
+        "tags": [
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6939",
+        "title": "Croque Mcdo en 5 minutes",
+        "description": "Une recette rapide et facile pour préparer un Croque Mcdo maison en seulement 5 minutes.",
+        "image": "/recipes-ia/6939-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650569618616044832\" data-video-id=\"7650569618616044832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650569618616044832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "1 pain à burger"
+            },
+            {
+                "quantity": "",
+                "name": "2 tranches emmental"
+            },
+            {
+                "quantity": "",
+                "name": "1 p'tit peu jambon"
+            }
+        ],
+        "steps": [
+            "Prenez un pain à burger et mettez-le à l'envers.",
+            "Placez 2 tranches d'emmental sur le pain.",
+            "Ajoutez un peu de jambon.",
+            "Refermez avec un autre pain à burger.",
+            "Passez le sandwich à la poêle pendant environ deux à trois minutes jusqu'à ce qu'il soit bien toasté."
+        ],
+        "tags": [
+            "France",
+            "Pas cher",
+            "Sandwichs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6951",
+        "title": "Curry de crevettes",
+        "description": "Une recette rapide et simple de curry de crevettes, qui peut également être réalisée avec du poulet. Ce plat savoureux est relevé par un mélange d'épices cajun, du piment et du paprika fumé, et agrémenté de citron vert et de ciboulette ou coriandre.",
+        "image": "/recipes-ia/6951-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642393520979873057\" data-video-id=\"7642393520979873057\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642393520979873057\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🦐\n             10 à 15 crevettes crues"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             10g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 cuillères à soupe de sauce tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             20cl de crème demi-épaisse"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             20cl de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             20g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 cuillère à café d'oignon en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à café d'épices cajun"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron vert"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette ou coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment en poudre (pour l'assaisonnement des crevettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail en poudre (pour l'assaisonnement des crevettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour l'assaisonnement des crevettes)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour l'assaisonnement des crevettes)"
+            }
+        ],
+        "steps": [
+            "Préchauffez une poêle légèrement huilée",
+            "Ajoutez les crevettes crues et faites revenir jusqu'à ce qu'elles soient roses",
+            "Ajoutez les gousses d'ail hachées et faites revenir 1 minute",
+            "Ajoutez la sauce tomate et mélangez bien",
+            "Versez le bouillon de volaille et la crème fleurette, puis laissez mijoter à feu doux",
+            "Ajoutez les épices (oignon, paprika fumé, origan, épices cajun) et le parmesan, puis laissez réduire quelques minutes",
+            "Ajoutez un filet de citron vert et un peu de miel si désiré",
+            "Mélangez bien jusqu'à ce que la sauce soit onctueuse et crémeuse",
+            "Servez la sauce sur du riz basmati chaud"
+        ],
+        "tags": [
+            "asiatique",
+            "épicé",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6969",
+        "title": "Plat de riz et viande hachée aux poivrons à la mexicaine",
+        "description": "Une recette facile et rapide pour un plat équilibré à base de riz, viande hachée, poivrons et saveurs mexicaines, idéale pour 3 repas.",
+        "image": "/recipes-ia/6969-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648235839662689568\" data-video-id=\"7648235839662689568\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648235839662689568\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍚\n             150 g de riz long grain"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             350 g de viande hachée à 5% de matière grasse"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             4 poivrons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 pot de concentré de tomates (70 g)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cube de bouillon de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Épices mexicaines"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Cheddar râpé"
+            }
+        ],
+        "steps": [
+            "Ajoutez des poivrons émincés, du riz long grain, du concentré de tomates, du bouillon de volaille, des oignons rouges, de l'ail râpé et de la viande hachée préalablement cuite dans un plat.",
+            "Recouvrez à mi-auteur d'eau.",
+            "Ajoutez les épices mexicaines.",
+            "Mettez le plat au four."
+        ],
+        "tags": [
+            "Healthy",
+            "Mexique"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6955",
+        "title": "Sandwich à la truite fumée et au fromage frais au zaatar",
+        "description": "Une recette coup de cœur pour un sandwich délicieux à la truite fumée et au fromage frais parfumé au zaatar, simple et rapide à préparer.",
+        "image": "/recipes-ia/6955-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656094914027080992\" data-video-id=\"7656094914027080992\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656094914027080992\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Pain croustillant"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Truite fumée (tranches)"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1/2 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Quelques tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Pickles d'oignons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Quelques feuilles de salade"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote émincée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 c. à c. de Zaatar"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre du moulin"
+            }
+        ],
+        "steps": [
+            "Mélangez l'échalote émincée, le fromage frais, le jus de citron, l'huile d'olive et le zaatar dans un récipient. Ajoutez sel et poivre selon votre goût. Étalez la sauce sur le pain. Faites griller le pain au four pendant une minute pour le rendre chaud. Disposez des rondelles de concombre, des tranches de truite fumée, des tomates séchées et des pickles d'oignons rouges sur le pain. Pressez un filet de citron sur le tout. Ajoutez quelques feuilles de salade. Fermez le sandwich et découpez-le."
+        ],
+        "tags": [
+            "Orient",
+            "Poissons et crustacés",
+            "Sandwichs"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6963",
+        "title": "Tartelettes tatin courgettes, champignons, chèvre et miel",
+        "description": "Ces tartelettes tatin salées combinent la douceur des courgettes et du miel avec le caractère du chèvre et des champignons, le tout sur une pâte feuilletée croustillante. Parfaites pour un apéritif ou une entrée légère.",
+        "image": "/recipes-ia/6963-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663154006331624736\" data-video-id=\"7663154006331624736\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663154006331624736\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée ou 4 petits carrés"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Quelques champignons de Paris"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1 bûche de chèvre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Du miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des pignons de pin"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Préchauffez le four à 140 °C.",
+            "Disposez du miel et des pignons de pin sur une plaque.",
+            "Disposez les courgettes en rosace, les champignons et les rondelles de chèvre.",
+            "Recouvrez de pâte feuilletée carrée.",
+            "Piquez les tartelettes avec un pique à brochette.",
+            "Enfournez pendant 30 minutes à 140 °C.",
+            "À la sortie, ajoutez du thym et un peu de chèvre.",
+            "Servez bien chaud."
+        ],
+        "tags": [
+            "France",
+            "tarte",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6997",
+        "title": "Pommes au four caramélisées et noix",
+        "description": "Une recette rapide et facile de pommes cuites au four, agrémentées de caramel et de noix, parfaite pour un dessert réconfortant.",
+        "image": "/recipes-ia/6997-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664636445805579553\" data-video-id=\"7664636445805579553\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664636445805579553\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             Pommes"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre (pour le caramel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noix"
+            }
+        ],
+        "steps": [
+            "Badigeonnez la pomme de beurre puis roulez-la dans la cassonade et la cannelle.",
+            "Découpez la pâte en forme de petites feuilles tout autour et emballez bien la pomme avec.",
+            "Posez les pommes sur la plaque du four.",
+            "Coupez le cœur de la pomme en dés super fins et faites revenir tout ça à la poêle dans le beurre fondu.",
+            "Balancez les noix concassées, le miel, la cannelle et la cassonade.",
+            "Remplissez bien les pommes avec cette farce.",
+            "Ajoutez un coup de jaune d'œuf sur la pâte et paf !",
+            "Enfournez pendant 25 minutes."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Desserts",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7024",
+        "title": "Cari de Poulet",
+        "description": "Une recette savoureuse de cari de poulet, typique de l'île de la Réunion, préparée avec des épices aromatiques et des tomates.",
+        "image": "/recipes-ia/7024-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7567792193025412374\" data-video-id=\"7567792193025412374\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7567792193025412374\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             Poulet entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à soupe de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             4 belles tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons rouges"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            }
+        ],
+        "steps": [
+            "Préparez le poulet entier en le nettoyant.",
+            "Dans un petit mortier, mélangez le poivre noir, l'ail, le gingembre, le sel et le piment.",
+            "Réservez la mixture.",
+            "Dans une sauteuse, chauffez l'huile et ajoutez les morceaux de poulet. Faites griller le poulet avec du sel et du poivre. Vous pouvez ajouter le thym à ce moment-là, mais vous le réservez pour plus tard.",
+            "Une fois la viande bien dorée, ajoutez les oignons coupés, la mixture, le curcuma et mélangez. Laissez reposer 5 à 10 minutes.",
+            "Coupez les tomates et ajoutez-les à la sauteuse. Ajoutez le thym et mélangez pendant 10 minutes à feu doux.",
+            "Si la sauce est trop dense, ajoutez un peu d'eau et couvrez. Laissez cuire 20 à 30 minutes.",
+            "Servez avec du riz."
+        ],
+        "tags": [
+            "Afrique",
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7032",
+        "title": "Sauce libanaise à l'ail (Toum)",
+        "description": "Une sauce libanaise crémeuse et aillée, parfaite pour accompagner divers plats comme les grillades, les falafels ou les chawarmas.",
+        "image": "/recipes-ia/7032-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420486244804660513\" data-video-id=\"7420486244804660513\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420486244804660513\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             150 g de gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à soupe de gros sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             600 ml d'huile végétale (tournesol, pépins de raisin ou colza)"
+            }
+        ],
+        "steps": [
+            "Retirez le germe de chaque gousse d'ail pour éviter l'amertume.",
+            "Mélangez les gousses d'ail avec le gros sel dans un mixeur ou un mixeur plongeant jusqu'à ce qu'elles soient très finement hachées.",
+            "Ajoutez le jus de citron, en veillant à ne récupérer que le jus sans pépins.",
+            "Commencez à mixer en versant un petit filet d'huile végétale, puis continuez d'alterner avec le jus de citron et l'huile, en versant un petit filet à chaque fois.",
+            "Poursuivez le mixage jusqu'à ce que la sauce épaississe et devienne une émulsion crémeuse, environ vingt minutes.",
+            "Conservez la sauce dans un récipient hermétique au frais, jusqu'à un mois."
+        ],
+        "tags": [
+            "Liban",
+            "Sauces",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7021",
+        "title": "Truffade",
+        "description": "Découvrez la recette de la Truffade, un plat traditionnel français réconfortant à base de pommes de terre et de tome fraîche d'Aubrac. Parfait pour les repas d'hiver ou de Noël.",
+        "image": "/recipes-ia/7021-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581814792382614807\" data-video-id=\"7581814792382614807\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581814792382614807\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1 kg de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             250 g de tome fraîche d'Aubrac"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             25 g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            }
+        ],
+        "steps": [
+            "Épluchez les pommes de terre et coupez-les en rondelles moyennes.",
+            "Dans une poêle, faites chauffer l'huile végétale avec le beurre.",
+            "Ajoutez les rondelles de pommes de terre, assaisonnez avec du sel et du poivre, puis couvrez et laissez cuire à feu moyen pendant 10 minutes sans les toucher.",
+            "Hachez les gousses d'ail.",
+            "Après les 10 minutes, retournez les pommes de terre, ajoutez l'ail haché, remuez, couvrez et laissez cuire encore 10 minutes.",
+            "Retirez l'excédent de gras, ajoutez le fromage coupé en petits cubes et un peu de persil, puis laissez fondre doucement.",
+            "Une fois le fromage fondu, mélangez sans toucher, puis laissez reposer 2 minutes pour former une croûte.",
+            "Servez chaud."
+        ],
+        "tags": [
+            "C'est l'hiver",
+            "Famille",
+            "France",
+            "Noël",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7088",
+        "title": "Saumon Marry Me",
+        "description": "Une recette rapide et facile de saumon, cuit dans une sauce crémeuse et parfumée au vin blanc, aux tomates séchées, à l'échalote et aux herbes de Provence, idéal pour un dîner savoureux.",
+        "image": "/recipes-ia/7088-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665402847013391649\" data-video-id=\"7665402847013391649\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665402847013391649\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🐟\n             400g de saumon"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 cuillères à soupe de paprika doux"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 cuillère à café d'ail en poudre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 cuillère à café d'herbes de Provence"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             3 ou 4 tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail hachée"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             100ml de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             250ml de crème liquide à 30% de matière grasse"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Préchauffez une poêle à feu doux.",
+            "Coupez le filet de saumon en gros cubes.",
+            "Saupoudrez les épices indiquées dans la description sur les cubes de saumon.",
+            "Ajoutez un filet d'huile d'olive dans la poêle et faites saisir les cubes de saumon de tous les côtés à feu doux.",
+            "Ajoutez une noisette de beurre et laissez fondre.",
+            "Ajoutez la gousse d'ail hachée et l'échalote, faites suer environ 2 minutes.",
+            "Déglacez avec le vin blanc et laissez réduire quasi à sec.",
+            "Ajoutez les tomates séchées hachées finement.",
+            "Ajoutez la crème liquide et le persil, laissez cuire à feu doux sans faire bouillir, environ 3 à 4 minutes.",
+            "Remettez les cubes de saumon dans la poêle, couvrez et laissez réchauffer.",
+            "Parsemez de persil pour le dressage."
+        ],
+        "tags": [
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7141",
+        "title": "Crème ciboulette",
+        "description": "La meilleure crème ciboulette, idéale pour accompagner les pommes de terre ou les grillades, dans le cadre de la série BBQ VG.",
+        "image": "/recipes-ia/7141-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663510071220981024\" data-video-id=\"7663510071220981024\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663510071220981024\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n             1 kg de crème fraîche épaisse d'Isigny"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 à 2 échalotes ciselées"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 botte de ciboulette ciselée"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus d'un citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Mettez la crème fraîche épaisse dans un grand bol.",
+            "Ajoutez les gousses d'ail hachées.",
+            "Incorporez les échalotes ciselées.",
+            "Ajoutez la ciboulette ciselée.",
+            "Versez le filet d'huile d'olive.",
+            "Ajoutez le jus d'un citron.",
+            "Saupoudrez de fleur de sel et de poivre.",
+            "Mélangez bien jusqu'à obtenir une consistance homogène."
+        ],
+        "tags": [
+            "Accompagnements",
+            "barbecue",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7129",
+        "title": "Ravioles de courgettes",
+        "description": "Découvrez ces ravioles 100% maison, naturellement sans gluten et super faciles à préparer ! Une alternative originale et délicieuse, inspirée par @cheztiffany_.",
+        "image": "/recipes-ia/7129-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7668645293822414113\" data-video-id=\"7668645293822414113\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7668645293822414113\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 courgette plutôt large"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de fromage frais (chèvre Petit Billy ou ricotta)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             4 tranches de truite fumée"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Burrata ou stracciatella"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Sauce tomate"
+            }
+        ],
+        "steps": [
+            "Préparez la farce en mélangeant le fromage frais, le basilic, le sel et un peu d'huile d'olive. Mettez la farce de côté.",
+            "Découpez la courgette en lamelles à l'économe, en gardant les lamelles larges. Coupez les lamelles restantes en petits morceaux.",
+            "Faites revenir les petits morceaux de courgette dans une poêle avec un peu d'huile d'olive et de l'ail jusqu'à ce qu'ils soient légèrement dorés.",
+            "Superposez les lamelles larges, ajoutez une petite quantité de farce, puis refermez délicatement en pliant les lamelles les plus en dessous pour maintenir la raviole.",
+            "Préchauffez une poêle bien chaude, ajoutez un peu d'huile et faites cuire les ravioles jusqu'à ce qu'elles soient bien dorées. Si vous préférez des courgettes plus cuites et fondantes, couvrez la poêle et baissez le feu pour finir la cuisson.",
+            "Servez les ravioles dans l'assiette, nappez de sauce tomate, ajoutez un peu de burrata, disposez des tranches de truite fumée, parsemez de basilic et de poivre, puis servez chaud."
+        ],
+        "tags": [
+            "Italie",
+            "pates",
+            "Plats",
+            "Poissons et crustacés",
+            "Sans Gluten",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7175",
+        "title": "Spaghettis aux moules",
+        "description": "Les spaghettis aux moules, c'est de la poésie. Peu d'ingrédients, beaucoup de saveur et tout le parfum de la mer. Les recettes simples sont souvent les plus difficiles à réussir... et quand les moules sont fraîches, le reste vient tout seul. Le pr...",
+        "image": "/recipes-ia/7175-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665787703224487200\" data-video-id=\"7665787703224487200\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665787703224487200\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             400 g de spaghettis"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 kg de moules très fraîches"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Un bouquet de persil frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Poivre noir (selon le goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (très peu, l'eau des moules étant déjà salée)"
+            }
+        ],
+        "steps": [
+            "Mettez une poêle à feu moyen et faites revenir les 4 gousses d'ail hachées dans l'huile d'olive jusqu'à ce qu'elles dégagent une légère odeur.",
+            "Ajoutez le zeste d'un citron et laissez infuser quelques secondes.",
+            "Ajoutez les 2 kg de moules fraîches dans la poêle, couvrez et laissez cuire jusqu'à ce que les moules s'ouvrent, en secouant de temps en temps.",
+            "Égouttez l'eau de cuisson des moules, gardez le jus pour la sauce.",
+            "Ajoutez les spaghetti cuits al dente dans la poêle, mélangez bien avec les moules et le jus de cuisson.",
+            "Assaisonnez avec du sel, du poivre noir, du piment et du persil haché.",
+            "Servez immédiatement, en décorant éventuellement avec un peu de citron et du persimmon."
+        ],
+        "tags": [
+            "épicé",
+            "Italie",
+            "Pas cher",
+            "pates",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7187",
+        "title": "Tarte tatin aux aubergines",
+        "description": "Une revisite ultra gourmande et saine d'un grand classique : la tarte tatin version salée aux aubergines fondantes.",
+        "image": "/recipes-ia/7187-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665748237168413985\" data-video-id=\"7665748237168413985\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665748237168413985\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍆\n             2 grosses aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Crème de vinaigre balsamique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Herbes (Basilic, herbes de Provence)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 pâte feuilletée (sans gluten)"
+            }
+        ],
+        "steps": [
+            "Coupez les aubergines en rondelles.",
+            "Disposez les rondelles sur une plaque recouverte de papier cuisson.",
+            "Arrosez d'huile d'olive, salez, poivrez et ajoutez un peu d'origan.",
+            "Enfournez à 200 °C pendant 10 minutes.",
+            "Émincez l'oignon et les gousses d'ail.",
+            "Faites-les revenir dans une poêle avec un peu d'huile d'olive et de la crème de basilique jusqu'à ce qu'ils caramélisent.",
+            "Dans un plat à tarte, versez de l'huile d'olive et 2 cuillères à café de miel, puis mélangez bien.",
+            "Ajoutez les tranches d'aubergine sur le mélange.",
+            "Recouvrez le tout d'une pâte à tarte, repliez bien les bords et piquez le dessus avec une fourchette.",
+            "Enfournez à 184 °C pendant 30 minutes.",
+            "Retournez la tarte à l'aide d'une assiette, retirez le plat et ajoutez le mélange d'ail, d'oignon, un peu de basilic frais et une bonne burrata.",
+            "Servez chaud et régalez-vous."
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Sans Gluten",
+            "tarte",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3533",
+        "title": "Gnocchi di ricotta alla sorrentina",
+        "description": "Ces gnocchis de ricotta à la sorrentina évoquent les saveurs réconfortantes de la cuisine traditionnelle italienne. Un plat généreux qui promet de remplir votre cuisine d'arômes délicieux et votre cœur de bonheur, comme chez grand-mère. Parfaits p...",
+        "image": "/recipes-ia/3533-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@feenixchef/video/7611935893129088278?_r=1&amp;_t=ZN-94ZpBzz98qs\" data-video-id=\"7611935893129088278\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@feenixchef/video/7611935893129088278?_r=1&amp;_t=ZN-94ZpBzz98qs\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣 500 g de ricotta"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 280 g de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🧀 Parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥚 2 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍅 500 g de purée de tomates"
+            },
+            {
+                "quantity": "",
+                "name": "🧄 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧀 140 g de mozzarella"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍾 Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre"
+            }
+        ],
+        "steps": [
+            "Mélangez la ricotta, les œufs, la farine et une pincée de sel jusqu'à obtenir une pâte homogène.",
+            "Travaillez la pâte 3 à 4 minutes avec les mains pour qu'elle devienne souple.",
+            "Formez des petites boules, roulez-les sur une surface farinée pour créer les gnocchi.",
+            "Faites cuire les gnocchi dans une casserole d'eau bouillante salée jusqu'à ce qu'ils remontent à la surface.",
+            "Dans une poêle, faites revenir l'ail dans un filet d'huile d'olive, puis ajoutez la purée de tomates, le basilic, le sel et le poivre.",
+            "Ajoutez la mozzarella et le parmesan râpé à la sauce et laissez fondre doucement.",
+            "Mélangez les gnocchi cuits avec la sauce, en veillant à bien les enrober.",
+            "Servez chaud, décoré de feuilles de basilic frais si désiré."
+        ],
+        "tags": [
+            "facile",
+            "gnocchi",
+            "italien",
+            "mozzarella",
+            "plat principal",
+            "ricotta",
+            "sorrentina",
+            "tomate",
+            "traditionnel",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3597",
+        "title": "Tabouleh à la libanaise",
+        "description": "Découvrez la recette authentique du tabouleh à la libanaise, une salade fraîche et parfumée, emblème de la cuisine du Moyen-Orient. Ce plat végétarien met à l'honneur le persil plat, la menthe, les tomates et le boulgour fin, relevés par une vinai...",
+        "image": "/recipes-ia/3597-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@cookwithbash/video/7345520458726427937?_r=1&amp;_t=ZN-94dF9kbQjKA\" data-video-id=\"7345520458726427937\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@cookwithbash/video/7345520458726427937?_r=1&amp;_t=ZN-94dF9kbQjKA\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌿 2 bottes de persil plat"
+            },
+            {
+                "quantity": "",
+                "name": "🧅 1 oignon (jaune, rouge ou nouveau)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅 3 tomates fermes"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Une petite botte de menthe fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 Une poignée de boulgour fin"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 Le jus d'un citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾 3 C.à.S d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 Zeste de citron (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣 Sumac (facultatif)"
+            }
+        ],
+        "steps": [
+            "Lavez et faites gonfler le boulgour fin pendant 15 minutes dans de l'eau fraîche.",
+            "Nettoyez 2 bouquets de persil plat, retirez les tiges et hachez finement.",
+            "Mettez le persil haché dans un grand saladier.",
+            "Nettoyez 1 petite botte de menthe fraîche, récupérez les feuilles et hachez très finement, puis ajoutez-les au saladier.",
+            "Coupez très finement 1 oignon jaune (ou rouge ou nouveau) et ajoutez-le au saladier.",
+            "Nettoyez 3 tomates fermes, retirez les pédoncules et coupez-les en dés très fins, puis transférez-les dans le saladier.",
+            "Ajoutez le jus d'un citron au saladier.",
+            "Ajoutez le boulgour gonflé au saladier.",
+            "Assaisonnez avec 3 cuillères à soupe d'huile d'olive, sel, poivre et éventuellement un peu de sumac.",
+            "Mélangez bien tous les ingrédients.",
+            "Ajoutez une petite touche de zeste de citron pour plus de fraîcheur."
+        ],
+        "tags": [
+            "citron",
+            "entrée",
+            "facile",
+            "frais",
+            "herbes",
+            "Liban",
+            "libanais",
+            "moyen-orient",
+            "ramadan",
+            "rapide",
+            "recette",
+            "salade",
+            "tabouleh",
+            "Végétarien"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3714",
+        "title": "Farfalle al salmone",
+        "description": "Une recette gourmande, crémeuse et ultra efficace de farfalle au saumon fumé, avec une sauce qui enrobe parfaitement les pâtes. Simple et irrésistible.",
+        "image": "/recipes-ia/3714-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610855148310580502\" data-video-id=\"7610855148310580502\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610855148310580502\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n 500gr de Farfalle"
+            },
+            {
+                "quantity": "",
+                "name": "🐟\n 300gr straccetti de saumon fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 1 noisette de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 filet d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n 40 cl crème spéciale cuisson"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 100gr de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n 1 cuillère de sauce tomate napolitaine"
+            }
+        ],
+        "steps": [
+            "Mettez les farfalle dans une casserole d'eau bouillante salée et faites cuire selon les indications du paquet.",
+            "Dans une poêle, faites revenir les straccetti de saumon fumé dans l'huile d'olive, un peu de zestes de citron et un peu de crème.",
+            "Ajoutez 1 cuillère ou 2 de sauce tomate pour colorer la sauce.",
+            "Incorporez la crème spéciale cuisson et le parmesan pour épaissir.",
+            "Mélangez les pâtes cuites avec la sauce et mélangez bien.",
+            "Servez chaud, décoré de zestes de citron et de persil."
+        ],
+        "tags": [
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3857",
+        "title": "Feuilleté apéritif au fromage et ail",
+        "description": "Un amuse-bouche maison facile et rapide à base de pâte feuilletée, fromage frais, parmesan, ail et persil, idéal pour l'apéritif.",
+        "image": "/recipes-ia/3857-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7161495575920151813\" data-video-id=\"7161495575920151813\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7161495575920151813\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n 1 pâte feuilletée"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n 100g de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n 100g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n 1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n 20g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 2 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n 10 feuilles de persil plat"
+            }
+        ],
+        "steps": [
+            "Étalez le fromage frais, le persil et le parmesan sur la pâte feuilletée.",
+            "Pliez la pâte en deux.",
+            "Battez l'œuf et étalez-le sur la pâte pliée.",
+            "Parsemez un peu de parmesan supplémentaire.",
+            "Mettez au four.",
+            "Pendant ce temps, mélangez le beurre, l'ail et le persil.",
+            "À la sortie du four, étalez ce mélange sur le feuilleté."
+        ],
+        "tags": [],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3913",
+        "title": "Brochette Bœuf Fromage BBQ",
+        "description": "Des brochettes de bœuf et de comté marinées, parfaites pour le barbecue.",
+        "image": "/recipes-ia/3913-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7530301951716773142\" data-video-id=\"7530301951716773142\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7530301951716773142\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n 400 à 500 g de bavette de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n Environ 100 g de comté coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 2 c. à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 1 c. à soupe de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 c. à soupe de moutarde (à l'ancienne ou douce)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 à 2 gousses d'ail hachées ou pressées"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 c. à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n 1/2 c. à café de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n Un peu de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n Quelques brins de coriandre fraîche"
+            }
+        ],
+        "steps": [
+            "Découpez la bavette en morceaux.",
+            "Ajoutez la sauce soja, le miel, l'huile d'olive, l'ail et le paprika fumé avec la moutarde.",
+            "Mélangez bien les ingrédients.",
+            "Laissez mariner toute la nuit ou 30 minutes si vous n'avez pas le temps.",
+            "Découpez le comté en petits carrés de la même taille que les morceaux de viande.",
+            "Enfilez sur les brochettes : fromage, viande, fromage, puis répétez avec le reste.",
+            "Cuisez les brochettes au barbecue ou à l'air fryer.",
+            "Nappez les brochettes avec un peu de reste de marinade avant de servir."
+        ],
+        "tags": [
+            "barbecue",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4082",
+        "title": "Hachis Parmentier maison",
+        "description": "Faire son hachis Parmentier maison !",
+        "image": "/recipes-ia/4082-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604762745589746977\" data-video-id=\"7604762745589746977\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604762745589746977\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             1kg de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             200g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100g de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100g de crème épaisse 30%"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             500g de viande hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 filet d'huile d'olive ou de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             50g de fromage râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             2 carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Muscade"
+            }
+        ],
+        "steps": [
+            "Cuire les pommes de terre avec un peu de sel et une branche de thym pendant 25 minutes.",
+            "Faire revenir l'oignon, l'ail et les carottes dans 20 g de beurre ou d'huile d'olive jusqu'à ce qu'ils soient tendres.",
+            "Ajouter la viande hachée et cuire jusqu'à ce qu'elle soit bien dorée.",
+            "Écraser les pommes de terre cuites en purée.",
+            "Faire chauffer le lait, la crème et un peu de beurre, puis incorporer ce mélange à la purée.",
+            "Verser la purée sur la viande cuite dans le plat.",
+            "Parsemer le dessus de fromage râpé.",
+            "Cuire au four à 200 °C pendant 8 minutes.",
+            "Servir chaud."
+        ],
+        "tags": [
+            "Famille",
+            "France"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4117",
+        "title": "Poulet rôti à l'espagnol",
+        "description": "Un poulet entier rôti avec des légumes, du chorizo et des épices typiques d'Espagne, parfait pour un repas convivial.",
+        "image": "/recipes-ia/4117-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618636736079400214\" data-video-id=\"7618636736079400214\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618636736079400214\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             1 poulet entier"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 poivron rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             100g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 Cas de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 Cas d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 Caf de piment"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             3-4 pommes de terre de taille moyenne"
+            }
+        ],
+        "steps": [
+            "Coupez grossièrement un oignon, une échalote, un poivron rouge et quelques gousses d'ail.",
+            "Mélangez ces légumes dans un plat qui va au four, ajoutez sel, poivre et un filet d'huile d'olive.",
+            "Enfournez le plat pendant 20 minutes à 220 °C.",
+            "Découpez un morceau de chorizo et pressez le jus d'un citron.",
+            "Une fois les légumes grillés, versez-les dans un mixeur avec le chorizo, le jus de citron et les épices (paprika, origan, piment).",
+            "Ajoutez un filet d'huile d'olive et mixez le tout.",
+            "Préparez le poulet en crapodine : retirez la colonne vertébrale, craquez le dos, puis marinez le poulet avec la préparation, ajoutez un sous-pot et laissez reposer au frais pendant au moins 4 h.",
+            "Déposez le poulet dans un plat, versez le fond de marinée dessus, mélangez avec un peu d'eau et ajoutez quelques pommes de terre.",
+            "Cuisez 30 minutes à couvert à 220 °C, puis 30 minutes à découvert."
+        ],
+        "tags": [
+            "Espagne",
+            "Famille"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "4262",
+        "title": "Boulettes de viande ultra gourmandes à la sauce tomate",
+        "description": "Mes boulettes de viande ultra gourmandes à la sauce tomate ! Elles sont fondantes et cheesy grâce à la mozzarella et au pecorino !",
+        "image": "/recipes-ia/4262-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7620130852709633302\" data-video-id=\"7620130852709633302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620130852709633302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Boeuf haché 500gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Chair à saucisse 250gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Graines de fenouil 10gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             Pain de mie 125gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait 10cl"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Mozzarella 120gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pecorino 125gr"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil plat 20gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Oeuf 2 pièces"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel fin"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates concassées 800gr"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon 1 pièce"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail 2 gousses"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive 10cl"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre 4gr"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel fin 6gr"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan 4gr"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym 1 branche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Laurier 1 feuille"
+            }
+        ],
+        "steps": [
+            "Mélangez 500 g de viande hachée de bœuf et 250 g de viande hachée de porc dans un bol.",
+            "Ajoutez 10 g de graines de fenouil, 125 g de pain de mie, 10 cl de lait, 120 g de mozzarella, 125 g de pécorino, 2 œufs, 12 g de sel fin, 4 g de poivre du moulin et 20 g de persil plat frais haché grossièrement.",
+            "Mélangez bien jusqu'à obtenir une farce homogène.",
+            "Formez des boulettes d'environ 120 g chacune.",
+            "Préchauffez le four à 140 °C.",
+            "Disposez les boulettes sur une plaque et badigeonnez chaque boulettes de 3 cl d'huile d'olive.",
+            "Enfournez les boulettes pendant 15 à 20 minutes jusqu'à ce qu'elles soient bien cuites.",
+            "Pendant ce temps, faites revenir l'oignon et l'ail dans une casserole avec un peu d'huile d'olive.",
+            "Ajoutez 800 g de tomates concassées, 4 g d'origan, une branche de thym et une feuille de laurier.",
+            "Laissez mijoter à feu doux jusqu'à ce que la sauce épaississe.",
+            "Servez les boulettes chaudes nappées de sauce tomate."
+        ],
+        "tags": [
+            "Famille",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6468",
+        "title": "Achard de mangue - version salade",
+        "description": "Une recette estivale d'achard de mangue en version salade, avec des crevettes pour les protéines.",
+        "image": "/recipes-ia/6468-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656385835629022497\" data-video-id=\"7656385835629022497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656385835629022497\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Mangue"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Gingembre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n             Crevettes"
+            }
+        ],
+        "steps": [
+            "Émincez un oignon rouge.",
+            "Mélangez l'oignon avec un filet d'huile d'olive, du piment, du gingembre, du sel et du poivre pour faire la sauce.",
+            "Coupez la mangue en cubes (ou en lamelles selon votre préférence).",
+            "Ajoutez la mangue à la sauce et mélangez bien.",
+            "Ajoutez un peu de poivre, un peu de coriandre fraîche et une petite rondelle de citron.",
+            "Servez la salade fraîche."
+        ],
+        "tags": [
+            "Afrique",
+            "épicé",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7432",
+        "title": "Biscotti Cantucci italiens",
+        "description": "Découvrez comment préparer des Cantucci, ces délicieux biscuits aux amandes originaires de Toscane. Faciles et rapides à réaliser, même à la dernière minute, ils ne nécessitent aucun outil spécial. Parfaits pour un cadeau de dernière minute, ils s...",
+        "image": "/recipes-ia/7432-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7316104036002843936\" data-video-id=\"7316104036002843936\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7316104036002843936\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200g de farine 00"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g d'amandes entières (½ concassées, ½ entières)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6g de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf moyen et 1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Le zeste d'une demi-orange"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zeste d'un demi-citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une belle pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            }
+        ],
+        "steps": [
+            "Ajoutez tous les ingrédients secs dans le bol : farine, sucre, amandes, sel et poudre à pâte.",
+            "Mélangez les ingrédients secs avec l'extrait de vanille et une pointe de miel.",
+            "Ajoutez deux œufs, le zeste d'un demi-citron et le zeste d'une demi-orange.",
+            "Mélangez le tout jusqu'à ce qu'il n'y ait plus de farine sèche.",
+            "Placez la pâte sur le dessus et travaillez-la délicatement pour obtenir une forme rectangulaire plate.",
+            "Enfournez à 70 °C pendant environ 20 minutes jusqu'à ce qu'elle soit belle et dorée sur le dessus.",
+            "Laissez refroidir 15 minutes avant de couper d'environ 1 doigt d'épaisseur.",
+            "Remettez les morceaux sur le plateau, côté plat vers le bas, prêts pour la deuxième cuisson.",
+            "Enfournez à 160 °C pendant 10 minutes pour la double cuisson.",
+            "Laissez refroidir avant de déguster, accompagnés de vin santo ou de café."
+        ],
+        "tags": [
+            "Italie",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7455",
+        "title": "Moules au chorizo",
+        "description": "Une recette savoureuse de moules cuisinées avec du chorizo, de l'oignon, de l'ail et du vin blanc.",
+        "image": "/recipes-ia/7455-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7682465842545675552\" data-video-id=\"7682465842545675552\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7682465842545675552\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 kg de moules"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             200 g de chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             10 cl de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             30 cl de"
+            }
+        ],
+        "steps": [
+            "Coupez le chorizo en deux : une moitié en grosses rondelles et l'autre en petits dés.",
+            "Saucisez l'oignon blanc, en gardant les chutes pour la sauce.",
+            "Dans une casserole à froid, faites revenir le chorizo, l'oignon et les gousses d'ail jusqu'à ce qu'ils commencent à colorer.",
+            "Déglacez avec le vin blanc.",
+            "Ajoutez la crème, laissez cuire environ 10 minutes à feu doux.",
+            "Mélangez la sauce jusqu'à obtenir une crème homogène, puis réservez.",
+            "Dans une autre casserole, faites revenir les petits dés de chorizo jusqu'à ce qu'ils colorent.",
+            "Retirez les dés, ajoutez l'oignon et les moules, mélangez légèrement, puis couvrez.",
+            "Laissez cuire 4 minutes, jusqu'à ce que les moules soient bien ouvertes.",
+            "Ajoutez la crème, les dés de chorizo et le persil, mélangez bien.",
+            "Servez chaud, accompagné de frites maison si désiré."
+        ],
+        "tags": [
+            "épicé",
+            "Espagne",
+            "Pas cher",
+            "Poissons et crustacés"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7474",
+        "title": "Côte de Bœuf Frite",
+        "description": "Découvrez la recette de la côte de bœuf frite, une méthode traditionnelle où la viande est cuite dans du beurre clarifié pour un résultat incroyablement savoureux. Une véritable gourmandise à partager !",
+        "image": "/recipes-ia/7474-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7509927410251468054\" data-video-id=\"7509927410251468054\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7509927410251468054\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             1 kg de côte de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             500 g de beurre clarifié"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Ail et romarin (selon le goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             100 g de farine T45"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             200 g de chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de Panko"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            }
+        ],
+        "steps": [
+            "Préchauffez une poêle à feu moyen-élevé.",
+            "Frottez la côte de bœuf avec du sel et du poivre.",
+            "Enrobez chaque côté de la côte de bœuf dans la farine 00.",
+            "Battez les œufs dans un bol et plongez la côte de bœuf pour l'enrober.",
+            "Passez la côte de bœuf dans le mélange de pangrattato et de panko pour bien l'enrober.",
+            "Ajoutez l'ail et le romarin dans le beurre clarifié et faites fondre.",
+            "Versez le beurre clarifié dans la poêle et faites frire la côte de bœuf jusqu'à ce qu'elle soit bien croustillante à l'extérieur et rosée à l'intérieur.",
+            "Retirez la côte de bœuf de la poêle, laissez égoutter l'excès de graisse, puis coupez-la en tranches.",
+            "Servez chaud, parsemé d'une pincée de sel de Maldon."
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5135",
+        "title": "Coupelles de banane plantain",
+        "description": "Une recette d'entrée pour impressionner vos invités.",
+        "image": "/recipes-ia/5135-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7400056860658765088\" data-video-id=\"7400056860658765088\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7400056860658765088\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍌\n 2 bananes plantains pas très mûres"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🦐\n Crevettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n 1 poivron rouge, coupé en petits dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n 1 cuillère à soupe de jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel et poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥑\n 1 avocat mûr"
+            }
+        ],
+        "steps": [
+            "Assaisonnez les crevettes avec du sel, du poivre et un tout petit peu de marinade.",
+            "Dans une poêle, ajoutez un peu d'huile, des tomates, des oignons et les crevettes, puis faites revenir le tout.",
+            "Préparez le guacamole en mélangeant l'oignon, le poivron, un peu de sel, un peu de poivre, le jus de citron et l'avocat mûr.",
+            "Faites frire les bananes plantains dans l'huile pendant 1 à 2 minutes jusqu'à ce qu'elles soient bien croustillantes."
+        ],
+        "tags": [
+            "Afrique",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7090",
+        "title": "Laab Moo (Salade de Porc Thaï)",
+        "description": "Je pensais bien connaître la cuisine thaï jusqu'à ce que je découvre cette merveille. Hmmm olala, c'est trop bon ça !",
+        "image": "/recipes-ia/7090-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661182344098827553\" data-video-id=\"7661182344098827553\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661182344098827553\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             300g de porc haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             2 cuillères à soupe de riz cru (à torréfier)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 échalotes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 branche de cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1/2 botte de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1/2 botte de coriandre"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             2 cuillères à soupe de sauce poisson"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le jus de 2 citrons verts"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 cuillère à café de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail râpées"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Flocons de piment (selon les goûts)"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Quelques belles feuilles de salade"
+            }
+        ],
+        "steps": [
+            "Fais griller du riz à la poêle et réduis-le en poudre au mortier.",
+            "Fais poêler la viande et déglace avec un petit verre d'eau en fin de cuisson.",
+            "Hache finement les échalotes et râpe les gousses d'ail.",
+            "Mélange les ingrédients de la sauce.",
+            "Jette les échalotes, la cébette, la menthe et la coriandre dans un saladier et arrose avec la sauce, puis mélange bien.",
+            "Dépose quelques feuilles de salade dans l'assiette et ajoute le mélange de porc par-dessus.",
+            "Ajoute un peu de cébette fraîche, quelques feuilles de menthe et une dernière pincée de poudre de riz."
+        ],
+        "tags": [
+            "Asie",
+            "épicé",
+            "Salades"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7104",
+        "title": "Pâtes à l'ail confit",
+        "description": "Une recette rapide et facile de pâtes à l'ail confit, agrémentées de lard fumé, de parmesan et de persil, liées avec des jaunes d'œuf et de l'eau de cuisson des pâtes.",
+        "image": "/recipes-ia/7104-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671336855354248480\" data-video-id=\"7671336855354248480\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671336855354248480\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             300g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             4 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 jaunes d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             3 tranches de lard fumé"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             1 louche d'eau de cuisson des pâtes"
+            }
+        ],
+        "steps": [
+            "Enlève la peau des gousses d'ail et recouvre-les d'huile d'olive.",
+            "Mets l'ail au four ou à l'air Fryer pendant 20-30 minutes.",
+            "Mélange l'ail cuit avec du beurre, du persil, du parmesan et des jaunes d'œuf.",
+            "Détaille le lard fumé en allumettes et fais-le griller avant de le hacher finement.",
+            "Mélange le lard grillé avec la préparation précédente.",
+            "Fais cuire des pâtes al dente et mets-les dans une poêle.",
+            "Verse une louche d'eau de cuisson des pâtes dans la poêle et chauffe pendant environ 2 minutes pour lier le tout.",
+            "Dresse le plat avec du parmesan, des lardons grillés et du persil."
+        ],
+        "tags": [
+            "Italie",
+            "Pas cher",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7159",
+        "title": "Poulet citron moutarde",
+        "description": "Une recette simple et savoureuse de poulet rôti, mariné au citron et à la moutarde, avec des aromates.",
+        "image": "/recipes-ia/7159-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7673530780584348960\" data-video-id=\"7673530780584348960\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7673530780584348960\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             Volaille entière"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde de Dijon"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Jus de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Échalote"
+            }
+        ],
+        "steps": [
+            "Lève les cuisses, les faux filets et les solides du poulet.",
+            "Sépare le pilon du haut de cuisse.",
+            "Coupe en 2 les suprèmes.",
+            "Réunis les morceaux de poulet sur une grille.",
+            "Masse la viande avec du citron, de l'huile d'olive, du sel et du poivre.",
+            "Envoie le poulet au four à 200°C.",
+            "Prépare la sauce en faisant suer une échalote et une gousse d'ail dans de l'huile d'olive chaude.",
+            "Ajoute de la moutarde à l'ancienne, de la moutarde de Dijon, un cube de jus de volaille réduit, de la sauce soja et du jus de citron jaune à la sauce.",
+            "Nappe les morceaux de poulet avec la sauce après environ 20 minutes de cuisson.",
+            "Rebalance les morceaux de poulet à 200°C pendant encore 10 minutes.",
+            "Lacque les morceaux de poulet avec la sauce juste avant de servir.",
+            "Dispose un peu de sauce dans le fond de l'assiette et ajoute un peu d'huile d'olive.",
+            "Sers chaud."
+        ],
+        "tags": [
+            "Plats"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "3480",
+        "title": "Piccata de poulet à l'italienne",
+        "description": "Découvrez une délicieuse recette de Piccata de poulet, un classique de la cuisine italienne. Ce plat savoureux met en vedette des blancs de poulet tendres, parfumés au citron et au thym, accompagnés d'une purée de pommes de terre onctueuse. Une re...",
+        "image": "/recipes-ia/3480-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@comment_cuisiner/video/7550349248961711382\" data-video-id=\"7550349248961711382\">\n<section></section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗 2 blancs de poulets"
+            },
+            {
+                "quantity": "",
+                "name": "🍋 2 citrons"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂 Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️ Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄 150ml de fond de volaille"
+            },
+            {
+                "quantity": "",
+                "name": "🌾 Farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍎 2 pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🥛 100ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "🧈 75g de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿 Ciboulette"
+            }
+        ],
+        "steps": [
+            "Tranche finement les blancs de poulet.",
+            "Assaisonne les blancs de poulet avec du sel, du poivre et du piment d'Espelette.",
+            "Ajoute du jus de citron sur les blancs de poulet.",
+            "Trempe les blancs de poulet dans de la farine.",
+            "Mélange du jus de citron et du bouillon de volaille dans un ramequin.",
+            "Cise finement la ciboulette.",
+            "Fais revenir les morceaux de poulet dans un filet d'huile d'olive.",
+            "Retire les morceaux de poulet du feu et déglace avec le mélange au citron.",
+            "Laisse réduire la sauce.",
+            "Coupe grossièrement des pommes de terre et mets-les à cuire dans un gros volume d'eau avec du sel.",
+            "Passe les pommes de terre au presse-purée, ajoute du beurre, du lait et assaisonne avec du sel et du poivre.",
+            "Mélange bien la purée.",
+            "Assaisonne le plat avec la sauce et la purée."
+        ],
+        "tags": [
+            "citron",
+            "dîner",
+            "italien",
+            "piccata",
+            "plat principal",
+            "poulet",
+            "purée",
+            "recette facile",
+            "recette simple"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6444",
+        "title": "Vitello Tonnato Maison",
+        "description": "Une recette maison de Vitello Tonnato, un délicieux mariage terre-mer de veau et de thon, facile à préparer et très savoureuse.",
+        "image": "/recipes-ia/6444-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656387003956645153\" data-video-id=\"7656387003956645153\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656387003956645153\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥜\n             300g de noix de veau"
+            },
+            {
+                "quantity": "",
+                "name": "🥕\n             Carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons nouveaux"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Thym"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Romarin"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             Un verre de vin blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des caprons (câpres à queue)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 boîte de thon"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 filets d'anchois"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de câpres"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf mollet"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Salez le veau sur tous les côtés.",
+            "Saisis le veau rapidement à la poêle.",
+            "Mets le veau dans une casserole avec une garniture de légumes.",
+            "Récupère les sucres dans la poêle avec du vin blanc et ajoute ce breuvage dans la casserole avec de l'eau et des herbes à hauteur.",
+            "Laisse cuire 30 minutes à feu doux.",
+            "Mets tous les ingrédients de la sauce Tonnato dans un mixeur et mixe jusqu'à obtenir une texture nappante.",
+            "Si nécessaire, ajoute du jus de cuisson du veau pour obtenir la bonne texture.",
+            "Laisse refroidir la viande au frigo pendant quelques heures.",
+            "Découpe la viande en fines lamelles.",
+            "Tapisse une assiette de sauce Tonnato.",
+            "Dispose les morceaux de viande sur la sauce.",
+            "Ajoute de la sauce Tonnato sur les morceaux de viande.",
+            "Ajoute des caprons et du bouillon de cuisson de veau réduit."
+        ],
+        "tags": [
+            "Entrées",
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7467",
+        "title": "Escalope à la Milanaise",
+        "description": "Une escalope à la Milanaise, présentée comme étant meilleure qu'au restaurant.",
+        "image": "/recipes-ia/7467-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7267573866627730720\" data-video-id=\"7267573866627730720\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7267573866627730720\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             escalope de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             sauce tomate"
+            }
+        ],
+        "steps": [
+            "Ouvre un bon morceau de poulet en 2 format portefeuille",
+            "Place-le ensuite entre 2 feuilles de papier sulfu et martelle avec 1 casserole pour avoir 1 escalope bien fine et hyper tendre",
+            "Assaisonne-la bien en sel et poivre",
+            "Fais 1 aller-retour rapide dans la farine en enlevant l'excédent",
+            "Casse 2 œufs dans 1 bol et trempe ton poulet fariné dedans",
+            "Utilise de la panure panco et viens râper du parmesan dedans pour donner 1 goût de fou",
+            "Pose-y ensuite ta viande et appuie bien pour coller la panure à l'œuf",
+            "Fais fondre du beurre dans 1 poêle avec 1 peu d'huile pour pas que ça brûle et fais cuire ton escalope panée dedans environ 5 minutes de chaque côté",
+            "Fais revenir 1 oignon rouge émincé et 2 gousses d'ail écrasées dans ta poêle",
+            "Ajoute quelques olives hachées et des petites tomates en quartier avant de laisser mijoter 1 dizaine de minutes",
+            "Assaisonne avec du sel, du poivre et du sucre",
+            "Termine en mettant du basilic frais haché, quelques pignons et un peu de harissa fumée",
+            "Dépose ton escalope dans 1 assiette et viens la napper avec la sauce tomate au pignon légèrement relevé",
+            "Mets au four à 150°C pendant quelques minutes pour finir de cuire l'escalope",
+            "Sers bien chaud"
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5460",
+        "title": "Crème chocolat",
+        "description": "Le mélange coco chocolat est vraiment très bon ! Ça donne une crème tout en légèreté 🥰 il faut que vous testiez.",
+        "image": "/recipes-ia/5460-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7500977126292720898\" data-video-id=\"7500977126292720898\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7500977126292720898\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥛\n 1 conserve de lait de coco bio (400ml)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n 160g de chocolat noir pâtissier"
+            }
+        ],
+        "steps": [
+            "Verse le lait de coco dans une casserole.",
+            "Fais chauffer à feu doux.",
+            "Ajoute le chocolat en morceaux et mélange bien.",
+            "Verse le mélange dans des ramequins et place au frais pendant au moins 3 heures ou toute une nuit.",
+            "Serve et régale-toi !"
+        ],
+        "tags": [
+            "Desserts",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7482",
         "title": "Gyozas au poulet faits maison",
@@ -236,57 +5318,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7474",
-        "title": "Côte de Bœuf Frite",
-        "description": "Découvrez la recette de la côte de bœuf frite, une méthode traditionnelle où la viande est cuite dans du beurre clarifié pour un résultat incroyablement savoureux. Une véritable gourmandise à partager !",
-        "image": "/recipes-ia/7474-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7509927410251468054\" data-video-id=\"7509927410251468054\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7509927410251468054\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             1 kg de côte de bœuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             500 g de beurre clarifié"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Ail et romarin (selon le goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             100 g de farine T45"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             200 g de chapelure"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             200 g de Panko"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             4 œufs"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
-        ],
-        "tags": [
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7476",
         "title": "Polenta gratinée aux tomates cerises et burrata",
         "description": "Une recette facile et savoureuse de polenta crémeuse gratinée au four avec des tomates cerises, de l'oignon rouge, du romarin, et garnie de burrata fondante et de pignons de pin.",
@@ -370,37 +5401,6 @@ export const mockRecipes: Recipe[] = [
             "Italie",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7467",
-        "title": "Escalope à la Milanaise",
-        "description": "Une escalope à la Milanaise, présentée comme étant meilleure qu'au restaurant.",
-        "image": "/recipes-ia/7467-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7267573866627730720\" data-video-id=\"7267573866627730720\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7267573866627730720\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             escalope de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             sauce tomate"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -877,56 +5877,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7455",
-        "title": "Moules au chorizo",
-        "description": "Une recette savoureuse de moules cuisinées avec du chorizo, de l'oignon, de l'ail et du vin blanc.",
-        "image": "/recipes-ia/7455-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7682465842545675552\" data-video-id=\"7682465842545675552\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7682465842545675552\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 kg de moules"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             200 g de chorizo"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             10 cl de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             30 cl de"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Espagne",
-            "Pas cher",
-            "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7435",
         "title": "Chakchouka aux pommes de terre et oignons caramélisés",
         "description": "Une chakchouka revisitée et gourmande, préparée avec des pommes de terre et des oignons caramélisés, relevée de paprika fumé et de gingembre, et agrémentée d'œufs. Parfaite pour un repas savoureux et réconfortant.",
@@ -1194,70 +6144,6 @@ export const mockRecipes: Recipe[] = [
             "Sauces",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7432",
-        "title": "Biscotti Cantucci italiens",
-        "description": "Découvrez comment préparer des Cantucci, ces délicieux biscuits aux amandes originaires de Toscane. Faciles et rapides à réaliser, même à la dernière minute, ils ne nécessitent aucun outil spécial. Parfaits pour un cadeau de dernière minute, ils s...",
-        "image": "/recipes-ia/7432-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7316104036002843936\" data-video-id=\"7316104036002843936\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7316104036002843936\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             200g de farine 00"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 cuillères à café de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g d'amandes entières (½ concassées, ½ entières)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6g de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf moyen et 1 jaune d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Le zeste d'une demi-orange"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le zeste d'un demi-citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une belle pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "Noël"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -1690,153 +6576,6 @@ export const mockRecipes: Recipe[] = [
             "Gratins",
             "Italie",
             "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6444",
-        "title": "Vitello Tonnato Maison",
-        "description": "Une recette maison de Vitello Tonnato, un délicieux mariage terre-mer de veau et de thon, facile à préparer et très savoureuse.",
-        "image": "/recipes-ia/6444-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656387003956645153\" data-video-id=\"7656387003956645153\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656387003956645153\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥜\n             300g de noix de veau"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             Carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignons nouveaux"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Romarin"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             Un verre de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Des caprons (câpres à queue)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 boîte de thon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 filets d'anchois"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de câpres"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf mollet"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cuillère à café de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Entrées",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6468",
-        "title": "Achard de mangue - version salade",
-        "description": "Une recette estivale d'achard de mangue en version salade, avec des crevettes pour les protéines.",
-        "image": "/recipes-ia/6468-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656385835629022497\" data-video-id=\"7656385835629022497\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656385835629022497\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Mangue"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gingembre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🦐\n             Crevettes"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "épicé",
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -3247,110 +7986,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "4262",
-        "title": "Boulettes de viande ultra gourmandes à la sauce tomate",
-        "description": "Mes boulettes de viande ultra gourmandes à la sauce tomate ! Elles sont fondantes et cheesy grâce à la mozzarella et au pecorino !",
-        "image": "/recipes-ia/4262-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7620130852709633302\" data-video-id=\"7620130852709633302\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7620130852709633302\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             Boeuf haché 500gr"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Chair à saucisse 250gr"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Graines de fenouil 10gr"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             Pain de mie 125gr"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Lait 10cl"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Mozzarella 120gr"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pecorino 125gr"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil plat 20gr"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             Oeuf 2 pièces"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel fin"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates concassées 800gr"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon 1 pièce"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail 2 gousses"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive 10cl"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre 4gr"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel fin 6gr"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Origan 4gr"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym 1 branche"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Laurier 1 feuille"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Famille",
-            "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "4123",
         "title": "Épaule d'agneau comme un chef",
         "description": "Découvrez comment cuisiner une épaule d'agneau savoureuse et fondante, un plat mijoté qui ne sèche pas, parfait pour un repas de chef à la maison.",
@@ -3480,86 +8115,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Famille",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4117",
-        "title": "Poulet rôti à l'espagnol",
-        "description": "Un poulet entier rôti avec des légumes, du chorizo et des épices typiques d'Espagne, parfait pour un repas convivial.",
-        "image": "/recipes-ia/4117-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7618636736079400214\" data-video-id=\"7618636736079400214\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7618636736079400214\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             1 poulet entier"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 échalotes"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 poivron rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             100g de chorizo"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 Cas de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 Cas d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 Caf de piment"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             3-4 pommes de terre de taille moyenne"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Espagne",
-            "Famille"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -3822,86 +8377,6 @@ export const mockRecipes: Recipe[] = [
             "France",
             "Noël",
             "Saison"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "4082",
-        "title": "Hachis Parmentier maison",
-        "description": "Faire son hachis Parmentier maison !",
-        "image": "/recipes-ia/4082-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604762745589746977\" data-video-id=\"7604762745589746977\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604762745589746977\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             1kg de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             200g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100g de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             100g de crème épaisse 30%"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             500g de viande hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             1 filet d'huile d'olive ou de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             50g de fromage râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             2 carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Muscade"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Famille",
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -4283,70 +8758,6 @@ export const mockRecipes: Recipe[] = [
             "facile",
             "poulet",
             "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3913",
-        "title": "Brochette Bœuf Fromage BBQ",
-        "description": "Des brochettes de bœuf et de comté marinées, parfaites pour le barbecue.",
-        "image": "/recipes-ia/3913-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7530301951716773142\" data-video-id=\"7530301951716773142\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7530301951716773142\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n 400 à 500 g de bavette de bœuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n Environ 100 g de comté coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 2 c. à soupe de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 1 c. à soupe de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 1 c. à soupe de moutarde (à l'ancienne ou douce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 à 2 gousses d'ail hachées ou pressées"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 1 c. à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n 1/2 c. à café de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n Un peu de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n Quelques brins de coriandre fraîche"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "barbecue",
-            "France"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -4944,55 +9355,6 @@ export const mockRecipes: Recipe[] = [
             "Ajouter un filet de miel sur chaque morceau de fromage.",
             "Enfourner pendant 20 minutes à 200°C (prolonger de 5 minutes pour plus de croustillant).",
             "Parsemer de ciboulette ciselée avant de servir."
-        ],
-        "tags": [],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3857",
-        "title": "Feuilleté apéritif au fromage et ail",
-        "description": "Un amuse-bouche maison facile et rapide à base de pâte feuilletée, fromage frais, parmesan, ail et persil, idéal pour l'apéritif.",
-        "image": "/recipes-ia/3857-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7161495575920151813\" data-video-id=\"7161495575920151813\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7161495575920151813\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n 1 pâte feuilletée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n 100g de fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 100g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n 1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 20g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n 10 feuilles de persil plat"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
         ],
         "tags": [],
         "isFeatured": false,
@@ -6097,57 +10459,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "3714",
-        "title": "Farfalle al salmone",
-        "description": "Une recette gourmande, crémeuse et ultra efficace de farfalle au saumon fumé, avec une sauce qui enrobe parfaitement les pâtes. Simple et irrésistible.",
-        "image": "/recipes-ia/3714-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7610855148310580502\" data-video-id=\"7610855148310580502\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7610855148310580502\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n 500gr de Farfalle"
-            },
-            {
-                "quantity": "",
-                "name": "🐟\n 300gr straccetti de saumon fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n 1 noisette de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 1 filet d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n 40 cl crème spéciale cuisson"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n 100gr de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n 1 cuillère de sauce tomate napolitaine"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "3701",
         "title": "Tarte aux framboises et pistache",
         "description": "Une délicieuse tarte estivale composée d'une pâte sablée croustillante, d'une crème d'amande (optionnelle), d'un coulis de fruits rouges, et d'une onctueuse crème pâtissière à la pistache, le tout garni de framboises fraîches.",
@@ -6783,86 +11094,6 @@ export const mockRecipes: Recipe[] = [
             "Mezze",
             "rapide",
             "Viande"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3597",
-        "title": "Tabouleh à la libanaise",
-        "description": "Découvrez la recette authentique du tabouleh à la libanaise, une salade fraîche et parfumée, emblème de la cuisine du Moyen-Orient. Ce plat végétarien met à l'honneur le persil plat, la menthe, les tomates et le boulgour fin, relevés par une vinai...",
-        "image": "/recipes-ia/3597-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@cookwithbash/video/7345520458726427937?_r=1&amp;_t=ZN-94dF9kbQjKA\" data-video-id=\"7345520458726427937\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@cookwithbash/video/7345520458726427937?_r=1&amp;_t=ZN-94dF9kbQjKA\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌿 2 bottes de persil plat"
-            },
-            {
-                "quantity": "",
-                "name": "🧅 1 oignon (jaune, rouge ou nouveau)"
-            },
-            {
-                "quantity": "",
-                "name": "🍅 3 tomates fermes"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 Une petite botte de menthe fraîche"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Une poignée de boulgour fin"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 Le jus d'un citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾 3 C.à.S d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 Zeste de citron (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣 Sumac (facultatif)"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans le contenu fourni."
-        ],
-        "tags": [
-            "citron",
-            "entrée",
-            "facile",
-            "frais",
-            "herbes",
-            "Liban",
-            "libanais",
-            "moyen-orient",
-            "ramadan",
-            "rapide",
-            "recette",
-            "salade",
-            "tabouleh",
-            "Végétarien"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -7684,86 +11915,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "3533",
-        "title": "Gnocchi di ricotta alla sorrentina",
-        "description": "Ces gnocchis de ricotta à la sorrentina évoquent les saveurs réconfortantes de la cuisine traditionnelle italienne. Un plat généreux qui promet de remplir votre cuisine d'arômes délicieux et votre cœur de bonheur, comme chez grand-mère. Parfaits p...",
-        "image": "/recipes-ia/3533-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@feenixchef/video/7611935893129088278?_r=1&amp;_t=ZN-94ZpBzz98qs\" data-video-id=\"7611935893129088278\" style=\"max-width: 605px; min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/@feenixchef/video/7611935893129088278?_r=1&amp;_t=ZN-94ZpBzz98qs\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣 500 g de ricotta"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 280 g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧀 Parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🥚 2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍅 500 g de purée de tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🧄 2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧀 140 g de mozzarella"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 Basilic frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍾 Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ Poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "facile",
-            "gnocchi",
-            "italien",
-            "mozzarella",
-            "plat principal",
-            "ricotta",
-            "sorrentina",
-            "tomate",
-            "traditionnel",
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "3531",
         "title": "Torta della Nonna",
         "description": "Aujourd'hui, nous partageons la recette d'une délicieuse spécialité italienne : la Torta della Nonna. Son nom signifie \" Gâteau de la Grand-mère \", et ce dessert classique vous transportera directement dans la cuisine chaleureuse d'une nonna itali...",
@@ -8144,85 +12295,6 @@ export const mockRecipes: Recipe[] = [
             "Saucisse",
             "Toast",
             "Toscan"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "3480",
-        "title": "Piccata de poulet à l'italienne",
-        "description": "Découvrez une délicieuse recette de Piccata de poulet, un classique de la cuisine italienne. Ce plat savoureux met en vedette des blancs de poulet tendres, parfumés au citron et au thym, accompagnés d'une purée de pommes de terre onctueuse. Une re...",
-        "image": "/recipes-ia/3480-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@comment_cuisiner/video/7550349248961711382\" data-video-id=\"7550349248961711382\">\n<section></section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗 2 blancs de poulets"
-            },
-            {
-                "quantity": "",
-                "name": "🍋 2 citrons"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ Piment d'Espelette"
-            },
-            {
-                "quantity": "",
-                "name": "🧂 Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️ Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄 150ml de fond de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🌾 Farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍎 2 pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛 100ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🧈 75g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿 Ciboulette"
-            }
-        ],
-        "steps": [
-            "Pour la préparation de la recette des piccata de poulet, suivre la vidéo !"
-        ],
-        "tags": [
-            "citron",
-            "dîner",
-            "italien",
-            "piccata",
-            "plat principal",
-            "poulet",
-            "purée",
-            "recette facile",
-            "recette simple"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -9584,136 +13656,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7187",
-        "title": "Tarte tatin aux aubergines",
-        "description": "Une revisite ultra gourmande et saine d'un grand classique : la tarte tatin version salée aux aubergines fondantes.",
-        "image": "/recipes-ia/7187-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665748237168413985\" data-video-id=\"7665748237168413985\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665748237168413985\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍆\n             2 grosses aubergines"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Crème de vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Herbes (Basilic, herbes de Provence)"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             1 pâte feuilletée (sans gluten)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Sans Gluten",
-            "tarte",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7175",
-        "title": "Spaghettis aux moules",
-        "description": "Les spaghettis aux moules, c'est de la poésie. Peu d'ingrédients, beaucoup de saveur et tout le parfum de la mer. Les recettes simples sont souvent les plus difficiles à réussir... et quand les moules sont fraîches, le reste vient tout seul. Le pr...",
-        "image": "/recipes-ia/7175-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665787703224487200\" data-video-id=\"7665787703224487200\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665787703224487200\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             400 g de spaghettis"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 kg de moules très fraîches"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Un bouquet de persil frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive extra vierge"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Poivre noir (selon le goût)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (très peu, l'eau des moules étant déjà salée)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Italie",
-            "Pas cher",
-            "pates",
-            "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7207",
         "title": "Saumon croustillant au riz",
         "description": "Une recette simple et rapide pour préparer du saumon croustillant servi sur du riz à sushi frit, agrémenté de sauces et de garnitures.",
@@ -10679,73 +14621,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7159",
-        "title": "Poulet citron moutarde",
-        "description": "Une recette simple et savoureuse de poulet rôti, mariné au citron et à la moutarde, avec des aromates.",
-        "image": "/recipes-ia/7159-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7673530780584348960\" data-video-id=\"7673530780584348960\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7673530780584348960\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧄\n             Volaille entière"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Citron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Moutarde de Dijon"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Moutarde à l'ancienne"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Jus de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Échalote"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Plats"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7161",
         "title": "Petits pains aux olives, ail et fromage frais",
         "description": "Des petits pains moelleux garnis d'un mélange crémeux de fromage frais aux ciboulettes, d'olives vertes et de Kalamata, ainsi que de fromages Cheddar et Emmental râpés. Parfaits pour le petit-déjeuner, un brunch ou un apéritif.",
@@ -11314,70 +15189,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7129",
-        "title": "Ravioles de courgettes",
-        "description": "Découvrez ces ravioles 100% maison, naturellement sans gluten et super faciles à préparer ! Une alternative originale et délicieuse, inspirée par @cheztiffany_.",
-        "image": "/recipes-ia/7129-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7668645293822414113\" data-video-id=\"7668645293822414113\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7668645293822414113\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 courgette plutôt large"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             200g de fromage frais (chèvre Petit Billy ou ricotta)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tranches de truite fumée"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Burrata ou stracciatella"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Sauce tomate"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation sont détaillées dans la vidéo."
-        ],
-        "tags": [
-            "Italie",
-            "pates",
-            "Plats",
-            "Poissons et crustacés",
-            "Sans Gluten",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7143",
         "title": "Goma-ae de haricots verts",
         "description": "Une recette japonaise simple et végétale de haricots verts, enrobés d'une sauce sésame-soja sucrée-salée. C'est un accompagnement express, parfumé et plein d'umami, qui offre une alternative aux haricots vapeur.",
@@ -11637,65 +15448,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "pâtisserie",
             "tarte",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7141",
-        "title": "Crème ciboulette",
-        "description": "La meilleure crème ciboulette, idéale pour accompagner les pommes de terre ou les grillades, dans le cadre de la série BBQ VG.",
-        "image": "/recipes-ia/7141-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663510071220981024\" data-video-id=\"7663510071220981024\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663510071220981024\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             1 kg de crème fraîche épaisse d'Isigny"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail hachées"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 à 2 échalotes ciselées"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 botte de ciboulette ciselée"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 filet d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus d'un citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Fleur de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Aucune étape de préparation n'est détaillée dans la description fournie."
-        ],
-        "tags": [
-            "Accompagnements",
-            "barbecue",
-            "Sauces",
-            "Végé",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -12061,85 +15813,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7088",
-        "title": "Saumon Marry Me",
-        "description": "Une recette rapide et facile de saumon, cuit dans une sauce crémeuse et parfumée au vin blanc, aux tomates séchées, à l'échalote et aux herbes de Provence, idéal pour un dîner savoureux.",
-        "image": "/recipes-ia/7088-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7665402847013391649\" data-video-id=\"7665402847013391649\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7665402847013391649\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🐟\n             400g de saumon"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             2 cuillères à soupe de paprika doux"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cuillère à café d'ail en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 cuillère à café d'herbes de Provence"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 cuillère à café de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             3 ou 4 tomates séchées"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail hachée"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             100ml de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             250ml de crème liquide à 30% de matière grasse"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7096",
         "title": "Poulet chorizo",
         "description": "Un plat rapide et facile à base de poulet et de chorizo, mijoté dans une sauce crémeuse à la tomate et aux épices.",
@@ -12280,132 +15953,6 @@ export const mockRecipes: Recipe[] = [
             "Italie",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7104",
-        "title": "Pâtes à l'ail confit",
-        "description": "Une recette rapide et facile de pâtes à l'ail confit, agrémentées de lard fumé, de parmesan et de persil, liées avec des jaunes d'œuf et de l'eau de cuisson des pâtes.",
-        "image": "/recipes-ia/7104-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671336855354248480\" data-video-id=\"7671336855354248480\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671336855354248480\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             300g de pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 jaunes d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             3 tranches de lard fumé"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             1 louche d'eau de cuisson des pâtes"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "Pas cher",
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7090",
-        "title": "Laab Moo (Salade de Porc Thaï)",
-        "description": "Je pensais bien connaître la cuisine thaï jusqu'à ce que je découvre cette merveille. Hmmm olala, c'est trop bon ça !",
-        "image": "/recipes-ia/7090-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661182344098827553\" data-video-id=\"7661182344098827553\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661182344098827553\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             300g de porc haché"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             2 cuillères à soupe de riz cru (à torréfier)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 échalotes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 branche de cébette"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1/2 botte de menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1/2 botte de coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             2 cuillères à soupe de sauce poisson"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus de 2 citrons verts"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à café de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail râpées"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Flocons de piment (selon les goûts)"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Quelques belles feuilles de salade"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie",
-            "épicé",
-            "Salades"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -13342,65 +16889,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7021",
-        "title": "Truffade",
-        "description": "Découvrez la recette de la Truffade, un plat traditionnel français réconfortant à base de pommes de terre et de tome fraîche d'Aubrac. Parfait pour les repas d'hiver ou de Noël.",
-        "image": "/recipes-ia/7021-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7581814792382614807\" data-video-id=\"7581814792382614807\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7581814792382614807\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             1 kg de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             250 g de tome fraîche d'Aubrac"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             25 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Famille",
-            "France",
-            "Noël",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7015",
         "title": "Tiramisu aux spéculoos",
         "description": "Cette recette détaille la préparation d'une crème onctueuse et ferme à base de mascarpone, de crème fraîche et d'arôme vanille, agrémentée de sucre glace et de pâte de spéculoos, idéale pour un tiramisu aux spéculoos.",
@@ -13442,47 +16930,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Desserts",
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7032",
-        "title": "Sauce libanaise à l'ail (Toum)",
-        "description": "Une sauce libanaise crémeuse et aillée, parfaite pour accompagner divers plats comme les grillades, les falafels ou les chawarmas.",
-        "image": "/recipes-ia/7032-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7420486244804660513\" data-video-id=\"7420486244804660513\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7420486244804660513\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧄\n             150 g de gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à soupe de gros sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus de 2 citrons"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             600 ml d'huile végétale (tournesol, pépins de raisin ou colza)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Liban",
-            "Sauces",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -14162,70 +17609,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7024",
-        "title": "Cari de Poulet",
-        "description": "Une recette savoureuse de cari de poulet, typique de l'île de la Réunion, préparée avec des épices aromatiques et des tomates.",
-        "image": "/recipes-ia/7024-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7567792193025412374\" data-video-id=\"7567792193025412374\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7567792193025412374\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             Poulet entier"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             4 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gingembre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 cuillère à soupe de poivre noir"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à soupe de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             4 belles tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 oignons rouges"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "épicé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7017",
         "title": "Biscuits apéritifs maison au fromage et aux graines",
         "description": "Découvrez une recette simple et rapide pour préparer des biscuits salés faits maison, parfaits pour l'apéritif. Ces petits sablés au fromage et aux graines, relevés d'une touche de piment d'Espelette, sont faciles à réaliser et se conservent bien.",
@@ -14505,43 +17888,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6997",
-        "title": "Pommes au four caramélisées et noix",
-        "description": "Une recette rapide et facile de pommes cuites au four, agrémentées de caramel et de noix, parfaite pour un dessert réconfortant.",
-        "image": "/recipes-ia/6997-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7664636445805579553\" data-video-id=\"7664636445805579553\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7664636445805579553\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             Pommes"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre (pour le caramel)"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Noix"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "C'est l'hiver",
-            "Desserts",
-            "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6991",
         "title": "Parmigiana à la poêle",
         "description": "Une version simplifiée et rapide de la Parmigiana, préparée directement à la poêle. Ce plat végétarien italien est composé de couches d'aubergines grillées, de passata de tomate, de mozzarella et de parmesan, mijotées à la perfection.",
@@ -14606,71 +17952,6 @@ export const mockRecipes: Recipe[] = [
             "Pas cher",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6963",
-        "title": "Tartelettes tatin courgettes, champignons, chèvre et miel",
-        "description": "Ces tartelettes tatin salées combinent la douceur des courgettes et du miel avec le caractère du chèvre et des champignons, le tout sur une pâte feuilletée croustillante. Parfaites pour un apéritif ou une entrée légère.",
-        "image": "/recipes-ia/6963-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7663154006331624736\" data-video-id=\"7663154006331624736\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7663154006331624736\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             1 pâte feuilletée ou 4 petits carrés"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques champignons de Paris"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1 bûche de chèvre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Du miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Des pignons de pin"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "tarte",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -14910,83 +18191,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6955",
-        "title": "Sandwich à la truite fumée et au fromage frais au zaatar",
-        "description": "Une recette coup de cœur pour un sandwich délicieux à la truite fumée et au fromage frais parfumé au zaatar, simple et rapide à préparer.",
-        "image": "/recipes-ia/6955-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656094914027080992\" data-video-id=\"7656094914027080992\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656094914027080992\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Pain croustillant"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Truite fumée (tranches)"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1/2 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Quelques tomates séchées"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Pickles d'oignons rouges"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Quelques feuilles de salade"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote émincée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 c. à c. de Zaatar"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre du moulin"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Orient",
-            "Poissons et crustacés",
-            "Sandwichs"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6935",
         "title": "Salade fraîcheur melon, burrata et jambon cru",
         "description": "Une salade estivale rafraîchissante, facile et rapide à préparer, idéale par temps chaud. Elle combine la douceur du melon, la richesse crémeuse de la burrata et le goût salé du jambon cru, le tout relevé par une touche de balsamique et d'herbes f...",
@@ -15166,66 +18370,6 @@ export const mockRecipes: Recipe[] = [
             "Orient",
             "Pas cher",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6969",
-        "title": "Plat de riz et viande hachée aux poivrons à la mexicaine",
-        "description": "Une recette facile et rapide pour un plat équilibré à base de riz, viande hachée, poivrons et saveurs mexicaines, idéale pour 3 repas.",
-        "image": "/recipes-ia/6969-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7648235839662689568\" data-video-id=\"7648235839662689568\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7648235839662689568\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍚\n             150 g de riz long grain"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             350 g de viande hachée à 5% de matière grasse"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             4 poivrons"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 pot de concentré de tomates (70 g)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 cube de bouillon de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Épices mexicaines"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Cheddar râpé"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Mexique"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -15678,128 +18822,6 @@ export const mockRecipes: Recipe[] = [
             "Grèce",
             "Pas cher",
             "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6951",
-        "title": "Curry de crevettes",
-        "description": "Une recette rapide et simple de curry de crevettes, qui peut également être réalisée avec du poulet. Ce plat savoureux est relevé par un mélange d'épices cajun, du piment et du paprika fumé, et agrémenté de citron vert et de ciboulette ou coriandre.",
-        "image": "/recipes-ia/6951-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7642393520979873057\" data-video-id=\"7642393520979873057\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7642393520979873057\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🦐\n             10 à 15 crevettes crues"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             10g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             3 cuillères à soupe de sauce tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             20cl de crème demi-épaisse"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             20cl de bouillon de volaille"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             20g de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 cuillère à café d'oignon en poudre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café d'origan"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à café d'épices cajun"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette ou coriandre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment en poudre (pour l'assaisonnement des crevettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             Ail en poudre (pour l'assaisonnement des crevettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour l'assaisonnement des crevettes)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (pour l'assaisonnement des crevettes)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "asiatique",
-            "épicé",
-            "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6939",
-        "title": "Croque Mcdo en 5 minutes",
-        "description": "Une recette rapide et facile pour préparer un Croque Mcdo maison en seulement 5 minutes.",
-        "image": "/recipes-ia/6939-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7650569618616044832\" data-video-id=\"7650569618616044832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7650569618616044832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Pas cher",
-            "Sandwichs"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -16319,33 +19341,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6880",
-        "title": "Moules Maison",
-        "description": "Une recette pour préparer des moules maison avec une cuisson parfaite.",
-        "image": "/recipes-ia/6880-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7659820489828781345\" data-video-id=\"7659820489828781345\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7659820489828781345\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6787",
         "title": "Tomates farcies d'été",
         "description": "Une recette rafraîchissante et facile de tomates farcies au thon et fromage frais, idéale pour les chaudes journées d'été et la canicule.",
@@ -16748,92 +19743,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Sandwichs",
             "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6813",
-        "title": "Salade parisienne",
-        "description": "Une salade fraîche et complète inspirée de Paris, composée de jambon, emmental, œufs, légumes et pommes de terre, accompagnée d'une sauce mayonnaise allégée au yaourt grec.",
-        "image": "/recipes-ia/6813-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657211259170950432\" data-video-id=\"7657211259170950432\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657211259170950432\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥓\n             2 tranches de jambon blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             30g d'emmental"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             5-6 cornichons"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 champignons de Paris"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1-2 tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             6 petites pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Salade (laitue ou mélange de jeunes pousses)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à café de vinaigre (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cuillère à soupe de moutarde à l'ancienne (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d'huile d'olive (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 cuillères à soupe de yaourt grec (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation sont à suivre dans la vidéo."
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Salades",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -17312,104 +20221,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6872",
-        "title": "Salade de chèvre chaud",
-        "description": "Une recette de salade fraîche et gourmande, idéale pour l'été, composée de chèvre chaud pané, de tomates variées, de radis, concombre et poivrons, le tout assaisonné d'une vinaigrette au miel. Simple et rapide à réaliser.",
-        "image": "/recipes-ia/6872-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7541432743696141591\" data-video-id=\"7541432743696141591\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7541432743696141591\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥓\n             2 Perlardon"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 poignée de panure"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 tomate Cœur de Bœuf"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate Ananas"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate Noire de Crimée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4-5 radis"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1 mini concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             3 mini poivrons"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Salade verte"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             2 tranches de pain de mie"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à soupe de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à café de vinaigre balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 cuillères à café de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
-        ],
-        "tags": [
-            "France",
-            "Pas cher",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6825",
         "title": "Salade croquante d'été",
         "description": "Si simple... si bon. Préparation/Actif : 10 min.",
@@ -17748,62 +20559,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Les Glaces",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6799",
-        "title": "Madeleines fourrées au chocolat",
-        "description": "Une recette simple pour préparer de délicieuses madeleines moelleuses, fourrées au chocolat ou au Nutella.",
-        "image": "/recipes-ia/6799-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7660925640845036832\" data-video-id=\"7660925640845036832\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7660925640845036832\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             200g de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             3 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             150g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             50g de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 sachet de levure chimique (8g)"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             Extrait de vanille"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             100g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Nutella (pour le fourrage)"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans le contenu fourni."
-        ],
-        "tags": [
-            "France",
-            "Les Glaces"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -18359,124 +21114,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6874",
-        "title": "Brochettes de poulet au chorizo et patatas bravas",
-        "description": "Découvrez une recette estivale et savoureuse de brochettes de poulet et de chorizo, accompagnées de patatas bravas maison relevées. Idéal pour un barbecue rapide et plein de saveurs.",
-        "image": "/recipes-ia/6874-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7662411435388980513\" data-video-id=\"7662411435388980513\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7662411435388980513\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             2 blancs de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             100g de chorizo"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             12-15 petites pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             1 cuillère à soupe de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à soupe de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             100 ml de bouillon de volaille (à ajuster)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 cuillère à café de flocons de piment"
-            }
-        ],
-        "steps": [
-            "Pour la réalisation de la recette de brochettes de poulet au chorizo et des patatas bravas, suivre les instructions détaillées dans la vidéo."
-        ],
-        "tags": [
-            "barbecue",
-            "épicé",
-            "Espagne",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6837",
-        "title": "Aïoli",
-        "description": "Une recette simple et rapide pour préparer un aïoli maison, une mayonnaise à l'ail typique de la Provence, parfaite pour accompagner poissons, légumes ou viandes.",
-        "image": "/recipes-ia/6837-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661710175581064480\" data-video-id=\"7661710175581064480\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661710175581064480\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧂\n             2 à 3 gousses d'ail (selon l'intensité désirée)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cuillère à soupe de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             100 ml d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100 ml d'huile de pépins de raisin, de tournesol ou de colza"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Sauces"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "1187",
         "title": "Il Venezia",
         "description": "                                               Au Venezia à Paris, pas un plat typique ne manque à la carte. Vous pouvez alors vous composer un véritable repas italien, comme on en mange à Rome, Naples ou encore Florence : en entrée antipasti, pui...",
@@ -18870,39 +21507,6 @@ export const mockRecipes: Recipe[] = [
         }
     },
     {
-        "id": "6747",
-        "title": "Technique de cuisson de la côte de bœuf",
-        "description": "Ce contenu présente une technique privilégiée pour la cuisson de la côte de bœuf, un plat emblématique de l'été. L'auteur propose une recette détaillée, mettant l'accent sur l'importance du temps pour une cuisson réussie, en contraste avec les vid...",
-        "image": "/recipes-ia/6747-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7395182689839566113\" data-video-id=\"7395182689839566113\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7395182689839566113\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             Côte de bœuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Temps"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "barbecue",
-            "France",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6739",
         "title": "Tapenade",
         "description": "Une recette simple et rapide pour préparer une délicieuse tapenade maison, parfaite pour l'apéritif.",
@@ -19000,48 +21604,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Les Glaces",
             "USA",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6710",
-        "title": "Glace à l'hibiscus (Bissap)",
-        "description": "Découvrez une recette de glace rafraîchissante et simple, parfaite pour l'été, qui évoque les saveurs de l'enfance. Réalisée à base de fleurs d'hibiscus (bissap), de sucre et de sucre vanillé, elle peut être agrémentée d'un arôme de fraise si dési...",
-        "image": "/recipes-ia/6710-carte.webp",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657274204244462880\" data-video-id=\"7657274204244462880\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657274204244462880\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Fleurs d'hibiscus (bissap)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Sucre vanillé"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Arôme de fraise (facultatif)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "Les Glaces",
-            "Pas cher",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -19387,37 +21949,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Healthy",
             "minceur",
-            "Sauces",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6582",
-        "title": "Vinaigrette à la mangue",
-        "description": "Une vinaigrette exotique à la mangue pour sublimer toutes vos salades fades.",
-        "image": "/recipes-ia/6582-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7262545070497254688\" data-video-id=\"7262545070497254688\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7262545070497254688\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Salades",
             "Sauces",
             "Végé",
             "Voilà l'été"
@@ -20159,73 +22690,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6560",
-        "title": "Poisson fondant, sauce citronnée",
-        "description": "Une recette de poisson fondant accompagné d'une sauce citronnée, de haricots verts et de pommes de terre grenailles.",
-        "image": "/recipes-ia/6560-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7574094285134482710\" data-video-id=\"7574094285134482710\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7574094285134482710\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             3 pavés de cabillaud"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             200g de haricots verts frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             200g de pommes de terre grenailles"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 échalotes"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques brins de ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             1 petit pot de crème liquide entière"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron (pour son jus)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à soupe de zaatar"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "minceur",
-            "Orient",
-            "Poissons et crustacés",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6586",
         "title": "Poisson façon Marry Me",
         "description": "Une recette de poisson blanc inspirée du plat populaire 'Marry Me', avec une sauce crémeuse et légèrement épicée, des tomates séchées et du parmesan. Un plat rapide et savoureux, parfait pour un dîner en semaine.",
@@ -20473,83 +22937,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "épicé",
-            "Healthy",
-            "Poissons et crustacés"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6558",
-        "title": "Papillote de Poisson à l'Aïoli",
-        "description": "Une recette de papillote de poisson accompagnée de légumes variés (pommes de terre, carotte, oignon rouge, courgette, tomates cerises) et servie avec une sauce aïoli maison.",
-        "image": "/recipes-ia/6558-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7544401991926091030\" data-video-id=\"7544401991926091030\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7544401991926091030\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g de poisson"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             Quelques petites pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🥕\n             1 carotte"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 courgette"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Quelques tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 cuillère à café de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe de vinaigre de cidre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             150 ml d'huile de tournesol"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
             "Healthy",
             "Poissons et crustacés"
         ],
@@ -20894,47 +23281,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6600",
-        "title": "Glace au chocolat protéinée",
-        "description": "Une recette de glace au chocolat riche en protéines (38g) et faible en calories (moins de 270 kcal par pot), idéale pour un régime alimentaire et pour se faire plaisir.",
-        "image": "/recipes-ia/6600-carte.webp",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7633015698725326102\" data-video-id=\"7633015698725326102\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7633015698725326102\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Isolat de whey : 30g"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Poudre aromatisante : 5g"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fromage blanc 0% : 100g"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Lait : 200ml"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Les Glaces",
-            "minceur"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6602",
         "title": "Gaspacho vert et pastèque",
         "description": "Une recette rafraîchissante de gaspacho vert à base de concombre et avocat, agrémenté de menthe, yaourt et citron, servi avec des billes de pastèque, de la feta émiettée et des pignons de pin grillés.",
@@ -21005,83 +23351,6 @@ export const mockRecipes: Recipe[] = [
             "Soupes",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6592",
-        "title": "Crevettes sautées à l'ail et au miel",
-        "description": "Une recette rapide et facile de crevettes sautées, relevées à l'ail, au miel et à la sauce soja, parfaites pour un plat savoureux.",
-        "image": "/recipes-ia/6592-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7222711592104873243\" data-video-id=\"7222711592104873243\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7222711592104873243\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🦐\n             15 crevettes crues"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café de Maïzena"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 cuillère à café de piments concassés"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 cuillère à café de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             10 cl de sauce soja sucrée"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             8 cl d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             30 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie",
-            "épicé",
-            "Poissons et crustacés"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -21196,90 +23465,6 @@ export const mockRecipes: Recipe[] = [
             "minceur",
             "Poissons et crustacés",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6568",
-        "title": "Cabillaud à la bordelaise et sauce hollandaise maison",
-        "description": "Une recette simple, fondante et ultra gourmande, parfaite pour impressionner sans stress ! Ce plat propose un poisson croustillant accompagné d'une sauce bien crémeuse, un combo parfait.",
-        "image": "/recipes-ia/6568-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7604063927198043414\" data-video-id=\"7604063927198043414\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7604063927198043414\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2 filets de cabillaud"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             30 g de beurre demi-sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             60 g de chapelure"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             2 cuillères à soupe de persil (pour le cabillaud)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus d'un demi-citron (pour le cabillaud)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (pour le cabillaud)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 jaunes d'œufs"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             1 cuillère à soupe d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             100 g de beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus d'un demi-citron (pour la sauce hollandaise)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             2 cuillères à soupe de persil (pour la sauce hollandaise)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour la sauce hollandaise)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (pour la sauce hollandaise)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Poissons et crustacés"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -21590,112 +23775,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6590",
-        "title": "Boulettes de poisson à la marocaine",
-        "description": "Une recette savoureuse de boulettes de poisson blanc aux épices marocaines, accompagnées d'une sauce tomate parfumée aux olives et citron confit.",
-        "image": "/recipes-ia/6590-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7584814718779542806\" data-video-id=\"7584814718779542806\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7584814718779542806\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             800 g de filets de poisson blanc (cabillaud, merlan, églefin...)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             1 cuillère à café de coriandre moulue"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 pincée de harissa"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             2 gousses d'ail râpées"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 cuillère à soupe de pulpe de citron confit"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil haché"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pour la sauce :"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             3 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             400 g de pulpe de tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil haché"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Coriandre hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Olives"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Lamelles de citron confit"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
-            "épicé",
-            "Healthy",
-            "Poissons et crustacés"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -22812,76 +24891,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6496",
-        "title": "Spaghettis froids à la crème de pistache et à la mortadelle",
-        "description": "Une recette ultra fraîche, gourmande et prête en quelques minutes. Parfaite pour les journées ensoleillées !",
-        "image": "/recipes-ia/6496-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657930088125599008\" data-video-id=\"7657930088125599008\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657930088125599008\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥜\n             120 g de pistaches décortiquées non salées"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             50 g de parmesan râpé"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 petite gousse d'ail (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le zeste et le jus d'un demi-citron"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             8 à 10 feuilles de basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             8 cl d'huile d'olive extra vierge"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             10 cl d'eau très froide (ajoute-en un peu si besoin pour obtenir une crème bien lisse)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel et poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Quelques tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 tranches de mortadelle"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Roquefort (facultatif, pour une touche plus corsée)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Italie",
-            "Salades",
-            "Voilà l'été",
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6454",
         "title": "Sorbet cacahuète maison",
         "description": "Une recette de sorbet cacahuète maison ultra onctueux avec une touche des Caraïbes, parfait pour le Ninja Creami.",
@@ -22993,81 +25002,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Salades",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6488",
-        "title": "Salade de Pâtes Crémeuse",
-        "description": "Une salade de pâtes fraîche et crémeuse, idéale pour l'été, combinant pâtes, légumes croquants (tomates cerises, concombre, oignon rouge), gouda au cumin, thon, et une sauce onctueuse à base de yaourt grec, paprika et piment.",
-        "image": "/recipes-ia/6488-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657587145925791008\" data-video-id=\"7657587145925791008\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657587145925791008\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             Pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Gouda au cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Thon"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Yaourts grecs (2)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika (une pincée)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment (une pincée)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignons en flocons"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre"
-            }
-        ],
-        "steps": [
-            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
-        ],
-        "tags": [
-            "Healthy",
-            "Salades",
-            "Sauces",
-            "Voilà l'été",
-            "pates"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -23260,54 +25194,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6482",
-        "title": "Naan sans gluten",
-        "description": "Une recette facile de naan maison sans gluten et sans lactose, préparé avec des pommes de terre cuites à l'eau.",
-        "image": "/recipes-ia/6482-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7504007883512843542\" data-video-id=\"7504007883512843542\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7504007883512843542\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n             120ml de lait"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             200g de pommes de terre cuite à l'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             250g de farine pour pain sans gluten (ici, Schär)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             10g de levure sèche instantanée"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile d'olive + herbes"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Orient",
-            "Sans Gluten"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6508",
         "title": "Mousse au chocolat",
         "description": "Une recette classique de mousse au chocolat, facile à réaliser et qui plaira à tous, avec une touche originale grâce à un topping optionnel à l'huile d'olive et fleur de sel.",
@@ -23365,36 +25251,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Desserts",
             "France"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6484",
-        "title": "MUFFINS PIZZA",
-        "description": "Délicieux et faciles à préparer, ces muffins pizza sans gluten sont parfaits pour un apéritif, un pique-nique ou accompagnés d'une salade. Avec leurs saveurs d'été, ils raviront petits et grands.",
-        "image": "/recipes-ia/6484-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7290581924899245345\" data-video-id=\"7290581924899245345\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7290581924899245345\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Italie",
-            "Sans Gluten",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -23702,51 +25558,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6494",
-        "title": "Carpaccio de Melon",
-        "description": "Une entrée fraîche et légère à base de rubans de melon, mozzarella di bufala ultra crémeuse, jambon cru, pesto et pignons de pin. Prête en seulement 10 minutes, elle est parfaite pour les journées d'été.",
-        "image": "/recipes-ia/6494-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657528299907730720\" data-video-id=\"7657528299907730720\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657528299907730720\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             melon"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             mozzarella di bufala"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             jambon cru"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             pesto"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             pignons de pin"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Italie",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6464",
         "title": "Camembert rôti façon Crème brûlée & abricots",
         "description": "Un camembert rôti au four, au Air-fryer ou au barbecue, caramélisé façon crème brûlée et servi avec des abricots frais et des croûtons de pain assaisonnés. Idéal pour un apéritif estival.",
@@ -23806,91 +25617,6 @@ export const mockRecipes: Recipe[] = [
             "France",
             "Végé",
             "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6456",
-        "title": "CHUROFFLE",
-        "description": "Une recette hybride de gaufres inspirées des churros, facile à réaliser avec des ingrédients de base.",
-        "image": "/recipes-ia/6456-carte.webp",
-        "category": "patisserie",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7646000791429467424\" data-video-id=\"7646000791429467424\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7646000791429467424\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             150g de farine T55"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             200 ml d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             55 g de beurre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Espagne",
-            "pâtisserie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6458",
-        "title": "Bœuf au Chorizo",
-        "description": "Un plat savoureux à base de filet de bœuf et de chorizo à griller, relevé par la ciboulette.",
-        "image": "/recipes-ia/6458-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657231223806315809\" data-video-id=\"7657231223806315809\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657231223806315809\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             500g Filet de bœuf (rumsteck ou bavette)"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             200g chorizo à griller"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Entrées",
-            "épicé",
-            "Espagne"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -24217,63 +25943,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6337",
-        "title": "Salade marocaine",
-        "description": "Une salade toute simple, rapide à faire et parfaite pour accompagner vos barbeuc cet été.",
-        "image": "/recipes-ia/6337-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630014915067120918\" data-video-id=\"7630014915067120918\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630014915067120918\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "barbecue",
-            "Healthy",
-            "Orient",
-            "Pas cher",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5265",
         "title": "Salade de pommes de terre protéinée",
         "description": "Un plat frais, gourmand et ultra complet pour tenir sa diète.",
@@ -24420,152 +26089,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6381",
-        "title": "Cheesecake salé sans cuisson",
-        "description": "Une recette ultra fraîche, parfaite pour les journées d'été ! Facile à préparer, sans cuisson et idéale en entrée ou à partager à l'apéro.",
-        "image": "/recipes-ia/6381-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7656024768084331808\" data-video-id=\"7656024768084331808\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7656024768084331808\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             200 g de Tuc"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             100 g de beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300 g de fromage frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             300 g de yaourt à la grecque nature"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Jambon cru"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             4 feuilles de gélatine"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             Concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6116",
-        "title": "Bol asperges vertes, soja & jaune d'oeuf",
-        "description": "Un bol frais et savoureux à base d'asperges vertes, assaisonné de sauce soja, huile de sésame et mirin, garni de nori, sésame et d'un jaune d'œuf pour une touche onctueuse.",
-        "image": "/recipes-ia/6116-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7634567643676249346\" data-video-id=\"7634567643676249346\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7634567643676249346\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             500g d'asperges vertes"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 càs d'huile de sésame"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 càs de sauce soja"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 càs de mirin"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 feuille de nori"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 càs de sésame (ou furikake)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron vert"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asie",
-            "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6416",
         "title": "Sauce pimentée de Chine",
         "description": "Une sauce pimentée inspirée de la Chine, idéale pour accompagner nouilles, riz, légumes et viandes. Facile à préparer et à conserver.",
@@ -24699,53 +26222,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6412",
-        "title": "Sauce Sriracha Maison",
-        "description": "Recette pour faire votre propre sauce sriracha maison, piquante et savoureuse.",
-        "image": "/recipes-ia/6412-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7374080251342671137\" data-video-id=\"7374080251342671137\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7374080251342671137\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌶️\n             500 g de piments rouges marocains"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             100 g d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Vinaigre blanc (à hauteur)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une cuillère à soupe de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             140 g de sucre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "asiatique",
-            "épicé",
-            "Pas cher",
-            "Sauces",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6410",
         "title": "Sauce Peanut by Mory Sacko",
         "description": "Une sauce crémeuse, intense et pleine de caractère, ultra simple et rapide à préparer en 5 minutes. Parfaite pour accompagner pâtes, riz, légumes ou protéines grillées, et accessible même aux étudiants.",
@@ -24853,95 +26329,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6406",
-        "title": "Sauce Cowboy et Côte de Bœuf",
-        "description": "Une recette rapide et savoureuse de côte de bœuf accompagnée d'une sauce cowboy maison relevée.",
-        "image": "/recipes-ia/6406-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7561102485838925078\" data-video-id=\"7561102485838925078\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7561102485838925078\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧈\n             200g beurre (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1/2 jus de citron (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1/2 càc sel (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment en flocon (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 càc paprika (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Thym (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             1 càc moutarde (pour la sauce)"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 côte de bœuf"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             25g beurre (pour la cuisson)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Romarin (pour la cuisson)"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail (pour la cuisson)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Huile (pour la cuisson)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Sauces",
-            "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6339",
         "title": "Salade de gnocchis croustillants pour l'été",
         "description": "Une salade fraîche et gourmande, idéale pour l'été, composée de gnocchis croustillants, de lard, de salade verte, d'œuf et de parmesan, le tout relevé par une sauce crémeuse au yaourt grec.",
@@ -25017,64 +26404,6 @@ export const mockRecipes: Recipe[] = [
             "Salades",
             "Voilà l'été",
             "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6422",
-        "title": "SAUCE SWEET CHILI",
-        "description": "Une sauce sweet chili maison, bien meilleure que celle du commerce, avec plus de goût, moins chère et sans conservateur.",
-        "image": "/recipes-ia/6422-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7378175594032303393\" data-video-id=\"7378175594032303393\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7378175594032303393\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌶️\n             10 piments oiseaux"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             5 gousses d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍚\n             3/4 bol de vinaigre de riz"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             3/4 du bol de sucre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             1/2 bol de sauce poisson"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             1 bol d'eau (25 cl)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cas de maizena"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Asi",
-            "épicé",
-            "Pas cher",
-            "Sauces"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -25453,33 +26782,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6335",
-        "title": "Tartinable à l'ail confit",
-        "description": "Un tartinable savoureux et intense à base d'ail confit, parfait pour l'apéritif.",
-        "image": "/recipes-ia/6335-carte.webp",
-        "category": "aperitifs",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7630432257085410582\" data-video-id=\"7630432257085410582\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7630432257085410582\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🧄\n             ail confit"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Apéritifs"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6321",
         "title": "Sorbet pastèque fraise",
         "description": "Un sorbet hyper rafraîchissant à la pastèque et aux fraises, facile à réaliser sans sorbetière, idéal pour les fortes chaleurs.",
@@ -25674,130 +26976,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "pâtisserie",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6331",
-        "title": "Salade fraîche pastèque et pêche",
-        "description": "La salade la plus fraîche de l'été☀️✨ La pastèque dans la salade tu valides ?👀",
-        "image": "/recipes-ia/6331-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645618857603763488\" data-video-id=\"7645618857603763488\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645618857603763488\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Pastèque"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Pêche"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Fêta"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Vinaigre balsamique"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Salades",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6325",
-        "title": "Salade fraîche d'été aux pois chiches et fêta",
-        "description": "Une salade bien fraîche pour l'été, qui change de la salade verte 👀🤤",
-        "image": "/recipes-ia/6325-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653502841876696353\" data-video-id=\"7653502841876696353\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653502841876696353\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             pois chiche"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n             avocat"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             pignons de pain"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             fêta"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             poivre"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Grèce",
-            "Healthy",
-            "Salades",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -26028,34 +27206,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6333",
-        "title": "Kinder Country Airfryer",
-        "description": "Une recette facile et rapide pour préparer des Kinder Country maison au Airfryer en seulement 3 minutes et à moindre coût.",
-        "image": "/recipes-ia/6333-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7641271173887692064\" data-video-id=\"7641271173887692064\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7641271173887692064\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Desserts",
-            "Pas cher"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6371",
         "title": "Iced Latte Caramel Cookie",
         "description": "Combiner les saveurs MONIN inspirées de la boulangerie avec le café est toujours une réussite et cette recette de latte glacé a le goût d'un dessert dans un verre...",
@@ -26103,34 +27253,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Rafraîchissements",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6367",
-        "title": "Glace Maison sans matériel",
-        "description": "Une recette facile pour préparer de la glace maison sans avoir besoin de sorbetière.",
-        "image": "/recipes-ia/6367-carte.webp",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7655396135166594337\" data-video-id=\"7655396135166594337\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7655396135166594337\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "Ingrédients détaillés dans la vidéo"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Les Glaces",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -26385,72 +27507,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6327",
-        "title": "Brochettes de poulet ananas piquantes à l'airfryer",
-        "description": "Des brochettes de poulet et ananas relevées avec une sauce piquante, idéales pour une cuisson rapide à l'airfryer.",
-        "image": "/recipes-ia/6327-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7649798540742380833\" data-video-id=\"7649798540742380833\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7649798540742380833\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             1 filet de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/2 ananas"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sauce piquante (aigre douce piquante)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sauce huître"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Curry"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Piment d'Espelette"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             Beurre fondu"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "airfryer",
-            "asiatique",
-            "épicé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6343",
         "title": "Brochettes de champignons marinés",
         "description": "Des brochettes de champignons marinés, faciles, rapides et incroyablement aromatiques. Croustillants à l'extérieur et tendres à l'intérieur, parfaits pour le barbecue, en accompagnement ou comme plat végétarien.",
@@ -26577,80 +27633,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6351",
-        "title": "Taboulé de chou-fleur",
-        "description": "Une recette légère, fraîche et pleine de saveurs pour les beaux jours ! Un taboulé revisité, sans semoule, simple à préparer et parfait pour un repas d'été frais et gourmand !",
-        "image": "/recipes-ia/6351-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654604752155725089\" data-video-id=\"7654604752155725089\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654604752155725089\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥬\n             1 chou-fleur"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             1 petite boîte de pois chiches"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             150 g de comté"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             4 tranches de jambon blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6349",
         "title": "Salade de Pâtes",
         "description": "Une salade de pâtes bien colorée, ultra gourmande et pleine de saveurs, parfaite pour l'été, les meal prep ou pour accompagner un bon barbecue.",
@@ -26739,132 +27721,6 @@ export const mockRecipes: Recipe[] = [
             "Salades",
             "Végé",
             "Voilà l'été",
-            "pates"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6345",
-        "title": "Salade César",
-        "description": "Une salade César classique et rafraîchissante avec du poulet pané, des tomates cerises et du parmesan.",
-        "image": "/recipes-ia/6345-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653779236460743968\" data-video-id=\"7653779236460743968\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653779236460743968\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥗\n             salade Batavia"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1/2 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🍗\n             Poulet pané"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             2 cas de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             copeaux de parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             crème balsamique"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             sauce César (vinaigrette)"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Salades",
-            "USA",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6347",
-        "title": "PÂTES SAUCE TOMATE SPICY",
-        "description": "Des pâtes relevées à la sauce tomate, agrémentées de breasola et de parmesan, parfaites pour une personne.",
-        "image": "/recipes-ia/6347-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7606397282812038422\" data-video-id=\"7606397282812038422\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7606397282812038422\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍝\n             80 g de pâtes"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 demi oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             Un peu de vin blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             4 CAS de sauce tomate ou pulpe de tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             Un filet de crème"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Parmesan"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Épices : piment d'Espelette, origan, sel poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques tranches de breasola"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Une tranche de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil plat"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "épicé",
-            "Italie",
             "pates"
         ],
         "isFeatured": false,
@@ -27099,55 +27955,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6310",
-        "title": "Jus délicieux et rafraîchissant",
-        "description": "Un jus frais et désaltérant à base de pastèque, pêche, citron et menthe, parfait pour l'été.",
-        "image": "/recipes-ia/6310-carte.webp",
-        "category": "rafraichissements",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7653924796475952416\" data-video-id=\"7653924796475952416\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7653924796475952416\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             400g de pastèques"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 à 3 pêches blanches"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le jus de 1 ou 2 citrons"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Quelques feuilles de menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Quelques glaçons"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Healthy",
-            "Rafraîchissements",
-            "Voilà l'été"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -43776,39 +44583,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5460",
-        "title": "Crème chocolat",
-        "description": "Le mélange coco chocolat est vraiment très bon ! Ça donne une crème tout en légèreté 🥰 il faut que vous testiez.",
-        "image": "/recipes-ia/5460-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7500977126292720898\" data-video-id=\"7500977126292720898\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7500977126292720898\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥛\n 1 conserve de lait de coco bio (400ml)"
-            },
-            {
-                "quantity": "",
-                "name": "🍫\n 160g de chocolat noir pâtissier"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Desserts",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5463",
         "title": "Crème brûlée à la pistache",
         "description": "Pour tous les fans de pistache, cette crème brûlée est un incontournable ! N'hésitez plus, essayez cette recette simple et rapide, vous ne le regretterez pas. Un grand pâtissier l'a dit : l'essayer, c'est l'adopter !",
@@ -45086,66 +45860,6 @@ export const mockRecipes: Recipe[] = [
             "Italie",
             "Pas cher",
             "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "5135",
-        "title": "Coupelles de banane plantain",
-        "description": "Une recette d'entrée pour impressionner vos invités.",
-        "image": "/recipes-ia/5135-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7400056860658765088\" data-video-id=\"7400056860658765088\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7400056860658765088\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍌\n 2 bananes plantains pas très mûres"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile de friture"
-            },
-            {
-                "quantity": "",
-                "name": "🦐\n Crevettes"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n oignon"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n 1 poivron rouge, coupé en petits dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n 1 cuillère à soupe de jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel et poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥑\n 1 avocat mûr"
-            }
-        ],
-        "steps": [
-            "Suivre les instructions détaillées dans la vidéo"
-        ],
-        "tags": [
-            "Afrique",
             "Voilà l'été"
         ],
         "isFeatured": false,
