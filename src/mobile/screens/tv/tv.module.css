@@ -953,10 +953,13 @@
 
 /* ── Menu d'appui long (langage iOS 26/27) ─────────────────────────────── */
 
+/* AU-DESSUS DE LA BARRE DU BAS (25000). À 5000, la barre passait PAR-DESSUS le
+   bas de la feuille : arrivé en bas du déroulé, le doigt tombait sur la barre et
+   plus rien ne défilait — on ne pouvait plus remonter. */
 .menuBackdrop {
     position: fixed;
     inset: 0;
-    z-index: 5000;
+    z-index: 26000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -3460,9 +3463,13 @@
     width: min(760px, 96vw);
     max-height: 88vh;
     overflow-y: auto;
+    /* Le geste reste DANS la feuille : sans ça, arrivé en bout de liste, iOS
+       passe le défilement à la page du dessous et la feuille se fige. */
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     background: #141119;
     border-radius: 24px;
-    padding: 20px;
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom, 0px));
     box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7), inset 0 0 0 0.5px rgba(255, 255, 255, 0.12);
 }
 .timelineHead {
