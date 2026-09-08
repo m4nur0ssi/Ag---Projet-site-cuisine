@@ -2,11 +2,59 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/09/2026 15:42:49
+ * Dernière mise à jour: 08/09/2026 16:42:02
  * Total: 689 recettes
  */
-export const exportSyncId = "1788882169443";
+export const exportSyncId = "1788885722721";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7467",
+        "title": "Escalope à la Milanaise",
+        "description": "Une escalope à la Milanaise, présentée comme étant meilleure qu'au restaurant.",
+        "image": "/recipes-ia/7467-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7267573866627730720\" data-video-id=\"7267573866627730720\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7267573866627730720\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             escalope de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             sauce tomate"
+            }
+        ],
+        "steps": [
+            "Ouvrez le poulet en deux pour obtenir un format portefeuille.",
+            "Placez-le entre deux feuilles de papier sulfurisé.",
+            "Marteler le poulet avec une casserole pour l'amincir et le rendre tendre.",
+            "Assaisonnez bien le poulet avec du sel et du poivre.",
+            "Passez le poulet dans la farine, en enlevant l'excédent.",
+            "Cassez deux œufs dans un bol et trempez le poulet fariné dedans.",
+            "Mélangez la panure panko avec du parmesan râpé.",
+            "Enrobez le poulet de cette panure en appuyant bien pour qu'elle adhère à l'œuf.",
+            "Faites fondre du beurre dans une poêle avec un peu d'huile pour éviter qu'il brûle.",
+            "Cuire l'escalope panée environ cinq minutes de chaque côté jusqu'à ce qu'elle ait une belle couleur dorée.",
+            "Retirez l'escalope de la poêle et placez-la dans un four préchauffé à 150 °C.",
+            "Dans la même poêle, faites revenir un oignon rouge émincé et deux gousses d'ail écrasées.",
+            "Ajoutez quelques olives hachées et des petites tomates en quartier.",
+            "Laissez mijoter pendant une dizaine de minutes.",
+            "Assaisonnez avec du sel, du poivre et du sucre selon votre goût.",
+            "Ajoutez du basilic frais haché, quelques pignons et un peu de harissa fumée.",
+            "Mélangez bien pour obtenir une sauce tomate aux saveurs fumées.",
+            "Nappez l'escalope avec cette sauce et servez chaud."
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "4008",
         "title": "Koobideh Kebab et Salade Shirazi",
@@ -2243,54 +2291,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Italie",
             "Noël"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7467",
-        "title": "Escalope à la Milanaise",
-        "description": "Une escalope à la Milanaise, présentée comme étant meilleure qu'au restaurant.",
-        "image": "/recipes-ia/7467-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7267573866627730720\" data-video-id=\"7267573866627730720\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7267573866627730720\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍗\n             escalope de poulet"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             sauce tomate"
-            }
-        ],
-        "steps": [
-            "Ouvrez le poulet en deux pour obtenir un format portefeuille.",
-            "Placez-le entre deux feuilles de papier sulfurisé.",
-            "Marteler le poulet avec une casserole pour l'amincir et le rendre tendre.",
-            "Assaisonnez bien le poulet avec du sel et du poivre.",
-            "Passez le poulet dans la farine, en enlevant l'excédent.",
-            "Cassez deux œufs dans un bol et trempez le poulet fariné dedans.",
-            "Mélangez la panure panko avec du parmesan râpé.",
-            "Enrobez le poulet de cette panure en appuyant bien pour qu'elle adhère à l'œuf.",
-            "Faites fondre du beurre dans une poêle avec un peu d'huile pour éviter qu'il brûle.",
-            "Cuire l'escalope panée environ cinq minutes de chaque côté jusqu'à ce qu'elle ait une belle couleur dorée.",
-            "Retirez l'escalope de la poêle et placez-la dans un four préchauffé à 150 °C.",
-            "Dans la même poêle, faites revenir un oignon rouge émincé et deux gousses d'ail écrasées.",
-            "Ajoutez quelques olives hachées et des petites tomates en quartier.",
-            "Laissez mijoter pendant une dizaine de minutes.",
-            "Assaisonnez avec du sel, du poivre et du sucre selon votre goût.",
-            "Ajoutez du basilic frais haché, quelques pignons et un peu de harissa fumée.",
-            "Mélangez bien pour obtenir une sauce tomate aux saveurs fumées.",
-            "Nappez l'escalope avec cette sauce et servez chaud."
-        ],
-        "tags": [
-            "Italie"
         ],
         "isFeatured": false,
         "isFavorite": false,
