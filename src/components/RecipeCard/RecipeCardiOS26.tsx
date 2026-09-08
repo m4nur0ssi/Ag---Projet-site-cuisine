@@ -336,15 +336,25 @@ export default function RecipeCardiOS26({
                 {stat && stat.count > 0 && !isThematicCard && !isIntroMode && (
                     <div style={{
                         position: 'absolute', bottom: 10, left: 10, zIndex: 5,
-                        display: 'flex', alignItems: 'center', gap: 4,
-                        padding: '4px 9px', borderRadius: 13,
-                        background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(6px)',
-                        WebkitBackdropFilter: 'blur(6px)',
-                        fontWeight: 700, fontSize: '0.85rem', color: '#fff',
-                        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+                        display: 'inline-flex', alignItems: 'center', gap: 3,
+                        height: 21, padding: '0 8px',
+                        borderRadius: 999,
+                        background: 'rgba(20,20,22,0.55)',
+                        backdropFilter: 'blur(14px) saturate(160%)',
+                        WebkitBackdropFilter: 'blur(14px) saturate(160%)',
+                        boxShadow: 'inset 0 0 0 0.5px rgba(255,255,255,0.22)',
+                        fontFamily: "'Outfit', sans-serif",
+                        fontWeight: 800, letterSpacing: '-0.01em', lineHeight: 1,
+                        color: '#fff', fontSize: '12px',
+                        pointerEvents: 'none',
                     }}>
-                        <span style={{ color: '#FBBF24' }}>★</span>
-                        <span>{stat.avg.toFixed(1)}</span>
+                        <svg viewBox="0 0 24 24" width="10" height="10" aria-hidden style={{ color: '#ffd60a', flex: '0 0 auto' }}>
+                            <path
+                                d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6z"
+                                fill="currentColor"
+                            />
+                        </svg>
+                        <span>{stat.avg.toFixed(1).replace('.', ',')}</span>
                     </div>
                 )}
 

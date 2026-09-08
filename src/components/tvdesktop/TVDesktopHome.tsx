@@ -11,7 +11,7 @@
  * du desktop de prod) — aucune modification de la prod.
  */
 
-import { Fragment, useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import { Fragment, createContext, useContext, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -27,7 +27,7 @@ import { Recipe } from '@/mobile/types';
 import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
 import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
-import { useRatingStats } from '@/mobile/lib/ratings';
+import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
 import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf } from '@/mobile/screens/tv/themes';
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
@@ -98,6 +98,40 @@ const collOf = (title: string, recipes: Recipe[], tag?: string): Coll | undefine
     const t = collectionTagOf(tag || title);
     return t ? { label: title, tag: t, count: recipes.length, photos: photosDe(recipes) } : undefined;
 };
+/*
+ * Les notes, partagées à toutes les cartes de l'écran — même parti pris qu'à
+ * l'accueil mobile : l'écran s'abonne UNE fois, les cartes lisent le résultat.
+ */
+const NotesCtx = createContext<Map<string, RatingStat> | null>(null);
+
+/**
+ * La note moyenne, posée sur la photo.
+ *
+ * Pastille de verre sombre au gabarit des autres marques de la carte, en haut
+ * à gauche — le bas appartient au titre incrusté. Rien ne s'affiche tant que
+ * la recette n'a pas d'avis, et la coche « déjà faite » garde son coin.
+ */
+function NoteCarte({ id, decale = false }: { id: string; decale?: boolean }) {
+    const notes = useContext(NotesCtx);
+    const note = notes?.get(String(id));
+    if (!note || !note.count) return null;
+    const valeur = note.avg.toFixed(1).replace('.', ',');
+    return (
+        <span
+            className={`${styles.cardNote} ${decale ? styles.cardNoteDecale : ''}`}
+            aria-label={`Note moyenne : ${valeur} sur 5, ${note.count} avis`}
+        >
+            <svg viewBox="0 0 24 24" width="10" height="10" aria-hidden>
+                <path
+                    d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6z"
+                    fill="currentColor"
+                />
+            </svg>
+            {valeur}
+        </span>
+    );
+}
+
 const label = (r: Recipe) => decodeHtml(r.title || '');
 const catLabel = (r: Recipe) => CATEGORY_LABEL[(r.category || '').toLowerCase()] || 'Recette';
 // Temps et difficulté viennent de l'ESTIMATEUR, comme sur mobile. Les champs
@@ -290,6 +324,8 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
                 )}
                 {/* Déjà cuisinée : une coche discrète, à l'opposé du « + ». */}
                 {dejaFaite && <DejaFaite />}
+                {/* La note moyenne, si la recette en a une. */}
+                <NoteCarte id={recipe.id} decale={dejaFaite} />
             </div>
 
             {/* Le titre, DANS la carte : même police et même texte que sous les
@@ -1106,6 +1142,7 @@ export default function TVDesktopHome() {
     };
 
     return (
+        <NotesCtx.Provider value={stats}>
         <div className={`${styles.shell} ${sidebarOpen ? '' : styles.shellClosed}`}>
             {/* Rouvrir la barre latérale quand elle est repliée. */}
             {!sidebarOpen && (
@@ -1444,5 +1481,6 @@ export default function TVDesktopHome() {
                 />
             )}
         </div>
+        </NotesCtx.Provider>
     );
 }

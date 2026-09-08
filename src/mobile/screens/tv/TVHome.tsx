@@ -8,7 +8,7 @@
  * - Cartes volontairement de tailles différentes (large / affiche / carré / classement).
  */
 
-import { Fragment, useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import { Fragment, createContext, useContext, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
@@ -25,7 +25,7 @@ import { homeRecipes as mockRecipes, type HomeRecipe } from '@/mobile/data/home-
 import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-embed';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { startScrollReveal } from '@/lib/scrollReveal';
-import { useRatingStats } from '@/mobile/lib/ratings';
+import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf } from './themes';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal, tiktokDemandeExplicite } from '@/lib/tiktok-consent';
@@ -70,6 +70,47 @@ const COLLECTION_LABEL: Record<string, string> = {
     restaurant: 'Comme au resto', vegetarien: 'Végétarien', glaces: 'Glaces',
     boissons: 'Boissons', sauces: 'Sauces', rafraichissements: 'Rafraîchissements',
 };
+
+/*
+ * Les notes, partagées à toutes les cartes de l'écran.
+ *
+ * `useRatingStats` pose un écouteur et garde son propre état : appelé dans
+ * chacune des ~480 cartes de l'accueil, il en poserait autant. L'écran s'abonne
+ * donc UNE fois, tout en haut, et fait descendre le résultat par ici.
+ */
+const NotesCtx = createContext<Map<string, RatingStat> | null>(null);
+
+/**
+ * La note moyenne, posée sur la photo.
+ *
+ * Discrète : une pastille de verre sombre au format des autres marques de la
+ * carte (« déjà faite », le « + »), en haut à gauche — le bas est pris par le
+ * titre incrusté et la barre de progression.
+ *
+ * Elle ne s'affiche que si la recette a des avis : une note inventée vaut moins
+ * que pas de note du tout. Et si la coche « déjà faite » occupe déjà le coin,
+ * la pastille se pose à sa droite au lieu de lui passer dessus.
+ */
+function NoteCarte({ id, decale = false }: { id: string; decale?: boolean }) {
+    const notes = useContext(NotesCtx);
+    const note = notes?.get(String(id));
+    if (!note || !note.count) return null;
+    const valeur = note.avg.toFixed(1).replace('.', ',');
+    return (
+        <span
+            className={`${styles.cardNote} ${decale ? styles.cardNoteDecale : ''}`}
+            aria-label={`Note moyenne : ${valeur} sur 5, ${note.count} avis`}
+        >
+            <svg viewBox="0 0 24 24" width="10" height="10" aria-hidden>
+                <path
+                    d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6z"
+                    fill="currentColor"
+                />
+            </svg>
+            {valeur}
+        </span>
+    );
+}
 
 const label = (r: Recipe) => decodeHtml(r.title || '');
 const catLabel = (r: Recipe) => CATEGORY_LABEL[(r.category || '').toLowerCase()] || 'Recette';
@@ -396,6 +437,8 @@ function Card({
                 )}
                 {/* Déjà cuisinée : une coche discrète, à l'opposé du « + ». */}
                 {dejaFaite && <DejaFaite />}
+                {/* La note moyenne, si la recette en a une. */}
+                <NoteCarte id={recipe.id} decale={dejaFaite} />
                 {/* Croix → coche : ajoute/retire de « À faire plus tard ». */}
                 {onToggleLater && (
                     <button
@@ -485,6 +528,8 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
                 }}
             >
                 <img src={recipe.image} alt="" className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
+                {/* La note moyenne, si la recette en a une. */}
+                <NoteCarte id={recipe.id} />
                 {playing && vid && (
                     <iframe
                         className={`${styles.cardVideo} ${ready ? styles.cardVideoOn : ''}`}
@@ -2028,6 +2073,7 @@ export default function TVHome() {
     }, []);
 
     return (
+        <NotesCtx.Provider value={stats}>
         <div className={styles.page} onTouchStart={onPageTouchStart} onTouchMove={onPageTouchMove} onTouchEnd={onPageTouchEnd}>
             <Hero recipes={heroRecipes} onOpen={openSheet} onMenu={() => setNavOpen(true)} />
 
@@ -2323,5 +2369,6 @@ export default function TVHome() {
                 />
             )}
         </div>
+        </NotesCtx.Provider>
     );
 }
