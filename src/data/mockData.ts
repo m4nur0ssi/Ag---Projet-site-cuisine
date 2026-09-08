@@ -2,11 +2,42 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/09/2026 07:33:47
- * Total: 683 recettes
+ * Dernière mise à jour: 08/09/2026 09:11:34
+ * Total: 684 recettes
  */
-export const exportSyncId = "1788852827842";
+export const exportSyncId = "1788858694594";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7467",
+        "title": "Escalope à la Milanaise",
+        "description": "Une escalope à la Milanaise, présentée comme étant meilleure qu'au restaurant.",
+        "image": "/recipes-ia/7467-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7267573866627730720\" data-video-id=\"7267573866627730720\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7267573866627730720\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             escalope de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             sauce tomate"
+            }
+        ],
+        "steps": [
+            "Suivre les instructions détaillées dans la vidéo"
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7445",
         "title": "Beignets de courgettes à la feta (Kolokithokeftedes) et Tzatziki",
