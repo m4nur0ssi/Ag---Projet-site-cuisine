@@ -53,6 +53,7 @@ const Check = () => (
 // bougent pas.
 import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './filters';
 import { ecrireStock } from '@/lib/stockage';
+import { ouvrirClavier } from '@/lib/clavier';
 export { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS };
 
 interface NavDrawerProps {
@@ -352,7 +353,7 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 </button>
                                 {/* La loupe TV (recette / ingrédients / assistant IA),
                                     surtout pas la page /search du site. */}
-                                <button className={styles.navRow} onClick={() => { onClose(); onSearch(); }}>
+                                <button className={styles.navRow} onClick={() => { ouvrirClavier(); onClose(); onSearch(); }}>
                                     <Ic d={ICONS.search} /><span className={styles.navRowText}>Rechercher</span>
                                 </button>
                                 {/* Une recette manque ? On l'envoie par courrier, tout

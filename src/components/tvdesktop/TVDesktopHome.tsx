@@ -37,8 +37,6 @@ import { startSectionSnap, SnapController } from '@/lib/sectionSnap';
 import { personalizedRecipes } from '@/lib/personalize';
 import { inProgressRecipes, clearProgress, PROGRESS_EVENT } from '@/mobile/screens/tv/progress';
 import { planifiable, OUVRIR_PLANIFICATEUR } from '@/mobile/screens/tv/plan';
-import DejaFaite from '@/components/DejaFaite/DejaFaite';
-import { useDejaCuisine } from '@/lib/dejaCuisine';
 import styles from './tvd.module.css';
 import Tip from '@/components/Tip/Tip';
 import SiteFooter from '@/components/SiteFooter/SiteFooter';
@@ -111,14 +109,14 @@ const NotesCtx = createContext<Map<string, RatingStat> | null>(null);
  * à gauche — le bas appartient au titre incrusté. Rien ne s'affiche tant que
  * la recette n'a pas d'avis, et la coche « déjà faite » garde son coin.
  */
-function NoteCarte({ id, decale = false }: { id: string; decale?: boolean }) {
+function NoteCarte({ id }: { id: string }) {
     const notes = useContext(NotesCtx);
     const note = notes?.get(String(id));
     if (!note || !note.count) return null;
     const valeur = note.avg.toFixed(1).replace('.', ',');
     return (
         <span
-            className={`${styles.cardNote} ${decale ? styles.cardNoteDecale : ''}`}
+            className={styles.cardNote}
             aria-label={`Note moyenne : ${valeur} sur 5, ${note.count} avis`}
         >
             <svg viewBox="0 0 24 24" width="10" height="10" aria-hidden>
@@ -252,8 +250,6 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
     inlaid?: boolean;
 }) {
     const vid = tiktokId(recipe);
-    /* Un instantané partagé par toutes les cartes : voir `useDejaCuisine`. */
-    const dejaFaite = useDejaCuisine()(recipe.id);
     // Survol prolongé (1,5 s) → la vidéo se lance dans le visuel. Elle porte SES
     // contrôles (son + barre de progression) : la souris avance et recule dedans.
     const [playing, setPlaying] = useState(false);
@@ -322,10 +318,9 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
                         title={label(recipe)}
                     />
                 )}
-                {/* Déjà cuisinée : une coche discrète, à l'opposé du « + ». */}
-                {dejaFaite && <DejaFaite />}
-                {/* La note moyenne, si la recette en a une. */}
-                <NoteCarte id={recipe.id} decale={dejaFaite} />
+                {/* La note, si la recette en a une : elle dit à elle seule que
+                    la recette a été faite — la coche verte faisait doublon. */}
+                <NoteCarte id={recipe.id} />
             </div>
 
             {/* Le titre, DANS la carte : même police et même texte que sous les

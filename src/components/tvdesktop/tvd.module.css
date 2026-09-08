@@ -1119,13 +1119,14 @@
 /* ── La note moyenne sur la vignette ─────────────────────────────────────────
  *
  * Même pastille qu'à l'accueil mobile (voir tv.module.css) : verre sombre au
- * gabarit des autres marques de la carte, en haut à gauche, l'étoile seule est
+ * gabarit des autres marques de la carte, en haut AU CENTRE, l'étoile seule est
  * colorée. Elle n'apparaît que si la recette a des avis.
  */
 .cardNote {
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 3;
     display: inline-flex;
     align-items: center;
@@ -1147,9 +1148,6 @@
 }
 
 .cardNote svg { color: #ffd60a; flex: 0 0 auto; }
-
-/* La coche « déjà faite » (30 px) occupe déjà le coin : on se pose à sa droite. */
-.cardNoteDecale { left: 46px; }
 
 :global([data-theme='light']) .cardNote {
     box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);

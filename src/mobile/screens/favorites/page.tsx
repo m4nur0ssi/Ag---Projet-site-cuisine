@@ -22,8 +22,7 @@ import styles from './favorites.module.css';
 import Tip from '@/components/Tip/Tip';
 import RecipeMenu from '@/mobile/components/RecipeMenu/RecipeMenu';
 import { useLongPress } from '@/mobile/hooks/useLongPress';
-import DejaFaite from '@/components/DejaFaite/DejaFaite';
-import { useDejaCuisine } from '@/lib/dejaCuisine';
+import { useRatingStats } from '@/lib/ratings';
 
 /**
  * `embedded` : rendu DANS le shell desktop TV+ (barre latérale déjà présente).
@@ -38,7 +37,9 @@ import { useDejaCuisine } from '@/lib/dejaCuisine';
  */
 function Carte({ recipe, onOpen, onLong }: { recipe: Recipe; onOpen: () => void; onLong: () => void }) {
     const lp = useLongPress(onLong);
-    const dejaFaite = useDejaCuisine()(recipe.id);
+    // La note remplace l'ancienne coche verte : on note une recette quand on
+    // l'a faite, la coche disait deux fois la même chose.
+    const note = useRatingStats()?.get(String(recipe.id));
     return (
         <button
             className={styles.card}
@@ -47,7 +48,17 @@ function Carte({ recipe, onOpen, onLong }: { recipe: Recipe; onOpen: () => void;
         >
             <div className={styles.poster}>
                 <img src={recipe.image} alt="" loading="lazy" />
-                {dejaFaite && <DejaFaite />}
+                {note && note.count > 0 && (
+                    <span
+                        className={styles.note}
+                        aria-label={`Note : ${note.avg.toFixed(1).replace('.', ',')} sur 5`}
+                    >
+                        <svg viewBox="0 0 24 24" width="10" height="10" aria-hidden>
+                            <path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6z" fill="currentColor" />
+                        </svg>
+                        {note.avg.toFixed(1).replace('.', ',')}
+                    </span>
+                )}
                 <span className={styles.heart}>
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" /></svg>
                 </span>

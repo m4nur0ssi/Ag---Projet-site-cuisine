@@ -48,6 +48,7 @@ import styles from './tv.module.css';
 import Tip from '@/components/Tip/Tip';
 import TVToast from './TVToast';
 import { ecrireStock } from '@/lib/stockage';
+import { ouvrirClavier } from '@/lib/clavier';
 
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 const CookingTimeline = dynamic(() => import('@/mobile/components/CookingTimeline/CookingTimeline'), { ssr: false });
@@ -531,7 +532,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                     Poser ici
                                 </button>
                             ) : (
-                                <button className={styles.planSwap} onClick={() => { haptic(8); setPicker({ day, meal }); }}>
+                                <button className={styles.planSwap} onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal }); }}>
                                     Changer
                                 </button>
                             )}
@@ -581,7 +582,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                 ) : needsSide ? (
                                     <button
                                         className={styles.planSideAdd}
-                                        onClick={() => { haptic(8); setPicker({ day, meal, side: true }); }}
+                                        onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true }); }}
                                     >
                                         <span className={styles.planPlus}>+</span>
                                         Ajouter un accompagnement
@@ -596,7 +597,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                                         <span className={styles.planSideNoneText}>Ce plat se suffit à lui-même.</span>
                                         <button
                                             className={styles.planSideAddLite}
-                                            onClick={() => { haptic(8); setPicker({ day, meal, side: true }); }}
+                                            onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal, side: true }); }}
                                         >
                                             + En ajouter un quand même
                                         </button>
@@ -619,7 +620,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                             </button>
                         ) : (
                             <>
-                                <button className={styles.planAdd} onClick={() => { haptic(8); setPicker({ day, meal }); }}>
+                                <button className={styles.planAdd} onClick={() => { haptic(8); ouvrirClavier(); setPicker({ day, meal }); }}>
                                     <span className={styles.planPlus}>+</span>
                                     Choisir {meal === 'Plat' ? 'un plat' : 'une recette'}
                                 </button>

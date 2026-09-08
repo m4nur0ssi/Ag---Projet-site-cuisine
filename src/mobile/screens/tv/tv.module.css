@@ -4798,17 +4798,18 @@
 
 /* ── La note moyenne sur la vignette ─────────────────────────────────────────
  *
- * Une pastille de verre sombre au gabarit des autres marques de la carte (la
- * coche « déjà faite », le « + ») : elle se lit d'un coup d'œil sans manger la
- * photo. En HAUT à gauche, parce que le bas appartient au titre incrusté et à
- * la barre de progression.
+ * Une pastille de verre sombre au gabarit des autres marques de la carte (le
+ * « + ») : elle se lit d'un coup d'œil sans manger la photo. En HAUT AU CENTRE,
+ * parce que le bas appartient au titre incrusté et à la barre de progression,
+ * et que les coins sont pris par les boutons.
  *
  * Elle n'apparaît que si la recette a des avis (voir `NoteCarte`).
  */
 .cardNote {
     position: absolute;
     top: 8px;
-    left: 8px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 3;
     display: inline-flex;
     align-items: center;
@@ -4833,10 +4834,6 @@
 /* L'étoile est la seule chose colorée — le jaune système, lisible sur
    n'importe quelle photo. */
 .cardNote svg { color: #ffd60a; flex: 0 0 auto; }
-
-/* La coche « déjà faite » occupe déjà le coin (30 px) : on se pose à sa
-   droite plutôt que par-dessus. */
-.cardNoteDecale { left: 44px; }
 
 /* Sur fond clair, comme la coche : on renforce le filet, qui disparaissait
    sur une photo blanche. */

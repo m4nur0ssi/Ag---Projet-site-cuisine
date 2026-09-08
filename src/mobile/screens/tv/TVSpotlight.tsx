@@ -165,7 +165,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
     const [activeFilters, setActiveFilters] = useState<string[]>([]);
     const toggleFilter = (tag: string) =>
         setActiveFilters((prev) => prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
     const router = useRouter();
 
     // Assistant IA
@@ -414,18 +414,34 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
 
     const pick = (recipe: Recipe) => { haptic(8); onRecipeSelect(recipe); if (!embedded) onClose(); };
 
+    /** Le champ prend le focus À SON MONTAGE quand l'écran vient de s'ouvrir. */
+    const wantFocusRef = useRef(false);
     /*
      * Curseur dans le champ dès l'ouverture. Le panneau arrive en animation :
      * un seul essai tombe parfois avant que l'input existe, donc on retente
      * quelques fois et on s'arrête dès qu'il a le focus.
      */
     const focusSoon = () => {
+        // Le champ n'existe pas encore au premier passage : le panneau arrive en
+        // chargement différé (`dynamic`), ce qui prend parfois plus d'une
+        // seconde. On arme donc aussi le montage du champ lui-même (`attachInput`),
+        // sinon tous les essais tombent dans le vide et le curseur n'y va jamais.
+        wantFocusRef.current = true;
         const delays = [0, 60, 160, 320, 500];
         const timers = delays.map((d) => setTimeout(() => {
             const el = inputRef.current;
             if (el && document.activeElement !== el) el.focus({ preventScroll: true });
+            if (el) wantFocusRef.current = false;
         }, d));
-        return () => timers.forEach(clearTimeout);
+        return () => { timers.forEach(clearTimeout); wantFocusRef.current = false; };
+    };
+
+    const attachInput = (el: HTMLInputElement | null) => {
+        inputRef.current = el;
+        if (el && wantFocusRef.current) {
+            wantFocusRef.current = false;
+            el.focus({ preventScroll: true });
+        }
     };
 
     // Ouverture : focus + page figée. Fermeture : on réinitialise tout.
@@ -563,7 +579,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                             </svg>
                             {mode === 'assistant' ? (
                                 <input
-                                    ref={inputRef} type="text" className={styles.spInput}
+                                    ref={attachInput} type="text" className={styles.spInput}
                                     placeholder="Dis-moi ton envie… ex : un plat rapide au poulet"
                                     value={aiQuery} onChange={(e) => setAiQuery(e.target.value)}
                                     onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); askAssistant(); } }}
@@ -571,14 +587,14 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
                                 />
                             ) : mode === 'recipe' ? (
                                 <input
-                                    ref={inputRef} type="text" className={styles.spInput}
+                                    ref={attachInput} type="text" className={styles.spInput}
                                     placeholder="Rechercher une recette"
                                     value={query} onChange={(e) => setQuery(e.target.value)}
                                     enterKeyHint="search" autoComplete="off" autoCorrect="off" spellCheck={false}
                                 />
                             ) : (
                                 <input
-                                    ref={inputRef} type="text" className={styles.spInput}
+                                    ref={attachInput} type="text" className={styles.spInput}
                                     placeholder="Riz, fenouil…"
                                     value={ingInput} onChange={(e) => setIngInput(e.target.value)}
                                     onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addIngTag(); } }}
