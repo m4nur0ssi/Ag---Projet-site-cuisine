@@ -33,10 +33,21 @@ export function ouvrirClavier() {
         keeper = el;
     }
     keeper.focus({ preventScroll: true });
-    // Filet : si le vrai champ n'a pas pris le relais, on rend le clavier
-    // plutôt que de laisser la frappe tomber dans le vide.
+    /*
+     * Filet : si le vrai champ n'a pas pris le relais, on rend le clavier plutôt
+     * que de laisser la frappe tomber dans le vide. Il est LARGE (5 s) exprès :
+     * plus tôt, le porte-clavier lâchait avant l'arrivée du panneau, le clavier
+     * redescendait, et le `focus()` du vrai champ — hors du geste — ne pouvait
+     * plus le faire remonter. On voyait alors le curseur… sans clavier.
+     */
     if (releaseTimer) clearTimeout(releaseTimer);
     releaseTimer = setTimeout(() => {
         if (keeper && document.activeElement === keeper) keeper.blur();
-    }, 900);
+        releaseTimer = null;
+    }, 5000);
+}
+
+/** Le vrai champ a pris le focus : plus besoin du filet. */
+export function clavierRepris() {
+    if (releaseTimer) { clearTimeout(releaseTimer); releaseTimer = null; }
 }

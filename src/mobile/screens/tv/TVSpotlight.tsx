@@ -10,7 +10,7 @@
  * Aucune modification de la prod (SpotlightSearch reste tel quel).
  */
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Recipe } from '@/mobile/types';
@@ -37,6 +37,7 @@ import Tip from '@/components/Tip/Tip';
 import { ecrireStock } from '@/lib/stockage';
 import { readCave, drinkWindow, type CaveWine } from '@/lib/cave';
 import { intentionVin, compacterCave, accordLocal } from '@/lib/accordCave';
+import { clavierRepris } from '@/lib/clavier';
 
 const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
@@ -431,7 +432,7 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         const timers = delays.map((d) => setTimeout(() => {
             const el = inputRef.current;
             if (el && document.activeElement !== el) el.focus({ preventScroll: true });
-            if (el) wantFocusRef.current = false;
+            if (el) { wantFocusRef.current = false; clavierRepris(); }
         }, d));
         return () => { timers.forEach(clearTimeout); wantFocusRef.current = false; };
     };
@@ -441,8 +442,29 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         if (el && wantFocusRef.current) {
             wantFocusRef.current = false;
             el.focus({ preventScroll: true });
+            // Le porte-clavier peut lâcher : le clavier est à nous maintenant.
+            clavierRepris();
         }
     };
+
+    /*
+     * Le focus, DANS LA MÊME TÂCHE que le clic.
+     *
+     * Un effet de mise en page s'exécute avant que le navigateur rende la main :
+     * pour iOS, le focus fait donc toujours partie du geste du doigt, et le
+     * clavier monte pour de bon. Posé dans un `useEffect` ordinaire — ou pire,
+     * dans un `setTimeout` — il arrive après, et iOS refuse de lever le clavier.
+     */
+    useLayoutEffect(() => {
+        if (!open && !embedded) return;
+        wantFocusRef.current = true;
+        const el = inputRef.current;
+        if (el) {
+            el.focus({ preventScroll: true });
+            wantFocusRef.current = false;
+            clavierRepris();
+        }
+    }, [open, embedded]);
 
     // Ouverture : focus + page figée. Fermeture : on réinitialise tout.
     useEffect(() => {

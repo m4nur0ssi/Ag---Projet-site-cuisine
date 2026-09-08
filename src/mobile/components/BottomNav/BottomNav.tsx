@@ -7,6 +7,8 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import styles from './BottomNav.module.css';
 import dynamic from 'next/dynamic';
 import Portal from '../Portal';
+import { ouvrirClavier } from '@/lib/clavier';
+import { prechargerRecherche, prechargerRechercheAuRepos } from '@/lib/prechargeRecherche';
 // Recherche « Apple TV+ » (la même que le menu), en remplacement de l'ancien
 // SpotlightSearch : la loupe de la barre du bas ouvre désormais ce panneau stylé.
 const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
@@ -97,29 +99,11 @@ export default function BottomNav() {
     const searchLpTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const searchLpFired = useRef(false);
     /*
-     * Le champ de recherche n'existe pas encore quand on appuie sur la loupe :
-     * le panneau ne se monte qu'après. Or iOS n'ouvre le clavier que si un champ
-     * prend le focus PENDANT le geste de l'utilisateur — un `focus()` posé dans
-     * un `setTimeout` arrive trop tard et ne fait rien. On voyait donc la
-     * recherche s'ouvrir… sans clavier, et il fallait retaper dans le champ.
-     *
-     * Ce champ-ci, invisible, prend le focus dans le geste lui-même : le clavier
-     * monte tout de suite, et le vrai champ le récupère quand il apparaît (iOS
-     * garde le clavier ouvert quand le focus passe d'un champ à un autre).
+     * Le porte-clavier vit maintenant dans `@/lib/clavier` : le menu et le
+     * planificateur ouvrent la même recherche et avaient besoin du même geste.
+     * Il garde le clavier levé le temps que le panneau se monte, et le vrai
+     * champ le lui reprend (`clavierRepris`) dès qu'il apparaît.
      */
-    const keeperRef = useRef<HTMLInputElement>(null);
-    const keeperTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const ouvrirClavier = () => {
-        const el = keeperRef.current;
-        if (!el) return;
-        el.focus({ preventScroll: true });
-        // Filet : si le vrai champ n'a pas pris le relais, on rend le clavier
-        // plutôt que de laisser la frappe tomber dans le vide.
-        if (keeperTimer.current) clearTimeout(keeperTimer.current);
-        keeperTimer.current = setTimeout(() => {
-            if (document.activeElement === el) el.blur();
-        }, 900);
-    };
     const [activeIndex, setActiveIndex] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const pointerStartX = useRef<number | null>(null);
@@ -256,6 +240,9 @@ export default function BottomNav() {
 
     // Appui long sur la loupe → recherche assistant IA + dictée vocale directe.
     const startSearchLp = () => {
+        // Le doigt se pose : on va chercher le panneau tout de suite, il sera
+        // là quand le doigt se lève.
+        prechargerRecherche();
         searchLpFired.current = false;
         if (searchLpTimer.current) clearTimeout(searchLpTimer.current);
         /*
@@ -322,6 +309,10 @@ export default function BottomNav() {
             if (forceMiniTimerRef.current) clearTimeout(forceMiniTimerRef.current);
         };
     }, [pathname]);
+
+    // Le panneau de recherche descend dès que le fil est libre : à la première
+    // loupe, il ne se fait plus attendre une seconde.
+    useEffect(() => prechargerRechercheAuRepos(), []);
 
     useEffect(() => {
         setMounted(true);
@@ -477,16 +468,6 @@ export default function BottomNav() {
 
     return (
         <>
-            {/* Le porte-clavier : invisible, hors du flux, jamais atteint au doigt. */}
-            <input
-                ref={keeperRef}
-                className={styles.kbKeeper}
-                type="text"
-                tabIndex={-1}
-                aria-hidden="true"
-                autoComplete="off"
-            />
-
             <TVSpotlight
                 open={isSearchOpen}
                 onClose={() => { setIsSearchOpen(false); setVoiceSearch(false); }}

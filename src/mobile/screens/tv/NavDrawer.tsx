@@ -54,6 +54,7 @@ const Check = () => (
 import { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS } from './filters';
 import { ecrireStock } from '@/lib/stockage';
 import { ouvrirClavier } from '@/lib/clavier';
+import { prechargerRecherche } from '@/lib/prechargeRecherche';
 export { CATEGORY_OPTIONS, TREND_OPTIONS, COUNTRY_OPTIONS };
 
 interface NavDrawerProps {
@@ -353,7 +354,13 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                 </button>
                                 {/* La loupe TV (recette / ingrédients / assistant IA),
                                     surtout pas la page /search du site. */}
-                                <button className={styles.navRow} onClick={() => { ouvrirClavier(); onClose(); onSearch(); }}>
+                                <button
+                                    className={styles.navRow}
+                                    // Dès que le doigt se pose : le panneau descend et le
+                                    // clavier monte, dans le geste. Le clic n'a plus qu'à ouvrir.
+                                    onPointerDown={() => { prechargerRecherche(); ouvrirClavier(); }}
+                                    onClick={() => { ouvrirClavier(); onClose(); onSearch(); }}
+                                >
                                     <Ic d={ICONS.search} /><span className={styles.navRowText}>Rechercher</span>
                                 </button>
                                 {/* Une recette manque ? On l'envoie par courrier, tout
