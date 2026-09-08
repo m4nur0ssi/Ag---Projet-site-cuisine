@@ -4,7 +4,7 @@
  * Le TITRE est toujours conservé tel quel (jamais traduit).
  * Le texte déjà en français est conservé tel quel.
  *
- * Moteur : Groq (GROQ_API_KEY dans .env), modèle llama-3.3-70b-versatile.
+ * Moteur : Groq (GROQ_API_KEY dans .env).
  *
  * Usage :
  *   node translate-recipes-fr.js --dry            # liste les recettes à traduire (aucun appel IA)
@@ -21,7 +21,13 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 require('dotenv').config({ path: path.join(__dirname, '.env.local') });
 
 const GROQ_KEY = process.env.GROQ_API_KEY;
-const GROQ_MODEL = process.env.TRANSLATE_GROQ_MODEL || 'llama-3.3-70b-versatile';
+/*
+ * Groq retire ses modèles sans préavis : `llama-3.3-70b-versatile` a disparu,
+ * et la traduction répondait 404 sur chaque recette — trente d'entre elles
+ * restaient dans leur langue d'origine à chaque synchronisation, sans que rien
+ * ne le signale ailleurs que dans le journal.
+ */
+const GROQ_MODEL = process.env.TRANSLATE_GROQ_MODEL || 'openai/gpt-oss-20b';
 const DRY = process.argv.includes('--dry');
 const ALL = process.argv.includes('--all');
 const limArg = process.argv.indexOf('--limit');
