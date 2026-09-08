@@ -28,6 +28,7 @@
  *   node scripts/recuperer-etapes-tiktok.js --lot 10 --debut 10 # le lot suivant
  *   node scripts/recuperer-etapes-tiktok.js --lot 10 --ecrire   # écrit dans WordPress
  *   node scripts/recuperer-etapes-tiktok.js --ids 4117,3597
+ *   node scripts/recuperer-etapes-tiktok.js --maigres --lot 30 # celles à 1 ou 2 étapes
  *
  * Sans `--ecrire`, RIEN n'est modifié : le script montre ce qu'il propose.
  */
@@ -74,6 +75,20 @@ function aRattraper(recettes) {
     return recettes.filter((r) => {
         const st = r.steps || [];
         return st.length <= 1 && st.some((s) => REPLI.test(s)) && idTikTok(r.videoHtml);
+    });
+}
+
+/**
+ * Les recettes trop maigres : une ou deux étapes, mais de VRAIES étapes.
+ *
+ * Elles ne relèvent pas du même traitement. Ici on ne répare pas un trou, on
+ * complète un résumé — et l'on n'a le droit de le remplacer que s'il en
+ * ressort plus détaillé. Cf. `--maigres`.
+ */
+function tropMaigres(recettes) {
+    return recettes.filter((r) => {
+        const vraies = (r.steps || []).filter((s) => typeof s === 'string' && s.trim().length > 3 && !REPLI.test(s));
+        return vraies.length > 0 && vraies.length <= 2 && idTikTok(r.videoHtml);
     });
 }
 
@@ -349,7 +364,9 @@ async function ecrireContenu(postId, html) {
 
 (async () => {
     const recettes = catalogue();
-    const tous = opt('--sans-ingredients') ? sansIngredients(recettes) : aRattraper(recettes);
+    const tous = opt('--maigres') ? tropMaigres(recettes)
+        : opt('--sans-ingredients') ? sansIngredients(recettes)
+        : aRattraper(recettes);
     let cibles = tous;
     if (arg('--ids')) {
         const voulus = arg('--ids').split(',').map((s) => s.trim());
@@ -360,7 +377,8 @@ async function ecrireContenu(postId, html) {
         cibles = tous.slice(debut, debut + lot);
     }
 
-    console.log(`${tous.length} recette(s) ${opt('--sans-ingredients') ? 'sans ingrédients' : 'sans étapes'} au total — ${cibles.length} examinée(s) ici.`);
+    const quoi = opt('--maigres') ? 'à une ou deux étapes' : opt('--sans-ingredients') ? 'sans ingrédients' : 'sans étapes';
+    console.log(`${tous.length} recette(s) ${quoi} au total — ${cibles.length} examinée(s) ici.`);
     console.log(opt('--ecrire') ? '⚠️  MODE ÉCRITURE : WordPress sera modifié.\n' : 'Mode proposition : rien ne sera modifié.\n');
 
     const retenues = [];
@@ -394,6 +412,20 @@ async function ecrireContenu(postId, html) {
             sansEtapes++;
             continue;
         }
+        /*
+         * Une recette déjà pourvue ne se laisse remplacer que par mieux : sinon
+         * on troquerait des étapes relues contre une paraphrase de la bande-son.
+         */
+        if (opt('--maigres')) {
+            const avant = (r.steps || []).filter((x) => typeof x === 'string' && x.trim().length > 3 && !REPLI.test(x)).length;
+            if (res.steps.length <= avant) {
+                console.log(`   ${res.steps.length} étape(s) contre ${avant} déjà en place : on garde l'existant.\n`);
+                sansEtapes++;
+                continue;
+            }
+            console.log(`   (${avant} étape(s) en place, la voix en donne ${res.steps.length})`);
+        }
+
         console.log(`   ✓ ${res.ingredients.length} ingrédient(s), ${res.steps.length} étape(s) :`);
         res.ingredients.slice(0, 4).forEach((i) => console.log(`       · ${[i.quantity, i.name].filter(Boolean).join(' ')}`));
         if (res.ingredients.length > 4) console.log(`       · … et ${res.ingredients.length - 4} autre(s)`);
