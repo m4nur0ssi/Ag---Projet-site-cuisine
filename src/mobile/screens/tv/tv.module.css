@@ -2423,7 +2423,12 @@
        flotter au milieu des cartes. Le dégradé fait la transition. Le bas
        réserve la hauteur de la barre de menu, qui vit par-dessus. */
     padding: 26px 16px calc(104px + env(safe-area-inset-bottom, 0px));
-    background: linear-gradient(0deg, #000 42%, rgba(0, 0, 0, 0.92) 62%, rgba(0, 0, 0, 0) 100%);
+    /* Le fondu tenait sur toute la hauteur de la barre : les boutons, posés à
+       26 px du haut, tombaient dans la partie encore transparente et laissaient
+       voir la carte derrière eux — on croyait à un bandeau flottant au milieu
+       de l'écran. Le noir est désormais plein sous les boutons, et le fondu
+       tient dans la marge haute. */
+    background: linear-gradient(0deg, #000 80%, rgba(0, 0, 0, 0.88) 90%, rgba(0, 0, 0, 0) 100%);
     pointer-events: none;
 }
 .planFooter > * { pointer-events: auto; }
@@ -2479,6 +2484,33 @@
     transition: transform 0.24s var(--tv-ease);
 }
 .planValidate:active { transform: scale(0.97); }
+
+/* Un libellé qui passe à la ligne fait grandir toute la barre — et la barre est
+   fixée en bas : ce qu'elle gagne en hauteur, elle le prend sur les cartes. */
+.planCompose, .planClear, .planValidate { white-space: nowrap; }
+
+/* Deux libellés pour le même bouton : le long au bureau, le court au téléphone. */
+.planValidateShort { display: none; }
+
+/* ── La barre du bas sur un téléphone ────────────────────────────────────────
+ *
+ * « Composer », « Effacer » et « Remplir ma liste de courses » demandent 471 px
+ * de large : sur 375, le dernier passait à trois lignes, la barre montait à
+ * 217 px et venait couper le créneau du soir en deux.
+ *
+ * On resserre les marges et on prend le libellé court : 354 px au total, une
+ * seule ligne, une barre de 177 px — la place que `.planSlide` réserve déjà.
+ */
+@media (max-width: 430px) {
+    .planFooter { gap: 8px; padding-left: 14px; padding-right: 14px; }
+    .planCompose, .planClear, .planValidate {
+        padding-left: 13px;
+        padding-right: 13px;
+        font-size: 14.5px;
+    }
+    .planValidateLong { display: none; }
+    .planValidateShort { display: inline; }
+}
 .planValidate:disabled, .planClear:disabled {
     background: rgba(255, 255, 255, 0.14);
     color: rgba(255, 255, 255, 0.45);
@@ -4660,4 +4692,52 @@
     .embedded .courseShop {
         bottom: 122px;
     }
+}
+
+/* ── La note moyenne sur la vignette ─────────────────────────────────────────
+ *
+ * Une pastille de verre sombre au gabarit des autres marques de la carte (la
+ * coche « déjà faite », le « + ») : elle se lit d'un coup d'œil sans manger la
+ * photo. En HAUT à gauche, parce que le bas appartient au titre incrusté et à
+ * la barre de progression.
+ *
+ * Elle n'apparaît que si la recette a des avis (voir `NoteCarte`).
+ */
+.cardNote {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    height: 20px;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: rgba(20, 20, 22, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.22);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    /* Un constat, pas une commande : le doigt vise la carte, pas la pastille. */
+    pointer-events: none;
+}
+
+/* L'étoile est la seule chose colorée — le jaune système, lisible sur
+   n'importe quelle photo. */
+.cardNote svg { color: #ffd60a; flex: 0 0 auto; }
+
+/* La coche « déjà faite » occupe déjà le coin (30 px) : on se pose à sa
+   droite plutôt que par-dessus. */
+.cardNoteDecale { left: 44px; }
+
+/* Sur fond clair, comme la coche : on renforce le filet, qui disparaissait
+   sur une photo blanche. */
+:global([data-theme='light']) .cardNote {
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);
 }

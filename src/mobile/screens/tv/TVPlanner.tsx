@@ -801,7 +801,16 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     </button>
                     <button className={styles.planClear} onClick={clearAll} disabled={!planned}>Effacer</button>
                     <button className={styles.planValidate} onClick={validate} disabled={!planned}>
-                        {planned ? 'Remplir ma liste de courses' : 'Rien de planifié'}
+                        {/* Au téléphone, « Remplir ma liste de courses » ne tient pas sur la
+                            ligne des trois boutons : il passait à trois lignes et la barre
+                            grimpait au milieu des cartes. Le libellé court prend le relais
+                            sous 430 px, le long reste au-dessus (voir tv.module.css). */}
+                        {planned ? (
+                            <>
+                                <span className={styles.planValidateLong}>Remplir ma liste de courses</span>
+                                <span className={styles.planValidateShort}>Liste de courses</span>
+                            </>
+                        ) : 'Rien de planifié'}
                     </button>
                 </div>
             )}
