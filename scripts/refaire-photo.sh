@@ -24,6 +24,11 @@
 #   bash scripts/refaire-photo.sh 7402                (première recette fournie)
 #   bash scripts/refaire-photo.sh "Chèvre rôti au miel"
 #
+# Pour poser une photo qui vient d'AILLEURS (ChatGPT, un appareil photo), c'est
+# l'autre script :
+#
+#     npm run photo:perso
+#
 set -e
 cd "$(dirname "$0")/.."
 PROJET="$PWD"
@@ -39,8 +44,14 @@ generer() {
     fi
     local liste
     liste=$(echo "$ids" | tr ' ' ',')
-    echo "🎬 Régénération de la photo…"
-    node scripts/generate-recipe-images.js --ids "$liste" --force
+    echo "🎬 Régénération de la photo (la vidéo est regardée)…"
+    # --video : SANS lui, le générateur travaille au TEXTE de la recette et ne
+    # regarde jamais la vidéo. C'est pourtant tout l'intérêt de refaire une
+    # photo à la main — la vidéo montre le vrai plat, le texte l'imagine.
+    # Le drapeau fait lire les 4 PREMIÈRES et les 4 DERNIÈRES secondes :
+    # l'accroche TikTok ouvre presque toujours sur l'assiette finie, et la fin
+    # la montre à nouveau. Compter 9 s d'attente par recette (quota de vision).
+    node scripts/generate-recipe-images.js --ids "$liste" --force --video
     TRAITEES="$TRAITEES $ids"
     return 0
 }
