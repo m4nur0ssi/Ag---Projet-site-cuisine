@@ -141,7 +141,55 @@ tailles (`src/lib/recipe-photo.ts`) :
 - `<id>-carte.webp` — 760 px, ~110 ko, c'est ce que pointe `recipe.image` ;
 - `<id>.webp` — 1200 px, ~270 ko, pour la fiche ouverte.
 
-Commandes utiles :
+#### Changer la photo d'une recette
+
+Deux chemins, deux scripts. Les deux finissent pareil : WordPress **puis** le
+site, en un seul déploiement même si on a traité cinq recettes.
+
+**1. La refaire automatiquement, d'après la vidéo.**
+
+```bash
+npm run photo:refaire
+```
+
+Demande la recette (numéro **ou** nom, accents indifférents), retélécharge la
+vidéo TikTok, en lit les **4 premières et les 4 dernières secondes**, décrit le
+vrai plat, régénère la photo aux deux tailles, propose d'en enchaîner d'autres,
+puis envoie tout.
+
+> Ce script passait `--force` mais **pas `--video`** : il générait donc depuis
+> le texte de la recette sans jamais regarder la vidéo, alors que son en-tête
+> promettait le contraire. Corrigé le 8 septembre 2026.
+
+**2. Poser une photo qui vient d'ailleurs (ChatGPT, un appareil photo).**
+
+```bash
+npm run photo:perso
+```
+
+Demande la recette, puis le fichier — qu'on peut **glisser depuis le Finder**.
+Il recadre au centre en 3:4, écrit les deux tailles en WebP, archive l'ancienne
+photo sur le Bureau, puis envoie tout. Il accepte PNG, JPEG et WebP, de
+n'importe quelles dimensions.
+
+Si les deux `.webp` ont déjà été déposés à la main dans `public/recipes-ia`,
+répondre **Entrée** à la question du fichier : il saute la conversion et se
+contente d'envoyer.
+
+La brique de conversion est utilisable seule :
+
+```bash
+node scripts/convertir-photo.js 7467 ~/Downloads/escalope.png
+```
+
+**Sans passer par le Terminal.** Les deux chemins ont un lanceur à
+double-cliquer dans `~/Downloads/wordpress` : « 🖼️ Refaire une photo de
+recette » et « 🎨 Poser ma propre photo ». Ils ne contiennent aucune logique —
+ils appellent les scripts ci-dessus. Une copie de sauvegarde est versionnée
+dans `scripts/lanceurs/` (voir son README : le chemin du projet y est écrit en
+dur).
+
+#### Rattrapage en masse
 
 ```bash
 npm run photos:manquantes
@@ -453,6 +501,13 @@ Corrigé par : marges resserrées et libellé court (« Liste de courses ») sou
 430 px, `white-space: nowrap` sur les trois boutons, et un dégradé plein noir
 sous les boutons. Barre mesurée après correction : **177 px**, sous les 190 px
 que `.planSlide` réserve.
+
+**8 septembre 2026 — les deux chemins pour changer une photo.**
+`photo:refaire` ne passait pas `--video` : il travaillait au texte de la recette
+et ne regardait jamais la vidéo, contrairement à ce qu'annonçait son en-tête.
+Corrigé. Et `photo:perso` est apparu à côté : jusque-là, une photo venue
+d'ailleurs n'avait aucun chemin — il fallait recopier une ligne de `sharp` à la
+main, deviner les largeurs et se tromper de rapport une fois sur deux.
 
 **26 août 2026** — les 648 recettes passent en photo générée d'après la vidéo ;
 plus aucune photo Google n'est servie.
