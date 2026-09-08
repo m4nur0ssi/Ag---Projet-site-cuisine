@@ -301,17 +301,89 @@ function ranger(texte) {
     };
 }
 
-async function parGroq(messages) {
+const patienter = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/*
+ * Le compteur de Groq, tenu de notre côté.
+ *
+ * Attendre le refus pour ralentir ne suffit pas : le quota se reconstitue par
+ * fenêtre glissante d'une minute, et quatre relances n'y suffisaient pas
+ * toujours. On tient donc nous-mêmes le compte des jetons consommés dans les
+ * soixante dernières secondes, et on ne part que si la prochaine recette tient
+ * dans ce qui reste.
+ */
+const GROQ_PAR_MINUTE = 8000;
+const consommation = [];      // { instant, jetons }
+
+function jetonsRecents() {
+    const limite = Date.now() - 60000;
+    while (consommation.length && consommation[0].instant < limite) consommation.shift();
+    return consommation.reduce((t, c) => t + c.jetons, 0);
+}
+
+/** Retarde l'appel jusqu'à ce que `prevus` jetons tiennent dans la fenêtre. */
+async function laisserLaPlace(prevus) {
+    for (let garde = 0; garde < 12; garde++) {
+        const reste = GROQ_PAR_MINUTE - jetonsRecents();
+        if (reste >= prevus) return;
+        // Le plus ancien appel sort de la fenêtre à cet instant-là.
+        const sortie = consommation[0].instant + 60000 - Date.now();
+        await patienter(Math.min(Math.max(sortie + 250, 500), 61000));
+    }
+}
+
+/*
+ * Groq compte en jetons PAR MINUTE — huit mille, prompt et réponse confondus.
+ * Une recette en coûte deux mille : au rythme du script, le compteur était vidé
+ * en trois recettes et les cent soixante-cinq suivantes ont pris un 429.
+ *
+ * Ce n'est pas une panne, c'est une cadence. Groq dit lui-même combien de temps
+ * attendre (`retry-after`) : on attend, et on reprend.
+ */
+async function parGroq(messages, essai = 0) {
     const jeton = process.env.GROQ_API_KEY;
     if (!jeton) throw new Error('clé Groq absente');
     const modele = process.env.GROQ_TEXT_MODEL || 'openai/gpt-oss-20b';
+
+    // Le prompt se mesure, la réponse s'estime : une recette détaillée tient en
+    // un millier de jetons, réflexion écourtée comprise.
+    const prevus = Math.ceil(messages.reduce((n, m) => n + m.content.length, 0) / 4) + 1000;
+    await laisserLaPlace(prevus);
+
     const rep = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { authorization: `Bearer ${jeton}`, 'content-type': 'application/json' },
-        body: JSON.stringify({ model: modele, max_tokens: 2400, temperature: 0.2, messages }),
+        /*
+         * `reasoning_effort: low` n'est pas un réglage de confort : sans lui,
+         * gpt-oss-20b dépensait 2 398 jetons à réfléchir sur 2 400 autorisés et
+         * rendait une réponse VIDE — d'où les « réponse illisible ». La tâche
+         * ne demande aucune réflexion : le texte est là, il faut le mettre en
+         * forme.
+         */
+        body: JSON.stringify({
+            model: modele,
+            max_tokens: 4000,
+            temperature: 0.2,
+            reasoning_effort: 'low',
+            messages,
+        }),
     });
+
+    if (rep.status === 429 && essai < 8) {
+        // Refus malgré le compteur : on croyait avoir la place, on ne l'avait
+        // pas. On enregistre la dépense supposée pour ne pas se reprendre à
+        // repartir trop tôt.
+        consommation.push({ instant: Date.now(), jetons: prevus });
+        const dit = parseFloat(rep.headers.get('retry-after') || '0');
+        const attente = Math.min(Math.max(dit ? dit * 1000 : 8000 * (essai + 1), 2000), 65000);
+        console.log(`   · Groq demande ${Math.round(attente / 1000)} s de pause.`);
+        await patienter(attente);
+        return parGroq(messages, essai + 1);
+    }
+
     if (!rep.ok) throw new Error(`Groq ${rep.status} — ${(await rep.text()).slice(0, 160)}`);
     const d = await rep.json();
+    consommation.push({ instant: Date.now(), jetons: d?.usage?.total_tokens || prevus });
     return d?.choices?.[0]?.message?.content ?? '';
 }
 
