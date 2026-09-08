@@ -2,11 +2,715 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/09/2026 19:54:10
+ * Dernière mise à jour: 08/09/2026 20:32:41
  * Total: 689 recettes
  */
-export const exportSyncId = "1788897250978";
+export const exportSyncId = "1788899561435";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "6807",
+        "title": "Œufs durs croustillants au fromage et chorizo",
+        "description": "Découvrez une nouvelle façon savoureuse de déguster les œufs durs. Cette recette propose des moitiés d'œufs cuites sur une base croustillante de fromage doré, garnies de mayonnaise épicée, de dés de chorizo grillés et de basilic frais.",
+        "image": "/recipes-ia/6807-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661541819687210273\" data-video-id=\"7661541819687210273\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661541819687210273\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             Œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Fromage râpé (de votre choix)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Mayonnaise"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Sriracha"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Chorizo"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic frais"
+            }
+        ],
+        "steps": [
+            "Cuire les œufs dans l'eau bouillante pendant 8 minutes (ils ne doivent pas être complètement durs), puis les plonger dans l'eau glacée.",
+            "Déposer des petits tas de fromage râpé dans une poêle chaude et y placer les moitiés d'œufs par-dessus. Retirer les œufs dès que le fromage est bien doré et croustillant.",
+            "Garnir les œufs de mayonnaise épicée (mélange de mayonnaise et Sriracha), de dés de chorizo bien grillés et d'une feuille de basilic frais."
+        ],
+        "tags": [
+            "Entrées",
+            "épicé",
+            "Espagne"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7028",
+        "title": "Salade Fattoush",
+        "description": "Une salade Fattoush fraîche et colorée, parfaite pour l'été. C'est la quatrième recette de la série \" salades fraîches et colorées \".",
+        "image": "/recipes-ia/7028-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7372243220761267489\" data-video-id=\"7372243220761267489\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7372243220761267489\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n             4 mini concombres"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Radis"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1/4 de chou rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Partie verte d'un oignon cébette"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             2 petites salades vertes"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 grenade"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Feuilles de menthe"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Persil ciselé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 pains pita (à griller avec du sumac et de l'huile d'olive)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus d'un citron (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe de mélasse de grenade (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             5 cuillères à soupe d'huile d'olive (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à café de menthe séchée (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à café de sumac (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (pour la vinaigrette)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (pour la vinaigrette)"
+            }
+        ],
+        "steps": [
+            "Coupez les mini concombres, les tomates cerises, les radis, le chou rouge, l'oignon cébette et la salade verte, puis égrainez une grenade.",
+            "Coupez le pain pita en morceaux, saupoudrez-le de sumac et d'huile d'olive, puis dorez-le au four pendant 10 minutes à 180°C.",
+            "Préparez la sauce : mélangez le jus de citron, la mélasse de grenade, l'huile d'olive, la menthe séchée, le sumac, le sel et le poivre.",
+            "Mettez une assiette au fond du saladier pour couvrir la sauce avant d'ajouter les légumes, afin d'éviter que la salade ne rende de l'eau.",
+            "Au moment de servir, retirez l'assiette et le papier absorbant, mélangez bien la salade, puis ajoutez la pita grillée et les graines de grenade. Bon appétit !"
+        ],
+        "tags": [
+            "Healthy",
+            "Liban",
+            "Salades",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7069",
+        "title": "Brochettes de bœuf et pommes de terre croustillantes",
+        "description": "Ces brochettes savoureuses combinent la tendreté du bœuf avec des morceaux de pommes de terre croustillantes, parfaites pour un repas convivial ou un barbecue estival.",
+        "image": "/recipes-ia/7069-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671369337906760974\" data-video-id=\"7671369337906760974\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671369337906760974\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             500g de bœuf (type rumsteck ou gîte), coupé en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             400g de petites pommes de terre, coupées en dés"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir fraîchement moulu, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Brochettes en bois ou en métal"
+            }
+        ],
+        "steps": [
+            "Si vous utilisez des brochettes en bois, faites-les tremper dans l'eau pendant au moins 30 minutes pour éviter qu'elles ne brûlent.",
+            "Dans un grand bol, mélangez les dés de bœuf et de pommes de terre avec l'huile d'olive, le sel et le poivre. Assurez-vous que tous les morceaux sont bien enrobés.",
+            "Enfilez alternativement les dés de bœuf et de pommes de terre sur les brochettes.",
+            "Préchauffez votre grill, votre plancha ou votre four à 200°C (400°F).",
+            "Faites cuire les brochettes pendant 15 à 20 minutes, en les retournant régulièrement, jusqu'à ce que le bœuf soit cuit à votre goût et que les pommes de terre soient tendres et croustillantes. Le temps de cuisson peut varier selon l'épaisseur des morceaux et la méthode de cuisson.",
+            "Servez immédiatement et dégustez."
+        ],
+        "tags": [
+            "barbecue",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7137",
+        "title": "Salade de poulpe aux oignons confits",
+        "description": "Une salade de poulpe rafraîchissante et savoureuse, agrémentée d'oignons confits, parfaite pour un apéritif d'été. À laisser reposer au frais pour une meilleure dégustation.",
+        "image": "/recipes-ia/7137-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657215654210178336\" data-video-id=\"7657215654210178336\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657215654210178336\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             Environ 400g de poulpe (précuit)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             5 cuillères à soupe de vinaigre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             12 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de paprika"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de piment de Cayenne"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pincée de safran"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 pincée de piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail (en lamelles)"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 gros oignons émincés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une poignée de coriandre fraîche"
+            }
+        ],
+        "steps": [
+            "Émincer les oignons et les faire revenir dans un bon fond d'huile d'olive jusqu'à ce qu'ils soient confits et tendres.",
+            "Couper le poulpe précuit en morceaux ou en rondelles, selon votre préférence.",
+            "Émincer l'ail en fines lamelles et ciseler la coriandre fraîche.",
+            "Dans un grand saladier, mélanger le poulpe, les oignons confits, l'ail émincé et la coriandre ciselée.",
+            "Ajouter le vinaigre, l'huile d'olive restante, le sel, le poivre, le paprika, le piment de Cayenne, le safran et le piment d'Espelette. Bien mélanger tous les ingrédients pour qu'ils s'imprègnent des saveurs.",
+            "Laisser reposer la salade au frais pendant au moins 3 à 4 heures, ou idéalement toute une nuit, afin que les arômes se développent pleinement. Déguster frais."
+        ],
+        "tags": [
+            "épicé",
+            "Espagne",
+            "Healthy",
+            "Poissons et crustacés",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6821",
+        "title": "Sandwich aux œufs et crudités",
+        "description": "Découvrez comment préparer un délicieux sandwich aux œufs et crudités, agrémenté d'une mayonnaise maison onctueuse au yaourt grec. Une recette simple et rapide, parfaite pour un repas équilibré et savoureux, servie dans du pain de mie grillé.",
+        "image": "/recipes-ia/6821-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7490625111716826390\" data-video-id=\"7490625111716826390\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7490625111716826390\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             6 œufs durs"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs (crus, pour la mayonnaise)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             2 cuillères à soupe de moutarde"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 yaourt grec"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe de vinaigre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Céleri finement coupé"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Oignons verts émincés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette hachée"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             4 tranches de pain de mie American Sandwich Rustique d'Harrys"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil frais haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Quelques feuilles de salade"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika (optionnel)"
+            }
+        ],
+        "steps": [
+            "Préparez la mayonnaise maison : Mixez 2 œufs crus, 2 cuillères à soupe d'huile d'olive, 1 cuillère à soupe de moutarde, 2 cuillères à soupe de yaourt grec et 2 cuillères à soupe de vinaigre blanc jusqu'à obtenir une mayonnaise onctueuse.",
+            "Dans un bol, mélangez les 6 œufs durs écrasés, la mayonnaise préparée, le reste du yaourt grec, la moutarde restante et le jus de citron.",
+            "Incorporez le céleri finement coupé, les oignons verts émincés et la ciboulette hachée.",
+            "Assaisonnez avec du sel et du poivre.",
+            "Dans un autre bol, mélangez l'huile d'olive avec la gousse d'ail hachée et le persil frais haché. Salez et poivrez.",
+            "Badigeonnez une face des 4 tranches de pain de mie avec ce mélange, puis faites dorer chaque face à la poêle pendant 3 à 4 minutes.",
+            "Hors du feu, déposez le mélange aux œufs sur une tranche de pain de mie grillé Harrys.",
+            "Ajoutez quelques feuilles de salade et refermez avec une autre tranche de pain.",
+            "Optionnel : Ajoutez une pincée de paprika avant de refermer votre sandwich."
+        ],
+        "tags": [
+            "Healthy",
+            "Sandwichs",
+            "USA",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7439",
+        "title": "Dip de courgette",
+        "description": "Un dip d'été ultra savoureux à déguster à la cuillère, sur du pain grillé ou avec des légumes croquants. Simple, rapide et hyper aromatique.",
+        "image": "/recipes-ia/7439-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7543155513794546951\" data-video-id=\"7543155513794546951\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7543155513794546951\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             2 courgettes"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             3 cuillères à soupe de tahini"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             ½ jus de citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 cuillères à soupe de yaourt grec (ou végétal)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de curcuma"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             2 cuillères à café de paprika (doux ou fumé)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Une petite poignée de basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Une petite poignée d'estragon frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive (pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Pistaches concassées (pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Feuilles de basilic frais supplémentaires (pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Feuilles d'estragon frais supplémentaires (pour le topping)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Une pincée de piment d'Espelette (optionnel)"
+            }
+        ],
+        "steps": [
+            "Préchauffez votre four à 200°C.",
+            "Coupez les courgettes en deux dans la longueur et quadrillez la chair au couteau.",
+            "Déposez-les sur une plaque avec la gousse d'ail entière. Arrosez d'huile d'olive, salez, poivrez, et ajoutez une pincée de piment d'Espelette si vous le souhaitez.",
+            "Enfournez 35 à 40 minutes, jusqu'à ce que les courgettes soient bien fondantes.",
+            "Laissez refroidir. Coupez les courgettes en tronçons (gardez la peau) et épluchez l'ail.",
+            "Mixez le tout avec le tahini, le jus de citron, le yaourt, les épices, les herbes fraîches, le sel et le poivre.",
+            "Dressez dans une assiette creuse. Ajoutez un filet d'huile d'olive, les pistaches concassées et les herbes fraîches en topping."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Healthy",
+            "Orient",
+            "Sauces",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7432",
+        "title": "Biscotti Cantucci italiens",
+        "description": "Découvrez comment préparer des Cantucci, ces délicieux biscuits aux amandes originaires de Toscane. Faciles et rapides à réaliser, même à la dernière minute, ils ne nécessitent aucun outil spécial. Parfaits pour un cadeau de dernière minute, ils s...",
+        "image": "/recipes-ia/7432-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7316104036002843936\" data-video-id=\"7316104036002843936\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7316104036002843936\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             200g de farine 00"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             2 cuillères à café de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g d'amandes entières (½ concassées, ½ entières)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             6g de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf moyen et 1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Le zeste d'une demi-orange"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Le zeste d'un demi-citron"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Une belle pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            }
+        ],
+        "steps": [
+            "Ajoutez tous les ingrédients secs dans le bol.",
+            "Mélangez maintenant tous les ingrédients secs, l'extrait de vanille et une pointe de miel.",
+            "Ajoutez deux œufs, le zeste d'un demi-citron et le zeste d'une demi-orange.",
+            "Mélangez maintenant le tout jusqu'à ce qu'il n'y ait plus de farine sèche.",
+            "Placez la pâte sur le dessus et travaillez-la délicatement.",
+            "Enfournez maintenant le tout à 70 °C pendant environ 20 minutes jusqu'à ce qu'elle soit belle et dorée sur le dessus.",
+            "Laissez refroidir pendant 15 minutes avant de couper.",
+            "Coupez d'environ 1 doigt d'épaisseur.",
+            "Remettez les morceaux dans le plateau, côté plat vers le bas, prêts pour la deuxième cuisson.",
+            "Enfournez à 160 °C pendant 10 minutes."
+        ],
+        "tags": [
+            "Italie",
+            "Noël"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "6351",
+        "title": "Taboulé de chou-fleur",
+        "description": "Une recette légère, fraîche et pleine de saveurs pour les beaux jours ! Un taboulé revisité, sans semoule, simple à préparer et parfait pour un repas d'été frais et gourmand !",
+        "image": "/recipes-ia/6351-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654604752155725089\" data-video-id=\"7654604752155725089\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654604752155725089\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥬\n             1 chou-fleur"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🫘\n             1 petite boîte de pois chiches"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1 citron jaune"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             150 g de comté"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             4 tranches de jambon blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Ciboulette"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Nettoyez le chou-fleur, retirez le troignon et détaillez-le en fleurettes.",
+            "Passez le chou-fleur au mixeur ou au robot jusqu'à obtenir une texture de type semoule.",
+            "Taillez les tomates en petits tubes et le concombre en dés.",
+            "Faites revenir l'oignon rouge, puis hachez-le très finement.",
+            "Hachez finement le persil et la ciboulette.",
+            "Mélangez la semoule de chou-fleur, les légumes découpés, l'oignon, les herbes, le jambon blanc, le comté, les pois chiches, le sel et le poivre dans un saladier.",
+            "Ajoutez le jus d'un citron et de l'huile d'olive, puis mélangez bien.",
+            "Laissez reposer 30 minutes au frais."
+        ],
+        "tags": [
+            "France",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "5872",
+        "title": "Sauce Ta Diète",
+        "description": "Une sauce crémeuse miel-moutarde, légèrement fumée avec une touche steakhouse grâce au Worcestershire, parfaite pour transformer les plats de régime en un vrai régal.",
+        "image": "/recipes-ia/5872-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613808499729927446\" data-video-id=\"7613808499729927446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613808499729927446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n 210 g de Skyr ou fromage blanc 0 %"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 90 g de moutarde à l'ancienne"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n 30 g de miel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n 1 petite gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n 1 càc de sauce Worcestershire ou soja"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n ½ càc de paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n 1 càc de vinaigre de cidre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n Sel, poivre au goût"
+            }
+        ],
+        "steps": [
+            "Mélangez le tout dans un blender.",
+            "Goûtez et ajustez l'assaisonnement.",
+            "Servez la sauce."
+        ],
+        "tags": [
+            "Healthy",
+            "Sauces"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7451",
         "title": "Tartinade d'aubergines et poivrons",
@@ -1013,64 +1717,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "5872",
-        "title": "Sauce Ta Diète",
-        "description": "Une sauce crémeuse miel-moutarde, légèrement fumée avec une touche steakhouse grâce au Worcestershire, parfaite pour transformer les plats de régime en un vrai régal.",
-        "image": "/recipes-ia/5872-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613808499729927446\" data-video-id=\"7613808499729927446\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613808499729927446\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n</section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n 210 g de Skyr ou fromage blanc 0 %"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 90 g de moutarde à l'ancienne"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n 30 g de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n 1 petite gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n 1 càc de sauce Worcestershire ou soja"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n ½ càc de paprika fumé"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n 1 càc de vinaigre de cidre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n Sel, poivre au goût"
-            }
-        ],
-        "steps": [
-            "Mélangez le tout dans un blender.",
-            "Goûtez et ajustez l'assaisonnement.",
-            "Servez la sauce."
-        ],
-        "tags": [
-            "Healthy",
-            "Sauces"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "5941",
         "title": "Gratin de Courgettes Protéiné",
         "description": "Une super recette pour faire manger des courgettes aux petits comme aux grands récalcitrants. En plus de ça c'est ultra protéiné, tu vas te régaler !",
@@ -2012,87 +2658,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6351",
-        "title": "Taboulé de chou-fleur",
-        "description": "Une recette légère, fraîche et pleine de saveurs pour les beaux jours ! Un taboulé revisité, sans semoule, simple à préparer et parfait pour un repas d'été frais et gourmand !",
-        "image": "/recipes-ia/6351-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7654604752155725089\" data-video-id=\"7654604752155725089\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7654604752155725089\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥬\n             1 chou-fleur"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             1 tomate"
-            },
-            {
-                "quantity": "",
-                "name": "🥒\n             1 concombre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 oignon rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🫘\n             1 petite boîte de pois chiches"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             1 citron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             150 g de comté"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             4 tranches de jambon blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Nettoyez le chou-fleur, retirez le troignon et détaillez-le en fleurettes.",
-            "Passez le chou-fleur au mixeur ou au robot jusqu'à obtenir une texture de type semoule.",
-            "Taillez les tomates en petits tubes et le concombre en dés.",
-            "Faites revenir l'oignon rouge, puis hachez-le très finement.",
-            "Hachez finement le persil et la ciboulette.",
-            "Mélangez la semoule de chou-fleur, les légumes découpés, l'oignon, les herbes, le jambon blanc, le comté, les pois chiches, le sel et le poivre dans un saladier.",
-            "Ajoutez le jus d'un citron et de l'huile d'olive, puis mélangez bien.",
-            "Laissez reposer 30 minutes au frais."
-        ],
-        "tags": [
-            "France",
-            "Healthy",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "6381",
         "title": "Cheesecake salé sans cuisson",
         "description": "Une recette ultra fraîche, parfaite pour les journées d'été ! Facile à préparer, sans cuisson et idéale en entrée ou à partager à l'apéro.",
@@ -2663,79 +3228,6 @@ export const mockRecipes: Recipe[] = [
         "tags": [
             "Entrées",
             "Italie"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7432",
-        "title": "Biscotti Cantucci italiens",
-        "description": "Découvrez comment préparer des Cantucci, ces délicieux biscuits aux amandes originaires de Toscane. Faciles et rapides à réaliser, même à la dernière minute, ils ne nécessitent aucun outil spécial. Parfaits pour un cadeau de dernière minute, ils s...",
-        "image": "/recipes-ia/7432-carte.webp",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7316104036002843936\" data-video-id=\"7316104036002843936\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7316104036002843936\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             200g de farine 00"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             100g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             2 cuillères à café de miel"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             100g d'amandes entières (½ concassées, ½ entières)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             6g de levure chimique"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf moyen et 1 jaune d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Le zeste d'une demi-orange"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Le zeste d'un demi-citron"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Une belle pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
-            }
-        ],
-        "steps": [
-            "Ajoutez tous les ingrédients secs dans le bol.",
-            "Mélangez maintenant tous les ingrédients secs, l'extrait de vanille et une pointe de miel.",
-            "Ajoutez deux œufs, le zeste d'un demi-citron et le zeste d'une demi-orange.",
-            "Mélangez maintenant le tout jusqu'à ce qu'il n'y ait plus de farine sèche.",
-            "Placez la pâte sur le dessus et travaillez-la délicatement.",
-            "Enfournez maintenant le tout à 70 °C pendant environ 20 minutes jusqu'à ce qu'elle soit belle et dorée sur le dessus.",
-            "Laissez refroidir pendant 15 minutes avant de couper.",
-            "Coupez d'environ 1 doigt d'épaisseur.",
-            "Remettez les morceaux dans le plateau, côté plat vers le bas, prêts pour la deuxième cuisson.",
-            "Enfournez à 160 °C pendant 10 minutes."
-        ],
-        "tags": [
-            "Italie",
-            "Noël"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -12957,112 +13449,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7439",
-        "title": "Dip de courgette",
-        "description": "Un dip d'été ultra savoureux à déguster à la cuillère, sur du pain grillé ou avec des légumes croquants. Simple, rapide et hyper aromatique.",
-        "image": "/recipes-ia/7439-carte.webp",
-        "category": "sauces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7543155513794546951\" data-video-id=\"7543155513794546951\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7543155513794546951\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             2 courgettes"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             3 cuillères à soupe de tahini"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             ½ jus de citron jaune"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             2 cuillères à soupe de yaourt grec (ou végétal)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             ½ cuillère à café de cumin"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de curcuma"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             2 cuillères à café de paprika (doux ou fumé)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Une petite poignée de basilic frais"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Une petite poignée d'estragon frais"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Un filet d'huile d'olive (pour le topping)"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Pistaches concassées (pour le topping)"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Feuilles de basilic frais supplémentaires (pour le topping)"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Feuilles d'estragon frais supplémentaires (pour le topping)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Une pincée de piment d'Espelette (optionnel)"
-            }
-        ],
-        "steps": [
-            "Préchauffez votre four à 200°C.",
-            "Coupez les courgettes en deux dans la longueur et quadrillez la chair au couteau.",
-            "Déposez-les sur une plaque avec la gousse d'ail entière. Arrosez d'huile d'olive, salez, poivrez, et ajoutez une pincée de piment d'Espelette si vous le souhaitez.",
-            "Enfournez 35 à 40 minutes, jusqu'à ce que les courgettes soient bien fondantes.",
-            "Laissez refroidir. Coupez les courgettes en tronçons (gardez la peau) et épluchez l'ail.",
-            "Mixez le tout avec le tahini, le jus de citron, le yaourt, les épices, les herbes fraîches, le sel et le poivre.",
-            "Dressez dans une assiette creuse. Ajoutez un filet d'huile d'olive, les pistaches concassées et les herbes fraîches en topping."
-        ],
-        "tags": [
-            "Accompagnements",
-            "Healthy",
-            "Orient",
-            "Sauces",
-            "Végé",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7429",
         "title": "Pain burger pliable",
         "description": "Une recette de pain burger maison, facile à plier, préparée en deux étapes avec un preferment pour une mie moelleuse et une cuisson au four.",
@@ -19162,108 +19548,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "6821",
-        "title": "Sandwich aux œufs et crudités",
-        "description": "Découvrez comment préparer un délicieux sandwich aux œufs et crudités, agrémenté d'une mayonnaise maison onctueuse au yaourt grec. Une recette simple et rapide, parfaite pour un repas équilibré et savoureux, servie dans du pain de mie grillé.",
-        "image": "/recipes-ia/6821-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7490625111716826390\" data-video-id=\"7490625111716826390\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7490625111716826390\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             6 œufs durs"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             2 œufs (crus, pour la mayonnaise)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             2 cuillères à soupe de moutarde"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 yaourt grec"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à soupe de vinaigre blanc"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus de citron"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Céleri finement coupé"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Oignons verts émincés"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Ciboulette hachée"
-            },
-            {
-                "quantity": "",
-                "name": "🥖\n             4 tranches de pain de mie American Sandwich Rustique d'Harrys"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             1 gousse d'ail"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Persil frais haché"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             Quelques feuilles de salade"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Paprika (optionnel)"
-            }
-        ],
-        "steps": [
-            "Préparez la mayonnaise maison : Mixez 2 œufs crus, 2 cuillères à soupe d'huile d'olive, 1 cuillère à soupe de moutarde, 2 cuillères à soupe de yaourt grec et 2 cuillères à soupe de vinaigre blanc jusqu'à obtenir une mayonnaise onctueuse.",
-            "Dans un bol, mélangez les 6 œufs durs écrasés, la mayonnaise préparée, le reste du yaourt grec, la moutarde restante et le jus de citron.",
-            "Incorporez le céleri finement coupé, les oignons verts émincés et la ciboulette hachée.",
-            "Assaisonnez avec du sel et du poivre.",
-            "Dans un autre bol, mélangez l'huile d'olive avec la gousse d'ail hachée et le persil frais haché. Salez et poivrez.",
-            "Badigeonnez une face des 4 tranches de pain de mie avec ce mélange, puis faites dorer chaque face à la poêle pendant 3 à 4 minutes.",
-            "Hors du feu, déposez le mélange aux œufs sur une tranche de pain de mie grillé Harrys.",
-            "Ajoutez quelques feuilles de salade et refermez avec une autre tranche de pain.",
-            "Optionnel : Ajoutez une pincée de paprika avant de refermer votre sandwich."
-        ],
-        "tags": [
-            "Healthy",
-            "Sandwichs",
-            "USA",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7205",
         "title": "Côtes de porc étouffées à l'ail et aux herbes",
         "description": "Ces côtes de porc étouffées à l'ail et aux herbes sont juteuses, saisies à la poêle et mijotées dans une riche sauce au beurre, à l'ail et aux herbes fraîches jusqu'à ce qu'elles soient parfaitement tendres. Servies avec des pommes de terre nouvel...",
@@ -21799,87 +22083,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7137",
-        "title": "Salade de poulpe aux oignons confits",
-        "description": "Une salade de poulpe rafraîchissante et savoureuse, agrémentée d'oignons confits, parfaite pour un apéritif d'été. À laisser reposer au frais pour une meilleure dégustation.",
-        "image": "/recipes-ia/7137-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7657215654210178336\" data-video-id=\"7657215654210178336\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7657215654210178336\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             Environ 400g de poulpe (précuit)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             5 cuillères à soupe de vinaigre"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             12 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 cuillère à café de poivre"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 cuillère à café de paprika"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 cuillère à café de piment de Cayenne"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 pincée de safran"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             1 pincée de piment d'Espelette"
-            },
-            {
-                "quantity": "",
-                "name": "🧄\n             3 gousses d'ail (en lamelles)"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             2 gros oignons émincés"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Une poignée de coriandre fraîche"
-            }
-        ],
-        "steps": [
-            "Émincer les oignons et les faire revenir dans un bon fond d'huile d'olive jusqu'à ce qu'ils soient confits et tendres.",
-            "Couper le poulpe précuit en morceaux ou en rondelles, selon votre préférence.",
-            "Émincer l'ail en fines lamelles et ciseler la coriandre fraîche.",
-            "Dans un grand saladier, mélanger le poulpe, les oignons confits, l'ail émincé et la coriandre ciselée.",
-            "Ajouter le vinaigre, l'huile d'olive restante, le sel, le poivre, le paprika, le piment de Cayenne, le safran et le piment d'Espelette. Bien mélanger tous les ingrédients pour qu'ils s'imprègnent des saveurs.",
-            "Laisser reposer la salade au frais pendant au moins 3 à 4 heures, ou idéalement toute une nuit, afin que les arômes se développent pleinement. Déguster frais."
-        ],
-        "tags": [
-            "épicé",
-            "Espagne",
-            "Healthy",
-            "Poissons et crustacés",
-            "Salades",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7139",
         "title": "Salade de figues, burrata et roquette",
         "description": "Une recette simple et rapide pour profiter pleinement de la saison des figues. Cette salade fraîche et gourmande associe la douceur des figues à la crémeuse burrata, la vivacité de la roquette, le tout relevé par une crème de vinaigre balsamique e...",
@@ -23483,59 +23686,6 @@ export const mockRecipes: Recipe[] = [
         "address": ""
     },
     {
-        "id": "7069",
-        "title": "Brochettes de bœuf et pommes de terre croustillantes",
-        "description": "Ces brochettes savoureuses combinent la tendreté du bœuf avec des morceaux de pommes de terre croustillantes, parfaites pour un repas convivial ou un barbecue estival.",
-        "image": "/recipes-ia/7069-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7671369337906760974\" data-video-id=\"7671369337906760974\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7671369337906760974\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             500g de bœuf (type rumsteck ou gîte), coupé en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             400g de petites pommes de terre, coupées en dés"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe d'huile d'olive"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel, au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre noir fraîchement moulu, au goût"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Brochettes en bois ou en métal"
-            }
-        ],
-        "steps": [
-            "Si vous utilisez des brochettes en bois, faites-les tremper dans l'eau pendant au moins 30 minutes pour éviter qu'elles ne brûlent.",
-            "Dans un grand bol, mélangez les dés de bœuf et de pommes de terre avec l'huile d'olive, le sel et le poivre. Assurez-vous que tous les morceaux sont bien enrobés.",
-            "Enfilez alternativement les dés de bœuf et de pommes de terre sur les brochettes.",
-            "Préchauffez votre grill, votre plancha ou votre four à 200°C (400°F).",
-            "Faites cuire les brochettes pendant 15 à 20 minutes, en les retournant régulièrement, jusqu'à ce que le bœuf soit cuit à votre goût et que les pommes de terre soient tendres et croustillantes. Le temps de cuisson peut varier selon l'épaisseur des morceaux et la méthode de cuisson.",
-            "Servez immédiatement et dégustez."
-        ],
-        "tags": [
-            "barbecue",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
         "id": "7015",
         "title": "Tiramisu aux spéculoos",
         "description": "Cette recette détaille la préparation d'une crème onctueuse et ferme à base de mascarpone, de crème fraîche et d'arôme vanille, agrémentée de sucre glace et de pâte de spéculoos, idéale pour un tiramisu aux spéculoos.",
@@ -23721,105 +23871,6 @@ export const mockRecipes: Recipe[] = [
             "Poissons et crustacés",
             "Salades",
             "Sauces",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7028",
-        "title": "Salade Fattoush",
-        "description": "Une salade Fattoush fraîche et colorée, parfaite pour l'été. C'est la quatrième recette de la série \" salades fraîches et colorées \".",
-        "image": "/recipes-ia/7028-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7372243220761267489\" data-video-id=\"7372243220761267489\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7372243220761267489\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥒\n             4 mini concombres"
-            },
-            {
-                "quantity": "",
-                "name": "🍅\n             Tomates cerises"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Radis"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1/4 de chou rouge"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             Partie verte d'un oignon cébette"
-            },
-            {
-                "quantity": "",
-                "name": "🥗\n             2 petites salades vertes"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 grenade"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Feuilles de menthe"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Persil ciselé"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 pains pita (à griller avec du sumac et de l'huile d'olive)"
-            },
-            {
-                "quantity": "",
-                "name": "🍋\n             Jus d'un citron (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             2 cuillères à soupe de mélasse de grenade (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             5 cuillères à soupe d'huile d'olive (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à café de menthe séchée (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             1 cuillère à café de sumac (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             Sel (pour la vinaigrette)"
-            },
-            {
-                "quantity": "",
-                "name": "🌶️\n             Poivre (pour la vinaigrette)"
-            }
-        ],
-        "steps": [
-            "Coupez les mini concombres, les tomates cerises, les radis, le chou rouge, l'oignon cébette et la salade verte, puis égrainez une grenade.",
-            "Coupez le pain pita en morceaux, saupoudrez-le de sumac et d'huile d'olive, puis dorez-le au four pendant 10 minutes à 180°C.",
-            "Préparez la sauce : mélangez le jus de citron, la mélasse de grenade, l'huile d'olive, la menthe séchée, le sumac, le sel et le poivre.",
-            "Mettez une assiette au fond du saladier pour couvrir la sauce avant d'ajouter les légumes, afin d'éviter que la salade ne rende de l'eau.",
-            "Au moment de servir, retirez l'assiette et le papier absorbant, mélangez bien la salade, puis ajoutez la pita grillée et les graines de grenade. Bon appétit !"
-        ],
-        "tags": [
-            "Healthy",
-            "Liban",
-            "Salades",
-            "Végé",
             "Voilà l'été"
         ],
         "isFeatured": false,
@@ -25931,57 +25982,6 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Astuces"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "6807",
-        "title": "Œufs durs croustillants au fromage et chorizo",
-        "description": "Découvrez une nouvelle façon savoureuse de déguster les œufs durs. Cette recette propose des moitiés d'œufs cuites sur une base croustillante de fromage doré, garnies de mayonnaise épicée, de dés de chorizo grillés et de basilic frais.",
-        "image": "/recipes-ia/6807-carte.webp",
-        "category": "entrees",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7661541819687210273\" data-video-id=\"7661541819687210273\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7661541819687210273\" rel=\"noopener noreferrer\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥚\n             Œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             Fromage râpé (de votre choix)"
-            },
-            {
-                "quantity": "",
-                "name": "🥫\n             Mayonnaise"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             Sriracha"
-            },
-            {
-                "quantity": "",
-                "name": "🥓\n             Chorizo"
-            },
-            {
-                "quantity": "",
-                "name": "🌿\n             Basilic frais"
-            }
-        ],
-        "steps": [
-            "Cuire les œufs dans l'eau bouillante pendant 8 minutes (ils ne doivent pas être complètement durs), puis les plonger dans l'eau glacée.",
-            "Déposer des petits tas de fromage râpé dans une poêle chaude et y placer les moitiés d'œufs par-dessus. Retirer les œufs dès que le fromage est bien doré et croustillant.",
-            "Garnir les œufs de mayonnaise épicée (mélange de mayonnaise et Sriracha), de dés de chorizo bien grillés et d'une feuille de basilic frais."
-        ],
-        "tags": [
-            "Entrées",
-            "épicé",
-            "Espagne"
         ],
         "isFeatured": false,
         "isFavorite": false,
