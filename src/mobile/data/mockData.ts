@@ -2,11 +2,286 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/09/2026 09:11:34
- * Total: 684 recettes
+ * Dernière mise à jour: 08/09/2026 10:19:22
+ * Total: 688 recettes
  */
-export const exportSyncId = "1788858694594";
+export const exportSyncId = "1788862762553";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7470",
+        "title": "Orecchiette aux cime di rapa et burrata",
+        "description": "Découvrez cette recette italienne classique et très demandée d'orecchiette aux cime di rapa, agrémentée d'une onctueuse burrata. Un plat savoureux et réconfortant, parfait pour deux personnes.",
+        "image": "/recipes-ia/7470-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7437248622682541334\" data-video-id=\"7437248622682541334\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7437248622682541334\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             260g d'orecchiette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200g de cime di rapa"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment séché"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             2 burratas de 125g chacune"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel (au goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre (au goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive extra vierge (au goût)"
+            }
+        ],
+        "steps": [
+            "Nettoyer les cime di rapa et les faire cuire à la vapeur ou bouillies dans de l'eau salée jusqu'à ce qu'elles soient tendres. Égoutter et réserver.",
+            "Pendant ce temps, faire cuire les orecchiette dans une grande casserole d'eau bouillante salée selon les instructions du paquet.",
+            "Dans une poêle, faire revenir la gousse d'ail émincée et le piment séché dans un filet d'huile d'olive extra vierge jusqu'à ce que l'ail soit doré.",
+            "Ajouter les cime di rapa cuites à la poêle avec l'ail et le piment. Faire sauter quelques minutes pour bien mélanger les saveurs.",
+            "Égoutter les orecchiette en conservant un peu d'eau de cuisson. Ajouter les pâtes à la poêle avec les cime di rapa. Mélanger délicatement. Si le plat semble trop sec, ajouter un peu d'eau de cuisson des pâtes pour créer une sauce légère.",
+            "Assaisonner avec du sel et du poivre selon votre goût. Servir immédiatement en disposant une burrata coupée en morceaux sur chaque portion. Arroser d'un filet d'huile d'olive extra vierge avant de déguster."
+        ],
+        "tags": [
+            "épicé",
+            "Italie",
+            "pates",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7472",
+        "title": "Pâtes à la Norma",
+        "description": "Découvrez la recette classique des Pâtes à la Norma, un plat végétarien emblématique de la cuisine sicilienne. Des aubergines rôties au four, une sauce tomate savoureuse à base d'oignon et d'ail, le tout mélangé à des pâtes al dente, du basilic fr...",
+        "image": "/recipes-ia/7472-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7646122031783759126\" data-video-id=\"7646122031783759126\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7646122031783759126\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             200g de pâtes"
+            },
+            {
+                "quantity": "",
+                "name": "🍆\n             2 aubergines"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             10 tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             2 oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             400ml de tomates concassées"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Basilic frais"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive vierge extra"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel et poivre"
+            }
+        ],
+        "steps": [
+            "1️⃣ Sur une plaque de cuisson, disposez l'aubergine coupée en dés et les tomates cerises coupées en deux.",
+            "2️⃣ Ajoutez du sel, du poivre et de l'huile d'olive vierge extra, puis enfournez la plaque pendant 20 minutes à 200 degrés et réservez.",
+            "3️⃣ Dans une poêle avec de l'huile d'olive vierge extra, ajoutez l'oignon et l'ail et laissez cuire 20 minutes.",
+            "4️⃣ Ajoutez ensuite les tomates concassées et laissez cuire 5 minutes de plus.",
+            "5️⃣ Ajoutez les légumes rôtis et mélangez pour bien intégrer tous les ingrédients.",
+            "6️⃣ Ajoutez les pâtes et un peu de leur eau de cuisson, le basilic frais et le parmesan râpé, puis mélangez.",
+            "7️⃣ Dernière étape, dressez et savourez ce plat délicieux."
+        ],
+        "tags": [
+            "Italie",
+            "Pas cher",
+            "pates",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7474",
+        "title": "Côte de Bœuf Frite",
+        "description": "Découvrez la recette de la côte de bœuf frite, une méthode traditionnelle où la viande est cuite dans du beurre clarifié pour un résultat incroyablement savoureux. Une véritable gourmandise à partager !",
+        "image": "/recipes-ia/7474-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7509927410251468054\" data-video-id=\"7509927410251468054\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7509927410251468054\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥚\n             1 kg de côte de bœuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             500 g de beurre clarifié"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Ail et romarin (selon le goût)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             100 g de farine T45"
+            },
+            {
+                "quantity": "",
+                "name": "🥖\n             200 g de chapelure"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             200 g de Panko"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             4 œufs"
+            }
+        ],
+        "steps": [
+            "Les étapes de préparation ne sont pas détaillées dans la description fournie."
+        ],
+        "tags": [
+            "Italie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7476",
+        "title": "Polenta gratinée aux tomates cerises et burrata",
+        "description": "Une recette facile et savoureuse de polenta crémeuse gratinée au four avec des tomates cerises, de l'oignon rouge, du romarin, et garnie de burrata fondante et de pignons de pin.",
+        "image": "/recipes-ia/7476-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7666886871959473440\" data-video-id=\"7666886871959473440\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7666886871959473440\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de polenta"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             300 ml de lait"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             300ml d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe de fromage frais"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             40g de parmesan"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             400g de tomates cerises"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1/2 oignon rouge"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Du romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des olives (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Des pignons de pin (optionnel)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Du sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Du poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Un filet d'huile d'olive"
+            }
+        ],
+        "steps": [
+            "Préchauffez le four à 210°C.",
+            "Émincez l'oignon rouge finement. Coupez les tomates cerises en deux.",
+            "Dans une casserole, portez à petites ébullitions l'eau et le lait.",
+            "Ajoutez la polenta puis fouettez constamment sur feu doux/moyen pendant 2 à 3 minutes.",
+            "Hors du feu, ajoutez le fromage frais, le parmesan râpé, le sel et le poivre.",
+            "Mélangez à nouveau puis versez la polenta sur une plaque recouverte de papier cuisson.",
+            "Ajoutez les tomates cerises, les oignons, le romarin, les olives, un filet d'huile d'olive, du sel et du poivre puis enfournez pour 20 minutes à 210°C.",
+            "Laissez-la refroidir une dizaine de minutes puis ajoutez la burrata et quelques pignons de pin torréfiés."
+        ],
+        "tags": [
+            "Gratins",
+            "Italie",
+            "Végé",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7467",
         "title": "Escalope à la Milanaise",
