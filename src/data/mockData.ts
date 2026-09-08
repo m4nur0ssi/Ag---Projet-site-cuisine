@@ -2,11 +2,87 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 08/09/2026 20:32:41
- * Total: 689 recettes
+ * Dernière mise à jour: 08/09/2026 22:03:00
+ * Total: 690 recettes
  */
-export const exportSyncId = "1788899561435";
+export const exportSyncId = "1788904980503";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7713",
+        "title": "Poulet au citron et parmesan",
+        "description": "Une recette saine et gourmande de blancs de poulet dorés, nappés d'une sauce crémeuse au citron et parmesan, servie avec du riz basmati.",
+        "image": "/recipes-ia/7713-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7682801030664293664\" data-video-id=\"7682801030664293664\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7682801030664293664\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             400 g de blancs de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             20 cl de lait écrémé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             40 g de fromage frais à 8% de matière grasse (type Saint-Morêt)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             1/2 citron (jus)"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             40 g de parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à soupe d'origan"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de piment d'Espelette"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             100 g de riz basmati cru"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            }
+        ],
+        "steps": [
+            "Assaisonnez les blancs de poulet avec du sel et du poivre.",
+            "Faites-les dorer dans une poêle avec un filet d'huile d'olive à feu moyen pendant environ 4 minutes de chaque côté, puis réservez-les hors de la poêle.",
+            "Dans la même poêle, pressez le jus d'un demi-citron, puis ajoutez le lait, le fromage frais, le parmesan râpé, l'origan et le piment d'Espelette.",
+            "Mélangez bien et laissez épaissir la sauce pendant quelques minutes à feu moyen.",
+            "Faites cuire le riz basmati à l'eau bouillante salée selon les indications du paquet.",
+            "Dressez le riz dans les assiettes, disposez les blancs de poulet et arrosez généreusement avec la sauce au citron et parmesan."
+        ],
+        "tags": [
+            "épicé",
+            "Healthy",
+            "Italie",
+            "minceur",
+            "Pas cher"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "6807",
         "title": "Œufs durs croustillants au fromage et chorizo",
@@ -10817,7 +10893,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Madeleines fourrées au chocolat",
         "description": "Une recette simple pour préparer de délicieuses madeleines moelleuses, fourrées au chocolat ou au Nutella.",
         "image": "/recipes-ia/6799-carte.webp",
-        "category": "desserts",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -18829,7 +18905,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Gâteau spéculoos, fruits rouges et mascarpone",
         "description": "Un dessert frais, fondant et gourmand qui a connu un grand succès sur les réseaux sociaux. Ce gâteau combine les saveurs douces des spéculoos avec la fraîcheur acidulée des fruits rouges et la légèreté du mascarpone. Parfait pour régaler 12 person...",
         "image": "/recipes-ia/3539-carte.webp",
-        "category": "desserts",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -19320,7 +19396,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Biscuit au Caramel et Chocolat",
         "description": "Découvrez comment réaliser un délicieux biscuit au caramel onctueux et une couverture gourmande de chocolat au lait et noir. Une recette facile à suivre pour un dessert qui plaira à coup sûr.",
         "image": "/recipes-ia/3489-carte.webp",
-        "category": "desserts",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -31758,7 +31834,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Cups glacées au spéculoos",
         "description": "Des cups glacées gourmandes et rafraîchissantes, préparées avec une base biscuitée aux spéculoos et une crème glacée onctueuse à la pâte de spéculoos.",
         "image": "/recipes-ia/6492-carte.webp",
-        "category": "plats",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -33032,7 +33108,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Tiramisu maison avec biscuit fait maison",
         "description": "Le grand classique italien revisité par Norbert Tarayre, avec un biscuit cuillère maison pour un résultat encore plus gourmand et authentique !",
         "image": "/recipes-ia/6306-carte.webp",
-        "category": "desserts",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
