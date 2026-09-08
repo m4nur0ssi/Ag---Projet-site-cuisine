@@ -209,13 +209,14 @@ Règles :
 - TOUT en français, même si la description est dans une autre langue. Traduis.
 - "quantity" : la quantité telle qu'écrite ("2", "200 g", "1 c. à soupe"). Vide si l'auteur n'en donne pas.
 - "name" : le seul nom de l'ingrédient, sans la quantité.
-- "steps" : une phrase par étape, à l'impératif, dans l'ordre. Reprends les durées et les températures quand elles sont dites.
+- "steps" : une phrase par étape, dans l'ordre. Reprends les durées et les températures quand elles sont dites.
+- Les étapes s'écrivent à l'impératif de politesse, comme le reste du site : « Préchauffez le four à 210 °C », « Mélangez », « Versez ». Jamais « Prends » ni « Mélanger ».
 - N'INVENTE RIEN : pas d'ingrédient qui n'est ni écrit ni dit, pas de température devinée. Si rien ne donne les étapes, renvoie "steps":[].
-- La transcription est de l'oral, dicté en cuisinant : elle décrit les gestes dans l'ordre mais sans ponctuation fiable, avec des tics de langue et parfois un mot mal entendu. Récris-la en phrases propres à l'impératif ; corrige l'évident ("1" pour "un", "p'tit" pour "petit").
+- La transcription est de l'oral, dicté en cuisinant : elle décrit les gestes dans l'ordre mais sans ponctuation fiable, avec des tics de langue et parfois un mot mal entendu. Récris-la en phrases propres ; corrige l'évident ("1" pour "un", "p'tit" pour "petit").
 - Elle donne rarement les quantités : laisse "quantity" vide plutôt que d'en inventer une.
 - "quantity" garde son unité entière : "2 tranches" et name "emmental", jamais "2" et name "emmental". Une quantité floue à l'oral ("un peu", "quelques", "une pincée") n'est pas une quantité : laisse "quantity" vide.
 - "name" s'écrit comme sur une liste de courses, au singulier et sans élision ("jambon", pas "p'tit peu jambon").
-- Une étape est un GESTE de cuisine. L'auteur finit presque toujours par vanter son plat ou demander un abonnement : ce n'est pas une étape, ne la garde pas ("Régalez-vous", "Dites-moi en commentaire", "C'est trop bon"). Un vrai dressage ou service, si, ("Sers bien chaud avec du persil").
+- Une étape est un GESTE de cuisine. L'auteur finit presque toujours par vanter son plat ou demander un abonnement : ce n'est pas une étape, ne la garde pas ("Régalez-vous", "Dites-moi en commentaire", "C'est trop bon"). Un vrai dressage ou service, si, ("Servez bien chaud avec du persil").
 - Quand la description et la voix se contredisent, LA VOIX A RAISON : c'est l'auteur qui cuisine.
 - Ignore les mots-dièse, les mentions de comptes et les appels à s'abonner.`;
 
@@ -241,7 +242,80 @@ function lireJson(brut) {
     return null;
 }
 
+/*
+ * Deux moteurs, l'un derrière l'autre.
+ *
+ * Cloudflare offre 10 000 neurones par jour — une trentaine de recettes, puis
+ * un 429 sec pour toutes les suivantes. Groq prend le relais : 8 000 jetons
+ * par minute, mille appels par jour, de quoi finir le catalogue le même soir.
+ * Les deux sont gratuits ; aucun n'est indispensable seul.
+ */
+const quotaEpuise = (message) => /429|neurons|rate.?limit|quota/i.test(message || '');
+
+/* Une fois Cloudflare à sec pour la journée, on cesse de l'appeler : sinon
+ * chaque recette paie un aller-retour pour un 429 connu d'avance. */
+let cloudflareASec = false;
+
 async function extraire(titre, description, transcription) {
+    const messages = [
+        { role: 'system', content: CONSIGNE },
+        {
+            role: 'user',
+            content: [
+                `Titre : ${titre}`,
+                `Description :\n${(description || '(vide)').slice(0, 3000)}`,
+                transcription
+                    ? `Transcription de la vidéo :\n${transcription.slice(0, 5000)}`
+                    : 'Transcription de la vidéo : indisponible.',
+            ].join('\n\n'),
+        },
+    ];
+
+    const moteur = arg('--moteur');
+    const chaine = moteur === 'groq' ? [parGroq]
+        : moteur === 'cloudflare' ? [parCloudflare]
+        : cloudflareASec ? [parGroq]
+        : [parCloudflare, parGroq];
+
+    let derniere;
+    for (const appeler of chaine) {
+        try { return ranger(await appeler(messages)); }
+        catch (e) {
+            derniere = e;
+            if (appeler === parCloudflare && quotaEpuise(e.message)) {
+                if (!cloudflareASec) console.log('   · Cloudflare a épuisé sa journée — on passe à Groq.');
+                cloudflareASec = true;
+            }
+        }
+    }
+    throw derniere;
+}
+
+/** Met en forme ce que le modèle a rendu, quel qu'il soit. */
+function ranger(texte) {
+    const parse = lireJson(texte);
+    if (!parse) throw new Error('réponse illisible');
+    return {
+        ingredients: Array.isArray(parse.ingredients) ? parse.ingredients.filter((i) => i && i.name) : [],
+        steps: Array.isArray(parse.steps) ? parse.steps.filter((s) => typeof s === 'string' && s.trim().length > 3) : [],
+    };
+}
+
+async function parGroq(messages) {
+    const jeton = process.env.GROQ_API_KEY;
+    if (!jeton) throw new Error('clé Groq absente');
+    const modele = process.env.GROQ_TEXT_MODEL || 'openai/gpt-oss-20b';
+    const rep = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { authorization: `Bearer ${jeton}`, 'content-type': 'application/json' },
+        body: JSON.stringify({ model: modele, max_tokens: 2400, temperature: 0.2, messages }),
+    });
+    if (!rep.ok) throw new Error(`Groq ${rep.status} — ${(await rep.text()).slice(0, 160)}`);
+    const d = await rep.json();
+    return d?.choices?.[0]?.message?.content ?? '';
+}
+
+async function parCloudflare(messages) {
     const compte = process.env.CF_ACCOUNT_ID;
     const jeton = process.env.CF_API_TOKEN;
     if (!compte || !jeton) throw new Error('clés Cloudflare absentes');
@@ -249,23 +323,7 @@ async function extraire(titre, description, transcription) {
     const rep = await fetch(`https://api.cloudflare.com/client/v4/accounts/${compte}/ai/run/${modele}`, {
         method: 'POST',
         headers: { authorization: `Bearer ${jeton}`, 'content-type': 'application/json' },
-        body: JSON.stringify({
-            max_tokens: 1600,
-            temperature: 0.2,
-            messages: [
-                { role: 'system', content: CONSIGNE },
-                {
-                    role: 'user',
-                    content: [
-                        `Titre : ${titre}`,
-                        `Description :\n${(description || '(vide)').slice(0, 3000)}`,
-                        transcription
-                            ? `Transcription de la vidéo :\n${transcription.slice(0, 5000)}`
-                            : 'Transcription de la vidéo : indisponible.',
-                    ].join('\n\n'),
-                },
-            ],
-        }),
+        body: JSON.stringify({ max_tokens: 1600, temperature: 0.2, messages }),
     });
     if (!rep.ok) throw new Error(`Cloudflare ${rep.status} — ${(await rep.text()).slice(0, 160)}`);
     const d = await rep.json();
@@ -276,15 +334,9 @@ async function extraire(titre, description, transcription) {
      * `undefined`, et chaque recette tombait en « brut.indexOf is not a
      * function ».
      */
-    const texte = d?.result?.response
+    return d?.result?.response
         ?? d?.result?.choices?.[0]?.message?.content
         ?? '';
-    const parse = lireJson(texte);
-    if (!parse) throw new Error('réponse illisible');
-    return {
-        ingredients: Array.isArray(parse.ingredients) ? parse.ingredients.filter((i) => i && i.name) : [],
-        steps: Array.isArray(parse.steps) ? parse.steps.filter((s) => typeof s === 'string' && s.trim().length > 3) : [],
-    };
 }
 
 /* ── L'écriture dans WordPress ───────────────────────────────────────────── */

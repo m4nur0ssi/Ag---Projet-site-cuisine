@@ -154,9 +154,12 @@ async function isRecipeWithGemini(description, title, transcription) {
 ${transcription ? `    Transcription de ce que dit l'auteur dans la vidéo : "${transcription.slice(0, 5000)}"
 
     La transcription est de l'oral, dicté en cuisinant : gestes dans l'ordre, sans
-    ponctuation fiable, avec des tics de langue. Récris-la en phrases propres à
-    l'impératif. Elle donne rarement les quantités : n'en invente pas. Quand elle
-    contredit la description, ELLE A RAISON — c'est l'auteur qui cuisine.` : ''}
+    ponctuation fiable, avec des tics de langue. Récris-la en phrases propres, à
+    l'impératif de politesse comme le reste du site ("Préchauffez", "Mélangez",
+    jamais "Prends" ni "Mélanger"). Elle donne rarement les quantités : n'en
+    invente pas. Elle finit presque toujours par un "régalez-vous" ou un appel à
+    s'abonner : ce n'est pas une étape. Quand elle contredit la description, ELLE
+    A RAISON — c'est l'auteur qui cuisine.` : ''}
 
     Format JSON attendu: {
         "isRecipe": true,
