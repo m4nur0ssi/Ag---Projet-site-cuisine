@@ -15,6 +15,8 @@ export default function StarRating({ recipeId, size = 'large' }: StarRatingProps
     const [count, setCount] = useState(0);
     const [mine, setMine] = useState(0);
     const [user, setUser] = useState<any>(null);
+    /** Message affiché quand la base refuse la note (au lieu d'un échec muet). */
+    const [echec, setEchec] = useState<string | null>(null);
 
     const loadAvg = async () => {
         const { data } = await supabase.from('ratings').select('stars').eq('recipe_id', recipeId);
@@ -43,8 +45,17 @@ export default function StarRating({ recipeId, size = 'large' }: StarRatingProps
     const vote = async (val: number) => {
         if (!user) return;
         const nv = mine === val ? 0 : val;
+        const precedente = mine;
         setMine(nv);
-        await submitRating(recipeId, nv);
+        setEchec(null);
+        const { ok, raison } = await submitRating(recipeId, nv);
+        if (!ok) {
+            // La note revient où elle était : mieux vaut voir l'ancienne note
+            // que croire la nouvelle enregistrée jusqu'au prochain chargement.
+            setMine(precedente);
+            setEchec(raison || "La note n'a pas pu être enregistrée.");
+            return;
+        }
         await loadAvg();
         window.dispatchEvent(new CustomEvent('recipeRated', { detail: { recipeId, rating: nv } }));
         if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(15);
@@ -65,6 +76,7 @@ export default function StarRating({ recipeId, size = 'large' }: StarRatingProps
                 <div className={styles.voteRow}>
                     <span className={styles.voteLabel}>Votre note{mine > 0 ? ` : ${mine.toFixed(1).replace('.', ',')}` : ''}</span>
                     <StarSlider value={mine} onChange={vote} />
+                    {echec && <span className={styles.echec} role="alert">{echec}</span>}
                 </div>
             )}
         </div>

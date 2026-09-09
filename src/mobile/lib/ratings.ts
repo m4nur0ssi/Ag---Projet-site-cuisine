@@ -44,20 +44,28 @@ export async function fetchMyRating(recipeId: string): Promise<number> {
     return data?.stars ?? 0;
 }
 
-export async function submitRating(recipeId: string, stars: number): Promise<boolean> {
+/**
+ * Enregistre / retire la note. Renvoie ce qui s'est passé, et surtout ce qui
+ * n'a PAS marché : l'ancienne version renvoyait `true` sans jamais lire la
+ * réponse de Supabase, si bien qu'une note refusée par la base repartait à
+ * l'écran comme si elle était enregistrée — et disparaissait au rechargement.
+ */
+export async function submitRating(recipeId: string, stars: number): Promise<{ ok: boolean; raison?: string }> {
     const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return false;
-    if (stars === 0) {
-        await supabase.from('ratings').delete()
-            .eq('user_id', session.user.id).eq('recipe_id', recipeId);
-    } else {
-        await supabase.from('ratings').upsert({
+    if (!session) return { ok: false, raison: 'Connectez-vous pour noter.' };
+    const { error } = stars === 0
+        ? await supabase.from('ratings').delete()
+            .eq('user_id', session.user.id).eq('recipe_id', recipeId)
+        : await supabase.from('ratings').upsert({
             user_id: session.user.id, recipe_id: recipeId, stars,
             updated_at: new Date().toISOString(),
         });
+    if (error) {
+        console.error('[note] enregistrement refusé', error);
+        return { ok: false, raison: "La note n'a pas pu être enregistrée." };
     }
     cache = null;
-    return true;
+    return { ok: true };
 }
 
 export function useRatingStats(): Map<string, RatingStat> | null {

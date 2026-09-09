@@ -85,6 +85,9 @@ const COLLECTION_TAGS: Record<string, string> = {
  */
 export const COLLECTION_TAGS_VALEURS = [...new Set(Object.values(COLLECTION_TAGS))];
 
+/** Les tags des rangées thématiques — servent à écarter les fiches restaurant. */
+const THEME_TAGS = new Set(THEMES.map((t) => t.tag));
+
 export function collectionTagOf(label: string): string | null {
     const n = norm((label || '').toLowerCase()).trim();
     if (!n) return null;
@@ -118,9 +121,31 @@ function recipeText(recipe: Recipe) {
  * Recette salée rangée par erreur en pâtisserie/dessert (tiramisu salé,
  * cheesecake salé, tarte protéinée…). On la reconnaît au titre.
  */
+/**
+ * Les tags WordPress sont posés à la louche : « Les Glaces » sur une tarte
+ * normande, « Sauces » sur des brochettes de poulet, « Sandwichs » sur un riz
+ * façon kebab. Un tag ne suffit donc plus à décider d'une rangée : le TITRE
+ * doit dire de quoi il s'agit. Les expressions ci-dessous se lisent sur un
+ * titre SANS accents (`norm`).
+ */
+/** Titre qui annonce vraiment une glace / un sorbet. */
+export const ICE_TITLE = /\b(glaces?|glacee?s?|sorbets?|sorbetto|granites?|esquimaux?|mcflurry|milkshakes?|semifreddo|popsicles?|frozen|vacherin)\b/;
+/** Titre qui annonce vraiment une sauce, un dip ou un condiment. */
+export const SAUCE_TITLE = /\b(sauces?|dips?|tartinades?|vinaigrettes?|marinades?|mayonnaises?|pestos?|tzatzikis?|guacamole|aiolis?|tapenades?|coulis|chimichurri|bearnaise|hollandaise|ketchup|pico de gallo|remoulade|chermoula|toum|ktipiti|houmous|hummus|raita|beurre|creme (?:epaisse|ciboulette|fraiche)|huile pimentee)\b/;
+/** Titre qui annonce vraiment un sandwich (pain garni, tenu à la main). */
+export const SANDWICH_TITLE = /\b(sandwichs?|burgers?|cheeseburgers?|wraps?|paninis?|croque[- ]?(?:monsieur|madame|mcdo)|bagels?|hot[- ]?dogs?|kebabs?|pitas?|tacos?|fajitas?|shawarmas?|banh mi|pan bagnat)\b/;
+/**
+ * …mais ces mots-là racontent autre chose qu'un sandwich : une assiette
+ * (« Riz façon kebab », « Burger Bowl »), une salade, ou la recette du PAIN
+ * lui-même (« Pain spécial pita », « Pain burger pliable »).
+ */
+export const NOT_SANDWICH_TITLE = /^(?:pains?|pate|pates|brioches?)\b|\b(?:bowls?|riz|assiettes?|salades?|soupes?|gratins?)\b/;
+/** Titre qui annonce vraiment une salade. */
+export const SALAD_TITLE = /\b(salades?|taboules?|taboulehs?|tabbouleh|insalata|coleslaw|shirazi)\b/;
+
 /** Ingrédients et plats franchement salés — s'ils sont dans le TITRE d'une
  *  « pâtisserie », c'est un rangement raté (tarte tatin aux aubergines…). */
-const SAVORY_TITLE = new RegExp(
+export const SAVORY_TITLE = new RegExp(
     '\\b(aubergines?|courgettes?|poireaux?|thon|saumon|truite|sardines?|anchois|crabe|crevettes?'
     + '|jambon|lardons?|bacon|chorizo|saucisses?|poulet|dinde|boeuf|veau|agneau|porc'
     + '|chevre|roquefort|feta|mozzarella|comte|gruyere|parmesan|raclette|reblochon'
@@ -182,6 +207,13 @@ export function matchesTag(
     const recipeCat = (recipe.category || '').toLowerCase();
     const titleLower = (recipe.title || '').toLowerCase();
     const { full: fullText, normFull } = recipeText(recipe);
+    const normTitle = norm(titleLower);
+
+    // Une fiche restaurant n'est pas une recette : elle n'a rien à faire dans
+    // une rangée thématique. « Le club des cinq » tombait dans les Sandwichs
+    // (le mot « club »), « Bistrot à Burger » aussi, et « Le Balthazar » dans
+    // les Salades — le texte de la fiche parle de salade, forcément.
+    if (recipeCat === 'restaurant' && tagLower !== 'restaurant' && THEME_TAGS.has(tagLower)) return false;
 
     // Recettes salées mal rangées en pâtisserie (tiramisu salé, cheesecake salé,
     // tarte protéinée…) : on les sort des vues sucrées.
@@ -198,11 +230,11 @@ export function matchesTag(
     }
 
     if (tagLower === 'glaces') {
-        return (
-            recipeCat === 'glaces' ||
-            recipeTags.some((t) => t.includes('glace') || t.includes('sorbet')) ||
-            ['glace', 'sorbet', 'crème glacée', 'bûche glacée'].some((k) => titleLower.includes(k))
-        );
+        // Le tag « Les Glaces » de WordPress traîne sur des tartes, des
+        // pancakes et des cheesecakes : il ne décide plus rien tout seul.
+        if (recipeCat === 'glaces') return true;
+        // « Thé glacé » est une boisson : le rayon des glaces n'en veut pas.
+        return recipeCat !== 'rafraichissements' && ICE_TITLE.test(normTitle);
     }
 
     if (tagLower === 'famille' || tagLower === 'familial') {
@@ -243,7 +275,10 @@ export function matchesTag(
     }
 
     if (tagLower === 'pâques' || tagLower === 'paques') {
-        return recipeTags.some((t) => /p[âa]ques/i.test(t)) || /p[âa]ques/i.test(fullText);
+        // Le tag, ou la recette qui se présente elle-même comme un plat de
+        // Pâques. Chercher le mot dans les ÉTAPES faisait entrer n'importe quoi.
+        if (recipeTags.some((t) => /p[âa]ques/i.test(t))) return true;
+        return /p[âa]ques/i.test(`${recipe.title || ''} ${recipe.description || ''}`);
     }
     if (tagLower === 'noël' || tagLower === 'noel') {
         return recipeTags.some((t) => /no[eë]l/i.test(t)) || /no[eë]l/i.test(fullText);
@@ -309,14 +344,30 @@ export function matchesTag(
         return isDrink && !hasAlcohol;
     }
 
+    if (tagLower === 'sauces') {
+        // Le tag « Sauces » est posé sur tout plat QUI VIENT AVEC une sauce —
+        // brochettes de poulet, tataki de saumon, poisson-frites. Une sauce se
+        // reconnaît à son titre, et au fait qu'elle l'ouvre : « Sauce Roquefort »
+        // en est une, « Kefta de poisson, sauce yaourt menthe » est un plat.
+        if (recipeCat !== 'sauces' || SALAD_TITLE.test(normTitle)) return false;
+        return SAUCE_TITLE.test(normTitle.split(/\s+/).slice(0, 3).join(' '));
+    }
+
     // Thèmes stricts : tag explicite ou catégorie (barbecue exclut les sauces).
-    if (['sauces', 'airfryer', 'barbecue', 'healthy', 'simplissime', 'astuces'].includes(tagLower)) {
+    if (['airfryer', 'barbecue', 'healthy', 'simplissime', 'astuces'].includes(tagLower)) {
         if (tagLower === 'barbecue' && recipeTags.some((t) => t === 'sauces')) return false;
         return recipeCat === tagLower || recipeTags.some((t) => t === tagLower);
     }
 
     if (tagLower === 'salades') {
-        return recipeTags.some((t) => t.startsWith('salade')) || /\bsalade(s)?\b/.test(fullText);
+        // Le texte complet (étapes + ingrédients) rangeait ici tout ce qui
+        // contient de la salade : sandwichs, wraps, nems, moussaka. Le titre et
+        // le tag décident, et un sandwich reste un sandwich.
+        if (SANDWICH_TITLE.test(normTitle)) return false;
+        // Une vinaigrette porte souvent le tag « Salades » : elle reste au rayon
+        // des sauces, on ne sert pas un bol de vinaigrette.
+        if (recipeCat === 'sauces' && SAUCE_TITLE.test(normTitle)) return false;
+        return recipeTags.some((t) => t.startsWith('salade')) || SALAD_TITLE.test(normTitle);
     }
     if (tagLower === 'soupes') {
         return recipeTags.some((t) => t.startsWith('soupe')) || /\b(soupe(s)?|velout[ée](s)?|gaspacho|potage|minestrone|ramen)\b/.test(titleLower);
@@ -343,10 +394,11 @@ export function matchesTag(
         );
     }
     if (tagLower === 'sandwich' || tagLower === 'sandwichs') {
-        return (
-            recipeTags.some((t) => t.startsWith('sandwich')) ||
-            /\b(sandwichs?|burgers?|wraps?|paninis?|croque[- ](monsieur|madame)|bagels?|hot[- ]dogs?|kebab|pita|club|tacos|pan bagnat)\b/.test(titleLower)
-        );
+        // Ici, rien que du pain garni. Le tag WordPress ne passe plus en force :
+        // « Riz façon kebab » et « Crispy Chicken Burger Bowl » sont des
+        // assiettes, « Pain spécial pita » est une recette de pain.
+        if (NOT_SANDWICH_TITLE.test(normTitle)) return false;
+        return SANDWICH_TITLE.test(normTitle) || recipeTags.some((t) => t.startsWith('sandwich'));
     }
 
     // ── Régimes : PREUVE EXPLICITE UNIQUEMENT ──────────────────────────────

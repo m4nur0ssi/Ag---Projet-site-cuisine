@@ -39,3 +39,12 @@ create policy "update own cooking_log" on public.cooking_log
 --    À exécuter seulement si stars est encore en integer.
 alter table public.ratings
   alter column stars type numeric using stars::numeric;
+
+
+-- 4) NOTE SOUS UNE ÉTOILE — la glissière propose 0,1 à 5,0 au dixième, mais la
+--    contrainte n'acceptait qu'à partir de 1 : « 0,5 » était refusé par la base,
+--    et l'application, qui ne lisait pas l'erreur, laissait croire que la note
+--    était enregistrée. Appliqué en prod le 09/09/2026.
+alter table public.ratings drop constraint if exists ratings_stars_check;
+alter table public.ratings
+  add constraint ratings_stars_check check (stars >= 0.1 and stars <= 5);

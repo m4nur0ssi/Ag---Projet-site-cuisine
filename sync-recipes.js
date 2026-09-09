@@ -31,6 +31,12 @@ function isPastaRecipe(title, ingredients) {
     return PASTA_RX.test(t) || (!NOT_PASTA_RX.test(ing) && PASTA_RX.test(ing));
 }
 
+// Règles de rangement (glace ? sauce ? tags faux ?) — chargées depuis
+// `themes.ts`, le fichier que lisent aussi l'accueil et le desktop. Les tags
+// WordPress sont posés à la louche : « Les Glaces » sur une tarte normande,
+// « Sauces » sur des brochettes de poulet. Voir scripts/rangement.js.
+const { estGlace, estSauce, TAGS_A_RETIRER } = require('./scripts/rangement');
+
 const RESTAURANTS_INFO_PATH = path.join(__dirname, 'src', 'data', 'restaurants-info.json');
 let RESTAURANTS_INFO = {};
 try { RESTAURANTS_INFO = require('./src/data/restaurants-info.json'); } catch { RESTAURANTS_INFO = {}; }
@@ -319,13 +325,19 @@ function extractRecipeData(post) {
             const title = decodeHtmlEntities(post.title.rendered).toLowerCase();
             const tags = (post._embedded?.['wp:term']?.[1]?.map(tag => tag.name.toLowerCase()) || []);
 
-            // 0. SAUCES pures (#8) : tag sauce(s), ou mot-sauce en TÊTE du titre.
+            // 0. SAUCES pures (#8) : le tag WordPress « Sauces » traîne sur tout
+            //    plat QUI VIENT AVEC une sauce (brochettes de poulet, tataki de
+            //    saumon, poisson-frites). Le titre doit confirmer, et le mot doit
+            //    l'ouvrir : « Sauce Roquefort » oui, « Kefta de poisson, sauce
+            //    yaourt menthe » non.
             //    Ne doivent apparaître que dans le thème "sauces", jamais dans "plats".
-            if (tags.includes('sauce') || tags.includes('sauces')) return "sauces";
+            if ((tags.includes('sauce') || tags.includes('sauces')) && estSauce(title)) return "sauces";
             if (/^(?:sauce|pesto|mayonnaise|vinaigrette|tzatziki|guacamole|a[iï]oli|tapenade|coulis|chimichurri|b[ée]arnaise|hollandaise|ketchup|pico de gallo|r[ée]moulade)\b/.test(title)) return "sauces";
 
-            // 1. Détection par tags prioritaires (si présents sur WordPress)
-            if (tags.includes('glaces') || tags.includes('sorbet')) return "glaces";
+            // 1. Détection par tags prioritaires (si présents sur WordPress) —
+            //    même prudence pour « Les Glaces », posé sur des tartes et des
+            //    pancakes : le titre doit parler de glace ou de sorbet.
+            if ((tags.includes('glaces') || tags.includes('sorbet')) && estGlace(title)) return "glaces";
             // Rafraîchissements : toutes variantes (rafraichissements / rafraîchissements / smoothie...)
             if (tags.some(t => t.includes('rafra'))) return "rafraichissements";
             if (tags.includes('boissons') || tags.includes('cocktail') || tags.includes('smoothie') || tags.includes('jus')) return "rafraichissements";
@@ -375,6 +387,13 @@ function extractRecipeData(post) {
             if (!info && isPastaRecipe(decodeHtmlEntities(post.title.rendered), ingredients)
                 && !base.some(t => String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '') === 'pates')) {
                 base.push('pates');
+            }
+            // Tags franchement faux, posés sur WordPress : une harira marocaine
+            // et un DIBI sénégalais étiquetés « Pâques ». Sans ce filtre, la
+            // prochaine synchro les remettrait dans la rangée de Pâques.
+            const aRetirer = TAGS_A_RETIRER[String(post.id)];
+            if (aRetirer) {
+                return base.filter(t => !aRetirer.some(x => x.toLowerCase() === String(t).toLowerCase()));
             }
             return base;
         })(),

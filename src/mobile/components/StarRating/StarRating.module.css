@@ -106,3 +106,12 @@
 /* Étoile vide : un blanc à 20 % ne se voit pas sur un fond clair. En clair,
    c'est la même trame, mais en encre. */
 :global([data-theme='light']) .slStarBase { color: rgba(0, 0, 0, 0.18); }
+
+/* Note refusée par la base : on le DIT, au lieu de laisser l'étoile mentir. */
+.echec {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.78rem;
+    line-height: 1.3;
+    color: #fca5a5;
+}
