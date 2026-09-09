@@ -26,6 +26,49 @@
     border-color: rgba(0, 0, 0, 0.1);
 }
 
+/* L'intitulé et le chiffre restent empilés, que la pastille porte une action
+   ou non : c'est ce bloc-là qui garde la mise en colonne quand la pastille,
+   elle, passe en ligne pour loger un bouton. */
+.texte {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    min-width: 0;
+}
+
+/* Pastille avec action : le texte à gauche, le bouton à droite, un filet
+   entre les deux pour qu'on voie qu'on peut appuyer sur l'un sans l'autre. */
+/* Doublement qualifié : `.grande` et `.petite` fixent un `padding` complet et
+   passeraient après, laissant le bouton flotter loin du bord. */
+.pastille.avecAction {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding-right: 7px;
+}
+
+.avecAction::before {
+    content: '';
+    order: 1;
+    align-self: stretch;
+    width: 1px;
+    margin: 4px 0;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.avecAction > :last-child {
+    order: 2;
+}
+
+:global([data-theme='light']) .avecAction::before {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+:global([data-theme='light']) .pastille.sombre.avecAction::before {
+    background: rgba(255, 255, 255, 0.14);
+}
+
 .libelle {
     font-size: 9.5px;
     font-weight: 800;

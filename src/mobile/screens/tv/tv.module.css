@@ -2201,18 +2201,25 @@
 /* Partager le menu : une pastille discrète dans l'en-tête. La barre du bas
    porte déjà trois boutons qui tiennent tout juste sur un écran de 375 px —
    un quatrième la faisait passer à deux lignes. */
+/* Le partage habite la pastille de prix (et non plus l'en-tête) : il n'a donc
+   plus à se pousser tout seul à droite, et son fond disparaît — la pastille en
+   porte déjà un. Reste une cible de 34 px, tenable au doigt. */
 .planPartage {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     flex: 0 0 auto;
-    margin-left: auto;
     border: none;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
     color: #fff;
     display: grid;
     place-items: center;
     cursor: pointer;
+    transition: background 0.16s ease;
+}
+
+.planPartage:hover {
+    background: rgba(255, 255, 255, 0.12);
 }
 .planPartage:disabled { opacity: 0.55; }
 

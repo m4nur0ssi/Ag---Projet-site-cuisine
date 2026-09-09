@@ -925,6 +925,26 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         );
     }
 
+    // Le bouton de partage, écrit une fois : il se loge dans la pastille de prix,
+    // et repart seul quand il n'y a pas de prix à afficher.
+    const boutonPartage = (
+        <button
+            className={styles.planPartage}
+            onClick={partagerCeMenu}
+            disabled={partage === 'en-cours'}
+            aria-label="Partager ce menu"
+        >
+            {partage === 'en-cours' ? (
+                <span className={styles.planPartageRond} />
+            ) : (
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 15V3" /><path d="m8 7 4-4 4 4" />
+                    <path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" />
+                </svg>
+            )}
+        </button>
+    );
+
     return (
         <div className={`${styles.page} ${embedded ? styles.embedded : ''} ${enMain ? styles.pageEnMain : ''}`}>
             <header className={styles.planHead}>
@@ -940,38 +960,30 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     <div className={styles.planKicker}>Planificateur</div>
                     <h1 className={styles.planTitle}>{mode === 'jourj' ? 'Jour J' : 'Ma semaine'}</h1>
                 </div>
-                {mode !== 'panier' && planned > 0 && (
-                    <button
-                        className={styles.planPartage}
-                        onClick={partagerCeMenu}
-                        disabled={partage === 'en-cours'}
-                        aria-label="Partager ce menu"
-                    >
-                        {partage === 'en-cours' ? (
-                            <span className={styles.planPartageRond} />
-                        ) : (
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M12 15V3" /><path d="m8 7 4-4 4 4" />
-                                <path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" />
-                            </svg>
-                        )}
-                    </button>
-                )}
                 <div className={styles.planCount}>
                     {planned} {mode === 'jourj' ? 'plat' : 'repas'}<br />planifié{planned > 1 ? 's' : ''}
                 </div>
             </header>
 
             {/* Ce que le plan coûte : la question vient tout de suite après « combien
-                de repas ». Rien de planifié, rien à afficher. */}
+                de repas ». Rien de planifié, rien à afficher.
+
+                Le partage vit DANS cette pastille, à droite du chiffre : c'est le
+                même objet — « voilà ce qu'on mange, et voilà ce que ça coûte » —
+                et l'en-tête n'a plus deux boutons qui se disputent le coin droit.
+                Le prix peut manquer (recettes sans ingrédients chiffrables) ; le
+                bouton, lui, doit rester : il part alors seul sur la même ligne. */}
             {mode !== 'panier' && planned > 0 && (
                 <div className={styles.planPrix}>
-                    <PrixMoyen
-                        prix={prixCourant}
-                        libelle={mode === 'jourj' ? 'Prix du menu' : 'Prix de la semaine'}
-                        taille="grande"
-                        sombre
-                    />
+                    {prixCourant ? (
+                        <PrixMoyen
+                            prix={prixCourant}
+                            libelle={mode === 'jourj' ? 'Prix du menu' : 'Prix de la semaine'}
+                            taille="grande"
+                            sombre
+                            action={boutonPartage}
+                        />
+                    ) : boutonPartage}
                 </div>
             )}
 
