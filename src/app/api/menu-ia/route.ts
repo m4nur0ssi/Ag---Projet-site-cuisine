@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { corpsJson, ipDe, memeOrigine, trop } from '@/lib/garde-api';
 
 /**
  * Menu de la semaine intelligent (#2).
@@ -53,11 +54,20 @@ export async function POST(request: Request) {
     if (!GROQ_KEY) {
         return NextResponse.json({ error: 'GROQ_API_KEY non configuré' }, { status: 500 });
     }
+    if (!memeOrigine(request)) {
+        return NextResponse.json({ error: 'Appel refusé' }, { status: 403 });
+    }
+    if (trop(`menu:${ipDe(request)}`, 15, 10 * 60_000)) {
+        return NextResponse.json({ error: 'Trop de menus d’un coup — réessaie dans quelques minutes.' }, { status: 429 });
+    }
     try {
-        const body = await request.json();
-        const recipes: CompactRecipe[] = Array.isArray(body?.recipes) ? body.recipes : [];
-        const slots: { day: string; meal: string }[] = Array.isArray(body?.slots) ? body.slots : [];
-        const constraints: string = typeof body?.constraints === 'string' ? body.constraints : '';
+        const body = await corpsJson<any>(request);
+        if (!body) return NextResponse.json({ error: 'Requête trop volumineuse' }, { status: 413 });
+        // C'est l'appelant qui fournit le catalogue : sans plafond, c'est lui
+        // qui décide du nombre de jetons dépensés.
+        const recipes: CompactRecipe[] = (Array.isArray(body?.recipes) ? body.recipes : []).slice(0, 1500);
+        const slots: { day: string; meal: string }[] = (Array.isArray(body?.slots) ? body.slots : []).slice(0, 40);
+        const constraints: string = typeof body?.constraints === 'string' ? body.constraints.slice(0, 400) : '';
         if (!recipes.length || !slots.length) {
             return NextResponse.json({ error: 'recipes et slots requis' }, { status: 400 });
         }

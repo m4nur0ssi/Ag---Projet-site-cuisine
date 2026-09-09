@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { corpsJson, ipDe, memeOrigine, trop } from '@/lib/garde-api';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -109,8 +110,20 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Aucune clé IA configurée (GROQ_API_KEY, GEMINI_API_KEY ou ANTHROPIC_API_KEY)' }, { status: 500 });
     }
 
-    let body: Body;
-    try { body = await req.json(); } catch { return NextResponse.json({ error: 'JSON invalide' }, { status: 400 }); }
+    /*
+     * La chaîne de repli finit chez Anthropic, qui est FACTURÉ : une route
+     * ouverte, ici, c'est une facture ouverte. On n'accepte donc que les
+     * appels venus d'une page du site, et on plafonne la cadence.
+     */
+    if (!memeOrigine(req)) {
+        return NextResponse.json({ error: 'Appel refusé' }, { status: 403 });
+    }
+    if (trop(`vin:${ipDe(req)}`, 15, 10 * 60_000)) {
+        return NextResponse.json({ error: 'Trop de demandes d’un coup — réessaie dans quelques minutes.' }, { status: 429 });
+    }
+
+    const body = await corpsJson<Body>(req, 60_000);
+    if (!body) return NextResponse.json({ error: 'JSON invalide ou trop volumineux' }, { status: 400 });
 
     const title = (body.title || '').slice(0, 200);
     const category = (body.category || '').slice(0, 60);

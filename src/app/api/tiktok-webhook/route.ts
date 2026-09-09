@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { ipDe, trop } from '@/lib/garde-api';
 import { mockRecipes } from '@/data/mockData';
 
 // Menu du raccourci iOS : pays, catégories et thématiques (sans emojis).
@@ -157,6 +158,15 @@ async function handleRequest(request: Request) {
 
         if (finalSecret !== envSecret) {
             return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
+        }
+        /*
+         * Le bon secret ouvre une file qui fait tourner GitHub Actions avec le
+         * jeton du dépôt. Or ce secret a longtemps vécu en clair dans le code :
+         * tant qu'il n'est pas changé, cette borne est ce qui sépare un
+         * raccourci iPhone d'une boucle qui épuise les minutes du dépôt.
+         */
+        if (trop(`tiktok:${ipDe(request)}`, 20, 60 * 60_000)) {
+            return NextResponse.json({ error: 'Trop d’appels cette heure-ci.' }, { status: 429 });
         }
 
         // --- MODE TIKTOK ---

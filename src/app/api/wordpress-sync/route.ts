@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { ipDe, trop } from '@/lib/garde-api';
 
 /**
  * Endpoint pour WP Webhooks (WordPress).
@@ -9,6 +10,15 @@ import { NextResponse } from 'next/server';
  * → mockData.ts mis à jour → les 2 sites Vercel se reconstruisent automatiquement
  */
 export async function POST(request: Request) {
+    /*
+     * Ce webhook déclenche un workflow GitHub avec le jeton du dépôt. Le
+     * secret qui le protège a longtemps traîné en clair dans le code (et la
+     * route d'aide le distribuait) : tant qu'il n'a pas été changé, cette
+     * borne est ce qui empêche une boucle de brûler les minutes du dépôt.
+     */
+    if (trop(`wp:${ipDe(request)}`, 20, 60 * 60_000)) {
+        return NextResponse.json({ error: 'Trop d’appels cette heure-ci.' }, { status: 429 });
+    }
     try {
         console.log('🔄 Webhook WordPress reçu...');
 
@@ -123,15 +133,24 @@ export async function POST(request: Request) {
 }
 
 // GET : test de connectivité
+/**
+ * Page d'aide au branchement. Elle DONNAIT le secret à qui le demandait :
+ * l'adresse « à configurer » le contenait, que l'appel soit authentifié ou
+ * non. Autrement dit, la serrure était livrée avec sa clé. Le secret n'est
+ * désormais montré qu'à qui le connaît déjà.
+ */
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const secret = searchParams.get('secret');
     const envSecret = process.env.WEBHOOK_SECRET || '2TlsVemp';
-    const ok = secret === envSecret;
+    const ok = !!secret && secret === envSecret;
+    const origine = new URL(request.url).origin;
 
     return NextResponse.json({
-        status: ok ? 'ready ✅' : 'accessible (secret manquant)',
-        url_a_configurer: `${new URL(request.url).origin}/api/wordpress-sync?secret=${envSecret}`,
+        status: ok ? 'ready ✅' : 'accessible (secret absent ou faux)',
+        url_a_configurer: ok
+            ? `${origine}/api/wordpress-sync?secret=${envSecret}`
+            : `${origine}/api/wordpress-sync?secret=<WEBHOOK_SECRET>`,
         instructions: 'WP Webhooks → Send Data → Post updated → Add Webhook URL → coller l\'URL ci-dessus',
     });
 }

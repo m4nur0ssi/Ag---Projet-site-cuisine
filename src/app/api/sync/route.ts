@@ -1,6 +1,39 @@
 import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+import { ipDe, trop } from '@/lib/garde-api';
 
+/**
+ * Déclencher la synchronisation du catalogue.
+ * ===========================================
+ *
+ * Cette route lance un workflow GitHub Actions AVEC le jeton personnel du
+ * dépôt. Elle acceptait n'importe quel POST : n'importe qui pouvait donc faire
+ * tourner la chaîne en boucle, brûler les minutes d'exécution et déclencher
+ * des commits du bot. Elle demande maintenant deux choses :
+ *
+ *   • une session (c'est un geste d'administration, pas une page publique) ;
+ *   • un rythme humain — cinq lancements par heure suffisent largement à qui
+ *     publie des recettes, et empêchent la boucle.
+ */
 export async function POST(request: Request): Promise<Response> {
+    const urlSupabase = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const jeton = (request.headers.get('authorization') || '').replace(/^Bearer\s+/i, '');
+    if (!urlSupabase || !anon || !jeton) {
+        return NextResponse.json({ error: 'Connecte-toi pour lancer la synchronisation.' }, { status: 401 });
+    }
+    const supabase = createClient(urlSupabase, anon, {
+        global: { headers: { Authorization: `Bearer ${jeton}` } },
+        auth: { persistSession: false, autoRefreshToken: false },
+    });
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        return NextResponse.json({ error: 'Session expirée : reconnecte-toi.' }, { status: 401 });
+    }
+    if (trop(`sync:${ipDe(request)}`, 5, 60 * 60_000)) {
+        return NextResponse.json({ error: 'Synchronisation déjà lancée plusieurs fois cette heure-ci.' }, { status: 429 });
+    }
+
     try {
         // Lire le body pour obtenir la source du déclenchement
         let triggerSource = 'triple-click';

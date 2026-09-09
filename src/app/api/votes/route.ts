@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { ipDe, memeOrigine, trop } from '@/lib/garde-api';
 
 /**
  * API Votes — Supabase (REST natif, zéro SDK)
@@ -67,9 +68,26 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Supabase non configuré' }, { status: 500 });
     }
 
+    /*
+     * Le compteur de votes s'écrit avec la clé de SERVICE, qui passe outre les
+     * règles de la base : la seule chose qui séparait ce compteur d'une boucle
+     * `curl`, c'était la bonne volonté. On demande donc que l'appel vienne
+     * d'une page du site, et on borne la cadence — un humain qui parcourt les
+     * recettes ne vote pas soixante fois par heure.
+     */
+    if (!memeOrigine(request)) {
+        return NextResponse.json({ error: 'Appel refusé' }, { status: 403 });
+    }
+    if (trop(`vote:${ipDe(request)}`, 60, 60 * 60_000)) {
+        return NextResponse.json({ error: 'Trop de votes d’un coup.' }, { status: 429 });
+    }
+
     try {
         const { recipeId, action } = await request.json();
         if (!recipeId) return NextResponse.json({ error: 'recipeId manquant' }, { status: 400 });
+        // Un identifiant de recette est court : rien à voir avec ce qu'on
+        // pourrait vouloir glisser dans un appel de procédure.
+        if (String(recipeId).length > 64) return NextResponse.json({ error: 'recipeId invalide' }, { status: 400 });
 
         const fnName = action === 'remove' ? 'decrement_vote' : 'increment_vote';
 

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { corpsJson, ipDe, memeOrigine, trop } from '@/lib/garde-api';
 import { intentionVin, type CompactWine } from '@/lib/accordCave';
 
 /**
@@ -133,13 +134,33 @@ export async function POST(request: Request) {
     if (!GROQ_KEY) {
         return NextResponse.json({ error: 'GROQ_API_KEY non configuré' }, { status: 500 });
     }
+    // Cette route dépense le quota du jour, partagé par tous les visiteurs :
+    // elle n'est pas un service public.
+    if (!memeOrigine(request)) {
+        return NextResponse.json({ error: 'Appel refusé' }, { status: 403 });
+    }
     try {
-        const body = await request.json();
-        const query: string = typeof body?.query === 'string' ? body.query.trim() : '';
-        const recipes: CompactRecipe[] = Array.isArray(body?.recipes) ? body.recipes : [];
-        const cave: CompactWine[] = Array.isArray(body?.cave) ? body.cave : [];
+        const body = await corpsJson<any>(request);
+        if (!body) return NextResponse.json({ error: 'Requête trop volumineuse' }, { status: 413 });
+        const query: string = typeof body?.query === 'string' ? body.query.trim().slice(0, 400) : '';
+        // Le catalogue compact du site tient en ~700 entrées : au-delà, ce n'est
+        // plus notre page qui appelle, et chaque entrée coûte des jetons.
+        const recipes: CompactRecipe[] = (Array.isArray(body?.recipes) ? body.recipes : []).slice(0, 1500);
+        const cave: CompactWine[] = (Array.isArray(body?.cave) ? body.cave : []).slice(0, 300);
         if (!query || !recipes.length) {
             return NextResponse.json({ error: 'query et recipes requis' }, { status: 400 });
+        }
+
+        /*
+         * Au-delà du raisonnable, on répond quand même — mais SANS modèle.
+         * Le repli par mots-clés existe déjà pour les réponses vides : il rend
+         * ici le même service. Personne ne voit d'erreur, et le quota tient.
+         */
+        if (trop(`finder:${ipDe(request)}`, 20, 10 * 60_000)) {
+            const fb = keywordFallback(query, recipes);
+            return NextResponse.json(fb.length
+                ? { kind: 'recipes', ids: fb, message: 'Voici ce qui se rapproche le plus 👇' }
+                : { error: 'Aucune recette trouvée' }, { status: fb.length ? 200 : 404 });
         }
 
         /* Demande de vin : on répond en bouteilles, pas en recettes. La cave
@@ -188,7 +209,24 @@ export async function POST(request: Request) {
 
         const userMsg = JSON.stringify({ demande: query, recettes: shortlistForLLM(query, recipes) });
 
-        const raw = await callGroq(userMsg);
+        /*
+         * Groq compte les jetons À LA MINUTE, pour toute l'organisation. Aux
+         * heures chargées il refuse (413 « request too large », 429), et
+         * l'assistant rendait alors une erreur 500 : une phrase rouge à la
+         * place d'une réponse. Or le repli par mots-clés existe déjà, juste en
+         * dessous, pour le cas où le modèle ne trouve rien — il rend le même
+         * service ici. Mieux vaut une réponse honnête et moins fine que rien.
+         */
+        let raw: string;
+        try {
+            raw = await callGroq(userMsg);
+        } catch (e: any) {
+            const refus = String(e?.message || '');
+            if (!/\b(413|429)\b|rate|too large/i.test(refus)) throw e;
+            const fb = keywordFallback(query, recipes);
+            if (fb.length) return NextResponse.json({ kind: 'recipes', ids: fb, message: 'Voici ce qui se rapproche le plus 👇' });
+            return NextResponse.json({ error: 'Aucune recette trouvée' }, { status: 404 });
+        }
         let parsed: any;
         try { parsed = JSON.parse(raw); } catch { return NextResponse.json({ error: 'Réponse IA illisible' }, { status: 502 }); }
 
