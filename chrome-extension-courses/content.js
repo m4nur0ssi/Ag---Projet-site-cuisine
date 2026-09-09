@@ -6,6 +6,23 @@
 (function () {
     'use strict';
 
+    /*
+     * Sur LE SITE, l'extension ne fait qu'une chose : dire qu'elle est là.
+     *
+     * Une page web ne peut pas deviner ce qui est installé dans le navigateur.
+     * Le site ne savait donc pas s'il envoyait quelqu'un au magasin avec
+     * l'assistant… ou sans, et l'utilisateur découvrait le vide sur place. On
+     * plante un drapeau, le site sait à quoi s'en tenir avant d'ouvrir.
+     */
+    const SUR_LE_SITE = /(^|\.)lesrecettesmagiques\.fr$/.test(location.hostname)
+        || /\.vercel\.app$/.test(location.hostname)
+        || location.hostname === 'localhost';
+    if (SUR_LE_SITE) {
+        document.documentElement.setAttribute('data-courses-magiques', '1.4.0');
+        try { localStorage.setItem('magic-store-ext-active', '1'); } catch (_) {}
+        return;
+    }
+
     // --- File depuis le hash de l'URL -------------------------------------
     function parseHash() {
         const h = location.hash.replace(/^#/, '');
@@ -245,4 +262,17 @@
         if (item) item.textContent = 'Ajouté ✓ — je passe au suivant…';
         setTimeout(() => goTo(state.idx + 1), 1200); // laisse le panier s'enregistrer
     }, true);
+
+    /*
+     * Le site relance la file dans le MÊME onglet (`window.open(..., 'storeCart')`).
+     * Quand seule l'ancre change, le navigateur ne recharge rien : le script
+     * était déjà chargé, il ne relisait jamais la nouvelle file, et l'extension
+     * paraissait éteinte — il fallait recharger la page pour « la réveiller ».
+     */
+    window.addEventListener('hashchange', () => {
+        const neuf = parseHash();
+        if (!neuf) return;
+        remember(neuf);
+        location.reload();
+    });
 })();

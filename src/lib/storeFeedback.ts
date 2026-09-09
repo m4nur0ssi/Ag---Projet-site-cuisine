@@ -25,7 +25,38 @@ function fromStore(origin: string): boolean {
 }
 
 export function isStoreExtensionActive(): boolean {
+    // Depuis la 1.4.0, l'extension plante un drapeau sur la page elle-même :
+    // on sait qu'elle est là AVANT d'envoyer qui que ce soit au magasin.
+    try {
+        if (typeof document !== 'undefined'
+            && document.documentElement.hasAttribute('data-courses-magiques')) return true;
+    } catch { /* rendu serveur */ }
     try { return localStorage.getItem(FLAG) === '1'; } catch { return false; }
+}
+
+/**
+ * L'assistant magasin ne vit que dans Chrome (et ses cousins) : c'est une
+ * extension Chrome. Aucune page web ne peut FORCER l'ouverture d'un autre
+ * navigateur — tout ce qu'on peut faire, c'est le dire avant d'y aller plutôt
+ * que de laisser quelqu'un chercher un assistant qui ne viendra pas.
+ */
+export function navigateurCompatible(): boolean {
+    if (typeof navigator === 'undefined') return true;
+    const ua = navigator.userAgent;
+    const chromiumEtCousins = /Chrome\/|Chromium\/|Edg\//.test(ua);
+    // Safari se présente parfois comme « Version/… Safari/… » sans « Chrome/ ».
+    return chromiumEtCousins;
+}
+
+/** Ce qui manque pour que l'assistant fonctionne, en une phrase — ou rien. */
+export function obstacleAssistant(): string {
+    if (!navigateurCompatible()) {
+        return 'L’assistant magasin est une extension Chrome : ouvre le site dans Chrome pour qu’il t’accompagne dans les rayons.';
+    }
+    if (!isStoreExtensionActive()) {
+        return 'L’assistant magasin n’est pas détecté. Installe l’extension Chrome (menu → Extension Chrome) pour cocher ta liste dans les rayons.';
+    }
+    return '';
 }
 
 export interface StoreDoneMessage { index: number; term: string }

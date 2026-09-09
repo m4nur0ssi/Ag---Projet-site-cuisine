@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { carrefourTerm, isItemDone } from '@/lib/ingredients';
 import type { ConsolItem } from '@/lib/ingredients';
 import { usePreferredStore, STORE_BY_ID, storeSearchWithQueue } from '@/lib/stores';
-import { onStoreItemDone, isStoreExtensionActive } from '@/lib/storeFeedback';
+import { onStoreItemDone, isStoreExtensionActive, obstacleAssistant } from '@/lib/storeFeedback';
 import StoreButton from '@/components/StoreSelector/StoreButton';
 import styles from './ShopActions.module.css';
 
@@ -63,6 +63,16 @@ export default function ShopActions({ items, title = 'Ma liste de courses', size
     const openStore = (i: number) => {
         const it = list[i];
         if (!it) return;
+        /*
+         * Dire ce qui manque AVANT d'ouvrir le magasin.
+         *
+         * L'assistant est une extension Chrome : hors de Chrome, ou sans
+         * l'extension, la page du magasin s'ouvre et… rien. On ne peut pas
+         * forcer un navigateur depuis une page web, mais on peut éviter de
+         * laisser quelqu'un chercher un assistant qui ne viendra jamais.
+         */
+        const obstacle = obstacleAssistant();
+        if (obstacle) window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: obstacle }));
         // Ouvre le magasin avec la file complète (hash #mlist) → l'extension "Courses
         // Magiques" fait défiler les produits sans changer d'onglet. Fenêtre nommée réutilisée.
         const queue = list.map(x => carrefourTerm(x.name));
