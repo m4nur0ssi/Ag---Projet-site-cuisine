@@ -2,11 +2,241 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/09/2026 07:41:42
- * Total: 690 recettes
+ * Dernière mise à jour: 09/09/2026 14:45:01
+ * Total: 692 recettes
  */
-export const exportSyncId = "1788939702312";
+export const exportSyncId = "1788965101092";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7719",
+        "title": "Poulet Frit Façon Los Pollos Hermanos",
+        "description": "Découvrez la recette inspirée du célèbre poulet frit de Los Pollos Hermanos, la chaîne de restaurants de Gus Fring dans l'univers de Breaking Bad et Better Call Saul. Ce poulet ultra croustillant et épicé, fait maison, est préparé avec une marinad...",
+        "image": "/recipes-ia/7719-carte.webp",
+        "category": "sauces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7683213734285741345\" data-video-id=\"7683213734285741345\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7683213734285741345\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧄\n             Pièces de poulet (ailes, pilons, aiguillettes ou filets)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Origan"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Paprika fumé"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Piment de Cayenne"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             Poudre d'oignons"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Coriandre fraîche"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile (pour la marinade)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Cumin"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau gazeuse (50 cl)"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Lait (10 cl)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine (250 grs)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Maïzena (200 grs)"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             Poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine de maïs"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Corn flakes broyés"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile de friture"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Huile chaude (environ 2 cuillères à soupe, pour le laquage)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre (1 cuillère à soupe, pour le laquage)"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             Mayonnaise (environ 2 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Fromage blanc (environ 2 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🍋\n             Jus de citron vert"
+            }
+        ],
+        "steps": [
+            "Préparez la marinade du poulet : mélangez les pièces de poulet (ailes, pilons, aiguillettes ou filets) avec du sel, du poivre, de l'origan, du paprika fumé, du piment de Cayenne, de la poudre d'oignons, de la coriandre fraîche, un filet d'huile et du cumin. Laissez mariner le poulet pendant au moins 12 heures, idéalement 24 heures, pour que la chair s'imprègne bien des saveurs.",
+            "Préparez la sauce : dans un bol, mélangez à parts égales de la mayonnaise et du fromage blanc. Ajoutez de la poudre d'ail, du sel, du jus de citron vert, du paprika, du piment de Cayenne, de l'origan et du poivre. Mélangez bien.",
+            "Préparez la pâte à frire (fry batter) au dernier moment : dans un récipient, mélangez l'eau gazeuse, le lait, la farine, la maïzena, de la poudre d'ail et du sel.",
+            "Préparez l'enrobage sec : dans un autre récipient, mélangez de la farine de maïs et des corn flakes broyés. Vous pouvez également utiliser uniquement de la farine avec du paprika et du piment. Ajoutez un peu d'épices à ce mélange.",
+            "Enrobez le poulet : enrobez chaque pièce de poulet marinée dans le mélange de farine et de corn flakes (ou farine épicée). Trempez ensuite le poulet dans la pâte à frire, puis repassez-le une dernière fois dans le mélange de farine.",
+            "Faites frire le poulet : faites chauffer de l'huile à 170-180°C (pas plus). Plongez les pièces de poulet enrobées dans l'huile chaude. Faites frire les tenders pendant environ 5 minutes, les ailes pendant environ 10 minutes, et les pilons pendant environ 15 minutes. Les temps de cuisson précis sont indiqués dans la description.",
+            "Appliquez le laquage : à la sortie de la friture, préparez un mélange avec de l'huile chaude (environ 2 cuillères à soupe), du paprika fumé, du piment et une cuillère à soupe de sucre. Passez ce laquage au pinceau sur la panure du poulet frit. Ce détail fait toute la différence."
+        ],
+        "tags": [
+            "épicé",
+            "Mexique",
+            "Sauces",
+            "USA"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7717",
+        "title": "Tartelettes Amandine Faciles",
+        "description": "Une recette simple pour préparer de délicieuses tartelettes amandine, composées d'une pâte sablée maison et d'une crème d'amande onctueuse, garnies d'amandes effilées et nappées de miel ou de sirop.",
+        "image": "/recipes-ia/7717-carte.webp",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7441551106288766241\" data-video-id=\"7441551106288766241\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7441551106288766241\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             250g de farine (type T45)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             125g de beurre (à température ambiante)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             3 à 4 cuillères à soupe d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             160g de beurre doux"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             140g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50ml de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             4 cuillères à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café d'extrait d'amande pure (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Amandes effilées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel chaud ou un sirop (20g d'eau et 20g de sucre)"
+            }
+        ],
+        "steps": [
+            "Pour la pâte sablée : Mélanger la farine, le sel, le sucre et le sachet de sucre vanillé.",
+            "Ajouter le beurre coupé en dés et mélanger du bout des doigts jusqu'à obtenir une texture sableuse.",
+            "Incorporer le jaune d'œuf et l'eau (3 à 4 cuillères à soupe), puis mélanger délicatement jusqu'à former une boule de pâte.",
+            "Filmer la boule de pâte et la placer au frais pendant au moins 1 heure.",
+            "Abaisser la pâte sur un plan de travail fariné à l'aide d'un rouleau.",
+            "Placer les moules à tartelettes sur la pâte, découper la pâte en laissant 2cm de bord, puis foncer les moules. Couper l'excédent de pâte avec un couteau.",
+            "Piquer le fond des tartelettes (ou de la grande tarte) avec une fourchette.",
+            "Réserver au frais pendant la préparation de la crème.",
+            "Pour la crème amande : À l'aide d'un batteur, crémer le beurre avec le sucre.",
+            "Ajouter la crème liquide, les œufs et l'extrait d'amande (si utilisé). Bien mélanger.",
+            "Incorporer la poudre d'amande et la farine. Mélanger délicatement jusqu'à obtenir une texture homogène.",
+            "Pour l'assemblage : Sortir les fonds de tartelettes du frais.",
+            "Garnir les fonds de tartelettes avec la crème d'amande, puis ajouter des amandes effilées par-dessus.",
+            "Enfourner dans un four préchauffé à 180°C pendant environ 25 minutes, jusqu'à ce que le dessus soit doré (surveiller la cuisson selon votre four).",
+            "À la sortie du four, badigeonner les tartelettes de miel chaud à l'aide d'un pinceau, ou d'un sirop préparé en portant à ébullition 20g d'eau et 20g de sucre.",
+            "Démouler les tartelettes une fois qu'elles sont froides."
+        ],
+        "tags": [
+            "France",
+            "Glaces",
+            "Pas cher",
+            "pâtisserie",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7713",
         "title": "Poulet au citron et parmesan",
