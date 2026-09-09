@@ -88,6 +88,12 @@ import AppShell from '@/components/AppShell'
 import CookieConsent from '@/components/CookieConsent/CookieConsent'
 import { Analytics } from '@vercel/analytics/react'
 
+/* Identifiant de mesure Google Analytics 4 (propriété « Les Recettes Magiques »).
+   Ce n'est pas un secret : il part dans le HTML de chaque page. Écrit ici pour
+   qu'aucun réglage d'hébergeur ne soit nécessaire ; NEXT_PUBLIC_GA_ID peut le
+   remplacer (autre propriété), et la chaîne vide coupe la mesure. */
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? 'G-DRF282F5YG'
+
 export default function RootLayout({
     children,
 }: {
@@ -117,6 +123,36 @@ export default function RootLayout({
                         `,
                     }}
                 />
+                {/* Google Analytics 4. Chargé seulement si NEXT_PUBLIC_GA_ID existe,
+                    et jamais en local (les visites de développement fausseraient les
+                    chiffres). Le refus par défaut ci-dessus s'applique dès la première
+                    ligne : tant que le bandeau n'a pas été accepté, GA fonctionne en
+                    mode sans cookie (pings anonymes), et CookieConsent envoie
+                    `consent update` au clic. */}
+                {GA_ID && (
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                                (function() {
+                                    var h = location.hostname;
+                                    if (h === 'localhost' || h === '127.0.0.1') return;
+                                    gtag('js', new Date());
+                                    gtag('config', '${GA_ID}');
+                                    /* Le script de Google est injecté ICI, et pas par une
+                                       balise <script async src> : React remonte ces balises-là
+                                       tout en haut du <head>, donc avant le refus par défaut
+                                       écrit plus haut — Google se serait initialisé sans
+                                       connaître le consentement. Injecté depuis ce bloc,
+                                       il arrive forcément après. */
+                                    var s = document.createElement('script');
+                                    s.async = true;
+                                    s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
+                                    document.head.appendChild(s);
+                                })();
+                            `,
+                        }}
+                    />
+                )}
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `

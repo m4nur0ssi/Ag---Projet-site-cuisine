@@ -61,8 +61,10 @@ export default function ConfidentialitePage() {
             <h2>3. Destinataires et sous-traitants</h2>
             <p>
                 Nous ne vendons pas vos données. Elles peuvent être traitées par nos sous-traitants
-                techniques : <strong>Supabase</strong> (authentification et base de données) et
-                <strong> Vercel</strong> (hébergement). Ces prestataires agissent selon nos
+                techniques : <strong>Supabase</strong> (authentification et base de données),
+                <strong> Vercel</strong> (hébergement et mesure d’audience anonyme) et
+                <strong> Google Ireland Ltd.</strong> (Google Analytics 4, mesure d’audience,
+                uniquement après votre consentement). Ces prestataires agissent selon nos
                 instructions et présentent des garanties conformes au RGPD.
             </p>
 
@@ -74,6 +76,11 @@ export default function ConfidentialitePage() {
                 <strong> refuser</strong> au même niveau, sans conséquence sur l’accès au site.
                 Votre choix est conservé dans votre navigateur et peut être modifié à tout moment en
                 effaçant les données du site.
+            </p>
+            <p>
+                Après acceptation, <strong>Google Analytics 4</strong> dépose ses cookies de mesure
+                (<code>_ga</code>, <code>_ga_*</code>, 13 mois) afin de compter les visites et les
+                pages consultées. En cas de refus, aucun cookie n’est écrit.
             </p>
             <p>
                 La lecture d’une vidéo TikTok intégrée peut amener TikTok à déposer ses propres
