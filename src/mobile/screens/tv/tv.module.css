@@ -2198,6 +2198,35 @@
     color: #fff;
 }
 
+/* Partager le menu : une pastille discrète dans l'en-tête. La barre du bas
+   porte déjà trois boutons qui tiennent tout juste sur un écran de 375 px —
+   un quatrième la faisait passer à deux lignes. */
+.planPartage {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+    margin-left: auto;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+.planPartage:disabled { opacity: 0.55; }
+
+.planPartageRond {
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-top-color: #fff;
+    animation: planPartageTourne 0.9s linear infinite;
+}
+
+@keyframes planPartageTourne { to { transform: rotate(360deg); } }
+
 .planCount {
     margin-left: auto;
     text-align: right;

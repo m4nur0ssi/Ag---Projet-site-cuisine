@@ -39,6 +39,8 @@ import {
 } from './plan';
 import { matchesTag } from './themes';
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
+import { partagerMenu, preparerMenu } from '@/lib/partage-menu';
+import { supabase } from '@/mobile/lib/supabase';
 import { totalMinutes, formatMinutes } from './timing';
 import { estimateRecipeTiming } from '@/lib/recipe-timing';
 import { haptic } from './TVHome';
@@ -84,6 +86,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
      * qu'on ne l'a pas posée.
      */
     const [enMain, setEnMain] = useState<Recipe | null>(null);
+    /** Partage : « ça part… », puis le lien copié ou la feuille du système. */
+    const [partage, setPartage] = useState<'repos' | 'en-cours'>('repos');
     useEffect(() => {
         setEnMain(recetteEnMain());
         const suivre = (e: Event) => setEnMain((e as CustomEvent).detail as Recipe | null);
@@ -682,6 +686,45 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: msg }));
     };
 
+    /**
+     * « Voilà ce qu'on mange samedi » : le menu part sous forme de LIEN.
+     *
+     * On envoie un instantané — le menu partagé ne bougera plus quand on
+     * réorganisera sa semaine. La liste de courses est calculée ici, avec le
+     * moteur du site : la page publique se contente d'afficher.
+     */
+    const partagerCeMenu = async () => {
+        if (partage === 'en-cours' || !planned) return;
+        haptic(10);
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+            window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: 'Connecte-toi pour partager ton menu.' }));
+            return;
+        }
+        setPartage('en-cours');
+        let liste: Record<string, any> = {};
+        try { liste = JSON.parse(localStorage.getItem('magic-shopping-list') || '{}'); } catch { /* liste vide */ }
+        const instantane = preparerMenu(plan, {
+            mode: mode === 'jourj' ? 'jourj' : 'semaine',
+            titre: mode === 'jourj' ? 'Le menu du grand jour' : 'Le menu de la semaine',
+            liste,
+        });
+        const { url, erreur } = await partagerMenu(instantane, session.access_token);
+        setPartage('repos');
+        if (!url) {
+            window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: erreur || 'Le partage n’a pas abouti.' }));
+            return;
+        }
+        const texte = mode === 'jourj' ? 'Voilà le menu du grand jour' : 'Voilà ce qu’on mange cette semaine';
+        try {
+            if (navigator.share) await navigator.share({ title: instantane.titre, text: texte, url });
+            else {
+                await navigator.clipboard.writeText(url);
+                window.dispatchEvent(new CustomEvent('magic-toast-notify', { detail: 'Lien copié — il n’attend qu’à être envoyé.' }));
+            }
+        } catch { /* partage annulé : le lien existe, on n'insiste pas */ }
+    };
+
     /** Remplit un créneau au hasard, dans la bonne catégorie. */
     const surprise = (day: string, meal: string, accepts: (r: Recipe) => boolean) => {
         const pool = mockRecipes.filter((r) => r.image && accepts(r));
@@ -897,6 +940,23 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
                     <div className={styles.planKicker}>Planificateur</div>
                     <h1 className={styles.planTitle}>{mode === 'jourj' ? 'Jour J' : 'Ma semaine'}</h1>
                 </div>
+                {mode !== 'panier' && planned > 0 && (
+                    <button
+                        className={styles.planPartage}
+                        onClick={partagerCeMenu}
+                        disabled={partage === 'en-cours'}
+                        aria-label="Partager ce menu"
+                    >
+                        {partage === 'en-cours' ? (
+                            <span className={styles.planPartageRond} />
+                        ) : (
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 15V3" /><path d="m8 7 4-4 4 4" />
+                                <path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7" />
+                            </svg>
+                        )}
+                    </button>
+                )}
                 <div className={styles.planCount}>
                     {planned} {mode === 'jourj' ? 'plat' : 'repas'}<br />planifié{planned > 1 ? 's' : ''}
                 </div>
