@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { TIPS } from '@/lib/tips';
 import styles from './Tip.module.css';
+import DemoVideo from '@/components/DemoVideo/DemoVideo';
 
 const SEEN_KEY = 'magic-tips-seen-v1';
 
@@ -60,6 +61,11 @@ export default function Tip({ id, delay = 1000 }: { id: keyof typeof TIPS | stri
                 <button className={styles.close} onClick={close} aria-label="Fermer l’astuce">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                 </button>
+                {tip.demo && (
+                    <div className={styles.demo}>
+                        <DemoVideo id={tip.demo} />
+                    </div>
+                )}
                 <div className={styles.kicker}>{tip.kicker}</div>
                 <div className={styles.title}>{tip.title}</div>
                 <p className={styles.text}>{text}</p>

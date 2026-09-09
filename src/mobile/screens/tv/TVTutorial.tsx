@@ -13,6 +13,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { haptic } from './TVHome';
 import styles from './TVTutorial.module.css';
+import DemoVideo from '@/components/DemoVideo/DemoVideo';
+import { listeDemos } from '@/lib/tuto-videos';
 
 type Art =
     | 'hero' | 'rows' | 'press' | 'clic' | 'card' | 'cook' | 'filter' | 'search'
@@ -27,6 +29,8 @@ interface Step {
     tint: string;
     accent: string;
     art: Art;
+    /** Nom de la démonstration filmée (public/tuto/<id>.webm), si elle existe. */
+    video?: string;
 }
 
 const T = {
@@ -422,7 +426,29 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
      * signal le plus sûr de la plateforme — plus sûr qu'une largeur d'écran,
      * qui ment sur un iPad en paysage ou une fenêtre étroite.
      */
-    const STEPS = embedded ? STEPS_BUREAU : STEPS_MOBILE;
+    /*
+     * LA VISITE EST FILMÉE, désormais.
+     *
+     * Les dessins expliquaient l'application ; les vidéos la MONTRENT en train
+     * de servir, doigt compris. On ne garde donc que les étapes qui ont leur
+     * démonstration — une visite mi-dessinée mi-filmée ferait douter de ce qu'on
+     * voit. Les scènes restantes se tournent avec `npm run tuto:videos`, et
+     * l'étape apparaît d'elle-même dès que la vidéo existe.
+     *
+     * Les listes dessinées (`STEPS_MOBILE`, `STEPS_BUREAU`) restent en réserve :
+     * elles servent de filet si aucune vidéo n'est encore tournée.
+     */
+    const FILMÉES: Step[] = listeDemos().map((d) => ({
+        kicker: d.kicker,
+        title: d.titre,
+        text: d.texte,
+        hint: d.conseil,
+        tint: `radial-gradient(60% 100% at 50% 0%, ${d.accent}55, transparent 70%)`,
+        accent: d.accent,
+        art: 'hero',
+        video: d.id,
+    }));
+    const STEPS: Step[] = FILMÉES.length ? FILMÉES : (embedded ? STEPS_BUREAU : STEPS_MOBILE);
 
     useEffect(() => { setMounted(true); }, []);
 
@@ -493,7 +519,9 @@ export default function TVTutorial({ onClose, embedded = false }: { onClose: () 
                 {STEPS.map((s, n) => (
                     <section className={styles.slide} key={s.title}>
                         <div className={styles.artStage} style={{ ['--tuto-accent' as any]: s.accent }}>
-                            <Illus kind={s.art} accent={s.accent} />
+                            {s.video
+                                ? <DemoVideo id={s.video} accent={s.accent} actif={n === i} />
+                                : <Illus kind={s.art} accent={s.accent} />}
                         </div>
                         <div className={styles.kicker}>{s.kicker} · {n + 1} / {STEPS.length}</div>
                         <h2 className={styles.title}>{s.title}</h2>

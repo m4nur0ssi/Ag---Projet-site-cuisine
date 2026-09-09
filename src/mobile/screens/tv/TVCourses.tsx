@@ -239,30 +239,36 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         return [...map.entries()].sort((a, b) => (RAYON_ORDER[a[0]] ?? 99) - (RAYON_ORDER[b[0]] ?? 99));
     }, [items, overrides]);
 
+    /**
+     * Une seule porte pour « barré » : on range ET on garde.
+     *
+     * Cette écriture vivait à l'intérieur du calculateur passé à `setDone`.
+     * React s'autorise à rejouer un calculateur — il le fait systématiquement en
+     * développement — et le second passage repartait de l'ensemble déjà modifié :
+     * la ligne se barrait puis se débarrait dans le même geste. Un calculateur
+     * doit rester un calcul ; l'écriture se fait ici, une fois.
+     */
     const persistDone = (s: Set<string>) => {
         ecrireStock('shop-done', JSON.stringify([...s]));
+        setDone(s);
         window.dispatchEvent(new Event('shoppingListUpdated'));
     };
 
     /** Barrer : « je l'ai déjà à la maison » ou « c'est dans le panier ». */
     const toggleDone = (it: ConsolItem) => {
         haptic(8);
-        setDone((prev) => {
-            const n = new Set(prev);
-            const keys = doneKeysOf(it);
-            const already = keys.every((k) => n.has(k));
-            keys.forEach((k) => (already ? n.delete(k) : n.add(k)));
-            persistDone(n);
-            return n;
-        });
+        const n = new Set(done);
+        const keys = doneKeysOf(it);
+        const already = keys.every((k) => n.has(k));
+        keys.forEach((k) => (already ? n.delete(k) : n.add(k)));
+        persistDone(n);
     };
 
-    const markDone = (it: ConsolItem) => setDone((prev) => {
-        const n = new Set(prev);
+    const markDone = (it: ConsolItem) => {
+        const n = new Set(done);
         doneKeysOf(it).forEach((k) => n.add(k));
         persistDone(n);
-        return n;
-    });
+    };
 
     /**
      * Le pas d'incrément suit l'unité : on n'ajoute pas un gramme de farine à la
@@ -370,12 +376,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
         });
         saveList(next);
         // Les cases cochées de cette ligne n'ont plus d'objet.
-        setDone((prev) => {
-            const n = new Set(prev);
-            doneKeysOf(it).forEach((k) => n.delete(k));
-            persistDone(n);
-            return n;
-        });
+        const restant = new Set(done);
+        doneKeysOf(it).forEach((k) => restant.delete(k));
+        persistDone(restant);
     };
 
     const clearAll = () => {
@@ -495,12 +498,9 @@ export default function TVCourses({ embedded = false }: { embedded?: boolean }) 
 
     const toggleDayLine = (doneKey: string) => {
         haptic(6);
-        setDone((prev) => {
-            const n = new Set(prev);
-            n.has(doneKey) ? n.delete(doneKey) : n.add(doneKey);
-            persistDone(n);
-            return n;
-        });
+        const n = new Set(done);
+        n.has(doneKey) ? n.delete(doneKey) : n.add(doneKey);
+        persistDone(n);
     };
 
     /**

@@ -21,7 +21,8 @@
     "photos:manquantes": "node scripts/generate-recipe-images.js --manquantes 10 --video",
     "photos:wordpress": "node scripts/pousser-photo-wp.js --manquantes 50",
     "wp:verifier": "node scripts/verifier-wordpress.js",
-    "nutri:verifier": "node scripts/verifier-nutriscore.js"
+    "nutri:verifier": "node scripts/verifier-nutriscore.js",
+    "tuto:videos": "node scripts/tourner-videos-tuto.js"
   },
   "dependencies": {
     "@notionhq/client": "^5.9.0",

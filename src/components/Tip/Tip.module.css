@@ -73,3 +73,13 @@
 @media (prefers-reduced-motion: reduce) {
     .wrap, .leaving { animation: none; }
 }
+
+/* La démonstration filmée, au-dessus du texte : on regarde le geste, on lit
+   ensuite. Plus étroite que dans la visite guidée — c'est une bulle, pas un
+   écran. */
+.demo {
+    margin: 2px 0 12px;
+}
+.demo > div {
+    width: min(148px, 42vw);
+}

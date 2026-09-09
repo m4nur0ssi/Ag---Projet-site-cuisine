@@ -1,0 +1,29 @@
+/* Le cadre : un téléphone posé sur la page, jamais une fenêtre de lecteur. */
+.cadre {
+    position: relative;
+    width: min(178px, 46vw);
+    max-height: 46vh;
+    margin: 0 auto;
+    aspect-ratio: 390 / 844;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #0b0b0f;
+    box-shadow:
+        inset 0 0 0 1.5px rgba(255, 255, 255, 0.14),
+        0 24px 60px rgba(0, 0, 0, 0.55),
+        0 0 40px -12px var(--demo-accent, rgba(255, 255, 255, 0.35));
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+:global([data-theme='light']) .cadre {
+    box-shadow:
+        inset 0 0 0 1.5px rgba(0, 0, 0, 0.12),
+        0 20px 44px rgba(0, 0, 0, 0.22),
+        0 0 36px -14px var(--demo-accent, rgba(0, 0, 0, 0.2));
+}
