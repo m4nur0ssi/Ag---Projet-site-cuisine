@@ -2,11 +2,117 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/09/2026 14:45:01
+ * Dernière mise à jour: 09/09/2026 17:45:06
  * Total: 692 recettes
  */
-export const exportSyncId = "1788965101092";
+export const exportSyncId = "1788975906981";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7717",
+        "title": "Tartelettes Amandine Faciles",
+        "description": "Une recette simple pour préparer de délicieuses tartelettes amandine, composées d'une pâte sablée maison et d'une crème d'amande onctueuse, garnies d'amandes effilées et nappées de miel ou de sirop.",
+        "image": "/recipes-ia/7717-carte.webp",
+        "category": "glaces",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7441551106288766241\" data-video-id=\"7441551106288766241\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7441551106288766241\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             250g de farine (type T45)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             80g de sucre glace"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             125g de beurre (à température ambiante)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 sachet de sucre vanillé"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 jaune d'œuf"
+            },
+            {
+                "quantity": "",
+                "name": "💧\n             3 à 4 cuillères à soupe d'eau"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             160g de beurre doux"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             140g de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             3 œufs"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             50ml de crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             150g de poudre d'amande"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             4 cuillères à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café d'extrait d'amande pure (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Amandes effilées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Miel chaud ou un sirop (20g d'eau et 20g de sucre)"
+            }
+        ],
+        "steps": [
+            "Pour la pâte sablée : Mélanger la farine, le sel, le sucre et le sachet de sucre vanillé.",
+            "Ajouter le beurre coupé en dés et mélanger du bout des doigts jusqu'à obtenir une texture sableuse.",
+            "Incorporer le jaune d'œuf et l'eau (3 à 4 cuillères à soupe), puis mélanger délicatement jusqu'à former une boule de pâte.",
+            "Filmer la boule de pâte et la placer au frais pendant au moins 1 heure.",
+            "Abaisser la pâte sur un plan de travail fariné à l'aide d'un rouleau.",
+            "Placer les moules à tartelettes sur la pâte, découper la pâte en laissant 2cm de bord, puis foncer les moules. Couper l'excédent de pâte avec un couteau.",
+            "Piquer le fond des tartelettes (ou de la grande tarte) avec une fourchette.",
+            "Réserver au frais pendant la préparation de la crème.",
+            "Pour la crème amande : À l'aide d'un batteur, crémer le beurre avec le sucre.",
+            "Ajouter la crème liquide, les œufs et l'extrait d'amande (si utilisé). Bien mélanger.",
+            "Incorporer la poudre d'amande et la farine. Mélanger délicatement jusqu'à obtenir une texture homogène.",
+            "Pour l'assemblage : Sortir les fonds de tartelettes du frais.",
+            "Garnir les fonds de tartelettes avec la crème d'amande, puis ajouter des amandes effilées par-dessus.",
+            "Enfourner dans un four préchauffé à 180°C pendant environ 25 minutes, jusqu'à ce que le dessus soit doré (surveiller la cuisson selon votre four).",
+            "À la sortie du four, badigeonner les tartelettes de miel chaud à l'aide d'un pinceau, ou d'un sirop préparé en portant à ébullition 20g d'eau et 20g de sucre.",
+            "Démouler les tartelettes une fois qu'elles sont froides."
+        ],
+        "tags": [
+            "France",
+            "Glaces",
+            "Pas cher",
+            "pâtisserie",
+            "tarte"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7719",
         "title": "Poulet Frit Façon Los Pollos Hermanos",
@@ -126,112 +232,6 @@ export const mockRecipes: Recipe[] = [
             "Mexique",
             "Sauces",
             "USA"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7717",
-        "title": "Tartelettes Amandine Faciles",
-        "description": "Une recette simple pour préparer de délicieuses tartelettes amandine, composées d'une pâte sablée maison et d'une crème d'amande onctueuse, garnies d'amandes effilées et nappées de miel ou de sirop.",
-        "image": "/recipes-ia/7717-carte.webp",
-        "category": "glaces",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7441551106288766241\" data-video-id=\"7441551106288766241\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7441551106288766241\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🌾\n             250g de farine (type T45)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             80g de sucre glace"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             125g de beurre (à température ambiante)"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             1 sachet de sucre vanillé"
-            },
-            {
-                "quantity": "",
-                "name": "🧂\n             1 pincée de sel"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 jaune d'œuf"
-            },
-            {
-                "quantity": "",
-                "name": "💧\n             3 à 4 cuillères à soupe d'eau"
-            },
-            {
-                "quantity": "",
-                "name": "🧈\n             160g de beurre doux"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             140g de sucre"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             3 œufs"
-            },
-            {
-                "quantity": "",
-                "name": "🥛\n             50ml de crème liquide entière"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             150g de poudre d'amande"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             4 cuillères à soupe de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🥣\n             1 cuillère à café d'extrait d'amande pure (facultatif)"
-            },
-            {
-                "quantity": "",
-                "name": "🥜\n             Amandes effilées"
-            },
-            {
-                "quantity": "",
-                "name": "🍯\n             Miel chaud ou un sirop (20g d'eau et 20g de sucre)"
-            }
-        ],
-        "steps": [
-            "Pour la pâte sablée : Mélanger la farine, le sel, le sucre et le sachet de sucre vanillé.",
-            "Ajouter le beurre coupé en dés et mélanger du bout des doigts jusqu'à obtenir une texture sableuse.",
-            "Incorporer le jaune d'œuf et l'eau (3 à 4 cuillères à soupe), puis mélanger délicatement jusqu'à former une boule de pâte.",
-            "Filmer la boule de pâte et la placer au frais pendant au moins 1 heure.",
-            "Abaisser la pâte sur un plan de travail fariné à l'aide d'un rouleau.",
-            "Placer les moules à tartelettes sur la pâte, découper la pâte en laissant 2cm de bord, puis foncer les moules. Couper l'excédent de pâte avec un couteau.",
-            "Piquer le fond des tartelettes (ou de la grande tarte) avec une fourchette.",
-            "Réserver au frais pendant la préparation de la crème.",
-            "Pour la crème amande : À l'aide d'un batteur, crémer le beurre avec le sucre.",
-            "Ajouter la crème liquide, les œufs et l'extrait d'amande (si utilisé). Bien mélanger.",
-            "Incorporer la poudre d'amande et la farine. Mélanger délicatement jusqu'à obtenir une texture homogène.",
-            "Pour l'assemblage : Sortir les fonds de tartelettes du frais.",
-            "Garnir les fonds de tartelettes avec la crème d'amande, puis ajouter des amandes effilées par-dessus.",
-            "Enfourner dans un four préchauffé à 180°C pendant environ 25 minutes, jusqu'à ce que le dessus soit doré (surveiller la cuisson selon votre four).",
-            "À la sortie du four, badigeonner les tartelettes de miel chaud à l'aide d'un pinceau, ou d'un sirop préparé en portant à ébullition 20g d'eau et 20g de sucre.",
-            "Démouler les tartelettes une fois qu'elles sont froides."
-        ],
-        "tags": [
-            "France",
-            "Glaces",
-            "Pas cher",
-            "pâtisserie",
-            "tarte"
         ],
         "isFeatured": false,
         "isFavorite": false,
