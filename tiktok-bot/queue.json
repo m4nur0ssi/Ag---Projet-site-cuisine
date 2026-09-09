@@ -1,16 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN82qnJUf/",
-      "country": "Accompagnements",
-      "timestamp": "2026-09-09T22:25:42.525Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZN82bhrY5/",
-      "country": "Apéritifs",
-      "timestamp": "2026-09-09T22:26:30.199Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN8FcaP8F/",
@@ -83,6 +72,22 @@
       "essais": 1,
       "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
       "quand": "2026-09-09T22:24:31.418Z"
+    },
+    {
+      "videoUrl": "https://vm.tiktok.com/ZN82qnJUf/",
+      "country": "Accompagnements",
+      "timestamp": "2026-09-09T22:25:42.525Z",
+      "essais": 1,
+      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
+      "quand": "2026-09-09T22:27:27.088Z"
+    },
+    {
+      "videoUrl": "https://vm.tiktok.com/ZN82bhrY5/",
+      "country": "Apéritifs",
+      "timestamp": "2026-09-09T22:26:30.199Z",
+      "essais": 1,
+      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
+      "quand": "2026-09-09T22:27:30.474Z"
     }
   ]
 }
