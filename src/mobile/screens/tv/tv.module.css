@@ -845,12 +845,19 @@
 .allSheet {
     position: fixed;
     inset: 0;
+    /* Sous la barre du bas (BottomNav z=25000), qui reste visible ici. */
     z-index: 4000;
     background: rgba(10, 10, 12, 0.98);
     -webkit-backdrop-filter: blur(30px) saturate(180%);
     backdrop-filter: blur(30px) saturate(180%);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    /*
+     * La hauteur de la barre du bas (72 px posés à 10 px du bord, comme le
+     * plancher du héros et de la recherche) : sans elle, la dernière rangée de
+     * la catégorie finissait cachée derrière.
+     */
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
 }
 
 .allHead {
