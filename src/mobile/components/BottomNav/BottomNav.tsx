@@ -225,6 +225,13 @@ export default function BottomNav() {
         // recettes ici n'aurait servi à rien.
         if (inCave) { window.dispatchEvent(new Event('macave-search')); return; }
 
+        // La barre reste visible pendant la recherche : la loupe doit donc
+        // pouvoir la refermer, comme n'importe quel autre onglet du bas.
+        if (isSearchOpen) { setIsSearchOpen(false); setVoiceSearch(false); return; }
+        // Une recherche ouverte par un autre écran (choisir une recette pour un
+        // créneau du planificateur) : on n'en empile pas une seconde par-dessus.
+        if (document.body.dataset.recherche === 'ouverte') return;
+
         const isCurrentlyChrono = activeTimer && (showTimerMode || isMiniMode);
 
         if (isCurrentlyChrono) {
@@ -454,6 +461,9 @@ export default function BottomNav() {
         // Le planificateur est un ÉCRAN (/tv-planner) : le calque WeekPlanner a
         // été retiré de cette barre, plus rien ne pouvait l'ouvrir.
         if (item?.path) {
+            // Sinon le panneau de recherche, monté ici, resterait ouvert
+            // par-dessus l'écran où l'on vient d'arriver.
+            setIsSearchOpen(false);
             router.push(item.path);
         }
     };

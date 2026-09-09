@@ -466,6 +466,19 @@ export default function TVSpotlight({ open, onClose, onRecipeSelect, filter, hin
         }
     }, [open, embedded]);
 
+    /*
+     * Dire au reste de l'application qu'une recherche est ouverte.
+     *
+     * Depuis qu'elle passe SOUS la barre du bas, la loupe reste sous le doigt
+     * pendant qu'on choisit une recette pour le planificateur : sans ce
+     * drapeau, elle ouvrirait une seconde recherche par-dessus la première.
+     */
+    useEffect(() => {
+        if (embedded || !open) return;
+        document.body.dataset.recherche = 'ouverte';
+        return () => { delete document.body.dataset.recherche; };
+    }, [open, embedded]);
+
     // Ouverture : focus + page figée. Fermeture : on réinitialise tout.
     useEffect(() => {
         // En panneau, l'écran est toujours « ouvert » : on focalise le champ une

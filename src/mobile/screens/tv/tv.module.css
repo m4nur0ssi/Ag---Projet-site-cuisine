@@ -1391,8 +1391,17 @@
 .spRoot {
     position: fixed;
     inset: 0;
-    /* Au-dessus de la barre du bas (BottomNav z=25000) : le panneau la recouvre. */
-    z-index: 26000;
+    /*
+     * SOUS la barre du bas (z=25000), pas au-dessus.
+     *
+     * La recherche recouvrait la barre : c'était le seul écran de
+     * l'application où les menus disparaissaient, et il fallait deviner qu'on
+     * en sortait par « Terminé ». Elle passe donc dessous, et se réserve la
+     * hauteur de la barre (72 px posés à 10 px du bord, comme le plancher du
+     * héros) pour que le dernier résultat ne finisse pas caché derrière.
+     */
+    z-index: 24000;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     background: rgba(8, 8, 10, 0.97);
