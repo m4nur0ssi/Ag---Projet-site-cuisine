@@ -14,6 +14,7 @@ import BottomNav from '@/mobile/components/BottomNav/BottomNav';
  * téléchargés en fond sur un écran qu'on n'ouvrira peut-être jamais.
  */
 import { homeRecipes as mockRecipes } from '@/mobile/data/home-recipes';
+import { listerMesRecettes, versFiche } from '@/mobile/lib/mesRecettes';
 import { Recipe } from '@/mobile/types';
 import { pullFavorites, pruneOrphanFavorites } from '@/mobile/lib/favorites';
 import { precacheFavorites } from '@/lib/pwa';
@@ -85,26 +86,46 @@ export default function FavoritesPage({ embedded = false }: { embedded?: boolean
      */
     const [menu, setMenu] = useState<Recipe | null>(null);
 
+    /*
+     * Les recettes tirées de vidéos ne sont PAS dans le catalogue (compilé au
+     * build). Sans elles, deux choses cassaient : elles n'apparaissaient jamais
+     * ici, et le ménage des favoris orphelins — qui retire ce qu'il ne retrouve
+     * pas — les EFFAÇAIT purement et simplement.
+     */
+    const [perso, setPerso] = useState<any[]>([]);
+
     useEffect(() => {
-        const renderFromCache = () => {
+        const renderFromCache = (miennes = perso) => {
             const storedIds = JSON.parse(localStorage.getItem('favorites') || '[]');
-            setFavoriteRecipes(mockRecipes.filter(r => storedIds.includes(r.id)));
+            setFavoriteRecipes([
+                ...miennes.filter((r: any) => storedIds.includes(String(r.id))),
+                ...mockRecipes.filter(r => storedIds.includes(r.id)),
+            ] as any);
             setLoading(false);
         };
         const init = async () => {
             await pullFavorites();
+            const miennes = (await listerMesRecettes()).map(versFiche).filter(Boolean) as any[];
+            setPerso(miennes);
             const ids = JSON.parse(localStorage.getItem('favorites') || '[]');
-            const resolved = mockRecipes.filter(r => ids.includes(r.id)).map(r => r.id);
+            const resolved = [
+                ...mockRecipes.filter(r => ids.includes(r.id)).map(r => r.id),
+                ...miennes.filter((r: any) => ids.includes(String(r.id))).map((r: any) => String(r.id)),
+            ];
             await pruneOrphanFavorites(resolved);
-            renderFromCache();
+            renderFromCache(miennes);
         };
         init();
-        window.addEventListener('storage', renderFromCache);
-        window.addEventListener('magic-favorite-change', renderFromCache);
+        const surChangement = () => renderFromCache();
+        window.addEventListener('storage', surChangement);
+        window.addEventListener('magic-favorite-change', surChangement);
         return () => {
-            window.removeEventListener('storage', renderFromCache);
-            window.removeEventListener('magic-favorite-change', renderFromCache);
+            window.removeEventListener('storage', surChangement);
+            window.removeEventListener('magic-favorite-change', surChangement);
         };
+        // `perso` n'est pas une dépendance : le rappel reçoit la liste fraîche
+        // en argument, et se relire à chaque changement relancerait la lecture.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => { if (favoriteRecipes.length) precacheFavorites(favoriteRecipes); }, [favoriteRecipes]);

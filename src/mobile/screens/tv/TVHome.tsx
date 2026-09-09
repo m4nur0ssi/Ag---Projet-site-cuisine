@@ -23,7 +23,7 @@ import { Recipe } from '@/mobile/types';
 import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
 import { homeRecipes as mockRecipes, type HomeRecipe } from '@/mobile/data/home-recipes';
 import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-embed';
-import { listerMesRecettes, versFiche } from '@/mobile/lib/mesRecettes';
+import { listerMesRecettes, oublierRecette, versFiche } from '@/mobile/lib/mesRecettes';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
@@ -2049,8 +2049,13 @@ export default function TVHome() {
     }, [inProgress]);
 
     const laterRecipes = useMemo(
-        () => laterIds.map((id) => mockRecipes.find((r) => String(r.id) === id)).filter(Boolean) as Recipe[],
-        [laterIds]
+        () => laterIds
+            .map((id) => mockRecipes.find((r) => String(r.id) === id)
+                // Une recette tirée d'une vidéo n'est pas dans le catalogue :
+                // sans ce second regard, « À faire plus tard » l'oubliait.
+                || mesVideos.find((r) => String(r.id) === id))
+            .filter(Boolean) as Recipe[],
+        [laterIds, mesVideos]
     );
 
     // Croix → coche sur les cartes : ajoute/retire de « À faire plus tard »,
@@ -2195,10 +2200,7 @@ export default function TVHome() {
                         subtitleMode="time"
                         onSeeAll={openAll}
                         onOpen={openSheet}
-                        /* Le menu d'appui long agit sur le catalogue (favoris,
-                           catégorie, partage) : il n'a rien à dire d'une fiche
-                           qui n'appartient qu'à son auteur. */
-                        onLongPress={() => { /* rien à proposer ici */ }}
+                        onLongPress={openMenu}
                     />
                 )}
                 <Row title="Nouveautés" recipes={newest} variant="medium" subtitleMode="time" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
@@ -2356,17 +2358,43 @@ export default function TVHome() {
                                             <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); openAll(catName, (byCat[cat] || []).length ? byCat[cat] : mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat && x.image)); }}>
                                                 <MI d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
                                             </button>
-                                            <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard({ recipe: rr, category: coll }); }}>
-                                                <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager « {coll.label} »</span>
-                                            </button>
-                                            {/* Une seule entrée : la carte image porte déjà le lien,
-                                                le titre et le QR code. */}
-                                            <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard({ recipe: rr }); }}>
-                                                <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
-                                            </button>
+                                            {/*
+                                              * Partager suppose une page publique. Une recette tirée
+                                              * d'une vidéo n'appartient qu'à son auteur et n'en a pas :
+                                              * le lien partagé ne mènerait nulle part. On ne propose
+                                              * donc pas une porte qui ne s'ouvre pas.
+                                              */}
+                                            {!(r as any).perso && (
+                                                <>
+                                                    <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard({ recipe: rr, category: coll }); }}>
+                                                        <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager « {coll.label} »</span>
+                                                    </button>
+                                                    {/* Une seule entrée : la carte image porte déjà le lien,
+                                                        le titre et le QR code. */}
+                                                    <button className={styles.menuAction} onClick={() => { haptic(8); const rr = r; setMenu(null); setShareCard({ recipe: rr }); }}>
+                                                        <MI d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" /><span>Partager la recette</span>
+                                                    </button>
+                                                </>
+                                            )}
                                             <button className={`${styles.menuAction} ${lat ? styles.menuDanger : ''}`} onClick={() => { haptic(12); setMenu(null); handleToggleLater(r); }}>
                                                 {lat ? <MI d="M5 12h14" /> : <MI d="M12 5v14M5 12h14" />}<span>{lat ? 'Retirer de la liste' : 'À faire plus tard'}</span>
                                             </button>
+                                            {(r as any).perso && (
+                                                <button
+                                                    className={`${styles.menuAction} ${styles.menuDanger}`}
+                                                    onClick={async () => {
+                                                        haptic(12);
+                                                        const id = String(r.id);
+                                                        setMenu(null);
+                                                        // L'écran répond tout de suite ; la base suit.
+                                                        setMesVideos((liste) => liste.filter((x) => String(x.id) !== id));
+                                                        await oublierRecette(id);
+                                                    }}
+                                                >
+                                                    <MI d="M4 7h16M9.5 7V5.2A1.2 1.2 0 0 1 10.7 4h2.6a1.2 1.2 0 0 1 1.2 1.2V7M6.5 7l.9 12.1A1.5 1.5 0 0 0 8.9 20.5h6.2a1.5 1.5 0 0 0 1.5-1.4L17.5 7" />
+                                                    <span>Retirer de mes vidéos</span>
+                                                </button>
+                                            )}
                                             {resume.some((x) => String(x.id) === String(r.id)) && (
                                                 <button className={`${styles.menuAction} ${styles.menuDanger}`} onClick={() => { haptic(8); setMenu(null); clearProgress(String(r.id)); }}>
                                                     <MI d="M5 12h14" /><span>Retirer de « Reprendre la cuisine »</span>

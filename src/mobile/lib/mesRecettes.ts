@@ -31,6 +31,7 @@ export interface MaRecette {
         auteur?: string;
         sourceUrl?: string;
         image?: string;
+        videoHtml?: string;
     } | null;
 }
 
@@ -110,6 +111,8 @@ export function versFiche(m: MaRecette): Record<string, unknown> | null {
         ingredients: r.ingredients || [],
         steps: r.steps || [],
         tags: r.tags || [],
+        // L'onglet « Vidéo » de la fiche s'ouvre sur cet embed.
+        videoHtml: r.videoHtml || '',
         // De quoi créditer l'auteur de la vidéo dans la fiche.
         auteurVideo: r.auteur || '',
         sourceUrl: r.sourceUrl || m.source_url,

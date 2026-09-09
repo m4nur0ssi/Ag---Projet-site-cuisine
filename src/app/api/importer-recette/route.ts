@@ -135,6 +135,13 @@ export async function POST(request: Request) {
                      * l'image reste chez TikTok.
                      */
                     image: `/api/tiktok-thumb?v=${video.videoId}`,
+                    /*
+                     * L'onglet « Vidéo » de la fiche n'apparaît que si la
+                     * recette porte un embed : sans lui, on lisait la recette
+                     * d'une vidéo sans jamais pouvoir la regarder. Même forme
+                     * que les recettes du catalogue, à la lettre.
+                     */
+                    videoHtml: `<blockquote class="tiktok-embed" cite="https://www.tiktok.com/v/${video.videoId}" data-video-id="${video.videoId}" style="max-width: 605px;min-width: 325px;">\n<section>\n            <a target="_blank" title="@${video.auteur || 'tiktok'}" href="${video.url}">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src="https://www.tiktok.com/embed.js"></script>`,
                     importedAt: new Date().toISOString(),
                 },
                 updated_at: new Date().toISOString(),
