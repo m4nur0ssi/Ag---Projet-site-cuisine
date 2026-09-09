@@ -43,6 +43,8 @@ import SiteFooter from '@/components/SiteFooter/SiteFooter';
 
 const TVAuthGate = dynamic(() => import('./TVAuthGate'), { ssr: false });
 const TVSpotlight = dynamic(() => import('@/mobile/screens/tv/TVSpotlight'), { ssr: false });
+const MesRecettes = dynamic(() => import('@/mobile/screens/tv/MesRecettes'), { ssr: false });
+import { listerMesRecettes, versFiche } from '@/mobile/lib/mesRecettes';
 const AuthButton = dynamic(() => import('@/components/AuthButton/AuthButton'), { ssr: false });
 // Visite guidée du site (version desktop) : composant autonome, habillé en ligne de menu.
 const TVTutorial = dynamic(() => import('@/mobile/screens/tv/TVTutorial'), { ssr: false });
@@ -748,7 +750,24 @@ export default function TVDesktopHome() {
     // c:/t:/p:). ET entre groupes, OU dans un groupe — même logique que le mobile.
     const [filters, setFilters] = useState<string[]>([]);
     // Panneau ouvert dans le contenu (sidebar conservée) : planificateur ou courses.
-    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris' | 'search' | 'tuto' | 'gouts' | 'extension'>('none');
+    const [panel, setPanel] = useState<'none' | 'planner' | 'courses' | 'trophies' | 'cave' | 'favoris' | 'search' | 'tuto' | 'gouts' | 'extension' | 'mesvideos'>('none');
+    /*
+     * « Mes vidéos » : les recettes que la personne s'est faites depuis une
+     * vidéo. Elles ne sont pas dans le catalogue (compilé au build) — on va les
+     * chercher à l'exécution, et la rangée n'existe que s'il y en a.
+     */
+    const [mesVideos, setMesVideos] = useState<Recipe[]>([]);
+
+    useEffect(() => {
+        // Au retour du panneau : une recette qui vient d'être importée doit
+        // apparaître sur l'accueil sans recharger la page.
+        if (panel === 'mesvideos') return;
+        let vivant = true;
+        listerMesRecettes().then((liste) => {
+            if (vivant) setMesVideos(liste.map(versFiche).filter(Boolean) as unknown as Recipe[]);
+        });
+        return () => { vivant = false; };
+    }, [panel]);
     /*
      * Recherche amorcée par un lien extérieur (« /?q=… », « /?ingredients=… »,
      * « /?italien=1 ») : le panneau Rechercher s'ouvre pré-rempli. Sert aux liens
@@ -1044,6 +1063,7 @@ export default function TVDesktopHome() {
         cave: () => { setCollection(null); setFilters([]); setPanel('cave'); },
         favoris: () => { setCollection(null); setFilters([]); setPanel('favoris'); },
         recherche: () => { setCollection(null); setFilters([]); setPanel('search'); },
+        mesvideos: () => { setCollection(null); setFilters([]); setPanel('mesvideos'); },
         tutoriel: () => { setCollection(null); setFilters([]); setPanel('tuto'); },
         gouts: () => { setCollection(null); setFilters([]); setPanel('gouts'); },
     };
@@ -1195,6 +1215,10 @@ export default function TVDesktopHome() {
                             <span>Installer l’application</span>
                         </>}
                     />
+                    <NavItem
+                        icon="M4 6.5A1.5 1.5 0 0 1 5.5 5h8A1.5 1.5 0 0 1 15 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 17.5zM15 10l4.2-2.6a.6.6 0 0 1 .9.5v8.2a.6.6 0 0 1-.9.5L15 14z"
+                        token="s:mesvideos" active={panel === 'mesvideos'} onClick={SHORTCUTS.mesvideos}
+                    >J’ai vu une vidéo</NavItem>
                     <NavItem icon="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z" token="s:gouts" active={panel === 'gouts'} onClick={SHORTCUTS.gouts}>Affine mes goûts</NavItem>
                     <NavItem icon="M4 6.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zM3.4 7.4 12 13l8.6-5.6" onClick={() => { window.location.href = MAIL_RECETTE; }}>Ajouter une recette</NavItem>
                 </nav>
@@ -1253,6 +1277,7 @@ export default function TVDesktopHome() {
                                     : panel === 'tuto' ? <TVTutorial embedded onClose={() => setPanel('none')} />
                                     : panel === 'gouts' ? <TasteOnboarding embedded onClose={() => setPanel('none')} />
                                     : panel === 'extension' ? <ExtensionGuide embedded onClose={() => setPanel('none')} />
+                                    : panel === 'mesvideos' ? <MesRecettes embedded />
                                     : panel === 'search' ? (
                                         <TVSpotlight
                                             embedded
@@ -1327,6 +1352,9 @@ export default function TVDesktopHome() {
                             {resume.length > 0 && <Row title="Reprendre la cuisine" recipes={resume} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
                             {laterRecipes.length > 0 && <Row title="À faire plus tard" recipes={laterRecipes} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
                             {forYou.length >= 4 && <Row title="Pour toi" recipes={forYou} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
+                            {mesVideos.length > 0 && (
+                                <Row title="Mes vidéos" recipes={mesVideos} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            )}
                             <Row title="Nouveautés" recipes={newest} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             <Row title="Apéritifs" recipes={byCat['aperitifs'] || []} shape="square" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             <Row title="Entrées" recipes={byCat['entrees'] || []} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />

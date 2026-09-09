@@ -217,6 +217,51 @@ const SCENES = {
         },
     },
 
+    'mes-videos': {
+        titre: 'Une vidéo devient une recette',
+        page: '/',
+        /*
+         * Cette scène-là exige une VRAIE session : la route d'import refuse
+         * tout le reste, et c'est bien ainsi. On lui passe donc une session
+         * par l'environnement (TUTO_SESSION, le JSON rendu par Supabase à la
+         * connexion) — le compte de façade `NEXT_PUBLIC_FAUX_COMPTE` ne
+         * conviendrait pas : son jeton n'est pas signé.
+         */
+        avant: () => {
+            const session = process.env.TUTO_SESSION;
+            if (!session) throw new Error('mes-videos : passe TUTO_SESSION=<json de session Supabase> pour tourner cette scène');
+            /*
+             * Sous quel nom ranger la session ? Supabase la lit dans
+             * `sb-<projet>-auth-token`. Le script de tournage, lui, ne charge
+             * pas `.env.local` — on prend donc le nom du projet DANS le jeton :
+             * sa charge utile porte l'adresse du serveur qui l'a signé.
+             */
+            const charge = JSON.parse(Buffer.from(JSON.parse(session).access_token.split('.')[1], 'base64url').toString());
+            const ref = new URL(charge.iss).hostname.split('.')[0];
+            return `try { localStorage.setItem('sb-${ref}-auth-token', ${JSON.stringify(session)}); } catch (e) {}`;
+        },
+        async jouer(p) {
+            await p.attendre(1600);
+            const menu = await p.centre('[class*=heroMenuBtn]');
+            await p.tap(menu.x, menu.y, { apres: 1500 });
+            const entree = await p.amener('vu une vidéo');
+            await p.tap(entree.x, entree.y, { apres: 1800 });
+            // Le lien d'une vidéo, tapé lettre à lettre : on voit d'où il vient.
+            await p.taper('input[type=url]', 'tiktok.com/@aissa_kitchen/video/7653779236460743968', { cadence: 45 });
+            const ajouter = await p.centreParTexte('Ajouter');
+            // Le serveur écoute la vidéo puis écrit la recette : quelques
+            // secondes pendant lesquelles l'écran dit ce qu'il fait.
+            await p.tap(ajouter.x, ajouter.y, { apres: 9000 });
+            await p.attendre(2500);
+            // Une prise ratée donne une vidéo qui ne montre rien : on vérifie
+            // que la fiche s'est bien ouverte.
+            const ouverte = await p.evaluer("!!document.querySelector('[class*=sheet], [class*=RecipeSheet]')");
+            if (!ouverte) throw new Error('la fiche ne s’est pas ouverte : prise à refaire');
+            await p.glisser(200, 640, 200, 320, { pas: 20, pause: 26 });
+            await p.attendre(1800);
+        },
+    },
+
     'appui-long': {
         titre: 'Le menu de la carte',
         page: '/',

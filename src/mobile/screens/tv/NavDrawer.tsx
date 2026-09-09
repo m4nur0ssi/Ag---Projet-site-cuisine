@@ -35,6 +35,7 @@ const ICONS = {
     heart: 'M20.8 6.6a4.6 4.6 0 0 0-6.5 0L12 8.9 9.7 6.6a4.6 4.6 0 1 0-6.5 6.5l1 1L12 21l7.8-6.9 1-1a4.6 4.6 0 0 0 0-6.5z',
     search: 'M21 21l-4.3-4.3M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z',
     day: 'M12 7v5l3 1.8M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
+    video: 'M4 6.5A1.5 1.5 0 0 1 5.5 5h8A1.5 1.5 0 0 1 15 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 17.5zM15 10l4.2-2.6a.6.6 0 0 1 .9.5v8.2a.6.6 0 0 1-.9.5L15 14z',
     book: 'M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5z',
 };
 
@@ -69,6 +70,8 @@ interface NavDrawerProps {
     onSearch: () => void;
     /** Ouvre la visite guidée de l'app mobile (et non celle du site desktop). */
     onTutorial: () => void;
+    /** Ouvre « J'ai vu une vidéo » : le lien collé devient une recette à soi. */
+    onMesRecettes: () => void;
     /** Ouvre l'onboarding « Affine mes goûts » (optionnel). */
     onTaste?: () => void;
     resultCount: number;
@@ -84,7 +87,7 @@ interface NavDrawerProps {
     peek?: number;
 }
 
-export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, onSearch, onTutorial, onTaste, resultCount, query, onQuery, peek = 0 }: NavDrawerProps) {
+export default function NavDrawer({ open, onClose, selected, onToggle, onClear, onApply, onSearch, onTutorial, onMesRecettes, onTaste, resultCount, query, onQuery, peek = 0 }: NavDrawerProps) {
     const router = useRouter();
     const active = selected.length > 0 || query.trim().length > 0;
     // Planificateur, courses et favoris n'ont de sens que connecté : hors session
@@ -362,6 +365,16 @@ export default function NavDrawer({ open, onClose, selected, onToggle, onClear, 
                                     onClick={() => { ouvrirClavier(); onClose(); onSearch(); }}
                                 >
                                     <Ic d={ICONS.search} /><span className={styles.navRowText}>Rechercher</span>
+                                </button>
+                                {/* Une vidéo vue ailleurs devient une recette à soi.
+                                    Réservé aux connectés : la fiche se range dans le
+                                    compte, et le serveur fait travailler un modèle. */}
+                                <button
+                                    className={`${styles.navRow} ${authed ? '' : styles.navRowLocked}`}
+                                    onClick={() => { onClose(); onMesRecettes(); }}
+                                >
+                                    <Ic d={ICONS.video} />
+                                    <span className={styles.navRowText}>J’ai vu une vidéo</span>
                                 </button>
                                 {/* Une recette manque ? On l'envoie par courrier, tout
                                     est déjà écrit — il ne reste qu'à coller le lien. */}

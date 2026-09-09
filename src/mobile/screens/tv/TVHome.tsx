@@ -23,6 +23,7 @@ import { Recipe } from '@/mobile/types';
 import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
 import { homeRecipes as mockRecipes, type HomeRecipe } from '@/mobile/data/home-recipes';
 import { chargerVideos, completer, detailsPrets } from '@/mobile/data/videos-embed';
+import { listerMesRecettes, versFiche } from '@/mobile/lib/mesRecettes';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
@@ -163,6 +164,7 @@ import { ecrireStock } from '@/lib/stockage';
 const TVSpotlight = dynamic(() => import('./TVSpotlight'), { ssr: false });
 // Visite guidée de l'app mobile (remplace celle du site, écrite pour le desktop).
 const TVTutorial = dynamic(() => import('./TVTutorial'), { ssr: false });
+const MesRecettes = dynamic(() => import('./MesRecettes'), { ssr: false });
 /* Invitation à installer : ne se montre qu'à la 3e visite, et jamais deux fois. */
 const InstallInvite = dynamic(() => import('@/mobile/components/InstallInvite/InstallInvite'), { ssr: false });
 
@@ -1713,6 +1715,14 @@ export default function TVHome() {
      */
     const [seed, setSeed] = useState<{ q: string; ing: string; italien: boolean } | null>(null);
     const [tutoOpen, setTutoOpen] = useState(false);
+    const [mesRecettesOpen, setMesRecettesOpen] = useState(false);
+    /*
+     * Les recettes tirées de vidéos par la personne connectée. Elles ne sont
+     * PAS dans le catalogue (compilé au build) : on va les chercher à
+     * l'exécution. La rangée n'apparaît que s'il y en a — un titre au-dessus
+     * du vide n'apprend rien à personne.
+     */
+    const [mesVideos, setMesVideos] = useState<Recipe[]>([]);
     const [laterIds, setLaterIds] = useState<string[]>([]);
     const [favIds, setFavIds] = useState<string[]>([]);
 
@@ -1794,11 +1804,17 @@ export default function TVHome() {
     // La loupe de la barre du bas ouvre désormais directement la recherche
     // « Apple TV+ » (TVSpotlight branché dans BottomNav) : plus besoin d'intercepter.
 
-    // Un calque plein écran est ouvert (recherche, fiche recette, grille « tout
-    // afficher », menu d'appui long) → on masque la barre du bas (BottomNav prod).
-    // Sinon son dock (Accueil/loupe) reste tappable par-dessus ou à travers le
-    // calque selon le contexte d'empilement, et ses boutons se comportent mal.
-    const overlayOpen = searchOpen || tutoOpen || !!sheet || !!all || !!menu || !!planFor;
+    // Un calque plein écran est ouvert (recherche, fiche recette, menu d'appui
+    // long) → on masque la barre du bas (BottomNav prod). Sinon son dock
+    // (Accueil/loupe) reste tappable par-dessus ou à travers le calque selon le
+    // contexte d'empilement, et ses boutons se comportent mal.
+    //
+    // La grille « tout afficher » (entrer dans une catégorie depuis l'accueil)
+    // fait EXCEPTION : c'est un écran de navigation, pas un calque modal, et y
+    // perdre les menus était le même piège que la recherche — il fallait deviner
+    // qu'on en sortait par le chevron. Elle se dessine sous la barre (z-index) et
+    // se réserve sa hauteur en bas de grille.
+    const overlayOpen = searchOpen || tutoOpen || mesRecettesOpen || !!sheet || !!menu || !!planFor;
     // La rotation du héros doit s'arrêter quand un calque le recouvre ; elle
     // tourne dans un intervalle, qui ne verrait pas passer un état.
     calqueOuvert.current = overlayOpen;
@@ -1822,6 +1838,18 @@ export default function TVHome() {
 
     const openMenu = useCallback((recipe: Recipe, coll?: Coll) => setMenu({ recipe, coll }), []);
 
+    /*
+     * La barre du bas restant visible sur la grille d'une catégorie, ses onglets
+     * doivent la refermer : sinon elle demeurait par-dessus l'écran d'arrivée —
+     * et « Accueil », qui ne change pas d'adresse, n'aurait rien fait du tout.
+     * BottomNav annonce chaque appui d'onglet par cet événement.
+     */
+    useEffect(() => {
+        const fermer = () => setAll(null);
+        window.addEventListener('magic-close-sheet', fermer);
+        return () => window.removeEventListener('magic-close-sheet', fermer);
+    }, []);
+
     // Le balayage « retour » ferme le calque du dessus au lieu de quitter /tv.
     useBackToClose(!!all, () => setAll(null));
     useBackToClose(!!sheet, () => setSheet(null));
@@ -1830,6 +1858,18 @@ export default function TVHome() {
     useBackToClose(navOpen, () => setNavOpen(false));
     useBackToClose(searchOpen, () => setSearchOpen(false));
     useBackToClose(tutoOpen, () => setTutoOpen(false));
+    useBackToClose(mesRecettesOpen, () => setMesRecettesOpen(false));
+    useEffect(() => {
+        // Au montage, et au retour de l'écran d'import : une recette qui vient
+        // d'arriver doit se voir sans recharger la page.
+        if (mesRecettesOpen) return;
+        let vivant = true;
+        listerMesRecettes().then((liste) => {
+            if (!vivant) return;
+            setMesVideos(liste.map(versFiche).filter(Boolean) as unknown as Recipe[]);
+        });
+        return () => { vivant = false; };
+    }, [mesRecettesOpen]);
 
     const toggleFilter = useCallback((token: string) => {
         setFilters((prev) => (prev.includes(token) ? prev.filter((t) => t !== token) : [...prev, token]));
@@ -2096,6 +2136,7 @@ export default function TVHome() {
                 }}
                 onSearch={() => setSearchOpen(true)}
                 onTutorial={() => setTutoOpen(true)}
+                onMesRecettes={() => setMesRecettesOpen(true)}
                 onTaste={() => setTasteOpen(true)}
                 resultCount={filterResults.length}
                 query={navQuery}
@@ -2144,6 +2185,20 @@ export default function TVHome() {
                         onLongPress={openMenu}
                         isLater={isLater}
                         onToggleLater={handleToggleLater}
+                    />
+                )}
+                {mesVideos.length > 0 && (
+                    <Row
+                        title="Mes vidéos"
+                        recipes={mesVideos}
+                        variant="medium"
+                        subtitleMode="time"
+                        onSeeAll={openAll}
+                        onOpen={openSheet}
+                        /* Le menu d'appui long agit sur le catalogue (favoris,
+                           catégorie, partage) : il n'a rien à dire d'une fiche
+                           qui n'appartient qu'à son auteur. */
+                        onLongPress={() => { /* rien à proposer ici */ }}
                     />
                 )}
                 <Row title="Nouveautés" recipes={newest} variant="medium" subtitleMode="time" onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
@@ -2354,6 +2409,7 @@ export default function TVHome() {
             <Tip id="accueil" />
             <InstallInvite />
             {tutoOpen && <TVTutorial onClose={() => setTutoOpen(false)} />}
+            {mesRecettesOpen && <MesRecettes onClose={() => setMesRecettesOpen(false)} />}
             {tasteOpen && <TasteOnboarding onClose={() => setTasteOpen(false)} />}
             {shareCard && (
                 <RecipeShareCard
