@@ -2,11 +2,340 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 09/09/2026 22:08:20
- * Total: 693 recettes
+ * Dernière mise à jour: 10/09/2026 10:56:38
+ * Total: 696 recettes
  */
-export const exportSyncId = "1788984500633";
+export const exportSyncId = "1789030598582";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7726",
+        "title": "Poulet au poivre",
+        "description": "Cette recette de poulet au poivre est incroyablement délicieuse et a été ajoutée à la rotation hebdomadaire de l'auteur. Un plat complet avec des pommes de terre croustillantes et une sauce crémeuse au poivre.",
+        "image": "/recipes-ia/7726-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7683248577744981270\" data-video-id=\"7683248577744981270\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7683248577744981270\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍗\n             4-5 cuisses de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 cuillère à café de poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ¾ cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             ½ cuillère à café de poudre d'ail"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             ½ cuillère à café de poudre d'oignon"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             ½ cuillère à café de paprika fumé (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ½ cuillère à café de thym séché (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             ½ oignon blanc, très finement haché"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             3 gousses d'ail hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             2 cuillères à soupe de grains de poivre concassés"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ¼ cuillère à café de romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🍗\n             150 ml de bouillon de poulet"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             100 ml de crème double"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à café de moutarde de Dijon"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de sauce Worcestershire"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 cuillère à soupe de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel, au goût"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir concassé supplémentaire, si nécessaire"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             Persil haché"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             Petites pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 à 1½ cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivre noir"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ¼ cuillère à café de thym séché"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             ¼ cuillère à café de romarin"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             1 cuillère à soupe de beurre"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             ½ cuillère à café d'ail (haché)"
+            }
+        ],
+        "steps": [
+            "**Pour les pommes de terre :** Entailler les petites pommes de terre avec un coupe-frites.",
+            "Faire bouillir les pommes de terre dans de l'eau salée pendant 6 à 8 minutes, puis les égoutter et les sécher à la vapeur.",
+            "Mélanger les pommes de terre avec l'huile, le sel, le poivre et les herbes.",
+            "Frire à l'air à 190°C pendant 15 minutes, secouer, puis à 200°C pendant 5 à 8 minutes.",
+            "Ajouter le beurre et l'ail haché pendant les 2 à 3 dernières minutes de cuisson.",
+            "**Pour le poulet :** Éponger les cuisses de poulet et appliquer l'assaisonnement préparé.",
+            "Saisir le poulet dans 1 cuillère à soupe d'huile à feu moyen-vif pendant 5 à 7 minutes par côté, jusqu'à ce qu'il soit cuit.",
+            "Retirer le poulet de la poêle et le laisser reposer.",
+            "**Pour la sauce au poivre :** Dans la même poêle, ajouter 1 cuillère à soupe de beurre, l'oignon blanc finement haché et l'ail.",
+            "Cuire pendant 2 à 3 minutes.",
+            "Ajouter les grains de poivre concassés, puis le bouillon de poulet. Racler le fond de la poêle et laisser mijoter pendant 2 à 3 minutes.",
+            "Ajouter la moutarde, la sauce Worcestershire et le romarin.",
+            "Incorporer la crème double et laisser mijoter pendant 3 à 5 minutes jusqu'à ce que la sauce épaississe légèrement.",
+            "Remettre le poulet dans la sauce pendant 1 à 2 minutes.",
+            "Saupoudrer de persil haché si désiré. (Ajuster tous les assaisonnements à votre préférence)"
+        ],
+        "tags": [
+            "épicé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7728",
+        "title": "Panuozzo maison",
+        "description": "Découvrez la recette du panuozzo, un sandwich italien populaire à base d'une pâte maison similaire à celle de la pizza. Garnissez-le généreusement de charcuterie, de stracciatella maison, de légumes frais et de sauces pour un repas estival savoure...",
+        "image": "/recipes-ia/7728-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7676856770488192289\" data-video-id=\"7676856770488192289\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7676856770488192289\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🌾\n             Farine de type 00"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Eau froide"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Levain déshydraté (ou levure boulangère)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             Sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive extra vierge"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Burrata"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème liquide entière"
+            },
+            {
+                "quantity": "",
+                "name": "🥓\n             Jambon de veau"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             Cecina (bœuf séché)"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             Tomates séchées"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             Poivrons confits"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Mâche"
+            },
+            {
+                "quantity": "",
+                "name": "🥗\n             Roquette"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Pesto de pistache"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Parmesan râpé"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             Crème de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Semoule"
+            }
+        ],
+        "steps": [
+            "Pour la pâte, mélangez la farine de type 00 avec les trois quarts de l'eau froide.",
+            "Mélangez bien, ajoutez un filet d'huile d'olive par-dessus et laissez reposer pendant 30 minutes.",
+            "Après 30 minutes, ajoutez le levain déshydraté (vous pouvez aussi utiliser de la levure boulangère).",
+            "Ajoutez le sel et le reste de l'eau petit à petit.",
+            "Une fois que toute l'eau est absorbée, terminez avec un filet d'huile d'olive et pétrissez encore 3 minutes jusqu'à obtenir une pâte bien homogène et élastique.",
+            "Couvrez la pâte et laissez-la pousser environ 3 heures à température ambiante.",
+            "Pendant ces 3 heures, faites des rabats toutes les 30 minutes : soulevez délicatement la pâte et repliez-la sur elle-même de chaque côté pour obtenir un pain bien alvéolé à la fin.",
+            "Après les 3 heures de pousse, divisez la pâte en 4 pâtons de taille égale.",
+            "Placez les pâtons dans une boîte légèrement huilée et laissez-les détendre encore 1 heure à température ambiante.",
+            "Pour former les panuozzo, mettez de la semoule directement sur le plan de travail.",
+            "Étirez les pâtons simplement avec vos mains, en essayant de garder l'épaisseur et un maximum d'air à l'intérieur.",
+            "Ajoutez un bon filet d'huile d'olive par-dessus.",
+            "Faites cuire dans un four à pizza à environ 400°C pendant environ 2 minutes, ou dans un four traditionnel bien préchauffé à 250°C pendant environ 6 à 8 minutes. Le pain doit être bien gonflé, croustillant à l'extérieur et alvéolé à l'intérieur.",
+            "Pour la garniture, préparez une stracciatella maison : effilochez une burrata et ajoutez un peu de crème liquide entière pour obtenir quelque chose de bien crémeux.",
+            "Garnissez le pain encore chaud avec la stracciatella, du jambon de veau et de la cecina (bœuf séché).",
+            "Ajoutez des tomates séchées, des poivrons confits et un mélange de mâche et de roquette pour apporter de la fraîcheur.",
+            "Terminez par un bon pesto de pistache, du parmesan râpé et une petite crème de basilic.",
+            "Vous pouvez garnir le panuozzo avec les ingrédients de votre choix, y compris une version 100% végétarienne."
+        ],
+        "tags": [
+            "Italie",
+            "Sandwichs",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7730",
+        "title": "Pasta all'Assassina",
+        "description": "Découvrez la Pasta all'Assassina, une spécialité des Pouilles en Italie. Ce plat revisite les spaghettis en les faisant griller directement dans une sauce tomate légèrement épicée pour un résultat croustillant et savoureux.",
+        "image": "/recipes-ia/7730-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7683559925192166689\" data-video-id=\"7683559925192166689\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7683559925192166689\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "💧\n             1 L d'eau bouillante"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             1 cuillère à soupe de concentré de tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🌿\n             1 branche de basilic"
+            },
+            {
+                "quantity": "",
+                "name": "🍝\n             300 g de spaghetti"
+            },
+            {
+                "quantity": "",
+                "name": "🍅\n             500 g de sauce tomate"
+            },
+            {
+                "quantity": "",
+                "name": "🌶️\n             1 piment (facultatif)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 cuillère à café de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile d'olive"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             2 gousses d'ail"
+            }
+        ],
+        "steps": [
+            "Dans une casserole, mettez l'eau bouillante avec le sel et une cuillère à soupe de concentré de tomate.",
+            "Fouettez, ajoutez une branche de basilic et laissez mijoter environ 5 minutes pour créer un bouillon.",
+            "Dans une poêle, versez un bon filet d'huile d'olive.",
+            "Faites cuire deux gousses d'ail avec le piment (facultatif).",
+            "Ajoutez une bonne sauce tomate (maison ou du commerce).",
+            "Déposez les spaghettis crus dans la poêle, recouvrez-les de sauce tomate et ne les touchez plus pendant environ 3 à 4 minutes pour qu'une croûte se forme.",
+            "Retournez les spaghettis pour former une croûte croustillante de l'autre côté.",
+            "Ajoutez quelques louches de bouillon petit à petit. Dès que les pâtes ont absorbé le liquide, si elles ne sont pas encore cuites, ajoutez-en davantage, comme pour un risotto.",
+            "Lorsque les pâtes sont al dente, servez immédiatement."
+        ],
+        "tags": [
+            "épicé",
+            "Italie",
+            "Pas cher",
+            "pates"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7723",
         "title": "Osso Buco",
@@ -117,7 +446,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Tartelettes Amandine Faciles",
         "description": "Une recette simple pour préparer de délicieuses tartelettes amandine, composées d'une pâte sablée maison et d'une crème d'amande onctueuse, garnies d'amandes effilées et nappées de miel ou de sirop.",
         "image": "/recipes-ia/7717-carte.webp",
-        "category": "glaces",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -223,7 +552,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Poulet Frit Façon Los Pollos Hermanos",
         "description": "Découvrez la recette inspirée du célèbre poulet frit de Los Pollos Hermanos, la chaîne de restaurants de Gus Fring dans l'univers de Breaking Bad et Better Call Saul. Ce poulet ultra croustillant et épicé, fait maison, est préparé avec une marinad...",
         "image": "/recipes-ia/7719-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -3258,7 +3587,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Poisson et frites de l'espace",
         "description": "Une recette originale et savoureuse de poisson et frites pour deux personnes, accompagnée d'une sauce maison relevée.",
         "image": "/recipes-ia/6562-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -5373,7 +5702,6 @@ export const mockRecipes: Recipe[] = [
             "Afrique",
             "C'est l'hiver",
             "Healthy",
-            "Pâques",
             "Soupes"
         ],
         "isFeatured": false,
@@ -7566,8 +7894,7 @@ export const mockRecipes: Recipe[] = [
         ],
         "tags": [
             "Afrique",
-            "épicé",
-            "Pâques"
+            "épicé"
         ],
         "isFeatured": false,
         "isFavorite": false,
@@ -8384,7 +8711,7 @@ export const mockRecipes: Recipe[] = [
     },
     {
         "id": "6009",
-        "title": "Bowl Mexicanos comestible",
+        "title": "Bol mexicain comestible",
         "description": "Un bowl comestible rempli de saveur, de texture et de couleur, avec des Tostacos WOW Guacamole pour une touche croustillante et fraîche.",
         "image": "/recipes-ia/6009-carte.webp",
         "category": "plats",
@@ -8400,15 +8727,15 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Arroz mexicano"
+                "name": "🥣\n             Riz mexicain"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Carne molida"
+                "name": "🥣\n             Viande hachée"
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Pulled pork"
+                "name": "🥣\n             Porc effiloché"
             },
             {
                 "quantity": "",
@@ -8416,7 +8743,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Pico de gallo fresco"
+                "name": "🥣\n             Pico de gallo frais"
             },
             {
                 "quantity": "",
@@ -8428,7 +8755,7 @@ export const mockRecipes: Recipe[] = [
             },
             {
                 "quantity": "",
-                "name": "🥣\n             Cilantro fresco"
+                "name": "🥣\n             Coriandre fraîche"
             }
         ],
         "steps": [
@@ -10416,7 +10743,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Salade de Pâtes Crémeuse",
         "description": "Une salade de pâtes fraîche et crémeuse, idéale pour l'été, combinant pâtes, légumes croquants (tomates cerises, concombre, oignon rouge), gouda au cumin, thon, et une sauce onctueuse à base de yaourt grec, paprika et piment.",
         "image": "/recipes-ia/6488-carte.webp",
-        "category": "sauces",
+        "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -13670,7 +13997,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Beignets de courgettes à la feta (Kolokithokeftedes) et Tzatziki",
         "description": "Ces beignets de courgettes à la feta, croustillants à l'extérieur et fondants à l'intérieur, sont servis avec un tzatziki maison rafraîchissant. Parfaits pour l'apéritif.",
         "image": "/recipes-ia/7445-carte.webp",
-        "category": "sauces",
+        "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -13771,7 +14098,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Flans de patates douces rôties, saumon et sauce à l'aneth",
         "description": "Une recette gourmande, facile et équilibrée, composée de petits flans de patates douces rôties, d'un pavé de saumon mariné et d'une sauce crémeuse à la moutarde et à l'aneth. Idéal en entrée ou en plat principal.",
         "image": "/recipes-ia/7437-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -14456,7 +14783,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Mini cheesecakes Oreo-myrtille",
         "description": "Ces mini cheesecakes individuels sont composés d'une coque en chocolat, d'une garniture crémeuse au fromage frais, d'un coulis de myrtilles et sont surmontés d'un demi-Oreo. Parfaits pour une touche gourmande et rafraîchissante.",
         "image": "/recipes-ia/6845-carte.webp",
-        "category": "glaces",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -14677,7 +15004,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Cheesecake sans cuisson au chocolat blanc et framboises",
         "description": "C'est l'un de mes cheesecakes préférés de tous les temps !",
         "image": "/recipes-ia/7400-carte.webp",
-        "category": "glaces",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -14890,7 +15217,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Pancakes aux Fraises",
         "description": "Une recette de pancakes fins et moelleux, colorés en rose grâce à la poudre de betterave, garnis d'une crème fouettée légère et de fraises fraîches. Ils sont ensuite roulés et servis frais.",
         "image": "/recipes-ia/7395-carte.webp",
-        "category": "glaces",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -19125,7 +19452,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Pavlova à la compotée de fraises des bois et chantilly",
         "description": "Découvrez cette pavlova spectaculaire qui a conquis Instagram ! Une meringue française aérienne garnie d'une compotée acidulée de fraises des bois, d'un sorbet rafraîchissant au babeurre et d'un lemon curd onctueux. Un dessert d'été parfait pour i...",
         "image": "/recipes-ia/3549-carte.webp",
-        "category": "glaces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -20089,7 +20416,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Bâtonnets de mozzarella façon Nashville",
         "description": "Découvrez la recette authentique des bâtonnets de mozzarella façon Nashville, relevés et croustillants, accompagnés d'une sauce Ranch traditionnelle et d'un laquage pimenté. Une idée gourmande et facile à réaliser, parfaite pour les amateurs de st...",
         "image": "/recipes-ia/7197-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -22612,7 +22939,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Galettes de Tomate et Tzatziki",
         "description": "Ces galettes, inspirées des Tomatokeftedes grecques, sont revisitées avec de l'estragon et des olives noires pour une touche de peps. Elles sont accompagnées d'un tzatziki frais et léger, parfait pour l'été.",
         "image": "/recipes-ia/7127-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -24196,7 +24523,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Salade saumon sauce coco et citron vert",
         "description": "Une salade fraîche et savoureuse avec une sauce exotique à base de lait de coco, citron vert et sésame, accompagnée de saumon (ou crevettes/poulet), de légumes croquants et de fruits.",
         "image": "/recipes-ia/7030-carte.webp",
-        "category": "sauces",
+        "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -24414,7 +24741,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Mousse d'avocat",
         "description": "Une recette de mousse d'avocat polyvalente, parfaite pour l'apéritif ou pour accompagner des crudités, du saumon fumé, des œufs durs, des salades ou des tartines.",
         "image": "/recipes-ia/7007-carte.webp",
-        "category": "sauces",
+        "category": "aperitifs",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -25489,7 +25816,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Patates grecques garnies",
         "description": "Découvrez une recette grecque populaire, simple à préparer et incroyablement savoureuse, parfaite pour un repas convivial. Ce plat complet comprend du poulet mariné grillé, des pommes de terre rôties, une sauce tzatziki rafraîchissante et une sala...",
         "image": "/recipes-ia/6941-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -26234,7 +26561,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Salade de tomates sauce crémeuse pistou",
         "description": "Une salade de tomates fraîches et variées, agrémentée de croûtons croustillants à l'ail et au thym, le tout nappé d'une sauce crémeuse au basilic, pignons de pin et yaourt grec, inspirée de la Panzanella italienne.",
         "image": "/recipes-ia/6833-carte.webp",
-        "category": "sauces",
+        "category": "entrees",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -26482,7 +26809,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Tarte aux fruits rouges",
         "description": "Cette vidéo présente une recette de tarte aux fruits rouges, mettant l'accent sur la technique du fonçage de la pâte pour obtenir une base nette et élégante. Elle détaille la préparation d'une pâte sucrée, d'une crème d'amande, d'un confit de frui...",
         "image": "/recipes-ia/6876-carte.webp",
-        "category": "glaces",
+        "category": "desserts",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -28107,7 +28434,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Brochettes de poulet marinées à la mexicaine",
         "description": "Une recette facile et rapide de brochettes de poulet marinées avec des épices mexicaines, parfaites pour l'été. Elles peuvent être cuites au barbecue, à la plancha ou à l'Air Fryer et sont accompagnées d'une sauce crémeuse.",
         "image": "/recipes-ia/6793-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -29020,7 +29347,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Tataki de Saumon Sauce Ail et Miel et Guacamole",
         "description": "Une recette fraîche et savoureuse de tataki de saumon, rapidement saisi et nappé d'une sauce aigre-douce à l'ail et au miel, accompagné d'un guacamole crémeux et relevé.",
         "image": "/recipes-ia/6570-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -30051,7 +30378,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Kefta de poisson, sauce yaourt menthe",
         "description": "Une recette de boulettes de poisson (cabillaud) parfumées aux herbes et épices, servies avec une sauce fraîche au yaourt, menthe et citron vert.",
         "image": "/recipes-ia/6584-carte.webp",
-        "category": "sauces",
+        "category": "plats",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -32659,7 +32986,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Tarte Normande",
         "description": "Une tarte normande classique et gourmande, composée d'une pâte sablée, de pommes fondantes et d'une garniture crémeuse aux amandes, avec une touche facultative de Calvados.",
         "image": "/recipes-ia/5277-carte.webp",
-        "category": "glaces",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -45014,7 +45341,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Cheesecake sans cuisson noisette chocolat",
         "description": "Un cheesecake sans cuisson facile à réaliser, composé d'une base biscuitée au cacao, d'une crème onctueuse au fromage frais et à la vanille, et d'une ganache brillante au chocolat et noisette.",
         "image": "/recipes-ia/5421-carte.webp",
-        "category": "glaces",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
@@ -46697,7 +47024,7 @@ export const mockRecipes: Recipe[] = [
         "title": "Tarte aux fraises et crème diplomate",
         "description": "Une délicieuse tarte printanière composée d'une pâte sablée croustillante et d'une onctueuse crème diplomate à la vanille, parfaite pour les beaux jours.",
         "image": "/recipes-ia/5439-carte.webp",
-        "category": "glaces",
+        "category": "patisserie",
         "difficulty": "moyen",
         "prepTime": 15,
         "cookTime": 30,
