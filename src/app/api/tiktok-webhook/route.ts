@@ -29,12 +29,28 @@ function getSortedMenu(): string[] {
     return [...MENU_ITEMS].sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
 }
 
-// Dictionnaire { nom: nom } construit dans l'ordre trié (clés insérées triées →
-// JSON préserve l'ordre). C'est la forme que le raccourci iOS lit dans `status`.
+// Dictionnaire { nom: nom }, construit dans l'ordre trié — étant entendu que
+// CET ORDRE NE SURVIT PAS au voyage. iOS reconstruit un vrai dictionnaire en
+// mémoire, qui n'a pas d'ordre : le raccourci affiche ses clés dans l'ordre de
+// hachage (« Soupes, Astuces… »), quoi qu'on envoie. Trier ici ne coûte rien et
+// ne règle rien : le seul ordre qui tienne côté iPhone est celui d'une LISTE.
+// Voir `menuTexte` / `pays` plus bas, et le mode d'emploi du raccourci.
 function sortedPaysDict(): Record<string, string> {
     const paysDict: Record<string, string> = {};
     getSortedMenu().forEach(n => { paysDict[n] = n; });
     return paysDict;
+}
+
+/**
+ * Le menu en TEXTE, un nom par ligne, dans l'ordre alphabétique.
+ *
+ * C'est la forme dont l'ordre traverse iOS intact : « Diviser le texte » par
+ * nouvelle ligne rend une liste, et une liste garde son ordre. Le tableau
+ * `pays` marche aussi ; ce champ existe pour les raccourcis qui lisent plus
+ * volontiers du texte qu'un tableau.
+ */
+function menuTexte(): string {
+    return getSortedMenu().join('\n');
 }
 
 // 1ʳᵉ branche (appel sans URL) : c'est CELLE que le raccourci iOS frappe (URL fixe
@@ -43,7 +59,7 @@ function sortedPaysDict(): Record<string, string> {
 // Dict construit trié (ordre alphabétique préservé). Tableaux `pays`/`list` en bonus.
 function buildMenuResponse() {
     const sortedNames = getSortedMenu();
-    const response = NextResponse.json({ status: sortedPaysDict(), pays: sortedNames, list: sortedNames, countries: sortedPaysDict(), v: "00:17-DICT" });
+    const response = NextResponse.json({ status: sortedPaysDict(), pays: sortedNames, list: sortedNames, menuTexte: menuTexte(), countries: sortedPaysDict(), v: "00:17-DICT" });
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     return response;
 }
@@ -53,7 +69,7 @@ function buildMenuResponse() {
 // afficher la liste — la passer en tableau cassait l'affichage (liste vide →
 // le raccourci se lançait direct). On garde le dict, trié, + tableaux en bonus.
 function buildCountryPromptResponse() {
-    const response = NextResponse.json({ status: sortedPaysDict(), pays: getSortedMenu(), list: getSortedMenu() });
+    const response = NextResponse.json({ status: sortedPaysDict(), pays: getSortedMenu(), list: getSortedMenu(), menuTexte: menuTexte() });
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     return response;
 }
