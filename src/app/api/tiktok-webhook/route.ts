@@ -205,6 +205,24 @@ async function handleRequest(request: Request) {
         // Le raccourci iOS appelle sans URL pour obtenir la liste des pays
         // Que ce soit avec checkOnly=true ou non
         if (!videoUrl) {
+            /*
+             * …sauf quand la catégorie, elle, est là : c'est alors le SECOND
+             * appel du raccourci, celui qui met en cuisine, et il est parti
+             * sans lien TikTok — le raccourci a été lancé depuis l'app au lieu
+             * du bouton Partager, où le lien n'existe pas.
+             *
+             * Lui renvoyer le menu était exact mais illisible : l'iPhone
+             * affichait le dictionnaire brut en notification, ce qui ressemble
+             * à une panne. On répond en français ce qui s'est passé.
+             */
+            const choixDejaFait = searchParams.get('country') || body.country
+                || searchParams.get('pays') || body.pays || body.selection || '';
+            if (choixDejaFait) {
+                return new Response(
+                    `Aucun lien TikTok reçu (catégorie « ${choixDejaFait} »). Lance le raccourci depuis le bouton Partager de TikTok.`,
+                    { status: 200, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
+                );
+            }
             return buildMenuResponse();
         }
 
