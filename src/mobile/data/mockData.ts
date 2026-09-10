@@ -2,11 +2,63 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/09/2026 17:36:27
- * Total: 698 recettes
+ * Dernière mise à jour: 10/09/2026 17:58:49
+ * Total: 699 recettes
  */
-export const exportSyncId = "1789061787621";
+export const exportSyncId = "1789063129974";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7741",
+        "title": "Pastina crémeuse aux œufs",
+        "description": "Une pastina crémeuse et réconfortante aux œufs, facile à préparer et adaptée aux bébés dès 12 mois. Parfaite pour les repas des tout-petits.",
+        "image": "/recipes-ia/7741-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7443923762283629856\" data-video-id=\"7443923762283629856\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7443923762283629856\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍝\n             100 g de pâtes en forme d'étoile"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             400 ml de bouillon (de légumes ou de viande)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             Un morceau de beurre doux"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             Une généreuse poignée de parmesan râpé"
+            }
+        ],
+        "steps": [
+            "1. Faire chauffer le bouillon dans une casserole et le porter à ébullition.",
+            "2. Ajouter les pâtes et les cuire selon les instructions du paquet, en remuant fréquemment. Si nécessaire, ajouter plus d'eau chaude pendant la cuisson des pâtes.",
+            "3. Une fois les pâtes cuites, éteindre le feu.",
+            "4. Ajouter le beurre et le parmesan dans la casserole et bien mélanger pour combiner.",
+            "5. Casser l'œuf directement dans la casserole et remuer rapidement avec une fourchette ou un fouet pour l'incorporer entièrement au bouillon. Cuire pendant 2-3 minutes supplémentaires pour s'assurer que l'œuf est entièrement cuit.",
+            "6. Servir chaud et déguster ! Bon appétit ! 😋"
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 12 mois",
+            "Italie",
+            "pates",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7738",
         "title": "Barres aux baies à 5 ingrédients",
