@@ -2,11 +2,60 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/09/2026 16:55:14
- * Total: 697 recettes
+ * Dernière mise à jour: 10/09/2026 17:17:46
+ * Total: 698 recettes
  */
-export const exportSyncId = "1789059314314";
+export const exportSyncId = "1789060666862";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7738",
+        "title": "Barres aux baies à 5 ingrédients",
+        "description": "Des barres énergétiques simples et saines à base de banane, de flocons d'avoine, de beurre de cacahuète et de fruits rouges, idéales pour le petit-déjeuner ou le goûter des bébés et des enfants.",
+        "image": "/recipes-ia/7738-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7249457060016966939\" data-video-id=\"7249457060016966939\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7249457060016966939\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍌\n             180g de bananes mûres (environ 2 bananes moyennes)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             100g de flocons d'avoine (1 1/4 tasses US)"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             2 grandes cuillères à soupe de beurre de cacahuète crémeux (ou le beurre de noix de votre choix) (1/2 tasse US)"
+            },
+            {
+                "quantity": "",
+                "name": "🍓\n             Une poignée de fraises hachées"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             Une poignée de myrtilles"
+            }
+        ],
+        "steps": [
+            "1. Préchauffer le four à 180°C (350 degrés F) et graisser légèrement un plat de cuisson ou le tapisser de papier sulfurisé.",
+            "2. Bien écraser les bananes, puis ajouter tous les autres ingrédients et bien mélanger.",
+            "3. Cuire au four pendant 35 à 40 minutes, ou jusqu'à ce que les barres soient dorées.",
+            "4. Laisser refroidir complètement avant de couper en barres.",
+            "5. Déguster !"
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7735",
         "title": "Bâtonnets de courgette",
