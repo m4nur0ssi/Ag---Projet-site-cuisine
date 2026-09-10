@@ -28,7 +28,8 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
-import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf } from './themes';
+import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf, minimumRangee } from './themes';
+import { ageAAfficher } from '@/lib/bebe';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal, tiktokDemandeExplicite } from '@/lib/tiktok-consent';
 import { personalizedRecipes } from '@/lib/personalize';
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
@@ -89,6 +90,19 @@ const NotesCtx = createContext<Map<string, RatingStat> | null>(null);
  * Elle ne s'affiche que si la recette a des avis : une note inventée vaut moins
  * que pas de note du tout.
  */
+/**
+ * L'âge, posé sur la photo d'une recette de bébé : « À partir de 6 mois ».
+ *
+ * Ici, ce n'est pas une décoration : servir une purée à un enfant trop jeune
+ * n'est pas une erreur de goût. L'information doit donc voyager AVEC l'image,
+ * sur l'accueil comme dans la catégorie, sans qu'il faille ouvrir la fiche.
+ */
+function AgeBebe({ recipe }: { recipe: Recipe }) {
+    const age = ageAAfficher(recipe);
+    if (!age) return null;
+    return <span className={styles.ageBebe}>{age}</span>;
+}
+
 function NoteCarte({ id }: { id: string }) {
     const notes = useContext(NotesCtx);
     const note = notes?.get(String(id));
@@ -435,6 +449,8 @@ function Card({
                 {/* La note, si la recette en a une : elle dit à elle seule que
                     la recette a été faite — la coche verte faisait doublon. */}
                 <NoteCarte id={recipe.id} />
+                {/* Recette de bébé : l'âge minimum, sur la photo. */}
+                <AgeBebe recipe={recipe} />
                 {/* Croix → coche : ajoute/retire de « À faire plus tard ». */}
                 {onToggleLater && (
                     <button
@@ -526,6 +542,8 @@ function CollectionCard({ recipe, subtitle, onOpen, onLongPress, later, onToggle
                 <img src={recipe.image} alt="" className={styles.thumbImg} loading="lazy" decoding="async" draggable={false} />
                 {/* La note moyenne, si la recette en a une. */}
                 <NoteCarte id={recipe.id} />
+                {/* Recette de bébé : l'âge minimum, sur la photo. */}
+                <AgeBebe recipe={recipe} />
                 {playing && vid && (
                     <iframe
                         className={`${styles.cardVideo} ${ready ? styles.cardVideoOn : ''}`}
@@ -872,6 +890,9 @@ function TopTenRow({
                                 )}
 
                                 <div className={styles.top10Scrim} />
+
+                                {/* Recette de bébé : l'âge minimum, sur la photo. */}
+                                <AgeBebe recipe={r} />
 
                                 {onToggleLater && (
                                     <button
@@ -2108,7 +2129,7 @@ export default function TVHome() {
             recipes: mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && matchesTag(r, theme.tag)),
             // Alternance des formats : le feed ne doit jamais devenir monotone.
             variant: FIXED[theme.tag] ?? VARIANTS[i % VARIANTS.length],
-        })).filter((row) => row.recipes.length >= (row.tag.startsWith('cocktail') ? 2 : 4));
+        })).filter((row) => row.recipes.length >= minimumRangee(row.tag));
     }, []);
 
     return (

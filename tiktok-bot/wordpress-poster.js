@@ -219,6 +219,10 @@ async function postToWordPressXMLRPC(recipe) {
         const cl = cleanCountry.toLowerCase();
         if (cl.includes('dolce vita'))  cleanCountry = 'Dolce Vita';
         if (cl.includes('facile'))      cleanCountry = 'Facile';
+        // « Bébé » choisi au raccourci : un tag, pas une catégorie WordPress —
+        // une purée de carottes reste rangée dans les plats. L'âge minimum est
+        // posé à part par recipe-processor.js (tag « Dès 6 mois »).
+        if (cl.includes('bébé') || cl.includes('bebe')) cleanCountry = 'Bébé';
         
         // Thématiques saisonnières/événementielles → catégorie propre (priorité sur l'IA)
         if (cl.includes('astuce'))      { cleanCountry = 'Astuces';        categoryName = 'Astuces'; }

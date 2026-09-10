@@ -4912,3 +4912,42 @@
 :global([data-theme='light']) .cardNote {
     box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);
 }
+
+/* ── Âge d'une recette de bébé, posé sur la photo ────────────────────────────
+   Même verre sombre que la note, mais en bas à gauche : le haut est pris par
+   la note (au centre) et par la croix « à faire plus tard » (à droite). Sur les
+   cartes à titre incrusté, le titre occupe le bas — la pastille se pose alors
+   juste au-dessus, portée par le même voile. */
+.ageBebe {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: rgba(20, 20, 22, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.22);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* Titre incrusté ou barre de progression en bas : la pastille remonte pour ne
+   pas s'asseoir dessus. */
+.overlayLabel ~ .ageBebe,
+.progressTrack ~ .ageBebe {
+    bottom: 46px;
+}
+
+:global([data-theme='light']) .ageBebe {
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);
+}

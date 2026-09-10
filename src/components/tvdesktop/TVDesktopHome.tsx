@@ -29,7 +29,8 @@ import { mockRecipes } from '@/mobile/data/mockData';
 import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
-import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf } from '@/mobile/screens/tv/themes';
+import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf, minimumRangee } from '@/mobile/screens/tv/themes';
+import { ageAAfficher } from '@/lib/bebe';
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
 import { startScrollReveal } from '@/lib/scrollReveal';
@@ -130,6 +131,17 @@ function NoteCarte({ id }: { id: string }) {
             {valeur}
         </span>
     );
+}
+
+/**
+ * L'âge, posé sur la photo d'une recette de bébé : « À partir de 6 mois ».
+ * Servir une purée trop tôt n'est pas une erreur de goût : l'information
+ * voyage donc avec l'image, accueil et catégorie comprises.
+ */
+function AgeBebe({ recipe }: { recipe: Recipe }) {
+    const age = ageAAfficher(recipe);
+    if (!age) return null;
+    return <span className={styles.ageBebe}>{age}</span>;
 }
 
 const label = (r: Recipe) => decodeHtml(r.title || '');
@@ -323,6 +335,8 @@ function Card({ recipe, shape, onMenu, later, onToggleLater, rank, inlaid, coll 
                 {/* La note, si la recette en a une : elle dit à elle seule que
                     la recette a été faite — la coche verte faisait doublon. */}
                 <NoteCarte id={recipe.id} />
+                {/* Recette de bébé : l'âge minimum, sur la photo. */}
+                <AgeBebe recipe={recipe} />
             </div>
 
             {/* Le titre, DANS la carte : même police et même texte que sous les
@@ -946,7 +960,7 @@ export default function TVDesktopHome() {
             tag: theme.tag,
             recipes: mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && matchesTag(r, theme.tag)),
             shape: SHAPES[i % SHAPES.length],
-        })).filter((row) => row.recipes.length >= (row.tag.startsWith('cocktail') ? 2 : 4));
+        })).filter((row) => row.recipes.length >= minimumRangee(row.tag));
     }, []);
 
     // Lien de thème partagé (/?tag=…) : on ouvre la collection correspondante,

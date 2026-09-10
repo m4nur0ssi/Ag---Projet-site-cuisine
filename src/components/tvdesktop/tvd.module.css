@@ -1152,3 +1152,33 @@
 :global([data-theme='light']) .cardNote {
     box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);
 }
+
+/* ── Âge d'une recette de bébé, posé sur la photo ────────────────────────────
+   Même verre sombre que la note, en bas à gauche : le haut est déjà pris. Sur
+   les cartes à titre incrusté, le titre tient le bas — la pastille remonte. */
+.ageBebe {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    height: 21px;
+    padding: 0 9px;
+    border-radius: 999px;
+    background: rgba(20, 20, 22, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.22);
+    color: #fff;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.cardInlaid .ageBebe { bottom: 52px; }
+
+:global([data-theme='light']) .ageBebe {
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);
+}

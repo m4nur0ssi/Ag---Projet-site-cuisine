@@ -6,6 +6,7 @@
 // (src/mobile/screens/page.tsx) pour que les résultats restent identiques.
 
 import { Recipe } from '@/mobile/types';
+import { estRecetteBebe } from '@/lib/bebe';
 import { totalMinutes, timedMinutes } from './timing';
 
 export interface Theme {
@@ -20,6 +21,7 @@ export const THEMES: Theme[] = [
     { tag: 'pates', title: 'Pâtes' },
     { tag: 'express', title: 'Express' },
     { tag: 'famille', title: 'En famille' },
+    { tag: 'bebe', title: 'Pour les bébés' },
     { tag: 'healthy', title: 'Healthy' },
     { tag: 'barbecue', title: 'Barbecue' },
     { tag: 'airfryer', title: 'Airfryer' },
@@ -73,6 +75,7 @@ const COLLECTION_TAGS: Record<string, string> = {
     boisson: 'boissons', boissons: 'boissons',
     sauce: 'sauces', sauces: 'sauces',
     'comme au resto': 'restaurant', restaurant: 'restaurant',
+    bebe: 'bebe', bebes: 'bebe', 'pour les bebes': 'bebe',
     afrique: 'afrique', asie: 'asie', espagne: 'espagne', france: 'france',
     grece: 'grece', italie: 'italie', liban: 'liban', mexique: 'mexique',
     orient: 'orient', usa: 'usa',
@@ -84,6 +87,20 @@ const COLLECTION_TAGS: Record<string, string> = {
  * demander, sinon une rangée se viderait sans prévenir.
  */
 export const COLLECTION_TAGS_VALEURS = [...new Set(Object.values(COLLECTION_TAGS))];
+
+/**
+ * Combien de recettes pour qu'une rangée mérite sa place sur l'accueil.
+ *
+ * Quatre en temps normal — une rangée de deux cartes fait pauvre. Les cocktails
+ * et les recettes de bébé sont deux rayons jeunes : on les montre dès qu'ils
+ * ont de quoi, sinon la section resterait invisible le temps que le catalogue
+ * se remplisse.
+ */
+export function minimumRangee(tag: string): number {
+    if (tag.startsWith('cocktail')) return 2;
+    if (tag === 'bebe') return 1;
+    return 4;
+}
 
 /** Les tags des rangées thématiques — servent à écarter les fiches restaurant. */
 const THEME_TAGS = new Set(THEMES.map((t) => t.tag));
@@ -235,6 +252,13 @@ export function matchesTag(
         if (recipeCat === 'glaces') return true;
         // « Thé glacé » est une boisson : le rayon des glaces n'en veut pas.
         return recipeCat !== 'rafraichissements' && ICE_TITLE.test(normTitle);
+    }
+
+    // « Pour les bébés » : la recette doit se déclarer (tag « Bébé », le mot
+    // dans le titre ou la description, un âge en mois). Rien ne se déduit — un
+    // bébé ne mange pas ce qu'on lui suppose comestible.
+    if (tagLower === 'bebe' || tagLower === 'bebes') {
+        return estRecetteBebe(recipe);
     }
 
     if (tagLower === 'famille' || tagLower === 'familial') {

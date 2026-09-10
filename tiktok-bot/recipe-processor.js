@@ -169,6 +169,7 @@ ${transcription ? `    Transcription de ce que dit l'auteur dans la vidéo : "${
         "steps": ["étape en français", "..."],
         "category": "aperitifs|entrees|plats|desserts|patisserie|vegetarien|glaces|rafraichissements|voila-lete|cest-lhiver",
         "tags": ["tag1"],
+        "babyAge": null,
     }
     
     RÈGLES POUR LA CATÉGORIE (la catégorie = le TYPE de plat, PAS la saison ni le régime) :
@@ -201,7 +202,20 @@ ${transcription ? `    Transcription de ce que dit l'auteur dans la vidéo : "${
        - Si c'est une tarte (sucrée ou salée, quiche, tourte) -> ajoute "Tarte".
        - Si c'est un plat de pâtes -> ajoute "Pâtes". Si c'est une sauce -> ajoute "Sauces".
        - Si l'ingrédient principal est un poisson ou un fruit de mer (saumon, thon, cabillaud, dorade, crevettes, gambas, moules, Saint-Jacques, crabe, homard, calamar, poulpe) -> ajoute "Poissons et crustacés".
-       - Si c'est un sandwich (burger, wrap, panini, croque-monsieur, bagel, hot-dog, kebab, pita, club) -> ajoute "Sandwichs".`;
+       - Si c'est un sandwich (burger, wrap, panini, croque-monsieur, bagel, hot-dog, kebab, pita, club) -> ajoute "Sandwichs".
+
+    RÈGLES POUR LES BÉBÉS :
+    - Si la recette est destinée à un BÉBÉ (purée, compote pour bébé, petit pot maison, diversification
+      alimentaire, repas d'un enfant de moins de 3 ans) -> ajoute le tag "Bébé" ET renseigne "babyAge"
+      avec l'âge MINIMUM en mois (un nombre : 4, 6, 8, 12, 18…).
+    - "babyAge" est l'âge à partir duquel l'enfant peut manger CETTE recette. Prends l'âge le plus
+      prudent qu'imposent ses ingrédients : miel, fruits à coque entiers, lait de vache, fruits de mer
+      et œuf peu cuit ne se donnent pas avant 12 mois ; une purée de légumes lisse se donne dès 6 mois ;
+      4 mois seulement si la vidéo le dit explicitement.
+    - Si l'auteur annonce un âge ("dès 6 mois", "à partir de 8 mois"), c'est CET âge-là qui compte.
+    - Si la recette n'est PAS pour un bébé, laisse "babyAge" à null et n'ajoute pas le tag "Bébé".
+      Attention : "épinards bébé", "bébé calamars", "pousses bébé" désignent la taille du légume,
+      pas un enfant — ce ne sont pas des recettes pour bébé.`;
 
     const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest', 'gemini-2.5-pro', 'gemini-pro-latest'];
 
@@ -601,6 +615,45 @@ async function processRecipe({ videoUrl, description, author, title, country }) 
         }
         // NB : Tarte + régimes (sans gluten/lactose/sucre/sel, minceur) sont ajoutés comme
         // tag automatiquement par wordpress-poster.js (push générique de manualCountry).
+    }
+
+    // ================================================================
+    // « POUR LES BÉBÉS » : le tag, et surtout l'ÂGE MINIMUM.
+    // ================================================================
+    // L'âge voyage en tag ("Dès 6 mois") : c'est le seul format que WordPress
+    // puis la synchro recopient sans rien perdre, et l'accueil le lit pour
+    // poser la pastille sur la photo (voir src/lib/bebe.ts).
+    //
+    // Une recette de bébé SANS âge n'a pas le droit d'exister : la carte
+    // n'afficherait rien et le parent devrait deviner. À défaut d'âge annoncé,
+    // on prend le plus prudent — 12 mois si un ingrédient l'impose (miel,
+    // fruits à coque, lait de vache, œuf peu cuit, fruits de mer), 6 mois
+    // sinon, l'âge courant de la diversification.
+    {
+        const sansAccent = (t) => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        const texteBebe = sansAccent(`${title || ''} ${description || ''} ${metadata?.transcription || ''} ${allTextLower}`);
+        // « épinards bébé », « bébé calamars » : la taille du légume, pas le convive.
+        const legumeBebe = /\b(?:bebes?[- ](?:epinards?|carottes?|poireaux?|mais|salades?|pousses?|calamars?|poulpes?|seiches?|artichauts?|fenouils?|blettes?)|(?:epinards?|carottes?|poireaux?|salades?|pousses?|calamars?|poulpes?|seiches?|artichauts?|fenouils?|blettes?)\s+bebes?)\b/g;
+        const propre = texteBebe.replace(legumeBebe, ' ');
+        const choisiAuRaccourci = !!(country && sansAccent(country).includes('bebe'));
+        const seDeclare = /\bbebes?\b|diversification|petit pot maison|\bnourrissons?\b/.test(propre);
+        const ageIA = Number(String(analysis.babyAge ?? '').match(/\d{1,2}/)?.[0]);
+
+        if (choisiAuRaccourci || seDeclare || Number.isFinite(ageIA)) {
+            if (!analysis.tags.some(t => sansAccent(t) === 'bebe')) analysis.tags.push('Bébé');
+
+            const annonce = propre.match(/(?:des|a partir de)\s*(\d{1,2})\s*mois/);
+            const tardif = /\bmiel\b|fruits? a coque|noix\b|noisettes?|amandes? entieres?|lait de vache|oeuf cru|oeuf peu cuit|fruits de mer|crustaces?/.test(propre);
+            let mois = Number.isFinite(ageIA) ? ageIA : (annonce ? Number(annonce[1]) : NaN);
+            if (!Number.isFinite(mois) || mois < 4 || mois > 36) {
+                mois = tardif ? 12 : 6;
+                console.log(`   👶 Aucun âge annoncé -> "Dès ${mois} mois" par défaut${tardif ? ' (ingrédient réservé aux plus de 1 an)' : ''}.`);
+            }
+            // Un seul tag d'âge : on retire ceux que l'IA aurait pu semer.
+            analysis.tags = analysis.tags.filter(t => !/^(?:d[èe]s\s*)?\d{1,2}\s*mois$/i.test(String(t).trim()));
+            analysis.tags.push(`Dès ${mois} mois`);
+            console.log(`   👶 Recette pour bébé : à partir de ${mois} mois.`);
+        }
     }
 
     // ================================================================
