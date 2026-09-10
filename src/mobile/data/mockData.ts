@@ -2,11 +2,73 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 10/09/2026 20:47:56
- * Total: 704 recettes
+ * Dernière mise à jour: 10/09/2026 21:08:40
+ * Total: 705 recettes
  */
-export const exportSyncId = "1789073276087";
+export const exportSyncId = "1789074520685";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7760",
+        "title": "Tuiles aux amandes",
+        "description": "Ces petits biscuits croustillants qui rappellent immédiatement les goûters du dimanche chez nos grands-mères.",
+        "image": "/recipes-ia/7760-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7683565820697447713\" data-video-id=\"7683565820697447713\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7683565820697447713\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥜\n             100 g d'amandes effilées"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             100 g de sucre blanc"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             35 g de farine T45"
+            },
+            {
+                "quantity": "",
+                "name": "🧈\n             35 g de beurre doux (fondu et tiédi)"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 blancs d'œufs moyens (~60 g, à température ambiante)"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de fleur de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             ½ c. à café d'extrait de vanille liquide (facultatif)"
+            }
+        ],
+        "steps": [
+            "Mélanger le sucre, la farine et la fleur de sel.",
+            "Incorporer les blancs d'œufs et l'extrait de vanille.",
+            "Ajouter le beurre fondu tiédi et mélanger jusqu'à obtenir un appareil lisse.",
+            "Incorporer délicatement les amandes effilées à la spatule pour ne pas les briser.",
+            "Placer la préparation au réfrigérateur pendant 30 minutes.",
+            "Préchauffer le four à 165 °C (chaleur tournante).",
+            "Déposer de petites cuillerées de pâte bien espacées sur une plaque recouverte de papier cuisson.",
+            "Étaler chaque tas avec le dos d'une fourchette humidifiée pour former de grands disques ultra fins.",
+            "Enfourner 10 à 12 minutes jusqu'à ce que les bords soient bien dorés.",
+            "Décoller immédiatement les tuiles encore chaudes et les déposer sur un rouleau à pâtisserie pour leur donner leur forme courbée (ou les laisser refroidir à plat).",
+            "Laisser refroidir complètement avant de déguster."
+        ],
+        "tags": [
+            "France",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7757",
         "title": "Tarte Mousse au Chocolat",
