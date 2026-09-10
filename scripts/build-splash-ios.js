@@ -34,7 +34,23 @@ const ECRANS = [
     fs.mkdirSync(SORTIE, { recursive: true });
     for (const [l, h] of ECRANS) {
         const cote = Math.round(Math.min(l, h) * 0.38);
-        const logo = await sharp(LOGO).resize(cote, cote, { fit: 'contain' }).toBuffer();
+        /*
+         * Coins arrondis. L'icône est pleine du bord au bord — c'est le système
+         * qui l'arrondit sur l'écran d'accueil. Posée telle quelle sur le noir
+         * du lancement, elle formait un carré net et collé ; on lui donne donc
+         * ici le même arrondi que celui d'iOS (~22 % du côté).
+         */
+        const rayon = Math.round(cote * 0.22);
+        const masque = Buffer.from(
+            `<svg width="${cote}" height="${cote}" xmlns="http://www.w3.org/2000/svg">
+               <rect width="${cote}" height="${cote}" rx="${rayon}" ry="${rayon}" fill="#fff"/>
+             </svg>`
+        );
+        const logo = await sharp(LOGO)
+            .resize(cote, cote, { fit: 'contain' })
+            .composite([{ input: masque, blend: 'dest-in' }])
+            .png()
+            .toBuffer();
         await sharp({ create: { width: l, height: h, channels: 4, background: FOND } })
             .composite([{ input: logo, gravity: 'center' }])
             .png()
