@@ -1,31 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQMbsGa/",
-      "country": "Bébé",
-      "timestamp": "2026-09-10T19:09:29.519Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQMHbdM/",
-      "country": "Bébé",
-      "timestamp": "2026-09-10T19:09:59.154Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQMnDhX/",
-      "country": "Bébé",
-      "timestamp": "2026-09-10T19:10:32.755Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQMH5Aa/",
-      "country": "Bébé",
-      "timestamp": "2026-09-10T19:11:18.544Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQM49GG/",
-      "country": "Bébé",
-      "timestamp": "2026-09-10T19:11:46.677Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN8FcaP8F/",
