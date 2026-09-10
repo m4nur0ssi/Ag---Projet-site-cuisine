@@ -16,6 +16,15 @@ const MENU_ITEMS = [
     "Simplissime", "Soupes", "Tarte", "USA", "Végétarien", "Voilà l'été"
 ];
 
+/**
+ * Comparaison tolérante aux accents : le raccourci renvoie tantôt « Bébé »,
+ * tantôt « Bebe », et une fois sur deux le texte revient mal encodé du
+ * presse-papiers iOS. Un menu qui s'écrit « Grèce » ou « Pâques » ne peut pas
+ * dépendre de l'accent pour se reconnaître.
+ */
+const sansAccents = (t: string) =>
+    (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
 function getSortedMenu(): string[] {
     return [...MENU_ITEMS].sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
 }
@@ -241,6 +250,11 @@ async function handleRequest(request: Request) {
                 "Accompagnements", "Accompagnement",
                 "Afrique", "Airfryer", "Aperitifs", "Aperitif", "Apéritifs", "Apéritif", "Asie", "Astuces",
                 "Barbecue", "Bbq",
+                // « Bébé » manquait ici : le raccourci renvoie son choix dans une clé
+                // que ce filet est seul à lire, et un mot absent de la liste vaut
+                // « rien choisi » — le webhook renvoyait alors le menu, et l'iPhone
+                // affichait le dictionnaire brut au lieu de lancer la recette.
+                "Bébé", "Bebe", "Bébés", "Bebes",
                 "C'est l'hiver", "Cest l'hiver", "C'est lhiver", "Hiver",
                 "Desserts", "Dessert", "Entrees", "Entree", "Entrées", "Entrée",
                 "Epice", "Epicé", "Épicé", "Espagne",
@@ -267,9 +281,9 @@ async function handleRequest(request: Request) {
             // Scan TOUS les paramètres de l'URL
             searchParams.forEach((val) => {
                 if (!selectedCountry && val) {
-                    const lval = val.toLowerCase();
+                    const lval = sansAccents(val);
                     for (const c of knownCountries) {
-                        if (lval.includes(c.toLowerCase())) { selectedCountry = val; break; }
+                        if (lval.includes(sansAccents(c))) { selectedCountry = val; break; }
                     }
                 }
             });
@@ -283,9 +297,9 @@ async function handleRequest(request: Request) {
                             selectedCountry = val;
                             break;
                         }
-                        const lval = val.toLowerCase();
+                        const lval = sansAccents(val);
                         for (const c of knownCountries) {
-                            if (lval.includes(c.toLowerCase())) { selectedCountry = val; break; }
+                            if (lval.includes(sansAccents(c))) { selectedCountry = val; break; }
                         }
                     }
                 }

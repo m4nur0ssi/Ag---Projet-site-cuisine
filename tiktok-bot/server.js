@@ -62,7 +62,7 @@ app.post('/tiktok-recipe', async (req, res) => {
         // on peut ajouter un item n'importe où, l'ordre reste garanti.
         const countriesList = [
             "Accompagnements", "Afrique", "Airfryer", "Apéritifs", "Asie", "Astuces",
-            "Barbecue", "C'est l'hiver", "Desserts", "Entrées", "Épicé", "Espagne",
+            "Barbecue", "Bébé", "C'est l'hiver", "Desserts", "Entrées", "Épicé", "Espagne",
             "Express", "Famille", "France", "Gratins", "Grèce", "Healthy", "Italie",
             "Les Glaces", "Liban", "Mexique", "Minceur", "Noël", "Orient", "Pas Cher",
             "Pâques", "Pâtes", "Pâtisserie", "Plats", "Poissons et crustacés",
