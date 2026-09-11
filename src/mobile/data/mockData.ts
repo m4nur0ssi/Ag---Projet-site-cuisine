@@ -2,11 +2,92 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 11/09/2026 13:45:32
- * Total: 705 recettes
+ * Dernière mise à jour: 11/09/2026 23:21:34
+ * Total: 706 recettes
  */
-export const exportSyncId = "1789134332354";
+export const exportSyncId = "1789168894819";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7767",
+        "title": "Gâteau aux noisettes",
+        "description": "Un gâteau aux noisettes moelleux avec des pépites de chocolat fondantes - un pur moment de réconfort tout droit sorti du four. Moelleux, noisetté et rempli de morceaux de chocolat fondants - un gâteau aux noisettes qui fond littéralement dans la b...",
+        "image": "/recipes-ia/7767-carte.webp",
+        "category": "patisserie",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7684384767286070560\" data-video-id=\"7684384767286070560\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7684384767286070560\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🧈\n             100 g de beurre mou (7 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             90 g de sucre (7 cuillères à soupe / environ ⅓ tasse + 1 cuillère à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🍦\n             1 cuillère à café d'extrait de vanille"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             2 œufs moyens"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             100 g de noisettes moulues (1 tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             70 g de farine tout usage (½ tasse + 1 cuillère à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 cuillère à café de levure chimique"
+            },
+            {
+                "quantity": "",
+                "name": "🧂\n             1 pincée de sel"
+            },
+            {
+                "quantity": "",
+                "name": "🥛\n             2 cuillères à soupe de lait (2 cuillères à soupe)"
+            },
+            {
+                "quantity": "",
+                "name": "🍫\n             60 g de pépites de chocolat ou de chocolat noir haché (⅓ tasse)"
+            },
+            {
+                "quantity": "",
+                "name": "🥜\n             Noisettes tranchées pour le dessus"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             Sucre glace pour saupoudrer"
+            }
+        ],
+        "steps": [
+            "Préchauffer le four à 175 °C (chaleur statique haut/bas). Tapisser un moule rond de 19 cm de papier sulfurisé ou le graisser légèrement.",
+            "Dans un bol, battre le beurre, le sucre et la vanille jusqu'à obtenir un mélange léger et crémeux.",
+            "Ajouter les œufs un par un, en battant bien après chaque ajout.",
+            "Dans un bol séparé, mélanger les noisettes moulues, la farine, la levure chimique et le sel.",
+            "Ajouter au mélange de beurre et remuer brièvement jusqu'à obtenir une pâte lisse.",
+            "Ajouter le lait et mélanger juste assez pour combiner.",
+            "Incorporer délicatement les pépites de chocolat ou le chocolat noir haché.",
+            "Verser la pâte dans le moule préparé, lisser le dessus et saupoudrer de noisettes tranchées.",
+            "Cuire au four pendant 30 à 35 minutes, jusqu'à ce qu'il soit doré et qu'un cure-dent inséré au centre en ressorte propre.",
+            "Laisser le gâteau refroidir légèrement dans le moule, puis le démouler, le laisser refroidir complètement et le saupoudrer généreusement de sucre glace."
+        ],
+        "tags": [
+            "Glaces",
+            "pâtisserie"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7760",
         "title": "Tuiles aux amandes",
