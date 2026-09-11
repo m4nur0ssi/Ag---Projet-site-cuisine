@@ -333,11 +333,31 @@ async function handleRequest(request: Request) {
             }
         }
 
-        // Si toujours pas de pays → on renvoie le menu (dict, forme lue par le raccourci)
+        // Si toujours pas de pays → on renvoie le menu (texte, lu par le raccourci)
         if (!selectedCountry) {
             console.log('🔍 Pays non trouvé — on affiche le menu de sélection');
             return buildCountryPromptResponse();
         }
+
+        /*
+         * La catégorie doit être UNE entrée du menu, telle quelle. Le 2026-09-11,
+         * l'iPhone a renvoyé comme « catégorie » le menu JSON entier (le seul
+         * élément d'une liste mal scindée) : il contenait « Restaurants »,
+         * « Bébé », « Les Glaces »… et le bot, qui cherche ces mots DANS la
+         * valeur, en a fait une fiche restaurant — une vidéo de téléphones
+         * publiée sans passer le contrôle « est-ce une recette ? ».
+         * Une valeur qui n'est pas au menu ne part plus en cuisine.
+         */
+        const canon = (t: string) => sansAccents(t).replace(/^[^a-z0-9]+/, '').trim();
+        const choisie = MENU_ITEMS.find((m) => canon(m) === canon(selectedCountry));
+        if (!choisie) {
+            console.log(`🚫 Catégorie hors menu refusée : ${String(selectedCountry).slice(0, 80)}`);
+            return new Response(
+                'Catégorie non reconnue : la recette n’a pas été envoyée. Relance le raccourci et choisis une entrée de la liste.',
+                { status: 200, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
+            );
+        }
+        selectedCountry = choisie;
 
         // Étape 2 : Si on a un pays (ou que c'est un POST forcé), on ENVOIE EN CUISINE !
         console.log(`✅ Webhook : Envoi en cuisine ! (Pays : ${selectedCountry || 'Autre'})`);
