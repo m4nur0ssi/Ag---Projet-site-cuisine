@@ -29,25 +29,11 @@ function getSortedMenu(): string[] {
     return [...MENU_ITEMS].sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
 }
 
-// Dictionnaire { nom: nom }, construit dans l'ordre trié — étant entendu que
-// CET ORDRE NE SURVIT PAS au voyage. iOS reconstruit un vrai dictionnaire en
-// mémoire, qui n'a pas d'ordre : le raccourci affiche ses clés dans l'ordre de
-// hachage (« Soupes, Astuces… »), quoi qu'on envoie. Trier ici ne coûte rien et
-// ne règle rien : le seul ordre qui tienne côté iPhone est celui d'une LISTE.
-// Voir `menuTexte` / `pays` plus bas, et le mode d'emploi du raccourci.
-function sortedPaysDict(): Record<string, string> {
-    const paysDict: Record<string, string> = {};
-    getSortedMenu().forEach(n => { paysDict[n] = n; });
-    return paysDict;
-}
-
 /**
  * Le menu en TEXTE, un nom par ligne, dans l'ordre alphabétique.
  *
- * C'est la forme dont l'ordre traverse iOS intact : « Diviser le texte » par
- * nouvelle ligne rend une liste, et une liste garde son ordre. Le tableau
- * `pays` marche aussi ; ce champ existe pour les raccourcis qui lisent plus
- * volontiers du texte qu'un tableau.
+ * C'est la forme dont l'ordre traverse iOS intact : « Scinder le texte » par
+ * nouvelles lignes rend une liste, et une liste garde son ordre.
  */
 function menuTexte(): string {
     return getSortedMenu().join('\n');
@@ -72,14 +58,13 @@ function buildMenuResponse() {
     return response;
 }
 
-// 2ᵉ branche (URL présente mais pas de pays) : forme historique = `status` en
-// DICTIONNAIRE uniquement. C'est CETTE réponse que le raccourci parse pour
-// afficher la liste — la passer en tableau cassait l'affichage (liste vide →
-// le raccourci se lançait direct). On garde le dict, trié, + tableaux en bonus.
+// 2ᵉ branche (URL présente mais pas de pays) : c'est ELLE que frappe le
+// raccourci lancé depuis le partage TikTok — son premier appel transmet déjà
+// le lien. Même réponse que la 1ʳᵉ branche : le menu en TEXTE, un nom par
+// ligne, que le raccourci scinde puis propose. Le JSON d'avant y arrivait
+// comme un seul bloc, et la liste n'offrait qu'un choix : le JSON entier.
 function buildCountryPromptResponse() {
-    const response = NextResponse.json({ status: sortedPaysDict(), pays: getSortedMenu(), list: getSortedMenu(), menuTexte: menuTexte() });
-    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    return response;
+    return buildMenuResponse();
 }
 
 export async function POST(request: Request) {
