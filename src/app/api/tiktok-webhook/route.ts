@@ -53,13 +53,21 @@ function menuTexte(): string {
     return getSortedMenu().join('\n');
 }
 
-// 1ʳᵉ branche (appel sans URL) : c'est CELLE que le raccourci iOS frappe (URL fixe
-// sans `url`). Le raccourci fait « Obtenir le dictionnaire de status » puis « Choisir
-// dans Dictionnaire » → `status` DOIT être un DICTIONNAIRE (un tableau vide la liste).
-// Dict construit trié (ordre alphabétique préservé). Tableaux `pays`/`list` en bonus.
+// 1ʳᵉ branche (appel sans URL) : c'est CELLE que le raccourci iOS frappe pour
+// afficher son menu. Depuis le 2026-09-11, le raccourci fait « Obtenir le
+// contenu de l'URL » → « Scinder le texte selon Nouvelles lignes » → « Choisir
+// dans » : il lui faut du TEXTE, un nom par ligne, dans l'ordre voulu.
+//
+// Pourquoi plus de JSON : iOS reconstruisait un dictionnaire, qui n'a pas
+// d'ordre — le menu sortait en vrac (« Soupes, Astuces… ») quel que soit le
+// tri envoyé. Et « Choisir dans » ignorait le tableau `pays` qu'on lui
+// donnait à la place. Une liste née de « Scinder le texte », elle, garde
+// l'ordre des lignes.
 function buildMenuResponse() {
-    const sortedNames = getSortedMenu();
-    const response = NextResponse.json({ status: sortedPaysDict(), pays: sortedNames, list: sortedNames, menuTexte: menuTexte(), countries: sortedPaysDict(), v: "00:17-DICT" });
+    const response = new Response(menuTexte(), {
+        status: 200,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    });
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     return response;
 }
