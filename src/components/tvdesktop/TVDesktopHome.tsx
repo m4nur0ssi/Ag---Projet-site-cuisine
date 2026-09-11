@@ -30,7 +30,7 @@ import { decodeHtml } from '@/mobile/lib/utils';
 import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
 import { useAuth } from '@/hooks/useAuth';
 import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf, minimumRangee } from '@/mobile/screens/tv/themes';
-import { ageAAfficher } from '@/lib/bebe';
+import { ageAAfficher, estRecetteBebe, pourAdultes } from '@/lib/bebe';
 import { timingOf, totalMinutes, formatMinutes } from '@/mobile/screens/tv/timing';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal } from '@/lib/tiktok-consent';
 import { startScrollReveal } from '@/lib/scrollReveal';
@@ -743,7 +743,9 @@ export default function TVDesktopHome() {
     const router = useRouter();
     const stats = useRatingStats();
     const { user } = useAuth();
-    const [collection, setCollection] = useState<{ title: string; recipes: Recipe[] } | null>(null);
+    // `classement` : c'est le Top, qui se trie par note ou par date de note.
+    const [collection, setCollection] = useState<{ title: string; recipes: Recipe[]; classement?: boolean } | null>(null);
+    const [triTop, setTriTop] = useState<'note' | 'date'>('note');
     const [inProgress, setInProgress] = useState<{ recipe: Recipe; pct: number }[]>([]);
     const [laterIds, setLaterIds] = useState<string[]>([]);
     const [menu, setMenu] = useState<{ recipe: Recipe; x: number; y: number; coll?: Coll } | null>(null);
@@ -814,7 +816,7 @@ export default function TVDesktopHome() {
     // « Pour toi » : recommandations déduites en silence des favoris / vues / cuisinées.
     const [forYou, setForYou] = useState<Recipe[]>([]);
     useEffect(() => {
-        const load = () => setForYou(personalizedRecipes(mockRecipes) as Recipe[]);
+        const load = () => setForYou((personalizedRecipes(mockRecipes) as Recipe[]).filter(pourAdultes));
         load();
         const evts = ['tv-seen-change', 'magic-favorite-change', PROGRESS_EVENT, 'focus', 'storage'];
         evts.forEach((e) => window.addEventListener(e, load));
@@ -874,12 +876,13 @@ export default function TVDesktopHome() {
         return () => { window.removeEventListener('click', close); window.removeEventListener('scroll', close, true); window.removeEventListener('keydown', esc); };
     }, [menu]);
 
-    const openCollection = useCallback((title: string, recipes: Recipe[]) => {
+    const openCollection = useCallback((title: string, recipes: Recipe[], opts?: { classement?: boolean }) => {
         // Ouvrir une collection reprend la main : on quitte le planificateur/courses
         // et les filtres (un seul lien du menu actif à la fois).
         setPanel('none');
         setFilters([]);
-        setCollection({ title, recipes });
+        setTriTop('note');
+        setCollection({ title, recipes, classement: !!opts?.classement });
         // Remonter tout en haut (le titre de la catégorie) APRÈS le rendu de la
         // collection — un scroll synchrone se ferait avant et resterait sans effet.
         requestAnimationFrame(() => {
@@ -929,23 +932,35 @@ export default function TVDesktopHome() {
      */
 
     // ── Données des rangées ──
-    const heroRecipes = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image).slice(0, 6), []);
-    const newest = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image).slice(0, 18), []);
+    // Une recette de bébé ne s'affiche que dans « Pour les bébés » : ni héros,
+    // ni nouveautés, ni Top, ni catégories.
+    const heroRecipes = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && pourAdultes(r)).slice(0, 6), []);
+    const newest = useMemo(() => mockRecipes.filter((r) => r.category !== 'restaurant' && r.image && pourAdultes(r)).slice(0, 18), []);
     const resume = useMemo(() => inProgress.map((x) => x.recipe), [inProgress]);
-    const topTen = useMemo(() => {
+    // Top 100 : dix sur l'accueil (chiffres en tête), cent dans la collection,
+    // triables par note ou par date de la dernière note.
+    const top = useMemo(() => {
         const rated = stats
-            ? mockRecipes.map((r) => ({ r, s: stats.get(String(r.id)) })).filter((x) => x.s && x.s.count > 0)
-                .sort((a, b) => b.s!.avg - a.s!.avg || b.s!.count - a.s!.count).slice(0, 10).map((x) => x.r)
+            ? mockRecipes.filter(pourAdultes).map((r) => ({ r, s: stats.get(String(r.id)) })).filter((x) => x.s && x.s.count > 0)
+                .sort((a, b) => b.s!.avg - a.s!.avg || b.s!.count - a.s!.count).slice(0, 100).map((x) => x.r)
             : [];
         if (rated.length >= 3) return rated;
-        return [...mockRecipes].sort((a, b) => (b.votes || 0) - (a.votes || 0)).slice(0, 10);
+        return mockRecipes.filter(pourAdultes).sort((a, b) => (b.votes || 0) - (a.votes || 0)).slice(0, 10);
     }, [stats]);
     const laterRecipes = useMemo(() => laterIds.map((id) => mockRecipes.find((r) => String(r.id) === id)).filter(Boolean) as Recipe[], [laterIds]);
+    // Collection affichée : le Top trié par date de dernière note si demandé.
+    const collListe = useMemo(() => {
+        if (!collection) return [] as Recipe[];
+        if (!collection.classement || triTop === 'note' || !stats) return collection.recipes;
+        const quand = (r: Recipe) => stats.get(String(r.id))?.last || 0;
+        return [...collection.recipes].sort((a, b) => quand(b) - quand(a));
+    }, [collection, triTop, stats]);
     const byCat = useMemo(() => {
         const g: Record<string, Recipe[]> = {};
         mockRecipes.forEach((r) => {
             if (!r.image) return;
             if (isSavoryMiscat(r)) return; // salées mal rangées en pâtisserie
+            if (estRecetteBebe(r)) return; // bébé : seulement dans « Pour les bébés »
             const tags = (r.tags || []).map((t) => t.toLowerCase());
             const cat = tags.some((t) => t === 'accompagnement' || t === 'accompagnements') ? 'accompagnements' : (r.category || 'autres').toLowerCase();
             (g[cat] ||= []).push(r);
@@ -1051,8 +1066,11 @@ export default function TVDesktopHome() {
         const byGroup: Record<string, string[]> = {};
         filters.forEach((t) => { (byGroup[t.slice(0, 1)] ||= []).push(t.slice(2)); });
         const hasCategory = !!byGroup['c']?.length;
+        // Recette de bébé : seulement si « Pour les bébés » est coché.
+        const bebeDemande = filters.includes('t:bebe');
         return mockRecipes.filter((r) => {
             if (!r.image) return false;
+            if (!bebeDemande && estRecetteBebe(r)) return false;
             return Object.entries(byGroup).every(([g, values]) =>
                 values.some((v) => {
                     if (g !== 'c') return matchesTag(r, v, { ignoreCategoryGuards: hasCategory });
@@ -1247,7 +1265,7 @@ export default function TVDesktopHome() {
                     onDrop={dropToLibrary}
                 >
                     <NavItem icon={ICONS.clock} onClick={() => openCollection('Nouveautés', newest)}>Ajouts récents</NavItem>
-                    <NavItem icon={ICONS.star} onClick={() => openCollection('Top 10 : les mieux notées', topTen)}>Top 10</NavItem>
+                    <NavItem icon={ICONS.star} onClick={() => openCollection('Top 100 : les mieux notées', top, { classement: true })}>Top 100</NavItem>
                     <NavItem icon={ICONS.resto} onClick={() => goCategory('restaurant', 'Comme au resto')}>Comme au resto</NavItem>
                     {library.map((it) => (
                         <div key={it.token} className={`${styles.navRow} ${styles.libraryItem} ${nav === `tag:${it.token.slice(2)}` || nav === it.token.slice(2) ? styles.navRowOn : ''}`}>
@@ -1347,11 +1365,28 @@ export default function TVDesktopHome() {
                             <h1 className={styles.collTitle}>{collection.title}</h1>
                             <span className={styles.collCount}>{collection.recipes.length} recette{collection.recipes.length > 1 ? 's' : ''}</span>
                         </div>
+                        {/* Le Top se trie par note (le classement) ou par date de
+                            la dernière note. Pas de chiffre sur les visuels ici. */}
+                        {collection.classement && (
+                            <div className={styles.collTri} role="tablist" aria-label="Trier">
+                                {([['note', 'Par note'], ['date', 'Notées récemment']] as const).map(([v, lib]) => (
+                                    <button
+                                        key={v}
+                                        role="tab"
+                                        aria-selected={triTop === v}
+                                        className={`${styles.collTriBtn} ${triTop === v ? styles.collTriOn : ''}`}
+                                        onClick={() => setTriTop(v)}
+                                    >
+                                        {lib}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                         {/* Mosaïque : les cartes ne sont pas toutes de la même
                             taille — grande verticale, large, standard, petite —
                             selon un motif qui se répète, comme sur mobile. */}
                         <div className={styles.mosaic}>
-                            {collection.recipes.map((r, i) => (
+                            {collListe.map((r, i) => (
                                 <div key={r.id} className={`${styles.mosaicCell} ${styles[MOSAIC[i % MOSAIC.length]]}`}>
                                     <Card recipe={r} shape="wide" onMenu={onMenu} coll={collOf(collection.title, collection.recipes)} />
                                 </div>
@@ -1362,7 +1397,7 @@ export default function TVDesktopHome() {
                     <>
                         <Hero recipes={heroRecipes} total={mockRecipes.length} onMenu={onMenu} />
                         <div className={styles.rows}>
-                            <Row title="Top 10 : les mieux notées" recipes={topTen} shape="poster" ranked onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                            <Row title="Top 100 : les mieux notées" recipes={top.slice(0, 10)} shape="poster" ranked onSeeAll={() => openCollection('Top 100 : les mieux notées', top, { classement: true })} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                             {resume.length > 0 && <Row title="Reprendre la cuisine" recipes={resume} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
                             {laterRecipes.length > 0 && <Row title="À faire plus tard" recipes={laterRecipes} shape="wide" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
                             {forYou.length >= 4 && <Row title="Pour toi" recipes={forYou} shape="poster" onSeeAll={openCollection} onMenu={onMenu} isLater={isLater} onToggleLater={handleToggleLater} />}
@@ -1410,13 +1445,17 @@ export default function TVDesktopHome() {
                         <div className={styles.ctxTitle}>{label(menu.recipe)}</div>
                         {(() => {
                             const r = menu.recipe;
-                            const cat = (r.category || '').toLowerCase();
-                            const catName = catLabel(r);
+                            // Une recette de bébé n'a qu'une catégorie : la sienne.
+                            const bebe = estRecetteBebe(r);
+                            const cat = bebe ? 'bebe' : (r.category || '').toLowerCase();
+                            const catName = bebe ? 'Pour les bébés' : catLabel(r);
                             // Sans contexte (héros, rangée « Nouveautés »…), on retombe
                             // sur la catégorie de la recette.
                             // Sans contexte de rangée, la collection est la catégorie
                             // de la recette — nommée au pluriel.
-                            const memeCat = mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat);
+                            const memeCat = bebe
+                                ? mockRecipes.filter((x) => estRecetteBebe(x))
+                                : mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat);
                             const coll: Coll = menu.coll || {
                                 label: COLLECTION_LABEL[cat] || catName,
                                 tag: cat,
@@ -1442,7 +1481,7 @@ export default function TVDesktopHome() {
                                             <CtxIc d="M8 3v3M16 3v3M4 8h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM12 12v5M9.5 14.5h5" /><span>Ajouter au planificateur</span>
                                         </button>
                                     )}
-                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); goCategory(cat, catName); }}>
+                                    <button className={styles.ctxAction} onClick={() => { setMenu(null); if (bebe) goTag('bebe', catName); else goCategory(cat, catName); }}>
                                         <CtxIc d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
                                     </button>
                                     <button className={styles.ctxAction} onClick={() => { const rr = r; setMenu(null); setShareCard({ recipe: rr, category: coll }); }}>

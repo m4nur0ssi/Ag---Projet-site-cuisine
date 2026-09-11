@@ -220,6 +220,15 @@ export function matchesTag(
     }
     const guards = !opts?.ignoreCategoryGuards;
     const tagLower = tag.toLowerCase();
+
+    // « Pour les bébés » : la recette doit se déclarer (tag « Bébé », le mot
+    // dans le titre ou la description, un âge en mois). Rien ne se déduit — un
+    // bébé ne mange pas ce qu'on lui suppose comestible.
+    // Et une recette de bébé n'a qu'un rayon : le sien. Taguée « Healthy »,
+    // « Italie » ou « Pâtes » par le bot, elle remplissait les rangées adultes
+    // d'une pastina « dès 12 mois » et de bâtonnets de courgette pour tout-petits.
+    if (tagLower === 'bebe' || tagLower === 'bebes') return estRecetteBebe(recipe);
+    if (estRecetteBebe(recipe)) return false;
     const recipeTags = (recipe.tags || []).map((t) => t.toLowerCase());
     const recipeCat = (recipe.category || '').toLowerCase();
     const titleLower = (recipe.title || '').toLowerCase();
@@ -252,13 +261,6 @@ export function matchesTag(
         if (recipeCat === 'glaces') return true;
         // « Thé glacé » est une boisson : le rayon des glaces n'en veut pas.
         return recipeCat !== 'rafraichissements' && ICE_TITLE.test(normTitle);
-    }
-
-    // « Pour les bébés » : la recette doit se déclarer (tag « Bébé », le mot
-    // dans le titre ou la description, un âge en mois). Rien ne se déduit — un
-    // bébé ne mange pas ce qu'on lui suppose comestible.
-    if (tagLower === 'bebe' || tagLower === 'bebes') {
-        return estRecetteBebe(recipe);
     }
 
     if (tagLower === 'famille' || tagLower === 'familial') {

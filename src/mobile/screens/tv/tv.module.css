@@ -895,6 +895,34 @@
     color: rgba(235, 235, 245, 0.5);
 }
 
+/* Tri du Top : deux pastilles sous le titre, façon contrôle segmenté iOS. */
+.allTri {
+    display: inline-flex;
+    gap: 4px;
+    margin: 0 18px 12px;
+    padding: 3px;
+    border-radius: 999px;
+    background: rgba(120, 120, 128, 0.24);
+}
+.allTriBtn {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: rgba(235, 235, 245, 0.7);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.allTriOn {
+    background: #fff;
+    color: #0a0a0c;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
 /* Titre de carte cliquable : c'est lui qui ouvre la fiche, le visuel lançant
    la vidéo. Il garde l'aspect d'un titre, pas d'un bouton. */
 .cardLabelBtn {

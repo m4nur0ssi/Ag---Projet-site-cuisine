@@ -41,6 +41,7 @@ const DETAILS = path.join(RACINE, 'src/mobile/data/home-details.ts');
 const THEMES_MOD = path.join(RACINE, 'src/mobile/screens/tv/themes.ts');
 const FILTRES = path.join(RACINE, 'src/mobile/screens/tv/filters.ts');
 const TIMING = path.join(RACINE, 'src/lib/recipe-timing.ts');
+const BEBE = path.join(RACINE, 'src/lib/bebe.ts');
 
 /**
  * Charge un module TypeScript du projet sans dépendance de build : transpile,
@@ -88,6 +89,7 @@ function lireRecettes() {
 const { estimateRecipeTiming, sumStepMinutes } = chargerTS(TIMING);
 const { THEMES, matchesTag, isSavoryMiscat, COLLECTION_TAGS_VALEURS } = chargerTS(THEMES_MOD);
 const { COUNTRY_OPTIONS } = chargerTS(FILTRES);
+const { estRecetteBebe } = chargerTS(BEBE);
 
 /**
  * TOUS les tags qu'une vue peut demander : les rangées thématiques, les pays du
@@ -126,6 +128,9 @@ const allegees = recettes.map((r) => {
         tagsStricts: strict,
         tagsLarges: large,
         sale: isSavoryMiscat(r),
+        // Recette de bébé : décidé ici, étapes en main. L'accueil ne les a
+        // plus, et c'est ce drapeau qui la tient hors des rangées adultes.
+        bebe: estRecetteBebe(r),
     };
 });
 
@@ -175,6 +180,8 @@ export type HomeRecipe = Recipe & {
     est?: RecipeTiming;
     /** Minutes écrites noir sur blanc dans les étapes. */
     timed?: number;
+    /** Recette de bébé : ne vit que dans « Pour les bébés ». */
+    bebe?: boolean;
 };
 
 export const homeRecipes: HomeRecipe[] = ${litteral(allegees)};

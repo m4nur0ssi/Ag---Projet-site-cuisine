@@ -29,7 +29,7 @@ import { startScrollReveal } from '@/lib/scrollReveal';
 import { useRatingStats, type RatingStat } from '@/mobile/lib/ratings';
 import { supabase } from '@/mobile/lib/supabase';
 import { THEMES, matchesTag, isSavoryMiscat, collectionTagOf, minimumRangee } from './themes';
-import { ageAAfficher } from '@/lib/bebe';
+import { ageAAfficher, estRecetteBebe, pourAdultes } from '@/lib/bebe';
 import { tiktokAllowed, tiktokPlayed, tiktokFailed, tiktokSignal, tiktokDemandeExplicite } from '@/lib/tiktok-consent';
 import { personalizedRecipes } from '@/lib/personalize';
 const TasteOnboarding = dynamic(() => import('@/mobile/components/TasteOnboarding/TasteOnboarding'), { ssr: false });
@@ -188,6 +188,16 @@ const InstallInvite = dynamic(() => import('@/mobile/components/InstallInvite/In
  * au-delà d'environ 24, la rangée de points déborde de l'écran.
  */
 const SHEET_WINDOW = 24;
+
+/** Taille du classement : cent recettes, dont dix sur l'accueil. */
+const TOP_MAX = 100;
+
+/** « 10 sept. » — la date d'une note, sans l'année quand c'est cette année. */
+const dateCourte = (ms: number) => {
+    const d = new Date(ms);
+    const memeAnnee = d.getFullYear() === new Date().getFullYear();
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', ...(memeAnnee ? {} : { year: 'numeric' }) });
+};
 
 /** Ouvre une fiche + ses voisines : dans le sheet, on swipe d'une recette à l'autre. */
 type OpenSheet = (list: Recipe[], index: number) => void;
@@ -624,7 +634,7 @@ const collOf = (title: string, recipes: Recipe[], tag?: string): Coll | undefine
 };
 
 function TopTenRow({
-    recipes,
+    recipes: tous,
     title,
     onSeeAll,
     onOpen,
@@ -640,6 +650,11 @@ function TopTenRow({
     isLater?: (id: string) => boolean;
     onToggleLater?: (r: Recipe) => void;
 }) {
+    /*
+     * Le classement complet va jusqu'à cent ; l'accueil n'en montre que dix,
+     * chiffre en tête. Le chevron ouvre les cent — sans chiffres, triables.
+     */
+    const recipes = useMemo(() => tous.slice(0, 10), [tous]);
     const [visibleId, setVisibleId] = useState<string | null>(null);
     const [playingId, setPlayingId] = useState<string | null>(null);
     // Grand écran : la lecture ne part plus toute seule, elle suit la souris.
@@ -824,7 +839,7 @@ function TopTenRow({
 
     return (
         <section className={styles.row} data-reveal>
-            <button className={styles.rowHead} onClick={() => { haptic(8); onSeeAll(title, recipes); }}>
+            <button className={styles.rowHead} onClick={() => { haptic(8); onSeeAll(title, tous); }}>
                 <h2 className={styles.rowTitle}>{title}</h2>
                 <Chevron />
             </button>
@@ -1668,7 +1683,13 @@ export default function TVHome() {
     useEffect(() => startScrollReveal(), []);
 
     const stats = useRatingStats();
-    const [all, setAll] = useState<{ title: string; recipes: Recipe[] } | null>(null);
+    /*
+     * La vue « tout afficher ». `classement` : c'est le Top, qui se trie par
+     * note ou par date de la dernière note — les autres collections gardent
+     * leur ordre.
+     */
+    const [all, setAll] = useState<{ title: string; recipes: Recipe[]; classement?: boolean } | null>(null);
+    const [triTop, setTriTop] = useState<'note' | 'date'>('note');
     const [sheet, setSheet] = useState<{ recipes: Recipe[]; index: number } | null>(null);
     const [menu, setMenu] = useState<{ recipe: Recipe; coll?: Coll } | null>(null);
     // Recette à caser dans la semaine (volet « Ajouter au planificateur »).
@@ -1765,7 +1786,7 @@ export default function TVHome() {
         // ne l'affiche pas (voir le rendu), et il n'y a donc rien à bousculer.
         let affichee = false;
         const calculer = () => {
-            const liste = personalizedRecipes(mockRecipes) as Recipe[];
+            const liste = (personalizedRecipes(mockRecipes) as Recipe[]).filter(pourAdultes);
             affichee = liste.length >= 4;
             setForYou(liste);
         };
@@ -1910,8 +1931,13 @@ export default function TVHome() {
         });
         // Une catégorie cochée désactive les garde-fous de catégorie des thèmes.
         const hasCategory = !!byGroup['c']?.length;
+        // Recette de bébé : seulement si on la cherche — le filtre « Pour les
+        // bébés » coché, ou un mot tapé. Cocher « Plats » ne doit pas servir
+        // une purée « dès 6 mois ».
+        const bebeDemande = filters.includes('t:bebe') || !!q;
         return mockRecipes.filter((r) => {
             if (!r.image) return false;
+            if (!bebeDemande && estRecetteBebe(r)) return false;
             // Recherche texte : titre, catégorie ou tag (combiné ET avec les filtres).
             if (q) {
                 const hit = norm(label(r)).includes(q)
@@ -1940,8 +1966,9 @@ export default function TVHome() {
         return parts.join(' · ') || 'Résultats';
     }, [filters, navQuery]);
 
-    const openAll = useCallback((title: string, recipes: Recipe[]) => {
-        setAll({ title, recipes });
+    const openAll = useCallback((title: string, recipes: Recipe[], opts?: { classement?: boolean }) => {
+        setTriTop('note');
+        setAll({ title, recipes, classement: !!opts?.classement });
     }, []);
 
     // Lien de thème partagé (/?tag=…) : la grille du thème s'ouvre à l'arrivée,
@@ -2019,6 +2046,8 @@ export default function TVHome() {
         mockRecipes.forEach((r) => {
             // Recettes salées mal rangées en pâtisserie → exclues de la vue.
             if (isSavoryMiscat(r)) return;
+            // Une recette de bébé n'appartient qu'à « Pour les bébés ».
+            if (estRecetteBebe(r)) return;
             const tags = (r.tags || []).map((t) => t.toLowerCase());
             // Comme sur l'accueil actuel : « accompagnement » prime sur la catégorie
             // WordPress, où ces recettes sont rangées dans « plats ».
@@ -2035,7 +2064,7 @@ export default function TVHome() {
     // MODIFICATION, si bien qu'une vieille recette retouchée remontait en tête.
     const heroRecipes = useMemo(
         () => mockRecipes
-            .filter((r) => r.category !== 'restaurant' && r.image)
+            .filter((r) => r.category !== 'restaurant' && r.image && pourAdultes(r))
             .slice()
             .sort((a, b) => parseInt(String(b.id), 10) - parseInt(String(a.id), 10))
             .slice(0, 6),
@@ -2043,23 +2072,54 @@ export default function TVHome() {
     );
 
     const newest = useMemo(
-        () => mockRecipes.filter((r) => r.category !== 'restaurant').slice(0, 14),
+        () => mockRecipes.filter((r) => r.category !== 'restaurant' && pourAdultes(r)).slice(0, 14),
         []
     );
 
-    // Top 10 : notes membres si dispo, sinon repli sur les votes puis l'ordre WP.
-    const topTen = useMemo(() => {
+    /*
+     * Top 100 : les recettes notées par les membres, de la mieux notée à la
+     * moins bien notée (à égalité, la plus notée d'abord). L'accueil n'en
+     * montre que les dix premières, chiffre en tête ; la page « tout voir »
+     * les montre toutes, triables par note ou par date de la dernière note.
+     *
+     * Tant que moins de trois recettes sont notées, on retombe sur les votes
+     * — une rangée « Top » de deux cartes ferait pauvre.
+     */
+    const top = useMemo(() => {
         const rated = stats
             ? mockRecipes
+                  .filter(pourAdultes)
                   .map((r) => ({ r, s: stats.get(String(r.id)) }))
                   .filter((x) => x.s && x.s.count > 0)
                   .sort((a, b) => b.s!.avg - a.s!.avg || b.s!.count - a.s!.count)
-                  .slice(0, 10)
+                  .slice(0, TOP_MAX)
                   .map((x) => x.r)
             : [];
         if (rated.length >= 3) return rated;
-        return [...mockRecipes].sort((a, b) => (b.votes || 0) - (a.votes || 0)).slice(0, 10);
+        return mockRecipes.filter(pourAdultes).sort((a, b) => (b.votes || 0) - (a.votes || 0)).slice(0, 10);
     }, [stats]);
+
+    /*
+     * Ce qu'affiche la vue « tout afficher ». Pour le Top : « Par note » garde
+     * l'ordre du classement ; « Par date » met en tête la recette notée le
+     * plus récemment.
+     */
+    const allListe = useMemo(() => {
+        if (!all) return [];
+        if (!all.classement || triTop === 'note' || !stats) return all.recipes;
+        const quand = (r: Recipe) => stats.get(String(r.id))?.last || 0;
+        return [...all.recipes].sort((a, b) => quand(b) - quand(a));
+    }, [all, triTop, stats]);
+
+    /** Sous-titre d'une carte du Top : l'avis ou la date, selon le tri. */
+    const sousTitreTop = (r: Recipe) => {
+        const st = stats?.get(String(r.id));
+        if (!st) return catLabel(r);
+        const info = triTop === 'date' && st.last
+            ? `notée le ${dateCourte(st.last)}`
+            : `${st.count} avis`;
+        return [catLabel(r), info].join(' · ');
+    };
 
     // Rangée « Reprendre la cuisine » = recettes en cours (source réelle).
     const resume = useMemo(() => inProgress.map((x) => x.recipe), [inProgress]);
@@ -2172,7 +2232,7 @@ export default function TVHome() {
             <div className={styles.sheet}>
                 <div className={styles.grabber} />
 
-                <TopTenRow title="Top 10 : les mieux notées" recipes={topTen} onSeeAll={openAll} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
+                <TopTenRow title="Top 100 : les mieux notées" recipes={top} onSeeAll={(t, list) => openAll(t, list, { classement: true })} onOpen={openSheet} onLongPress={openMenu} isLater={isLater} onToggleLater={handleToggleLater} />
                 {resume.length > 0 && (
                     <Row
                         title="Reprendre la cuisine"
@@ -2281,15 +2341,33 @@ export default function TVHome() {
                                 {all.recipes.length} recette{all.recipes.length > 1 ? 's' : ''}
                             </span>
                         </div>
+                        {/* Le Top se trie : par note (le classement) ou par date
+                            de la dernière note. Pas de chiffre sur les photos
+                            ici — le rang n'a de sens que dans l'ordre des notes. */}
+                        {all.classement && (
+                            <div className={styles.allTri} role="tablist" aria-label="Trier">
+                                {([['note', 'Par note'], ['date', 'Notées récemment']] as const).map(([v, lib]) => (
+                                    <button
+                                        key={v}
+                                        role="tab"
+                                        aria-selected={triTop === v}
+                                        className={`${styles.allTriBtn} ${triTop === v ? styles.allTriOn : ''}`}
+                                        onClick={() => { haptic(8); setTriTop(v); }}
+                                    >
+                                        {lib}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                         <div className={styles.allGrid}>
-                            {all.recipes.map((r, i) => (
+                            {allListe.map((r, i) => (
                                 <CollectionCard
                                     key={r.id}
                                     recipe={r}
-                                    subtitle={[catLabel(r), timeLabel(r)].filter(Boolean).join(' · ')}
+                                    subtitle={all.classement ? sousTitreTop(r) : [catLabel(r), timeLabel(r)].filter(Boolean).join(' · ')}
                                     later={isLater(String(r.id))}
                                     onToggleLater={handleToggleLater}
-                                    onOpen={() => openSheet(all.recipes, i)}
+                                    onOpen={() => openSheet(allListe, i)}
                                     onLongPress={() => openMenu(r, collOf(all.title, all.recipes))}
                                 />
                             ))}
@@ -2338,13 +2416,17 @@ export default function TVHome() {
                             <div className={styles.menuActions}>
                                 {(() => {
                                     const r = menu.recipe;
-                                    const cat = (r.category || '').toLowerCase();
-                                    const catName = catLabel(r);
+                                    // Une recette de bébé n'a qu'une catégorie : la sienne.
+                                    const bebe = estRecetteBebe(r);
+                                    const cat = bebe ? 'bebe' : (r.category || '').toLowerCase();
+                                    const catName = bebe ? 'Pour les bébés' : catLabel(r);
                                     // Sans contexte (rangée « Nouveautés », favoris…),
                                     // on retombe sur la catégorie de la recette.
                                     // Sans contexte de rangée, la collection est la
                                     // catégorie de la recette — nommée au pluriel.
-                                    const memeCat = mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat);
+                                    const memeCat = bebe
+                                        ? mockRecipes.filter((x) => estRecetteBebe(x))
+                                        : mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat);
                                     const coll: Coll = menu.coll || {
                                         label: COLLECTION_LABEL[cat] || catName,
                                         tag: cat,
@@ -2376,7 +2458,7 @@ export default function TVHome() {
                                             <button className={`${styles.menuAction} ${fav ? styles.menuDanger : ''}`} onClick={() => { haptic(12); setMenu(null); toggleFavorite(String(r.id)); }}>
                                                 <MI d="M20.8 6.6a4.6 4.6 0 0 0-6.5 0L12 8.9 9.7 6.6a4.6 4.6 0 1 0-6.5 6.5l1 1L12 21l7.8-6.9 1-1a4.6 4.6 0 0 0 0-6.5z" /><span>{fav ? 'Retirer des favoris' : 'Ajouter aux favoris'}</span>
                                             </button>
-                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); openAll(catName, (byCat[cat] || []).length ? byCat[cat] : mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat && x.image)); }}>
+                                            <button className={styles.menuAction} onClick={() => { haptic(8); setMenu(null); openAll(catName, bebe ? memeCat.filter((x) => x.image) : (byCat[cat] || []).length ? byCat[cat] : mockRecipes.filter((x) => (x.category || '').toLowerCase() === cat && x.image)); }}>
                                                 <MI d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 8h.01M11 12h1v4h1" /><span>Accéder à {catName}</span>
                                             </button>
                                             {/*

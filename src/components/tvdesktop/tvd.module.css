@@ -758,6 +758,20 @@
 }
 .collCount { margin-left: auto; font-size: 14px; color: var(--dim); }
 
+/* Tri du Top : contrôle segmenté sous le titre. */
+.collTri {
+    display: inline-flex; gap: 4px; margin: -10px 0 26px; padding: 4px;
+    border-radius: 999px; background: rgba(255, 255, 255, 0.1);
+}
+.collTriBtn {
+    padding: 8px 16px; border: none; border-radius: 999px;
+    background: transparent; color: var(--dim);
+    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: background 0.16s ease, color 0.16s ease;
+}
+.collTriBtn:hover { color: #fff; }
+.collTriOn, .collTriOn:hover { background: #fff; color: #0a0a0c; }
+
 /* Coche d'un filtre actif dans la sidebar (poussée à droite de la ligne). */
 .navCheck { margin-left: auto; flex: 0 0 auto; color: #fff; }
 

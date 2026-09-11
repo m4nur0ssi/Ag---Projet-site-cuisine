@@ -38,6 +38,14 @@ import {
     type Plan, type Slot,
 } from './plan';
 import { matchesTag } from './themes';
+import { pourAdultes } from '@/lib/bebe';
+
+/*
+ * Ce que le planificateur a le droit de piocher TOUT SEUL : pas de recette de
+ * bébé dans un menu composé pour la table. Poser une recette de bébé à la main
+ * reste possible — c'est un choix, pas un tirage.
+ */
+const CATALOGUE_AUTO = mockRecipes.filter(pourAdultes);
 import { FILTER_GROUPS, type FilterGroup } from '@/lib/searchFilters';
 import { partagerMenu, preparerMenu } from '@/lib/partage-menu';
 import { supabase } from '@/mobile/lib/supabase';
@@ -598,9 +606,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
 
         const next: Plan = { ...plan };
         const used = new Set<string>();
-        const sides = shuffle(sidePool(mockRecipes).filter(fits).length >= 6
-            ? sidePool(mockRecipes).filter(fits)
-            : sidePool(mockRecipes));
+        const sides = shuffle(sidePool(CATALOGUE_AUTO).filter(fits).length >= 6
+            ? sidePool(CATALOGUE_AUTO).filter(fits)
+            : sidePool(CATALOGUE_AUTO));
 
         const totalTime = (r: Recipe) => { const t = estimateRecipeTiming(r.steps); return t.prepTime + t.cookTime; };
 
@@ -610,9 +618,9 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         let offTrend = 0;
 
         const pickFrom = (accepts: (r: Recipe) => boolean, opts?: { lastProtein?: string; express?: boolean }): Recipe | null => {
-            const onTrend = mockRecipes.filter((r) => r.image && accepts(r) && fits(r));
+            const onTrend = CATALOGUE_AUTO.filter((r) => r.image && accepts(r) && fits(r));
             if (!onTrend.length && tagged) offTrend++;
-            const pool = onTrend.length ? onTrend : mockRecipes.filter((r) => r.image && accepts(r));
+            const pool = onTrend.length ? onTrend : CATALOGUE_AUTO.filter((r) => r.image && accepts(r));
             if (!pool.length) return null;
 
             const fresh = pool.filter((r) => !used.has(String(r.id)));
@@ -727,7 +735,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
 
     /** Remplit un créneau au hasard, dans la bonne catégorie. */
     const surprise = (day: string, meal: string, accepts: (r: Recipe) => boolean) => {
-        const pool = mockRecipes.filter((r) => r.image && accepts(r));
+        const pool = CATALOGUE_AUTO.filter((r) => r.image && accepts(r));
         const pick = pool[Math.floor(Math.random() * pool.length)];
         if (!pick) return;
         haptic(8);

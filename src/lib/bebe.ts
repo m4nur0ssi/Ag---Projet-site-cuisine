@@ -49,8 +49,28 @@ function texteBebe(recipe: RecetteLisible): string {
 /**
  * Recette destinée à un bébé ? Il faut qu'elle le dise : un tag « Bébé », le
  * mot dans le titre ou la description, ou un âge en mois annoncé.
+ *
+ * La réponse décide de TOUT l'affichage : une recette de bébé ne vit que dans
+ * « Pour les bébés », jamais dans Plats, Healthy, Italie ni le Top — on ne sert
+ * pas une purée « dès 6 mois » à qui cherche son dîner. Elle est donc demandée
+ * des milliers de fois par écran : mise en cache par recette, et lue telle
+ * quelle quand le build l'a déjà calculée (champ `bebe` des données de
+ * l'accueil, qui n'ont plus les étapes pour la recalculer).
  */
-export function estRecetteBebe(recipe: RecetteLisible): boolean {
+const cacheBebe = new WeakMap<object, boolean>();
+export function estRecetteBebe(recipe: RecetteLisible & { bebe?: boolean }): boolean {
+    if (typeof recipe.bebe === 'boolean') return recipe.bebe;
+    const deja = cacheBebe.get(recipe);
+    if (deja !== undefined) return deja;
+    const oui = detecterBebe(recipe);
+    cacheBebe.set(recipe, oui);
+    return oui;
+}
+
+/** Recette pour tout le monde — l'inverse, commode dans un `filter`. */
+export const pourAdultes = (recipe: RecetteLisible & { bebe?: boolean }) => !estRecetteBebe(recipe);
+
+function detecterBebe(recipe: RecetteLisible): boolean {
     const tags = (recipe.tags || []).map(sansAccents);
     if (tags.some((t) => t.includes('bebe') || t.includes('diversification') || TAG_AGE.test(t.trim()))) return true;
     const texte = texteBebe(recipe);

@@ -49,6 +49,7 @@ import Tip from '@/components/Tip/Tip';
 import PlanPicker from '@/mobile/components/PlanPicker/PlanPicker';
 import { planifiable, OUVRIR_PLANIFICATEUR } from '@/mobile/screens/tv/plan';
 import { ecrireStock } from '@/lib/stockage';
+import { estRecetteBebe } from '@/lib/bebe';
 
 interface RecipeDetailsProps {
     recipe: Recipe;
@@ -205,7 +206,10 @@ export default function RecipeDetails({ recipe, prevId, nextId, isModal = false 
                 .map(({ recipe: r }) => r);
         }
         return mockRecipes
-            .filter(r => String(r.id) !== String(recipe.id) && r.category !== 'restaurant')
+            // Bébé avec bébé, grands avec grands : une fiche de dîner ne
+            // propose pas une purée « dès 6 mois », et inversement.
+            .filter(r => String(r.id) !== String(recipe.id) && r.category !== 'restaurant'
+                && estRecetteBebe(r) === estRecetteBebe(recipe))
             .map(r => {
                 let score = 0;
                 if (r.category === recipe.category) score += 3;
