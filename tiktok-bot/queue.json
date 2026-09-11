@@ -1,11 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://www.tiktok.com/@test/video/9999999999999999996",
-      "country": "{\"status\":{\"Restaurants\":1}}",
-      "timestamp": "2026-09-11T13:32:44.584Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN8FcaP8F/",
