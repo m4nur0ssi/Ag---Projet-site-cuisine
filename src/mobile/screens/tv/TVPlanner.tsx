@@ -371,12 +371,21 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         }));
     };
 
+    /*
+     * Largeur d'UNE page : celle d'une diapo, pas celle du cadre. Les deux se
+     * confondent sur téléphone ; au bureau, une règle a longtemps borné la
+     * diapo à 1 040 px dans un cadre plus large, et compter en largeurs de
+     * cadre faisait dériver le carrousel d'un jour.
+     */
+    const largeurPage = (el: HTMLDivElement) =>
+        Math.max(1, (el.firstElementChild as HTMLElement | null)?.offsetWidth || el.clientWidth);
+
     // ── Jour courant : lu sur le défilement natif du pager ────────────────
     useEffect(() => {
         const el = pagerRef.current;
         if (!el || mode !== 'semaine') return;
         const onScroll = () => {
-            const i = Math.round(el.scrollLeft / Math.max(1, el.clientWidth));
+            const i = Math.min(DAYS.length - 1, Math.max(0, Math.round(el.scrollLeft / largeurPage(el))));
             setIndex((prev) => (prev === i ? prev : i));
         };
         el.addEventListener('scroll', onScroll, { passive: true });
@@ -384,7 +393,8 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
     }, [mode]);
 
     const goToDay = (i: number) => {
-        pagerRef.current?.scrollTo({ left: i * (pagerRef.current.clientWidth || 0), behavior: 'smooth' });
+        const el = pagerRef.current;
+        if (el) el.scrollTo({ left: i * largeurPage(el), behavior: 'smooth' });
     };
 
     // Ouverture : on se place sur AUJOURD'HUI, pas sur lundi.
@@ -394,7 +404,7 @@ export default function TVPlanner({ embedded = false }: { embedded?: boolean }) 
         if (!el) return;
         const i = todayIndex();
         // Sans délai, la largeur du pager n'est pas encore connue.
-        const t = setTimeout(() => { el.scrollLeft = i * el.clientWidth; setIndex(i); }, 60);
+        const t = setTimeout(() => { el.scrollLeft = i * largeurPage(el); setIndex(i); }, 60);
         return () => clearTimeout(t);
     }, [mode]);
 

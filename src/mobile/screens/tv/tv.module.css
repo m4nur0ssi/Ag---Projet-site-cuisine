@@ -4839,6 +4839,23 @@
  * tombent alors exactement là où arriveront le plat et sa garniture.
  */
 @media (min-width: 900px) {
+    /*
+     * La colonne est bornée sur le CARROUSEL, pas sur ses pages. Bornée sur la
+     * page, celle-ci cessait de faire la largeur du cadre : le défilement, lui,
+     * compte en largeurs de cadre, et la barre des jours annonçait « Sam »
+     * pendant que « Dimanche » s'affichait, la page précédente dépassant sous
+     * la barre latérale.
+     */
+    .planPager {
+        width: 100%;
+        max-width: 1040px;
+        margin-inline: auto;
+    }
+    /* Une page occupe TOUTE la largeur du carrousel — c'est ce que suppose le
+       calcul du défilement (voir TVPlanner, `largeurPage`). */
+    .planPager > .planSlide { max-width: none; margin-inline: 0; }
+
+    /* Hors carrousel (« Jour J »), la colonne se borne elle-même. */
     .planSlide {
         width: 100%;
         max-width: 1040px;

@@ -48,8 +48,24 @@ export const proteinOf = (r: any): string => {
 
 // Sauces & condiments (dips, pestos, tartinades…) : ni plat, ni accompagnement.
 const SAUCE_RX = /\bsauces?\b|\bdips?\b|pesto|houmous|hummus|tzatziki|guacamole|tapenade|tartinade|\bchutney\b|a[ïi]oli|mayonnaise|vinaigrette|\bcoulis\b|\bmarinade\b/i;
+
+/**
+ * Une sauce, c'est une recette DE sauce — pas un plat qui vient avec.
+ *
+ * Le tag WordPress « Sauces » est posé sur tout ce qui se sert nappé, et le mot
+ * se promène dans les titres : « Poulet croustillant sauce aigre-douce »,
+ * « Nachos avec un déluge de sauce cheddar », « Arayes libanais et Tzatziki
+ * maison ». Pris pour des sauces, ces 38 plats n'avaient plus de place au
+ * planificateur — l'entrée « Ajouter au planificateur » disparaissait du menu.
+ *
+ * La recette est rangée en sauces (la synchro a déjà vérifié le titre), ou son
+ * titre COMMENCE par le mot : « Sauce Roquefort » et « Dip de courgette » en
+ * sont, « Poulet croustillant sauce aigre-douce » est un plat.
+ */
+const OUVRE_SUR_SAUCE = new RegExp(`^(?:la |le |les |l['’])?\\s*(?:${SAUCE_RX.source})`, 'i');
 export const isSauce = (r: any): boolean =>
-    (r?.tags || []).some((t: string) => /sauce|dip|condiment/i.test(t)) || SAUCE_RX.test(r?.title || '');
+    (r?.category || '').toLowerCase() === 'sauces'
+    || OUVRE_SUR_SAUCE.test(String(r?.title || '').trim());
 
 // Sucré (dessert / pâtisserie / glace / boisson) : exclu des plats ET des accompagnements.
 const SWEET_RX = /glace|sorbet|g[âa]teau|cr[êe]pe|gaufre|tiramisu|mousse au chocolat|panna cotta|\bflan\b|cheesecake|clafoutis|crumble|cookie|brownie|muffin|cupcake|macaron|[ée]clair|beignet|churros|pancake|nougat|pavlova|profiterole|riz au lait|pain perdu|pain d['’][ée]pices|compote|salade de fruits|tarte sucr|tarte aux (pomme|fraise|citron|framboise|abricot|poire|myrtille)|cr[èe]me (br[ûu]l[ée]e|p[âa]tissi[èe]re|dessert|anglaise)|fondant au chocolat|loukoum|baklava|halva|makroud|corne de gazelle|kn?[ae]fe|kunefe|chou.{0,18}(vanille|caramel|chantilly|cr[èe]me)|donut|donuts|dessert/i;
