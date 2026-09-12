@@ -2,11 +2,248 @@ import { Recipe } from '../types';
     
 /**
  * Recettes synchronisées depuis WordPress
- * Dernière mise à jour: 12/09/2026 12:46:32
- * Total: 721 recettes
+ * Dernière mise à jour: 12/09/2026 17:02:07
+ * Total: 722 recettes
  */
-export const exportSyncId = "1789217192067";
+export const exportSyncId = "1789232527087";
 export const mockRecipes: Recipe[] = [
+    {
+        "id": "7778",
+        "title": "Petites galettes de pommes de terre et brocoli",
+        "description": "Une recette simple et nutritive de petites galettes de pommes de terre et brocoli, idéales pour la diversification alimentaire des bébés dès 6 mois. Faciles à préparer et à congeler.",
+        "image": "/recipes-ia/7778-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7423109426908810499\" data-video-id=\"7423109426908810499\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7423109426908810499\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍎\n             2 pommes de terre bouillies ou cuites à la vapeur"
+            },
+            {
+                "quantity": "",
+                "name": "🥦\n             2 tasses de fleurons de brocoli cuits à la vapeur ou bouillis"
+            },
+            {
+                "quantity": "",
+                "name": "🧀\n             1/2 tasse de fromage râpé"
+            }
+        ],
+        "steps": [
+            "Étape 1 : Écraser tous les ingrédients dans un bol.",
+            "Étape 2 : À l'aide de vos mains, former de petites galettes et les placer sur une plaque de cuisson recouverte de papier sulfurisé. Cuire au four pendant 25 minutes à 180°C."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7780",
+        "title": "Bouchées à la carotte et pomme de terre",
+        "description": "Ces bouchées très fondantes s'écrasent facilement entre la langue et le palais de bébé, même sans dents ! Idéales pour la diversification alimentaire dès 6 mois.",
+        "image": "/recipes-ia/7780-carte.webp",
+        "category": "plats",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613059062523088160\" data-video-id=\"7613059062523088160\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613059062523088160\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥕\n             100g de carottes"
+            },
+            {
+                "quantity": "",
+                "name": "🍎\n             100g de pommes de terre"
+            },
+            {
+                "quantity": "",
+                "name": "🧅\n             1 échalote"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             1 cuillère à soupe de farine"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             Huile d'olive"
+            }
+        ],
+        "steps": [
+            "Commencez par écraser les pommes de terre en purée.",
+            "Ajoutez les carottes râpées, l'échalote cuite et la farine à la purée de pommes de terre.",
+            "Mélangez le tout jusqu'à obtenir une pâte bien homogène.",
+            "Formez de petites boules entre vos mains.",
+            "Faites-les cuire dans une poêle avec de l'huile d'olive pendant 4 à 5 minutes, en les retournant régulièrement."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Healthy",
+            "Pas cher",
+            "Végé"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7782",
+        "title": "Pancakes aux fraises",
+        "description": "Découvrez la recette des meilleurs pancakes à la fraise, parfaits pour la diversification alimentaire des bébés. Faciles à préparer avec seulement quelques ingrédients.",
+        "image": "/recipes-ia/7782-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645368025322917152\" data-video-id=\"7645368025322917152\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645368025322917152\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🍓\n             2 fraises"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             1/2 banane"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             2 cuillères à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Mélanger les 2 fraises, la demi-banane, l'œuf et les 2 cuillères à soupe de farine.",
+            "Faire cuire la pâte à feu doux.",
+            "Servir et déguster."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Pas cher",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7810",
+        "title": "Salade de concombre coréenne (Oi Muchim)",
+        "description": "Découvrez l'Oi Muchim, une salade de concombre coréenne fraîche, croquante et acidulée. Idéale pour contrebalancer la richesse d'un poulet frit caramélisé, elle apporte un équilibre parfait de saveurs. Facile à préparer avec des ingrédients asiati...",
+        "image": "/recipes-ia/7810-carte.webp",
+        "category": "entrees",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7675001687475522849\" data-video-id=\"7675001687475522849\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7675001687475522849\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥒\n             1 concombre"
+            },
+            {
+                "quantity": "",
+                "name": "🥫\n             1 cuillère à soupe de sauce soja"
+            },
+            {
+                "quantity": "",
+                "name": "🍾\n             1 cuillère à soupe d'huile de sésame"
+            },
+            {
+                "quantity": "",
+                "name": "🍚\n             1 cuillère à soupe de vinaigre de riz"
+            },
+            {
+                "quantity": "",
+                "name": "🍯\n             1 pincée de sucre"
+            },
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pincée de gochugaru ou 1 cuillère à café de gochujang"
+            },
+            {
+                "quantity": "",
+                "name": "🧄\n             1 gousse d'ail"
+            }
+        ],
+        "steps": [
+            "Laissez le concombre dégorger avec du sel pendant 1 heure.",
+            "Pressez le concombre pour retirer l'excédent d'eau.",
+            "Ajoutez la sauce soja, l'huile de sésame, le vinaigre de riz, le sucre, le gochugaru (ou gochujang) et la gousse d'ail hachée.",
+            "Mélangez bien tous les ingrédients.",
+            "Laissez la salade reposer au frais pendant au moins 2 heures, ou idéalement une nuit pour développer toutes les saveurs."
+        ],
+        "tags": [
+            "Accompagnements",
+            "Asie",
+            "épicé",
+            "Healthy",
+            "Salades",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
+    {
+        "id": "7784",
+        "title": "Pancakes à la pêche",
+        "description": "Des pancakes à la pêche, à tester absolument !!",
+        "image": "/recipes-ia/7784-carte.webp",
+        "category": "desserts",
+        "difficulty": "moyen",
+        "prepTime": 15,
+        "cookTime": 30,
+        "servings": 4,
+        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652437948323089696\" data-video-id=\"7652437948323089696\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652437948323089696\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
+        "ingredients": [
+            {
+                "quantity": "",
+                "name": "🥣\n             1 pêche"
+            },
+            {
+                "quantity": "",
+                "name": "🍌\n             1 banane"
+            },
+            {
+                "quantity": "",
+                "name": "🥚\n             1 œuf"
+            },
+            {
+                "quantity": "",
+                "name": "🌾\n             3 cuillères à soupe de farine"
+            }
+        ],
+        "steps": [
+            "Mélanger la pêche, la banane, l'œuf et la farine.",
+            "Cuire les pancakes dans une poêle."
+        ],
+        "tags": [
+            "Bébé",
+            "Dès 6 mois",
+            "Voilà l'été"
+        ],
+        "isFeatured": false,
+        "isFavorite": false,
+        "address": ""
+    },
     {
         "id": "7786",
         "title": "Bolognaise aux légumes fondants pour bébé",
@@ -406,183 +643,6 @@ export const mockRecipes: Recipe[] = [
             "Healthy",
             "Plats",
             "Sans Gluten"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7784",
-        "title": "Pancakes à la pêche",
-        "description": "Des pancakes à la pêche, à tester absolument !!",
-        "image": "/recipes-ia/7784-carte.webp",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7652437948323089696\" data-video-id=\"7652437948323089696\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7652437948323089696\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥣\n             1 pêche"
-            },
-            {
-                "quantity": "",
-                "name": "🍌\n             1 banane"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             3 cuillères à soupe de farine"
-            }
-        ],
-        "steps": [
-            "Mélanger la pêche, la banane, l'œuf et la farine.",
-            "Cuire les pancakes dans une poêle."
-        ],
-        "tags": [
-            "Bébé",
-            "Dès 6 mois",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7782",
-        "title": "Pancakes aux fraises",
-        "description": "Découvrez la recette des meilleurs pancakes à la fraise, parfaits pour la diversification alimentaire des bébés. Faciles à préparer avec seulement quelques ingrédients.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "desserts",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7645368025322917152\" data-video-id=\"7645368025322917152\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7645368025322917152\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍓\n             2 fraises"
-            },
-            {
-                "quantity": "",
-                "name": "🍌\n             1/2 banane"
-            },
-            {
-                "quantity": "",
-                "name": "🥚\n             1 œuf"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             2 cuillères à soupe de farine"
-            }
-        ],
-        "steps": [
-            "Mélanger les 2 fraises, la demi-banane, l'œuf et les 2 cuillères à soupe de farine.",
-            "Faire cuire la pâte à feu doux.",
-            "Servir et déguster."
-        ],
-        "tags": [
-            "Bébé",
-            "Dès 6 mois",
-            "Pas cher",
-            "Voilà l'été"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7780",
-        "title": "Bouchées à la carotte et pomme de terre",
-        "description": "Ces bouchées très fondantes s'écrasent facilement entre la langue et le palais de bébé, même sans dents ! Idéales pour la diversification alimentaire dès 6 mois.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7613059062523088160\" data-video-id=\"7613059062523088160\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7613059062523088160\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🥕\n             100g de carottes"
-            },
-            {
-                "quantity": "",
-                "name": "🍎\n             100g de pommes de terre"
-            },
-            {
-                "quantity": "",
-                "name": "🧅\n             1 échalote"
-            },
-            {
-                "quantity": "",
-                "name": "🌾\n             1 cuillère à soupe de farine"
-            },
-            {
-                "quantity": "",
-                "name": "🍾\n             Huile d'olive"
-            }
-        ],
-        "steps": [
-            "Commencez par écraser les pommes de terre en purée.",
-            "Ajoutez les carottes râpées, l'échalote cuite et la farine à la purée de pommes de terre.",
-            "Mélangez le tout jusqu'à obtenir une pâte bien homogène.",
-            "Formez de petites boules entre vos mains.",
-            "Faites-les cuire dans une poêle avec de l'huile d'olive pendant 4 à 5 minutes, en les retournant régulièrement."
-        ],
-        "tags": [
-            "Bébé",
-            "Dès 6 mois",
-            "Healthy",
-            "Pas cher",
-            "Végé"
-        ],
-        "isFeatured": false,
-        "isFavorite": false,
-        "address": ""
-    },
-    {
-        "id": "7778",
-        "title": "Petites galettes de pommes de terre et brocoli",
-        "description": "Une recette simple et nutritive de petites galettes de pommes de terre et brocoli, idéales pour la diversification alimentaire des bébés dès 6 mois. Faciles à préparer et à congeler.",
-        "image": "/images/recipe-placeholder.svg",
-        "category": "plats",
-        "difficulty": "moyen",
-        "prepTime": 15,
-        "cookTime": 30,
-        "servings": 4,
-        "videoHtml": "<blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/v/7423109426908810499\" data-video-id=\"7423109426908810499\" style=\"max-width: 605px;min-width: 325px;\">\n<section>\n            <a target=\"_blank\" title=\"@tiktok\" href=\"https://www.tiktok.com/v/7423109426908810499\">Regarder la vidéo sur TikTok</a><br />\n        </section>\n</blockquote><script async src=\"https://www.tiktok.com/embed.js\"></script>",
-        "ingredients": [
-            {
-                "quantity": "",
-                "name": "🍎\n             2 pommes de terre bouillies ou cuites à la vapeur"
-            },
-            {
-                "quantity": "",
-                "name": "🥦\n             2 tasses de fleurons de brocoli cuits à la vapeur ou bouillis"
-            },
-            {
-                "quantity": "",
-                "name": "🧀\n             1/2 tasse de fromage râpé"
-            }
-        ],
-        "steps": [
-            "Étape 1 : Écraser tous les ingrédients dans un bol.",
-            "Étape 2 : À l'aide de vos mains, former de petites galettes et les placer sur une plaque de cuisson recouverte de papier sulfurisé. Cuire au four pendant 25 minutes à 180°C."
-        ],
-        "tags": [
-            "Bébé",
-            "Dès 6 mois",
-            "Healthy",
-            "Pas cher",
-            "Végé"
         ],
         "isFeatured": false,
         "isFavorite": false,
