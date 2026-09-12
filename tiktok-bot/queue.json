@@ -1,61 +1,5 @@
 {
-  "queue": [
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkuu6f/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T08:57:50.170Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkAxWn/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T08:58:16.458Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkXdvB/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T08:58:25.314Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkBV4j/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T08:58:35.931Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkAK69/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T08:58:47.582Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkUgc3/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T08:59:04.660Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkgjmS/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T08:59:27.447Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkpetD/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T08:59:54.350Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQk4FLV/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T09:00:34.094Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkPetR/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T09:00:52.246Z"
-    },
-    {
-      "videoUrl": "https://vm.tiktok.com/ZGdQkgWaN/",
-      "country": "Bébé",
-      "timestamp": "2026-09-12T09:01:09.204Z"
-    }
-  ],
+  "queue": [],
   "echecs": [
     {
       "videoUrl": "https://vm.tiktok.com/ZN8FcaP8F/",
@@ -152,6 +96,14 @@
       "essais": 1,
       "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
       "quand": "2026-09-10T17:08:52.140Z"
+    },
+    {
+      "videoUrl": "https://vm.tiktok.com/ZGdQkAK69/",
+      "country": "Bébé",
+      "timestamp": "2026-09-12T08:58:47.582Z",
+      "essais": 1,
+      "raison": "l'IA n'a pas reconnu une recette dans cette vidéo",
+      "quand": "2026-09-12T09:06:46.194Z"
     }
   ]
 }
